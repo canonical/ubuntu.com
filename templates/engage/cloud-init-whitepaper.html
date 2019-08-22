@@ -8,7 +8,13 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Cloud-init" image="28e89608-cloud-init.svg" url="#register-section" cta="Download the whitepaper" class="p-strip--dark p-takeover--devops"%}
+{% with title="Cloud-init",
+  image="28e89608-cloud-init.svg",
+  url="#register-section",
+  cta="Download the whitepaper",
+  class="p-strip--dark p-takeover--devops" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">

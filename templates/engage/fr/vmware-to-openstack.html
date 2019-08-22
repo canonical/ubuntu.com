@@ -6,7 +6,13 @@
 {% block content %}
 
 
-{% include "engage/shared/_header.html" with title="Migrer de VMware à Openstack"  subtitle="Apprenez comment migrer d'un environnement traditionnel et propriétaire à un cloud OpenStack" url="#register-section" cta="S'inscrire au webinar&nbsp;&rsaquo;" lang="fr" %}
+{% with title="Migrer de VMware à Openstack",
+  subtitle="Apprenez comment migrer d'un environnement traditionnel et propriétaire à un cloud OpenStack",
+  url="#register-section",
+  cta="S'inscrire au webinar&nbsp;&rsaquo;",
+  lang="fr" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 
 <section lang="fr" class="p-strip is-bordered" id="register-section">

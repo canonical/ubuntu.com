@@ -7,7 +7,13 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1xyNrWYsYcvux_gYtoWw39XD9cP4QmiAYJnDlLuV8CvE{% endblock meta_copydoc %}
 
 {% block content %}
-{% include "engage/shared/_header.html" with title="Creating a cloud-like bare metal experience in the data centre" class="p-strip--dark p-takeover--maas" image="67e3e0f1-MAAS_white-orange_rgb.svg" url="#register-section" cta="Download the whitepaper" %}
+{% with title="Creating a cloud-like bare metal experience in the data centre",
+  class="p-strip--dark p-takeover--maas",
+  image="67e3e0f1-MAAS_white-orange_rgb.svg",
+  url="#register-section",
+  cta="Download the whitepaper" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
   <section class="p-strip is-shallow is-bordered">
     <div class="row">
       <div class="col-7">

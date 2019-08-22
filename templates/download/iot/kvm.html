@@ -120,7 +120,9 @@ KVM acceleration can be used</code></pre>
 
 {% with strip="p-strip--light" %}{% include "./_boot-tips-strip.html" %}{% endwith %}
 
-{% include "./_install-snaps-strip.html" with board="virtual machine"%}
+{% with board="virtual machine" %}
+  {% include "./_install-snaps-strip.html" %}
+{% endwith %}
 
 {% include "download/shared/_get-ebook-security.html"%}
 

@@ -8,7 +8,13 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="OpenStack made easy" subtitle="With the right tools, OpenStack can be easy" image="a7916513-picto-openstack.svg" url="#the-form" cta="Download the eBook" %}
+{% with title="OpenStack made easy",
+  subtitle="With the right tools, OpenStack can be easy",
+  image="a7916513-picto-openstack.svg",
+  url="#the-form",
+  cta="Download the eBook" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">

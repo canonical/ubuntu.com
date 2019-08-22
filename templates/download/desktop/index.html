@@ -111,6 +111,13 @@
   </div>
 </div>
 
-{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_desktop_installation" first_item_class="" second_item="_download_try_desktop" second_item_class="" third_item="_download_helping_hands" third_item_class="" %}
+{% with first_item="_download_desktop_installation",
+  first_item_class="",
+  second_item="_download_try_desktop",
+  second_item_class="",
+  third_item="_download_helping_hands",
+  third_item_class="" %}
+  {% include "shared/contextual_footers/_contextual_footer.html" %}
+{% endwith %}
 
 {% endblock content %}

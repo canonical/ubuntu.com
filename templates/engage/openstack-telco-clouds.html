@@ -8,7 +8,13 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Telcos and Service Providers expect near 100% uptime" subtitle="This requires a proven cloud platform that minimises time-to-revenue and ensures predictable costs." image="9f61b97f-logo-ubuntu.svg" url="#the-form" cta="Download the eBook" %}
+{% with title="Telcos and Service Providers expect near 100% uptime",
+  subtitle="This requires a proven cloud platform that minimises time-to-revenue and ensures predictable costs.",
+  image="9f61b97f-logo-ubuntu.svg",
+  url="#the-form",
+  cta="Download the eBook" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">

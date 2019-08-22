@@ -24,7 +24,16 @@
     <h4>Output</h4>
   </div>
 </section>
-{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar" class="test-class"  lang="en" %}
+{% with title="What's New in Ubuntu 18.10",
+  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413",
+  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar",
+  date="Webinar is live on 3 December 2018 at 8pm GMT",
+  url="#register-section",
+  cta="Watch the webinar",
+  class="test-class",
+  lang="17" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 <hr />
 
 <section class="p-strip">
@@ -36,7 +45,14 @@
     <h4>Output</h4>
   </div>
 </section>
-{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" url="#register-section" cta="Watch the webinar"  lang="en" %}
+{% with title="What's New in Ubuntu 18.10",
+  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413",
+  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar",
+  url="#register-section",
+  cta="Watch the webinar",
+  lang="en" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 <hr />
 
 <section class="p-strip">
@@ -48,7 +64,14 @@
     <h4>Output</h4>
   </div>
 </section>
-{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar"  lang="en"  %}
+{% with title="What's New in Ubuntu 18.10",
+  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar",
+  date="Webinar is live on 3 December 2018 at 8pm GMT",
+  url="#register-section",
+  cta="Watch the webinar",
+  lang="en" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 <hr />
 
 <section class="p-strip">

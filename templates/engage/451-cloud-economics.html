@@ -8,7 +8,13 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Busting the myth of private cloud economics" image="a5d0d583-451_research_logo.png" url="#the-form" cta="Download the case study" lang="en" %}
+{% with title="Busting the myth of private cloud economics",
+  image="a5d0d583-451_research_logo.png",
+  url="#the-form",
+  cta="Download the case study",
+  lang="en" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 
 <section class="p-strip is-shallow">

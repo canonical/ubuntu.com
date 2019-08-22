@@ -7,7 +7,14 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1BzilE80HtJ89mPXnhkaK0AYyYuPr8fnJPwnVUaMhJ9Y/edit#t{% endblock meta_copydoc %}
 
 {% block content %}
-{% include "engage/shared/_header.html" with title="Optimising IoT bandwidth with delta updates"  image="b511e965-Delta+updates.svg" subtitle="Learn how snap deltas' over-the-air updates are efficient and effective." url="#register-section" cta="Read the whitepaper" class="p-strip--image is-dark p-takeover--snap-deltas" %}
+{% with title="Optimising IoT bandwidth with delta updates",
+  image="b511e965-Delta+updates.svg",
+  subtitle="Learn how snap deltas' over-the-air updates are efficient and effective.",
+  url="#register-section",
+  cta="Read the whitepaper",
+  class="p-strip--image is-dark p-takeover--snap-deltas" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 
 <section class="p-strip is-shallow">

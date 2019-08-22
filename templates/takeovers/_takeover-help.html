@@ -153,7 +153,15 @@
     <h4>Output</h4>
   </div>
 </section>
-{% include "takeovers/shared/_takeover.html" with title="Private cloud security" class="p-strip--dark p-takeover js-takeover" subtitle="Meeting the highest enterprise requirements with OpenStack." subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" ctaBtnClass="p-button--positive" %}
+{% with title="Private cloud security",
+  class="p-strip--dark p-takeover js-takeover",
+  subtitle="Meeting the highest enterprise requirements with OpenStack.",
+  subtitleClass="p-heading--four",
+  ctaBtn="Register for the webinar",
+  ctaBtnURL="#",
+  ctaBtnClass="p-button--positive" %}
+  {% include "takeovers/shared/_takeover.html" %}
+{% endwith %}
 <hr />
 
 <section class="p-strip">
@@ -163,7 +171,14 @@
     <pre><code>&#123;% include "takeovers/shared/_takeover.html" with title="Private cloud security" subtitle="Meeting the highest enterprise requirements with OpenStack." subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" ctaBtnClass="p-button--positive" %}</code></pre>
 </div>
 </section>
-{% include "takeovers/shared/_takeover.html" with title="Private cloud security" subtitle="Meeting the highest enterprise requirements with OpenStack." subtitleClass="p-heading--four" ctaBtn="Register for the webinar" ctaBtnURL="#" ctaBtnClass="p-button--positive" %}
+{% with title="Private cloud security",
+  subtitle="Meeting the highest enterprise requirements with OpenStack.",
+  subtitleClass="p-heading--four",
+  ctaBtn="Register for the webinar",
+  ctaBtnURL="#",
+  ctaBtnClass="p-button--positive" %}
+  {% include "takeovers/shared/_takeover.html" %}
+{% endwith %}
 <hr />
 
 <section class="p-strip">

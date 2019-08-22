@@ -7,7 +7,12 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="The transformation of the DevOps journey in IoT" url="#register-section" cta="Download the whitepaper" class="p-strip--dark p-takeover--devops"%}
+{% with title="The transformation of the DevOps journey in IoT",
+  url="#register-section",
+  cta="Download the whitepaper",
+  class="p-strip--dark p-takeover--devops" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
