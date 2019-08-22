@@ -136,7 +136,7 @@
           {{ related_article.title.rendered|safe }}
         </a>
       </h4>
-      <p>{{ related_article.excerpt.raw|cut:"[…]"|truncate(36) }}</p>
+      <p>{{ related_article.excerpt.raw|cut:"[…]"|truncate(162) }}</p>
     </div>
     {% endfor %}
   </div>
