@@ -1,8 +1,8 @@
-{% extends "kubeflow/base_kubeflow.html" %} 
+{% extends "kubeflow/base_kubeflow.html" %}
 
 {% load versioned_static  %}
 
-{% block title %}AI Consulting and Delivery{% endblock %} 
+{% block title %}AI Consulting and Delivery{% endblock %}
 {% block meta_description %}Consulting on artificial intelligence and machine learning for enterprise data analytics. Infrastructure for multi-cloud operations with Kubeflow, Tensorflow on Kubernetes.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/19Mx1zRJKqH2hz5kRF_oDsgyFUw67FgJvW4I_OGda-wk/edit#{% endblock meta_copydoc %}
 
@@ -90,7 +90,7 @@
       Produce tangible results in one week with agile AI technologies and methodologies.
     </h4>
     <p>
-      The core of our one week engagement centers on the AI design sprint - an introduction to our AI technologies and methodologies, combined with developing a proof of concept (PoC) that solves a real business challenge for your organization. The blueprints that are produced during this sprint will serve as a foundation for your ongoing AI innovations. 
+      The core of our one week engagement centers on the AI design sprint - an introduction to our AI technologies and methodologies, combined with developing a proof of concept (PoC) that solves a real business challenge for your organization. The blueprints that are produced during this sprint will serve as a foundation for your ongoing AI innovations.
     </p>
     <p class="u-sv3">
       Additional key outcomes that you can expect from this week are a baseline architecture for iterative solution development – which includes a working continuous integration pipeline – and a high level strategy that addresses your AI transformation journey. Please note: this week typically relies on having the right infrastructure in place to support the AI technology stack.
@@ -167,7 +167,7 @@
     <div class="col-6 u-hide--small u-align--center">
       <img
         src="{{ ASSET_SERVER_URL }}2021203f-5+Operation+and+feedback.svg"
-        alt="" 
+        alt=""
         width="335px"
       />
     </div>
@@ -223,7 +223,7 @@
       <a
         class="p-link--external"
         href="{{ ASSET_SERVER_URL }}62e71815-Kubernetes-for-the-Enterprise.pdf"
-        >consulting datasheet</a 
+        >consulting datasheet</a
       >
     </p>
   </div>
@@ -232,87 +232,7 @@
 
 </section>
 
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <h3>
-      Learn more about AI/ML and Kubeflow
-    </h3>
-  </div>  
-  <div class="row">
-    <div class="col-12">
-      <div class="row p-divider">
-        <div class="col-4 p-divider__block">
-          <div class="p-heading-icon--muted">
-            <div class="p-heading-icon__header">
-              <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}26797d10-newsfeed-stripvideo-icon.svg" width="32" alt="">
-              <h4 class="p-heading-icon__title">Webinars</h4>
-            </div>
-          </div>
-          <p>
-            A detailed look into the artificial intelligence and machine learning world. Learn about the AI landscape, how to deploy your first model, and more.
-          </p>
-          <p>
-            <a href="/blog/ai-ml-ubuntu-everything-you-need-to-know">AI, ML, & Ubuntu: Everything you need to know</a>
-          </p>
-          <p>
-            <a href="/blog/ai-ml-model-ubuntu">How to build and deploy your first AI/ML model on Ubuntu</a>
-          </p>
-        </div>
-        <div class="col-4 p-divider__block">
-          <div class="p-heading-icon--muted">
-            <div class="p-heading-icon__header">
-              <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}cd7a3a3c-white-paper-icon.svg" width="32" alt="">
-              <h4 class="p-heading-icon__title">Articles</h4>
-            </div>
-          </div>
-          <p>
-            <a
-              class="p-link--external"
-              href="https://www.cmswire.com/digital-experience/stop-waiting-on-the-ai-sidelines-heres-how-to-take-the-plunge/"
-              >Stop Waiting on the AI Sidelines: Here's How to Take the Plunge</a
-            >
-          </p>
-          <p>
-            <a class="p-link--external" href="http://www.financederivative.com/getting-serious-about-ai/"
-              >Getting Serious About AI</a
-            >
-          </p>
-          <p>
-            <a
-              class="p-link--external"
-              href="https://www.datacenterknowledge.com/industry-perspectives/kubernetes-and-ai-marriage-made-it-heaven"
-              >Kubernetes and AI: Marriage Made in IT Heaven</a
-            >
-          </p>
-          <p>
-            <a
-              class="p-link--external"
-              href="https://www.comparethecloud.net/articles/automating-the-future-workplace/"
-              >Automating the Future of the Workplace</a
-            >
-          </p>
-        </div>
-        <div class="col-4 p-divider__block">
-          <div class="p-heading-icon--muted">
-            <div class="p-heading-icon__header">
-              <img class="p-heading-icon__img p-heading-icon__img--small" src="{{ ASSET_SERVER_URL }}cd7a3a3c-white-paper-icon.svg" width="32" alt="">
-              <h4 class="p-heading-icon__title">Whitepaper</h4>
-            </div>
-          </div>
-          <p>
-            Getting started with AI - a structured program to help organizations  achieve their AI ambitions quickly, reliably, and cost-effectively. Examine the fundamentals of a successful AI project.
-          </p>
-          <p>
-            <a
-              href="/engage/starting-with-ai"
-              >Get started with AI</a
-            >
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  {% include "kubeflow/shared/_learn-more.html" %}
 
 {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
 
