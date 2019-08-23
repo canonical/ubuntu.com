@@ -1,10 +1,18 @@
-{% extends_with_args "engage/base_engage.html" with title="The transformation of the DevOps journey in IoT" meta_description="Traditional development methods do not scale into the IoT sphere. Strong inter-dependencies and blurred boundaries among components in the edge device stack result in fragmentation, slow updates, security issues, increased cost, and reduced reliability of platforms" %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}The transformation of the DevOps journey in IoT{% endblock %}
+{% block meta_description %}Traditional development methods do not scale into the IoT sphere. Strong inter-dependencies and blurred boundaries among components in the edge device stack result in fragmentation, slow updates, security issues, increased cost, and reduced reliability of platforms{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1imuKA06xisHD5RURurRhiJuoVeQ3qGojpOVX6odPxR0/edit?ts=5caa27c6#{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="The transformation of the DevOps journey in IoT" url="#register-section" cta="Download the whitepaper" class="p-strip--dark p-takeover--devops"%}
+{% with title="The transformation of the DevOps journey in IoT",
+  url="#register-section",
+  cta="Download the whitepaper",
+  class="p-strip--dark p-takeover--devops" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
@@ -34,7 +42,7 @@
       </ul>
     </div>
     <div class="col-5" id="register-section">
-      {% include "engage/shared/_en_engage_form.html" with id="3366" returnURL="https://pages.ubuntu.com/IoT_Dev_Ops-TY.html" %}
+      {% with id="3366", returnURL="https://pages.ubuntu.com/IoT_Dev_Ops-TY.html" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
     <style>

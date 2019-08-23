@@ -1,6 +1,5 @@
 {% extends "templates/one-column.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Canonical security certifications{% endblock %}
 {% block meta_description %}Technical details on all of the security certifications for Ubuntu Advantage subscribers.{% endblock %}
@@ -21,7 +20,7 @@
       <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}2217d1c8-Security.svg" width="150" alt="">
+      <img src="https://assets.ubuntu.com/v1/2217d1c8-Security.svg" width="150" alt="">
     </div>
   </div>
 </section>
@@ -54,7 +53,7 @@
       </p>
     </div>
     <div class="col-4 u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}6c2ebd36-fips-validated-140-2-logo.png" alt="FIPS validated 140-2" width="150">
+      <img src="https://assets.ubuntu.com/v1/6c2ebd36-fips-validated-140-2-logo.png" alt="FIPS validated 140-2" width="150">
     </div>
   </div>
 </section>
@@ -74,7 +73,7 @@
       </p>
     </div>
     <div class="col-4 u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}905104b8-csec-logo.jpg?w=150" width="150" alt="cesc logo">
+      <img src="https://assets.ubuntu.com/v1/905104b8-csec-logo.jpg?w=150" width="150" alt="cesc logo">
     </div>
   </div>
 </section>
@@ -94,7 +93,7 @@
       </p>
     </div>
     <div class="col-4 u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}ff9e7377-disa-logo.svg" width="150" alt="disa logo">
+      <img src="https://assets.ubuntu.com/v1/ff9e7377-disa-logo.svg" width="150" alt="disa logo">
     </div>
   </div>
 </section>
@@ -111,17 +110,17 @@
       </p>
     </div>
     <div class="col-4 u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}1acf78b2-cis-logo.jpg?w=150" width="150" alt="disa logo">
+      <img src="https://assets.ubuntu.com/v1/1acf78b2-cis-logo.jpg?w=150" width="150" alt="disa logo">
     </div>
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_security_discussion" second_item="_security_esm" third_item="_security_further_reading" %}
+{% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_general.html" data-form-id="1257" data-lp-id="2154" data-return-url="https://www.ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

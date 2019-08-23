@@ -1,9 +1,18 @@
-{% extends_with_args "engage/base_engage.html" with title="Migrer de VMware à Openstack" meta_description="Quels sont les différences entre VMWare et OpenStack et les bénéfices d'une migration de l'un vers l'autre. Un webinar gratuit pour mieux comprendre les technologies du cloud privé." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Migrer de VMware à Openstack{% endblock %}
+{% block meta_description %}Quels sont les différences entre VMWare et OpenStack et les bénéfices d'une migration de l'un vers l'autre. Un webinar gratuit pour mieux comprendre les technologies du cloud privé.{% endblock %}
 
 {% block content %}
 
 
-{% include "engage/shared/_header.html" with title="Migrer de VMware à Openstack"  subtitle="Apprenez comment migrer d'un environnement traditionnel et propriétaire à un cloud OpenStack" url="#register-section" cta="S'inscrire au webinar&nbsp;&rsaquo;" lang="fr" %}
+{% with title="Migrer de VMware à Openstack",
+  subtitle="Apprenez comment migrer d'un environnement traditionnel et propriétaire à un cloud OpenStack",
+  url="#register-section",
+  cta="S'inscrire au webinar&nbsp;&rsaquo;",
+  lang="fr" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 
 <section lang="fr" class="p-strip is-bordered" id="register-section">
@@ -13,5 +22,5 @@
 </section>
 
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_telco_further_reading" %}
+{% with first_item="_cloud_bootstack", second_item="_cloud_newsletter", third_item="_telco_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 {% endblock content %}

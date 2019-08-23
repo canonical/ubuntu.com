@@ -1,5 +1,4 @@
 {% extends "templates/base.html" %}
-{% load versioned_static  %}
 
 {% block title %}{{ title }} | Charmed Distribution of Kubernetes documentation{% endblock title %}
 
@@ -58,6 +57,6 @@
 {% endblock %}
 
 {% block footer_extra %}
-<link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/prism.css' %}" />
-<script src="{% versioned_static 'js/prism.js' %}" async></script>
+<link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static('css/prism.css') }}" />
+<script src="{{ versioned_static('js/prism.js') }}" async></script>
 {% endblock footer_extra %}

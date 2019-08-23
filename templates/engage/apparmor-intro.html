@@ -8,7 +8,14 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="An introduction to AppArmor"  image="bf810a68-AppArmor_logo.svg" subtitle="An explanation of AppArmor and its key features." url="#register-section" cta="Read the whitepaper" class="p-strip--light" %}
+{% with title="An introduction to AppArmor",
+  image="bf810a68-AppArmor_logo.svg",
+  subtitle="An explanation of AppArmor and its key features.",
+  url="#register-section",
+  cta="Read the whitepaper",
+  class="p-strip--light" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -28,7 +35,7 @@
     </div>
 
     <div class="col-5" id="register-section">
-      {% include "engage/shared/_en_engage_form.html" with id="3341" returnURL="https://pages.ubuntu.com/App_Armor_Intro_TY.html" %}
+      {% with id="3341", returnURL="https://pages.ubuntu.com/App_Armor_Intro_TY.html" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

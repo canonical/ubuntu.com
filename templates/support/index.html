@@ -1,6 +1,5 @@
 {% extends "support/base_support.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Support and management{% endblock %}
 {% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
@@ -15,16 +14,16 @@
       <p>Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry. With OpenStack and Kubernetes support included, Ubuntu Advantage for Infrastructure provides everything you need to future-proof your data centre.</p>
       <p>
         <a href="https://buy.ubuntu.com" class="p-button--positive"><span class="p-link--external">Buy online</span></a>
-        <a href="{{ ASSET_SERVER_URL }}6063f97a-UbuntuAdvantage-datasheet_July-2019.pdf" class="p-button--neutral">Read the datasheet</a>
+        <a href="https://assets.ubuntu.com/v1/6063f97a-UbuntuAdvantage-datasheet_July-2019.pdf" class="p-button--neutral">Read the datasheet</a>
       </p>
     </div>
     <div class="col-5 u-align--center u-vertically-center u-hide--small">
-      <img alt="" src="{{ ASSET_SERVER_URL }}11da76f5-image-management.svg" width="288" />
+      <img alt="" src="https://assets.ubuntu.com/v1/11da76f5-image-management.svg" width="288" />
     </div>
   </div>
 </section>
 
-{% include "shared/_call-sales.html" with colour="dark" %}
+{% with colour="dark" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 <nav class="p-tabs p-sticky-nav">
   <ul class="p-tabs__list" role="tablist">
@@ -115,7 +114,7 @@
       </p>
     </div>
     <div class="col-7 u-hide--small u-vertically-center">
-      <img src="{{ ASSET_SERVER_URL }}b89de9f4-feature.png?w=500" width="500" alt="screenshot of Landscape" />
+      <img src="https://assets.ubuntu.com/v1/b89de9f4-feature.png?w=500" width="500" alt="screenshot of Landscape" />
     </div>
   </div>
 </section>
@@ -123,7 +122,7 @@
 <section class="p-strip is-bordered is-deep">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-7 u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}4d62c90a-applying-Livepatches.png?w=500" width="500" alt="Screenshot of applying livepatches" />
+      <img src="https://assets.ubuntu.com/v1/4d62c90a-applying-Livepatches.png?w=500" width="500" alt="Screenshot of applying livepatches" />
     </div>
     <div class="col-7">
       <h3>Apply critical kernel patches without rebooting</h3>
@@ -140,7 +139,7 @@
         <p><a href="/esm">Learn more about ESM&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-6 u-vertically-center u-align--center u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" width="150" alt="" />
+        <img src="https://assets.ubuntu.com/v1/9e59756d-shield-ESM.svg" width="150" alt="" />
       </div>
     </section>
 
@@ -176,31 +175,31 @@
           <h2 class="p-muted-heading u-align--center">A selection of Ubuntu Advantage customers</h2>
           <ul class="p-inline-images">
             <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}1a062141-logo-bloomberg.svg" width="187" alt="Bloomburg logo">
+              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/1a062141-logo-bloomberg.svg" width="187" alt="Bloomburg logo">
             </li>
             <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}d8f890fb-logo-at%26t.svg" width="145" alt="at&amp;t  logo">
+              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg" width="145" alt="at&amp;t  logo">
             </li>
             <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}3161e6ba-logo-walmart.svg" width="210" alt="Walmart logo">
+              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/3161e6ba-logo-walmart.svg" width="210" alt="Walmart logo">
             </li>
             <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}03a06060-logo-deutschetelekom.svg" width="242" alt="Deutshe Telekom logo">
+              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg" width="242" alt="Deutshe Telekom logo">
             </li>
             <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}e0f7037f-logo-ebay.svg" width="170" alt="Ebay logo">
+              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/e0f7037f-logo-ebay.svg" width="170" alt="Ebay logo">
             </li>
             <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}06c5609f-logo-cisco.svg" width="156" alt="Cisco logo">
+              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/06c5609f-logo-cisco.svg" width="156" alt="Cisco logo">
             </li>
             <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}ddb0f9d6-logo-ntt.svg" width="71" alt="NTT logo">
+              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/ddb0f9d6-logo-ntt.svg" width="71" alt="NTT logo">
             </li>
             <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}15e9c496-logo-bestbuy.svg" width="166" alt="Best Buy logo">
+              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/15e9c496-logo-bestbuy.svg" width="166" alt="Best Buy logo">
             </li>
             <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="{{ ASSET_SERVER_URL }}0c18b0ae-paypal_logo.svg" width="166" alt="Paypal logo">
+              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg" width="166" alt="Paypal logo">
             </li>
           </ul>
         </div>
@@ -216,17 +215,17 @@
           <p><a href="/support/community-support">Learn more about community support&nbsp;&rsaquo;</a></p>
         </div>
         <div class="col-4 u-hide--small u-align--center u-vertically-center">
-          <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" width="150" alt="Community">
+          <img src="https://assets.ubuntu.com/v1/039628d5-picto-community-orange.svg" width="150" alt="Community">
         </div>
       </div>
     </section>
 
-    {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+    {% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
     <!-- Set default Marketo information for contact form below-->
     <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_support.html" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
     </div>
 
-    <script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+    <script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
     {% endblock content %}

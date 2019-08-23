@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="AZLOGICA utilise Ubuntu Core for customised IoT agricultural solutions" meta_image="c6a56e63-AZLOGICA_LOGO.png" meta_description="Learn how Azlogica, a Latin American IoT company, turned to Ubuntu to help their client, Oceanos, to maximise shrimp production and revenues utilising Ubuntu Core and Dell Edge Gateways." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}AZLOGICA utilise Ubuntu Core for customised IoT agricultural solutions{% endblock %}
+{% block meta_description %}Learn how Azlogica, a Latin American IoT company, turned to Ubuntu to help their client, Oceanos, to maximise shrimp production and revenues utilising Ubuntu Core and Dell Edge Gateways.{% endblock %}
+{% block meta_image %}c6a56e63-AZLOGICA_LOGO.png{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP4758A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="AZLOGICA utilise Ubuntu Core for customised IoT agricultural solutions" image="c6a56e63-AZLOGICA_LOGO.png" url="#the-form" cta="Download the case study" %}
+{% with title="AZLOGICA utilise Ubuntu Core for customised IoT agricultural solutions", image="c6a56e63-AZLOGICA_LOGO.png", url="#the-form", cta="Download the case study" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -19,7 +23,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2519" returnURL="https://pages.ubuntu.com/IoT_AZLOGICA_CS-TY.html" cta="Download the case study" %}
+    {% with id="2519", returnURL="https://pages.ubuntu.com/IoT_AZLOGICA_CS-TY.html", cta="Download the case study" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

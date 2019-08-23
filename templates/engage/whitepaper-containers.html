@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="For CTOs: the no-nonsense way to accelerate your business with containers" meta_image="a9aff224-Containers-illustration.svg" meta_description="This eBook is designed to help telecom executives understand industry best practices as they move towards ‘cloudification’ of their network infrastructure." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}For CTOs: the no-nonsense way to accelerate your business with containers{% endblock %}
+{% block meta_description %}This eBook is designed to help telecom executives understand industry best practices as they move towards ‘cloudification’ of their network infrastructure.{% endblock %}
+{% block meta_image %}a9aff224-Containers-illustration.svg{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5628A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="For CTOs: the no-nonsense way to accelerate your business with containers" image="a9aff224-Containers-illustration.svg" url="#the-form" cta="Download the whitepaper" %}
+{% with title="For CTOs: the no-nonsense way to accelerate your business with containers", image="a9aff224-Containers-illustration.svg", url="#the-form", cta="Download the whitepaper" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -20,7 +24,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2542" returnURL="https://pages.ubuntu.com/ty-container-whitepaper.html" cta="Download the whitepaper" %}
+    {% with id="2542", returnURL="https://pages.ubuntu.com/ty-container-whitepaper.html", cta="Download the whitepaper" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

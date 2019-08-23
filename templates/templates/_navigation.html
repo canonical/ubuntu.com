@@ -1,3 +1,5 @@
+{% set breadcrumbs = navigation(request.path).breadcrumbs %}
+
 <header id="navigation" class="p-navigation" role="banner">
   {% block header_banner %}
   <div class="p-navigation__row row">

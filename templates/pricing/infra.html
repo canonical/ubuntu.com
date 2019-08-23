@@ -1,6 +1,5 @@
 {% extends "pricing/base_pricing.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Ubuntu Advantage Infrastructure | plans and pricing{% endblock %}
 
@@ -29,7 +28,7 @@
   <div class="row">
     <h3>Security maintenance and support</h3>
   </div>
-  {% include "shared/pricing/_ua-for-infrastructure.html" with extra=" Please refer to the <a href='/uasd'>service description</a> for full details." %}
+  {% with extra=" Please refer to the <a href='/uasd'>service description</a> for full details." %}{% include "shared/pricing/_ua-for-infrastructure.html" %}{% endwith %}
   <div class="row">
     <div class="col-12">
       <p>
@@ -85,14 +84,14 @@
   </div>
 </section>
 
-{% include "shared/_call-sales.html" with colour="dark" %}
+{% with colour="dark" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_pricing-infra.html" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}
 {% block footer_extra %}{% endblock footer_extra %}

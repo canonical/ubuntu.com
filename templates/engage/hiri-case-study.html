@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="Hiri successfully monetises their snap to dispel myths around proprietary Linux apps" meta_image="https://assets.ubuntu.com/v1/b8255328-download.png" meta_description="Business focused email client demonstrates that proprietary apps can be monetised on the Linux desktop." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Hiri successfully monetises their snap to dispel myths around proprietary Linux apps{% endblock %}
+{% block meta_description %}Business focused email client demonstrates that proprietary apps can be monetised on the Linux desktop.{% endblock %}
+{% block meta_image %}https://assets.ubuntu.com/v1/b8255328-download.png{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1Qg3sgDrvH9w_sgJpb2fp5lyOA5R-xhGZM3aKcyuQT68/edit?ts=5cbee163#{% endblock meta_copydoc %}
 
@@ -51,7 +55,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="3374" returnURL="https://pages.ubuntu.com/snapcraft_CS_Hiri-TY.html" label="Download the case study" %}
+    {% with id="3374", returnURL="https://pages.ubuntu.com/snapcraft_CS_Hiri-TY.html", label=Download the case study %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
   <style>

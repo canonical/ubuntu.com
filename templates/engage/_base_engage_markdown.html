@@ -1,6 +1,5 @@
 {% extends "templates/base.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}{{ title }} | Ubuntu and Canonical Legal{% endblock title %}
 
@@ -14,7 +13,7 @@
   <div class="row u-equal-height">
     <div class="{% if header_image %}col-7 {% else %}col-8{% endif %} u-vertically-center">
       <div>
-        <h1 {% if header_subtitle is None and header_date is None %}class="u-no-margin--bottom"{% endif %}>
+        <h1 {% if header_subtitle is none and header_date is none %}class="u-no-margin--bottom"{% endif %}>
           {{ header_title }}
         </h1>
         {% if header_subtitle %}<h4>
@@ -32,7 +31,7 @@
       </div>
     </div>
     {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="{% if header_image != "http" %}{{ ASSET_SERVER_URL }}{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ header_title }}" >
+      <img src="{% if header_image != "http" %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ header_title }}" >
     </div>{% endif %}
   </div>
 </section>

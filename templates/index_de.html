@@ -4,6 +4,6 @@
 {% endblock %}
 
 {% block takeover_content %}
-  {% include "takeovers/_de-vmware-to-os.html" with nojs_fallback=True %}
+  {% with nojs_fallback=True %}{% include "takeovers/_de-vmware-to-os.html" %}{% endwith %}
   {% include "takeovers/_financial-services.html" %}
 {% endblock takeover_content %}

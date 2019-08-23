@@ -22,7 +22,7 @@
     </h3>
 
     {% if not article.image %}
-      <p class="u-no-padding--bottom">{{ article.excerpt.raw|cut:"[…]"|truncatewords:36|urlize }}</p>
+      <p class="u-no-padding--bottom">{{ article.excerpt.raw.replace("[…]", "")|truncate(162)|urlize }}</p>
     {% endif %}
 
     {% if article.start_date and article.end_date %}

@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="Get started with DevOps best practices: CI/CD" meta_image="c112058c-Automated_DevOp.svg" meta_description="A webinar to learn how to automate Continuous Integration, Continuous Delivery, and Continuous Deployment with Kubernetes" %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Get started with DevOps best practices: CI/CD{% endblock %}
+{% block meta_description %}A webinar to learn how to automate Continuous Integration, Continuous Delivery, and Continuous Deployment with Kubernetes{% endblock %}
+{% block meta_image %}c112058c-Automated_DevOp.svg{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1zAv3ouUrzQcQDw2DSefaePXcMu35BAumIMpzqmIkycs/edit{% endblock meta_copydoc %}
 
@@ -15,7 +19,7 @@
       </p>
     </div>
     <div class="col-4 u-hide--small prefix-1">
-      <img src="{{ ASSET_SERVER_URL }}c112058c-Automated_DevOp.svg" alt="Getting Started Easily With DevOps Practices" class="p-takeover__image">
+      <img src="https://assets.ubuntu.com/v1/c112058c-Automated_DevOp.svg" alt="Getting Started Easily With DevOps Practices" class="p-takeover__image">
     </div>
   </div>
   <style>

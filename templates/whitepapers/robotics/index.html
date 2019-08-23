@@ -1,5 +1,4 @@
-{% extends "../base_whitepapers.html" %}
-{% load versioned_static %}
+{% extends "whitepapers/base_whitepapers.html" %}
 
 {% block title %}Key considerations when choosing a robot’s operating system{% endblock %}
 
@@ -9,7 +8,7 @@
 
 
 {% block content %}
-<section id="key" class="p-strip--hero is-deep u-hidden-anchor" style="padding: 3rem 0 6rem 0; background-image: url('{{ ASSET_SERVER_URL }}cc51aa1b-suru-whitepaper-template.svg');">
+<section id="key" class="p-strip--hero is-deep u-hidden-anchor" style="padding: 3rem 0 6rem 0; background-image: url('https://assets.ubuntu.com/v1/cc51aa1b-suru-whitepaper-template.svg');">
   <div class="row">
     <div class="suffix-1">
       <h1 class="u-text--accent">
@@ -119,7 +118,7 @@
           <div class="signup-form prefix-1">
             <div class="col-6">
               <h3>Continue to read for free</h3>
-              {% include "../shared/form.html" %}
+              {% include "whitepapers/shared/form.html" %}
             </div>
           </div>
         </div>
@@ -177,6 +176,6 @@
   </div>
 </section>
 
-<script src="{% versioned_static 'js/stickySidebar.js' %}"></script>
+<script src="{{ versioned_static('js/stickySidebar.js') }}"></script>
 
 {% endblock content %}

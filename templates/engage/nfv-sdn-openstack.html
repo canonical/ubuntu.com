@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="NFV and SDN on OpenStack<br />for network operators" image="9f61b97f-logo-ubuntu.svg" url="#the-form" cta="Download the eBook" %}
+{% with title="NFV and SDN on OpenStack<br />for network operators", image="9f61b97f-logo-ubuntu.svg", url="#the-form", cta="Download the eBook" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -28,7 +28,7 @@
  width="200" height="200" /></p>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2490" returnURL="https://pages.ubuntu.com/sdn_nfv_telco_TY.html" cta="Download the eBook" %}
+    {% with id="2490", returnURL="https://pages.ubuntu.com/sdn_nfv_telco_TY.html", cta="Download the eBook" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

@@ -1,5 +1,4 @@
 {% extends "desktop/base_desktop.html" %}
-{% load versioned_static %}
 
 {% block title %}User statistics{% endblock %}
 {% block meta_description %}The Ubuntu user report showcases the data collected from users installing or upgrading to
@@ -357,7 +356,7 @@ Ubuntu 18.04 LTS.{% endblock %}
 <section class="p-strip">
   <div class="row">
     <div class="col-6 prefix-1">
-      <img class="p-image--bordered" src="{{ ASSET_SERVER_URL }}f3f53a95-ubuntu-18.04-survey-metrics.png?w=411" width="411" alt="User survey report">
+      <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/f3f53a95-ubuntu-18.04-survey-metrics.png?w=411" width="411" alt="User survey report">
     </div>
     <div class="col-6">
       <h3>Want to know more?</h3>
@@ -384,7 +383,7 @@ Ubuntu 18.04 LTS.{% endblock %}
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html" with first_item="_desktop_contact_us" second_item="_support" third_item="_desktop_further_reading" %}
+{% with first_item="_desktop_contact_us", second_item="_support", third_item="_desktop_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-geo/1.9.1/d3-geo.min.js"></script>
@@ -394,6 +393,6 @@ Ubuntu 18.04 LTS.{% endblock %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-dsv/1.0.8/d3-dsv.min.js"></script>
 <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
 <script src="https://unpkg.com/topojson-client@3"></script>
-<script src="{% versioned_static 'js/build/stickyNav.min.js' %}"></script>
-<script src="{% versioned_static 'js/build/desktopStatistics.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/stickyNav.min.js') }}"></script>
+<script src="{{ versioned_static('js/build/desktopStatistics.min.js') }}"></script>
 {% endblock content %}

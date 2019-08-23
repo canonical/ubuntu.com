@@ -21,8 +21,8 @@
   </section>
 
   <section class="p-strip is-shallow{% if current_page and current_page == 1 and upcoming_events %} is-bordered{% endif %}" id="posts-list">
-    {% include 'blog/filters.html' with topic="cloud-and-server" %}
-    {% include 'blog/posts.html' %}
+    {% with topic="cloud-and-server" %}{% include "blog/filters.html" %}{% endwith %}
+    {% include "blog/posts.html" %}
   </section>
 
   {% include 'blog/pagination.html' %}

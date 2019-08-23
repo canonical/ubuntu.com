@@ -1,10 +1,21 @@
-{% extends_with_args "engage/base_engage.html" with title="Securing IoT device data against physical access" meta_image="84db8ca6-Disc_encryption.svg" meta_description="A technical overview of how Ubuntu Core with full disk encryption and secure boot can be implemented in IoT devices to provide protection in data sensitive scenarios." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Securing IoT device data against physical access{% endblock %}
+{% block meta_description %}A technical overview of how Ubuntu Core with full disk encryption and secure boot can be implemented in IoT devices to provide protection in data sensitive scenarios.{% endblock %}
+{% block meta_image %}84db8ca6-Disc_encryption.svg{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1zAv3ouUrzQcQDw2DSefaePXcMu35BAumIMpzqmIkycs/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Securing IoT device data against physical access" subtitle="A technical overview of how Ubuntu Core with full disk encryption and secure boot can be implemented to harden IoT devices" class="fde-wp" image="84db8ca6-Disc_encryption.svg" url="#the-form" cta="Download the whitepaper" %}
+{% with title="Securing IoT device data against physical access",
+  subtitle="A technical overview of how Ubuntu Core with full disk encryption and secure boot can be implemented to harden IoT devices",
+  class="fde-wp",
+  image="84db8ca6-Disc_encryption.svg",
+  url="#the-form",
+  cta="Download the whitepaper" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 <style>
   .fde-wp {
@@ -26,7 +37,7 @@
         </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="3331" returnURL="https://pages.ubuntu.com/Secure_Booth_Whitepaper_TY.html" cta="Download the whitepaper" %}
+    {% with id="3331", returnURL="https://pages.ubuntu.com/Secure_Booth_Whitepaper_TY.html", cta="Download the whitepaper" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

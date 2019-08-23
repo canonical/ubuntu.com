@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="IMS Evolve adopts Ubuntu Core to provide IoT-enabled business intelligence in the supply chain" meta_image="0492e7d8-ims-logo.svg" meta_description="Find out how IMS Evolve adopted Ubuntu Core running on Dell Edge Gateways to run the cold-chain solutions of some of the recognisable food retailers." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}IMS Evolve adopts Ubuntu Core to provide IoT-enabled business intelligence in the supply chain{% endblock %}
+{% block meta_description %}Find out how IMS Evolve adopted Ubuntu Core running on Dell Edge Gateways to run the cold-chain solutions of some of the recognisable food retailers.{% endblock %}
+{% block meta_image %}0492e7d8-ims-logo.svg{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5768A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="IMS Evolve adopts Ubuntu Core to provide IoT-enabled business intelligence in the supply chain" image="0492e7d8-ims-logo.svg" url="#the-form" cta="Download the case study" %}
+{% with title="IMS Evolve adopts Ubuntu Core to provide IoT-enabled business intelligence in the supply chain", image="0492e7d8-ims-logo.svg", url="#the-form", cta="Download the case study" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -19,7 +23,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2568" returnURL="https://pages.ubuntu.com/CS_IMS_Evolve_TY.html" cta="Download the case study" %}
+    {% with id="2568", returnURL="https://pages.ubuntu.com/CS_IMS_Evolve_TY.html", cta="Download the case study" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

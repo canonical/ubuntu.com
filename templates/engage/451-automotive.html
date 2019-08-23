@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="451 Automotive" meta_image="5096c143-451-research-vector-white-logo.svg" meta_description="The automotive industry is expanding its frontiers with the arrival of connected cars and autonomous driving. Find out the challenges brought by this revolution and what is being done to overcome them." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}451 Automotive{% endblock %}
+{% block meta_description %}The automotive industry is expanding its frontiers with the arrival of connected cars and autonomous driving. Find out the challenges brought by this revolution and what is being done to overcome them.{% endblock %}
+{% block meta_image %}5096c143-451-research-vector-white-logo.svg{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1muBF3nUj_tYCdHR7B5I5hO-kboBwdcpGnihNhqYiwXM{% endblock meta_copydoc %}
 
@@ -24,7 +28,7 @@
       </div>
     </div>
     <div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}5096c143-451-research-vector-white-logo.svg" width="311" alt="image for 451 Automotive" >
+      <img class="p-takeover__image" src="https://assets.ubuntu.com/v1/5096c143-451-research-vector-white-logo.svg" width="311" alt="image for 451 Automotive" >
     </div>
   </div>
 </section>

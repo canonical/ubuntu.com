@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="Rocket.Chat communication platform enables simplicity through snaps" meta_image="1ad274f9-rocket-chat.svg" meta_description="As Rocket.Chat has evolved, it has been keen to get its platform into the hands of as many users as possible without the difficulties of installation often associated with bespoke Linux deployments." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Rocket.Chat communication platform enables simplicity through snaps{% endblock %}
+{% block meta_description %}As Rocket.Chat has evolved, it has been keen to get its platform into the hands of as many users as possible without the difficulties of installation often associated with bespoke Linux deployments.{% endblock %}
+{% block meta_image %}1ad274f9-rocket-chat.svg{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5777A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Rocket.Chat communication platform enables simplicity through snaps" image="1ad274f9-rocket-chat.svg" url="#the-form" cta="Download the case study" %}
+{% with title="Rocket.Chat communication platform enables simplicity through snaps", image="1ad274f9-rocket-chat.svg", url="#the-form", cta="Download the case study" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -19,7 +23,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2571" returnURL="https://pages.ubuntu.com/CS_Rocket_Chat_TY.html" cta="Download the case study" %}
+    {% with id="2571", returnURL="https://pages.ubuntu.com/CS_Rocket_Chat_TY.html", cta="Download the case study" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

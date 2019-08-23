@@ -1,10 +1,19 @@
-{% extends_with_args "engage/base_engage.html" with title="Private cloud security" meta_description="In regulated sectors, private cloud security needs to meet the highest requirements. This Whitepaper explains how to deliver on these with an Openstack cloud." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Private cloud security{% endblock %}
+{% block meta_description %}In regulated sectors, private cloud security needs to meet the highest requirements. This Whitepaper explains how to deliver on these with an Openstack cloud.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1Qg3sgDrvH9w_sgJpb2fp5lyOA5R-xhGZM3aKcyuQT68/edit?ts=5cbee163#{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Private cloud security" subtitle="Meeting the highest levels of enterprise requirements with OpenStack" url="#the-form" cta="Download the whitepaper" class="p-strip--dark p-takeover--openstack"%}
+{% with title="Private cloud security",
+  subtitle="Meeting the highest levels of enterprise requirements with OpenStack",
+  url="#the-form",
+  cta="Download the whitepaper",
+  class="p-strip--dark p-takeover--openstack" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
@@ -28,7 +37,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-        {% include "engage/shared/_en_engage_form.html" with id="3375" returnURL="https://pages.ubuntu.com/Openstack_Whitepaper_Security-TY.html" %}
+        {% with id="3375", returnURL="https://pages.ubuntu.com/Openstack_Whitepaper_Security-TY.html" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 

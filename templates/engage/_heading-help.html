@@ -1,4 +1,6 @@
-{% extends_with_args "engage/base_engage.html" with title="Heading help" %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Heading help{% endblock %}
 
 {% block head_extra %}
 <meta name="robots" content="noindex, nofollow">
@@ -17,46 +19,92 @@
     <h3>Everything - title, subtitle, date, cta and url, class</h3>
 
     <h4>Include tag</h4>
-    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar" class="test-class" lang="en" %}
+    <pre><code>&#123;% with title="What's New in Ubuntu 18.10",
+  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413",
+  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar",
+  date="Webinar is live on 3 December 2018 at 8pm GMT",
+  url="#register-section",
+  cta="Watch the webinar",
+  class="test-class",
+  lang="17" %}
+  &#123;% include "engage/shared/_header.html" %}
+&#123;% endwith %}
     </code></pre>
     <h4>Output</h4>
   </div>
 </section>
-{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar" class="test-class"  lang="en" %}
+{% with title="What's New in Ubuntu 18.10",
+  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413",
+  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar",
+  date="Webinar is live on 3 December 2018 at 8pm GMT",
+  url="#register-section",
+  cta="Watch the webinar",
+  class="test-class",
+  lang="17" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 <hr />
 
 <section class="p-strip">
   <div class="row">
     <h3>No date</h3>
     <h4>Include tag</h4>
-    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" url="#register-section" cta="Watch the webinar"  lang="en" %}
+    <pre><code>&#123;% with title="What's New in Ubuntu 18.10",
+  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413",
+  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar",
+  url="#register-section",
+  cta="Watch the webinar",
+  lang="en" %}
+  &#123;% include "engage/shared/_header.html" %}
+&#123;% endwith %}
     </code></pre>
     <h4>Output</h4>
   </div>
 </section>
-{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413" subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" url="#register-section" cta="Watch the webinar"  lang="en" %}
+{% with title="What's New in Ubuntu 18.10",
+  image="d9105909-Dell_XPS_Laptop_Left-Desktop.png?w=413",
+  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar",
+  url="#register-section",
+  cta="Watch the webinar",
+  lang="en" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 <hr />
 
 <section class="p-strip">
   <div class="row">
     <h3>No image, no class</h3>
     <h4>Include tag</h4>
-    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar"  lang="en" %}
+    <pre><code>&#123;% with title="What's New in Ubuntu 18.10",
+  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar",
+  date="Webinar is live on 3 December 2018 at 8pm GMT",
+  url="#register-section",
+  cta="Watch the webinar",
+  lang="en" %}
+  &#123;% include "engage/shared/_header.html" %}
+&#123;% endwith %}
     </code></pre>
     <h4>Output</h4>
   </div>
 </section>
-{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar" date="Webinar is live on 3 December 2018 at 8pm GMT" url="#register-section" cta="Watch the webinar"  lang="en"  %}
+{% with title="What's New in Ubuntu 18.10",
+  subtitle="Canonical product managers discuss the new Ubuntu 18.10 release features in this on-demand webinar",
+  date="Webinar is live on 3 December 2018 at 8pm GMT",
+  url="#register-section",
+  cta="Watch the webinar",
+  lang="en" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 <hr />
 
 <section class="p-strip">
   <div class="row">
     <h3>No subtitle, image or class</h3>
     <h4>Include tag</h4>
-    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" url="#register-section" cta="Watch the webinar"  %&#125;</code></pre>
+    <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" url="#register-section" cta=""Watch the webinar" " %&#125;</code></pre>
 </div>
 </section>
-{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" url="#register-section" cta="Watch the webinar"  %}
+{% with title="What's New in Ubuntu 18.10", url="#register-section", cta="Watch the webinar" %}{% include "engage/shared/_header.html" %}{% endwith %}
 <hr />
 
 <section class="p-strip">
@@ -66,7 +114,7 @@
     <pre><code>&#123;% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10"  %&#125;</code></pre>
 </div>
 </section>
-{% include "engage/shared/_header.html" with title="What's New in Ubuntu 18.10" %}
+{% with title="What's New in Ubuntu 18.10" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <style media="screen">
   .test-class {

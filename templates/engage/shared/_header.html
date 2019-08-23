@@ -2,7 +2,7 @@
   <div class="row u-equal-height">
     <div class="{% if image %}col-7 {% else %}col-8{% endif %} u-vertically-center">
       <div>
-      <h1 {% if subtitle is None and date is None %}class="u-no-margin--bottom"{% endif %}>
+      <h1 {% if subtitle is none and date is none %}class="u-no-margin--bottom"{% endif %}>
         {{ title }}
       </h1>
       {% if subtitle %}<h4>
@@ -20,7 +20,7 @@
       </div>
     </div>
     {% if image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="{% if image != "http" %}{{ ASSET_SERVER_URL }}{% endif %}{{ image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ title }}" >
+      <img src="{% if image != "http" %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ title }}" >
     </div>{% endif %}
   </div>
 </section>

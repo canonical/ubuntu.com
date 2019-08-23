@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="Busting the myth of private cloud economics" meta_image="c54da84b-451-Research-NEG.png" meta_description="Private cloud costs: the new report from 451 Research found Canonical’s managed private cloud to be cheaper than 25 of the public cloud providers included in the Cloud Price benchmark." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Busting the myth of private cloud economics{% endblock %}
+{% block meta_description %}Private cloud costs: the new report from 451 Research found Canonical’s managed private cloud to be cheaper than 25 of the public cloud providers included in the Cloud Price benchmark.{% endblock %}
+{% block meta_image %}c54da84b-451-Research-NEG.png{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1NtRmAB4Pkphc8WTU8n4-b10knVqqFhMDc_FtGAwQ7nw/edit{% endblock meta_copydoc %}
 
@@ -36,11 +40,11 @@
     <div class="col-8">
       <h1 class="p-takeover__title">Busting the myth of private cloud economics</h1>
       <p class="u-hide--medium u-hide--large u-align--center">
-        <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}c54da84b-451-Research-NEG.png?w=238" width="238" alt="">
+        <img class="p-takeover__image" src="https://assets.ubuntu.com/v1/c54da84b-451-Research-NEG.png?w=238" width="238" alt="">
       </p>
     </div>
     <div class="col-4 u-hide--small u-align--left">
-      <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}c54da84b-451-Research-NEG.png?w=238" width="238" alt="">
+      <img class="p-takeover__image" src="https://assets.ubuntu.com/v1/c54da84b-451-Research-NEG.png?w=238" width="238" alt="">
     </div>
   </div>
 
@@ -56,7 +60,7 @@
       <p style="font-size:16px;">To find out more, download the report.</p>
     </div>
     <div class="col-5">
-      {% include "engage/shared/_en_engage_form.html" with id="3216" returnURL="https://pages.ubuntu.com/CloudEconomics_TY.html" %}
+      {% with id="3216", returnURL="https://pages.ubuntu.com/CloudEconomics_TY.html" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

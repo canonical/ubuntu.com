@@ -1,4 +1,7 @@
-{% extends_with_args "engage/base_engage.html" with title="AI, ML and Ubuntu: Everything you need to know" meta_description="An introduction to AI and ML workloads on Ubuntu workstations, servers and in the cloud on a Kubernetes stack." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}AI, ML and Ubuntu: Everything you need to know{% endblock %}
+{% block meta_description %}An introduction to AI and ML workloads on Ubuntu workstations, servers and in the cloud on a Kubernetes stack.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1YVPlQYT3jvxb6Yp5OShSiUsmKBPOYOm_fNLJHNsQ6tQ/edit{% endblock meta_copydoc %}
 
@@ -57,7 +60,7 @@
       </ul>
     </div>
     <div class="col-6">
-      <img src="{{ ASSET_SERVER_URL }}1793c307-slide-preview.png?w=720" width="720" alt="AI, ML and Ubuntu webinar - slides preview">
+      <img src="https://assets.ubuntu.com/v1/1793c307-slide-preview.png?w=720" width="720" alt="AI, ML and Ubuntu webinar - slides preview">
     </div>
   </div>
 </section>

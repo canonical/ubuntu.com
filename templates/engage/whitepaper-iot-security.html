@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="Taking charge of the IoT's security vulnerabilities" meta_image="2217d1c8-Security.svg" meta_description="Canonical's report examines closely the behaviours and attitudes of UK consumers to IoT security, looks at some of the leading IoT security issues in the industry, and asks how they might be addressed." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Taking charge of the IoT's security vulnerabilities{% endblock %}
+{% block meta_description %}Canonical's report examines closely the behaviours and attitudes of UK consumers to IoT security, looks at some of the leading IoT security issues in the industry, and asks how they might be addressed.{% endblock %}
+{% block meta_image %}2217d1c8-Security.svg{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP4943A1LA1{% endblock meta_copydoc %}
 
@@ -40,7 +44,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="1917" returnURL="https://pages.ubuntu.com/IoTSecurityWhitepaper-Fullreport.html" cta="Download the whitepaper" %}
+    {% with id="1917", returnURL="https://pages.ubuntu.com/IoTSecurityWhitepaper-Fullreport.html", cta="Download the whitepaper" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

@@ -1,6 +1,5 @@
 {% extends "kubeflow/base_kubeflow.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Install Kubeflow on Ubuntu{% endblock %}
 {% block meta_description %}A step-by-step installation guide to Ubuntu OpenStack with Kubernetes and Kubeflow on bare metal servers.{% endblock %}
@@ -14,7 +13,7 @@
       <p>Create and train machine learning models on your laptop, in your data center, or in the cloud.</p>
     </div>
     <div class="col-4 prefix-1 u-align--center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}1ec1605a-kubeflow.svg?w=275" alt="" width="275" />
+      <img src="https://assets.ubuntu.com/v1/1ec1605a-kubeflow.svg?w=275" alt="" width="275" />
     </div>
   </div>
 </section>
@@ -96,7 +95,7 @@
   <div class="row">
     <div class="u-equal-height">
       <div class="col-4 u-align--center u-hide--small u-vertically-center">
-        <img src="{{ ASSET_SERVER_URL }}1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+        <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="200" alt="" />
       </div>
       <div class="col-7 prefix-1 u-vertically-center">
         <div class="row">
@@ -111,12 +110,12 @@
   </div>
 </div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
+{% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/kubeflow/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

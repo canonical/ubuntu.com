@@ -7,19 +7,19 @@
 {% endif %}
 
   <section class="p-strip is-shallow" id="posts-list">
-    {% include 'blog/filters.html' with topic='' %}
+    {% with topic="" %}{% include "blog/filters.html" %}{% endwith %}
     <div class="row u-equal-height u-clearfix">
     {% for article in articles %}
-      {% if forloop.counter|add:"-1"|divisibleby:"3" and forloop.counter > 1 %}
+      {% if (loop.index - 1) % 3 == 0 and loop.index > 1 %}
         </div>
         <div class="row u-equal-height u-clearfix">
       {% endif %}
-      {% if forloop.counter == 3 %}
+      {% if loop.index == 3 %}
         <div class="col-4">
           {% include 'blog/newsletter-form.html' %}
         </div>
-      {% elif forloop.counter <= 2 %}
-        {% include 'blog/blog-card.html' with summary_visible=True %}
+      {% elif loop.index <= 2 %}
+        {% with summary_visible=True %}{% include "blog/blog-card.html" %}{% endwith %}
       {% else %}
         {% include 'blog/blog-card.html' %}
       {% endif %}

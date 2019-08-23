@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="Building a private cloud? Take the leap!" meta_image="9f61b97f-logo-ubuntu.svg" meta_description="With Ubuntu OpenStack, you can deploy a cloud infrastructure on your laptop or on a small group of test machines to get your cloud strategy underway." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Building a private cloud? Take the leap!{% endblock %}
+{% block meta_description %}With Ubuntu OpenStack, you can deploy a cloud infrastructure on your laptop or on a small group of test machines to get your cloud strategy underway.{% endblock %}
+{% block meta_image %}9f61b97f-logo-ubuntu.svg{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5742A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Building a private cloud? Take the leap!" image="9f61b97f-logo-ubuntu.svg" url="#the-form" cta="Download the eBook" %}
+{% with title="Building a private cloud? Take the leap!", image="9f61b97f-logo-ubuntu.svg", url="#the-form", cta="Download the eBook" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -23,7 +27,7 @@
       </blockquote>              
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2631" returnURL="https://pages.ubuntu.com/PrivateCloud_TY.html" cta="Download the eBook" %}
+    {% with id="2631", returnURL="https://pages.ubuntu.com/PrivateCloud_TY.html", cta="Download the eBook" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

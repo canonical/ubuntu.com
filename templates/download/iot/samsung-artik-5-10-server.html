@@ -39,7 +39,7 @@
     <div class="col-12">
       <h2>Installation instructions</h2>
       <ol class="p-stepped-list--detailed">
-        {% include "./_setup-ubuntu-sso.html" with number=1 %}
+        {% with number=1 %}{% include "download/iot/_setup-ubuntu-sso.html" %}{% endwith %}
         <li class="p-list-step__item">
           <h3 class="p-list-step__title">
             
@@ -86,12 +86,12 @@
   </div>
 </section>
 
-{% include "./_boot-tips-strip.html" with strip="p-strip--light" %}
+{% with strip="p-strip--light" %}{% include "download/iot/_boot-tips-strip.html" %}{% endwith %}
 
-{% include "./_install-snaps-strip.html" %}
+{% include "download/iot/_install-snaps-strip.html" %}
 
 {% include "download/shared/_get-ebook-security.html" %}
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_core_learn_more" second_item="_core_contribute" third_item="_iot_further_reading" %}
+{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}

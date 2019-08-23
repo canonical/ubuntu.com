@@ -30,7 +30,7 @@
               <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
             </li>
             <!-- country -->
-            {% include "shared/forms/_country.html" with country='Land' %}
+            {% with country='Land' %}{% include "shared/forms/_country.html" %}{% endwith %}
             <!-- state/province -->
             {% include "shared/forms/_state.html" %}
           </ul>

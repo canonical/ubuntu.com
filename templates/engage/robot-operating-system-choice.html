@@ -1,4 +1,7 @@
-{% extends_with_args "engage/base_engage.html" with title="Key considerations when choosing a robot’s operating system" meta_description="The choice of operating system for a robot affects long-term production performance. Securing a long term, stable and profitable lifespan for your robot requires the right OS." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Key considerations when choosing a robot’s operating system{% endblock %}
+{% block meta_description %}The choice of operating system for a robot affects long-term production performance. Securing a long term, stable and profitable lifespan for your robot requires the right OS.{% endblock %}
 
 {% block content %}
 <section class="p-strip p-takeover--robotics js-takeover">
@@ -44,7 +47,7 @@
 
   @media (min-width: 768px) {
     .p-takeover--robotics {
-      background-image: url('{{ ASSET_SERVER_URL }}a9f785e5-circuits-together.svg'), linear-gradient(-44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
+      background-image: url('https://assets.ubuntu.com/v1/a9f785e5-circuits-together.svg'), linear-gradient(-44deg, #171717 0%, #181818 9%, #262626 34%, #2D2D2D 67%, #383838 88%, #2E2E2E 100%, #393939 100%);
       background-color: #262626;
       background-size: cover;
     }
@@ -95,7 +98,7 @@
 
         <div class="col-12 u-equal-height">
           <div class="col-2">
-            <img src="{{ ASSET_SERVER_URL }}5f75154f-bot.png" alt="Robot with a display">
+            <img src="https://assets.ubuntu.com/v1/5f75154f-bot.png" alt="Robot with a display">
           </div>
           <div class="col-9 u-vertically-center">
             <blockquote class="p-pull-quote">
@@ -115,7 +118,7 @@
 
     </div>
     <div class="col-5">
-    {% include "engage/shared/_en_engage_form.html" with id="3261" returnURL="https://pages.ubuntu.com/OSconsideration_TY.html" %}
+    {% with id="3261", returnURL="https://pages.ubuntu.com/OSconsideration_TY.html" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

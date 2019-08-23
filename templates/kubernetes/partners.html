@@ -1,6 +1,5 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Charmed Kubernetes Partners{% endblock %}
 {% block meta_description %}Canonical’s Kubernetes partners provide regional consulting and operations, hosting, and third-party technology for storage, networking, monitoring and chargeback to the Charmed Kubernetes and OpenStack ecosystem.{% endblock meta_description %}
@@ -14,7 +13,7 @@
       <p>It takes an open ecosystem to solve the diverse challenges of private cloud infrastructure across every sector and in every region. Our partners ensure that you have the widest range of capabilities available for automated integration in your Kubernetes on OpenStack cloud, and that you can get insight and support locally.</p>
     </div>
     <div class="col-4 u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}1c786630-image-cloud.svg" width="323" alt="">
+      <img src="https://assets.ubuntu.com/v1/1c786630-image-cloud.svg" width="323" alt="">
     </div>
   </div>
 </section>
@@ -30,7 +29,7 @@
       <p><a class="p-button--positive" href="https://www.brighttalk.com/webcast/6793/292819">Watch the Introduction webinar</a></p>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      <img style="max-width: 210px;" src="{{ ASSET_SERVER_URL }}8f878ba0-rancher-logo-stacked-color.svg" width="210" alt="">
+      <img style="max-width: 210px;" src="https://assets.ubuntu.com/v1/8f878ba0-rancher-logo-stacked-color.svg" width="210" alt="">
     </div>
   </div>
   <div class="row u-vertically-spaced u-equal-height">
@@ -41,7 +40,7 @@
       <p><a class="p-link--external" href="https://cloud-images.ubuntu.com/aws-eks/">Learn about EKS with Ubuntu</a></p>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      <img style="max-width: 250px;" src="{{ ASSET_SERVER_URL }}ba70dd8a-gce.png?w=250" width="250" alt="">
+      <img style="max-width: 250px;" src="https://assets.ubuntu.com/v1/ba70dd8a-gce.png?w=250" width="250" alt="">
     </div>
   </div>
   <div class="row u-vertically-spaced u-equal-height">
@@ -51,7 +50,7 @@
       <p><a class="p-button--positive" href="https://www.brighttalk.com/webcast/6793/308887">Watch the JFrog Artifactory webinar</a></p>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      <img style="max-width: 170px;" src="{{ ASSET_SERVER_URL }}45012d4e-jfrog.png?w=170" width="170" alt="">
+      <img style="max-width: 170px;" src="https://assets.ubuntu.com/v1/45012d4e-jfrog.png?w=170" width="170" alt="">
     </div>
   </div>
 </section>
@@ -66,12 +65,12 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_containers_juju" second_item="_cloud_lxd" third_item="_cloud_further_reading" %}
+{% with first_item="_containers_juju", second_item="_cloud_lxd", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubernetes.html" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

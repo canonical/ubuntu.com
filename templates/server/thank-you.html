@@ -7,8 +7,8 @@
 
 {% block content %}
   {% if product == 'server-maas' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about MAAS" %}
+    {% with thanks_context="enquiring about MAAS" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% else %}
-    {% include "shared/_thank_you.html" with thanks_context="your interest in Ubuntu Server" %}
+    {% with thanks_context="your interest in Ubuntu Server" %}{% include "shared/_thank_you.html" %}{% endwith %}
   {% endif %}
 {% endblock content %}

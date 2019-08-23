@@ -1,6 +1,5 @@
 {% extends "openstack/_base_openstack.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}OpenStack on Ubuntu is your scalable private cloud, by Canonical{% endblock %}
 {% block meta_description %}Ubuntu OpenStack is the most trusted and economical way to build your private OpenStack cloud. Supported or fully managed by Canonical.{% endblock meta_description %}
@@ -28,7 +27,7 @@
       </p>
     </div>
     <div class="col-4">
-      <img src="{{ ASSET_SERVER_URL }}35515576-openstack-cloud.svg" width="323" alt="Canonical Openstack" class="u-hide--small" />
+      <img src="https://assets.ubuntu.com/v1/35515576-openstack-cloud.svg" width="323" alt="Canonical Openstack" class="u-hide--small" />
     </div>
   </div>
 </section>
@@ -46,7 +45,7 @@
       <p>BootStack is a &rsquo;build, operate, transfer, support&lsquo; service that allows you to take control of your own cloud at any time. All Openstack and operational components deployed are open source.</p>
     </div>
     <div class="col-5 u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}450d7c2f-openstack-hero.svg" width="413" alt="" />
+      <img src="https://assets.ubuntu.com/v1/450d7c2f-openstack-hero.svg" width="413" alt="" />
     </div>
   </div>
 </section>
@@ -75,7 +74,7 @@
   <div class="row u-equal-height">
     <h2>Choose your OpenStack package</h2>
   </div>
-  {% include "shared/pricing/_openstack-packages.html" with columns='3' %}
+  {% with columns='3' %}{% include "shared/pricing/_openstack-packages.html" %}{% endwith %}
 </section>
 
 <section class="p-strip--light">
@@ -90,7 +89,7 @@
       </p>
     </div>
     <div class="col-4 u-vertically-center">
-      <img src="{{ ASSET_SERVER_URL }}b8c1c0e2-halfcostgraph-white.svg" alt="VMware cost savings" width="250px" />
+      <img src="https://assets.ubuntu.com/v1/b8c1c0e2-halfcostgraph-white.svg" alt="VMware cost savings" width="250px" />
     </div>
   </div>
 </section>
@@ -124,7 +123,7 @@
     <div class="col-5 u-vertically-center u-hide--small">
       <div>
         <div class="u-align--center u-sv2">
-          <img src="{{ ASSET_SERVER_URL }}95212c08-OpenStack_Logo_2016.svg" alt="" width="220px" />
+          <img src="https://assets.ubuntu.com/v1/95212c08-OpenStack_Logo_2016.svg" alt="" width="220px" />
         </div>
         <cite>Canonical drives down the cost of OpenStack with fully managed private cloud services.</cite>
       </div>
@@ -138,7 +137,7 @@
 </section>
 
 <section class="p-strip--light is-bordered">
-  {% include "openstack/shared/_openstack_clients.html" with heading="A SELECTION OF OUR OPENSTACK CLIENTS" %}
+  {% with heading="A SELECTION OF OUR OPENSTACK CLIENTS" %}{% include "openstack/shared/_openstack_clients.html" %}{% endwith %}
 </section>
 
 <section class="p-strip u-no-padding--bottom">
@@ -307,7 +306,7 @@
   </div>
 </section>
 
-{% include "shared/_training.html" with type="OpenStack" %}
+{% with type="OpenStack" %}{% include "shared/_training.html" %}{% endwith %}
 
 <section class="p-strip--light">
   <div class="row">
@@ -326,12 +325,12 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_ubuntu_advantage" second_item="_cloud_contact_us" third_item="_cloud_further_reading" %}
+{% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_openstack.html" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=foundation-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

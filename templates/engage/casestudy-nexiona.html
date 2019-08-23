@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="NEXIONA® collaborates with Canonical and Dell to create MIIMETIQ® EDGE" meta_image="3f9fed86-mimetiqedge.jpg" meta_description="IoT is delivering real value for many smart businesses and is capturing people’s imagination because of its immense openness and flexibility. " %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}NEXIONA® collaborates with Canonical and Dell to create MIIMETIQ® EDGE{% endblock %}
+{% block meta_description %}IoT is delivering real value for many smart businesses and is capturing people’s imagination because of its immense openness and flexibility. {% endblock %}
+{% block meta_image %}3f9fed86-mimetiqedge.jpg{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP4910A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="NEXIONA® collaborates with Canonical and Dell to create MIIMETIQ® EDGE" image="3f9fed86-mimetiqedge.jpg" url="#the-form" cta="Download the case study" %}
+{% with title="NEXIONA® collaborates with Canonical and Dell to create MIIMETIQ® EDGE", image="3f9fed86-mimetiqedge.jpg", url="#the-form", cta="Download the case study" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -21,7 +25,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2023" returnURL="https://pages.ubuntu.com/IoT-NexionaCS-TY_v.html" cta="Download the case study" %}
+    {% with id="2023", returnURL="https://pages.ubuntu.com/IoT-NexionaCS-TY_v.html", cta="Download the case study" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

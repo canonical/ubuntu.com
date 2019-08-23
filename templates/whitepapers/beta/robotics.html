@@ -1,5 +1,4 @@
 {% extends "whitepapers/base_whitepapers.html" %}
-{% load versioned_static %}
 
 {% block title %}Key considerations when choosing a robot’s operating system{% endblock %}
 
@@ -9,7 +8,7 @@
 
 
 {% block content %}
-<section id="wp-key" class="p-strip--hero is-deep u-hidden-anchor" style="padding: 3rem 0 6rem 0; background-image: url('{{ ASSET_SERVER_URL }}cc51aa1b-suru-whitepaper-template.svg');">
+<section id="wp-key" class="p-strip--hero is-deep u-hidden-anchor" style="padding: 3rem 0 6rem 0; background-image: url('https://assets.ubuntu.com/v1/cc51aa1b-suru-whitepaper-template.svg');">
   <div class="row">
     <div class="suffix-1">
       <h1 class="u-text--accent">
@@ -114,7 +113,7 @@
             </p>
             <div class="signup-form col-6 u-no-margin--left" style="margin-bottom: 3rem; margin-top: 0; box-shadow: none;">
               <h3>Read this free whitepaper</h3>
-              {% include "./shared/form.html" %}
+              {% include "whitepapers/beta/shared/form.html" %}
             </div>
           </div>
         </div>
@@ -127,7 +126,7 @@
               The initial development of the robot is a critical time when it comes to technology selection, both hardware and software. Unless a company is in the habit of burning money, the operating system used on the robot during this stage should also be the one used in production (or at least closely related).
               There’s a balancing act to be had here: the engineering team will naturally want the operating system that best supports whatever they’re developing, but there are more factors to be considered.
             </p>
-            <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}82e8e896-tennibot.jpg?w=1000" alt="tennibot" width="1000" />
+            <img class="u-hide--small" src="https://assets.ubuntu.com/v1/82e8e896-tennibot.jpg?w=1000" alt="tennibot" width="1000" />
             <figcaption class="p-caption">Tennibot - the world’s first robotic tennis ball collector</figcaption>
             <h3 class="u-hidden-anchor" id="wp-software-stack">
               Software stack compatibility
@@ -153,7 +152,7 @@
               Hardware compatibility should also be a primary concern, for much the same reason as software: a significant chunk of time will be spent ensuring components to work together before any real progress can be made on the robot itself. For example, it’s not unusual to find hardware that requires drivers only written for specific Linux distributions, or to work with vendors that have limited exposure to Linux in general.
             </p>
             <img class="
-            u-hide--small" src="{{ ASSET_SERVER_URL }}3de0631f-car-with-iot.jpg?w=1000" width="1000" alt="car with iot" />
+            u-hide--small" src="https://assets.ubuntu.com/v1/3de0631f-car-with-iot.jpg?w=1000" width="1000" alt="car with iot" />
           </div>
         </div>
         <div class="row u-obfuscate">
@@ -177,7 +176,7 @@
             <p>
               A robot is rarely a standalone device: it often needs to seamlessly interact with other devices. The other device may be as simple as a digital twin for hardware- in-the-loop testing, but in general, off-device computation is getting more popular in robotics. Cloud robotics, speech processing, and machine learning are all use-cases that can benefit from processing information in a server farm instead of on a resource-constrained robot. If possible, it makes a lot of sense to use the same operating system on the robot as in the cloud. It prevents division of domain knowledge, and keeps processes the same, decreasing development time of both the client and server components.
             </p>
-            <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}33e96eb0-argi-iot.jpg?w=939" width="939" alt="" />
+            <img class="u-hide--small" src="https://assets.ubuntu.com/v1/33e96eb0-argi-iot.jpg?w=939" width="939" alt="" />
             <p>
               The <a href="https://www.smallrobotcompany.com/">Small Robot Company</a>, for example, are creating a range of farming robots. Rather than make one large, expensive robot capable of a number of tasks, they’re making a number of small, specialised robots each of which is responsible for specific tasks. This makes the process of taking care of a field into a coordinated dance of multiple systems that need to communicate and work together. If anyone understands how important it is to have a smooth integration process between systems, it’s their Chief Roboticist, Joe Allnutt:
             </p>
@@ -185,7 +184,7 @@
         </div>
         <div class="row u-obfuscate u-vertically-center">
           <div class="prefix-1 col-2">
-            <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}e820660a-small-robot-company-logo.jpg" alt="Small Robot Company logo">
+            <img class="u-hide--small" src="https://assets.ubuntu.com/v1/e820660a-small-robot-company-logo.jpg" alt="Small Robot Company logo">
           </div>
           <div class="col-6">
             <blockquote class="p-pull-quote">
@@ -202,7 +201,7 @@
             <p>
               One of the many joys of engineering is problem-solving. However, every engineer gets to the point where they need some help. Where do they turn? Of course, it depends on the problem. If they need help with the operating system, they often turn to the community around that distribution, where more often than not, others are experiencing the same issues. For example, Ubuntu has community support through its <a href="https://usn.ubuntu.com/usn/">security notices</a>, <a href="https://askubuntu.com">AskUbuntu</a>, the <a href="https://ubuntuforums.org">Ubuntu forums</a>, <a href="https://launchpad.net/ubuntu">Launchpad</a>, as well as various <a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC channels</a> and <a href="https://lists.ubuntu.com">mailing lists</a>.
             </p>
-            <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}0b637c66-Bo+3+way+view.jpg?w=1000" width="1000" alt="">
+            <img class="u-hide--small" src="https://assets.ubuntu.com/v1/0b637c66-Bo+3+way+view.jpg?w=1000" width="1000" alt="">
           </div>
         </div>
         <div class="row u-obfuscate">
@@ -234,7 +233,7 @@
             <p>
               It doesn’t take long to find examples of companies who started shipping devices without considering the need to update them. The Internet of Things market is flooded with them. With the rush to get devices to market, it’s not at all rare to find devices with hard-coded credentials, development keys, various security vulnerabilities, and no update path.
             </p>
-            <img class="u-hide--small" src="{{ ASSET_SERVER_URL }}47055fe8-Harry+new+design+field.jpg?w=1200" alt="" />
+            <img class="u-hide--small" src="https://assets.ubuntu.com/v1/47055fe8-Harry+new+design+field.jpg?w=1200" alt="" />
             <p>
               The Mirai botnet is an excellent example of this. It infected so many devices that it amassed the bandwidth to take internet giants like Twitter, Paypal, and Spotify offline back in 2016. How did it infect these devices? By using default, hard-coded credentials. Did the companies who created them react quickly and release updates to all those devices in order to secure them? No, in the absence of an update plan, they were forced to recall them. The cost of figuring out a good update story up front pales in comparison to that of a mass recall.
             </p>
@@ -348,6 +347,6 @@
   </div>
 </section>
 
-<script src="{% versioned_static 'js/stickySidebar.js' %}"></script>
+<script src="{{ versioned_static('js/stickySidebar.js') }}"></script>
 
 {% endblock content %}

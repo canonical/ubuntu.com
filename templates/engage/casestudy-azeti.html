@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="Azeti uses Ubuntu Core to improve deployment and security" meta_image="373e2562-2018-logo-azeti.svg" meta_description="Security is fantastic in Ubuntu Core - it's a self contained system that houses all the libraries. %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Azeti uses Ubuntu Core to improve deployment and security{% endblock %}
+{% block meta_description %}Security is fantastic in Ubuntu Core - it's a self contained system that houses all the libraries.{% endblock %}
+{% block meta_image %}373e2562-2018-logo-azeti.svg{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP4899A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Azeti uses Ubuntu Core to improve deployment and security" image="373e2562-2018-logo-azeti.svg" url="#the-form" cta="Download the case study" %}
+{% with title="Azeti uses Ubuntu Core to improve deployment and security", image="373e2562-2018-logo-azeti.svg", url="#the-form", cta="Download the case study" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -21,7 +25,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="1658" returnURL="https://pages.ubuntu.com/IoT-azetiCS-TY_v.html" cta="Download the case study" %}
+    {% with id="1658", returnURL="https://pages.ubuntu.com/IoT-azetiCS-TY_v.html", cta="Download the case study" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

@@ -1,6 +1,5 @@
 {% extends "kubeflow/base_kubeflow.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Canonical&rsquo;s AI and ML features{% endblock %}
 {% block meta_description %}Canonical Kubeflow on Ubuntu includes software-defined networking and storage options, architectural flexibility, and shared community-driven ops code independent of architecture.{% endblock meta_description %}
@@ -18,7 +17,7 @@
       <p><a class="js-invoke-modal" href="/kubeflow/contact-us?product=ai-features">Contact us for machine learning, deep learning and AI consulting&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-5 prefix-1 u-vertically-center u-align--center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}7d33e0a1-AI+illustration+hero.svg" alt="Kubeflow" width="323" />
+      <img src="https://assets.ubuntu.com/v1/7d33e0a1-AI+illustration+hero.svg" alt="Kubeflow" width="323" />
     </div>
   </div>
 </section>
@@ -64,7 +63,7 @@
 <section class="p-strip is-bordered">
   <div class="row u-equal-height">
     <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      <img src="{{ ASSET_SERVER_URL }}da5a7c9e-Kubeflow-Logo.svg" width="151" alt="">
+      <img src="https://assets.ubuntu.com/v1/da5a7c9e-Kubeflow-Logo.svg" width="151" alt="">
     </div>
     <div class="col-8">
       <h2>Kubeflow</h2>
@@ -88,7 +87,7 @@
     </div>
     <div class="col-4 u-hide--small u-vertically-center">
       <figure class="u-no-margin">
-        <img src="{{ ASSET_SERVER_URL }}710ddd41-mnist_tensorboard.png?w=323" width="323" class="p-image--shadowed" alt="" />
+        <img src="https://assets.ubuntu.com/v1/710ddd41-mnist_tensorboard.png?w=323" width="323" class="p-image--shadowed" alt="" />
         <figcaption>Tensorflow from Google is officially published for Ubuntu</figcaption>
       </figure>
     </div>
@@ -98,7 +97,7 @@
 <section class="p-strip is-bordered u-image-position">
   <div class="row">
     <div class="col-6 u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}3df02300-jupyterpreview.png?w=500" alt="" style="width: 45vw; max-width: 500px;" width="500" class="u-image-position--bottom u-hide--small"/>
+      <img src="https://assets.ubuntu.com/v1/3df02300-jupyterpreview.png?w=500" alt="" style="width: 45vw; max-width: 500px;" width="500" class="u-image-position--bottom u-hide--small"/>
     </div>
     <div class="col-6">
       <h2>JupyterHub</h2>
@@ -170,7 +169,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <img src="{{ ASSET_SERVER_URL }}9f6916dd-k8s-prometheus-light.png?w=1040" alt="" width="1040" />
+      <img src="https://assets.ubuntu.com/v1/9f6916dd-k8s-prometheus-light.png?w=1040" alt="" width="1040" />
     </div>
   </div>
 </section>
@@ -186,12 +185,12 @@
     </div>
   </div>
 </section>
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_ubuntu_advantage" third_item="_cloud_further_reading" %}
+{% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/kubeflow/thank-you?product=ai-features" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

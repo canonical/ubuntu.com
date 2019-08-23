@@ -1,6 +1,5 @@
 {% extends "openstack/_base_openstack.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Ubuntu Advantage Storage | OpenStack{% endblock %}
 {% block meta_description %}Canonical includes proven software-defined storage - Ceph, NexentaEdge, Swift and SwiftStack, in a 24x7 supported OpenStack with pay-for-what-you-use metered pricing options.{% endblock meta_description %}
@@ -17,7 +16,7 @@
         <p><a href="/openstack/contact-us?product=ubuntu-advantage-storage" class="js-invoke-modal p-button">Get in touch</a></p>
       </div>
       <div class="col-5 u-align--center u-vertically-center u-hide--small">
-        <img class="hero-image" width="100%" src="{{ ASSET_SERVER_URL }}c2d50399-storage.svg" alt="Lots of server pictos in a cloud" />
+        <img class="hero-image" width="100%" src="https://assets.ubuntu.com/v1/c2d50399-storage.svg" alt="Lots of server pictos in a cloud" />
       </div>
     </div>
   </div>
@@ -54,7 +53,7 @@
   </div>
   <div class="row u-equal-height">
     <div class="p-card col-6">
-      <img src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" width="100" alt="Swift icon">
+      <img src="https://assets.ubuntu.com/v1/4f1e16bf-image-swift.svg" width="100" alt="Swift icon">
       <hr class="u-sv2">
       <div class="p-card__content">
         <h3 class="p-card__title">Swift</h3>
@@ -63,7 +62,7 @@
     </div>
 
     <div class="p-card col-6">
-      <img src="{{ ASSET_SERVER_URL }}6c2ee5b9-ceph-logo.png?w=100" width="100" alt="Ceph icon">
+      <img src="https://assets.ubuntu.com/v1/6c2ee5b9-ceph-logo.png?w=100" width="100" alt="Ceph icon">
       <hr class="u-sv2">
       <div class="p-card__content">
         <h3 class="p-card__title">Ceph</h3>
@@ -87,17 +86,17 @@
       <p><a href="/openstack/contact-us?product=ubuntu-advantage-storage" class="js-invoke-modal">Find out how much you can save&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-5 u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}d8555ed7-storage-diagram-jy.png" alt="" width="330" />
+      <img src="https://assets.ubuntu.com/v1/d8555ed7-storage-diagram-jy.png" alt="" width="330" />
     </div>
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_rfp" third_item="_cloud_further_reading" %}
+{% with first_item="_cloud_bootstack", second_item="_cloud_rfp", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_storage.html" data-form-id="1233" data-lp-id="2001" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=ubuntu-advantage-storage" data-lp-url="https://www.ubuntu.com/openstack/contact-us?product=ubuntu-advantage-storage">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="Establishing a software defined IoT business model" meta_image="https://assets.ubuntu.com/v1/6d4f864b-Piggy+Bank+icon.svg" meta_description="Whitepaper: How device manufacturers can go from building single function devices with little to no software strategy to building devices defined by software and software business models, powered by app stores and ecosystems of 3rd party ISVs." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Establishing a software defined IoT business model{% endblock %}
+{% block meta_description %}Whitepaper: How device manufacturers can go from building single function devices with little to no software strategy to building devices defined by software and software business models, powered by app stores and ecosystems of 3rd party ISVs.{% endblock %}
+{% block meta_image %}https://assets.ubuntu.com/v1/6d4f864b-Piggy+Bank+icon.svg{% endblock %}
 
 {% block content %}
 <section class="p-strip p-takeover is-deep">
@@ -6,7 +10,7 @@
     <div class="col-8 suffix-2">
       <h1 class="p-takeover__title">Establishing a software defined IoT business model</h1>
       <p class="u-hide--medium u-hide--large u-align--center">
-        <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}6d4f864b-Piggy+Bank+icon.svg" alt="">
+        <img class="p-takeover__image" src="https://assets.ubuntu.com/v1/6d4f864b-Piggy+Bank+icon.svg" alt="">
       </p>
     </div>
     <div class="col-4 u-hide--small u-vertically-center">
@@ -60,7 +64,7 @@
 
   @media (min-width: 768px) {
     .p-takeover {
-      background-image: url('{{ ASSET_SERVER_URL }}b0d877ff-suru-left-side.svg'), url('{{ ASSET_SERVER_URL }}d3b283b9-suru-right-side.svg'), linear-gradient(27deg, #2E0123 0%, #730846 39%, #E9541F 100%);
+      background-image: url('https://assets.ubuntu.com/v1/b0d877ff-suru-left-side.svg'), url('https://assets.ubuntu.com/v1/d3b283b9-suru-right-side.svg'), linear-gradient(27deg, #2E0123 0%, #730846 39%, #E9541F 100%);
       background-color: #2E0123;
       background-repeat: no-repeat;
       background-size: contain;
@@ -131,7 +135,7 @@
       </ul>
     </div>
     <div class="col-5">
-      {% include "engage/shared/_en_engage_form.html" with id="3256" returnURL="https://pages.ubuntu.com/Appstore_whitepaper.html" %}
+      {% with id="3256", returnURL="https://pages.ubuntu.com/Appstore_whitepaper.html" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

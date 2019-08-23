@@ -1,10 +1,20 @@
-{% extends_with_args "engage/base_engage.html" with title="CTO’s guide to SDN, NFV & VNF" meta_image="https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg" meta_description="Networking and communications standards and methodologies are undergoing the greatest transition since the migration from analogue to digital: from function-specific, proprietary devices to software-enabled commodity hardware." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}CTO’s guide to SDN, NFV & VNF{% endblock %}
+{% block meta_description %}Networking and communications standards and methodologies are undergoing the greatest transition since the migration from analogue to digital: from function-specific, proprietary devices to software-enabled commodity hardware.{% endblock %}
+{% block meta_image %}https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5616A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="CTO’s guide to SDN, NFV & VNF" subtitle="Why is the transition happening and why is it important?" image="9f61b97f-logo-ubuntu.svg" url="#the-form" cta="Download the eBook" %}
+{% with title="CTO’s guide to SDN, NFV & VNF",
+  subtitle="Why is the transition happening and why is it important?",
+  image="9f61b97f-logo-ubuntu.svg",
+  url="#the-form",
+  cta="Download the eBook" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -22,7 +32,7 @@
 </blockquote>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2540" returnURL="https://pages.ubuntu.com/CIO_Report_Thankyou.html" cta="Download the eBook" %}
+    {% with id="2540", returnURL="https://pages.ubuntu.com/CIO_Report_Thankyou.html", cta="Download the eBook" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

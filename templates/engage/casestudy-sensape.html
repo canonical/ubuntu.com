@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="Sensape uses Landscape to remotely support revolutionary interactive retail displays" meta_image="bcdbf966-Sensape_Logo_rgb_Animated-nobackground.gif" meta_description="Sensape is teaching computers to see, understand and interact with people at trade events and in retail locations. Instead of using unchanging, predefined content, the Sensape systems senses its environment and reacts accordingly." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Sensape uses Landscape to remotely support revolutionary interactive retail displays{% endblock %}
+{% block meta_description %}Sensape is teaching computers to see, understand and interact with people at trade events and in retail locations. Instead of using unchanging, predefined content, the Sensape systems senses its environment and reacts accordingly.{% endblock %}
+{% block meta_image %}bcdbf966-Sensape_Logo_rgb_Animated-nobackground.gif{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5880A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Sensape uses Landscape to remotely support revolutionary interactive retail displays" image="bcdbf966-Sensape_Logo_rgb_Animated-nobackground.gif" url="#the-form" cta="Download the case study" %}
+{% with title="Sensape uses Landscape to remotely support revolutionary interactive retail displays", image="bcdbf966-Sensape_Logo_rgb_Animated-nobackground.gif", url="#the-form", cta="Download the case study" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -19,7 +23,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2786" returnURL="https://pages.ubuntu.com/Cloud_UA_CS_Sensape_TY.html" cta="Download the case study" %}
+    {% with id="2786", returnURL="https://pages.ubuntu.com/Cloud_UA_CS_Sensape_TY.html", cta="Download the case study" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

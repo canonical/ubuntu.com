@@ -19,7 +19,7 @@
           
           {% if request.GET.month or request.GET.year %} from{% endif %}
 
-          {% if request.GET.month %} {{request.GET.month|month_name}}{% endif %}
+          {% if request.GET.month %} {{ month_name(request.GET.month) }}{% endif %}
 
           {% if request.GET.year %} {{ request.GET.year }}{% endif %}
         </p>
@@ -39,7 +39,7 @@
               <div class="p-media-object__content">
                 <p>By <a href="/blog/author/{{article.author.slug}}" title="More about {{ article.author.name }}">{{ article.author.name }}</a>, {{ article.date }}</p>
                 
-                <p>{{ article.excerpt.raw|cut:"[…]"|truncatewords:36 }}</p>
+                <p>{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
               </div>
             </div>
           </div>
@@ -50,12 +50,12 @@
         <h3>Archives</h3>
 
         <ul class="p-list">
-          {% for year in 2006|descending_years %}
+          {% for year in descending_years(2006) %}
             <li class="p-list__item">
               <h5><a class="p-link--soft" href="/blog/archives?year={{year}}">{{year}}</a></h5>
               
               <ul class="p-inline-list--middot">
-                {% for month in year|months_list %}
+                {% for month in months_list(year) %}
                   <li class="p-inline-list__item"><a class="p-link--soft" href="/blog/archives?year={{year}}&amp;month={{month.number}}{% if group %}&group={{group.slug}}{% endif %}">{{ month.name }}</a></li>
                 {% endfor %}
               </ul>

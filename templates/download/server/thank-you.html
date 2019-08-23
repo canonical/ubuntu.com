@@ -1,5 +1,4 @@
 {% extends "download/_base_download.html" %}
-{% load versioned_static  %}
 
 {% block title %}Thanks for downloading Ubuntu Server{% endblock %}
 {% block canonical_url %}https://ubuntu.com/download/server{% endblock %}
@@ -24,7 +23,7 @@
           <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
             download now</a>.
           </p>
-          {% include "../shared/_verify-checksums.html" with version=version system="live-server" architecture=architecture %}
+          {% with version=version, system="live-server", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
           {% else %}
           <p>
             You didn&rsquo;t pick a version or architecture, please
@@ -40,7 +39,7 @@
     <div class="row u-vertically-center">
       <div class="col-2 u-align--left u-hide--small">
         <a href="https://microk8s.io/">
-          <img src="{{ ASSET_SERVER_URL }}9309d097-MicroK8s_SnapStore_icon.svg" width="100" alt="">
+          <img src="https://assets.ubuntu.com/v1/9309d097-MicroK8s_SnapStore_icon.svg" width="100" alt="">
         </a>
       </div>
        <div class="col-10 u-no-margin--left">
@@ -62,7 +61,7 @@
     </div>
   </section>
 
-  {% include "download/shared/_get_ebook_maas.html" with return_url="https://www.ubuntu.com/download/server/thank-you#instructions" %}
+  {% with return_url="https://www.ubuntu.com/download/server/thank-you#instructions" %}{% include "download/shared/_get_ebook_maas.html" %}{% endwith %}
 
   <div class="p-strip is-shallow">
     <div class="row">
@@ -78,7 +77,7 @@
 
     <div class="row">
       <div class="col-6 u-hide--small">
-        <img src="{{ ASSET_SERVER_URL }}b89de9f4-feature.png?w=502" width="502"
+        <img src="https://assets.ubuntu.com/v1/b89de9f4-feature.png?w=502" width="502"
         alt="Landscape load management" />
       </div>
       <div class="col-6">
@@ -130,7 +129,7 @@
           </p>
         </div>
         <div class="col-6 u-hide--small">
-          <img src="{{ ASSET_SERVER_URL }}da6f94b0-image-cloud-maas-2.jpg?w=502" width="502" alt="" />
+          <img src="https://assets.ubuntu.com/v1/da6f94b0-image-cloud-maas-2.jpg?w=502" width="502" alt="" />
         </div>
       </div>
     </div>
@@ -162,7 +161,7 @@
     </div>
   </div>
 
-  {% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_verify_your_download" second_item="_download_server_guide" third_item="_download_helping_hands" %}
+  {% with first_item="_download_verify_your_download", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
   {% endblock content %}
   {% block footer_extra %}

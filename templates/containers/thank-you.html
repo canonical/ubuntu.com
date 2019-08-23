@@ -7,11 +7,11 @@
 
 {% block content %}
 {% if product == 'containers-kubernetes' %}
-  {% include "shared/_thank_you.html" with thanks_context="enquiring about the Charmed Distribution of Kubernetes" %}
+  {% with thanks_context="enquiring about the Charmed Distribution of Kubernetes" %}{% include "shared/_thank_you.html" %}{% endwith %}
 {% elif product == 'containers-kubernetes-foundation' %}
-    {% include "shared/_thank_you.html" with thanks_context="enquiring about the Enterprise Kubernetes Packages" %}
+    {% with thanks_context="enquiring about the Enterprise Kubernetes Packages" %}{% include "shared/_thank_you.html" %}{% endwith %}
 {%  else %}
-  {% include "shared/_thank_you.html" with thanks_context="enquiring about containers" %}
+  {% with thanks_context="enquiring about containers" %}{% include "shared/_thank_you.html" %}{% endwith %}
 {% endif %}
 {% endblock content %}
 

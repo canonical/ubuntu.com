@@ -1,18 +1,11 @@
 {% extends "download/_base_download.html" %}
-{% load versioned_static  %}
 
-{% block title %}
-{% if start_download %}
-Thank you for downloading Ubuntu Desktop
-{% else %}
-Thank you for your contribution
-{% endif %}
-{% endblock %}
+{% block title %}Thank you {{ "for downloading Ubuntu Desktop" if start_download else "for your contribution" }}{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/187Vg9I0Jjlp1_yAjYtHdoEwFCJeVOaz9Kzeb6kptMpA{% endblock meta_copydoc %}
 
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
-{% block content-experiment %}
+{% block content_experiment %}
 <style>.async-hide { opacity: 0 !important} </style>
 <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
   h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
@@ -45,7 +38,7 @@ Thank you for your contribution
           <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
           {% endif %}
         </p>
-        {% include "../shared/_verify-checksums.html" with version=version system="desktop" architecture=architecture %}
+        {% with version=version, system="desktop", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
         {% else %}
         <h1>Thank you for your contribution</h1>
         <p>It will help further the open source development of Ubuntu.</p>
@@ -135,7 +128,7 @@ Thank you for your contribution
         </section>
 
         <div class="p-media-object u-no-margin--bottom u-sv3 u-vertically-center">
-          <img alt="T-shirt" src="{{ ASSET_SERVER_URL }}b26d26e5-t-shirt.png?w=78" width="78" class="p-media-object__image js-equivalent-image">
+          <img alt="T-shirt" src="https://assets.ubuntu.com/v1/b26d26e5-t-shirt.png?w=78" width="78" class="p-media-object__image js-equivalent-image">
           <div class="p-media-object__details">
             <h3 class="p-media-object__title">The same price as</h3>
             <p class="p-media-object__content u-no-margin--bottom js-equivalent-description">Peace, Love and Linux t-shirt</p>
@@ -372,7 +365,7 @@ Thank you for your contribution
       var image = document.querySelector('.js-equivalent-image');
       var description = document.querySelector('.js-equivalent-description');
 
-      image.src = '{{ ASSET_SERVER_URL }}' + item['imageFile'];
+      image.src = 'https://assets.ubuntu.com/v1/' + item['imageFile'];
       image.alt = item['description'];
       description.innerText = item['description'];
     }
@@ -556,7 +549,7 @@ Thank you for your contribution
     </div>
   </div>
 
-  {% include "shared/contextual_footers/_contextual_footer.html" with first_item="_download_verify_your_download" second_item="_download_desktop_guide" third_item="_download_enterprise_support" %}
+  {% with first_item="_download_verify_your_download", second_item="_download_desktop_guide", third_item="_download_enterprise_support" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 
   {% endblock content %}

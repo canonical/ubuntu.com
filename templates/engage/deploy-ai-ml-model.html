@@ -1,4 +1,7 @@
-{% extends_with_args "engage/base_engage.html" with title="How to build and deploy your first AI/ML model on Ubuntu" meta_description="An introduction to AI and ML workloads on Ubuntu workstations, servers and in the cloud on a Kubernetes stack." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}How to build and deploy your first AI/ML model on Ubuntu{% endblock %}
+{% block meta_description %}An introduction to AI and ML workloads on Ubuntu workstations, servers and in the cloud on a Kubernetes stack.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1BMqxhCOJfT43Mj2MFNgdM0X0c0rUYmBQBLeYFTCKfKY/edit{% endblock meta_copydoc %}
 
@@ -51,7 +54,7 @@
       <p>At the end of this demo, you’ll end up with a summary of commands to quickly and efficiently launch machine learning environments.</p>
     </div>
     <div class="col-6">
-      <img src="{{ ASSET_SERVER_URL }}7a231074-image947.png?w=502" width="502" alt="AI, ML and Ubuntu webinar - slides preview">
+      <img src="https://assets.ubuntu.com/v1/7a231074-image947.png?w=502" width="502" alt="AI, ML and Ubuntu webinar - slides preview">
     </div>
   </div>
 </section>

@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="City Network brings OpenStack cloud hosting to the financial services sector with Canonical" meta_image="7005c900-pictogram_article01.png" meta_description="In the global cloud hosting arena, City Network stands out from the pack thanks to superb service quality and a unique focus on industry-specific regulatory compliance." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}City Network brings OpenStack cloud hosting to the financial services sector with Canonical{% endblock %}
+{% block meta_description %}In the global cloud hosting arena, City Network stands out from the pack thanks to superb service quality and a unique focus on industry-specific regulatory compliance.{% endblock %}
+{% block meta_image %}7005c900-pictogram_article01.png{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5346A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="City Network brings OpenStack cloud hosting to the financial services sector with Canonical" image="7005c900-pictogram_article01.png" url="#the-form" cta="Download the case study" %}
+{% with title="City Network brings OpenStack cloud hosting to the financial services sector with Canonical", image="7005c900-pictogram_article01.png", url="#the-form", cta="Download the case study" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -23,7 +27,7 @@
 
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2494" returnURL="https://pages.ubuntu.com/CS_CityNetworks_TY.html" cta="Download the case study" %}
+    {% with id="2494", returnURL="https://pages.ubuntu.com/CS_CityNetworks_TY.html", cta="Download the case study" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

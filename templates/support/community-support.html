@@ -1,6 +1,5 @@
 {% extends "support/base_support.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Community support{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1vrnljXUx71ZZhz3cQ6NupUNw6yNqW2OWkyY8Ozx2bqw/edit{% endblock meta_copydoc %}
@@ -13,7 +12,7 @@
       <p>You can find support from a variety of sources. Take a look &ndash; you&rsquo;re likely to find an answer to every question. If you can&rsquo;t find an answer, just ask the people in our active forums.</p>
     </div>
     <div class="col-4 u-hide--small u-align--center">
-      <img src="{{ ASSET_SERVER_URL }}039628d5-picto-community-orange.svg" width="150" alt="Community">
+      <img src="https://assets.ubuntu.com/v1/039628d5-picto-community-orange.svg" width="150" alt="Community">
     </div>
   </div>
 </div>
@@ -45,13 +44,13 @@
   </div>
 </div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_support_landscape" second_item="_support_contact_us" third_item="_further_reading" %}
+{% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_support.html" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

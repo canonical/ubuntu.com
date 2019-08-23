@@ -1,10 +1,14 @@
-{% extends_with_args "engage/base_engage.html" with title="Carrier Cloudification: What every telecom executive needs to know" meta_image="https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg" meta_description="This eBook is designed to help telecom executives understand industry best practices as they move towards cloudification of their network infrastructure." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Carrier Cloudification: What every telecom executive needs to know{% endblock %}
+{% block meta_description %}This eBook is designed to help telecom executives understand industry best practices as they move towards cloudification of their network infrastructure.{% endblock %}
+{% block meta_image %}https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg{% endblock %}
 
 {% block meta_copydoc %}https://app-sjg.marketo.com/#LP5612A1LA1{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Carrier Cloudification: What every telecom executive needs to know" image="9f61b97f-logo-ubuntu.svg" url="#the-form" cta="Download the eBook" %}
+{% with title="Carrier Cloudification: What every telecom executive needs to know", image="9f61b97f-logo-ubuntu.svg", url="#the-form", cta="Download the eBook" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -34,7 +38,7 @@
         </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% include "engage/shared/_en_engage_form.html" with id="2539" returnURL="https://pages.ubuntu.com/telco-cloudification-ebook-TY.html" cta="Download the eBook" %}
+    {% with id="2539", returnURL="https://pages.ubuntu.com/telco-cloudification-ebook-TY.html", cta="Download the eBook" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

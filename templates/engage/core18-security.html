@@ -1,10 +1,13 @@
-{% extends_with_args "engage/base_engage.html" with title="Why Ubuntu Core is the most secure choice for IoT" meta_description="Join this webinar hosted by Alex Murray, Technical Lead of the Ubuntu Security Team to find out about the latest security features of Ubuntu Core, the tiny, transactional version of Ubuntu designed specifically for IoT." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Why Ubuntu Core is the most secure choice for IoT{% endblock %}
+{% block meta_description %}Join this webinar hosted by Alex Murray, Technical Lead of the Ubuntu Security Team to find out about the latest security features of Ubuntu Core, the tiny, transactional version of Ubuntu designed specifically for IoT.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1i_Zo_IdVsGJlMtDKXQh77H_LtbNyS4_vie6vBTHnxbw{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "engage/shared/_header.html" with title="Why Ubuntu Core is the most secure choice for IoT" class="p-strip--dark p-takeover--core18" url="#register-section" cta="Watch the webinar" %}
+{% with title="Why Ubuntu Core is the most secure choice for IoT", class="p-strip--dark p-takeover--core18", url="#register-section", cta="Watch the webinar" %}{% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">

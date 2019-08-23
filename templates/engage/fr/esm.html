@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="Canonical annonce l’Extension Sécurité et Maintenance pour Ubuntu 14.04." meta_image="9e59756d-shield-ESM.svg" meta_description="Sécurité, conformité, RGPD: gardez vos serveurs en sécurité après la fin de support officielle d'Ubuntu 14.04 LTS en avril 2019." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Canonical annonce l’Extension Sécurité et Maintenance pour Ubuntu 14.04.{% endblock %}
+{% block meta_description %}Sécurité, conformité, RGPD: gardez vos serveurs en sécurité après la fin de support officielle d'Ubuntu 14.04 LTS en avril 2019.{% endblock %}
+{% block meta_image %}9e59756d-shield-ESM.svg{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/14owLexmd5yn9g9Opq2oYAw-oxG2k2YKLgEi9bGqzzMg/edit{% endblock meta_copydoc %}
 
@@ -13,7 +17,7 @@
     </div>
 
     <div class="col-4 u-hide--small u-align--center">
-      <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" alt="" class="u-hide--small">
+      <img class="p-takeover__image" src="https://assets.ubuntu.com/v1/9e59756d-shield-ESM.svg" alt="" class="u-hide--small">
     </div>
   </div>
 </section>
@@ -53,7 +57,7 @@
     </div>
   
     <div class="col-5">
-      {% include "engage/shared/_fr_engage_form.html" with id="1240" returnURL="https://www.ubuntu.com/support/thank-you" cta="Planifiez votre passage à l'ESM" %}
+      {% with id="1240", returnURL="https://www.ubuntu.com/support/thank-you", cta="Planifiez votre passage à l'ESM" %}{% include "engage/shared/_fr_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

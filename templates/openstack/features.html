@@ -1,6 +1,5 @@
 {% extends "openstack/_base_openstack.html" %}
 
-{% load versioned_static  %}
 
 {% block title %}Features | OpenStack{% endblock %}
 {% block meta_description %}Canonical OpenStack on Ubuntu includes software-defined networking and storage options, architectural flexibility and shared community-driven ops code independent of architecture.{% endblock meta_description %}
@@ -77,7 +76,7 @@
       </p>
     </div>
     <div class="col-4 u-hide--small u-align--center u-vertically-center">
-      <img src="{{ ASSET_SERVER_URL }}e96658e8-transfer_4px.svg" width="234" alt="" />
+      <img src="https://assets.ubuntu.com/v1/e96658e8-transfer_4px.svg" width="234" alt="" />
     </div>
   </div>
 </section>
@@ -174,7 +173,7 @@
       <p><a href="/openstack/consulting">Learn more about our consulting services&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 prefix-1 u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}4287c2b2-transfer.svg" width="234" alt="" />
+      <img src="https://assets.ubuntu.com/v1/4287c2b2-transfer.svg" width="234" alt="" />
     </div>
   </div>
 </section>
@@ -262,13 +261,13 @@
     </div>
     <div class="prefix-1 col-6">
       <div class="p-card">
-        <img class="p-card__thumbnail" src="{{ ASSET_SERVER_URL }}4f1e16bf-image-swift.svg" alt="Swift">
+        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/4f1e16bf-image-swift.svg" alt="Swift">
         <hr class="u-sv1">
         <h3 class="p-card__title">Swift</h3>
         <p class="p-card__content">The high performance S3-compatible object store developed and shipped with OpenStack, ideal for storing unstructured data.</p>
       </div>
       <div class="p-card">
-        <img class="p-card__thumbnail" src="{{ ASSET_SERVER_URL }}636b94fd-ceph.svg" alt="Ceph">
+        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/636b94fd-ceph.svg" alt="Ceph">
         <hr class="u-sv1">
         <h3 class="p-card__title">Ceph</h3>
         <p class="p-card__content">A converged storage framework that has been designed to present object, block, and file storage from a single distributed computer cluster.</p>
@@ -305,19 +304,19 @@
     <div class="col-5">
       <ul class="p-inline-images">
         <li class="p-inline-images__item">
-          <img src="{{ ASSET_SERVER_URL }}4d6054f9-logo-cisco.svg" width="144" alt="Cisco">
+          <img src="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg" width="144" alt="Cisco">
         </li>
         <li class="p-inline-images__item">
-          <img src="{{ ASSET_SERVER_URL }}a2a68c52-logo-juniper-160.png?w=144" width="144" alt="Juniper">
+          <img src="https://assets.ubuntu.com/v1/a2a68c52-logo-juniper-160.png?w=144" width="144" alt="Juniper">
         </li>
         <li class="p-inline-images__item">
-          <img src="{{ ASSET_SERVER_URL }}9a58cde9-Open_vSwitch_Logo.png?w=134" width="134" alt="Open vSwitch">
+          <img src="https://assets.ubuntu.com/v1/9a58cde9-Open_vSwitch_Logo.png?w=134" width="134" alt="Open vSwitch">
         </li>
         <li class="p-inline-images__item">
-          <img src="{{ ASSET_SERVER_URL }}52ad9297-tungsten-fabric.png?w=144" width="144" alt="Tungsten fabric">
+          <img src="https://assets.ubuntu.com/v1/52ad9297-tungsten-fabric.png?w=144" width="144" alt="Tungsten fabric">
         </li>
         <li class="p-inline-images__item">
-          <img src="{{ ASSET_SERVER_URL }}0e4869ec-cplaneai-logo.png?w=142" width="142" alt="Cplaneai">
+          <img src="https://assets.ubuntu.com/v1/0e4869ec-cplaneai-logo.png?w=142" width="142" alt="Cplaneai">
         </li>
       </ul>
     </div>
@@ -333,7 +332,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <img src="{{ ASSET_SERVER_URL }}9f6916dd-k8s-prometheus-light.png?w=1040" width="1040" alt="OpenStack logging and monitoring" />
+      <img src="https://assets.ubuntu.com/v1/9f6916dd-k8s-prometheus-light.png?w=1040" width="1040" alt="OpenStack logging and monitoring" />
       <h6>These dashboards can be customised or integrated into existing monitoring systems at your business.</h6>
     </div>
   </div>
@@ -348,12 +347,12 @@
   </div>
 </section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_rfp" third_item="_cloud_further_reading" %}
+{% with first_item="_cloud_bootstack", second_item="_cloud_rfp", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_openstack.html" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="{% versioned_static 'js/build/dynamic-contact-form.min.js' %}"></script>
+<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
 {% endblock content %}

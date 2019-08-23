@@ -1,5 +1,7 @@
-{% extends_with_args "engage/base_engage.html" title="Le support d’Ubuntu 14.04 LTS est maintenant passé à ESM (Extended Maintenance Support)" meta_description="Le support d’Ubuntu 14.04 LTS ‘Trusty Tahr’ est maintenant passé à ESM fin avril 2019, et ne sera plus supporté pour les utilisateurs sans ESM. ESM peut être contracté avec Ubuntu Advantage for Infrastructure." %}
+{% extends "engage/base_engage.html" %}
 
+{% block title %}Le support d’Ubuntu 14.04 LTS est maintenant passé à ESM (Extended Maintenance Support){% endblock %}
+{% block meta_description %}Le support d’Ubuntu 14.04 LTS ‘Trusty Tahr’ est maintenant passé à ESM fin avril 2019, et ne sera plus supporté pour les utilisateurs sans ESM. ESM peut être contracté avec Ubuntu Advantage for Infrastructure.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1T4Ar7n4Jwypecr96Wv5SQjdNdsISNkRHBU4DTxseHo0/edit{% endblock meta_copydoc %}
 
 
@@ -11,7 +13,7 @@
     </div>
 
     <div class="col-4 u-hide--small u-align--center">
-      <img class="p-takeover__image" src="{{ ASSET_SERVER_URL }}9e59756d-shield-ESM.svg" alt="" class="u-hide--small">
+      <img class="p-takeover__image" src="https://assets.ubuntu.com/v1/9e59756d-shield-ESM.svg" alt="" class="u-hide--small">
     </div>
   </div>
 </section>
@@ -97,7 +99,7 @@
     </div>
     
     <div class="col-5">
-      {% include "engage/shared/_fr_engage_form.html" with id="1240" returnURL="https://www.ubuntu.com/support/thank-you" cta="Planifiez votre passage à l'ESM" %}
+      {% with id="1240", returnURL="https://www.ubuntu.com/support/thank-you", cta="Planifiez votre passage à l'ESM" %}{% include "engage/shared/_fr_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>

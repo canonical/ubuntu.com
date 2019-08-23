@@ -1,4 +1,8 @@
-{% extends_with_args "engage/base_engage.html" with title="Wofür können Sie Kubernetes einsetzen?" meta_image="https://assets.ubuntu.com/v1/782c04fc-business-icon-dark-background.png" meta_description="Ein umfassenden Überblick, Demos und Ideen für Kubernetes den praktischen Einsatz." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Wofür können Sie Kubernetes einsetzen?{% endblock %}
+{% block meta_description %}Ein umfassenden Überblick, Demos und Ideen für Kubernetes den praktischen Einsatz.{% endblock %}
+{% block meta_image %}https://assets.ubuntu.com/v1/782c04fc-business-icon-dark-background.png{% endblock %}
 
 {% block content %}
 
@@ -8,12 +12,12 @@
           <h1 style="font-weight:100;">Wofür können Sie Kubernetes einsetzen?</h1>
           <h4 class="u-sv3">Dieses Webinar liefert Ihnen alles Wichtige zum Einstieg.</h4>
           <p class="u-align--center u-hide--medium u-hide--large">
-              <img src="{{ ASSET_SERVER_URL }}73fe5532-business+icon.svg" alt="K8 Webinar" width="264" style="width:264px; height:227px"/>
+              <img src="https://assets.ubuntu.com/v1/73fe5532-business+icon.svg" alt="K8 Webinar" width="264" style="width:264px; height:227px"/>
           </p>
           <p class="u-no-margin--top"><a href="#register-section" class="p-button--neutral">Webinar ansehen</a></p>
       </div>
       <div class="col-4 u-hide--small">
-          <img src="{{ ASSET_SERVER_URL }}73fe5532-business+icon.svg" width="264" alt="K8 Webinar" style="width:264px; height:227px"/>
+          <img src="https://assets.ubuntu.com/v1/73fe5532-business+icon.svg" width="264" alt="K8 Webinar" style="width:264px; height:227px"/>
       </div>
   </div>
 </div>
@@ -27,5 +31,5 @@
     <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 17086, "language": "de-de", "commId" : 339310, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
   </div></section>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_cloud_bootstack" second_item="_cloud_newsletter" third_item="_telco_further_reading" %}
+{% with first_item="_cloud_bootstack", second_item="_cloud_newsletter", third_item="_telco_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 {% endblock content %}

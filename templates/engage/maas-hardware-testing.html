@@ -1,9 +1,19 @@
-{% extends_with_args "engage/base_engage.html" with title="Creating a cloud-like bare metal experience in the data centre" meta_image="https://assets.ubuntu.com/v1/eeda7f25-Embedded+social+media+banner+.jpg" meta_description="For organisations looking to turn the management of bare-metal server resources into a cloud-like environment, hardware testing is a must-do." %}
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Creating a cloud-like bare metal experience in the data centre{% endblock %}
+{% block meta_description %}For organisations looking to turn the management of bare-metal server resources into a cloud-like environment, hardware testing is a must-do.{% endblock %}
+{% block meta_image %}https://assets.ubuntu.com/v1/eeda7f25-Embedded+social+media+banner+.jpg{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1xyNrWYsYcvux_gYtoWw39XD9cP4QmiAYJnDlLuV8CvE{% endblock meta_copydoc %}
 
 {% block content %}
-{% include "engage/shared/_header.html" with title="Creating a cloud-like bare metal experience in the data centre" class="p-strip--dark p-takeover--maas" image="67e3e0f1-MAAS_white-orange_rgb.svg" url="#register-section" cta="Download the whitepaper" %}
+{% with title="Creating a cloud-like bare metal experience in the data centre",
+  class="p-strip--dark p-takeover--maas",
+  image="67e3e0f1-MAAS_white-orange_rgb.svg",
+  url="#register-section",
+  cta="Download the whitepaper" %}
+  {% include "engage/shared/_header.html" %}
+{% endwith %}
   <section class="p-strip is-shallow is-bordered">
     <div class="row">
       <div class="col-7">
@@ -33,7 +43,7 @@
         </ul>
       </div>
       <div class="col-5" id="register-section">
-        {% include "engage/shared/_en_engage_form.html" with id="3396" returnURL="https://pages.ubuntu.com/HDWTest-TY.html" %}
+        {% with id="3396", returnURL="https://pages.ubuntu.com/HDWTest-TY.html" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
       </div>
     </div>
     <style>

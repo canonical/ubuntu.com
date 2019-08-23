@@ -49,7 +49,7 @@
       </ul>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
+      <img src="https://assets.ubuntu.com/v1/c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
     </div>
   </div>
 </div>
@@ -57,7 +57,7 @@
 <div class="p-strip is-deep is-bordered">
   <div class="row u-equal-height">
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="{{ ASSET_SERVER_URL }}4efbd291-Arm_logo_blue_cropped.svg" alt="" width="200" height="200" />
+      <img src="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg" alt="" width="200" height="200" />
     </div>
     <div class="col-8">
       <h3>Commercially supported and ready to deploy today</h3>
@@ -68,6 +68,6 @@
   </div>
 </div>
 
-{% include "shared/contextual_footers/_contextual_footer.html"  with first_item="_download_server_arm_guide" second_item="_download_enterprise_support" third_item="_download_helping_hands" %}
+{% with first_item="_download_server_arm_guide", second_item="_download_enterprise_support", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}
