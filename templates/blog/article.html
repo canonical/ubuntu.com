@@ -1,8 +1,8 @@
 {% extends "templates/one-column.html" %}
 
-{% block title %}article.title.rendered{% endblock %}
-{% block meta_description %}article.excerpt.raw {% endblock %}
-{% block meta_image %}article.image.source_url{% endblock %}
+{% block title %}{{ article.title.rendered }}{% endblock %}
+{% block meta_description %}{{ article.excerpt.raw }}{% endblock %}
+{% block meta_image %}{{ article.image.source_url }}{% endblock %}
 
 {# Change canonical URL for "snapcraft.io" articles (2996 is the ID of the "snapcraft.io" tag) #}
 
@@ -22,7 +22,7 @@
       <div class="col-8">
         <div class="p-media-object">
           {% if article.author %}
-            <img src="{% if article.author.id == 217 %}https://assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg{% else %}{{ article.author.avatar_urls.96 }}{% endif %}" class="p-media-object__image is-round">
+            <img src="{% if article.author.id == 217 %}https://assets.ubuntu.com/v1/60d9b81e-picto-canonical.svg{% else %}{{ article.author.avatar_urls['96'] }}{% endif %}" class="p-media-object__image is-round">
           {% endif %}
 
           <div class="p-media-object__details">
