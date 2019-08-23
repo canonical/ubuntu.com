@@ -33,56 +33,6 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-<<<<<<< HEAD
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        {% with number=1 %}{% include "download/iot/_setup-ubuntu-sso.html" %}{% endwith %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Download Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <p>Get the correct Ubuntu Core image for your board:</p>
-            <ul class="u-no-margin--left">
-              <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/archive/artik5-ubuntu-server.img.tar.xz">ARTIK 5 - Ubuntu Server 16.04 LTS image</a></li>
-              <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/archive/artik10-ubuntu-server.img.tar.xz">ARTIK 10 - Ubuntu Server 16.04 LTS image</a></li>
-              <li>You can verify the integrity of the file using the <a class="p-link--external" href="http://people.canonical.com/~platform/snappy/artik/uc-series16-final-image/md5sum">MD5sum</a> file.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Set your board to boot from the SD card
-          </h3>
-          <div class="p-list-step__content">
-            <p>Before installing Ubuntu, you need to set your Artik to boot from the SD card, to do so, set the "SW2" switches to <code>1:on</code> and <code>2:on</code>.</p>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Install Ubuntu Server
-          </h3>
-          <div class="p-list-step__content">
-            <p>Booting the board from the SD Card will start the Ubuntu installer:</p>
-            <ol class="u-no-margin--left">
-              <li>Insert the SD card in your Samsung ARTIK</li>
-              <li>Connect the 5V power supply to the board, then use the power button on the board to switch on your Samsung ARTIK</li>
-              <li>The system will automatically execute the first stage of installation</li>
-              <li>Follow the instructions and enter appropriate options for language, WiFi, location (timezone), and keyboard layout</li>
-              <li>Pick a hostname, user account and password</li>
-              <li>Wait for the configuration to finish. If you connected to a WiFi network at step 4, it will take several minutes to download and apply additional updates. You can now reboot the system</li>
-              <li>Ubuntu is installed. Use your account and password to log in</li>
-            </ol>
-          </div>
-        </li>
-      </ol>
-    </div>
-=======
   <div class="u-fixed-width">
     <h2>Installation instructions</h2>
     <ol class="p-stepped-list--detailed">
@@ -129,7 +79,6 @@
         </div>
       </li>
     </ol>
->>>>>>> stepped list updates
   </div>
 </section>
 
