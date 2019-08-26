@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu Core on KVM{% endblock %}}
+{% block title %}Install Ubuntu Core on KVM{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1FHIArLpuAyLe2gnDwymefvzc4Lg8dSGvN8QAl8wX18Q/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -98,7 +98,7 @@ KVM acceleration can be used</code></pre>
           <p>You should now see a window, with your Ubuntu Core virtual machine booting inside it.</p>
         </div>
       </li>
-      {% include "./_first-boot-setup.html" with number=5 %}
+      {% include "download/iot/_first-boot-setup.html" %}
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">
 
