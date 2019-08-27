@@ -1,5 +1,5 @@
 <div class="row u-equal-height">
-  <div class="col-6 p-card">
+  <div class="col-{{ 12 // columns }} p-card">
     <h2 class="p-heading--four">Private Cloud Build</h2>
     <p><span class="p-heading--two">$75,000</span><br />Reference architecture deployment on 12+ nodes.</p>
     <hr class="u-sv1" />
@@ -19,7 +19,7 @@
       <li class="p-list__item is-ticked">High availability</li>
     </ul>
   </div>
-  <div class="col-6 p-card">
+  <div class="col-{{ 12 // columns }} p-card">
     <h2 class="p-heading--four">Private Cloud Build Plus</h2>
     <p><span class="p-heading--two">$150,000</span><br />Custom architecture for your specific industry or workload requirements.</p>
     <hr class="u-sv1" />
@@ -41,7 +41,7 @@
     </ul>
   </div>
   {% if columns == '3' %}
-  <div class="col-6 p-card">
+  <div class="col-4 p-card">
     <h2 class="p-heading--four">Fully Managed Cloud</h2>
     <p><span class="p-heading--two">$15</span> per server per day</p>
     <hr class="u-sv1" />
