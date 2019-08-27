@@ -47,7 +47,7 @@ Since the site is basically a Django app, you can also run the site in the tradi
 virtualenv env
 source env/bin/activate
 pip install -r requirements.txt
-./manage.py runserver 0.0.0.0:8001
+./entrypoint 0.0.0.0:8001
 ```
 
 Now browse to the site at <http://127.0.0.1:8001>. If it looks a bit odd, it's probably because you haven't built sass - see below.
