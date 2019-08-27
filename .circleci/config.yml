@@ -23,7 +23,7 @@ jobs:
           command: pip3 install -r requirements.txt
       - run:
           name: Start development server
-          command: python3 manage.py runserver
+          command: ./entrypoint 0.0.0.0:80
           background: true
       - run:
           name: Wait for development server
