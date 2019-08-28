@@ -92,14 +92,15 @@
       background-repeat: no-repeat;
       background-size: 13px 13px;
       border-top: 1px solid $color-mid-light;
+      color: $color-dark;
       font-size: .8125rem;
+      margin-top: 0;
       max-width: inherit;
       padding: $sp-medium 0;
 
       @media only screen and (min-width: $breakpoint-medium) {
         background: none;
         border: 0;
-        color: $color-dark;
         padding: 0 0 $sp-x-small;
       }
 
@@ -109,11 +110,10 @@
 
       a:link,
       a:visited {
-        color: $color-mid-dark;
+        color: $color-dark;
         padding-left: $sp-x-small;
 
         @media only screen and (min-width: $breakpoint-medium) {
-          color: $color-dark;
           font-weight: normal;
           padding-left: 0;
         }
