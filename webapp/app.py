@@ -83,6 +83,12 @@ app.add_url_rule(
 )
 
 
+# Search
+app.add_url_rule(
+    "/search", "search", build_search_view(template_path="search.html")
+)
+
+
 @app.errorhandler(404)
 def not_found_error(error):
     return flask.render_template("404.html"), 404
