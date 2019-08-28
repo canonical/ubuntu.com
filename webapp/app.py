@@ -1,14 +1,18 @@
 """
-A Flask application for maas.io
+A Flask application for ubuntu.com
 """
 
 # Standard library
 import flask
+import json
+import os
+import re
 
 # Packages
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
+from feedparser import parse
 
 # Local
 from webapp.context import (
@@ -26,10 +30,11 @@ from webapp.context import (
 
 app = FlaskBase(
     __name__,
-    "maas.io",
+    "ubuntu.com",
     template_folder="../templates",
     static_folder="../static",
 )
+
 
 template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
@@ -65,3 +70,44 @@ def context():
         "navigation": navigation,
         "releases": releases(),
     }
+
+
+@app.route("/download/<regex('server|desktop|cloud'):category>/thank-you")
+def download_thank_you(category):
+    context = {}
+    context["http_host"] = flask.request.headers.get("HTTP_HOST", "")
+
+    version = flask.request.args.get("version", "")
+    architecture = flask.request.args.get("architecture", "")
+
+    # Sanitise for paths
+    # (https://bugs.launchpad.net/ubuntu-website-content/+bug/1586361)
+    version_pattern = re.compile(r"(\d+(?:\.\d+)+).*")
+    architecture = architecture.replace("..", "")
+    architecture = architecture.replace("/", "+").replace(" ", "+")
+
+    if architecture and version_pattern.match(version):
+        context["start_download"] = version and architecture
+        context["version"] = version
+        context["architecture"] = architecture
+
+    # Add mirrors
+    mirrors_path = os.path.join(os.getcwd(), "etc/ubuntu-mirrors-rss.xml")
+
+    try:
+        with open(mirrors_path) as rss:
+            mirrors = parse(rss.read()).entries
+    except IOError:
+        mirrors = []
+
+    mirror_list = [
+        {"link": mirror["link"], "bandwidth": mirror["mirror_bandwidth"]}
+        for mirror in mirrors
+        if mirror["mirror_countrycode"]
+        == flask.request.args.get("country", "NO_COUNTRY_CODE")
+    ]
+    context["mirror_list"] = json.dumps(mirror_list)
+
+    return flask.render_template(
+        f"download/{category}/thank-you.html", **context
+    )
