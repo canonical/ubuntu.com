@@ -272,10 +272,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
           @media (max-width: $breakpoint-x-small - 1) {
             width: 50%;
-
-            .breadcrumbs__link {
-              padding-bottom: 0;
-            }
           }
         }
 
@@ -299,9 +295,13 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
           padding-top: $nudge--small;
 
           @media (max-width: $breakpoint-x-small - 1) {
-            padding-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
+            padding-bottom: 0;
             padding-left: 0;
             padding-right: 0;
+          }
+
+          @media (min-width: $breakpoint-x-small) and (max-width: $breakpoint-medium - 1) {
+            padding-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
           }
 
           &:first-child {
