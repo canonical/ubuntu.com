@@ -2,7 +2,7 @@
 
 
 {% block title %}Install Kubeflow on Ubuntu{% endblock %}
-{% block meta_description %}A step-by-step installation guide to Ubuntu OpenStack with Kubernetes and Kubeflow on bare metal servers.{% endblock %}
+{% block meta_description %}A step-by-step installation guide to installing Kubernetes on Ubuntu using MicroK8s.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1KVyyvZsDyrfoi5tK2m5SLWs9YuHg9hgqVz0c8cWHsf8/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -37,85 +37,210 @@
           <h3 class="p-list-step__title">Install MicroK8s</h3>
           <div class="p-list-step__content">
             <p>
-              MicroK8s can be installed with one command. However, to get the most out of the installation, there are a few extra steps that need to be done, particularly if executing these steps in a virtual machine. The <code>setup-microk8s.sh</code> script will automate these steps for you.
+              MicroK8s can be installed with one command.
             </p>
-            <p>Clone the kubernetes-tools project</p>
             <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="git clone https://github.com/canonical-labs/kubernetes-tools" readonly="readonly">
+              <input class="p-code-snippet__input" value="sudo snap install microk8s --classic" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
-            <p>Run the script as root</p>
             <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="sudo kubernetes-tools/setup-microk8s.sh" readonly="readonly">
+              <input class="p-code-snippet__input" value="microk8s.status --wait-ready" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
-            <p>If you have a GPU, run</p>
+            <p>
+              To get the most out of your Kubernetes cluster, including enabling required features like storage and dns, run these commands:
+            </p>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="microk8s.enable dns storage dashboard" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="sudo snap alias microk8s.kubectl kubectl" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <div class="p-code-snippet">
+              <input class="p-code-snippet__input" value="microk8s.kubectl config view --raw > $HOME/.kube/config" readonly="readonly">
+              <button class="p-code-snippet__action">Copy to clipboard</button>
+            </div>
+            <p>
+              If you have a GPU, run:
+            </p>
             <div class="p-code-snippet">
               <input class="p-code-snippet__input" value="microk8s.enable gpu" readonly="readonly">
               <button class="p-code-snippet__action">Copy to clipboard</button>
             </div>
-          </div>
-        </li>
+          </li>
 
-        <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title">Install Kubeflow</h3>
-          <div class="p-list-step__content">
-            <p>Clone the kubeflow-tools project</p>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="git clone https://github.com/canonical-labs/kubeflow-tools" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
+          <li class="p-list-step__item col-12">
+            <h3 class="p-list-step__title">Instal kfctl</h3>
+            <div class="p-list-step__content">
+              <p>
+                <code>kfctl</code> is a binary developed by the Kubeflow community that can be used to install the standard set of Kubeflow components.
+              </p>
+              <p>
+                The instructions below will download the binary as a compressed file, expand it into the current directory, and add it to the PATH.
+              </p>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="export OPSYS=linux" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest | grep browser_download | grep $OPSYS | cut -d '&#34;' -f 4 | xargs curl -O -L &&  tar -zvxf kfctl_*_${OPSYS}.tar.gz" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="export PATH=$PATH:$PWD" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
             </div>
-            <p>Run the Kubeflow Install script</p>
-            <div class="p-code-snippet">
-              <input class="p-code-snippet__input" value="kubeflow-tools/install-kubeflow.sh" readonly="readonly">
-              <button class="p-code-snippet__action">Copy to clipboard</button>
-            </div>
-          </div>
-        </li>
+          </li>
 
-        <li class="p-list-step__item col-12">
-          <h3 class="p-list-step__title">Access Kubeflow</h3>
-          <div class="p-list-step__content">
-            <p>If you installed Microk8s on your local host, then you can use localhost as the IP address in your browser. Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either <code>multipass list</code> or <code>multipass info kubeflow</code>.</p>
-            <p>Point browser to either:</p>
-            <ul>
-              <li class="p-list__item"><code>http://&lt;kubeflow VM IP&gt;:&lt;Ambassador PORT&gt;</code></li>
-              <li class="p-list__item"><code>http://localhost:&lt;Ambassador PORT&gt;</code></li>
-            </ul>
-          </div>
-        </li>
-      </ol>
+          <li class="p-list-step__item col-12">
+            <h3 class="p-list-step__title">Install Kubeflow</h3>
+            <div class="p-list-step__content">
+              <p>
+                <code>kfctl</code> will install the standard set of Kubeflow components. The script below will create a directory, "kf-poc", which will store all the kubernetes kustomize yaml files.
+              </p>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="export KFAPP=&#34;kf-poc&#34;" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="export VERSION='curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest |    grep tag_name | head -1 | cut -d '&#34;' -f 4'" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="export  CONFIG=&#34;https://raw.githubusercontent.com/kubeflow/kubeflow/${VERSION}/bootstrap/config/kfctl_k8s_istio.yaml&#34;" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="kfctl init ${KFAPP} --config=${CONFIG} -V" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="cd ${KFAPP}" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="kfctl generate all -V" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="kfctl apply all -V" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <p>
+                It will take several minutes for the cluster to become operational - there are many containers that will be downloaded and started. To check the install status, run this command:
+              </p>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="kubectl -n kubeflow get po" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <p>
+                You can use watch to automatically update the status of the pods:
+              </p>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="watch -c -n 10 kubectl -n kubeflow get po" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+            </div>
+          </li>
+
+          <li class="p-list-step__item col-12">
+            <h3 class="p-list-step__title">Access Kubeflow</h3>
+            <div class="p-list-step__content">
+              <p>
+                If you installed Microk8s on your local host, then you can use localhost as the IP address in your browser.
+              </p>
+              <p>
+                Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either <code>multipass list</code> or <code>multipass info kubeflow</code>.
+              </p>
+              <p>
+                In addition to the IP address, to access the Kubeflow home page, you’ll need the port number. The default nodeport should be `31380`, but to confirm, you can run the following command. It will highlight the http port to use.
+              </p>
+              <div class="p-code-snippet">
+                <input class="p-code-snippet__input" value="echo `kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name==&#34;http2&#34;)].nodePort}'`" readonly="readonly">
+                <button class="p-code-snippet__action">Copy to clipboard</button>
+              </div>
+              <p>
+                And now you should go to your browser and enter this URL:
+              </p>
+              <p>
+                Now you should go to your browser and point browser to either:
+              </p>
+              <ul>
+                <li class="p-list__item"><code>http://&lt;kubeflow VM IP&gt;:&lt;Istio PORT&gt;</code></li>
+                <li class="p-list__item"><code>http://localhost:&lt;Istio PORT&gt;</code></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="p-list-step__item col-12">
+            <h3 class="p-list-step__title">Next Steps</h3>
+            <div class="p-list-step__content">
+              <p>
+                To get more information on this install process, including screen shots of the process, please visit the <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/get-started-kubeflow">Getting Started with Kubeflow tutorial</a>.
+              </p>
+              <p>
+                More recommended reading:
+              </p>
+              <ul>
+                <li class="p-list__item">
+                  <a class="p-link--external" href="https://kubeflow.org/">Kubeflow</a> - the main Kubeflow site
+                </li>
+                <li class="p-list__item">
+                  <a class="p-link--external" href="https://www.kubeflow.org/docs/examples/kubeflow-samples/">Kubeflow samples</a> - several examples to help you get started with leveraging Kubeflow
+                </li>
+                <li class="p-list__item">
+                  <a class="p-link--external" href="https://www.kubeflow.org/docs/pipelines/">Kubeflow pipelines</a> - use or create standard workflows for your models, automating tasks from training to production
+                </li>
+                <li class="p-list__item">
+                  <a class="p-link--external" href="https://www.kubeflow.org/docs/fairing/">Kubeflow fairing</a> - interact with Kubeflow through Python code
+                </li>
+                <li class="p-list__item">
+                  <a class="p-link--external" href="https://www.tensorflow.org/">TensorFlow</a> - open source library to help you develop and train ML models
+                </li>
+                <li class="p-list__item">
+                  <a class="p-link--external" href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">TensorFlow: CNN benchmarks</a> - high performance benchmarks
+                </li>
+
+              </ul>
+            </div>
+          </li>
+
+
+        </ol>
+      </div>
     </div>
   </div>
-</div>
 
-{% include "kubeflow/shared/_learn-more.html" %}
+  {% include "kubeflow/shared/_learn-more.html" %}
 
-<div class="p-strip is-deep">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-4 u-align--center u-hide--small u-vertically-center">
-        <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="200" alt="" />
-      </div>
-      <div class="col-7 prefix-1 u-vertically-center">
-        <div class="row">
-          <div class="col-12">
-            <h2>Need more help?</h2>
-            <p>Let our Kubernetes experts help you take the next step.</p>
-            <p><a class="p-button--positive js-invoke-modal" href="/kubeflow/contact-us?product=ai-install">Contact us</a></p>
+  <div class="p-strip is-deep">
+    <div class="row">
+      <div class="u-equal-height">
+        <div class="col-4 u-align--center u-hide--small u-vertically-center">
+          <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+        </div>
+        <div class="col-7 prefix-1 u-vertically-center">
+          <div class="row">
+            <div class="col-12">
+              <h2>Need more help?</h2>
+              <p>Let our Kubernetes experts help you take the next step.</p>
+              <p><a class="p-button--positive js-invoke-modal" href="/kubeflow/contact-us?product=ai-install">Contact us</a></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-{% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+  {% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/kubeflow/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow.html" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/kubeflow/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
 
-<script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
+  <script src="{{ versioned_static('js/build/dynamic-contact-form.min.js') }}"></script>
 
-{% endblock content %}
+  {% endblock content %}
