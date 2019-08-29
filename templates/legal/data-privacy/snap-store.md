@@ -1,5 +1,5 @@
 ---
-wrapper_template: "../_base_legal_markdown.html"
+wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Snap store"
   description: "This privacy notice tells you about the information we collect from you when you download and install and purchase snaps and software on Ubuntu Core and any compatible supported systems."

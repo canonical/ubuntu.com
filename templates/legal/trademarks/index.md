@@ -1,5 +1,5 @@
 ---
-wrapper_template: "../_base_legal_markdown.html"
+wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Trademarks"
   description: "Canonical’s trademarks registered in word and logo form."

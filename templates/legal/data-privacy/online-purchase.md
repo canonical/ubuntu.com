@@ -1,5 +1,5 @@
 ---
-wrapper_template: "../_base_legal_markdown.html"
+wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Online purchase"
   description: "This privacy notice tells you about the information we collect from you when you purchase one or more of our products via our website."

@@ -1,7 +1,7 @@
 ---
-wrapper_template: "base_docs.html"
+wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
-  nav: "shared/_side-navigation.md"
+  nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Installing to a local machine"
   description: How to install the Charmed Distribution of Kubernetes on a single machine for easy testing and development.
