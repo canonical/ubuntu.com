@@ -1,7 +1,7 @@
 ---
-wrapper_template: "base_docs.html"
+wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
-  nav: "shared/_side-navigation.md"
+  nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Encryption at rest"
   description: How to enable encryption-at-rest using Vault

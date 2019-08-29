@@ -1,5 +1,5 @@
 ---
-wrapper_template: "../_base_legal_markdown.html"
+wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice | Newsletter signup"
   description: "This privacy notice tells you about the information we collect from you when you sign up to receive our regular newsletter via our website."

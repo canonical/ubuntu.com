@@ -1,7 +1,7 @@
 ---
-wrapper_template: "base_docs.html"
+wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
-  nav: "shared/_side-navigation.md"
+  nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Quick start"
   description: With this quick start guide and some tools from Canonical, you'll have a Kubernetes cluster running on the cloud of your choice in minutes!

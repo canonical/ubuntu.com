@@ -1,5 +1,5 @@
 ---
-wrapper_template: "_base_engage_markdown.html"
+wrapper_template: "engage/_base_engage_markdown.html"
 context:
      title: "Management of snaps in a controlled, enterprise environment"
      meta_description: "How the Snap Store Proxy overcomes challenges presented by restricted networks and management policies"
