@@ -8,6 +8,7 @@ import flask
 # Packages
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
+from canonicalwebteam.search import build_search_view
 
 # Local
 from webapp.context import (
@@ -33,6 +34,12 @@ app = FlaskBase(
 template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
+
+
+# Search
+app.add_url_rule(
+    "/search", "search", build_search_view(template_path="search.html")
+)
 
 
 @app.errorhandler(404)
