@@ -48,16 +48,6 @@ jobs:
       - run:
           name: Lint sass
           command: yarn lint-scss
-  test-python:
-    <<: *defaults
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: pip3 install -r requirements.txt
-      - run:
-          name: Run python tests
-          command: yarn test-python
 
 workflows:
   version: 2
@@ -66,4 +56,3 @@ workflows:
       - linkchecker
       - lint-scss
       - lint-python
-      - test-python
