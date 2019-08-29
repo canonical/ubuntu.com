@@ -13,6 +13,7 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from feedparser import parse
+from canonicalwebteam.blog.app import BlogExtension
 
 # Local
 from webapp.context import (
@@ -35,6 +36,14 @@ app = FlaskBase(
     static_folder="../static",
 )
 
+BlogExtension().init_app(
+    app=app,
+    blog_title="Blog",
+    tag_id=[],
+    excluded_tags=[3184, 3265, 3408],
+    tag_name="",
+    url_prefix="/blog",
+)
 
 template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
