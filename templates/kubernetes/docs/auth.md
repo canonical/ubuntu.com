@@ -1,7 +1,7 @@
 ---
-wrapper_template: "base_docs.html"
+wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
-  nav: "shared/_side-navigation.md"
+  nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Configuring authorisation and authentication"
   description: Controlling access with RBAC and other authorisation modes.

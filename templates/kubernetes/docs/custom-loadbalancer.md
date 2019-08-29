@@ -1,7 +1,7 @@
 ---
-wrapper_template: "base_docs.html"
+wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
-  nav: "shared/_side-navigation.md"
+  nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Custom load balancers"
   description: How to configure your Kubernetes cluster to use a custom load balancer.
