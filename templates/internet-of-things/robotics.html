@@ -8,10 +8,8 @@
 {% block content %}
 
 <div class="p-strip--suru-bottomed js-livestream__intro">
-  <div class="row">
-    <div class="col-12">
-      <h1>Build unhackable robots with Ubuntu</h1>
-    </div>
+  <div class="u-fixed-width">
+    <h1>Build unhackable robots with Ubuntu</h1>
   </div>
   <div class="row u-equal-height">
     <div class="col-7">
@@ -26,21 +24,18 @@
 </div>
 
 <div class="p-strip--light">
-  <div class="row">
-    <div class="col-12">
-      {% with title="Proven, in the field - companies with robots on Ubuntu", json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Robotics", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
-      <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?technology=robotics" class="p-link--external">See all of our robotics partners</a></p>
-    </div>
+  <div class="u-fixed-width">
+    {% with title="Proven, in the field - companies with robots on Ubuntu", json_feed_url="http://partners.ubuntu.com/partners.json?technology__name=Robotics", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
+    <p class="u-align--center"><a href="http://partners.ubuntu.com/find-a-partner?technology=robotics" class="p-link--external">See all of our robotics partners</a></p>
   </div>
 </div>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--two">Enhanced security for mission critical robots</p>
-      <p>Several layers of security are stacked in Ubuntu Core to keep potential surfaces of attack as low as reasonably possible for autonomous robots deployed in field of operations.</p>
-      <a href="https://assets.ubuntu.com/v1/66fcd858-ubuntu-core-security-whitepaper.pdf">Read the Ubuntu Core security whitepaper&nbsp;&rsaquo;</a>
-    </div>
+  <div class="u-fixed-width">
+    <p class="p-heading--two">Enhanced security for mission critical robots</p>
+    <p>Several layers of security are stacked in Ubuntu Core to keep potential surfaces of attack as low as reasonably possible for autonomous robots deployed in field of operations.</p>
+    <a href="https://assets.ubuntu.com/v1/66fcd858-ubuntu-core-security-whitepaper.pdf">Read the Ubuntu Core security whitepaper&nbsp;&rsaquo;</a>
+  </div>
   </div>
 </section>
 
@@ -55,7 +50,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
 
@@ -69,7 +64,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
 
@@ -85,12 +80,10 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--two">The strongest robot developers community</p>
-      <p>80% of Linux developers choose Ubuntu. Find talents and technical support will be easiest with Ubuntu.</p>
-      <a class="p-link--external" href="https://iot.eclipse.org/resources/iot-developer-survey/iot-developer-survey-2019.pdf">#1 Linux distribution for IoT</a>
-    </div>
+  <div class="u-fixed-width">
+    <p class="p-heading--two">The strongest robot developers community</p>
+    <p>80% of Linux developers choose Ubuntu. Find talents and technical support will be easiest with Ubuntu.</p>
+    <a class="p-link--external" href="https://iot.eclipse.org/resources/iot-developer-survey/iot-developer-survey-2019.pdf">#1 Linux distribution for IoT</a>
   </div>
 </section>
 
@@ -109,7 +102,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
 
@@ -129,12 +122,10 @@
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--two">Catalyses new business models </p>
-      <p>Improve the return on investment for your robotic assets.</p>
-      <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/290087">Watch the app store for Linux webinar</a>
-    </div>
+  <div class="u-fixed-width">
+    <p class="p-heading--two">Catalyses new business models </p>
+    <p>Improve the return on investment for your robotic assets.</p>
+    <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/290087">Watch the app store for Linux webinar</a>
   </div>
 </section>
 
@@ -150,7 +141,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
 
@@ -167,19 +158,15 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--two">Ready for all boards, frameworks and applications</p>
-      <p>We want to minimise your startup costs and your time to market. That’s why we have made Ubuntu compatible with the most popular frameworks and chips.</p>
-    </div>
+  <div class="u-fixed-width">
+    <p class="p-heading--two">Ready for all boards, frameworks and applications</p>
+    <p>We want to minimise your startup costs and your time to market. That’s why we have made Ubuntu compatible with the most popular frameworks and chips.</p>
   </div>
 </section>
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--three">Compatible with popular open source robotics frameworks</p>
-    </div>
+  <div class="u-fixed-width">
+    <p class="p-heading--three">Compatible with popular open source robotics frameworks</p>
   </div>
   <div class="row u-equal-height">
     <div class="p-card col-4">
@@ -195,115 +182,98 @@
       <p class="p-card__desc">Ubuntu Core is the best fit for autonomous systems. Snaps allow to orchestrate the different components of the PX4 library to develop aerial robotic systems</p>
     </div>
   </div>
-  <div class="row u-sv3">
-    <div class="col-12">
-      <a class="p-link--external" href="https://snapcraft.io/blog/your-first-robot-a-beginners-guide-to-ros-and-ubuntu-core-1-5">Build your robot with ROS and Ubuntu Core</a>
-    </div>
+
+  <div class="u-fixed-width u-sv3">
+    <a class="p-link--external" href="https://snapcraft.io/blog/your-first-robot-a-beginners-guide-to-ros-and-ubuntu-core-1-5">Build your robot with ROS and Ubuntu Core</a>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--three">Broad support for development boards</p>
-    </div>
+
+  <div class="u-fixed-width">
+    <p class="p-heading--three">Broad support for development boards</p>
   </div>
+
   <div class="row u-equal-height">
     <div class="p-card col-4">
-      <header class="p-card__header">
-        <h3>Raspberry Pi</h3>
-      </header>
+      <h3>Raspberry Pi</h3>
+      <hr class="u-sv1" />
       <div class="p-card__content">
         <img src="https://assets.ubuntu.com/v1/37373e4d-raspberry-pi.png" alt="" style="padding-top: 1rem;">
       </div>
     </div>
     <div class="p-card col-4">
-      <header class="p-card__header">
-        <h3>NVIDIA Jetson</h3>
-      </header>
+      <h3>NVIDIA Jetson</h3>
+      <hr class="u-sv1" />
       <div class="p-card__content">
         <img src="https://assets.ubuntu.com/v1/ec75aaca-NVIDIA-Jetson.png" alt="" style="padding-top: 1rem;">
       </div>
     </div>
     <div class="p-card col-4">
-      <header class="p-card__header">
-        <h3>Dragonboard</h3>
-      </header>
+      <h3>Dragonboard</h3>
+      <hr class="u-sv1" />
       <div class="p-card__content">
         <img src="https://assets.ubuntu.com/v1/a64b7ee2-dragonboard.png" alt="" style="padding-top: 1rem;">
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <p><a href="https://ubuntu.com/blog/porting-ubuntu-core-18-to-nvidia-jetson-tx1-developer-kit">Read more about building Ubuntu Core for NVIDIA Jetson&nbsp;&rsaquo;</a></p>
-    </div>
+  <div class="u-fixed-width">
+    <p><a href="https://ubuntu.com/blog/porting-ubuntu-core-18-to-nvidia-jetson-tx1-developer-kit">Read more about building Ubuntu Core for NVIDIA Jetson&nbsp;&rsaquo;</a></p>
   </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="row">
-    <div class="col-12">
-      <p class="p-heading--two">Bootstrap for production-grade robots</p>
-      <p>This is how you can get started today:</p>
-    </div>
+  <div class="u-fixed-width">
+    <p class="p-heading--two">Bootstrap for production-grade robots</p>
+    <p>This is how you can get started today:</p>
   </div>
-</section>
-
-<section class="p-strip--light is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <ol class="p-stepped-list--detailed">
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            Pick your development board
-          </h3>
-          <div class="p-list-step__content">
-            <p>Ubuntu is supported by popular development boards and the majority of high performance SoCs. Other boards can be enabled to work with Ubuntu: we provide full options for device enablement when needed.</p>
-            <a class="p-link--external" href="https://docs.ubuntu.com/core/en/guides/build-device/board-enablement">Read the board enablement overview&nbsp;›</a>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            Set up your development environment
-          </h3>
-          <div class="p-list-step__content">
-            <p>Set up your development toolchain with Ubuntu Server via Multipass or on your Ubuntu Desktop. Install Snapcraft to build a bespoke application stack for your target use case. Benefit from the wealth of tools and libraries available on Ubuntu, and take advantage of the strong community support.</p>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            Create your production stack on Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <p>Snaps allow you to package and sandbox your application stack. With Ubuntu Core and snaps, you will be able to create lean production images streamlined for the purposes of your application. Test your production image in KVM before flashing it to your board.</p>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            Setup your service infrastructure
-          </h3>
-          <div class="p-list-step__content">
-            <p>Before going to production, get in touch with us to setup the infrastructure for the successful launch, maintenance and long term support of your product.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
+  
+  <div class="u-fixed-width">
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          Pick your development board
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Ubuntu is supported by popular development boards and the majority of high performance SoCs. Other boards can be enabled to work with Ubuntu: we provide full options for device enablement when needed.</p>
+          <a class="p-link--external" href="https://docs.ubuntu.com/core/en/guides/build-device/board-enablement">Read the board enablement overview&nbsp;›</a>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          Set up your development environment
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Set up your development toolchain with Ubuntu Server via Multipass or on your Ubuntu Desktop. Install Snapcraft to build a bespoke application stack for your target use case. Benefit from the wealth of tools and libraries available on Ubuntu, and take advantage of the strong community support.</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          Create your production stack on Ubuntu Core
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Snaps allow you to package and sandbox your application stack. With Ubuntu Core and snaps, you will be able to create lean production images streamlined for the purposes of your application. Test your production image in KVM before flashing it to your board.</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          Setup your service infrastructure
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Before going to production, get in touch with us to setup the infrastructure for the successful launch, maintenance and long term support of your product.</p>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
 <section class="p-strip is-deep">
-  <div class="row">
-    <div class="u-equal-height">
-      <div class="col-4 u-align--center u-hide--small u-vertically-center">
-        <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="200" alt="">
-      </div>
-      <div class="col-7 prefix-1 u-vertically-center">
-        <div class="row">
-          <div class="col-12">
-            <h2>Ready for the next steps?</h2>
-            <p>Roll out your robots with Ubuntu Core.</p>
-            <p><a class="p-button--positive js-invoke-modal" href="/internet-of-things/contact-us?product=robotics"">Get in touch</a></p>
-          </div>
-        </div>
-      </div>
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center u-hide--small u-vertically-center">
+      <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="200" alt="">
+    </div>
+    <div class="col-6 col-start-large-6 u-vertically-center">
+      <h2>Ready for the next steps?</h2>
+      <p>Roll out your robots with Ubuntu Core.</p>
+      <p><a class="p-button--positive js-invoke-modal" href="/internet-of-things/contact-us?product=robotics"">Get in touch</a></p>
+    </div>
     </div>
   </div>
 </section>

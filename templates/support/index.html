@@ -26,24 +26,26 @@
 {% with colour="dark" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 <nav class="p-tabs p-sticky-nav">
-  <ul class="p-tabs__list" role="tablist">
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#what-is-ua">What's Ubuntu Advantage</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#stories">Customer stories</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#solutions">Solutions</a>
-    </li>
-    <li class="p-tabs__item" role="presentation">
-      <a class="p-tabs__link js-sticky-tab" href="#get-ua">Get Ubuntu Advantage</a>
-    </li>
-  </ul>
+  <div class="u-fixed-width">
+    <ul class="p-tabs__list" role="tablist">
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#what-is-ua">What's Ubuntu Advantage</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#stories">Customer stories</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#solutions">Solutions</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a class="p-tabs__link js-sticky-tab" href="#get-ua">Get Ubuntu Advantage</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <section class="p-strip is-deep is-bordered" id="what-is-ua">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2>The most comprehensive Linux enterprise subscription</h2>
     <ul class="p-matrix is-trisected u-clearfix">
       <li class="p-matrix__item">
@@ -99,7 +101,7 @@
       <p>Automate day-to-day management with Landscape, the most cost-effective tool to support and monitor large and rapidly expanding networks of clouds, servers and desktops. Use Landscape for audit reporting, security compliance and patch management at scale. Landscape is available as a service from the cloud or on-premises for compliance with stricter security requirements.</p>
     </div>
   </div>
-  <div class="row  u-equal-height">
+  <div class="row u-equal-height">
     <div class="col-5">
       <ul class="p-list">
         <li class="p-list__item is-ticked">Manage physical, virtual and cloud-based systems</li>
@@ -121,10 +123,10 @@
 
 <section class="p-strip is-bordered is-deep">
   <div class="row u-equal-height u-vertically-center">
-    <div class="col-7 u-hide--small">
+    <div class="col-6 u-hide--small">
       <img src="https://assets.ubuntu.com/v1/4d62c90a-applying-Livepatches.png?w=500" width="500" alt="Screenshot of applying livepatches" />
     </div>
-    <div class="col-7">
+    <div class="col-6">
       <h3>Apply critical kernel patches without rebooting</h3>
       <p>The Canonical Livepatch Service enables you to apply critical kernel security fixes to your Ubuntu systems without rebooting. Available on LTS-based systems, Livepatch reduces downtime while maintaining compliance and security.</p>
       <p><a href="/livepatch">Learn more about the Canonical Livepatch Service&nbsp;&rsaquo;</a></p>
@@ -170,39 +172,37 @@
 
 
     <section class="p-strip is-bordered is-deep">
-      <div class="row">
-        <div class="ten-col push-one align-center">
-          <h2 class="p-muted-heading u-align--center">A selection of Ubuntu Advantage customers</h2>
-          <ul class="p-inline-images">
-            <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/1a062141-logo-bloomberg.svg" width="187" alt="Bloomburg logo">
-            </li>
-            <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg" width="145" alt="at&amp;t  logo">
-            </li>
-            <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/3161e6ba-logo-walmart.svg" width="210" alt="Walmart logo">
-            </li>
-            <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg" width="242" alt="Deutshe Telekom logo">
-            </li>
-            <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/e0f7037f-logo-ebay.svg" width="170" alt="Ebay logo">
-            </li>
-            <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/06c5609f-logo-cisco.svg" width="156" alt="Cisco logo">
-            </li>
-            <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/ddb0f9d6-logo-ntt.svg" width="71" alt="NTT logo">
-            </li>
-            <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/15e9c496-logo-bestbuy.svg" width="166" alt="Best Buy logo">
-            </li>
-            <li class="p-inline-images__item">
-              <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg" width="166" alt="Paypal logo">
-            </li>
-          </ul>
-        </div>
+      <div class="u-fixed-width u-align--center">
+        <h2 class="p-muted-heading u-align--center">A selection of Ubuntu Advantage customers</h2>
+        <ul class="p-inline-images">
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/1a062141-logo-bloomberg.svg" width="187" alt="Bloomburg logo">
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg" width="145" alt="at&amp;t  logo">
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/3161e6ba-logo-walmart.svg" width="210" alt="Walmart logo">
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg" width="242" alt="Deutshe Telekom logo">
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/e0f7037f-logo-ebay.svg" width="170" alt="Ebay logo">
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/06c5609f-logo-cisco.svg" width="156" alt="Cisco logo">
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/ddb0f9d6-logo-ntt.svg" width="71" alt="NTT logo">
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/15e9c496-logo-bestbuy.svg" width="166" alt="Best Buy logo">
+          </li>
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg" width="166" alt="Paypal logo">
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -220,6 +220,8 @@
       </div>
     </section>
 
+    <script src="{{ versioned_static('js/build/stickyNav.min.js') }}"></script>
+    
     {% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
     <!-- Set default Marketo information for contact form below-->

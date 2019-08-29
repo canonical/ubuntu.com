@@ -1,22 +1,20 @@
-<div class="row">
-  <div class="col-12 u-align--right">
-    <form action="" method="get" class="p-form p-form--inline">
-      <div class="p-form__group">
-        <label for="filter" aria-label="Filter the resources by type" class="p-form__label">Filter: </label>
-        <select class="js-submit-on-change p-form__control" id="filter" name="content" aria-label="Filter by content type" style="padding-right: 40px">
-          <option {% if not category %}selected="selected"{% endif %} value="/blog/{{topic}}#posts-list">All content types</option>
-          <option {% if category and category.slug == 'articles' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=articles#posts-list">Articles</option>
-          <option {% if category and category.slug == 'case-studies' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=case-studies#posts-list">Case studies</option>
-          <option {% if category and category.slug == 'news' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=news#posts-list">News</option>
-          <option {% if category and category.slug == 'videos' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=videos#posts-list">Videos</option>
-          <option {% if category and category.slug == 'webinars' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=webinars#posts-list">Webinars</option>
-          <option {% if category and category.slug == 'white-papers' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=white-papers#posts-list">White papers</option>
-        </select>
-        <input type="submit" value="Send Request" class="u-hide">
-        <input type="hidden" name="topic" value="{{topic}}">
-      </div>
-    </form>
-  </div>
+<div class="u-fixed-width u-align--right">
+  <form action="" method="get" class="p-form p-form--inline">
+    <div class="p-form__group">
+      <label for="filter" aria-label="Filter the resources by type" class="p-form__label">Filter: </label>
+      <select class="js-submit-on-change p-form__control" id="filter" name="content" aria-label="Filter by content type" style="padding-right: 40px">
+        <option {% if not category %}selected="selected"{% endif %} value="/blog/{{topic}}#posts-list">All content types</option>
+        <option {% if category and category.slug == 'articles' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=articles#posts-list">Articles</option>
+        <option {% if category and category.slug == 'case-studies' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=case-studies#posts-list">Case studies</option>
+        <option {% if category and category.slug == 'news' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=news#posts-list">News</option>
+        <option {% if category and category.slug == 'videos' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=videos#posts-list">Videos</option>
+        <option {% if category and category.slug == 'webinars' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=webinars#posts-list">Webinars</option>
+        <option {% if category and category.slug == 'white-papers' %}selected="selected"{% endif %} value="/blog/{{topic}}?category=white-papers#posts-list">White papers</option>
+      </select>
+      <input type="submit" value="Send Request" class="u-hide">
+      <input type="hidden" name="topic" value="{{topic}}">
+    </div>
+  </form>
 </div>
 
 <script>

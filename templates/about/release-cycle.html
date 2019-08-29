@@ -8,31 +8,30 @@
 
 <section class="p-strip is-deep is-bordered">
   <div class="row">
-    <div class="u-equal-height">
-      <div class="col-7">
-        <h1>The Ubuntu lifecycle and release cadence</h1>
-        <p>Canonical publishes new releases of Ubuntu on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with certainty of access to newer open source upstream capabilities.</p>
-      </div>
-      <div class="col-5 u-vertically-center u-align--center u-hide--small">
-        <img src="https://assets.ubuntu.com/v1/ed348358-logo-cof.svg" width="200" alt="ubuntu logo">
-      </div>
+    <div class="col-7">
+      <h1>The Ubuntu lifecycle and release cadence</h1>
+      <p>Canonical publishes new releases of Ubuntu on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with certainty of access to newer open source upstream capabilities.</p>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/ed348358-logo-cof.svg" width="200" alt="ubuntu logo">
     </div>
   </div>
 </section>
 
 <section class="p-strip--light is-bordered">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2>Version numbers are YY.MM</h2>
     <p>Releases of Ubuntu get a development codename (‘Breezy Badger’) and are versioned by the year and month of delivery - for example Ubuntu 17.10 was released in October 2017.</p>
   </div>
 </section>
 
 <section class="p-strip is-bordered">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2>Long term support and interim releases</h2>
     <p>LTS or ‘Long Term Support’ releases are published every two years in April. LTS releases are the ‘enterprise grade’ releases of Ubuntu and are utilised the most. An estimated 95% of all Ubuntu installations are LTS releases, with more than 60% of large-scale production clouds running on the most popular OS images - Ubuntu 18.04, 16.04 and 14.04 LTS.</p>
-    <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with 19.04 being the latest example. These are production-quality releases and are supported for their lifespan, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.</p>
+    <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with18.10 being the latest example. These are production-quality releases and are supported for their lifespan, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.</p>
   </div>
+
   <div class="row">
     <div class="col-10" style="overflow: auto;">
       <div class="u-hide--small" id="server-desktop-eol"></div>
@@ -122,13 +121,14 @@
       </table>
     </div>
   </div>
-  <div class="row">
+
+  <div class="u-fixed-width">
     <p>Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artifact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for ‘main’ during their lifespan.</p>
   </div>
 </section>
 
 <section class="p-strip--light is-bordered ">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2>Release components - debs, snaps, images, containers</h2>
     <p>A release of Ubuntu is made through several different channels. What you consume will depend on where you are and what your interests happen to be.</p>
     <p>The heart of Ubuntu is a collection of ‘deb’ packages which are tested and integrated so that they work well as a set. Debs are optimised for highly structured dependency management, enabling you to combine debs very richly while ensuring that the necessary software dependencies for each deb (themselves delivered as debs) are installed on your machine.</p>
@@ -141,7 +141,7 @@
 </section>
 
 <section class="p-strip is-bordered ">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2>Editions, Classic and Core</h2>
     <p>Each release of Ubuntu will include a Minimal Edition which has the fewest possible packages installed, a Server Edition which has a standard set of out-of-the-box usability conveniences, and a Desktop Edition which has the default GUI experience pre-installed. There are also multiple flavours of desktop Ubuntu corresponding to a number of desktop GUI preferences. All of these images are considered ‘Classic’ Ubuntu because they use debs as their base and may add snaps for specific packages or applications.</p>
     <p>The Ubuntu Core image is an all-snap edition of Ubuntu. It is unusual in that the base operating system itself is delivered as a snap; that makes it suitable for embedded appliances where all the possible apps that might need to be installed are available as strictly confined snaps. Ubuntu Core is an appliance or embedded oriented edition of Ubuntu, not particularly comfortable for humans but highly reliable and secure for large-scale appliance deployments such as IoT and CPE in the telco world.</p>
@@ -149,10 +149,11 @@
 </section>
 
 <section class="p-strip--light is-bordered ">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2>Maintenance and security updates</h2>
     <p>The debs in Ubuntu are categorised by whether they are considered part of the base system (‘main’ and ‘restricted’ are in the base and ‘universe’ and ‘multiverse’ are not) and whether they are open source (‘main’ and ‘universe’ are, ‘restricted’ and ‘multiverse’ are not).</p>
   </div>
+
   <div class="row">
     <div class="col-10" style="overflow: auto;">
       <table style="margin-top: 1rem;">
@@ -178,10 +179,12 @@
       </table>
     </div>
   </div>
-  <div class="row">
+
+  <div class="u-fixed-width">
     <p>The base system receives a commitment to public maintenance for the period where it is the current LTS or interim release and for a period thereafter.</p>
     <p>Customers of Canonical often ask for an extended security maintenance commitment, either to ‘main’ for a longer period of time, or to ‘universe’ software packages during the initial maintenance period of the LTS. This is known as '<a href="/esm">Extended Security Maintenance</a>' or ESM and is available for LTS releases since Ubuntu 12.04 LTS.</p>
   </div>
+
   <div class="row">
     <div class="col-10" style="overflow: auto;">
       <table style="margin-top: 1rem; width: auto;">
@@ -207,13 +210,14 @@
       </table>
     </div>
   </div>
+
   <div class="row">
     <div class="col-8">
       <p>Ubuntu LTS releases transition into Extended Security Maintenance (ESM) phase as the standard, five-year public support window comes to a close. It is recommended for users and organisations to upgrade to the latest LTS release or <a href="/esm">subscribe to ESM</a> for continued security coverage.</p>
       <p>This command will print the exact status of your system:</p>
-      <div class="p-code-snippet" style="margin-top: .5rem;">
-        <input class="p-code-snippet__input" value="ubuntu-support-status" readonly="readonly">
-        <button class="p-code-snippet__action">Copy to clipboard</button>
+      <div class="p-code-copyable" style="margin-top: .5rem;">
+        <input class="p-code-copyable__input" value="ubuntu-support-status" readonly="readonly">
+        <button class="p-code-copyable__action">Copy to clipboard</button>
       </div>
       <p>The <a class="p-link--external" href="https://wiki.ubuntu.com/Releases">Ubuntu Releases wiki</a> has current information on previous and upcoming versions.</p>
     </div>
@@ -221,13 +225,14 @@
 </section>
 
 <section class="p-strip is-bordered ">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2>Ubuntu kernel release cycle</h2>
     <p>Canonical maintains multiple kernel packages for each LTS version of Ubuntu, which serve different purposes. Several of the kernel packages address the need for kernels with specific performance priorities, for example the low-latency kernel package. Others are focused on optimisation for a particular hypervisor, for example the kernel packages which are named after public clouds. You are recommended to use the <a class="p-link--external" href="https://wiki.ubuntu.com/Kernel">detailed Ubuntu kernel guide</a> to select the best Ubuntu kernel for your application.</p>
     <p>In general, all of the LTS kernel packages will use the same base version of the Linux kernel, for example Ubuntu 18.04 LTS kernels typically used the 4.15 upstream Linux kernel as a base. Some cloud-specific kernels may use a newer version in order to benefit from improved mechanisms in performance or security that are material to that cloud. These kernels are all supported for the full life of their underlying LTS release.</p>
     <p>In addition, the kernel versions from the subsequent four releases are made available on the latest LTS release of Ubuntu. So Ubuntu 16.04 LTS received the kernels from Ubuntu 16.10, 17.04, 17.10 and 18.04 LTS. These kernels use newer upstream versions and as a result offer an easy path to newer features and newer classes of hardware for many users of Ubuntu. Note however that these kernels ‘roll’ which means that they jump every six months until the next LTS. Large scale deployments that adopt these ‘hardware enablement’ or HWE kernels should manage those transitions explicitly. These newer HWE kernels are accompanied by a collection of userspace tools closely tied to the kernel and hardware, specifically X display enablement on newer graphics cards.</p>
     <p>The Ubuntu kernel support lifecycle is as follows:</p>
   </div>
+
   <div class="row">
     <div class="col-10" style="overflow: auto;">
       <div class="u-hide--small" id="kernel-eol"></div>
@@ -359,7 +364,8 @@
       </table>
     </div>
   </div>
-  <div class="row">
+
+  <div class="u-fixed-width">
     <p>For more information on previous and upcoming kernel releases please see the <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack " class="p-link--external ">Ubuntu LTS Enablement Stack wiki page</a>.</p>
   </div>
 </section>
@@ -374,6 +380,7 @@
       <p>The Ubuntu OpenStack support lifecycle can be represented this way:</p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-10" style="overflow: auto;">
       <div class="u-hide--small" id="openstack-eol"></div>
@@ -547,100 +554,98 @@
       </table>
     </div>
   </div>
+
+  <div class="u-fixed-width">
+    <p>For more information on previous and upcoming Ubuntu OpenStack releases please see the <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive " class="p-link--external ">Ubuntu Cloud Archive wiki page</a>.</p>
+  </div>
+</section>
+
+<section class="p-strip--light">
   <div class="row">
-    <p>For more information on previous and upcoming Ubuntu OpenStack releases please see the <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive " class="p-link--external ">Ubuntu Cloud Archive wiki page</a>.</p
+    <div class="col-8">
+      <h2>Charmed Distribution of Kubernetes<sup>&reg;</sup> release cycle</h2>
+      <p>The release cycle of the Charmed Distribution of Kubernetes (CDK) is tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported, giving an effective support period of nine months, subject to changes in the upstream release cycle.</p>
+      <p>The CDK support lifecycle can be represented this way:</p>
     </div>
-  </section>
+  </div>
 
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-8">
-        <h2>Charmed Distribution of Kubernetes<sup>&reg;</sup> release cycle</h2>
-        <p>The release cycle of the Charmed Distribution of Kubernetes (CDK) is tightly
-          synchronised to the release of upstream Kubernetes<sup>&reg;</sup>.
-          The current release and two prior releases are supported, giving an effective
-          support period of nine months, subject to changes in the upstream release
-          cycle.</p>
-          <p>The CDK support lifecycle can be represented this way:</p>
-        </div>
-
-        <div class="row">
-          <div class="col-10" style="overflow: auto;">
-            <div class="u-hide--small" id="kubernetes-eol"></div>
-            <table class="u-hide--medium u-hide--large">
-              <thead>
-                <tr>
-                  <th>Release</th>
-                  <th>Released</th>
-                  <th>End of life</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Kubernetes 1.15</strong></td>
-                  <td>Jun 2019</td>
-                  <td>Mar 2020</td>
-                </tr>
-                <tr>
-                  <td><strong>Kubernetes 1.14</strong></td>
-                  <td>Mar 2019</td>
-                  <td>Dec 2019</td>
-                </tr>
-                <tr>
-                  <td><strong>Kubernetes 1.13</strong></td>
-                  <td>Dec 2018</td>
-                  <td>Sep 2019</td>
-                </tr>
-                <tr>
-                  <td>Kubernetes 1.12</td>
-                  <td>Sep 2018</td>
-                  <td>Jul 2019</td>
-                </tr>
-                <tr>
-                  <td>Kubernetes 1.11</td>
-                  <td>Jul 2018</td>
-                  <td>Mar 2019</td>
-                </tr>
-                <tr>
-                  <td>Kubernetes 1.10</td>
-                  <td>Mar 2018</td>
-                  <td>Dec 2018</td>
-                </tr>
-                <tr>
-                  <td>Kubernetes 1.9</td>
-                  <td>Dec 2017</td>
-                  <td>Sep 2018</td>
-                </tr>
-                <tr>
-                  <td>Kubernetes 1.8</td>
-                  <td>Sep 2017</td>
-                  <td>Jul 2018</td>
-                </tr>
-                <tr>
-                  <td>Kubernetes 1.7</td>
-                  <td>Jun 2017</td>
-                  <td>Mar 2018</td>
-                </tr>
-                <tr>
-                  <td>Kubernetes 1.6</td>
-                  <td>Mar 2017</td>
-                  <td>Dec 2017</td>
-                </tr>
-                <tr>
-                  <td>Kubernetes 1.5</td>
-                  <td>Dec 2016</td>
-                  <td>Sep 2017</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="row">
-          <p>For more information on previous and current releases of CDK, please see the <a href="/kubernetes/docs/release-notes">CDK release notes</a>.</p>
-        </div>
-      </section>
+  <div class="row">
+    <div class="col-10" style="overflow: auto;">
+      <div class="u-hide--small" id="kubernetes-eol"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <th>Release</th>
+            <th>Released</th>
+            <th>End of life</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Kubernetes 1.15</strong></td>
+            <td>Jun 2019</td>
+            <td>Mar 2020</td>
+          </tr>
+          <tr>
+            <td><strong>Kubernetes 1.14</strong></td>
+            <td>Mar 2019</td>
+            <td>Dec 2019</td>
+          </tr>
+          <tr>
+            <td><strong>Kubernetes 1.13</strong></td>
+            <td>Dec 2018</td>
+            <td>Sep 2019</td>
+          </tr>
+          <tr>
+            <td>Kubernetes 1.12</td>
+            <td>Sep 2018</td>
+            <td>Jul 2019</td>
+          </tr>
+          <tr>
+            <td>Kubernetes 1.11</td>
+            <td>Jul 2018</td>
+            <td>Mar 2019</td>
+          </tr>
+          <tr>
+            <td>Kubernetes 1.10</td>
+            <td>Mar 2018</td>
+            <td>Dec 2018</td>
+          </tr>
+          <tr>
+            <td>Kubernetes 1.9</td>
+            <td>Dec 2017</td>
+            <td>Sep 2018</td>
+          </tr>
+          <tr>
+            <td>Kubernetes 1.8</td>
+            <td>Sep 2017</td>
+            <td>Jul 2018</td>
+          </tr>
+          <tr>
+            <td>Kubernetes 1.7</td>
+            <td>Jun 2017</td>
+            <td>Mar 2018</td>
+          </tr>
+          <tr>
+            <td>Kubernetes 1.6</td>
+            <td>Mar 2017</td>
+            <td>Dec 2017</td>
+          </tr>
+          <tr>
+            <td>Kubernetes 1.5</td>
+            <td>Dec 2016</td>
+            <td>Sep 2017</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <p>For more information on previous and current releases of CDK, please see the <a href="/kubernetes/docs/release-notes">CDK release notes</a>.</p>
+  </div>
+</section>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
       <script src="{{ versioned_static('js/build/release-chart.min.js') }}"></script>
 
-      {% endblock content %}
+{% endblock content %}

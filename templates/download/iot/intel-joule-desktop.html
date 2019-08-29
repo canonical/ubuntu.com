@@ -11,8 +11,8 @@
       <p>There are two install options for the Intel Joule: <a href="intel-joule">Ubuntu Core</a> or <a href="#desktop">Ubuntu Desktop</a>. This page is for Ubuntu Desktop.</p>
     </div>
   </div>
-  <div class="row" id="desktop">
-    <div class="col-12 p-card">
+  <div class="u-fixed-width" id="desktop">
+    <div class="p-card u-no-padding--left u-no-padding--right">
       <div class="u-equal-height p-divider">
         <div class="col-6 p-divider__block">
           <h2>Install Ubuntu Desktop</h2>
@@ -38,70 +38,68 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Download Ubuntu Desktop
-          </h3>
-          <div class="p-list-step__content">
-            <p>Get the correct Ubuntu Desktop image for your board:</p>
-            <ul class="u-no-margin--left">
-              <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/tuchuck/desktop-final/tuchuck-xenial-desktop-iso-20170317-0.iso">Intel Joule - Ubuntu Desktop 16.04 LTS image</a></li>
-              <li>MD5SUM: 07e4895b2921117288ff611c6f5fea28</li>
-            </ul>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Flash the USB drive with Ubuntu Desktop
-          </h3>
-          <div class="p-list-step__content">
-            <p>Download and copy the image on an USB flash drive by following the <a class="p-link--external" href="https://developer.ubuntu.com/core/get-started/installation-medias">installation media instructions</a>.</p>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Install Ubuntu Desktop
-          </h3>
-          <div class="p-list-step__content">
-            <p>Booting the board from the USB flash drive will start the Ubuntu installer.</p>
-            <ol class="u-no-margin--left">
-              <li>Boot the system from the USB flash drive.</li>
-              <li>The system will automatically execute the first stage of installation, including eMMC storage partitioning and image installation. After installation is complete, a prompt dialog will be shown and you will need to restart the system.</li>
-              <li>Boot the system on the eMMC storage and finish the install configuration.</li>
-              <li>Follow the instructions and enter appropriate options for language, WiFi, location (timezone), and keyboard layout.</li>
-              <li>Pick a hostname, user account and password.</li>
-              <li>Wait for the configuration to finish. If you connected to a WiFi network at step 4, it will take several minutes to download and apply additional updates. You can now reboot the system.</li>
-              <li>Ubuntu is installed. Use your account and password to log in.</li>
-            </ol>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Change the default audio output
-          </h3>
-          <div class="p-list-step__content">
-            <p>In the current release, the analog audio port on mezzanine board is chosen as the default audio output. To use HDMI audio, you need to modify the Joule sound configuration file: <code>/etc/modprobe.d/joule-snd.conf</code></p>
-            <h4>Edit configuration</h4>
-            <ol class="u-no-margin--left">
-              <li>
-                <p>Open an editor to modify the configuration file:</p>
-                <pre><code>sudo nano /etc/modprobe.d/joule-snd.conf</pre></code>
-              </li>
-              <li>To use HDMI audio, uncomment the line <code>#blacklist snd_sock_skl</code> and comment the line <code>softdep snd_hda_intel pre: snd_sock_skl</code>. You can revert these changes if you want to change your sound output back to defaults.</li>
-              <li>Reboot the system to apply the new setting.</li>
-            </ol>
-          </div>
-        </li>
-      </ol>
-    </div>
+  <div class="u-fixed-width">
+    <h2>Installation instructions</h2>
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          
+          Download Ubuntu Desktop
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Get the correct Ubuntu Desktop image for your board:</p>
+          <ul class="u-no-margin--left">
+            <li><a class="p-link--external" href="http://people.canonical.com/~platform/snappy/tuchuck/desktop-final/tuchuck-xenial-desktop-iso-20170317-0.iso">Intel Joule - Ubuntu Desktop 16.04 LTS image</a></li>
+            <li>MD5SUM: 07e4895b2921117288ff611c6f5fea28</li>
+          </ul>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          
+          Flash the USB drive with Ubuntu Desktop
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Download and copy the image on an USB flash drive by following the <a class="p-link--external" href="https://developer.ubuntu.com/core/get-started/installation-medias">installation media instructions</a>.</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          
+          Install Ubuntu Desktop
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Booting the board from the USB flash drive will start the Ubuntu installer.</p>
+          <ol class="u-no-margin--left">
+            <li>Boot the system from the USB flash drive.</li>
+            <li>The system will automatically execute the first stage of installation, including eMMC storage partitioning and image installation. After installation is complete, a prompt dialog will be shown and you will need to restart the system.</li>
+            <li>Boot the system on the eMMC storage and finish the install configuration.</li>
+            <li>Follow the instructions and enter appropriate options for language, WiFi, location (timezone), and keyboard layout.</li>
+            <li>Pick a hostname, user account and password.</li>
+            <li>Wait for the configuration to finish. If you connected to a WiFi network at step 4, it will take several minutes to download and apply additional updates. You can now reboot the system.</li>
+            <li>Ubuntu is installed. Use your account and password to log in.</li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          
+          Change the default audio output
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>In the current release, the analog audio port on mezzanine board is chosen as the default audio output. To use HDMI audio, you need to modify the Joule sound configuration file: <code>/etc/modprobe.d/joule-snd.conf</code></p>
+          <h4>Edit configuration</h4>
+          <ol class="u-no-margin--left">
+            <li>
+              <p>Open an editor to modify the configuration file:</p>
+              <pre><code>sudo nano /etc/modprobe.d/joule-snd.conf</pre></code>
+            </li>
+            <li>To use HDMI audio, uncomment the line <code>#blacklist snd_sock_skl</code> and comment the line <code>softdep snd_hda_intel pre: snd_sock_skl</code>. You can revert these changes if you want to change your sound output back to defaults.</li>
+            <li>Reboot the system to apply the new setting.</li>
+          </ol>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 

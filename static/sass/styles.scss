@@ -32,7 +32,6 @@
 @import "pattern_footer";
 @import "pattern_heading-icon";
 @import "pattern_icons";
-@import "pattern_inline-images";
 @import "pattern_lists";
 @import "pattern_navigation";
 @import "pattern_pie_chart";
@@ -64,7 +63,6 @@
 @include ubuntu-p-gaming;
 @include ubuntu-p-grid;
 @include ubuntu-p-heading-icon;
-@include ubuntu-p-inline-images;
 @include ubuntu-p-lists;
 @include ubuntu-p-navigation;
 @include ubuntu-p-strip;
@@ -267,6 +265,22 @@ summary {
     max-width: 28em;
     @media only screen and (max-width: 874px) and (min-width: 620px) {
       width: 50%;
+    }
+  }
+}
+
+// Fix trailing quote spacing on pull-quote pattern
+// Being fixed in Vanilla: https://github.com/canonical-web-and-design/vanilla-framework/issues/2426
+.p-pull-quote {
+  .p-pull-quote__quote {
+    position: relative;
+
+    &:first-of-type::before {
+      left: -1.25rem;
+    }
+
+    &:last-of-type::after {
+      bottom: 0.5rem;
     }
   }
 }

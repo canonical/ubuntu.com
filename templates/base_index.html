@@ -16,7 +16,7 @@
     <!-- Default Takeover: Download the latest Ubuntu -->
     <section data-lang="all" id="takeover" class="p-strip--image is-dark is-deep" style="background-color: #5E2750; background-image: linear-gradient(110deg, #5E2750 20%, #2C001E 46%, #2C001E 60%);">
       <div class="row">
-        <div class="col-12 suffix-4">
+        <div class="col-8">
           <h1 style="font-weight: 100;">Ubuntu {{ releases.latest.short_version }} is here</h1>
           <p>The latest version of the world’s most widely used Linux platform for Kubernetes, multi-cloud and machine learning.</p>
           <p class="u-no-margin--bottom"><a href="/download" class="p-button--neutral u-no-margin--bottom">Download Ubuntu {{ releases.latest.short_version }} now</a></p>
@@ -34,12 +34,11 @@
     </section>
 
     <section class="p-strip--light is-bordered">
-      <div class="row u-align--center">
-        <div class="col-12">
-          <h2 class="p-heading--three u-no-max-width">
-            Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things
-          </h2>
-        </div>
+      <div class="u-fixed-width u-align--center u-clearfix">
+        <h2 class="p-heading--three u-no-max-width">
+          Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things
+        </h2>
+
         <div class="p-ubuntu-intro u-align--center">
           <div class="p-ubuntu-intro__content">
             <ul class="p-ubuntu-intro__list no-bullets inline">
@@ -55,7 +54,7 @@
     </section>
 
     {# strip cloud #}
-    <section class="p-strip is-deep u-image-position is-bordered u-vertically-center">
+    <section class="p-strip is-deep u-image-position is-bordered">
       <div class="row">
         <div class="col-7">
           <img src="https://assets.ubuntu.com/v1/0bfbd13b-cloud_section_bundle.svg?h=460" class="u-image-position--top u-hide--small" alt="" height="460" style="height: 100%; right: 47%;" />
@@ -69,45 +68,39 @@
 
     {# strip iot #}
     <section class="p-strip--light is-deep is-bordered">
-      <div class="row">
-        <div class="u-equal-height u-vertically-center">
-          <div class="col-5 suffix-1">
-            <h3><a href="/internet-of-things">The fastest way to go from development to production in IoT&nbsp;&rsaquo;</a></h3>
-            <p>Learn about how Ubuntu Core and snaps can help you build your connected devices.</p>
-          </div>
-          <div class="col-7 u-align--center">
-            <img class="u-hide--small" src="https://assets.ubuntu.com/v1/808a4e5b-iot.png?h=300" height="300" alt="" />
-          </div>
+      <div class="row u-equal-height u-vertically-center">
+        <div class="col-4">
+          <h3><a href="/internet-of-things">The fastest way to go from development to production in IoT&nbsp;&rsaquo;</a></h3>
+          <p>Learn about how Ubuntu Core and snaps can help you build your connected devices.</p>
+        </div>
+        <div class="col-7 col-start-large-6 u-align--center">
+          <img class="u-hide--small" src="https://assets.ubuntu.com/v1/808a4e5b-iot.png?h=300" height="300" alt="" />
         </div>
       </div>
     </section>
 
     {# strip containers #}
     <section class="p-strip is-deep is-bordered">
-      <div class="row">
-        <div class="u-equal-height u-vertically-center">
-          <div class="col-7">
-            <img src="https://assets.ubuntu.com/v1/668136e7-containers.svg" class="u-hide--small" style="height: 85%;" height="374" alt="" />
-          </div>
-          <div class="col-5 suffix-1">
-            <h3><a href="/containers">The number one platform for containers&nbsp;&rsaquo;</a></h3>
-            <p>From LXD to Kubernetes to Docker, Ubuntu can run your containers at scale.</p>
-          </div>
+      <div class="row u-equal-height u-vertically-center">
+        <div class="col-7">
+          <img src="https://assets.ubuntu.com/v1/668136e7-containers.svg" class="u-hide--small" style="height: 85%;" height="374" alt="" />
+        </div>
+        <div class="col-4">
+          <h3><a href="/containers">The number one platform for containers&nbsp;&rsaquo;</a></h3>
+          <p>From LXD to Kubernetes to Docker, Ubuntu can run your containers at scale.</p>
         </div>
       </div>
     </section>
 
     {# strip desktop #}
     <section class="p-strip--light is-deep is-bordered">
-      <div class="row">
-        <div class="u-equal-height u-vertically-center">
-          <div class="col-5 suffix-1">
-            <h3><a href="/desktop">Fast, secure and simple, Ubuntu powers millions of PCs worldwide&nbsp;&rsaquo;</a></h3>
-            <p>Download the latest version of Ubuntu, for desktop PCs and laptops.</p>
-          </div>
-          <div class="col-7 u-align--center">
-            <img class="u-hide--small" src="https://assets.ubuntu.com/v1/c6504e94-Dell_XPS_Laptop_Front-Desktop.png?h=350" height="350" alt="" />
-          </div>
+      <div class="row u-equal-height u-vertically-center">
+        <div class="col-4">
+          <h3><a href="/desktop">Fast, secure and simple, Ubuntu powers millions of PCs worldwide&nbsp;&rsaquo;</a></h3>
+          <p>Download the latest version of Ubuntu, for desktop PCs and laptops.</p>
+        </div>
+        <div class="col-7 col-start-large-6 u-align--center">
+          <img class="u-hide--small" src="https://assets.ubuntu.com/v1/c6504e94-Dell_XPS_Laptop_Front-Desktop.png?h=350" height="350" alt="" />
         </div>
       </div>
     </section>

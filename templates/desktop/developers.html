@@ -5,33 +5,29 @@
 
   {% block content %}
   <section class="p-strip u-image-position is-deep is-bordered">
-    <div class="row">
-      <div class="u-equal-height">
+    <div class="row u-equal-height">
       <div class="col-6">
         <h1>Ubuntu Desktop for&nbsp;developers</h1>
         <p>Whether you&rsquo;re a mobile app developer, an engineering manager, a music or video editor or a financial analyst with large-scale models to run &mdash; in fact, anyone in need of a powerful machine for your work &mdash; Ubuntu is the ideal platform.</p>
         <p><a href="/download/desktop/" class="p-button--positive">Get Ubuntu now</a></p>
       </div>
       <div class="col-6 u-vertically-center u-hide--small">
-        <img class="u-visible--large u-hide--medium u-image-position--top" src="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png?w=600" width="600" alt="" style="top: 105px; left: 50%;" />
-        <img class="u-visible--medium u-hide--large" src="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png?w=600" width="600" alt="" style="top: 105px; right: 40px;" />
-      </div>
+        <img class="u-hide--small u-hide--medium u-image-position--top" src="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png?w=600" width="600" alt="" style="top: 105px; left: 50%;" />
+        <img class="u-hide--large" src="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png?w=600" width="600" alt="" style="top: 105px; right: 40px;" />
       </div>
     </div>
   </section>
 
   <section class="p-strip is-bordered">
-    <div class="row">
-      <div class="col-12">
-        <h2>Why use Ubuntu for development?</h2>
-        <ul class="p-list--divided is-split">
-          <li class="p-list__item is-ticked">The fastest route from development to deployment on desktop, mobile, server or cloud</li>
-          <li class="p-list__item is-ticked">The desktop of choice for developers at some of the world&rsquo;s leading technology companies</li>
-          <li class="p-list__item is-ticked">The broadest and best development tools and libraries</li>
-          <li class="p-list__item is-ticked">Lightweight to either run natively or in a VM, on a PC or a Mac</li>
-          <li class="p-list__item is-ticked">Ideal for any resource-intensive environment, from data mining to large-scale financial modelling</li>
-        </ul>
-      </div>
+    <div class="u-fixed-width">
+      <h2>Why use Ubuntu for development?</h2>
+      <ul class="p-list--divided is-split">
+        <li class="p-list__item is-ticked">The fastest route from development to deployment on desktop, mobile, server or cloud</li>
+        <li class="p-list__item is-ticked">The desktop of choice for developers at some of the world&rsquo;s leading technology companies</li>
+        <li class="p-list__item is-ticked">The broadest and best development tools and libraries</li>
+        <li class="p-list__item is-ticked">Lightweight to either run natively or in a VM, on a PC or a Mac</li>
+        <li class="p-list__item is-ticked">Ideal for any resource-intensive environment, from data mining to large-scale financial modelling</li>
+      </ul>
     </div>
   </section>
 
@@ -59,21 +55,19 @@
         <p>Ubuntu {{ releases.lts.short_version }} is the latest LTS release. Alongside support for the very latest hardware, this release includes new versions of many core apps and developer technologies.</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <ul class="p-list--divided is-split">
-          <li class="p-list__item is-ticked">Linux 4.15 kernel</li>
-          <li class="p-list__item is-ticked">Core applications packaged as snaps</li>
-          <li class="p-list__item is-ticked">Apps available in store including Spotify, Skype and VLC</li>
-          <li class="p-list__item is-ticked">Latest versions of the popular browsers</li>
-          <li class="p-list__item is-ticked">LibreOffice 6</li>
-          <li class="p-list__item is-ticked">Minimal installation - only essential packages are included reducing disk footprint making it easier to configure your desktop just how you want it</li>
-          <li class="p-list__item is-ticked">Microsoft Hyper-V makes running virtualised guests on Windows easier, faster, and better integrated</li>
-          <li class="p-list__item is-ticked">GNOME Shell 3.28 replaces Unity 7 as the default desktop environment</li>
-          <li class="p-list__item is-ticked">Print without printer-specific drivers on AirPrint, IPP everywhere, Mopria and Wifi Direct printers</li>
-        </ul>
-        <p><a class="p-link--external" href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes">Read the full release notes</a></p>
-      </div>
+    <div class="u-fixed-width">
+      <ul class="p-list--divided is-split">
+        <li class="p-list__item is-ticked">Linux 4.15 kernel</li>
+        <li class="p-list__item is-ticked">Core applications packaged as snaps</li>
+        <li class="p-list__item is-ticked">Apps available in store including Spotify, Skype and VLC</li>
+        <li class="p-list__item is-ticked">Latest versions of the popular browsers</li>
+        <li class="p-list__item is-ticked">LibreOffice 6</li>
+        <li class="p-list__item is-ticked">Minimal installation - only essential packages are included reducing disk footprint making it easier to configure your desktop just how you want it</li>
+        <li class="p-list__item is-ticked">Microsoft Hyper-V makes running virtualised guests on Windows easier, faster, and better integrated</li>
+        <li class="p-list__item is-ticked">GNOME Shell 3.28 replaces Unity 7 as the default desktop environment</li>
+        <li class="p-list__item is-ticked">Print without printer-specific drivers on AirPrint, IPP everywhere, Mopria and Wifi Direct printers</li>
+      </ul>
+      <p><a class="p-link--external" href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes">Read the full release notes</a></p>
     </div>
   </section>
 
@@ -84,17 +78,15 @@
         <p>Ubuntu {{ releases.latest.short_version }} comes with a host of improvements and bug fixes giving you the snappiest GNOME experience.</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <ul class="p-list--divided is-split">
-          <li class="p-list__item is-ticked">Thousands of updated snaps and packages such as Spotify, VLC, Skype, Slack, Discord, Visual Studio Code and Telegram</li>
-          <li class="p-list__item is-ticked">The latest version of the GNOME Desktop including many performance upgrades and reduced memory footprint</li>
-          <li class="p-list__item is-ticked">New fractional scaling allows you to scale your displays independently -  available for Wayland and as an experimental option for Xorg</li>
-          <li class="p-list__item is-ticked">Improved experience for alt-tab, Ubuntu dock and right click</li>
-          <li class="p-list__item is-ticked">Installing Ubuntu desktop on VMware will now automatically install <a class="p-link--external" href="https://github.com/vmware/open-vm-tools">open-vm-tools</a> providing greater integration between Ubuntu and the host system</li>
-        </ul>
-        <p><a class="p-link--external" href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes">Read the full release notes</a></p>
-      </div>
+    <div class="u-fixed-width">
+      <ul class="p-list--divided is-split">
+        <li class="p-list__item is-ticked">Thousands of updated snaps and packages such as Spotify, VLC, Skype, Slack, Discord, Visual Studio Code and Telegram</li>
+        <li class="p-list__item is-ticked">The latest version of the GNOME Desktop including many performance upgrades and reduced memory footprint</li>
+        <li class="p-list__item is-ticked">New fractional scaling allows you to scale your displays independently -  available for Wayland and as an experimental option for Xorg</li>
+        <li class="p-list__item is-ticked">Improved experience for alt-tab, Ubuntu dock and right click</li>
+        <li class="p-list__item is-ticked">Installing Ubuntu desktop on VMware will now automatically install <a class="p-link--external" href="https://github.com/vmware/open-vm-tools">open-vm-tools</a> providing greater integration between Ubuntu and the host system</li>
+      </ul>
+      <p><a class="p-link--external" href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes">Read the full release notes</a></p>
     </div>
   </section>
 
@@ -116,7 +108,7 @@
     <div class="row">
       <div class="col-10">
         <blockquote class="p-pull-quote">
-          <p>We want to be able to deliver the same high-quality experience on Linux as we do on other platforms. Snaps allow us to do just that, by giving us the ability to push the latest features straight to our users, no matter what device or distribution they happen to use.</p>
+          <p class="p-pull-quote__quote">We want to be able to deliver the same high-quality experience on Linux as we do on other platforms. Snaps allow us to do just that, by giving us the ability to push the latest features straight to our users, no matter what device or distribution they happen to use.</p>
           <cite class="p-pull-quote__citation">Jonáš Tajrych, Senior Software Engineer at Skype at Microsoft</cite>
         </blockquote>
       </div>
@@ -124,28 +116,24 @@
   </section>
 
   <section class="p-strip is-bordered">
-    <div class="row">
-      <div class="u-equal-height">
-        <div class="col-7 suffix-1">
-          <h2>Package, distribute, and update apps with Snapcraft</h2>
-          <p>Snaps are applications packaged with all their dependencies to run on all popular Linux distributions from a single build. They update automatically and roll back gracefully. Whether you’re building for desktop, cloud, or the Internet of Things, publishing as a snap will keep users up to date and make system configuration issues less likely, freeing you to code more and debug less.</p>
-          <p>Snapcraft, the open source tool to publish snaps, picks up from your existing build artefacts or language of choice, be it Python, Go, C/C++, Node.js, or even .NET. With 20 minutes you can have your first app built and released in the Snap Store.</p>
-          <p><a class="p-link--external" href="https://snapcraft.io/">Find out more about snaps</a></p>
-        </div>
-        <div class="col-5 u-vertically-center">
-          <img class="u-hide--small" src="https://assets.ubuntu.com/v1/bb7f0c54-snaps-hero%403x.png?w=400" width="400" alt="Snap icons">
-        </div>
+    <div class="row u-equal-height">
+      <div class="col-6">
+        <h2>Package, distribute, and update apps with Snapcraft</h2>
+        <p>Snaps are applications packaged with all their dependencies to run on all popular Linux distributions from a single build. They update automatically and roll back gracefully. Whether you’re building for desktop, cloud, or the Internet of Things, publishing as a snap will keep users up to date and make system configuration issues less likely, freeing you to code more and debug less.</p>
+        <p>Snapcraft, the open source tool to publish snaps, picks up from your existing build artefacts or language of choice, be it Python, Go, C/C++, Node.js, or even .NET. With 20 minutes you can have your first app built and released in the Snap Store.</p>
+        <p><a class="p-link--external" href="https://snapcraft.io/">Find out more about snaps</a></p>
+      </div>
+      <div class="col-5 col-start-large-7 u-vertically-center">
+        <img class="u-hide--small" src="https://assets.ubuntu.com/v1/bb7f0c54-snaps-hero%403x.png?w=400" width="400" alt="Snap icons">
       </div>
     </div>
   </section>
 
   <section class="p-strip--light is-bordered">
-    <div class="row">
-      <div class="col-12">
-        <h2>Get started with Snaps</h2>
-        <p>The easiest way to build and publish a snap is with snapcraft,<br>
-          which supports building from source and from existing packages.</p>
-      </div>
+    <div class="u-fixed-width">
+      <h2>Get started with Snaps</h2>
+      <p>The easiest way to build and publish a snap is with snapcraft,<br>
+        which supports building from source and from existing packages.</p>
     </div>
     <div class="row u-equal-height">
       <div class="col-4 p-card u-align--center">
@@ -214,7 +202,7 @@
     <div class="row">
       <div class="col-10">
         <blockquote class="p-pull-quote">
-          <p>Ubuntu has been the perfect OS given its popularity with developers and its cloud capabilities. That&rsquo;s why it&rsquo;s preloaded on the 4th generation of our XPS 13 laptop and our new Precision M3800 Mobile Workstation.</p>
+          <p class="p-pull-quote__quote">Ubuntu has been the perfect OS given its popularity with developers and its cloud capabilities. That&rsquo;s why it&rsquo;s preloaded on the 4th generation of our XPS 13 laptop and our new Precision M3800 Mobile Workstation.</p>
           <cite class="p-pull-quote__citation">Barton George, Director of developer programs at Dell services</cite>
         </blockquote>
         <p><a href="/blog/designed-for-developers-dell-launches-two-new-ubuntu-based-systems/" class="p-link--external">Learn more about Dell&rsquo;s developer edition line</a></p>
@@ -223,17 +211,15 @@
   </section>
 
   <section class="p-strip is-bordered">
-    <div class="row">
-      <div class="u-equal-height u-vertically-center">
-        <div class="col-6 suffix-1">
-          <img src="https://assets.ubuntu.com/v1/bda34a6e-wordpress-apache-mysql-bundle-trans.svg" width="442" height="394" alt="" />
-        </div>
-        <div class="col-6">
-          <h2>Deployment made easy</h2>
-          <p>When it comes to speed and simplicity of deployment, nothing touches Ubuntu.</p>
-          <p>Taking a service developed on the desktop and running it on a server or in the cloud just works. Ubuntu also has developed Juju, a service orchestration tool, that simplifies the often-cumbersome handover between development and ops teams &mdash; and it speeds the process up dramatically.</p>
-          <p><a class="p-link--external" href="https://jujucharms.com/">More about Juju</a></p>
-        </div>
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-5">
+        <img src="https://assets.ubuntu.com/v1/bda34a6e-wordpress-apache-mysql-bundle-trans.svg" width="442" height="394" alt="" />
+      </div>
+      <div class="col-6 col-start-large-7">
+        <h2>Deployment made easy</h2>
+        <p>When it comes to speed and simplicity of deployment, nothing touches Ubuntu.</p>
+        <p>Taking a service developed on the desktop and running it on a server or in the cloud just works. Ubuntu also has developed Juju, a service orchestration tool, that simplifies the often-cumbersome handover between development and ops teams &mdash; and it speeds the process up dramatically.</p>
+        <p><a class="p-link--external" href="https://jujucharms.com/">More about Juju</a></p>
       </div>
     </div>
   </section>
@@ -245,7 +231,7 @@
         <p>With Ubuntu Advantage and Landscape, you can standardise your developer workstations. It helps you manage updates, security patches, and reporting, while minimising downtime. Give your developers the freedom they want while retaining the control you need.</p>
         <p><a href="/support/">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
       </div>
-      <div class="col-6 prefix-1 u-hide--small">
+      <div class="col-5 col-start-large-8 u-hide--small">
         <img src="https://assets.ubuntu.com/v1/4125e046-landscape_activity.png?w=413" width="413" alt="" />
       </div>
     </div>

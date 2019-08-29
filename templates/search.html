@@ -6,28 +6,26 @@
 
 {% block content %}
   <div class="p-strip is-shallow">
-    <div class="row">
-      <div class="col-12">
-        {% if query %}
-          {% if estimatedTotal == 0 %}
-            <h1 class="p-heading--two">Sorry we couldn't find "{{ query }}"</h1>
-            {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
-          {% else %}
-            <h1 class="p-heading--two">Search results for "{{ query }}"</h1>
-            {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
-          {% endif %}
+    <div class="u-fixed-width">
+      {% if query %}
+        {% if estimatedTotal == 0 %}
+          <h1 class="p-heading--two">Sorry we couldn't find "{{ query }}"</h1>
+          {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
         {% else %}
-          <h1>Search Ubuntu and Canonical sites</h1>
+          <h1 class="p-heading--two">Search results for "{{ query }}"</h1>
+          {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
         {% endif %}
-      </div>
+      {% else %}
+        <h1>Search Ubuntu and Canonical sites</h1>
+      {% endif %}
     </div>
   </div>
 
   {# search form #}
   <div class="p-strip--light is-shallow">
-    <div class="row u-vertically-center">
+    <div class="u-fixed-width u-vertically-center">
       <form action="/search">
-        <fieldset style="border: 0; padding: 0;">
+        <fieldset class="row u-no-margin--bottom" style="border: 0; padding: 0;">
           <div class="col-10">
             <label for="search-input" class="u-off-screen">Search</label>
             <input name="q" id="search-input" type="search" {% if query %}value="{{ query }}"{% endif %} placeholder="e.g. juju" style="margin: 0;"/>
@@ -69,14 +67,12 @@
     {% else %}
       {% for item in results['items'] %}
         <div class="p-strip is-shallow">
-          <div class="row">
-            <div class="col-12">
-              <h5><a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe}}</a></h5>
-              <p>
-                {{ item.htmlSnippet | safe }}
-              </p>
-              <small><a href="{{ item.link }}">{{ item.htmlFormattedUrl | safe }}</a></small>
-            </div>
+          <div class="u-fixed-width">
+            <h5><a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe}}</a></h5>
+            <p>
+              {{ item.htmlSnippet | safe }}
+            </p>
+            <small><a href="{{ item.link }}">{{ item.htmlFormattedUrl | safe }}</a></small>
           </div>
         </div>
       {% endfor %}

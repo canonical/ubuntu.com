@@ -1,9 +1,8 @@
 <div class="row u-equal-height">
-  <div class="col-6 p-card">
-    <div class="p-card__header">
-      <h2 class="p-heading--four">Private Cloud Build</h2>
-      <p><span class="p-heading--two">$75,000</span><br />Reference architecture deployment on 12+ nodes.</p>
-    </div>
+  <div class="col-{{ 12 // columns }} p-card">
+    <h2 class="p-heading--four">Private Cloud Build</h2>
+    <p><span class="p-heading--two">$75,000</span><br />Reference architecture deployment on 12+ nodes.</p>
+    <hr class="u-sv1" />
     <p>Two-week delivery of a highly available OpenStack on your certified hardware and in your data center.</p>
     <p>What&rsquo;s included:</p>
     <ul class="p-list">
@@ -20,11 +19,10 @@
       <li class="p-list__item is-ticked">High availability</li>
     </ul>
   </div>
-  <div class="col-6 p-card">
-    <div class="p-card__header">
-      <h2 class="p-heading--four">Private Cloud Build Plus</h2>
-      <p><span class="p-heading--two">$150,000</span><br />Custom architecture for your specific industry or workload requirements.</p>
-    </div>
+  <div class="col-{{ 12 // columns }} p-card">
+    <h2 class="p-heading--four">Private Cloud Build Plus</h2>
+    <p><span class="p-heading--two">$150,000</span><br />Custom architecture for your specific industry or workload requirements.</p>
+    <hr class="u-sv1" />
     <p>Co-designed workshops to determine the optimal architecture for your workloads and integration requirements. Our engineers then deploy it for you.</p>
     <p>What&rsquo;s included:</p>
     <ul class="p-list">
@@ -42,15 +40,13 @@
       <li class="p-list__item is-ticked">High availability</li>
     </ul>
   </div>
-  {% if columns == '3' %}
-  <div class="col-6 p-card">
-    <div class="p-card__header">
-      <h2 class="p-heading--four">Fully Managed Cloud</h2>
-      <p><span class="p-heading--two">$15</span> per server per day</p>
-    </div>
+  {% if columns == 3 %}
+  <div class="col-4 p-card">
+    <h2 class="p-heading--four">Fully Managed Cloud</h2>
+    <p><span class="p-heading--two">$15</span> per server per day</p>
+    <hr class="u-sv1" />
     <p>Full remote operations of your Canonical OpenStack at half the price of VMware.</p>
     <ul class="p-list">
-
       <li class="p-list__item is-ticked">24/7 monitoring</li>
       <li class="p-list__item is-ticked">Proactive management</li>
       <li class="p-list__item is-ticked">EU and US regulatory compliance options</li>

@@ -14,9 +14,9 @@ core.footerMobileNav = function() {
 // Adds click eventlistener to the copy-to-clipboard buttons. Selects the input
 // and tries to copy the value to the clipboard.
 core.commandLine = function () {
-  document.querySelectorAll('.p-code-snippet').forEach(function(node) {
-    var copyButton = node.querySelector('.p-code-snippet__action');
-    var commandInput = node.querySelector('.p-code-snippet__input');
+  document.querySelectorAll('.p-code-copyable').forEach(function(node) {
+    var copyButton = node.querySelector('.p-code-copyable__action');
+    var commandInput = node.querySelector('.p-code-copyable__input');
     if (copyButton && commandInput) {
       copyButton.addEventListener('click', function(e) {
         commandInput.select();
@@ -105,14 +105,14 @@ core.contributorFormToggle = function(){
 
   if(individualContributorRadio) {
     individualContributorRadio.addEventListener('click', function(e) {
-      individualForm.classList.remove('u-hidden');
-      orgForm.classList.add('u-hidden');
+      individualForm.classList.remove('u-hide');
+      orgForm.classList.add('u-hide');
     });
   }
   if(orgContributorRadio) {
     orgContributorRadio.addEventListener('click', function(e) {
-      orgForm.classList.remove('u-hidden');
-      individualForm.classList.add('u-hidden');
+      orgForm.classList.remove('u-hide');
+      individualForm.classList.add('u-hide');
     });
   }
 };

@@ -7,15 +7,13 @@
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8">
-      <div>
-        <h1>Install Ubuntu Core on the Intel<sup>&reg;</sup> NUC</h1>
-        <p>There are two install options for the Intel NUC: <a href="#core">Ubuntu Core</a> or <a href="intel-nuc-desktop">Ubuntu Desktop</a>  This page is for Ubuntu Core.</p>
-      </div>
+      <h1>Install Ubuntu Core on the Intel<sup>&reg;</sup> NUC</h1>
+      <p>There are two install options for the Intel NUC: <a href="#core">Ubuntu Core</a> or <a href="intel-nuc-desktop">Ubuntu Desktop</a>  This page is for Ubuntu Core.</p>
     </div>
   </div>
   <div class="row" id="core">
     <div class="col-12 p-card">
-      <div class="u-equal-height p-divider">
+      <div class="u-equal-height row p-divider">
         <div class="col-6 p-divider__block">
           <h2>Install Ubuntu Core</h2>
           <p>We will walk you through the steps of flashing Ubuntu Core on an Intel NUC. At the end of this process, you will have a board ready for production or testing snaps.</p>
@@ -42,67 +40,66 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        {% include "download/iot/_setup-ubuntu-sso.html" %}
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+  <div class="u-fixed-width">
+    <h2>Installation instructions</h2>
+    <ol class="p-stepped-list--detailed">
+      {% include "download/iot/_setup-ubuntu-sso.html" %}
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Download Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <p>Download the <a class="p-link--external" href="https://people.canonical.com/~platform/images/nuc/intel_dawson/dawson-uc18-m7-20190122-10.img.xz">Ubuntu Core 18 image for Intel Dawson Canyon and June Canyon NUC</a></p>
-            <p>This image is certified for the Dawson Canyon NUC models: NUC7i7DNHE, NUC7i7DNKE, NUC7i7DNBE, NUC7i5DNHE, NUC7i5DNKE, NUC7i5DNBE, NUC7i3DNHE, NUC7i3DNKE, and NUC7i3DNBE, and for the June Canyon NUC models: NUC7PJYH and NUC7CJYH</p>
-            <p>You can then verify the integrity of the download using the associated <a class="p-link--external" href="https://people.canonical.com/~platform/images/nuc/intel_dawson/dawson-uc18-m7-20190122-10.img.xz.md5sum">MD5SUM file</a> and the <code>md5sum</code> command on most Linux distributions.</p>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Download Ubuntu Core
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Download the <a class="p-link--external" href="https://people.canonical.com/~platform/images/nuc/intel_dawson/dawson-uc18-m7-20190122-10.img.xz">Ubuntu Core 18 image for Intel Dawson Canyon and June Canyon NUC</a></p>
+          <p>This image is certified for the Dawson Canyon NUC models: NUC7i7DNHE, NUC7i7DNKE, NUC7i7DNBE, NUC7i5DNHE, NUC7i5DNKE, NUC7i5DNBE, NUC7i3DNHE, NUC7i3DNKE, and NUC7i3DNBE, and for the June Canyon NUC models: NUC7PJYH and NUC7CJYH</p>
+          <p>You can then verify the integrity of the download using the associated <a class="p-link--external" href="https://people.canonical.com/~platform/images/nuc/intel_dawson/dawson-uc18-m7-20190122-10.img.xz.md5sum">MD5SUM file</a> and the <code>md5sum</code> command on most Linux distributions.</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Flash the USB drives
-          </h3>
-          <div class="p-list-step__content">
-            <ol class="u-no-margin--left">
-              <li>Download and copy the <a href="/download/desktop">Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos">Mac OS X</a></li>
-              <li>Copy the Ubuntu Core image for Intel NUC on the second USB flash drive</li>
-            </ol>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Flash the USB drives
+        </h3>
+        <div class="p-stepped-list__content">
+          <ol class="u-no-margin--left">
+            <li>Download and copy the <a href="/download/desktop">Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a> image on the first USB flash drive by following the live USB Ubuntu Desktop tutorial for <a href="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu">Ubuntu</a>, <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Windows</a>, or  <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos">Mac OS X</a></li>
+            <li>Copy the Ubuntu Core image for Intel NUC on the second USB flash drive</li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Install Ubuntu Core
-          </h3>
-          <div class="p-list-step__content">
-            <ol class="u-no-margin--left">
-              <li>Connect your USB hub, keyboard, mouse, monitor to the Joule.</li>
-              <li>Insert the first USB flash drive, containing Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</li>
-              <li>Connect the USB hub, keyboard, mouse and the monitor to the NUC.</li>
-              <li>Insert the Live USB Ubuntu Desktop flash drive in the NUC.</li>
-            </ol>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Install Ubuntu Core
+        </h3>
+        <div class="p-stepped-list__content">
+          <ol class="u-no-margin--left">
+            <li>Connect your USB hub, keyboard, mouse, monitor to the Joule.</li>
+            <li>Insert the first USB flash drive, containing Ubuntu Desktop {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</li>
+            <li>Connect the USB hub, keyboard, mouse and the monitor to the NUC.</li>
+            <li>Insert the Live USB Ubuntu Desktop flash drive in the NUC.</li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
-            Boot from the Live USB flash drive
-          </h3>
-          <div class="p-list-step__content">
-            <ol class="u-no-margin--left">
-              <li>Start the NUC and push F10 to enter the boot menu.</li>
-              <li>Select the USB flash drive as a boot option.</li>
-              <li>Select "Try Ubuntu without installing”.</li>
-            </ol>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
+          Boot from the Live USB flash drive
+        </h3>
+        <div class="p-stepped-list__content">
+          <ol class="u-no-margin--left">
+            <li>Start the NUC and push F10 to enter the boot menu.</li>
+            <li>Select the USB flash drive as a boot option.</li>
+            <li>Select "Try Ubuntu without installing”.</li>
+          </ol>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
 
             Flash Ubuntu Core
           </h3>
-          <div class="p-list-step__content">
+          <div class="p-stepped-list__content">
             <ol class="u-no-margin--left">
               <li>Once the Ubuntu session has started, insert the second USB flash drive containing the Ubuntu Core image file.</li>
               <li><p>Open a terminal and use the following command to find out the target disk device to install the Ubuntu Core image to:</p>

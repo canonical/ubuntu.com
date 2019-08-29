@@ -7,15 +7,13 @@
 <section class="p-strip--light is-bordered" id="core">
   <div class="row">
     <div class="col-8">
-      <div>
-        <h1>Install Ubuntu Desktop on the Intel<sup>&reg;</sup> NUC</h1>
-        <p>There are two install options for the Intel NUC: <a href="intel-nuc">Ubuntu Core</a> or <a href="#desktop">Ubuntu Desktop</a>  This page is for Ubuntu Desktop.</p>
-      </div>
+      <h1>Install Ubuntu Desktop on the Intel<sup>&reg;</sup> NUC</h1>
+      <p>There are two install options for the Intel NUC: <a href="intel-nuc">Ubuntu Core</a> or <a href="#desktop">Ubuntu Desktop</a>  This page is for Ubuntu Desktop.</p>
     </div>
   </div>
   <div class="row" id="desktop">
     <div class="col-12 p-card">
-      <div class="u-equal-height p-divider">
+      <div class="u-equal-height row p-divider">
         <div class="col-6 p-divider__block">
           <h2>Install Ubuntu Desktop</h2>
           <p>Use your favourite development tools, install snaps and access the vast Ubuntu ecosystem with your NUC.</p>
@@ -37,53 +35,51 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2>Installation instructions</h2>
-      <ol class="p-stepped-list--detailed">
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Download Ubuntu Desktop
-          </h3>
-          <div class="p-list-step__content">
-            <p>Download the correct Ubuntu image for your device:</p>
-            <ul class="u-no-margin--left u-no-margin--top">
-              <li><a class="p-link--external" href="http://people.canonical.com/~platform/images/nuc/pc-dawson-xenial-amd64-m4-20180507-32.iso"> Dawson Canyon and June Canyon NUC – Ubuntu Desktop 16.04 LTS image</a>
-              <br>Certified for the Dawson Canyon NUC models: NUC7i7DNHE, NUC7i7DNKE, NUC7i7DNBE, NUC7i5DNHE, NUC7i5DNKE, NUC7i5DNBE NUC7i3DNHE, NUC7i3DNKE, NUC7i3DNBE and for the June Canyon NUC models: NUC7PJYH and NUC7CJYH.</li>
-            </ul>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Flash the USB drive
-          </h3>
-          <div class="p-list-step__content">
-            <p>Copy the image on a USB drive by following the <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu">installation media instructions</a>.</p>
-          </div>
-        </li>
-        <li class="p-list-step__item">
-          <h3 class="p-list-step__title">
-            
-            Install Ubuntu Desktop
-          </h3>
-          <div class="p-list-step__content">
-            <p>Booting the system from the USB flash drive will start the Ubuntu installer.</p>
-            <ol class="u-no-margin--left">
-              <li>Insert the USB flash drive in the NUC.</li>
-              <li>Start the NUC and push F10 to enter the boot menu.</li>
-              <li>Select the USB flash drive as a boot option.</li>
-              <li>The system will automatically execute the first stage of installation and prompt for an acknowledgement of a complete system recovery.</li>
-              <li>Follow the instructions and enter appropriate options for language, WiFi, location (timezone), and keyboard layout.</li>
-              <li>Pick a hostname, user account and password.</li>
-              <li>Wait for the configuration to finish. If you are connected to an active network, it will take several minutes to download and apply additional updates.</li>
-              <li>Ubuntu is installed. Use your account and password to log in.</li>
-            </ol>
-          </div>
-        </li>
-      </ol>
-    </div>
+  <div class="u-fixed-width">
+    <h2>Installation instructions</h2>
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          
+          Download Ubuntu Desktop
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Download the correct Ubuntu image for your device:</p>
+          <ul class="u-no-margin--left u-no-margin--top">
+            <li><a class="p-link--external" href="http://people.canonical.com/~platform/images/nuc/pc-dawson-xenial-amd64-m4-20180507-32.iso"> Dawson Canyon and June Canyon NUC – Ubuntu Desktop 16.04 LTS image</a>
+            <br>Certified for the Dawson Canyon NUC models: NUC7i7DNHE, NUC7i7DNKE, NUC7i7DNBE, NUC7i5DNHE, NUC7i5DNKE, NUC7i5DNBE NUC7i3DNHE, NUC7i3DNKE, NUC7i3DNBE and for the June Canyon NUC models: NUC7PJYH and NUC7CJYH.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          
+          Flash the USB drive
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Copy the image on a USB drive by following the <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu">installation media instructions</a>.</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">
+          
+          Install Ubuntu Desktop
+        </h3>
+        <div class="p-stepped-list__content">
+          <p>Booting the system from the USB flash drive will start the Ubuntu installer.</p>
+          <ol class="u-no-margin--left">
+            <li>Insert the USB flash drive in the NUC.</li>
+            <li>Start the NUC and push F10 to enter the boot menu.</li>
+            <li>Select the USB flash drive as a boot option.</li>
+            <li>The system will automatically execute the first stage of installation and prompt for an acknowledgement of a complete system recovery.</li>
+            <li>Follow the instructions and enter appropriate options for language, WiFi, location (timezone), and keyboard layout.</li>
+            <li>Pick a hostname, user account and password.</li>
+            <li>Wait for the configuration to finish. If you are connected to an active network, it will take several minutes to download and apply additional updates.</li>
+            <li>Ubuntu is installed. Use your account and password to log in.</li>
+          </ol>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 

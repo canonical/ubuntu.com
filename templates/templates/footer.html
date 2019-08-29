@@ -3,9 +3,9 @@
 {% block footer %}
 
 <footer class="p-footer p-strip u-clearfix">
-  <div class="row p-footer__container">
+  <div class="u-fixed-width p-footer__container">
     <p class="u-hide--medium u-hide--large link-to-top"><a href="#"><small>Back to top</small></a></p>
-    <nav id="main-navigation" class="p-footer__nav u-clearfix">
+    <nav id="main-navigation" class="p-footer__nav u-clearfix row u-no-padding--left u-no-padding--right">
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
           {% with section=nav_sections.openstack %}
@@ -83,7 +83,7 @@
       </div>
     </nav>
     <hr class="p-footer__divider" />
-    <div class="p-footer--secondary">
+    <div class="p-footer--secondary row">
       <div class="col-7">
         <nav>
           <ul class="p-inline-list">

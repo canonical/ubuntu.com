@@ -50,7 +50,7 @@
 
 <section class="p-strip--light is-bordered">
   <div class="row">
-    <div class="col-8 suffix-1">
+    <div class="col-7">
       <h2 class="p-heading--three">Help us to keep Ubuntu free to download, share and use by contributing to ...</h2>
       <noscript>
         <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
@@ -161,68 +161,57 @@
         </div>
       </form>
     </div>
-    <div class="col-4" style="position: sticky; top: 2rem;">
+    <div class="col-4 col-start-large-9" style="position: sticky; top: 2rem;">
       <div class="p-card">
-        <header class="p-card__header">
-          <h5 class="p-muted-heading">Newsletter signup</h5>
-        </header>
+        <h4 class="p-muted-heading">Newsletter signup</h4>
+        <hr class="u-sv1" />
         <h3 class="p-card--title">Select topics you&rsquo;re interested in</h3>
         <form action="https://pages.canonical.com/index.php/leadCapture/save" method="post" id="mktoForm_1212" novalidate="novalidate" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
           <div class="p-card--content">
             <ul class="p-list">
-              <li class="p-list__item u-no-margin--top u-clearfix">
-                <label>
-                  <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightscloudserver" name="insightscloudserver" value="Cloud and server" />
-                  <label for="insightscloudserver">Cloud and Server</label>
-                </label>
+              <li class="p-list__item u-clearfix">
+                <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightscloudserver" name="insightscloudserver" value="Cloud and server" />
+                <label for="insightscloudserver">Cloud and Server</label>
               </li>
-              <li class="p-list__item u-no-margin--top u-clearfix">
-                <label>
-                  <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsdesktop" name="insightsdesktop" value="Desktop" />
-                  <label for="insightsdesktop">Desktop</label>
-                </label>
+              <li class="p-list__item u-clearfix">
+                <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsdesktop" name="insightsdesktop" value="Desktop" />
+                <label for="insightsdesktop">Desktop</label>
               </li>
-              <li class="p-list__item u-no-margin--top u-clearfix">
-                <label>
-                  <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsiot" name="insightsiot" value="Internet of Things" />
-                  <label for="insightsiot">Internet of Things</label>
-                </label>
+              <li class="p-list__item u-clearfix">
+                <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsiot" name="insightsiot" value="Internet of Things" />
+                <label for="insightsiot">Internet of Things</label>
               </li>
-              <li class="p-list__item u-no-margin--top u-clearfix">
-                <label>
-                  <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" id="insightsrobotics" name="insightsrobotics" value="Robotics" type="checkbox">
-                  <label for="insightsrobotics">Robotics</label>
-                </label>
+              <li class="p-list__item u-clearfix">
+                <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" id="insightsrobotics" name="insightsrobotics" value="Robotics" type="checkbox">
+                <label for="insightsrobotics">Robotics</label>
               </li>
-              <li class="p-list__item u-no-margin--top u-clearfix">
-                <label>
-                  <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" id="insightstutorials" name="insightstutorials" value="Tutorials" type="checkbox">
-                  <label for="insightstutorials">Tutorials</label>
-                </label>
+              <li class="p-list__item u-clearfix">
+                <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" id="insightstutorials" name="insightstutorials" value="Tutorials" type="checkbox">
+                <label for="insightstutorials">Tutorials</label>
               </li>
             </ul>
-            <div class="mktFormReq mktField u-margin-medium--top">
+            <div class="mktFormReq mktField">
               <label>
                 <span class="u-no-margin--top">Work email: <span>*</span></span>
                 <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" />
               </label>
             </div>
-            <div class="mktField mktLblRight u-margin-medium--top">
+            <div class="mktField mktLblRight">
               <span class="mktInput mktLblRight">
-                <input class="u-no-margin--top mktFormCheckbox" name="canonicalUpdatesOptIn" id="CanonicalUpdatesOptIn" value="Receive updates" type="checkbox" />
+                <input class="mktFormCheckbox" name="canonicalUpdatesOptIn" id="CanonicalUpdatesOptIn" value="Receive updates" type="checkbox" />
                 <label for="CanonicalUpdatesOptIn" class="p-form__label u-no-margin--top">
                   <small>I agree to receive information about Canonical’s products and services.</small>
                 </label>
                 <span class="mktFormMsg"></span>
               </span>
             </div>
-            <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
-            <p class="u-margin-medium--top">
+            <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 1rem 0;"></div>
+            <p>
               <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
             </p>
 
 
-            <div class="u-margin-medium--top">
+            <div>
               <span class="mktoButtonWrap p-card--content">
                 <button type="submit" class="u-no-margin--bottom">Subscribe now</button>
               </span>
@@ -526,25 +515,23 @@
   </script>
 
   <div class="p-strip is-shallow">
-    <div class="row">
-      <div class="u-equal-height">
-        <div class="col-4 p-card--highlighted">
-          <h3>Learn how to try Ubuntu before you install</h3>
-          <p class="p-card__content">Run Ubuntu directly from either a USB stick or a DVD for a quick and easy way to experience how Ubuntu works.</p>
-          <p class="p-card__content"><a class="p-link--external"  href="https://tutorials.ubuntu.com/tutorial/try-ubuntu-before-you-install">Follow our simple guide</a></p>
-        </div>
-        <div class="col-4 p-card--highlighted">
-          <h3>Do you want to upgrade your OS?</h3>
-          <p class="p-card__content">If you are already running Ubuntu, you can upgrade with the Software Updater.</p>
-          <p class="p-card__content"><a href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop" class="p-link--external">Installation instructions</a></p>
-        </div>
-        <div class="col-4 p-card--highlighted">
-          <h3>Let’s connect</h3>
-          <p class="p-card__content">If you get stuck, help is always at hand.</p>
-          <p class="p-card__content"><a href="https://askubuntu.com" class="p-link--external">Ask Ubuntu</a></p>
-          <p class="p-card__content"><a href="https://ubuntuforums.org/" class="p-link--external">Ubuntu Forums</a></p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/IRC/ChannelList" class="p-link--external">IRC-based support</a></p>
-        </div>
+    <div class="row u-equal-height">
+      <div class="col-4 p-card--highlighted">
+        <h3>Learn how to try Ubuntu before you install</h3>
+        <p class="p-card__content">Run Ubuntu directly from either a USB stick or a DVD for a quick and easy way to experience how Ubuntu works.</p>
+        <p class="p-card__content"><a class="p-link--external"  href="https://tutorials.ubuntu.com/tutorial/try-ubuntu-before-you-install">Follow our simple guide</a></p>
+      </div>
+      <div class="col-4 p-card--highlighted">
+        <h3>Do you want to upgrade your OS?</h3>
+        <p class="p-card__content">If you are already running Ubuntu, you can upgrade with the Software Updater.</p>
+        <p class="p-card__content"><a href="https://tutorials.ubuntu.com/tutorial/tutorial-upgrading-ubuntu-desktop" class="p-link--external">Installation instructions</a></p>
+      </div>
+      <div class="col-4 p-card--highlighted">
+        <h3>Let’s connect</h3>
+        <p class="p-card__content">If you get stuck, help is always at hand.</p>
+        <p class="p-card__content"><a href="https://askubuntu.com" class="p-link--external">Ask Ubuntu</a></p>
+        <p class="p-card__content"><a href="https://ubuntuforums.org/" class="p-link--external">Ubuntu Forums</a></p>
+        <p class="p-card__content"><a href="https://wiki.ubuntu.com/IRC/ChannelList" class="p-link--external">IRC-based support</a></p>
       </div>
     </div>
   </div>
