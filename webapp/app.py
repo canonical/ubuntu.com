@@ -104,6 +104,7 @@ def context():
         "month_name": month_name,
         "months_list": months_list,
         "navigation": navigation,
+        "request": flask.request,
         "releases": releases(),
     }
 

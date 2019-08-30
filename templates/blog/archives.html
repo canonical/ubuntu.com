@@ -17,11 +17,11 @@
         <p>
           {{ total_posts }} posts
           
-          {% if request.GET.month or request.GET.year %} from{% endif %}
+          {% if request.args.month or request.args.year %} from{% endif %}
 
-          {% if request.GET.month %} {{ month_name(request.GET.month) }}{% endif %}
+          {% if request.args.month %} {{ month_name(request.args.month) }}{% endif %}
 
-          {% if request.GET.year %} {{ request.GET.year }}{% endif %}
+          {% if request.args.year %} {{ request.args.year }}{% endif %}
         </p>
       </div>
     </div>
