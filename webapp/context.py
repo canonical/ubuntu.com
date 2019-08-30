@@ -4,6 +4,7 @@ import datetime
 import calendar
 import logging
 import json
+import urllib
 
 # Packages
 import flask
@@ -139,15 +140,15 @@ def format_date(datestring):
 
 def build_path_with_params():
     query_params = flask.request.args.copy()
-    query_string = "?"
+    path = flask.request.path
 
     if "page" in query_params:
         query_params.pop("page")
 
     if len(query_params) > 0:
-        query_string += query_params.urlencode()
+        path += "?" + urllib.parse.urlencode(query_params)
 
-    return flask.request.path + query_string
+    return path
 
 
 def months_list(year):
