@@ -4,8 +4,10 @@ import datetime
 import calendar
 import logging
 import json
+import urllib
 
 # Packages
+import flask
 import yaml
 import dateutil.parser
 from canonicalwebteam.http import CachedSession
@@ -136,17 +138,17 @@ def format_date(datestring):
     return date.strftime("%-d %B %Y")
 
 
-def build_path_with_params(request):
-    query_params = request.GET.copy()
-    query_string = "?"
+def build_path_with_params():
+    query_params = flask.request.args.copy()
+    path = flask.request.path
 
     if "page" in query_params:
         query_params.pop("page")
 
     if len(query_params) > 0:
-        query_string += query_params.urlencode()
+        path += "?" + urllib.parse.urlencode(query_params)
 
-    return request.path + query_string
+    return path
 
 
 def months_list(year):

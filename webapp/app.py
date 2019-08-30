@@ -13,6 +13,8 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from feedparser import parse
+from canonicalwebteam.blog.flask import build_blueprint
+from canonicalwebteam.blog import BlogViews
 
 # Local
 from webapp.context import (
@@ -35,11 +37,45 @@ app = FlaskBase(
     static_folder="../static",
 )
 
+# Blog
+blog_views = BlogViews(excluded_tags=[3184, 3265, 3408])
 
+
+@app.route("/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>")
+def custom_topic(slug):
+    page_param = flask.request.args.get("page", default=1, type=int)
+    context = blog_views.get_topic(slug, page_param)
+
+    return flask.render_template(f"blog/topics/{slug}.html", **context)
+
+
+@app.route("/blog/<regex('cloud-and-server|desktop|internet-of-things'):slug>")
+def custom_group(slug):
+    page_param = flask.request.args.get("page", default=1, type=int)
+    category_param = flask.request.args.get("category", default="", type=str)
+    context = blog_views.get_group(slug, page_param, category_param)
+
+    return flask.render_template(f"blog/{slug}.html", **context)
+
+
+@app.route("/blog/press-centre")
+def press_centre():
+    page_param = flask.request.args.get("page", default=1, type=int)
+    category_param = flask.request.args.get("category", default="", type=str)
+    context = blog_views.get_group(
+        "canonical-announcements", page_param, category_param
+    )
+
+    return flask.render_template("blog/press-centre.html", **context)
+
+
+app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
+
+
+# Template finder
 template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
-
 
 # Search
 app.add_url_rule(
