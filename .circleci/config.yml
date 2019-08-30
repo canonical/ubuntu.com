@@ -30,7 +30,7 @@ jobs:
           command: sleep 5
       - run:
           name: Run Linkchecker
-          command: linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --ignore-url /blog --no-warnings http://127.0.0.1
+          command: linkchecker --threads 2 --ignore-url /usn --ignore-url /search --ignore-url /blog --no-warnings http://127.0.0.1
   lint-python:
     <<: *defaults
     steps:
