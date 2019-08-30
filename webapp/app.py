@@ -74,8 +74,7 @@ def context():
 
 @app.route("/download/<regex('server|desktop|cloud'):category>/thank-you")
 def download_thank_you(category):
-    context = {}
-    context["http_host"] = flask.request.headers.get("HTTP_HOST", "")
+    context = {"http_host": flask.request.host}
 
     version = flask.request.args.get("version", "")
     architecture = flask.request.args.get("architecture", "")
