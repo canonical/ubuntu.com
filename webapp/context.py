@@ -4,7 +4,7 @@ import datetime
 import calendar
 import logging
 import json
-import urllib
+from urllib.parse import parse_qs, urlencode
 
 # Packages
 import flask
@@ -138,17 +138,11 @@ def format_date(datestring):
     return date.strftime("%-d %B %Y")
 
 
-def build_path_with_params():
-    query_params = flask.request.args.copy()
-    path = flask.request.path
+def modify_query(params):
+    query_params = parse_qs(flask.request.query_string.decode("utf-8"))
+    query_params.update(params)
 
-    if "page" in query_params:
-        query_params.pop("page")
-
-    if len(query_params) > 0:
-        path += "?" + urllib.parse.urlencode(query_params)
-
-    return path
+    return urlencode(query_params, doseq=True)
 
 
 def months_list(year):

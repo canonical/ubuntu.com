@@ -18,11 +18,11 @@ from canonicalwebteam.blog import BlogViews
 
 # Local
 from webapp.context import (
-    build_path_with_params,
     current_year,
     descending_years,
     format_date,
     get_json_feed,
+    modify_query,
     month_name,
     months_list,
     navigation,
@@ -96,11 +96,11 @@ def internal_error(error):
 @app.context_processor
 def context():
     return {
-        "build_path_with_params": build_path_with_params,
         "current_year": current_year,
         "descending_years": descending_years,
         "format_date": format_date,
         "get_json_feed": get_json_feed,
+        "modify_query": modify_query,
         "month_name": month_name,
         "months_list": months_list,
         "navigation": navigation,
