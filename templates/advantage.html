@@ -1,0 +1,19 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}Ubuntu Advantage | Ubuntu{% endblock %}
+
+{% block content %}
+  <div class="p-strip is-shallow">
+    <div class="u-fixed-width">
+      {% if openid %}
+        <h1>Logged in</h1>
+        <pre>{{ openid }}</pre>
+        <a href="/logout?return_to=https://ubuntu.com/&return_now=true">Logout</a>
+      {% else %}
+        <h1>Not logged in</h1>
+        <a href="/login">Login?</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}
+
