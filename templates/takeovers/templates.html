@@ -1,0 +1,34 @@
+{% extends "templates/one-column.html" %}
+
+{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block title %}Takeover index | Ubuntu{% endblock %}
+
+{% block content %}
+
+{% with title="A guide to developing Android apps on Ubuntu",
+  subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
+  image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
+  image_style="width: 380px; margin: 1.5rem 0;",
+  equal_cols="",
+  url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
+  cta="Download the whitepaper",
+  cta_class="",
+  url2="",
+  cta2="",
+  lang="",
+  locale="" %}
+  {% include "takeovers/_template.html" %}
+{% endwith %}
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>test</h2>
+      <p>some test</p>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
