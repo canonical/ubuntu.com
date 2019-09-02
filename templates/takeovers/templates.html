@@ -10,7 +10,7 @@
   subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
   image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
   image_style="width: 380px; margin: 1.5rem 0;",
-  equal_cols="",
+  equal_cols="true",
   url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
   cta="Download the whitepaper",
   cta_class="",
@@ -21,14 +21,10 @@
   {% include "takeovers/_template.html" %}
 {% endwith %}
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>test</h2>
-      <p>some test</p>
-    </div>
-  </div>
+<section class="p-strip is-deep is-bordered">
+  {% with gtm_event_label="ubuntu.com homepage" %}
+    {% include "shared/_insights_news_strip.html" %}
+  {% endwith %}
 </section>
-
 
 {% endblock %}
