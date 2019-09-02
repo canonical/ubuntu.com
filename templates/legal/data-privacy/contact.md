@@ -1,5 +1,5 @@
 ---
-wrapper_template: "../_base_legal_markdown.html"
+wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – Contact us and enquiries"
   description: "This privacy notice tells you about the information we collect from you when you submit your information to us via an enquiry or contact us form on our website."

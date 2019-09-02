@@ -1,13 +1,39 @@
+# Standard library
+import copy
 import datetime
 import calendar
+import logging
+import json
+from urllib.parse import parse_qs, urlencode
 
+# Packages
+import flask
 import yaml
-import dateutil
-from django.conf import settings
-from copy import deepcopy
-from canonicalwebteam.templatetags.versioned_static import versioned_static
-from canonicalwebteam.get_feeds import get_json_feed_content
-from jinja2 import Environment
+import dateutil.parser
+from canonicalwebteam.http import CachedSession
+
+
+logger = logging.getLogger(__name__)
+
+api_session = CachedSession(fallback_cache_duration=3600)
+
+
+def _get(url):
+    try:
+        response = api_session.get(url, timeout=10)
+        response.raise_for_status()
+    except Exception as request_error:
+        logger.debug(
+            "Attempt to get feed failed: {}".format(str(request_error))
+        )
+        return False
+
+    return response
+
+
+# Read navigation.yaml
+with open("navigation.yaml") as navigation_file:
+    nav_sections = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
 
 
 # Process data from YAML files
@@ -43,10 +69,12 @@ def navigation(path):
     """
 
     breadcrumbs = {}
-    nav_sections = deepcopy(settings.NAV_SECTIONS)
+
     is_topic_page = path.startswith("/blog/topics/")
 
-    for nav_section_name, nav_section in nav_sections.items():
+    sections = copy.deepcopy(nav_sections)
+
+    for nav_section_name, nav_section in sections.items():
         # Persist parent navigation on child pages in certain cases
         if nav_section.get("persist") and path.startswith(nav_section["path"]):
             breadcrumbs["section"] = nav_section
@@ -94,7 +122,7 @@ def navigation(path):
                             )
                         break
 
-    return {"nav_sections": nav_sections, "breadcrumbs": breadcrumbs}
+    return {"nav_sections": sections, "breadcrumbs": breadcrumbs}
 
 
 # Helper functions
@@ -110,17 +138,11 @@ def format_date(datestring):
     return date.strftime("%-d %B %Y")
 
 
-def build_path_with_params(request):
-    query_params = request.GET.copy()
-    query_string = "?"
+def modify_query(params):
+    query_params = parse_qs(flask.request.query_string.decode("utf-8"))
+    query_params.update(params)
 
-    if "page" in query_params:
-        query_params.pop("page")
-
-    if len(query_params) > 0:
-        query_string += query_params.urlencode()
-
-    return request.path + query_string
+    return urlencode(query_params, doseq=True)
 
 
 def months_list(year):
@@ -143,27 +165,21 @@ def descending_years(end_year):
     return range(now.year, end_year, -1)
 
 
-def has_attr(obj, property_name):
-    return hasattr(obj, property_name)
+def get_json_feed(url, offset=0, limit=None):
+    """
+    Get the entries in a JSON feed
+    """
 
+    end = limit + offset if limit is not None else None
 
-def environment(**options):
-    env = Environment(**options)
+    response = _get(url)
 
-    env.globals.update(
-        {
-            "get_json_feed": get_json_feed_content,
-            "versioned_static": versioned_static,
-            "current_year": current_year,
-            "format_date": format_date,
-            "build_path_with_params": build_path_with_params,
-            "months_list": months_list,
-            "month_name": month_name,
-            "descending_years": descending_years,
-            "has_attr": has_attr,
-            "navigation": navigation,
-            "releases": releases(),
-        }
-    )
+    try:
+        content = json.loads(response.text)
+    except json.JSONDecodeError as parse_error:
+        logger.warning(
+            "Failed to parse feed from {}: {}".format(url, str(parse_error))
+        )
+        return False
 
-    return env
+    return content[offset:end]

@@ -1,5 +1,5 @@
 ---
-wrapper_template: "_base_legal_markdown_ja.html"
+wrapper_template: "legal/ubuntu-advantage-service-description/ja/_base_legal_markdown_ja.html"
 context:
      title: "Ubuntu Advantage サービス範囲"
      description: How to get Ceph deployed and related to Kubernetes in order to have a default storage class. This allows for easy storage allocation.

@@ -1,5 +1,5 @@
 ---
-wrapper_template: "../_base_legal_markdown.html"
+wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Privacy notice – User Survey"
   description: "This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla."

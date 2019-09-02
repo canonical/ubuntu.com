@@ -23,14 +23,14 @@ jobs:
           command: pip3 install -r requirements.txt
       - run:
           name: Start development server
-          command: python3 manage.py runserver
+          command: ./entrypoint 0.0.0.0:80
           background: true
       - run:
           name: Wait for development server
           command: sleep 5
       - run:
           name: Run Linkchecker
-          command: linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --ignore-url /blog --no-warnings http://127.0.0.1:8000
+          command: linkchecker --threads 2 --ignore-url /usn --ignore-url /search --ignore-url /blog --no-warnings http://127.0.0.1
   lint-python:
     <<: *defaults
     steps:
@@ -48,16 +48,6 @@ jobs:
       - run:
           name: Lint sass
           command: yarn lint-scss
-  test-python:
-    <<: *defaults
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: pip3 install -r requirements.txt
-      - run:
-          name: Run python tests
-          command: yarn test-python
 
 workflows:
   version: 2
@@ -66,4 +56,3 @@ workflows:
       - linkchecker
       - lint-scss
       - lint-python
-      - test-python
