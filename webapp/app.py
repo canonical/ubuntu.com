@@ -3,7 +3,6 @@ A Flask application for ubuntu.com
 """
 
 # Standard library
-import functools
 import json
 import os
 import re
@@ -12,17 +11,16 @@ from urllib.parse import quote
 # Packages
 import flask
 import requests
+from canonicalwebteam.blog import BlogViews
+from canonicalwebteam.blog.flask import build_blueprint
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from feedparser import parse
-from canonicalwebteam.blog.flask import build_blueprint
-from canonicalwebteam.blog import BlogViews
 from flask_openid import OpenID
+from pymacaroons import Macaroon
 
 # Local
-from webapp import authentication
-from webapp.extensions import csrf
 from webapp.macaroon import MacaroonRequest, MacaroonResponse
 from webapp.context import (
     current_year,
@@ -160,22 +158,6 @@ def download_thank_you(category):
     )
 
 
-def login_required(func):
-    """
-    Decorator that checks if a user is logged in, and redirects
-    to login page if not.
-    """
-
-    @functools.wraps(func)
-    def is_user_logged_in(*args, **kwargs):
-        if not authentication.is_authenticated(flask.session):
-            return flask.redirect("/login?next=" + flask.request.path)
-
-        return func(*args, **kwargs)
-
-    return is_user_logged_in
-
-
 @app.route("/advantage")
 def advantage():
     return flask.render_template(
@@ -189,19 +171,20 @@ open_id = OpenID(
 
 
 @app.route("/login", methods=["GET", "POST"])
-@csrf.exempt
 @open_id.loginhandler
 def login_handler():
-    if authentication.is_authenticated(flask.session):
+    if "openid" in flask.session:
         return flask.redirect(open_id.get_next_url())
 
     root = requests.get(
         "https://contracts.canonical.com/v1/canonical-sso-macaroon"
     ).json()["macaroon"]
 
-    openid_macaroon = MacaroonRequest(
-        caveat_id=authentication.get_caveat_id(root)
-    )
+    for caveat in Macaroon.deserialize(root).third_party_caveats():
+        if caveat.location == "login.ubuntu.com":
+            openid_macaroon = MacaroonRequest(caveat_id=caveat.caveat_id)
+            break
+
     flask.session["macaroon_root"] = root
 
     return open_id.try_login(
@@ -235,7 +218,10 @@ def logout():
     no_redirect = flask.request.args.get("no_redirect", default="false")
 
     if "openid" in flask.session:
-        authentication.empty_session(flask.session)
+        flask.session.pop("macaroon_root", None)
+        flask.session.pop("macaroon_discharge", None)
+        flask.session.pop("openid", None)
+        flask.session.pop("user_shared_snaps", None)
 
     if no_redirect == "true":
         return flask.redirect("/")
@@ -245,7 +231,3 @@ def logout():
             "https://login.ubuntu.com/+logout"
             f"?return_to={redirect_url}&return_now=True"
         )
-
-
-def init_extensions(app):
-    csrf.init_app(app)
