@@ -3,6 +3,7 @@ A Flask application for ubuntu.com
 """
 
 # Standard library
+import functools
 import json
 import os
 import re
@@ -155,8 +156,27 @@ def download_thank_you(category):
     )
 
 
-# Login
-LOGIN_URL = os.getenv("LOGIN_URL", "https://login.ubuntu.com")
+def login_required(func):
+    """
+    Decorator that checks if a user is logged in, and redirects
+    to login page if not.
+    """
+
+    @functools.wraps(func)
+    def is_user_logged_in(*args, **kwargs):
+        if not authentication.is_authenticated(flask.session):
+            return flask.redirect("/login?next=" + flask.request.path)
+
+        return func(*args, **kwargs)
+
+    return is_user_logged_in
+
+
+@app.route("/advantage")
+def advantage():
+    return flask.render_template(
+        "advantage.html", openid=flask.session.get("openid")
+    )
 
 
 open_id = OpenID(
@@ -171,18 +191,6 @@ def login_handler():
     if authentication.is_authenticated(flask.session):
         return flask.redirect(open_id.get_next_url())
 
-    # try:
-    #     root = authentication.request_macaroon()
-    # except ApiResponseError as api_response_error:
-    #     if api_response_error.status_code == 401:
-    #         return flask.redirect(flask.url_for(".logout"))
-    #     else:
-    #         return flask.abort(502, str(api_response_error))
-    # except ApiCircuitBreaker:
-    #     flask.abort(503)
-    # except ApiError as api_error:
-    #     return flask.abort(502, str(api_error))
-
     root = requests.get(
         "https://contracts.canonical.com/v1/canonical-sso-macaroon"
     ).json()["macaroon"]
@@ -193,7 +201,7 @@ def login_handler():
     flask.session["macaroon_root"] = root
 
     return open_id.try_login(
-        LOGIN_URL,
+        "https://login.ubuntu.com",
         ask_for=["email", "nickname", "image"],
         ask_for_optional=["fullname"],
         extensions=[openid_macaroon],
@@ -205,7 +213,7 @@ def after_login(resp):
     flask.session["macaroon_discharge"] = resp.extensions["macaroon"].discharge
 
     if not resp.nickname:
-        return flask.redirect(LOGIN_URL)
+        return flask.redirect("https://login.ubuntu.com")
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
@@ -222,7 +230,7 @@ def after_login(resp):
 def logout():
     no_redirect = flask.request.args.get("no_redirect", default="false")
 
-    if authentication.is_authenticated(flask.session):
+    if "openid" in flask.session:
         authentication.empty_session(flask.session)
 
     if no_redirect == "true":
@@ -230,7 +238,8 @@ def logout():
     else:
         redirect_url = quote(flask.request.url_root, safe="")
         return flask.redirect(
-            f"{LOGIN_URL}/+logout?return_to={redirect_url}&return_now=True"
+            "https://login.ubuntu.com/+logout"
+            f"?return_to={redirect_url}&return_now=True"
         )
 
 
