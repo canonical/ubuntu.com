@@ -3,10 +3,10 @@ A Flask application for ubuntu.com
 """
 
 # Standard library
+import base64
 import json
 import os
 import re
-from urllib.parse import quote
 
 # Packages
 import flask
@@ -180,13 +180,41 @@ def login_required(func):
         return func(*args, **kwargs)
 
     return is_user_logged_in
+def binary_serialize_macaroons(macaroons):
+    """Encode all serialized macaroons and concatonate as a serialize bytes
+    @param macaroons: Iterable of macaroons lead by root_macaroon as first
+       element followed by any discharge macaroons to serialize
+    """
+    serialized_macaroons = []
+    for macaroon in macaroons:
+        serialized = macaroon.serialize()
+        encoded = serialized.encode("utf-8")
+        padded = encoded + b"=" * (-len(encoded) % 4)
+        serialized_macaroons.append(base64.urlsafe_b64decode(padded))
+
+    serialized = base64.urlsafe_b64encode(b"".join(serialized_macaroons))
+
+    return serialized + b"=" * (-len(serialized) % 4)
 
 
 @app.route("/advantage")
 def advantage():
-    return flask.render_template(
-        "advantage.html", openid=flask.session.get("openid")
-    )
+    context = {"openid": flask.session.get("openid")}
+
+    if "openid" in flask.session:
+        root = Macaroon.deserialize(flask.session["macaroon_root"])
+        discharge = Macaroon.deserialize(flask.session["macaroon_discharge"])
+        bound = root.prepare_for_request(discharge)
+        serialized = binary_serialize_macaroons([root, bound])
+
+        context["contracts"] = requests.get(
+            "https://contracts.canonical.com/v1/accounts",
+            headers={
+                "Authorization": f"Macaroon {serialized.decode('utf-8')}"
+            },
+        ).json()
+
+    return flask.render_template("advantage.html", **context)
 
 
 open_id = OpenID(
@@ -239,19 +267,13 @@ def after_login(resp):
 
 @app.route("/logout")
 def logout():
-    no_redirect = flask.request.args.get("no_redirect", default="false")
-
     if "openid" in flask.session:
         flask.session.pop("macaroon_root", None)
         flask.session.pop("macaroon_discharge", None)
         flask.session.pop("openid", None)
         flask.session.pop("user_shared_snaps", None)
 
-    if no_redirect == "true":
-        return flask.redirect("/")
-    else:
-        redirect_url = quote(flask.request.url_root, safe="")
-        return flask.redirect(
-            "https://login.ubuntu.com/+logout"
-            f"?return_to={redirect_url}&return_now=True"
-        )
+    return flask.redirect(
+        "https://login.ubuntu.com/+logout"
+        f"?return_to={flask.request.url_root}/advantage&return_now=True"
+    )
