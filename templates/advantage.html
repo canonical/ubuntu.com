@@ -7,8 +7,16 @@
     <div class="u-fixed-width">
       {% if openid %}
         <h1>Logged in</h1>
-        <pre>{{ openid }}</pre>
-        <a href="/logout?return_to=https://ubuntu.com/&return_now=true">Logout</a>
+        <p>
+          Account info:
+          <pre style="white-space: pre-wrap;">{{ openid }}</pre>
+        </p>
+
+        <p>
+          Contracts:
+          <pre style="white-space: pre-wrap;">{{ contracts }}</pre>
+        </p>
+        <a href="/logout">Logout</a>
       {% else %}
         <h1>Not logged in</h1>
         <a href="/login">Login?</a>
