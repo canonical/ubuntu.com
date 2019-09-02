@@ -10,63 +10,55 @@
 @mixin ubuntu-p-takeovers {
   .p-takeover {
     @extend %vf-strip;
-    background-blend-mode: normal;
+    background-blend-mode: multiply, multiply, normal, normal;
     background-color: $color-x-light;
     background-image:
+    linear-gradient(
+    to bottom left,
+    rgba(119, 41, 83, 0.16) 0,
+    rgba(119, 41, 83, 0.16) 49.9%,
+    transparent 50%
+    ),
+    linear-gradient(
+    to bottom right,
+    rgba(228, 228, 228, 0.5) 0,
+    rgba(228, 228, 228, 0.5) 49.9%,
+    transparent 50%
+    ),
+    linear-gradient(
+    to top left,
+    rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%
+    ),
     linear-gradient(
     -89deg,
     #e95420 0%,
     #772953 42%,
     #2c001e 94%
     );
-    background-position: left top;
+    background-position: top right, top left, right 100%, left top;
     background-repeat: no-repeat;
-    background-size: 100% 99.83%;
+    background-size: 74% 99.83%, 68% 91%, 103% 18%, 100% 99.83%;
     color: $color-light;
-    overflow-x: hidden;
-    padding-bottom: 1rem;
-    padding-top: 3rem;
+    padding-bottom: $spv-inner--scaleable * 6;
+    padding-top: $spv-inner--scaleable * 6;
 
-    @media (min-width: $breakpoint-small) {
-      background-blend-mode: multiply, multiply, normal, normal;
-      background-color: $color-x-light;
-      background-image:
-      linear-gradient(
-      to bottom left,
-      rgba(119, 41, 83, 0.16) 0,
-      rgba(119, 41, 83, 0.16) 49.9%,
-      transparent 50%
-      ),
-      linear-gradient(
-      to bottom right,
-      rgba(228, 228, 228, 0.5) 0,
-      rgba(228, 228, 228, 0.5) 49.9%,
-      transparent 50%
-      ),
-      linear-gradient(
-      to top left,
-      rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%
-      ),
-      linear-gradient(
-      -89deg,
-      #e95420 0%,
-      #772953 42%,
-      #2c001e 94%
-      );
+    @media (max-width: $breakpoint-medium) {
+      $padding: 6rem;
       background-position: top right, top left, right 100%, left top;
       background-repeat: no-repeat;
-      background-size: 88% 99.83%, 68% 91%, 103% 18%, 100% 99.83%;
-      padding-bottom: $spv-inner--scaleable * 6;
-      padding-top: $spv-inner--scaleable * 6;
+      background-size: 135% 97.83%, 148% 83%, 119% 13%, 100% 99.83%;
+      color: $color-light;
+      padding-bottom: $spv-inner--scaleable * 3;
+      padding-top: $spv-inner--scaleable * 3;
+    }
 
-      h1 {
-        padding-top: 0;
-      }
+    h1 {
+      padding-top: 0;
+    }
 
-      .col-6,
-      .col-7 {
-        margin-bottom: 0;
-      }
+    .col-6,
+    .col-7 {
+      margin-bottom: 1rem;
     }
 
     &__rightcol {
