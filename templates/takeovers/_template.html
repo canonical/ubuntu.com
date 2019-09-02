@@ -9,14 +9,16 @@
       </h4>{% endif %}
       <div class="u-hide--small">
         <p>
-          <a href="{{ url }}" class="{% if cta_class %}{{ cta_class }}{% else %}p-button--positive{% endif %}">{% if url == "http" %}<span class="p-link--external">{% endif %}{{ cta }}{% if url == "http" %}</span>{% endif %}
+          <a href="{{ url }}" class="{% if cta_class %}{{ cta_class }}{% else %}p-button--positive{% endif %}">{% if 'http' in url %}<span class="p-link--external">{% endif %}{{ cta }}{% if 'http' in url %}</span>{% endif %}
           </a>
-          <p>
+        </p>
+        {% if url2 %}
         <p>
-          <a href="{{ url2 }}" {% if url3 == "http" %}class="p-link--external"{% endif %}>
+          <a href="{{ url2 }}" {% if 'http' in url2 %}class="p-link--external"{% endif %}>
             {{ cta2 }}
           </a>
-          <p>
+        </p>
+        {% endif %}
       </div>
     </div>
     <div class="{% if equal_cols %}col-6 {% else %}col-5{% endif %} u-align--center u-vertically-center p-takeover__rightcol">
@@ -24,15 +26,15 @@
     </div>
     <div class="u-hide--medium u-hide--large">
       <p>
-        <a href="{{ url }}" class="{% if cta_class %}{{ cta_class }}{% else %}p-button--positive{% endif %}">{% if 'http' not in url %}<span class="p-link--external">{% endif %}{{ cta }}{% if 'http'  in url %}</span>{% endif %}
+        <a href="{{ url }}" class="{% if cta_class %}{{ cta_class }}{% else %}p-button--positive{% endif %}">{% if 'http' in url %}<span class="p-link--external">{% endif %}{{ cta }}{% if 'http'  in url %}</span>{% endif %}
         </a>
-      <p>
+      </p>
       {% if url2 %}
       <p>
-        <a href="{{ url2 }}" {% if 'http' not in url2 %}class="p-link--external"{% endif %}>
+        <a href="{{ url2 }}" {% if 'http' in url2 %}class="p-link--external"{% endif %}>
           {{ cta2 }}
         </a>
-        <p>
+      </p>
       {% endif %}
     </div>
   </div>
