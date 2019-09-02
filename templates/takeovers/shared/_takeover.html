@@ -1,6 +1,6 @@
 <section class="{% if class %}{{ class }}{% else %}p-strip--dark js-takeover{% endif %}">
   <div class="row u-clearfix u-vertically-center">
- 
+
     <div class="{% if image %}col-8 {% else %}col-8{% endif %}">
       <h1>
         {{ title }}
@@ -35,7 +35,7 @@
     {% if image %}
       <div class="col-4">
         <p class="{% if imageClass %}{{ imageClass }}{% else %}u-hide-small u-align-text--center u-vertically-center{% endif %}">
-          <img src="{% if image != "http" %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="image for (( title ))" >
+          <img src="{% if 'http' not in image %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="image for (( title ))" >
         </p>
       </div>
     {% endif %}
