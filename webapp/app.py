@@ -3,20 +3,26 @@ A Flask application for ubuntu.com
 """
 
 # Standard library
-import flask
 import json
 import os
 import re
+from urllib.parse import quote
 
 # Packages
+import flask
+import requests
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from feedparser import parse
 from canonicalwebteam.blog.flask import build_blueprint
 from canonicalwebteam.blog import BlogViews
+from flask_openid import OpenID
 
 # Local
+from webapp import authentication
+from webapp.extensions import csrf
+from webapp.macaroon import MacaroonRequest, MacaroonResponse
 from webapp.context import (
     current_year,
     descending_years,
@@ -147,3 +153,86 @@ def download_thank_you(category):
     return flask.render_template(
         f"download/{category}/thank-you.html", **context
     )
+
+
+# Login
+LOGIN_URL = os.getenv("LOGIN_URL", "https://login.ubuntu.com")
+
+
+open_id = OpenID(
+    stateless=True, safe_roots=[], extension_responses=[MacaroonResponse]
+)
+
+
+@app.route("/login", methods=["GET", "POST"])
+@csrf.exempt
+@open_id.loginhandler
+def login_handler():
+    if authentication.is_authenticated(flask.session):
+        return flask.redirect(open_id.get_next_url())
+
+    # try:
+    #     root = authentication.request_macaroon()
+    # except ApiResponseError as api_response_error:
+    #     if api_response_error.status_code == 401:
+    #         return flask.redirect(flask.url_for(".logout"))
+    #     else:
+    #         return flask.abort(502, str(api_response_error))
+    # except ApiCircuitBreaker:
+    #     flask.abort(503)
+    # except ApiError as api_error:
+    #     return flask.abort(502, str(api_error))
+
+    root = requests.get(
+        "https://contracts.canonical.com/v1/canonical-sso-macaroon"
+    ).json()["macaroon"]
+
+    openid_macaroon = MacaroonRequest(
+        caveat_id=authentication.get_caveat_id(root)
+    )
+    flask.session["macaroon_root"] = root
+
+    return open_id.try_login(
+        LOGIN_URL,
+        ask_for=["email", "nickname", "image"],
+        ask_for_optional=["fullname"],
+        extensions=[openid_macaroon],
+    )
+
+
+@open_id.after_login
+def after_login(resp):
+    flask.session["macaroon_discharge"] = resp.extensions["macaroon"].discharge
+
+    if not resp.nickname:
+        return flask.redirect(LOGIN_URL)
+
+    flask.session["openid"] = {
+        "identity_url": resp.identity_url,
+        "nickname": resp.nickname,
+        "fullname": resp.fullname,
+        "image": resp.image,
+        "email": resp.email,
+    }
+
+    return flask.redirect(open_id.get_next_url())
+
+
+@app.route("/logout")
+def logout():
+    no_redirect = flask.request.args.get("no_redirect", default="false")
+
+    if authentication.is_authenticated(flask.session):
+        authentication.empty_session(flask.session)
+
+    if no_redirect == "true":
+        return flask.redirect("/")
+    else:
+        redirect_url = quote(flask.request.url_root, safe="")
+        return flask.redirect(
+            f"{LOGIN_URL}/+logout?return_to={redirect_url}&return_now=True"
+        )
+
+
+def init_extensions(app):
+    csrf.init_app(app)
