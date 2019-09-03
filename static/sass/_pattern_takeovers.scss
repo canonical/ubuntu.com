@@ -1,0 +1,52 @@
+/// homepage takeovers
+//@mixin ubuntu-p-takeovers {
+//@include ubuntu-p-takeover;
+//@include ubuntu-p-takeover-k8s;
+//@include ubuntu-p-takeover-neutral;
+//@include ubuntu-p-takeover-dark;
+//@include ubuntu-p-takeover-snapcraft;/
+//}
+
+@mixin ubuntu-p-takeovers {
+  .p-takeover {
+    @extend %vf-strip;
+    background-blend-mode: multiply, multiply, normal, normal;
+    background-color: #772953;
+    background-image:
+      linear-gradient(to bottom left, rgba(119, 41, 83, 0.16) 0, rgba(119, 41, 83, 0.16) 49.9%, transparent 50%),
+      linear-gradient(to bottom right, rgba(228, 228, 228, 0.5) 0, rgba(228, 228, 228, 0.5) 49.9%, transparent 50%),
+      linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%);
+    background-position: top right, top left, right 100%, left top;
+    background-repeat: no-repeat;
+    background-size: 74% 99.83%, 68% 91%, 103.5% 18.1%, 100% 99.8%;
+    color: $color-x-light;
+    margin: 0;
+    padding-bottom: 11rem;
+    padding-top: 6rem;
+
+    @media (max-width: $breakpoint-medium) {
+      background-position: top right, top left, right 100%, left top;
+      background-repeat: no-repeat;
+      background-size: 135% 97.83%, 148% 83%, 119% 13%, 100% 99.83%;
+      padding-bottom: 8rem;
+      padding-top: 4rem;
+    }
+
+    h1 {
+      padding-top: 0;
+    }
+
+    p:last-of-type {
+      margin-bottom: 0 !important;
+    }
+
+    .u-align--left-medium {
+      @media (max-width: $breakpoint-medium) {
+        justify-content: left !important;
+        padding: $spv-inner--scaleable 0 ($spv-inner--scaleable * 2) 0;
+        text-align: left !important;
+      }
+    }
+  }
+}

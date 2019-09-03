@@ -1,14 +1,47 @@
-<div class="row row-hero">
-	<div class="box no-border">
-		<h1></h1>
-	</div><!-- /.box -->
-</div><!-- / .row -->
-
-<div class="row equal-height">
-	<div class="six-col box box-highlight">
-		
-	</div><!-- /.six-col -->
-	<div class="six-col last-col box box-highlight">
-		
-	</div><!-- /.six-col -->
-</div><!-- / .row -->
+<section lang="{% if lang %}{{ lang }}{% else %}en{% endif %}" data-lang="{% if locale %}{{ locale }}{% else %}en_GB{% endif %}" class="{% if class %}{{ class }}{% else %}p-takeover{% endif %} js-takeover">
+  <div class="row u-equal-height">
+    <div class="{% if equal_cols %}col-6{% else %}col-7{% endif %}">
+      <h1>
+        {{ title }}
+      </h1>
+      {% if subtitle %}<h4>
+        {{ subtitle }}
+      </h4>{% endif %}
+      <div class="u-hide--small">
+        {% if primary_url %}
+        <p>
+          <a href="{{ primary_url }}" class="{% if primary_cta_class %}{{ primary_cta_class }}{% else %}p-button--positive{% endif %}">{% if 'http' in primary_url %}<span class="p-link--external">{% endif %}{{ primary_cta }}{% if 'http' in primary_url %}</span>{% endif %}
+          </a>
+        </p>
+        {% endif %}
+        {% if seconary_url %}
+        <p>
+          <a href="{{ seconary_url }}" class="{% if 'http' in seconary_url %}p-link--external{% endif %} p-link--inverted">
+            {{ seconary_cta }}{% if 'http' not in seconary_url %}&nbsp;&rsaquo;{% endif %}
+          </a>
+        </p>
+        {% endif %}
+      </div>
+    </div>
+    {% if image %}
+    <div class="{% if equal_cols %}col-6{% else %}col-5{% endif %} {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-vertically-center u-align--center u-align--left-medium">
+      <img src="{% if 'http' not in image %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="" {% if image_style %}style="{{ image_style }}"{% endif %}>
+    </div>
+    {% endif %}
+    <div class="u-hide--medium u-hide--large">
+      {% if primary_url %}
+      <p>
+        <a href="{{ primary_url }}" class="{% if primary_cta_class %}{{ primary_cta_class }}{% else %}p-button--positive{% endif %}">{% if 'http' in primary_url %}<span class="p-link--external">{% endif %}{{ primary_cta }}{% if 'http' in primary_url %}</span>{% endif %}
+        </a>
+      </p>
+      {% endif %}
+      {% if seconary_url %}
+      <p>
+        <a href="{{ seconary_url }}" class="{% if 'http' in seconary_url %}p-link--external{% endif %} p-link--inverted">
+          {{ seconary_cta }}{% if 'http' not in seconary_url %}&nbsp;&rsaquo;{% endif %}
+        </a>
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</section>
