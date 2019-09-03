@@ -1,4 +1,4 @@
-<section lang="{% if lang %}{{ lang }}{% else %}en{% endif %}" lang="fr" data-lang="{% if locale %}{{ locale }}{% else %}en_GB{% endif %}" class="{% if class %}{{ class }}{% else %}p-takeover{% endif %} js-takeover">
+<section lang="{% if lang %}{{ lang }}{% else %}en{% endif %}" data-lang="{% if locale %}{{ locale }}{% else %}en_GB{% endif %}" class="{% if class %}{{ class }}{% else %}p-takeover{% endif %} js-takeover">
   <div class="row u-equal-height">
     <div class="{% if equal_cols %}col-6{% else %}col-7{% endif %}">
       <h1>
@@ -8,31 +8,37 @@
         {{ subtitle }}
       </h4>{% endif %}
       <div class="u-hide--small">
+        {% if url %}
         <p>
           <a href="{{ url }}" class="{% if cta_class %}{{ cta_class }}{% else %}p-button--positive{% endif %}">{% if 'http' in url %}<span class="p-link--external">{% endif %}{{ cta }}{% if 'http' in url %}</span>{% endif %}
           </a>
         </p>
+        {% endif %}
         {% if url2 %}
         <p>
-          <a href="{{ url2 }}" {% if 'http' in url2 %}class="p-link--external"{% endif %}>
-            {{ cta2 }}
+          <a href="{{ url2 }}" class="{% if 'http' in url2 %}p-link--external{% endif %} p-link--inverted">
+            {{ cta2 }}{% if 'http' not in url2 %}&nbsp;&rsaquo;{% endif %}
           </a>
         </p>
         {% endif %}
       </div>
     </div>
-    <div class="{% if equal_cols %}col-6 {% else %}col-5{% endif %} u-vertically-center p-takeover__rightcol">
+    {% if image %}
+    <div class="{% if equal_cols %}col-6{% else %}col-5{% endif %} {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-vertically-center u-align--center u-align--left-medium">
       <img src="{% if 'http' not in image %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="" {% if image_style %}style="{{ image_style }}"{% endif %}>
     </div>
+    {% endif %}
     <div class="u-hide--medium u-hide--large">
+      {% if url %}
       <p>
-        <a href="{{ url }}" class="{% if cta_class %}{{ cta_class }}{% else %}p-button--positive{% endif %}">{% if 'http' in url %}<span class="p-link--external">{% endif %}{{ cta }}{% if 'http'  in url %}</span>{% endif %}
+        <a href="{{ url }}" class="{% if cta_class %}{{ cta_class }}{% else %}p-button--positive{% endif %}">{% if 'http' in url %}<span class="p-link--external">{% endif %}{{ cta }}{% if 'http' in url %}</span>{% endif %}
         </a>
       </p>
+      {% endif %}
       {% if url2 %}
       <p>
-        <a href="{{ url2 }}" {% if 'http' in url2 %}class="p-link--external"{% endif %}>
-          {{ cta2 }}
+        <a href="{{ url2 }}" class="{% if 'http' in url2 %}p-link--external{% endif %} p-link--inverted">
+          {{ cta2 }}{% if 'http' not in url2 %}&nbsp;&rsaquo;{% endif %}
         </a>
       </p>
       {% endif %}

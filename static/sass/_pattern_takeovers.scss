@@ -13,34 +13,16 @@
     background-blend-mode: multiply, multiply, normal, normal;
     background-color: $color-x-light;
     background-image:
-    linear-gradient(
-    to bottom left,
-    rgba(119, 41, 83, 0.16) 0,
-    rgba(119, 41, 83, 0.16) 49.9%,
-    transparent 50%
-    ),
-    linear-gradient(
-    to bottom right,
-    rgba(228, 228, 228, 0.5) 0,
-    rgba(228, 228, 228, 0.5) 49.9%,
-    transparent 50%
-    ),
-    linear-gradient(
-    to top left,
-    rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%
-    ),
-    linear-gradient(
-    -89deg,
-    #e95420 0%,
-    #772953 42%,
-    #2c001e 94%
-    );
+      linear-gradient(to bottom left, rgba(119, 41, 83, 0.16) 0, rgba(119, 41, 83, 0.16) 49.9%, transparent 50%),
+      linear-gradient(to bottom right, rgba(228, 228, 228, 0.5) 0, rgba(228, 228, 228, 0.5) 49.9%, transparent 50%),
+      linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%);
     background-position: top right, top left, right 100%, left top;
     background-repeat: no-repeat;
     background-size: 74% 99.83%, 68% 91%, 102.5% 18%, 100% 99.8%;
-    color: $color-light;
+    color: $color-x-light;
     margin: 0;
-    padding-bottom: 10.5rem;
+    padding-bottom: 11rem;
     padding-top: 6rem;
 
     @media (max-width: $breakpoint-medium) {
@@ -59,19 +41,11 @@
       margin-bottom: 0 !important;
     }
 
-    .col-6,
-    .col-7 {
-      margin-bottom: 1rem;
-    }
-
-    &__rightcol {
-      justify-content: center;
-      text-align: center;
-
+    .u-align--left-medium {
       @media (max-width: $breakpoint-medium) {
-        justify-content: left;
-        padding-bottom: $spv-inner--scaleable * 2;
-        text-align: left;
+        justify-content: left !important;
+        padding: $spv-inner--scaleable 0 ($spv-inner--scaleable * 2) 0;
+        text-align: left !important;
       }
     }
   }
