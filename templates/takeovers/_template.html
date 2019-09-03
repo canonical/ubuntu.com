@@ -21,7 +21,7 @@
         {% endif %}
       </div>
     </div>
-    <div class="{% if equal_cols %}col-6 {% else %}col-5{% endif %} u-align--center u-vertically-center p-takeover__rightcol">
+    <div class="{% if equal_cols %}col-6 {% else %}col-5{% endif %} u-vertically-center p-takeover__rightcol">
       <img src="{% if 'http' not in image %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="" {% if image_style %}style="{{ image_style }}"{% endif %}>
     </div>
     <div class="u-hide--medium u-hide--large">

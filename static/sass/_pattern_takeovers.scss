@@ -39,14 +39,14 @@
     background-repeat: no-repeat;
     background-size: 74% 99.83%, 68% 91%, 102.2% 18%, 100% 99.8%;
     color: $color-light;
-    padding-bottom: $spv-inner--scaleable * 6;
+    padding-bottom: $spv-inner--scaleable * 6.5;
     padding-top: $spv-inner--scaleable * 6;
 
     @media (max-width: $breakpoint-medium) {
       background-position: top right, top left, right 100%, left top;
       background-repeat: no-repeat;
       background-size: 135% 97.83%, 148% 83%, 119% 13%, 100% 99.83%;
-      padding-bottom: $spv-inner--scaleable * 3;
+      padding-bottom: $spv-inner--scaleable * 5;
       padding-top: $spv-inner--scaleable * 3;
     }
 
@@ -60,8 +60,11 @@
     }
 
     &__rightcol {
+      text-align: center;
+
       @media (min-width: $breakpoint-small) {
-        padding-bottom: $spv-inner--scaleable * 6;
+        padding-bottom: $spv-inner--scaleable * 2;
+        text-align: left;
       }
     }
   }
