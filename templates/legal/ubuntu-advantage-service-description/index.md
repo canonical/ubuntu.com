@@ -3,6 +3,8 @@ wrapper_template: "legal/ubuntu-advantage-service-description/_base_legal_markdo
 context:
      title: "Ubuntu Advantage service description"
      description: How to get Ceph deployed and related to Kubernetes in order to have a default storage class. This allows for easy storage allocation.
+markdown_includes:
+     pricing_table: "shared/pricing/_ua-for-infrastructure.html"
 ---
 
 # Ubuntu Advantage service description
@@ -11,7 +13,7 @@ Capitalised terms shall have meanings as defined in the [Definitions section](#
 
 <h2 id="uasd-ua-infrastructure">Ubuntu Advantage for Infrastructure (UA-I)</h2>
 
-{% include "shared/pricing/_ua-for-infrastructure.html" %}
+{{ pricing_table | safe }}
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
@@ -148,9 +150,9 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
   4. that the [Minimum Size Requirement](#term-min-size) for the [Cloud](#term-cloud) or [Cluster](#term-cluster) is maintained at all times.
 7. Uptime Service Level
   1. The Managed Service includes the following uptime service levels:<br />
-||Data plane for customer workloads which are distributed across two regions|Data plane for customer workloads which are in a single region|Control plane (OpenStack/Kubernetes API, Web UI and CLI)|
-|----|----:|----:|----:|
-|Uptime|99.9%|99.5%|99%|
+|        | Data plane for customer workloads which are distributed across two regions | Data plane for customer workloads which are in a single region | Control plane (OpenStack/Kubernetes API, Web UI and CLI) |
+| ------ | --------------------------------------------------------------------------:| --------------------------------------------------------------:| --------------------------------------------------------:|
+| Uptime |                                                                      99.9% |                                                          99.5% |                                                      99% |
   2. Data plane includes:
     1. Virtualisation (for workloads which are architected to not depend on a single compute node).
     2. Storage (Block & Object).
@@ -324,12 +326,12 @@ Add-Ons constitute additional support services available separately on a per-Nod
   |**Severity Level 4**<br />Non-urgent request|Level 4 requests include cosmetic issues, informational requests, feature requests, and similar matters. Canonical does not provide a timeline or guarantee for inclusion of any feature requests. Canonical will review each level 4 case and determine whether it is a product enhancement to be considered for a future release, an issue to be fixed in the current release or an issue to be fixed in a future release. Canonical will review and respond to information requests with a reasonable level of effort during coverage hours. Canonical may close cases representing level 4 issues after responding if Canonical believes it is appropriate to do so.|
 4. Response times. Canonical will use reasonable efforts to respond to support requests made by the customer within the response times set forth below, based on the applicable service and severity level.
   1. Table of response times
-|                    |Standard         |Advanced|
-|--------------------|-----------------|--------|
-|**Severity Level 1**|4 hours, excluding weekends and holidays |1 hour  |
-|**Severity Level 2**|8 business hours |2 hours |
-|**Severity Level 3**|12 business hours|6 hours |
-|**Severity Level 4**|24 business hours|12 hours|
+|                      | Standard                                 | Advanced |
+| -------------------- | ---------------------------------------- | -------- |
+| **Severity Level 1** | 4 hours, excluding weekends and holidays | 1 hour   |
+| **Severity Level 2** | 8 business hours                         | 2 hours  |
+| **Severity Level 3** | 12 business hours                        | 6 hours  |
+| **Severity Level 4** | 24 business hours                        | 12 hours |
   2. Resolution. Canonical will use reasonable efforts to resolve support cases, but Canonical does not guarantee a work-around, resolution or resolution time.
 5. Hotfixes. To temporarily resolve critical support cases, Canonical may provide a version of the affected software (e.g. package) that applies a patch. Such versions are referred to as “hotfixes”. Hotfixes provided by Canonical are supported for 90 days after the corresponding patch has been incorporated into a release of the software in the Ubuntu Archives. However, if a patch is rejected by the applicable upstream project, the hotfix will no longer be supported and the case will remain open.
 6. Languages. Canonical will provide support in English. Other languages may be available at certain times.

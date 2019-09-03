@@ -17,36 +17,36 @@
 
     <title>{% block title %}{% endblock %} | Ubuntu</title>
 
-    <meta charset="UTF-8" />
-    <meta name="description" content="{% block meta_description %}{{ meta_description or "Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things."}}{% endblock %}" />
-    <meta name="author" content="Canonical" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="description" content="{% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}">
+    <meta name="author" content="Canonical">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="theme-color" content="#E95420" />
-    <meta name="twitter:account_id" content="4503599627481511" />
+    <meta name="theme-color" content="#E95420">
+    <meta name="twitter:account_id" content="4503599627481511">
     <meta name="twitter:site" content="@ubuntu">
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ubuntu.com{{ request.get_full_path }}" />
-    <meta property="og:site_name" content="Ubuntu" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ubuntu.com{{ request.get_full_path }}">
+    <meta property="og:site_name" content="Ubuntu">
 
     {% if self.title() %}
         <meta name="twitter:title" content="{{ self.title() }} | Ubuntu">
-        <meta property="og:title" content="{{ self.title() }} | Ubuntu" />
+        <meta property="og:title" content="{{ self.title() }} | Ubuntu">
     {% endif %}
     {% if self.meta_description() %}
         <meta name="twitter:description" content="{{ self.meta_description() }}">
-        <meta property="og:description" content="{{ self.meta_description() }}" />
+        <meta property="og:description" content="{{ self.meta_description() }}">
     {% endif %}
 
     <!-- Mate image: {% block meta_image %}{% endblock %} -->
 
     {% if self.meta_image() %}
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:image" content="{% if "http" not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
-        <meta property="og:image" content="{% if "http" not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}" />
+        <meta property="og:image" content="{% if "http" not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
     {% endif %}
 
-    <meta name="copydoc" content="{% block meta_copydoc %}https://drive.google.com/drive/folders/0B4s80tIYQW4BMjNiMGFmNzQtNDkxZC00YmQ0LWJiZWUtNTk2YThlY2MzZmJh{% endblock %}" />
+    <meta name="copydoc" content="{% block meta_copydoc %}https://drive.google.com/drive/folders/0B4s80tIYQW4BMjNiMGFmNzQtNDkxZC00YmQ0LWJiZWUtNTk2YThlY2MzZmJh{% endblock %}">
 
     <link rel="preconnect" href="https://www.google-analytics.com">
     <link rel="preconnect" href="https://assets.ubuntu.com">
@@ -56,20 +56,20 @@
     <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/f8097dea-Ubuntu-LI_W.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/fff37993-Ubuntu-R_W.woff2" crossorigin>
 
-    <link rel="canonical" href="{% block canonical_url %}https://ubuntu.com{{ request.get_full_path }}{% endblock %}" />
+    <link rel="canonical" href="{% block canonical_url %}https://ubuntu.com{{ request.get_full_path }}{% endblock %}">
 
-    <link rel="icon" type="image/png" href="https://assets.ubuntu.com/v1/cb22ba5d-favicon-16x16.png" sizes="16x16" />
-    <link rel="icon" type="image/png" href="https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://assets.ubuntu.com/v1/cb22ba5d-favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" sizes="32x32">
 
-    <link rel="apple-touch-icon" sizes="144x144" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="https://assets.ubuntu.com/v1/5fe4d3c8-apple-touch-icon-114x114-precomposed.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="https://assets.ubuntu.com/v1/09460d9a-apple-touch-icon-72x72-precomposed.png" />
-    <link rel="apple-touch-icon" href="https://assets.ubuntu.com/v1/c39e0fed-apple-touch-icon.png" />
-    <link type="text/plain" rel="author" href="{{ versioned_static('files/humans.txt') }}" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://assets.ubuntu.com/v1/5fe4d3c8-apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://assets.ubuntu.com/v1/09460d9a-apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" href="https://assets.ubuntu.com/v1/c39e0fed-apple-touch-icon.png">
+    <link type="text/plain" rel="author" href="{{ versioned_static('files/humans.txt') }}">
 
     <!-- stylesheets -->
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static('css/styles.css') }}" />
-    <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static('css/print.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static('css/print.css') }}">
 
     <script>
       var html = document.documentElement
@@ -80,7 +80,7 @@
 
     {% block crazy_egg %}{% endblock crazy_egg %}
     <!-- google webmaster tools verification -->
-    <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M" />
+    <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M">
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
