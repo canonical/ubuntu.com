@@ -64,5 +64,5 @@ def logout():
 
     return flask.redirect(
         "https://login.ubuntu.com/+logout"
-        f"?return_to={flask.request.url_root}/advantage&return_now=True"
+        f"?return_to={flask.request.referrer}&return_now=True"
     )
