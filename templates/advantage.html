@@ -5,6 +5,8 @@
 {% block content %}
   <div class="p-strip is-shallow">
     <div class="u-fixed-width">
+      <h1>Headers</h1>
+      <pre>{{ request.headers }}</pre>
       {% if openid %}
         <h1>Logged in</h1>
         <p>
