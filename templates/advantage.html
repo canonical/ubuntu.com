@@ -12,10 +12,18 @@
           <pre style="white-space: pre-wrap;">{{ openid }}</pre>
         </p>
 
-        <p>
-          Contracts:
-          <pre style="white-space: pre-wrap;">{{ contracts }}</pre>
-        </p>
+        <h2>Accounts</h2>
+
+        {% for account in accounts %}
+          <h3>{{ account.name }} <small>({{ account.id }})</small></h3>
+          
+          <h4>Contracts</h4>
+          {% for contract in account.contracts %}
+            <h5>{{ contract.contractInfo.name }} <small>({{ contract.contractInfo.id }})</small></h5>
+
+            <p>Token: {{ contract.token }}</p>
+          {% endfor %}
+        {% endfor %}
         <a href="/logout">Logout</a>
       {% else %}
         <h1>Not logged in</h1>

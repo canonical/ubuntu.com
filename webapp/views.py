@@ -55,22 +55,41 @@ def download_thank_you(category):
 
 
 def advantage():
-    context = {"openid": flask.session.get("openid")}
+    accounts = None
 
     if "openid" in flask.session:
         root = Macaroon.deserialize(flask.session["macaroon_root"])
         discharge = Macaroon.deserialize(flask.session["macaroon_discharge"])
         bound = root.prepare_for_request(discharge)
-        serialized = binary_serialize_macaroons([root, bound])
+        token = binary_serialize_macaroons([root, bound]).decode("utf-8")
 
-        context["contracts"] = requests.get(
+        accounts = requests.get(
             "https://contracts.canonical.com/v1/accounts",
-            headers={
-                "Authorization": f"Macaroon {serialized.decode('utf-8')}"
-            },
-        ).json()
+            headers={"Authorization": f"Macaroon {token}"},
+            timeout=1,
+        ).json()["accounts"]
 
-    return flask.render_template("advantage.html", **context)
+        for account in accounts:
+            account["contracts"] = requests.get(
+                "https://contracts.canonical.com/"
+                f"v1/accounts/{account['id']}/contracts",
+                headers={"Authorization": f"Macaroon {token}"},
+                timeout=1,
+            ).json()["contracts"]
+
+            for contract in account["contracts"]:
+                contract_id = contract["contractInfo"]["id"]
+                contract["token"] = requests.post(
+                    "https://contracts.canonical.com/"
+                    f"v1/contracts/{contract_id}/token",
+                    headers={"Authorization": f"Macaroon {token}"},
+                    json={},
+                    timeout=1,
+                ).json()["contractToken"]
+
+    return flask.render_template(
+        "advantage.html", openid=flask.session.get("openid"), accounts=accounts
+    )
 
 
 # Blog

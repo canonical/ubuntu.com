@@ -183,3 +183,17 @@ def get_json_feed(url, offset=0, limit=None):
         return False
 
     return content[offset:end]
+
+
+def format_dict(d):
+    indent = 2
+    output = []
+    for k, v in d.items():
+        if isinstance(v, dict):
+            output.append(indent * " " + str(k))
+            output.append(indent * " " + "{")
+            output.append(format_dict(v, indent + 4))
+            output.append(indent * " " + "}")
+        else:
+            output.append(indent * " " + str(k).ljust(16) + str(v) + ";")
+    return "\n".join(output)
