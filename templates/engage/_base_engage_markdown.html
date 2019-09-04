@@ -15,10 +15,10 @@
     <div class="{% if header_image %}col-7 {% else %}col-8{% endif %} u-vertically-center">
       <div>
         <h1 {% if header_subtitle is none and header_date is none %}class="u-no-margin--bottom"{% endif %}>
-          {{ header_title }}
+          {{ header_title | safe }}
         </h1>
         {% if header_subtitle %}<h4>
-          {{ header_subtitle }}
+          {{ header_subtitle | safe }}
         </h4>{% endif %}
         {% if header_date %}<p>
           {{ header_date }}

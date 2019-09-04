@@ -5,7 +5,7 @@ context:
      meta_description: "In this webinar, we present the key similarities and differences between VMware’s virtualisation offerings and Charmed OpenStack."
      meta_image: https://assets.ubuntu.com/v1/27fed536-vmware-to-charmed-openstack-social.jpg
      meta_copydoc: https://docs.google.com/document/d/13aUs6sT_Z4kTv1-KiISD22yqh_1VOw9xLLqEMftJZyU/edit
-     header_title: "From VMware to Charmed OpenStack"
+     header_title: "From VMware to Charmed&nbsp;OpenStack"
      header_subtitle:
      header_image: "https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg"
      header_url: '#register-section'
