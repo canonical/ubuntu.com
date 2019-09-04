@@ -70,7 +70,7 @@ def advantage():
             },
         ).json()
 
-    return flask.render_template("advantage.html", **context)
+    return flask.render_template("advantage/index.html", **context)
 
 
 # Blog
