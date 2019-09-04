@@ -30,41 +30,35 @@
     <div class="col-8 u-sv3">
       <h3>Your personal subscription</h3>
       <p>You are entitled to use Ubuntu Advantage Essential on 3 machines.</p>
-      <aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
-        <ul class="p-accordion__list" style="margin-bottom: 0;">
-          <li class="p-accordion__group">
-            <button type="button" class="p-accordion__tab" id="tab1" role="tab" aria-controls="#tab1-section" aria-expanded="false">Show instructions</button>
-            <section class="p-accordion__panel" id="tab1-section" role="tabpanel" aria-hidden="true" aria-labelledby="tab1-section" style="padding: 0 1rem;">
-              <p>To attach a machine:</p>
-              <div class="p-code-copyable">
-                <input class="p-code-copyable__input" value="ua attach ############" readonly="readonly">
-                <button class="p-code-copyable__action">Copy to clipboard</button>
-              </div>
+      {% for account in accounts %}
+        {% if account.name != '' %}</h3>
+          {% for contract in account.contracts %}
+          <aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
+              <ul class="p-accordion__list" style="margin-bottom: 0;">
+                <li class="p-accordion__group">
+                  <button type="button" class="p-accordion__tab" id="tab1" role="tab" aria-controls="#tab1-section" aria-expanded="false">Show instructions</button>
+                  <section class="p-accordion__panel" id="tab1-section" role="tabpanel" aria-hidden="true" aria-labelledby="tab1-section" style="padding: 0 1rem;">
+                    <p>To attach a machine:</p>
+                    <div class="p-code-copyable">
+                      <input class="p-code-copyable__input" value="sudo ua attach {{ contract.token }}" readonly="readonly">
+                      <button class="p-code-copyable__action">Copy to clipboard</button>
+                    </div>
 
-              <p>To detach:</p>
+                    <p>To detach:</p>
 
-              <div class="p-code-copyable">
-                <input class="p-code-copyable__input" value="ua detach ############" readonly="readonly">
-                <button class="p-code-copyable__action">Copy to clipboard</button>
-              </div>
-            </section>
-          </li>
-        </ul>
-      </aside>
+                    <div class="p-code-copyable">
+                      <input class="p-code-copyable__input" value="sudo ua attach {{ contract.token }}" readonly="readonly">
+                      <button class="p-code-copyable__action">Copy to clipboard</button>
+                    </div>
+                  </section>
+                </li>
+              </ul>
+            </aside>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
-
-  <h2>Accounts ({{ accounts|length }})</h2>
-
-        {% for account in accounts %}
-          <h3>Account name: {{ account.name }}</h3>
-          <h4>Contracts ({{ account.contracts|length }})</h4>
-          {% for contract in account.contracts %}
-            <h5>{{ contract.contractInfo.name }} <small>({{ contract.contractInfo.id }})</small></h5>
-            {{contract}}
-            <p>Token: {{ contract.token }}</p>
-          {% endfor %}
-        {% endfor %}
 
   <div class="row">
     <div class="col-12">
