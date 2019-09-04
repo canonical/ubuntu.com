@@ -2,30 +2,143 @@
 
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
-{% block title %}Takeover index | Ubuntu{% endblock %}
+{% block title %}Takeover template example | Ubuntu{% endblock %}
 
 {% block content %}
 
 {% with title="A guide to developing Android apps on Ubuntu",
-  subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
-  image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
-  image_style="width: 380px; margin: 1.5rem 0;",
-  image_hide_small="true",
-  equal_cols="true",
-  primary_url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
-  primary_cta="Download the whitepaper",
-  primary_cta_class="",
-  seconary_url="",
-  seconary_cta="",
-  lang="",
-  locale="" %}
-  {% include "takeovers/_template.html" %}
+subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
+class="",
+image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
+image_style="width: 380px; margin: 1.5rem 0;",
+image_hide_small="true",
+equal_cols="true",
+primary_url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
+primary_cta="Download the whitepaper",
+primary_cta_class="",
+seconary_url="",
+seconary_cta="",
+lang="",
+locale="" %}
+{% include "takeovers/_template.html" %}
+{% endwith %}
+
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h1>Takeover templates</h1>
+      <p>Using the suru gradient patterns, you can now easily build homepage takeovers with a simple include, passing in all your variables to build a takeover in minutes.</p>
+      <h2>Default takeover - gradient</h2>
+      <h4><code>p-takeover--grad</code></h4>
+      <p>This is the default takeover style with an aubergine to orange gradient.</p>
+      <p>The following is the jinja2 template code you need for all takeovers, but with the default pattern.</p>
+      <pre>
+        <code>
+&#123;% with title="A guide to developing Android apps on Ubuntu",
+subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
+class="",
+image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
+image_style="width: 380px; margin: 1.5rem 0;",
+image_hide_small="true",
+equal_cols="true",
+primary_url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
+primary_cta="Download the whitepaper",
+primary_cta_class="",
+seconary_url="",
+seconary_cta="",
+lang="",
+locale="" %}
+&#123;% include "takeovers/_template.html" %}
+&#123;% endwith %}
+        </code>
+      </pre>
+      <h3>Details</h3>
+      <ul class="p-list">
+        <li class="p-list__item"><strong>title</strong>: the h1 text for the takeover</li>
+        <li class="p-list__item"><strong>subtitle</strong>: the h4 text forthe takeover <em>(optional)</em></li>
+        <li class="p-list__item"><strong>class</strong>: the full class name for the takeover - null or p-takeover--grad, p-takeover--k8s, p-takeover--dark, p-takeover--snapcraft <em>(optional)</em></li>
+        <li class="p-list__item"><strong>image</strong>: the full path to the image <em>(optional)</em></li>
+        <li class="p-list__item"><strong>image_style</strong>: any extra information to add to the image in the 'style' property  <em>(optional)</em></li>
+        <li class="p-list__item"><strong>image_hide_small</strong>: 'true' if you want to hide the image on small screens  <em>(optional)</em></li>
+        <li class="p-list__item"><strong>equal_cols</strong>: 'true' if you want the takeover to be spilt into two six cols, otherwise the default will be <code>col-7</code>, <code>col-5</code> <em>(optional)</em></li>
+        <li class="p-list__item"><strong>primary_url</strong>: the url for the primary cta, which will be a button and a <code>p-link--external</code> will be added automatically <em>(optional)</em></li>
+        <li class="p-list__item"><strong>primary_cta</strong>: The text of the button <em>(optional)</em></li>
+        <li class="p-list__item"><strong>primary_cta_class</strong>: the class of the button, defaults to <code>p-button--positive</code> <em>(optional)</em></li>
+        <li class="p-list__item"><strong>seconary_url</strong>: the url for the secondary cta, which will be a text link and a <code>p-link--external</code> will be added automatically <em>(optional)</em></li>
+        <li class="p-list__item"><strong>lang</strong>: the language of the takeover, default is 'en'   <em>(optional)</em></li>
+        <li class="p-list__item"><strong>locale</strong>: the locale of the takeover, default is 'en-GB'  <em>(optional)</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% with title="A guide to developing Android apps on Ubuntu",
+subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
+class="p-takeover--k8s",
+image="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg",
+image_style="width: 240px;",
+image_hide_small="true",
+equal_cols="true",
+primary_url="https://kubeflow-news.com",
+primary_cta="Download the whitepaper",
+primary_cta_class="",
+seconary_url="",
+seconary_cta="",
+lang="",
+locale="" %}
+{% include "takeovers/_template.html" %}
 {% endwith %}
 
 <section class="p-strip is-deep is-bordered">
   {% with gtm_event_label="ubuntu.com homepage" %}
-    {% include "shared/_insights_news_strip.html" %}
+  {% include "shared/_insights_news_strip.html" %}
   {% endwith %}
 </section>
+
+{% with title="A guide to developing Android apps on Ubuntu",
+subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
+class="p-takeover--dark",
+image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
+image_style="width: 380px; margin: 1.5rem 0;",
+image_hide_small="true",
+equal_cols="true",
+primary_url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
+primary_cta="Download the whitepaper",
+primary_cta_class="",
+seconary_url="/contact-us#get-in-touch",
+seconary_cta="Contact Canonical",
+lang="",
+locale="" %}
+{% include "takeovers/_template.html" %}
+{% endwith %}
+
+<section class="p-strip is-deep is-bordered">
+  {% with gtm_event_label="ubuntu.com homepage" %}
+  {% include "shared/_insights_news_strip.html" %}
+  {% endwith %}
+</section>
+
+{% with title="A guide to developing Android apps on Ubuntu",
+subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
+class="p-takeover--snapcraft",
+image="https://assets.ubuntu.com/v1/c3b8a9dd-Snap_Store_shopping_icon.svg",
+image_style="width: 200px;",
+image_hide_small="true",
+equal_cols="true",
+primary_url="https://snapcraft.io",
+primary_cta="Download the whitepaper",
+primary_cta_class="p-button--neutral",
+seconary_url="",
+seconary_cta="",
+lang="",
+locale="" %}
+{% include "takeovers/_template.html" %}
+{% endwith %}
+
+<section class="p-strip is-deep is-bordered">
+  {% with gtm_event_label="ubuntu.com homepage" %}
+  {% include "shared/_insights_news_strip.html" %}
+  {% endwith %}
+</section>
+
 
 {% endblock %}

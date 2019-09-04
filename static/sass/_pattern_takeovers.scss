@@ -1,26 +1,13 @@
 /// homepage takeovers
-//@mixin ubuntu-p-takeovers {
-//@include ubuntu-p-takeover;
-//@include ubuntu-p-takeover-k8s;
-//@include ubuntu-p-takeover-neutral;
-//@include ubuntu-p-takeover-dark;
-//@include ubuntu-p-takeover-snapcraft;/
-//}
 
-@mixin ubuntu-p-takeovers {
-  .p-takeover {
+@mixin p-takeovers($name) {
+  .p-takeover--#{$name} {
     @extend %vf-strip;
     background-blend-mode: multiply, multiply, normal, normal;
-    background-color: #772953;
-    background-image:
-      linear-gradient(to bottom left, rgba(119, 41, 83, 0.16) 0, rgba(119, 41, 83, 0.16) 49.9%, transparent 50%),
-      linear-gradient(to bottom right, rgba(228, 228, 228, 0.5) 0, rgba(228, 228, 228, 0.5) 49.9%, transparent 50%),
-      linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
-      linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%);
+    @content;
     background-position: top right, top left, right 100%, left top;
     background-repeat: no-repeat;
     background-size: 74% 99.83%, 68% 91%, 103.5% 18.1%, 100% 99.8%;
-    color: $color-x-light;
     margin: 0;
     padding-bottom: 11rem;
     padding-top: 6rem;
@@ -50,3 +37,50 @@
     }
   }
 }
+
+@mixin ubuntu-p-takeovers {
+
+  @include p-takeovers('grad') {
+    background-color: #772953;
+    background-image:
+      linear-gradient(to bottom left, rgba(119, 41, 83, 0.16) 0, rgba(119, 41, 83, 0.16) 49.9%, transparent 50%),
+      linear-gradient(to bottom right, rgba(228, 228, 228, 0.5) 0, rgba(228, 228, 228, 0.5) 49.9%, transparent 50%),
+      linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%); // order: right, left, white, gradient
+      color: $color-x-light;
+  }
+
+  @include p-takeovers('k8s') {
+    background-color: #326de6;
+    background-image:
+      linear-gradient(to bottom left, rgba(21, 58, 138, 0.16) 0, rgba(21, 58, 138, 0.16) 49.9%, transparent 50%),
+      linear-gradient(to bottom right, rgba(50, 109, 230, 0.5) 0, rgba(50, 109, 230, 0.5) 49.9%, transparent 50%),
+      linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(74deg, #173d8b 0%, #326de6 92%); // order: right, left, white, gradient
+      color: $color-x-light;
+  }
+
+  @include p-takeovers('dark') {
+    background-color: #111;
+    background-image:
+      linear-gradient(to bottom left, rgba(216, 216, 216, 0.54) 0, rgba(216, 216, 216, 0.54) 49.9%, transparent 50%),
+      linear-gradient(to bottom right, rgba(228, 228, 228, 0.54) 0, rgba(228, 228, 228, 0.54) 49.9%, transparent 50%),
+      linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(201deg, #4e4e4e 0%, #333 46%, #111 90%); // order: right, left, white, gradient
+      color: $color-x-light;
+  }
+
+  @include p-takeovers('snapcraft') {
+    background-color: #83bfa1;
+    background-image:
+      linear-gradient(to bottom left, rgba(74, 131, 125, 0.16) 0, rgba(74, 131, 125, 0.16) 49.9%, transparent 50%),
+      linear-gradient(to bottom right, rgba(63, 120, 115, 0.08) 0, rgba(63, 120, 115, 0.08) 49.9%, transparent 50%),
+      linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(134deg, #2d6162 0%, #83bfa1 100%); // order: right, left, white, gradient
+      color: $color-x-light;
+  }
+}
+
+//@include ubuntu-p-takeover-neutral;
+//@include ubuntu-p-takeover-dark;
+//@include ubuntu-p-takeover-snapcraft;/
