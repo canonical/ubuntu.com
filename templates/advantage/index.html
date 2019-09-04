@@ -54,6 +54,18 @@
     </div>
   </div>
 
+  <h2>Accounts ({{ accounts|length }})</h2>
+
+        {% for account in accounts %}
+          <h3>Account name: {{ account.name }}</h3>
+          <h4>Contracts ({{ account.contracts|length }})</h4>
+          {% for contract in account.contracts %}
+            <h5>{{ contract.contractInfo.name }} <small>({{ contract.contractInfo.id }})</small></h5>
+            {{contract}}
+            <p>Token: {{ contract.token }}</p>
+          {% endfor %}
+        {% endfor %}
+
   <div class="row">
     <div class="col-12">
       <ul class="p-inline-list">
