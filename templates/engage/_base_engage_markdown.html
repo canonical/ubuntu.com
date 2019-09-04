@@ -32,16 +32,17 @@
       </div>
     </div>
     {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="{% if header_image != "http" %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ header_title }}" >
+      <img src="{% if "http" not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ header_title }}" >
     </div>{% endif %}
   </div>
 </section>
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
-    <div class="col-7">
+    <div class="{% if form_id %}col-7{% else %}col-8{% endif %}">
       {{ content | safe }}
     </div>
+    {% if form_id %}
     <div class="col-5" id="register-section">
       <!-- MARKETO FORM -->
       <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" class="marketo-form" id="mktoForm_{{ form_id }}">
@@ -115,8 +116,17 @@
         </fieldset>
       </form>
       <!-- /MARKETO FORM -->
-
     </div>
+    {% else %}
+  </div>
+</section>
+<!-- webinar -->
+<section class="p-strip is-shallow" id="register-section">
+  <div class="row" id="register-section">
+    {{ webinar_code | safe }}
+  </div>
+</section>
+{% endif %}
   </div>
 </section>
 {% endblock %}
