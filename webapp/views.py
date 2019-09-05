@@ -56,6 +56,7 @@ def download_thank_you(category):
 
 def advantage():
     accounts = None
+    free_account = None
 
     if "openid" in flask.session:
         root = Macaroon.deserialize(flask.session["macaroon_root"])
@@ -87,10 +88,17 @@ def advantage():
                     timeout=1,
                 ).json()["contractToken"]
 
+                if (
+                    contract["contractInfo"]["origin"] == "free"
+                    and account["name"] != ""
+                ):
+                    free_account = account
+
     return flask.render_template(
         "advantage/index.html",
         openid=flask.session.get("openid"),
         accounts=accounts,
+        free_account=free_account,
     )
 
 
