@@ -8,6 +8,7 @@ from urllib.parse import parse_qs, urlencode
 
 # Packages
 import flask
+import requests
 import yaml
 import dateutil.parser
 from canonicalwebteam.http import CachedSession
@@ -16,19 +17,6 @@ from canonicalwebteam.http import CachedSession
 logger = logging.getLogger(__name__)
 
 api_session = CachedSession(fallback_cache_duration=3600)
-
-
-def _get(url):
-    try:
-        response = api_session.get(url, timeout=10)
-        response.raise_for_status()
-    except Exception as request_error:
-        logger.debug(
-            "Attempt to get feed failed: {}".format(str(request_error))
-        )
-        return False
-
-    return response
 
 
 # Read navigation.yaml
@@ -172,13 +160,15 @@ def get_json_feed(url, offset=0, limit=None):
 
     end = limit + offset if limit is not None else None
 
-    response = _get(url)
-
     try:
+        response = api_session.get(url, timeout=10)
         content = json.loads(response.text)
-    except json.JSONDecodeError as parse_error:
+    except (
+        json.JSONDecodeError,
+        requests.exceptions.RequestException,
+    ) as fetch_error:
         logger.warning(
-            "Failed to parse feed from {}: {}".format(url, str(parse_error))
+            "Error getting feed from {}: {}".format(url, str(fetch_error))
         )
         return False
 
