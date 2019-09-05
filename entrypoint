@@ -2,13 +2,11 @@
 
 set -e
 
-RUN_COMMAND="talisker.gunicorn webapp.app:app --bind $1 --worker-class sync --name talisker-`hostname` --workers 5"
-
-if [ "${DEBUG}" = true ] || [ "${DEBUG}" = 1 ]; then
+if [ "${FLASK_DEBUG}" = true ] || [ "${FLASK_DEBUG}" = 1 ]; then
     echo ""
     echo "= Running talisker with development settings ="
     echo ""
-    RUN_COMMAND="${RUN_COMMAND} --reload --log-level debug --timeout 9999"
+    talisker.gunicorn webapp.app:app --bind $1 --name talisker-`hostname` --reload --log-level debug --timeout 9999
+else
+    talisker.gunicorn webapp.app:app --bind $1 --name talisker-`hostname` --worker-class sync --workers 5
 fi
-
-${RUN_COMMAND}
