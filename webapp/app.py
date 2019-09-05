@@ -41,7 +41,6 @@ app = FlaskBase(
     static_folder="../static",
 )
 
-
 # Error pages
 @app.errorhandler(404)
 def not_found_error(error):
