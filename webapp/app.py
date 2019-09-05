@@ -104,8 +104,12 @@ def context():
         "month_name": month_name,
         "months_list": months_list,
         "navigation": navigation,
+        "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),
+        "utm_campaign": flask.request.args.get("utm_campaign", ""),
+        "utm_medium": flask.request.args.get("utm_medium", ""),
+        "utm_source": flask.request.args.get("utm_source", ""),
     }
 
 
