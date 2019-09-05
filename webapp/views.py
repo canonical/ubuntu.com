@@ -56,7 +56,9 @@ def download_thank_you(category):
 
 def advantage():
     accounts = None
-    free_account = None
+    personal_account = None
+    affordances = {}
+    openid = flask.session.get("openid")
 
     if "openid" in flask.session:
         root = Macaroon.deserialize(flask.session["macaroon_root"])
@@ -90,15 +92,29 @@ def advantage():
 
                 if (
                     contract["contractInfo"]["origin"] == "free"
-                    and account["name"] != ""
+                    and account["name"] == openid["email"]
                 ):
-                    free_account = account
+                    personal_account = account
+                    if contract["contractInfo"]["origin"] == "free":
+                        personal_account["free_token"] = contract["token"]
+                        for affordance in contract["contractInfo"][
+                            "resourceEntitlements"
+                        ]:
+                            if affordance["type"] == "esm":
+                                affordances["esm"] = True
+                            elif affordance["type"] == "livepatch":
+                                affordances["livepatch"] = True
+                            elif affordance["type"] == "livepatch":
+                                affordances["fips"] = True
+                            elif affordance["type"] == "cc-eal":
+                                affordances["cc-eal"] = True
+                        personal_account["affordances"] = affordances
 
     return flask.render_template(
         "advantage/index.html",
-        openid=flask.session.get("openid"),
+        openid=openid,
         accounts=accounts,
-        free_account=free_account,
+        personal_account=personal_account,
     )
 
 
