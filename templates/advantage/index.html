@@ -5,30 +5,33 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1AW8wQu1Uvq0xFtd_c2JwNdic075MPOTx7k2KHqFPPeo/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru-half-and-half is-dark">
+<section class="p-strip--suru is-dark is-deep">
   <div class="row">
     <div class="col-8">
       <h1>Ubuntu Advantage for Infrastructure</h1>
-      <p class="p-heading--four">Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
+      <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
     </div>
   </div>
 </section>
 
 
 {% if openid %}
-<section class="p-strip--light">
+<section class="p-strip" style="overflow:visible;">
   <div class="row">
     <div class="col-10">
-      <h2>You are signed in as {{ openid.fullname }} ({{ openid.email }})</h2>
-    </div>
-    <div class="col-2">
-        <a href="/logout" class="u-float-right u-no-margin--right p-button--neutral">Sign out</a>
+      <h3>You are signed in</h3>
+      <p>{{ openid.fullname }} ({{ openid.email }})</p>
+      <a href="/logout" class="p-button--neutral u-no-margin--bottom">Sign out</a>
     </div>
   </div>
 
+  <div class="u-fixed-width">
+    <hr class="p-separator" style="margin: 2rem 0;">
+  </div>
+
   <div class="row">
-    <div class="col-8 u-sv3">
-      <h3>Your personal subscription</h3>
+    <div class="col-6 u-sv3">
+      <h4>Your personal subscription</h4>
       <p>You are entitled to use Ubuntu Advantage Essential on 3 machines.</p>
       <aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
         <ul class="p-accordion__list" style="margin-bottom: 0;">
@@ -59,7 +62,7 @@
         <li class="p-inline-list__item">Get instructions for using:</li>
         {% if personal_account['affordances']['livepatch'] %}
         <li class="p-inline-list__item">
-          <span class="p-contextual-menu">
+          <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-livepatch" aria-expanded="false" aria-haspopup="true">Livepatch</a>
             <span class="p-contextual-menu__dropdown" id="menu-livepatch" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
               <p>To activate Livepatch:</p>
@@ -75,11 +78,28 @@
               </div>
             </span>
           </span>
+          <div class="u-hide u-show--small">
+            <br /><br />
+            <div class="p-card u-no-margin--bottom">
+              <h4>Livepatch</h4>
+              <p>To activate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
         </li>
         {% endif %}
         {% if personal_account['affordances']['esm'] %}
         <li class="p-inline-list__item">
-          <span class="p-contextual-menu">
+          <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-esm" aria-expanded="false" aria-haspopup="true">ESM</a>
             <span class="p-contextual-menu__dropdown" id="menu-esm" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
               <p>To activate ESM:</p>
@@ -95,11 +115,27 @@
               </div>
             </span>
           </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card u-no-margin--bottom">
+              <h4>ESM</h4>
+              <p>To activate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable esm" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable esm" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
         </li>
         {% endif %}
         {% if personal_account['affordances']['fips'] %}
         <li class="p-inline-list__item">
-          <span class="p-contextual-menu">
+          <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-fips" aria-expanded="false" aria-haspopup="true">FIPS</a>
             <span class="p-contextual-menu__dropdown" id="menu-fips" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
               <p>To activate FIPS:</p>
@@ -115,11 +151,27 @@
               </div>
             </span>
           </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card u-no-margin--bottom">
+              <h4>FIPS</h4>
+              <p>To activate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable fips" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable fips" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
         </li>
         {% endif %}
         {% if personal_account['affordances']['cc-eal'] %}
         <li class="p-inline-list__item">
-          <span class="p-contextual-menu">
+          <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-eal2" aria-expanded="false" aria-haspopup="true">Canonical Common Criteria EAL2 Provisioning</a>
             <span class="p-contextual-menu__dropdown" id="menu-eal2" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; padding: 1rem;">
               <p>To activate EAL2:</p>
@@ -135,6 +187,22 @@
               </div>
             </span>
           </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card u-no-margin--bottom">
+              <h4>EAL2</h4>
+              <p>To activate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
         </li>
         {% endif %}
       </ul>
@@ -142,14 +210,8 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-10">
-      <h3>Plans for enterprise use</h3>
-
-      {% include "advantage/_table.html" %}
-    </div>
-  </div>
+<section class="p-strip--light">
+  {% include "advantage/_table.html" %}
 </section>
 
 <script>
@@ -218,21 +280,44 @@
 </script>
 
 {% else %}
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Already subscribed?</h2>
-      <p><a href="/login" class="p-button--positive">Sign in</a> to access your personal or paid subscriptions.</p>
-      <h3>Free for personal use</h3>
-      <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
-      <p class="u-no-margin--bottom"><a href="/login" class="p-button--neutral">Register / Sign in</a> to get your free subscription.</p>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-6 u-vertically-center">
+      <div>
+        <h2>Already subscribed?</h2>
+        <p><a href="/login" class="p-button--positive">Sign in</a> to access your personal or paid subscriptions.</p>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="p-card">
+        <h3>Free for personal use</h3>
+        <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
+        <p class="u-no-margin--bottom"><a href="/login" class="p-button--neutral">Register</a> to get your free subscription.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   {% include "advantage/_table.html" %}
 </section>
 {% endif %}
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-6 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/9c7bda7d-contact-us.svg" alt="">
+    </div>
+    <div class="col-6 u-vertically-center">
+      <div>
+        <h2>Got questions?</h2>
+        <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button--positive js-invoke-modal">Contact us</a> about buying an enterprise subscription.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
 {% endblock content %}
 
