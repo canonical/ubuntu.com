@@ -62,7 +62,7 @@
         <li class="p-inline-list__item">Get instructions for using:</li>
         {% if personal_account['affordances']['livepatch'] %}
         <li class="p-inline-list__item">
-          <span class="p-contextual-menu">
+          <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-livepatch" aria-expanded="false" aria-haspopup="true">Livepatch</a>
             <span class="p-contextual-menu__dropdown" id="menu-livepatch" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
               <p>To activate Livepatch:</p>
@@ -78,11 +78,27 @@
               </div>
             </span>
           </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card">
+              <h4>Livepatch</h4>
+              <p>To activate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
         </li>
         {% endif %}
         {% if personal_account['affordances']['esm'] %}
         <li class="p-inline-list__item">
-          <span class="p-contextual-menu">
+          <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-esm" aria-expanded="false" aria-haspopup="true">ESM</a>
             <span class="p-contextual-menu__dropdown" id="menu-esm" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
               <p>To activate ESM:</p>
@@ -98,11 +114,27 @@
               </div>
             </span>
           </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card">
+              <h4>ESM</h4>
+              <p>To activate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable esm" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable esm" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
         </li>
         {% endif %}
         {% if personal_account['affordances']['fips'] %}
         <li class="p-inline-list__item">
-          <span class="p-contextual-menu">
+          <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-fips" aria-expanded="false" aria-haspopup="true">FIPS</a>
             <span class="p-contextual-menu__dropdown" id="menu-fips" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
               <p>To activate FIPS:</p>
@@ -118,11 +150,27 @@
               </div>
             </span>
           </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card">
+              <h4>FIPS</h4>
+              <p>To activate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable fips" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable fips" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
         </li>
         {% endif %}
         {% if personal_account['affordances']['cc-eal'] %}
         <li class="p-inline-list__item">
-          <span class="p-contextual-menu">
+          <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-eal2" aria-expanded="false" aria-haspopup="true">Canonical Common Criteria EAL2 Provisioning</a>
             <span class="p-contextual-menu__dropdown" id="menu-eal2" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; padding: 1rem;">
               <p>To activate EAL2:</p>
@@ -138,6 +186,22 @@
               </div>
             </span>
           </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card">
+              <h4>EAL2</h4>
+              <p>To activate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
         </li>
         {% endif %}
       </ul>
@@ -240,7 +304,7 @@
 
 <section class="p-strip">
   <div class="row u-equal-height">
-    <div class="col-6 u-align--center">
+    <div class="col-6 u-align--center u-hide--small">
       <img src="https://assets.ubuntu.com/v1/9c7bda7d-contact-us.svg" alt="">
     </div>
     <div class="col-6 u-vertically-center">
