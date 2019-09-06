@@ -30,44 +30,113 @@
     <div class="col-8 u-sv3">
       <h3>Your personal subscription</h3>
       <p>You are entitled to use Ubuntu Advantage Essential on 3 machines.</p>
-      {% for account in accounts %}
-        {% if account.name != '' %}</h3>
-          {% for contract in account.contracts %}
-          <aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
-              <ul class="p-accordion__list" style="margin-bottom: 0;">
-                <li class="p-accordion__group">
-                  <button type="button" class="p-accordion__tab" id="tab1" role="tab" aria-controls="#tab1-section" aria-expanded="false">Show instructions</button>
-                  <section class="p-accordion__panel" id="tab1-section" role="tabpanel" aria-hidden="true" aria-labelledby="tab1-section" style="padding: 0 1rem;">
-                    <p>To attach a machine:</p>
-                    <div class="p-code-copyable">
-                      <input class="p-code-copyable__input" value="sudo ua attach {{ contract.token }}" readonly="readonly">
-                      <button class="p-code-copyable__action">Copy to clipboard</button>
-                    </div>
+      <aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
+        <ul class="p-accordion__list" style="margin-bottom: 0;">
+          <li class="p-accordion__group">
+            <button type="button" class="p-accordion__tab" id="tab1" role="tab" aria-controls="#tab1-section" aria-expanded="false">Show instructions</button>
+            <section class="p-accordion__panel" id="tab1-section" role="tabpanel" aria-hidden="true" aria-labelledby="tab1-section" style="padding: 0 1rem;">
+              <p>To attach a machine:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua attach {{ personal_account.free_token }}" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
 
-                    <p>To detach:</p>
-                    <div class="p-code-copyable">
-                      <input class="p-code-copyable__input" value="sudo ua detach {{ contract.token }}" readonly="readonly">
-                      <button class="p-code-copyable__action">Copy to clipboard</button>
-                    </div>
-                  </section>
-                </li>
-              </ul>
-            </aside>
-          {% endfor %}
-        {% endif %}
-      {% endfor %}
+              <p>To detach:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua detach {{ personal_account.free_token }}" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </section>
+          </li>
+        </ul>
+      </aside>
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-      <ul class="p-inline-list">
+      <ul class="p-inline-list advantage-instructions">
         <li class="p-inline-list__item">Get instructions for using:</li>
-        <li class="p-inline-list__item"><a href="#">Livepatch</a></li>
-        <li class="p-inline-list__item"><a href="#">Landscape</a></li>
-        <li class="p-inline-list__item"><a href="#">ESM</a></li>
-        <li class="p-inline-list__item"><a href="#">FIPS</a></li>
-        <li class="p-inline-list__item"><a href="#">EAL2</a></li>
+        {% if personal_account['affordances']['livepatch'] %}
+        <li class="p-inline-list__item">
+          <span class="p-contextual-menu">
+            <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-livepatch" aria-expanded="false" aria-haspopup="true">Livepatch</a>
+            <span class="p-contextual-menu__dropdown" id="menu-livepatch" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
+              <p>To activate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </span>
+          </span>
+        </li>
+        {% endif %}
+        {% if personal_account['affordances']['esm'] %}
+        <li class="p-inline-list__item">
+          <span class="p-contextual-menu">
+            <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-esm" aria-expanded="false" aria-haspopup="true">ESM</a>
+            <span class="p-contextual-menu__dropdown" id="menu-esm" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
+              <p>To activate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable esm" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable esm" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </span>
+          </span>
+        </li>
+        {% endif %}
+        {% if personal_account['affordances']['fips'] %}
+        <li class="p-inline-list__item">
+          <span class="p-contextual-menu">
+            <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-fips" aria-expanded="false" aria-haspopup="true">FIPS</a>
+            <span class="p-contextual-menu__dropdown" id="menu-fips" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
+              <p>To activate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable fips" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable fips" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </span>
+          </span>
+        </li>
+        {% endif %}
+        {% if personal_account['affordances']['cc-eal'] %}
+        <li class="p-inline-list__item">
+          <span class="p-contextual-menu">
+            <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-eal2" aria-expanded="false" aria-haspopup="true">Canonical Common Criteria EAL2 Provisioning</a>
+            <span class="p-contextual-menu__dropdown" id="menu-eal2" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; padding: 1rem;">
+              <p>To activate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
+            </span>
+          </span>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </div>
@@ -100,6 +169,54 @@
     );
   });
 </script>
+
+<script>
+  function toggleMenu(element, show) {
+    element.setAttribute('aria-expanded', show);
+    document
+      .querySelector(element.getAttribute('aria-controls'))
+      .setAttribute('aria-hidden', !show);
+  }
+
+  function setupContextualMenuListeners(contextualMenuToggleSelector) {
+    const toggles = document.querySelectorAll(contextualMenuToggleSelector);
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', e => {
+        e.preventDefault();
+
+        const target = e.target;
+        const menuAlreadyOpen = target.getAttribute('aria-expanded') === 'true';
+
+        toggleMenu(target, !menuAlreadyOpen)
+      });
+    });
+
+    document.addEventListener('click', e => {
+      toggles.forEach(toggle => {
+        const contextualMenu = document.querySelector(toggle.getAttribute('aria-controls'));
+        const clickOutside = !(toggle.contains(e.target) || contextualMenu.contains(e.target));
+
+        if (clickOutside) {
+          toggleMenu(toggle, false);
+        }
+      })
+    });
+
+    document.onkeydown = e => {
+      e = e || window.event;
+
+      if (e.keyCode === 27) {
+        toggles.forEach(toggle => {
+          toggleMenu(toggle, false);
+        });
+      }
+    };
+  }
+
+  setupContextualMenuListeners('.p-contextual-menu__toggle');
+</script>
+
 {% else %}
 <section class="p-strip--light">
   <div class="row">
