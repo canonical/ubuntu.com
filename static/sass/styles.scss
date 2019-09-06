@@ -293,4 +293,25 @@ summary {
   tr:target {
     background-color: $color-x-light;
   }
+
+  @media only screen and (min-width: $breakpoint-small) {
+    td,
+    th {
+      &:nth-child(1) {
+        width: 50%;
+      }
+
+      &:nth-child(2) {
+        width: 20%;
+      }
+
+      &:nth-child(3) {
+        width: 20%;
+      }
+
+      &:nth-child(4) {
+        width: 20%;
+      }
+    }
+  }
 }
