@@ -56,6 +56,8 @@ def after_login(resp):
 
 
 def logout():
+    return_to = flask.request.args.get("return_to", flask.request.host_url)
+
     if "openid" in flask.session:
         flask.session.pop("macaroon_root", None)
         flask.session.pop("macaroon_discharge", None)
@@ -64,5 +66,5 @@ def logout():
 
     return flask.redirect(
         "https://login.ubuntu.com/+logout"
-        f"?return_to={flask.request.url_root}/advantage&return_now=True"
+        f"?return_to={return_to}&return_now=True"
     )
