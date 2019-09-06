@@ -1,3 +1,6 @@
+# Standard library
+from urllib.parse import quote, unquote
+
 # Packages
 import flask
 import flask_openid
@@ -56,7 +59,12 @@ def after_login(resp):
 
 
 def logout():
-    return_to = flask.request.args.get("return_to", flask.request.host_url)
+    return_to = flask.request.args.get("return_to") or flask.request.url_root
+
+    # Make sure return_to is URL encoded
+    if return_to == unquote(return_to):
+        # Not encoded
+        return_to = quote(return_to, safe="")
 
     if "openid" in flask.session:
         flask.session.pop("macaroon_root", None)
