@@ -38,7 +38,9 @@ app = FlaskBase(
 )
 
 # Blog
-blog_views = BlogViews(excluded_tags=[3184, 3265, 3408])
+blog_views = BlogViews(
+    excluded_tags=[3184, 3265, 3408], feed_description="The Ubuntu Blog Feed"
+)
 
 
 @app.route("/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>")
