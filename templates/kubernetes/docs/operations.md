@@ -34,7 +34,7 @@ For other platforms and install methods, please see the
 [Kubernetes documentation][kubectl].
 
 The config file for accessing the newly deployed cluster is stored in the cluster itself. You
-should use the following command to retrieve it:
+should use the following command to retrieve it (create a **.kube** directory if it was not created after kubectl installation):
 
 ```bash
 juju scp kubernetes-master/0:config ~/.kube/config
