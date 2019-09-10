@@ -1,6 +1,6 @@
-# Working on the www.ubuntu.com project
+# Working on the ubuntu.com project
 
-The www.ubuntu.com codebase is a [Flask](https://flask.palletsprojects.com/en/1.1.x/) app, which also includes some [Yarn](https://yarnpkg.com/lang/en/)-based tools and tasks for building static files like CSS.
+The ubuntu.com codebase is a [Flask](https://flask.palletsprojects.com/en/1.1.x/) app, which also includes some [Yarn](https://yarnpkg.com/lang/en/)-based tools and tasks for building static files like CSS.
 
 ## Running the site
 
