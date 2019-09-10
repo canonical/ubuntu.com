@@ -5,33 +5,33 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1AW8wQu1Uvq0xFtd_c2JwNdic075MPOTx7k2KHqFPPeo/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru is-dark is-deep">
-  <div class="row">
-    <div class="col-8">
-      <h1>Ubuntu Advantage for Infrastructure</h1>
-      <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
-    </div>
-  </div>
-</section>
+
 
 
 {% if openid %}
-<section class="p-strip" style="overflow:visible;">
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="u-no-max-width u-no-margin--bottom">Ubuntu Advantage for Infrastructure</h1>
+    </div>
+  </div>
+</section>
+<section class="p-strip u-no-padding--top" style="overflow:visible;">
+
   <div class="row">
     <div class="col-10">
       <h2>You are signed in</h2>
-      <p>{{ openid.fullname }} ({{ openid.email }})</p>
-      <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom">Sign out</a>
+      <p>{{ openid.fullname }} ({{ openid.email }}) <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" style="margin-left: 1rem;">Sign out</a></p>
     </div>
   </div>
 
   <div class="u-fixed-width">
-    <hr class="p-separator">
+    <hr class="p-separator" style="margin: 1rem 0 1.5rem;">
   </div>
 
   <div class="row">
     <div class="col-6 u-sv3">
-      <h2>Your personal subscription</h2>
+      <h2>Your free personal subscription</h2>
       <p>You are entitled to use Ubuntu Advantage Essential on 3 machines.</p>
       <aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
         <ul class="p-accordion__list" style="margin-bottom: 0;">
@@ -46,7 +46,7 @@
 
               <p>To detach:</p>
               <div class="p-code-copyable">
-                <input class="p-code-copyable__input" value="sudo ua detach {{ personal_account.free_token }}" readonly="readonly">
+                <input class="p-code-copyable__input" value="sudo ua detach" readonly="readonly">
                 <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
             </section>
@@ -210,7 +210,7 @@
   </div>
 
   <div class="u-fixed-width">
-    <hr class="p-separator">
+    <hr class="p-separator" style="margin: 2rem 0;">
   </div>
 
   {% include "advantage/_table.html" %}
@@ -282,6 +282,14 @@
 </script>
 
 {% else %}
+<section class="p-strip--suru is-dark">
+  <div class="row">
+    <div class="col-8">
+      <h1>Ubuntu Advantage for Infrastructure</h1>
+      <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
+    </div>
+  </div>
+</section>
 <section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-12 u-vertically-center">
