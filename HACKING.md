@@ -1,6 +1,6 @@
 # Working on the www.ubuntu.com project
 
-The www.ubuntu.com codebase is a [Django](https://www.djangoproject.com/) app, which also includes some [NPM](https://www.npmjs.com/)-based tools and tasks for building static files like CSS.
+The www.ubuntu.com codebase is a [Flask](https://flask.palletsprojects.com/en/1.1.x/) app, which also includes some [Yarn](https://yarnpkg.com/lang/en/)-based tools and tasks for building static files like CSS.
 
 ## Running the site
 
@@ -23,6 +23,8 @@ The basic options are:
 ./run build  # Build the CSS
 ./run watch  # Watch and build the CSS whenever Sass changes
 ./run clean  # Remove created files and docker containers
+./run stop   # Stop any running containers
+
 ```
 
 #### Watching in the background
@@ -41,10 +43,10 @@ To check if the watcher daemon is running, use `docker ps`. Then you can use `do
 
 ### Running the site with native python
 
-Since the site is basically a Django app, you can also run the site in the traditional way using [python 2.7](https://www.python.org/download/releases/2.7/) and [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/):
+Since the site is basically a Flask app, you can also run the site in the traditional way using [python 3](https://docs.python.org/3/) and [venv](https://docs.python.org/3/library/venv.html?highlight=venv#module-venv):
 
 ``` bash
-virtualenv env
+python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
 ./entrypoint 0.0.0.0:8001
@@ -52,39 +54,36 @@ pip install -r requirements.txt
 
 Now browse to the site at <http://127.0.0.1:8001>. If it looks a bit odd, it's probably because you haven't built sass - see below.
 
+You can run `deactivate` to shutdown the virtual environment when you are done.
+
 ### Building Sass
 
-The CSS needs to be built from the `static/css/styles.scss` file. This in turn requires [ubuntu-vanilla-theme](https://github.com/ubuntudesign/ubuntu-vanilla-theme) and its dependency, [vanilla-framework](https://github.com/vanilla-framework/vanilla-framework).
+The CSS needs to be built from the `static/css/styles.scss` file. This in turn requires [vanilla-framework](https://github.com/canonical-web-and-design/vanilla-framework).
 
-If you can't build using the `./run build` command, you can pull down dependencies this using `npm` or `yarn`:
+If you can't build using the `./run build` command, you can pull down dependencies this using `yarn`:
 
 ``` bash
-npm install
-# or
 yarn install
 ```
 
 Then you can use the built in scripts to build or watch the Sass:
 
 ``` bash
-npm run build  # Build the Sass to CSS then exit
-npm run watch  # Dynamically watch for Sass changes and build CSS
-# or
 yarn run build  # Build the Sass to CSS then exit
 yarn run watch  # Dynamically watch for Sass changes and build CSS
 ```
 
-### Overriding NPM modules
+### Overriding Yarn modules
 
-You can use the `./run` script to use NPM modules from a local folder on a one-time basis, instead of the modules declared in `package.json`, as follows:
+You can use the `./run` script to use Yarn NPM modules from a local folder on a one-time basis, instead of the modules declared in `package.json`, as follows:
 
 ``` bash
-./run --node-module $HOME/projects/vanilla-framework watch  # Build CSS dynamically, using a local version of vanilla-framework
+./run [-r|--root] [-p|--expose-port PORT] <script-name>
 ```
 
 ## Making changes to the site
 
-Guides for making changes to the www.ubuntu.com codebase.
+Guides for making changes to the ubuntu.com codebase.
 
 ### Navigation
 
@@ -114,7 +113,7 @@ If a child is "hidden", then it won't be displayed in the navigation menus, eith
 
 #### How it works
 
-The `navigation.yaml` file is read in `webapp/settings.py` to create a Django settings objects `django.conf.settings.NAV_SECTIONS`.
+The `navigation.yaml` file is read in `webapp/settings.py` to create a Flask settings objects `django.conf.settings.NAV_SECTIONS`.
 
 This is then used in `webapp.context_processors.navigation` in `webapp/context_processors.py` to add two items to the template context:
 
