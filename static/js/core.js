@@ -58,7 +58,7 @@ core.mobileNav = function () {
 
 core.supportsSvg();
 core.mobileNav();
-createNav();
+createNav({ showLogins: false });
 
 var options = {
   content:
