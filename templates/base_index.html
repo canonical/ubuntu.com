@@ -28,9 +28,35 @@
     {% endblock notices_content %}
 
     <section class="p-strip is-deep is-bordered">
-      {% with gtm_event_label="ubuntu.com homepage" %}
-        {% include "shared/_insights_news_strip.html" %}
-      {% endwith %}
+      <div class="row p-divider">
+        <div class="col-9">
+          <h3>Latest news from our blog</h3>
+          <div id="latest-articles" class="row">
+            <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
+          </div>
+        </div>
+      
+        <div id="spotlight" class="col-3 p-divider__block u-hide">
+          <h3>Spotlight</h3>
+        </div>
+      </div>
+      
+      <div class="u-sv3"></div>
+      
+      <div class="u-fixed-width">
+        <a href="/blog" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
+          View more from our blog
+        </a>
+      </div>
+      
+      <script src="{{ versioned_static('js/latest-news.js') }}"></script>
+      <script>
+        fetchLatestNews(
+          "#latest-articles",  // articlesContainerSelector
+          "#spotlight", // spotlightContainerSelector
+          "ubuntu.com homepage"  // gtmEventLabel
+        )
+      </script>
     </section>
 
     <section class="p-strip--light is-bordered">
