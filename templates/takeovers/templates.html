@@ -12,7 +12,7 @@ class="",
 image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
 image_style="width: 380px; margin: 1.5rem 0;",
 image_hide_small=true,
-equal_cols="true",
+equal_cols=true,
 primary_url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
 primary_cta="Download the whitepaper",
 primary_cta_class="",
@@ -40,7 +40,7 @@ class="",
 image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
 image_style="width: 380px; margin: 1.5rem 0;",
 image_hide_small=true,
-equal_cols="true",
+equal_cols=true,
 primary_url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
 primary_cta="Download the whitepaper",
 primary_cta_class="",
@@ -56,7 +56,7 @@ locale="" %}
       <ul class="p-list">
         <li class="p-list__item"><strong>title</strong>: the h1 text for the takeover</li>
         <li class="p-list__item"><strong>subtitle</strong>: the h4 text for the takeover <em>(optional)</em></li>
-        <li class="p-list__item"><strong>class</strong>: the full class name for the takeover - null or p-takeover--grad, p-takeover--k8s, p-takeover--dark, p-takeover--snapcraft <em>(optional)</em></li>
+        <li class="p-list__item"><strong>class</strong>: the full class name for the takeover - null or p-takeover--grad, p-takeover--k8s, p-takeover--dark, p-takeover--snapcraft, p-takeover--aqua <em>(optional)</em></li>
         <li class="p-list__item"><strong>image</strong>: the full path to the image <em>(optional)</em></li>
         <li class="p-list__item"><strong>image_style</strong>: any extra information to add to the image in the 'style' property  <em>(optional)</em></li>
         <li class="p-list__item"><strong>image_hide_small</strong>: 'true' if you want to hide the image on small screens  <em>(optional)</em></li>
@@ -77,7 +77,7 @@ class="p-takeover--k8s",
 image="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg",
 image_style="width: 240px;",
 image_hide_small=true,
-equal_cols="true",
+equal_cols=true,
 primary_url="https://kubeflow-news.com",
 primary_cta="Download the whitepaper",
 primary_cta_class="",
@@ -96,7 +96,7 @@ class="p-takeover--dark",
 image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
 image_style="width: 380px; margin: 1.5rem 0;",
 image_hide_small=true,
-equal_cols="true",
+equal_cols=true,
 primary_url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
 primary_cta="Download the whitepaper",
 primary_cta_class="",
@@ -115,9 +115,28 @@ class="p-takeover--snapcraft",
 image="https://assets.ubuntu.com/v1/c3b8a9dd-Snap_Store_shopping_icon.svg",
 image_style="width: 200px;",
 image_hide_small=true,
-equal_cols="true",
+equal_cols=true,
 primary_url="https://snapcraft.io",
 primary_cta="Download the whitepaper",
+primary_cta_class="p-button--neutral",
+secondary_url="",
+secondary_cta="",
+lang="",
+locale="" %}
+{% include "takeovers/_template.html" %}
+{% endwith %}
+
+<section class="p-strip is-deep is-bordered"></section>
+
+{% with title="Machine Learning at Scale",
+subtitle="What do successful solutions have in common?",
+class="p-takeover--aqua",
+image="https://assets.ubuntu.com/v1/5fc06110-AI+illustration.svg",
+image_style="width: 200px;",
+image_hide_small=true,
+equal_cols=false,
+primary_url="/engage/get-started-with-ai-part2",
+primary_cta="Register for the webinar",
 primary_cta_class="p-button--neutral",
 secondary_url="",
 secondary_cta="",
