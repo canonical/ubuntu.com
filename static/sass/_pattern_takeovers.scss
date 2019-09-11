@@ -7,7 +7,7 @@
     @content;
     background-position: top right, top left, right 100%, left top;
     background-repeat: no-repeat;
-    background-size: 74% 99.83%, 68% 91%, 103.8% 21.26%, 100% 99.8%;
+    background-size: 74% 99.83%, 68% 91%, 103.8% 20.26%, 100% 99.8%;
     margin: 0;
     padding-bottom: 11rem;
     padding-top: 6rem;
@@ -79,6 +79,16 @@
       linear-gradient(134deg, #2d6162 0%, #83bfa1 100%); // order: right, left, white, gradient
       color: $color-x-light;
   }
+
+  @include p-takeovers('aqua') {
+    background-color: #2b585d;
+    background-image:
+    linear-gradient(to bottom left, rgba(71, 145, 154, 0.16) 0, rgba(71, 145, 154, 0.16) 49.9%, transparent 50%),
+    linear-gradient(to bottom right, rgba(71, 145, 154, 0.16) 0, rgba(71, 145, 154, 0.16) 49.9%, transparent 50%),
+    linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(246deg, #47919a 0%, #47919a 53%); // order: right, left, white, gradient
+      color: $color-x-light;
+  }
 }
 
 
@@ -121,6 +131,13 @@
     background-color: #83bfa1;
     background-image:
       linear-gradient(134deg, #2d6162 0%, #83bfa1 100%);
+      color: $color-x-light;
+  }
+
+  @include p-engage-banner('aqua') {
+    background-color: #2b585d;
+    background-image:
+      linear-gradient(246deg, #47919a 0%, #47919a 53%, #2b585d 100%);
       color: $color-x-light;
   }
 }
