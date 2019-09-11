@@ -1,4 +1,26 @@
 <div class="col-4 p-divider__block">
   <h3 class="p-heading--four">Further reading</h3>
-  {% with insights_news_url="https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags=1364&tags_exclude=3184,3265,3408&per_page=4" %}{% include "templates/_further_reading_links.html" %}{% endwith %}
+  <ul class="p-list" id="latest-articles">
+    <i class="p-icon--spinner u-animation--spin">Loading...</i>
+  </ul>
 </div>
+
+<template style="display:none" id="article-template">
+  <li class="p-list__item">
+    <a class="article-link article-title">
+      <span class="article-title">&nbsp;›
+    </a>
+  </li>
+</template>
+
+<script src="{{ versioned_static('js/latest-news.js') }}"></script>
+<script>
+  fetchLatestNews(
+    {
+      articlesContainerSelector: "#latest-articles",
+      articleTemplateSelector: "#article-template",
+      limit: "5",
+      tagId: "1364"
+    }
+  )
+</script>
