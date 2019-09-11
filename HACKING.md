@@ -1,6 +1,8 @@
 # Working on the ubuntu.com project
 
-The ubuntu.com codebase is a [Flask](https://flask.palletsprojects.com/en/1.1.x/) app, which also includes some [Yarn](https://yarnpkg.com/lang/en/)-based tools and tasks for building static files like CSS.
+The ubuntu.com codebase is a [Flask](https://flask.palletsprojects.com/) app, which builds on our own [flask-base](https://pypi.org/project/canonicalwebteam.flask-base/), [templatefinder](https://pypi.org/project/canonicalwebteam.templatefinder/), [blog](https://pypi.org/project/canonicalwebteam.blog/) and [search](https://pypi.org/project/canonicalwebteam.search/) packages.
+
+We use [Yarn](https://yarnpkg.com/lang/en/) for building static files like CSS through [`package.json` scripts](https://yarnpkg.com/lang/en/docs/package-json/#toc-scripts).
 
 ## Running the site
 
