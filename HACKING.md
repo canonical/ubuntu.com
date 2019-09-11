@@ -1,6 +1,8 @@
-# Working on the www.ubuntu.com project
+# Working on the ubuntu.com project
 
-The www.ubuntu.com codebase is a [Django](https://www.djangoproject.com/) app, which also includes some [NPM](https://www.npmjs.com/)-based tools and tasks for building static files like CSS.
+The ubuntu.com codebase is a [Flask](https://flask.palletsprojects.com/) app, which builds on our own [flask-base](https://pypi.org/project/canonicalwebteam.flask-base/), [templatefinder](https://pypi.org/project/canonicalwebteam.templatefinder/), [blog](https://pypi.org/project/canonicalwebteam.blog/) and [search](https://pypi.org/project/canonicalwebteam.search/) packages.
+
+We use [Yarn](https://yarnpkg.com/lang/en/) for building static files like CSS through [`package.json` scripts](https://yarnpkg.com/lang/en/docs/package-json/#toc-scripts).
 
 ## Running the site
 
@@ -19,10 +21,12 @@ Then to learn about this script's options, type:
 The basic options are:
 
 ``` bash
-./run serve  # Start the Django server, optionally watching for changes
+./run serve  # Start the Flask server
 ./run build  # Build the CSS
 ./run watch  # Watch and build the CSS whenever Sass changes
 ./run clean  # Remove created files and docker containers
+./run stop   # Stop any running containers in this project
+
 ```
 
 #### Watching in the background
@@ -41,42 +45,39 @@ To check if the watcher daemon is running, use `docker ps`. Then you can use `do
 
 ### Running the site with native python
 
-Since the site is basically a Django app, you can also run the site in the traditional way using [python 2.7](https://www.python.org/download/releases/2.7/) and [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/):
+Since the site is basically a Flask app, you can also run the site in the traditional way using [python 3](https://docs.python.org/3/) and [venv](https://docs.python.org/3/library/venv.html?highlight=venv#module-venv):
 
 ``` bash
-virtualenv env
+python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
-./entrypoint 0.0.0.0:8001
+./entrypoint 127.0.0.0:8001
 ```
 
 Now browse to the site at <http://127.0.0.1:8001>. If it looks a bit odd, it's probably because you haven't built sass - see below.
 
+You can run `deactivate` to shutdown the virtual environment when you are done.
+
 ### Building Sass
 
-The CSS needs to be built from the `static/css/styles.scss` file. This in turn requires [ubuntu-vanilla-theme](https://github.com/ubuntudesign/ubuntu-vanilla-theme) and its dependency, [vanilla-framework](https://github.com/vanilla-framework/vanilla-framework).
+The CSS needs to be built from the `static/css/styles.scss` file. This in turn requires [vanilla-framework](https://github.com/canonical-web-and-design/vanilla-framework).
 
-If you can't build using the `./run build` command, you can pull down dependencies this using `npm` or `yarn`:
+If you can't build using the `./run build` command, you can pull down dependencies this using `yarn`:
 
 ``` bash
-npm install
-# or
 yarn install
 ```
 
 Then you can use the built in scripts to build or watch the Sass:
 
 ``` bash
-npm run build  # Build the Sass to CSS then exit
-npm run watch  # Dynamically watch for Sass changes and build CSS
-# or
 yarn run build  # Build the Sass to CSS then exit
 yarn run watch  # Dynamically watch for Sass changes and build CSS
 ```
 
-### Overriding NPM modules
+### Overriding Yarn modules
 
-You can use the `./run` script to use NPM modules from a local folder on a one-time basis, instead of the modules declared in `package.json`, as follows:
+You can use the `./run` script to use Node modules from a local folder on a one-time basis, instead of the modules declared in `package.json`, as follows:
 
 ``` bash
 ./run --node-module $HOME/projects/vanilla-framework watch  # Build CSS dynamically, using a local version of vanilla-framework
@@ -84,7 +85,7 @@ You can use the `./run` script to use NPM modules from a local folder on a one-t
 
 ## Making changes to the site
 
-Guides for making changes to the www.ubuntu.com codebase.
+Guides for making changes to the ubuntu.com codebase.
 
 ### Navigation
 
@@ -114,7 +115,7 @@ If a child is "hidden", then it won't be displayed in the navigation menus, eith
 
 #### How it works
 
-The `navigation.yaml` file is read in `webapp/settings.py` to create a Django settings objects `django.conf.settings.NAV_SECTIONS`.
+The `navigation.yaml` file is read [in `webapp/context.py`](https://github.com/canonical-web-and-design/ubuntu.com/blob/b0b1f1e8fe896166ee0a0a7a2328d1e85f22f84c/webapp/context.py#L53). A `navigation` object will be passed through to all templates.
 
 This is then used in `webapp.context_processors.navigation` in `webapp/context_processors.py` to add two items to the template context:
 
