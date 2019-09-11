@@ -19,11 +19,11 @@ Then to learn about this script's options, type:
 The basic options are:
 
 ``` bash
-./run serve  # Start the Django server, optionally watching for changes
+./run serve  # Start the Flask server
 ./run build  # Build the CSS
 ./run watch  # Watch and build the CSS whenever Sass changes
 ./run clean  # Remove created files and docker containers
-./run stop   # Stop any running containers
+./run stop   # Stop any running containers in this project
 
 ```
 
@@ -49,7 +49,7 @@ Since the site is basically a Flask app, you can also run the site in the tradit
 python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
-./entrypoint 0.0.0.0:8001
+./entrypoint 127.0.0.0:8001
 ```
 
 Now browse to the site at <http://127.0.0.1:8001>. If it looks a bit odd, it's probably because you haven't built sass - see below.
@@ -75,10 +75,10 @@ yarn run watch  # Dynamically watch for Sass changes and build CSS
 
 ### Overriding Yarn modules
 
-You can use the `./run` script to use Yarn NPM modules from a local folder on a one-time basis, instead of the modules declared in `package.json`, as follows:
+You can use the `./run` script to use Node modules from a local folder on a one-time basis, instead of the modules declared in `package.json`, as follows:
 
 ``` bash
-./run [-r|--root] [-p|--expose-port PORT] <script-name>
+./run --node-module $HOME/projects/vanilla-framework watch  # Build CSS dynamically, using a local version of vanilla-framework
 ```
 
 ## Making changes to the site
@@ -113,7 +113,7 @@ If a child is "hidden", then it won't be displayed in the navigation menus, eith
 
 #### How it works
 
-The `navigation.yaml` file is read in `webapp/settings.py` to create a Flask settings objects `django.conf.settings.NAV_SECTIONS`.
+The `navigation.yaml` file is read [in `webapp/context.py`](https://github.com/canonical-web-and-design/ubuntu.com/blob/b0b1f1e8fe896166ee0a0a7a2328d1e85f22f84c/webapp/context.py#L53). A `navigation` object will be passed through to all templates.
 
 This is then used in `webapp.context_processors.navigation` in `webapp/context_processors.py` to add two items to the template context:
 

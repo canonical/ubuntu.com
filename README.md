@@ -12,7 +12,7 @@ The site is largely maintained by the [Web and Design team](https://ubuntu.com/b
 
 If you have found a bug on the site or have an idea for a new feature, feel free to [create a new issue](https://github.com/canonical-web-and-design/ubuntu.com/issues/new), or suggest a fix by [creating a pull request](https://help.github.com/articles/creating-a-pull-request/). You can also find a link to create issues in the footer of every page of the site itself.
 
-If you have found a bug in Ubuntu itself, the please file it [here](https://bugs.launchpad.net/ubuntu/).
+If you have found a bug in the Ubuntu OS itself, the please file it [here](https://bugs.launchpad.net/ubuntu/).
 
 ## Local development
 
@@ -24,20 +24,9 @@ The simplest way to run the site locally is to first [install Docker](https://do
 
 Once the containers are setup, you can visit <http://127.0.0.1:8001> in your browser.
 
-### Building CSS
-
-For working on [Sass files](static/css), you may want to dynamically watch for changes to rebuild the CSS whenever something changes.
-
-To setup the watcher, open a new terminal window and run:
-
-``` bash
-./run watch
-```
-
 For more detailed local development instructions, see [HACKING.md](HACKING.md).
 
----
-### License
+## License
 
 The content of this project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/), and the underlying code used to format and display that content is licensed under the [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd](http://www.canonical.com/).
 
