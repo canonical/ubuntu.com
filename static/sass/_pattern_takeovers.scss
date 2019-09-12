@@ -5,7 +5,7 @@
     @extend %vf-strip;
     background-blend-mode: multiply, multiply, normal, normal;
     @content;
-    background-position: top right, top left, right 100%, left top;
+    background-position: top right, top left, right bottom -1px, left top;
     background-repeat: no-repeat;
     background-size: 74% 99.83%, 68% 91%, 103.8% 20.26%, 100% 99.8%;
     margin: 0;
@@ -13,7 +13,7 @@
     padding-top: 6rem;
 
     @media (max-width: $breakpoint-medium) {
-      background-position: top right, top left, right 100%, left top;
+      background-position: top right, top left, right bottom -1px, left top;
       background-repeat: no-repeat;
       background-size: 135% 97.83%, 148% 83%, 119% 13%, 100% 99.83%;
       padding-bottom: 8rem;
