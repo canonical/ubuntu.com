@@ -57,6 +57,7 @@ def download_thank_you(category):
 def advantage():
     accounts = None
     personal_account = None
+    paid_contracts = None
     affordances = {}
     openid = flask.session.get("openid")
 
@@ -90,12 +91,9 @@ def advantage():
                     timeout=1,
                 ).json()["contractToken"]
 
-                if (
-                    contract["contractInfo"]["origin"] == "free"
-                    and account["name"] == openid["email"]
-                ):
-                    personal_account = account
-                    if contract["contractInfo"]["origin"] == "free":
+                if (contract["contractInfo"]["origin"] == "free"):
+                    if (account["name"] == openid["email"]):
+                        personal_account = account
                         personal_account["free_token"] = contract["token"]
                         for affordance in contract["contractInfo"][
                             "resourceEntitlements"
@@ -104,16 +102,20 @@ def advantage():
                                 affordances["esm"] = True
                             elif affordance["type"] == "livepatch":
                                 affordances["livepatch"] = True
-                            elif affordance["type"] == "livepatch":
+                            elif affordance["type"] == "fips":
                                 affordances["fips"] = True
                             elif affordance["type"] == "cc-eal":
                                 affordances["cc-eal"] = True
                         personal_account["affordances"] = affordances
+                else:
+                    paid_contracts.append(contract)
+
 
     return flask.render_template(
         "advantage/index.html",
         openid=openid,
         accounts=accounts,
+        paid_contracts=paid_contracts,
         personal_account=personal_account,
     )
 
