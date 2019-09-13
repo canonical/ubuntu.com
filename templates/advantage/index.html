@@ -35,7 +35,45 @@
     <hr class="p-separator" style="margin: 1rem 0 1.5rem;">
   </div>
 
-  {{ paid_contracts }}
+  {% if enterprise_contracts %}
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Your enterprise subscriptions</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Machines</th>
+            <th>UA</th>
+            <th>Livepatch</th>
+            <th>ESM</th>
+            <th>FIPS</th>
+            <th>CC-EAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for contract in enterprise_contracts %}
+          <tr>
+            <td>{{ contract['contractInfo']['name'] }}</td>
+            <td>???</td>
+            <td>???</td>
+            <td>{{ contract['entitlements']['livepatch'] }}</td>
+            <td>{{ contract['entitlements']['esm'] }}</td>
+            <td>{{ contract['entitlements']['fips'] }}</td>
+            <td>{{ contract['entitlements']['cc-eal'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" style="margin: 1rem 0 1.5rem;">
+  </div>
+
+  {% endif %}
 
   <div class="row">
     <div class="col-6 u-sv3">
@@ -86,7 +124,7 @@
     <div class="col-12">
       <ul class="p-inline-list advantage-instructions u-no-margin--bottom">
         <li class="p-inline-list__item">Get instructions for using:</li>
-        {% if personal_account['affordances']['livepatch'] %}
+        {% if personal_account['entitlements']['livepatch'] %}
         <li class="p-inline-list__item">
           <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-livepatch" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
@@ -153,7 +191,7 @@
           </div>
         </li>
         {% endif %}
-        {% if personal_account['affordances']['esm'] %}
+        {% if personal_account['entitlements']['esm'] %}
         <li class="p-inline-list__item">
           <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-esm" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
@@ -219,7 +257,7 @@
           </div>
         </li>
         {% endif %}
-        {% if personal_account['affordances']['fips'] %}
+        {% if personal_account['entitlements']['fips'] %}
         <li class="p-inline-list__item">
           <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-fips" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
@@ -285,7 +323,7 @@
           </div>
         </li>
         {% endif %}
-        {% if personal_account['affordances']['cc-eal'] %}
+        {% if personal_account['entitlements']['cc-eal'] %}
         <li class="p-inline-list__item">
           <span class="p-contextual-menu u-hide--small">
             <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-eal2" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
