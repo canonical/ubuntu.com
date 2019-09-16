@@ -1,6 +1,6 @@
 ---
 name: Takeover build issue
-about: All the requirements for creating a takeover epic
+about: All the requirements for takeover & landing page build
 title: ''
 labels: ''
 assignees: ''
