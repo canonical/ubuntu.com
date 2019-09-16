@@ -101,7 +101,15 @@
     <section class="p-strip is-deep u-image-position is-bordered">
       <div class="row">
         <div class="col-7">
-          <img src="https://assets.ubuntu.com/v1/0bfbd13b-cloud_section_bundle.svg?h=460" class="u-image-position--top u-hide--small" alt="" height="460" style="height: 100%; right: 47%;" />
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/450d7c2f-openstack-hero.svg",
+              alt="",
+              width="534",
+              height="319",
+              hi_def=True,
+            ) | safe
+          }}
         </div>
         <div class="col-5">
           <h3><a href="/openstack/managed">The world’s most popular operating system across public clouds and OpenStack clouds&nbsp;&rsaquo;</a></h3>
@@ -118,7 +126,16 @@
           <p>Learn about how Ubuntu Core and snaps can help you build your connected devices.</p>
         </div>
         <div class="col-7 col-start-large-6 u-align--center">
-          <img class="u-hide--small" src="https://assets.ubuntu.com/v1/808a4e5b-iot.png?h=300" height="300" alt="" />
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/808a4e5b-iot.png?h=300",
+              alt="",
+              height="280",
+              width="667",
+              hi_def=True,
+              extra_classes="u-hide--small"
+            ) | safe
+          }}
         </div>
       </div>
     </section>
@@ -127,7 +144,16 @@
     <section class="p-strip is-deep is-bordered">
       <div class="row u-equal-height u-vertically-center">
         <div class="col-7">
-          <img src="https://assets.ubuntu.com/v1/668136e7-containers.svg" class="u-hide--small" style="height: 85%;" height="374" alt="" />
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/668136e7-containers.svg",
+              alt="",
+              height="374",
+              width="667",
+              hi_def=True,
+              extra_classes="u-hide--small"
+            ) | safe
+          }}
         </div>
         <div class="col-4">
           <h3><a href="/containers">The number one platform for containers&nbsp;&rsaquo;</a></h3>
@@ -144,7 +170,16 @@
           <p>Download the latest version of Ubuntu, for desktop PCs and laptops.</p>
         </div>
         <div class="col-7 col-start-large-6 u-align--center">
-          <img class="u-hide--small" src="https://assets.ubuntu.com/v1/c6504e94-Dell_XPS_Laptop_Front-Desktop.png?h=350" height="350" alt="" />
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/c6504e94-Dell_XPS_Laptop_Front-Desktop.png",
+              alt="",
+              height="350",
+              width="694",
+              hi_def=True,
+              extra_classes="u-hide--small"
+            ) | safe
+          }}
         </div>
       </div>
     </section>
