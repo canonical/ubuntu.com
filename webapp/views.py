@@ -70,7 +70,7 @@ def advantage():
         accounts = requests.get(
             "https://contracts.canonical.com/v1/accounts",
             headers={"Authorization": f"Macaroon {token}"},
-            timeout=1,
+            timeout=10,
         ).json()["accounts"]
 
         for account in accounts:
@@ -78,7 +78,7 @@ def advantage():
                 "https://contracts.canonical.com/"
                 f"v1/accounts/{account['id']}/contracts",
                 headers={"Authorization": f"Macaroon {token}"},
-                timeout=1,
+                timeout=10,
             ).json()["contracts"]
 
             for contract in account["contracts"]:
@@ -89,7 +89,7 @@ def advantage():
                     f"v1/contracts/{contract_id}/token",
                     headers={"Authorization": f"Macaroon {token}"},
                     json={},
-                    timeout=1,
+                    timeout=10,
                 ).json()["contractToken"]
 
                 if contract["contractInfo"]["origin"] == "free":
