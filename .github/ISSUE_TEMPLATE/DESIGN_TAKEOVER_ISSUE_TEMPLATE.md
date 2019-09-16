@@ -7,7 +7,7 @@ assignees: ''
 ---
 ## Marketing requirements
 
-- [ ] Please design the elements below according to this [brief]():
+- Please design the elements below according to this [brief]():
     - [ ] takeover & landing page
     - [ ] meta image
     - [ ] social media banner (1200px x 630px)
