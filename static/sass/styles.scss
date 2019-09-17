@@ -272,6 +272,16 @@ summary {
   }
 }
 
+.organisations-hero {
+  background-image: url('#{$assets-path}214648ba-_M8A2368-final.jpg?w=1280');
+  background-position: right bottom;
+  background-size: 1200px auto;
+
+  @media only screen and (min-width: 2000px) {
+    background-size: 75%;
+  }
+}
+
 // Fix trailing quote spacing on pull-quote pattern
 // Being fixed in Vanilla: https://github.com/canonical-web-and-design/vanilla-framework/issues/2426
 .p-pull-quote {
