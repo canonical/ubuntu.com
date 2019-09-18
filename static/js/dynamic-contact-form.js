@@ -16,6 +16,15 @@
       });
     });
 
+    // recaptcha submitCallback
+    var CaptchaCallback = function() {
+      let recaptchas = document.querySelectorAll("div[class^=g-recaptcha]");
+      recaptchas.forEach(function(field){
+        recaptchaWidgetId = grecaptcha.render(field, {'sitekey' : '6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if'});
+        field.setAttribute("data-widget-id", recaptchaWidgetId);
+      });
+    }
+
     // Fetch, load and initialise form
     function fetchForm(formData, contactButton) {
       fetch(formData.formLocation)
@@ -27,6 +36,7 @@
           formContainer.innerHTML = text.replace(/%% formid %%/g, formData.formId).replace(/%% lpId %%/g, formData.lpId).replace(/%% returnURL %%/g, formData.returnUrl).replace(/%% lpurl %%/g, formData.lpUrl);
           setProductContext(contactButton);
           initialiseForm();
+          CaptchaCallback();
         })
         .catch(function (error) {
           console.log('Request failed', error)
