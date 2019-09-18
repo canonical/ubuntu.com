@@ -18,6 +18,14 @@ context:
      form_return_url:
 ---
 
-Over the last decade, organizations have started virtualizing their IT workloads and migrating from legacy monolithic infrastructure to cloud environments. Many choose VMware as a provider for their virtualised infrastructure. However, because of the costs associated with VMware licencing, support and professional services, many are not able to meet their primary goal - significantly reduced TCO. In search of alternative solutions, organisations have recently started exploring other platforms such as OpenStack.
+Over the last decade, organisations have started virtualising their IT workloads and migrating from legacy monolithic infrastructure to cloud environments. Many choose VMware as a provider for their virtualised infrastructure. However, because of the costs associated with VMware licencing, support and professional services, many are not able to meet their primary goal - significantly reduced TCO. In search of alternative solutions, organisations have recently started exploring other platforms such as OpenStack.
+ 
+In this webinar, we present the key similarities and differences between VMware’s virtualisation offerings and Charmed OpenStack. In addition, we'll provide a detailed cost analysis highlighting the savings an organisation can make by migrating from VMware to Charmed OpenStack. 
+ 
+This webinar also provides a demonstration showing how to migrate an IT workload from VMware to Charmed OpenStack using the Cloud Migration as a Service tool from Cloudbase Solutions - Coriolis®. 
+ 
+Coriolis is the simplest way to migrate Windows or Linux virtual machines alongside their associated storage and networking configurations across multiple cloud platforms. Among the advantages of Coriolis are it’s scalable architecture, agentless design, integrated scheduler and REST API allowing automated operations.
 
-In this webinar, we present the key similarities and differences between VMware’s virtualisation offerings and Charmed OpenStack. In addition, we'll provide a detailed cost analysis highlighting the savings an organisation can make by migrating from VMware to Charmed OpenStack. This webinar also provides a demonstration showing how to migrate an IT workload from VMware to Charmed OpenStack using the Cloud Migration as a Service tool from Cloudbase Solutions - Coriolis.
+<div class="u-align--center">
+<img src="https://assets.ubuntu.com/v1/ac8bdd57-CBSL-Logo-Web-Dark.png?w=300" width="300px"/>
+</div>
