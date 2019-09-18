@@ -13,7 +13,9 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The state of your **Kubernetes** cluster is kept in the **etcd** datastore. This page shows how to backup and restore the etcd included in the **Charmed Distribution of Kubernetes <sup>&reg;</sup>**.
+The state of your **Kubernetes** cluster is kept in the **etcd** datastore.
+This page shows how to backup and restore the etcd included in
+**Charmed Kubernetes**.
 
 Backing up application specific data, normally stored in a persistent volume, is not currently supported by native Kubernetes. Various third party solutions are available -
 please refer to their own documentation for details.

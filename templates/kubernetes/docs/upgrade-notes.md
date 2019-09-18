@@ -19,6 +19,42 @@ The notes are organised according to the upgrade path below, but also be aware t
 upgrade that spans more than one minor version may need to beware of notes in
 any of the intervening steps.
 
+<a  id="1.16"> </a>
+
+## Upgrading to 1.16
+
+### Docker Registry with Containerd
+
+Prior to 1.16, some fixes were required to support using the
+Docker Registry charm with Containerd. 
+
+This charm, if used, is now supported through standard relations. Before upgrading,
+remove any reference of the registry in the `custom_registries`
+[containerd charm configuration](/kubernetes/docs/container-runtime). 
+
+After upgrading, see the [docker registry](/kubernetes/docs/docker-registry)
+instructions for details of how to configure a registry.
+
+### Admission control plugins
+
+In **Charmed Kubernetes 1.16**, the API server parameter by which additional,
+non-default admission control plugins is specified has changed. The old
+parameter was `--admission-control`; the new parameter is `--enable-admission-plugins`.
+
+For example, prior to 1.16, The 'PodSecurityPolicy' admission plugin could be
+applied like this:
+```bash
+juju config kubernetes-master api-extra-args="admission-control=PodSecurityPolicy"
+```
+
+As of 1.16, this changes to:
+```bash
+juju config kubernetes-master api-extra-args="enable-admission-plugins=PodSecurityPolicy"
+```
+
+If using non-default admission plugins, be sure to upgrade your charm config
+accordingly after upgrading to 1.16.
+
 <a  id="1.15"> </a>
 
 ## Upgrading to 1.15
@@ -160,7 +196,7 @@ juju remove-application kubernetes-worker-temp
 #### Mixing Containerd and Docker
 
 
-Once you have a Containerd backed CDK running, you can add Docker backed
+Once you have a Containerd backed Charmed Kubernetes running, you can add Docker backed
 workers like so:
 
 ```bash
@@ -176,7 +212,7 @@ juju relate docker kubernetes-worker-docker
 This upgrade includes support for **CoreDNS 1.4.0**. All new deployments of
 **Charmed Kubernetes** will install **CoreDNS** by default instead of **KubeDNS**.
 
-Existing deployments which are upgraded to **CDK 1.14** will continue to use
+Existing deployments which are upgraded to **Charmed Kubernetes 1.14** will continue to use
 **KubeDNS** until the operator chooses to upgrade to **CoreDNS**. To upgrade,
 set the new dns-provider config:
 
@@ -209,7 +245,7 @@ This upgrade includes a transistion between major versions of **etcd**, from 2.3
   </p>
 </div>
 
-To make this upgrade more convenient for users of **CDK**, a script has been prepared to manage the transition. The script can be [examined here][script].
+To make this upgrade more convenient for users of **Charmed Kubernetes**, a script has been prepared to manage the transition. The script can be [examined here][script].
 
 To use the script to update **etcd**, follow these steps:
 
@@ -258,3 +294,4 @@ You can now proceed with the rest of the upgrade.
 [etcd-upgrade]: https://github.com/etcd-io/etcd/blob/master/Documentation/upgrades/upgrade_3_0.md
 [script]: https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate
 [dns-provider-config]: https://github.com/juju-solutions/kubernetes/blob/5f4868af82705a0636680a38d7f3ea760d35dadb/cluster/juju/layers/kubernetes-master/config.yaml#L58-L67
+[docker-page]: https://jaas.ai/u/containers/docker#configuration

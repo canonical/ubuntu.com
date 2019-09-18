@@ -4,8 +4,8 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Certificates and Trust Management"
-  description: How CDK manages PKI certificates and trust
-keywords: juju, kubernetes, cdk, security, pki, encryption, vault, ha
+  description: How Charmed Kubernetes manages PKI certificates and trust
+keywords: juju, kubernetes, security, pki, encryption, vault, ha
 tags: [operating, security]
 sidebar: k8smain-sidebar
 permalink: certs-and-trust.html
@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The components of **Charmed Distribution of Kubernetes<sup>&reg;</sup> (CDK)**
+The components of **Charmed Kubernetes**
 need to be able to communicate securely over the network. This is accomplished
 using [TLS][] and [public-key encryption][PKI] with a [chain of trust][] up
 to a shared root [Certificate Authority (CA)][CA]. However, when the cluster
@@ -60,7 +60,7 @@ will have to be configured as an intermediary CA with a chain of trust up to a
 globally trusted CA (such as [Comodo][] or [DigiCert][]).
 
 The certificate information will also be included in the **Kubernetes** `config`
-file that **CDK** generates to be used by [kubelet][], so that communications
+file that **Charmed Kubernetes** generates to be used by [kubelet][], so that communications
 between the local machine and Kubernetes will be secured.
 
 ## Server certificates
@@ -75,7 +75,7 @@ will not change, but for internal service communication, it is often just the
 addresses by which the service can be reached will be its [subject alternative
 names (SANs)][SANs].
 
-**CDK** will manage the server certificates automatically, including
+**Charmed Kubernetes** will manage the server certificates automatically, including
 generating the certificate with the proper CN and SANs. However, the
 [kubernetes-master][] charm also supports an [`extra_sans`][] option which
 can be used to provide additional names to be added to the SANs list.
@@ -89,15 +89,15 @@ they are connecting to so that the service can validate that client's identity.
 Client certificates can _only_ be used to identify a client and will be
 rejected by clients if presented by a service they are connecting to.
 
-# Certificate Authorities for CDK
+# Certificate Authorities for Charmed Kubernetes
 
-**CDK** can use a CA provided by any charm which [provides a tls-certificates
+**Charmed Kubernetes** can use a CA provided by any charm which [provides a tls-certificates
 endpoint][provides-tls]. The two current recommendations are
 **EasyRSA** and **Vault**.
 
 ## EasyRSA
 
-By default, the **CDK** bundle includes the [EasyRSA charm][easyrsa-charm]. This
+By default, the **Charmed Kubernetes** bundle includes the [EasyRSA charm][easyrsa-charm]. This
 is a relatively simple charm which uses [OpenVPN's easy-rsa][easy-rsa] to
 provide a CA and sign certificates. This is lightweight and works out
 of the box without any additional configuration, but it cannot act as an
@@ -108,7 +108,7 @@ intermediary CA and does not support [HA][].
 For production systems, it is recommended to replace EasyRSA with the [Vault
 charm][vault-charm]. This uses [HashiCorp's Vault][vault] to provide either a
 root or intermediate CA. It can also be deployed HA, as well as provide a secure
-secrets store which can be used to enable encryption-at-rest for **CDK**. However,
+secrets store which can be used to enable encryption-at-rest for **Charmed Kubernetes**. However,
 it requires a database to store its data, and (depending on configuration)
 some manual steps will be required after deployment as well as after any reboot
 to unseal Vault so that the secrets, such as certificates and signing keys, can

@@ -13,15 +13,15 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The standard deployment of the
-**Charmed Distribution of Kubernetes<sup>&reg;</sup> (CDK)** includes a single
-instance of the kube-api-loadbalancer.  For many use cases this is perfectly adequate,
-but in a production environment you should be keen to eliminate any single point of
-failure.
+The standard deployment of **Charmed Kubernetes** includes a single instance
+of the kube-api-loadbalancer. For many use cases this is perfectly adequate,
+but in a production environment you should be keen to eliminate any single
+point of failure.
 
-The recommended way to provide a failover for the kube-api-loadbalancer is by using
-[keepalived][keepalived-home]. This is available as a **Juju** charm and can be deployed
-into your **CDK** model and configured as follows:
+The recommended way to provide a failover for the kube-api-loadbalancer is by
+using [keepalived][keepalived-home]. This is available as a **Juju** charm and
+can be deployed into your **Charmed Kubernetes** model and configured as
+follows:
 
 1. Deploy the `keepalived` charm:
     ```bash
@@ -73,11 +73,12 @@ into your **CDK** model and configured as follows:
     juju add-unit kubeapi-load-balancer -n 2
     ```
 
-Note that the `keepalived` application is a [_subordinate charm_][subordinate-charm] -
-it does not require a machine of its own to run on, but rather runs alongside the
-`kubeapi-load-balancer` charm. If for any reason you need to [view logs][logging-doc] or
-troubleshoot this application, it will be found co-located on the machines running the
-load balancer.
+Note that the `keepalived` application is a
+[_subordinate charm_][subordinate-charm] - it does not require a machine of its
+own to run on, but rather runs alongside the `kubeapi-load-balancer` charm. If
+for any reason you need to [view logs][logging-doc] or troubleshoot this
+application, it will be found co-located on the machines running the load
+balancer.
 
 <!--LINKS-->
 [keepalived-home]: http://www.keepalived.org/

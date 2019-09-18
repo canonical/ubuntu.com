@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "base-docs.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:

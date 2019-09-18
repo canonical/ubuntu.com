@@ -4,7 +4,7 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Upgrading"
-  description: How to upgrade your version of CDK.
+  description: How to upgrade your version of Charmed Kubernetes.
 keywords: juju, upgrading, track, version
 tags: [operating]
 sidebar: k8smain-sidebar
@@ -198,7 +198,7 @@ For most use cases, it is strongly recommended to use the 'stable' version of ch
 
 ### Upgrading the **kube-api-loadbalancer**
 
-A core part of **CDK** is the kubeapi-load-balancer component. To ensure API service
+A core part of **Charmed Kubernetes** is the kubeapi-load-balancer component. To ensure API service
 continuity this upgrade should precede any upgrades to the **Kubernetes** master and
 worker units.
 

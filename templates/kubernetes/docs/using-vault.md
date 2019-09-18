@@ -5,7 +5,7 @@ markdown_includes:
 context:
   title: "Using Vault as a CA"
   description: How to replace EasyRSA with Vault for increased security
-keywords: juju, kubernetes, cdk, security, encryption, vault
+keywords: juju, kubernetes, security, encryption, vault
 tags: [operating, security]
 sidebar: k8smain-sidebar
 permalink: using-vault.html
@@ -98,31 +98,45 @@ juju run-action vault/0 authorize-charm token={charm token}
 An existing **Charmed Kubernetes** deployment which is using EasyRSA can
 be transitioned to use **Vault** as a CA.
 
-Follow the same steps as outlined above, and redeploy the same
-base bundle which was initially deployed on top of the existing deployment,
-adding the Vault overlay ([download][k8s-vault-yaml]).
-
 <div class="p-notification--information">
   <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-    Using an unpinned bundle revision may result in the cluster charms being
-    upgraded. To avoid this, specify the exact bundle revision you deployed
-    originally, or use `juju export-bundle` to create a custom bundle
-    based on exactly what is currently deployed.
+    During the transition, any pods that use ServiceAccounts to talk to the
+    Kubernetes API may need to be restarted. Addons that are deployed and
+    managed by **Charmed Kubernetes** will be restarted automatically. If you
+    have deployed anything into Kubernetes that talks to the Kubernetes API, it
+    is recommended that you restart them after the transition by using the
+    `kubectl rollout restart` command.
   </p>
 </div>
 
-For example, for a 1.15 release:
+Deploy **Vault** and Percona Cluster:
 
 ```bash
-juju deploy charmed-kubernetes-139 --overlay ./k8s-vault.yaml
+juju deploy cs:percona-cluster
+juju deploy cs:~openstack-charmers-next/vault
+juju config vault auto-generate-root-ca-cert=true
+juju add-relation vault:shared-db percona-cluster:shared-db
 ```
 
-Then follow the steps to unseal **Vault**. This will transition all of the
-components of the cluster to the new CA and certificates. This will not cause
-any disruption to running workloads, but you will be unable to issue cluster
-commands with `kubectl` for a brief period.
+Unseal **Vault** as described earlier in this document.
 
+Relate **Vault** to etcd:
+
+```bash
+juju add-relation vault:certificates etcd:certificates
+```
+
+Wait a few minutes for the cluster to settle, with all units showing as active
+and idle. Then relate **Vault** to Kubernetes:
+
+```bash
+juju add-relation vault:certificates kubeapi-load-balancer:certificates
+juju add-relation vault:certificates kubernetes-master:certificates
+juju add-relation vault:certificates kubernetes-worker:certificates
+```
+
+Wait a few minutes for the cluster to settle, and ensure that all services and
+workloads are functioning as expected.
 
 After the transition, you must remove **EasyRSA** to prevent it from
 conflicting with **Vault**:
@@ -137,6 +151,15 @@ since it contains the certificate info for connecting to the cluster:
 ```bash
 juju scp kubernetes-master/0:config ~/.kube/config
 ```
+
+<div class="p-notification--caution">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Caution:</span>
+If you have multiple clusters you will need to manage the config file rather than just
+replacing it. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
+Kubernetes documentation</a> for more information on managing multiple clusters.
+  </p>
+</div>
 
 ## Using Vault as an intermediary CA
 

@@ -4,7 +4,7 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Audit logging"
-  description: Accessing and configuring the Kubernetes audit logs with CDK
+  description: Accessing and configuring the Kubernetes audit logs with Charmed Kubernetes
 keywords: log, audit, config
 tags: [operating]
 sidebar: k8smain-sidebar
@@ -14,21 +14,22 @@ toc: False
 ---
 
 Kubernetes auditing provides a security-relevant chronological set of records
-documenting the sequence of activities that have affected the system by individual
-users, administrators or other components of the system. This documentation
-covers the configuration and usage of these audit logs in the
-**Charmed Distribution of Kubernetes<sup>&reg;</sup>**. For a more detailed
-description of the motives and methodology behind audit logging in Kubernetes, see
-the [Kubernetes Auditing documentation][k8s-audit].
+documenting the sequence of activities that have affected the system by
+individual users, administrators or other components of the system. This
+documentation covers the configuration and usage of these audit logs in
+**Charmed Kubernetes**. For a more detailed description of the motives and
+methodology behind audit logging in Kubernetes, see the
+[Kubernetes Auditing documentation][k8s-audit].
 
 
 ## Viewing the log
 
-By default, CDK enables audit logging to files on the kubernetes-master units. The log
-file is located at `/root/cdk/audit/audit.log` and is owned by the nominal `root` user. You
-can view the log directly by using Juju's credentials to make an SSH connection:
+By default, **Charmed Kubernetes** enables audit logging to files on the
+`kubernetes-master` units. The log file is located at
+`/root/cdk/audit/audit.log` and is owned by the nominal `root` user. You can
+view the log directly by using Juju's credentials to make an SSH connection:
 
-```
+```bash
 juju ssh kubernetes-master/0 sudo cat /root/cdk/audit/audit.log
 ```
 
@@ -37,7 +38,7 @@ Note that this log is replicated on all kubernetes-master units.
 ## Audit policy configuration
 
 Audit policy defines rules about what events should be recorded and what data
-they should include.  For **CDK** this is configurable on the kubernetes-master charm
+they should include.  For **Charmed Kubernetes** this is configurable on the kubernetes-master charm
 using the `audit-policy` setting.
 
 To view the current policy:
@@ -68,10 +69,12 @@ upstream [Kubernetes Audit Policy documentation][k8s-audit-policy].
 
 ## Audit log backend configuration
 
-The audit log backend writes audit events to a file in JSON format. It is configurable in
-**CDK**  through the use of the `api-extra-args` config on kubernetes-master.
+The audit log backend writes audit events to a file in JSON format. It is
+configurable in **Charmed Kubernetes**  through the use of the `api-extra-args`
+config on kubernetes-master.
 
-By default, the log backend is enabled in CDK with the following configuration:
+By default, the log backend is enabled in Charmed Kubernetes with the following
+configuration:
 
 | kube-apiserver config | value |
 | --------------------------------- | ----- |
@@ -102,10 +105,10 @@ for more information about the available options.
 
 ## Audit webhook backend configuration
 
-The audit webhook backend sends audit events to a remote API, which is assumed to be
-the same API that the kube-apiserver exposes. This backend is disabled by default in
-**CDK**, and is configurable on the kubernetes-master charm via the
-`audit-webhook-config` option.
+The audit webhook backend sends audit events to a remote API, which is assumed
+to be the same API that the kube-apiserver exposes. This backend is disabled by
+default in **Charmed Kubernetes**, and is configurable on the kubernetes-master
+charm via the `audit-webhook-config` option.
 
 To view the current audit webhook configuration:
 
@@ -114,7 +117,8 @@ juju config kubernetes-master audit-webhook-config
 ```
 
 To set a new audit webhook config, it is easiest to write the config to a file.
-Assuming you have a file named `audit-webhook-config.yaml` with the following contents:
+Assuming you have a file named `audit-webhook-config.yaml` with the following
+contents:
 
 ```yaml
 apiVersion: v1

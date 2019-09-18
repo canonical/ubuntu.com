@@ -4,7 +4,7 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Release notes"
-  description: Release notes for CDK
+  description: Release notes for Charmed Kubernetes
 keywords: kubernetes, news, release, notes
 tags: [news]
 sidebar: k8smain-sidebar
@@ -53,7 +53,7 @@ read the [documentation][docs-ldap] for details on how to enable this.
 Added support for using [Vault](https://jujucharms.com/u/openstack-charmers/vault/)
 for PKI in place of EasyRSA. Vault is more secure and robust than EasyRSA and supports
 more advanced features for certificate management. See the
-[documentation][docs-vault] for details of how to add Vault to CDK and configure it as a
+[documentation][docs-vault] for details of how to add Vault to Charmed Kubernetes and configure it as a
 root or intermediary CA.
 
 - Encryption-at-rest support using Vault
@@ -131,7 +131,7 @@ reside in the same namespace as the nginx deployment.
 
 - Added support for Ubuntu 18.04 (Bionic)
 
-New deployments will get Ubuntu 18.04 machines by default. We will also continue to support CDK on Ubuntu 16.04 (Xenial) machines for existing deployments.
+New deployments will get Ubuntu 18.04 machines by default. We will also continue to support Charmed Kubernetes on Ubuntu 16.04 (Xenial) machines for existing deployments.
 
 - Added kube-proxy to kubernetes-master
 
