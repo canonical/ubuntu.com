@@ -3,18 +3,22 @@
   - [Overview](/kubernetes/docs/overview)
 - **Install**
   - [Quickstart](/kubernetes/docs/quickstart)
+  - [Install](/kubernetes/docs/install-manual)
   - [Local install](/kubernetes/docs/install-local)
-  - [Manual install](/kubernetes/docs/install-manual)
 - **Cloud Integration**
   - [AWS integration](/kubernetes/docs/aws-integration)
   - [GCP integration](/kubernetes/docs/gcp-integration)
   - [OpenStack integration](/kubernetes/docs/openstack-integration)
+  - [LXD](/kubernetes/docs/install-local)
 - **Networking**
   - [CNI overview](/kubernetes/docs/cni-overview)  
   - [Flannel](/kubernetes/docs/cni-flannel)
   - [Calico](/kubernetes/docs/cni-calico)
   - [Canal](/kubernetes/docs/cni-canal)
   - [Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)  
+- **Container Runtimes**
+  - [Containerd & Docker](/kubernetes/docs/container-runtime)
+  - [Kata](/kubernetes/docs/kata)
 - **Operations**
   - [Basic operations](/kubernetes/docs/operations)
   - [Logging](/kubernetes/docs/logging)
@@ -34,7 +38,6 @@
   - [Audit Logging](/kubernetes/docs/audit-logging)
   - [Using Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)
   - [Troubleshooting](/kubernetes/docs/troubleshooting)
-  - [Containerd and Docker](/kubernetes/docs/container-runtime)
 - **High Availability**
   - [Overview](/kubernetes/docs/high-availability)
   - [keepalived](/kubernetes/docs/keepalived)
@@ -45,4 +48,5 @@
   - [Release notes](/kubernetes/docs/release-notes)
   - [Upgrade notes](/kubernetes/docs/upgrade-notes)
   - [Certificates and trust](/kubernetes/docs/certs-and-trust)
+  - [Snap refresh settings](/kubernetes/docs/snap-refresh)
   - [Get in touch](/kubernetes/docs/get-in-touch)
