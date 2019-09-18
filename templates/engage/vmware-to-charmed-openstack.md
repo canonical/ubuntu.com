@@ -27,5 +27,5 @@ This webinar also provides a demonstration showing how to migrate an IT workload
 Coriolis is the simplest way to migrate Windows or Linux virtual machines alongside their associated storage and networking configurations across multiple cloud platforms. Among the advantages of Coriolis are it’s scalable architecture, agentless design, integrated scheduler and REST API allowing automated operations.
 
 <div class="u-align--center">
-<img src="https://assets.ubuntu.com/v1/ac8bdd57-CBSL-Logo-Web-Dark.png" width="300px"/>
+<img src="https://assets.ubuntu.com/v1/ac8bdd57-CBSL-Logo-Web-Dark.png?w=300" width="300px"/>
 </div>
