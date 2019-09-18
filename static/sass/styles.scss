@@ -297,3 +297,12 @@ summary {
     }
   }
 }
+
+// Hide images that fail to lazy load due to JS failing or other
+.lazyload {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+  width: 0;
+}

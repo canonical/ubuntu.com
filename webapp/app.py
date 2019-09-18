@@ -12,6 +12,7 @@ import re
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
+from canonicalwebteam import image_template
 from feedparser import parse
 from canonicalwebteam.blog.flask import build_blueprint
 from canonicalwebteam.blog import BlogViews
@@ -151,3 +152,8 @@ def download_thank_you(category):
     return flask.render_template(
         f"download/{category}/thank-you.html", **context
     )
+
+
+@app.context_processor
+def utility_processor():
+    return {"image": image_template}

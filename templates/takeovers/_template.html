@@ -23,9 +23,9 @@
         {% endif %}
       </div>
     </div>
-    {% if image %}
+    {% if header_image %}
     <div class="{% if equal_cols %}col-6{% else %}col-5{% endif %} {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-vertically-center u-align--center u-align--left-medium">
-      <img src="{% if 'http' not in image %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="" {% if image_style %}style="{{ image_style }}"{% endif %}>
+      <img src="{% if 'http' not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" alt="" {% if image_style %}style="{{ image_style }}"{% endif %}>
     </div>
     {% endif %}
     <div class="u-hide--medium u-hide--large">
