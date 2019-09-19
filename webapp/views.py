@@ -57,7 +57,7 @@ def download_thank_you(category):
 def advantage():
     accounts = None
     personal_account = None
-    enterprise_contracts = None
+    enterprise_contracts = []
     entitlements = {}
     openid = flask.session.get("openid")
 
@@ -70,7 +70,7 @@ def advantage():
         accounts = requests.get(
             "https://contracts.canonical.com/v1/accounts",
             headers={"Authorization": f"Macaroon {token}"},
-            timeout=10,
+            timeout=3,
         ).json()["accounts"]
 
         for account in accounts:
@@ -78,7 +78,7 @@ def advantage():
                 "https://contracts.canonical.com/"
                 f"v1/accounts/{account['id']}/contracts",
                 headers={"Authorization": f"Macaroon {token}"},
-                timeout=10,
+                timeout=3,
             ).json()["contracts"]
 
             for contract in account["contracts"]:
@@ -88,7 +88,7 @@ def advantage():
                     f"v1/contracts/{contract_id}/token",
                     headers={"Authorization": f"Macaroon {token}"},
                     json={},
-                    timeout=10,
+                    timeout=3,
                 ).json()["contractToken"]
 
                 if contract["contractInfo"]["origin"] == "free":
@@ -98,7 +98,7 @@ def advantage():
                         for entitlement in contract["contractInfo"][
                             "resourceEntitlements"
                         ]:
-                            if entitlement["type"] == "esm":
+                            if entitlement["type"] == "esm-infra":
                                 entitlements["esm"] = True
                             elif entitlement["type"] == "livepatch":
                                 entitlements["livepatch"] = True
@@ -108,27 +108,25 @@ def advantage():
                                 entitlements["cc-eal"] = True
                         personal_account["entitlements"] = entitlements
                 else:
+                    entitlements = {}
+                    for entitlement in contract["contractInfo"][
+                        "resourceEntitlements"
+                    ]:
+                        contract["supportLevel"] = "-"
+                        if entitlement["type"] == "esm-infra":
+                            entitlements["esm"] = True
+                        elif entitlement["type"] == "livepatch":
+                            entitlements["livepatch"] = True
+                        elif entitlement["type"] == "fips":
+                            entitlements["fips"] = True
+                        elif entitlement["type"] == "cc-eal":
+                            entitlements["cc-eal"] = True
+                        elif entitlement["type"] == "support":
+                            contract["supportLevel"] = entitlement[
+                                "affordances"
+                            ]["supportLevel"]
+                    contract["entitlements"] = entitlements
                     enterprise_contracts.append(contract)
-
-        # For test purposes only. REMOVE BEFORE MERGING!
-        # entitlements = {}
-        # enterprise_contracts = [{'accountInfo': {'createdAt': '2019-05-09T08:44:28Z', 'id': 'aAOU-sacxhQlyMy_unw2B-gnxJFuEGowQwnTiLKuksca', 'name': 'test1'}, 'contractInfo': {'createdAt': '2019-05-09T08:44:28.340322Z', 'createdBy': '', 'effectiveFrom': '2019-05-09T08:44:28.340322Z', 'id': 'cAPE_snQFVf6Ozq60Mg1l-xdMKpoaHq1R9hy793S9GZa', 'name': 'test-contract1', 'origin': 'enterprise', 'resourceEntitlements': [{'affordances': {'architectures': None, 'series': ['bionic', 'precise', 'trusty', 'xenial']}, 'directives': {'additionalPackages': None, 'aptKey': '56F7650A24C9E9ECF87C4D8D4067E40313CB4B13', 'aptURL': 'https://esm.ubuntu.com', 'suites': ['precise', 'trusty-security', 'trusty-updates', 'xenial-security', 'xenial-updates', 'bionic-security', 'bionic-updates']}, 'entitled': True, 'obligations': {'enableByDefault': True}, 'series': {'bionic': {'directives': {'aptKey': '2926E7D347A1955504000A983121D2531EF59819', 'suites': ['bionic-security', 'bionic-updates']}}, 'precise': {'directives': {'aptKey': '74AE092F7629ACDF4FB17310B4C2AF7A67C7A026', 'suites': ['precise']}}, 'trusty': {'directives': {'suites': ['trusty-security', 'trusty-updates']}}, 'xenial': {'directives': {'aptKey': '3CB3DF682220A643B43065E9B30EDAA63D8F61D0', 'suites': ['xenial-security', 'xenial-updates']}}}, 'type': 'esm'}, {'affordances': {'architectures': ['x86_64'], 'kernelFlavors': ['generic', 'lowlatency', 'oem'], 'minKernelVersion': '4.4', 'series': ['bionic', 'trusty', 'xenial'], 'tier': 'stable'}, 'directives': {'caCerts': '', 'remoteServer': 'https://livepatch.canonical.com'}, 'entitled': True, 'obligations': {'enableByDefault': True}, 'series': {'bionic': {}, 'trusty': {'obligations': {'enableByDefault': False}}, 'xenial': {}}, 'type': 'livepatch'}, {'affordances': {'supportLevel': 'n/a'}, 'entitled': True, 'obligations': {'enableByDefault': False}, 'type': 'support'}]}},  {'accountInfo': {'createdAt': '2019-06-09T08:44:28Z', 'id': 'aAOU-sacxhQlyMy_unw2B-gnxJFuEGowQwnTiLKukscb', 'name': 'test2'}, 'contractInfo': {'createdAt': '2019-06-09T08:44:28.340322Z', 'createdBy': '', 'effectiveFrom': '2019-05-09T08:44:28.340322Z', 'id': 'cAPE_snQFVf6Ozq60Mg1l-xdMKpoaHq1R9hy793S9GZb', 'name': 'test-contract2', 'origin': 'enterprise', 'resourceEntitlements': [{'affordances': {'architectures': None, 'series': ['bionic', 'precise', 'trusty', 'xenial']}, 'directives': {'additionalPackages': None, 'aptKey': '56F7650A24C9E9ECF87C4D8D4067E40313CB4B13', 'aptURL': 'https://esm.ubuntu.com', 'suites': ['precise', 'trusty-security', 'trusty-updates', 'xenial-security', 'xenial-updates', 'bionic-security', 'bionic-updates']}, 'entitled': True, 'obligations': {'enableByDefault': True}, 'series': {'bionic': {'directives': {'aptKey': '2926E7D347A1955504000A983121D2531EF59819', 'suites': ['bionic-security', 'bionic-updates']}}, 'precise': {'directives': {'aptKey': '74AE092F7629ACDF4FB17310B4C2AF7A67C7A026', 'suites': ['precise']}}, 'trusty': {'directives': {'suites': ['trusty-security', 'trusty-updates']}}, 'xenial': {'directives': {'aptKey': '3CB3DF682220A643B43065E9B30EDAA63D8F61D0', 'suites': ['xenial-security', 'xenial-updates']}}}, 'type': 'esm'}, {'affordances': {'architectures': ['x86_64'], 'kernelFlavors': ['generic', 'lowlatency', 'oem'], 'minKernelVersion': '4.4', 'series': ['bionic', 'trusty', 'xenial'], 'tier': 'stable'}, 'directives': {'caCerts': '', 'remoteServer': 'https://livepatch.canonical.com'}, 'entitled': True, 'obligations': {'enableByDefault': True}, 'series': {'bionic': {}, 'trusty': {'obligations': {'enableByDefault': False}}, 'xenial': {}}, 'type': 'livepatch'}, {'affordances': {'supportLevel': 'n/a'}, 'entitled': True, 'obligations': {'enableByDefault': False}, 'type': 'support'}]}},  {'accountInfo': {'createdAt': '2019-07-09T08:44:28Z', 'id': 'aAOU-sacxhQlyMy_unw2B-gnxJFuEGowQwnTiLKukscc', 'name': 'test3'}, 'contractInfo': {'createdAt': '2019-07-09T08:44:28.340322Z', 'createdBy': '', 'effectiveFrom': '2019-05-09T08:44:28.340322Z', 'id': 'cAPE_snQFVf6Ozq60Mg1l-xdMKpoaHq1R9hy793S9GZc', 'name': 'test-contract3', 'origin': 'enterprise', 'resourceEntitlements': [{'affordances': {'architectures': None, 'series': ['bionic', 'precise', 'trusty', 'xenial']}, 'directives': {'additionalPackages': None, 'aptKey': '56F7650A24C9E9ECF87C4D8D4067E40313CB4B13', 'aptURL': 'https://esm.ubuntu.com', 'suites': ['precise', 'trusty-security', 'trusty-updates', 'xenial-security', 'xenial-updates', 'bionic-security', 'bionic-updates']}, 'entitled': True, 'obligations': {'enableByDefault': True}, 'series': {'bionic': {'directives': {'aptKey': '2926E7D347A1955504000A983121D2531EF59819', 'suites': ['bionic-security', 'bionic-updates']}}, 'precise': {'directives': {'aptKey': '74AE092F7629ACDF4FB17310B4C2AF7A67C7A026', 'suites': ['precise']}}, 'trusty': {'directives': {'suites': ['trusty-security', 'trusty-updates']}}, 'xenial': {'directives': {'aptKey': '3CB3DF682220A643B43065E9B30EDAA63D8F61D0', 'suites': ['xenial-security', 'xenial-updates']}}}, 'type': 'esm'}, {'affordances': {'architectures': ['x86_64'], 'kernelFlavors': ['generic', 'lowlatency', 'oem'], 'minKernelVersion': '4.4', 'series': ['bionic', 'trusty', 'xenial'], 'tier': 'stable'}, 'directives': {'caCerts': '', 'remoteServer': 'https://livepatch.canonical.com'}, 'entitled': True, 'obligations': {'enableByDefault': True}, 'series': {'bionic': {}, 'trusty': {'obligations': {'enableByDefault': False}}, 'xenial': {}}, 'type': 'livepatch'}, {'affordances': {'supportLevel': 'n/a'}, 'entitled': True, 'obligations': {'enableByDefault': False}, 'type': 'support'}]}}]
-        if enterprise_contracts:
-            for contract in enterprise_contracts:
-                for entitlement in contract["contractInfo"][
-                    "resourceEntitlements"
-                ]:
-                    if entitlement["type"] == "esm":
-                        entitlements["esm"] = True
-                    elif entitlement["type"] == "livepatch":
-                        entitlements["livepatch"] = True
-                    elif entitlement["type"] == "fips":
-                        entitlements["fips"] = True
-                    elif entitlement["type"] == "cc-eal":
-                        entitlements["cc-eal"] = True
-                contract["entitlements"] = entitlements
-
-
 
     return flask.render_template(
         "advantage/index.html",

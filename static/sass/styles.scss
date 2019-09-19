@@ -29,11 +29,11 @@
 $font-base-family: '"UbtuOverride", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif' !default;
 
 // import site specific patterns and overrides
-@import 'pattern_blog-featured';
-@import 'pattern_blog-list';
-@import 'pattern_blog-post';
-@import 'pattern_blog-card';
-@import 'pattern_blog-suru';
+@import "pattern_blog-featured";
+@import "pattern_blog-list";
+@import "pattern_blog-post";
+@import "pattern_blog-card";
+@import "pattern_blog-suru";
 @import "pattern_blog-topic";
 @import "pattern_buttons";
 @import "pattern_card";
@@ -58,7 +58,7 @@ $font-base-family: '"UbtuOverride", -apple-system, "Segoe UI", "Roboto", "Oxygen
 @import "pattern_ubuntu_intro";
 @import "takeovers/financial-services";
 @import "utility-animations";
-@import 'utility_crop';
+@import "utility_crop";
 
 @include blog-p-card;
 @include blog-u-crop;
@@ -268,7 +268,7 @@ summary {
 }
 
 .desktop-hero {
-  background-image: url('#{$assets-path}50c18622-insitu-laptop-overview.jpg');
+  background-image: url("#{$assets-path}50c18622-insitu-laptop-overview.jpg");
   background-position: right bottom;
   background-size: 1200px auto;
 
@@ -319,6 +319,8 @@ summary {
 
 // Advantage section
 .advantage-table {
+  overflow: visible;
+
   tr:target {
     background-color: $color-mid-x-light;
   }
@@ -347,4 +349,84 @@ summary {
 
 .u-rotate {
   transform: rotate(180deg);
+}
+
+.p-table--advantage {
+  overflow: visible;
+
+  th,
+  td {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    &:last-child {
+      padding-right: 0.5rem;
+    }
+  }
+
+  .p-table__row {
+    position: relative;
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      flex: 3;
+    }
+  }
+
+  .p-table-expanding__panel {
+    @extend %p-card--highlighted;
+  }
+
+  .p-table--open {
+    background-color: $color-mid-x-light;
+  }
+
+  .u-toggle {
+    background: transparent;
+    border: 0;
+
+    &[aria-expanded="true"]::after {
+      border: {
+        bottom: 8px solid $color-x-light;
+        left: 8px solid transparent;
+        right: 8px solid transparent;
+      }
+      bottom: 0;
+      content: "";
+      height: 0;
+      left: calc(50% - 4px);
+      pointer-events: none;
+      position: absolute;
+      width: 0;
+      z-index: 5;
+    }
+  }
+}
+
+.u-arrow-up {
+  margin-top: 0.25rem;
+  overflow: visible;
+  position: relative;
+  z-index: 20;
+
+  &::after {
+    background: $color-x-light;
+    box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
+    content: "";
+    height: 1rem;
+    left: 1rem;
+    pointer-events: none;
+    position: absolute;
+    top: -8px;
+    transform: rotate(45deg);
+    width: 1rem;
+    z-index: 5;
+  }
+}
+
+.u-padding-top--small {
+  @media only screen and (max-width: $breakpoint-small) {
+    margin-left: 0 !important;
+    margin-top: 1rem !important;
+  }
 }
