@@ -68,14 +68,14 @@ def advantage():
         token = binary_serialize_macaroons([root, bound]).decode("utf-8")
 
         accounts = requests.get(
-            "https://contracts.canonical.com/v1/accounts",
+            "https://contracts.staging.canonical.com/v1/accounts",
             headers={"Authorization": f"Macaroon {token}"},
             timeout=3,
         ).json()["accounts"]
 
         for account in accounts:
             account["contracts"] = requests.get(
-                "https://contracts.canonical.com/"
+                "https://contracts.staging.canonical.com/"
                 f"v1/accounts/{account['id']}/contracts",
                 headers={"Authorization": f"Macaroon {token}"},
                 timeout=3,
@@ -84,7 +84,7 @@ def advantage():
             for contract in account["contracts"]:
                 contract_id = contract["contractInfo"]["id"]
                 contract["token"] = requests.post(
-                    "https://contracts.canonical.com/"
+                    "https://contracts.staging.canonical.com/"
                     f"v1/contracts/{contract_id}/token",
                     headers={"Authorization": f"Macaroon {token}"},
                     json={},
