@@ -14,57 +14,52 @@
     </div>
   </div>
 </section>
-<section class="p-strip u-no-padding--top" style="overflow:visible;">
 
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <div class="col-10">
       <h2>You are signed in</h2>
       <p>
         {{ openid.fullname }} ({{ openid.email }})
-        <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" style="margin-left: 1rem;" onclick="dataLayer.push({
+        <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom u-padding-top--small" style="margin-left: 1rem;" onclick="dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
           'eventAction' : 'Authentication',
           'eventLabel' : 'Sign out',
           'eventValue' : undefined
-        });">Sign out</a></p>
-      </div>
+        });">Sign out</a>
+      </p>
     </div>
+  </div>
+</section>
 
-    {{ accounts }}
-    <hr />
-    {{ enterprise_contracts }}
-    <hr />
-    {{ personal_account }}
-
-    <div class="u-fixed-width">
-      <hr class="p-separator" style="margin: 1rem 0 1.5rem;">
-    </div>
-
-    {% if enterprise_contracts %}
-
-    <div class="row">
-      <div class="col-12">
-        <h2>Your enterprise subscriptions</h2>
-        <table class="p-table-expanding">
+{% if enterprise_contracts %}
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-12">
+      <h2>Your enterprise subscriptions</h2>
+      <div style="overflow-x: auto;">
+        <table class="p-table-expanding p-table--advantage" style="min-width: 500px">
           <thead>
-            <tr>
+            <tr class="p-table__row">
               <th>Name</th>
-              <th>Machines</th>
               <th>UA</th>
-              <th>Livepatch</th>
-              <th>ESM</th>
-              <th>FIPS</th>
-              <th>CC-EAL</th>
+              <th class="u-align--center">Livepatch</th>
+              <th class="u-align--center">ESM</th>
+              <th class="u-align--center">FIPS</th>
+              <th class="u-align--center">CC-EAL</th>
+              <th class="u-hide">CC-EAL</th>
+              <th class="u-hide">CC-EAL</th>
+              <th class="u-hide">CC-EAL</th>
+              <th class="u-hide">CC-EAL</th>
             </tr>
           </thead>
           <tbody>
             {% for contract in enterprise_contracts %}
-            <tr>
+            <tr class="p-table__row">
               <td>{{ contract['contractInfo']['name'] }}</td>
-              <td>???</td>
-              <td>???</td>
-              <td>
+              <td style="text-transform: capitalize">{{ contract['supportLevel'] }}</td>
+              <td class="u-align--center">
                 {% if contract['entitlements']['livepatch'] == True %}
                 <button class="u-toggle" aria-controls="#expanded-row-livepatch-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                   <i class="p-icon--success"></i> <i class="p-icon--contextual-menu">Open</i>
@@ -73,7 +68,7 @@
                 &mdash;
                 {% endif %}
               </td>
-              <td>
+              <td class="u-align--center">
                 {% if contract['entitlements']['esm'] == True %}
                 <button class="u-toggle" aria-controls="#expanded-row-esm-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                   <i class="p-icon--success"></i> <i class="p-icon--contextual-menu">Open</i>
@@ -82,7 +77,7 @@
                 &mdash;
                 {% endif %}
               </td>
-              <td>
+              <td class="u-align--center">
                 {% if contract['entitlements']['fips']  == True %}
                 <button class="u-toggle" aria-controls="#expanded-row-fips-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                   <i class="p-icon--success"></i> <i class="p-icon--contextual-menu">Open</i>
@@ -91,7 +86,7 @@
                 &mdash;
                 {% endif %}
               </td>
-              <td>
+              <td class="u-align--center">
                 {% if contract['entitlements']['cc-eal']  == True %}
                 <button class="u-toggle" aria-controls="#expanded-row-cc-eal-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                   <i class="p-icon--success"></i> <i class="p-icon--contextual-menu">Open</i>
@@ -220,526 +215,548 @@
             {% endfor %}
           </tbody>
         </table>
-        <script>
-          function contextualMenu() {
-            var contextualTables = document.querySelectorAll('.p-table-expanding');
-            var toggles;
-
-            contextualTables.forEach(function(table) {
-              init(table);
-            });
-
-            function init(table) {
-              toggles = table.querySelectorAll('.u-toggle');
-              for (var i = 0; i < toggles.length; i++) {
-                toggles[i].addEventListener('click', function (event) {
-                  var target = table.querySelector(
-                  this.getAttribute('aria-controls')
-                  );
-
-                  if (target.getAttributeNode("aria-hidden").value == 'true') {
-                    open(this);
-                  } else {
-                    close(this);
-                  }
-                });
-              }
-            }
-
-            function open(tab) {
-              closeAll();
-              var panel = document.querySelector(
-              tab.getAttribute('aria-controls')
-              );
-              tab.setAttribute('aria-expanded', 'true');
-              tab.querySelector('.p-icon--contextual-menu').classList.add('u-rotate');
-              panel.setAttribute('aria-hidden', 'false');
-            }
-
-            function close(tab) {
-              var panel = document.querySelector(
-              tab.getAttribute('aria-controls')
-              );
-              tab.setAttribute('aria-expanded', 'false');
-              tab.querySelector('.p-icon--contextual-menu').classList.remove('u-rotate');
-              panel.setAttribute('aria-hidden', 'true');
-            }
-
-            function closeAll() {
-              toggles.forEach(function(toggle) {
-                close(toggle);
-              });
-            }
-          }
-
-          contextualMenu();
-        </script>
       </div>
-
-      <div class="u-fixed-width">
-        <hr class="p-separator" style="margin: 1rem 0 1.5rem;">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12" id="reveal-table">
+      <a href="#reveal-table" class="p-button u-no-margin--bottom" id="js-reveal-table" aria-controls="enterprise-table" aria-expanded="false">Add another subscription <i class="p-icon--contextual-menu">Open</i></a>
+      <div class="p-card--highlighted u-arrow-up u-hide" aria-hidden="true" id="enterprise-table">
+        {% include "advantage/_table.html" %}
       </div>
+    </div>
+  </div>
+</section>
 
-      {% endif %}
-
-      <div class="row">
-        <div class="col-6 u-sv3">
-          <h2>Your free personal subscription</h2>
-          <p>By using Ubuntu Avantage you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</p>
-          <aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
-            <ul class="p-accordion__list" style="margin-bottom: 0;">
-              <li class="p-accordion__group">
-                <button type="button" class="p-accordion__tab" id="tab1" role="tab" aria-controls="#tab1-section" aria-expanded="false" onclick="dataLayer.push({
+{% endif %}
+<section class="p-strip {% if not enterprise_contracts %}u-no-padding--top{% endif %}" style="overflow: visible;">
+  <div class="row">
+    <div class="col-6 u-sv3">
+      <h2>Your free personal subscription</h2>
+      <p>By using Ubuntu Avantage you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</p>
+      <aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
+        <ul class="p-accordion__list" style="margin-bottom: 0;">
+          <li class="p-accordion__group">
+            <button type="button" class="p-accordion__tab" id="tab1" role="tab" aria-controls="#tab1-section" aria-expanded="false" onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Show instructions',
+              'eventLabel' : 'Personal UA token',
+              'eventValue' : undefined
+            });">Show instructions</button>
+            <section class="p-accordion__panel" id="tab1-section" role="tabpanel" aria-hidden="true" aria-labelledby="tab1-section" style="padding: 0 1rem;">
+              <p>To attach a machine:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua attach {{ personal_account.free_token }}" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
                   'event' : 'GAEvent',
                   'eventCategory' : 'Advantage',
-                  'eventAction' : 'Show instructions',
+                  'eventAction' : 'Copy UA attach command',
                   'eventLabel' : 'Personal UA token',
                   'eventValue' : undefined
-                });">Show instructions</button>
-                <section class="p-accordion__panel" id="tab1-section" role="tabpanel" aria-hidden="true" aria-labelledby="tab1-section" style="padding: 0 1rem;">
-                  <p>To attach a machine:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua attach {{ personal_account.free_token }}" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy UA attach command',
-                      'eventLabel' : 'Personal UA token',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
+                });">Copy to clipboard</button>
+              </div>
 
-                  <p>To detach:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua detach" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy UA detach command',
-                      'eventLabel' : 'Personal UA token',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-                </section>
-              </li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <ul class="p-inline-list advantage-instructions u-no-margin--bottom">
-            <li class="p-inline-list__item">Get instructions for using:</li>
-            {% if personal_account['entitlements']['livepatch'] %}
-            <li class="p-inline-list__item">
-              <span class="p-contextual-menu u-hide--small">
-                <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-livepatch" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
+              <p>To detach:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua detach" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
                   'event' : 'GAEvent',
                   'eventCategory' : 'Advantage',
-                  'eventAction' : 'Show instructions',
+                  'eventAction' : 'Copy UA detach command',
+                  'eventLabel' : 'Personal UA token',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+            </section>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-inline-list advantage-instructions u-no-margin--bottom">
+        <li class="p-inline-list__item">Get instructions for using:</li>
+        {% if personal_account['entitlements']['livepatch'] %}
+        <li class="p-inline-list__item">
+          <span class="p-contextual-menu u-hide--small">
+            <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-livepatch" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Show instructions',
+              'eventLabel' : 'Livepatch',
+              'eventValue' : undefined
+            });">Livepatch</a>
+            <span class="p-contextual-menu__dropdown" id="menu-livepatch" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
+              <p>To activate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy enable command',
                   'eventLabel' : 'Livepatch',
                   'eventValue' : undefined
-                });">Livepatch</a>
-                <span class="p-contextual-menu__dropdown" id="menu-livepatch" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
-                  <p>To activate Livepatch:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua enable livepatch" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy enable command',
-                      'eventLabel' : 'Livepatch',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-
-                  <p>To deactivate Livepatch:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua disable livepatch" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy disable command',
-                      'eventLabel' : 'Livepatch',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-                </span>
-              </span>
-              <div class="u-hide u-show--small">
-                <br /><br />
-                <div class="p-card u-no-margin--bottom">
-                  <h4>Livepatch</h4>
-                  <p>To activate Livepatch:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua enable livepatch" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy enable command',
-                      'eventLabel' : 'Livepatch',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-
-                  <p>To deactivate Livepatch:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua disable livepatch" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy disable command',
-                      'eventLabel' : 'Livepatch',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-                </div>
+                });">Copy to clipboard</button>
               </div>
-            </li>
-            {% endif %}
-            {% if personal_account['entitlements']['esm'] %}
-            <li class="p-inline-list__item">
-              <span class="p-contextual-menu u-hide--small">
-                <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-esm" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
+
+              <p>To deactivate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
                   'event' : 'GAEvent',
                   'eventCategory' : 'Advantage',
-                  'eventAction' : 'Show instructions',
+                  'eventAction' : 'Copy disable command',
+                  'eventLabel' : 'Livepatch',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+            </span>
+          </span>
+          <div class="u-hide u-show--small">
+            <br /><br />
+            <div class="p-card u-no-margin--bottom">
+              <h4>Livepatch</h4>
+              <p>To activate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy enable command',
+                  'eventLabel' : 'Livepatch',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate Livepatch:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable livepatch" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy disable command',
+                  'eventLabel' : 'Livepatch',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
+        </li>
+        {% endif %}
+        {% if personal_account['entitlements']['esm'] %}
+        <li class="p-inline-list__item">
+          <span class="p-contextual-menu u-hide--small">
+            <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-esm" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Show instructions',
+              'eventLabel' : 'ESM',
+              'eventValue' : undefined
+            });">ESM</a>
+            <span class="p-contextual-menu__dropdown" id="menu-esm" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
+              <p>To activate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable esm-infra" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy enable command',
                   'eventLabel' : 'ESM',
                   'eventValue' : undefined
-                });">ESM</a>
-                <span class="p-contextual-menu__dropdown" id="menu-esm" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
-                  <p>To activate ESM:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua enable esm-infra" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy enable command',
-                      'eventLabel' : 'ESM',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-
-                  <p>To deactivate ESM:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua disable esm-infra" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy disable command',
-                      'eventLabel' : 'ESM',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-                </span>
-              </span>
-              <div class="u-hide u-show--small">
-                <div class="p-card u-no-margin--bottom">
-                  <h4>ESM</h4>
-                  <p>To activate ESM:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua enable esm-infra" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy enable command',
-                      'eventLabel' : 'ESM',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-
-                  <p>To deactivate ESM:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua disable esm-infra" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy disbale command',
-                      'eventLabel' : 'ESM',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-                </div>
+                });">Copy to clipboard</button>
               </div>
-            </li>
-            {% endif %}
-            {% if personal_account['entitlements']['fips'] %}
-            <li class="p-inline-list__item">
-              <span class="p-contextual-menu u-hide--small">
-                <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-fips" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
+
+              <p>To deactivate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable esm-infra" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
                   'event' : 'GAEvent',
                   'eventCategory' : 'Advantage',
-                  'eventAction' : 'Show instructions',
+                  'eventAction' : 'Copy disable command',
+                  'eventLabel' : 'ESM',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+            </span>
+          </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card u-no-margin--bottom">
+              <h4>ESM</h4>
+              <p>To activate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable esm-infra" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy enable command',
+                  'eventLabel' : 'ESM',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate ESM:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable esm-infra" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy disbale command',
+                  'eventLabel' : 'ESM',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
+        </li>
+        {% endif %}
+        {% if personal_account['entitlements']['fips'] %}
+        <li class="p-inline-list__item">
+          <span class="p-contextual-menu u-hide--small">
+            <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-fips" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Show instructions',
+              'eventLabel' : 'FIPS',
+              'eventValue' : undefined
+            });">FIPS</a>
+            <span class="p-contextual-menu__dropdown" id="menu-fips" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
+              <p>To activate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable fips" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy enable command',
                   'eventLabel' : 'FIPS',
                   'eventValue' : undefined
-                });">FIPS</a>
-                <span class="p-contextual-menu__dropdown" id="menu-fips" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; right: -9rem; padding: 1rem;">
-                  <p>To activate FIPS:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua enable fips" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy enable command',
-                      'eventLabel' : 'FIPS',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-
-                  <p>To deactivate FIPS:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua disable fips" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy disable command',
-                      'eventLabel' : 'FIPS',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-                </span>
-              </span>
-              <div class="u-hide u-show--small">
-                <div class="p-card u-no-margin--bottom">
-                  <h4>FIPS</h4>
-                  <p>To activate FIPS:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua enable fips" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy enable command',
-                      'eventLabel' : 'FIPS',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-
-                  <p>To deactivate FIPS:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua disable fips" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy disable command',
-                      'eventLabel' : 'FIPS',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-                </div>
+                });">Copy to clipboard</button>
               </div>
-            </li>
-            {% endif %}
-            {% if personal_account['entitlements']['cc-eal'] %}
-            <li class="p-inline-list__item">
-              <span class="p-contextual-menu u-hide--small">
-                <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-eal2" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
+
+              <p>To deactivate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable fips" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
                   'event' : 'GAEvent',
                   'eventCategory' : 'Advantage',
-                  'eventAction' : 'Show instructions',
-                  'eventLabel' : 'Canonical Common Criteria EAL2 Provisioning',
+                  'eventAction' : 'Copy disable command',
+                  'eventLabel' : 'FIPS',
                   'eventValue' : undefined
-                });">Canonical Common Criteria EAL2 Provisioning</a>
-                <span class="p-contextual-menu__dropdown" id="menu-eal2" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; padding: 1rem;">
-                  <p>To activate EAL2:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua enable cc-eal" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy enable command',
-                      'eventLabel' : 'Canonical Common Criteria  EAL2 Provisioning',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-
-                  <p>To deactivate EAL2:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua disable cc-eal" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy disable command',
-                      'eventLabel' : 'Canonical Common Criteria  EAL2 Provisioning',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-                </span>
-              </span>
-              <div class="u-hide u-show--small">
-                <div class="p-card u-no-margin--bottom">
-                  <h4>EAL2</h4>
-                  <p>To activate EAL2:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua enable cc-eal" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy enable command',
-                      'eventLabel' : 'Canonical Common Criteria  EAL2 Provisioning',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-
-                  <p>To deactivate EAL2:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="sudo ua disable cc-eal" readonly="readonly">
-                    <button class="p-code-copyable__action" onclick="dataLayer.push({
-                      'event' : 'GAEvent',
-                      'eventCategory' : 'Advantage',
-                      'eventAction' : 'Copy disable command',
-                      'eventLabel' : 'Canonical Common Criteria  EAL2 Provisioning',
-                      'eventValue' : undefined
-                    });">Copy to clipboard</button>
-                  </div>
-                </div>
+                });">Copy to clipboard</button>
               </div>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
+            </span>
+          </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card u-no-margin--bottom">
+              <h4>FIPS</h4>
+              <p>To activate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable fips" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy enable command',
+                  'eventLabel' : 'FIPS',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
 
-      <div class="u-fixed-width">
-        <hr class="p-separator" style="margin: 2rem 0;">
-      </div>
-
-      {% include "advantage/_table.html" %}
-
-    </section>
-
-    <script>
-      let toggleElements = document.querySelectorAll('.p-accordion__tab');
-      toggleElements.forEach(function(el) {
-        el.addEventListener(
-        "click",
-        function(e) {
-          e.preventDefault();
-          toggleElements.forEach(function(el) {
-            el.setAttribute('aria-expanded', el.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
-            panel = document.querySelector('.p-accordion__panel');
-            panel.setAttribute('aria-hidden', panel.getAttribute('aria-hidden') === 'true' ? 'false' : 'true');
-          });
-        },
-        false
-        );
-      });
-    </script>
-
-    <script>
-      function toggleMenu(element, show) {
-        element.setAttribute('aria-expanded', show);
-        document
-        .querySelector(element.getAttribute('aria-controls'))
-        .setAttribute('aria-hidden', !show);
-      }
-
-      function setupContextualMenuListeners(contextualMenuToggleSelector) {
-        const toggles = document.querySelectorAll(contextualMenuToggleSelector);
-
-        toggles.forEach(toggle => {
-          toggle.addEventListener('click', e => {
-            e.preventDefault();
-
-            const target = e.target;
-            const menuAlreadyOpen = target.getAttribute('aria-expanded') === 'true';
-
-            toggleMenu(target, !menuAlreadyOpen)
-          });
-        });
-
-        document.addEventListener('click', e => {
-          toggles.forEach(toggle => {
-            const contextualMenu = document.querySelector(toggle.getAttribute('aria-controls'));
-            const clickOutside = !(toggle.contains(e.target) || contextualMenu.contains(e.target));
-
-            if (clickOutside) {
-              toggleMenu(toggle, false);
-            }
-          })
-        });
-
-        document.onkeydown = e => {
-          e = e || window.event;
-
-          if (e.keyCode === 27) {
-            toggles.forEach(toggle => {
-              toggleMenu(toggle, false);
-            });
-          }
-        };
-      }
-
-      setupContextualMenuListeners('.p-contextual-menu__toggle');
-    </script>
-
-    {% else %}
-    <section class="p-strip--suru is-dark">
-      <div class="row">
-        <div class="col-8">
-          <h1>Ubuntu Advantage for Infrastructure</h1>
-          <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
-        </div>
-      </div>
-    </section>
-    <section class="p-strip">
-      <div class="row u-equal-height">
-        <div class="col-12 u-vertically-center">
-          <h2>Already subscribed?</h2>
-          <p class="u-no-margin--bottom">
-            <a href="/login" class="p-button--positive" onclick="dataLayer.push({
-              'event' : 'GAEvent',
-              'eventCategory' : 'Advantage',
-              'eventAction' : 'Authentication',
-              'eventLabel' : 'Sign in',
-              'eventValue' : undefined
-            });">Sign in</a> to access your personal or paid subscriptions.
-          </p>
-        </div>
-      </div>
-      <div class="u-fixed-width">
-        <hr class="p-separator">
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <h2>Free for personal use</h2>
-          <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
-          <p class="u-no-margin--bottom">
-            <a href="/login" class="p-button--neutral" onclick="dataLayer.push({
-              'event' : 'GAEvent',
-              'eventCategory' : 'Advantage',
-              'eventAction' : 'Authentication',
-              'eventLabel' : 'Sign in',
-              'eventValue' : undefined
-            });">Register</a> to get your free subscription.
-          </p>
-        </div>
-      </div>
-
-
-      <div class="u-fixed-width">
-        <hr class="p-separator">
-      </div>
-
-      {% include "advantage/_table.html" %}
-    </section>
-    {% endif %}
-
-    <section class="p-strip--light">
-      <div class="row u-equal-height">
-        <div class="col-6 u-align--center u-hide--small">
-          <img src="https://assets.ubuntu.com/v1/9c7bda7d-contact-us.svg" alt="">
-        </div>
-        <div class="col-6 u-vertically-center">
-          <div>
-            <h2>Got questions?</h2>
-            <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+              <p>To deactivate FIPS:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable fips" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy disable command',
+                  'eventLabel' : 'FIPS',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+            </div>
           </div>
-        </div>
+        </li>
+        {% endif %}
+        {% if personal_account['entitlements']['cc-eal'] %}
+        <li class="p-inline-list__item">
+          <span class="p-contextual-menu u-hide--small">
+            <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-eal2" aria-expanded="false" aria-haspopup="true" onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Show instructions',
+              'eventLabel' : 'Canonical Common Criteria EAL2 Provisioning',
+              'eventValue' : undefined
+            });">Canonical Common Criteria EAL2 Provisioning</a>
+            <span class="p-contextual-menu__dropdown" id="menu-eal2" aria-hidden="true" aria-label="submenu" style="min-width: 20rem; padding: 1rem;">
+              <p>To activate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy enable command',
+                  'eventLabel' : 'Canonical Common Criteria  EAL2 Provisioning',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy disable command',
+                  'eventLabel' : 'Canonical Common Criteria  EAL2 Provisioning',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+            </span>
+          </span>
+          <div class="u-hide u-show--small">
+            <div class="p-card u-no-margin--bottom">
+              <h4>EAL2</h4>
+              <p>To activate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua enable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy enable command',
+                  'eventLabel' : 'Canonical Common Criteria  EAL2 Provisioning',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+
+              <p>To deactivate EAL2:</p>
+              <div class="p-code-copyable">
+                <input class="p-code-copyable__input" value="sudo ua disable cc-eal" readonly="readonly">
+                <button class="p-code-copyable__action" onclick="dataLayer.push({
+                  'event' : 'GAEvent',
+                  'eventCategory' : 'Advantage',
+                  'eventAction' : 'Copy disable command',
+                  'eventLabel' : 'Canonical Common Criteria  EAL2 Provisioning',
+                  'eventValue' : undefined
+                });">Copy to clipboard</button>
+              </div>
+            </div>
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+{% if not enterprise_contracts %}
+<section class="p-strip u-no-padding--top">
+  {% include "advantage/_table.html" %}
+</section>
+{% endif %}
+
+{% else %}
+<section class="p-strip--suru is-dark">
+  <div class="row">
+    <div class="col-8">
+      <h1>Ubuntu Advantage for Infrastructure</h1>
+      <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row u-equal-height">
+    <div class="col-12 u-vertically-center">
+      <h2>Already subscribed?</h2>
+      <p class="u-no-margin--bottom">
+        <a href="/login" class="p-button--positive" onclick="dataLayer.push({
+          'event' : 'GAEvent',
+          'eventCategory' : 'Advantage',
+          'eventAction' : 'Authentication',
+          'eventLabel' : 'Sign in',
+          'eventValue' : undefined
+        });">Sign in</a> to access your personal or paid subscriptions.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-12">
+      <h2>Free for personal use</h2>
+      <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
+      <p class="u-no-margin--bottom">
+        <a href="/login" class="p-button--neutral" onclick="dataLayer.push({
+          'event' : 'GAEvent',
+          'eventCategory' : 'Advantage',
+          'eventAction' : 'Authentication',
+          'eventLabel' : 'Sign in',
+          'eventValue' : undefined
+        });">Register</a> to get your free subscription.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  {% include "advantage/_table.html" %}
+</section>
+{% endif %}
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-6 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/9c7bda7d-contact-us.svg" alt="">
+    </div>
+    <div class="col-6 u-vertically-center">
+      <div>
+        <h2>Got questions?</h2>
+        <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    {% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
-    {% endblock content %}
+<script>
+  function contextualMenu() {
+    var contextualTables = document.querySelectorAll('.p-table-expanding');
+    var toggles;
+
+    contextualTables.forEach(function(table) {
+      init(table);
+    });
+
+    function init(table) {
+      toggles = table.querySelectorAll('.u-toggle');
+      for (var i = 0; i < toggles.length; i++) {
+        toggles[i].addEventListener('click', function (event) {
+          var target = table.querySelector(
+          this.getAttribute('aria-controls')
+          );
+
+          if (target.getAttributeNode("aria-hidden").value == 'true') {
+            open(this);
+          } else {
+            close(this);
+          }
+        });
+      }
+    }
+
+    function open(tab) {
+      closeAll();
+      var panel = document.querySelector(
+      tab.getAttribute('aria-controls')
+      );
+      tab.setAttribute('aria-expanded', 'true');
+      tab.parentNode.classList.add('p-table--open');
+      tab.querySelector('.p-icon--contextual-menu').classList.add('u-rotate');
+      panel.setAttribute('aria-hidden', 'false');
+    }
+
+    function close(tab) {
+      var panel = document.querySelector(
+      tab.getAttribute('aria-controls')
+      );
+      tab.setAttribute('aria-expanded', 'false');
+      tab.parentNode.classList.remove('p-table--open');
+      tab.querySelector('.p-icon--contextual-menu').classList.remove('u-rotate');
+      panel.setAttribute('aria-hidden', 'true');
+    }
+
+    function closeAll() {
+      toggles.forEach(function(toggle) {
+        close(toggle);
+      });
+    }
+  }
+
+  contextualMenu();
+</script>
+
+<script>
+  var toggle = document.querySelector('#js-reveal-table');
+  var chevron = toggle.querySelector('.p-icon--contextual-menu');
+  if (toggle && chevron) {
+    toggle.addEventListener('click', function(e) {
+      chevron.classList.toggle('u-rotate');
+      var content = document.querySelector('#' + this.getAttribute('aria-controls'));
+      content.classList.toggle('u-hide');
+    });
+  }
+</script>
+
+
+<script>
+  let toggleElements = document.querySelectorAll('.p-accordion__tab');
+  toggleElements.forEach(function(el) {
+    el.addEventListener(
+    "click",
+    function(e) {
+      e.preventDefault();
+      toggleElements.forEach(function(el) {
+        el.setAttribute('aria-expanded', el.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+        panel = document.querySelector('.p-accordion__panel');
+        panel.setAttribute('aria-hidden', panel.getAttribute('aria-hidden') === 'true' ? 'false' : 'true');
+      });
+    },
+    false
+    );
+  });
+</script>
+
+<script>
+  function toggleMenu(element, show) {
+    element.setAttribute('aria-expanded', show);
+    document
+    .querySelector(element.getAttribute('aria-controls'))
+    .setAttribute('aria-hidden', !show);
+  }
+
+  function setupContextualMenuListeners(contextualMenuToggleSelector) {
+    var toggles = document.querySelectorAll(contextualMenuToggleSelector);
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', e => {
+        e.preventDefault();
+
+        var target = e.target;
+        var menuAlreadyOpen = target.getAttribute('aria-expanded') === 'true';
+
+        toggleMenu(target, !menuAlreadyOpen)
+      });
+    });
+
+    document.addEventListener('click', e => {
+      toggles.forEach(toggle => {
+        var contextualMenu = document.querySelector(toggle.getAttribute('aria-controls'));
+        var clickOutside = !(toggle.contains(e.target) || contextualMenu.contains(e.target));
+
+        if (clickOutside) {
+          toggleMenu(toggle, false);
+        }
+      })
+    });
+
+    document.onkeydown = e => {
+      e = e || window.event;
+
+      if (e.keyCode === 27) {
+        toggles.forEach(toggle => {
+          toggleMenu(toggle, false);
+        });
+      }
+    };
+  }
+
+  setupContextualMenuListeners('.p-contextual-menu__toggle');
+</script>
+
+{% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+{% endblock content %}
 
