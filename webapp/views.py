@@ -90,8 +90,7 @@ def advantage():
                     json={},
                     timeout=3,
                 ).json()["contractToken"]
-
-                if contract["contractInfo"]["origin"] == "free":
+                if contract["contractInfo"].get("origin", "") == "free":
                     if account["name"] == openid["email"]:
                         personal_account = account
                         personal_account["free_token"] = contract["token"]
