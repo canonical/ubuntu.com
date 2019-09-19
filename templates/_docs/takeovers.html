@@ -9,8 +9,22 @@
 <section class="p-strip--light is-shallow">
   <div class="row">
     <div class="col-8">
-      <h1>Takeover templates</h1>
-      <p>Using the suru gradient patterns, you can now easily build homepage takeovers with a simple include, passing in all your variables to build a takeover in minutes.</p>
+      <h1>
+        Takeover templates
+      </h1>
+      <p>
+        Using the suru gradient patterns, you can now easily build homepage takeovers with a simple include, passing in all your variables to build a takeover in minutes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>
+        p-takeover--grad
+      </h2>
     </div>
   </div>
 </section>
@@ -39,9 +53,7 @@ locale="" %}
       <h4><code>p-takeover--grad</code></h4>
       <p>This is the default takeover style with an aubergine to orange gradient.</p>
       <p>The following is the jinja2 template code you need for all takeovers, but with the default pattern.</p>
-      <pre>
-        <code>
-&#123;% with title="A guide to developing Android apps on Ubuntu",
+      <pre><code>&#123;% with title="A guide to developing Android apps on Ubuntu",
 subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
 class="",
 header_image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
@@ -56,9 +68,7 @@ secondary_cta="",
 lang="",
 locale="" %}
 &#123;% include "takeovers/_template.html" %}
-&#123;% endwith %}
-        </code>
-      </pre>
+&#123;% endwith %}</code></pre>
       <h3>Details</h3>
       <ul class="p-list">
         <li class="p-list__item"><strong>title</strong>: the h1 text for the takeover</li>
@@ -79,32 +89,6 @@ locale="" %}
   </div>
 </section>
 
-<section class="p-strip is-shallow">
-  <div class="row">
-    <div class="col-8">
-      <h2>p-takeover--grad</h2>
-    </div>
-  </div>
-</section>
-
-{% with title="A guide to developing Android apps on Ubuntu",
-subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
-class="",
-header_image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
-image_style="width: 380px; margin: 1.5rem 0;",
-image_hide_small=true,
-equal_cols=true,
-primary_url="/engage/developing-android-on-ubuntu?utm_source=takeover&utm_campaign=CY19_IOT_Snapstore_Whitepaper_AndroidonUbuntu",
-primary_cta="Download the whitepaper",
-primary_cta_class="",
-secondary_url="",
-secondary_cta="",
-lang="",
-locale="" %}
-{% include "takeovers/_template.html" %}
-{% endwith %}
-
-<section class="p-strip is-deep is-bordered"></section>
 
 <section class="p-strip is-shallow">
   <div class="row">
