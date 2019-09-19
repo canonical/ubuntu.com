@@ -22,7 +22,7 @@ def login_handler():
         return flask.redirect(open_id.get_next_url())
 
     root = requests.get(
-        "https://contracts.canonical.com/v1/canonical-sso-macaroon"
+        "https://contracts.staging.canonical.com/v1/canonical-sso-macaroon"
     ).json()["macaroon"]
 
     for caveat in Macaroon.deserialize(root).third_party_caveats():
