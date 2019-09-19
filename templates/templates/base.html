@@ -38,11 +38,11 @@
         <meta property="og:description" content="{{ self.meta_description() }}">
     {% endif %}
 
-    <!-- Mate image: {% block meta_image %}{% endblock %} -->
+    <!-- Meta image: {% block meta_image %}{% endblock %} -->
     {% if self.meta_image() %}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
-        <meta property="og:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
+        <meta prefix="og: http://ogp.me/ns#" property="og:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
     {% endif %}
 
     <meta name="copydoc" content="{% block meta_copydoc %}https://drive.google.com/drive/folders/0B4s80tIYQW4BMjNiMGFmNzQtNDkxZC00YmQ0LWJiZWUtNTk2YThlY2MzZmJh{% endblock %}">
