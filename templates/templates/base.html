@@ -25,17 +25,17 @@
     <meta name="theme-color" content="#E95420">
     <meta name="twitter:account_id" content="4503599627481511">
     <meta name="twitter:site" content="@ubuntu">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ubuntu.com{{ request.get_full_path }}">
-    <meta property="og:site_name" content="Ubuntu">
+    <meta prefix="og: http://ogp.me/ns#" property="og:type" content="website">
+    <meta prefix="og: http://ogp.me/ns#" property="og:url" content="{{ request.url }}">
+    <meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="Ubuntu">
 
     {% if self.title() %}
         <meta name="twitter:title" content="{{ self.title() }} | Ubuntu">
-        <meta property="og:title" content="{{ self.title() }} | Ubuntu">
+        <meta prefix="og: http://ogp.me/ns#" property="og:title" content="{{ self.title() }} | Ubuntu">
     {% endif %}
     {% if self.meta_description() %}
         <meta name="twitter:description" content="{{ self.meta_description() }}">
-        <meta property="og:description" content="{{ self.meta_description() }}">
+        <meta prefix="og: http://ogp.me/ns#" property="og:description" content="{{ self.meta_description() }}">
     {% endif %}
 
     <!-- Meta image: {% block meta_image %}{% endblock %} -->
