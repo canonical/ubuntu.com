@@ -12,7 +12,17 @@
         <p><a href="/download/desktop/" class="p-button--positive">Get Ubuntu now</a></p>
       </div>
       <div class="col-6 u-vertically-center u-align--center u-hide--small">
-        <img src="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png?w=380" width="380" alt=""/>
+        <!-- <img src="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png?w=380" width="380" alt=""/> -->
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png",
+            alt="",
+            height="191",
+            width="380",
+            hi_def=True,
+            extra_classes="col-6 u-vertically-center u-align--center u-hide--small"
+          ) | safe
+        }}
       </div>
     </div>
   </section>
