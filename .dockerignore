@@ -3,12 +3,12 @@ cache.sqlite
 *.log
 README.md
 HACKING.md
+.git
+.gitignore
 
 # The run script isn't needed
 run
 
-# Node is only needed for building, not running
-package.json
+# The node_modules folder will be rebuilt
 node_modules
-yarn.lock
 

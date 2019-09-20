@@ -5,9 +5,8 @@
     "lint-scss": "sass-lint 'static/sass/**/*.scss' --verbose --no-exit --max-warnings=0 -i static/sass/prism.scss",
     "test-links": "./entrypoint 0.0.0.0:${PORT} && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --no-warnings http://127.0.0.1:8000",
     "build-css": "node-sass --include-path node_modules static/sass --source-map true --output-style compressed --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
-    "build-js-bundle": "webpack",
-    "build": "yarn run build-css && yarn run build-js-bundle",
-    "get-mirrors": "./scripts/get-mirrors-rss",
+    "build-js": "webpack",
+    "build": "yarn run build-css && yarn run build-js",
     "watch": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/*.scss' -c 'yarn run build'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle static/js/build etc/",
     "serve": "./entrypoint 0.0.0.0:${PORT}"
