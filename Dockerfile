@@ -34,7 +34,7 @@ RUN yarn run build-css
 # ===
 FROM ubuntu:bionic
 
-# Install python - reuse layer from python-dependencies
+# Install python and import python dependencies
 RUN apt-get update && apt-get install --yes python3-dev
 COPY --from=python-dependencies /usr/local/lib/python3.6/site-packages /usr/local/lib/python3.6/dist-packages
 COPY --from=python-dependencies /usr/local/bin /usr/local/bin
@@ -43,11 +43,12 @@ COPY --from=python-dependencies /usr/local/bin /usr/local/bin
 ENV LANG C.UTF-8
 WORKDIR /srv
 
-# Import code and build assets
+# Import code, build assets and mirror list
 ADD . .
 RUN rm -r package.json yarn.lock
 COPY --from=build-js /srv/static/js static/js
 COPY --from=build-css /srv/static/css static/css
+ADD http://launchpad.net/ubuntu/+cdmirrors-rss etc/ubuntu-mirrors-rss.xml
 
 # Set revision ID
 ARG TALISKER_REVISION_ID

@@ -7,7 +7,6 @@
     "build-css": "node-sass --include-path node_modules static/sass --source-map true --output-style compressed --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
     "build-js": "webpack",
     "build": "yarn run build-css && yarn run build-js",
-    "get-mirrors": "./scripts/get-mirrors-rss",
     "watch": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/*.scss' -c 'yarn run build'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle static/js/build etc/",
     "serve": "./entrypoint 0.0.0.0:${PORT}"
