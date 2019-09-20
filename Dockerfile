@@ -1,8 +1,10 @@
+# syntax=docker/dockerfile:experimental
+
 # Build stage: Install python dependencies
 # ===
 FROM python:3.6-slim-buster AS python-dependencies
 ADD requirements.txt /tmp/requirements.txt
-RUN pip3 install -r /tmp/requirements.txt
+RUN --mount=type=cache,target=/root/.cache/pip pip3 install -r /tmp/requirements.txt
 
 
 # Build stage: Run "yarn run build"
@@ -12,7 +14,7 @@ FROM node:10-slim AS yarn-build
 WORKDIR /srv
 # Install dependencies
 ADD package.json .
-RUN yarn install
+RUN --mount=type=cache,target=/usr/local/share/.cache/yarn yarn install
 # Build JS
 ADD static/js static/js
 ADD webpack.config.js .
