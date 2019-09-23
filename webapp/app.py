@@ -9,10 +9,7 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
-from feedparser import parse
 from canonicalwebteam.blog.wordpress_api import api_session
-from flask_openid import OpenID
-from pymacaroons import Macaroon
 
 # Local
 from webapp.context import (
@@ -84,6 +81,7 @@ def context():
 @app.context_processor
 def utility_processor():
     return {"image": image_template}
+
 
 # Routes
 # ===
