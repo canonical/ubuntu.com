@@ -7,6 +7,7 @@ import flask
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
+from canonicalwebteam import image_template
 
 # Local
 from webapp.context import (
@@ -76,6 +77,7 @@ def context():
 @app.context_processor
 def utility_processor():
     return {"image": image_template}
+
 
 # Routes
 # ===
