@@ -1,4 +1,4 @@
-# ![ubuntu.com](https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg "Ubuntu").com codebase
+# ![ubuntu](https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg "Ubuntu").com codebase
 
 [![CircleCI build status](https://circleci.com/gh/canonical-web-and-design/ubuntu.com.svg?style=shield)](https://circleci.com/gh/canonical-web-and-design/ubuntu.com) [![Code coverage](https://codecov.io/gh/canonical-web-and-design/ubuntu.com/branch/master/graph/badge.svg)](https://codecov.io/gh/canonical-web-and-design/ubuntu.com)
 
