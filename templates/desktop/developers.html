@@ -4,24 +4,32 @@
   {% block meta_copydoc %}https://docs.google.com/document/d/1VJ3xT2ViC-CvL0UmsAUzpYFmvpuqUP4AbpnlPm8tqOA/edit{% endblock meta_copydoc %}
 
   {% block content %}
-  <section class="p-strip u-image-position is-deep is-bordered">
+  <section class="u-image-position is-bordered p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-6">
         <h1>Ubuntu Desktop for&nbsp;developers</h1>
         <p>Whether you&rsquo;re a mobile app developer, an engineering manager, a music or video editor or a financial analyst with large-scale models to run &mdash; in fact, anyone in need of a powerful machine for your work &mdash; Ubuntu is the ideal platform.</p>
         <p><a href="/download/desktop/" class="p-button--positive">Get Ubuntu now</a></p>
       </div>
-      <div class="col-6 u-vertically-center u-hide--small">
-        <img class="u-hide--small u-hide--medium u-image-position--top" src="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png?w=600" width="600" alt="" style="top: 105px; left: 50%;" />
-        <img class="u-hide--large" src="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png?w=600" width="600" alt="" style="top: 105px; right: 40px;" />
+      <div class="col-6 u-vertically-center u-align--center u-hide--small">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png",
+            alt="",
+            height="191",
+            width="380",
+            hi_def=True,
+            extra_classes="col-6 u-vertically-center u-align--center u-hide--small"
+          ) | safe
+        }}
       </div>
     </div>
   </section>
 
-  <section class="p-strip is-bordered">
+  <section class="p-strip--light is-bordered">
     <div class="u-fixed-width">
       <h2>Why use Ubuntu for development?</h2>
-      <ul class="p-list--divided is-split">
+      <ul class="p-list is-split">
         <li class="p-list__item is-ticked">The fastest route from development to deployment on desktop, mobile, server or cloud</li>
         <li class="p-list__item is-ticked">The desktop of choice for developers at some of the world&rsquo;s leading technology companies</li>
         <li class="p-list__item is-ticked">The broadest and best development tools and libraries</li>
