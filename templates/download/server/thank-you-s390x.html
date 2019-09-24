@@ -5,25 +5,28 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1hDkrBqpJXWaENYZMSxd8P-XLFQ2LQqS1wNe4o2MGLho/edit{% endblock meta_copydoc %}
 
 {% block head_extra %}
-  <meta name="robots" content="noindex" />
-  <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-server-s390x.iso">
+<meta name="robots" content="noindex" />
 {% endblock %}
 
 {% block content %}
 
-<div class="p-strip--light is-deep is-bordered">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row">
-    <div class="col-12">
+    <div class="col-8">
       <h1>Thanks for downloading Ubuntu for LinuxONE and z&nbsp;Systems</h1>
       <p>Thank you for downloading Ubuntu Server for IBM Z and LinuxONE. Please select the release you wish to download.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
       <p><a  class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.previous_lts.short_version }}', 'eventValue' : undefined });" href="http://cdimage.ubuntu.com/releases/{{ releases.previous_lts.short_version }}/release/ubuntu-{{ releases.previous_lts.full_version }}-server-s390x.iso">Download Ubuntu Server {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr></a></p>
       <p><a  class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });" href="http://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-server-s390x.iso">Download Ubuntu Server {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a></p>
       <p><a  class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });" href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-server-s390x.iso">Download Ubuntu Server {{ releases.latest.full_version }}</a></p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip is-shallow">
+<section class="p-strip is-shallow">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
@@ -56,7 +59,7 @@
       <p><a href="https://ibmsystemsmag.webex.com/ibmsystemsmag/lsr.php?RCID=8a447682b6dd0bffe57723fc5238d202" class="p-link--external">Watch webinar on-demand</a></p>
     </div>
   </div>
-</div>
+</section>
 
 {% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
