@@ -10,17 +10,14 @@
 <section class="p-strip--suru-topped">
   <div class="row">
     <div class="col-12">
-      <h1 class="u-no-max-width u-no-margin--bottom">Ubuntu Advantage for Infrastructure</h1>
+      <h1 class="u-no-max-width">Ubuntu Advantage for Infrastructure</h1>
     </div>
   </div>
-</section>
 
-<section class="p-strip u-no-padding--top">
   <div class="row">
     <div class="col-10">
-      <h2>You are signed in</h2>
       <p>
-        {{ openid.fullname }} ({{ openid.email }})
+        You are signed in as {{ openid.fullname }} ({{ openid.email }})
         <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom u-padding-top--small" style="margin-left: 1rem;" onclick="dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
@@ -33,8 +30,8 @@
   </div>
 </section>
 
+<section class="p-strip--light" style="overflow: visible;">
 {% if enterprise_contracts %}
-<section class="p-strip--light">
   <div class="row">
     <div class="col-12">
       <h2>Your enterprise subscriptions</h2>
@@ -216,25 +213,23 @@
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12" id="reveal-table">
+  <div class="row u-sv3">
+    <div class="col-12 u-sv3" id="reveal-table">
       <a href="#reveal-table" class="p-button u-no-margin--bottom" id="js-reveal-table" aria-controls="enterprise-table" aria-expanded="false">Add another subscription <i class="p-icon--contextual-menu">Open</i></a>
       <div class="p-card--highlighted u-arrow-up u-hide" aria-hidden="true" id="enterprise-table">
         {% include "advantage/_table.html" %}
       </div>
     </div>
   </div>
-</section>
 
 {% endif %}
-<section class="p-strip {% if not enterprise_contracts %}u-no-padding--top{% endif %}" style="overflow: visible;">
   <div class="row">
     <div class="col-6 u-sv3">
       <h2>Your free personal subscription</h2>
       <p>By using Ubuntu Avantage you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</p>
       <aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
         <ul class="p-accordion__list" style="margin-bottom: 0;">
-          <li class="p-accordion__group">
+          <li class="p-accordion__group" style="background: white;">
             <button type="button" class="p-accordion__tab" id="tab1" role="tab" aria-controls="#tab1-section" aria-expanded="false" onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',
@@ -549,7 +544,7 @@
 
 
 {% if not enterprise_contracts %}
-<section class="p-strip u-no-padding--top">
+<section class="p-strip is-bordered">
   {% include "advantage/_table.html" %}
 </section>
 {% endif %}
@@ -599,12 +594,12 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow">
+<section class="p-strip is-shallow is-bordered">
   {% include "advantage/_table.html" %}
 </section>
 {% endif %}
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-6 u-align--center u-hide--small">
       <img src="https://assets.ubuntu.com/v1/9c7bda7d-contact-us.svg" alt="">
