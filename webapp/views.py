@@ -60,6 +60,7 @@ def advantage():
     enterprise_contracts = []
     entitlements = {}
     openid = flask.session.get("openid")
+    api_url = flask.current_app.config["ADVANTAGE_API"]
 
     if "openid" in flask.session:
         root = Macaroon.deserialize(flask.session["macaroon_root"])
@@ -68,15 +69,16 @@ def advantage():
         token = binary_serialize_macaroons([root, bound]).decode("utf-8")
 
         accounts = requests.get(
-            "https://contracts.staging.canonical.com/v1/accounts",
+            os.path.join(api_url, "v1/accounts"),
             headers={"Authorization": f"Macaroon {token}"},
             timeout=3,
         ).json()["accounts"]
 
         for account in accounts:
             account["contracts"] = requests.get(
-                "https://contracts.staging.canonical.com/"
-                f"v1/accounts/{account['id']}/contracts",
+                os.path.join(
+                    api_url, f"v1/accounts/{account['id']}/contracts"
+                ),
                 headers={"Authorization": f"Macaroon {token}"},
                 timeout=3,
             ).json()["contracts"]
@@ -84,8 +86,7 @@ def advantage():
             for contract in account["contracts"]:
                 contract_id = contract["contractInfo"]["id"]
                 contract["token"] = requests.post(
-                    "https://contracts.staging.canonical.com/"
-                    f"v1/contracts/{contract_id}/token",
+                    os.path.join(api_url, f"v1/contracts/{contract_id}/token"),
                     headers={"Authorization": f"Macaroon {token}"},
                     json={},
                     timeout=3,

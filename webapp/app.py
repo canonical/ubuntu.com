@@ -2,6 +2,9 @@
 A Flask application for ubuntu.com
 """
 
+# Standard library
+import os
+
 # Packages
 import talisker.requests
 import flask
@@ -42,6 +45,9 @@ app = FlaskBase(
     "ubuntu.com",
     template_folder="../templates",
     static_folder="../static",
+)
+app.config["ADVANTAGE_API"] = os.getenv(
+    "ADVANTAGE_API", "https://contracts.canonical.com/"
 )
 
 talisker.requests.configure(api_session)

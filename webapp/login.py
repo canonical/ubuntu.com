@@ -1,4 +1,5 @@
 # Standard library
+import os
 from urllib.parse import quote, unquote
 
 # Packages
@@ -22,7 +23,10 @@ def login_handler():
         return flask.redirect(open_id.get_next_url())
 
     root = requests.get(
-        "https://contracts.staging.canonical.com/v1/canonical-sso-macaroon"
+        os.path.join(
+            flask.current_app.config["ADVANTAGE_API"],
+            "v1/canonical-sso-macaroon",
+        )
     ).json()["macaroon"]
 
     for caveat in Macaroon.deserialize(root).third_party_caveats():
