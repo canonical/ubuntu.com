@@ -14,6 +14,7 @@
   $color-google:    #dc4e41;
   $color-linkedin:  #0274b3;
   $color-facebook:  #3b5898;
+  $color-rss:       #ea781a;
 
   %list-link {
     display: block;
@@ -60,6 +61,14 @@
 
         &:hover .linkedin-icon {
           fill: $color-linkedin;
+        }
+      }
+
+      &--rss {
+        @extend %list-link;
+
+        &:hover .rss-icon {
+          fill: $color-rss;
         }
       }
     }
