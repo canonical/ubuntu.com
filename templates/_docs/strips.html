@@ -1,0 +1,375 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}Strips | ubuntu.com documentation{% endblock %}
+
+{% block head_extra %}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+{% block content %}
+
+<section class="p-strip--light is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h1>Suru strips</h1>
+    </div>
+  </div>
+</section>
+
+<!-- p-strip--suru -->
+<section class="p-strip--suru is-dark is-deep">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h1>p-strip--suru</h1>
+      <p>This strip should only be used on overview/main pages and is meant to have an illustration on the right side.</p>
+    </div>
+    <div class="col-5 col-start-large-8 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/27b51b01-IOT_Ubuntu_devices_inforgrapic.svg" width="488" alt="" />
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <div class="row"> <div class="col-8"> <pre><code>&lt;section class="p-strip--suru is-dark is-deep">
+  &lt;div class="row u-vertically-center">
+    &lt;div class="col-6">
+      &lt;h1>
+        &lt;!-- title -->
+      &lt;/h1>
+      &lt;p>
+        &lt;!-- text -->
+      &lt;/p>
+    &lt;/div>
+    &lt;div class="col-5 col-start-large-8 u-align--center u-hide--small">
+      &lt;!-- img -->
+    &lt;/div>
+  &lt;/div>
+&lt;/section></code></pre>
+      </div>
+    </div>
+</section>
+
+<!-- p-strip-suru-half-top -->
+<section class="p-strip-suru-half-top">
+  <div class="row">
+    <div class="col-12">
+      <h1>
+        p-strip-suru-half-top
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light u-no-padding--top">
+  <div class="row u-vertically-center" style="position: relative; top: -2rem;" >
+    <div class="col-6">
+      <h2>
+        Second strip heading
+      </h2>
+      <p>
+        This strip should only be used on overview/main pages and is meant to be followed by a light-grey section.
+      </p>
+    </div>
+    <div class="col-6 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/db6764bc-disco-dingo-grad.svg" width="216" alt="" />
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <div class="row"> <div class="col-8"> <pre><code>
+&lt;section class="p-strip-suru-half-top">
+  &lt;div class="row">
+    &lt;div class="col-12">
+      &lt;h1>
+        &lt;-- first heading -->
+      &lt;/h1>
+    &lt;/div>
+  &lt;/div>
+&lt;/section>
+&lt;section class="p-strip--light u-no-padding--top">
+  &lt;div class="row u-vertically-center" style="position: relative; top: -2rem;" >
+    &lt;div class="col-6">
+      &lt;h2>
+        &lt;-- second heading -->
+      &lt;/h2>
+      &lt;p>
+        &lt;-- text -->
+      &lt;/p>
+    &lt;/div>
+    &lt;div class="col-6 u-align--center u-hide--small">
+      &lt;-- img -->
+    &lt;/div>
+  &lt;/div>
+&lt;/section>
+      </code></pre>
+      </div>
+    </div>
+</section>
+
+<!-- p-strip--suru-background -->
+<section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom desktop-hero">
+  <div class="p-strip--suru-background">
+    <div class="row">
+      <div class="col-6">
+        <h1>
+          p-strip--suru-background
+        </h1>
+        <p>
+          This strip should only be used on overview/main pages and expects the use of a background image.
+        </p>
+        <p>
+          <a href="#" class="p-button--positive">CTA</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <div class="row"> <div class="col-8"> <pre><code>
+&lt;section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom desktop-hero">
+  &lt;div class="p-strip--suru-background">
+    &lt;div class="row">
+      &lt;div class="col-6">
+        &lt;h1>
+          &lt;-- title -->
+        &lt;/h1>
+        &lt;p>
+          &lt;-- text -->
+        &lt;/p>
+        &lt;p>
+          &lt;a href="#" class="p-button--positive">&lt;-- CTA -->&lt;/a>
+        &lt;/p>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+&lt;/section>
+      </code></pre>
+      </div>
+    </div>
+</section>
+
+
+<!-- p-strip--suru-topped -->
+<section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-topped">
+    <div class="row">
+      <div class="col-8">
+        <h1>p-strip--suru-topped</h1>
+        <p>This strip should be followed by a light-grey section or at least have a border to indicate a separation between the heading and the next section.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <div class="row"> <div class="col-8"> <pre><code>&lt;section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom">
+  &lt;div class="p-strip--suru-topped">
+    &lt;div class="row">
+      &lt;div class="col-8">
+        &lt;h1>
+          &lt;!-- title -->
+        &lt;/h1>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+&lt;/section></code></pre>
+      </div>
+    </div>
+</section>
+
+
+<!-- p-strip--suru-bottomed -->
+<section class="p-strip--suru-bottomed">
+  <div class="row u-equal-height">
+    <div class="col-7 u-vertically-center">
+      <h1>
+        p-strip--suru-bottomed
+      </h1>
+      <h4
+      >Here the gradiant is on the bottom.
+    </h4>
+      <p>
+        It can handle a fair bit of text.
+      </p>
+      <p><a href="/" class="p-button--positive u-no-margin--bottom">And CTAs</a></p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/68703716-robot.svg" width="138px"/>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <div class="row"> <div class="col-8"> <pre><code>
+&lt;section class="p-strip--suru-bottomed">
+  &lt;div class="row u-equal-height">
+    &lt;div class="col-7 u-vertically-center">
+      &lt;h1>
+        &lt;!-- title -->
+      &lt;/h1>
+      &lt;h4>
+        &lt;!-- sub-title -->
+      &lt;/h4>
+      &lt;p>
+        &lt;!-- text -->
+      &lt;/p>
+      &lt;p>
+        &lt;a href="/" class="p-button--positive u-no-margin--bottom">&lt;!-- CTA -->&lt;/a>
+      &lt;/p>
+    &lt;/div>
+    &lt;div class="col-5 u-align--center u-vertically-center u-hide--small">
+      &lt;!-- img -->
+    &lt;/div>
+  &lt;/div>
+&lt;/section>
+      </code></pre>
+      </div>
+    </div>
+</section>
+
+<!-- p-strip--suru-half-and-half -->
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-half-and-half">
+    <div class="row u-equal-height">
+      <div class="col-7">
+        <h1>
+          p-strip--suru-half-and-half
+        </h1>
+        <p>
+          This strip can have an illustration on the right.
+        </p>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center u-hide--small">
+        <img src="https://assets.ubuntu.com/v1/c3b8a9dd-Snap_Store_shopping_icon.svg" width="250" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <div class="row"> <div class="col-8"> <pre><code>
+&lt;section class="p-strip u-no-padding--top u-no-padding--bottom">
+  &lt;div class="p-strip--suru-half-and-half">
+    &lt;div class="row u-equal-height">
+      &lt;div class="col-7">
+        &lt;h1>
+          &lt;-- title -->
+        &lt;/h1>
+        &lt;p>
+          &lt;-- text -->
+        &lt;/p>
+      &lt;/div>
+      &lt;div class="col-5 u-align--center u-vertically-center u-hide--small">
+        &lt;-- img -->
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+&lt;/section>
+      </code></pre>
+      </div>
+    </div>
+</section>
+
+<!-- p-strip--suru-half-and-half-reversed -->
+<section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom organisations-hero">
+  <div class="p-strip--suru-half-and-half-reversed">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-6">
+        <h1>p-strip--suru-half-and-half-reversed - image</h1>
+        <p>
+          This strip has room for an image or an illustration.
+        </p>
+        <p><a class="p-button--positive js-invoke-modal" href="/desktop/contact-us">Contact us</a></p>
+        <p><a href="https://buy.ubuntu.com" class="p-link--inverted">CTA&nbsp;›</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip--suru-half-and-half-reversed is-dark">
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-6">
+      <h1>p-strip--suru-half-and-half-reversed - illustration</h1>
+      <p class="p-heading--four">
+        This strip has room for an image or an illustration.
+      </p>
+    </div>
+    <div class="col-6 u-hide--small u-align--right">
+      <img src="https://assets.ubuntu.com/v1/4e2131b0-3B-Embedded+Linux.svg" alt="" width="335px">
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <div class="row"> <div class="col-8"> <pre><code>
+&ltsection class="p-strip--suru-half-and-half-reversed is-dark">
+  &ltdiv class="row u-equal-height u-vertically-center">
+    &ltdiv class="col-6">
+      &lth1>
+        &lt;!-- title -->
+      &lt/h1>
+      &ltp class="p-heading--four">
+        &lt;!-- sub-title -->
+      &lt/p>
+    &lt/div>
+    &ltdiv class="col-6 u-hide--small u-align--right">
+      &lt;!-- img -->
+    &lt/div>
+  &lt/div>
+&lt/section>
+      </code></pre>
+      </div>
+    </div>
+</section>
+
+<!-- p-strip--suru-image -->
+<section class="p-strip is-deep is-bordered u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-image">
+    <div class="row u-equal-height">
+      <div class="col-7">
+        <h1>
+          p-strip--suru-image
+        </h1>
+        <p>
+          An image or illustration can be used on the right. It also requires a fair bit of height to look correct.
+        </p>
+      </div>
+      <div class="col-5 u-vertically-center u-align--center u-hide--small">
+        <img src="https://assets.ubuntu.com/v1/2c3ad93c-digital-signage-2.png"/>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <div class="row"> <div class="col-8"> <pre><code>
+&lt;section class="p-strip is-deep is-bordered u-no-padding--top u-no-padding--bottom">
+  &lt;div class="p-strip--suru-image">
+    &lt;div class="row u-equal-height">
+      &lt;div class="col-7">
+        &lt;h1>
+          &lt;-- title -->
+        &lt;/h1>
+        &lt;p>
+          &lt;-- text -->
+        &lt;/p>
+      &lt;/div>
+      &lt;div class="col-5 u-vertically-center u-align--center u-hide--small">
+        &lt;-- img -->
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+&lt;/section>
+      </code></pre>
+      </div>
+    </div>
+</section>
+
+{% endblock content %}

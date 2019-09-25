@@ -6,6 +6,29 @@
 
 {% block content %}
 
+<section class="p-strip--light is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h1>
+        Takeover templates
+      </h1>
+      <p>
+        Using the suru gradient patterns, you can now easily build homepage takeovers with a simple include, passing in all your variables to build a takeover in minutes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>
+        p-takeover--grad
+      </h2>
+    </div>
+  </div>
+</section>
+
 {% with title="A guide to developing Android apps on Ubuntu",
 subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
 class="",
@@ -26,15 +49,11 @@ locale="" %}
 <section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-8">
-      <h1>Takeover templates</h1>
-      <p>Using the suru gradient patterns, you can now easily build homepage takeovers with a simple include, passing in all your variables to build a takeover in minutes.</p>
       <h2>Default takeover - gradient</h2>
       <h4><code>p-takeover--grad</code></h4>
       <p>This is the default takeover style with an aubergine to orange gradient.</p>
       <p>The following is the jinja2 template code you need for all takeovers, but with the default pattern.</p>
-      <pre>
-        <code>
-&#123;% with title="A guide to developing Android apps on Ubuntu",
+      <pre><code>&#123;% with title="A guide to developing Android apps on Ubuntu",
 subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
 class="",
 header_image="https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg",
@@ -49,28 +68,36 @@ secondary_cta="",
 lang="",
 locale="" %}
 &#123;% include "takeovers/_template.html" %}
-&#123;% endwith %}
-        </code>
-      </pre>
+&#123;% endwith %}</code></pre>
       <h3>Details</h3>
       <ul class="p-list">
         <li class="p-list__item"><strong>title</strong>: the h1 text for the takeover</li>
-        <li class="p-list__item"><strong>subtitle</strong>: the h4 text for the takeover <em>(optional)</em></li>
-        <li class="p-list__item"><strong>class</strong>: the full class name for the takeover - null or p-takeover--grad, p-takeover--k8s, p-takeover--dark, p-takeover--snapcraft, p-takeover--aqua <em>(optional)</em></li>
-        <li class="p-list__item"><strong>image</strong>: the full path to the image <em>(optional)</em></li>
-        <li class="p-list__item"><strong>image_style</strong>: any extra information to add to the image in the 'style' property  <em>(optional)</em></li>
-        <li class="p-list__item"><strong>image_hide_small</strong>: 'true' if you want to hide the image on small screens  <em>(optional)</em></li>
-        <li class="p-list__item"><strong>equal_cols</strong>: 'true' if you want the takeover to be spilt into two six cols, otherwise the default will be <code>col-7</code>, <code>col-5</code> <em>(optional)</em></li>
-        <li class="p-list__item"><strong>primary_url</strong>: the url for the primary cta, which will be a button and a <code>p-link--external</code> will be added automatically <em>(optional)</em></li>
-        <li class="p-list__item"><strong>primary_cta</strong>: The text of the button <em>(optional)</em></li>
-        <li class="p-list__item"><strong>primary_cta_class</strong>: the class of the button, defaults to <code>p-button--positive</code> <em>(optional)</em></li>
-        <li class="p-list__item"><strong>secondary_url</strong>: the url for the secondary cta, which will be a text link and a <code>p-link--external</code> will be added automatically <em>(optional)</em></li>
-        <li class="p-list__item"><strong>lang</strong>: the language of the takeover, default is 'en'   <em>(optional)</em></li>
-        <li class="p-list__item"><strong>locale</strong>: the locale of the takeover, default is 'en-GB'  <em>(optional)</em></li>
+        <li class="p-list__item"><strong>subtitle</strong>: the h4 text for the takeover <em>optional</em></li>
+        <li class="p-list__item"><strong>class</strong>: the full class name for the takeover - null or p-takeover--grad, p-takeover--k8s, p-takeover--dark, p-takeover--snapcraft, p-takeover--aqua <em>optional</em></li>
+        <li class="p-list__item"><strong>header_image</strong>: the full path to the image <em>optional</em></li>
+        <li class="p-list__item"><strong>image_style</strong>: any extra information to add to the image in the 'style' property  <em>optional</em></li>
+        <li class="p-list__item"><strong>image_hide_small</strong>: 'true' if you want to hide the image on small screens  <em>optional</em></li>
+        <li class="p-list__item"><strong>equal_cols</strong>: 'true' if you want the takeover to be spilt into two six cols, otherwise the default will be <code>col-7</code>, <code>col-5</code> <em>optional</em></li>
+        <li class="p-list__item"><strong>primary_url</strong>: the url for the primary cta, which will be a button and a <code>p-link--external</code> will be added automatically <em>optional</em></li>
+        <li class="p-list__item"><strong>primary_cta</strong>: The text of the button <em>optional</em></li>
+        <li class="p-list__item"><strong>primary_cta_class</strong>: the class of the button, defaults to <code>p-button--positive</code> <em>optional</em></li>
+        <li class="p-list__item"><strong>secondary_url</strong>: the url for the secondary cta, which will be a text link and a <code>p-link--external</code> will be added automatically <em>optional</em></li>
+        <li class="p-list__item"><strong>lang</strong>: the language of the takeover, default is 'en'   <em>optional</em></li>
+        <li class="p-list__item"><strong>locale</strong>: the locale of the takeover, default is 'en-GB'  <em>optional</em></li>
       </ul>
     </div>
   </div>
 </section>
+
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>p-takeover--k8s</h2>
+    </div>
+  </div>
+</section>
+
 {% with title="A guide to developing Android apps on Ubuntu",
 subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
 class="p-takeover--k8s",
@@ -89,6 +116,14 @@ locale="" %}
 {% endwith %}
 
 <section class="p-strip is-deep is-bordered"></section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>p-takeover--dark</h2>
+    </div>
+  </div>
+</section>
 
 {% with title="A guide to developing Android apps on Ubuntu",
 subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
@@ -109,6 +144,14 @@ locale="" %}
 
 <section class="p-strip is-deep is-bordered"></section>
 
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>p-takeover--snapcraft</h2>
+    </div>
+  </div>
+</section>
+
 {% with title="A guide to developing Android apps on Ubuntu",
 subtitle="Learn what makes Ubuntu the perfect platform for Android app development",
 class="p-takeover--snapcraft",
@@ -127,6 +170,14 @@ locale="" %}
 {% endwith %}
 
 <section class="p-strip is-deep is-bordered"></section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>p-takeover--aqua</h2>
+    </div>
+  </div>
+</section>
 
 {% with title="Machine Learning at Scale",
 subtitle="What do successful solutions have in common?",
