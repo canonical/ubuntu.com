@@ -15,7 +15,9 @@ toc: False
 
 End-to-end (e2e) tests for **Kubernetes** provide a mechanism to test the behaviour of the system. This is a useful indicator that the cluster is performing properly, as well as a good validation of any code changes.
 
-For the **Charmed Distribution of Kubernetes<sup>&reg;</sup>**, these tests are encapsulated in an additional **Juju** charm which can be added to your cluster. Actual testing is then run through the charm's actions.
+For **Charmed Kubernetes**, these tests are encapsulated in an additional
+**Juju** charm which can be added to your cluster. Actual testing is then run
+through the charm's actions.
 
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
@@ -32,9 +34,9 @@ Add the charm to your cluster:
 juju deploy cs:~containers/kubernetes-e2e --constraints mem=4G --channel edge
 ```
 
-We also need to configure the charm to select the appropriate version of tests. This
-relates to the installed version of Kubernetes. You can check which version your cluster is
-set to by running:
+We also need to configure the charm to select the appropriate version of tests.
+This relates to the installed version of Kubernetes. You can check which
+version your cluster is set to by running:
 
 ```bash
 juju config kubernetes-master channel
@@ -67,13 +69,18 @@ The tests are configured as a **Juju** _action_. To run the default tests:
 juju run-action kubernetes-e2e/0 test
 ```
 
-The command will return with a uuid for that specific test run. See the section on _Test output_ below for details.
+The command will return with a uuid for that specific test run. See the section
+on _Test output_ below for details.
 
 ## Running specific tests
 
-The complete set of **Kubernetes** e2e tests is more fully described in the [upstream Kubernetes documentation][e2e-upstream]. In some cases you may wish to omit particular groups of tests. This is possible by applying a regular expression defining the tests to omit when initiating the action.
+The complete set of **Kubernetes** e2e tests is more fully described in the
+[upstream Kubernetes documentation][e2e-upstream]. In some cases you may wish
+to omit particular groups of tests. This is possible by applying a regular
+expression defining the tests to omit when initiating the action.
 
-By default, the standard tests marked `[Flaky]` or `[Serial]` are skipped. To also omit the tests marked as `[Slow]`, you could run:
+By default, the standard tests marked `[Flaky]` or `[Serial]` are skipped. To
+also omit the tests marked as `[Slow]`, you could run:
 
 ```bash
 juju run-action kubernetes-e2e/0 test skip='\[(Flaky|Slow|Serial)\]'
@@ -91,7 +98,9 @@ You can check on the current status of the test by running:
 juju show-action-status 8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9
 ```
 
-where `8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9` is the uuid of the action returned when we initiated the test. This will return YAML output indicating the current status, which can be either `running`, `completed` or `failed`.
+where `8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9` is the uuid of the action returned
+when we initiated the test. This will return YAML output indicating the current
+status, which can be either `running`, `completed` or `failed`.
 
 ```yaml
 actions:
@@ -126,7 +135,11 @@ detailed log.
 
 ## Viewing test logs
 
-The test logfile is stored as a file on the test instance. The filename corresponds to the uuid of the action which created it, with a '.log' extension, and it is stored in the `/home/ubuntu/` directory of the machine where the tests are running. A compressed version is also stored with the extension `.log.tar.gz`
+The test logfile is stored as a file on the test instance. The filename
+corresponds to the uuid of the action which created it, with a '.log'
+extension, and it is stored in the `/home/ubuntu/` directory of the machine
+where the tests are running. A compressed version is also stored with the
+extension `.log.tar.gz`
 
 This log can be copied to your local machine for easier viewing:
 
@@ -134,7 +147,9 @@ This log can be copied to your local machine for easier viewing:
 juju scp kubernetes-e2e/0:4ceed33a-d96d-465a-8f31-20d63442e51b.log  .
 ```
 
-Note that the captured test logfile uses ANSI output, and is best viewed with `cat`, `tail` or a similar command which can handle this type of output. Alternatively, you can strip the ANSI parts of the output:
+Note that the captured test logfile uses ANSI output, and is best viewed with
+`cat`, `tail` or a similar command which can handle this type of output.
+Alternatively, you can strip the ANSI parts of the output:
 
 ```bash
 fn=<your log file name>

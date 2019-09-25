@@ -103,9 +103,11 @@ This will automatically ssh you to the easyrsa unit.
 
 ## Collecting debug information
 
-Sometimes it is useful to collect all the information from a cluster to share with a developer to identify problems. This is best accomplished with [CDK Field Agent](https://github.com/charmed-kubernetes/cdk-field-agent).
+Sometimes it is useful to collect all the information from a cluster to share with a developer to identify problems. This is best accomplished with
+[CDK Field Agent](https://github.com/charmed-kubernetes/cdk-field-agent).
 
-Download and execute the collect.py script from [CDK Field Agent](https://github.com/charmed-kubernetes/cdk-field-agent) on a box that has a Juju client configured with the current controller and model pointing at the CDK deployment of interest.
+Download and execute the collect.py script from
+[CDK Field Agent](https://github.com/charmed-kubernetes/cdk-field-agent) on a box that has a Juju client configured with the current controller and model pointing at the Charmed Kubernetes deployment of interest.
 
 Running the script will generate a tarball of system information and includes basic information such as systemctl status, Juju logs, charm unit data, etc. Additional application-specific information may be included as well.
 
@@ -192,7 +194,7 @@ This is caused by the API load balancer not forwarding ports in the context of t
 
     By default, it will look like `https://54.213.123.123:443`. Replace it with the Kubernetes Master endpoint `https://54.210.100.102:6443` and save.
 
-    Note that the default port used by CDK for the Kubernetes Master API is 6443 while the port exposed by the load balancer is 443.
+    Note that the default port used by Charmed Kubernetes for the Kubernetes Master API is 6443 while the port exposed by the load balancer is 443.
 
 1.  Start helm again!
 

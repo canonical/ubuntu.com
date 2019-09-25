@@ -13,29 +13,24 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The **Charmed Distribution of Kubernetes**<sup>&reg;</sup> supports GPU-enabled
+**Charmed Kubernetes** supports GPU-enabled
 instances for applications which can use them. The kubernetes-worker charm will
 automatically detect NVIDIA hardware and enable the appropriate support.
 However, the implementation of GPU-enabled instances differs greatly between
 public clouds. This page outlines the recommended methods for running GPU
 enabled hardware for different public clouds.
 
-### Deploying CDK with GPU workers on AWS
+### Deploying Charmed Kubernetes with GPU workers on AWS
 
-Using the recommended install method detailed in the [quickstart
-documentation][quickstart], you can select "CDK with NVIDIA GPU workers" at the
-first step, if you are using AWS. All the workers will then be deployed to
-machines with GPUs enabled. There is nothing further to do, enjoy!
-
-If you are installing CDK using a bundle, you can use constraints to specify
+If you are installing Charmed Kubernetes using a bundle, you can use constraints to specify
 that the worker units are deployed on GPU-enabled machines. Because GPU support
 varies considerably depending on the underlying cloud, this requires specifying
 a particular instance type.
 
-This can be done with a YAML overlay file. For example, when deploying CDK on
-AWS, you may decide you wish to use AWS's 'p2.xlarge' instances (you can check
-the AWS instance definitions on the  [AWS website][aws-instance]). A YAML
-overlay file can be constructed like this:
+This can be done with a YAML overlay file. For example, when deploying Charmed
+Kubernetes on AWS, you may decide you wish to use AWS's 'p2.xlarge' instances
+(you can check the AWS instance definitions on the
+[AWS website][aws-instance]). A YAML overlay file can be constructed like this:
 
 ```yaml
 #gpu-overlay.yaml
@@ -44,7 +39,7 @@ applications:
     constraints: instance-type=p2.xlarge
 ```
 
-And then deployed with CDK like this:
+And then deployed with Charmed Kubernetes like this:
 
 ```bash
 juju deploy charmed-kubernetes --overlay ~/path/aws-overlay.yaml --overlay ~/path/gpu-overlay.yaml

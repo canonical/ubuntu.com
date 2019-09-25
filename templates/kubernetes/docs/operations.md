@@ -4,7 +4,7 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Basic operations"
-  description: How to operate your CDK cluster.
+  description: How to operate your Charmed Kubernetes cluster.
 keywords: dashboard, juju,kubectl,config
 tags: [operating]
 sidebar: k8smain-sidebar
@@ -23,7 +23,7 @@ for more useful guides on operating Kubernetes.
 ## Install and configure kubectl
 
 You will need **kubectl** to be able to use your Kubernetes cluster. If it is not already
-installed (it is automatically installed if you used conjure-up to deploy **CDK**), it is easy
+installed (it is automatically installed if you used conjure-up to deploy **Charmed Kubernetes**), it is easy
 to add via a snap package:
 
 ```bash
@@ -34,7 +34,8 @@ For other platforms and install methods, please see the
 [Kubernetes documentation][kubectl].
 
 The config file for accessing the newly deployed cluster is stored in the cluster itself. You
-should use the following command to retrieve it (create a **.kube** directory if it was not created after kubectl installation):
+should use the following command to retrieve it (create a **.kube** directory if it was not created after
+kubectl installation):
 
 ```bash
 juju scp kubernetes-master/0:config ~/.kube/config
@@ -124,7 +125,7 @@ Ingress resources are DNS mappings to your containers, routed through
 
 ## Configuring DNS
 
-CDK 1.14+ has CoreDNS enabled by default, which allows pods within Kubernetes
+Charmed Kubernetes 1.14+ has CoreDNS enabled by default, which allows pods within Kubernetes
 to communicate with other pods or services by name.
 
 If you would like to disable DNS (for example, to deploy your own custom DNS
@@ -269,7 +270,7 @@ project on github.
 
 ## Next steps
 
-Now that your **CDK** cluster is up and running, here are some suggestions for additional
+Now that your **Charmed Kubernetes** cluster is up and running, here are some suggestions for additional
 things you may wish to try:
 
 - [Adding Storage][storage]

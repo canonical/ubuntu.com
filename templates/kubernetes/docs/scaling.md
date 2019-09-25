@@ -4,7 +4,7 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Scaling"
-  description: Learn how various components of CDK can be horizontally scaled to meet demand or increase reliability.
+  description: Learn how various components of Charmed Kubernetes can be horizontally scaled to meet demand or increase reliability.
 keywords: juju, scaling, add-unit, ha, high availability
 tags: [operating]
 sidebar: k8smain-sidebar
@@ -13,9 +13,10 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The **Charmed Distribution of Kubernetes<sup>&reg;</sup>** has been designed to
-be flexible enough to efficiently run your workloads. Various components of **CDK**
-can be horizontally scaled to meet demand or to increase reliability, as detailed below.
+**Charmed Kubernetes** has been designed to be flexible enough to efficiently
+run your workloads. Various components of **Charmed Kubernetes** can be
+horizontally scaled to meet demand or to increase reliability, as detailed
+below.
 
 <div class="p-notification--positive"><p markdown="1" class="p-notification__response">
 <span class="p-notification__status">Note:</span>
@@ -26,9 +27,10 @@ Kubernetes  autoscaling</a> documentation for details. </p></div>
 
 ## kubernetes-master
 
-The kubernetes-master nodes act as the control plane for the cluster. **CDK** was
-designed with separate master nodes so that these nodes can be scaled independently
-of the worker units, to give better efficiency and flexibility.
+The kubernetes-master nodes act as the control plane for the cluster.
+**Charmed Kubernetes** was designed with separate master nodes so that these
+nodes can be scaled independently of the worker units, to give better
+efficiency and flexibility.
 
 Additional units can be added like so:
 
@@ -145,8 +147,7 @@ data.
 
 ## Juju high availability
 
-On a default deployment of the **Charmed Distribution of
-Kubernetes<sup>&reg;</sup>**, there is only one controller instance, which isn't
+On a default deployment of **Charmed Kubernetes**, there is only one controller instance, which isn't
 desirable for critical applications. It is possible to scale out the controller itself to
 prevent a single point of failure.
 
