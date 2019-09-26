@@ -105,7 +105,7 @@
                 <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
               <div class="p-code-copyable">
-                <input class="p-code-copyable__input" value="export VERSION='curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest |    grep tag_name | head -1 | cut -d '&#34;' -f 4'" readonly="readonly">
+                <input class="p-code-copyable__input" value="export VERSION=$(curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest | grep tag_name | head -n 1| cut -d '"' -f 4)" readonly="readonly">
                 <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
               <div class="p-code-copyable">
