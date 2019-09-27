@@ -76,6 +76,10 @@ A list of bug fixes and other minor feature updates in this release can be found
 Special thanks to [pierrop](https://github.com/pierrop) for contributing a fix to
 [issue 1841965](https://bugs.launchpad.net/charm-kubernetes-master/+bug/1841965)!
 
+## Known Issues
+
+The Kubernetes Dashboard shipped with Charmed Kubernetes 1.16 is version 2.0.0-beta4. While unusual to ship a beta component with a stable release, in this case it was necessary, since the latest stable dashboard (v1.10.1) does not work with Kubernetes 1.16.
+
 # 1.15+ck1 Bugfix release
 
 ### August 15, 2019 - [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml)
