@@ -12,7 +12,7 @@ toc: False
 
 Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because we focus on the latest container capabilities in modern kernels. That’s why it’s the top choice for enterprise Kubernetes, too.
 
-[Find out more in the CDK overview&nbsp;&rsaquo;](/kubernetes/docs/overview)
+[Find out more in the Charmed Kubernetes overview&nbsp;&rsaquo;](/kubernetes/docs/overview)
 
 <img src="https://assets.ubuntu.com/v1/843c77b6-juju-at-a-glace.svg" width="608" alt="" style="margin-top: 1rem;">
 
@@ -20,11 +20,11 @@ Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because 
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <h3>Get started</h3>
-      <p><a href="/kubernetes/docs/quickstart">Install CDK&nbsp;&rsaquo;</a></p>
+      <p><a href="/kubernetes/docs/quickstart">Install Charmed Kubernetes&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h3>What's new</h3>
-      <p><a href="/kubernetes/docs/release-notes">Version 1.15 released&nbsp;&rsaquo;</a></p>
+      <p><a href="/kubernetes/docs/release-notes">Version 1.16 released&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h3>Tutorials</h3>
