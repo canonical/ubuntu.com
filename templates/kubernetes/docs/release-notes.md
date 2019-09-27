@@ -32,7 +32,7 @@ For details on using Kata Containers with Charmed Kubernetes, consult the [docum
 - AWS IAM support
 
 Amazon AWS IAM authentication and authorisation is now supported via a subordinate charm. See
-[AWS-IAM documentation](/kubernetes/docs/aws-iam) for details on how to use AWS credentials
+[AWS-IAM documentation](/kubernetes/docs/aws-iam-auth) for details on how to use AWS credentials
 to log in to your Charmed Kubernetes cluster.
 
 - SSL passthrough support
@@ -47,7 +47,7 @@ for more information.
 LXD containers used for hosting Kubernetes components require some specific profile settings. These
 profiles are now embedded in the charms themselves and applied when deployed, dramatically
 simplifying the process of installing Charmed Kubernetes on a single machine. See the
-[Local install documentation](/kubernetes/docs/local-install) for the updated instructions.
+[Local install documentation](/kubernetes/docs/install-local) for the updated instructions.
 
 - Improved Prometheus/Grafana integration
 
@@ -98,17 +98,17 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 - Containerd support
 
-Although Docker is still supported, [containerd](https://containerd.io/) is now 
+Although Docker is still supported, [containerd](https://containerd.io/) is now
 the default container runtime in Charmed Kubernetes. Containerd brings significant
 [peformance improvements](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/)
 and prepares the way for Charmed Kubernetes integration with
 [Kata](https://katacontainers.io/) in the future.
 
 Container runtime code has been moved out of the kubernetes-worker charm, and
-into subordinate charms (one for Docker and one for containerd). This allows 
+into subordinate charms (one for Docker and one for containerd). This allows
 the operator to swap the container runtime as desired, and even mix
 container runtimes within a cluster. It also allows for additional container
-runtimes to be supported in the future. Because this is a significant change, you 
+runtimes to be supported in the future. Because this is a significant change, you
 are advised to read the [upgrade notes](/kubernetes/docs/upgrade-notes) before
 upgrading from a previous version.
 
