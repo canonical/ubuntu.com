@@ -13,18 +13,17 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The **Charmed Distribution of Kubernetes<sup>&reg;</sup>** implements access
+**Charmed Kubernetes** implements access
 control based on the Kubernetes model. A complete overview of the Kubernetes
 authorisation  system is given in the [Kubernetes Documentation][upstream-auth].
 This page provides summary information on the available modes and how to configure
-**CDK** to use them.
+**Charmed Kubernetes** to use them.
 
  The following modes are supported:
 
- -  **AlwaysAllow**: This is the default mode that **CDK** will use unless configured
-    otherwise. All calls to the API server are allowed.
+ -  **AlwaysAllow**: This is the default mode. All calls to the API server are allowed.
  - **Node**: Grants permissions to kubelets based on the pods they are scheduled to run.
-    When using this mode, **CDK** will enable `NodeRestriction` and will issue (and
+    When using this mode, **Charmed Kubernetes** will enable `NodeRestriction` and will issue (and
     decommission) tokens for kubernetes-workers as you scale your infrastructure.
     More detailed information can be found in the [Kubernetes documentation][node].
  - **ABAC**: Using attribute-based access control, access rights are granted to users
@@ -34,7 +33,7 @@ This page provides summary information on the available modes and how to configu
     [Kubernetes ABAC documentation][abac].
  - **RBAC**:  Using role-based access control, access is granted to users based on the
    roles assigned to them. This mode expects respective roles and bindings to be available
-   for any running services. **CDK** already has roles and bindings ready for use
+   for any running services. **Charmed Kubernetes** already has roles and bindings ready for use
    ([see below][roles]).
  - **Webhook**:  With this mode set, Kubernetes will query an outside REST service
    when determining user privileges. This mode requires additional configuration to
@@ -154,7 +153,11 @@ juju run-action kubernetes-master/0 restart
 For more detail on the roles and bindings, please see the
 [Kubernetes RBAC documentation][rbac].
 
-<!-- LINKS -->
+### Using AWS IAM with RBAC
+
+AWS IAM credentials can be used for authentication and authorisation on your Charmed Kubernetes cluster, even if the cluster is not hosted on AWS. For further details see the documentation on [AWS IAM auth][aws-iam].
+
+ <!-- LINKS -->
 
 
 [upstream-auth]: https://kubernetes.io/docs/reference/access-authn-authz/authorization/
@@ -165,3 +168,4 @@ For more detail on the roles and bindings, please see the
 [webhook]: https://kubernetes.io/docs/reference/access-authn-authz/webhook/
 [docs-ldap]: /kubernetes/docs/ldap
 [roles]: #rbac
+[aws-iam]: /kubernetes/docs/aws-iam-auth

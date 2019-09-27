@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The **Charmed Distribution of Kubernetes<sup>&reg;</sup>** supports setting a
+**Charmed Kubernetes** supports setting a
 custom IP address for the control plane.  There are two ways of achieving this, depending
 on which type of load balancing solution you wish to configure:
 

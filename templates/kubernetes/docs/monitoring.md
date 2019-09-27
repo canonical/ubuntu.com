@@ -13,126 +13,107 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The **Charmed Distribution of Kubernetes**<sup>&reg;</sup> includes the standard
+**Charmed Kubernetes** includes the standard
 **Kubernetes** dashboard for monitoring your cluster. However, it is often advisable to
 have a monitoring solution which will run whether the cluster itself is running or not. It
 may also be useful to integrate monitoring into existing setups.
 
 **Prometheus** is the recommended way to monitor your deployment - instructions are
-provided below. There are also instructions for setting up other monitoring solutions, or
-connecting to existing monitoring setups.
+provided below. There are also instructions for setting up other monitoring
+solutions, or connecting to existing monitoring setups.
 
-## Monitoring with Prometheus
+## Monitoring with Prometheus, Grafana, and Telegraf
 
-The recommended way to monitor your cluster is to use a combination of **Prometheus**, **Grafana** and **Telegraf**. The fastest, easiest way to install and configure this is via **conjure-up** when installing the **Charmed Distribution of Kubernetes**<sup>&reg;</sup>, by selecting the box next to Prometheus from the `Add-on` menu. You can then log in to the dashboard as [described below](#retrieve-credentials-and-login). See the [quickstart guide][quickstart] for more details on installing **CDK** with **conjure-up**.
+The recommended way to monitor your cluster is to use a combination of
+**Prometheus**, **Grafana** and **Telegraf**. These provide a dashboard
+from which you can monitor both machine-level and cluster-level metrics.
+See the [quickstart guide][quickstart] for more details on installing **Charmed Kubernetes**.
 
-If you have already installed your cluster, you will be able to add and configure the extra applications using **Juju** as described here:
+### Installation
 
-### Install the required applications
+You can install **Charmed Kubernetes** with monitoring using the Juju bundle
+along with the following overlay file ([download it here][monitoring-pgt-overlay]):
 
-The following commands will add the required applications:
-
-```bash
-# Note: the prometheus2 charm is deployed as 'prometheus'
-juju deploy prometheus2 --series=bionic --constraints "mem=4G root-disk=16G" prometheus
-juju deploy grafana --series=bionic
-juju deploy telegraf --series=bionic
-juju expose grafana
+```yaml
+applications:
+  prometheus:
+    charm: cs:prometheus2
+    constraints: "mem=4G root-disk=16G"
+    num_units: 1
+  grafana:
+    charm: cs:grafana
+    expose: true
+    num_units: 1
+  telegraf:
+    charm: cs:telegraf
+relations:
+  - [prometheus:grafana-source, grafana:grafana-source]
+  - [telegraf:prometheus-client, prometheus:target]
+  - [kubernetes-master:juju-info, telegraf:juju-info]
+  - [kubernetes-worker:juju-info, telegraf:juju-info]
+  - [kubernetes-master:prometheus, prometheus:manual-jobs]
+  - [kubernetes-master:grafana, grafana:dashboards]
 ```
 
-### Add relations
-
-Relationships need to be established between the applications and the units
-running the cluster:
+To use this overlay with the **Charmed Kubernetes** bundle, specify it 
+during deploy like this:
 
 ```bash
-juju add-relation prometheus:grafana-source grafana:grafana-source
-juju add-relation telegraf:prometheus-client prometheus:target
-juju add-relation kubernetes-master:juju-info telegraf:juju-info
-juju add-relation kubernetes-worker:juju-info telegraf:juju-info
+juju deploy charmed-kubernetes --overlay ~/path/monitoring-pgt-overlay.yaml
 ```
 
-### Adding a scraper for Prometheus
-
-Prometheus will also need an appropriate scraper to collect metrics relevant to the cluster. A useful default is installed when using **conjure-up** (the template for this can be [downloaded here][download-scraper]), but you can also configure it manually by following the steps outlined here:
-
-#### 1. Download the scraper file
+If you wish to add monitoring to an existing deployment, you can export a
+bundle of your current environment and then redeploy it on top of itself with
+the overlay:
 
 ```bash
-curl -O  https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml
-```
-This is the template, but it needs some specific information for your cluster.
-
-#### 2. Get the relevant address and password
-
-```bash
-api=$(juju run  --unit kubeapi-load-balancer/0 'network-get website --format yaml --ingress-address' | head -1)
-pass=$(juju run --unit kubernetes-master/0 'grep "password:" /home/ubuntu/config' | awk '{ print $2 }')
-```
-This will fetch the relevant info from your cluster and store in temporary environment variables for convenience.
-
-#### 4. Substitute in the variables
-
-```bash
-sed -e 's/K8S_PASSWORD/'"$pass"'/' -e 's/K8S_API_ENDPOINT/'"$api"'/' <prometheus-scrape-k8s.yaml  > myscraper.yaml
-```
-
-#### 5. Configure Prometheus to use this scraper
-
-```bash
-juju config prometheus scrape-jobs="$(<myscraper.yaml)"
-```
-
-### Add the dashboards
-
-As with the scraper, there is a [sample dashboard available for download here][download-dashboard]. You can download and configure **grafana** to use it by following these steps:
-
-#### 1. Download the sample dashboard configuration
-
-```bash
-curl -O https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json
-```
-#### 2. Upload this to grafana
-
-```bash
-juju run-action --wait grafana/0 import-dashboard dashboard="$(base64 grafana-k8s.json)"
-```
-
-There is also a default Telegraf dashboard. If you wish to install this, it can be done in a similar way:
-```bash
-curl -O https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-telegraf.json
-juju run-action --wait grafana/0 import-dashboard  dashboard="$(base64 grafana-telegraf.json)"
+juju export-bundle --filename mybundle.yaml
+juju deploy ./mybundle.yaml --overlay ~/path/monitoring-pgt-overlay.yaml
 ```
 
 ### Retrieve credentials and login
 
-To open the dashboard in your browser you will need to know the IP address for **grafana** and the admin password. These can be retrieved with the following commands:
+To open the dashboard in your browser you will need to know the URL and login
+credentials for Grafana. These can be retrieved with the following command:
 
 ```bash
-juju status --format yaml grafana/0 | grep public-address
+juju run-action --wait grafana/0 get-login-info
 ```
 
-Will return the accessible IP address for the dashboard.
+This will return the connection and login information, like the following:
 
-```bash
-juju run-action --wait grafana/0 get-admin-password
+```yaml
+unit-grafana-0:
+  id: a74acea6-8be9-43c1-8f1c-b1bebe9f5153
+  results:
+    url: http://10.4.23.162:3000
+    username: admin
+    password: NYZVkNb3jbMMhWhx
+  status: completed
+  timing:
+    completed: 2019-07-29 22:00:29 +0000 UTC
+    enqueued: 2019-07-29 22:00:27 +0000 UTC
+    started: 2019-07-29 22:00:28 +0000 UTC
+  unit: grafana/0
 ```
 
-Will return the password for the user 'admin'
+With that, you can visit the URL and log in using the username and password.
 
-You can now navigate to the website at `http://<your-ip>:3000` and login with the username `admin` and the password you just retrieved.
-
-Once logged in, check out the cluster metric dashboard by clicking the `Home` drop-down box and selecting `Kubernetes Metrics (via Prometheus)`:
+Once logged in, check out the cluster metric dashboard by clicking the `Home`
+drop-down box and selecting `Kubernetes Metrics (via Prometheus)`:
 
 ![grafana dashboard image](https://assets.ubuntu.com/v1/e6934269-grafana-1.png)
 
-You can also check out the system metrics of the cluster by switching the drop-down box to `Node Metrics (via Telegraf):
+You can also check out the system metrics of the cluster by switching the
+drop-down box to `Node Metrics (via Telegraf):
 
 ![grafana dashboard image](https://assets.ubuntu.com/v1/45b87639-grafana-2.png)
 
 ## Monitoring with Nagios
 
-**Nagios** ([https://www.nagios.org/][nagios]) is widely used for monitoring networks, servers and applications. Using the Nagios Remote Plugin Executor (NRPE) on each node, it can monitor your cluster with machine-level detail.
+**Nagios** ([https://www.nagios.org/][nagios]) is widely used for monitoring
+networks, servers and applications. Using the Nagios Remote Plugin Executor
+(NRPE) on each node, it can monitor your cluster with machine-level detail.
 
 To start, deploy the latest version of the Nagios and NRPE Juju charms:
 
@@ -148,7 +129,9 @@ Connect **Nagios** to NRPE:
 juju add-relation nagios nrpe
 ```
 
-Now add relations to NRPE for all the applications you wish to monitor, for example kubernetes-master, kubernetes-worker, etcd, easyrsa, and kubeapi-load-balancer.
+Now add relations to NRPE for all the applications you wish to monitor, for
+example kubernetes-master, kubernetes-worker, etcd, easyrsa, and
+kubeapi-load-balancer.
 
 ```bash
 juju add-relation nrpe kubernetes-master
@@ -164,7 +147,8 @@ To connect to the Nagios server, you will need its IP address:
 juju status --format yaml nagios/0 | grep public-address
 ```
 
-The default username is `nagiosadmin`. The password is randomly generated at install time, and can be retrieved by running:
+The default username is `nagiosadmin`. The password is randomly generated at
+install time, and can be retrieved by running:
 
 ```bash
 juju ssh nagios/0 sudo cat /var/lib/juju/nagios.passwd
@@ -174,7 +158,8 @@ juju ssh nagios/0 sudo cat /var/lib/juju/nagios.passwd
 
 ### Using an existing Nagios service
 
-If you already have an existing **Nagios** installation, the `nrpe` charm can be configured to work with it.
+If you already have an existing **Nagios** installation, the `nrpe` charm can
+be configured to work with it.
 
 ```bash
 juju config nrpe export_nagios_definitions=true
@@ -186,7 +171,7 @@ See the [External Nagios][external-nagios] section of the NRPE charm readme for 
 ## Monitoring with **Elasticsearch**
 
 Elasticsearch ([https://www.elastic.co/][elastic]) is a popular monitoring application which
-can be used in conjunction with **CDK**.
+can be used in conjunction with **Charmed Kubernetes**.
 
 ### Deploy the required applications
 
@@ -229,9 +214,8 @@ juju status kibana --format yaml| grep public-address
 
 <!-- LINKS -->
 
+[monitoring-pgt-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/monitoring-pgt-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [nagios]: https://www.nagios.org/
 [elastic]: https://www.elastic.co/
-[download-scraper]: https://github.com/conjure-up/spells/blob/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/prometheus-scrape-k8s.yaml
-[download-dashboard]: https://raw.githubusercontent.com/conjure-up/spells/master/charmed-kubernetes/addons/prometheus/steps/01_install-prometheus/grafana-k8s.json
 [external-nagios]: https://jujucharms.com/nrpe/

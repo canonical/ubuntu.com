@@ -3,8 +3,8 @@ wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "CDK on AWS"
-  description: Running CDK on AWS using the aws-integrator.
+  title: "Charmed Kubernetes on AWS"
+  description: Running Charmed Kubernetes on AWS using the aws-integrator.
 keywords: aws, integrator, ebs, elb
 tags: [install]
 sidebar: k8smain-sidebar
@@ -13,37 +13,40 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The **Charmed Distribution of Kubernetes<sup>&reg;</sup>** will run seamlessly on
-AWS.  With the addition of the `aws-integrator`, your cluster will also be able to directly
-use AWS native features.
+**Charmed Kubernetes** will run seamlessly on AWS.  With the addition of the
+`aws-integrator`, your cluster will also be able to directly use AWS native
+features.
 
 
 ## AWS integrator
 
-The `aws-integrator` charm simplifies working with **CDK** on AWS. Using the
-credentials provided to Juju, it acts as a proxy between CDK and the underlying cloud,
-granting permissions to dynamically create, for example, EBS volumes.
+The `aws-integrator` charm simplifies working with **Charmed Kubernetes** on
+AWS. Using the credentials provided to **Juju**, it acts as a proxy between
+Charmed Kubernetes and the underlying cloud, granting permissions to
+dynamically create, for example, EBS volumes.
 
 ### Installing
 
-If you use the [recommended install method][quickstart] with `conjure-up`, the
-integrator charm will be installed by default, and trust granted automatically.
-
-If you install **CDK** using the Juju bundle, you can add the aws-integrator at
-the same time by using the following overlay file
-([download it here][asset-aws-overlay]):
+If you install **Charmed Kubernetes** [using the Juju bundle][install], you can add the
+aws-integrator at the same time by using the following overlay file ([download
+it here][asset-aws-overlay]):
 
 ```yaml
+description: Charmed Kubernetes overlay to add native AWS support.
 applications:
   aws-integrator:
+    annotations:
+      gui-x: "600"
+      gui-y: "300"
     charm: cs:~containers/aws-integrator
     num_units: 1
+    trust: true
 relations:
   - ['aws-integrator', 'kubernetes-master']
   - ['aws-integrator', 'kubernetes-worker']
   ```
 
-To use this overlay with the **CDK** bundle, it is specified during deploy like this:
+To use this overlay with the **Charmed Kubernetes** bundle, it is specified during deploy like this:
 
 ```bash
 juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml
@@ -66,12 +69,14 @@ please see the [charm readme][aws-integrator-readme].
 
 ### Using EBS volumes
 
-Many  pods you may wish to deploy will require storage. Although you can use any type
-of storage supported by Kubernetes (see the [storage documentation][storage]), you
-also have the option to use the native AWS storage, Elastic Block Store (EBS).
+Many  pods you may wish to deploy will require storage. Although you can use
+any type of storage supported by Kubernetes (see the
+[storage documentation][storage]), you also have the option to use the native
+AWS storage, Elastic Block Store (EBS).
 
-First we need to create a storage class which can be used by Kubernetes.  To start with,
-we will create one for the 'General Purpose SSD' type of EBS storage:
+First we need to create a storage class which can be used by Kubernetes.
+To start with, we will create one for the 'General Purpose SSD' type of EBS
+storage:
 
 ```bash
 kubectl create -f - <<EOY
@@ -247,7 +252,7 @@ to make sure all the associated resources have also been released.
 
 ### Upgrading the integrator-charm
 
-The aws-integrator is not specifically tied to the version of CDK installed and may
+The aws-integrator is not specifically tied to the version of Charmed Kubernetes installed and may
 generally be upgraded at any time with the following command:
 
 ```bash
@@ -260,23 +265,29 @@ If you have any specific problems with the aws-integrator, you can report bugs o
 [Launchpad][bugs].
 
 The aws-integrator charm makes use of IAM accounts in AWS to perform actions, so
-useful information can be obtained from [Amazon's CloudTrail][cloudtrail], which logs
-such activity.
+useful information can be obtained from [Amazon's CloudTrail][cloudtrail],
+which logs such activity.
 
-For logs of what the charm itself believes the world to look like, you can use Juju to replay
-the log history for that specific unit:
+For logs of what the charm itself believes the world to look like, you can use
+Juju to replay the log history for that specific unit:
 
 ```bash
 juju debug-log --replay --include aws-integrator/0
 ```
 
+## See also:
+
+If you are an AWS user, you may also be interested in how to
+[use AWS IAM for authorisation and authentication][aws-iam].
 
 <!-- LINKS -->
 
-[asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/aws-overlay.yaml
+[asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/aws-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
 [ebs-info]: https://aws.amazon.com/ebs/features/
 [cloudtrail]: https://console.aws.amazon.com/cloudtrail/
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
 [aws-integrator-readme]: https://jujucharms.com/u/containers/aws-integrator/
+[aws-iam]: /kubernetes/docs/aws-iam-auth
+[install]: /kubernetes/docs/install-manual

@@ -15,28 +15,37 @@ toc: False
 
 ## How to add **Ceph** storage
 
-Many things you will want to use your Kubernetes cluster for will require some form of available storage. Storage is quite a large topic -- this guide will focus on just adding some quick storage using **Ceph**, so you can get up and running quickly.
+Many things you will want to use your Kubernetes cluster for will require some
+form of available storage. Storage is quite a large topic -- this guide will
+focus on just adding some quick storage using **Ceph**, so you can get up and
+running quickly.
 
 ### What you'll need
 
-- A **CDK** environment set up and running. See the [quickstart][quickstart] if you haven't .
+- A **Charmed Kubernetes** environment set up and running. See the [quickstart][quickstart] if you haven't .
 - An existing **Ceph** cluster or the ability to create one.
 
 ### Deploying Ceph
 
-Setting up a Ceph cluster is easy with Juju. For this example we will deploy three ceph monitor nodes:
+Setting up a Ceph cluster is easy with Juju. For this example we will deploy
+three ceph monitor nodes:
 
 ```bash
  juju deploy -n 3 ceph-mon
 ```
 
-...and then we'll add three storage nodes. For the storage nodes, we will also specify some actual storage for these nodes to use by using `-- storage`. In this case the Juju charm uses labels for different types of storage:
+...and then we'll add three storage nodes. For the storage nodes, we will also
+specify some actual storage for these nodes to use by using `-- storage`. In
+this case the Juju charm uses labels for different types of storage:
 
 ```bash
  juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1
 ```
 
-This will deploy a storage node, and attach two 32GB devices for storage and 8GB for journalling. As we have asked for 3 machines, this means a total of 192GB of storage and 24GB of journal space. The storage comes from whatever the default storage class is for the cloud (e.g., on AWS this will be EBS volumes).
+This will deploy a storage node, and attach two 32GB devices for storage and
+8GB for journalling. As we have asked for 3 machines, this means a total of
+192GB of storage and 24GB of journal space. The storage comes from whatever the
+default storage class is for the cloud (e.g., on AWS this will be EBS volumes).
 
 ```bash
 juju add-relation ceph-osd ceph-mon
@@ -50,9 +59,9 @@ For more on how Juju makes use of storage, please see the relevant
   </p>
 </div>
 
-### Relating to CDK
+### Relating to Charmed Kubernetes
 
-Making **CDK** aware of your **Ceph** cluster just requires a **Juju** relation.
+Making **Charmed Kubernetes** aware of your **Ceph** cluster just requires a **Juju** relation.
 
 ```bash
 juju add-relation ceph-mon kubernetes-master
@@ -98,7 +107,8 @@ unit-ceph-mon-0:
 
 ### Verifying things are working
 
-Now you can look at your **CDK** cluster to verify things are working. Running:
+Now you can look at your **Charmed Kubernetes** cluster to verify things are
+working. Running:
 
 ```bash
 kubectl get sc,po
@@ -137,4 +147,5 @@ data-calling-wombat-mariadb-0   Bound     pvc-b1df7ac9a4bd11e8   8Gi        RWO 
 
 ### Conclusion
 
-Now you have a **Ceph** cluster talking to your **Kubernetes** cluster. From here you can install any of the things that require storage out of the box.
+Now you have a **Ceph** cluster talking to your **Kubernetes** cluster. From
+here you can install any of the things that require storage out of the box.

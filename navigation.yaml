@@ -102,7 +102,7 @@ kubernetes:
         - title: Local install
           path: /kubernetes/docs/install-local
           hidden: True
-        - title: Manual install
+        - title: Install
           path: /kubernetes/docs/install-manual
           hidden: True
         - title: AWS integration
@@ -128,6 +128,12 @@ kubernetes:
           hidden: True
         - title: Using Tigera Secure EE
           path: /kubernetes/docs/tigera-secure-ee
+          hidden: True
+        - title: Containerd and Docker
+          path: /kubernetes/docs/container-runtime
+          hidden: True
+        - title: Kata containers
+          path: /kubernetes/docs/kata
           hidden: True
         - title: Basic Operations
           path: /kubernetes/docs/operations
@@ -180,9 +186,6 @@ kubernetes:
         - title: Troubleshooting
           path: /kubernetes/docs/troubleshooting
           hidden: True
-        - title: Containerd and Docker
-          path: /kubernetes/docs/container-runtime
-          hidden: True
         - title: Overview
           path: /kubernetes/docs/high-availability
           hidden: True
@@ -206,6 +209,12 @@ kubernetes:
           hidden: True
         - title: Certificates and trust
           path: /kubernetes/docs/certs-and-trust
+          hidden: True
+        - title: Snap refresh
+          path: /kubernetes/docs/snap-refresh
+          hidden: True
+        - title: AWS IAM auth
+          path: /kubernetes/docs/aws-iam-auth
           hidden: True
         - title: Get in touch
           path: /kubernetes/docs/get-in-touch
@@ -710,7 +719,7 @@ pricing:
       path: /pricing/infra
     - title: Consulting
       path: /pricing/consulting
-
+      
 documentation:
   title: Docs
   path: /_docs

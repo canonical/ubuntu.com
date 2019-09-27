@@ -22,13 +22,16 @@ This documentation assumes you are using version 2.4.0 or later of <strong>Juju<
 
 Broadly, there are two types of logs you may be interested in. On cluster or node level;
 for the applications you are running inside your cluster, and at an infrastructure level, the
-applications which are responsible for running the cluster itself. As the
-**Charmed Distribution of Kubernetes<sup>®</sup>** is pure Kubernetes, you can
+applications which are responsible for running the cluster itself. As
+**Charmed Kubernetes** is pure Kubernetes, you can
 use any of the tools and techniques to examine cluster logs as
 [described in the Kubernetes documentation][k8-logs].
 
-For the infrastructure, your **CDK** deployment has centralised logging set up as default. Each unit in your cluster automatically sends logging information to the controller based on the current logging level. You can use the **Juju**
-command line to easily inspect these logs and to change the logging level, as explained below.
+For the infrastructure, your **Charmed Kubernetes** deployment has centralised
+logging set up as default. Each unit in your cluster automatically sends
+logging information to the controller based on the current logging level. You
+can use the **Juju** command line to easily inspect these logs and to change
+the logging level, as explained below.
 
 ## Viewing logs
 
@@ -50,7 +53,9 @@ For example, a typical line of output might read:
 unit-kubernetes-master-0: 18:04:11 INFO juju.cmd running jujud [2.4.2 gc go1.10]
 ```
 
-The entity is the unit, machine or application the message originates from (in this case _kubernetes-master/0_). It can be very useful to filter the output based on the entity or log level, and the `debug-log` command has many options.
+The entity is the unit, machine or application the message originates from (in
+this case _kubernetes-master/0_). It can be very useful to filter the output
+based on the entity or log level, and the `debug-log` command has many options.
 
 For a full description, run the command `juju help debug-log` or see the
 [**Juju** documentation][juju-logging]. Some useful examples are outlined below.
@@ -77,7 +82,13 @@ juju debug-log --replay --include=kubernetes-worker/0
 
 ## Viewing logs on a machine
 
-If it becomes necessary for any reason, it is also possible to view logs directly on the running machine. A user with SSH access can connect to the relevant machine and find the logs for all the units running on that machine in the directory `/var/logs/juju`. The `juju ssh` command can be used for this, and you can connect to the relevant machine using a unit identifier. So for example, to look at the logs on the machine running the first unit of `kubernetes-worker` you can run the following:
+If it becomes necessary for any reason, it is also possible to view logs
+directly on the running machine. A user with SSH access can connect to the
+relevant machine and find the logs for all the units running on that machine in
+the directory `/var/logs/juju`. The `juju ssh` command can be used for this,
+and you can connect to the relevant machine using a unit identifier. So for
+example, to look at the logs on the machine running the first unit of
+`kubernetes-worker` you can run the following:
 
 ```bash
 juju ssh kubernetes-worker/0
@@ -90,7 +101,8 @@ Which should show something similar to:
 machine-1.log  machine-lock.log  unit-flannel-1.log  unit-kubernetes-worker-0.log
 ```
 
-Note that the logs from other units (in this case 'flannel') running on this machine can also be found here.
+Note that the logs from other units (in this case 'flannel') running on this
+machine can also be found here.
 
 ## Logging level
 
@@ -106,7 +118,10 @@ This will result in output similar to:
 <root>=WARNING;unit=DEBUG
 ```
 
-...which is the default for any Juju model. This indicates that the _machine_ log level is set to 'WARNING', and the _unit_ logging level is set to 'DEBUG'. As all the software components of your kubernetes cluster run in units, these logs are likely to be useful for diagnosing issues with software.
+...which is the default for any Juju model. This indicates that the _machine_
+log level is set to 'WARNING', and the _unit_ logging level is set to 'DEBUG'.
+As all the software components of your kubernetes cluster run in units, these
+logs are likely to be useful for diagnosing issues with software.
 
 The logging levels, from most verbose to least verbose, are as follows:
 
@@ -133,7 +148,9 @@ The logging level can be set like this:
 
 ## Additional information
 
-As previously mentioned, you can see more detailed information on accessing the logs from your cluster in the [**Juju** documentation][juju-logging], including the following:
+As previously mentioned, you can see more detailed information on accessing the
+logs from your cluster in the [**Juju** documentation][juju-logging], including
+the following:
 
 - Altering the agent logging setup
 - Setting up remote logging

@@ -4,7 +4,7 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Using Tigera Secure EE"
-  description: Using Tigera Secure EE with CDK
+  description: Using Tigera Secure EE with Charmed Kubernetes
 keywords: network, cni, tigera
 tags: [operating]
 sidebar: k8smain-sidebar
@@ -17,11 +17,11 @@ Tigera Secure EE is a software-defined network solution that can be used with
 Kubernetes. For those familiar with Calico, Tigera Secure EE is essentially
 Calico with enterprise features on top.
 
-Support for Tigera Secure EE in **CDK** is provided in the form of a
+Support for Tigera Secure EE in **Charmed Kubernetes** is provided in the form of a
 `tigera-secure-ee` subordinate charm, which can be used instead of `flannel` or
 `calico`.
 
-## Deploying CDK with Tigera Secure EE
+## Deploying Charmed Kubernetes with Tigera Secure EE
 
 Before you start, you will need:
 
@@ -38,7 +38,7 @@ Before you start, you will need:
 </div>
 
 
-To start, deploy **CDK** with Tigera Secure EE:
+To start, deploy **Charmed Kubernetes** with Tigera Secure EE:
 
 ```bash
 juju deploy cs:~containers/kubernetes-tigera-secure-ee
@@ -131,7 +131,7 @@ kubectl delete po -n calico-monitoring es-data-tigera-elasticsearch-default-0
 kubectl delete po -n calico-monitoring es-master-tigera-elasticsearch-default-0
 ```
 
-For a more robust storage solution, consider deploying Ceph with **CDK**, as
+For a more robust storage solution, consider deploying Ceph with **Charmed Kubernetes**, as
 documented in the [Storage][] section. This will create a default StorageClass
 that elasticsearch-operator will use automatically.
 
@@ -179,8 +179,8 @@ Then connect to `http://<kubernetes-worker-ip>:30601` in your web browser.
 
 ## Using a private Docker registry
 
-For a general introduction to using a private Docker registry with **CDK**, please
-refer to the [Private Docker Registry][] page.
+For a general introduction to using a private Docker registry with
+**Charmed Kubernetes**, please refer to the [Private Docker Registry][] page.
 
 In addition to the steps documented there, you will need to upload the
 following images to the registry:
