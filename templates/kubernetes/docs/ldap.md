@@ -18,13 +18,13 @@ There is a distinction between authentication and authorisation:
   * Authentication verifies who a user is.
   * Authorisation deals with what a user is allowed to do.
 
-**CDK** can be configured to use Keystone and LDAP for authentication only
+**Charmed Kubernetes** can be configured to use Keystone and LDAP for authentication only
 or both authentication and authorisation.
 
 
 ## Requirements
 
-* This document assumes you have already [installed][install] **CDK**.
+* This document assumes you have already [installed][install] **Charmed Kubernetes**.
 * For LDAP authentication, this documentation assumes you already have a suitable LDAP
    server running.
 * You will need to install the Keystone client. This can be done by running:
@@ -235,12 +235,12 @@ For a more detailed explanation of the configuration and other options, please s
 
 ## Authorisation
 
-By default, **CDK** will setup only authentication with Keystone. This allows the use of
+By default, **Charmed Kubernetes** will setup only authentication with Keystone. This allows the use of
 other methods such as RBAC for authorisation but using Keystone for authentication:
 usernames will come from Keystone, but what they can do in the cluster
 is controlled by another system.
 
-**CDK** can  also use Keystone for authorisation as follows:
+**Charmed Kubernetes** can  also use Keystone for authorisation as follows:
 
 ```bash
 juju config kubernetes-master enable-keystone-authorization=true

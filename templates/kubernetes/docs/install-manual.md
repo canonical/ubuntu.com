@@ -3,7 +3,7 @@ wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "Installing CDK"
+  title: "Installing Charmed Kubernetes"
   description: How to install and customise Charmed Kubernetes using Juju bundles.
 keywords: lxd, requirements, developer
 tags: [install]
@@ -232,6 +232,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
+| 1.16.x         | [charmed-kubernetes-252](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-252/archive/bundle.yaml) |
 | 1.15.x         | [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml) |
 | 1.14.x         | [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml) |
 | 1.13.x         | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
@@ -346,7 +347,7 @@ kubernetes-worker:
   expose: true
   num_units: 3
   options:
-    channel: 1.13/stable
+    channel: 1.16/stable
   resources:
     cni-amd64: 12
     cni-arm64: 10

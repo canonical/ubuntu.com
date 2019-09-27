@@ -15,7 +15,7 @@ toc: False
 
 On-disk files in a container are ephemeral and can't be shared with other members of a pod. For some applications, this is not an issue, but for many persistent storage is required.
 
-**Charmed Kubernetes**<sup>&reg;</sup> makes it easy to add and configure different types of persistent storage for your **Kubernetes** cluster, as outlined below. For more detail on the concept of storage volumes in **Kubernetes**, please see the [Kubernetes documentation][kubernetes-storage-docs].
+**Charmed Kubernetes** makes it easy to add and configure different types of persistent storage for your **Kubernetes** cluster, as outlined below. For more detail on the concept of storage volumes in **Kubernetes**, please see the [Kubernetes documentation][kubernetes-storage-docs].
 
 ## Ceph storage
 
@@ -176,7 +176,7 @@ juju add-storage ceph-osd/2 --storage osd-devices=32G,2
 
 ### Using a separate Juju model
 
-In some circumstances it can be useful to locate the persistent storage in a different **Juju** model, for example to have one set of storage used by different clusters. The only change required is in adding relations between **Ceph** and **Charmed Kubernetes**.
+In some circumstances it can be useful to locate the persistent storage in a different **Juju** model, for example to have one set of storage used by different clusters. The only change required is in adding relations between **Ceph** and **Charmed Kuberentes**.
 
 For more information on how to achieve this, please see the [Juju documentation][juju-cmr] on cross-model relations.
 

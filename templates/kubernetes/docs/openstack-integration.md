@@ -3,8 +3,8 @@ wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "CDK on OpenStack"
-  description: Running CDK on OpenStack using the openstack-integrator.
+  title: "Charmed Kubernetes on OpenStack"
+  description: Running Charmed Kubernetes on OpenStack using the openstack-integrator.
 keywords: openstack, integrator, cinder, lbaas
 tags: [install]
 sidebar: k8smain-sidebar
@@ -13,34 +13,68 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The **Charmed Distribution of Kubernetes<sup>&reg;</sup>** will run seamlessly
+**Charmed Kubernetes** will run seamlessly
 on OpenStack. With the addition of the `openstack-integrator`, your cluster
 will also be able to directly use OpenStack native features.
 
 
 ## OpenStack integrator
 
-The `openstack-integrator` charm simplifies working with **CDK** on OpenStack. Using the
-credentials provided to Juju, it acts as a proxy between CDK and the underlying cloud,
+The `openstack-integrator` charm simplifies working with **Charmed Kubernetes** on OpenStack. Using the
+credentials provided to Juju, it acts as a proxy between Charmed Kubernetes and the underlying cloud,
 granting permissions to dynamically create, for example, Cinder volumes.
 
 ### Installing
 
-When installing **CDK** using the Juju bundle, you can add the openstack-integrator at
+When installing **Charmed Kubernetes** [using the Juju bundle][install], you can add the openstack-integrator at
 the same time by using the following overlay file
 ([download it here][asset-openstack-overlay]):
 
 ```yaml
+description: Charmed Kubernetes overlay to add native OpenStack support.
 applications:
   openstack-integrator:
+    annotations:
+      gui-x: "600"
+      gui-y: "300"
     charm: cs:~containers/openstack-integrator
     num_units: 1
+    trust: true
 relations:
-  - ['openstack-integrator', 'kubernetes-master']
-  - ['openstack-integrator', 'kubernetes-worker']
-  ```
+  - ['openstack-integrator', 'kubernetes-master:openstack']
+  - ['openstack-integrator', 'kubernetes-worker:openstack']
+```
 
-To use this overlay with the **CDK** bundle, it is specified during deploy like this:
+If desired, the openstack-integrator can also replace kubeapi-load-balancer and create a native OpenStack
+load balancer for the Kubernetes API server, which both reduces the number of machines required and is
+HA. To enable this, use this overlay instead ([download it here][asset-openstack-lb-overlay]):
+
+```yaml
+applications:
+  kubeapi-load-balancer: null
+  openstack-integrator:
+    annotations:
+      gui-x: "600"
+      gui-y: "300"
+    charm: cs:~containers/openstack-integrator
+    num_units: 1
+    trust: true
+relations:
+  - ['openstack-integrator', 'kubernetes-master:loadbalancer']
+  - ['openstack-integrator', 'kubernetes-master:openstack']
+  - ['openstack-integrator', 'kubernetes-worker:openstack']
+```
+
+<div class="p-notification--caution">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+If you create load balancers and subsequently tear down the cluster, check with
+the OpenStack administration tools to make sure all the associated resources
+have also been released.
+  </p>
+</div>
+
+To use the overlay with the **Charmed Kubernetes** bundle, specify it during deploy like this:
 
 ```bash
 juju deploy charmed-kubernetes --overlay ~/path/openstack-overlay.yaml
@@ -202,7 +236,7 @@ have also been released.
 
 ### Upgrading the integrator charm
 
-The openstack-integrator is not specifically tied to the version of CDK installed and may
+The openstack-integrator is not specifically tied to the version of Charmed Kubernetes installed and may
 generally be upgraded at any time with the following command:
 
 ```bash
@@ -224,7 +258,9 @@ juju debug-log --replay --include openstack-integrator/0
 
 <!-- LINKS -->
 
-[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/openstack-overlay.yaml
+[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-overlay.yaml
+[asset-openstack-lb-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-lb-overlay.yaml
 [storage]: /kubernetes/docs/storage
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
 [openstack-integrator-readme]: https://jujucharms.com/u/containers/openstack-integrator/
+[install]: /kubernetes/docs/install-manual

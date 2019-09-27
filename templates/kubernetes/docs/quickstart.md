@@ -13,7 +13,10 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-Charmed Kubernetes<sup>&reg;</sup> delivers a ‘pure K8s’ experience, tested across a wide range of clouds and integrated with modern metrics and monitoring. It works across all major public clouds and private infrastructure, enabling your teams to operate Kubernetes clusters on demand, anywhere.
+Charmed Kubernetes<sup>&reg;</sup> delivers a ‘pure K8s’ experience, tested
+across a wide range of clouds and integrated with modern metrics and monitoring.
+It works across all major public clouds and private infrastructure, enabling your
+teams to operate Kubernetes clusters on demand, anywhere.
 
 With this quick start guide and some tools from Canonical, you'll have a
 Kubernetes cluster running on the cloud of your choice in minutes!

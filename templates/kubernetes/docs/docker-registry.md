@@ -29,12 +29,14 @@ scenarios are described in the charm readme. The most common scenario for
 
 If needed, consult the [quickstart guide][quickstart] to install
 the **Charmed Distribution of Kubernetes**<sup>&reg;</sup>. Then deploy
-and configure `docker-registry` as follows:
+and configure `docker-registry` as follows.  This example relates to a
+containerd charm; this can be replaced with any
+[container runtime][container-runtime].
 
 ```bash
 juju deploy ~containers/docker-registry
 juju add-relation docker-registry easyrsa:client
-juju add-relation docker-registry kubernetes-worker:docker-registry
+juju add-relation docker-registry containerd
 juju config docker-registry \
   auth-basic-user='admin' \
   auth-basic-password='password'
@@ -133,9 +135,9 @@ Minimally, Kubernetes 1.1x requires the following:
 - quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.16.1
 - k8s.gcr.io/defaultbackend-amd64:1.5
 
-**CDK** supports optional add-ons that include the **Kubernetes** dashboard,
-**Heapster**, **kube-dns**, etc. Enabling these add-ons will require the
-following additional images:
+**Charmed Kubernetes** supports optional add-ons that include the
+**Kubernetes** dashboard, **Heapster**, **kube-dns**, etc. Enabling these
+add-ons will require the following additional images:
 
 - cdkbot/addon-resizer-amd64:1.8.1
 - k8s.gcr.io/heapster-amd64:v1.5.3
@@ -192,7 +194,7 @@ juju config kubernetes-worker \
 ```
 
 Unlike individual configurable images on `kubernetes-worker` units, images
-used by **CDK** add-ons are controlled by a `kubernetes-master` config option. Push
+used by **Charmed Kubernetes** add-ons are controlled by a `kubernetes-master` config option. Push
 the desired add-on images listed above (`kubernetes-dashboard`, `heapster`, etc)
 and configure `kubernetes-master` to use the registry for installation:
 
