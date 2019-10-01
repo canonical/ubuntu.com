@@ -59,7 +59,7 @@
     }
 
     if (title) {
-      title.innerText = article.title.rendered;
+      title.innerHTML = article.title.rendered;
     }
 
     return articleFragment
@@ -72,7 +72,7 @@
       var fragment = document.importNode(template.content, true);
     } else {
       var fragment = document.createDocumentFragment();
-      
+
       for (var i = 0; i < template.childNodes.length; i++) {
         fragment.appendChild(template.childNodes[i].cloneNode(true));
       }
@@ -130,7 +130,7 @@
     oReq.send();
   }
 
-  if(typeof(window.fetchLatestNews) == "undefined") {
+  if (typeof(window.fetchLatestNews) == "undefined") {
     window.fetchLatestNews = fetchLatestNews
   }
 })()
