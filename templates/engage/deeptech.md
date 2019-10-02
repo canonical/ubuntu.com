@@ -12,10 +12,7 @@ context:
      header_cta: Register for the webinar
      header_class: p-engage-banner--aqua
      header_lang: en
-     webinar_code: ''
-     form_include:
-     form_id:
-     form_return_url:
+     webinar_code: '<div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 365534, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
 ---
 
 Deep tech can be characterised as risky, challenging, innovative technologies that solve real world problems. Whilst the term is not yet ubiquitous, emerging areas of deep tech today include autonomous vehicles, Internet of Things, robots, deep learning and virtual reality as well as some underlying enabling technologies. Three attributes in particular characterise deep tech: the potential impact they can have on society, the long development time they need to reach market-readiness and the significant amount of capital required to develop and scale.
