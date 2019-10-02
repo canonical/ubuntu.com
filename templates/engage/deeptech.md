@@ -2,7 +2,7 @@
 wrapper_template: "engage/_base_engage_markdown.html"
 context:
      title: "Accelerating deep tech with Ubuntu"
-     meta_description: ""
+     meta_description: "How innovators are leveraging open source to create life-changing tech."
      meta_image: https://assets.ubuntu.com/v1/e93f66b3-deeptech.jpg
      meta_copydoc: "https://docs.google.com/document/d/1guBMZs8ymlZ2sk5R84hYFLhQBIDhKKll9lsg9rHS854/edit"
      header_title: "Accelerating deep tech <br class='u-hide--small' />with Ubuntu"
