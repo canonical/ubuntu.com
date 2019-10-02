@@ -291,3 +291,13 @@ If you are an AWS user, you may also be interested in how to
 [aws-integrator-readme]: https://jujucharms.com/u/containers/aws-integrator/
 [aws-iam]: /kubernetes/docs/aws-iam-auth
 [install]: /kubernetes/docs/install-manual
+
+<!-- FEEDBACK -->
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    We appreciate your feedback on the documentation. You can 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/aws-integration.md" class="p-notification__action">edit this page</a> 
+    or 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+  </p>
+</div>

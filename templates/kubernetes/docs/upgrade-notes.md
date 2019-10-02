@@ -295,3 +295,13 @@ You can now proceed with the rest of the upgrade.
 [script]: https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate
 [dns-provider-config]: https://github.com/juju-solutions/kubernetes/blob/5f4868af82705a0636680a38d7f3ea760d35dadb/cluster/juju/layers/kubernetes-master/config.yaml#L58-L67
 [docker-page]: https://jaas.ai/u/containers/docker#configuration
+
+<!-- FEEDBACK -->
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    We appreciate your feedback on the documentation. You can 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrade-notes.md" class="p-notification__action">edit this page</a> 
+    or 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+  </p>
+</div>

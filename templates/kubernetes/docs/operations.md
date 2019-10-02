@@ -298,3 +298,13 @@ things you may wish to try:
 [decommission]: /kubernetes/docs/decommissioning
 [get-in-touch]:  /kubernetes/docs/get-in-touch
 [bundle-source]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-3/archive/bundle.yaml?channel=stable
+
+<!-- FEEDBACK -->
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    We appreciate your feedback on the documentation. You can 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/operations.md" class="p-notification__action">edit this page</a> 
+    or 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+  </p>
+</div>

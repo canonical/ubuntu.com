@@ -66,8 +66,7 @@ for more information.
 - Docker Registry with Containerd
 
 The Docker registry charm can now be related directly to the Containerd runtime charm.
-Refer to the [documentation](/kubernetes/docs/docker-registry) for instructions
-on how to deploy the charm.
+Refer to the [documentation](/kubernetes/docs/docker-registry) for instructions on how to deploy the charm.
 
 ## Fixes
 
@@ -99,17 +98,17 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 - Containerd support
 
-Although Docker is still supported, [containerd](https://containerd.io/) is now
+Although Docker is still supported, [containerd](https://containerd.io/) is now 
 the default container runtime in Charmed Kubernetes. Containerd brings significant
 [peformance improvements](https://kubernetes.io/blog/2018/05/24/kubernetes-containerd-integration-goes-ga/)
 and prepares the way for Charmed Kubernetes integration with
 [Kata](https://katacontainers.io/) in the future.
 
 Container runtime code has been moved out of the kubernetes-worker charm, and
-into subordinate charms (one for Docker and one for containerd). This allows
+into subordinate charms (one for Docker and one for containerd). This allows 
 the operator to swap the container runtime as desired, and even mix
 container runtimes within a cluster. It also allows for additional container
-runtimes to be supported in the future. Because this is a significant change, you
+runtimes to be supported in the future. Because this is a significant change, you 
 are advised to read the [upgrade notes](/kubernetes/docs/upgrade-notes) before
 upgrading from a previous version.
 
@@ -357,3 +356,13 @@ Please see [this page][historic] for release notes of earlier versions.
 [cni-calico]: /kubernetes/docs/cni-calico
 [containerd]: /kubernetes/docs/containerd
 [container-runtime]: /kubernetes/docs/container-runtime
+
+<!-- FEEDBACK -->
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    We appreciate your feedback on the documentation. You can 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/release-notes.md" class="p-notification__action">edit this page</a> 
+    or 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+  </p>
+</div>

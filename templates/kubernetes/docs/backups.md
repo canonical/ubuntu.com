@@ -136,3 +136,13 @@ unit-new-etcd-0:
     started: 2018-10-26 15:16:33 +0000 UTC
   unit: new-etcd/0
 ```
+
+<!-- FEEDBACK -->
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/backups.md" class="p-notification__action">edit this page</a>
+    or
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+  </p>
+</div>
