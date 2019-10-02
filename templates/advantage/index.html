@@ -550,65 +550,49 @@
 {% endif %}
 
 {% else %}
-<section class="p-strip--suru is-dark">
+<section class="p-strip--suru is-dark" style="padding-bottom: 10rem !important;">
   <div class="row">
-    <div class="col-8">
+    <div class="col-6">
       <h1>Ubuntu Advantage for Infrastructure</h1>
       <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
     </div>
-  </div>
-</section>
-
-<section class="p-strip is-shallow">
-  <div class="row u-equal-height">
-    <div class="col-12 u-vertically-center">
-      <h2>Already subscribed?</h2>
+    <div class="col-6 p-card">
+      <h2 class="p-heading--four">Sign in or register</h2>
       <p class="u-no-margin--bottom">
-        <a href="/login" class="p-button--positive" onclick="dataLayer.push({
-          'event' : 'GAEvent',
-          'eventCategory' : 'Advantage',
-          'eventAction' : 'Authentication',
-          'eventLabel' : 'Sign in',
-          'eventValue' : undefined
-        });">Sign in</a> to access your personal or paid subscriptions.
+        <a href="/login" class="p-button--positive" style="width: 6rem;"
+          onclick="dataLayer.push({
+            'event' : 'GAEvent',
+            'eventCategory' : 'Advantage',
+            'eventAction' : 'Authentication',
+            'eventLabel' : 'Sign in',
+            'eventValue' : undefined
+          });">Sign in</a> to access your personal or paid subscriptions.
+      </p>
+      <p class="u-no-margin--bottom">
+        <a href="/login" class="p-button--neutral"  style="width: 6rem;"
+          onclick="dataLayer.push({
+            'event' : 'GAEvent',
+            'eventCategory' : 'Advantage',
+            'eventAction' : 'Authentication',
+            'eventLabel' : 'Register',
+            'eventValue' : undefined
+          });">Register</a> to get your free subscription.
       </p>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-shallow">
-  <div class="row">
-    <div class="col-12">
-      <h2>Free for personal use</h2>
-      <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
-      <p class="u-no-margin--bottom">
-        <a href="/login" class="p-button--neutral" onclick="dataLayer.push({
-          'event' : 'GAEvent',
-          'eventCategory' : 'Advantage',
-          'eventAction' : 'Authentication',
-          'eventLabel' : 'Sign in',
-          'eventValue' : undefined
-        });">Register</a> to get your free subscription.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-shallow is-bordered">
+<section class="p-strip is-shallow is-bordered u-no-padding--top">
   {% include "advantage/_table.html" %}
 </section>
 {% endif %}
 
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-6 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/9c7bda7d-contact-us.svg" alt="">
-    </div>
-    <div class="col-6 u-vertically-center">
-      <div>
-        <h2>Got questions?</h2>
-        <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
-      </div>
+<section class="p-strip--light is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>Got questions?</h2>
+      <p>Let our cloud experts help you get started in the right direction with our Ubuntru Advantage offering.</p>
+      <p><a href="/support/contact-us" class="p-button--positive js-invoke-">Contact us</a></p>
     </div>
   </div>
 </section>
