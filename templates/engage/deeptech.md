@@ -5,7 +5,7 @@ context:
      meta_description: ""
      meta_image: https://assets.ubuntu.com/v1/e93f66b3-deeptech.jpg
      meta_copydoc: "https://docs.google.com/document/d/1guBMZs8ymlZ2sk5R84hYFLhQBIDhKKll9lsg9rHS854/edit"
-     header_title: "Accelerating deep tech with Ubuntu"
+     header_title: "Accelerating deep tech <br class='u-hide--small' />with Ubuntu"
      header_subtitle: ""
      header_image: "https://assets.ubuntu.com/v1/3f8c22da-Deep+tech+ubuntu+-+light.svg"
      header_url: '#register-section'
