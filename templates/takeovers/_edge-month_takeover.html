@@ -1,39 +1,14 @@
-<section class="p-strip--dark p-takeover js-takeover">
-  <div class="row u-clearfix u-vertically-center">
-    <div class="col-7">
-      <h1>
-        Edge&nbsp;cloud? Edge&nbsp;computing?
-      </h1>
-      <p class="p-heading--four u-sv3">
-        Join us for a series of webinars about the deployment, operations and efficiencies of compute at the edge.
-      </p>
-      <ul class="p-inline-list u-hide--small">
-        <li class="p-inline-list__item">
-          <a href="/engage/edge-month?utm_source=Takeover&utm_campaign=CY19_DC_EdgeMonth" class="p-button--positive"><span>Watch now</span></a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-5">
-      <p class="u-align-text--center u-vertically-center p-takeover__image">
-        <img
-          src="https://assets.ubuntu.com/v1/2c9922f2-edge_cloud_diagram.svg"
-          alt=""
-        />
-      </p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <p class="u-hide--medium u-hide--large">
-      <a href="/engage/edge-month?utm_source=Takeover&utm_campaign=CY19_DC_EdgeMonth" class="p-button--positive"><span>Watch now</span></a>
-    </p>
-  </div>
-  <style>
-    .p-takeover {
-      background-image: url("https://assets.ubuntu.com/v1/c8b88ef8-suru-right.svg"),
-        linear-gradient(199deg, #E95420 -20%, #5E2750 25%, #2C001E 50%);
-      background-position:right;
-      background-repeat: no-repeat;
-      background-size: auto 100%, cover;
-    }
-  </style>
-</section>
+{% with title="An intro to edge computing",
+subtitle="Learn what is driving businesses to process their data at the edge and how you can add an edge computing layer to your business's infrastructure.",
+header_image="https://assets.ubuntu.com/v1/2c9922f2-edge_cloud_diagram.svg",
+image_style="",
+image_hide_small=true,
+equal_cols="",
+primary_url="/engage/edge-month?utm_source=Takeover&utm_campaign=CY19_DC_EdgeMonth",
+primary_cta="Learn more",
+primary_cta_class="p-button--positive",
+secondary_url="",
+secondary_cta="",
+locale="en_GB" %}
+  {% include "takeovers/_template.html" %}
+{% endwith %}
