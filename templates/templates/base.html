@@ -24,6 +24,9 @@
   <meta name="twitter:description" content="{{ self.meta_description() }}">
   <meta property="og:description" content="{{ self.meta_description() }}">
   {% endif %}
+
+  {# Define the required meta_image block #}
+  {% block meta_image %}{% endblock %}
   {% if self.meta_image() %}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
@@ -54,6 +57,7 @@
   <link type="text/plain" rel="author" href="{{ versioned_static('files/humans.txt') }}">
 
   {% block head_extra %}{% endblock %}
+
 
   <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/7f100985-Ubuntu-Th_W.woff2" crossorigin>
