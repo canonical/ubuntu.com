@@ -1,16 +1,16 @@
-
 module.exports = {
   entry: {
-    desktopStatistics: './static/js/desktopStatistics.js',
-    'dynamic-contact-form': './static/js/dynamic-contact-form.js',
-    forms: './static/js/forms.js',
+    desktopStatistics: "./static/js/desktopStatistics.js",
+    forms: "./static/js/forms.js",
     main: [
-      './static/js/core.js',
-      './static/js/navigation.js',
-      './static/js/scratch.js'
+      "./static/js/dynamic-contact-form.js",
+      "./static/js/core.js",
+      "./static/js/navigation.js",
+      "./static/js/formValidation.js",
+      "./static/js/scratch.js"
     ],
-    'release-chart': './static/js/release-chart.js',
-    stickyNav: './static/js/stickyNav.js'
+    "release-chart": "./static/js/release-chart.js",
+    stickyNav: "./static/js/stickyNav.js"
   },
   mode: process.env.ENVIRONMENT === "devel" ? "development" : "production",
   output: {
@@ -23,9 +23,9 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env']
+            presets: ["@babel/preset-env"]
           }
         }
       }
