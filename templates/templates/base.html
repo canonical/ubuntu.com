@@ -80,13 +80,11 @@
 
   <!-- footer content goes here -->
   {% include "templates/footer.html" %}
-  {% include "shared/_polyfill.html" %}
   {% if "/whitepapers" not in request.path  %}
   <!-- form validation -->
   {% include "shared/forms/_form-validation.html" %}
   {% endif %}
-  <script src="{{ versioned_static('js/build/main.min.js') }}"></script>
-  <script src="https://assets.ubuntu.com/v1/f5bf3854-respond.min.js"></script>
+  <script src="{{ versioned_static('js/build/main.min.js') }}" defer></script>
   <script src="https://assets.ubuntu.com/v1/842d27d3-lazysizes.min.js" async></script>
   {% block footer_extra %}{% endblock %}
 </body>
