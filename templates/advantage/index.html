@@ -11,7 +11,9 @@
   <div class="row">
     <div class="col-6">
       <h1>Ubuntu Advantage for Infrastructure</h1>
+      {% if not enterprise_contracts %}
       <p>By using Ubuntu Avantage you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</p>
+      {% endif %}
     </div>
 
     <div class="col-6 p-card">
@@ -101,7 +103,7 @@
             </td>
             <td id="expanded-row-esm-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
-                <div class="col-start-large-3 col-8">
+                <div class="col-12 u-align--center">
                   <p class="u-no-margin--bottom u-no-padding--top u-no-max-width">To activate ESM: <code>sudo ua enable esm-infra</code></p>
                   </div>
                 </div>
@@ -109,14 +111,14 @@
             </td>
             <td id="expanded-row-fips-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
-                <div class="col-start-large-3 col-8">
+                <div class="col-12 u-align--center">
                   <p class="u-no-margin--bottom u-no-padding--top u-no-max-width">To activate FIPs: <code>sudo ua enable fips</code></p>
                 </div>
               </div>
             </td>
             <td id="expanded-row-cc-eal-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
-                <div class="col-start-large-3 col-8">
+                <div class="col-12 u-align--center">
                   <p class="u-no-margin--bottom u-no-padding--top u-no-max-width">To activate CC-EAL: <code>sudo ua enable cc-eal</code></p>
                 </div>
               </div>
@@ -142,36 +144,42 @@
       <h2>Your free personal subscription</h2>
         <p>To attach a machine:</p>
         <pre style="border: 0; padding: 0;"><code>sudo ua attach {{ personal_account.free_token }}</code></pre>
-        <p>For further options <a href="">visit the ua manpage</a>.</p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-      {% if personal_account['entitlements']['livepatch'] %}
-      <div class="row">
-        <div class="col-1">Livepatch:</div>
-        <div class="col-6"><pre style="border: 0; padding: 0;"><code>sudo ua enable livepatch</pre></code></div>
-      </div>
-      {% endif %}
-      {% if personal_account['entitlements']['esm'] %}
-      <div class="row">
-        <div class="col-1">ESM:</div>
-        <div class="col-6"><pre style="border: 0; padding: 0;"><code>sudo ua enable esm-infra</pre></code></div>
-      </div>
-      {% endif %}
-      {% if personal_account['entitlements']['fips'] %}
-      <div class="row">
-        <div class="col-1">FIPS:</div>
-        <div class="col-6"><pre style="border: 0; padding: 0;"><code>sudo ua enable fips</code></pre></div>
-      </div>
-      {% endif %}
-      {% if personal_account['entitlements']['cc-eal'] %}
-      <div class="row">
-        <div class="col-1">FIPS:</div>
-        <div class="col-6"><pre style="border: 0; padding: 0;"><code>sudo ua enable cc-eal</code></pre></div>
-      </div>
-      {% endif %}
+      <table>
+        {% if personal_account['entitlements']['livepatch'] %}
+        <tr class="row">
+          <td class="col-2">Livepatch:</td>
+          <td class="col-10"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable livepatch</pre></code></td>
+        </tr>
+        {% endif %}
+        {% if personal_account['entitlements']['esm'] %}
+        <tr class="row">
+          <td class="col-2">ESM:</td>
+          <td class="col-10"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable esm-infra</pre></code></td>
+        </tr>
+        {% endif %}
+        {% if personal_account['entitlements']['fips'] %}
+        <tr class="row">
+          <td class="col-2">FIPS:</td>
+          <td class="col-10"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable fips</code></pre></td>
+        </tr>
+        {% endif %}
+        {% if personal_account['entitlements']['cc-eal'] %}
+        <tr class="row">
+          <td class="col-2">FIPS:</td>
+          <td class="col-10"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable cc-eal</code></pre></td>
+        </tr>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+        <p>For further options <a href="">visit the ua manpage</a>.</p>
     </div>
   </div>
 </section>
@@ -225,7 +233,7 @@
   <div class="row">
     <div class="col-8">
       <h2>Got questions?</h2>
-      <p>Let our cloud experts help you get started in the right direction with our Ubuntru Advantage offering.</p>
+      <p>Let our experts help you in the right direction with Ubuntu Advantage.</p>
       <p><a href="/support/contact-us" class="p-button--positive js-invoke-">Contact us</a></p>
     </div>
   </div>
