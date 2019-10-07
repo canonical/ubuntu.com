@@ -168,56 +168,11 @@ juju config nrpe nagios_master=<ip-address-of-nagios>
 
 See the [External Nagios][external-nagios] section of the NRPE charm readme for more information.
 
-## Monitoring with **Elasticsearch**
-
-Elasticsearch ([https://www.elastic.co/][elastic]) is a popular monitoring application which
-can be used in conjunction with **Charmed Kubernetes**.
-
-### Deploy the required applications
-
-Use Juju to deploy the required applications:
-
-```bash
-juju deploy elasticsearch --series=bionic --constraints "mem=4G root-disk=16G"
-juju deploy filebeat --series=bionic
-juju deploy kibana --series=xenial
-juju expose kibana
-```
-
-### Add relations
-
-You now need to relate the elasticsearch applications together, and connect the `filebeat` application to the applications you want to monitor:
-
-```bash
-juju add-relation elasticsearch kibana
-juju add-relation elasticsearch filebeat
-
-juju add-relation filebeat kubernetes-master
-juju add-relation filebeat kubernetes-worker
-juju add-relation filebeat kubeapi-load-balancer
-juju add-relation filebeat etcd
-```
-
-### Initialise the dashboard
-
-A sample dashboard is included in kibana for monitoring the beat services. You can deploy it by running the following:
-
-```
-juju run-action --wait kibana/0 load-dashboard dashboard=beats
-```
-
-You can find the dashboard at the public IP address of your **kibana** application
-
-```
-juju status kibana --format yaml| grep public-address
-```
-
 <!-- LINKS -->
 
 [monitoring-pgt-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/monitoring-pgt-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [nagios]: https://www.nagios.org/
-[elastic]: https://www.elastic.co/
 [external-nagios]: https://jujucharms.com/nrpe/
 
 <!-- FEEDBACK -->
