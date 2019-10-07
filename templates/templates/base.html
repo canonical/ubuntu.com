@@ -53,7 +53,7 @@
   {% endif %}
 
   {# Define the required meta_image block #}
-  {% block meta_image %}{% endblock %}
+  <!-- Meta image: {% block meta_image %}{% endblock %} -->
   {% if self.meta_image() %}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
