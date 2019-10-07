@@ -153,3 +153,13 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [hacluster]: https://jujucharms.com/stable/en/hacluster
 [vault-bug-ttl]: https://bugs.launchpad.net/vault-charm/+bug/1788945
 [vault-cdk]: /kubernetes/docs/using-vault
+
+<!-- FEEDBACK -->
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    We appreciate your feedback on the documentation. You can 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/certs-and-trust.md" class="p-notification__action">edit this page</a> 
+    or 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+  </p>
+</div>

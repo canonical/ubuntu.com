@@ -58,3 +58,13 @@ Further configuration can be performed by using a [MetalLB configmap][configmap]
 [bgp]: https://tools.ietf.org/html/rfc1105
 [helm]: /kubernetes/docs/helm
 [configmap]: https://metallb.universe.tf/configuration/
+
+<!-- FEEDBACK -->
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    We appreciate your feedback on the documentation. You can 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/metallb.md" class="p-notification__action">edit this page</a> 
+    or 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+  </p>
+</div>

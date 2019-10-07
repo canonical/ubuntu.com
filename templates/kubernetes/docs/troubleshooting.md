@@ -103,13 +103,15 @@ This will automatically ssh you to the easyrsa unit.
 
 ## Collecting debug information
 
-Sometimes it is useful to collect all the information from a cluster to share with a developer to identify problems. This is best accomplished with
-[CDK Field Agent](https://github.com/charmed-kubernetes/cdk-field-agent).
+To collect comprehensive debug output from your Charmed Kubernetes cluster, install and run
+[juju-crashdump](https://github.com/juju/juju-crashdump) on a computer that has the Juju client installed, with the current controller and model pointing at your Charmed Kubernetes deployment.
 
-Download and execute the collect.py script from
-[CDK Field Agent](https://github.com/charmed-kubernetes/cdk-field-agent) on a box that has a Juju client configured with the current controller and model pointing at the Charmed Kubernetes deployment of interest.
+```bash
+sudo snap install juju-crashdump --classic --channel edge
+juju-crashdump -a debug-layer -a config
+```
 
-Running the script will generate a tarball of system information and includes basic information such as systemctl status, Juju logs, charm unit data, etc. Additional application-specific information may be included as well.
+Running the `juju-crashdump` script will generate a tarball of debug information that includes systemd unit status and logs, Juju logs, charm unit data, and Kubernetes cluster information. It is recommended that you include this tarball when [filing a bug](https://bugs.launchpad.net/charmed-kubernetes). 
 
 ## Common Problems
 
@@ -401,3 +403,13 @@ such as timeouts or errors with the webhook.
 ```bash
 juju run --unit kubernetes-master/0 -- journalctl -u snap.kube-apiserver.daemon.service
 ```
+
+<!-- FEEDBACK -->
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    We appreciate your feedback on the documentation. You can 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/troubleshooting.md" class="p-notification__action">edit this page</a> 
+    or 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+  </p>
+</div>

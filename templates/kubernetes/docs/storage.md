@@ -236,3 +236,13 @@ There is no requirement that these additional units should have the same amount 
 [ceph-charm]: https://jujucharms.com/ceph-osd/
 [juju-storage]: https://docs.jujucharms.com/stable/en/charms-storage
 [juju-cmr]: https://docs.jujucharms.com/stable/en/models-cmr
+
+<!-- FEEDBACK -->
+<div class="p-notification--information">
+  <p class="p-notification__response">
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/storage.md" class="p-notification__action">edit this page</a>
+    or
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+  </p>
+</div>
