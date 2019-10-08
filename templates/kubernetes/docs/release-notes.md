@@ -15,7 +15,7 @@ toc: False
 
 # 1.16+ck1 Bugfix release
 
-### October 4, 2019 - [charmed-kubernetes-268](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-268/archive/bundle.yaml)
+### October 4, 2019 - [charmed-kubernetes-270](https://api.jujucharms.com/charmstore/v5/bundle/charmed-kubernetes-270/archive/bundle.yaml)
 
 ## Fixes
 
