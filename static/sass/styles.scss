@@ -363,8 +363,15 @@ summary {
     }
   }
 
+  code {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
   .p-table-expanding__panel {
-    @extend %p-card--highlighted;
+    @extend %vf-card;
+    @extend %vf-is-bordered;
+    @extend %vf-has-round-corners;
   }
 
   .p-table--open {
@@ -374,27 +381,10 @@ summary {
   .u-toggle {
     background: transparent;
     border: 0;
-
-    &[aria-expanded="true"]::after {
-      border: {
-        bottom: 8px solid $color-x-light;
-        left: 8px solid transparent;
-        right: 8px solid transparent;
-      }
-      bottom: 0;
-      content: "";
-      height: 0;
-      left: calc(50% - 4px);
-      pointer-events: none;
-      position: absolute;
-      width: 0;
-      z-index: 5;
-    }
   }
 }
 
 .u-arrow-up {
-  margin-top: 0.25rem;
   overflow: visible;
   position: relative;
   z-index: 20;
@@ -404,9 +394,9 @@ summary {
     box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
     content: "";
     height: 1rem;
-    left: 1rem;
     pointer-events: none;
     position: absolute;
+    right: 10%;
     top: -8px;
     transform: rotate(45deg);
     width: 1rem;
