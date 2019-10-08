@@ -31,6 +31,10 @@ Failed create pod sandbox: rpc error: code = Unknown desc = failed to start sand
 qemu-vanilla-system-x86_64: failed to initialize KVM: No such file or directory
 ```
 
+To fulfill this requirement, using Kata Containers on a public cloud may require a
+special instance type be used for the worker nodes. See the "Deploying to AWS" section
+below for an example.
+
 ## Deploying Kata Containers
 
 Kata Containers can be deployed to any **Charmed Kubernetes** cluster that's
@@ -71,6 +75,39 @@ juju add-relation kata kubernetes-master
 juju add-relation kata kubernetes-worker
 juju add-relation kata:untrusted containerd:untrusted
 ```
+
+### Deploying to AWS
+
+A convenient way to try Charmed Kubernetes with Kata Containers is to deploy it to AWS. 
+A special AWS instance type is required to provide the necessary virtualisation support.
+To deploy Charmed Kubernetes with Kata Containers on AWS, write the following overlay
+to a file or [download it here][kata-aws-overlay.yaml]:
+
+```yaml
+applications:
+  kubernetes-worker:
+    constraints: instance-type=i3.metal
+    num_units: 1
+  kata:
+    charm: cs:~containers/kata
+relations:
+- - kata:untrusted
+  - containerd:untrusted
+- - kata
+  - kubernetes-master
+- - kata
+  - kubernetes-worker
+```
+
+Once written, deploy it with:
+
+```bash
+juju deploy charmed-kubernetes --overlay kata-aws-overlay.yaml
+```
+
+Due to the high costs of `i3.metal` instance types, the example above deploys only one
+worker node. Feel free to edit the `num_units` field to suit your needs, or add more
+workers later with the `juju add-unit kubernetes-worker` command.
 
 ## Deploying pods to Kata
 
@@ -124,6 +161,7 @@ spec:
 
 [containerd]: /kubernetes/docs/container-runtime
 [kata]: https://katacontainers.io
+[kata-aws-overlay.yaml]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/kata-aws-overlay.yaml
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
@@ -134,3 +172,4 @@ spec:
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>
+
