@@ -91,6 +91,15 @@ def advantage():
                     json={},
                     timeout=3,
                 ).json()["contractToken"]
+                machines = requests.get(
+                    os.path.join(
+                        api_url, f"v1/contracts/{contract_id}/context/machines"
+                    ),
+                    headers={"Authorization": f"Macaroon {token}"},
+                    json={},
+                    timeout=3,
+                ).json()
+                contract["machineCount"] = len(machines)
                 if contract["contractInfo"].get("origin", "") == "free":
                     if account["name"] == openid["email"]:
                         personal_account = account
