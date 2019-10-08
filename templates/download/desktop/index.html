@@ -15,8 +15,8 @@
       <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
       <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
         <div class="col-8 p-divider__block">
-          <p class="p-card__content">Download the latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years, until {{ releases.lts.eol }}, of free security and maintenance updates, guaranteed.</p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.lts.short_version }} LTS release notes</a></p>
+          <p>Download the latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years, until {{ releases.lts.eol }}, of free security and maintenance updates, guaranteed.</p>
+          <p><a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.lts.short_version }} LTS release notes</a></p>
           <p>Recommended system requirements:</p>
           <ul class="p-list">
             <li class="p-list__item is-ticked">2 GHz dual core processor or better</li>
@@ -27,7 +27,7 @@
           </ul>
         </div>
         <div class="col-4">
-          <p class="p-card__content">
+          <p>
             <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download</a>
             <script>performance.mark("Download (Desktop) button rendered")</script>
           </p>
@@ -41,15 +41,15 @@
       <h2>Ubuntu {{ releases.latest.full_version }}</h2>
       <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
         <div class="col-8 p-divider__block">
-          <p class="p-card__content">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.full_version }} comes with nine months, until {{ releases.latest.eol }}, of security and maintenance updates.</p>
-          <p class="p-card__content"><a href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.latest.short_version }} release notes</a></p>
-          <p class="p-card__content">Recommended system requirements are the same as for Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</p>
+          <p>The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.full_version }} comes with nine months, until {{ releases.latest.eol }}, of security and maintenance updates.</p>
+          <p>Recommended system requirements are the same as for Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</p>
+          <p><a href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.latest.short_version }} release notes</a></p>
         </div>
         <div class="col-4">
-          <p class="p-card__content">
+          <p>
             <a class="p-button--positive is-wide js-latest-download" href="/download/desktop/thank-you/?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download</a>
           </p>
-          <p class="p-card__content">
+          <p>
             <small><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></small>
           </p>
         </div>
