@@ -31,6 +31,6 @@ Using Ubuntu and a wide range of Canonical’s management tools, Yahoo! Japan ha
 
 In this case study, learn how Yahoo! Japan:
 
-- Deployed an [OpenStack](/openstack) private cloud with 1PB of Ceph storage across three regions using <a class="p-link--external" href="https://maas.io">MaaS</a> and <a class="p-link--external" href="https://jaas.ai">Juju</a>.
+- Deployed an [OpenStack](/openstack) private cloud with 1PB of Ceph storage across three regions using <a class="p-link--external" href="https://maas.io">MAAS</a> and <a class="p-link--external" href="https://jaas.ai">Juju</a>.
 - Benefited from the reassurance and expertise of Canonical engineers through <a class="p-link--external" href="https://buy.ubuntu.com/">Ubuntu Advantage</a> to ensure unexpected incidents are kept to a minimum.
-- Have future-proofed themselves by taking advantage of ESM (Extended Security Maintenance) for security patches until April 2028.
+- Have future-proofed themselves by taking advantage of [ESM (Extended Security Maintenance)](/esm) for security patches until April 2028.
