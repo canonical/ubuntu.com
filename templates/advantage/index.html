@@ -6,13 +6,13 @@
 
 {% block content %}
 
-{% if openid %}
 <section class="p-strip--suru-topped is-shallow" style="padding-top: 6rem">
+{% if openid %}
   <div class="row">
     <div class="col-6">
       <h1>Ubuntu Advantage for Infrastructure</h1>
       {% if not enterprise_contracts %}
-      <p>By using Ubuntu Avantage you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</p>
+      <p>By using Ubuntu Avantage you agree to our <a href="" class="p-label--in-progress" title="missing link">terms and conditions</a>.</p>
       {% endif %}
     </div>
 
@@ -36,13 +36,30 @@
 <section class="p-strip--light is-shallow" style="overflow: visible;">
 {% if enterprise_contracts %}
   <div class="row">
-    <div class="col-12">
+    <div class="col-6">
       <h2>Your enterprise subscriptions</h2>
+    </div>
+    <div class="col-6 u-align--right">
+      <div id="reveal-table">
+        <a href="#reveal-table" class="p-button u-no-margin--bottom" id="js-reveal-table" aria-controls="enterprise-table" aria-expanded="false">Add another subscription <i class="p-icon--contextual-menu">Open</i></a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="p-card--highlighted u-arrow-up u-hide" aria-hidden="true" id="enterprise-table">
+        {% include "advantage/_table.html" %}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
       <table class="p-table-expanding p-table--advantage">
         <thead>
           <tr class="p-table__row">
             <th>Name</th>
             <th>UA</th>
+            <th>Attached</th>
             <th class="u-align--center">Livepatch</th>
             <th class="u-align--center">ESM</th>
             <th class="u-align--center">FIPS</th>
@@ -58,6 +75,11 @@
           <tr class="p-table__row">
             <td>{{ contract['contractInfo']['name'] }}</td>
             <td style="text-transform: capitalize">{{ contract['supportLevel'] }}</td>
+            <td class="u-align--center {% if loop.index == 1 %}p-table--open{% endif %}">
+              <button class="u-toggle" aria-controls="#expanded-row-token-{{ loop.index }}" aria-expanded="{% if loop.index == 1 %}true{% else %}false{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
+                {{ contract['machineCount'] }} <i class="p-icon--contextual-menu {% if loop.index == 1 %}u-rotate{% endif %}">Open</i>
+              </button>
+            </td>
             <td class="u-align--center">
               {% if contract['entitlements']['livepatch'] == True %}
               <button class="u-toggle" aria-controls="#expanded-row-livepatch-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
@@ -89,22 +111,30 @@
               {% if contract['entitlements']['cc-eal']  == True %}
               <button class="u-toggle" aria-controls="#expanded-row-cc-eal-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                 <i class="p-icon--success"></i> <i class="p-icon--contextual-menu">Open</i>
-              </button>                {% else %}
+              </button>
+              {% else %}
               &mdash;
               {% endif %}
             </td>
 
+            <td id="expanded-row-token-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if loop.index == 1 %}false{% else %}true{% endif %}">
+              <div class="row">
+                <div class="col-12 u-align--center">
+                  To attach a machine: <code>sudo ua enable {{ contract['token'] }}</code>
+                </div>
+              </div>
+            </td>
             <td id="expanded-row-livepatch-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  <p class="u-no-margin--bottom u-no-padding--top u-no-max-width">To activate Livepatch: <code>sudo ua enable livepatch</code></p>
+                  To activate Livepatch: <code>sudo ua attach livepatch</code>
                 </div>
               </div>
             </td>
             <td id="expanded-row-esm-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  <p class="u-no-margin--bottom u-no-padding--top u-no-max-width">To activate ESM: <code>sudo ua enable esm-infra</code></p>
+                  To activate ESM: <code>sudo ua enable esm-infra</code>
                   </div>
                 </div>
               </div>
@@ -112,14 +142,14 @@
             <td id="expanded-row-fips-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  <p class="u-no-margin--bottom u-no-padding--top u-no-max-width">To activate FIPs: <code>sudo ua enable fips</code></p>
+                  To activate FIPs: <code>sudo ua enable fips</code>
                 </div>
               </div>
             </td>
             <td id="expanded-row-cc-eal-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  <p class="u-no-margin--bottom u-no-padding--top u-no-max-width">To activate CC-EAL: <code>sudo ua enable cc-eal</code></p>
+                  To activate CC-EAL: <code>sudo ua enable cc-eal</code>
                 </div>
               </div>
             </td>
@@ -130,48 +160,45 @@
     </div>
   </div>
   <div class="row u-sv3">
-    <div class="col-12 u-sv3" id="reveal-table">
-      <a href="#reveal-table" class="p-button u-no-margin--bottom" id="js-reveal-table" aria-controls="enterprise-table" aria-expanded="false">Add another subscription <i class="p-icon--contextual-menu">Open</i></a>
-      <div class="p-card--highlighted u-arrow-up u-hide" aria-hidden="true" id="enterprise-table">
-        {% include "advantage/_table.html" %}
-      </div>
-    </div>
+
   </div>
 
 {% endif %}
   <div class="row">
-    <div class="col-6 u-sv3">
+    <div class="col-6">
       <h2>Your free personal subscription</h2>
-        <p>To attach a machine:</p>
-        <pre style="border: 0; padding: 0;"><code>sudo ua attach {{ personal_account.free_token }}</code></pre>
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-      <table>
+      <table style="width:auto;">
+        <tr style="border: 0;">
+          <td>To attach a machine:</td>
+          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua attach {{ personal_account.free_token }}</code></pre></td>
+        </tr>
         {% if personal_account['entitlements']['livepatch'] %}
-        <tr class="row">
-          <td class="col-2">Livepatch:</td>
-          <td class="col-10"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable livepatch</pre></code></td>
+        <tr style="border: 0;">
+          <td>Livepatch:</td>
+          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable livepatch</pre></code></td>
         </tr>
         {% endif %}
         {% if personal_account['entitlements']['esm'] %}
-        <tr class="row">
-          <td class="col-2">ESM:</td>
-          <td class="col-10"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable esm-infra</pre></code></td>
+        <tr style="border: 0;">
+          <td>ESM:</td>
+          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable esm-infra</pre></code></td>
         </tr>
         {% endif %}
         {% if personal_account['entitlements']['fips'] %}
-        <tr class="row">
-          <td class="col-2">FIPS:</td>
-          <td class="col-10"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable fips</code></pre></td>
+        <tr style="border: 0;">
+          <td>FIPS:</td>
+          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable fips</code></pre></td>
         </tr>
         {% endif %}
         {% if personal_account['entitlements']['cc-eal'] %}
-        <tr class="row">
-          <td class="col-2">FIPS:</td>
-          <td class="col-10"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable cc-eal</code></pre></td>
+        <tr style="border: 0;">
+          <td>FIPS:</td>
+          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable cc-eal</code></pre></td>
         </tr>
         {% endif %}
       </table>
@@ -179,66 +206,70 @@
   </div>
   <div class="row">
     <div class="col-12">
-        <p>For further options <a href="">visit the ua manpage</a>.</p>
+        <p>For further options <a href="" class="p-label--in-progress" title="missing link">visit the ua manpage</a>.</p>
     </div>
   </div>
 </section>
 
 
 {% if not enterprise_contracts %}
-<section class="p-strip is-bordered">
-  {% include "advantage/_table.html" %}
+<section class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <h2>Plans for enterprise use</h2>
+    {% include "advantage/_table.html" %}
+  </div>
 </section>
 {% endif %}
 
 {% else %}
-<section class="p-strip--suru is-dark" style="padding-bottom: 10rem !important;">
   <div class="row">
     <div class="col-6">
       <h1>Ubuntu Advantage for Infrastructure</h1>
       <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
     </div>
-    <div class="col-6 p-card">
-      <h2 class="p-heading--four">Sign in or register</h2>
+    <div class="col-6">
+      <div class="p-card">
+        <h2 class="p-heading--four">Sign in or register</h2>
+        <p class="u-no-margin--bottom">
+          <a href="/login" class="p-button--positive" style="width: 6rem;"
+            onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Authentication',
+              'eventLabel' : 'Sign in',
+              'eventValue' : undefined
+            });">Sign in</a> to access your personal or paid subscriptions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-shallow">
+  <div class="row">
+    <div class="col-12">
+      <h2>Free for personal use</h2>
+      <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
       <p class="u-no-margin--bottom">
-        <a href="/login" class="p-button--positive" style="width: 6rem;"
-          onclick="dataLayer.push({
-            'event' : 'GAEvent',
-            'eventCategory' : 'Advantage',
-            'eventAction' : 'Authentication',
-            'eventLabel' : 'Sign in',
-            'eventValue' : undefined
-          });">Sign in</a> to access your personal or paid subscriptions.
-      </p>
-      <p class="u-no-margin--bottom">
-        <a href="/login" class="p-button--neutral"  style="width: 6rem;"
-          onclick="dataLayer.push({
-            'event' : 'GAEvent',
-            'eventCategory' : 'Advantage',
-            'eventAction' : 'Authentication',
-            'eventLabel' : 'Register',
-            'eventValue' : undefined
-          });">Register</a> to get your free subscription.
+        <a href="/login" class="p-button--neutral" onclick="dataLayer.push({
+          'event' : 'GAEvent',
+          'eventCategory' : 'Advantage',
+          'eventAction' : 'Authentication',
+          'eventLabel' : 'Sign in',
+          'eventValue' : undefined
+        });">Register</a> to get your free subscription.
       </p>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-shallow is-bordered u-no-padding--top">
-  {% include "advantage/_table.html" %}
+<section class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <h2>Plans for enterprise use</h2>
+    {% include "advantage/_table.html" %}
+  </div>
 </section>
 {% endif %}
-
-<section class="p-strip is-shallow">
-  <div class="row">
-    <div class="col-8">
-      <h2>Got questions?</h2>
-      <p>Let our experts help you in the right direction with Ubuntu Advantage.</p>
-      <p><a href="/support/contact-us" class="p-button--positive js-invoke-">Contact us</a></p>
-    </div>
-  </div>
-</section>
-
 
 <script>
   function contextualMenu() {
@@ -356,7 +387,7 @@
   setupContextualMenuListeners('.p-contextual-menu__toggle');
 </script>
 
-{% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}
 
