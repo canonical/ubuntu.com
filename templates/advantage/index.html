@@ -120,7 +120,7 @@
             <td id="expanded-row-token-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if loop.index == 1 %}false{% else %}true{% endif %}">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  To attach a machine: <code>sudo ua enable {{ contract['token'] }}</code>
+                  To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code>
                 </div>
               </div>
             </td>
@@ -135,7 +135,7 @@
             <td id="expanded-row-livepatch-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  To activate Livepatch: <code>sudo ua attach livepatch</code>
+                  To activate Livepatch: <code>sudo ua enable livepatch</code>
                 </div>
               </div>
             </td>
