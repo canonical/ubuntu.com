@@ -371,6 +371,12 @@ summary {
     td:nth-child(1) {
       flex: 3;
     }
+
+    &:not(:last-of-type) {
+      .p-table-expanding__panel {
+        border-bottom: 0;
+      }
+    }
   }
 
   code {
@@ -382,6 +388,7 @@ summary {
     @extend %vf-card;
     @extend %vf-is-bordered;
     @extend %vf-has-round-corners;
+    margin-bottom: 0;
   }
 
   .p-table--open {
