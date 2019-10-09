@@ -5,10 +5,7 @@
       <section class="p-accordion__panel" id="tab1-section" role="tabpanel" aria-hidden="true" aria-labelledby="tab1-section" style="margin-bottom: 1.5rem; border: 0; background: 0;">
         <p style="margin-right: 2rem;"><small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small></p>
         <div style="margin-right: 2rem;">
-          <div class="p-code-copyable">
-            <textarea class="p-code-copyable__input" style="background-position: 0 0.25rem; color: rebeccapurple; padding-right: 1.5rem;" readonly="readonly">echo "{{ releases.checksums[system][version] }}" | shasum -a 256 --check</textarea>
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
+          <pre style="white-space: pre-wrap;"><code>echo "{{ releases.checksums[system][version] }}" | shasum -a 256 --check</code></pre>
         </div>
         <p><small>You should get the following output:</small></p>
         <pre style="margin-right: 2rem;"><code>ubuntu-{{ version }}-{{ system }}-{{ architecture }}.iso: OK</code></pre>
