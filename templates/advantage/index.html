@@ -10,9 +10,9 @@
 {% if openid %}
   <div class="row">
     <div class="col-6">
-      <h1>Ubuntu Advantage for Infrastructure</h1>
+      <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
       {% if not enterprise_contracts %}
-      <p>By using Ubuntu Avantage you agree to our <a href="" class="p-label--in-progress" title="missing link">terms and conditions</a>.</p>
+      <p>By using Ubuntu Avantage you agree to our <a href="/legal/ubuntu-advantage-service-description">Ubuntu Advantage Service Description</a>.</p>
       {% endif %}
     </div>
 
@@ -204,11 +204,6 @@
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-        <p>For further options <a href="" class="p-label--in-progress" title="missing link">visit the ua manpage</a>.</p>
-    </div>
-  </div>
 </section>
 
 
@@ -224,21 +219,25 @@
 {% else %}
   <div class="row">
     <div class="col-6">
-      <h1>Ubuntu Advantage for Infrastructure</h1>
+      <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
       <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
     </div>
-    <div class="col-6">
+    <div class="col-5 col-start-large-8 u-vertically-center">
       <div class="p-card">
-        <h2 class="p-heading--four">Sign in or register</h2>
+        <p>
+           Sign in to access your personal or paid subscriptions.
+        </p>
         <p class="u-no-margin--bottom">
-          <a href="/login" class="p-button--positive" style="width: 6rem;"
+          <a href="/login" class="p-button--neutral u-no-margin--bottom"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',
               'eventAction' : 'Authentication',
               'eventLabel' : 'Sign in',
               'eventValue' : undefined
-            });">Sign in</a> to access your personal or paid subscriptions.
+            });">
+            Sign in
+          </a>
         </p>
       </div>
     </div>
@@ -251,7 +250,7 @@
       <h2>Free for personal use</h2>
       <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
       <p class="u-no-margin--bottom">
-        <a href="/login" class="p-button--neutral" onclick="dataLayer.push({
+        <a href="/login" class="p-button--positive" onclick="dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
           'eventAction' : 'Authentication',
