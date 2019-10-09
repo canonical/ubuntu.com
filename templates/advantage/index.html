@@ -16,12 +16,10 @@
       {% endif %}
     </div>
 
-    <div class="col-5 col-start-large-8 u-vertically-center">
-      <div class="p-card">
-        <p class="p-heading--five">
-          You are signed in as {{ openid.fullname }}
-        </p>
-        <p style="color:#666">({{ openid.email }})</p>
+    <div class="col-5 col-start-large-8">
+      <div class="u-no-margin--bottom p-card">
+        <p>You are signed in as {{ openid.fullname }}<br />
+        <small style="color:#666">({{ openid.email }})</small></p>
         <p class="u-no-margin--bottom">
           <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
             'event' : 'GAEvent',
@@ -174,7 +172,7 @@
   </div>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 u-hide--small">
       <table style="width:auto;">
         <tr style="border: 0;">
           <td>To attach a machine:</td>
@@ -206,6 +204,28 @@
         {% endif %}
       </table>
     </div>
+    <div class="col-12 u-hide--medium u-hide--large">
+      <dl>
+        <dt>To attach a machine:</dt>
+        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua attach {{ personal_account.free_token }}</code></pre></dd>
+        {% if personal_account['entitlements']['livepatch'] %}
+        <dt>Livepatch:</dt>
+        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable livepatch</pre></code></dd>
+        {% endif %}
+        {% if personal_account['entitlements']['esm'] %}
+        <dt>ESM:</dt>
+        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable esm-infra</pre></code></dd>
+        {% endif %}
+        {% if personal_account['entitlements']['fips'] %}
+        <dt>FIPS:</dt>
+        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable fips</code></pre></dd>
+        {% endif %}
+        {% if personal_account['entitlements']['cc-eal'] %}
+        <dt>CC-EAL:</dt>
+        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable cc-eal</code></pre></dd>
+        {% endif %}
+      </dl>
+    </div>
   </div>
 </section>
 
@@ -225,8 +245,8 @@
       <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
       <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
     </div>
-    <div class="col-5 col-start-large-8 u-vertically-center">
-      <div class="p-card">
+    <div class="col-5 col-start-large-8">
+      <div class="u-no-margin--bottom p-card">
         <p>
            Sign in to access your personal or paid subscriptions.
         </p>
