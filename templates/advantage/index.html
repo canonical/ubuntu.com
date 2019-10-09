@@ -12,23 +12,26 @@
     <div class="col-6">
       <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
       {% if not enterprise_contracts %}
-      <p>By using Ubuntu Avantage you agree to our <a href="/legal/ubuntu-advantage-service-description">Ubuntu Advantage Service Description</a>.</p>
+      <p>By using Ubuntu Avantage you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</p>
       {% endif %}
     </div>
 
-    <div class="col-6 p-card">
-      <p>
-        You are signed in as {{ openid.fullname }} ({{ openid.email }})
-      </p>
-      <p>
-        <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
-          'event' : 'GAEvent',
-          'eventCategory' : 'Advantage',
-          'eventAction' : 'Authentication',
-          'eventLabel' : 'Sign out',
-          'eventValue' : undefined
-        });">Sign out</a>
-      </p>
+    <div class="col-5 col-start-large-8 u-vertically-center">
+      <div class="p-card">
+        <p class="p-heading--five">
+          You are signed in as {{ openid.fullname }}
+        </p>
+        <p style="color:#666">({{ openid.email }})</p>
+        <p class="u-no-margin--bottom">
+          <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
+            'event' : 'GAEvent',
+            'eventCategory' : 'Advantage',
+            'eventAction' : 'Authentication',
+            'eventLabel' : 'Sign out',
+            'eventValue' : undefined
+          });">Sign out</a>
+        </p>
+      </div>
     </div>
   </div>
 </section>
