@@ -206,19 +206,19 @@
       <dl>
         <dt>To attach a machine:</dt>
         <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua attach {{ personal_account.free_token }}</code></pre></dd>
-        {% if personal_account['entitlements']['livepatch'] %}
+        {% if personal_account['entitlements'] and personal_account['entitlements']['livepatch'] %}
         <dt>Livepatch:</dt>
         <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable livepatch</pre></code></dd>
         {% endif %}
-        {% if personal_account['entitlements']['esm'] %}
+        {% if personal_account['entitlements'] and personal_account['entitlements']['esm'] %}
         <dt>ESM:</dt>
         <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable esm-infra</pre></code></dd>
         {% endif %}
-        {% if personal_account['entitlements']['fips'] %}
+        {% if personal_account['entitlements'] and personal_account['entitlements']['fips'] %}
         <dt>FIPS:</dt>
         <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable fips</code></pre></dd>
         {% endif %}
-        {% if personal_account['entitlements']['cc-eal'] %}
+        {% if personal_account['entitlements'] and personal_account['entitlements']['cc-eal'] %}
         <dt>CC-EAL:</dt>
         <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable cc-eal</code></pre></dd>
         {% endif %}
