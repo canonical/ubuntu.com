@@ -11,9 +11,6 @@
   <div class="row">
     <div class="col-6">
       <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
-      {% if not enterprise_contracts %}
-      <p>By using Ubuntu Avantage you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</p>
-      {% endif %}
     </div>
 
     <div class="col-5 col-start-large-8">
@@ -251,6 +248,7 @@
            Sign in to access your personal or paid subscriptions.
         </p>
         <p class="u-no-margin--bottom">
+          <span class="u-sv1"><small style="color:#666">By signing in you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</small><br /></span>
           <a href="/login" class="p-button--neutral u-no-margin--bottom"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
@@ -273,11 +271,12 @@
       <h2>Free for personal use</h2>
       <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
       <p class="u-no-margin--bottom">
+        <span class="u-sv1"><small style="color:#666">By regisitering you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</small><br /></span>
         <a href="/login" class="p-button--positive" onclick="dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
           'eventAction' : 'Authentication',
-          'eventLabel' : 'Sign in',
+          'eventLabel' : 'Register',
           'eventValue' : undefined
         });">Register</a> to get your free subscription.
       </p>
