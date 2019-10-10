@@ -78,6 +78,7 @@
                 {{ contract['machineCount'] }} <i class="p-icon--contextual-menu {% if loop.index == 1 %}u-rotate{% endif %}">Open</i>
               </button>
             </td>
+
             <td class="u-align--center">
               {% if contract['entitlements']['esm'] == True %}
               <button class="u-toggle" aria-controls="#expanded-row-esm-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
@@ -175,25 +176,25 @@
           <td>To attach a machine:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua attach {{ personal_account.free_token }}</code></pre></td>
         </tr>
-        {% if personal_account['entitlements']['livepatch'] %}
+        {% if personal_account['entitlements'] and personal_account['entitlements']['livepatch'] %}
         <tr style="border: 0;">
           <td>Livepatch:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable livepatch</pre></code></td>
         </tr>
         {% endif %}
-        {% if personal_account['entitlements']['esm'] %}
+        {% if personal_account['entitlements'] and personal_account['entitlements']['esm'] %}
         <tr style="border: 0;">
           <td>ESM:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable esm-infra</pre></code></td>
         </tr>
         {% endif %}
-        {% if personal_account['entitlements']['fips'] %}
+        {% if personal_account['entitlements'] and personal_account['entitlements']['fips'] %}
         <tr style="border: 0;">
           <td>FIPS:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable fips</code></pre></td>
         </tr>
         {% endif %}
-        {% if personal_account['entitlements']['cc-eal'] %}
+        {% if personal_account['entitlements'] and personal_account['entitlements']['cc-eal'] %}
         <tr style="border: 0;">
           <td>FIPS:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable cc-eal</code></pre></td>
