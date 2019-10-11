@@ -31,11 +31,11 @@
   </div>
 </section>
 
-<section class="p-strip--light is-shallow" style="overflow: visible;">
 {% if enterprise_contracts %}
+<section class="p-strip--light is-shallow" style="overflow: visible;">
   <div class="row">
     <div class="col-6">
-      <h2>Your enterprise subscriptions</h2>
+      <h2 class="u-no-margin--bottom">Your enterprise subscriptions</h2>
     </div>
     <div class="col-6 u-align--right">
       <div id="reveal-table">
@@ -43,13 +43,17 @@
       </div>
     </div>
   </div>
-  <div class="row">
+</section>
+
+<section class="p-strip is-shallow u-hide p-card u-no-margin--bottom" aria-hidden="true" id="enterprise-table" style="overflow: visible; border-left: 0; border-right: 0;">
+  <div class="row u-arrow-up">
     <div class="col-12">
-      <div class="p-card--highlighted u-arrow-up u-hide" aria-hidden="true" id="enterprise-table">
-        {% include "advantage/_table.html" %}
-      </div>
+      {% include "advantage/_table.html" %}
     </div>
   </div>
+</section>
+
+<section class="p-strip--light u-no-padding--top is-shallow">
   <div class="row">
     <div class="col-12">
       <table class="p-table-expanding p-table--advantage">
@@ -85,7 +89,7 @@
                 <i class="p-icon--success"></i> <i class="p-icon--contextual-menu">Open</i>
               </button>
               {% else %}
-              &mdash;
+              N/A
               {% endif %}
             </td>
             <td class="u-align--center">
@@ -94,7 +98,7 @@
                 <i class="p-icon--success"></i> <i class="p-icon--contextual-menu">Open</i>
               </button>
               {% else %}
-              &mdash;
+              N/A
               {% endif %}
             </td>
             <td class="u-align--center">
@@ -103,7 +107,7 @@
                 <i class="p-icon--success"></i> <i class="p-icon--contextual-menu">Open</i>
               </button>
               {% else %}
-              &mdash;
+              N/A
               {% endif %}
             </td>
             <td class="u-align--center">
@@ -112,7 +116,7 @@
                 <i class="p-icon--success"></i> <i class="p-icon--contextual-menu">Open</i>
               </button>
               {% else %}
-              &mdash;
+              N/A
               {% endif %}
             </td>
 
@@ -163,6 +167,7 @@
   </div>
 
 {% endif %}
+<section class="p-strip--light is-shallow" style="overflow: visible;">
   <div class="row">
     <div class="col-6">
       <h2>Your free personal subscription</h2>
@@ -173,30 +178,30 @@
     <div class="col-12 u-hide--small">
       <table style="width:auto;">
         <tr style="border: 0;">
-          <td>To attach a machine:</td>
+          <td class="u-align--right">To attach a machine:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua attach {{ personal_account.free_token }}</code></pre></td>
         </tr>
         {% if personal_account['entitlements'] and personal_account['entitlements']['livepatch'] %}
         <tr style="border: 0;">
-          <td>Livepatch:</td>
+          <td class="u-align--right">Livepatch:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable livepatch</pre></code></td>
         </tr>
         {% endif %}
         {% if personal_account['entitlements'] and personal_account['entitlements']['esm'] %}
         <tr style="border: 0;">
-          <td>ESM:</td>
+          <td class="u-align--right">ESM:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable esm-infra</pre></code></td>
         </tr>
         {% endif %}
         {% if personal_account['entitlements'] and personal_account['entitlements']['fips'] %}
         <tr style="border: 0;">
-          <td>FIPS:</td>
+          <td class="u-align--right">FIPS:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable fips</code></pre></td>
         </tr>
         {% endif %}
         {% if personal_account['entitlements'] and personal_account['entitlements']['cc-eal'] %}
         <tr style="border: 0;">
-          <td>FIPS:</td>
+          <td class="u-align--right">CC-EAL:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable cc-eal</code></pre></td>
         </tr>
         {% endif %}
@@ -245,11 +250,11 @@
     </div>
     <div class="col-5 col-start-large-8">
       <div class="u-no-margin--bottom p-card">
-        <p>
+        <p class="u-no-margin--bottom">
            Sign in to access your personal or paid subscriptions.
         </p>
         <p class="u-no-margin--bottom">
-          <span class="u-sv1"><small style="color:#666">By signing in you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</small><br /></span>
+          <span class="u-sv1"><small>By signing in you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</small><br /></span>
           <a href="/login" class="p-button--neutral u-no-margin--bottom"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
@@ -268,11 +273,11 @@
 
 <section class="p-strip--light is-shallow">
   <div class="row">
-    <div class="col-12">
+    <div class="col-6">
       <h2>Free for personal use</h2>
       <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
       <p class="u-no-margin--bottom">
-        <span class="u-sv1"><small style="color:#666">By regisitering you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</small><br /></span>
+        <span class="u-sv1"><small>By registering you agree to our <a href="/legal/ubuntu-advantage-service-description">terms and conditions</a>.</small><br /></span>
         <a href="/login" class="p-button--positive" onclick="dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
