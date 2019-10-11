@@ -406,18 +406,20 @@ summary {
   position: relative;
   z-index: 20;
 
-  &::after {
-    background: $color-x-light;
-    box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
-    content: "";
-    height: 1rem;
-    pointer-events: none;
-    position: absolute;
-    right: 10%;
-    top: -8px;
-    transform: rotate(45deg);
-    width: 1rem;
-    z-index: 5;
+  @media only screen and (min-width: $breakpoint-small) {
+    &::after {
+      background: $color-x-light;
+      box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
+      content: "";
+      height: 1rem;
+      pointer-events: none;
+      position: absolute;
+      right: 2.1rem;
+      top: -2.5rem;
+      transform: rotate(45deg);
+      width: 1rem;
+      z-index: 5;
+    }
   }
 }
 
