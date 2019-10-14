@@ -9,6 +9,7 @@ import os
 import re
 
 # Packages
+import talisker.requests
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
@@ -16,6 +17,7 @@ from canonicalwebteam import image_template
 from feedparser import parse
 from canonicalwebteam.blog.flask import build_blueprint
 from canonicalwebteam.blog import BlogViews
+from canonicalwebteam.blog.wordpress_api import api_session
 
 # Local
 from webapp.context import (
@@ -40,6 +42,7 @@ app = FlaskBase(
 
 # Blog
 blog_views = BlogViews(excluded_tags=[3184, 3265, 3408])
+talisker.requests.configure(api_session)
 
 
 @app.route("/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>")
