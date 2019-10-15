@@ -21,8 +21,8 @@ Highlights of the 19.10 release updates will be discussed between Ubuntu product
 
 In this webinar you will learn about:
 
-- New edge and AI capabilities for Kubernetes for a secure, production-grade Kubernetes environment
-- The inclusion of OpenStack Train updates, including live-migration to aid infrastructure operations
+- New edge and AI capabilities for [Kubernetes](/kubernetes) for a secure, production-grade Kubernetes environment
+- The inclusion of [OpenStack](/openstack) Train updates, including live-migration to aid infrastructure operations
 - Additional hardware support, including the Raspberry Pi 4 and NVIDIA drivers enabled in the desktop image
 - Desktop performance improvements with GNOME 3.34, delivering a more responsive, smooth and organised experience
 
