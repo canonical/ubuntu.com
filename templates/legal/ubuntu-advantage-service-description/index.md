@@ -193,7 +193,7 @@ Note: Only underlying technology is listed. These can be provided via a cloud li
 
 <h2 id="uasd-add-ons">Add-Ons</h2>
 
-Add-Ons constitute additional support services available separately on a per-Node basis and require the underlying Node to be covered by a suitable Ubuntu Advantage support.
+Add-Ons constitute additional support services available separately on a per-Node basis and require the underlying Node to be covered by a suitable Ubuntu Advantage support contract.
 
 1. [Rancher](#term-rancher) Support
   1. Requirement: Node needs to be covered by Ubuntu Advantage for Infrastructure.
