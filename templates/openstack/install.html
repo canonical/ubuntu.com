@@ -56,27 +56,27 @@
         <li class="p-list__item is-ticked">Simple HA architecture supported</li>
         <li class="p-list__item is-ticked">Scalable from 12 to 200 nodes</li>
       </ul>
-      <p>This is a starting point for your production cloud. You&rsquo;ll step through the deployment of OpenStack services across machines in the cluster. A simple HA configuration is supported. For more sophisticated architectures, ongoing operations insight, alternative approaches to HA, or specialized telco, compliance, regulatory or HPC requirements, <a href="/openstack/contact-us" class="js-invoke-modal">contact Canonical</a> for consulting and support.</p>
+      <p>This is a starting point for your production cloud. You&rsquo;ll step through the deployment of OpenStack services across machines in the cluster. A simple HA configuration is supported. For more sophisticated architectures, ongoing operations insight, alternative approaches to HA, or specialised telco, compliance, regulatory or HPC requirements, <a href="/openstack/contact-us" class="js-invoke-modal">contact Canonical</a> for consulting and support.</p>
       <p><a href="#cluster-deployment">Deploy OpenStack on cluster&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<div class="p-strip" id="workstation-deployment">
+<div class="p-strip is-bordered" id="workstation-deployment">
   <div class="row">
     <div class="col-8">
       <h2>Workstation deployment</h2>
     </div>
   </div>
   <div class="row">
-    <div class="col-6">
+    <div class="col-8">
       <p class="p-heading--four">Single-node OpenStack installation instructions</p>
       <p>These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a>, an upstream single-node OpenStack deployment which can run directly on your workstation. MicroStack is OpenStack in a <a href="https://snapcraft.io/" class="p-link--external">snap</a> which means that all services and supporting libraries are together in a single package that can be easily installed, upgraded or removed. MicroStack includes all key OpenStack components: Keystone, Nova, Neutron, Glance, and is evolving extremely fast. You can use it for development, prototyping and testing, but it is also perfectly suitable for the network edge, IoT and appliances.</p>
     </div>
   </div>
 </div>
 
-<div id="instructions" class="p-strip u-no-padding--top is-bordered">
+<div id="instructions" class="p-strip--light is-bordered">
   <div class="u-fixed-width">
     <h2>Installation instructions</h2>
     <ol class="p-stepped-list--detailed">
@@ -235,13 +235,13 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
     </ol>
     <div class="row">
       <div class="col-8">
-        <p>To learn more about MicroStack, visit <a href="https://opendev.org/x/microstack" class="p-link--external">https://opendev.org/x/microstack</a>.</p>
+        <p>To learn more about MicroStack, visit <a href="https://opendev.org/x/microstack" class="p-link--external">https://opendev.org/x/microstack</a></p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="p-strip--light is-bordered" id="cluster-deployment">
+<div class="p-strip is-bordered" id="cluster-deployment">
   <div class="row">
     <div class="col-8">
       <h2>Cluster deployment</h2>
@@ -249,6 +249,9 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       <p>This is the simplest Ubuntu OpenStack deployment process across a small cluster of servers. It doesn&rsquo;t try to do anything complicated with storage or networking, but it can expand to high availability configurations. We would recommend that this deployment process be followed for any small team looking to deploy their first OpenStack on a single rack. For more complex requirements or larger scale, please contact us for a workshop and architecture design session.</p>
     </div>
   </div>
+</div>
+
+<div class="p-strip--light is-bordered">
   <div class="u-fixed-width">
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
@@ -300,17 +303,17 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">Configure the subnet and&nbsp;DHCP</h3>
         <div class="p-stepped-list__content">
-          <p>Go to the &ldquo;Subnets&rdquo; tab and verify that &ldquo;gateway&rdquo; and &ldquo;DNS&rdquo; are correct for your subnet.</p>
+          <p>Go to the &lsquo;Subnets&rsquo; tab and verify that &lsquo;gateway&rsquo; and &lsquo;DNS&rsquo; are correct for your subnet.</p>
           <p>MAAS will provide DHCP and DNS for the /24 network on your isolated LAN switch.</p>
           <p>For the DHCP dynamic range, we recommend at least two IPs per NIC in the cluster (and remember you have at least two NICs per server, so probably 50 IPs in the range if you have 10 servers). Don&rsquo;t use the entire /24 for DHCP though since you will need IP addresses for various OpenStack services and guests.</p>
-          <p>Go back to the  &ldquo;subnets&rdquo; tab and this time click on the &ldquo;untagged&rdquo; VLAN. Select &lsquo;Take action&rsquo; and then &lsquo;Provide dhcp&rsquo; with your dynamic range.</p>
+          <p>Go back to the  &lsquo;subnets&rsquo; tab and this time click on the &lsquo;untagged&rsquo; VLAN. Select &lsquo;Take action&rsquo; and then &lsquo;Provide dhcp&rsquo; with your dynamic range.</p>
         </div>
       </li>
 
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">Verify image syncing</h3>
         <div class="p-stepped-list__content">
-          <p>Go to the &ldquo;Images&rdquo; tab and check if the Ubuntu images have all been downloaded and are in a &ldquo;Synced&rdquo; state. Depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced.</p>
+          <p>Go to the &lsquo;Images&rsquo; tab and check if the Ubuntu images have all been downloaded and are in a &lsquo;Synced&rsquo; state. Depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced.</p>
         </div>
       </li>
 
@@ -323,8 +326,8 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
             <li>Set them to PXE boot by default</li>
             <li>Connect both NICs to the ethernet switch</li>
           </ul>
-          <p>We suggest you disable all other boot options in the BIOS for the OpenStack hosts in the cluster, including local disk. MAAS will provide PXE so these servers boot successfully.</p>
-          <p>Power the machines on. You should see them PXE boot &lsquo;under MAAS control&rsquo; if they have monitors attached to them. They will all appear in the &ldquo;Nodes&rdquo; tab of MAAS after a while once the initial PXE boot &lsquo;enlistment&rsquo; process is done.</p>
+          <p>We suggest you disable all other boot options in the BIOS for the OpenStack hosts in the cluster, including the local disk. MAAS will provide PXE so these servers boot successfully.</p>
+          <p>Power the machines on. You should see them PXE boot &lsquo;under MAAS control&rsquo; if they have monitors attached to them. They will all appear in the &lsquo;Nodes&rsquo; tab of MAAS after a while once the initial PXE boot &lsquo;enlistment&rsquo; process is done.</p>
           <p>Edit each machine, filling in the power type and other parameters, if they are not automatically set and correct already.</p>
           <p>Select all the machines and then &lsquo;Take action&rsquo; and &lsquo;Commission&rsquo; them.</p>
           <p>Wait until all machines have a &ldquo;Ready&rdquo; status</p>
@@ -345,7 +348,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
             <input class="p-code-copyable__input" value="conjure-up" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <p>If successful you should see a screen as below:</p>
+          <p>If successful, you should see a screen as below:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/b4a8693c-build-openstack-with-conjure-up-1.png">
               <img src="https://assets.ubuntu.com/v1/b4a8693c-build-openstack-with-conjure-up-1.png?w=424" width="424" alt="conjure-up's opening wizard in command line" />
@@ -409,7 +412,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">11</span>Configure and deploy the OpenStack services</h3>
         <div class="p-stepped-list__content">
-          <p>Choose <strong>Configure</strong> to change the default configuration of any component. When all components are configured to your liking, choose <strong>Deploy</strong>.</p>
+          <p>Choose <strong>&lsquo;Configure&rsquo;</strong> to change the default configuration of any component. When all components are configured to your liking, choose <strong>&lsquo;Deploy&rsquo;</strong>.</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/85a136cd-build-openstack-with-conjure-up-7.png">
               <img src="https://assets.ubuntu.com/v1/85a136cd-build-openstack-with-conjure-up-7.png?w=424" width="424" alt="conjure-up's status screens, showing a number of applications status" />
