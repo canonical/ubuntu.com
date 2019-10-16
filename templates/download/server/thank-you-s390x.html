@@ -2,7 +2,7 @@
 
 {% block title %}Thanks for downloading Ubuntu Server for IBM Z and LinuxONE{% endblock %}
 {% block canonical_url %}https://ubuntu.com/download/server/s390x{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1hDkrBqpJXWaENYZMSxd8P-XLFQ2LQqS1wNe4o2MGLho/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1GptXtMfbgOjOmqb8DZCCTRwogkiP_cM95U9Z0gFSt7g/edit{% endblock meta_copydoc %}
 
 {% block head_extra %}
 <meta name="robots" content="noindex" />
@@ -13,15 +13,14 @@
 <section class="p-strip--light is-deep is-bordered">
   <div class="row">
     <div class="col-8">
-      <h1>Thanks for downloading Ubuntu for LinuxONE and z&nbsp;Systems</h1>
-      <p>Thank you for downloading Ubuntu Server for IBM Z and LinuxONE. Please select the release you wish to download.</p>
+      <h1>Thank you for downloading Ubuntu for LinuxONE and z&nbsp;Systems</h1>
+      <p>Please select the release you wish to download.</p>
     </div>
   </div>
   <div class="row">
     <div class="col-4">
-      <p><a  class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.previous_lts.short_version }}', 'eventValue' : undefined });" href="http://cdimage.ubuntu.com/releases/{{ releases.previous_lts.short_version }}/release/ubuntu-{{ releases.previous_lts.full_version }}-server-s390x.iso">Download Ubuntu Server {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr></a></p>
       <p><a  class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });" href="http://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-server-s390x.iso">Download Ubuntu Server {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a></p>
-      <p><a  class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });" href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-server-s390x.iso">Download Ubuntu Server {{ releases.latest.full_version }}</a></p>
+      <p><a  class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });" href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-s390x.iso">Download Ubuntu Server {{ releases.latest.full_version }}</a></p>
     </div>
   </div>
 </section>
