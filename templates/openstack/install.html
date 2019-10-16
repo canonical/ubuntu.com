@@ -74,14 +74,12 @@
       <p>These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a>, an upstream single-node OpenStack deployment which can run directly on your workstation. MicroStack is OpenStack in a <a href="https://snapcraft.io/" class="p-link--external">snap</a> which means that all services and supporting libraries are together in a single package that can be easily installed, upgraded or removed. MicroStack includes all key OpenStack components: Keystone, Nova, Neutron, Glance, and is evolving extremely fast. You can use it for development, prototyping and testing, but it is also perfectly suitable for the network edge, IoT and appliances.</p>
     </div>
   </div>
-</div>
-
-<div id="instructions" class="p-strip--light is-bordered">
+  
   <div class="u-fixed-width">
-    <h2>Installation instructions</h2>
+    <h3>Installation instructions</h3>
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Minimum requirements</h3>
+        <h4 class="p-stepped-list__title">Minimum requirements</h4>
         <div class="p-stepped-list__content">
           <ul class="p-list">
             <li class="p-list__item">Single machine with 16GB RAM and a multi-core processor, running Ubuntu 18.04 LTS or later and at least 50GB of free disk space.</li>
@@ -90,7 +88,7 @@
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install MicroStack</h3>
+        <h4 class="p-stepped-list__title">Install MicroStack</h4>
         <div class="p-stepped-list__content">
           <p>If you are using Ubuntu 18.04 LTS  or later, which we highly recommend, you can install MicroStack right away by running the following command from the terminal:</p>
 
@@ -109,7 +107,7 @@
         </div>
       </li>
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Initialise MicroStack</h3>
+        <h4 class="p-stepped-list__title">Initialise MicroStack</h4>
         <div class="p-stepped-list__content">
           <p>Before using your OpenStack installation, it has to be initialised, so that networks and databases get configured. In order to do so, run:</p>
 
@@ -122,7 +120,7 @@
         </div>
       </li>
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Interact with MicroStack</h3>
+        <h4 class="p-stepped-list__title">Interact with MicroStack</h4>
         <div class="p-stepped-list__content">
           <p>You can interact with your OpenStack either via the web GUI or the CLI.</p>
           <p><strong>Web GUI:</strong></p>
@@ -195,7 +193,7 @@ password: keystone</code></pre>
         </div>
       </li>
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Launch an instance</h3>
+        <h4 class="p-stepped-list__title">Launch an instance</h4>
         <div class="p-stepped-list__content">
           <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
 
@@ -241,7 +239,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
   </div>
 </div>
 
-<div class="p-strip is-bordered" id="cluster-deployment">
+<div class="p-strip--light is-bordered" id="cluster-deployment">
   <div class="row">
     <div class="col-8">
       <h2>Cluster deployment</h2>
@@ -249,13 +247,12 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       <p>This is the simplest Ubuntu OpenStack deployment process across a small cluster of servers. It doesn&rsquo;t try to do anything complicated with storage or networking, but it can expand to high availability configurations. We would recommend that this deployment process be followed for any small team looking to deploy their first OpenStack on a single rack. For more complex requirements or larger scale, please contact us for a workshop and architecture design session.</p>
     </div>
   </div>
-</div>
 
-<div class="p-strip--light is-bordered">
   <div class="u-fixed-width">
+    <h3>Installation instructions</h3>
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Minimum requirements</h3>
+        <h4 class="p-stepped-list__title">Minimum requirements</h4>
         <div class="p-stepped-list__content">
           <p>4 x Intel, POWER or ARM servers each with:</p>
           <ul class="p-list">
@@ -269,7 +266,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Set up your MAAS hardware</h3>
+        <h4 class="p-stepped-list__title">Set up your MAAS hardware</h4>
         <div class="p-stepped-list__content">
           <p>Connect the both NICs of the servers to the same network switch.</p>
           <p>Identify the smallest server, if they are not identical. You will use this for <a href="https://maas.io/" class="p-link--external">MAAS</a>, the &lsquo;Metal as a Service&rsquo; provisioning system which will drive automated installation of the OS on the rest of the cluster.</p>
@@ -278,7 +275,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install MAAS</h3>
+        <h4 class="p-stepped-list__title">Install MAAS</h4>
         <div class="p-stepped-list__content">
           <p>On your Ubuntu Server 18.04 LTS machine:</p>
           <div class="p-code-copyable">
@@ -301,7 +298,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Configure the subnet and&nbsp;DHCP</h3>
+        <h4 class="p-stepped-list__title">Configure the subnet and&nbsp;DHCP</h4>
         <div class="p-stepped-list__content">
           <p>Go to the &lsquo;Subnets&rsquo; tab and verify that &lsquo;gateway&rsquo; and &lsquo;DNS&rsquo; are correct for your subnet.</p>
           <p>MAAS will provide DHCP and DNS for the /24 network on your isolated LAN switch.</p>
@@ -311,14 +308,14 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Verify image syncing</h3>
+        <h4 class="p-stepped-list__title">Verify image syncing</h4>
         <div class="p-stepped-list__content">
           <p>Go to the &lsquo;Images&rsquo; tab and check if the Ubuntu images have all been downloaded and are in a &lsquo;Synced&rsquo; state. Depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced.</p>
         </div>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Register your hardware with<br /> MAAS</h3>
+        <h4 class="p-stepped-list__title">Register your hardware with<br /> MAAS</h4>
         <div class="p-stepped-list__content">
           <p>For the rest of the machines in the cluster:</p>
           <ul>
@@ -337,7 +334,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install and launch conjure-up</h3>
+        <h4 class="p-stepped-list__title">Install and launch conjure-up</h4>
         <div class="p-stepped-list__content">
           <p>Install conjure-up on the MAAS server:</p>
           <div class="p-code-copyable">
@@ -358,7 +355,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Select OpenStack hypervisor</h3>
+        <h4 class="p-stepped-list__title">Select OpenStack hypervisor</h4>
         <div class="p-stepped-list__content">
           <p>conjure-up offers two options with OpenStack:</p>
           <p>1. OpenStack with NovaLXD</p>
@@ -374,7 +371,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Configure a new cloud</h3>
+        <h4 class="p-stepped-list__title">Configure a new cloud</h4>
         <div class="p-stepped-list__content">
           <p>Once you have selected &lsquo;OpenStack with &lsquo;NovaKVM&rsquo;, you will be prompted to create a new cloud with MAAS.</p>
           <p>
@@ -386,7 +383,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">10</span>Add MAAS endpoint and credentials</h3>
+        <h4 class="p-stepped-list__title"><span class="p-stepped-list__bullet">10</span>Add MAAS endpoint and credentials</h4>
         <div class="p-stepped-list__content">
           <p>The MAAS REST API endpoint will be of the form: <code>http://&lt;maas.ip&gt;/MAAS/</code>.</p>
           <p>The api key is found under the MAAS &lsquo;admin&rsquo; acouunt page as shown below.</p>
@@ -410,7 +407,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">11</span>Configure and deploy the OpenStack services</h3>
+        <h4 class="p-stepped-list__title"><span class="p-stepped-list__bullet">11</span>Configure and deploy the OpenStack services</h4>
         <div class="p-stepped-list__content">
           <p>Choose <strong>&lsquo;Configure&rsquo;</strong> to change the default configuration of any component. When all components are configured to your liking, choose <strong>&lsquo;Deploy&rsquo;</strong>.</p>
           <p>
