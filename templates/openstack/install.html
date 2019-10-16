@@ -71,7 +71,7 @@
   <div class="row">
     <div class="col-8">
       <p class="p-heading--four">Single-node OpenStack installation instructions</p>
-      <p>These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a>, an upstream single-node OpenStack deployment which can run directly on your workstation. MicroStack is OpenStack in a <a href="https://snapcraft.io/" class="p-link--external">snap</a> which means that all services and supporting libraries are together in a single package that can be easily installed, upgraded or removed. MicroStack includes all key OpenStack components: Keystone, Nova, Neutron, Glance, and is evolving extremely fast. You can use it for development, prototyping and testing, but it is also perfectly suitable for the network edge, IoT and appliances.</p>
+      <p class="u-sv3">These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a>, an upstream single-node OpenStack deployment which can run directly on your workstation. MicroStack is OpenStack in a <a href="https://snapcraft.io/" class="p-link--external">snap</a> which means that all services and supporting libraries are together in a single package that can be easily installed, upgraded or removed. MicroStack includes all key OpenStack components: Keystone, Nova, Neutron, Glance, and is evolving extremely fast. You can use it for development, prototyping and testing, but it is also perfectly suitable for the network edge, IoT and appliances.</p>
     </div>
   </div>
   
@@ -130,12 +130,12 @@ password: keystone</code></pre>
           <p>Type the credentials and press the ‘Sign In’ button:</p>
 
           <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
-            <img src="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png" alt="OpenStack login page" />
+            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png" alt="OpenStack login page" />
           </a>
           <p>You should now see the OpenStack dashboard:</p>
 
           <a href="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png">
-            <img src="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png" alt="OpenStack dashboard" />
+            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png" alt="OpenStack dashboard" />
           </a>
 
           <p>You can start playing with your local private cloud (i.e. create additional users, launch instances, etc.).</p>
@@ -224,7 +224,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
           <p>You can also view the instance from the web GUI. Go to <a href="http://10.20.20.1/">http://10.20.20.1/</a> and click on the "Instances" tab on the left:</p>
 
           <a href="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png">
-            <img src="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png" alt="OpenStack instances page" />
+            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png" alt="OpenStack instances page" />
           </a>
 
           <p>In order to perform a more advanced launch (e.g. specify the flavor, use a different image, etc.) refer to the python-openstackclient <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">documentation</a>. The syntax of the microstack.openstack command is the same as the syntax of the upstream client (for example microstack.openstack server list).</p>
@@ -244,7 +244,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
     <div class="col-8">
       <h2>Cluster deployment</h2>
       <p class="p-heading--four">Physical server cluster installation instructions</p>
-      <p>This is the simplest Ubuntu OpenStack deployment process across a small cluster of servers. It doesn&rsquo;t try to do anything complicated with storage or networking, but it can expand to high availability configurations. We would recommend that this deployment process be followed for any small team looking to deploy their first OpenStack on a single rack. For more complex requirements or larger scale, please contact us for a workshop and architecture design session.</p>
+      <p class="u-sv3">This is the simplest Ubuntu OpenStack deployment process across a small cluster of servers. It doesn&rsquo;t try to do anything complicated with storage or networking, but it can expand to high availability configurations. We would recommend that this deployment process be followed for any small team looking to deploy their first OpenStack on a single rack. For more complex requirements or larger scale, please contact us for a workshop and architecture design session.</p>
     </div>
   </div>
 
