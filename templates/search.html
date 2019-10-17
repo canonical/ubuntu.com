@@ -24,20 +24,14 @@
 
   {# search form #}
   <div class="p-strip--light is-shallow">
-    <div class="u-fixed-width u-vertically-center">
-      <form action="/search">
-        <fieldset class="row u-no-margin--bottom" style="border: 0; padding: 0;">
-          <div class="col-10">
-            <label for="search-input" class="u-off-screen">Search</label>
-            <input name="q" id="search-input" type="search" {% if query %}value="{{ query }}"{% endif %} placeholder="e.g. juju" style="margin: 0;"/>
-            {% if siteSearch %}
-              <input name="siteSearch" type="hidden" value="{{ siteSearch }}" />
-            {% endif %}
-          </div>
-          <div class="col-2" style="height: 48px;">
-            <button type="submit" alt="search" class="p-button--neutral u-align--left">Search</button>
-          </div>
-        </fieldset>
+    <div class="u-fixed-width">
+      <form class="p-search-box" action="/search">
+        <label for="search-input" class="u-off-screen">Search</label>
+        <input class="p-search-box__input" name="q" id="search-input" type="search" {% if query %}value="{{ query }}"{% endif %} placeholder="e.g. juju" />
+        {% if siteSearch %}
+          <input name="siteSearch" type="hidden" value="{{ siteSearch }}" />
+        {% endif %}
+        <button type="submit" alt="search" class="p-search-box__button" alt="search"><i class="p-icon--search"></i></button>
       </form>
     </div>
   </div>
