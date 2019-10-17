@@ -11,23 +11,23 @@
       <h1>Download Ubuntu Server</h1>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 p-card--highlighted">
+  <div class="u-fixed-width">
+    <div class="p-card--highlighted">
       <h2>Ubuntu Server {{ releases.lts.full_version }} LTS</h2>
-      <div class="u-equal-height p-divider">
+      <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
         <div class="col-8 p-divider__block">
-          <p class="p-card__content">
+          <p class="u-no-padding--top">
             The long-term support version of Ubuntu Server, including the {{ releases.openstack_lts.slug }} release of OpenStack and support guaranteed until {{ releases.lts.eol }} &mdash; 64-bit only.
           </p>
-          <p class="p-card__content">
+          <p>
             This release uses our new installer, Subiquity. If you need support for options not implemented in Subiquity, such as encrypted filesystem support, the traditional installer can be found on the <a href="/download/alternative-downloads#alternate-ubuntu-server-installer">alternative downloads</a> page.
           </p>
-          <p class="p-card__content">
+          <p>
             <a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ releases.lts.short_version }} LTS release notes</a>
           </p>
         </div>
         <div class="col-4">
-          <p class="p-card__content">
+          <p>
             <a href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ releases.lts.short_version }} LTS', 'eventValue' : undefined });">Download</a>
           </p>
           <p>
@@ -37,20 +37,20 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 p-card--highlighted">
+  <div class="u-fixed-width">
+    <div class="p-card--highlighted">
       <h2>Ubuntu Server {{ releases.latest.full_version }}</h2>
-      <div class="u-equal-height p-divider">
+      <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
         <div class="col-8 p-divider__block">
-          <p class="p-card__content">
+          <p class="u-no-padding--top">
             The latest version of Ubuntu Server, including nine months of security and maintenance updates, until {{ releases.latest.eol }}.
           </p>
-          <p class="p-card__content">
+          <p>
             <a href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ releases.latest.short_version }} release notes</a>
           </p>
         </div>
         <div class="col-4">
-          <p class="p-card__content">
+          <p>
             <a class="p-button--positive is-wide" href="/download/server/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download</a>
           </p>
           <p>
@@ -106,28 +106,28 @@
   <div class="row u-equal-height">
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu Server for ARM</h3>
-      <p class="p-card__content">
+      <p>
         Optimised for hyperscale deployments and certified on a number of ARM chipsets, including HP, Cavium, Applied Micro and Marvell &mdash; Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.
       </p>
-      <p class="p-card__content">
+      <p>
         <a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a>
       </p>
     </div>
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu for POWER</h3>
-      <p class="p-card__content">
+      <p>
         Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER.
       </p>
-      <p class="p-card__content">
+      <p>
         <a href="/download/server/power">Get Ubuntu for POWER&nbsp;&rsaquo;</a>
       </p>
     </div>
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu for IBM Z</h3>
-      <p class="p-card__content">
+      <p>
         IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available, with Juju and Ubuntu OpenStack.
       </p>
-      <p class="p-card__content">
+      <p>
         <a href="/download/server/s390x">Get Ubuntu for IBM Z&nbsp;&rsaquo;</a>
       </p>
     </div>

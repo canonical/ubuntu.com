@@ -4,7 +4,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1whVU3DvB9j5k6Ed3UvLZCEN6BU-lZcow4ZefqKQqokg/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep u-no-padding--bottom">
   <div class="row">
     <div class="col-8">
       <div>
@@ -14,29 +14,56 @@
       </div>
     </div>
   </div>
+</section>
+
+<section class="p-strip is-bordered">
   <div class="row u-equal-height">
     <div class="col-6 p-card--highlighted is-divided">
       <h3 class="p-card__title">Ubuntu Server</h3>
       <div class="p-card__content">
-        <p>This is the iso image of the Ubuntu Server installer.</p>
-        <p><a href="http://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-server-arm64.iso" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a></p>
-        <p><a href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-server-arm64.iso" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download Ubuntu {{ releases.latest.full_version }}</a></p>
+        <p>
+          This is the iso image of the Ubuntu Server installer.
+        </p>
+        <p>
+          <a href="http://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-server-arm64.iso" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+            Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+          </a>
+        </p>
+        <p>
+          <a href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+            Download Ubuntu {{ releases.latest.full_version }}
+          </a>
+        </p>
         <p><a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a></p>
       </div>
     </div>
     <div class="col-6 p-card--highlighted is-divided">
       <h3 class="p-card__title">Ubuntu netboot</h3>
       <div class="p-card__content">
-        <p>This installer lets you install Ubuntu over the network.</p>
-        <p><a href="http://cdimage.ubuntu.com/netboot/{{ releases.lts.short_version }}" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></a></p>
-        <p><a href="http://cdimage.ubuntu.com/netboot/{{ releases.latest.short_version }}" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download Ubuntu {{ releases.latest.full_version }}</a></p>
-        <p><a href="https://help.ubuntu.com/community/Installation/Netboot">Learn about netboot images&nbsp;&rsaquo;</a></p>
+        <p>
+          This installer lets you install Ubuntu over the network.
+        </p>
+        <p>
+          <a href="http://cdimage.ubuntu.com/netboot/{{ releases.lts.short_version }}" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+          Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+        </a>
+        </p>
+        <p>
+          <a href="http://cdimage.ubuntu.com/netboot/{{ releases.latest.short_version }}" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+          Download Ubuntu {{ releases.latest.full_version }}
+        </a>
+        </p>
+        <p>
+          <a class="p-link--external" href="https://help.ubuntu.com/community/Installation/Netboot">
+          Learn about netboot images
+        </a>
+        </p>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light is-deep is-bordered">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row u-equal-height">
     <div class="col-8">
       <h3>Containers, databases, web and more</h3>
@@ -52,9 +79,9 @@
       <img src="https://assets.ubuntu.com/v1/c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="row u-equal-height">
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
       <img src="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg" alt="" width="200" height="200" />
@@ -66,7 +93,7 @@
       <p><a href="/server/contact-us?product=server-arm">Contact us about your ARM server plans&nbsp;&rsaquo;</a></p>
     </div>
   </div>
-</div>
+</section>
 
 {% with first_item="_download_server_arm_guide", second_item="_download_enterprise_support", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 

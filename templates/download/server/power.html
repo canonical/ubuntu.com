@@ -5,64 +5,62 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1e-vav_b54KlKsi92w3rDu9J14O0gpp8yAanEAIImlE8/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep u-no-padding--bottom">
   <div class="row">
     <div class="col-10">
       <div>
         <h1>Ubuntu Server for IBM POWER</h1>
+        <p>Ubuntu Server for POWER brings Ubuntu Server and Ubuntu Server for cloud to POWER, opening the door to the entire OpenStack ecosystem and the scale-out and cloud markets. Power is optimised for workloads in the mobile, social, cloud, Big Data, analytics and machine learning spaces. With its unique deployment toolset (including Juju and MAAS), Ubuntu makes the management of those workloads trivial.</p>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="p-card--highlighted u-equal-height">
-      <div class="col-6">
-        <h2>Ubuntu Server</h2>
-        <ul class="p-list">
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">{{ releases.latest.full_version }}&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ releases.lts.full_version }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">{{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/releases/{{ releases.previous_lts.full_version }}/release/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.previous_lts.full_version }}', 'eventValue' : undefined });">{{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr>&nbsp;&rsaquo;</a></li>
-        </ul>
-      </div>
-      <div class="col-6">
-        <h2>Netboot image</h2>
-        <ul class="p-list">
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ releases.latest.full_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">{{ releases.latest.full_version }}&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ releases.lts.full_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">{{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>&nbsp;&rsaquo;</a></li>
-          <li class="p-list__item"><a href="http://cdimage.ubuntu.com/netboot/{{ releases.previous_lts.short_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.previous_lts.short_version }}', 'eventValue' : undefined });">{{ releases.previous_lts.short_version }} LTS&nbsp;&rsaquo;</a></li>
-        </ul>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-6 p-card--highlighted" >
+      <h3 class="p-card__title">Ubuntu Server</h3>
+      <div class="p-card__content">
         <p>
-          <a class="p-link--external" href="http://cdimage.ubuntu.com/netboot/">Older versions of the netboot installer</a>
+          This is the iso image of the Ubuntu Server installer.
+        </p>
+        <p>
+          <a class="p-button--positive is-wide" href="http://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+            Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+          </a>
+        </p>
+        <p>
+          <a class="p-button--neutral is-wide" href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+            Download Ubuntu {{ releases.latest.full_version }}
+          </a>
+        </p>
+        <p>
+          <a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-6 p-card--highlighted">
+      <h3 class="p-card__title">Netboot image</h3>
+      <div class="p-card__content">
+        <p>This installer lets you install Ubuntu over the network.</p>
+        <p>
+          <a  class="p-button--positive is-wide" href="http://cdimage.ubuntu.com/netboot/{{ releases.lts.full_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+            Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
+          </a>
+        </p>
+
+        <p>
+          <a  class="p-button--neutral is-wide" href="http://cdimage.ubuntu.com/netboot/{{ releases.latest.full_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+            Download Ubuntu {{ releases.latest.full_version }}
+          </a>
+        </p>
+        <p>
+          <a class="p-link--external" href="https://help.ubuntu.com/community/Installation/Netboot">Learn about netboot images</a>
         </p>
       </div>
     </div>
   </div>
-</div>
-
-<div class="p-strip--light is-bordered">
-  <div class="row u-equal-height p-divider">
-    <div class="col-6 p-divider__block">
-      <h3>Ubuntu {{ releases.lts.short_version }} <abbr title="Long-term support">LTS</abbr> for IBM POWER</h3>
-      <p>Ubuntu {{ releases.lts.short_version }} LTS adds support for Openstack Queens, LXD 3.0 with clustering and resource quotas, netplan.io, Chrony, and fresh package updates throughout the distribution.  Ubuntu 18.04 is the first release to support Power9.</p>
-      <p><a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes">Ubuntu Server {{ releases.lts.short_version }} <abbr title="Long-term support">LTS</abbr> release notes&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6 p-divider__block">
-      <h3>Ubuntu 16.04 <abbr title="Long-term support">LTS</abbr> for IBM POWER8</h3>
-      <p>Ubuntu 16.04 continues to enable rapid innovation for POWER8 including support for new POWER8 models, memory and PCI Hotplug, Docker 1.9.1, many performance and availability enhancements. Includes the only commercially available Linux to provide initial support for support the OpenPOWER Foundation’s industry leading NVLink technology.</p>
-    </div>
-  </div>
-</div>
-
-<div class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>Ready to deploy now</h2>
-      <p>Ubuntu Server for POWER brings Ubuntu Server and Ubuntu Server for cloud to POWER, opening the door to the entire OpenStack ecosystem and the scale-out and cloud markets. Power is optimised for workloads in the mobile, social, cloud, Big Data, analytics and machine learning spaces. With its unique deployment toolset (including Juju and MAAS), Ubuntu makes the management of those workloads trivial.</p>
-    </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/c3499461-picto-server-warmgrey.svg" alt="" width="200" height="200" />
-    </div>
-  </div>
-</div>
+</section>
 
 {% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 

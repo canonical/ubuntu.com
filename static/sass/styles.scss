@@ -309,3 +309,10 @@ summary {
     }
   }
 }
+
+.u-pull-up--large {
+  @media only screen and (min-width: $breakpoint-large) {
+    position: relative;
+    top: -2rem;
+  }
+}
