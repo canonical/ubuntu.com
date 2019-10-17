@@ -4,7 +4,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1KgnSBa8mbR7qwlxxtqbE5a1wXh5GjtVums8TIB7IGVw/edit#{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-bordered">
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h1>Install Ubuntu Server on a Raspberry Pi 2, 3 or 4</h1>
@@ -13,6 +13,9 @@
       <img src="https://assets.ubuntu.com/v1/31bd2627-logo-raspberry-pi.svg" width="100" alt="Raspberry Pi">
     </div>
   </div>
+</section>
+
+<section class="p-strip is-bordered u-no-padding--top">
   <div class="row">
     <div class="col-12 p-card">
       <div class="u-equal-height row p-divider">
@@ -46,10 +49,7 @@
         </h3>
         <div class="p-stepped-list__content">
           <p>
-            Download the Ubuntu Server image for your board:
-          </p>
-          <p>
-            <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.latest.short_version }}-preinstalled-server-armhf+raspi3.img.xz">Ubuntu Server image for Raspberry Pi 2, 3 and 4</a>
+            <a class="p-button--neutral" href="http://cdimage.ubuntu.com/releases/bionic/release/ubuntu-{{ releases.latest.short_version }}-preinstalled-server-armhf+raspi3.img.xz">Download Ubuntu Server image for Raspberry Pi 2, 3 and 4</a>
           </p>
           <p>
             You can verify the integrity of the files using the <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.

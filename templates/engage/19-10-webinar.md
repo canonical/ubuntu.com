@@ -27,10 +27,3 @@ In this webinar you will learn about:
 - Desktop performance improvements with GNOME 3.34, delivering a more responsive, smooth and organised experience
 
 Join the Ubuntu team to learn about the full capabilities of the latest Ubuntu release, and see what updates and features will improve developer and infrastructure efficiency, from cloud to the edge.
-
-Have any questions about this release and its use for organisational development and containerization? Contact us with any upgrade, capability or infrastructure questions you may have and our team will be happy to chat with you.
-
-<a class="p-button--neutral js-invoke-modal" href="/contact-us">Get in touch</a>
-
-{% include "shared/forms/_form-validation.html" %}
-{% include "shared/forms/_form-validation.html" %}
