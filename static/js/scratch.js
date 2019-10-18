@@ -1,20 +1,16 @@
-
-if (!core) { var core = {}; }
-
-// Toogles classes the active and open classes on the footer titles
-core.footerMobileNav = function() {
+(function() {
+  // Toogles classes the active and open classes on the footer titles
   var footerTitlesA = document.querySelectorAll('footer li h2');
   footerTitlesA.forEach(function(node) {
     node.addEventListener('click', function(e) {
       e.target.classList.toggle('active');
     });
   });
-};
 
-// Adds click eventlistener to the copy-to-clipboard buttons. Selects the input
-// and tries to copy the value to the clipboard.
-core.commandLine = function () {
-  document.querySelectorAll('.p-code-copyable').forEach(function(node) {
+  // Adds click eventlistener to the copy-to-clipboard buttons. Selects the input
+  // and tries to copy the value to the clipboard.
+  var codeCopyable = document.querySelectorAll('.p-code-copyable');
+  codeCopyable.forEach(function(node) {
     var copyButton = node.querySelector('.p-code-copyable__action');
     var commandInput = node.querySelector('.p-code-copyable__input');
     if (copyButton && commandInput) {
@@ -47,74 +43,4 @@ core.commandLine = function () {
       });
     }
   });
-};
-
-// Attach listeners to switch between two pieces of content with links
-core.swapContent = function(primaryContainerClass, secondaryContainerClass, showPrimaryClass, showSecondaryClass) {
-  var showPrimary = document.querySelector(showPrimaryClass);
-  var showSecondary = document.querySelector(showSecondaryClass);
-  var primaryElement = document.querySelector(primaryContainerClass);
-  var secondaryElement = document.querySelector(secondaryContainerClass);
-
-  if (showPrimary) {
-    showPrimary.addEventListener('click', function(e) {
-      e.preventDefault();
-      primaryElement.classList.remove('u-off-screen');
-      secondaryElement.classList.add('u-off-screen');
-    });
-  }
-
-  if (showSecondary) {
-    showSecondary.addEventListener('click', function(e) {
-      e.preventDefault();
-      secondaryElement.classList.remove('u-off-screen');
-      primaryElement.classList.add('u-off-screen');
-    });
-  }
-};
-
-core.footerMobileNav();
-core.commandLine();
-
-// v1
-
-core.siteSearch = function(){
-
-  siteSearchToggle = document.querySelector('.search-toggle__link');
-  siteSearchForm  = document.querySelector('.p-site-search__form');
-  siteSearchInput  = document.querySelector('.p-site-search__input');
-
-  if (siteSearchToggle) {
-    siteSearchToggle.addEventListener('click', function(e) {
-      siteSearchForm.classList.toggle('u-visible');
-      e.preventDefault();
-    });
-  }
-};
-
-core.siteSearch();
-
-// Contributor form toggle
-core.contributorFormToggle = function(){
-
-  individualContributorRadio = document.querySelector('#tfa_Iamsigningasanin1');
-  individualForm = document.querySelector('#tfa_CanonicalIndivid');
-
-  orgContributorRadio  = document.querySelector('#tfa_Iamsigningonbeha1');
-  orgForm = document.querySelector('#tfa_CanonicalEntityC');
-
-  if(individualContributorRadio) {
-    individualContributorRadio.addEventListener('click', function(e) {
-      individualForm.classList.remove('u-hide');
-      orgForm.classList.add('u-hide');
-    });
-  }
-  if(orgContributorRadio) {
-    orgContributorRadio.addEventListener('click', function(e) {
-      orgForm.classList.remove('u-hide');
-      individualForm.classList.add('u-hide');
-    });
-  }
-};
-
-core.contributorFormToggle();
+}())

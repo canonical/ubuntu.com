@@ -619,6 +619,25 @@
   </div>
 </div>
 <script>
+  individualContributorRadio = document.querySelector('#tfa_Iamsigningasanin1');
+  individualForm = document.querySelector('#tfa_CanonicalIndivid');
+
+  orgContributorRadio  = document.querySelector('#tfa_Iamsigningonbeha1');
+  orgForm = document.querySelector('#tfa_CanonicalEntityC');
+
+  if(individualContributorRadio) {
+    individualContributorRadio.addEventListener('click', function(e) {
+      individualForm.classList.remove('u-hide');
+      orgForm.classList.add('u-hide');
+    });
+  }
+  if(orgContributorRadio) {
+    orgContributorRadio.addEventListener('click', function(e) {
+      orgForm.classList.remove('u-hide');
+      individualForm.classList.add('u-hide');
+    });
+  }
+
   /* Copyright 2007 Veer West LLC - http://www.formassembly.com
    * populate a web form with querystring parameters.
    */
