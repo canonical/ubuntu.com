@@ -2,7 +2,12 @@
 {% block title %}Ubuntu Blog{% endblock %}
 {% block content%}
 
-{% if current_page and current_page == 1 and featured_articles %}
+{% 
+  if current_page 
+  and current_page == 1 
+  and featured_articles 
+  and not request.args.category 
+%}
   {% include "blog/featured-articles.html" %}
 {% endif %}
 
