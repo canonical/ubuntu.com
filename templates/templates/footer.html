@@ -18,6 +18,9 @@
           {% with section=nav_sections.kubernetes %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
+          {% with section=nav_sections.security %}
+          {% include 'templates/_footer_item.html' %}
+          {% endwith %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
@@ -56,16 +59,9 @@
             <ul class="second-level-nav">
               <li class="p-footer-list--margin"><a href="/telecommunications">Telco</a></li>
               <li class="p-footer-list--margin"><a href="/financial-services">Finance</a></li>
-              <li class="p-footer-list--margin"><a href="/internet-of-things/digital-signage">Signage</a></li>
-              <li class="p-footer-list--margin"><a href="/internet-of-things/robotics">Robotics</a></li>
-              <li class="p-footer-list--margin"><a href="/internet-of-things/gateways">Gateways</a></li>
-              <li class="p-footer-list--margin"><a href="/desktop/organisations">Organisations</a></li>
             </ul>
           </li>
           <ul class="second-level-nav second-level-nav-small">
-            {% with section=nav_sections.security %}
-            {% include 'templates/_footer_item.html' %}
-            {% endwith %}
             {% with section=nav_sections.publiccloud %}
             {% include 'templates/_footer_item.html' %}
             {% endwith %}

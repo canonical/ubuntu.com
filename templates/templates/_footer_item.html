@@ -1,4 +1,4 @@
-{% if section.children|length < 3 %}
+{% if (section.children|length < 3) and (section.path != "/security") %}
 <li class="p-footer-list--margin p-footer-list-single-child">
   <a class="p-link--soft" href="{{ section.path }}"><small>{{ section.title }}</small></a>
 {% else %}
