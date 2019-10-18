@@ -193,7 +193,7 @@ Note: Only underlying technology is listed. These can be provided via a cloud li
 
 <h2 id="uasd-add-ons">Add-Ons</h2>
 
-Add-Ons constitute additional support services available separately on a per-Node basis and require the underlying Node to be covered by a suitable Ubuntu Advantage support.
+Add-Ons constitute additional support services available separately on a per-Node basis and require the underlying Node to be covered by a suitable Ubuntu Advantage support contract.
 
 1. [Rancher](#term-rancher) Support
   1. Requirement: Node needs to be covered by Ubuntu Advantage for Infrastructure.
@@ -373,7 +373,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 - <strong>LMA Services</strong> means Logging, Monitoring and Aggregation services and currently includes: Nagios, Prometheus, Alertmanager,  Grafana, Graylog and Elasticsearch.
 - <strong>Managed Node</strong> means any Node which either runs Infrastructure Services or is managed by the Juju controller run by Canonical and considered alive by Juju.
 - <strong id="term-min-size">Minimum Size Requirement</strong> means at least 12 host Nodes continuously available for the Cloud or 10 host Nodes continuously available for the Cluster or such other size requirement as agreed with Canonical in writing.
-- <strong id="term-node">Node</strong> means a Physical Node or Virtual Machine provided to Canonical (or paid for) by the Customer for the purposes of running the Environment.  Any further machines (whether virtual or container) created on top of a Node are not themselves considered to be Node.
+- <strong id="term-node">Node</strong> means a Physical Node or Virtual Machine provided to Canonical (or paid for) by the Customer for the purposes of running the Environment.  Any further machines (whether virtual or container) created on top of a Node are not themselves considered to be Nodes.
 - <strong id="term-openstack">OpenStack</strong> means the cloud computing software known as “OpenStack” as distributed by Canonical with Ubuntu.
 - <strong id="term-openstack-packages">OpenStack Packages</strong> means packages relevant to OpenStack present in the Ubuntu Main repository of the Ubuntu Archive, including updates to those packages delivered in the Ubuntu Cloud Archive.
 This includes Charms listed at [https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms).

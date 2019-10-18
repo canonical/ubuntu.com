@@ -14,7 +14,7 @@
   <div class="row u-equal-height u-vertically-center ">
     <div class="col-8">
       <p>Deploy your production Ubuntu OpenStack cloud across a rack of physical servers. You&rsquo;ll use <a href="https://maas.io/" class="p-link--external">MAAS</a> for physical server provisioning and <a href="https://conjure-up.io/" class="p-link--external">conjure-up</a> to guide you through the process.</p>
-      <p>If you run into issues, or if you want support, training or architecture design consulting, please <a href="/openstack/contact-us" class="js-invoke-modal">do contact Canonical</a> &mdash; we help the world&rsquo;s largest OpenStack users keep their clouds running smoothly.</p>
+      <p>If you run into issues, or if you want support, training or architecture design consulting, please <a href="/openstack/contact-us" class="js-invoke-modal">contact Canonical</a> &mdash; we help the world&rsquo;s largest OpenStack users keep their clouds running smoothly.</p>
     </div>
     <div class="col-4 u-align--center u-hide--small">
       <img src="https://assets.ubuntu.com/v1/95212c08-OpenStack_Logo_2016.svg" alt="OpenStack logo" width="275" />
@@ -25,11 +25,27 @@
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8">
-      <h2>Developer or Cluster Edition?</h2>
-      <p>These instructions cover two scenarios &mdash; developers who have a beefy workstation and want to setup a simulated OpenStack cluster on that workstation, and real cloud deployments, on a bare metal server cluster.</p>
+      <h2>Developer or cluster Edition?</h2>
+      <p>These instructions cover two scenarios &mdash; developers who have a beefy workstation and want to setup a minimal OpenStack cluster, and production-grade cloud deployments, on a bare metal server cluster.</p>
     </div>
   </div>
   <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3>Workstation deployment</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Single machine needed</li>
+        <li class="p-list__item is-ticked">16GB RAM or more</li>
+        <li class="p-list__item is-ticked">Multi-core processor</li>
+        <li class="p-list__item is-ticked">50GB of free disk space</li>
+        <li class="p-list__item is-ticked">Ubuntu 18.04 LTS or later</li>
+        <li class="p-list__item is-ticked">Uses MicroStack - snap-based installation</li>
+        <li class="p-list__item is-ticked">Includes all key OpenStack components</li>
+        <li class="p-list__item is-ticked">Fully compatible with the upstream</li>
+        <li class="p-list__item is-ticked">Supports development iteration</li>
+      </ul>
+      <p>This is the recommended approach if you want to try OpenStack on your workstation. You will be able to perform all basic operations (e.g. upload images, create networks, launch instances, etc.) on a fully functional OpenStack. It takes just a few minutes to install it.</p>
+      <p><a href="#workstation-deployment">Deploy OpenStack on my workstation&nbsp;&rsaquo;</a></p>
+    </div>
     <div class="col-6 p-card">
       <h3>Cluster deployment</h3>
       <ul class="p-list">
@@ -40,38 +56,203 @@
         <li class="p-list__item is-ticked">Simple HA architecture supported</li>
         <li class="p-list__item is-ticked">Scalable from 12 to 200 nodes</li>
       </ul>
-      <p>This is a starting point for your production cloud. You&rsquo;ll step through the deployment of OpenStack services across machines in the cluster. A simple HA configuration is supported. For more sophisticated architectures, ongoing operations insight, alternative approaches to HA, or specialized telco, compliance, regulatory or HPC requirements, <a href="/openstack/contact-us" class="js-invoke-modal">contact Canonical</a> for consulting and support.</p>
+      <p>This is a starting point for your production cloud. You&rsquo;ll step through the deployment of OpenStack services across machines in the cluster. A simple HA configuration is supported. For more sophisticated architectures, ongoing operations insight, alternative approaches to HA, or specialised telco, compliance, regulatory or HPC requirements, <a href="/openstack/contact-us" class="js-invoke-modal">contact Canonical</a> for consulting and support.</p>
       <p><a href="#cluster-deployment">Deploy OpenStack on cluster&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6 p-card">
-      <h3>Workstation deployment</h3>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Single machine needed</li>
-        <li class="p-list__item is-ticked">16GB RAM or more</li>
-        <li class="p-list__item is-ticked">Ubuntu 16.04 LTS or later</li>
-        <li class="p-list__item is-ticked">Uses LXD machine containers</li>
-        <li class="p-list__item is-ticked">Full HA cluster simulation possible</li>
-        <li class="p-list__item is-ticked">Supports development iteration</li>
-        <li class="p-list__item is-ticked">Enables testing of HA and upgrades</li>
-      </ul>
-      <p>This is the recommended approach if you want to be an OpenStack developer. You will be able to work on OpenStack code and test it running in a simulated cluster, so distributed systems behaviour is immediately evident. It takes about an hour to install and it uses quite a bit of disk space and I/O because you are running all the processes for all the cluster nodes in containers on your machine.</p>
-      <p><a href="#workstation-deployment">Let me try OpenStack on my workstation&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<div class="p-strip is-bordered" id="cluster-deployment">
+<div class="p-strip is-bordered" id="workstation-deployment">
+  <div class="row">
+    <div class="col-8">
+      <h2>Workstation deployment</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p class="p-heading--four">Single-node OpenStack installation instructions</p>
+      <p class="u-sv3">These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a>, an upstream single-node OpenStack deployment which can run directly on your workstation. MicroStack is OpenStack in a <a href="https://snapcraft.io/" class="p-link--external">snap</a> which means that all services and supporting libraries are together in a single package that can be easily installed, upgraded or removed. MicroStack includes all key OpenStack components: Keystone, Nova, Neutron, Glance, and is evolving extremely fast. You can use it for development, prototyping and testing, but it is also perfectly suitable for the network edge, IoT and appliances.</p>
+    </div>
+  </div>
+  
+  <div class="u-fixed-width">
+    <h3>Installation instructions</h3>
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h4 class="p-stepped-list__title">Minimum requirements</h4>
+        <div class="p-stepped-list__content">
+          <ul class="p-list">
+            <li class="p-list__item">Single machine with 16GB RAM and a multi-core processor, running Ubuntu 18.04 LTS or later and at least 50GB of free disk space.</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="p-stepped-list__item">
+        <h4 class="p-stepped-list__title">Install MicroStack</h4>
+        <div class="p-stepped-list__content">
+          <p>If you are using Ubuntu 18.04 LTS  or later, which we highly recommend, you can install MicroStack right away by running the following command from the terminal:</p>
+
+          <div class="p-code-copyable">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install microstack --classic --edge" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
+          </div>
+
+          <p>However, if you are using an older Ubuntu version or different Linux distribution, you need to install snapd first. Refer to the <a href="https://snapcraft.io/docs/installing-snapd" class="p-link--external">documentation</a> for more information on installing snapd on your Linux distribution.</p>
+
+          <p>Once installed, you should see the following message on the terminal:</p>
+
+          <pre><code>microstack (beta) rocky from Canonical✓ installed</code></pre>
+
+          <p>The version displayed (here, Rocky) matches the most recent stable OpenStack release available with MicroStack.</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h4 class="p-stepped-list__title">Initialise MicroStack</h4>
+        <div class="p-stepped-list__content">
+          <p>Before using your OpenStack installation, it has to be initialised, so that networks and databases get configured. In order to do so, run:</p>
+
+          <div class="p-code-copyable">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo microstack.init" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
+          </div>
+
+          <p>Your local OpenStack cloud is now running and is ready for being used!</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h4 class="p-stepped-list__title">Interact with MicroStack</h4>
+        <div class="p-stepped-list__content">
+          <p>You can interact with your OpenStack either via the web GUI or the CLI.</p>
+          <p><strong>Web GUI:</strong></p>
+          <p>To interact with your OpenStack via the web GUI visit http://10.20.20.1/ and log in with the following credentials:</p>
+          <pre><code>username: admin
+password: keystone</code></pre>
+          <p>Type the credentials and press the ‘Sign In’ button:</p>
+
+          <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
+            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png" alt="OpenStack login page" />
+          </a>
+          <p>You should now see the OpenStack dashboard:</p>
+
+          <a href="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png">
+            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png" alt="OpenStack dashboard" />
+          </a>
+
+          <p>You can start playing with your local private cloud (i.e. create additional users, launch instances, etc.).</p>
+          <p><strong>CLI:</strong></p>
+          <p>You can also interact withOpenStack via the CLI by using the microstack.openstack command. The MicroStack CLI syntax is identical to the client delivered by the <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">python-openstackclient</a> package.</p>
+          <p>For example, to list available OpenStack endpoints run:</p>
+          
+          <div class="p-code-copyable">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack.openstack catalog list" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
+          </div>
+
+          <p>It should return the following list:</p>
+
+        <pre><code>+-----------+-----------+-----------------------------------------+
+| Name      | Type      | Endpoints                               |
++-----------+-----------+-----------------------------------------+
+| neutron   | network   | microstack                              |
+|           |           |   public: http://10.20.20.1:9696        |
+|           |           | microstack                              |
+|           |           |   admin: http://10.20.20.1:9696         |
+|           |           | microstack                              |
+|           |           |   internal: http://10.20.20.1:9696      |
+|           |           |                                         |
+| keystone  | identity  | microstack                              |
+|           |           |   public: http://10.20.20.1:5000/v3/    |
+|           |           | microstack                              |
+|           |           |   internal: http://10.20.20.1:5000/v3/  |
+|           |           | microstack                              |
+|           |           |   admin: http://10.20.20.1:5000/v3/     |
+|           |           |                                         |
+| glance    | image     | microstack                              |
+|           |           |   admin: http://10.20.20.1:9292         |
+|           |           | microstack                              |
+|           |           |   public: http://10.20.20.1:9292        |
+|           |           | microstack                              |
+|           |           |   internal: http://10.20.20.1:9292      |
+|           |           |                                         |
+| placement | placement | microstack                              |
+|           |           |   public: http://10.20.20.1:8778        |
+|           |           | microstack                              |
+|           |           |   admin: http://10.20.20.1:8778         |
+|           |           | microstack                              |
+|           |           |   internal: http://10.20.20.1:8778      |
+|           |           |                                         |
+| nova      | compute   | microstack                              |
+|           |           |   public: http://10.20.20.1:8774/v2.1   |
+|           |           | microstack                              |
+|           |           |   admin: http://10.20.20.1:8774/v2.1    |
+|           |           | microstack                              |
+|           |           |   internal: http://10.20.20.1:8774/v2.1 |
+|           |           |                                         |
++-----------+-----------+-----------------------------------------+</code></pre>
+          <p>Running <code>microstack.openstack --help</code> will get you  a list of available subcommands and their required syntax.</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h4 class="p-stepped-list__title">Launch an instance</h4>
+        <div class="p-stepped-list__content">
+          <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
+
+          <div class="p-code-copyable">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack.launch test" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
+          </div>
+
+          <p>This should result in a lot of output from which the most important are the last two lines:</p>
+
+          <pre><code>Access your server with 'ssh -i /home/guardian/.ssh/id_microstack cirros@10.20.20.3'
+You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
+
+          <p>Note that the IP address of the instance may be different in your environment. In order to connect to the instance run the ‘ssh’ command from the output:</p>
+
+          <div class="p-code-copyable">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="ssh -i /home/guardian/.ssh/id_microstack cirros@10.20.20.3" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
+          </div>
+
+          <p>You are now connected to your first instance on your OpenStack cluster. You can start playing with it by executing various commands, for example:</p>
+
+          <pre><code>uptime
+14:51:42 up 4 min,  1 users,  load average: 0.00, 0.00, 0.00</code></pre>
+          
+          <p>In order to disconnect from the instance type exit.</p>
+
+          <p>You can also view the instance from the web GUI. Go to <a href="http://10.20.20.1/">http://10.20.20.1/</a> and click on the "Instances" tab on the left:</p>
+
+          <a href="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png">
+            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png" alt="OpenStack instances page" />
+          </a>
+
+          <p>In order to perform a more advanced launch (e.g. specify the flavor, use a different image, etc.) refer to the python-openstackclient <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">documentation</a>. The syntax of the microstack.openstack command is the same as the syntax of the upstream client (for example microstack.openstack server list).</p>
+        </div>
+      </li>
+    </ol>
+    <div class="row">
+      <div class="col-8">
+        <p>To learn more about MicroStack, visit <a href="https://opendev.org/x/microstack" class="p-link--external">https://opendev.org/x/microstack</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-strip--light is-bordered" id="cluster-deployment">
   <div class="row">
     <div class="col-8">
       <h2>Cluster deployment</h2>
       <p class="p-heading--four">Physical server cluster installation instructions</p>
-      <p>This is the simplest Ubuntu OpenStack deployment process across a small cluster of servers. It doesn&rsquo;t try to do anything complicated with storage or networking, but it can expand to high availability configurations. We would recommend that this deployment process be followed for any small team looking to deploy their first OpenStack on a single rack. For more complex requirements or larger scale, please contact us for a workshop and architecture design session.</p>
+      <p class="u-sv3">This is the simplest Ubuntu OpenStack deployment process across a small cluster of servers. It doesn&rsquo;t try to do anything complicated with storage or networking, but it can expand to high availability configurations. We would recommend that this deployment process be followed for any small team looking to deploy their first OpenStack on a single rack. For more complex requirements or larger scale, please contact us for a workshop and architecture design session.</p>
     </div>
   </div>
+
   <div class="u-fixed-width">
+    <h3>Installation instructions</h3>
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Minimum requirements</h3>
+        <h4 class="p-stepped-list__title">Minimum requirements</h4>
         <div class="p-stepped-list__content">
           <p>4 x Intel, POWER or ARM servers each with:</p>
           <ul class="p-list">
@@ -85,7 +266,7 @@
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Set up your MAAS hardware</h3>
+        <h4 class="p-stepped-list__title">Set up your MAAS hardware</h4>
         <div class="p-stepped-list__content">
           <p>Connect the both NICs of the servers to the same network switch.</p>
           <p>Identify the smallest server, if they are not identical. You will use this for <a href="https://maas.io/" class="p-link--external">MAAS</a>, the &lsquo;Metal as a Service&rsquo; provisioning system which will drive automated installation of the OS on the rest of the cluster.</p>
@@ -94,7 +275,7 @@
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install MAAS</h3>
+        <h4 class="p-stepped-list__title">Install MAAS</h4>
         <div class="p-stepped-list__content">
           <p>On your Ubuntu Server 18.04 LTS machine:</p>
           <div class="p-code-copyable">
@@ -117,24 +298,24 @@
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Configure the subnet and&nbsp;DHCP</h3>
+        <h4 class="p-stepped-list__title">Configure the subnet and&nbsp;DHCP</h4>
         <div class="p-stepped-list__content">
-          <p>Go to the &ldquo;Subnets&rdquo; tab and verify that &ldquo;gateway&rdquo; and &ldquo;DNS&rdquo; are correct for your subnet.</p>
+          <p>Go to the &lsquo;Subnets&rsquo; tab and verify that &lsquo;gateway&rsquo; and &lsquo;DNS&rsquo; are correct for your subnet.</p>
           <p>MAAS will provide DHCP and DNS for the /24 network on your isolated LAN switch.</p>
           <p>For the DHCP dynamic range, we recommend at least two IPs per NIC in the cluster (and remember you have at least two NICs per server, so probably 50 IPs in the range if you have 10 servers). Don&rsquo;t use the entire /24 for DHCP though since you will need IP addresses for various OpenStack services and guests.</p>
-          <p>Go back to the  &ldquo;subnets&rdquo; tab and this time click on the &ldquo;untagged&rdquo; VLAN. Select &lsquo;Take action&rsquo; and then &lsquo;Provide dhcp&rsquo; with your dynamic range.</p>
+          <p>Go back to the  &lsquo;subnets&rsquo; tab and this time click on the &lsquo;untagged&rsquo; VLAN. Select &lsquo;Take action&rsquo; and then &lsquo;Provide dhcp&rsquo; with your dynamic range.</p>
         </div>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Verify image syncing</h3>
+        <h4 class="p-stepped-list__title">Verify image syncing</h4>
         <div class="p-stepped-list__content">
-          <p>Go to the &ldquo;Images&rdquo; tab and check if the Ubuntu images have all been downloaded and are in a &ldquo;Synced&rdquo; state. Depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced.</p>
+          <p>Go to the &lsquo;Images&rsquo; tab and check if the Ubuntu images have all been downloaded and are in a &lsquo;Synced&rsquo; state. Depending on your bandwidth it may take a while for it to finish. You can only proceed with the next steps if the images are synced.</p>
         </div>
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Register your hardware with<br /> MAAS</h3>
+        <h4 class="p-stepped-list__title">Register your hardware with<br /> MAAS</h4>
         <div class="p-stepped-list__content">
           <p>For the rest of the machines in the cluster:</p>
           <ul>
@@ -142,8 +323,8 @@
             <li>Set them to PXE boot by default</li>
             <li>Connect both NICs to the ethernet switch</li>
           </ul>
-          <p>We suggest you disable all other boot options in the BIOS for the OpenStack hosts in the cluster, including local disk. MAAS will provide PXE so these servers boot successfully.</p>
-          <p>Power the machines on. You should see them PXE boot &lsquo;under MAAS control&rsquo; if they have monitors attached to them. They will all appear in the &ldquo;Nodes&rdquo; tab of MAAS after a while once the initial PXE boot &lsquo;enlistment&rsquo; process is done.</p>
+          <p>We suggest you disable all other boot options in the BIOS for the OpenStack hosts in the cluster, including the local disk. MAAS will provide PXE so these servers boot successfully.</p>
+          <p>Power the machines on. You should see them PXE boot &lsquo;under MAAS control&rsquo; if they have monitors attached to them. They will all appear in the &lsquo;Nodes&rsquo; tab of MAAS after a while once the initial PXE boot &lsquo;enlistment&rsquo; process is done.</p>
           <p>Edit each machine, filling in the power type and other parameters, if they are not automatically set and correct already.</p>
           <p>Select all the machines and then &lsquo;Take action&rsquo; and &lsquo;Commission&rsquo; them.</p>
           <p>Wait until all machines have a &ldquo;Ready&rdquo; status</p>
@@ -153,7 +334,7 @@
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install and launch conjure-up</h3>
+        <h4 class="p-stepped-list__title">Install and launch conjure-up</h4>
         <div class="p-stepped-list__content">
           <p>Install conjure-up on the MAAS server:</p>
           <div class="p-code-copyable">
@@ -164,7 +345,7 @@
             <input class="p-code-copyable__input" value="conjure-up" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <p>If successful you should see a screen as below:</p>
+          <p>If successful, you should see a screen as below:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/b4a8693c-build-openstack-with-conjure-up-1.png">
               <img src="https://assets.ubuntu.com/v1/b4a8693c-build-openstack-with-conjure-up-1.png?w=424" width="424" alt="conjure-up's opening wizard in command line" />
@@ -174,7 +355,7 @@
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Select OpenStack hypervisor</h3>
+        <h4 class="p-stepped-list__title">Select OpenStack hypervisor</h4>
         <div class="p-stepped-list__content">
           <p>conjure-up offers two options with OpenStack:</p>
           <p>1. OpenStack with NovaLXD</p>
@@ -190,7 +371,7 @@
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Configure a new cloud</h3>
+        <h4 class="p-stepped-list__title">Configure a new cloud</h4>
         <div class="p-stepped-list__content">
           <p>Once you have selected &lsquo;OpenStack with &lsquo;NovaKVM&rsquo;, you will be prompted to create a new cloud with MAAS.</p>
           <p>
@@ -202,7 +383,7 @@
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">10</span>Add MAAS endpoint and credentials</h3>
+        <h4 class="p-stepped-list__title"><span class="p-stepped-list__bullet">10</span>Add MAAS endpoint and credentials</h4>
         <div class="p-stepped-list__content">
           <p>The MAAS REST API endpoint will be of the form: <code>http://&lt;maas.ip&gt;/MAAS/</code>.</p>
           <p>The api key is found under the MAAS &lsquo;admin&rsquo; acouunt page as shown below.</p>
@@ -213,7 +394,7 @@
           </p>
           <p>
             <a href="https://assets.ubuntu.com/v1/ff3cfa6b-build-openstack-with-conjure-up-5.png">
-              <img src="https://assets.ubuntu.com/v1/ff3cfa6b-build-openstack-with-conjure-up-5.png?w=424" width="424" alt="User preferences for admin interface on MAAS" />
+              <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/ff3cfa6b-build-openstack-with-conjure-up-5.png?w=424" width="424" alt="User preferences for admin interface on MAAS" />
             </a>
           </p>
           <p>Next, you will have the opportunity to configure the individual OpenStack services.</p>
@@ -226,9 +407,9 @@
       </li>
 
       <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">11</span>Configure and deploy the OpenStack services</h3>
+        <h4 class="p-stepped-list__title"><span class="p-stepped-list__bullet">11</span>Configure and deploy the OpenStack services</h4>
         <div class="p-stepped-list__content">
-          <p>Choose <strong>Configure</strong> to change the default configuration of any component. When all components are configured to your liking, choose <strong>Deploy</strong>.</p>
+          <p>Choose <strong>&lsquo;Configure&rsquo;</strong> to change the default configuration of any component. When all components are configured to your liking, choose <strong>&lsquo;Deploy&rsquo;</strong>.</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/85a136cd-build-openstack-with-conjure-up-7.png">
               <img src="https://assets.ubuntu.com/v1/85a136cd-build-openstack-with-conjure-up-7.png?w=424" width="424" alt="conjure-up's status screens, showing a number of applications status" />
@@ -238,140 +419,6 @@
         </div>
       </li>
     </ol>
-  </div>
-</div>
-
-<div class="p-strip--light" id="workstation-deployment">
-  <div class="row">
-    <div class="col-8">
-      <h2>Workstation deployment</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <p class="p-heading--four">Single-node OpenStack installation instructions</p>
-      <p>These instructions use LXD, the Linux Container Daemon, to create multiple machine containers on your machine for the various OpenStack services, mimicking a real Openstack cluster.</p>
-    </div>
-  </div>
-</div>
-
-<div id="instructions" class="p-strip--light u-no-padding--top is-bordered">
-  <div class="u-fixed-width">
-    <h2>Installation instructions</h2>
-    <ol class="p-stepped-list--detailed">
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Minimum requirements</h3>
-        <div class="p-stepped-list__content">
-          <ul class="p-list">
-            <li class="p-list__item">Single machine with 16GB RAM running Ubuntu 16.04 LTS or later and at least 40GB of free disk space</li>
-            <li class="p-list__item">Approximately one hour to complete the process</li>
-          </ul>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install conjure-up</h3>
-        <div class="p-stepped-list__content">
-          <p><code>conjure-up</code> provides a text-based wizard to walk you through the process of setting up OpenStack. It can be used with full bare metal clusters, or on your workstation with LXD. We&rsquo;ll be using LXD to create a set of container machines for the OpenStack services.</p>
-          <p>Follow these step-by-step instructions.</p>
-          <p><strong>conjure-up</strong> requires a minimum version of LXD of <strong>3.0.0</strong>. Additionally, LXD should be configured prior to running.</p>
-          <p>To install LXD run the following:</p>
-          <p>
-            <a href="https://snapcraft.io/">Snaps</a> are the recommended installation method for LXD, If you need to enable snap packages:
-          </p>
-          <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install lxd" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p>For the best experience, it is recommended to migrate from the <strong>deb</strong> LXD packaging. This will move all container specific data to the snap version and clean up the unused debian packages.  So, if you already had the the lxd package installed, run lxd.migrate. When prompted, uninstall the old LXD version so that only the snap version is available.</p>
-          <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo lxd.migrate" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p>Now that lxd has been installed it needs to be initialised to set up, among other things, a network bridge and a storage pool. While mostly default options can be used, check the table below and ensure your answers match.</p>
-          <pre><code>$ sudo lxd init
-Would you like to use LXD clustering? (yes/no) [default=no]:
-Do you want to configure a new storage pool? (yes/no) [default=yes]:
-Name of the new storage pool [default=default]:
-Name of the storage backend to use (btrfs, ceph, dir, lvm, zfs) [default=zfs]:
-Create a new ZFS pool? (yes/no) [default=yes]:
-Would you like to use an existing block device? (yes/no) [default=no]:
-Size in GB of the new loop device (1GB minimum) [default=40GB]:
-Would you like to connect to a MAAS server? (yes/no) [default=no]:
-Would you like to create a new local network bridge? (yes/no) [default=yes]:
-What should the new bridge be called? [default=lxdbr0]:
-What IPv4 address should be used? (CIDR subnet notation, "auto"; or "none") [default=auto]: 10.8.8.1/24
-What IPv6 address should be used? [default=none]:
-What IPv6 address should be used? (CIDR subnet notation, "auto" or "none") [default=auto]: none
-Would you like LXD to be available over the network? (yes/no) [default=no]:
-Would you like stale cached images to be updated automatically? (yes/no) [default=yes]
-Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]:</code></pre>
-            <p>Then install conjure-up:</p>
-            <div class="p-code-copyable">
-              <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install conjure-up --classic" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Deploy OpenStack</h3>
-        <div class="p-stepped-list__content">
-          <p>Now you are ready to start the OpenStack deployment process on your workstation.</p>
-          <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="conjure-up" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p>You will see a menu of 'spells' which are descriptions of distributed software systems that conjure-up can deploy for you. Choose &lsquo;OpenStack with NovaLXD&rsquo;.</p>
-          <img src="https://assets.ubuntu.com/v1/23a02e6d-conjure-up-install-openstack.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Follow the on-screen instructions</h3>
-        <div class="p-stepped-list__content">
-          <p>The conjure-up wizard will now prompt you for:</p>
-          <ol>
-            <li>A selection from a list of recommended spells &mdash; Here we&rsquo;re using &ldquo;OpenStack with Nova-LXD&rdquo;.</li>
-            <li>A cloud for the deployment &mdash; Here we&rsquo;re going to &ldquo;Configure a New Cloud&rdquo; to live on &ldquo;localhost&rdquo;.</li>
-            <li>A network bridge and storage pool &mdash; Here we&rsquo;ll use &ldquo;lxdbr0&rdquo; and &ldquo;default&rdquo; as created prior to installing conjure-up in Step 2 of this guide.</li>
-            <li>An SSH public key path &mdash; Here we&rsquo;ll use the default location of &ldquo;<code>~/.ssh/id_rsa.pub</code>&rdquo;.</li>
-            <li>Any other configurations for the applications being deployed &mdash; Here we&rsquo;ll be using the default values for the applications, but you can configure based on your needs.</li>
-          </ol>
-          <p>When ready, hit &ldquo;Deploy&rdquo;, and conjure-up will begin the deployment. This will take on the order of one hour to run to completion.</p>
-          <p>When the deployment is completed, go to the URL displayed in the summary screen and login with the provided credentials.</p>
-          <img src="https://assets.ubuntu.com/v1/6f24640b-conjure-up-openstack-horizon.png?w=444" width="444" alt="screenshot of the conjure-up interface with the 'OpenStack with NovaLXD' option selected" />
-          <p>Make sure that "Create New Volume" is set to "no" when creating an instance.</p>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Launch an instance</h3>
-        <div class="p-stepped-list__content">
-          <p>Conjure-up will have created the basic building blocks for launching an instance . To launch an instance on the new cloud using the Openstack Dashboard, Horizon:</p>
-          <ol>
-            <li>Projects -&gt; Compute -&gt; Instances -&gt; Launch Instance</li>
-            <li>Details:
-              <ol type="a">
-                <li>Instance name: <strong>test</strong></li>
-              </ol>
-            </li>
-            <li>Source:
-              <ol type="a">
-                <li>Select Boot Source: <strong>Image</strong></li>
-                <li>Create New Volume: <strong>No</strong></li>
-                <li>Available: <strong>bionic-lxd &#x2b06;</strong></li>
-              </ol>
-            </li>
-            <li>Flavor: <strong>m1.tiny &#x2b06;</strong></li>
-            <li>Networks: <strong>internal &#x2b06;</strong></li>
-            <li>Launch instance</li>
-          </ol>
-        </div>
-      </li>
-    </ol>
-    <div class="row">
-      <div class="col-8">
-        <p>To learn more about conjure-up visit <a href="https://conjure-up.io/" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Download cloud conjure-up', 'eventLabel' : 'conjure-up.io', 'eventValue' : undefined });">conjure-up.io</a></p>
-      </div>
-    </div>
   </div>
 </div>
 
