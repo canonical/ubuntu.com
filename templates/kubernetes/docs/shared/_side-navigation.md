@@ -16,6 +16,7 @@
   - [Calico](/kubernetes/docs/cni-calico)
   - [Canal](/kubernetes/docs/cni-canal)
   - [Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)  
+  - [Using multiple networks](/kubernetes/docs/multiple-networks)  
 - **Container Runtimes**
   - [Containerd & Docker](/kubernetes/docs/container-runtime)
   - [Kata](/kubernetes/docs/kata)
