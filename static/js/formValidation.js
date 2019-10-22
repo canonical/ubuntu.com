@@ -140,7 +140,7 @@ afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage)
 }
 
 // recaptcha submitCallback
-var CaptchaCallback = function() {
+CaptchaCallback = function() {
   let recaptchas = document.querySelectorAll("div[class^=g-recaptcha]");
   recaptchas.forEach(function(field){
     recaptchaWidgetId = grecaptcha.render(field, {'sitekey' : '6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if'});
