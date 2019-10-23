@@ -94,7 +94,7 @@ def advantage():
                 headers={"Authorization": f"Macaroon {token}"},
                 timeout=3,
             ).json()
-
+            raw_token = []
             for contract in account["contracts"]:
                 contract_id = contract["contractInfo"]["id"]
                 contract["token"] = requests.post(
@@ -103,6 +103,16 @@ def advantage():
                     json={},
                     timeout=3,
                 ).json()["contractToken"]
+                raw_token.append(
+                    requests.post(
+                        os.path.join(
+                            api_url, f"v1/contracts/{contract_id}/token"
+                        ),
+                        headers={"Authorization": f"Macaroon {token}"},
+                        json={},
+                        timeout=3,
+                    ).json()
+                )
                 machines = requests.get(
                     os.path.join(
                         api_url, f"v1/contracts/{contract_id}/context/machines"
@@ -157,6 +167,7 @@ def advantage():
         personal_account=personal_account,
         raw_accounts=raw_accounts,
         raw_contracts=raw_contracts,
+        raw_token=raw_token,
     )
 
 
