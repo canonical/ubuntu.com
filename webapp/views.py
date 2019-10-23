@@ -73,6 +73,11 @@ def advantage():
             headers={"Authorization": f"Macaroon {token}"},
             timeout=3,
         ).json()["accounts"]
+        raw_accounts = requests.get(
+            os.path.join(api_url, "v1/accounts"),
+            headers={"Authorization": f"Macaroon {token}"},
+            timeout=3,
+        ).json()
 
         for account in accounts:
             account["contracts"] = requests.get(
@@ -82,6 +87,13 @@ def advantage():
                 headers={"Authorization": f"Macaroon {token}"},
                 timeout=3,
             ).json()["contracts"]
+            raw_contracts = requests.get(
+                os.path.join(
+                    api_url, f"v1/accounts/{account['id']}/contracts"
+                ),
+                headers={"Authorization": f"Macaroon {token}"},
+                timeout=3,
+            ).json()
 
             for contract in account["contracts"]:
                 contract_id = contract["contractInfo"]["id"]
@@ -143,6 +155,8 @@ def advantage():
         accounts=accounts,
         enterprise_contracts=enterprise_contracts,
         personal_account=personal_account,
+        raw_accounts=raw_accounts,
+        raw_contracts=raw_contracts,
     )
 
 
