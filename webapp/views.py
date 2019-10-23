@@ -67,7 +67,6 @@ def advantage():
         discharge = Macaroon.deserialize(flask.session["macaroon_discharge"])
         bound = root.prepare_for_request(discharge)
         token = binary_serialize_macaroons([root, bound]).decode("utf-8")
-
         accounts = requests.get(
             os.path.join(api_url, "v1/accounts"),
             headers={"Authorization": f"Macaroon {token}"},
@@ -101,21 +100,22 @@ def advantage():
                 ).json()
                 contract["machineCount"] = len(machines)
                 if contract["contractInfo"].get("origin", "") == "free":
-                    if account["name"] == openid["email"]:
-                        personal_account = account
-                        personal_account["free_token"] = contract["token"]
-                        for entitlement in contract["contractInfo"][
-                            "resourceEntitlements"
-                        ]:
-                            if entitlement["type"] == "esm-infra":
-                                entitlements["esm"] = True
-                            elif entitlement["type"] == "livepatch":
-                                entitlements["livepatch"] = True
-                            elif entitlement["type"] == "fips":
-                                entitlements["fips"] = True
-                            elif entitlement["type"] == "cc-eal":
-                                entitlements["cc-eal"] = True
-                        personal_account["entitlements"] = entitlements
+                    # Ant, is there any reason why we do this check?
+                    # if account["name"] == openid["email"]:
+                    personal_account = account
+                    personal_account["free_token"] = contract["token"]
+                    for entitlement in contract["contractInfo"][
+                        "resourceEntitlements"
+                    ]:
+                        if entitlement["type"] == "esm-infra":
+                            entitlements["esm"] = True
+                        elif entitlement["type"] == "livepatch":
+                            entitlements["livepatch"] = True
+                        elif entitlement["type"] == "fips":
+                            entitlements["fips"] = True
+                        elif entitlement["type"] == "cc-eal":
+                            entitlements["cc-eal"] = True
+                    personal_account["entitlements"] = entitlements
                 else:
                     entitlements = {}
                     for entitlement in contract["contractInfo"][
