@@ -1,6 +1,6 @@
 {% extends "templates/one-column.html" %}
 
-{% block title %}{{ article.title.rendered }}{% endblock %}
+{% block title %}{{ article.title.rendered|safe }}{% endblock %}
 {% block meta_description %}{{ article.excerpt.raw }}{% endblock %}
 {% block meta_image %}{{ article.image.source_url }}{% endblock %}
 
