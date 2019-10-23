@@ -181,52 +181,18 @@
           <td class="u-align--right">To attach a machine:</td>
           <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua attach {{ personal_account.free_token }}</code></pre></td>
         </tr>
-        {% if personal_account['entitlements'] and personal_account['entitlements']['livepatch'] %}
         <tr style="border: 0;">
-          <td class="u-align--right">Livepatch:</td>
-          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable livepatch</pre></code></td>
+          <td class="u-align--right">To check status:</td>
+          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua status</code></pre></td>
         </tr>
-        {% endif %}
-        {% if personal_account['entitlements'] and personal_account['entitlements']['esm'] %}
-        <tr style="border: 0;">
-          <td class="u-align--right">ESM:</td>
-          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable esm-infra</pre></code></td>
-        </tr>
-        {% endif %}
-        {% if personal_account['entitlements'] and personal_account['entitlements']['fips'] %}
-        <tr style="border: 0;">
-          <td class="u-align--right">FIPS:</td>
-          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable fips</code></pre></td>
-        </tr>
-        {% endif %}
-        {% if personal_account['entitlements'] and personal_account['entitlements']['cc-eal'] %}
-        <tr style="border: 0;">
-          <td class="u-align--right">CC-EAL:</td>
-          <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable cc-eal</code></pre></td>
-        </tr>
-        {% endif %}
       </table>
     </div>
     <div class="col-12 u-hide--medium u-hide--large">
       <dl>
         <dt>To attach a machine:</dt>
         <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua attach {{ personal_account.free_token }}</code></pre></dd>
-        {% if personal_account['entitlements'] and personal_account['entitlements']['livepatch'] %}
-        <dt>Livepatch:</dt>
-        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable livepatch</pre></code></dd>
-        {% endif %}
-        {% if personal_account['entitlements'] and personal_account['entitlements']['esm'] %}
-        <dt>ESM:</dt>
-        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable esm-infra</pre></code></dd>
-        {% endif %}
-        {% if personal_account['entitlements'] and personal_account['entitlements']['fips'] %}
-        <dt>FIPS:</dt>
-        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable fips</code></pre></dd>
-        {% endif %}
-        {% if personal_account['entitlements'] and personal_account['entitlements']['cc-eal'] %}
-        <dt>CC-EAL:</dt>
-        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua enable cc-eal</code></pre></dd>
-        {% endif %}
+        <dt>To check status:</dt>
+        <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua status</pre></code></dd>
       </dl>
     </div>
   </div>
@@ -356,13 +322,15 @@
 
 <script>
   var toggle = document.querySelector('#js-reveal-table');
-  var chevron = toggle.querySelector('.p-icon--contextual-menu');
-  if (toggle && chevron) {
-    toggle.addEventListener('click', function(e) {
-      chevron.classList.toggle('u-rotate');
-      var content = document.querySelector('#' + this.getAttribute('aria-controls'));
-      content.classList.toggle('u-hide');
-    });
+  if (toggle) {
+    var chevron = toggle.querySelector('.p-icon--contextual-menu');
+    if (chevron){
+      toggle.addEventListener('click', function(e) {
+        chevron.classList.toggle('u-rotate');
+        var content = document.querySelector('#' + this.getAttribute('aria-controls'));
+        content.classList.toggle('u-hide');
+      });
+    }
   }
 </script>
 
@@ -416,4 +384,3 @@
 {% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}
-
