@@ -3,20 +3,15 @@ A Flask application for ubuntu.com
 """
 
 # Standard library
-import flask
-import json
 import os
-import re
 
 # Packages
 import talisker.requests
+import flask
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
-from feedparser import parse
-from canonicalwebteam.blog.flask import build_blueprint
-from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.wordpress_api import api_session
 
 # Local
@@ -31,7 +26,19 @@ from webapp.context import (
     navigation,
     releases,
 )
+from webapp.views import (
+    advantage,
+    blog_blueprint,
+    blog_custom_group,
+    blog_custom_topic,
+    blog_press_centre,
+    download_thank_you,
+)
+from webapp.login import login_handler, logout
 
+
+# Set up application
+# ===
 
 app = FlaskBase(
     __name__,
@@ -39,54 +46,13 @@ app = FlaskBase(
     template_folder="../templates",
     static_folder="../static",
 )
-
-# Blog
-blog_views = BlogViews(excluded_tags=[3184, 3265, 3408])
-talisker.requests.configure(api_session)
-
-
-@app.route("/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>")
-def custom_topic(slug):
-    page_param = flask.request.args.get("page", default=1, type=int)
-    context = blog_views.get_topic(slug, page_param)
-
-    return flask.render_template(f"blog/topics/{slug}.html", **context)
-
-
-@app.route("/blog/<regex('cloud-and-server|desktop|internet-of-things'):slug>")
-def custom_group(slug):
-    page_param = flask.request.args.get("page", default=1, type=int)
-    category_param = flask.request.args.get("category", default="", type=str)
-    context = blog_views.get_group(slug, page_param, category_param)
-
-    return flask.render_template(f"blog/{slug}.html", **context)
-
-
-@app.route("/blog/press-centre")
-def press_centre():
-    page_param = flask.request.args.get("page", default=1, type=int)
-    category_param = flask.request.args.get("category", default="", type=str)
-    context = blog_views.get_group(
-        "canonical-announcements", page_param, category_param
-    )
-
-    return flask.render_template("blog/press-centre.html", **context)
-
-
-app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
-
-
-# Template finder
-template_finder_view = TemplateFinder.as_view("template_finder")
-app.add_url_rule("/", view_func=template_finder_view)
-app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
-
-# Search
-app.add_url_rule(
-    "/search", "search", build_search_view(template_path="search.html")
+app.config["ADVANTAGE_API"] = os.getenv(
+    "ADVANTAGE_API", "https://contracts.canonical.com/"
 )
 
+talisker.requests.configure(api_session)
 
+# Error pages
 @app.errorhandler(404)
 def not_found_error(error):
     return flask.render_template("404.html"), 404
@@ -97,6 +63,7 @@ def internal_error(error):
     return flask.render_template("500.html"), 500
 
 
+# Template context
 @app.context_processor
 def context():
     return {
@@ -117,46 +84,41 @@ def context():
     }
 
 
-@app.route("/download/<regex('server|desktop|cloud'):category>/thank-you")
-def download_thank_you(category):
-    context = {"http_host": flask.request.host}
-
-    version = flask.request.args.get("version", "")
-    architecture = flask.request.args.get("architecture", "")
-
-    # Sanitise for paths
-    # (https://bugs.launchpad.net/ubuntu-website-content/+bug/1586361)
-    version_pattern = re.compile(r"(\d+(?:\.\d+)+).*")
-    architecture = architecture.replace("..", "")
-    architecture = architecture.replace("/", "+").replace(" ", "+")
-
-    if architecture and version_pattern.match(version):
-        context["start_download"] = version and architecture
-        context["version"] = version
-        context["architecture"] = architecture
-
-    # Add mirrors
-    mirrors_path = os.path.join(os.getcwd(), "etc/ubuntu-mirrors-rss.xml")
-
-    try:
-        with open(mirrors_path) as rss:
-            mirrors = parse(rss.read()).entries
-    except IOError:
-        mirrors = []
-
-    mirror_list = [
-        {"link": mirror["link"], "bandwidth": mirror["mirror_bandwidth"]}
-        for mirror in mirrors
-        if mirror["mirror_countrycode"]
-        == flask.request.args.get("country", "NO_COUNTRY_CODE")
-    ]
-    context["mirror_list"] = json.dumps(mirror_list)
-
-    return flask.render_template(
-        f"download/{category}/thank-you.html", **context
-    )
-
-
 @app.context_processor
 def utility_processor():
     return {"image": image_template}
+
+
+# Routes
+# ===
+
+# Simple routes
+app.add_url_rule("/advantage", view_func=advantage)
+app.add_url_rule(
+    "/download/<regex('server|desktop|cloud'):category>/thank-you",
+    view_func=download_thank_you,
+)
+app.add_url_rule(
+    "/search", "search", build_search_view(template_path="search.html")
+)
+
+# /blog section
+app.add_url_rule(
+    "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
+    view_func=blog_custom_topic,
+)
+app.add_url_rule(
+    "/blog/<regex('cloud-and-server|desktop|internet-of-things'):slug>",
+    view_func=blog_custom_group,
+)
+app.add_url_rule("/blog/press-centre", view_func=blog_press_centre)
+app.register_blueprint(blog_blueprint, url_prefix="/blog")
+
+# Login
+app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
+app.add_url_rule("/logout", view_func=logout)
+
+# All other routes
+template_finder_view = TemplateFinder.as_view("template_finder")
+app.add_url_rule("/", view_func=template_finder_view)
+app.add_url_rule("/<path:subpath>", view_func=template_finder_view)

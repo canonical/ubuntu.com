@@ -2,7 +2,7 @@ import { createNav } from "@canonical/global-nav";
 import cpNs from "./cookie-proxy";
 
 // Initalise the global navigation.
-createNav();
+createNav({ showLogins: false });
 
 // Initalise the cookie policy notification.
 cpNs.cookiePolicy.setup({

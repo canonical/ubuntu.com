@@ -29,11 +29,11 @@
 $font-base-family: '"UbtuOverride", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif' !default;
 
 // import site specific patterns and overrides
-@import 'pattern_blog-featured';
-@import 'pattern_blog-list';
-@import 'pattern_blog-post';
-@import 'pattern_blog-card';
-@import 'pattern_blog-suru';
+@import "pattern_blog-featured";
+@import "pattern_blog-list";
+@import "pattern_blog-post";
+@import "pattern_blog-card";
+@import "pattern_blog-suru";
 @import "pattern_blog-topic";
 @import "pattern_buttons";
 @import "pattern_card";
@@ -59,7 +59,7 @@ $font-base-family: '"UbtuOverride", -apple-system, "Segoe UI", "Roboto", "Oxygen
 @import "pattern_ubuntu_intro";
 @import "takeovers/financial-services";
 @import "utility-animations";
-@import 'utility_crop';
+@import "utility_crop";
 
 @include blog-p-card;
 @include blog-u-crop;
@@ -270,7 +270,7 @@ summary {
 }
 
 .desktop-hero {
-  background-image: url('#{$assets-path}50c18622-insitu-laptop-overview.jpg');
+  background-image: url("#{$assets-path}50c18622-insitu-laptop-overview.jpg");
   background-position: right bottom;
   background-size: 1200px auto;
 
@@ -316,5 +316,118 @@ summary {
   @media only screen and (min-width: $breakpoint-large) {
     position: relative;
     top: -2rem;
+  }
+}
+
+// Advantage section
+.advantage-table {
+  overflow: visible;
+
+  tr:target {
+    background-color: $color-mid-x-light;
+  }
+
+  @media only screen and (min-width: $breakpoint-small) {
+    td,
+    th {
+      &:nth-child(1) {
+        width: 50%;
+      }
+
+      &:nth-child(2) {
+        width: 20%;
+      }
+
+      &:nth-child(3) {
+        width: 20%;
+      }
+
+      &:nth-child(4) {
+        width: 20%;
+      }
+    }
+  }
+}
+
+.u-rotate {
+  transform: rotate(180deg);
+}
+
+.p-table--advantage {
+  overflow: visible;
+
+  th,
+  td {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    &:last-child {
+      padding-right: 0.5rem;
+    }
+  }
+
+  .p-table__row {
+    position: relative;
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      flex: 3;
+    }
+
+    &:not(:last-of-type) {
+      .p-table-expanding__panel {
+        border-bottom: 0;
+      }
+    }
+  }
+
+  code {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .p-table-expanding__panel {
+    @extend %vf-card;
+    @extend %vf-is-bordered;
+    @extend %vf-has-round-corners;
+    margin-bottom: 0;
+  }
+
+  .p-table--open {
+    background-color: $color-mid-x-light;
+  }
+
+  .u-toggle {
+    background: transparent;
+    border: 0;
+  }
+}
+
+.u-arrow-up {
+  overflow: visible;
+  position: relative;
+  z-index: 20;
+
+  @media only screen and (min-width: $breakpoint-small) {
+    &::after {
+      background: $color-x-light;
+      box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
+      content: "";
+      height: 1rem;
+      pointer-events: none;
+      position: absolute;
+      right: 2.1rem;
+      top: -2.5rem;
+      transform: rotate(45deg);
+      width: 1rem;
+      z-index: 5;
+    }
+  }
+}
+
+.u-padding-top--small {
+  @media only screen and (max-width: $breakpoint-small) {
+    margin-left: 0 !important;
+    margin-top: 1rem !important;
   }
 }

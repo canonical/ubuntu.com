@@ -5,24 +5,22 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1Ofw9bQ4I40gy9hDIjuDMApz6sDK8qSdHI03-oY7xs-A/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-deep is-bordered">
-  <div class="row">
-    <div class="col-7">
-      <h1 style="font-weight: 100;">Canonical Livepatch Service</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <h2 class="p-heading--four">Apply critical kernel patches without rebooting.</h2>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Fixes are applied automatically, without restarting your system</li>
-        <li class="p-list__item is-ticked">Reduces downtime, keeping your Ubuntu LTS systems secure and compliant</li>
-        <li class="p-list__item is-ticked">Included as part of all Ubuntu Advantage for Infrastructure support packages</li>
-      </ul>
-    </div>
-    <div class="col-5 col-start-large-8">
-      <div class="u-embedded-media">
-        <iframe class="u-embedded-media__element" width="772" height="426" src="https://player.vimeo.com/video/225445183" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<section class="p-strip u-no-padding--top u-no-padding--bottom is-bordered">
+  <div class="p-strip--suru-half-and-half">
+    <div class="row u-equal-height">
+      <div class="col-7">
+          <h1>Canonical Livepatch Service</h1>
+        <h2 class="p-heading--four">Apply critical kernel patches without rebooting.</h2>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Fixes are applied automatically, without restarting your system</li>
+          <li class="p-list__item is-ticked">Reduces downtime, keeping your Ubuntu LTS systems secure<br />and compliant</li>
+          <li class="p-list__item is-ticked">Included as part of all Ubuntu Advantage for Infrastructure<br />support packages</li>
+        </ul>
+      </div>
+      <div class="col-5">
+        <div class="u-embedded-media">
+          <iframe class="u-embedded-media__element" width="772" height="426" src="https://player.vimeo.com/video/225445183" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -46,20 +44,13 @@
 
 <section class="p-strip">
   <div class="row">
-    <div class="col-10">
-      <h2>Subscribe to Livepatch</h2>
-    </div>
-  </div>
-  <div class="row p-divider u-equal-height">
-    <div class="col-6 p-divider__block">
-      <h4>Free for 3 machines</h4>
-      <p>All you need is an Ubuntu One account.</p>
-      <p> <a class="p-button--positive"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Get yours now</span></a></p>
-    </div>
-    <div class="col-6 p-divider__block">
-      <h4>Buy online</h4>
-      <p>Buy as part of Ubuntu Advantage from Canonical.</p>
-      <p> <a class="p-button--positive"  href="https://buy.ubuntu.com/"><span class="p-link--external">Visit buy.ubuntu.com</span></a></p>
+    <div class="col-12">
+      <h2>Free for personal use</h2>
+      <p>All you need is an Ubuntu One account. Free for 3 machines.</p>
+      <p><a class="p-button--positive"  href="https://auth.livepatch.canonical.com/"><span class="p-link--external">Get Livepatch</span></a></p>
+      <h2>Part of Ubuntu Advantage</h2>
+      <p>Buy as part of Ubuntu Advantage from Canonical. Buy online.</p>
+      <p><a class="p-button--positive"  href="https://buy.ubuntu.com/"><span class="p-link--external">Get Ubuntu Advantage</span></a></p>
     </div>
   </div>
 </section>
@@ -83,14 +74,15 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip">
   <div class="row">
-    <div class="col-7">
-      <h2>How to enable the Canonical Livepatch Service</h2>
+    <div class="col-12">
+      <h2 class="u-no-max-width">How to enable the Canonical Livepatch Service</h2>
     </div>
   </div>
   <div class="row">
     <div class="col-6">
+      <br />
       <ol class="p-stepped-list">
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">
@@ -122,6 +114,7 @@
       </ol>
     </div>
     <div class="col-5 col-start-large-8">
+      <br/>
       <div class="p-card">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
@@ -143,18 +136,20 @@
   </div>
 </section>
 
-<div class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Get started with Livepatch today</h2>
-      <p>Livepatch is free to use on your own PC or server. To discuss whether Livepatch is right for your business, talk to our team.</p>
-      <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button u-no-margin--bottom js-invoke-modal">Get in touch</a></p>
+<section class="p-strip--light">
+    <div class="row u-equal-height">
+      <div class="col-6 u-align--center u-hide--small">
+        <img src="https://assets.ubuntu.com/v1/9c7bda7d-contact-us.svg" alt="">
+      </div>
+      <div class="col-6 u-vertically-center">
+        <div>
+          <h2>Get started with Livepatch today</h2>
+          <p>Livepatch is free to use on your own PC or server. To discuss whether Livepatch is right for your business, talk to our team.</p>
+          <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+        </div>
+      </div>
     </div>
-    <div class="col-3 u-vertically-center u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="140" alt="" />
-    </div>
-  </div>
-</div>
+  </section>
 
 {% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
