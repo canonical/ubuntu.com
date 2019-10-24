@@ -1,0 +1,7 @@
+@mixin ubuntu-p-table-of-contents {
+  .p-table-of-contents {
+    @media only screen and (max-width: $breakpoint-navigation-threshold) {
+      padding-left: 0;
+    }
+  }
+}
