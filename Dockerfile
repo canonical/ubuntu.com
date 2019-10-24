@@ -35,7 +35,7 @@ RUN yarn run build-css
 FROM ubuntu:bionic
 
 # Install python and import python dependencies
-RUN apt-get update && apt-get install --yes python3-dev
+RUN apt-get update && apt-get install --yes python3-dev libsodium-dev
 COPY --from=python-dependencies /usr/local/lib/python3.6/site-packages /usr/local/lib/python3.6/dist-packages
 COPY --from=python-dependencies /usr/local/bin /usr/local/bin
 
