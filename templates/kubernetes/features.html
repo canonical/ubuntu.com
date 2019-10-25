@@ -7,8 +7,8 @@
 
 {% block content %}
 
-<section class="p-strip--light is-bordered">
-  <div class="row u-equal-height u-vertically-center">
+<section class="p-strip--suru-image is-deep is-bordered">
+  <div class="row">
     <div class="col-8">
       <h1>Charmed Kubernetes features</h1>
       <h4>Architectural freedom. Fully automated operations. Extensible Kubernetes for all.</h4>
@@ -16,13 +16,15 @@
       <p>Deep integration with infrastructure features such as <abbr title="Load Balancing as a Service">LBaaS</abbr>, storage, and networking means freedom and preservation of choice in infrastructure.</p>
       <p><a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-features">Talk to us</a></p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/96d35aa4-certified-kubernetes-logo.svg" width="200" alt="Kubernetes Certified Service Provider" />
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      <img
+      src="https://assets.ubuntu.com/v1/96d35aa4-certified-kubernetes-logo.svg"
+      width="173" alt="Kubernetes Certified Service Provider" />
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered" id="ai">
+<section class="p-strip--light is-bordered" id="ai">
   <div class="row u-equal-height">
     <div class="col-6 p-card">
       <h3 class="p-card__title">Cloud Native Platform</h3>
@@ -57,7 +59,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered" id="bare-metal">
+<section class="p-strip is-bordered" id="bare-metal">
   <div class="u-fixed-width">
     <h2>Charmed Kubernetes fits perfectly on top of OpenStack, VMware, and bare metal</h2>
     <p>There&rsquo;s no doubt that Kubernetes is the new standard operational layer for every multi-cloud business. Canonical enables K8s on demand for your DevOps teams &mdash; on OpenStack, VMware, public clouds, and bare metal clusters with MAAS.</p>
@@ -97,7 +99,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Networking</h2>
@@ -140,7 +142,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <h1>Storage</h1>
   </div>
@@ -161,7 +163,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="u-fixed-width">
     <h2>Logging and monitoring</h2>
     <p>Operations in highly coherent large-scale distributed clusters require a new level of operational monitoring and observability. Charmed Kubernetes provides a standardised set of open source log aggregation and systems monitoring dashboards with every cloud, using Prometheus, the Elasticsearch and Kibana stack (ELK), and Nagios.</p>
@@ -170,7 +172,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="u-fixed-width">
     <h2>Get started with Charmed Kubernetes</h2>
     <p>Find out how Canonical enables Kubernetes on demand for your DevOps teams &mdash; on OpenStack, VMware, public clouds, and bare metal clusters.</p>
