@@ -51,7 +51,9 @@ app.config["ADVANTAGE_API"] = os.getenv(
     "ADVANTAGE_API", "https://contracts.canonical.com/"
 )
 
-app.wsgi_app = ProxyFix(app.wsgi_app, x_for=2, x_host=2)
+app.wsgi_app = ProxyFix(
+    app.wsgi_app, x_for=2, x_host=2, x_prefix=2, x_port=2, x_proto=2
+)
 
 talisker.requests.configure(api_session)
 
