@@ -47,7 +47,7 @@ app = FlaskBase(
     static_folder="../static",
 )
 app.config["ADVANTAGE_API"] = os.getenv(
-    "ADVANTAGE_API", "https://contracts.canonical.com/"
+    "ADVANTAGE_API", "https://contracts.staging.canonical.com/"
 )
 
 talisker.requests.configure(api_session)
