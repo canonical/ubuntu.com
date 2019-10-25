@@ -13,6 +13,7 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog.wordpress_api import api_session
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 # Local
 from webapp.context import (
@@ -49,6 +50,8 @@ app = FlaskBase(
 app.config["ADVANTAGE_API"] = os.getenv(
     "ADVANTAGE_API", "https://contracts.canonical.com/"
 )
+
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=2, x_host=2)
 
 talisker.requests.configure(api_session)
 
