@@ -35,6 +35,7 @@
           formContainer.classList.remove('u-hide');
           formContainer.innerHTML = text.replace(/%% formid %%/g, formData.formId).replace(/%% lpId %%/g, formData.lpId).replace(/%% returnURL %%/g, formData.returnUrl).replace(/%% lpurl %%/g, formData.lpUrl);
           setProductContext(contactButton);
+          setUTMs();
           initialiseForm();
           CaptchaCallback();
         })
@@ -79,6 +80,25 @@
       var productContext = document.getElementById("product-context");
       if (productContext) {
         productContext.value = product;
+      }
+    }
+
+    function setUTMs() {
+      var params = new URLSearchParams(window.location.search);
+
+      var utm_campaign = document.getElementById("utm_campaign");
+      if (utm_campaign) {
+        utm_campaign.value = params.get("utm_campaign");
+      }
+
+      var utm_source = document.getElementById("utm_source");
+      if (utm_source) {
+        utm_source.value = params.get("utm_source");
+      }
+
+      var utm_medium = document.getElementById("utm_medium");
+      if (utm_medium) {
+        utm_medium.value = params.get("utm_medium");
       }
     }
 
