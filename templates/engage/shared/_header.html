@@ -3,10 +3,10 @@
     <div class="{% if image %}col-7 {% else %}col-8{% endif %} u-vertically-center">
       <div>
       <h1 {% if subtitle is none and date is none %}class="u-no-margin--bottom"{% endif %}>
-        {{ title }}
+        {{ title | safe}}
       </h1>
       {% if subtitle %}<h4>
-        {{ subtitle }}
+        {{ subtitle |safe }}
       </h4>{% endif %}
       {% if date %}<p>
         {{ date }}
