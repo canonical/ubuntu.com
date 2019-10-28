@@ -1,0 +1,23 @@
+@mixin ubuntu-p-matrix {
+  .p-matrix--two-col {
+    .p-matrix__item {
+      @media (min-width: $breakpoint-medium) {
+        width: 50%;
+
+        &:nth-child(2n + 1) {
+          border-right: 1px solid $color-mid-light;
+          padding-left: 0;
+        }
+
+        &:nth-child(2n) {
+          border-right: 0;
+          padding-left: $spv-inner--scaleable;
+        }
+
+        &:nth-child(3) {
+          border-top: 1px solid $color-mid-light;
+        }
+      }
+    }
+  }
+}
