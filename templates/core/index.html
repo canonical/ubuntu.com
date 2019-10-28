@@ -1,34 +1,29 @@
 {% extends "core/base_core.html" %}
 
 {% block title %}Ubuntu Core{% endblock %}
-{% block meta_description %}Introducing Ubuntu Core, the smallest Ubuntu ever, the perfect host operating system for IoT devices and large-scale cloud container deployments{% endblock meta_description %}
+{% block meta_description %}Ubuntu Core is Ubuntu for embedded environments, optimised for security and reliable updates. Run snaps in a high-security confined sandbox with bulletproof upgrades.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1QoM0Yqx4JfDJ2G3OPt5bds-ximG1jASmU_PWX4iff3E/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
-{% include "takeovers/_ubuntu-core-18-takeover.html" %}
 
-<nav class="p-tabs p-sticky-nav">
-  <div class="u-fixed-width">
-    <ul class="p-tabs__list" role="tablist">
-      <li class="p-tabs__item" role="presentation">
-        <a class="p-tabs__link js-sticky-tab" href="#security-first">Security first</a>
-      </li>
-      <li class="p-tabs__item" role="presentation">
-        <a class="p-tabs__link js-sticky-tab" href="#built-for-business">Built for business</a>
-      </li>
-      <li class="p-tabs__item" role="presentation">
-        <a class="p-tabs__link js-sticky-tab" href="#developers-love-ubuntu">Developers love Ubuntu</a>
-      </li>
-      <li class="p-tabs__item" role="presentation">
-        <a class="p-tabs__link js-sticky-tab" href="#incredible-reliability">Incredible reliability</a>
-      </li>
-      <li class="p-tabs__item" role="presentation">
-        <a class="p-tabs__link js-sticky-tab" href="#reduce-the-cost">Reduce the cost of Linux</a>
-      </li>
-    </ul>
+<section class="p-strip--image is-dark is-deep u-image-position js-takeover p-takeover-ubuntu-core">
+  <div class="row u-equal-height">
+    <div class="col-6 u-vertically-center">
+      <h1 style="font-weight: 100;">Build secure IoT devices  <br> with Ubuntu Core</h1>
+      <p class="p-heading--four u-sv3">Everything you love about Ubuntu, locked down for security. Helping you make safer things &ndash; because we&rsquo;re all connected.</p>
+    </div>
+    <div class="col-6">
+      <img src="https://assets.ubuntu.com/v1/635ce124-IOT_core_infographic+light.svg" alt="Ubuntu Core 18">
+    </div>
   </div>
-</nav>
+  <style>
+    .p-takeover-ubuntu-core {
+      background-image: linear-gradient(135deg, #333333 0%, #111111 50%, #111111 100%);
+      background-size: contain;
+    }
+  </style>
+</section>
 
 <section class="p-strip">
   <div class="u-fixed-width u-sv3 u-align--center">
@@ -506,7 +501,9 @@ store for access to all the standard apps, or curate your own collection.</p>
   </div>
 </div>
 
-<section class="p-strip--light">
+{% include "shared/pricing/_smart-start-prices.html" %}
+
+<section class="p-strip">
   <div class="row p-divider">
     <div class="col-6 p-divider__block">
       <h4>Make your own Ubuntu Core device</h4>
