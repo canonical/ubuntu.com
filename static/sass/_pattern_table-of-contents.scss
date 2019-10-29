@@ -4,4 +4,15 @@
       padding-left: 0;
     }
   }
+
+  .p-sticky-toc {
+    @media (max-width: $breakpoint-small - 1px) {
+      order: -1;
+    }
+
+    .p-table-of-contents {
+      position: sticky;
+      top: 1rem;
+    }
+  }
 }
