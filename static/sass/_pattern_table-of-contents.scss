@@ -7,12 +7,30 @@
 
   .p-sticky-toc {
     @media (max-width: $breakpoint-small - 1px) {
+      margin-bottom: 2rem;
       order: -1;
     }
 
     .p-table-of-contents {
       position: sticky;
       top: 1rem;
+
+      @media (max-width: $breakpoint-small - 1px) {
+        border-bottom: 1px solid $color-mid-light;
+        border-top: 0;
+      }
+    }
+
+    .p-table-of-contents__section {
+      @media (max-width: $breakpoint-small - 1px) {
+        &:first-child {
+          padding-top: 0;
+        }
+
+        &:last-child {
+          padding-bottom: 1.5rem;
+        }
+      }
     }
   }
 }
