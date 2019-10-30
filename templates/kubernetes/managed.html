@@ -3,33 +3,50 @@
 
 {% block title %}Managed Kubernetes | Kubernetes{% endblock %}
 {% block meta_description %}Canonical is the leading managed private cloud provider. We will build, support and manage your Kubernetes private cloud for only $5-15 per server per day.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/15jzhasokjH5Ql9Za56ZxRknXNNhEXYdIFXXtLODGxns{% endblock meta_copydoc %}
+{% block meta_copydoc
+%}https://docs.google.com/document/d/1Qv379nYnod9e4jMrsdDND8D7mbPyqELi2lowjkfD-gU{% endblock meta_copydoc %}
 
 {% block content %}
-  <section class="p-strip--accent is-deep">
+  <section class="p-strip--suru-bottomed is-deep">
     <div class="row u-equal-height u-vertically-center">
-      <div class="col-7">
+      <div class="col-6">
         <h1>
-          Fully managed private Kubernetes clusters. Cost effective. Pure upstream.
+          Fully managed private Kubernetes clusters
         </h1>
+        <p class="p-heading--four">Cost effective. Pure upstream.</p>
         <p>Focus on your business while Canonical builds and manages your Kubernetes clusters. Take advantage of your on-premises assets and leverage public clouds for your multi-cloud strategy.</p>
-        <p>Canonical will set-up and operate your Kubernetes cluster for you, with in-house experts available at all times to stand-up and scale your cluster. And, when you're ready, we will hand over operational control.</p>
-        <ul>
-          <li>Fully managed Kubernetes on your bare metal, VMWare, OpenStack or any public cloud</li>
-          <li>Built in one to three weeks using a proven reference architecture with our <a class="p-link--inverted" href="/kubernetes">Kubernetes consulting packages</a></li>
-          <li>Customise the architecture in iterations based on workloads</li>
-          <li>Enterprise <abbr title="Service level agreement">SLA</abbr> for the infrastructure, upgrades included</li>
-          <li>Monitoring and log management integration</li>
-        </ul>
         <div>
           <a href="https://assets.ubuntu.com/v1/8db65a1e-Kubernetes-for-the-Enterprise.pdf" class="p-button--positive">Read the datasheet</a>
-
-          <a href="/kubernetes/contact-us?product=kubernetes-managed" class="p-button--neutral js-invoke-modal">Talk to us</a>
         </div>
       </div>
-      <div class="col-5 u-align--center u-hide--small">
-        <img src="https://assets.ubuntu.com/v1/4f7c6084-cloud-key.svg" width="378" alt="Kubernetes Managed Service Provider" />
+      <div class="col-6 u-align--center u-hide--small">
+        <img src="https://assets.ubuntu.com/v1/91154a9f-Managed+Kubernetes.svg"
+        width="378" alt="Kubernetes Managed Service Provider" style="height:
+        200px;"/>
       </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light">
+    <div class="u-fixed-width">
+      <p>Canonical will set-up and operate your Kubernetes cluster for you, with
+      in-house experts available at all times to stand-up and scale your cluster.
+      And, when you're ready, we will hand over operational control. </p>
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Fully managed Kubernetes on your
+          bare metal, VMWare, OpenStack or any public cloud</li>
+        <li class="p-list__item is-ticked">Built in one to three weeks using
+          a proven reference architecture with our <a
+            href="/kubernetes">Kubernetes consulting
+            packages</a></li>
+        <li class="p-list__item is-ticked">Customise the architecture in iterations based on workloads</li>
+        <li class="p-list__item is-ticked">Enterprise SLA for the
+          infrastructure, upgrades included</li>
+        <li class="p-list__item is-ticked">Monitoring and log management
+          integration</li>
+      </ul>
+      <a
+      href="/kubernetes/contact-us?product=kubernetes-managed" class="js-invoke-modal">Talk to us&nbsp;&rsaquo;</a>
     </div>
   </section>
 
