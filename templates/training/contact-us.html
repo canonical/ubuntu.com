@@ -44,9 +44,20 @@
   {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
+{% elif product == 'maas-training-onsite' %}
+
+{% with h1="Contact us about our MAAS Deployment and Operations training",
+intro_text="Fill in your details below and a member of our training team will be in touch.",
+formid="1448",
+lpId="2661",
+returnURL="https://www.ubuntu.com/training/thank-you?product=maas-training-onsite" %}
+{% include "shared/_cloud-contact-us-form.html" %}
+{% endwith %}
+
+
   {% else %}
 
-{% with h1="Contact us about OpenStack",
+{% with h1="Contact us about Canonical Training",
   intro_text="Fill in your details below and a member of our cloud sales team will be in touch.",
   formid="1251'  lpId='2086' returnURL='https://www.ubuntu.com/training/thank-you" %}
   {% include "shared/_cloud-contact-us-form.html" %}
