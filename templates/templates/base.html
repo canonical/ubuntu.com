@@ -69,7 +69,10 @@
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K92JCQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
   <!-- end google tag manager -->
-  {% include "templates/_navigation.html" %}
+  
+  {% if not(hide_nav == True) %}
+    {% include "templates/_navigation.html" %}
+  {% endif %}
 
   <div class="wrapper u-no-margin--top">
     <div id="main-content" class="inner-wrapper">

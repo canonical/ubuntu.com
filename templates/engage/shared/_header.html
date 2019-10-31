@@ -1,4 +1,18 @@
+<style>
+  .global-nav .global-nav__header-logo-anchor {
+    padding-left: 0 !important;
+  }
+</style>
 <section {% if lang %}lang="{{ lang }}"{% endif %} class="{% if class %}p-strip {{ class }}{% else %}p-strip--light{% endif %}">
+  {% if class %}
+  <div class="u-fixed-width navigation-logo-engage">
+    <a href="/"><img src="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg" width="143" height="auto" alt="Ubuntu logo white"></a>
+  </div>
+  {% else %}
+  <div class="u-fixed-width navigation-logo-engage">
+    <a href="/"><img src="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg" width="143" height="auto" alt="Ubuntu logo dark"></a>
+  </div>
+  {% endif %}
   <div class="row u-equal-height">
     <div class="{% if image %}col-7 {% else %}col-8{% endif %} u-vertically-center">
       <div>
