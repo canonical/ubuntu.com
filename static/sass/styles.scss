@@ -15,10 +15,11 @@
 //sass-lint:disable no-url-domains
 @font-face {
   font-display: optional;
-  font-family: 'UbtuOverride';
+  font-family: "UbtuOverride";
   font-style: normal;
   font-weight: 300;
-  src: url('https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2') format('woff2'), url('https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff') format('woff');
+  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"),
+    url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
 }
 
 // import vanilla-framework
@@ -289,7 +290,7 @@ summary {
 }
 
 .organisations-hero {
-  background-image: url('#{$assets-path}214648ba-_M8A2368-final.jpg');
+  background-image: url("#{$assets-path}214648ba-_M8A2368-final.jpg");
   background-position: right bottom;
   background-size: 1200px auto;
 
@@ -432,4 +433,19 @@ summary {
     margin-left: 0 !important;
     margin-top: 1rem !important;
   }
+}
+
+// Styling for ubuntu navigation logo for engage pages
+.navigation-logo-engage {
+  margin-top: -2.2rem;
+  padding-bottom: 1.75rem;
+
+  @media screen and (max-width: $breakpoint-large - 1px) {
+    padding-top: 2rem;
+  }
+
+  a img {
+    width: 143px;
+  }
+
 }
