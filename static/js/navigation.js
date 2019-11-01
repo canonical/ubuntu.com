@@ -46,15 +46,17 @@ window.addEventListener('hashchange', function(event) {
   });
 })
 
-dropdownWindowOverlay.addEventListener('click', function(event) {
-  navDropdowns.forEach(function(dropdown) {
-    var dropdownContent = document.getElementById(dropdown.id + "-content");
+if (dropdownWindowOverlay) {
+  dropdownWindowOverlay.addEventListener('click', function(event) {
+    navDropdowns.forEach(function(dropdown) {
+      var dropdownContent = document.getElementById(dropdown.id + "-content");
 
-    if (dropdown.classList.contains('is-selected')) {
-      closeMenu(dropdown, dropdownContent);
-    }
+      if (dropdown.classList.contains('is-selected')) {
+        closeMenu(dropdown, dropdownContent);
+      }
+    });
   });
-});
+}
 
 function closeMenu(dropdown, dropdownContent) {
   dropdown.classList.remove('is-selected');
