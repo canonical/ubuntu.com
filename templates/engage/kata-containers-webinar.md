@@ -1,6 +1,7 @@
 ---
 wrapper_template: "engage/_base_engage_markdown.html"
 context:
+     hide_nav: True
      title: "Ensuring security and isolation in Kubernetes with Kata Containers"
      meta_description: "Learn the benefits of using Kata Containers in a Charmed Kubernetes environment to provide better security and isolation"
      meta_image: https://assets.ubuntu.com/v1/48c73e93-Meta+data+img.jpg
