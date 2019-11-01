@@ -173,7 +173,7 @@ juju upgrade-charm kubernetes-e2e
 
 <!--LINKS -->
 
-[e2e-upstream]: https://github.com/kubernetes/community/blob/master/contributors/devel/e2e-tests.md#kinds-of-tests
+[e2e-upstream]: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-testing/e2e-tests.md
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
