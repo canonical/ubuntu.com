@@ -1,4 +1,6 @@
-{% set hide_nav = True %}
+{% if hide_nav is not defined %}
+  {% set hide_nav = True %}
+{% endif %}
 {% extends "templates/base.html" %}
 
 {% block title %}{{ title }}{% endblock title %}
