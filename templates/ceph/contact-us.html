@@ -1,0 +1,15 @@
+{% extends "ceph/base_ceph.html" %}
+
+{% block title %}Contact us | Ubuntu Core{% endblock %}
+
+{% block content %}
+
+{% with h1="Contact us",
+  intro_text="If you are thinking about using Ceph, please fill in your details below and a member of our team will get in touch.",
+  formid="1233",
+  lpId="2001",
+  returnURL="https://www.ubuntu.com/ceph/thank-you" %}
+  {% include "shared/_client-contact-us-form.html" %}
+{% endwith %}
+
+{% endblock content %}
