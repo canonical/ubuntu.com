@@ -1,0 +1,170 @@
+{% extends "ceph/base_ceph.html" %}
+
+{% block title %}Ceph storage on Ubuntu{% endblock %}
+{% block meta_description %}Ceph storage on Ubuntu  reduces your costs of running software-defined storage clusters at scale on commodity hardware. {% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/17VnBygL00hXjLSECXMo3bF7KOCT5oZGFBLo6Qd6rF3A{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip u-no-padding--top u-no-padding--bottom is-bordered">
+  <div class="p-strip--suru-image">
+    <div class="row u-equal-height">
+      <div class="col-7 col-medium-4">
+        <h1>Ceph storage on Ubuntu</h1>
+        <h2 class="p-heading--four">Ceph provides a flexible open source storage option for OpenStack, Kubernetes or as stand-alone storage cluster.</h2>
+        <p>Use Ceph on Ubuntu to reduce the costs of running storage clusters at scale on commodity hardware. Get access to a proven storage technology solution and 24x7 support with Ubuntu Advantage for Infrastructure.</p>
+
+        <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" >Get in touch</a>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center u-hide--small">
+        <img src="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg" width="250" alt="Ceph logo" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-7">
+      <h2>What is Ceph?</h2>
+      <p>Ceph is a storage solution designed to address the object, block, and file storage needs of data centres adopting open source as the new norm for high-growth block storage, object stores and data lakes. Ceph provides enterprise scalable storage while keeping CAPEX and OPEX costs in line with the underlying bulk commodity disk prices.</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-10 u-sv3">
+      <img src="https://assets.ubuntu.com/v1/b96d5736-Ceph-diagram-1+outlined.svg" alt="Ceph diagram" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-7">
+      <h3>Benefits of Ceph</h3>
+      <p>Designed from the ground up for petabyte-scale deployments, Canonical’s software-defined storage solutions include all-open-source components with highly automated operations to drive down the cost of ownership. We specifically offer pricing models that match either your CAPEX budget or consumption-oriented pay-for-what-you-use engagements that mirror public cloud pricing models at on-prem costs.</p>
+    </div>
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/5d403409-2018-logo-yahoo-japan.svg" alt="Yahoo! Japan logo" />
+      <hr class="u-sv1">
+      <p class="p-card__content">In the early days of Ceph, Yahoo! Japan searched for a local company who could support them in the implementation of an open-source distributed storage solution from the Linux operating system all the way to Ceph. Canonical provided not only Ceph but also the tooling and expertise that reduced the OPEX associated with managing a large storage cluster.</p>
+      <a href="/engage/yahoo-japan-case-study">Find out more about Yahoo! Japan’s Ceph cluster&nbsp;&rsaquo;</a>
+    </div>
+
+    <div class="col-6 p-card">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/d8841399-Wellcome_Sanger_Institute_Logo_Landscape_Digital_RGB_Full_Colour.svg" alt="Wellcome Sanger Institute logo" style="max-width: 6rem;" />
+      <hr class="u-sv1">
+      <p class="p-card__content">The Wellcome Sanger Institute initially opted for self-maintained Ceph storage., but as their capacity needs grew from 3 PB to over 20 PB, they turned to Canonical to resolve their scaling issues. With the help of Canonical support, The Institute’s latest Ceph roll out decreased from a month to just four days.</p>
+      <a href="/engage/wellcome-sanger-case-study">Find out about Wellcome Sanger's path to a cost-effective Ceph infrastructure&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Ceph is better on Ubuntu</h2>
+    <p>Whether you choose to use your own operational framework or leverage the advantages of Charmed Ceph, the choice is yours. Each Ubuntu LTS release ships a version of Ceph that is supported for up to 10 years. Newer releases of Ceph can be installed from the Ubuntu Cloud Archive allowing flexibility for selecting the right version of Ceph for your environment. To maximise Ceph upgrade flexibility for customers, Ceph versions are regularly released and maintained via the Ubuntu updates and security repositories, as well as the Ubuntu Cloud Archive. This leads to predictability and a flexible mix between remaining at the forefront of innovation and long-term support predictability.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-9 u-sv3">
+      <img src="https://assets.ubuntu.com/v1/5c10565f-Ceph-diagram-2+outlined.svg" alt="Ceph support diagram" />
+    </div>
+  </div>
+
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h3>Charmed Ceph for best economics in the datacenter</h3>
+      <p>Using Juju as our application model-driven operations tool, it is possible to manage the entire lifecycle of the configuration, management, operation and deployment process of a Ceph cluster. Ceph charms simplify both installation automation as well as day-2 operations orchestration such as upgrades and OSD maintenance operations while remaining interoperable with other configuration management recipes previously created.</p>
+    </div>
+
+    <div class="col-6 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/858d6aa5-ceph+++juju.svg" alt="Ceph and Juju logos" />
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Highly scalable from terabytes to exabytes</li>
+      <li class="p-list__item is-ticked">Highly reliable with no single point of failure in the cluster</li>
+      <li class="p-list__item is-ticked">Fault-tolerant through data distribution and replication </li>
+      <li class="p-list__item is-ticked">Highly secure through client authentication</li>
+      <li class="p-list__item is-ticked">Compatible with Amazon S3 and OpenStack Swift APIs</li>
+      <li class="p-list__item is-ticked">Low CAPEX by using commodity hardware</li>
+      <li class="p-list__item is-ticked">Low OPEX through failure detection, self-management and self-healing</li>
+      <li class="p-list__item is-ticked">Configurable and optimisable for cost and performance</li>
+    </ul>
+
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h4>Encryption at rest with Openstack</h4>
+      <p>Charmed OpenStack allows for encryption at rest to be configured through our Ceph charms which provide data encryption and integrity assurance for Ceph OSDs. As Ubuntu supports volume encryption out of the box, mounting Cinder volumes into an instance and encrypting them is also fully supported. OpenStack Barbican can be used to store keys.</p>
+    </div>
+    <div class="col-6 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/3fa7445c-shield-17.svg" alt="shield" style="max-width: 260px;" />
+    </div>
+
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row u-vertically-center">
+    <div class="col-6 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/749e67a9-tested-18.svg" alt="shield" style="max-width: 260px;" />
+    </div>
+
+    <div class="col-6">
+      <h4>Tested architecture</h4>
+      <p>Our architecture around Ceph has been developed after extensive testing and production experience and utilises nearline SAS or SATA drives as bulk storage to drive lower storage costs with NVME flash as a cache device to maintain performance levels.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Getting started with Ceph on Ubuntu</h2>
+  </div>
+
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Ceph support on Ubuntu</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Ceph support is included in Ubuntu Advantage for Infrastructure</li>
+        <li class="p-list__item is-ticked">Simple and predictable pricing model</li>
+        <li class="p-list__item is-ticked">Up to 48 TB of raw storage included per node</li>
+        <li class="p-list__item is-ticked">Best pricing in the industry for clusters exceeding this allowance</li>
+        <li class="p-list__item is-ticked">Get access to the storage experts 24x7 or on business hours</li>
+        <li class="p-list__item is-ticked">Alternatively, get extended security maintenance if all you need is peace of mind by consuming security patches from the world’s leading security team</li>
+      </ul>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Charmed Ceph</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Deploy complex Ceph clusters in minutes</li>
+        <li class="p-list__item is-ticked">Upgrade the storage to newer software versions</li>
+        <li class="p-list__item is-ticked">Provide model-driven orchestration for repeatability and predictability</li>
+        <li class="p-list__item is-ticked">Configure the nodes consistently across various node types</li>
+        <li class="p-list__item is-ticked">Replace failing disk drives and retire old hardware</li>
+        <li class="p-list__item is-ticked">Expand the capacity of your storage cluster</li>
+      </ul>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Managed Ceph</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Fully managed storage cluster,  on your servers, at your location </li>
+        <li class="p-list__item is-ticked">Built in weeks using a proven reference architecture</li>
+        <li class="p-list__item is-ticked">Customise the architecture in iterations based on your storage needs</li>
+        <li class="p-list__item is-ticked">Your team has access to all machines at all times</li>
+        <li class="p-list__item is-ticked">Modern monitoring and log management</li>
+        <li class="p-list__item is-ticked">We will hand over the keys when you are ready</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+      <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" >Get in touch</a>
+  </div>
+</section>
+{% endblock content %}
