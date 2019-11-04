@@ -1,14 +1,14 @@
 # Standard library
-import os
 from urllib.parse import quote, unquote
 
 # Packages
 import flask
 import flask_openid
-import requests
 from pymacaroons import Macaroon
 
 # Local
+from webapp import auth
+from webapp.api import advantage as advantage_api
 from webapp.macaroons import MacaroonRequest, MacaroonResponse
 
 
@@ -19,15 +19,10 @@ open_id = flask_openid.OpenID(
 
 @open_id.loginhandler
 def login_handler():
-    if "openid" in flask.session:
+    if auth.is_authenticated(flask.session):
         return flask.redirect(open_id.get_next_url())
 
-    root = requests.get(
-        os.path.join(
-            flask.current_app.config["ADVANTAGE_API"],
-            "v1/canonical-sso-macaroon",
-        )
-    ).json()["macaroon"]
+    root = advantage_api.get_macaroon()
 
     for caveat in Macaroon.deserialize(root).third_party_caveats():
         if caveat.location == "login.ubuntu.com":
@@ -70,11 +65,8 @@ def logout():
         # Not encoded
         return_to = quote(return_to, safe="")
 
-    if "openid" in flask.session:
-        flask.session.pop("macaroon_root", None)
-        flask.session.pop("macaroon_discharge", None)
-        flask.session.pop("openid", None)
-        flask.session.pop("user_shared_snaps", None)
+    if auth.is_authenticated(flask.session):
+        auth.empty_session(flask.session)
 
     return flask.redirect(
         "https://login.ubuntu.com/+logout"

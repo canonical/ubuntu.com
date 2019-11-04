@@ -6,13 +6,12 @@ import re
 # Packages
 import feedparser
 import flask
-import requests
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
-from pymacaroons import Macaroon
 
 # Local
-from webapp.macaroons import binary_serialize_macaroons
+from webapp import auth
+from webapp.api import advantage as advantage_api
 
 
 def download_thank_you(category):
@@ -60,82 +59,64 @@ def advantage():
     enterprise_contracts = []
     entitlements = {}
     openid = flask.session.get("openid")
-    api_url = flask.current_app.config["ADVANTAGE_API"]
 
-    if "openid" in flask.session:
-        root = Macaroon.deserialize(flask.session["macaroon_root"])
-        discharge = Macaroon.deserialize(flask.session["macaroon_discharge"])
-        bound = root.prepare_for_request(discharge)
-        token = binary_serialize_macaroons([root, bound]).decode("utf-8")
-        accounts = requests.get(
-            os.path.join(api_url, "v1/accounts"),
-            headers={"Authorization": f"Macaroon {token}"},
-            timeout=3,
-        ).json()["accounts"]
+    if auth.is_authenticated(flask.session):
+        try:
+            accounts = advantage_api.get_accounts(flask.session)
+            for account in accounts:
+                account["contracts"] = advantage_api.get_account_contracts(
+                    account, flask.session
+                )
+                for contract in account["contracts"]:
+                    contract["token"] = advantage_api.get_contract_token(
+                        contract, flask.session
+                    )
 
-        for account in accounts:
-            account["contracts"] = requests.get(
-                os.path.join(
-                    api_url, f"v1/accounts/{account['id']}/contracts"
-                ),
-                headers={"Authorization": f"Macaroon {token}"},
-                timeout=3,
-            ).json()["contracts"]
+                    machines = advantage_api.get_contract_machines(
+                        contract, flask.session
+                    )
+                    contract["machineCount"] = len(machines)
 
-            for contract in account["contracts"]:
-                contract_id = contract["contractInfo"]["id"]
-                contract["token"] = requests.post(
-                    os.path.join(api_url, f"v1/contracts/{contract_id}/token"),
-                    headers={"Authorization": f"Macaroon {token}"},
-                    json={},
-                    timeout=3,
-                ).json()["contractToken"]
-                machines = requests.get(
-                    os.path.join(
-                        api_url, f"v1/contracts/{contract_id}/context/machines"
-                    ),
-                    headers={"Authorization": f"Macaroon {token}"},
-                    json={},
-                    timeout=3,
-                ).json()
-                contract["machineCount"] = len(machines)
-                if contract["contractInfo"].get("origin", "") == "free":
-                    # Ant, is there any reason why we do this check?
-                    # if account["name"] == openid["email"]:
-                    personal_account = account
-                    personal_account["free_token"] = contract["token"]
-                    for entitlement in contract["contractInfo"][
-                        "resourceEntitlements"
-                    ]:
-                        if entitlement["type"] == "esm-infra":
-                            entitlements["esm"] = True
-                        elif entitlement["type"] == "livepatch":
-                            entitlements["livepatch"] = True
-                        elif entitlement["type"] == "fips":
-                            entitlements["fips"] = True
-                        elif entitlement["type"] == "cc-eal":
-                            entitlements["cc-eal"] = True
-                    personal_account["entitlements"] = entitlements
-                else:
-                    entitlements = {}
-                    for entitlement in contract["contractInfo"][
-                        "resourceEntitlements"
-                    ]:
-                        contract["supportLevel"] = "-"
-                        if entitlement["type"] == "esm-infra":
-                            entitlements["esm"] = True
-                        elif entitlement["type"] == "livepatch":
-                            entitlements["livepatch"] = True
-                        elif entitlement["type"] == "fips":
-                            entitlements["fips"] = True
-                        elif entitlement["type"] == "cc-eal":
-                            entitlements["cc-eal"] = True
-                        elif entitlement["type"] == "support":
-                            contract["supportLevel"] = entitlement[
-                                "affordances"
-                            ]["supportLevel"]
-                    contract["entitlements"] = entitlements
-                    enterprise_contracts.append(contract)
+                    if contract["contractInfo"].get("origin", "") == "free":
+                        personal_account = account
+                        personal_account["free_token"] = contract["token"]
+                        for entitlement in contract["contractInfo"][
+                            "resourceEntitlements"
+                        ]:
+                            if entitlement["type"] == "esm-infra":
+                                entitlements["esm"] = True
+                            elif entitlement["type"] == "livepatch":
+                                entitlements["livepatch"] = True
+                            elif entitlement["type"] == "fips":
+                                entitlements["fips"] = True
+                            elif entitlement["type"] == "cc-eal":
+                                entitlements["cc-eal"] = True
+                        personal_account["entitlements"] = entitlements
+                    else:
+                        entitlements = {}
+                        for entitlement in contract["contractInfo"][
+                            "resourceEntitlements"
+                        ]:
+                            contract["supportLevel"] = "-"
+                            if entitlement["type"] == "esm-infra":
+                                entitlements["esm"] = True
+                            elif entitlement["type"] == "livepatch":
+                                entitlements["livepatch"] = True
+                            elif entitlement["type"] == "fips":
+                                entitlements["fips"] = True
+                            elif entitlement["type"] == "cc-eal":
+                                entitlements["cc-eal"] = True
+                            elif entitlement["type"] == "support":
+                                contract["supportLevel"] = entitlement[
+                                    "affordances"
+                                ]["supportLevel"]
+                        contract["entitlements"] = entitlements
+                        enterprise_contracts.append(contract)
+        except advantage_api.UnauthorizedRequest:
+            # We got an unauthorized request, so we likely
+            # need to re-login to refresh the macaroon
+            auth.empty_session(flask.session)
+            return flask.render_template("advantage/index.html")
 
     return flask.render_template(
         "advantage/index.html",
