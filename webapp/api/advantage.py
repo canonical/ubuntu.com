@@ -10,10 +10,6 @@ API_URL = os.getenv("ADVANTAGE_API", "https://contracts.canonical.com/")
 api_session = Session()
 
 
-class UnauthorizedRequest(Exception):
-    pass
-
-
 def _prepare_request(method, path, data=None, session=None):
     request = Request(method=method, url=f"{API_URL}{path}")
 
@@ -32,10 +28,7 @@ def _prepare_request(method, path, data=None, session=None):
 
 def _send(request, timeout=3):
     response = api_session.send(request, timeout=timeout)
-
-    if response.status_code == 401:
-        raise UnauthorizedRequest
-
+    response.raise_for_status()
     return response
 
 
