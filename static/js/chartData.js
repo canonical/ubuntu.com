@@ -475,68 +475,74 @@ export var kubernetesReleases = [
     startDate: new Date('2016-12-01T00:00:00'),
     endDate: new Date('2017-09-01T00:00:00'),
     taskName: 'Kubernetes 1.5',
-    status: 'CDK_EXPIRED_SUPPORT'
+    status: 'CHARMED_KUBERNETES_EXPIRED_SUPPORT'
   },
 
   {
     startDate: new Date('2017-03-01T00:00:00'),
     endDate: new Date('2017-12-01T00:00:00'),
     taskName: 'Kubernetes 1.6',
-    status: 'CDK_EXPIRED_SUPPORT'
+    status: 'CHARMED_KUBERNETES_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2017-06-01T00:00:00'),
     endDate: new Date('2018-03-01T00:00:00'),
     taskName: 'Kubernetes 1.7',
-    status: 'CDK_EXPIRED_SUPPORT'
+    status: 'CHARMED_KUBERNETES_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2017-09-01T00:00:00'),
     endDate: new Date('2018-07-01T00:00:00'),
     taskName: 'Kubernetes 1.8',
-    status: 'CDK_EXPIRED_SUPPORT'
+    status: 'CHARMED_KUBERNETES_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2017-12-01T00:00:00'),
     endDate: new Date('2018-09-01T00:00:00'),
     taskName: 'Kubernetes 1.9',
-    status: 'CDK_EXPIRED_SUPPORT'
+    status: 'CHARMED_KUBERNETES_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2018-03-01T00:00:00'),
     endDate: new Date('2018-12-01T00:00:00'),
     taskName: 'Kubernetes 1.10',
-    status: 'CDK_EXPIRED_SUPPORT'
+    status: 'CHARMED_KUBERNETES_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2018-07-01T00:00:00'),
     endDate: new Date('2019-03-01T00:00:00'),
     taskName: 'Kubernetes 1.11',
-    status: 'CDK_EXPIRED_SUPPORT'
+    status: 'CHARMED_KUBERNETES_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2018-09-01T00:00:00'),
     endDate: new Date('2019-06-01T00:00:00'),
     taskName: 'Kubernetes 1.12',
-    status: 'CDK_EXPIRED_SUPPORT'
+    status: 'CHARMED_KUBERNETES_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2018-12-01T00:00:00'),
     endDate: new Date('2019-09-01T00:00:00'),
     taskName: 'Kubernetes 1.13',
-    status: 'CDK_SUPPORT'
+    status: 'CHARMED_KUBERNETES_EXPIRED_SUPPORT'
   },
   {
     startDate: new Date('2019-03-01T00:00:00'),
     endDate: new Date('2019-12-01T00:00:00'),
     taskName: 'Kubernetes 1.14',
-    status: 'CDK_SUPPORT'
+    status: 'CHARMED_KUBERNETES_SUPPORT'
   },
   {
     startDate: new Date('2019-06-14T00:00:00'),
     endDate: new Date('2020-03-02T00:00:00'),
     taskName: 'Kubernetes 1.15',
-    status: 'CDK_SUPPORT'
+    status: 'CHARMED_KUBERNETES_SUPPORT'
+  },
+  {
+    startDate: new Date('2019-09-14T00:00:00'),
+    endDate: new Date('2020-06-15T00:00:00'),
+    taskName: 'Kubernetes 1.16',
+    status: 'CHARMED_KUBERNETES_SUPPORT'
   }
 ];
 
@@ -560,8 +566,8 @@ export var openStackStatus = {
 };
 
 export var kubernetesStatus = {
-  CDK_SUPPORT: 'chart__bar--orange',
-  CDK_EXPIRED_SUPPORT: 'chart__bar--grey',
+  CHARMED_KUBERNETES_SUPPORT: 'chart__bar--orange',
+  CHARMED_KUBERNETES_EXPIRED_SUPPORT: 'chart__bar--grey',
 };
 
 export var desktopServerReleaseNames = [
@@ -623,6 +629,7 @@ export var openStackReleaseNames = [
 ];
 
 export var kubernetesReleaseNames = [
+  'Kubernetes 1.16',
   'Kubernetes 1.15',
   'Kubernetes 1.14',
   'Kubernetes 1.13',
