@@ -23,8 +23,7 @@ more complicated scenarios, see also [Calico][] and [Canal][]
 ## Deploying **Charmed Kubernetes** with flannel
 
 Flannel is the default choice for networking with **Charmed Kubernetes**. If you
-[install using `conjure-up`][quickstart], or by
-[manually deploying the bundle][install-manual] without changing the default settings,
+[deploy the bundle][quickstart] without changing the default settings,
 flannel will be used for CNI.
 
 ## Flannel options

@@ -3,7 +3,7 @@ wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "CNI with canal"
+  title: "CNI with Canal"
   description: How to manage and deploy Kubernetes with Canal
 keywords: CNI, networking
 tags: [operating]
