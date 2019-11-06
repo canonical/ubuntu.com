@@ -6,6 +6,7 @@ import re
 # Packages
 import feedparser
 import flask
+from requests.exceptions import HTTPError
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 
@@ -112,9 +113,18 @@ def advantage():
                                 ]["supportLevel"]
                         contract["entitlements"] = entitlements
                         enterprise_contracts.append(contract)
-        except advantage_api.UnauthorizedRequest:
+        except HTTPError as http_error:
             # We got an unauthorized request, so we likely
             # need to re-login to refresh the macaroon
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "request_url": http_error.request.url,
+                    "request_headers": http_error.request.headers,
+                    "response_headers": http_error.response.headers,
+                    "response_body": http_error.response.json(),
+                }
+            )
+
             auth.empty_session(flask.session)
             return flask.render_template("advantage/index.html")
 
