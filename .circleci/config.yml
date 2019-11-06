@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Lint sass
           command: yarn lint-scss
-  python-tests:
+  test-python:
     <<: *defaults
     steps:
       - checkout
@@ -76,4 +76,4 @@ workflows:
       - linkchecker
       - lint-scss
       - lint-python
-      - python-tests
+      - test-python
