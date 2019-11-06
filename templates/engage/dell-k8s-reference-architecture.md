@@ -4,7 +4,7 @@ context:
      title: "Charmed Kubernetes reference architecture"
      meta_description: "Charmed Kubernetes reference architecture  integration with VxFlex OS delivered by Dell EMC and Canonical"
      meta_image: "https://assets.ubuntu.com/v1/2de27236-ubuntu+plus+dell+white+version.svg"
-     meta_copydoc:
+     meta_copydoc: "https://docs.google.com/document/d/1hW5FBZueDnzd-AHehKHIDQ2qTr9uVjgl5d8LCPT9OWg/edit"
      header_title: "Charmed Kubernetes reference architecture"
      header_subtitle: "With VxFlex OS delivered by Dell EMC and Canonical"
      header_image: "https://assets.ubuntu.com/v1/2de27236-ubuntu+plus+dell+white+version.svg"
