@@ -4,7 +4,7 @@ context:
      title: "Charmed OpenStack reference architecture"
      meta_description: "Reference architecture guide for Charmed OpenStack (Rocky) solution on Dell EMC hardware delivered by Canonical, including Dell EMC PowerEdge servers for workloads and storage and Dell EMC Networking."
      meta_image: "https://assets.ubuntu.com/v1/2de27236-ubuntu+plus+dell+white+version.svg"
-     meta_copydoc:
+     meta_copydoc: "https://docs.google.com/document/d/1etdmGqolS7mhKtSK0jFwOKMMzCwXkkKkaH69rTmSiWY/edit#"
      header_title: "Charmed OpenStack reference architecture"
      header_subtitle: "With Dell EMC PowerEdge servers for workloads and storage and Dell EMC Networking and Canonical"
      header_image: "https://assets.ubuntu.com/v1/2de27236-ubuntu+plus+dell+white+version.svg"
