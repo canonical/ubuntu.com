@@ -140,7 +140,7 @@ def advantage():
 # Blog
 # ===
 
-blog_views = BlogViews(excluded_tags=[3184, 3265, 3408])
+blog_views = BlogViews(excluded_tags=[3184, 3265, 3408], per_page=11)
 blog_blueprint = build_blueprint(blog_views)
 
 
