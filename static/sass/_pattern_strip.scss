@@ -1,14 +1,14 @@
 // sass-lint:disable no-color-literals hex-notation
 @mixin ubuntu-p-strip {
   @include ubuntu-p-strip-suru;
-  @include ubuntu-p-strip-suru-topped;
-  @include ubuntu-p-strip-suru-bottomed;
-  @include ubuntu-p-strip-suru-half-and-half-reversed;
-  @include ubuntu-p-strip-suru-image;
-  @include ubuntu-p-strip-suru-half-and-half;
   @include ubuntu-p-strip-suru-background;
-  @include ubuntu-p-strip-suru-half-top;
   @include ubuntu-p-strip-suru-blog-hero;
+  @include ubuntu-p-strip-suru-bottomed;
+  @include ubuntu-p-strip-suru-half-and-half;
+  @include ubuntu-p-strip-suru-half-and-half-reversed;
+  @include ubuntu-p-strip-suru-half-top;
+  @include ubuntu-p-strip-suru-image;
+  @include ubuntu-p-strip-suru-topped;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -319,7 +319,7 @@
         linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
         linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),
         linear-gradient(-89deg, #e95420 0%, #772953 38%, #2C001e 85%);
-      background-position: 0% 0%, top right, left 0 bottom 6.5rem, right bottom, 0% 0%;
+      background-position: 0% 0%, top right, left 0 bottom 6.45rem, right bottom, 0% 0%;
       background-size: 100% calc(100% - 7rem), 67% calc(100% - 1.5rem), 101% 5.5rem, 102% 6.5rem, auto;
     }
 
