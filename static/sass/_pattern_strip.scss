@@ -1,13 +1,14 @@
 // sass-lint:disable no-color-literals hex-notation
 @mixin ubuntu-p-strip {
   @include ubuntu-p-strip-suru;
-  @include ubuntu-p-strip-suru-topped;
-  @include ubuntu-p-strip-suru-bottomed;
-  @include ubuntu-p-strip-suru-half-and-half-reversed;
-  @include ubuntu-p-strip-suru-image;
-  @include ubuntu-p-strip-suru-half-and-half;
   @include ubuntu-p-strip-suru-background;
+  @include ubuntu-p-strip-suru-blog-hero;
+  @include ubuntu-p-strip-suru-bottomed;
+  @include ubuntu-p-strip-suru-half-and-half;
+  @include ubuntu-p-strip-suru-half-and-half-reversed;
   @include ubuntu-p-strip-suru-half-top;
+  @include ubuntu-p-strip-suru-image;
+  @include ubuntu-p-strip-suru-topped;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -289,6 +290,41 @@
       background-size: 100% 76.5%;
       padding-bottom: 5rem;
       padding-top: 3rem;
+    }
+  }
+}
+
+@mixin ubuntu-p-strip-suru-blog-hero {
+  .p-strip--suru-blog-hero {
+    @extend %vf-strip;
+    background-blend-mode: multiply, multiply, normal, normal, normal;
+    background-image:
+      linear-gradient(150deg, rgba(228, 228, 228, 0.54) 0%, rgba(228, 228, 228, 0.54) 80.9%, rgba(228, 228, 228, 0) 81%, rgba(228, 228, 228, 0) 100%),
+      linear-gradient(220deg, rgba(216, 216, 216, 0.54) 0%, rgba(216, 216, 216, 0.54) 75.9%, rgba(216, 216, 216, 0) 72%, rgba(216, 216, 216, 0) 100%),
+      linear-gradient(to top right, #fff 0%, #fff 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(to top right, #fff 0%, #fff 100%),
+      linear-gradient(-89deg, #e95420 0%, #772953 38%, #2c001e 85%);
+    background-position: bottom 4rem left, bottom 0 right, left 0 bottom 10.5rem, right bottom, 0% 0%;
+    background-repeat: no-repeat;
+    background-size: 100% calc(100% - 4rem), 100% 100%, 101% 5.5rem, 102% 10.5rem, auto;
+    margin: 0;
+    overflow: hidden;
+    padding-bottom: 0;
+    position: relative;
+
+    @media (min-width: $breakpoint-medium) {
+      background-image:
+        linear-gradient(to bottom right, rgba(228, 228, 228, .54) 0%, rgba(228, 228, 228, .54) 49.9%, rgba(228, 228, 228, 0) 50%, rgba(228, 228, 228, 0) 100%),
+        linear-gradient(to bottom left, rgba(216, 216, 216, .54) 0%, rgba(216, 216, 216, .54) 49.9%, rgba(216, 216, 216, 0) 50%, rgba(216, 216, 216, 0) 100%),
+        linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%),
+        linear-gradient(to top right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%),
+        linear-gradient(-89deg, #e95420 0%, #772953 38%, #2C001e 85%);
+      background-position: 0% 0%, top right, left 0 bottom 6.45rem, right bottom, 0% 0%;
+      background-size: 100% calc(100% - 7rem), 67% calc(100% - 1.5rem), 101% 5.5rem, 102% 6.5rem, auto;
+    }
+
+    &.is-dark {
+      color: $color-x-light;
     }
   }
 }
