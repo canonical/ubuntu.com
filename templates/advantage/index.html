@@ -144,6 +144,13 @@
             </td>
             <td id="expanded-row-fips-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
+                <div class="col-12">
+                  <div class="p-notification--caution">
+                    <p class="p-notification__response">
+                      Older versions of software are used for FIPS-certified packages. Use them only if your organisation requires it.
+                    </p>
+                  </div>
+                </div>
                 <div class="col-12 u-align--center">
                   To activate FIPs: <code>sudo ua enable fips</code>
                 </div>
@@ -151,6 +158,13 @@
             </td>
             <td id="expanded-row-cc-eal-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
+                <div class="col-12">
+                  <div class="p-notification--caution">
+                    <p class="p-notification__response">
+                      Older versions of software are used for CC-EAL-certified packages. Use them only if your organisation requires it.
+                    </p>
+                  </div>
+                </div>
                 <div class="col-12 u-align--center">
                   To activate CC-EAL: <code>sudo ua enable cc-eal</code>
                 </div>
@@ -217,7 +231,7 @@
     </div>
     <div class="col-5 col-start-large-8">
       <div class="u-no-margin--bottom p-card">
-        <p class="u-no-margin--bottom">
+        <p>
            Sign in to access your personal or paid subscriptions.
         </p>
         <p class="u-no-margin--bottom">

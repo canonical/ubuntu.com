@@ -397,7 +397,11 @@ summary {
   }
 
   .p-table--open {
-    background-color: $color-mid-x-light;
+    background-color: $color-x-light;
+    border-left: 1px solid $color-mid-light;
+    border-right: 1px solid $color-mid-light;
+    box-shadow: 0 1px 0 0 $color-x-light;
+    z-index: 5;
   }
 
   .u-toggle {
