@@ -6,12 +6,26 @@
 
 {% block content %}
 
+{% if product == 'kubecon19-SD' %}
+
+  {% with h1="Let’s meet at Kubecon Americas 2019 in San Diego",
+    intro_text="Just fill in the form below to arrange a meeting with the Canonical / Ubuntu team at Kubecon.",
+    formid="3394",
+    lpId="2154",
+    returnURL="https://ubuntu.com/blog/ubuntu-kubecon-americas-2019" %}
+    {% include "shared/_cloud-contact-us-form.html" %}
+  {% endwith %}
+
+{% else %}
+
 {% with h1="Contact Canonical",
   intro_text="Just fill in the form below and a member of our team will be in touch within one working day.",
   formid="1257",
   lpId="2154",
-  returnURL="https://www.ubuntu.com/contact-us/form/thank-you" %}
+  returnURL="https://ubuntu.com/contact-us/form/thank-you" %}
   {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
+
+{% endif %}
 
 {% endblock content %}
