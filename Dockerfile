@@ -15,6 +15,7 @@ RUN python3 -m pip install --no-cache-dir -r requirements.txt
 ARG TALISKER_REVISION_ID
 RUN echo "${TALISKER_REVISION_ID}" > version-info.txt
 ENV TALISKER_REVISION_ID "${TALISKER_REVISION_ID}"
+ADD http://launchpad.net/ubuntu/+cdmirrors-rss etc/ubuntu-mirrors-rss.xml
 
 # Setup commands to run server
 ENTRYPOINT ["./entrypoint"]
