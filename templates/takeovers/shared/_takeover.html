@@ -35,7 +35,7 @@
     {% if image %}
       <div class="col-4">
         <p class="{% if imageClass %}{{ imageClass }}{% else %}u-hide-small u-align-text--center u-vertically-center{% endif %}">
-          <img src="{% if 'http' not in image %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="image for (( title ))" >
+          <img src="{% if 'http' not in image %}https://assets.ubuntu.com/v1/{% endif %}{{ image }}" alt="" >
         </p>
       </div>
     {% endif %}
