@@ -12,7 +12,6 @@ context:
      header_cta: Register for the webinar
      header_cta_class: p-button--positive
      header_class: p-engage-banner--grad
-     header_lang: en
      webinar_code: '<div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 376727, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
 ---
 
