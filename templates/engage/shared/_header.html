@@ -6,11 +6,11 @@
 <section {% if lang %}lang="{{ lang }}"{% endif %} class="{% if class %}p-strip {{ class }}{% else %}p-strip--light{% endif %}">
   {% if class %}
   <div class="u-fixed-width navigation-logo-engage">
-    <a href="/"><img src="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg" width="143" height="auto" alt="Ubuntu logo white"></a>
+    <a href="/"><img src="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg" width="143" height="auto" alt="Ubuntu"></a>
   </div>
   {% else %}
   <div class="u-fixed-width navigation-logo-engage">
-    <a href="/"><img src="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg" width="143" height="auto" alt="Ubuntu logo dark"></a>
+    <a href="/"><img src="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg" width="143" height="auto" alt="Ubuntu"></a>
   </div>
   {% endif %}
   <div class="row u-equal-height">
@@ -34,7 +34,7 @@
       </div>
     </div>
     {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="{% if 'http' not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="image for {{ title }}" >
+      <img src="{% if 'http' not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="" >
     </div>{% endif %}
   </div>
 </section>
