@@ -42,7 +42,7 @@
         </p>{% endif %}
         {% if header_cta %}<br class="u-hide--medium u-hide--large" />
         <p class="u-hide--medium u-hide--large">
-          <a href="{{ header_url }}" class="p-button--neutral">
+          <a href="{{ header_url }}" class="{% if header_cta_class %}{{ header_cta_class }}{% else %}p-button--neutral{% endif %}">
             {{ header_cta }}
           </a>
         </p>{% endif %}
