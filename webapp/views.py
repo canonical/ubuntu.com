@@ -6,17 +6,13 @@ import re
 # Packages
 import feedparser
 import flask
+from requests.exceptions import HTTPError
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
-from geolite2 import geolite2
-from requests.exceptions import HTTPError
 
 # Local
 from webapp import auth
 from webapp.api import advantage as advantage_api
-
-
-ip_reader = geolite2.reader()
 
 
 def download_thank_you(category):
@@ -45,18 +41,11 @@ def download_thank_you(category):
     except IOError:
         mirrors = []
 
-    # Check country code
-    country_code = "NO_COUNTRY_CODE"
-    ip_location = ip_reader.get(flask.request.remote_addr)
-    mirror_list = []
-
-    if ip_location:
-        country_code = ip_location["country"]["iso_code"]
-
     mirror_list = [
         {"link": mirror["link"], "bandwidth": mirror["mirror_bandwidth"]}
         for mirror in mirrors
-        if mirror["mirror_countrycode"] == country_code
+        if mirror["mirror_countrycode"]
+        == flask.request.args.get("country", "NO_COUNTRY_CODE")
     ]
     context["mirror_list"] = json.dumps(mirror_list)
 
