@@ -173,3 +173,18 @@ function addGAImpressionEvents(target){
     });
   }
 }
+
+addUTMToForms();
+
+function addUTMToForms() {
+  var params = new URLSearchParams(window.location.search);
+  utm_names = ["campaign", "source", "medium"]
+  for (i = 0; i < utm_names.length; i++) {
+    var utm_fields = document.getElementsByName("utm_" + utm_names[i]);
+    for (j = 0; j < utm_fields.length; j++) {
+      if (utm_fields[j]) {
+        utm_fields[j].value = params.get("utm_" + utm_names[i]);
+      }
+    }
+  }
+}
