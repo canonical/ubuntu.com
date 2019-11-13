@@ -60,6 +60,7 @@ def advantage():
     enterprise_contracts = []
     entitlements = {}
     openid = flask.session.get("openid")
+    headers = {"Cache-Control": "no-cache"}
 
     if auth.is_authenticated(flask.session):
         try:
@@ -126,14 +127,17 @@ def advantage():
             )
 
             auth.empty_session(flask.session)
-            return flask.render_template("advantage/index.html")
+            return flask.render_template("advantage/index.html"), headers
 
-    return flask.render_template(
-        "advantage/index.html",
-        openid=openid,
-        accounts=accounts,
-        enterprise_contracts=enterprise_contracts,
-        personal_account=personal_account,
+    return (
+        flask.render_template(
+            "advantage/index.html",
+            openid=openid,
+            accounts=accounts,
+            enterprise_contracts=enterprise_contracts,
+            personal_account=personal_account,
+        ),
+        headers,
     )
 
 
