@@ -31,6 +31,7 @@ from webapp.views import (
     blog_custom_topic,
     blog_press_centre,
     download_thank_you,
+    releasenotes_redirect,
 )
 from webapp.login import login_handler, logout
 
@@ -97,6 +98,7 @@ app.add_url_rule(
     "/download/<regex('server|desktop|cloud'):category>/thank-you",
     view_func=download_thank_you,
 )
+app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
     "/search", "search", build_search_view(template_path="search.html")
 )
