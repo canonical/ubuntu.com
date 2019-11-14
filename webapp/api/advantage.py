@@ -6,7 +6,9 @@ from pymacaroons import Macaroon
 from webapp.macaroons import binary_serialize_macaroons
 
 
-API_URL = os.getenv("ADVANTAGE_API", "https://contracts.canonical.com/")
+API_URL = os.getenv(
+    "ADVANTAGE_API", "https://contracts.staging.canonical.com/"
+)
 api_session = Session()
 
 
