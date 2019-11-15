@@ -54,6 +54,24 @@ def download_thank_you(category):
     )
 
 
+def releasenotes_redirect():
+    """
+    View to redirect to https://wiki.ubuntu.com/ URLs for release notes.
+
+    This used to be done in the Apache frontend, but that is going away
+    to be replace by the content-cache.
+
+    Old apache redirects: https://pastebin.canonical.com/p/3TXyyNkWkg/
+    """
+
+    ver = flask.request.args.get("ver")
+
+    if ver:
+        return flask.redirect(f"https://wiki.ubuntu.com/{ver}/ReleaseNotes")
+    else:
+        return flask.redirect(f"https://wiki.ubuntu.com/Releases")
+
+
 def advantage():
     accounts = None
     personal_account = None
