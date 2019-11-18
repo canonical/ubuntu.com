@@ -11,6 +11,11 @@ from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog.wordpress_api import api_session
 from werkzeug.middleware.proxy_fix import ProxyFix
+from canonicalwebteam.discourse_docs import (
+    DiscourseAPI,
+    DiscourseDocs,
+    DocParser,
+)
 
 # Local
 from webapp.context import (
@@ -73,7 +78,7 @@ def context():
         "modify_query": modify_query,
         "month_name": month_name,
         "months_list": months_list,
-        "navigation": navigation,
+        "get_navigation": navigation,
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),
@@ -121,3 +126,18 @@ app.add_url_rule("/logout", view_func=logout)
 template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
+
+url_prefix = "/server/docs"
+server_docs_parser = DocParser(
+    api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
+    index_topic_id=11322,
+    url_prefix=url_prefix,
+)
+server_docs = DiscourseDocs(
+    parser=server_docs_parser,
+    category_id=26,
+    document_template="/docs/document.html",
+    url_prefix=url_prefix,
+)
+
+server_docs.init_app(app)

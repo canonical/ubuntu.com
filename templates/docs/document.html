@@ -1,0 +1,23 @@
+
+{% extends "docs/base_docs.html" %}
+
+{% block title %} {{ document.title }} | Server documentation{% endblock %}
+
+{% block content_docs %}
+<div class="p-strip is-shallow">
+    <div class="p-content__row">
+        {{ document.body_html | safe }}
+    </div>
+</div>
+
+<div class="p-strip is-shallow">
+    <div class="p-content__row">
+        <div class="p-notification--information">
+            <p class="p-notification__response">
+                Last updated {{ document.updated }}. <a href="{{ forum_url }}{{ document.topic_path }}">Help improve this document in the forum</a>.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
