@@ -1,0 +1,79 @@
+<section class="p-strip--light is-deep">
+  <div class="row">
+    <div class="col-12">
+      <h3>Get Ubuntu Server weekly news</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7">
+      <p>Subscribe to the Ubuntu Server weekly brief to receive:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Security briefs</li>
+        <li class="p-list__item is-ticked">Release announcements</li>
+        <li class="p-list__item is-ticked">General technology updates</li>
+        <li class="p-list__item is-ticked">Tips and tutorials</li>
+      </ul>
+      <h4>Need a command-line refresher?</h4>
+      <p>By subscribing, you also get our cheat sheet, &ldquo;Ubuntu Server command-line pro tips 2019&rdquo;.</p>
+      <p class="u-sv3">Quick tips for the command line and getting started with DevOps &mdash; from basic file management to deploying Kubernetes and OpenStack.</p>
+      <img class="u-hide--small p-image--shadowed" src="https://assets.ubuntu.com/v1/83facbfb-Screenshot+from+2019-06-05+10-27-40.png" alt="" width="440" />
+    </div>
+
+    <div class="col-4 col-start-large-9">
+      <!-- MARKETO FORM -->
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1917" class="marketo-form">
+        <fieldset style="border: 0; margin: 0; padding: 0;">
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="firstName" class="mktoLabel">First name:</label>
+              <input required  id="firstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" >
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="lastName" class="mktoLabel">Last name:</label>
+              <input required  id="lastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="company" class="mktoLabel">Company Name:</label>
+              <input required  id="company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired">
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="email" class="mktoLabel ">Work email address:</label>
+              <input required  id="email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="phone" class="mktoLabel">Phone Number:</label>
+              <input required  id="phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired mktoInvalid">
+            </li>
+            {% include "shared/forms/_country.html" %}
+            {% include "shared/forms/_state.html" %}
+            <li class="mktFormReq mktField p-list__item">
+              <label for="mktoPersonNotes" class="mktoLabel">Are you working on a commercial IoT deployment?</label>
+              <select required id="mktoPersonNotes" name="MktoPersonNotes" class="mktoField mktoRequired mktoInvalid"><option value="">Select...</option>
+              <option value="Working on a commercial IoT deployment">Yes</option>
+              <option value="Not working on a commercial IoT deployment">No</option></select>
+            </li>
+            <li class="mktField p-list__item">
+              <input class="mktoField" value="yes" id="CanonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+              <label class="mktoLabel mktoHasWidth" for="CanonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
+            </li>
+            <li class="p-list__item">
+              <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+            </li>
+            <li class="mktField p-list__item">
+              <button type="submit" class="mktoButton p-button--positive">Download the white paper</button>
+              <input type="hidden" name="formid" class="mktoField" value="1917">
+              <input type="hidden" name="formVid" class="mktoField" value="1917">
+              <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
+              <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+              <input type="hidden" name="download_asset_url" value="https://assets.ubuntu.com/v1/fe2cb442-IoTSecurityWhitepaper-FinalReport.zip" aria-label="">
+              <input type="hidden" name="thankyoumessage" value="Thank you<br />Enjoy the ebook!" aria-lable="">
+            </li>
+            <li>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</li>
+          </ul>
+      </fieldset>
+      <input type="hidden" name="returnURL" value="https://pages.ubuntu.com/IoTSecurityWhitepaper-Fullreport.html" />
+      <input type="hidden" name="retURL" value="https://pages.ubuntu.com/IoTSecurityWhitepaper-Fullreport.html" />
+      </form>
+    </div>
+  </div>
+</section>
