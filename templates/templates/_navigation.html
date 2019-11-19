@@ -1,4 +1,4 @@
-{% set breadcrumbs = navigation(request.path).breadcrumbs %}
+{% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
 
 <header id="navigation" class="p-navigation" role="banner">
   {% block header_banner %}
@@ -101,7 +101,7 @@
             {% endfor %}
           {% endif %}
         {% endfor %}
-        
+
         {% for child in breadcrumbs.children %}
           {% if child.path == "/blog/topics" %}
             {% for item in child.children %}
@@ -154,7 +154,7 @@
 
   function setupContextualMenuListeners(contextualMenuSelector) {
     var menus = document.querySelectorAll(contextualMenuSelector);
-    
+
     for (var i = 0; i < menus.length; i++) {
       var toggle = menus[i].querySelector('.p-contextual-menu__toggle'),
           dropdown = menus[i].querySelector('.p-contextual-menu__dropdown'),
