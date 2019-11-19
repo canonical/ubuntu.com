@@ -94,8 +94,10 @@ def advantage():
 
                     machines = advantage_api.get_contract_machines(
                         contract, flask.session
-                    )
-                    contract["machineCount"] = len(machines)
+                    ).get("machines")
+                    contract["machineCount"] = 0
+                    if machines:
+                        contract["machineCount"] = len(machines)
 
                     if contract["contractInfo"].get("origin", "") == "free":
                         personal_account = account
