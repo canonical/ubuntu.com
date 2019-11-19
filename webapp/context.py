@@ -50,7 +50,7 @@ def _remove_hidden(pages):
     return filtered_pages
 
 
-def navigation(path):
+def get_navigation(path):
     """
     Set "nav_sections" and "breadcrumbs" dictionaries
     as global template variables

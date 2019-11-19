@@ -26,7 +26,7 @@ from webapp.context import (
     modify_query,
     month_name,
     months_list,
-    navigation,
+    get_navigation,
     releases,
 )
 from webapp.views import (
@@ -78,7 +78,7 @@ def context():
         "modify_query": modify_query,
         "month_name": month_name,
         "months_list": months_list,
-        "get_navigation": navigation,
+        "get_navigation": get_navigation,
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),
