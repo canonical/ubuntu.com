@@ -14,7 +14,7 @@ toc: False
 ---
 
 The [docker-registry][registry-charm] charm facilitates the storage and
-distribution of **Docker** images. Include this in a **Kubernetes**
+distribution of container images. Include this in a **Kubernetes**
 deployment to provide images to cluster components without requiring
 access to public registries.
 See [https://docs.docker.com/registry/][upstream-registry] for
@@ -23,15 +23,14 @@ details.
 ## Deploy
 
 The registry is deployed as a stand-alone application. Many deployment
-scenarios are described in the charm readme. The most common scenario for
-**Kubernetes** integration is to configure a registry with TLS and basic
-(htpasswd) authentication enabled.
+scenarios are described in the [charm readme][registry-charm]. The most common
+scenario for **Kubernetes** integration is to configure a registry with TLS
+and basic (htpasswd) authentication enabled.
 
 If needed, consult the [quickstart guide][quickstart] to install
-the **Charmed Distribution of Kubernetes**<sup>&reg;</sup>. Then deploy
-and configure `docker-registry` as follows.  This example relates to a
-containerd charm; this can be replaced with any
-[container runtime][container-runtime].
+**Charmed Kubernetes**. Then deploy and configure `docker-registry` as
+follows.  This example relates to a containerd charm; this can be replaced
+with any [container runtime][container-runtime].
 
 ```bash
 juju deploy ~containers/docker-registry
@@ -59,17 +58,17 @@ juju config docker-registry \
 
 Advanced networking or highly available deployment scenarios may require
 multiple `docker-registry` units to be deployed behind a proxy. In this case,
-the network information of the proxy will be shared with `kubernetes-worker`
+the network information of the proxy will be shared with the container runtime
 units when the registry is related.
 
 <div class="p-notification--information">
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Note:</span>
-SSL pass-thru is not supported between `docker-registry` and `haproxy`.
-Any registry SSL configuration must be removed before creating the proxy
-relation. If SSL is desired in a proxied environment, the administrator must
-ensure certificates used by the proxy are configured on `kubernetes-worker`
-units.
+SSL pass-thru is supported between 'docker-registry' and 'haproxy', though
+manual configuration is required. The recommended approach for a proxied
+registry is to disable SSL on 'docker-registry' prior to relating it to
+'haproxy'. Consult the 'docker-registry' charm readme if SSL is required in a
+proxied environment.
   </p>
 </div>
 
@@ -112,53 +111,13 @@ Login Succeeded
 ...
 ```
 
-## Docker on Kubernetes workers
-
-**Docker** on the Kubernetes workers needs to talk to the registry securely. By
-relating `docker-registry` and `kubernetes-worker`, appropriate certificates
-are added to `/etc/docker/certs.d` on all workers.
-
-Verify basic authentication is working from a Kubernetes worker:
-
-```bash
-juju run --unit kubernetes-worker/0 "docker login -u admin -p password $REGISTRY"
-Login Succeeded
-...
-```
-
 ## Kubernetes images
 
-Make a note of the Docker images that the registry will need to provide.
-Minimally, Kubernetes 1.1x requires the following:
-
-- k8s.gcr.io/pause-amd64:3.1
-- quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.16.1
-- k8s.gcr.io/defaultbackend-amd64:1.5
-
-**Charmed Kubernetes** supports optional add-ons that include the
-**Kubernetes** dashboard, **Heapster**, **kube-dns**, etc. Enabling these
-add-ons will require the following additional images:
-
-- cdkbot/addon-resizer-amd64:1.8.1
-- k8s.gcr.io/heapster-amd64:v1.5.3
-- k8s.gcr.io/heapster-influxdb-amd64:v1.3.3
-- k8s.gcr.io/heapster-grafana-amd64:v4.4.3
-- k8s.gcr.io/k8s-dns-kube-dns-amd64:1.14.10
-- k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64:1.14.10
-- k8s.gcr.io/k8s-dns-sidecar-amd64:1.14.10
-- k8s.gcr.io/kubernetes-dashboard-amd64:v1.8.3
-- k8s.gcr.io/metrics-server-amd64:v0.2.1
-
-For **Calico**/**Canal** support, the following images are used:
-
-- quay.io/calico/node:v2.6.10
-- quay.io/calico/kube-controllers:v1.0.4
-
-And finally, **Sonatype Nexus** and **Rancher** use the following
-images:
-
-- sonatype/nexus3:latest
-- rancher/rancher:latest
+A list of images that may be used by **Charmed Kubernetes** can be found in
+the [container-images.txt][container-images-txt] document. This is a
+comprehensive list sorted by release; not all images are required for all
+deployments. Take note of the images required by your deployment that will
+need to be hosted in your private registry.
 
 ## Hosting images
 
@@ -180,26 +139,16 @@ juju run-action docker-registry/0 \
 ...
 ```
 
-The above procedure should be repeated for any additional required images.
+The above procedure should be repeated for all required images.
 
 ## Using hosted images
 
-Kubernetes workers must be configured to use the hosted images as follows:
+The image registry used by **Charmed Kubernetes** is controlled by a
+`kubernetes-master` config option. Configure `kubernetes-master` to use your
+private registry as follows:
 
 ```bash
-juju config kubernetes-worker \
-  default-backend-image=$REGISTRY/defaultbackend-amd64:1.5
-juju config kubernetes-worker \
-  nginx-image=$REGISTRY/nginx-ingress-controller:0.16.1
-```
-
-Unlike individual configurable images on `kubernetes-worker` units, images
-used by **Charmed Kubernetes** add-ons are controlled by a `kubernetes-master` config option. Push
-the desired add-on images listed above (`kubernetes-dashboard`, `heapster`, etc)
-and configure `kubernetes-master` to use the registry for installation:
-
-```bash
-juju config kubernetes-master addons-registry=$REGISTRY
+juju config kubernetes-master image-registry=$REGISTRY
 ```
 
 <!-- LINKS -->
@@ -207,6 +156,8 @@ juju config kubernetes-master addons-registry=$REGISTRY
 [registry-charm]: http://jujucharms.com/u/containers/docker-registry
 [upstream-registry]: https://docs.docker.com/registry/
 [quickstart]: /kubernetes/docs/quickstart
+[container-runtime]: /kubernetes/docs/container-runtime
+[container-images-txt]: https://github.com/charmed-kubernetes/bundle/blob/master/container-images.txt
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
