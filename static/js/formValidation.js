@@ -90,7 +90,9 @@ backgroundSubmit = function(marketoForm, submitCallback) {
   formid = this.id;
 
   // reset form and captcha
-  marketoForm.reset();
+  if (!document.querySelector('.js-feedback-notification')) {
+    marketoForm.reset();
+  }
   grecaptcha.reset();
 
   // deal with the post submit actions
