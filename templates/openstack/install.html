@@ -74,7 +74,7 @@
       <p class="u-sv3">These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a>, an upstream single-node OpenStack deployment which can run directly on your workstation. MicroStack is OpenStack in a <a href="https://snapcraft.io/" class="p-link--external">snap</a> which means that all services and supporting libraries are together in a single package that can be easily installed, upgraded or removed. MicroStack includes all key OpenStack components: Keystone, Nova, Neutron, Glance, and is evolving extremely fast. You can use it for development, prototyping and testing, but it is also perfectly suitable for the network edge, IoT and appliances.</p>
     </div>
   </div>
-  
+
   <div class="u-fixed-width">
     <h3>Installation instructions</h3>
     <ol class="p-stepped-list--detailed">
@@ -142,7 +142,7 @@ password: keystone</code></pre>
           <p><strong>CLI:</strong></p>
           <p>You can also interact withOpenStack via the CLI by using the microstack.openstack command. The MicroStack CLI syntax is identical to the client delivered by the <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">python-openstackclient</a> package.</p>
           <p>For example, to list available OpenStack endpoints run:</p>
-          
+
           <div class="p-code-copyable">
             <input aria-label="code snippet" class="p-code-copyable__input" value="microstack.openstack catalog list" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
@@ -198,7 +198,7 @@ password: keystone</code></pre>
           <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
 
           <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack.launch test" readonly="readonly">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack.launch cirros —name test" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
 
@@ -218,7 +218,7 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/'</code></pre>
 
           <pre><code>uptime
 14:51:42 up 4 min,  1 users,  load average: 0.00, 0.00, 0.00</code></pre>
-          
+
           <p>In order to disconnect from the instance type exit.</p>
 
           <p>You can also view the instance from the web GUI. Go to <a href="http://10.20.20.1/">http://10.20.20.1/</a> and click on the "Instances" tab on the left:</p>
