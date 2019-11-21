@@ -1,5 +1,6 @@
 // sass-lint:disable no-color-literals hex-notation
 @mixin ubuntu-p-strip {
+  @include ubuntu-p-strip-slanted;
   @include ubuntu-p-strip-suru;
   @include ubuntu-p-strip-suru-background;
   @include ubuntu-p-strip-suru-blog-hero;
@@ -329,3 +330,12 @@
   }
 }
 // sass-lint:enable no-color-literals hex-notation
+
+@mixin ubuntu-p-strip-slanted {
+  .is-slanted {
+    &--bottom-left {
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(100% - 4rem));
+      padding-bottom: 6rem;
+    }
+  }
+}
