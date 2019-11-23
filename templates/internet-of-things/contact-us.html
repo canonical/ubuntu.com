@@ -45,6 +45,16 @@
   {% include "shared/_client-contact-us-form.html" %}
 {% endwith %}
 
+    {% elif product == 'automotive' %}
+
+{% with h1="Reinvent the automobile with Ubuntu",
+  intro_text="We would love to hear what you want to create, and be your partner in innovation.",
+  formid="2639",
+  lpId="5811",
+  returnURL="http://ubuntu.com/internet-of-things/thank-you?product=automotive" %}
+  {% include "shared/_client-contact-us-form.html" %}
+{% endwith %}
+
   {% else %}
 
 {% with h1="Contact us",
