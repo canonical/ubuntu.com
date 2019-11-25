@@ -232,7 +232,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
-| 1.16.x         | [charmed-kubernetes-270](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-270/archive/bundle.yaml) |
+| 1.16.x         | [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-316/archive/bundle.yaml) |
 | 1.15.x         | [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml) |
 | 1.14.x         | [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml) |
 | 1.13.x         | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |

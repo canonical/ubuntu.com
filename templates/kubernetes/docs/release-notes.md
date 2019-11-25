@@ -13,6 +13,15 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.16+ck2 Bugfix release
+
+### November 22, 2019 - [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/bundle/charmed-kubernetes-316/archive/bundle.yaml)
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.16+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.16+ck2).
+
 # 1.16+ck1 Bugfix release
 
 ### October 4, 2019 - [charmed-kubernetes-270](https://api.jujucharms.com/charmstore/v5/bundle/charmed-kubernetes-270/archive/bundle.yaml)
