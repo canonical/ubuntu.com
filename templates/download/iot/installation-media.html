@@ -58,14 +58,14 @@
 
           If the Ubuntu image file you have downloaded ends with an `.xz` file extension, run:
         </p>
-        <pre><code>xzcat ~/Downloads/ &lt; image file .xz &gt; | sudo dd of=&lt; drive address &gt; bs=32M</code></pre>
+        <pre><code>xzcat ~/Downloads/&lt;image-file.xz&gt; | sudo dd of=&lt;drive address&gt; bs=32M</code></pre>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
 
           Else, run:
         </p>
-        <pre><code>sudo dd if=~/Downloads/&lt; image file &gt; of=&lt; drive address &gt; bs=32M</code></pre>
+        <pre><code>sudo dd if=~/Downloads/&lt;image-file&gt; of=&lt;drive address&gt; bs=32M</code></pre>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
@@ -189,20 +189,20 @@ Unlocked Encrypted
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">Unmount your SD card with this command:</p>
-        <pre><code>diskutil unmountDisk &lt; drive address &gt;</code></pre>
+        <pre><code>diskutil unmountDisk &lt;drive address&gt;</code></pre>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
 
           When successful, you should see a message similar to this:
         </p>
-        <pre><code>Unmount of all volumes on &lt; drive address &gt; was successful</code></pre>
+        <pre><code>Unmount of all volumes on &lt;drive address&gt; was successful</code></pre>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
           You can now copy the image to the SD card:
         </p>
-        <pre><code>sudo sh -c 'gunzip -c ~/Downloads/&lt; image file &gt; | sudo dd of=&lt; drive address &gt; bs=32m'</code></pre>
+        <pre><code>sudo sh -c 'gunzip -c ~/Downloads/&lt;image file&gt; | sudo dd of=&lt;drive address&gt; bs=32m'</code></pre>
         <p>When finished you will see this message:</p>
         <pre><code>3719+1 records in
 3719+1 records out
