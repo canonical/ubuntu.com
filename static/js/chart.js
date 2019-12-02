@@ -207,7 +207,7 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   var width = document.querySelector(chartSelector).clientWidth - margin.right - margin.left;
   var tickSize = 1;
 
-  if (window.innerWidth < 1000) {
+  if (window.innerWidth < 1080) {
     tickSize = 2;
   }
 
