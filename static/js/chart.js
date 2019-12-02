@@ -205,6 +205,11 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   var timeDomainEnd = d3.time.year.offset(tasks[tasks.length - 1].endDate, +1);
   var height = taskTypes.length * rowHeight;
   var width = document.querySelector(chartSelector).clientWidth - margin.right - margin.left;
+  var tickSize = 1;
+
+  if (window.innerWidth < 1080) {
+    tickSize = 2;
+  }
 
   var x = d3.time
     .scale()
@@ -221,7 +226,7 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
     .axis()
     .scale(x)
     .orient("bottom")
-    .ticks(d3.time.years, 1);
+    .ticks(d3.time.years, tickSize);
 
   var yAxis = d3.svg
     .axis()
