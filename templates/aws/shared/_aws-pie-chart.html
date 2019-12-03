@@ -1,0 +1,94 @@
+{# might want to add this image instead of the chart - https://assets.ubuntu.com/v1/845e046c-partner-openstack.png #}
+<figure id="ubuntu-pie" class="ubuntu-pie"></figure>
+<p class="u-no-margin--bottom"><small>Ubuntu Pro has both <a href="https://help.ubuntu.com/community/Repositories/Ubuntu">Ubuntu main and universe</a> repositories under our security team's watch. Updated packages are streamed to AWS in-region mirrors and built into our AMIs, which are refreshed daily and promoted weekly to <a href="https://aws.amazon.com/marketplace">AWS Marketplace</a>.</small></p>
+
+
+<script src="https://assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
+
+<script>
+function drawChart() {
+  'use strict';
+  document.querySelector('#ubuntu-pie').innerHTML = "";
+  var width = document.querySelector('#ubuntu-pie').offsetWidth;
+
+  var dataset = [
+    { label: 'ubuntu', count: 55, left: (width / 2.75), top: -5 },
+    { label: 'other', count: 45, left: -(width / 2.75), top: -5 }
+  ];
+  var height = width;
+  var radius = Math.min(width, height) / 2;
+  var donutWidth = width / 4;
+  var color = d3.scale.category20b();
+  var tooltip = d3.select("#ubuntu-pie")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("background", "#f7f7f7")
+    .style("font-color", "#000")
+    .style("top", "40px")
+    .style("left", "40px")
+    .text("OpenStack survey");
+  var svg = d3.select('#ubuntu-pie')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .attr('viewBox', '0 0 ' + (width + 2) + ' ' + (height + 2))
+    .append('g')
+    .attr('transform', 'translate(' + (width / 2 + 1) +
+    ',' + (height / 2 + 1) + ')')
+    .on("mouseover", function(d){
+      tooltip.text();
+      return tooltip.style("visibility", "visible");
+    })
+    .on("mouseout", function(){
+      return tooltip.style("visibility", "hidden");
+    });;
+
+  var arc = d3.svg.arc()
+    .innerRadius(radius - donutWidth)
+    .outerRadius(radius);
+
+  var pie = d3.layout.pie()
+    .value(function(d) { return d.count; })
+    .sort(null);
+
+  svg.selectAll('path')
+    .data(pie(dataset))
+    .enter()
+    .append('path')
+    .style('stroke', '#aea79f')
+    .style('stroke-width', '1')
+    .style("stroke-dasharray", ("3, 3"))
+    .attr('d', arc)
+    .attr('class', function(d, i) {
+      return d.data.label;
+    });
+
+  // Add labels as <text> elements
+  var labels = svg.selectAll('foreignObject')
+    .data(dataset)
+    .enter()
+    .append('text')
+    .attr('y', function(d) { return d.top; })
+    .attr('class', function(d) { return d.label + '-label'; });
+
+  // Fill <text> labels with <tspan>s
+  labels.append('tspan')
+    .text(function (d) {return d.label;})
+    .attr('x', function(d) {
+      var spanWidth = 43;
+      if( d.label === 'ubuntu') { spanWidth = 53 }
+      return d.left - spanWidth / 2;
+    })
+    .attr('dy', '0');
+  labels.append('tspan')
+    .text(function (d) {return '' + d.count + '%'})
+    .attr('x', function(d) { return d.left - 44 / 2; })
+    .attr('dy', '20');
+}
+
+window.addEventListener('resize', drawChart, false);
+
+drawChart();
+</script>

@@ -1,0 +1,126 @@
+{% extends "aws/base_aws.html" %}
+
+{% block title %}Ubuntu on AWS{% endblock %}
+{% block meta_description %}Ubuntu is the operating system platform of choice for AWS, powering innovation on public cloud in environments ranging from dev/test to mission-critical production. Run Ubuntu on AWS, benefit from our worldwide mirroring and publication, and talk to Canonical about how we can help optimize your cloud workloads.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1lkH-MSPmgjCMP4gI0FW29YIKVDvBuddxA63iQhmsYIU{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-topped">
+    <div class="row u-equal-height">
+      <div class="col-7 col-medium-4">
+        <h1>Ubuntu on AWS</h1>
+        <p>Whether you are moving to Amazon Web Services or are already running cloud-native, Ubuntu is the platform of choice for AWS. Since 2006, with the launch of EC2, Canonical has optimised Ubuntu to use features and optimisations in AWS as they are released. Today, Ubuntu powers billions of compute hours yearly of innovative and mission-critical workloads.</p>
+        <p>Canonical continuously track and deliver updates to our images to ensure security and stability are built-in from the moment your machines and containers launch. We ensure Ubuntu is available in all AWS regions with optimisation, support and migration assistance to customers running at scale on AWS.</p>
+        <a href="/aws/contact-us" class="p-button--positive js-invoke-modal">Talk to us about Ubuntu on AWS</a>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center u-hide--small">
+        <img src="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg" alt="" width="250">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 class="p-muted-heading u-align--center">UBUNTU ON AWS POWERS CLOUD LEADERS LIKE</h2>
+    <ul class="p-inline-images u-no-margin--bottom">
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/1d3f5d21-Netflix_2015_logo.svg" alt="Netflix" width="144">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg" alt="Paypal" width="141">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/2133a97d-heroku-logo+copy.svg" alt="Heroku" width="144">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/95b783ed-acquia.svg" alt="Acquia" width="144">
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Choose the right Ubuntu for you</h2>
+      <p>Select between standard Ubuntu Server and the Pro edition, which includes expanded security and AWS integration:</p>
+    </div>
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Ubuntu</h3>
+      <p class="p-heading--two">Free to use</p>
+      <hr class="u-sv1">
+      <div class="p-card__content">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">AWS-optimised kernel and userspace components built from the latest releases</li>
+          <li class="p-list__item is-ticked">Broad set of open source application components available for development</li>
+          <li class="p-list__item is-ticked">Security patches for the kernel and key infrastructure components</li>
+          <li class="p-list__item is-ticked">Updates mirrored and images published in all AWS regions worldwide</li>
+          <li class="p-list__item is-ticked">5-year lifetime</li>
+        </ul>
+        <p>Run Ubuntu 18.04 LTS: <a href="https://aws.amazon.com/marketplace/pp/B07CQ33QKV" class="p-link--external">Standard</a> | <a href="https://aws.amazon.com/marketplace/pp/B07J5RRYGN" class="p-link--external">Minimal</a></p>
+      </div>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Ubuntu Pro for AWS</h3>
+      <p class="p-heading--two">Starting at 0.1c/hour</p>
+      <hr class="u-sv1">
+      <div class="p-card__content">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Includes all Ubuntu optimisations and updates of the free version</li>
+          <li class="p-list__item is-ticked">Expanded security covering application components delivered with Ubuntu</li>
+          <li class="p-list__item is-ticked">Kernel live patching for instant security and longer uptimes</li>
+          <li class="p-list__item is-ticked">FIPS 140-2 and CC-EAL certified components</li>
+          <li class="p-list__item is-ticked">Integration with AWS security and compliance features</li>
+          <li class="p-list__item is-ticked">10-year lifetime</li>
+        </ul>
+        <p><a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2" class="p-button--positive"><span class="p-link--external">Launch Ubuntu Pro 18.04 LTS</span></a></p>
+        <p><a href="https://assets.ubuntu.com/v1/579f0c03-Ubuntu_Pro_AWS.pdf" class="p-link--external">Read the datasheet</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip u-no-padding--top">
+  <div class="u-fixed-width">
+    <h2>Features</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Optimised</h3>
+      <p>Ubuntu on AWS runs on an AWS-optimised kernel, which includes improved device drivers, like ENA, and out of the box support for accelerators like GPGPUs. This means faster instance starts and better runtime performance for your workloads.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Security built in</h3>
+      <p>Our security teams tracks alerts 24x7 and releases patches to system components and applications continuously. Canonical operates a worldwide distribution network ensuring that package updates are delivered in-region quickly.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">All the bits you need</h3>
+      <p>Ubuntu includes everything you need out of the box to build and operate cloud-native applications at scale. Supporting runtimes like Python, node.js and Go, and server components like Apache Kafka, NGINX, MongoDB, Redis and PostgreSQL.</p>
+    </div>
+  </div>
+</section>
+
+{% include "aws/shared/_aws-pie-chart.html" %}
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-7">
+      <h2>Optimise your cloud journey with Canonical</h2>
+      <p>Canonical works with the top enterprises and innovators in the world to define and execute their cloud journeys. Migration, application redesign, support and optimisation services are some of the ways in which we have helped customers make the most of Ubuntu and AWS together.</p>
+      <p><a href="/aws/contact-us" class="p-button--positive js-invoke-modal u-no-margin--bottom">Talk to us about Ubuntu on AWS</a></p>
+    </div>
+    <div class="col-4 col-start-large-9">
+      <blockquote class="p-pull-quote--small">
+        <p class="p-pull-quote__quote">The optimisations built into Ubuntu Pro on AWS provide us with the performance requirements needed and a trusted platform to run our operations and fleet</p>
+        <cite class="p-pull-quote__citation">Justin Rigling, CTO at Rigado</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+{% endblock content %}
