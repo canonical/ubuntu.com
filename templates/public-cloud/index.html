@@ -8,7 +8,7 @@
 <section class="p-strip--suru-topped is-deep is-bordered">
   <div class="row">
     <div class="col-8">
-      <h2>Ubuntu on public clouds</h2>
+      <h1>Ubuntu on public clouds</h1>
       <p>Ubuntu is the world’s most popular cloud operating system across public clouds. Thanks to its security, versatility and policy of regular updates, Ubuntu is the leading cloud guest OS and the only free cloud operating system with the option of enterprise-grade commercial support. </p>
 
       <ul class="p-list">
@@ -23,14 +23,14 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="u-fixed-width">
     {% with title="A, selection of our certified public cloud partners", json_feed_url="https://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&featured=true", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
     <p class="u-align--center"><a class="p-link--external" href="https://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud ">View all certified public cloud partners</a></p>
   </div>
 </section>
 
-<section class="p-strip is-deep">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row u-equal-height">
     <div class="col-6 p-card">
       <h2>Ubuntu Server on public cloud</h2>
@@ -112,7 +112,7 @@
       <h2>Ready to get started?</h2>
       <p>Ubuntu Pro for AWS is a premium image designed by Canonical to provide the most comprehensive feature set for production environments running in the public cloud.</p>
       <p>
-        <a class="p-button--positive" href="https://aws.amazon.com/marketplace/pp/B0821T9RL2"><span class="p-link--external">Launch Ubuntu Pro 18.04 LTS on AWS</span></a>
+        <a class="p-link--external" href="https://aws.amazon.com/marketplace/pp/B0821T9RL2">Launch Ubuntu Pro 18.04 LTS on AWS</a>
       </p>
 
       <p>Ubuntu Server {{ releases.lts.short_version }} LTS is a free download that includes five years worth of  security and maintenance updates, guaranteed. Using an Ubuntu partner cloud ensures access to the latest certified Ubuntu cloud images. To run Ubuntu as guest on participating public clouds, the simplest way is to use the image maintained on their server.</p>
@@ -121,13 +121,13 @@
       </p>
     </div>
 
-    <div class="col-4 u-hide--small u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg" alt="" />
+    <div class="col-4 u-hide--small u-vertically-center u-align--center">
+      <img src="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg" alt="" width="210" />
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="u-fixed-width">
     <p id="fn1" class="note">
       <a href="#r1">*</a> <a href="http://www.zdnet.com/article/ubuntu-linux-continues-to-rule-the-cloud/" class="p-link--external">zdnet.com</a>, 27 August 2015
