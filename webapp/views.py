@@ -53,11 +53,11 @@ def download_thank_you(category):
     if ip_location:
         country_code = ip_location["country"]["iso_code"]
 
-    mirror_list = [
-        {"link": mirror["link"], "bandwidth": mirror["mirror_bandwidth"]}
-        for mirror in mirrors
-        if mirror["mirror_countrycode"] == country_code
-    ]
+        mirror_list = [
+            {"link": mirror["link"], "bandwidth": mirror["mirror_bandwidth"]}
+            for mirror in mirrors
+            if mirror["mirror_countrycode"] == country_code
+        ]
     context["mirror_list"] = json.dumps(mirror_list)
 
     return (
