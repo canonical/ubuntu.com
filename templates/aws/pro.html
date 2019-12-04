@@ -16,7 +16,7 @@
         <p><a href="https://assets.ubuntu.com/v1/579f0c03-Ubuntu_Pro_AWS.pdf" class="p-link--external">Get the Ubuntu Pro datasheet</a></p>
       </div>
       <div class="col-5 u-align--center u-vertically-center u-hide--small">
-        <img src="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg" alt="" width="250">
+        <img src="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg" alt="" width="200">
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@
         </div>
       </li>
     </ul>
-    <p id="index-1">* For 18.04 LTS onwards. The maintenance period for Ubuntu Pro 14.04 LTS and 16.04 LTS is 8 years.</p>
+    <p id="index-1"><small>* For 18.04 LTS onwards. The maintenance period for Ubuntu Pro 14.04 LTS and 16.04 LTS is 8 years.</small></p>
     <p><a href="/security">Learn more about security for Ubuntu&nbsp;&rsaquo;</a></p>
   </div>
 </section>
@@ -119,22 +119,14 @@
       <p><a href="https://aws.amazon.com/marketplace/pp/B0821V7QJP" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
     </div>
   </div>
-  <div class="row">
-    <p class="u-no-margin--bottom"><strong>More about Ubuntu Pro:</strong> <a href="https://assets.ubuntu.com/v1/579f0c03-Ubuntu_Pro_AWS.pdf" class="p-link--external">Read the datasheet</a></p>
-  </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-7 u-vertically-center">
-      <div>
-        <h2>Broadest open source security coverage keeps CIOs sleeping at night</h2>
-        <p>Ubuntu Pro includes security coverage, tracking high and critical CVEs, for the entire collection of software packages shipped with Ubuntu. Ideal for companies that have embraced open source for their new products.</p>
-        <p>Developers choose Ubuntu because it includes a set of open source packages known as ‘universe’. These include  . With Ubuntu Pro, CIOs and security officers can be confident they can roll these packages out to production.</p>
-      </div>
-    </div>
-    <div class="col-4 col-start-large-9">
-      {% include "aws/shared/_aws-pie-chart.html" %}
+  <div class="row">
+    <div class="col-8">
+      <h2>Broadest open source security coverage keeps CISOs sleeping at night</h2>
+      <p>Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. Ideal for companies that have embraced open source for their new products.</p>
+      <p>Developers choose Ubuntu because it includes a set of open source packages known as ‘universe’. These include NGINX, MongoDB, Redis, Kafka&hellip; .With Ubuntu Pro, CIOs and security officers can be confident they can roll these packages out to production.</p>
     </div>
   </div>
 </section>
@@ -142,15 +134,13 @@
 <section class="p-strip">
   <div class="row">
     <blockquote class="p-pull-quote--large">
-      <p class="p-pull-quote__quote">The optimisations built into Ubuntu Pro on AWS provide us with the performance requirements needed and a trusted platform to run our operations and fleet. Utilising Ubuntu in the public cloud and across our edge devices also accelerates our customers’ time to market and decreases development cycles via a consistent platform.</p>
-      <cite class="p-pull-quote__citation">Justin Rigling, CTO <a href="https://www.rigado.com/">Rigado</a></cite>
+      <p class="p-pull-quote__quote">The new Ubuntu Pro images will deliver a further optimised experience to our customers, providing additional security and performance to their Ubuntu instances, Ubuntu Pro can be purchased, deployed and launched on AWS in a seamless and effortless manner, removing the need for additional provisioning or procurement processes.</p>
+      <cite class="p-pull-quote__citation">Deepak Singh, VP of Compute Services, AWS</cite>
     </blockquote>
   </div>
 </section>
 
-<div class="row is-bordered"></div>
-
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Choose the right Ubuntu for you</h2>
@@ -202,7 +192,7 @@
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section class="p-strip--light u-no-padding--top">
   <div class="row">
     <div class="col-8">
       <h2>Pricing for US East (N. Virginia) Region</h2>
@@ -254,6 +244,24 @@
   </div>
 </section>
 
-{% include "aws/shared/_get-ubuntu-pro.html" %}
+<section class="p-strip">
+  <div class="row">
+    <h2>Get Ubuntu Pro on AWS now:</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four"><a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2" class="p-link--external">18.04 LTS</a></h3>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four"><a href="https://aws.amazon.com/marketplace/pp/B0821WW873" class="p-link--external">16.04 LTS</a></h3>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four"><a href="https://aws.amazon.com/marketplace/pp/B0821V7QJP" class="p-link--external">14.04 LTS</a></h3>
+    </div>
+  </div>
+  <div class="row">
+    <p class="u-no-margin--bottom"><strong>More about Ubuntu Pro:</strong> <a href="https://assets.ubuntu.com/v1/579f0c03-Ubuntu_Pro_AWS.pdf" class="p-link--external">Read the datasheet</a></p>
+  </div>
+</section>
 
 {% endblock content %}
