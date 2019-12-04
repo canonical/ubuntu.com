@@ -5,7 +5,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1ZzUIh9Tfz5SvkrHyo4-izzmUjRka1Tn0UQisKcXGEPA/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip--suru-topped is-deep is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Ubuntu on public clouds</h2>
@@ -23,16 +23,16 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip--light is-deep is-bordered">
   <div class="u-fixed-width">
     {% with title="A, selection of our certified public cloud partners", json_feed_url="https://partners.ubuntu.com/partners.json?programme__name=Certified%20Public%20Cloud&featured=true", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
     <p class="u-align--center"><a class="p-link--external" href="https://partners.ubuntu.com/find-a-partner?programme=certified-public-cloud ">View all certified public cloud partners</a></p>
   </div>
 </section>
 
-<section class="p-strip--light is-deep">
-  <div class="row">
-    <div class="col-8">
+<section class="p-strip is-deep">
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
       <h2>Ubuntu Server on public cloud</h2>
       <p>
         <ul class="p-list">
@@ -42,25 +42,15 @@
           <li class="p-list__item is-ticked">Maintenance and security updates guaranteed for five years with Ubuntu LTS</li>
         </ul>
       </p>
-    </div>
-    <div class="p-card col-4">
-      <h4 class="p-muted-heading">Whitepaper</h4>
-      <hr class="u-sv1" />
-      <div class="p-card__content u-no-margin--top">
-        <h3 class="p-heading--four">
-          <a href="/blog/certified-ubuntu-cloud-guest-the-best-of-ubuntu-on-the-best-clouds" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Ubuntu cloud guest', 'eventLabel' : 'from ubuntu.com/public-cloud', 'eventValue' : undefined });">
-            Ubuntu cloud guest
-          </a>
-        </h3>
-        <p class="u-no-padding--top">Understand why certified Ubuntu images are essential for anyone that requires the highest level of security and reliability.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="p-strip is-deep">
-  <div class="row">
-    <div class="col-8">
+      <p>
+        <a href="/blog/certified-ubuntu-cloud-guest-the-best-of-ubuntu-on-the-best-clouds" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Get the Ubuntu cloud guest whitepaper', 'eventLabel' : 'from ubuntu.com/public-cloud', 'eventValue' : undefined });">
+          Get the Ubuntu cloud guest whitepaper&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+
+    <div class="col-6 p-card">
       <h2>Ubuntu Pro on public cloud</h2>
       <p>
         <ul class="p-list">
@@ -72,19 +62,21 @@
       </p>
       
       <p>
-        <a class="p-button--positive" href="https://assets.ubuntu.com/v1/579f0c03-Ubuntu_Pro_AWS.pdf"><span class="p-link--external">Get the Ubuntu Pro datasheet</span></a>
+        <a class="p-link--external" href="https://assets.ubuntu.com/v1/579f0c03-Ubuntu_Pro_AWS.pdf">Get the Ubuntu Pro datasheet</a>
       </p>
 
       <p>
         <a class="p-button--positive" href="/aws/pro">Learn more about Ubuntu Pro on AWS</a>
       </p>
-
-      <p class="p-heading--six"><em>18.04 LTS certifications are in-progress and will be available Q1 2020. Certified components and kernel live patches are not available for Ubuntu 14.04 LTS.</em></p>
     </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <p class="p-heading--six"><em>18.04 LTS certifications are in-progress and will be available Q1 2020. Certified components and kernel live patches are not available for Ubuntu 14.04 LTS.</em></p>
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="row p-divider">
     <div class="col-6 p-divider__block">
       <h2 class="p-heading--three">Fast service deployment with&nbsp;Juju</h2>
@@ -101,7 +93,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip--light is-deep is-bordered">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-5">
       <h2>Developers&rsquo; favourite</h2>
@@ -114,7 +106,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip is-deep is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Ready to get started?</h2>
@@ -128,10 +120,14 @@
         <a class="p-button--positive" href="/download/cloud">Start using Ubuntu today</a>
       </p>
     </div>
+
+    <div class="col-4 u-hide--small u-vertically-center">
+      <img src="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg" alt="" />
+    </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <p id="fn1" class="note">
       <a href="#r1">*</a> <a href="http://www.zdnet.com/article/ubuntu-linux-continues-to-rule-the-cloud/" class="p-link--external">zdnet.com</a>, 27 August 2015
