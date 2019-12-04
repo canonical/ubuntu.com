@@ -221,12 +221,21 @@ fieldset:last-child {
 }
 
 // XXX Steve: Pull quote colour override
-.p-pull-quote p:first-of-type::before,
-.p-pull-quote p:last-of-type::after {
-  color: $color-brand;
+.p-pull-quote,
+.p-pull-quote--large {
+  .p-pull-quote__quote:first-of-type::before,
+  .p-pull-quote__quote:last-of-type::after {
+    color: $color-brand;
+  }
+
+  .p-pull-quote__quote:last-of-type::after {
+    bottom: auto;
+  }
 }
 
-// sass-lint:disable-block no-qualifying-elements
+.p-pull-quote--large
+
+// sass-lint:disable no-qualifying-elements
 h1.u-align--center,
 h2.u-align--center,
 h3.u-align--center,
@@ -236,6 +245,8 @@ h6.u-align--center,
 p.u-align--center {
   max-width: none;
 }
+// sass-lint:enable no-qualifying-elements
+
 
 /// XXX Caleb: abbr hotfix - to be fixed in Vanilla
 // https://github.com/vanilla-framework/vanilla-framework/issues/1962
