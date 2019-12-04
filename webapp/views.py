@@ -60,8 +60,11 @@ def download_thank_you(category):
     ]
     context["mirror_list"] = json.dumps(mirror_list)
 
-    return flask.render_template(
-        f"download/{category}/thank-you.html", **context
+    return (
+        flask.render_template(
+            f"download/{category}/thank-you.html", **context
+        ),
+        {"Cache-Control": "no-cache"},
     )
 
 
