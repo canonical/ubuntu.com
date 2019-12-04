@@ -1,6 +1,6 @@
 {% extends "public-cloud/_base_public-cloud.html" %}
 
-{% block title %}Public cloud{% endblock %}
+{% block title %}Ubuntu on Public Clouds{% endblock %}
 {% block meta_description %}Ubuntu is the most popular guest OS on both public and private clouds, thanks to its security, versatility and continually updated features.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1ZzUIh9Tfz5SvkrHyo4-izzmUjRka1Tn0UQisKcXGEPA/edit{% endblock meta_copydoc %}
 
@@ -9,7 +9,8 @@
   <div class="row">
     <div class="col-8">
       <h2>Ubuntu on public clouds</h2>
-      <p>The most popular operating system across public clouds is Ubuntu, because we work closely with major cloud operators to optimise the kernel and system for their infrastructure, speed up security updates and minimise the cost of network or storage for users by default.</p>
+      <p>Ubuntu is the world’s most popular cloud operating system across public clouds. Thanks to its security, versatility and policy of regular updates, Ubuntu is the leading cloud guest OS and the only free cloud operating system with the option of enterprise-grade commercial support. </p>
+
       <ul class="p-list">
         <li class="p-list__item is-ticked">Canonical guarantees the consistency, security and performance of Ubuntu on public clouds</li>
         <li class="p-list__item is-ticked">Enterprise-grade commercial support is available</li>
@@ -18,9 +19,6 @@
       <p>
         <a href="/support" class="p-button--positive">Get support</a>&emsp;<a class="p-button--neutral" href="/download/cloud">Start using Ubuntu today</a>
       </p>
-    </div>
-    <div class="col-4 u-hide--small u-vertically-center">
-      {% include "openstack/shared/_openstack-aws-pie-chart.html" %}
     </div>
   </div>
 </section>
@@ -32,10 +30,10 @@
   </div>
 </section>
 
-<section class="p-strip--accent is-deep">
+<section class="p-strip--light is-deep">
   <div class="row">
     <div class="col-8">
-      <h2>Why use Ubuntu Server in the cloud?</h2>
+      <h2>Ubuntu Server on public cloud</h2>
       <p>
         <ul class="p-list">
           <li class="p-list__item is-ticked">Proven for enterprise-scale workloads on all leading public clouds</li>
@@ -56,6 +54,32 @@
         </h3>
         <p class="u-no-padding--top">Understand why certified Ubuntu images are essential for anyone that requires the highest level of security and reliability.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ubuntu Pro on public cloud</h2>
+      <p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">10 years of package updates and security maintenance with Ubuntu Pro</li>
+          <li class="p-list__item is-ticked">Kernel <a href="/livepatch">Livepatch</a>, which allows for continuous security patching and higher uptime and availability by allowing kernel security updates to be applied without a reboot</li>
+          <li class="p-list__item is-ticked">Customised FIPS and Common Criteria EAL-compliant components for use in environments under compliance regimes such as FedRAMP, PCI, HIPAA and ISO</li>
+          <li class="p-list__item is-ticked">Patch coverage for Ubuntu's infrastructure and application repositories, spanning hundreds of open source workloads including Apache Kafka, MongoDB, Node.js, RabbitMQ, Redis and more</li>
+        </ul>
+      </p>
+      
+      <p>
+        <a class="p-button--positive" href="https://assets.ubuntu.com/v1/579f0c03-Ubuntu_Pro_AWS.pdf"><span class="p-link--external">Get the Ubuntu Pro datasheet</span></a>
+      </p>
+
+      <p>
+        <a class="p-button--positive" href="/aws/pro">Learn more about Ubuntu Pro on AWS</a>
+      </p>
+
+      <p class="p-heading--six"><em>18.04 LTS certifications are in-progress and will be available Q1 2020. Certified components and kernel live patches are not available for Ubuntu 14.04 LTS.</em></p>
     </div>
   </div>
 </section>
@@ -94,6 +118,11 @@
   <div class="row">
     <div class="col-8">
       <h2>Ready to get started?</h2>
+      <p>Ubuntu Pro for AWS is a premium image designed by Canonical to provide the most comprehensive feature set for production environments running in the public cloud.</p>
+      <p>
+        <a class="p-button--positive" href="https://aws.amazon.com/marketplace/pp/B0821T9RL2"><span class="p-link--external">Launch Ubuntu Pro 18.04 LTS on AWS</span></a>
+      </p>
+
       <p>Ubuntu Server {{ releases.lts.short_version }} LTS is a free download that includes five years worth of  security and maintenance updates, guaranteed. Using an Ubuntu partner cloud ensures access to the latest certified Ubuntu cloud images. To run Ubuntu as guest on participating public clouds, the simplest way is to use the image maintained on their server.</p>
       <p>
         <a class="p-button--positive" href="/download/cloud">Start using Ubuntu today</a>
