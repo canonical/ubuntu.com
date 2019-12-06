@@ -1,0 +1,9 @@
+{% extends "masters-conference/_base-masters-conference.html" %}
+
+{% block title %}Thank you{% endblock %}
+
+{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block content %}
+  {% with thanks_context="your interest in Ubuntu Masters" %}{% include "shared/_thank_you.html" %}{% endwith %}
+{% endblock content %}
