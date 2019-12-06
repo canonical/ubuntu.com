@@ -43,4 +43,16 @@
       width: 15.04854%;
     }
   }
+
+  .p-reverse-cols--small {
+    @media screen and (max-width: $breakpoint-small - 1) {
+      [class*="col-"]:first-child {
+        order: 1;
+      }
+
+      [class*="col-"]:last-child {
+        order: 0;
+      }
+    }
+  }
 }
