@@ -3,7 +3,7 @@
     <div class="{% if equal_cols %}col-6{% else %}col-7{% endif %} u-vertically-center">
       <div>
         <h1>
-          {{ title }}
+          {{ title | safe }}
         </h1>
         {% if subtitle %}<h4>
           {{ subtitle }}
