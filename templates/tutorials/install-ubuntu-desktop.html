@@ -1,0 +1,366 @@
+{% extends "tutorials/base_tutorials.html" %}
+
+{% block title %}Install Ubuntu desktop{% endblock %}
+
+{% block content %}
+
+<section class="p-strip u-no-padding--bottom">
+  <div class="u-fixed-width">
+    <h1>Install Ubuntu desktop</h1>
+  </div>
+</section>
+<section class="p-strip is-shallow u-no-padding--top" style="overflow-x: visible;">
+  <div class="row">
+    <div class="col-4">
+      <div style="position: sticky; top: 0; padding-top: 2rem; padding-bottom: 3rem;">
+        <ul id="tutorial-navigation" class="tutorial-nav p-list--divided">
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#overview">Overview</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#requirements">Requirements</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#boot-from-dvd">Boot from DVD</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#boot-from-usb-flash-drive">Boot from USB flash drive</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#prepare-to-install-ubuntu">Prepare to install Ubuntu</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#allocate-drive-space">Allocate drive space</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#begin-installation">Begin installation</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#select-your-location">Select your location</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#login-details">Login details</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#background-installation">Background installation</a>
+          </li>
+          <li class="p-list__item">
+            <a class="tutorial-nav__link" href="#installation-complete">Installation complete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="tutorial-container" id="tutorial-container">
+        <div class="section" id="overview">
+          <div class="section-inner">
+            <h2>Overview</h2>
+            <p>Duration: 0:05</p>
+            <p>The Ubuntu desktop is easy to use, easy to install and includes everything you need to run your organisation, school, home or enterprise. It’s also open source, secure, accessible and free to download.</p>
+            <p></p><div class="lightbox-wrapper"><a href="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/4/43a6f9ad883ac86ecc11a8170b69b895d8b42e0e.png" class="lightbox" title="40f91c0b-bionic-desktop.png"><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/optimized/2X/4/43a6f9ad883ac86ecc11a8170b69b895d8b42e0e_1_690x517.png" alt="Bionic desktop" width="690" height="517"><div class="meta">
+            <span class="filename">40f91c0b-bionic-desktop.png</span><span class="informations">1022x767 193 KB</span><span class="expand"></span>
+            </div></a></div><p></p>
+            <p>In this tutorial, we’re going to install Ubuntu desktop onto your computer, using either your computer’s DVD drive or a USB flash drive.</p>
+            <ul class="article-navigation">
+              <li class="previous-section">&nbsp;</li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#requirements">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="requirements">
+          <div class="section-inner">
+            <h2>Requirements</h2>
+            <p>Duration: 0:01</p>
+            <p>You’ll need to consider the following before starting the installation:</p>
+            <ul>
+            <li>Connect your laptop to a power source.</li>
+            <li>Ensure you have at least 25GB of free storage space, or 5GB for a minimal installation.</li>
+            <li>Have access to either a DVD or a USB flash drive containing the version of Ubuntu you want to install.</li>
+            <li>Make sure you have a recent backup of your data. While it’s unlikely that anything will go wrong, you can never be too prepared.</li>
+            </ul>
+            <p>See <a href="https://help.ubuntu.com/community/Installation/SystemRequirements">Installation/System Requirements</a> for more specific details on hardware requirements. We also have <a>several tutorials</a> that explain how to create an Ubuntu DVD or USB flash drive.</p>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#overview">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#boot-from-dvd">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="boot-from-dvd">
+          <div class="section-inner">
+            <h2>Boot from DVD</h2>
+            <p>Duration: 0:03</p>
+            <p>It’s easy to install Ubuntu from a DVD. Here’s what you need to do:</p>
+            <ol>
+            <li>Put the Ubuntu DVD into your optical/DVD drive.</li>
+            <li>Restart your computer.</li>
+            </ol>
+            <p>As soon as your computer boots you’ll see the welcome window.</p>
+            <p></p><div class="lightbox-wrapper"><a href="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/a/ad5e454a9fd45fd56d90da951702c2f2224cd32a.png" class="lightbox" title="3bab2654-ubuntu-install-try.png"><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/optimized/2X/a/ad5e454a9fd45fd56d90da951702c2f2224cd32a_1_690x479.png" alt="Welcome window" width="690" height="479"><div class="meta">
+            <span class="filename">3bab2654-ubuntu-install-try.png</span><span class="informations">1014x704 78.7 KB</span><span class="expand"></span>
+            </div></a></div><p></p>
+            <p>From here, you can select your language from a list on the left and choose between either installing Ubuntu directly, or trying the desktop first (if you like what you see, you can also install Ubuntu from this mode too).</p>
+            <p>Depending on your computer’s configuration, you may instead see an alternative boot menu showing a large language selection pane. Use your mouse or cursor keys to select a language and you’ll be presented with a simple menu.</p>
+            <p><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/3/344d7380a3891aad11582738d30f8f89d1f3525d.png" alt="boot menu" width="636" height="394"></p>
+            <p>Select the second option, ‘Install Ubuntu’, and press return to launch the desktop installer automatically. Alternatively, select the first option, ‘Try Ubuntu without installing’, to test Ubuntu (as before, you can also install Ubuntu from this mode too).</p>
+            <p>A few moments later, after the desktop has loaded, you’ll see the welcome window. From here, you can select your language from a list on the left and choose between either installing Ubuntu directly, or trying the desktop first.</p>
+            <p>If you don’t get either menu, read the <a href="https://help.ubuntu.com/community/BootFromCD?_ga=2.102380610.2115462233.1496186978-1155966827.1485186360">booting from the DVD guide</a> for more information.</p>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#requirements">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#boot-from-usb-flash-drive">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="boot-from-usb-flash-drive">
+          <div class="section-inner">
+            <h2>Boot from USB flash drive</h2>
+            <p>Duration: 0:02</p>
+            <p>Most computers will boot from USB automatically. Simply insert the USB flash drive and either power on your computer or restart it. You should see the same welcome window we saw in the previous ‘Install from DVD’ step, prompting you to choose your language and either install or try the Ubuntu desktop.</p>
+            <p>If your computer doesn’t automatically boot from USB, try holding <code>F12</code> when your computer first starts. With most machines, this will allow you to select the USB device from a system-specific boot menu.</p>
+            <p>positive<br>
+            : F12 is the most common key for bringing up your system’s boot menu, but Escape, F2 and F10 are common alternatives. If you’re unsure, look for a brief message when your system starts - this will often inform you of which key to press to bring up the boot menu.</p>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#boot-from-dvd">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#prepare-to-install-ubuntu">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="prepare-to-install-ubuntu">
+          <div class="section-inner">
+            <h2>Prepare to install Ubuntu</h2>
+            <p>Duration: 0:01</p>
+            <p>You will first be asked to select your keyboard layout. If the installer doesn’t guess the default layout correctly, use the ‘Detect Keyboard Layout’ button to run through a brief configuration procedure.</p>
+            <p>After selecting <em>Continue</em> you will be asked <em>What apps would you like to install to start with?</em> The two options are ‘Normal installation’ and ‘Minimal installation’. The first is the equivalent to the old default bundle of utilities, applications, games and media players - a great launchpad for any Linux installation. The second takes considerably less storage space and allows you to install only what you need.</p>
+            <p>Beneath the installation-type question are two checkboxes; one to enable updates while installing and another to enable third-party software.</p>
+            <ul>
+            <li>We advise enabling both <code>Download updates</code> and <code>Install third-party software</code>.</li>
+            <li>Stay connected to the internet so you can get the latest updates while you install Ubuntu.</li>
+            <li>If you are not connected to the internet, you will be asked to select a wireless network, if available. We advise you to connect during the installation so we can ensure your machine is up to date</li>
+            </ul>
+            <p></p><div class="lightbox-wrapper"><a href="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/3/32da76fd45eb5300065df0491ec85a0ab3e6e380.png" class="lightbox" title="7d1ddd116b0080d5.png"><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/optimized/2X/3/32da76fd45eb5300065df0491ec85a0ab3e6e380_1_690x418.png" alt="Select install size, updates and third part software" width="690" height="418"><div class="meta">
+            <span class="filename">7d1ddd116b0080d5.png</span><span class="informations">1021x619 62.8 KB</span><span class="expand"></span>
+            </div></a></div><p></p>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#boot-from-usb-flash-drive">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#allocate-drive-space">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="allocate-drive-space">
+          <div class="section-inner">
+            <h2>Allocate drive space</h2>
+            <p>Duration: 0:01</p>
+            <p>Use the checkboxes to choose whether you’d like to install Ubuntu alongside another operating system, delete your existing operating system and replace it with Ubuntu, or — if you’re an advanced user — choose the ’<strong>Something else</strong>’ option.</p>
+            <p></p><div class="lightbox-wrapper"><a href="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/4/46e9947d7b4ad3e96487d81cf61c327485d56b5a.png" class="lightbox" title="63da6024-bionic-install-storage.png"><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/optimized/2X/4/46e9947d7b4ad3e96487d81cf61c327485d56b5a_1_690x424.png" alt="Set up storage configuration" width="690" height="424"><div class="meta">
+            <span class="filename">63da6024-bionic-install-storage.png</span><span class="informations">1030x634 67.2 KB</span><span class="expand"></span>
+            </div></a></div><p></p>
+            <p>positive<br>
+            : Options related to side-by-side installation or erasing a previous installation are only offered when pre-existing installations are detected.</p>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#prepare-to-install-ubuntu">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#begin-installation">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="begin-installation">
+          <div class="section-inner">
+            <h2>Begin installation</h2>
+            <p>Duration: 0:01</p>
+            <p>After configuring storage, click on the ‘Install Now’ button. A small pane will appear with an overview of the storage options you’ve chosen, with the chance to go back if the details are incorrect.</p>
+            <p>Click <code>Continue</code> to fix those changes in place and start the installation process.</p>
+            <p></p><div class="lightbox-wrapper"><a href="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/f/f696c2cfd147a5613f1061cf9104c30f03748344.png" class="lightbox" title="1841ea5f-bionic-install-overwrite.png"><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/optimized/2X/f/f696c2cfd147a5613f1061cf9104c30f03748344_1_690x418.png" alt="Write changes to disks" width="690" height="418"><div class="meta">
+            <span class="filename">1841ea5f-bionic-install-overwrite.png</span><span class="informations">1021x619 66.8 KB</span><span class="expand"></span>
+            </div></a></div><p></p>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#allocate-drive-space">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#select-your-location">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="select-your-location">
+          <div class="section-inner">
+            <h2>Select your location</h2>
+            <p>Duration: 0:01</p>
+            <p>If you are connected to the internet, your location will be detected automatically. Check your location is correct and click ’Forward’ to proceed.</p>
+            <p>If you’re unsure of your time zone, type the name of a local town or city or use the map to select your location.</p>
+            <p></p><div class="lightbox-wrapper"><a href="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/1/1f7d6ccbc18537a79f4af833d124dc096ef70459.png" class="lightbox" title="a5274634-bionic-install-location.png"><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/optimized/2X/1/1f7d6ccbc18537a79f4af833d124dc096ef70459_1_690x419.png" alt="Where are you" width="690" height="419"><div class="meta">
+            <span class="filename">a5274634-bionic-install-location.png</span><span class="informations">1012x615 141 KB</span><span class="expand"></span>
+            </div></a></div><p></p>
+            <p>positive<br>
+            : If you’re having problems connecting to the Internet, use the menu in the top-right-hand corner to select a network.</p>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#begin-installation">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#login-details">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="login-details">
+          <div class="section-inner">
+            <h2>Login details</h2>
+            <p>Duration: 0:01</p>
+            <p>Enter your name and the installer will automatically suggest a computer name and username. These can easily be changed if you prefer. The computer name is how your computer will appear on the network, while your username will be your login and account name.</p>
+            <p>Next, enter a strong password. The installer will let you know if it’s too weak.</p>
+            <p>You can also choose to enable automatic login and home folder encryption. If your machine is portable, we recommend keeping automatic login disabled and enabling encryption. This should stop people accessing your personal files if the machine is lost or stolen.</p>
+            <p></p><div class="lightbox-wrapper"><a href="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/f/fe3e195347fdb45feab534796348384a41b918e7.png" class="lightbox" title="abd7511b-bionic-install-password.png"><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/optimized/2X/f/fe3e195347fdb45feab534796348384a41b918e7_1_690x424.png" alt="Username and password entry" width="690" height="424"><div class="meta">
+            <span class="filename">abd7511b-bionic-install-password.png</span><span class="informations">1007x619 57.8 KB</span><span class="expand"></span>
+            </div></a></div><p></p>
+            <p>: If you enable home folder encryption and you forget your password, you won’t be able to retrieve any personal data stored in your home folder.</p>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#select-your-location">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#background-installation">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="background-installation">
+          <div class="section-inner">
+            <h2>Background installation</h2>
+            <p>Duration: 0:20</p>
+            <p>The installer will now complete in the background while the installation window teaches you a little about how awesome Ubuntu is. Depending on the speed of your machine and network connection, installation should only take a few minutes.</p>
+            <p></p><div class="lightbox-wrapper"><a href="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/2/29ec0f5c3d8c5b51f7b7440c4e2a95cc9f4a0118.png" class="lightbox" title="4e2f9df7-bionic-install-installation.png"><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/optimized/2X/2/29ec0f5c3d8c5b51f7b7440c4e2a95cc9f4a0118_1_690x514.png" alt="Installer running in the background" width="690" height="514"><div class="meta">
+            <span class="filename">4e2f9df7-bionic-install-installation.png</span><span class="informations">859x641 159 KB</span><span class="expand"></span>
+            </div></a></div><p></p>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#login-details">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">
+                <a class="p-button--neutral" href="#installation-complete">Next section&nbsp;&rsaquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="section" id="installation-complete">
+          <div class="section-inner">
+            <h2>Installation complete</h2>
+            <p>Duration: 0:01</p>
+            <p>After everything has been installed and configured, a small window will appear asking you to restart your machine. Click on <code>Restart Now</code> and remove either the DVD or USB flash drive when prompted. If you initiated the installation while testing the desktop, you also get the option to continue testing.</p>
+            <p></p><div class="lightbox-wrapper"><a href="//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/f/f4e2a592f30424c402346ad872e065491518d5eb.jpg" class="lightbox" title="f4e2a592-download-desktop-install-ubuntu-desktop_10.jpg"><img src="//ubuntucommunity.s3-us-east-2.amazonaws.com/optimized/2X/f/f4e2a592f30424c402346ad872e065491518d5eb_1_690x178.jpg" alt="screenshot" width="690" height="178"><div class="meta">
+            <span class="filename">f4e2a592-download-desktop-install-ubuntu-desktop_10.jpg</span><span class="informations">794x205 32.3 KB</span><span class="expand"></span>
+            </div></a></div><p></p>
+            <p>Congratulations! You have successfully installed the world’s most popular Linux operating system!</p>
+            <p>It’s now time to start enjoying Ubuntu!</p>
+            <h3>Finding help</h3>
+            <p>If you get stuck, help is always at hand.</p>
+            <ul>
+            <li><a href="https://askubuntu.com/">Ask Ubuntu</a></li>
+            <li><a href="https://ubuntuforums.org/">Ubuntu Forums</a></li>
+            <li><a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC-based support</a></li>
+            </ul>
+            <ul class="article-navigation">
+              <li class="previous-section">
+                <a class="p-button--neutral" href="#background-installation">&lsaquo;&nbsp;Previous section</a>
+              </li>
+              <li class="next-section">&nbsp;</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .tutorial-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  .section:not(:target) {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s ease-in;
+    height: 0;
+  }
+
+  .section:target {
+    opacity: 1;
+    pointer-events: all;
+    height: auto;
+  }
+
+  .section-inner {
+    padding-top: 1.5rem;
+  }
+
+  .article-navigation {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    margin-top: 3rem;
+  }
+
+  .tutorial-nav__link {
+    display: block;
+  }
+
+  .tutorial-nav__link.current-nav {
+    border-left: 3px solid #666;
+    padding-left: 1rem;
+  }
+</style>
+
+<script>
+  var navigationLinks = document.querySelectorAll(".tutorial-nav__link");
+
+  function setActiveLink(navigationLinks) {
+    navigationLinks.forEach(link => {
+      if (link.getAttribute("href") === window.location.hash) {
+        link.classList.add("current-nav");
+      } else {
+        link.classList.remove("current-nav");
+      }
+    });
+  }
+
+  window.addEventListener("hashchange", e => {
+    setActiveLink(navigationLinks);
+  });
+
+  setActiveLink(navigationLinks);
+
+  if (!window.location.hash) {
+    window.location.hash = navigationLinks[0].getAttribute("href");
+  }
+</script>
+
+{% endblock %}
