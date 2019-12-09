@@ -8,10 +8,10 @@ context:
      header_title: "From VMware to Charmed&nbsp;OpenStack"
      header_subtitle: "Reduce costs and increase the efficiency of your infrastructure with open source adoption"
      header_image: "https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg"
-     header_url: '#'
-     header_cta: Download the whitepaper
+     header_url:
+     header_cta:
      header_class: p-engage-banner--dark
-     header_supplemental: '<p><a href="#" class="p-button--positive u-hide--small">Download the whitepaper</a> <a href="#register-section" class="p-button--neutral">Watch the webinar</a></p>'
+     header_supplemental: '<br /><p><a href="#" class="p-button--positive">Download the whitepaper</a> <a href="#register-section" class="p-button--neutral">Watch the webinar</a></p>'
      header_lang: en
      webinar_code: '<div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 348935, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
      form_include:
