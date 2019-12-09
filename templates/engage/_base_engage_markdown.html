@@ -46,6 +46,9 @@
             {{ header_cta }}
           </a>
         </p>{% endif %}
+        {% if header_supplemental %}
+          {{ header_supplemental | safe }}
+        {% endif %}
       </div>
     </div>
     {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
