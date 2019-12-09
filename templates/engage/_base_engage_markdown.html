@@ -137,9 +137,11 @@
       </form>
       <!-- /MARKETO FORM -->
     </div>
-    {% else %}
+    {% endif %}
   </div>
 </section>
+
+{% if webinar_code %}
 <!-- webinar -->
 <section class="p-strip is-shallow" id="register-section">
   <div class="row" id="register-section">
@@ -147,7 +149,6 @@
   </div>
 </section>
 {% endif %}
-  </div>
-</section>
+
 {% endblock %}
 {% endblock %}
