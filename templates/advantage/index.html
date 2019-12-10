@@ -76,11 +76,11 @@
           {% for contract in enterprise_contracts %}
           <tr class="p-table__row">
             <td>
-              <button class="u-toggle" aria-controls="#expanded-details-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
+              <button class="u-toggle u-no-padding--left" aria-controls="#expanded-details-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                   {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
               </button>
             </td>
-            <td style="text-transform: capitalize">{{ contract['supportLevel'] }}</td>
+            <td style="text-transform: capitalize"><span style="padding-top:.35rem;">{{ contract['supportLevel'] }}</span></td>
             <td class="u-align--center {% if loop.index == 1 %}p-table--open{% endif %}">
               <button class="u-toggle" aria-controls="#expanded-row-token-{{ loop.index }}" aria-expanded="{% if loop.index == 1 %}true{% else %}false{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
                 {{ contract['machineCount'] }} &nbsp;<i class="p-icon--contextual-menu {% if loop.index == 1 %}u-rotate{% endif %}">Open</i>
@@ -93,7 +93,7 @@
                 <i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
               </button>
               {% else %}
-              N/A
+              <span style="padding-top:.35rem;">N/A</span>
               {% endif %}
             </td>
             <td class="u-align--center">
@@ -102,7 +102,7 @@
                 <i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
               </button>
               {% else %}
-              N/A
+              <span style="padding-top:.35rem;">N/A</span>
               {% endif %}
             </td>
             <td class="u-align--center">
@@ -111,7 +111,7 @@
                 <i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
               </button>
               {% else %}
-              N/A
+              <span style="padding-top:.35rem;">N/A</span>
               {% endif %}
             </td>
             <td class="u-align--center">
@@ -120,17 +120,17 @@
                 <i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
               </button>
               {% else %}
-              N/A
+              <span style="padding-top:.35rem;">N/A</span>
               {% endif %}
             </td>
 
             <td id="expanded-details-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  <ul class="p-list u-no-margin--bottom">
-                    <li class="p-list__item">Created: <strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></li>
-                    <li class="p-list__item">Effective from: <strong>{{ contract['contractInfo']['effectiveFromFormatted'] }}</strong></li>
-                  </ul>
+                  <div class="col-12 u-align--center">
+                    Created on: <code>{{ contract['contractInfo']['createdAtFormatted'] }}</code><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Effective from: <code>{{ contract['contractInfo']['effectiveFromFormatted'] }}</code>
+                  </div>
                 </div>
               </div>
             </td>
