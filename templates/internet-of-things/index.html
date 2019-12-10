@@ -15,7 +15,15 @@
       </p>
     </div>
     <div class="col-5 col-start-large-8 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/27b51b01-IOT_Ubuntu_devices_inforgrapic.svg" width="488" alt="" />
+      {{
+        image(  
+          url="https://assets.ubuntu.com/v1/27b51b01-IOT_Ubuntu_devices_inforgrapic.svg",
+          alt="",
+          width="415",
+          height="285",
+          hi_def=True,
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -25,49 +33,182 @@
     <h4 class="p-muted-heading u-align--center">Leading brands choose Ubuntu Core for security, apps and updates</h4>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg" width="88" alt="Dell" >
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg",
+            alt="Dell",
+            width="88",
+            height="88",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/ee23142d-logo-ibm-large.png" width="110" alt="IBM">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/ee23142d-logo-ibm-large.png",
+            alt="IBM",
+            width="110",
+            height="50",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/3cf238fd-Qualcomm-Logo.svg" alt="Qualcomm" width="110">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/3cf238fd-Qualcomm-Logo.svg",
+            alt="Qualcomm",
+            width="110",
+            height="25",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/e71bd588-logo-samsung.svg" width="110" alt="Samsung">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/e71bd588-logo-samsung.svg",
+            alt="Samsung",
+            width="110",
+            height="37",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img  class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg" alt="Intel" style="max-width: 110px;" width="110" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg",
+            alt="Intel",
+            width="110",
+            height="73",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img  class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg" style="max-width: 110px;" alt="arm" width="110" />
+        {{
+          image(  
+            url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
+            alt="Arm",
+            width="110",
+            height="34",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img  class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/45fd87b5-2018-logo-rigado.svg" alt="Rigado" style="max-width: 140px; max-height:140px;" width="140" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/45fd87b5-2018-logo-rigado.svg",
+            alt="Rigado",
+            width="140",
+            height="140",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo", "style": "max-width: 140px; max-height: 140px;"},
+          ) | safe
+        }}
       </li>
     </ul>
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
-    <div class="col-4">
-      <img src="https://assets.ubuntu.com/v1/33007e71-Internet+of+Things_digital-screens.svg" alt="" style="height: 180px; margin-bottom: 24px;">
-      <h3>Digital signage</h3>
-      <p>A small footprint and full OpenGL make Ubuntu Core the perfect platform for secure digital signs.</p>
-      <p><a href="/internet-of-things/digital-signage">Learn more&nbsp;&rsaquo;</a></p>
+    <div class="col-6 p-tile">
+      <div class="row p-tile__row">
+        <div class="col-3 col-medium-3">
+          <div class="u-align--center">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/33007e71-Internet+of+Things_digital-screens.svg",
+                alt="",
+                width="236",
+                height="180",
+                hi_def=True,
+              ) | safe
+            }}
+          </div>
+        </div>
+        <div class="col-3 col-medium-3">
+          <h3>Digital signage</h3>
+          <p>A small footprint and full OpenGL make Ubuntu Core the perfect platform for secure digital signs.</p>
+          <p><a href="/internet-of-things/digital-signage">Learn more&nbsp;&rsaquo;</a></p>
+        </div>
+      </div>
     </div>
-    <div class="col-4">
-      <img src="https://assets.ubuntu.com/v1/9a250d1b-Internet+of+Things_digital-drone.svg" alt="" style="height: 180px; margin-bottom: 24px;">
-      <h3>Robotics</h3>
-      <p>Unleash the robots with ROS on Ubuntu. For autonomous vehicles and smart manufacturing.</p>
-      <p><a href="/internet-of-things/robotics">Learn more&nbsp;&rsaquo;</a></p>
+    <div class="col-6 p-tile" style="margin-bottom: 64px;">
+      <div class="row p-tile__row">
+        <div class="col-3 col-medium-3">
+          <div class="u-align--center">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/9a250d1b-Internet+of+Things_digital-drone.svg",
+                alt="",
+                width="216",
+                height="180",
+                hi_def=True,
+              ) | safe
+            }}
+          </div>
+        </div>
+        <div class="col-3 col-medium-3">
+          <h3>Robotics</h3>
+          <p>Unleash the robots with ROS on Ubuntu. For autonomous vehicles and smart manufacturing.</p>
+          <p><a href="/internet-of-things/robotics">Learn more&nbsp;&rsaquo;</a></p>
+        </div>
+      </div>
     </div>
-    <div class="col-4">
-      <img src="https://assets.ubuntu.com/v1/d40fc8b9-Internet+of+Things_digital-gateways.svg" alt="" style="height: 180px; margin-bottom: 24px;">
-      <h3>Gateways</h3>
-      <p>Rich networking and comms make Ubuntu the perfect choice for your industrial gateways.</p>
-      <p><a href="/internet-of-things/gateways">Learn more&nbsp;&rsaquo;</a></p>
+    <div class="col-6 p-tile">
+      <div class="row p-tile__row">
+        <div class="col-3 col-medium-3">
+          <div class="u-align--center">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/d40fc8b9-Internet+of+Things_digital-gateways.svg",
+                alt="",
+                width="207",
+                height="180",
+                hi_def=True,
+              ) | safe
+            }}
+          </div>
+        </div>
+        <div class="col-3 col-medium-3">
+          <h3>Gateways</h3>
+          <p>Rich networking and comms make Ubuntu the perfect choice for your industrial gateways.</p>
+          <p><a href="/internet-of-things/gateways">Learn more&nbsp;&rsaquo;</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 p-tile">
+      <div class="row p-tile__row">
+        <div class="col-3 col-medium-3">
+          <div class="u-align--center">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/580f3ae7-automotive.svg",
+                alt="",
+                width="236",
+                height="180",
+                hi_def=True,
+              ) | safe
+            }}
+          </div>
+        </div>
+        <div class="col-3 col-medium-3">
+          <h3>Automotive</h3>
+          <p>Reinvent the automobile with Ubuntu, designed for critical embedded systems.</p>
+          <p><a href="/automotive">Learn more&nbsp;&rsaquo;</a></p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -80,7 +221,16 @@
     </div>
   </div>
   <div class="u-fixed-width u-hide--small">
-    <img src="https://assets.ubuntu.com/v1/6a4925fa-limenet-appstore.png?w=1040" width="1040" alt="Snap store screenshot" style="border-color: #cdcdcd; border-style: solid; border-width: 1px;" />
+    {{
+      image(
+        url="https://assets.ubuntu.com/v1/6a4925fa-limenet-appstore.png",
+        alt="Snap store screenshot",
+        width="1040",
+        height="641",
+        hi_def=True,
+        attrs={"style": "border-color: #cdcdcd; border-style: solid; border-width: 1px;"},
+      ) | safe
+    }}
     <p><a href="http://snapcraft.io/store" class="p-link--external">Visit the Snap Store</a></p>
   </div>
 </section>
@@ -101,7 +251,15 @@
 <section class="p-strip--light is-deep is-bordered">
   <div class="row u-equal-height">
     <div class="col-5 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/805f2b3a-core_black-orange_st_hex.svg" alt="" width="200" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/805f2b3a-core_black-orange_st_hex.svg",
+          alt="",
+          width="200",
+          height="270",
+          hi_def=True,
+        ) | safe
+      }}
     </div>
     <div class="col-6 col-start-large-7">
       <h2>Snaps for security</h2>
@@ -157,7 +315,15 @@
   <div class="row u-equal-height">
     <div class="col-6 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--small" style="min-height: 7rem;">
-        <img src="https://assets.ubuntu.com/v1/8cb47950-g46.png?h=65" height="65" style="height: 65px;" alt="" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/8cb47950-g46.png",
+            alt="",
+            width="90",
+            height="65",
+            hi_def=True,
+          ) | safe
+        }}
       </header>
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Intel NUC, Up2 , TANK, Joule</h3>
@@ -166,7 +332,15 @@
     </div>
     <div class="col-6 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--small" style="min-height: 7rem;">
-        <img src="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png?h=65" height="65" style="height: 65px;" alt="" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png",
+            alt="",
+            width="195",
+            height="65",
+            hi_def=True,
+          ) | safe
+        }}
       </header>
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Raspberry Pi 2,3,4</h3>
@@ -177,7 +351,15 @@
   <div class="row u-equal-height">
     <div class="col-6 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--small" style="min-height: 7rem;">
-        <img src="https://assets.ubuntu.com/v1/a8d80d5a-Qualcomm-Logo.svg" style="height: 65px;" height="65" alt="" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/a8d80d5a-Qualcomm-Logo.svg",
+            alt="",
+            width="200",
+            height="65",
+            hi_def=True,
+          ) | safe
+        }}
       </header>
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Qualcomm Dragonboard</h3>
@@ -194,14 +376,32 @@
       <p>With Ubuntu, you can develop a packaged application on your laptop, then monetise it by publishing it directly to the snap store.</p>
       <p><a class="p-link--external" href="https://docs.ubuntu.com/core/en/">Learn about developing your IoT project with Ubuntu</a></p>
     </div>
-    <div class="col-5 u-align--center u-hide--small"><img src="https://assets.ubuntu.com/v1/527fbcef-picto-developer-warmgrey.svg" width ="140" alt=""></div>
+    <div class="col-5 u-align--center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/527fbcef-picto-developer-warmgrey.svg",
+          alt="",
+          width="140",
+          height="140",
+          hi_def=True,
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="row">
     <div class="col-2 u-align--left u-vertically-align u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="140" alt="" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg",
+          alt="",
+          width="140",
+          height="140",
+          hi_def=True,
+        ) | safe
+      }}
     </div>
     <div class="col-7 col-start-large-4">
       <h2>Let&rsquo;s work together</h2>

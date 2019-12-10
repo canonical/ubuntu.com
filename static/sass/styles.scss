@@ -462,3 +462,25 @@ summary {
   }
 
 }
+
+.p-tile {
+  margin-bottom: 64px;
+
+  &:nth-child(4) {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: $breakpoint-medium + 1) {
+    &:nth-child(3) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.p-tile__row {
+  @media only screen and (max-width: $breakpoint-medium) {
+    align-items: center;
+    display: grid;
+    justify-content: flex-start;
+  }
+}
