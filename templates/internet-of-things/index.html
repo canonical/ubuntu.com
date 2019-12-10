@@ -251,7 +251,15 @@
 <section class="p-strip--light is-deep is-bordered">
   <div class="row u-equal-height">
     <div class="col-5 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/805f2b3a-core_black-orange_st_hex.svg" alt="" width="200" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/805f2b3a-core_black-orange_st_hex.svg",
+          alt="",
+          width="200",
+          height="270",
+          hi_def=True,
+        ) | safe
+      }}
     </div>
     <div class="col-6 col-start-large-7">
       <h2>Snaps for security</h2>
@@ -307,7 +315,15 @@
   <div class="row u-equal-height">
     <div class="col-6 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--small" style="min-height: 7rem;">
-        <img src="https://assets.ubuntu.com/v1/8cb47950-g46.png?h=65" height="65" style="height: 65px;" alt="" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/8cb47950-g46.png?h=65",
+            alt="",
+            width="90",
+            height="65",
+            hi_def=True,
+          ) | safe
+        }}
       </header>
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Intel NUC, Up2 , TANK, Joule</h3>
@@ -316,7 +332,15 @@
     </div>
     <div class="col-6 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--small" style="min-height: 7rem;">
-        <img src="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png?h=65" height="65" style="height: 65px;" alt="" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/dca2e4c4-raspberry-logo.png?h=65",
+            alt="",
+            width="195",
+            height="65",
+            hi_def=True,
+          ) | safe
+        }}
       </header>
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Raspberry Pi 2,3,4</h3>
@@ -327,7 +351,15 @@
   <div class="row u-equal-height">
     <div class="col-6 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--small" style="min-height: 7rem;">
-        <img src="https://assets.ubuntu.com/v1/a8d80d5a-Qualcomm-Logo.svg" style="height: 65px;" height="65" alt="" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/a8d80d5a-Qualcomm-Logo.svg",
+            alt="",
+            width="200",
+            height="65",
+            hi_def=True,
+          ) | safe
+        }}
       </header>
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Qualcomm Dragonboard</h3>
@@ -344,14 +376,32 @@
       <p>With Ubuntu, you can develop a packaged application on your laptop, then monetise it by publishing it directly to the snap store.</p>
       <p><a class="p-link--external" href="https://docs.ubuntu.com/core/en/">Learn about developing your IoT project with Ubuntu</a></p>
     </div>
-    <div class="col-5 u-align--center u-hide--small"><img src="https://assets.ubuntu.com/v1/527fbcef-picto-developer-warmgrey.svg" width ="140" alt=""></div>
+    <div class="col-5 u-align--center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/527fbcef-picto-developer-warmgrey.svg",
+          alt="",
+          width="140",
+          height="140",
+          hi_def=True,
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="row">
     <div class="col-2 u-align--left u-vertically-align u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="140" alt="" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg",
+          alt="",
+          width="140",
+          height="140",
+          hi_def=True,
+        ) | safe
+      }}
     </div>
     <div class="col-7 col-start-large-4">
       <h2>Let&rsquo;s work together</h2>
