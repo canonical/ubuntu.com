@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import datetime
 
 # Packages
 import feedparser
@@ -147,6 +148,22 @@ def advantage():
                                     "affordances"
                                 ]["supportLevel"]
                         contract["entitlements"] = entitlements
+                        contract["contractInfo"][
+                            "createdAtFormatted"
+                        ] = datetime.datetime.strptime(
+                            contract["contractInfo"]["createdAt"],
+                            "%Y-%m-%dT%H:%M:%S.%fZ",
+                        ).strftime(
+                            "%d %B %Y"
+                        )
+                        contract["contractInfo"][
+                            "effectiveFromFormatted"
+                        ] = datetime.datetime.strptime(
+                            contract["contractInfo"]["effectiveFrom"],
+                            "%Y-%m-%dT%H:%M:%S.%fZ",
+                        ).strftime(
+                            "%d %B %Y"
+                        )
                         enterprise_contracts.append(contract)
         except HTTPError as http_error:
             # We got an unauthorized request, so we likely
