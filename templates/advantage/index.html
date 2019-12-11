@@ -127,10 +127,14 @@
             <td id="expanded-details-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  <div class="col-12 u-align--center">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Created on: &nbsp;<strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong><br/>
-                    Effective from: &nbsp;<strong>{{ contract['contractInfo']['effectiveFromFormatted'] }}</strong>
-                  </div>
+                  <dl>
+                    <dt style="display: inline-block; width: 130px; text-align: right;">Created on:</dt>
+                    <dd style="display: inline-block;">{{ contract['contractInfo']['createdAtFormatted'] }}</dd>
+                  </dl>
+                  <dl>
+                    <dt style="display: inline-block; width: 130px; text-align: right;">Effective from:</dt>
+                    <dd style="display: inline-block;">{{ contract['contractInfo']['effectiveFromFormatted'] }}</dd>
+                  </dl>
                 </div>
               </div>
             </td>
