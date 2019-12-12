@@ -46,6 +46,9 @@
             {{ header_cta }}
           </a>
         </p>{% endif %}
+        {% if header_supplemental %}
+          {{ header_supplemental | safe }}
+        {% endif %}
       </div>
     </div>
     {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
@@ -134,9 +137,11 @@
       </form>
       <!-- /MARKETO FORM -->
     </div>
-    {% else %}
+    {% endif %}
   </div>
 </section>
+
+{% if webinar_code %}
 <!-- webinar -->
 <section class="p-strip is-shallow" id="register-section">
   <div class="row" id="register-section">
@@ -144,7 +149,6 @@
   </div>
 </section>
 {% endif %}
-  </div>
-</section>
+
 {% endblock %}
 {% endblock %}
