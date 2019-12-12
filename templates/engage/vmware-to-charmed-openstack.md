@@ -16,7 +16,7 @@ context:
      webinar_code: '<div id="webinar" class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 348935, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
      form_include: en
      form_id: 3470
-     form_return_url:
+     form_return_url: "https://pages.ubuntu.com/VMwaretoOpenstack-TY.html"
 ---
 
 Due to the costs associated with VMware licencing, support and professional services, many are not able to meet their primary goal - significantly reduced TCO. In search of alternative solutions, organisations have recently started exploring other open-source platforms such as OpenStack.
