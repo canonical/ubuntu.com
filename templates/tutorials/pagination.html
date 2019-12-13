@@ -1,0 +1,83 @@
+<div class="u-fixed-width">
+  {% if page and total_pages > 1 %}
+    <ol class="p-pagination" style="justify-content: center;">
+      <li class="p-pagination__item">
+        {% if page > 1 %}
+          <a href="?{{ modify_query({'page': page - 1}) }}" class="p-pagination__link--previous">
+            <i class="p-icon--contextual-menu">Previous page</i>
+          </a>
+        {% else %}
+        <span class="p-pagination__link--previous is-disabled">
+          <i class="p-icon--contextual-menu">Previous page</i>
+        </span>
+        {% endif %}
+      </li>
+
+      {# always show 5 pages in pagination #}
+      {% if page > 4 and page == total_pages %}
+        <li class="p-pagination__item">
+          <a href="?{{ modify_query({'page': page - 4}) }}" class="p-pagination__link">{{ page - 4 }}</a>
+        </li>
+      {% endif %}
+
+      {% if page > 3 and page == total_pages %}
+        <li class="p-pagination__item">
+          <a href="?{{ modify_query({'page': page - 3}) }}" class="p-pagination__link">{{ page - 3 }}</a>
+        </li>
+      {% endif %}
+
+      {% if page > 2 %}
+        <li class="p-pagination__item">
+          <a href="?{{ modify_query({'page': page - 2}) }}" class="p-pagination__link">{{ page - 2 }}</a>
+        </li>
+      {% endif %}
+
+      {% if page > 1 %}
+        <li class="p-pagination__item">
+          <a href="?{{ modify_query({'page': page - 1}) }}" class="p-pagination__link">{{ page - 1 }}</a>
+        </li>
+      {% endif %}
+
+      {# current page #}
+      <li class="p-pagination__item">
+        <a href="?{{ modify_query({'page': page }) }}" class="p-pagination__link is-active">{{ page }}</a>
+      </li>
+
+      {% if page < total_pages %}
+        <li class="p-pagination__item">
+          <a href="?{{ modify_query({'page': page + 1}) }}" class="p-pagination__link">{{ page + 1 }}</a>
+        </li>
+      {% endif %}
+
+      {% if page < total_pages - 1 %}
+        <li class="p-pagination__item">
+          <a href="?{{ modify_query({'page': page + 2}) }}" class="p-pagination__link">{{ page + 2 }}</a>
+        </li>
+      {% endif %}
+
+      {% if page < total_pages - 2 and page <= 2 %}
+        <li class="p-pagination__item">
+          <a href="?{{ modify_query({'page': page + 3}) }}" class="p-pagination__link">{{ page + 3 }}</a>
+        </li>
+      {% endif %}
+
+      {% if page < total_pages - 3 and page <= 3 %}
+        <li class="p-pagination__item">
+          <a href="?{{ modify_query({'page': page + 4}) }}" class="p-pagination__link">{{ page + 4 }}</a>
+        </li>
+      {% endif %}
+
+      <li class="p-pagination__item">
+        {% if page != total_pages %}
+          <a href="?{{ modify_query({'page': page + 1}) }}" class="p-pagination__link--next">
+            <i class="p-icon--contextual-menu">Next page</i>
+          </a>
+        {% else %}
+        <span class="p-pagination__link--next is-disabled">
+          <i class="p-icon--contextual-menu">Next page</i>
+        </span>
+        {% endif %}
+      </li>
+    </ol>
+  {% endif %}
+</div>
