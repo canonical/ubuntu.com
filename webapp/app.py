@@ -143,3 +143,33 @@ server_docs = DiscourseDocs(
 )
 
 server_docs.init_app(app)
+
+url_prefix = "/tutorials"
+tutorials_docs_parser = DocParser(
+    api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
+    index_topic_id=13611,
+    url_prefix=url_prefix,
+)
+tutorials_docs = DiscourseDocs(
+    parser=tutorials_docs_parser,
+    category_id=34,
+    document_template="/tutorials/tutorial.html",
+    url_prefix=url_prefix,
+    blueprint_name="tutorials",
+)
+
+
+@app.route(url_prefix)
+def index():
+    page = flask.request.args.get("page", default=1, type=int)
+    tutorials_docs.parser.parse()
+    return flask.render_template(
+        "tutorials/index.html",
+        navigation=tutorials_docs.parser.navigation,
+        forum_url=tutorials_docs.parser.api.base_url,
+        metadata=tutorials_docs.parser.metadata,
+        page=page,
+    )
+
+
+tutorials_docs.init_app(app)

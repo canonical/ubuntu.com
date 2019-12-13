@@ -1,0 +1,101 @@
+{% extends "tutorials/base_tutorials.html" %}
+
+{% block title %}Tutorials{% endblock %}
+
+{% block content %}
+<nav class="p-navigation--secondary l-tutorials__breadcrumb">
+  <div class="row">
+    <div class="col-12 u-equal-height">
+      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="/tutorials">
+        <h5 class="p-navigation--secondary__logo">
+          Tutorials
+        </h5>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<section class="p-strip--suru-blog-header is-dark">
+  <div class="row">
+    <div class="col-6">
+      <h1>Tutorials</h1>
+      <p>These tutorials provide a step-by-step process to doing development and dev-ops activities on Ubuntu machines, servers or devices.</p>
+      <p><a class="p-link--inverted" href="https://discourse.ubuntu.com/c/tutorials">You can write your own&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="p-strip is-shallow l-tutorials__filters">
+  <div class="row">
+    <div class="col-4">
+      <div class="p-form__group">
+        <label for="tutorials-search">Search tutorials containing:</label>
+        <input type="search" name="tutorials-search" id="tutorials-search">
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="p-form__group">
+        <label for="tutorials-topic">Topic:</label>
+        <select name="tutorials-topic" id="tutorials-topic">
+          <option value="any">Any</option>
+          <option value="cloud">Cloud</option>
+          <option value="community">Community</option>
+          <option value="containers">Containers</option>
+          <option value="desktop">Desktop</option>
+          <option value="iot">IoT</option>
+          <option value="packaging">Packaging</option>
+          <option value="server">Server</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="p-form__group">
+        <label for="tutorials-search">Sorted by:</label>
+        <select name="tutorials-sort" id="tutorials-sort">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="longest">Longest</option>
+          <option value="most-difficult">Most difficult</option>
+          <option value="least-difficult">Least difficult</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+{% set posts_per_page = 12 %}
+{% set total_pages = metadata | count % posts_per_page %}
+
+<section class="p-strip is-shallow has-shadow">
+  <div class="row u-equal-height">
+    {% for item in metadata %}
+      {% if loop.index <= posts_per_page * page and loop.index >= posts_per_page * page - posts_per_page + 1 %}
+        <div class="col-4 blog-p-card--post">
+          <header class="blog-p-card__header--tutorial">
+            <h5 class="p-muted-heading u-no-margin--bottom u-text-dark">
+              {{ item.categories }}
+            </h5>
+          </header>
+          <div class="blog-p-card__content">
+            <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
+              {{ item.topic | replace("inline-onebox", "p-link--soft") | safe }}
+            </h3>
+            <p class="u-sv3">{{ item.summary }}</p>
+          </div>
+          <footer class="blog-p-card__footer">
+            Difficulty: <span class="l-tutorials-meter l-tutorials-meter--{{ item.difficulty }}">{{ item.difficulty }} out of 5</span>
+          </footer>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% with %}
+  {% set total_pages = total_pages %}
+  {% set page = page %}
+  {% set moo = "l" %}
+  {% include "tutorials/pagination.html" %}
+{% endwith %}
+
+{% endblock %}
