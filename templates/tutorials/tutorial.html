@@ -1,0 +1,87 @@
+{% extends "tutorials/base_tutorials.html" %}
+
+{% set small_footer=True %}
+
+{% block title %}{{ document["title"] }}{% endblock %}
+
+{% block content %}
+
+<nav class="p-navigation--secondary">
+  <div class="row">
+    <div class="col-12 u-equal-height">
+      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="/tutorials">
+        <h5 class="p-navigation--secondary__logo">
+          Tutorials
+        </h5>
+      </a>
+      <ul class="breadcrumbs--secondary">
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link p-link--soft" href="{{ document['slug'] }}">{{ document.title }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="l-tutorial">
+  <aside class="l-tutorial__sidebar">
+    <i class="l-tutorial__nav-toggle p-icon--menu u-hide u-show--small"></i>
+    <ol class="l-tutorial__nav p-stepped-list u-hide--small">
+      {% for section in document.sections %}
+        <li class="p-stepped-list__item l-tutorial__nav-item">
+          <a class="p-stepped-list__title l-tutorial__nav-link" href="#{{ section['slug'] }}">
+            {{ section["title"]}}
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+  </aside>
+  <div class="l-tutorial__content">
+    {% for section in document.sections %}
+    <section class="l-tutorial-section" id="{{ section['slug']}}">
+      <h2 class="p-heading--four">{{ loop.index }}. {{ section["title"]}}</h2>
+
+      <article class="l-tutorial-section__content">
+        {{ section.content | safe }}
+      </article>
+      <hr class="u-sv3">
+      <footer class="l-tutorial-section__footer row">
+        <div class="col-6 col-small-2 col-medium-3 u-vertically-center">
+          <a class="l-tutorial__bug-link" href="https://discourse.ubuntu.com{{ document.topic_path }}">
+            <small>Suggest changes&nbsp;&rsaquo;</small>
+          </a>
+        </div>
+        <div class="col-6 col-small-2 col-medium-3 u-align--right">
+          <div class="l-tutorial__duration">
+            <small><span class="u-hide--small">about </span>{{ section["remaining_duration"] }} minutes to go</small>
+          </div>
+          <div class="l-tutorial__pagination">
+            {% if loop.first %}
+              <button class="l-tutorial__pagination-item--prev p-button--neutral has-icon u-no-margin--bottom" disabled style="margin-right: 1rem;">
+                <i class="p-icon--contextual-menu">Previous step</i>
+              </button>
+            {% else %}
+              <a href="#{{ loop.previtem['slug']}}" class="l-tutorial__pagination-item--prev p-button--neutral has-icon u-no-margin--bottom" style="margin-right: 1rem;">
+                <i class="p-icon--contextual-menu">Previous step</i>
+              </a>
+            {% endif %}
+
+            {% if loop.last %}
+              <button class="l-tutorial__pagination-item--next p-button--neutral has-icon u-no-margin--bottom" disabled>
+                <i class="p-icon--contextual-menu">Next step</i>
+              </button>
+            {% else %}
+              <a href="#{{ loop.nextitem['slug']}}" class="l-tutorial__pagination-item--next p-button--neutral has-icon u-no-margin--bottom">
+                <i class="p-icon--contextual-menu">Next step</i>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </footer>
+    </section>
+    {% endfor %}
+  </div>
+</div>
+
+<script src="/static/js/tutorials.js"></script>
+{% endblock %}
