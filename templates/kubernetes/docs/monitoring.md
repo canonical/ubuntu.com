@@ -109,6 +109,33 @@ drop-down box to `Node Metrics (via Telegraf):
 
 ![grafana dashboard image](https://assets.ubuntu.com/v1/45b87639-grafana-2.png)
 
+### Using kube-state-metrics
+
+The [kube-state-metrics project](https://github.com/kubernetes/kube-state-metrics)
+is a useful addon for monitoring workloads and their statuses. This involves
+installing a pod and service into Kubernetes, pointing Prometheus at that
+endpoint for scraping, and then setting up Grafana to use this data.
+
+#### Installing kube-state-metrics
+
+Starting with Charmed Kubernetes 1.17,
+[kube-state-metrics](https://github.com/kubernetes/kube-state-metrics)
+are added, automatically, when `enable-metrics` is set to  `true ` on the
+`kubernetes-master` charm.  This is enabled by default.  Enable
+with the following command.
+
+```bash
+juju config kubernetes-master enable-metrics=true
+```
+
+#### Viewing kube-state-metrics
+
+To view metrics scraped from
+[kube-state-metrics](https://github.com/kubernetes/kube-state-metrics),
+refer to
+[Monitoring with Prometheus, Grafana, and Telegraf](#monitoring-with-prometheus-grafana-and-telegraf)
+and enable Grafana.  You can then open the **Charmed Kubernetes Dashboard**.
+
 ## Monitoring with Nagios
 
 **Nagios** ([https://www.nagios.org/][nagios]) is widely used for monitoring
