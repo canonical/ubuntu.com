@@ -343,12 +343,12 @@ kubernetes-worker:
   annotations:
     gui-x: '100'
     gui-y: '850'
-  charm: cs:~containers/kubernetes-worker-398
+  charm: cs:~containers/kubernetes-worker
   constraints: cores=4 mem=4G root-disk=16G
   expose: true
   num_units: 3
   options:
-    channel: 1.16/stable
+    channel: 1.17/stable
   resources:
     cni-amd64: 12
     cni-arm64: 10
