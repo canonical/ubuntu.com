@@ -3,7 +3,7 @@ wrapper_template: "engage/_base_engage_markdown.html"
 context:
   title: "Cyberdyne keeps cleaning robots up to date in the field with snaps"
   meta_description: "Cyberdyne unlocks the ability to seamlessly roll out software updates to robots in the field by switching to snaps"
-  meta_image: 
+  meta_image: "https://assets.ubuntu.com/v1/3bca057e-Meta+data+img.jpg"
   meta_copydoc: "https://docs.google.com/document/d/17JI-RzetZYq5GZF9COAuh-uHG2yHI2pGy25ePdfA9Qk/edit"
   header_title: "Cyberdyne keeps cleaning robots up to date in the field with snaps"
   header_subtitle: 
