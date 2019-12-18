@@ -7,14 +7,14 @@ context:
   meta_copydoc: "https://docs.google.com/document/d/17JI-RzetZYq5GZF9COAuh-uHG2yHI2pGy25ePdfA9Qk/edit"
   header_title: "Cyberdyne keeps cleaning robots up to date in the field with snaps"
   header_subtitle: 
-  header_image:
+  header_image: https://assets.ubuntu.com/v1/470ca6c0-logo_cyberdyne.png
   header_url: '#register-section'
   header_cta: Register for the webinar
-  header_class: p-engage-banner--grad
+  header_class: p-engage-banner--dark
   header_lang: en
   form_include: en
   form_id: 3458
-  form_return_url:
+  form_return_url: "https://pages.ubuntu.com/CS_Cyberdyne-TY.html"
 ---
 
 As Japan&rsquo;s workforce ages, certain roles are being fulfilled by advanced robots to help bridge the gap. Cyberdyne, a Japanese robotics company, are building such robots and have rolled them out into shopping centres and Tokyo&rsquo;s two main airports. Leveraging artificial intelligence, Cyberdyne&rsquo;s robots are operating alongside human employees to safely and efficiently clean commercial locations.
