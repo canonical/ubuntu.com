@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep u-no-padding--bottom">
   <div class="row">
     <div class="col-10">
       <h1>Download Ubuntu Server</h1>
@@ -58,6 +58,34 @@
           </p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h2>Multipass for instant Ubuntu VMs</h2>
+      <p>With Multipass you can download, configure, and control Ubuntu Server virtual machines with latest updates preinstalled. Set up a mini-cloud on your Linux, Windows, or macOS system.</p>
+
+      <p>
+        <a id="multipass-os-cta" href="https://multipass.run/docs" class="p-button--neutral"><span class="p-link--external">Install</span></a>
+      </p>
+
+      <p>
+        <a href="https://multipass.run" class="p-link--external">Learn more about multipass</a>
+      </p>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
+          alt="",
+          width="160",
+          height="160",
+          hi_def=True,
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -135,5 +163,23 @@
 </section>
 
 {% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+<script>
+  var multipassOScta = document.getElementById('multipass-os-cta');
+  var baseInstallURL = multipassOScta.getAttribute('href');
+  var ctaSpan = multipassOScta.querySelector('span')
+  var os = 'linux';
+
+  if (navigator.appVersion.indexOf('Win') != -1) { os = 'Windows' };
+  if (navigator.appVersion.indexOf('MacOS') != -1) { os = 'macOS' };
+  if (navigator.appVersion.indexOf('Mac OS') != -1) { os = 'macOS' };
+  if (navigator.appVersion.indexOf('Macintosh') != -1) { os = 'macOS' };
+
+  multipassOScta.setAttribute(
+    'href', 
+    baseInstallURL + '/installing-on-' + os.toLowerCase()
+  );
+  ctaSpan.innerText = 'Install on ' + os;
+</script>
 
 {% endblock content %}
