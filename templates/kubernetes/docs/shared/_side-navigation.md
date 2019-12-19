@@ -49,5 +49,6 @@
   - [Release notes](/kubernetes/docs/release-notes)
   - [Upgrade notes](/kubernetes/docs/upgrade-notes)
   - [Certificates and trust](/kubernetes/docs/certs-and-trust)
+  - [CIS compliance](/kubernetes/docs/cis-compliance)
   - [Snap refresh settings](/kubernetes/docs/snap-refresh)
   - [Get in touch](/kubernetes/docs/get-in-touch)
