@@ -145,4 +145,22 @@
   {% include "shared/contextual_footers/_contextual_footer.html" %}
 {% endwith %}
 
+<script>
+  var multipassOScta = document.getElementById('multipass-os-cta');
+  var baseInstallURL = multipassOScta.getAttribute('href');
+  var ctaSpan = multipassOScta.querySelector('span')
+  var os = 'linux';
+
+  if (navigator.appVersion.indexOf('Win') != -1) { os = 'Windows' };
+  if (navigator.appVersion.indexOf('MacOS') != -1) { os = 'macOS' };
+  if (navigator.appVersion.indexOf('Mac OS') != -1) { os = 'macOS' };
+  if (navigator.appVersion.indexOf('Macintosh') != -1) { os = 'macOS' };
+
+  multipassOScta.setAttribute(
+    'href', 
+    baseInstallURL + '/installing-on-' + os.toLowerCase()
+  );
+  ctaSpan.innerText = 'Install on ' + os;
+</script>
+
 {% endblock content %}
