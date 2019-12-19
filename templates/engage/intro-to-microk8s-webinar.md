@@ -3,7 +3,7 @@ wrapper_template: "engage/_base_engage_markdown.html"
 context:
      title: "An intro to MicroK8s"
      meta_description: "Learn why developers choose to work with MicroK8s as a reliable, fast, small and upstream version of Kubernetes and how you can get started."
-     meta_image: https://assets.ubuntu.com/v1/dd0f6313-social+embedded.jpg
+     meta_image: https://assets.ubuntu.com/v1/5ad7901f-Social+banner+microk8s.jpg
      meta_copydoc: "https://docs.google.com/document/d/1FCaFi5ZuP_pPMF2POu3ySaB00yt60Qo-nrNJZ9jwhFw/edit"
      header_title: "An intro to MicroK8s"
      header_subtitle: "Reliable, fast, small and upstream Kubernetes"
