@@ -131,11 +131,11 @@ logs are likely to be useful for diagnosing issues with software.
 
 The logging levels, from most verbose to least verbose, are as follows:
 
-- TRACE
-- DEBUG
-- INFO
-- WARNING
-- ERROR
+-   TRACE
+-   DEBUG
+-   INFO
+-   WARNING
+-   ERROR
 
 The logging level can be set like this:
 
@@ -160,9 +160,9 @@ As previously mentioned, you can see more detailed information on accessing the
 logs from your cluster in the [**Juju** documentation][juju-logging], including
 the following:
 
-- Altering the agent logging setup
-- Setting up remote logging
-- More advanced filtering and additional examples
+-   Altering the agent logging setup
+-   Setting up remote logging
+-   More advanced filtering and additional examples
 
 <a id="graylog"> </a>
 
@@ -238,13 +238,12 @@ At this point, all the applications can communicate with each other. To enable
 the Graylog web interface, configure the reverse proxy with the following
 template ([download it here][graylog-vhost]):
 
-```bash
-<Location "/">
-    RequestHeader set X-Graylog-Server-URL "http://{{servername}}/"
-    ProxyPass http://{{graylog_web}}/
-    ProxyPassReverse http://{{graylog_web}}/
-</Location>
-```
+<pre><code class="lang-bash">&lt;Location &quot;/&quot;&gt;
+    RequestHeader set X-Graylog-Server-URL &quot;http:///&quot;
+    ProxyPass http://&#123;&#123;graylog_web&#125;&#125;/
+    ProxyPassReverse http://&#123;&#123;graylog_web&#125;&#125;/
+&lt;/Location&gt;
+</code></pre>
 
 Use the above template to configure `apache2` like this:
 
@@ -265,7 +264,7 @@ juju run-action --wait graylog/0 show-admin-password
 ```
 
 Browse to `http://<your-apache2-ip>` and login with `admin` as the username
-and `<your-graylog-password>` as the password. 
+and `<your-graylog-password>` as the password.
 
 <div class="p-notification--information">
   <p markdown="1" class="p-notification__response">
@@ -292,6 +291,7 @@ view.
 
 <!--LINKS -->
 
+[quickstart]: /kubernetes/docs/quickstart
 [juju-logging]: https://docs.jujucharms.com/stable/en/troubleshooting-logs
 [k8-logs]: https://kubernetes.io/docs/concepts/cluster-administration/logging/
 [logging-egf-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/logging-egf-overlay.yaml
@@ -301,9 +301,9 @@ view.
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/logging.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/logging.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

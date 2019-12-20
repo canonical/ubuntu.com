@@ -117,7 +117,7 @@ named `admin` with a randomly-generated password. You can find the admin passwor
 with:
 
 ```bash
-juju run --unit keystone/0 leader-get admin_password
+juju run --unit keystone/0 leader-get admin_passwd
 ```
 
 ### Create the domain for Kubernetes

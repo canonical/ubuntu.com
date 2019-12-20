@@ -232,6 +232,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
+| 1.17.x         | [charmed-kubernetes-335](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-335/archive/bundle.yaml) |
 | 1.16.x         | [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-316/archive/bundle.yaml) |
 | 1.15.x         | [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml) |
 | 1.14.x         | [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml) |
@@ -342,12 +343,12 @@ kubernetes-worker:
   annotations:
     gui-x: '100'
     gui-y: '850'
-  charm: cs:~containers/kubernetes-worker-398
+  charm: cs:~containers/kubernetes-worker
   constraints: cores=4 mem=4G root-disk=16G
   expose: true
   num_units: 3
   options:
-    channel: 1.16/stable
+    channel: 1.17/stable
   resources:
     cni-amd64: 12
     cni-arm64: 10
