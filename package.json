@@ -3,7 +3,7 @@
     "test": "yarn run lint-scss && yarn run lint-python && yarn run test-python",
     "test-python": "python3 -m unittest discover tests",
     "lint-python": "flake8 webapp tests && black --check --line-length 79 webapp tests",
-    "lint-scss": "sass-lint 'static/sass/**/*.scss' --verbose --no-exit --max-warnings=0 -i static/sass/prism.scss",
+    "lint-scss": "sass-lint 'static/sass/**/*.scss' --verbose --no-exit -i static/sass/prism.scss",
     "test-links": "./entrypoint 0.0.0.0:${PORT} && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --ignore-url /server/docs --no-warnings http://127.0.0.1:8000",
     "build-css": "node-sass --include-path node_modules static/sass --source-map true --output-style compressed --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
     "build-js": "webpack",
