@@ -18,8 +18,7 @@
   font-family: "UbtuOverride";
   font-style: normal;
   font-weight: 300;
-  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"),
-    url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
+  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"), url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
 }
 
 // import vanilla-framework
@@ -253,14 +252,14 @@ p.u-align--center {
 /// XXX Caleb: abbr hotfix - to be fixed in Vanilla
 // https://github.com/vanilla-framework/vanilla-framework/issues/1962
 abbr[title] {
-  border-bottom: 0.1em dotted;
+  border-bottom: .1em dotted;
   cursor: help;
   text-decoration: none;
 }
 
 // Hack to change the global navigation styling to match the local header
 .global-nav .global-nav__header-logo-anchor {
-  padding: 0.6875rem 1rem !important;
+  padding: .6875rem 1rem !important;
 }
 
 // XXX Ant: is-bordered hotfix - to be removed when the following is resolved:
@@ -318,7 +317,7 @@ summary {
     }
 
     &:last-of-type::after {
-      bottom: 0.5rem;
+      bottom: .5rem;
     }
   }
 }
@@ -369,8 +368,8 @@ summary {
 
   th,
   td {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
   }
 
   .p-table__row {
@@ -423,7 +422,7 @@ summary {
   @media only screen and (min-width: $breakpoint-small) {
     &::after {
       background: $color-x-light;
-      box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
+      box-shadow: -1px -1px 0 1px rgba(17, 17, 17, .1);
       content: "";
       height: 1rem;
       pointer-events: none;
