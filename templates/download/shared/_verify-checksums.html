@@ -1,34 +1,63 @@
-<aside class="p-accordion" role="tablist" aria-multiselect="true" style="border: 1px solid #cdcdcd;">
-  <ul class="p-accordion__list" style="margin-bottom: 0;">
-    <li class="p-accordion__group">
-      <button type="button" class="p-accordion__tab" id="tab1" role="tab" aria-controls="#tab1-section" aria-expanded="false" style="background-color: 0;">Verify your download</button>
-      <section class="p-accordion__panel" id="tab1-section" role="tabpanel" aria-hidden="true" aria-labelledby="tab1-section" style="margin-bottom: 1.5rem; border: 0; background: 0;">
-        <p style="margin-right: 2rem;"><small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small></p>
-        <div style="margin-right: 2rem;">
-          <pre style="white-space: pre-wrap;"><code>echo "{{ releases.checksums[system][version] }}" | shasum -a 256 --check</code></pre>
-        </div>
-        <p><small>You should get the following output:</small></p>
-        <pre style="margin-right: 2rem;"><code>ubuntu-{{ version }}-{{ system }}-{{ architecture }}.iso: OK</code></pre>
-        <p><small>Or follow this tutorial to learn <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small></p>
-      </section>
-    </li>
-  </ul>
-</aside>
+<p>
+  You can
+  <span class="p-contextual-menu--left">
+      <a href="#" class="p-contextual-menu__toggle" aria-controls="#menu-4" aria-expanded="false" aria-haspopup="true">verify your download</a>
+      <span class="p-contextual-menu__dropdown" id="menu-4" aria-hidden="true" aria-label="Verification instructions:" style="width: 600px; max-width: 70vw; padding: 1rem;">
+        <span class="p-contextual-menu__group">
+          <small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small><br />
+          <code style="display: block; margin-top: 1rem;">echo "{{ releases.checksums[system][version] }}" | shasum -a 256 --check</code><br />
+          <small>You should get the following output:</small><br />
+          <code style="display: block; margin-top: 1rem;">ubuntu-{{ version }}-{{ system }}-{{ architecture }}.iso: OK</code><br />
+          <small>Or follow this tutorial to learn <a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small>
+        </span>
+      </span>
+  </span>, or get <a href="https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-server?backURL=https://ubuntu.com/download/server/thank-you" class="p-link--external">help on installing</a>.
+</p>
 
 <script>
-  let toggleElements = document.querySelectorAll('.p-accordion__tab');
-  toggleElements.forEach(function(el) {
-    el.addEventListener(
-    "click",
-    function(e) {
-      e.preventDefault();
-      toggleElements.forEach(function(el) {
-        el.setAttribute('aria-expanded', el.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
-        panel = document.querySelector('.p-accordion__panel');
-        panel.setAttribute('aria-hidden', panel.getAttribute('aria-hidden') === 'true' ? 'false' : 'true');
+  function toggleMenu(element, show) {
+    element.setAttribute('aria-expanded', show);
+    document
+      .querySelector(element.getAttribute('aria-controls'))
+      .setAttribute('aria-hidden', !show);
+  }
+
+  function setupContextualMenuListeners(contextualMenuToggleSelector) {
+    const toggles = document.querySelectorAll(contextualMenuToggleSelector);
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', e => {
+        e.preventDefault();
+
+        const target = e.target;
+        const menuAlreadyOpen = target.getAttribute('aria-expanded') === 'true';
+
+        toggleMenu(target, !menuAlreadyOpen)
       });
-    },
-    false
-    );
-  });
+    });
+
+    document.addEventListener('click', e => {
+      toggles.forEach(toggle => {
+        const contextualMenu = document.querySelector(toggle.getAttribute('aria-controls'));
+        const clickOutside = !(toggle.contains(e.target) || contextualMenu.contains(e.target));
+
+        if (clickOutside) {
+          toggleMenu(toggle, false);
+        }
+      })
+    });
+
+    document.onkeydown = e => {
+      e = e || window.event;
+
+      if (e.keyCode === 27) {
+        toggles.forEach(toggle => {
+          toggleMenu(toggle, false);
+        });
+      }
+    };
+  }
+
+  setupContextualMenuListeners('.p-contextual-menu__toggle');
 </script>
+

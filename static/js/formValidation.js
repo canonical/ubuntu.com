@@ -3,7 +3,7 @@
 * to disable the normal submit, and instead use backgroundSubmit
 */
 
-backgroundSubmitHandlerClosure = function(form) {
+backgroundSubmitHandlerClosure = function(submitEvent) {
   return function(submitEvent) {
 
     // Prevent normal submit
@@ -90,11 +90,13 @@ backgroundSubmit = function(marketoForm, submitCallback) {
   formid = this.id;
 
   // reset form and captcha
-  marketoForm.reset();
+  if (!document.querySelector('.js-feedback-notification')) {
+    marketoForm.reset();
+  }
   grecaptcha.reset();
 
   // deal with the post submit actions
-  afterSubmit(download_asset_url, return_url, isModal, thankYouMessage);
+  afterSubmit(download_asset_url, return_url, isModal, thankYouMessage, marketoForm);
 
   return true;
 }
@@ -104,7 +106,7 @@ backgroundSubmit = function(marketoForm, submitCallback) {
 * start download and send the user to the instructions page
 */
 
-afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage) {
+afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage, marketoForm) {
 
   // Now start the download
   if (download_asset_url) {
@@ -134,8 +136,22 @@ afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage)
     if (thankYouMessage === null) {
       thankYouMessage = 'Thank you<br />A member of our team will be in touch within one working day';
     }
-    document.getElementById('main-content').insertAdjacentHTML('afterbegin', '<div class="p-strip is-shallow u-no-padding--bottom"><div class="row"><div class="p-notification--positive"><p class="p-notification__response"><span class="p-notification__status">Success:</span> ' + thankYouMessage + '</p></div></div></div>');
-    window.scrollTo(0,0);
+    var feedbackArea = document.querySelector('.js-feedback-notification');
+    if (feedbackArea) {
+      feedbackArea.innerHTML = '<div class="p-notification--positive"><p class="p-notification__response">' + thankYouMessage + '</p></div>';
+      var inputs = marketoForm.querySelectorAll('input, button');
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].disabled = "disabled";
+      }
+      var recaptcha = marketoForm.querySelector('.g-recaptcha');
+      if (recaptcha) {
+        recaptcha.classList.add('u-hide');
+      }
+      marketoForm.style.opacity = ".5";
+    } else {
+      document.getElementById('main-content').insertAdjacentHTML('afterbegin', '<div class="p-strip is-shallow u-no-padding--bottom"><div class="row"><div class="p-notification--positive"><p class="p-notification__response">' + thankYouMessage + '</p></div></div></div>');
+      window.scrollTo(0,0);
+    }
   }
 }
 

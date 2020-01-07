@@ -13,11 +13,11 @@
 </noscript>
 {% endif %}
 
-<section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom">
+<section class="p-strip u-no-padding--top u-no-padding--bottom" style="overflow: visible;">
   <div class="p-strip--suru-topped">
     <div class="row">
       <div class="col-8">
-        <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Server</h1>
+        <h1>Thank you for downloading Ubuntu Server {{ version }}</h1>
         {% if version and architecture %}
         <p>Your download should start automatically. If it doesn&rsquo;t,
           <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
@@ -32,136 +32,67 @@
           {% endif %}
         </div>
       </div>
+  </div>
+</section>
+
+  {% with return_url="https://www.ubuntu.com/download/server/thank-you#instructions" %}{% include "download/shared/_server_weekly_news.html" %}{% endwith %}
+
+  <div class="p-strip">
+    <div class="row">
+      <h3>More documentation and resources</h3>
     </div>
-  </section>
-
-  <section class="p-strip--light is-shallow">
-    <div class="row u-vertically-center">
-      <div class="col-2 u-align--left u-hide--small">
-        <a href="https://microk8s.io/">
-          <img src="https://assets.ubuntu.com/v1/9309d097-MicroK8s_SnapStore_icon.svg" width="100" alt="">
-        </a>
+    <div class="row u-equal-height">
+      <div class="col-4">
+        <h4><a href="/server/docs">Ubuntu Server Guide&nbsp;&rsaquo;</a></h4>
+        <p>The Ubuntu Server documentation, curated by community and Ubuntu developers.</p>
       </div>
-       <div class="col-10 u-no-margin--left">
-        <h4>
-          Lightweight, reliable Kubernetes
-        </h4>
-        <p>
-          Need a fast, reliable, single-node K8s up and running under 60 seconds?
-          <br />
-          Made for developers, great for IoT and AI on the edge.
-        </p>
-        <p>
-          <a href="https://microk8s.io/">
-            <span class="p-link--external">Try Microk8s</span>
-          </a>
-        </p>
+      <div class="col-4">
+        <h4><a href="https://askubuntu.com/" class="p-link--external">Ask Ubuntu</a></h4>
+        <p>Stuck somewhere? Get your Ubuntu questions answered by power users.</p>
       </div>
-
+      <div class="col-4">
+        <h4><a href="https://discourse.ubuntu.com/" class="p-link--external">Community Hub</a></h4>
+        <p>Discuss with Ubuntu developers and make your voice heard.</p>
+      </div>
     </div>
-  </section>
 
-  {% with return_url="https://www.ubuntu.com/download/server/thank-you#instructions" %}{% include "download/shared/_get_ebook_maas.html" %}{% endwith %}
+    <div class="u-fixed-width">
+      <hr class="p-separator">
+    </div>
 
-  <div class="p-strip is-shallow">
+    <div class="row">
+      <div class="col-8">
+        <h3>Using Ubuntu in production?</h3>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Phone and ticket support</li>
+          <li class="p-list__item is-ticked">Livepatch kernel updates</li>
+          <li class="p-list__item is-ticked">Kubernetes and OpenStack support</li>
+          <li class="p-list__item is-ticked">Extended Security Maintenance for LTS releases</li>
+        </ul>
+        <p>All these are available when subscribing to Ubuntu Advantage for Infrastructure.</p>
+        <p><a href="/advantage" class="p-button">Learn more</a></p>
+      </div>
+    </div>
+
+    <div class="u-fixed-width">
+      <hr class="p-separator">
+    </div>
+
     <div class="row">
       <div class="col-8">
-        <div>
-          <h2 id="instructions">Your next steps with Ubuntu Server</h2>
-          <p>
-            Use Ubuntu&rsquo;s tools to help you provision and manage your servers.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-6 u-hide--small">
-        <img src="https://assets.ubuntu.com/v1/b89de9f4-feature.png?w=502" width="502"
-        alt="Landscape load management" />
-      </div>
-      <div class="col-6">
-        <h3>Server management with Landscape</h3>
+        <h3>Go further</h3>
         <ul class="p-list">
           <li class="p-list__item is-ticked">
-            <p>Landscape is the leading management tool to deploy, monitor and
-              manage your Ubuntu servers</p>
-            </li>
-            <li class="p-list__item is-ticked">
-              <p>
-                Landscape supports livepatch so you can apply kernel patches and
-                security updates without having to reboot
-              </p>
-            </li>
-            <li class="p-list__item is-ticked">
-              <p>
-                Landscape is also available as part of Ubuntu Advantage,
-                Canonical&rsquo;s world-class support service
-              </p>
-            </li>
-          </ul>
-          <p>
-            <a href="https://landscape.canonical.com/" class="p-button--neutral">
-              <span class="p-link--external">Get Landscape</span>
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-strip is-shallow is-bordered">
-      <div class="row">
-        <div class="col-6">
-          <h3>Server provisioning with MAAS</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">
-              Metal as a Service (MAAS) offers cloud style provisioning for physical servers
-            </li>
-            <li class="p-list__item is-ticked">
-              Designed for building data centres with complex networks
-            </li>
-            <li class="p-list__item is-ticked">Supports Windows, Ubuntu, CentOS, RHEL and SUSE</li>
-          </ul>
-          <p>
-            <a href="https://maas.io/" class="p-button--neutral">
-              <span class="p-link--external">Get MAAS</span>
-            </a>
-          </p>
-        </div>
-        <div class="col-6 u-hide--small">
-          <img src="https://assets.ubuntu.com/v1/da6f94b0-image-cloud-maas-2.jpg?w=502" width="502" alt="" />
-        </div>
-      </div>
-    </div>
-
-    <div class="p-strip--light is-shallow">
-      <div class="row u-equal-height p-divider">
-        <div class="col-4 p-divider__block">
-          <div>
-            <h3>Installation guides</h3>
-          </div>
-          <p>If you need some help installing Ubuntu, please check out our step-by-step guides.</p>
-          <p><a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-server">Installation instructions for Ubuntu Server</a></p>
-        </div>
-        <div class="col-4 p-divider__block">
-          <div>
-            <h3>Ubuntu Advantage</h3>
-          </div>
-          <p>Commercial support agreements to suit your business needs.</p>
-          <p><a href="/pricing">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-        </div>
-        <div class="col-4 p-divider__block">
-          <div>
-            <h3>Ask Ubuntu</h3>
-          </div>
-          <p>Need help? Ask your questions here.</p>
-          <p><a href="https://askubuntu.com/questions/tagged/server" class="p-link--external">Get help</a></p>
-        </div>
+            <a href="https://maas.io" class="p-link--external">Deploy Ubuntu Server at scale on physical servers with MAAS</a>
+          </li>
+          <li class="p-list__item is-ticked">
+            <a href="https://landscape.canonical.com" class="p-link--external">Manage and monitor all your Ubuntu instances with Landscape</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 
-  {% with first_item="_download_verify_your_download", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
   {% endblock content %}
   {% block footer_extra %}
