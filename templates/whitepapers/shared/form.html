@@ -3,7 +3,7 @@
 <script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
 <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
 
-<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="whitepaper-form" class="marketo-form" style="margin-top: -1rem;">
+<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3261" class="marketo-form whitepaper-form" style="margin-top: -1rem;">
 <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
   <ul class="p-list">
     <li class="mktFormReq mktField p-list__item">
@@ -50,6 +50,9 @@
     <li  class="mktField p-list__item">
       <input type="hidden" name="Consent_to_Processing__c" class="mktoField mktoFormCol" aria-label="Consent_to_Processing__c" value="Yes">
     </li>
+    <li class="p-list__item">
+      <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+    </li>
     <li class="mktField p-list__item">
       <button type="submit" class="mktoButton u-no-margin--bottom">Continue reading</button>
       <input type="hidden" name="formid" aria-label="formid" class="mktoField " value="3261">
@@ -69,67 +72,14 @@
 <script src="https://assets.ubuntu.com/v1/6b7597df-event-listener-polyfill.js"></script>
 <script>
 
-  var hiddenContent = false;
-
-  /**
-  * Given a form element, extract its data and its "action" target URL
-  * and submit the form using Ajax
-  */
-  whitepaperBackgroundSubmit = function(formElement, submitCallback) {
-    var request = new XMLHttpRequest();
-    var submitUrl = formElement.getAttribute('action');
-    var formData = serialize(formElement)
-
-    request.open("POST", submitUrl, true);
-
-    //Send the proper header information along with the request
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    // When request has finished, call the callback function
-    if (submitCallback) {
-      request.addEventListener(
-      'readystatechange',
-      function() {
-        if (this.readyState == 4) {
-          // Pass context and arguments on to submitCallback
-          submitCallback.apply(this, arguments);
-        }
-      }
-      );
-    }
-
-    // Send off the POST request
-    request.send(formData);
-  }
+  var hiddenContent = true;
 
   // After submit has happened set a cookie and reveal the content
-  whitepaperAfterSubmit = function() {
+  function whitepaperAfterSubmit() {
     setCookie(getCookieName(), 'true', 30);
     revealContent();
-    window.location.hash = '#wp-introduction';
+    window.location.hash = '#introduction';
   }
-
-  /**
-  * Handler for a form submit event
-  * to disable the normal submit, and instead use backgroundSubmit
-  */
-
-  whitepaperBackgroundSubmitHandlerClosure = function() {
-    return function(submitEvent) {
-      // Prevent normal submit
-      submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
-
-      marketoForm = document.getElementById(submitEvent.target.id);
-      // Change the submit location
-      marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
-      // Submit the form in the background
-      whitepaperBackgroundSubmit(marketoForm, whitepaperAfterSubmit);
-    }
-  }
-
-  // Attach the submit handler to the form
-  var form = document.querySelector('#whitepaper-form');
-  form.addEventListener('submit', whitepaperBackgroundSubmitHandlerClosure());
 
   // Returns a unique cookie name for this URL path
   function getCookieName() {
@@ -138,26 +88,30 @@
   }
 
   function revealContent() {
-    // Reveal the obfuscated content
-    if (hiddenContent) {
-      var content = document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li');
-      content.forEach(function(contentItem) {
-        contentItem.innerHTML = reverseContent(contentItem.innerText);
-      });
-      hiddenContent = false;
+    var contentContainer = document.querySelector('.l-content');
+    if (contentContainer) {
+      fetchContent('robotics/_content', contentContainer);
     }
-
-    // Remove the obfuscating styling
-    var obfuscateItems = document.querySelectorAll('.u-obfuscate');
-    obfuscateItems.forEach(function(obfuscateItem) {
-      obfuscateItem.classList.remove('u-obfuscate');
-    });
 
     // Hide the sign up form
     var formElement = document.querySelector('.signup-form');
     if (formElement) {
       formElement.classList.add("u-hide");
     }
+  }
+
+  function fetchContent(url, container) {
+    fetch(url)
+    .then(function(response) {
+      return response.text();
+    })
+    .then(function(text) {
+      container.innerHTML = text;
+      container.classList.add('u-reveal');
+    })
+    .catch(function(error) {
+      console.log('Request failed', error)
+    })
   }
 
   function hideContent() {
@@ -199,7 +153,6 @@
   }
 
   window.onload = function() {
-
     if (getCookie(getCookieName())) {
       revealContent();
     } else {

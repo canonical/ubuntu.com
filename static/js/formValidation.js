@@ -82,6 +82,9 @@ backgroundSubmit = function(marketoForm, submitCallback) {
   // check if it is a dynamic modal form
   var isModal = marketoForm.classList.contains("modal-form");
 
+  // check if it is a whitepaper
+  var isWhitepaper = marketoForm.classList.contains("whitepaper-form");
+
   // check if there is a thank you message to post
   var thankYouMessage = marketoForm.querySelector('input[name=thankyoumessage]');
   if (thankYouMessage != null) {
@@ -96,7 +99,7 @@ backgroundSubmit = function(marketoForm, submitCallback) {
   grecaptcha.reset();
 
   // deal with the post submit actions
-  afterSubmit(download_asset_url, return_url, isModal, thankYouMessage, marketoForm);
+  afterSubmit(download_asset_url, return_url, isModal, thankYouMessage, marketoForm, isWhitepaper);
 
   return true;
 }
@@ -106,7 +109,7 @@ backgroundSubmit = function(marketoForm, submitCallback) {
 * start download and send the user to the instructions page
 */
 
-afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage, marketoForm) {
+afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage, marketoForm, isWhitepaper) {
 
   // Now start the download
   if (download_asset_url) {
@@ -132,7 +135,7 @@ afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage,
 
   // add a thank-you notification to the page
   // if someone submitted a form without a thank you action
-  if (return_url === null && isModal === false) {
+  if (return_url === null && isModal === false && isWhitepaper === false) {
     if (thankYouMessage === null) {
       thankYouMessage = 'Thank you<br />A member of our team will be in touch within one working day';
     }
@@ -153,6 +156,10 @@ afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage,
       window.scrollTo(0,0);
     }
   }
+
+  if (isWhitepaper) {
+    whitepaperAfterSubmit();
+  }
 }
 
 // recaptcha submitCallback
@@ -164,15 +171,8 @@ CaptchaCallback = function() {
   });
 }
 
-/**
-* Initiator function for a form
-* formQuery: {String} A css selector to the form
-*/
-init = function(formQuery) {
-  var marketoForm = document.querySelector(formQuery);
-  if (marketoForm) {
-    form.addEventListener('submit', backgroundSubmitHandlerClosure())
-  } else {
-    console.warn('No form found for: ' + formQuery);
-  }
-}
+// attach handler to all forms
+let marketoForm = document.querySelectorAll("form[id^=mktoForm]");
+marketoForm.forEach(function(form) {
+  form.addEventListener('submit', backgroundSubmitHandlerClosure())
+});
