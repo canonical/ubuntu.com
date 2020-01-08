@@ -164,9 +164,15 @@ CaptchaCallback = function() {
   });
 }
 
-
-// attach handler to all forms
-let marketoForm = document.querySelectorAll("form[id^=mktoForm]");
-marketoForm.forEach(function(form) {
-  form.addEventListener('submit', backgroundSubmitHandlerClosure())
-});
+/**
+* Initiator function for a form
+* formQuery: {String} A css selector to the form
+*/
+init = function(formQuery) {
+  var marketoForm = document.querySelector(formQuery);
+  if (marketoForm) {
+    form.addEventListener('submit', backgroundSubmitHandlerClosure())
+  } else {
+    console.warn('No form found for: ' + formQuery);
+  }
+}
