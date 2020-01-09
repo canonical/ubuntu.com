@@ -3,7 +3,7 @@
 <script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
 <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
 
-<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3261" class="marketo-form" style="margin-top: -1rem;">
+<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3261" class="marketo-form whitepaper-form" style="margin-top: -1rem;">
 <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
   <ul class="p-list">
     <li class="mktFormReq mktField p-list__item">
@@ -50,6 +50,9 @@
     <li  class="mktField p-list__item">
       <input type="hidden" name="Consent_to_Processing__c" class="mktoField mktoFormCol" aria-label="Consent_to_Processing__c" value="Yes" >
     </li>
+    <li class="p-list__item">
+      <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+    </li>
     <li class="mktField p-list__item">
       <button type="submit" class="mktoButton u-no-margin--bottom">Continue reading</button>
       <input type="hidden" name="formid" aria-label="formid" class="mktoField " value="3261">
@@ -62,105 +65,22 @@
 <input type="hidden" name="returnURL"  aria-label="returnURL" value="https://pages.ubuntu.com/OSconsideration_TY.html" />
 <input type="hidden" name="retURL" aria-label="retURL" value="https://pages.ubuntu.com/OSconsideration_TY.html" />
 </form>
-<script>
-  $("#mktoForm_3261").validate({
-      errorElement: "span",
-      errorClass: "mktFormMsg mktError",
-      onkeyup: false,
-      onclick: false,
-      onblur: false
-  });
-
-
-  $(function(){$("#comments").hide()});
-
-  $('#Ubuntu_User__c').on('change',function(){
-
-   var selection = $(this).val();
-   if(selection == 'Commercially only') {
-      $('#comments').show();
-   } else {
-      $('#comments').hide();
-   }
-  });
-
-</script>
 
 <!-- /MARKETO FORM -->
-
-
 <!-- dependencies -->
 <script src="https://assets.ubuntu.com/v1/ec520d10-XMLHttpRequest.min.js"></script>
 <script src="https://assets.ubuntu.com/v1/4176b39e-serialize.js"></script>
 <script src="https://assets.ubuntu.com/v1/6b7597df-event-listener-polyfill.js"></script>
-<!-- script -->
 <script>
 
-  var hiddenContent = false;
-
-  /**
-  * Given a form element, extract its data and its "action" target URL
-  * and submit the form using Ajax
-  */
-  backgroundSubmit = function(formElement, submitCallback) {
-    var request = new XMLHttpRequest();
-    var submitUrl = formElement.getAttribute('action');
-    var formData = serialize(formElement)
-
-    request.open("POST", submitUrl, true);
-
-    //Send the proper header information along with the request
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    // When request has finished, call the callback function
-    if (submitCallback) {
-      request.addEventListener(
-      'readystatechange',
-      function() {
-        if (this.readyState == 4) {
-          // Pass context and arguments on to submitCallback
-          submitCallback.apply(this, arguments);
-        }
-      }
-      );
-    }
-
-    // Send off the POST request
-    request.send(formData);
-  }
+  var hiddenContent = true;
 
   // After submit has happened set a cookie and reveal the content
-  afterSubmit = function() {
+  function whitepaperAfterSubmit() {
     setCookie(getCookieName(), 'true', 30);
     revealContent();
-    window.location.hash = '#wp-introduction';
+    window.location.hash = '#introduction';
   }
-
-  /**
-  * Handler for a form submit event
-  * to disable the normal submit, and instead use backgroundSubmit
-  */
-
-  backgroundSubmitHandlerClosure = function($) {
-    return function(submitEvent) {
-      // Prevent normal submit
-      submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
-
-      marketoForm = document.getElementById(submitEvent.target.id);
-      // Check form is valid
-      if ($(marketoForm).valid()) {
-        // Change the submit location
-        marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
-        // Submit the form in the background
-        backgroundSubmit(marketoForm, afterSubmit);
-      }
-    }
-  }
-
-  // Attach the submit handler to the form
-  document.querySelectorAll('.marketo-form').forEach(function(form) {
-    form.addEventListener('submit', backgroundSubmitHandlerClosure(jQuery));
-  });
 
   // Returns a unique cookie name for this URL path
   function getCookieName() {
@@ -231,7 +151,6 @@
   }
 
   window.onload = function() {
-
     if (getCookie(getCookieName())) {
       revealContent();
     } else {
