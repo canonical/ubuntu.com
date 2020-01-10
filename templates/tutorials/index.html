@@ -25,19 +25,19 @@
   </div>
 </section>
 
-<!-- <section class="p-strip is-shallow l-tutorials__filters">
+<section class="p-strip is-shallow l-tutorials__filters">
   <div class="row">
-    <div class="col-4">
+    <!-- <div class="col-4">
       <div class="p-form__group">
         <label for="tutorials-search">Search tutorials containing:</label>
         <input type="search" name="tutorials-search" id="tutorials-search">
       </div>
-    </div>
+    </div> -->
     <div class="col-4">
       <div class="p-form__group">
         <label for="tutorials-topic">Topic:</label>
         <select name="tutorials-topic" id="tutorials-topic">
-          <option value="any">Any</option>
+          <option value="">Any</option>
           <option value="cloud">Cloud</option>
           <option value="community">Community</option>
           <option value="containers">Containers</option>
@@ -48,7 +48,7 @@
         </select>
       </div>
     </div>
-    <div class="col-4">
+    <!-- <div class="col-4">
       <div class="p-form__group">
         <label for="tutorials-search">Sorted by:</label>
         <select name="tutorials-sort" id="tutorials-sort">
@@ -59,9 +59,9 @@
           <option value="least-difficult">Least difficult</option>
         </select>
       </div>
-    </div>
+    </div> -->
   </div>
-</section> -->
+</section>
 
 {% set posts_per_page = 12 %}
 {% set total_pages = metadata | count % posts_per_page %}
@@ -96,5 +96,29 @@
   {% set current_page = page %}
   {% include "shared/_pagination.html" %}
 {% endwith %}
+
+<script>
+  (function() {
+    var topicsFilter = document.getElementById("tutorials-topic");
+    var urlObj = new URL(window.location);
+
+    if (urlObj.searchParams.has("topic")) {
+      topicsFilter.value = urlObj.searchParams.get("topic");
+    }
+
+    topicsFilter.addEventListener("change", function(e) {
+      var topic = e.target.value;
+
+      if (topic) {
+        if (urlObj.searchParams.has("topic")) {
+          urlObj.searchParams.delete("topic");
+        }
+
+        urlObj.searchParams.append("topic", topic);
+        window.location = urlObj;
+      }
+    });
+  })();
+</script>
 
 {% endblock %}
