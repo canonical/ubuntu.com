@@ -1,4 +1,4 @@
-{% extends "templates/one-column.html" %} 
+{% extends "templates/one-column.html" %}
 
 {% block title %}Design{% endblock %}
 
@@ -20,5 +20,11 @@
     {% include 'blog/posts.html' %}
   </section>
 
-  {% include 'blog/pagination.html' %}
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
 {% endblock %}

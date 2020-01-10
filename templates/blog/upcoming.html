@@ -1,10 +1,10 @@
-{% extends "templates/one-column.html" %} 
+{% extends "templates/one-column.html" %}
 
 {% block title %}Events and webinars{% endblock %}
 
 {% block meta_description %}Events and webinars{% endblock %}
 
-{% block content %} 
+{% block content %}
   <section class="p-strip--accent is-dark is-deep" style="background-color: #333;">
     <div class="row u-equal-height u-vertically-center">
       <div class="col-10">
@@ -27,7 +27,13 @@
     </div>
   </section>
 
-  {% include 'blog/pagination.html' %}
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
 
 {% endblock %}
 
