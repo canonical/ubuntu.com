@@ -93,9 +93,8 @@
 
 {% with %}
   {% set total_pages = total_pages %}
-  {% set page = page %}
-  {% set moo = "l" %}
-  {% include "tutorials/pagination.html" %}
+  {% set current_page = page %}
+  {% include "shared/_pagination.html" %}
 {% endwith %}
 
 {% endblock %}
