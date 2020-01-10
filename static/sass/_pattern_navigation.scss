@@ -456,20 +456,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   }
 }
 
-// XXX: move these to vanilla
-h1,
-.p-heading--one {
-  & + h2,
-  & + .p-heading--two {
-    margin-top: -2.5rem;
-  }
-}
-
-h2,
-.p-heading--two {
-  line-height: 3rem;
-}
-
 .p-card--navigation {
   @include vf-p-card;
   display: flex;
