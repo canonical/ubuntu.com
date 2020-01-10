@@ -17,11 +17,13 @@
     });
 
     // recaptcha submitCallback
-    var CaptchaCallback = function() {
+    CaptchaCallback = function() {
       let recaptchas = document.querySelectorAll("div[class^=g-recaptcha]");
       recaptchas.forEach(function(field){
-        recaptchaWidgetId = grecaptcha.render(field, {'sitekey' : '6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if'});
-        field.setAttribute("data-widget-id", recaptchaWidgetId);
+        if (!field.hasAttribute('data-widget-id')) {
+          recaptchaWidgetId = grecaptcha.render(field, {'sitekey' : '6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if'});
+          field.setAttribute("data-widget-id", recaptchaWidgetId);
+        }
       });
     }
 
