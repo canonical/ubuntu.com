@@ -164,11 +164,16 @@ def index():
     page = flask.request.args.get("page", default=1, type=int)
     topic = flask.request.args.get("topic", default=None, type=str)
     tutorials_docs.parser.parse()
+    if not topic:
+        metadata = tutorials_docs.parser.metadata
+    else:
+        # TODO: filter based on topic (categories property)
+        metadata = tutorials_docs.parser.metadata
     return flask.render_template(
         "tutorials/index.html",
         navigation=tutorials_docs.parser.navigation,
         forum_url=tutorials_docs.parser.api.base_url,
-        metadata=tutorials_docs.parser.metadata,
+        metadata=metadata,
         page=page,
         topic=topic,
     )
