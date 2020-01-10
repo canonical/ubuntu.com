@@ -162,6 +162,7 @@ tutorials_docs = DiscourseDocs(
 @app.route(url_prefix)
 def index():
     page = flask.request.args.get("page", default=1, type=int)
+    topic = flask.request.args.get("topic", default=None, type=str)
     tutorials_docs.parser.parse()
     return flask.render_template(
         "tutorials/index.html",
@@ -169,6 +170,7 @@ def index():
         forum_url=tutorials_docs.parser.api.base_url,
         metadata=tutorials_docs.parser.metadata,
         page=page,
+        topic=topic,
     )
 
 
