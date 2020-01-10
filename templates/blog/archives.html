@@ -1,8 +1,8 @@
-{% extends "templates/one-column.html" %} 
+{% extends "templates/one-column.html" %}
 
 {% block title %}Archives{% endblock %}
 
-{% block content %} 
+{% block content %}
   <section class="p-strip--accent is-dark is-deep" style="background-color: #333;">
     <div class="row u-equal-height u-vertically-center">
       <div class="col-10">
@@ -16,7 +16,7 @@
 
         <p>
           {{ total_posts }} posts
-          
+
           {% if request.args.month or request.args.year %} from{% endif %}
 
           {% if request.args.month %} {{ month_name(request.args.month) }}{% endif %}
@@ -26,7 +26,7 @@
       </div>
     </div>
   </section>
-  
+
   <section class="p-strip is-shallow{% if current_page %} is-bordered{% endif %}" id="posts-list">
     <div class="row">
       <div class="col-8">
@@ -38,7 +38,7 @@
               </h3>
               <div class="p-media-object__content">
                 <p>By <a href="/blog/author/{{article.author.slug}}" title="More about {{ article.author.name }}">{{ article.author.name }}</a>, {{ article.date }}</p>
-                
+
                 <p>{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
               </div>
             </div>
@@ -53,7 +53,7 @@
           {% for year in descending_years(2006) %}
             <li class="p-list__item">
               <h5><a class="p-link--soft" href="/blog/archives?year={{year}}">{{year}}</a></h5>
-              
+
               <ul class="p-inline-list--middot">
                 {% for month in months_list(year) %}
                   <li class="p-inline-list__item"><a class="p-link--soft" href="/blog/archives?year={{year}}&amp;month={{month.number}}{% if group %}&group={{group.slug}}{% endif %}">{{ month.name }}</a></li>
@@ -66,5 +66,12 @@
     </div>
   </section>
 
-  {% include 'blog/pagination.html' %}
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
+</section>
 {% endblock %}

@@ -14,7 +14,7 @@
       <p>
         <a class="p-link--external p-link--inverted" href="https://www.ubuntu.com/desktop">Learn more about Desktop</a>
       </p>
-      <div id="rtp-banner" class="rtp-banner"></div> 
+      <div id="rtp-banner" class="rtp-banner"></div>
     </div>
   </section>
 
@@ -23,5 +23,11 @@
     {% include 'blog/posts.html' %}
   </section>
 
-  {% include 'blog/pagination.html' %}
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
 {% endblock %}

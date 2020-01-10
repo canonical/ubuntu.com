@@ -1,10 +1,10 @@
-{% extends "templates/one-column.html" %} 
+{% extends "templates/one-column.html" %}
 
 {% block title %}Juju and JAAS{% endblock %}
 
 {% block meta_description %}Operate big software at scale on any cloud. All the latest news on Juju – the open source application modelling tool for public and private clouds.{% endblock %}
 
-{% block content %} 
+{% block content %}
 
   <section class="p-strip--suru-blog-header">
     <div class="u-fixed-width">
@@ -22,5 +22,11 @@
     {% include 'blog/posts.html' %}
   </section>
 
-  {% include 'blog/pagination.html' %}
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
 {% endblock %}
