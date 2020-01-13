@@ -42,29 +42,28 @@
           <option value="community">Community</option>
           <option value="containers">Containers</option>
           <option value="desktop">Desktop</option>
+          <option value="development">Development</option>
           <option value="iot">IoT</option>
           <option value="packaging">Packaging</option>
           <option value="server">Server</option>
         </select>
       </div>
     </div>
-    <!-- <div class="col-4">
+    <div class="col-4">
       <div class="p-form__group">
-        <label for="tutorials-search">Sorted by:</label>
+        <label for="tutorials-sort">Sorted by:</label>
         <select name="tutorials-sort" id="tutorials-sort">
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-          <option value="longest">Longest</option>
-          <option value="most-difficult">Most difficult</option>
-          <option value="least-difficult">Least difficult</option>
+          <option value="">Choose</option>
+          <option value="difficulty-desc">Most difficult</option>
+          <option value="difficulty-asc">Least difficult</option>
         </select>
       </div>
-    </div> -->
+    </div>
   </div>
 </section>
 
-{% set posts_per_page = 12 %}
-{% set total_pages = metadata | count % posts_per_page %}
+{% set posts_per_page = 15 %}
+{% set total_pages = metadata | count / posts_per_page %}
 
 <section class="p-strip is-shallow has-shadow">
   <div class="row u-equal-height">
@@ -99,25 +98,34 @@
 
 <script>
   (function() {
-    var topicsFilter = document.getElementById("tutorials-topic");
+    var topicsFilter = document.getElementById('tutorials-topic');
+    var sortFilter = document.getElementById('tutorials-sort');
     var urlObj = new URL(window.location);
 
-    if (urlObj.searchParams.has("topic")) {
-      topicsFilter.value = urlObj.searchParams.get("topic");
-    }
+    function handleFilter(key, el, url) {
+      if (url.searchParams.has(key)) {
+        el.value = url.searchParams.get(key);
+      }
 
-    topicsFilter.addEventListener("change", function(e) {
-      var topic = e.target.value;
+      el.addEventListener('change', function(e) {
+        var value = e.target.value;
 
-      if (topic) {
-        if (urlObj.searchParams.has("topic")) {
-          urlObj.searchParams.delete("topic");
+        if (value) {
+          if (url.searchParams.has(key)) {
+            url.searchParams.delete(key);
+          }
+
+          url.searchParams.append(key, value);
+        } else {
+          url.searchParams.delete(key);
         }
 
-        urlObj.searchParams.append("topic", topic);
-        window.location = urlObj;
-      }
-    });
+        window.location = url;
+      });
+    }
+
+    handleFilter('topic', topicsFilter, urlObj);
+    handleFilter('sort', sortFilter, urlObj);
   })();
 </script>
 

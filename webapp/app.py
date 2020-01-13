@@ -163,6 +163,7 @@ tutorials_docs = DiscourseDocs(
 def index():
     page = flask.request.args.get("page", default=1, type=int)
     topic = flask.request.args.get("topic", default=None, type=str)
+    sort = flask.request.args.get("sort", default=None, type=str)
     tutorials_docs.parser.parse()
     if not topic:
         metadata = tutorials_docs.parser.metadata
@@ -170,8 +171,18 @@ def index():
         metadata = [
             doc
             for doc in tutorials_docs.parser.metadata
-            if doc["categories"] == topic
+            if topic in doc["categories"]
         ]
+
+    if sort == "difficulty-desc":
+        metadata = sorted(
+            metadata, key=lambda k: k["difficulty"], reverse=True
+        )
+
+    if sort == "difficulty-asc":
+        metadata = sorted(
+            metadata, key=lambda k: k["difficulty"], reverse=False
+        )
 
     return flask.render_template(
         "tutorials/index.html",
@@ -180,6 +191,7 @@ def index():
         metadata=metadata,
         page=page,
         topic=topic,
+        sort=sort,
     )
 
 
