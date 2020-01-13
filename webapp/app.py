@@ -167,8 +167,12 @@ def index():
     if not topic:
         metadata = tutorials_docs.parser.metadata
     else:
-        # TODO: filter based on topic (categories property)
-        metadata = tutorials_docs.parser.metadata
+        metadata = [
+            doc
+            for doc in tutorials_docs.parser.metadata
+            if doc["categories"] == topic
+        ]
+
     return flask.render_template(
         "tutorials/index.html",
         navigation=tutorials_docs.parser.navigation,
