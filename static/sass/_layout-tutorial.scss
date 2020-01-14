@@ -6,6 +6,7 @@
 
     @media only screen and (min-width: $breakpoint-medium) {
       flex-direction: row;
+      min-height: calc(100vh - 225px); // minus header, nav and footer height
     }
   }
 
