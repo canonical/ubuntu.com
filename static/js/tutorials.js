@@ -49,4 +49,24 @@
     window.location.hash = firstSectionLink.getAttribute('href');
     scrollToTop();
   }
+
+  var tutorialFeedbackOptions = document.querySelector('.l-tutorial__feedback-options');
+  var tutorialFeedbackIcons = document.querySelectorAll('.l-tutorial__feedback-icon');
+  var tutorialFeedbackResult = document.querySelector('.l-tutorial__feedback-result');
+
+  tutorialFeedbackIcons.forEach(function(icon) {
+    icon.addEventListener('click', function(e) {
+      var feedbackValue = e.target.getAttribute('data-feedback-value');
+      dataLayer.push({
+        'event' : 'GAEvent',
+        'eventCategory' : 'feedback',
+        'eventAction' : feedbackValue,
+        'eventLabel' : feedbackValue,
+        'eventValue' : undefined
+      });
+
+      tutorialFeedbackOptions.classList.add('u-hide');
+      tutorialFeedbackResult.classList.remove('u-hide');
+    });
+  });
 })();

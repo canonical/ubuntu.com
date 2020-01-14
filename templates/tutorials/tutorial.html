@@ -44,6 +44,28 @@
       <article class="l-tutorial-section__content">
         {{ section.content | safe }}
       </article>
+
+      {% if loop.last %}
+      <div class="l-tutorial__feedback-options">
+        <p>Was this tutorial useful?</p>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item">
+            <img class="l-tutorial__feedback-icon" src="https://assets.ubuntu.com/v1/04f445ea-Helpful-yes.svg" alt="Positive response" data-feedback-value="positive">
+          </li>
+          <li class="p-inline-list__item">
+            <img class="l-tutorial__feedback-icon" src="https://assets.ubuntu.com/v1/e03275bf-Helpful-unsure.svg" alt="Neutral response" data-feedback-value="neutral">
+          </li>
+          <li class="p-inline-list__item">
+            <img class="l-tutorial__feedback-icon" src="https://assets.ubuntu.com/v1/d20e84ba-Helpful-no.svg" alt="Negative response" data-feedback-value="negative">
+          </li>
+        </ul>
+      </div>
+
+      <div class="l-tutorial__feedback-result u-hide">
+        <p>Thank you for your feedback.</p>
+      </div>
+      {% endif %}
+
       <hr class="u-sv3">
       <footer class="l-tutorial-section__footer row">
         <div class="col-6 col-small-2 col-medium-3 u-vertically-center">
