@@ -86,13 +86,9 @@
   </div><!-- /.wrapper -->
 
   <!-- footer content goes here -->
-  {% if small_footer %}
-    {% include "templates/small-footer.html" %}
-  {% else %}
-    {% include "templates/footer.html" %}
-    {% if "/whitepapers" not in request.path  %}
-    {% endif %}
-    {% block footer_extra %}{% endblock %}
+  {% include "templates/footer.html" %}
+  {% if "/whitepapers" not in request.path  %}
   {% endif %}
+  {% block footer_extra %}{% endblock %}
 </body>
 </html>

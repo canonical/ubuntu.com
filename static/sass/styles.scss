@@ -27,7 +27,6 @@
 
 // Vanilla framework overrides
 $font-base-family: '"UbtuOverride", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif' !default;
-$color-shadow: rgba(0, 0, 0, .5) !default;
 
 // import site specific patterns and overrides
 @import "pattern_blog-featured";
@@ -106,10 +105,6 @@ $color-shadow: rgba(0, 0, 0, .5) !default;
 @include layout-legal-pages;
 @import "layout-whitepapers";
 @include layout-whitepapers;
-@import "layout-tutorials";
-@include layout-tutorials;
-@import "layout-tutorial";
-@include layout-tutorial;
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
@@ -487,16 +482,4 @@ summary {
 
 .breadcrumbs--secondary .p-contextual-menu__dropdown {
   margin-top: 2rem;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-.u-text-light {
-  color: $color-mid-dark;
-}
-
-.u-text-dark {
-  color: $color-dark;
 }
