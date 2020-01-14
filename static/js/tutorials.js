@@ -23,7 +23,7 @@
     // which prevents the page from jumping
     window.setTimeout(function() {
       window.scrollTo(0, 0);
-    });
+    }, 0);
   }
 
   var navigationLinks = document.querySelectorAll('.l-tutorial__nav-link');
