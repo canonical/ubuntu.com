@@ -70,7 +70,9 @@
   }
 
   .l-tutorial__content {
+    overflow: hidden; // stops pre from stretching out the flex column
     padding-top: $sp-large;
+    width: 100%;
 
     @media only screen and (min-width: $breakpoint-small) {
       padding-left: 5%;
