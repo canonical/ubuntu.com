@@ -79,7 +79,7 @@
             <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
               {{ item.topic | replace("inline-onebox", "p-link--soft") | safe }}
             </h3>
-            <p class="u-sv3">{{ item.summary }}</p>
+            <p class="u-sv3">{{ item.summary | safe }}</p>
           </div>
           <footer class="blog-p-card__footer">
             Difficulty: <span class="l-tutorials-meter l-tutorials-meter--{{ item.difficulty }}">{{ item.difficulty }} out of 5</span>
