@@ -133,12 +133,12 @@ app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 url_prefix = "/server/docs"
 server_docs_parser = DocParser(
     api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
+    category_id=26,
     index_topic_id=11322,
     url_prefix=url_prefix,
 )
 server_docs = DiscourseDocs(
     parser=server_docs_parser,
-    category_id=26,
     document_template="/docs/document.html",
     url_prefix=url_prefix,
 )
@@ -148,12 +148,12 @@ server_docs.init_app(app)
 url_prefix = "/tutorials"
 tutorials_docs_parser = DocParser(
     api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
+    category_id=34,
     index_topic_id=13611,
     url_prefix=url_prefix,
 )
 tutorials_docs = DiscourseDocs(
     parser=tutorials_docs_parser,
-    category_id=34,
     document_template="/tutorials/tutorial.html",
     url_prefix=url_prefix,
     blueprint_name="tutorials",
