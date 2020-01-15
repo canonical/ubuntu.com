@@ -62,9 +62,6 @@
   </div>
 </section>
 
-{% set posts_per_page = 15 %}
-{% set total_pages = metadata | count / posts_per_page %}
-
 <section class="p-strip is-shallow has-shadow">
   <div class="row u-equal-height">
     {% for item in metadata %}
@@ -109,6 +106,10 @@
 
       el.addEventListener('change', function(e) {
         var value = e.target.value;
+
+        if (url.searchParams.has('page')) {
+          url.searchParams.delete('page');
+        }
 
         if (value) {
           if (url.searchParams.has(key)) {
