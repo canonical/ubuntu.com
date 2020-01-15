@@ -250,7 +250,7 @@ juju config kubernetes-master enable-keystone-authorization=true
  policy can be applied by running:
 
 ```bash
-juju config kubernetes-master keystone-policy=$(cat policy.yaml)
+juju config kubernetes-master keystone-policy="$(cat policy.yaml)"
 ```
 
 The [default policy may be downloaded][policy] for easy editing.

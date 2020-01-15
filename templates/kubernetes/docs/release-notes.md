@@ -54,6 +54,14 @@ Storage classes will now be created if the `kubernetes-master` charm is related 
 integrator charm. These classes are for AWS, GCE, Openstack, and Azure and are named cdk-ebs,
 cdk-gce-pd, cdk-cinder, and cdk-azure-disk, respectively.
 
+- Support for etcd 3.3 and 3.4
+
+Whilst Charmed Kubernetes 1.17 ships with etcd 3.3 by default, it also brings support for
+running etcd 3.4. To do so, you can simply run the followiung Juju command:
+
+```bash
+juju config etcd channel=3.4/stable
+```
 
 ## Component Upgrades
 
