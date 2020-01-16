@@ -3,7 +3,8 @@ version: 2
 defaults: &defaults
   docker:
     - image: canonicalwebteam/dev:v1.6.7
-
+  environment:
+    - DATABASE_URL: sqlite:///
 jobs:
   test-site:
     <<: *defaults
