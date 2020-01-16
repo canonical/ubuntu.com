@@ -31,6 +31,8 @@ from webapp.context import (
     get_navigation,
     releases,
 )
+from webapp.database import db_engine
+from webapp.models import Base
 from webapp.views import (
     advantage_view,
     blog_blueprint,
@@ -38,6 +40,8 @@ from webapp.views import (
     blog_custom_topic,
     blog_press_centre,
     download_thank_you,
+    notice,
+    notices,
     releasenotes_redirect,
 )
 from webapp.login import login_handler, logout
@@ -46,6 +50,9 @@ from webapp.login import login_handler, logout
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
 )
+
+# Create all tables
+Base.metadata.create_all(db_engine)
 
 # Set up application
 # ===
@@ -119,7 +126,7 @@ app.add_url_rule(
     "/search", "search", build_search_view(template_path="search.html")
 )
 
-# /blog section
+# blog section
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
     view_func=blog_custom_topic,
@@ -130,6 +137,10 @@ app.add_url_rule(
 )
 app.add_url_rule("/blog/press-centre", view_func=blog_press_centre)
 app.register_blueprint(blog_blueprint, url_prefix="/blog")
+
+# usn section
+app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
+app.add_url_rule("/security/notices", view_func=notices)
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)

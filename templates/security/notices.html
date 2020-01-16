@@ -22,9 +22,9 @@
     <div class="col-4">
       <label for="release">Release:</label>
       <select name="release" id="release">
-        <option value="all" selected="">Any</option>
+        <option value="" selected="">Any</option>
         {% for release in releases %}
-          <option value="{{ release.id }}">{{ release.name }}</option>
+          <option value="{{ release.codename }}" {%  if request.args.get("release") == release.codename %}selected{% endif%}>Ubuntu {{ release.version }}</option>
         {% endfor %}
       </select>
     </div>
@@ -36,11 +36,11 @@
         </div>
 
         <div class="col-4">
-          <input type="text" name="details" id="details" />
+          <input type="text" name="details" id="details" value="{{ request.args.get("details", "") }}"/>
         </div>
   
         <div class="col-2">
-          <button type="submit" class="p-button--positive" disabled>Search{% if request.args %} again{% endif %}</button>
+          <button type="submit" class="p-button--positive">Search{% if request.args %} again{% endif %}</button>
         </div>
       </div>
     </div>
@@ -51,19 +51,7 @@
   <div class="row">
     <div class="col-9">
       <h2>Latest notices</h2>
-
-      {% set notice = { 
-        "id": "123",
-        "title": "Placeholder notice",
-        "published": "14 January 2020",
-        "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et augue id ipsum eleifend aliquam eu a nisi. Praesent turpis tellus, finibus quis aliquet nec, imperdiet eget mi.",
-        "releases": [
-          { "id": "1", "name": "19.04 Ubuntu" },
-          { "id": "2", "name": "15.04 Ubuntu" }
-        ]       
-      } %}
-
-      {% for n in ['1', '2', '3', '4'] %}
+      {% for notice in notices %}
         {% with notice=notice %}
           {% include "security/_notice-brief.html" %}
         {% endwith %}
@@ -93,21 +81,22 @@
     </div>
   </div>
 
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
-  <div class="row">
-    <div class="col-9">
-      <h2>Featured</h2>
-
-      {% for n in ['1', '2', '3', '4'] %}
-        {% with notice=notice %}
-          {% include "security/_notice-brief.html" %}
-        {% endwith %}
-      {% endfor %}
+  {% if featured_notices %}
+    <div class="u-fixed-width">
+      <hr class="p-separator" />
     </div>
-  </div>
+
+    <div class="row">
+      <div class="col-9">
+        <h2>Featured</h2>
+        {% for notice in featured_notices %}
+          {% with notice=notice %}
+            {% include "security/_notice-brief.html" %}
+          {% endwith %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
 </section>
 
 {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
