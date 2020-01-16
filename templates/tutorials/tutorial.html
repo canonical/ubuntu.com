@@ -75,7 +75,15 @@
         </div>
         <div class="col-6 col-small-2 col-medium-3 u-align--right">
           <div class="l-tutorial__duration">
-            <small><span class="u-hide--small">about </span>{{ section["remaining_duration"] }} minutes to go</small>
+            <small>
+              <span class="u-hide--small">about</span>
+              {% if section["remaining_duration"] %}
+                {{ section["remaining_duration"] }}
+              {% else %}
+                0
+              {% endif %}
+              minutes to go
+            </small>
           </div>
           <div class="l-tutorial__pagination">
             {% if loop.first %}
