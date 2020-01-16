@@ -36,7 +36,7 @@
     <div class="col-4">
       <div class="p-form__group">
         <label for="tutorials-topic">Topic:</label>
-        <select name="tutorials-topic" id="tutorials-topic">
+        <select name="tutorials-topic" id="tutorials-topic" class="u-no-margin--bottom">
           <option value="">Any</option>
           <option value="cloud">Cloud</option>
           <option value="community">Community</option>
@@ -52,7 +52,7 @@
     <div class="col-4">
       <div class="p-form__group">
         <label for="tutorials-sort">Sorted by:</label>
-        <select name="tutorials-sort" id="tutorials-sort">
+        <select name="tutorials-sort" id="tutorials-sort" class="u-no-margin--bottom">
           <option value="">Choose</option>
           <option value="difficulty-desc">Most difficult</option>
           <option value="difficulty-asc">Least difficult</option>
@@ -62,13 +62,13 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow has-shadow">
+<section class="p-strip has-shadow">
   <div class="row u-equal-height">
     {% for item in metadata %}
       {% if loop.index <= posts_per_page * page and loop.index >= posts_per_page * page - posts_per_page + 1 %}
         <div class="col-4 blog-p-card--post">
           <header class="blog-p-card__header--tutorial">
-            <h5 class="p-muted-heading u-no-margin--bottom u-text-dark">
+            <h5 class="p-muted-heading u-no-margin--bottom">
               {{ item.categories }}
             </h5>
           </header>
