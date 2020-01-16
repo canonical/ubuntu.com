@@ -10,14 +10,18 @@ import flask
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 from geolite2 import geolite2
+from mistune import Markdown
 from requests.exceptions import HTTPError
 
 # Local
 from webapp import auth
 from webapp.api import advantage
+from webapp.database import db_session
+from webapp.models import Notice, Release
 
 
 ip_reader = geolite2.reader()
+markdown_parser = Markdown(parse_block_html=True, parse_inline_html=True)
 
 
 def download_thank_you(category):
@@ -237,3 +241,56 @@ def blog_press_centre():
     )
 
     return flask.render_template("blog/press-centre.html", **context)
+
+
+# USN
+# ===
+
+
+def notice(notice_id):
+    notice = db_session.query(Notice).get(notice_id)
+
+    if not notice:
+        flask.abort(404)
+
+    notice = {
+        "id": notice.id,
+        "title": notice.title,
+        "published": notice.published,
+        "summary": notice.summary,
+        "details": markdown_parser(notice.details),
+        "instructions": markdown_parser(notice.instructions),
+        "packages": notice.packages,
+        "releases": notice.releases,
+    }
+
+    return flask.render_template("security/notice.html", notice=notice)
+
+
+def notices():
+    details = flask.request.args.get("details", default=None, type=str)
+    release = flask.request.args.get("release", default=None, type=str)
+
+    notices_query = db_session.query(Notice)
+
+    if release:
+        notices_query = notices_query.join(Release, Notice.releases).filter(
+            Release.codename == release
+        )
+    if details:
+        notices_query = notices_query.filter(
+            Notice.details.ilike(f"%{details}%")
+        )
+
+    notices = notices_query.all()
+    featured_notices = (
+        db_session.query(Notice).filter(Notice.featured).all()
+    )
+    releases = db_session.query(Release).all()
+
+    return flask.render_template(
+        "security/notices.html",
+        featured_notices=featured_notices,
+        notices=notices,
+        releases=releases,
+    )
