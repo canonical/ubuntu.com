@@ -13,6 +13,16 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.17+ck1 Bugfix release
+
+### January 15, 2020 - [charmed-kubernetes-372](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-372/archive/bundle.yaml)
+
+## Fixes
+
+We fixed an issue where pod-to-pod network traffic was being unnecessarily
+masqueraded when using Flannel or Canal. More details can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.17+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.17+ck1).
+
 # 1.17
 
 ### December 17, 2019 - [charmed-kubernetes-335](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-335/archive/bundle.yaml)
@@ -54,6 +64,14 @@ Storage classes will now be created if the `kubernetes-master` charm is related 
 integrator charm. These classes are for AWS, GCE, Openstack, and Azure and are named cdk-ebs,
 cdk-gce-pd, cdk-cinder, and cdk-azure-disk, respectively.
 
+- Support for etcd 3.3 and 3.4
+
+Whilst Charmed Kubernetes 1.17 ships with etcd 3.3 by default, it also brings support for
+running etcd 3.4. To do so, you can simply run the followiung Juju command:
+
+```bash
+juju config etcd channel=3.4/stable
+```
 
 ## Component Upgrades
 
