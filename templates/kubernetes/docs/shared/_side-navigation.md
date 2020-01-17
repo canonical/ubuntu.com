@@ -48,6 +48,7 @@
 - **Reference**
   - [Release notes](/kubernetes/docs/release-notes)
   - [Upgrade notes](/kubernetes/docs/upgrade-notes)
+  - [Supported versions](/kubernetes/docs/supported-versions)
   - [Certificates and trust](/kubernetes/docs/certs-and-trust)
   - [CIS compliance](/kubernetes/docs/cis-compliance)
   - [Snap refresh settings](/kubernetes/docs/snap-refresh)
