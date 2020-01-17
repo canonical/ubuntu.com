@@ -30,7 +30,7 @@
     <ol class="l-tutorial__nav p-stepped-list u-hide--small">
       {% for section in document.sections %}
         <li class="p-stepped-list__item l-tutorial__nav-item">
-          <a class="p-stepped-list__title l-tutorial__nav-link" href="#{{ section['slug'] }}">
+          <a class="p-stepped-list__title l-tutorial__nav-link" href="#{{ loop.index }}-{{ section['slug'] }}">
             {{ section["title"]}}
           </a>
         </li>
@@ -39,7 +39,7 @@
   </aside>
   <div class="l-tutorial__content">
     {% for section in document.sections %}
-    <section class="l-tutorial-section" id="{{ section['slug']}}">
+    <section class="l-tutorial-section" id="{{ loop.index }}-{{ section['slug']}}">
       <h2 class="p-heading--four">{{ loop.index }}. {{ section["title"]}}</h2>
 
       <article class="l-tutorial-section__content">
@@ -162,11 +162,26 @@
     scrollToTop();
   });
 
+  sectionIds = []
+  document.querySelectorAll('.l-tutorial__content section').forEach(
+    function(section) {sectionIds.push(section.id)}
+  )
+
   // Navigate to first tutorial step on load if no URL hash
   if (!window.location.hash) {
     var firstSectionLink = document.querySelector('.l-tutorial__nav-link');
     window.location.hash = firstSectionLink.getAttribute('href');
     scrollToTop();
+  } else {
+    // Redirect #0, #1 etc. to the correct section
+    match = window.location.hash.match(/^#(\d+)$/);
+
+    if (match) {
+      index = parseInt(match[1]);
+      sectionId = sectionIds[index];
+      window.location.hash = '#' + sectionId;
+      window.location.reload();
+    }
   }
 
   var tutorialFeedbackOptions = document.querySelector('.l-tutorial__feedback-options');
@@ -189,5 +204,11 @@
     });
   });
 })();
+</script>
+
+<script>
+  if (window.location.hash == "#0") {
+    window.location.hash == "#welcome";
+  }
 </script>
 {% endblock %}
