@@ -125,7 +125,11 @@
 
   // If the page loads with a preselected hash load and open the menu
   if (hash) {
-    var selected = nav.querySelector(hash);
+    try {
+      var selected = nav.querySelector(hash);
+    } catch {
+      console.warn("Hash " + hash + " not found in topnav");
+    }
     if (selected) {
       selected.onmouseover();
     }
