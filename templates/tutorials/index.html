@@ -1,0 +1,133 @@
+{% extends "tutorials/base_tutorials.html" %}
+
+{% block title %}Tutorials{% endblock %}
+
+{% block content %}
+<nav class="p-navigation--secondary l-tutorials__breadcrumb">
+  <div class="row">
+    <div class="col-12 u-equal-height">
+      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="/tutorials">
+        <h5 class="p-navigation--secondary__logo">
+          Tutorials
+        </h5>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<section class="p-strip--suru-blog-header is-dark">
+  <div class="row">
+    <div class="col-6">
+      <h1>Tutorials</h1>
+      <p>These tutorials provide a step-by-step process to doing development and dev-ops activities on Ubuntu machines, servers or devices.</p>
+      <p><a class="p-link--inverted" href="https://discourse.ubuntu.com/c/tutorials">You can write your own&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow l-tutorials__filters">
+  <div class="row">
+    <!-- <div class="col-4">
+      <div class="p-form__group">
+        <label for="tutorials-search">Search tutorials containing:</label>
+        <input type="search" name="tutorials-search" id="tutorials-search">
+      </div>
+    </div> -->
+    <div class="col-4">
+      <div class="p-form__group">
+        <label for="tutorials-topic">Topic:</label>
+        <select name="tutorials-topic" id="tutorials-topic" class="u-no-margin--bottom">
+          <option value="">Any</option>
+          <option value="cloud">Cloud</option>
+          <option value="community">Community</option>
+          <option value="containers">Containers</option>
+          <option value="desktop">Desktop</option>
+          <option value="development">Development</option>
+          <option value="iot">IoT</option>
+          <option value="packaging">Packaging</option>
+          <option value="server">Server</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="p-form__group">
+        <label for="tutorials-sort">Sorted by:</label>
+        <select name="tutorials-sort" id="tutorials-sort" class="u-no-margin--bottom">
+          <option value="">Choose</option>
+          <option value="difficulty-desc">Most difficult</option>
+          <option value="difficulty-asc">Least difficult</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip has-shadow">
+  <div class="row u-equal-height">
+    {% for item in metadata %}
+      {% if loop.index <= posts_per_page * page and loop.index >= posts_per_page * page - posts_per_page + 1 %}
+        <div class="col-4 blog-p-card--post">
+          <header class="blog-p-card__header--tutorial">
+            <h5 class="p-muted-heading u-no-margin--bottom">
+              {{ item.categories }}
+            </h5>
+          </header>
+          <div class="blog-p-card__content">
+            <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
+              {{ item.topic | replace("inline-onebox", "p-link--soft") | safe }}
+            </h3>
+            <p class="u-sv3">{{ item.summary | safe }}</p>
+          </div>
+          <footer class="blog-p-card__footer">
+            Difficulty: <span class="l-tutorials-meter l-tutorials-meter--{{ item.difficulty }}">{{ item.difficulty }} out of 5</span>
+          </footer>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% with %}
+  {% set total_pages = total_pages %}
+  {% set current_page = page %}
+  {% include "shared/_pagination.html" %}
+{% endwith %}
+
+<script>
+  (function() {
+    var topicsFilter = document.getElementById('tutorials-topic');
+    var sortFilter = document.getElementById('tutorials-sort');
+    var urlObj = new URL(window.location);
+
+    function handleFilter(key, el, url) {
+      if (url.searchParams.has(key)) {
+        el.value = url.searchParams.get(key);
+      }
+
+      el.addEventListener('change', function(e) {
+        var value = e.target.value;
+
+        if (url.searchParams.has('page')) {
+          url.searchParams.delete('page');
+        }
+
+        if (value) {
+          if (url.searchParams.has(key)) {
+            url.searchParams.delete(key);
+          }
+
+          url.searchParams.append(key, value);
+        } else {
+          url.searchParams.delete(key);
+        }
+
+        window.location = url;
+      });
+    }
+
+    handleFilter('topic', topicsFilter, urlObj);
+    handleFilter('sort', sortFilter, urlObj);
+  })();
+</script>
+
+{% endblock %}

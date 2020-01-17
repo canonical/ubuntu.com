@@ -5,6 +5,7 @@ A Flask application for ubuntu.com
 # Packages
 import talisker.requests
 import flask
+import math
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
@@ -132,14 +133,72 @@ app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 url_prefix = "/server/docs"
 server_docs_parser = DocParser(
     api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
+    category_id=26,
     index_topic_id=11322,
     url_prefix=url_prefix,
 )
 server_docs = DiscourseDocs(
     parser=server_docs_parser,
-    category_id=26,
     document_template="/docs/document.html",
     url_prefix=url_prefix,
 )
 
 server_docs.init_app(app)
+
+url_prefix = "/tutorials"
+tutorials_docs_parser = DocParser(
+    api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
+    category_id=34,
+    index_topic_id=13611,
+    url_prefix=url_prefix,
+)
+tutorials_docs = DiscourseDocs(
+    parser=tutorials_docs_parser,
+    document_template="/tutorials/tutorial.html",
+    url_prefix=url_prefix,
+    blueprint_name="tutorials",
+)
+
+
+@app.route(url_prefix)
+def index():
+    page = flask.request.args.get("page", default=1, type=int)
+    topic = flask.request.args.get("topic", default=None, type=str)
+    sort = flask.request.args.get("sort", default=None, type=str)
+    posts_per_page = 15
+    tutorials_docs.parser.parse()
+    if not topic:
+        metadata = tutorials_docs.parser.metadata
+    else:
+        metadata = [
+            doc
+            for doc in tutorials_docs.parser.metadata
+            if topic in doc["categories"]
+        ]
+
+    if sort == "difficulty-desc":
+        metadata = sorted(
+            metadata, key=lambda k: k["difficulty"], reverse=True
+        )
+
+    if sort == "difficulty-asc":
+        metadata = sorted(
+            metadata, key=lambda k: k["difficulty"], reverse=False
+        )
+
+    total_pages = math.ceil(len(metadata) / posts_per_page)
+
+    return flask.render_template(
+        "tutorials/index.html",
+        navigation=tutorials_docs.parser.navigation,
+        forum_url=tutorials_docs.parser.api.base_url,
+        metadata=metadata,
+        page=page,
+        topic=topic,
+        sort=sort,
+        posts_per_page=posts_per_page,
+        total_pages=total_pages,
+    )
+
+
+tutorials_docs.init_app(app)

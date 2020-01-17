@@ -1,0 +1,153 @@
+@mixin layout-tutorial {
+  .l-tutorial {
+    @extend %row;
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      flex-direction: row;
+      min-height: calc(100vh - 225px); // minus header, nav and footer height
+    }
+  }
+
+  .l-tutorial__sidebar {
+    border-bottom: 1px solid $color-mid-light;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      border-bottom: 0;
+      border-right: 1px solid $color-mid-light;
+      flex: 0 0 18rem;
+    }
+  }
+
+  .l-tutorial__nav-toggle {
+    background-size: $sp-medium;
+    cursor: pointer;
+    float: right;
+    padding: $sp-large;
+  }
+
+  .l-tutorial__nav {
+    margin-left: 0;
+    padding-top: $sp-medium;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      padding-top: $sp-large;
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  .l-tutorial__nav-item {
+    padding-bottom: $sp-medium;
+  }
+
+  .l-tutorial__nav-link {
+    color: $color-dark;
+
+    &:visited {
+      color: $color-dark;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &::before {
+      height: $sp-large;
+      margin-right: $sp-medium;
+      width: $sp-large;
+    }
+
+    &.is-active {
+      font-weight: 400;
+
+      &::before {
+        background-color: $color-brand;
+        color: $color-x-light;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .l-tutorial__content {
+    overflow: hidden; // stops pre from stretching out the flex column
+    padding-top: $sp-large;
+    width: 100%;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      padding-left: 5%;
+    }
+  }
+
+  .l-tutorial-section {
+    display: none;
+
+    &:target {
+      display: block;
+    }
+  }
+
+  .l-tutorial-section__footer {
+    margin-bottom: $sp-medium;
+  }
+
+  .l-tutorial__bug-link {
+    position: relative;
+    top: -1.38rem;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      top: 0;
+    }
+  }
+
+  .l-tutorial__duration {
+    margin-bottom: $sp-small;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      display: inline-block;
+      margin-bottom: 0;
+      margin-right: $sp-medium;
+    }
+  }
+
+  .l-tutorial__pagination {
+    @media only screen and (min-width: $breakpoint-small) {
+      display: inline-block;
+    }
+  }
+
+  %l-tutorial-pagination-item {
+    display: inline-block;
+    margin-right: $sp-small;
+    max-width: $sp-xxxx-large;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @media only screen and (max-width: $breakpoint-small) {
+      width: auto;
+    }
+  }
+
+  .l-tutorial__pagination-item--prev {
+    @extend %l-tutorial-pagination-item;
+
+    .p-icon--contextual-menu {
+      transform: rotate(90deg);
+    }
+  }
+
+  .l-tutorial__pagination-item--next {
+    @extend %l-tutorial-pagination-item;
+
+    .p-icon--contextual-menu {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .l-tutorial__feedback-icon {
+    cursor: pointer;
+  }
+}
