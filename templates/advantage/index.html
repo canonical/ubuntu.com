@@ -8,6 +8,17 @@
 
 <section class="p-strip--suru-topped is-shallow" style="padding-top: 6rem">
 {% if openid %}
+
+  <script>
+    dataLayer.push({
+      'event' : 'GAEvent',
+      'eventCategory' : 'Advantage',
+      'eventAction' : 'Authentication',
+      'eventLabel' : 'Logged in',
+      'eventValue' : undefined
+    });
+  </script>
+
   <div class="row">
     <div class="col-6">
       <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
