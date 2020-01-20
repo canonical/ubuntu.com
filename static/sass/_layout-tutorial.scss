@@ -147,6 +147,25 @@
     }
   }
 
+  .l-tutorial__feedback-options {
+
+    .p-inline-list__item {
+      .has-color {
+        display: none;
+      }
+
+      &:hover {
+        .l-tutorial__feedback-icon {
+          display: none;
+        }
+
+        .has-color {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
   .l-tutorial__feedback-icon {
     cursor: pointer;
   }
