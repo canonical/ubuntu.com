@@ -92,7 +92,7 @@
                 <i class="p-icon--contextual-menu">Previous step</i>
               </button>
             {% else %}
-              <a href="#{{ loop.previtem['slug']}}" class="l-tutorial__pagination-item--prev p-button--neutral has-icon u-no-margin--bottom" style="margin-right: 1rem;">
+              <a href="#{{ loop.index - 1 }}-{{ loop.previtem['slug'] }}" class="l-tutorial__pagination-item--prev p-button--neutral has-icon u-no-margin--bottom" style="margin-right: 1rem;">
                 <i class="p-icon--contextual-menu">Previous step</i>
               </a>
             {% endif %}
@@ -102,7 +102,7 @@
                 <i class="p-icon--contextual-menu">Next step</i>
               </button>
             {% else %}
-              <a href="#{{ loop.nextitem['slug']}}" class="l-tutorial__pagination-item--next p-button--neutral has-icon u-no-margin--bottom">
+              <a href="#{{ loop.index + 1 }}-{{ loop.nextitem['slug'] }}" class="l-tutorial__pagination-item--next p-button--neutral has-icon u-no-margin--bottom">
                 <i class="p-icon--contextual-menu">Next step</i>
               </a>
             {% endif %}
