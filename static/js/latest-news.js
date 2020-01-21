@@ -1,41 +1,32 @@
 (function() {
-  function _slugify(string) {
-    var a =
-      "àáäâãåăæąçćčđďèéěėëêęğǵḧìíïîįłḿǹńňñòóöôœøṕŕřßşśšșťțùúüûǘůűūųẃẍÿýźžż·/_,:;";
-    var b =
-      "aaaaaaaaacccddeeeeeeegghiiiiilmnnnnooooooprrsssssttuuuuuuuuuwxyyzzz------";
-    var p = new RegExp(a.split("").join("|"), "g");
-    return string
-      .toString()
-      .toLowerCase()
-      .replace(/\s+/g, "-") // Replace spaces with -
-      .replace(p, function(c) {
-        return b.charAt(a.indexOf(c));
-      }) // Replace special characters
-      .replace(/&/g, "-and-") // Replace & with 'and'
-      .replace(/[^\w\-]+/g, "") // Remove all non-word characters
-      .replace(/\-\-+/g, "-") // Replace multiple - with single -
-      .replace(/^-+/, "") // Trim - from start of text
-      .replace(/-+$/, ""); // Trim - from end of text
-  }
-
   function _formatDate(date) {
     const parsedDate = new Date(date);
-    var monthNames = [
+    const monthNames = [
       "January", "February", "March",
       "April", "May", "June", "July",
       "August", "September", "October",
       "November", "December"
     ];
-    return parsedDate.getDate() + ' ' + monthNames[parsedDate.getMonth()] + ' ' + parsedDate.getFullYear();
+    return parsedDate.getDate() +
+      ' ' +
+      monthNames[parsedDate.getMonth()] +
+      ' ' +
+      parsedDate.getFullYear();
   }
 
-  function _articleDiv(article, articleTemplateSelector, gtmEventLabel) {
+  function _articleDiv(article, articleTemplateSelector, options) {
     const articleFragment = _getTemplate(articleTemplateSelector);
-
     const time = articleFragment.querySelector('.article-time');
     const link = articleFragment.querySelector('.article-link');
     const title = articleFragment.querySelector('.article-title');
+
+    let hostname = options.hostname || 'ubuntu.com';
+
+    let url = '';
+
+    if (options.hostname) {
+      url = 'https://' + options.hostname;
+    }
 
     if (time) {
       time.datetime = article.date;
@@ -43,15 +34,15 @@
     }
 
     if (link) {
-      link.href = '/blog/' + article.slug;
-      if (gtmEventLabel) {
+      link.href = url + '/blog/' + article.slug;
+      if (options.gtmEventLabel) {
         link.onclick = function() {
           dataLayer.push(
             {
               'event': 'GAEvent',
               'eventCategory': 'blog',
-              'eventAction': gtmEventLabel + ' news link',
-              'eventLabel': _slugify(article.title.rendered)
+              'eventAction': options.gtmEventLabel + ' news link',
+              'eventLabel': article.slug
             }
           );
         }
@@ -66,14 +57,15 @@
   }
 
   function _getTemplate(selector) {
-    var template = document.querySelector(selector);
+    const template = document.querySelector(selector);
+    let fragment;
 
     if ('content' in template) {
-      var fragment = document.importNode(template.content, true);
+      fragment = document.importNode(template.content, true);
     } else {
-      var fragment = document.createDocumentFragment();
+      fragment = document.createDocumentFragment();
 
-      for (var i = 0; i < template.childNodes.length; i++) {
+      for (let i = 0; i < template.childNodes.length; i++) {
         fragment.appendChild(template.childNodes[i].cloneNode(true));
       }
     }
@@ -97,25 +89,33 @@
         const latestPinned = data.latest_pinned_articles[0];
 
         if (latestPinned) {
-          spotlightContainer.appendChild(_articleDiv(latestPinned, options.spotlightTemplateSelector, options.gtmEventLabel));
+          spotlightContainer.appendChild(_articleDiv(latestPinned, options.spotlightTemplateSelector, options));
         }
       }
 
       if (data.latest_articles) {
         data.latest_articles.forEach(function(article) {
-          articlesContainer.appendChild(_articleDiv(article, options.articleTemplateSelector, options.gtmEventLabel));
+          articlesContainer.appendChild(_articleDiv(article, options.articleTemplateSelector, options));
         });
       }
     };
   }
 
   function fetchLatestNews(options) {
-    var url = "/blog/latest-news"
-    var params = []
+    let url = "https://ubuntu.com/blog/latest-news";
+    let params = [];
 
-    if (options.limit) {params.push("limit=" + options.limit);}
-    if (options.tagId) {params.push("tag-id=" + options.tagId);}
-    if (options.groupId) {params.push("group-id=" + options.groupId);}
+    if (options.limit) {
+      params.push("limit=" + options.limit);
+    }
+
+    if (options.tagId) {
+      params.push("tag-id=" + options.tagId);
+    }
+
+    if (options.groupId) {
+      params.push("group-id=" + options.groupId);
+    }
 
     if (params.length) {
       url += "?" + params.join('&')
@@ -130,7 +130,7 @@
     oReq.send();
   }
 
-  if (typeof(window.fetchLatestNews) == "undefined") {
+  if (typeof (window.fetchLatestNews) == "undefined") {
     window.fetchLatestNews = fetchLatestNews
   }
-})()
+})();
