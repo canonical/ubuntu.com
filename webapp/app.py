@@ -181,7 +181,7 @@ def index():
             metadata, key=lambda k: k["difficulty"], reverse=True
         )
 
-    if sort == "difficulty-asc":
+    if sort == "difficulty-asc" or not sort:
         metadata = sorted(
             metadata, key=lambda k: k["difficulty"], reverse=False
         )
