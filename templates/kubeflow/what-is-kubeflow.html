@@ -1,0 +1,203 @@
+{% extends "kubeflow/base_kubeflow.html" %}
+
+{% block title %}What is Kubeflow?{% endblock %}
+{% block meta_description %}Canonical Kubeflow on Ubuntu includes software-defined networking and storage options, architectural flexibility, and shared community-driven ops code independent of architecture.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1m-96RlGkbzFa1KaGAxYFpY0ztIlsTuViCjXSAlErQlg{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-topped">
+    <div class="row u-equal-height">
+      <div class="col-7">
+        <h1>What is Kubeflow?</h1>
+        <p>Kubeflow is an open source artificial intelligence / machine learning (AI/ML) tool that helps improve deployment, portability and management of AI/ML models. Kubeflow allows users to quickly create, train and tune neural networks within Kubernetes for dynamic resource provisioning.</p>
+        <p>Kubeflow works well with TensorFlow and other modern AI/ML frameworks such as PyTorch, MXNet and Chainer allowing users to enhance their existing code and setup.</p>
+      </div>
+      <div class="col-4 col-start-large-9 u-vertically-center u-align--center u-hide--small">
+        <img src="https://assets.ubuntu.com/v1/b1f04506-Kubeflow-Logo-RGB.svg" alt="" width="300" height="70">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Community and governance</h2>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <p>Governed by the Kubeflow community and originated by Google, the project has over 2,000 community members, more than 180 direct code contributors and over 28,000 contributors. Canonical is an active member of the Kubeflow community and strongly believes in its role in democratising AI/ML by making model training and deployment as frictionless as possible.</p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <figure class="u-no-margin">
+      <img src="https://assets.ubuntu.com/v1/aa8145e8-what+is+kubeflow+-+outlined.svg" alt="" width="800" height="274">
+      <figcaption>
+        Effort scale of the different areas required to train, deploy and manage AI/ML projects. Boxes in blue are improved by Kubeflow.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Software-defined Machine Learning Operations (MLOps)</h2>
+  </div>
+  <div class="row">
+    <div class="col-7">
+      <p>For a business, the ability to define machine learning environments through code and APIs enables fast-paced automation and minimisation of MLOps costs. Kubeflow includes the ability to manage and reuse machine learning pipelines, hyper-parameter optimisations and Kubernetes serving configurations. Kubeflow’s servicing systems have been designed to be multi-framework compatible in order to allow for interoperability with TensorFlow, <a href="https://xgboost.ai/">XGBoost</a>, <a href="https://scikit-learn.org/">scikit-learn</a>, <a href="https://developer.nvidia.com/tensorrt">NVIDIA TensorRT Inference Server</a>, <a href="https://onnx.ai/">ONNX</a> and <a href="https://pytorch.org/">PyTorch</a>.  Similarly, Kubeflow allows execution graph manipulation, analytics and auto- scaling.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-5 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg" alt="" width="281" height="200">
+    </div>
+    <div class="col-7 u-vertically-center">
+      <div>
+        <h2>Is Kubeflow the right AI/ML tool for your business?</h2>
+        <p class="u-no-margin--bottom"><a href="/support/contact-us" class="js-invoke-modal p-button--positive">Ask the experts</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-7">
+      <h2>Companies involved in Kubeflow</h2>
+      <p>Kubeflow was originally released in March 2018 by Google as an open source initiative to develop machine learning applications using TensorFlow on top of Kubernetes to minimise MLOps effort.</p>
+      <p>Today, dozens of companies contribute to Kubeflow with many more playing a part in the broader community. Canonical is focused on making it as friction-less as possible to get setup with Kubeflow and run daily operations with it.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip is-shallow">
+  <div class="u-fixed-width">
+    <h2 class="p-muted-heading u-align--center">Contributors to Kubeflow</h2>
+    <ul class="p-inline-images">
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/bc4d28f8-Google_2015_logo.svg" alt="Google" width="100">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/5d6da5c4-logo-canonical-aubergine.svg" alt="Canonical" width="110">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/683950fd-logo-ibm.svg" alt="IBM" width="80">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg" alt="Nvidia" width="100">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg" alt="Intel" width="80">
+      </li>
+      <li class="p-inline-images__item">
+        <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/67a4ca88-redhat.svg" alt="RedHat" width="100">
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <div class="col-7">
+      <h2>What makes up Kubeflow?</h2>
+      <p>At its most basic, Kubeflow is comprised of Jupyter notebooks, hyper- parameter tuning, pipelines, serving, model training and more.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3 class="p-card__thumbnail">Jupyter notebooks</h3>
+      <hr>
+      <div class="p-card__description">
+        <p>Kubeflow comes with support for managing Jupyter notebooks, an open-source application that allows users to blend code, equation-style notation, free text and dynamic visualisations to give data scientists a single point of access to their experiment setup and notes.</p>
+      </div>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__thumbnail">Katib - hyper-parameter tuning</h3>
+      <hr>
+      <div class="p-card__description">
+        <p>Hyperparameters are set before the machine learning process takes place. These parameters (e.g. topology or number of layers in a neural network) can be tuned with Katib. Katib supports various ML tools such as TensorFlow, PyTorch and MXNet making it easy to reuse previous experiments results with Katib and Kubeflow.</p>
+      </div>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__thumbnail">Pipelines</h3>
+      <hr>
+      <div class="p-card__description">
+        <p>Kubeflow pipelines facilitate end-to-end orchestration of ML workflows, management of multiple experiments and approaches as well as easier re-use of previously successful solutions into a new workflow. This helps developers and data scientists save time and effort. </p>
+      </div>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__thumbnail">Serving</h3>
+      <hr>
+      <div class="p-card__description">
+        <p>Kubeflow makes two service systems available, KFServing and Seldon Core. These allow multi-framework model serving and the choice should be made based on the needs of each project.</p>
+      </div>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__thumbnail">Training</h3>
+      <hr>
+      <div class="p-card__description">
+        <p>Model training is possible with various frameworks, in particular TensorFlow, Chainer, MPI, MXNet and PyTorch. These cover the most popular frameworks in the data science and AI/ML space ensuring that developers are able to use Kubeflow’s MLOps features with their favourite tools.</p>
+      </div>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__thumbnail">&hellip; and more</h3>
+      <hr>
+      <div class="p-card__description">
+        <p>Kubeflow is continuously expanding, notable additions are the tracking and managing of metadata of the machine learning workflows as well as Nuclio functions, a high performance serverless solution for data processing, analytics and ML workloads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Who uses Kubeflow?</h2>
+  </div>
+  <div class="row u-equal-height ">
+    <div class="col-6">
+      <p>There are thousands of individual users of KubeFlow across a broad range of industries with roles varying from data scientist to DevOps engineers. Kubeflow is particularly favoured for its ease of use, software defined MLOps and native execution on Kubernetes.</p>
+      <p>In addition to <a href="https://home.cern/">CERN</a> and numerous universities around the world, Kubeflow has become a popular choice for transport and logistics companies such as Uber, Lyft and GoJek.</p>
+      <p>Use cases are also growing in the media industry with Spotify having already adopted Kubeflow.</p>
+      <p>Financial and e-commerce services have been keen adopters, with PayPal and Shopify just some of those that are developing on Kubeflow.</p>
+      <p>Further adoption has been seen in healthcare with Babylon Health and travel with Amadeus IT Group.</p>
+    </div>
+    <div class="col-6 u-vertically-center">
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/547ef405-uber.svg" alt="Uber" width="90">
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/4a1c3691-lyft.svg" alt="Lyft" width="75">
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/2400d5a7-Spotify_logo_with_text.svg" alt="Spotify" width="115">
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logos" src="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg" alt="PayPal" width="115">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-7">
+      <h2>How to install Kubeflow</h2>
+      <p>Kubeflow can easily be setup by installing MicroK8s, a zero-ops Kubernetes provided by Canonical. Kubeflow comes ready to be enabled as part of MicroK8s, making kicking the tyres even easier than before.</p>
+      <p><a class="p-link--external" href="https://microk8s.io">Install Kubeflow in a few easy steps with MicroK8s</a></p>
+    </div>
+  </div>
+</section>
+
+{% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubeflow" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/kubeflow/thank-you?product=ai-features" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock content %}
