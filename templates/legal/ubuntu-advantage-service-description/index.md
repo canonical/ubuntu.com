@@ -9,11 +9,11 @@ markdown_includes:
 
 # Ubuntu Advantage service description
 
-Capitalised terms shall have meanings as defined in the [Definitions section](#uasd-definitions).
+**Valid since 28 January 2019**
+
+*Capitalised terms shall have meanings as defined in the [Definitions section](#uasd-definitions).*
 
 <h2 id="uasd-ua-infrastructure">Ubuntu Advantage for Infrastructure (UA-I)</h2>
-
-Valid since 28 January 2019
 
 {{ pricing_table | safe }}
 
