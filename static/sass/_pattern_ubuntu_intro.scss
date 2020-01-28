@@ -84,28 +84,25 @@
       }
 
       @media only screen and (min-width: $breakpoint-large) {
-        &::before,
         &::after {
-          background: url('#{$assets-path}e09141af-grey_dot.svg') repeat-x right center;
-          background-size: .625rem;
+          background-image: url('#{$assets-path}2d06b913-dots.svg');
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: 60px;
           content: "";
           display: block;
+          height: 100px;
+          left: 100%;
           position: absolute;
-          top: 3.75rem;
+          top: 60px;
+          transform: translateX(-50%);
+          width: 80px;
         }
+      }
 
-        &::before {
-          background-repeat: no-repeat;
-          background-size: 1.125rem;
-          height: 5.875rem;
-          left: 0;
-          width: 3.75rem;
-        }
-
+      @media only screen and (min-width: $breakpoint-x-large) {
         &::after {
-          height: 5.875rem;
-          right: 0;
-          width: 4rem;
+          top: 70px;
         }
       }
 
@@ -115,15 +112,6 @@
 
       &--cloud {
         background-image: url('#{$assets-path}9e5f937b-cloud.svg');
-
-        &::before {
-          width: 2.3125rem;
-        }
-
-        &::after {
-          right: -$sp-large;
-          width: 3.125rem;
-        }
 
         &:hover {
           background-image: url('#{$assets-path}a0028210-cloud_brand.svg');
@@ -135,15 +123,6 @@
         background-image: url('#{$assets-path}82df3da1-server.svg');
         background-size: 5rem;
 
-        &::before {
-          width: $sp-xx-large;
-        }
-
-        &::after {
-          right: -1.625rem;
-          width: 3.8125rem;
-        }
-
         &:hover {
           background-image: url('#{$assets-path}1f63ff41-server_brand.svg');
         }
@@ -151,15 +130,6 @@
 
       &--desktop {
         background-image: url('#{$assets-path}98395612-desktop.svg');
-
-        &::before {
-          width: 2.375rem;
-        }
-
-        &::after {
-          right: -$sp-large;
-          width: 3.4375rem;
-        }
 
         &:hover {
           background-image: url('#{$assets-path}0de61b88-desktop_brand.svg');
@@ -169,29 +139,11 @@
       &--phone {
         background-image: url('#{$assets-path}c2a5e744-phone.svg');
         background-size: 3.125rem;
-
-        &::before {
-          width: 3.625rem;
-        }
-
-        &::after {
-          right: 1.25rem;
-          width: 1.9375rem;
-        }
       }
 
       &--containers {
         background-image: url('#{$assets-path}8700ffb2-containers.svg');
         background-size: 5rem;
-
-        &::before {
-          width: 2.6875rem;
-        }
-
-        &::after {
-          right: -1.25rem;
-          width: 3.125rem;
-        }
 
         &:hover {
           background-image: url('#{$assets-path}71b465ba-containers_brand.svg');
@@ -201,15 +153,6 @@
       &--iot {
         background-image: url('#{$assets-path}f2fd6afc-iot.svg');
         background-size: 5.3125rem;
-
-        &::before {
-          width: 2.625rem;
-        }
-
-        &::after {
-          right: 1.25rem;
-          width: .9375rem;
-        }
 
         &:hover {
           background-image: url('#{$assets-path}59ca2fa6-iot_brand.svg');
