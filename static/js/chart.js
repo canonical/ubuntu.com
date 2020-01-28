@@ -177,9 +177,11 @@ function buildChartKey(chartSelector, taskStatus) {
 function formatKeyLabel(key) {
   var keyLowerCase = key.toLowerCase().replace(/_/g, ' ');
   var formattedKey = keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
-  formattedKey = formattedKey.replace(' lts ', ' LTS ');
+  formattedKey = formattedKey.replace('Lts', 'Ubuntu LTS release Standard Support');
   formattedKey = formattedKey.replace(' openstack ', ' OpenStack ');
-  formattedKey = formattedKey.replace('k', 'K');
+  formattedKey = formattedKey.replace('kub', 'Kub');
+  formattedKey = formattedKey.replace('Interim release', 'Interim release Standard Support');
+  formattedKey = formattedKey.replace('Esm', 'Extended Security Maintenance (ESM)');
   return formattedKey;
 }
 
