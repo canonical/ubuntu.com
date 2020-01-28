@@ -21,7 +21,7 @@
           {% with section=nav_sections.kubernetes %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
-          {% with section=nav_sections.security %}
+          {% with section=nav_sections.kubeflow %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
         </ul>
@@ -31,17 +31,20 @@
           {% with section=nav_sections.desktop %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
-          {% with section=nav_sections.server %}
+          {% with section=nav_sections.iot %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% with section=nav_sections.iot %}
+          {% with section=nav_sections.server %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
           {% with section=nav_sections.support %}
+          {% include 'templates/_footer_item.html' %}
+          {% endwith %}
+          {% with section=nav_sections.security %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
         </ul>
