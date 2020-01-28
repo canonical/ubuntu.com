@@ -75,7 +75,7 @@
         color: $color-mid-dark;
       }
 
-      &:hover {
+      &:hover:not(span) {
         @media only screen and (min-width: $breakpoint-medium) {
           color: $color-brand;
           display: block;
@@ -113,7 +113,7 @@
       &--cloud {
         background-image: url('#{$assets-path}9e5f937b-cloud.svg');
 
-        &:hover {
+        &:hover:not(span) {
           background-image: url('#{$assets-path}a0028210-cloud_brand.svg');
         }
 
@@ -123,7 +123,7 @@
         background-image: url('#{$assets-path}82df3da1-server.svg');
         background-size: 5rem;
 
-        &:hover {
+        &:hover:not(span) {
           background-image: url('#{$assets-path}1f63ff41-server_brand.svg');
         }
       }
@@ -131,7 +131,7 @@
       &--desktop {
         background-image: url('#{$assets-path}98395612-desktop.svg');
 
-        &:hover {
+        &:hover:not(span) {
           background-image: url('#{$assets-path}0de61b88-desktop_brand.svg');
         }
       }
@@ -145,7 +145,7 @@
         background-image: url('#{$assets-path}8700ffb2-containers.svg');
         background-size: 5rem;
 
-        &:hover {
+        &:hover:not(span) {
           background-image: url('#{$assets-path}71b465ba-containers_brand.svg');
         }
       }
@@ -154,7 +154,7 @@
         background-image: url('#{$assets-path}f2fd6afc-iot.svg');
         background-size: 5.3125rem;
 
-        &:hover {
+        &:hover:not(span) {
           background-image: url('#{$assets-path}59ca2fa6-iot_brand.svg');
         }
       }
