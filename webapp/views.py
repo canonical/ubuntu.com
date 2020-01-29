@@ -14,7 +14,7 @@ from requests.exceptions import HTTPError
 
 # Local
 from webapp import auth
-from webapp.api import advantage as advantage_api
+from webapp.api import advantage
 
 
 ip_reader = geolite2.reader()
@@ -87,98 +87,112 @@ def releasenotes_redirect():
         return flask.redirect(f"https://wiki.ubuntu.com/Releases")
 
 
-def advantage():
+def advantage_view():
     accounts = None
     personal_account = None
     enterprise_contracts = []
     entitlements = {}
     openid = flask.session.get("openid")
-    headers = {"Cache-Control": "no-cache"}
 
     if auth.is_authenticated(flask.session):
         try:
-            accounts = advantage_api.get_accounts(flask.session)
-            for account in accounts:
-                account["contracts"] = advantage_api.get_account_contracts(
-                    account, flask.session
-                )
-                for contract in account["contracts"]:
-                    contract["token"] = advantage_api.get_contract_token(
-                        contract, flask.session
-                    )
-
-                    machines = advantage_api.get_contract_machines(
-                        contract, flask.session
-                    ).get("machines")
-                    contract["machineCount"] = 0
-                    if machines:
-                        contract["machineCount"] = len(machines)
-
-                    if contract["contractInfo"].get("origin", "") == "free":
-                        personal_account = account
-                        personal_account["free_token"] = contract["token"]
-                        for entitlement in contract["contractInfo"][
-                            "resourceEntitlements"
-                        ]:
-                            if entitlement["type"] == "esm-infra":
-                                entitlements["esm"] = True
-                            elif entitlement["type"] == "livepatch":
-                                entitlements["livepatch"] = True
-                            elif entitlement["type"] == "fips":
-                                entitlements["fips"] = True
-                            elif entitlement["type"] == "cc-eal":
-                                entitlements["cc-eal"] = True
-                        personal_account["entitlements"] = entitlements
-                    else:
-                        entitlements = {}
-                        for entitlement in contract["contractInfo"][
-                            "resourceEntitlements"
-                        ]:
-                            contract["supportLevel"] = "-"
-                            if entitlement["type"] == "esm-infra":
-                                entitlements["esm"] = True
-                            elif entitlement["type"] == "livepatch":
-                                entitlements["livepatch"] = True
-                            elif entitlement["type"] == "fips":
-                                entitlements["fips"] = True
-                            elif entitlement["type"] == "cc-eal":
-                                entitlements["cc-eal"] = True
-                            elif entitlement["type"] == "support":
-                                contract["supportLevel"] = entitlement[
-                                    "affordances"
-                                ]["supportLevel"]
-                        contract["entitlements"] = entitlements
-                        contract["contractInfo"][
-                            "createdAtFormatted"
-                        ] = datetime.datetime.strptime(
-                            contract["contractInfo"]["createdAt"],
-                            "%Y-%m-%dT%H:%M:%S.%fZ",
-                        ).strftime(
-                            "%d %B %Y"
-                        )
-                        contract["contractInfo"][
-                            "effectiveFromFormatted"
-                        ] = datetime.datetime.strptime(
-                            contract["contractInfo"]["effectiveFrom"],
-                            "%Y-%m-%dT%H:%M:%S.%fZ",
-                        ).strftime(
-                            "%d %B %Y"
-                        )
-                        enterprise_contracts.append(contract)
+            accounts = advantage.get_accounts(flask.session)
         except HTTPError as http_error:
-            # We got an unauthorized request, so we likely
-            # need to re-login to refresh the macaroon
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_url": http_error.request.url,
-                    "request_headers": http_error.request.headers,
-                    "response_headers": http_error.response.headers,
-                    "response_body": http_error.response.json(),
-                }
+            if http_error.response.status_code == 401:
+                # We got an unauthorized request, so we likely
+                # need to re-login to refresh the macaroon
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "session_keys": flask.session.keys(),
+                        "request_url": http_error.request.url,
+                        "request_headers": http_error.request.headers,
+                        "response_headers": http_error.response.headers,
+                        "response_body": http_error.response.json(),
+                        "response_code": http_error.response.json()["code"],
+                        "response_message": http_error.response.json()[
+                            "message"
+                        ],
+                    }
+                )
+
+                auth.empty_session(flask.session)
+
+                return (
+                    flask.render_template("advantage/index.html"),
+                    {"Cache-Control": "private"},
+                )
+
+            raise http_error
+
+        for account in accounts:
+            account["contracts"] = advantage.get_account_contracts(
+                account, flask.session
             )
 
-            auth.empty_session(flask.session)
-            return flask.render_template("advantage/index.html"), headers
+            for contract in account["contracts"]:
+                contract["token"] = advantage.get_contract_token(
+                    contract, flask.session
+                )
+
+                machines = advantage.get_contract_machines(
+                    contract, flask.session
+                ).get("machines")
+                contract["machineCount"] = 0
+
+                if machines:
+                    contract["machineCount"] = len(machines)
+
+                if contract["contractInfo"].get("origin", "") == "free":
+                    personal_account = account
+                    personal_account["free_token"] = contract["token"]
+                    for entitlement in contract["contractInfo"][
+                        "resourceEntitlements"
+                    ]:
+                        if entitlement["type"] == "esm-infra":
+                            entitlements["esm"] = True
+                        elif entitlement["type"] == "livepatch":
+                            entitlements["livepatch"] = True
+                        elif entitlement["type"] == "fips":
+                            entitlements["fips"] = True
+                        elif entitlement["type"] == "cc-eal":
+                            entitlements["cc-eal"] = True
+                    personal_account["entitlements"] = entitlements
+                else:
+                    entitlements = {}
+                    for entitlement in contract["contractInfo"][
+                        "resourceEntitlements"
+                    ]:
+                        contract["supportLevel"] = "-"
+                        if entitlement["type"] == "esm-infra":
+                            entitlements["esm"] = True
+                        elif entitlement["type"] == "livepatch":
+                            entitlements["livepatch"] = True
+                        elif entitlement["type"] == "fips":
+                            entitlements["fips"] = True
+                        elif entitlement["type"] == "cc-eal":
+                            entitlements["cc-eal"] = True
+                        elif entitlement["type"] == "support":
+                            contract["supportLevel"] = entitlement[
+                                "affordances"
+                            ]["supportLevel"]
+                    contract["entitlements"] = entitlements
+                    contract["contractInfo"][
+                        "createdAtFormatted"
+                    ] = datetime.datetime.strptime(
+                        contract["contractInfo"]["createdAt"],
+                        "%Y-%m-%dT%H:%M:%S.%fZ",
+                    ).strftime(
+                        "%d %B %Y"
+                    )
+                    contract["contractInfo"][
+                        "effectiveFromFormatted"
+                    ] = datetime.datetime.strptime(
+                        contract["contractInfo"]["effectiveFrom"],
+                        "%Y-%m-%dT%H:%M:%S.%fZ",
+                    ).strftime(
+                        "%d %B %Y"
+                    )
+                    enterprise_contracts.append(contract)
 
     return (
         flask.render_template(
@@ -188,7 +202,7 @@ def advantage():
             enterprise_contracts=enterprise_contracts,
             personal_account=personal_account,
         ),
-        headers,
+        {"Cache-Control": "private"},
     )
 
 

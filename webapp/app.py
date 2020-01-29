@@ -31,7 +31,7 @@ from webapp.context import (
     releases,
 )
 from webapp.views import (
-    advantage,
+    advantage_view,
     blog_blueprint,
     blog_custom_group,
     blog_custom_topic,
@@ -99,7 +99,7 @@ def utility_processor():
 # ===
 
 # Simple routes
-app.add_url_rule("/advantage", view_func=advantage)
+app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
     "/download/<regex('server|desktop|cloud'):category>/thank-you",
     view_func=download_thank_you,
