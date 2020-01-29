@@ -102,7 +102,7 @@
 </section>
 
 <section class="p-strip--light is-bordered">
-  <div class="row">
+  <div class="row u-equal-height">
     <div class="col-8">
       <h2>Networking</h2>
       <p>Kubernetes imposes fundamental requirements on your networking implementation including:</p>
@@ -111,12 +111,14 @@
         <li class="p-list__item is-ticked">All nodes have to communicate with all containers (and vice-versa) without NAT</li>
         <li class="p-list__item is-ticked">The IP that a container sees itself as needs to be the same IP that others see it as</li>
       </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
       <p>Kubernetes uses Container Network Interface (CNI) as an interface between network providers and Kubernetes networking. CNI is a library definition and a set of tools, under the umbrella of the Cloud Native Computing Foundation project.</p>
     </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/9afbad2b-Networking.svg" width="290" alt="">
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
   </div>
   <div class="row u-equal-height">
     <div class="col-8">
@@ -132,14 +134,10 @@
         <li class="p-list__item is-ticked">Fine-grained control over communications between containers, virtual machine workloads, and bare metal host endpoints.</li>
         <li class="p-list__item is-ticked">Production  scale</li>
       </ul>
+      <p>For assistance with your private cloud network underlay, leverage Canonical&lsquo;s work with hyperscale public clouds such as Google Cloud, Microsoft Azure, and Amazon Web Services, with deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations.</p>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/a6fdc787-logo.png?w=84" width="84" alt="">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <p>For assistance with your private cloud network underlay, leverage Canonical&lsquo;s work with hyperscale public clouds such as Google Cloud, Microsoft Azure, and Amazon Web Services, with deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations.</p>
+      <img src="https://assets.ubuntu.com/v1/e022b8d2-cni-logo.svg" width="168" alt="">
     </div>
   </div>
 </section>
@@ -157,10 +155,20 @@
         <li class="p-list__item is-ticked">Make storage available to containers wherever they&rsquo;re scheduled.</li>
         <li class="p-list__item is-ticked">Automatically delete the storage when no longer needed.</li>
       </ul>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/6baffb0b-Storage.svg" width="290" alt="">
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
       <p>To improve the extensibility of the storage feature set and plugin ecosystem, Kubernetes has announced a new initiative &mdash; the Container Storage Interface (CSI) &mdash; which is currently in Beta. CSI enables storage plugins to be developed independent from the Kubernetes GitHub tree, containerized, deployed via standard Kubernetes primitives, and consumed through the Kubernetes storage primitives users know and love (<a class="p-link--external" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims"><code>PersistentVolumeClaims</code></a>, <a class="p-link--external" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/"><code>PersistentVolumes</code></a>, <a class="p-link--external" href="https://kubernetes.io/docs/concepts/storage/storage-classes/"><code>StorageClasses</code></a>). The next dot release of Charmed Kubernetes will provide early access to CSI.</p>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/4bf27234-logo+%281%29.png?w=323" width="323" alt="">
+      <img src="https://assets.ubuntu.com/v1/e3fc2551-csi.png" width="323" alt="">
     </div>
   </div>
 </section>
@@ -175,10 +183,15 @@
 </section>
 
 <section class="p-strip">
-  <div class="u-fixed-width">
-    <h2>Get started with Charmed Kubernetes</h2>
-    <p>Find out how Canonical enables Kubernetes on demand for your DevOps teams &mdash; on OpenStack, VMware, public clouds, and bare metal clusters.</p>
-    <p><a href="/kubernetes/contact-us" class="p-button--positive js-invoke-modal">Contact Canonical about Kubernetes</a></p>
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h2>Get started with Charmed Kubernetes</h2>
+      <p>Find out how Canonical enables Kubernetes on demand for your DevOps teams &mdash; on OpenStack, VMware, public clouds, and bare metal clusters.</p>
+      <p><a href="/kubernetes/contact-us" class="p-button--positive js-invoke-modal">Contact Canonical about Kubernetes</a></p>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg" width="281" alt="">
+    </div>
   </div>
 </section>
 
