@@ -1,6 +1,6 @@
 ## Done
 
-[List of work items including drive-bys]
+- [List of work items including drive-bys.]
 
 ## QA
 
@@ -17,4 +17,4 @@ Fixes #
 
 ## Screenshots
 
-[if relevant, include a screenshot]
+[If relevant, please include a screenshot.]
