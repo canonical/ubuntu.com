@@ -87,8 +87,20 @@
       display: block;
     }
 
+    h2 {
+      @extend .p-heading--three;
+    }
+
     h3 {
+      @extend .p-heading--four;
+    }
+
+    h4 {
       @extend .p-heading--five;
+    }
+
+    h5 {
+      @extend .p-heading--six;
     }
   }
 
