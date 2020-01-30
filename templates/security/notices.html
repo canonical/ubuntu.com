@@ -126,9 +126,10 @@
   </div>
 
   {% if search %}
-    {% with %}
-      {% set total_pages = 5 %}
-      {% set current_page = 1 %}
+    {% with 
+      total_pages = 5,
+      current_page = 1  
+    %}
       {% include "shared/_pagination.html" %}
     {% endwith %}
   {% elif featured_notices %}
