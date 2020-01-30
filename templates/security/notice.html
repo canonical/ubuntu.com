@@ -6,9 +6,9 @@
 <section class="p-strip--suru-topped is-bordered">
   <div class="row">
     <div class="col-8">
-	    <h1> USN-{{ notice.id }}: {{ notice.title }}</h1>
-	<p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
-	<p>{{ notice.summary|safe }}</p>
+	    <h1>USN-{{ notice.id }}: {{ notice.title }}</h1>
+      <p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
+      <p>{{ notice.summary|safe }}</p>
     </div>
   </div>
 </section>
@@ -32,8 +32,8 @@
     <div class="col-12">
       <h2>Packages</h2>
       <ul class="p-list">
-	{% for package in notice.packages %}
-	<li class="p-list__item">{{ package.name }}</li>
+        {% for package in notice.packages %}
+          <li class="p-list__item">{{ package.name }}</li>
       	{% endfor %}
       </ul>
     </div>
