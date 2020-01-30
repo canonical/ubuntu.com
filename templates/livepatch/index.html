@@ -26,7 +26,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip--light is-deep">
   <div class="row u-equal-height">
     <div class="col-3 u-vertically-center">
       <img src="https://assets.ubuntu.com/v1/0326ac7d-dena-logo.png?w=144" width="144" alt="Dena" />
@@ -42,12 +42,14 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip is-bordered">
   <div class="row">
-    <div class="col-12">
+    <div class="col-6">
       <h2>Free for personal use</h2>
       <p>All you need is an Ubuntu One account. Free for 3 machines.</p>
       <p><a class="p-button--positive"  href="https://auth.livepatch.canonical.com/">Get Livepatch</a></p>
+    </div>
+    <div class="col-6">
       <h2>Part of Ubuntu Advantage</h2>
       <p>Buy as part of Ubuntu Advantage from Canonical. Buy online.</p>
       <p><a class="p-button--positive"  href="/advantage#livepatch">Get Ubuntu Advantage</a></p>
@@ -55,9 +57,9 @@
   </div>
 </section>
 
-{% with colour="dark" %}{% include "shared/_call-sales.html" %}{% endwith %}
+{% with colour="light" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
-<section class="p-strip--light is bordered">
+<section class="p-strip is bordered">
   <div class="u-fixed-width">
     <h2 class="p-muted-heading u-align-text--center">Livepatch is used by</h2>
     <div class="p-fluid-grid--centered">
@@ -74,7 +76,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-12">
       <h2 class="u-no-max-width">How to enable the Canonical Livepatch Service</h2>
@@ -86,14 +88,12 @@
       <ol class="p-stepped-list">
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">
-
             Generate your credentials
           </h3>
           <p>Via the <a class="p-link--external" href="https://auth.livepatch.canonical.com/">Canonical Livepatch portal</a>.</p>
         </li>
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">
-
             Install the livepatch daemon
           </h3>
           <div class="p-code-copyable">
@@ -103,7 +103,6 @@
         </li>
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">
-
             Enable it on your system
           </h3>
           <div class="p-code-copyable">
@@ -136,7 +135,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-5 u-align--center u-hide--small">
         <img src="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg" style="height:200px" alt="">
