@@ -6,9 +6,13 @@
 <section class="p-strip--suru-topped">
   <div class="row">
     <div class="col-8">
-	    <h1>Ubuntu Security Notices</h1>
-      <p>Developers issue an Ubuntu Security Notice when a security issue is fixed in an <a href="#">official Ubuntu package</a>.</p>
-      <p>To report a security vulnerability in an Ubuntu package, please <a href="#">contact the Security Team</a>.</p>
+      {% if request.args.get('release') %}
+        <h1>Ubuntu Security Notices search results</h1>
+      {% else %}
+        <h1>Ubuntu Security Notices</h1>
+        <p>Developers issue an Ubuntu Security Notice when a security issue is fixed in an <a href="#">official Ubuntu package</a>.</p>
+        <p>To report a security vulnerability in an Ubuntu package, please <a href="#">contact the Security Team</a>.</p>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -22,9 +26,9 @@
     <div class="col-4">
       <label for="release">Release:</label>
       <select name="release" id="release">
-        <option value="" selected="">Any</option>
+        <option value="all" selected>Any</option>
         {% for release in releases %}
-          <option value="{{ release.codename }}" {%  if request.args.get("release") == release.codename %}selected{% endif%}>Ubuntu {{ release.version }}</option>
+          <option value="{{ release.codename }}" {%  if request.args.get('release') == release.codename %}selected{% endif%}>Ubuntu {{ release.version }}</option>
         {% endfor %}
       </select>
     </div>
@@ -36,11 +40,11 @@
         </div>
 
         <div class="col-4">
-          <input type="text" name="details" id="details" value="{{ request.args.get("details", "") }}"/>
+          <input type="text" name="details" id="details" value="{{ request.args.get('details', '') }}"/>
         </div>
   
         <div class="col-2">
-          <button type="submit" class="p-button--positive">Search{% if request.args %} again{% endif %}</button>
+          <button type="submit" class="p-button--positive">Search{% if request.args.get('release') %} again{% endif %}</button>
         </div>
       </div>
     </div>
@@ -48,6 +52,42 @@
 </section>
 
 <section class="p-strip">
+  {% if request.args.get('release') %}
+    <div class="row">
+      <div class="col-6">
+        {% set first = 1 %}
+        {% set last = 1 %}
+        <h2 class="p-heading--four">{{ first }} - {{ last }} of {{ notices|length }} results</h2>
+      </div>
+
+      <div class="col-6">
+        <form action="/security/notices" method="GET" class="row p-form--inline js-sort-form">
+          <input type="hidden" name="release" value="{{ request.args.get('release', '') }}"/>
+          <input type="hidden" name="details" value="{{ request.args.get('details', '') }}"/>
+          <div class="p-form__group u-align--right">
+            <label class="p-form__label" for="sort-by">Sort by:</label>
+            <select name="sort" id="sort" style="width: auto;">
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+            </select>
+          </div>
+        </form>
+
+        <script>
+          var form = document.querySelector('.js-sort-form');
+
+          form.addEventListener('change', function() {
+            form.submit();
+          })
+        </script>
+      </div>
+    </div>
+
+    <div class="u-fixed-width">
+      <hr style="margin: 1rem 0;" />
+    </div>
+  {% endif %}
+
   <div class="row">
     <div class="col-9">
       <h2>Latest notices</h2>
@@ -58,30 +98,38 @@
       {% endfor %}
     </div>
 
-    <div class="col-3">
-      <div class="p-card">
-        <h2 class="p-heading--four">Subscribe</h2>
+    {% if not request.args.get('release') %}
+      <div class="col-3">
+        <div class="p-card">
+          <h2 class="p-heading--four">Subscribe</h2>
 
-        <ul class="p-list u-no-margin--bottom">
-          <li class="p-list__item u-sv1">
-            <a href="#" style="display: flex; align-items: center;">
-              <i class="p-icon--rss" style="margin-right: 0.5rem; flex-shrink: 0;"></i>
-              RSS
-            </a>
-          </li>
+          <ul class="p-list u-no-margin--bottom">
+            <li class="p-list__item u-sv1">
+              <a href="#" style="display: flex; align-items: center;">
+                <i class="p-icon--rss" style="margin-right: 0.5rem; flex-shrink: 0;"></i>
+                RSS
+              </a>
+            </li>
 
-          <li class="p-list__item">
-            <a href="#" style="display: flex; align-items: center;">
-              <i class="p-icon--email" style="margin-right: 0.5rem; flex-shrink: 0;"></i>
-              Mailing list
-            </a>
-          </li>
-        </ul>
+            <li class="p-list__item">
+              <a href="#" style="display: flex; align-items: center;">
+                <i class="p-icon--email" style="margin-right: 0.5rem; flex-shrink: 0;"></i>
+                Mailing list
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    {% endif %}
   </div>
 
-  {% if featured_notices %}
+  {% if request.args.get('release') %}
+    {% with %}
+      {% set total_pages = 5 %}
+      {% set current_page = 1 %}}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  {% elif featured_notices %}
     <div class="u-fixed-width">
       <hr class="p-separator" />
     </div>
