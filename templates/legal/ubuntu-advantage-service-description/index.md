@@ -100,13 +100,13 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
         2. Support for guest instances other than [Cloud Guests](#term-cloud-guests).
   2. Support for Kubernetes
     1. Full Stack support requirements:
-        1. [Deployment](#term-deployment) of [Charmed Distribution of Kubernetes](#term-cdk) (CDK) in at least the minimum deployment configuration, or a kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS.
-        2. Highly-Available control plane either deployed using Charms in the CDK reference architecture or in a similar fashion using kubeadm.
+        1. [Deployment](#term-deployment) of [Charmed Kubernetes](#term-cdk) in at least the minimum deployment configuration, or a kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS.
+        2. Highly-Available control plane either deployed using Charms in the Charmed Kubernetes reference architecture or in a similar fashion using kubeadm.
         3. Support must be purchased for all nodes in the supported Kubernetes cluster.
         4. Supported versions of Kubernetes include the current stable minor release and the two most recent minor releases in the stable release channel. Additional information can be found at: [https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions](https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions)
-        5. For any deployment of the Charmed Distribution of Kubernetes carried out by Canonical while under contract for a deployment, which result in the customisation of any Charms, the customisation will be supported for 90 days after completion of the deployment.
+        5. For any deployment of Charmed Kubernetes carried out by Canonical while under contract for a deployment, which result in the customisation of any Charms, the customisation will be supported for 90 days after completion of the deployment.
     2. Unless Full-Stack Support requirements are met, support is limited to:
-        1. The software packages and Charms necessary for running the Charmed Distribution of Kubernetes.
+        1. The software packages and Charms necessary for running Charmed Kubernetes.
         2. Kubernetes clusters deployed using kubeadm utilising the software packages available from apt.kubernetes.io.
         3. Bug-fix support in the supplied software artefacts by Canonical.
 3. Ubuntu Legal Assurance programme. The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at Canonical’s Ubuntu Assurance page:[ http://www.ubuntu.com/legal/ubuntu-advantage/assurance](http://www.ubuntu.com/legal/ubuntu-advantage/assurance)
@@ -356,7 +356,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 - <strong id="term-cluster">Cluster</strong> means the deployment of the Kubernetes computing environment to be managed by Canonical.
 - <strong id="term-container-instance">Container Instance</strong> means a container instance running in the Cluster.
 - <strong id="term-hypervisor">Covered Hypervisor</strong> means any of: KVM | Qemu | Bochs, VMWare ESXi, LXD | LXC, Xen, Hyper-V, VirtualBox, z/VM, Docker.
-- <strong id="term-deployment">Deployment</strong> means the process of deploying the Charmed Distribution of Kubernetes or Kubernetes using kubeadm. A deployment is considered successful once Juju reports all applications in a “started” state.
+- <strong id="term-deployment">Deployment</strong> means the process of deploying Charmed Kubernetes or Kubernetes using kubeadm. A deployment is considered successful once Juju reports all applications in a “started” state.
 - <strong id="term-dse">DSE</strong> means a Canonical dedicated support engineer dedicated to work full-time for a single customer acting as an extension of the customer’s support organization with a primary focus on integrating and supporting Canonicals offerings within the customer’s environment.
 - <strong id="term-dtam">DTAM</strong> means a Canonical support engineer dedicated to work full-time remotely for a single customer.
 - <strong id="term-environment">Environment</strong> means a Cloud or Cluster, as applicable to the particular service offering.

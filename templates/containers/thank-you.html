@@ -7,7 +7,7 @@
 
 {% block content %}
 {% if product == 'containers-kubernetes' %}
-  {% with thanks_context="enquiring about the Charmed Distribution of Kubernetes" %}{% include "shared/_thank_you.html" %}{% endwith %}
+  {% with thanks_context="enquiring about Charmed Kubernetes" %}{% include "shared/_thank_you.html" %}{% endwith %}
 {% elif product == 'containers-kubernetes-foundation' %}
     {% with thanks_context="enquiring about the Enterprise Kubernetes Packages" %}{% include "shared/_thank_you.html" %}{% endwith %}
 {%  else %}
