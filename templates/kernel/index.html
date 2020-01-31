@@ -1,0 +1,131 @@
+{% extends "kernel/base_kernel.html" %}
+
+{% block title %}Ubuntu kernels from Canonical{% endblock %}
+{% block meta_description %}<!-- TODO: NEED META DESCRIPTION -->{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1XLdk2Slh4vi4AjGnatcK1BmJGmMNKIjN27KwbTwG5iI/{% endblock %}
+
+{% block content %}
+<section class="p-strip--suru-topped is-bordered">
+  <div class="u-fixed-width">
+    <h1>Ubuntu kernels from Canonical</h1>
+    <p>At the core of the Ubuntu operating system is the Linux kernel, which manages and controls the hardware resources like I/O (networking, storage, graphics and various user interface devices, etc.), memory and CPU for your device or computer. It is one of the first software programs a booting device loads and runs on the central processing unit (CPU). The Linux kernel manages the system&rsquo;s hardware environment so other programs like the operating system&rsquo;s user space programs and application software programs can run well without modification on a variety of different platforms and without needing to know very much about that underlying system.</p>
+    <p>Today, the Ubuntu Kernel Team manages over 40 kernels and we follow a continuous improvement process to better scale our processes to more effectively add new kernels and to continuously improve our automated and regression testing. We also continuously evaluate requests from customers for new services. One being considered presently is the option to extend Canonical&rsquo;s CVE live-update service, Livepatch to specific kernel variants as requested by customers.</p>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="u-fixed-width">
+    <h2 id="identifying-a-kernel">Identifying a kernel</h2>
+    <p>The easiest way to determine the kernel version of the system you’re running is to launch a terminal window and at the Linux prompt, type, uname -a to print system information. For example:</p>
+    <pre>$ uname -a
+Linux cerrotorre 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</pre>
+    <p>This output provides all key system information including important information about the  kernel:</p>
+    <p><sup>1</sup> <small>Canonical adds &ldquo;Ubuntu&rdquo; to the build number to indicate that this is an offical build from the Ubuntu archive.</small></p>
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Parameter #1:</h3>
+        <div class="p-stepped-list__content">
+          <p>system = <code><em>Linux</em></code></p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Parameter #2:</h3>
+        <div class="p-stepped-list__content">
+          <p>hostname loaded into the kernel = <code><em>cerrotorre</em></code></p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Parameter #3:</h3>
+        <div class="p-stepped-list__content">
+          <ul class="p-list">
+            <li class="p-list__item">Ubuntu kernel-release = <code><em>4.15.0-36-generic</em></code></li>
+            <li class="p-list__item">kernel version is <code><em>4.15</em></code>, which is identical to upstream stable kernel version</li>
+            <li class="p-list__item"><code><em>.0</em></code> is an obselete parameter left over from older upstream kernel version naming practices</li>
+            <li class="p-list__item"><code><em>-36</em></code> application binary interface (ABI) bump for this kernel</li>
+            <li class="p-list__item"><code><em>-generic</em></code> is kernel flavour parameter, where &ldquo;-generic&rdquo; is the default Ubuntu kernel flavour</li>
+          </ul>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Parameter #4:</h3>
+        <div class="p-stepped-list__content">
+          <p>kernel-version build number = <code>"#39-Ubuntu"</code> <sup>1</sup></p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Parameter #5:</h3>
+        <div class="p-stepped-list__content">
+          <p>SMP parameter which means that the kernel supports Symmetrical Multi-Processing</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Parameter #6:</h3>
+        <div class="p-stepped-list__content">
+          <p>kernel build time = <code><em>"Mon Sep 24 16:19:09 UTC2018"</em></code></p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Parameter #7:</h3>
+        <div class="p-stepped-list__content">
+          <p>processor type and hardware platform = <code><em>"x86_64x86_64"</em></code></p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Parameter #8:</h3>
+        <div class="p-stepped-list__content">
+          <p>architecture of the processor = <code><em>"x86_64"</em></code></p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Parameter #9:</h3>
+        <div class="p-stepped-list__content">
+          <p>operating system name = <code><em>"GNU/Linux"</em></code></p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <h2 id="kernel-os-and-releases">Kernel OS and releases</h2>
+    <p>Canonical provides Long-term Support (LTS) kernels for <a href="/about/release-cycle">Ubuntu LTS releases</a>. Canonical also provides interim operating system releases with updated kernels every 6 months.</p>
+    <p>For customers and business partners that don’t have specialised bleeding-edge workloads or latest hardware needs, the latest Long-term Supported (LTS) release &ldquo;-generic&rdquo; kernel is the best option for them such as the 4.15 default kernel in Ubuntu 18.04 LTS. Customers who need the latest hardware support capability can install the latest HWE kernel such as the ones contained in interim releases, keeping in mind the shorter support lifespan associated with these kernels (9 months). HWE kernel customers are recommended to upgrade to a newer LTS release that supports their hardware and/or software needs as soon as it is available. Another option for customers is to use point releases. For example, there is an 18.04.2 point release as of February 2019, which includes an updated 4.18.x kernel but is also considered LTS, exactly like the original GA 4.15 kernel in 18.04. This new kernel inherits the five-year support duration of 18.04 LTS.</p>
+    <!-- <p><a><a href="/kernel/lifecycle">More details on the Ubuntu kernel support lifecycle</a></p> -->
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="u-fixed-width">
+    <h2 id="kernel-security">Kernel security</h2>
+    <p>The Canonical Kernel Team&rsquo;s primary focus is the careful maintenance of kernels and their variants for regular delivery via the <a href="https://wiki.ubuntu.com/StableReleaseUpdates">Ubuntu SRU process</a>. This includes rigorous management of all Linux kernel Common Vulnerabilities and Exposures (CVE) lists (with a focus on patching  all <a href="https://git.launchpad.net/ubuntu-cve-tracker/tree/README#n199">high and critical</a> CVEs) review and application of all relevant patches for all critical and serious kernel defects in the mailing lists and then rigorously testing newly updated kernels end-to-end each SRU cycle.</p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <h2 id="general-availability-and-variant-ubuntu-kernels">General Availability and variant Ubuntu kernels</h2>
+    <p>How a kernel runs is based on what kernel modules are included and how the kernel is configured for both hardware, and the expected workloads that are run on it.</p>
+    <p>Kernel modules are binary programs that extend a kernel’s ability to control the computing system’s hardware or add additional system capabilities like high performance networking or non-standard graphics, etc.   The GA kernel that is shipped by default, with the Canonical Ubuntu Long Term Support (LTS) and Hardware Enablement (HWE) releases, is tuned for stable, reliable, secure, high-performance operation over a wide variety of hardware platforms and workloads.</p>
+    <p>A <strong>kernel variant</strong> is a kernel that deviates from the generic GA kernel by changes to its configuration, and/or by having modules added and/or removed.</p>
+    <!-- <a><a href="/kernel/variant">Should my organisation use a variant kernel?&nbsp;&rsaquo;</a></p> -->
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="u-fixed-width">
+    <h2 id="custom-kernels">Custom kernels</h2>
+    <p>Canonical advocates for customers to use the GA kernel shipped with Ubuntu as the best and most cost-effective option in their business environment. We also offer the option for customers to customize and specify their own Ubuntu kernels. Several of our Enterprise, Telco and Cloud provider customers have systems and workload needs, which justify both the time investment to tune for the exact right kernels and the cost to develop and maintain those custom kernels over time.</p>
+    <!-- TODO: NEED WHITEPAPER LINK -->
+    <!-- <a><a href="#">Considering a custom kernel?&nbsp;&rsaquo;</a></p> -->
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 id="the-oem-kernel">The OEM kernel</h2>
+    <p>The OEM kernel (<code>linux-oem</code>) is an Ubuntu derivative kernel specifically for use in OEM projects.</p>
+    <!-- <a><a href="/kernel/oem">Learn about the OEM kernel&nbsp;&rsaquo;</a></p> -->
+  </div>
+</section>
+{% endblock %}
