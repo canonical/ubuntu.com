@@ -28,7 +28,7 @@ Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because 
     </div>
     <div class="col-4 p-divider__block">
       <h3>Tutorials</h3>
-      <p><a class="p-link--external" href="https://tutorials.ubuntu.com/tutorial/get-started-kubeflow#0">Get started with Kubeflow</a></p>
+      <p><a class="p-link--external" href="/tutorials/get-started-kubeflow#0">Get started with Kubeflow</a></p>
     </div>
   </div>
 </div>
