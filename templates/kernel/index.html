@@ -5,22 +5,30 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1XLdk2Slh4vi4AjGnatcK1BmJGmMNKIjN27KwbTwG5iI/{% endblock %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
-  <div class="u-fixed-width">
-    <h1>Ubuntu kernels from Canonical</h1>
-    <p>At the core of the Ubuntu operating system is the Linux kernel, which manages and controls the hardware resources like I/O (networking, storage, graphics and various user interface devices, etc.), memory and CPU for your device or computer. It is one of the first software programs a booting device loads and runs on the central processing unit (CPU). The Linux kernel manages the system&rsquo;s hardware environment so other programs like the operating system&rsquo;s user space programs and application software programs can run well without modification on a variety of different platforms and without needing to know very much about that underlying system.</p>
-    <p>Today, the Ubuntu Kernel Team manages over 40 kernels and we follow a continuous improvement process to better scale our processes to more effectively add new kernels and to continuously improve our automated and regression testing. We also continuously evaluate requests from customers for new services. One being considered presently is the option to extend Canonical&rsquo;s CVE live-update service, Livepatch to specific kernel variants as requested by customers.</p>
+<section class="p-strip--suru is-dark">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h1>Ubuntu kernels from Canonical</h1>
+      <p>At the core of the Ubuntu operating system is the Linux kernel, which manages and controls the hardware resources like I/O (networking, storage, graphics and various user interface devices, etc.), memory and CPU for your device or computer. It is one of the first software programs a booting device loads and runs on the central processing unit (CPU). The Linux kernel manages the system&rsquo;s hardware environment so other programs like the operating system&rsquo;s user space programs and application software programs can run well without modification on a variety of different platforms and without needing to know very much about that underlying system.</p>
+      <p>Today, the Ubuntu Kernel Team manages over 40 kernels and we follow a continuous improvement process to better scale our processes to more effectively add new kernels and to continuously improve our automated and regression testing. We also continuously evaluate requests from customers for new services. One being considered presently is the option to extend Canonical&rsquo;s CVE live-update service, Livepatch to specific kernel variants as requested by customers.</p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/3b5dc41b-Kernel_white.svg" width="280" alt="">
+    </div>
   </div>
 </section>
 
 <section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2 id="identifying-a-kernel">Identifying a kernel</h2>
+      <p>The easiest way to determine the kernel version of the system you’re running is to launch a terminal window and at the Linux prompt, type, uname -a to print system information. For example:</p>
+      <pre>$ uname -a
+  Linux cerrotorre 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</pre>
+      <p>This output provides all key system information including important information about the  kernel:</p>
+    </div>
+  </div>
   <div class="u-fixed-width">
-    <h2 id="identifying-a-kernel">Identifying a kernel</h2>
-    <p>The easiest way to determine the kernel version of the system you’re running is to launch a terminal window and at the Linux prompt, type, uname -a to print system information. For example:</p>
-    <pre>$ uname -a
-Linux cerrotorre 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</pre>
-    <p>This output provides all key system information including important information about the  kernel:</p>
-    <p><sup>1</sup> <small>Canonical adds &ldquo;Ubuntu&rdquo; to the build number to indicate that this is an offical build from the Ubuntu archive.</small></p>
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">Parameter #1:</h3>
@@ -83,6 +91,7 @@ Linux cerrotorre 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018 x
         </div>
       </li>
     </ol>
+    <p><sup>1</sup> <small>Canonical adds &ldquo;Ubuntu&rdquo; to the build number to indicate that this is an offical build from the Ubuntu archive.</small></p>
   </div>
 </section>
 
