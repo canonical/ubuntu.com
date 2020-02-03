@@ -805,6 +805,8 @@ download/desktop/questions/?: /download/desktop/thank-you
 
 # Tutorials section
 tutorials/tutorial/(?P<path>.*)/?: /tutorials/{path}
+t/(?P<path>.*)/?: /tutorials/{path}
+tutorial/(?P<path>.*)/?: /tutorials/{path}
 
 # IoT robotics
 internet-of-things/robotics/?: /robotics
