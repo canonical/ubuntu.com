@@ -22,9 +22,12 @@
     <section class="p-strip js-takeover"></section> <!-- For all languages -->
     <section lang="de" class="p-strip js-takeover"></section> <!-- For german languages only -->
     <section lang="fr" class="p-strip js-takeover"></section> <!-- For french languages only -->
+    <section lang="es" class="p-strip js-takeover"></section> <!-- For spanish languages only -->
 #}
 
 {% block takeover_content %}
+  {# SPANISH #}
+  {% include "takeovers/_vmware-to-charmed-openstack_spanish.html" %}
   {# ALL #}
   {% include "takeovers/_anbox-takeover.html" %}
   {% include "takeovers/_vmware-to-charmed-openstack.html" %}
