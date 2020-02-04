@@ -42,6 +42,24 @@
     padding-bottom: $sp-medium;
   }
 
+  .l-tutorial__nav-title {
+    &::before {
+      height: $sp-large;
+      margin-right: $sp-medium;
+      width: $sp-large;
+    }
+
+    .is-active & {
+      font-weight: 400;
+
+      &::before {
+        background-color: $color-brand;
+        color: $color-x-light;
+        font-weight: 300;
+      }
+    }
+  }
+
   .l-tutorial__nav-link {
     color: $color-dark;
 
@@ -51,22 +69,6 @@
 
     &:hover {
       text-decoration: none;
-    }
-
-    &::before {
-      height: $sp-large;
-      margin-right: $sp-medium;
-      width: $sp-large;
-    }
-
-    &.is-active {
-      font-weight: 400;
-
-      &::before {
-        background-color: $color-brand;
-        color: $color-x-light;
-        font-weight: 300;
-      }
     }
   }
 
