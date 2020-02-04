@@ -30,31 +30,35 @@
     <div class="col-7">
       <h2 id="identifying-a-kernel">Identifying a kernel</h2>
       <p>The easiest way to determine the kernel you&rsquo;re running is to type <code>uname -a</code> at the terminal. For example:</p>
-      <pre>$ uname -a
-
-<em>Linux cerrotorre 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</em></pre>
-
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p><code>$ uname -a</code></p>
+    <p class="u-no-max-width"><code><em>Linux cerrotorre 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</em></code></p>
+  </div>
+  <div class="row">
+    <div class="col-7">
       <p>This output provides important information about the  kernel:</p>
-      <ul class="p-list">
-        <li class="p-list__item">system = <em>Linux</em></li>
-        <li class="p-list__item">hostname loaded into the kernel = <em>cerrotorre</em></li>
-        <li class="p-list__item">
-          Ubuntu kernel-release = <em>4.15.0-36-generic</em>
+      <ul>
+        <li>system = <code><em>Linux</em></code></li>
+        <li>hostname loaded into the kernel = <code><em>cerrotorre</em></code></li>
+        <li>
+          Ubuntu kernel-release = <code><em>4.15.0-36-generic</em></code>
           <ul>
-            <li>kernel version is <em>4.15</em>, which is identical to upstream stable kernel version</li>
-            <li><em>.0</em> is an obsolete parameter left over from older upstream kernel version naming practices</li>
-            <li><em>-36</em> application binary interface (ABI) bump for this kernel</li>
-            <li><em>-generic</em> is kernel flavour parameter, where  &ldquo;-generic&rdquo; is the default Ubuntu kernel flavour</li>
+            <li>kernel version is <code><em>4.15</em></code>, which is identical to upstream stable kernel version</li>
+            <li><code><em>.0</em></code> is an obsolete parameter left over from older upstream kernel version naming practices</li>
+            <li><code><em>-36</em></code> application binary interface (ABI) bump for this kernel</li>
+            <li><code><em>-generic</em></code> is kernel flavour parameter, where <code><em>-generic</em></code> is the default Ubuntu kernel flavour</li>
           </ul>
         </li>
-        <li class="p-list__item">kernel-version build number = <em>&ldquo;#39-Ubuntu&rdquo; <sup>1</sup></em></li>
-	      <li class="p-list__item">SMP parameter which means that the kernel supports Symmetrical Multiprocessing</li>
-        <li class="p-list__item">kernel build time = <em>&ldquo;Mon Sep 24 16:19:09 UTC 2018&rdquo;</em></li>
-        <li class="p-list__item">processor type and  hardware platform = <em>&ldquo;x86_64 x86_64&rdquo;</em></li>
-        <li class="p-list__item">architecture of the processor = <em>&ldquo;x86_64&rdquo;</em></li>
-        <li class="p-list__item">operating system name  = <em>&ldquo;GNU/Linux&rdquo;</em></li>
+        <li>kernel-version build number = <code><em>#39-Ubuntu</em></code> <sup><a href="#footnote-1">1</a></sup></em></li>
+        <li>SMP parameter which means that the kernel supports Symmetrical Multiprocessing</li>
+        <li>kernel build time = <code><em>Mon Sep 24 16:19:09 UTC 2018</em></code></li>
+        <li>processor type and hardware platform = <code><em>x86_64 x86_64</em></code></li>
+        <li>architecture of the processor = <code><em>x86_64</em></code></li>
+        <li>operating system name = <code><em>GNU/Linux</em></code></li>
       </ul>
-      <p><sup>1</sup> <small>Canonical adds &ldquo;Ubuntu&rdquo; to the build number to indicate that this is an official build from the Ubuntu archive.</small></p>
+      <p id="footnote-1"><sup>1</sup> <small>Canonical adds &ldquo;<code>Ubuntu</code>&rdquo; to the build number to indicate that this is an official build from the Ubuntu archive.</small></p>
     </div>
   </div>
 </section>
