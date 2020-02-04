@@ -17,6 +17,14 @@
           </a>
         </h5>
         {% endif %}
+
+        {% if section_title and section_path %}
+        <h5 class="p-navigation--secondary__logo u-hide--nav-threshold-up">
+          <a class="p-navigation--secondary__banner" href="{{ section_path }}">
+            {{ section_title }}
+          </a>
+        </h5>
+        {% endif %}
       </div>
     </div>
     <nav class="p-navigation__nav">
