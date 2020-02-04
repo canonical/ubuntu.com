@@ -9,7 +9,7 @@
 
 {% block content %}
 
-<section id="ua-infra" class="p-strip is-bordered">
+<section id="ua-infra" class="p-strip--suru-topped is-bordered">
   <div class="u-fixed-width">
     <h1>Open Infrastructure support & security</h1>
     <p>Ubuntu Advantage for Infrastructure covers all aspects of open infrastructure - Ubuntu, KVM, OpenStack, Kubernetes, Docker, storage, networking, Ceph, SWIFT, SDN, logging, alerting and monitoring.</p>
@@ -62,7 +62,7 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow">
+<section class="p-strip is-bordered is-shallow">
   <div class="u-fixed-width">
     <h3 id="maas">MAAS</h3>
     <p>Support and commercial capabilities for MAAS are included with Ubuntu Advantage for Infrastructure. These additional charges apply for machines managed by MAAS and <em>not</em> covered by a UA Infrastructure contract.</p>
@@ -75,7 +75,7 @@
   </div>
 </section>
 
-{% with colour="dark" %}{% include "shared/_call-sales.html" %}{% endwith %}
+{% with colour="light", border="false" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 
 <!-- Set default Marketo information for contact form below-->
