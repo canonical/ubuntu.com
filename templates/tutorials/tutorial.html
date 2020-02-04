@@ -30,9 +30,11 @@
     <ol class="l-tutorial__nav p-stepped-list u-hide--small">
       {% for section in document.sections %}
         <li class="p-stepped-list__item l-tutorial__nav-item">
-          <a class="p-stepped-list__title l-tutorial__nav-link" href="#{{ loop.index }}-{{ section['slug'] }}">
-            {{ section["title"]}}
-          </a>
+          <p class="p-stepped-list__title l-tutorial__nav-title u-no-margin--bottom">
+            <a class="l-tutorial__nav-link" href="#{{ loop.index }}-{{ section['slug'] }}">
+              {{ section["title"]}}
+            </a>
+          </p>
         </li>
       {% endfor %}
     </ol>
@@ -128,12 +130,13 @@
     menu.classList.toggle('u-hide--small');
   }
 
-  function setActiveLink(navigationLinks) {
-    navigationLinks.forEach(function(link) {
+  function setActiveLink(navigationItems) {
+    navigationItems.forEach(function(item) {
+      var link = item.querySelector('.l-tutorial__nav-link');
       if (link.getAttribute('href') === window.location.hash) {
-        link.classList.add('is-active');
+        item.classList.add('is-active');
       } else {
-        link.classList.remove('is-active');
+        item.classList.remove('is-active');
       }
     });
     scrollToTop();
@@ -148,20 +151,21 @@
     }, 0);
   }
 
-  var navigationLinks = document.querySelectorAll('.l-tutorial__nav-link');
+  var navigationItems = document.querySelectorAll('.l-tutorial__nav-item');
   var toggleButton = document.querySelector('.l-tutorial__nav-toggle');
 
   toggleButton.addEventListener('click', toggleTutorialNavigation);
 
-  setActiveLink(navigationLinks);
+  setActiveLink(navigationItems);
 
-  navigationLinks.forEach(function(link) {
+  navigationItems.forEach(function(item) {
+    var link = item.querySelector('.l-tutorial__nav-link');
     link.addEventListener('click', toggleTutorialNavigation);
   });
 
   window.addEventListener('hashchange', function(e) {
     e.preventDefault();
-    setActiveLink(navigationLinks);
+    setActiveLink(navigationItems);
     scrollToTop();
   });
 
