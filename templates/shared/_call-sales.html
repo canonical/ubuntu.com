@@ -9,7 +9,7 @@ background-image: linear-gradient(-45deg, #5E2750 0%, #2C001E 100%);">
 
 {% else %}
 
-  <div class="p-strip--light is-bordered is-x-shallow">
+  <div class="p-strip--light is-x-shallow {% if bordered == 'true' %}is-bordered{% endif %}">
     <div class="row u-vertically-center">
       <div class="col-1 u-align--center u-hide--small">
         <img src="https://assets.ubuntu.com/v1/f22f6ded-get-in-touch_chat.svg" width="100" alt="" />
