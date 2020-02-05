@@ -5,7 +5,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-bordered">
+<section class="p-strip--suru-topped is-bordered">
   <div class="u-fixed-width">
     <h1>Ubuntu IoT and device services</h1>
     <p>Ubuntu is the new standard for embedded Linux development and the intelligent edge. Get ten years of security coverage and dedicated app stores for your smart connected devices.</p>
@@ -287,11 +287,9 @@
       <p class="p-heading--three">$2,000 per day</p>
       <hr class="u-sv1" />
       <div class="p-card__content">
-        <p>On-site or remote engagement with Canonical experts in board and SoC enablement, snap development or Ubuntu
-          management.</p>
+        <p>On-site or remote engagement with Canonical experts in board and SoC enablement, snap development or Ubuntu management.</p>
 
-        <p>For pre-launch integration we recommend our SMART START package for fixed pricing and delivery schedule
-          commitments. Price per day on site or remote.</p>
+        <p>For pre-launch integration we recommend our SMART START package for fixed pricing and delivery schedule commitments. Price per day on site or remote.</p>
       </div>
     </div>
 
@@ -302,8 +300,7 @@
       <div class="p-card__content">
         <p>Get the most from your app store with our two-day in-depth training program.</p>
 
-        <p>Understand the relationship between devices, app stores, enterprise stores, and master offline operations.
-          Learn how to manage your app portfolio per model, with full control of updates. Two days full time for up to 20
+        <p>Understand the relationship between devices, app stores, enterprise stores, and master offline operations. Learn how to manage your app portfolio per model, with full control of updates. Two days full time for up to 20
           people.</p>
       </div>
     </div>
@@ -313,11 +310,9 @@
       <p class="p-heading--three">$4,000 online</p>
       <hr class="u-sv1" />
       <div class="p-card__content">
-        <p>Take control of snaps in the enterprise and on public cloud. Ensure you have full visibility of snap versions,
-          updates and security status across the estate.</p>
+        <p>Take control of snaps in the enterprise and on public cloud. Ensure you have full visibility of snap versions, updates and security status across the estate.</p>
 
-        <p>Ubuntu and Ubuntu Core raise the bar for device management and security, enabling whole-enterprise policy for
-          devices from a wide range of brands. Two days full time for up to 20 people.</p>
+        <p>Ubuntu and Ubuntu Core raise the bar for device management and security, enabling whole-enterprise policy for devices from a wide range of brands. Two days full time for up to 20 people.</p>
       </div>
     </div>
   </div>
@@ -460,7 +455,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-7">
       <h2>Ubuntu device support for enterprises</h2>
@@ -607,7 +602,7 @@
   </div>
 </section>
 
-{% with colour="dark" %}{% include "shared/_call-sales.html" %}{% endwith %}
+{% with colour="white", bordered="false" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_general" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
