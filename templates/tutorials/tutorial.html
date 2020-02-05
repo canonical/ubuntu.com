@@ -122,7 +122,6 @@
   </div>
 </div>
 
-<!-- <script src="/static/js/tutorials.js"></script> -->
 <script>
 (function() {
   function toggleTutorialNavigation() {
@@ -142,17 +141,7 @@
         item.classList.remove('is-active');
       }
     });
-    scrollToTop();
   };
-
-  function scrollToTop() {
-    // Wrap in setTimeout so runs at end of event loop
-    // This is so the scroll happens after the hashchange
-    // which prevents the page from jumping
-    window.setTimeout(function() {
-      window.scrollTo(0, 0);
-    }, 0);
-  }
 
   var navigationItems = document.querySelectorAll('.l-tutorial__nav-item');
   var toggleButton = document.querySelector('.l-tutorial__nav-toggle');
@@ -169,7 +158,6 @@
   window.addEventListener('hashchange', function(e) {
     e.preventDefault();
     setActiveLink(navigationItems);
-    scrollToTop();
   });
 
   sectionIds = []
@@ -181,7 +169,6 @@
   if (!window.location.hash) {
     var firstSectionLink = document.querySelector('.l-tutorial__nav-link');
     window.location.hash = firstSectionLink.getAttribute('href');
-    scrollToTop();
   } else {
     // Redirect #0, #1 etc. to the correct section
     match = window.location.hash.match(/^#(\d+)$/);
