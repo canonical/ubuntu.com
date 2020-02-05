@@ -1,0 +1,106 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Install Ubuntu Server on a Raspberry Pi 2, 3 or 4{% endblock %}}
+{% block meta_copydoc %}https://docs.google.com/document/d/1KgnSBa8mbR7qwlxxtqbE5a1wXh5GjtVums8TIB7IGVw/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-bottomed">
+  <div class="row">
+    <div class="col-8">
+      <h1>Install Ubuntu Server on a Raspberry Pi 2, 3 or 4</h1>
+      <p>Running Ubuntu Server on your Raspberry Pi is easy. Just pick the OS image you want, flash it onto a microSD card, load it onto your pi and away you go.</p>
+    </div>
+    <div class="col-4 u-vertically-center">
+      <img src="https://assets.ubuntu.com/v1/31bd2627-logo-raspberry-pi.svg" width="100" alt="Raspberry Pi">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered" style="padding-bottom: 1.5rem;">
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-3">
+      <h2 class="u-no-margin--bottom">Download your Ubuntu Pi image</h2>
+    </div>
+    <div class="col-3">
+      <div><img src="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png" alt=""></div>
+      <h3 class="p-heading--four u-no-margin--bottom">Raspberry Pi 2</h3>
+    </div>
+    <div class="col-3">
+      <div><img src="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png" alt=""></div>
+      <h3 class="p-heading--four u-no-margin--bottom">Raspberry Pi 3</h3>
+    </div>
+    <div class="col-3">
+      <div><img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png" alt=""></div>
+      <h3 class="p-heading--four u-no-margin--bottom">Raspberry Pi 4</h3>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered is-shallow">
+  <div class="u-fixed-width">
+    <h4>Ubuntu 18.04.4 LTS</h4>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-3">
+      <p class="u-no-margin--bottom">The version of Ubuntu with long term support until April 2023.</p>
+    </div>
+    <div class="col-3">
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-2']['18.04.3'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 2 32-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 32-bit</a></p>
+    </div>
+    <div class="col-3">
+      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-3']['18.04.3'] }}&amp;architecture=arm64" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 64-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 64-bit</a></p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-3']['18.04.3'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 32-bit</a></p>
+    </div>
+    <div class="col-3">
+      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-4']['18.04.3'] }}&amp;architecture=arm64" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 64-bit</a></p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-4']['18.04.3'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 32-bit</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered is-shallow">
+  <div class="u-fixed-width">
+    <h4>Ubuntu 19.10</h4>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-3">
+      <p class="u-no-margin--bottom">Get the latest version of Ubuntu with nine months, until July 2020.</p>
+    </div>
+    <div class="col-3">
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-2']['19.10.1'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 2 32-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 32-bit</a></p>
+    </div>
+    <div class="col-3">
+      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-3']['19.10.1'] }}&amp;architecture=arm64" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 64-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 64-bit</a></p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-3']['19.10.1'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 32-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 32-bit</a></p>
+    </div>
+    <div class="col-3">
+      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-4']['19.10.1'] }}&amp;architecture=arm64" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 64-bit</a></p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-4']['19.10.1'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 32-bit</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Which image should I pick?</h2>
+      <p>If you are wondering which download to pick, here are a few pointers on the options.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3>Ubuntu 18.04.4 LTS vs Ubuntu 19.10</h3>
+      <hr class="u-sv1">
+      <p>Generally we recommend the Long term support (LTS) releases as they are supported for five years of free security and maintenance updates, guaranteed.  However, the interim releases often have the newest features and hardware support. Ubuntu 19.10 comes with nine months of support, until July 2020, of support so there is really no bad choice.</p>
+    </div>
+    <div class="col-6 p-card">
+      <h3>32 bit vs 64 bit</h3>
+      <hr class="u-sv1">
+      <p>The Raspberry Pi 2 only supports 32 bits, so that&rsquo;s an easy choice. However the Raspberry Pi 3 and 4 are 64 bit boards. According to the Raspberry Pi foundation, there are limited benefits to using the 64 bit version for the Pi 3 due to the fact that it only supports 1GB of memory; however, with the Pi 4, the 64 bit version should be faster.</p>
+    </div>
+  </div>
+</section>
+
+{% with strip="p-strip--light" %}{% include "download/iot/_install-snaps-strip.html" %}{% endwith %}
+
+{% endblock content %}

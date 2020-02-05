@@ -1,0 +1,78 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Thank you for downloading Ubuntu Server for Raspberry Pi{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1RXsLbMB-LJVwiG0gAi0HgVEJvZ9_GIU3ESLJ6KmBb54{% endblock meta_copydoc %}
+{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped" style="overflow: visible;">
+  <div class="row">
+    <div class="col-8">
+      <h1>Thank you for downloading Ubuntu Server for Raspberry Pi {{ version }} {{ architecture }}</h1>
+      <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://releases.ubuntu.com/VERSION/">download now</a>.</p>
+      {% with version=version, system="live-server", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Installation instructions</h2>
+      <p>We will walk you through the steps of flashing Ubuntu Server on to your Raspberry Pi and getting logged in.</p>
+      <h3>What you&rsquo;ll need</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">A Raspberry Pi 2, 3, or 4</li>
+        <li class="p-list__item is-ticked">A micro-USB power cable</li>
+        <li class="p-list__item is-ticked">A microSD card with the Ubuntu Server image</li>
+        <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+        <li class="p-list__item is-ticked">An HDMI cable for the Pi 2 &amp; 3 and a MicroHDMI cable for the Pi 4</li>
+        <li class="p-list__item is-ticked">A USB keyboard</li>
+      </ul>
+      <ol class="p-stepped-list">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Flash Ubuntu onto your microSD card</h3>
+          <div class="p-stepped-list__content">
+            <p>The first thing you need to do is take a minute to copy the Ubuntu image on to a microSD card by following our tutorials, we have one for <a href="#">Ubuntu machines</a>, <a href="#">Windows machines</a> and <a href="#">Macs</a>.</p>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Boot Ubuntu Server</h3>
+          <div class="p-stepped-list__content">
+            <ol>
+              <li>You need to attach a monitor and keyboard to the board. You can alternatively use a serial cable.</li>
+              <li>Now insert the microSD card</li>
+              <li>Plug the power adaptor into the board</li>
+            </ol>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Login to your Pi</h3>
+          <div class="p-stepped-list__content">
+            <p>When prompted to log in, use &ldquo;ubuntu&rdquo; for the username and the password. You will be asked to change this default password after you log in.</p>
+            <p>You are now running the Ubuntu Server on your Raspberry Pi.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Things to try next</h2>
+      <p>Here are a few things you can do now that you have your Raspberry Pi running Ubuntu.</p>
+      <h3>Install a desktop</h3>
+      <p>You can install a desktop if you like, here are some popular ones:</p>
+      <pre><code>sudo apt-get install xubuntu-desktop</code></pre>
+      <pre><code>sudo apt-get install lubuntu-desktop</code></pre>
+      <pre><code>sudo apt-get install kubuntu-desktop</code></pre>
+    </div>
+  </div>
+</section>
+
+{% with strip="p-strip--light" %}{% include "download/iot/_install-snaps-strip.html" %}{% endwith %}
+
+{% endblock %}
