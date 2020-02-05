@@ -38,49 +38,51 @@
 
 <section class="p-strip--light is-bordered is-shallow">
   <div class="u-fixed-width">
-    <h4>Ubuntu 18.04.4 LTS</h4>
+    <h4>Ubuntu {{ releases.lts.full_version }} LTS</h4>
   </div>
   <div class="row u-equal-height">
     <div class="col-3">
-      <p class="u-no-margin--bottom">The version of Ubuntu with long term support until April 2023.</p>
+      <p class="u-no-margin--bottom">The version of Ubuntu with long term support, until {{ releases.lts.eol }}.</p>
     </div>
     <div class="col-3">
-      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-2']['18.04.3'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 2 32-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 32-bit</a></p>
+      <p class="u-sv2">&nbsp;</p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=armhf+raspi2" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 2 32-bit', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download 32-bit</a></p>
     </div>
     <div class="col-3">
-      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-3']['18.04.3'] }}&amp;architecture=arm64" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 64-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 64-bit</a></p>
-      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-3']['18.04.3'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 32-bit</a></p>
+      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=arm64+raspi3" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 64-bit', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download 64-bit</a></p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=armhf+raspi3" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 32-bit', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download 32-bit</a></p>
     </div>
     <div class="col-3">
-      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-4']['18.04.3'] }}&amp;architecture=arm64" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 64-bit</a></p>
-      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-4']['18.04.3'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit', 'eventLabel' : '18.04.3', 'eventValue' : undefined });">Download 32-bit</a></p>
+      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=arm63+raspi3" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download 64-bit</a></p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=armhf+raspi3" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download 32-bit</a></p>
     </div>
   </div>
 </section>
 
 <section class="p-strip is-bordered is-shallow">
   <div class="u-fixed-width">
-    <h4>Ubuntu 19.10</h4>
+    <h4>Ubuntu {{ releases.latest.full_version }}</h4>
   </div>
   <div class="row u-equal-height">
     <div class="col-3">
-      <p class="u-no-margin--bottom">Get the latest version of Ubuntu with nine months, until July 2020.</p>
+      <p class="u-no-margin--bottom">Get the latest version of Ubuntu with nine months support, until {{ releases.latest.eol }}.</p>
     </div>
     <div class="col-3">
-      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-2']['19.10.1'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 2 32-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 32-bit</a></p>
+      <p class="u-sv2">&nbsp;</p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}.1&amp;architecture=armhf+raspi2" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 2 32-bit', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download 32-bit</a></p>
     </div>
     <div class="col-3">
-      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-3']['19.10.1'] }}&amp;architecture=arm64" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 64-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 64-bit</a></p>
-      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-3']['19.10.1'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 32-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 32-bit</a></p>
+      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}.1&amp;architecture=arm64+raspi3" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 64-bit', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download 64-bit</a></p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}.1&amp;architecture=armhf+raspi3" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 32-bit', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download 32-bit</a></p>
     </div>
     <div class="col-3">
-      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-4']['19.10.1'] }}&amp;architecture=arm64" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 64-bit</a></p>
-      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.checksums['raspberry-pi-4']['19.10.1'] }}&amp;architecture=armhf" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit', 'eventLabel' : '19.10.1', 'eventValue' : undefined });">Download 32-bit</a></p>
+      <p><a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}.1&amp;architecture=arm64+raspi3" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download 64-bit</a></p>
+      <p class="u-no-margin--bottom"><a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}.1&amp;architecture=armhf+raspi3" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download 32-bit</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-6">
       <h2>Which image should I pick?</h2>
@@ -89,9 +91,9 @@
   </div>
   <div class="row u-equal-height">
     <div class="col-6 p-card">
-      <h3>Ubuntu 18.04.4 LTS vs Ubuntu 19.10</h3>
+        <h3>Ubuntu {{ releases.lts.full_version }} LTS vs Ubuntu {{ releases.latest.full_version }}</h3>
       <hr class="u-sv1">
-      <p>Generally we recommend the Long term support (LTS) releases as they are supported for five years of free security and maintenance updates, guaranteed.  However, the interim releases often have the newest features and hardware support. Ubuntu 19.10 comes with nine months of support, until July 2020, of support so there is really no bad choice.</p>
+      <p>Generally we recommend the Long term support (LTS) releases as they are supported for five years of free security and maintenance updates, guaranteed.  However, the interim releases often have the newest features and hardware support. Ubuntu {{ releases.latest.full_version }} comes with nine months of support, until , of support so there is really no bad choice.</p>
     </div>
     <div class="col-6 p-card">
       <h3>32 bit vs 64 bit</h3>
@@ -101,6 +103,7 @@
   </div>
 </section>
 
-{% with strip="p-strip--light" %}{% include "download/iot/_install-snaps-strip.html" %}{% endwith %}
+
+{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}
