@@ -28,3 +28,5 @@ Dieses White Paper und Webinar:
      <li class="p-list__item is-ticked">Zeigt die ökonomischen und Effizienzvorteile eines Open Source Ansatzes auf.</li>
      <li class="p-list__item is-ticked">Liefert eine detaillierte Kostenanalyse, die die Einsparpotenziale für Unternehmen aufzeigt, die von VMware zu OpenStack migrieren. </li>
 </ul>
+
+Zudem sollten Sie das Webinar "Von VMware zu Charmed OpenStack" ansehen, um in einer Demonstration zu erfahren, wie eine IT Workload mit Hilfe von Hystax von VMware zu Charmed OpenStack migriert wird.

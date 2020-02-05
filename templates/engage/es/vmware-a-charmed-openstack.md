@@ -28,3 +28,5 @@ Este documento y webinar:
      <li class="p-list__item is-ticked">Presenta los beneficios económicos y de eficiencia de adoptar un enfoque de código abierto.</li>
      <li class="p-list__item is-ticked">Proporciona un análisis de coste detallado que destaca los ahorros que una organización puede realizar al migrar de VMware a Charmed OpenStack.</li>
 </ul>
+
+Este webinar también proporciona una demostración que muestra cómo migrar una carga de trabajo de TI de VMware a Charmed OpenStack utilizando la herramienta de migración de la nube como servicio de Hystax.
