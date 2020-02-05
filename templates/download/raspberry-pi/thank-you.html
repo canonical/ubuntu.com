@@ -10,7 +10,7 @@
 <section class="p-strip--suru-topped" style="overflow: visible;">
   <div class="row">
     <div class="col-8">
-      <h1>Thank you for downloading Ubuntu Server for Raspberry Pi {{ version }} {{ architecture }}</h1>
+      <h1>Thank you for downloading Ubuntu Server for Raspberry Pi {{ version }}</h1>
       <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-server-{{ architecture }}.img.xz">download now</a>.</p>
       {% with version=version, system=architecture, architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
     </div>
