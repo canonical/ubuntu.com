@@ -43,18 +43,27 @@
   @include p-takeovers('grad') {
     background-color: #772953;
     background-image: linear-gradient(to bottom left, rgba(119, 41, 83, .16) 0, rgba(119, 41, 83, .16) 49.9%, transparent 50%), linear-gradient(to bottom right, rgba(228, 228, 228, .5) 0, rgba(228, 228, 228, .5) 49.9%, transparent 50%), linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%), linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%);
+    @supports not (background-blend-mode: multiply) {
+      background-image: linear-gradient(to bottom left, rgba(119, 41, 83, .16) 0, rgba(119, 41, 83, .16) 49.9%, transparent 50%), linear-gradient(to bottom right, rgba(228, 228, 228, .1) 0, rgba(228, 228, 228, .1) 49.9%, transparent 50%), linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%), linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%);
+    }
     color: $color-x-light;
   }
 
   @include p-takeovers('k8s') {
     background-color: #326de6;
     background-image: linear-gradient(to bottom left, rgba(21, 58, 138, .16) 0, rgba(21, 58, 138, .16) 49.9%, transparent 50%), linear-gradient(to bottom right, rgba(50, 109, 230, .5) 0, rgba(50, 109, 230, .5) 49.9%, transparent 50%), linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%), linear-gradient(74deg, #173d8b 0%, #326de6 92%);
+    @supports not (background-blend-mode: multiply) {
+      background-image: linear-gradient(to bottom left, rgba(21, 58, 138, .16) 0, rgba(21, 58, 138, .16) 49.9%, transparent 50%), linear-gradient(to bottom right, rgba(50, 109, 230, .1) 0, rgba(50, 109, 230, .1) 49.9%, transparent 50%), linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%), linear-gradient(74deg, #173d8b 0%, #326de6 92%);
+    }
     color: $color-x-light;
   }
 
   @include p-takeovers('dark') {
     background-color: #111;
     background-image: linear-gradient(to bottom left, rgba(216, 216, 216, .54) 0, rgba(216, 216, 216, .54) 49.9%, transparent 50%), linear-gradient(to bottom right, rgba(228, 228, 228, .54) 0, rgba(228, 228, 228, .54) 49.9%, transparent 50%), linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%), linear-gradient(201deg, #4e4e4e 0%, #333 46%, #111 90%);
+    @supports not (background-blend-mode: multiply) {
+      background-image: linear-gradient(to bottom left, rgba(216, 216, 216, .14) 0, rgba(216, 216, 216, .14) 49.9%, transparent 50%), linear-gradient(to bottom right, rgba(228, 228, 228, .14) 0, rgba(228, 228, 228, .14) 49.9%, transparent 50%), linear-gradient(to top left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 49.3%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%), linear-gradient(201deg, #4e4e4e 0%, #333 46%, #111 90%);
+    }
     color: $color-x-light;
   }
 

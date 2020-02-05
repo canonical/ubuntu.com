@@ -135,7 +135,7 @@
   if (hash) {
     try {
       var selected = nav.querySelector(hash);
-    } catch {
+    } catch(error) {
       console.warn("Hash " + hash + " not found in topnav");
     }
     if (selected) {
