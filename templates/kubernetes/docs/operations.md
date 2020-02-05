@@ -159,7 +159,7 @@ during the run of the action.
 the 'microbots' pods.
 
 - Finally, it will create an ingress resource, which points at a
-[xip.io](https://xip.io) domain to simulate a proper DNS service.
+[xip.io](http://xip.io) domain to simulate a proper DNS service.
 
 To deploy 3 replicas of the microbot web application inside the Kubernetes
 cluster run the following command:
@@ -260,7 +260,7 @@ juju unexpose kubernetes-worker
 ```
 
 To learn more about
-[Kubernetes Ingress](https://kubernetes.io/docs/user-guide/ingress.html)
+[Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers)
 and how to configure the Ingress Controller beyond defaults (such as TLS and
 websocket support) view the
 [nginx-ingress-controller](https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx)

@@ -231,7 +231,7 @@ relations:
 [vault-guide-csr]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 [vault-guide-unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#initialize-and-unseal-vault
 [csr]: https://en.wikipedia.org/wiki/Certificate_signing_request
-[leadership]: https://docs.jujucharms.com/stable/en/authors-charm-leadership
+[leadership]: https://discourse.jujucharms.com/t/implementing-leadership/1124
 [cdk-bundle]: https://jujucharms.com/charmed-kubernetes
 
 <!-- FEEDBACK -->
