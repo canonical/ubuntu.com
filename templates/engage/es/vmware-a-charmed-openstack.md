@@ -12,7 +12,7 @@ context:
      header_cta:
      header_class: p-engage-banner--dark
      header_supplemental: '<br /><p><a href="#register-section" class="p-button--positive">Lea el documento técnico</a> <a href="#webinar" class="p-button--neutral">Vea el webinar</a></p>'
-     header_lang: en
+     header_lang: es
      webinar_code: '<div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #FFFFFF;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 385592, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
      form_include: es
      form_id: 3509
