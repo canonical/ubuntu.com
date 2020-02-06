@@ -4,7 +4,7 @@ context:
      title: "Migration von VMware zu OpenStack"
      meta_description: "Wie ein Umstieg auf Charmed OpenStack die Gesamtkosten spürbar senken kann."
      meta_image: https://assets.ubuntu.com/v1/86829a92-Meta+data+img.jpg
-     meta_copydoc: https://docs.google.com/document/d/1_8SmEU9ESXbl1kGSTvivr1mj0JzV8rSSZe_jPSgLNLk/edit
+     meta_copydoc: https://docs.google.com/document/d/15ipwZJaEZhW9tMe6ISsRfEebrjaw1U5Pznfm5SQqY5k/edit
      header_title: "Migration von VMware zu OpenStack"
      header_subtitle: "Wie ein Umstieg auf Charmed OpenStack die Gesamtkosten spürbar senken kann"
      header_image: "https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg"
