@@ -101,7 +101,11 @@ def utility_processor():
 # Simple routes
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
-    "/download/<regex('server|desktop|cloud|raspberry-pi'):category>/thank-you",
+    (
+        "/download"
+        "/<regex('server|desktop|cloud|raspberry-pi'):category>"
+        "/thank-you"
+    ),
     view_func=download_thank_you,
 )
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
