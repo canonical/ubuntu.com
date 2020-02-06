@@ -7,7 +7,7 @@
         <small>Run this command in your terminal in the directory the iso was downloaded to verify the SHA256 checksum:</small><br />
         <code style="display: block; margin-top: 1rem;">echo "{{ releases.checksums[system][version] }}" | shasum -a 256 --check</code><br />
         <small>You should get the following output:</small><br />
-        <code style="display: block; margin-top: 1rem;">ubuntu-{{ version }}-{{ system }}-{{ architecture }}.iso: OK</code><br />
+        <code style="display: block; margin-top: 1rem;">ubuntu-{{ version }}-{% if system != architecture %}{{ system }}-{% else %}preinstalled-server-{% endif %}{{ architecture }}.iso: OK</code><br />
         <small>Or follow this tutorial to learn <a class="p-link--external" href="/tutorials/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small>
       </span>
     </span>
@@ -60,4 +60,3 @@
 
   setupContextualMenuListeners('.p-contextual-menu__toggle');
 </script>
-
