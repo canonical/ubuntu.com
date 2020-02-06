@@ -1,5 +1,5 @@
 <!-- MARKETO FORM -->
-<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{ id }}" style="margin-top:-1em;">
+<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{ id }}">
   <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
     <ul class="p-list u-no-margin--bottom">
       <li class="mktFormReq mktField p-list__item">
@@ -57,6 +57,7 @@
         <input type="hidden" name="returnURL" value="{{ returnURL }}" aria-label="returnURL">
         <input type="hidden" name="retURL" value="{{ returnURL }}" aria-label="retURL">
         <input type="hidden" name="returnURL" value="{{ returnURL }}" aria-label="return_url">
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="return_url" value="{{returnURL}}" />
       </li>
     </ul>
   </fieldset>
