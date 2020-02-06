@@ -8,11 +8,16 @@
 <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-server-{{ architecture }}.img.xz">
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
-  <div class="row">
-    <div class="col-8">
-      <h1>Thank you for downloading Ubuntu Server for Raspberry Pi {{ version }}</h1>
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h1>Thank you for downloading<br />
+        Ubuntu Server {{ version }}<br />
+        for Raspberry Pi</h1>
       <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-server-{{ architecture }}.img.xz">download now</a>.</p>
       {% with version=version, system=architecture, architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
+    </div>
+    <div class="col-5 u-hide--small u-align--center">
+      <img src="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg" alt="" width="350">
     </div>
   </div>
 </section>
@@ -22,16 +27,20 @@
     <div class="col-8">
       <h2>Installation instructions</h2>
       <p>We will walk you through the steps of flashing Ubuntu Server on to your Raspberry Pi and getting logged in.</p>
-      <h3>What you&rsquo;ll need</h3>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">A Raspberry Pi 2, 3, or 4</li>
-        <li class="p-list__item is-ticked">A micro-USB power cable</li>
-        <li class="p-list__item is-ticked">A microSD card with the Ubuntu Server image</li>
-        <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
-        <li class="p-list__item is-ticked">An HDMI cable for the Pi 2 &amp; 3 and a MicroHDMI cable for the Pi 4</li>
-        <li class="p-list__item is-ticked">A USB keyboard</li>
-      </ul>
       <ol class="p-stepped-list">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">What you&rsquo;ll need</h3>
+          <div class="p-stepped-list__content">
+            <ul>
+              <li class="p-list__item">A Raspberry Pi 2, 3, or 4</li>
+              <li class="p-list__item">A micro-USB power cable</li>
+              <li class="p-list__item">A microSD card with the Ubuntu Server image</li>
+              <li class="p-list__item">A monitor with an HDMI interface</li>
+              <li class="p-list__item">An HDMI cable for the Pi 2 &amp; 3 and a MicroHDMI cable for the Pi 4</li>
+              <li class="p-list__item">A USB keyboard</li>
+            </ul>
+          </div>
+        </li>
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">Flash Ubuntu onto your microSD card</h3>
           <div class="p-stepped-list__content">
@@ -61,10 +70,17 @@
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-8">
+  <div class="row u-vertically-center">
+    <div class="col-7">
       <h2>Things to try next</h2>
       <p>Here are a few things you can do now that you have your Raspberry Pi running Ubuntu.</p>
+    </div>
+    <div class="col-5 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/a46ea917-3+-+Leverage+snaps+to+build+a+lean+custom+production+image.svg" alt="" width="350">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7">
       <h3>Install a desktop</h3>
       <p>You can install a desktop if you like, here are some popular ones:</p>
       <pre><code>sudo apt-get install xubuntu-desktop</code></pre>
@@ -72,8 +88,17 @@
       <pre><code>sudo apt-get install kubuntu-desktop</code></pre>
     </div>
   </div>
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h3>Get started with snaps</h3>
+      <p>Your {{ board or "board" }} is now ready to have snaps installed, it&rsquo;s time to use the snap command to install your first snap.</p>
+      <p>The <a href="https://snapcraft.io/store" class="p-link--external">Snap Store</a> is where you can find the best Linux apps packaged as snaps to install on your Ubuntu device and get started with your secure IoT journey.</p>
+    </div>
+    <div class="col-5 u-hide--small u-align--center u-vertically-center">
+      <img src="https://assets.ubuntu.com/v1/bd695c08-app+store.svg" alt="" width="150">
+    </div>
+  </div>
 </section>
 
-{% with strip="p-strip--light" %}{% include "download/iot/_install-snaps-strip.html" %}{% endwith %}
 
 {% endblock %}
