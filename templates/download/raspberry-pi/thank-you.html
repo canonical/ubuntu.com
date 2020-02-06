@@ -1,20 +1,30 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Thank you for downloading Ubuntu Server for Raspberry Pi{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1RXsLbMB-LJVwiG0gAi0HgVEJvZ9_GIU3ESLJ6KmBb54{% endblock meta_copydoc %}
+
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block content %}
+{% if start_download %}
 <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-server-{{ architecture }}.img.xz">
+{% endif %}
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
   <div class="row u-vertically-center">
     <div class="col-7">
+      {% if start_download %}
       <h1>Thank you for downloading<br />
         Ubuntu Server {{ version }}<br />
         for Raspberry Pi</h1>
       <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-server-{{ architecture }}.img.xz">download now</a>.</p>
       {% with version=version, system=architecture, architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
+      {% else %}
+      <h1>Thank you</h1>
+      <h4>However, you have not selected an image to download.</h4>
+      <p>Go to the <a href="/download/raspberry-pi">download page</a> to select an image.</p>
+      {% endif %}
     </div>
     <div class="col-5 u-hide--small u-align--center">
       <img src="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg" alt="" width="350">
