@@ -208,4 +208,31 @@
     window.location.hash == "#welcome";
   }
 </script>
+
+<script>
+  (function() {
+    var polls = document.querySelectorAll('.poll');
+
+    polls.forEach(function(poll) {
+      var answers = poll.querySelectorAll('[type="radio"]');
+      var pollId = poll.getAttribute('data-poll-name');
+
+      answers.forEach(function(answer) {
+        answer.addEventListener('change', function(e) {
+          var answerLabel = document.querySelector('label[for="' + e.target.id + '"]');
+          var eventLabel = answerLabel.innerText;
+          var eventAction = document.getElementById(pollId).innerText;
+
+          dataLayer.push({
+            'event' : 'GAEvent',
+            'eventCategory' : 'survey',
+            'eventAction' : eventAction,
+            'eventLabel' : eventLabel,
+            'eventValue' : undefined
+          });
+        });
+      });
+    });
+  })();
+</script>
 {% endblock %}
