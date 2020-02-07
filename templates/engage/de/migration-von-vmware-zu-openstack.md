@@ -15,7 +15,7 @@ context:
      header_lang: de
      webinar_code: '<div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #FFFFFF;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 17086, "language": "de-de", "commId" : 384086, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
      form_include: de
-     form_id: 3509
+     form_id: 3507
      form_return_url: "https://pages.ubuntu.com/VMwaretoOpenStack_DE.html"
 ---
 
