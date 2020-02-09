@@ -8,7 +8,7 @@
   {% if title %}<h2 class="p-muted-heading u-align--center">{{title}}</h2>{% endif %}
   <ul id="cloud-partners" class="p-inline-images">
     {% for partner in partners %}
-      <li class="p-inline-images__item">
+      <li class="p-inline-images__item" {% if size=="small" %}style="margin:0.5rem;"{% endif %}>
         {% if partner.partner_website %}<a href="{{ partner.partner_website }}">{% endif %}<img class="p-inline-images__logo" src="{{ partner.logo }}" style="max-width: 144px;" width="144" alt="{{ partner.name }}" />{% if partner.partner_website %}</a>{% endif %}
       </li>
     {% endfor %}
