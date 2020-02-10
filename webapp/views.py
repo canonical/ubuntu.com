@@ -3,6 +3,7 @@ import json
 import os
 import re
 import datetime
+from math import ceil
 
 # Packages
 import feedparser
@@ -12,6 +13,7 @@ from canonicalwebteam.blog.flask import build_blueprint
 from geolite2 import geolite2
 from mistune import Markdown
 from requests.exceptions import HTTPError
+from sqlalchemy import asc, desc
 
 # Local
 from webapp import auth
@@ -21,7 +23,9 @@ from webapp.models import Notice, Release
 
 
 ip_reader = geolite2.reader()
-markdown_parser = Markdown(parse_block_html=True, parse_inline_html=True)
+markdown_parser = Markdown(
+    hard_wrap=True, parse_block_html=True, parse_inline_html=True
+)
 
 
 def download_thank_you(category):
@@ -268,29 +272,45 @@ def notice(notice_id):
 
 
 def notices():
-    details = flask.request.args.get("details", default=None, type=str)
-    release = flask.request.args.get("release", default=None, type=str)
+    page = flask.request.args.get("page", default=1, type=int)
+    details = flask.request.args.get("details", type=str)
+    release = flask.request.args.get("release", type=str)
+    order_by = flask.request.args.get("order", type=str)
 
+    releases = db_session.query(Release).all()
     notices_query = db_session.query(Notice)
 
     if release:
         notices_query = notices_query.join(Release, Notice.releases).filter(
             Release.codename == release
         )
+
     if details:
         notices_query = notices_query.filter(
             Notice.details.ilike(f"%{details}%")
         )
 
-    notices = notices_query.all()
-    featured_notices = (
-        db_session.query(Notice).filter(Notice.featured).all()
+    # Snapshot total results for search
+    page_size = 10
+    total_results = notices_query.count()
+    total_pages = ceil(total_results / page_size)
+    offset = page * page_size - page_size
+
+    sort = asc if order_by == "oldest" else desc
+    notices = (
+        notices_query.order_by(sort(Notice.published))
+        .offset(offset)
+        .limit(page_size)
+        .all()
     )
-    releases = db_session.query(Release).all()
 
     return flask.render_template(
         "security/notices.html",
-        featured_notices=featured_notices,
         notices=notices,
         releases=releases,
+        pagination=dict(
+            current_page=page,
+            total_pages=total_pages,
+            total_results=total_results,
+        ),
     )
