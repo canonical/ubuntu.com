@@ -6,7 +6,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/15xrgIq_KUwHaCyFoI7-yS_JmBbsoyXJ4GpRMFAa7_is/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-bordered">
+<section class="p-strip--suru-image is-bordered">
   <div class="row">
     <div class="col-7">
       <h1>What is OpenStack?</h1>
@@ -125,12 +125,23 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
+  <div class="row u-equal-height">
+    <div class="col-7">
       <h2>How to install OpenStack</h2>
       <p>The OpenStack system consists of several key services that are separately installed. These services work together depending on your cloud needs and include the Compute, Identity, Networking, Image, Block Storage, Object Storage, Telemetry, Orchestration, and Database services. You can install any of these projects separately and configure them stand-alone or as connected entities</p>
       <p><a class="p-button--positive" href="/openstack/install">Install OpenStack and its main services</a></p>
       <p>Or browse the <a class="p-link--external" href="https://www.openstack.org/software/project-navigator/openstack-components#openstack-services">list of Openstack Services</a></p>
+    </div>
+    <div class="col-5 u-vertically-center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/2b03a6b4-Install+Openstack.svg",
+          alt="",
+          height="200",
+          width="290",
+          hi_def=True,
+        ) | safe
+      }}
     </div>
   </div>
 </section>
