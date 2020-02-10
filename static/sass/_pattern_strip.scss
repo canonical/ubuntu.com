@@ -130,6 +130,12 @@
       color: $color-x-light;
       padding-bottom: 4rem;
       padding-top: 4rem;
+
+      a:not([class*="p-button"]) {
+        color: inherit;
+        font-weight: bold;
+        text-decoration: underline;
+      }
     }
   }
 }
