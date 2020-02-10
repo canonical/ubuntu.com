@@ -52,7 +52,7 @@
       </div>
     </div>
     {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="{% if "http" not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" width="413" style="max-height: 410px; max-width: 250px;" alt="" >
+      <img src="{% if "http" not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" width="{% if header_image_width %}{{ header_image_width }}{% else %}413{% endif %}" style="max-height: 410px; max-width: 250px;" alt="" >
     </div>{% endif %}
   </div>
 </section>
