@@ -6,18 +6,15 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1eQ16jzv6YRGzG_k_C-tUnhM06k6_Ic6fZM-x_ARMzuc/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip is-deep is-bordered">
-  <div class="u-fixed-width">
-    <h1>Install OpenStack yourself</h1>
-  </div>
-
+<section class="p-strip--suru-image is-deep is-bordered">
   <div class="row u-equal-height u-vertically-center ">
-    <div class="col-8">
+    <div class="col-7">
+      <h1>Install OpenStack yourself</h1>
       <p>Test OpenStack on your workstation, set up an edge cloud or deploy a production-grade cloud across hundreds of physical servers in a data centre. You will use <a href="https://microstack.run/" class="p-link--external">MicroStack</a> or <a href="https://jaas.ai/openstack" class="p-link--external">Charmed OpenStack</a> depending on the requirements.</p>
       <p>If you run into issues, or if you want support, training or architecture design consulting, please <a href="/openstack/contact-us" class="js-invoke-modal">contact Canonical</a> &mdash; we help the world&rsquo;s largest OpenStack users keep their clouds running smoothly.</p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/95212c08-OpenStack_Logo_2016.svg" alt="" width="275" />
+    <div class="col-5 u-align--center u-hide--small">
+      <img src="https://assets.ubuntu.com/v1/2b03a6b4-Install+Openstack.svg" alt="" width="290" />
     </div>
   </div>
 </section>
@@ -130,7 +127,7 @@
 
           <pre><code>$ sudo microstack.init --auto
 ...
-2019-12-16 12:38:33,223 - microstack_init - INFO - Complete. 
+2019-12-16 12:38:33,223 - microstack_init - INFO - Complete.
 Marked microstack as initialized!
           </code></pre>
 
@@ -428,12 +425,12 @@ password: keystone</code></pre>
         <div class="p-stepped-list__content">
           <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
 
-          <pre><code>$ microstack.launch cirros --name test --availability-zone 
+          <pre><code>$ microstack.launch cirros --name test --availability-zone
 nova:&lt;compute nodehostname&gt;</code></pre>
 
           <p>For example:</p>
 
-          <pre><code>$ microstack.launch cirros --name test --availability-zone 
+          <pre><code>$ microstack.launch cirros --name test --availability-zone
 nova:ip-172-31-24-59</code></pre>
 
           <p>This should result in a lot of output from which the most important are the last two lines:</p>
@@ -800,23 +797,23 @@ Model      Controller       Cloud/Region  Version  SLA          Timestamp
 openstack  maas-controller  maas/default  2.7.0    unsupported  12:22:38-05:00
 
 App                    Version  Status  Scale  Charm                  Store       Rev  OS      Notes
-ceph-mon               14.2.2   active      3  ceph-mon               jujucharms   44  ubuntu  
-ceph-osd               14.2.2   active      3  ceph-osd               jujucharms  294  ubuntu  
-ceph-radosgw           14.2.2   active      1  ceph-radosgw           jujucharms  283  ubuntu  
-cinder                 15.0.0   active      1  cinder                 jujucharms  297  ubuntu  
-cinder-ceph            15.0.0   active      1  cinder-ceph            jujucharms  251  ubuntu  
-glance                 19.0.0   active      1  glance                 jujucharms  291  ubuntu  
-keystone               16.0.0   active      1  keystone               jujucharms  309  ubuntu  
-mysql                  5.7.20   active      1  percona-cluster        jujucharms  281  ubuntu  
-neutron-api            15.0.0   active      1  neutron-api            jujucharms  282  ubuntu  
-neutron-gateway        15.0.0   active      1  neutron-gateway        jujucharms  276  ubuntu  
-neutron-openvswitch    15.0.0   active      3  neutron-openvswitch    jujucharms  269  ubuntu  
-nova-cloud-controller  20.0.0   active      1  nova-cloud-controller  jujucharms  339  ubuntu  
-nova-compute           20.0.0   active      3  nova-compute           jujucharms  309  ubuntu  
-ntp                    3.2      active      4  ntp                    jujucharms   36  ubuntu  
-openstack-dashboard    16.0.0   active      1  openstack-dashboard    jujucharms  297  ubuntu  
-placement              2.0.0    active      1  placement              jujucharms    1  ubuntu  
-rabbitmq-server        3.6.10   active      1  rabbitmq-server        jujucharms   97  ubuntu  
+ceph-mon               14.2.2   active      3  ceph-mon               jujucharms   44  ubuntu
+ceph-osd               14.2.2   active      3  ceph-osd               jujucharms  294  ubuntu
+ceph-radosgw           14.2.2   active      1  ceph-radosgw           jujucharms  283  ubuntu
+cinder                 15.0.0   active      1  cinder                 jujucharms  297  ubuntu
+cinder-ceph            15.0.0   active      1  cinder-ceph            jujucharms  251  ubuntu
+glance                 19.0.0   active      1  glance                 jujucharms  291  ubuntu
+keystone               16.0.0   active      1  keystone               jujucharms  309  ubuntu
+mysql                  5.7.20   active      1  percona-cluster        jujucharms  281  ubuntu
+neutron-api            15.0.0   active      1  neutron-api            jujucharms  282  ubuntu
+neutron-gateway        15.0.0   active      1  neutron-gateway        jujucharms  276  ubuntu
+neutron-openvswitch    15.0.0   active      3  neutron-openvswitch    jujucharms  269  ubuntu
+nova-cloud-controller  20.0.0   active      1  nova-cloud-controller  jujucharms  339  ubuntu
+nova-compute           20.0.0   active      3  nova-compute           jujucharms  309  ubuntu
+ntp                    3.2      active      4  ntp                    jujucharms   36  ubuntu
+openstack-dashboard    16.0.0   active      1  openstack-dashboard    jujucharms  297  ubuntu
+placement              2.0.0    active      1  placement              jujucharms    1  ubuntu
+rabbitmq-server        3.6.10   active      1  rabbitmq-server        jujucharms   97  ubuntu
 
 Unit                      Workload  Agent  Machine  Public address  Ports              Message
 ceph-mon/0                active    idle   1/lxd/0  172.16.7.164                       Unit is ready and clustered
@@ -1009,10 +1006,10 @@ Machine  State    DNS           Inst id              Series  AZ       Message
   </div>
 </div>
 
-<div class="p-strip--light is-deep">
+<div class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-4 u-align--center u-hide--small u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="200" alt="" />
+      <img src="https://assets.ubuntu.com/v1/0e5f4269-questions.svg" width="200" alt="" />
     </div>
     <div class="col-6 col-start-large-6 u-vertically-center">
       <h2>Need more help?</h2>
