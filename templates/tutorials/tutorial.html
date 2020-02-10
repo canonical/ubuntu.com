@@ -133,7 +133,7 @@
   }
 
   function setActiveLink(navigationItems) {
-    navigationItems.forEach(function(item) {
+    [].forEach.call(navigationItems, function(item) {
       var link = item.querySelector('.l-tutorial__nav-link');
       if (link.getAttribute('href') === window.location.hash) {
         item.classList.add('is-active');
@@ -150,7 +150,7 @@
 
   setActiveLink(navigationItems);
 
-  navigationItems.forEach(function(item) {
+  [].forEach.call(navigationItems, function(item) {
     var link = item.querySelector('.l-tutorial__nav-link');
     link.addEventListener('click', toggleTutorialNavigation);
   });
@@ -160,10 +160,12 @@
     setActiveLink(navigationItems);
   });
 
-  sectionIds = []
-  document.querySelectorAll('.l-tutorial__content section').forEach(
-    function(section) {sectionIds.push(section.id)}
-  )
+  sectionIds = [];
+
+  var tutorialSections = document.querySelectorAll('.l-tutorial__content section');
+  [].forEach.call(tutorialSections, function(section) {
+    sectionIds.push(section.id);
+  });
 
   // Navigate to first tutorial step on load if no URL hash
   if (!window.location.hash) {
@@ -185,7 +187,7 @@
   var tutorialFeedbackIcons = document.querySelectorAll('.l-tutorial__feedback-icon');
   var tutorialFeedbackResult = document.querySelector('.l-tutorial__feedback-result');
 
-  tutorialFeedbackIcons.forEach(function(icon) {
+  [].forEach.call(tutorialFeedbackIcons, function(icon) {
     icon.addEventListener('click', function(e) {
       var feedbackValue = e.target.getAttribute('data-feedback-value');
       dataLayer.push({
@@ -213,11 +215,11 @@
   (function() {
     var polls = document.querySelectorAll('.poll');
 
-    polls.forEach(function(poll) {
+    [].forEach.call(polls, function(poll) {
       var answers = poll.querySelectorAll('[type="radio"]');
       var pollId = poll.getAttribute('data-poll-name');
 
-      answers.forEach(function(answer) {
+      [].forEach.call(answers, function(answer) {
         answer.addEventListener('change', function(e) {
           var answerLabel = document.querySelector('label[for="' + e.target.id + '"]');
           var eventLabel = answerLabel.innerText;
