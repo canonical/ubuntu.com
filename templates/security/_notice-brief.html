@@ -1,12 +1,11 @@
-<article>
-  <h3><a href="/security/notices/{{notice.id}}">{{notice.id}}: {{notice.title}}</a></h3>
-  <p style="font-size: 14px; color: #666;">{{ notice.published.strftime("%d %B %Y") }}</p>
-  <p>{{ notice.summary | safe }}</p>
-
-  <ul class="p-inline-list u-no-margin--bottom">
+<article class="notice" style="padding-bottom: 32px;">
+  <h3 class="u-no-margin p-heading--four" style="padding-bottom: 8px;"><a href="/security/notices/{{notice.id}}">{{ notice.id }}: {{ notice.title }} ›</a></h3>
+  <p class="u-no-margin u-no-padding--top" style="color: #666; font-size: 14px; padding-bottom: 8px;">{{ notice.published.strftime("%d %B %Y") }}</p>
+  <p class="u-no-margin u-no-padding--top" style="padding-bottom: 16px;">{{ notice.summary | safe }}</p>
+  <ul class="p-inline-list u-no-margin">
     {% for release in notice.releases %}
       <li class="p-inline-list__item">
-        <a href="/security/notices?release={{release.id}}" class="p-button--tag">Ubuntu {{ release.version }}</a>
+        <a href="/security/notices?release={{release.codename}}" class="p-button--tag">Ubuntu {{ release.version }}</a>
       </li>
     {% endfor %}
   </ul>
