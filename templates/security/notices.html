@@ -1,155 +1,149 @@
 {% extends "templates/one-column.html" %}
-
 {% set search = request.args.get('release') or request.args.get('details') %}
-
 {% block title %}Security notices{% endblock %}
-
 {% block content %}
 <section class="p-strip--suru-topped">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       {% if search %}
-        <h1>Ubuntu Security Notices search results</h1>
+      <h1 class="p-heading--two">Ubuntu Security Notices - Search Results</h1>
       {% else %}
-        <h1>Ubuntu Security Notices</h1>
-        <p>Developers issue an Ubuntu Security Notice when a security issue is fixed in an <a href="#">official Ubuntu package</a>.</p>
-        <p>To report a security vulnerability in an Ubuntu package, please <a href="#">contact the Security Team</a>.</p>
+      <h1>Ubuntu Security Notices</h1>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      {% if not search %}
+      <p>Developers issue an Ubuntu Security Notice when a security issue is fixed in an <a href="#">official Ubuntu package</a>.</p>
+      <p>To report a security vulnerability in an Ubuntu package, please <a href="#">contact the Security Team</a>.</p>
       {% endif %}
     </div>
   </div>
 </section>
-
 <section class="p-strip--light is-shallow">
+  {% if not search %}
   <div class="u-fixed-width">
     <h2>Search</h2>
   </div>
-
-  <form action="/security/notices" method="GET" class="row">
-    <div class="col-4">
-      <label for="release">Release:</label>
-      <select name="release" id="release">
-        <option value="all" selected>Any</option>
-        {% for release in releases %}
-          <option value="{{ release.codename }}" {%  if search == release.codename %}selected{% endif%}>Ubuntu {{ release.version }}</option>
-        {% endfor %}
-      </select>
-    </div>
-
-    <div class="col-6">
-      <div class="row">
-        <div class="col-5">
-          <label for="details">Details contain:</label>
-        </div>
-
-        <div class="col-4">
-          <input type="text" name="details" id="details" value="{{ request.args.get('details', '') }}"/>
-        </div>
-  
-        <div class="col-2">
-          <button type="submit" class="p-button--positive">Search{% if search %} again{% endif %}</button>
+  {% endif %}
+  <form action="/security/notices" method="GET" class="p-form js-form">
+    <input class="js-order-input" type="hidden" name="order" value="newest">
+    <div class="row u-equal-height">
+      <div class="col-4">
+        <label class="p-form__label" for="release">Release:</label>
+        <select class="p-form__control js-release" name="release" id="release">
+          <option value="">Any</option>
+          {% for release in releases %}
+          <option value="{{ release.codename }}"
+            {% if request.args.get('release') == release.codename %}selected{% endif %}>
+            Ubuntu {{ release.version }} {% if release.lts %} LTS {% endif %}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-6">
+            <label class="p-form__label" for="details">Details contain:</label>
+            <input class="p-form__control js-details" type="text" name="details" id="details"
+              value="{{ request.args.get('details', '') }}" />
+          </div>
+          <div class="col-2 u-align--right" style="display: flex; align-items: flex-end;">
+            <button type="submit" class="p-button--positive js-submit" style="width:100%;">Search{% if search %} again{% endif %}</button>
+          </div>
         </div>
       </div>
     </div>
   </form>
 </section>
-
 <section class="p-strip">
   {% if search %}
-    <div class="row">
-      <div class="col-6">
-        {% set first = 1 %}
-        {% set last = 1 %}
-        <h2 class="p-heading--four">{{ first }} - {{ last }} of {{ notices|length }} results</h2>
-      </div>
-
-      <div class="col-6">
-        <form action="/security/notices" method="GET" class="row p-form--inline js-sort-form">
-          <input type="hidden" name="release" value="{{ request.args.get('release', '') }}"/>
-          <input type="hidden" name="details" value="{{ request.args.get('details', '') }}"/>
-          <div class="p-form__group u-align--right">
-            <label class="p-form__label" for="sort-by">Sort by:</label>
-            <select name="sort" id="sort" style="width: auto;">
-              <option value="newest">Newest first</option>
-              <option value="oldest">Oldest first</option>
-            </select>
-          </div>
-        </form>
-
-        <script>
-          var form = document.querySelector('.js-sort-form');
-
-          form.addEventListener('change', function() {
-            form.submit();
-          })
-        </script>
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--four">
+        {{ notices|length }} of {{ pagination.total_results }} results
+      </h2>
+    </div>
+    <div class="col-4 p-form p-form--inline">
+      <div class="p-form__group">
+        <label class="p-form__label">Sort by:</label>
+        <select class="p-form__control u-no-margin--bottom js-order-select">
+          <option value="newest" {% if request.args.get('order') == 'newest'%} selected {% endif %}>Newest</option>
+          <option value="oldest" {% if request.args.get('order') == 'oldest'%} selected {% endif %}>Oldest</option>
+        </select>
       </div>
     </div>
-
-    <div class="u-fixed-width">
-      <hr style="margin: 1rem 0;" />
-    </div>
+  </div>
+  <div class="u-fixed-width" style="margin-bottom: 2rem; margin-top: 2rem;">
+    <hr class="u-hide--small"/>
+  </div>
   {% endif %}
-
   <div class="row">
     <div class="col-9">
-      <h2>Latest notices</h2>
+      {% if not search %}
+      <h2>Latest Notices</h2>
+      {% endif %}
+      {% if notices %}
       {% for notice in notices %}
-        {% with notice=notice %}
-          {% include "security/_notice-brief.html" %}
-        {% endwith %}
+      {% include "security/_notice-brief.html" %}
       {% endfor %}
+      {% else %}
+      <h2>No notices found...</h2>
+      {% endif %}
     </div>
-
     {% if not search %}
-      <div class="col-3">
-        <div class="p-card">
-          <h2 class="p-heading--four">Subscribe</h2>
-
-          <ul class="p-list u-no-margin--bottom">
-            <li class="p-list__item u-sv1">
-              <a href="#" style="display: flex; align-items: center;">
-                <i class="p-icon--rss" style="margin-right: 0.5rem; flex-shrink: 0;"></i>
-                RSS
-              </a>
-            </li>
-
-            <li class="p-list__item">
-              <a href="#" style="display: flex; align-items: center;">
-                <i class="p-icon--email" style="margin-right: 0.5rem; flex-shrink: 0;"></i>
-                Mailing list
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div class="col-3 u-hide--small">
+      {% include "security/_subscribe.html" %}
+    </div>
     {% endif %}
   </div>
-
-  {% if search %}
-    {% with 
-      total_pages = 5,
-      current_page = 1  
-    %}
-      {% include "shared/_pagination.html" %}
-    {% endwith %}
-  {% elif featured_notices %}
-    <div class="u-fixed-width">
-      <hr class="p-separator" />
+  {% with total_pages = pagination.total_pages, current_page=pagination.current_page %}
+  {% include "shared/_pagination.html" %}
+  {% endwith %}
+  {% if not search %}
+  <div class="row u-hide--medium u-hide--large">
+    <div class="col-12">
+      {% include "security/_subscribe.html" %}
     </div>
-
-    <div class="row">
-      <div class="col-9">
-        <h2>Featured</h2>
-        {% for notice in featured_notices %}
-          {% with notice=notice %}
-            {% include "security/_notice-brief.html" %}
-          {% endwith %}
-        {% endfor %}
-      </div>
-    </div>
+  </div>
   {% endif %}
 </section>
+{% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}
+{% include "shared/contextual_footers/_contextual_footer.html" %}
+{% endwith %}
+<script>
+  var form = document.querySelector(".js-form");
+  var orderInput = document.querySelector(".js-order-input");
+  var orderSelect = document.querySelector(".js-order-select");
+  var details = document.querySelector(".js-details");
+  var release = document.querySelector(".js-release");
+  var submit = document.querySelector(".js-submit");
 
-{% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+  // Submit form on order select change 
+  if (orderSelect != null) {
+    orderSelect.onchange = function(event) {
+      orderInput.value = event.target.value;
+      form.submit();
+    }
+  }
 
+  // Disable search when form is empty
+  function toogleSearch() {
+    submit.disabled = !details.value && !release.value;
+  }
+
+  // Toggle on form change
+  form.onchange = function() {
+    toogleSearch();
+  }
+
+  // Toggle on details input keyup
+  details.onkeyup = function() {
+    toogleSearch();
+  }
+
+  // Toggle on page load
+  toogleSearch();
+</script>
 {% endblock %}
