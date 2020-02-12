@@ -11,7 +11,7 @@
         <small>Or follow this tutorial to learn <a class="p-link--external" href="/tutorials/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small>
       </span>
     </span>
-  </span>, or get <a href="/tutorials/tutorial-install-ubuntu-{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}?backURL=https://ubuntu.com/download/{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}/thank-you" class="p-link--external">help on installing</a>.
+  </span>{% if not 'raspi' in system %}, or get <a href="/tutorials/tutorial-install-ubuntu-{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}?backURL=https://ubuntu.com/download/{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}/thank-you" class="p-link--external">help on installing</a>{% endif %}.
 </p>
 
 <script>
