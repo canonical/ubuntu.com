@@ -240,6 +240,13 @@ other methods such as RBAC for authorisation but using Keystone for authenticati
 usernames will come from Keystone, but what they can do in the cluster
 is controlled by another system.
 
+In order to enable authorization feature in **Charmed Kubernetes** one should change the default config
+of the charm and switch to **RBAC** authorization mode as follows:
+
+```bash
+juju config kubernetes-master authorization-mode="Node,RBAC"
+```
+
 **Charmed Kubernetes** can  also use Keystone for authorisation as follows:
 
 ```bash

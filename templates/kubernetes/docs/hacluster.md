@@ -21,7 +21,7 @@ to span subnets via the DNS option, which communicates directly with
 head(STONITH) via **MAAS** to prevent issues in a split-brain scenario.
 
 **Charmed Kubernetes** supports **HAcluster** via a relation and the configuration options
-`ha-cluster-vips` and `ha-cluster-dns`. Relations to the kubernetes-master and
+`ha-cluster-vip` and `ha-cluster-dns`. Relations to the kubernetes-master and
 kubeapi-load-balancer charms are supported. These options are mutually exclusive.
 
 ## Deploying
@@ -37,7 +37,7 @@ need 3 kubeapi-load-balancer or 3 kubernetes-master units to use HAcluster.
 juju deploy charmed-kubernetes
 juju add-unit -n 2 kubeapi-load-balancer
 juju deploy hacluster
-juju config kubeapi-load-balancer ha-cluster-vips=”192.168.0.1 192.168.0.2”
+juju config kubeapi-load-balancer ha-cluster-vip="192.168.0.1 192.168.0.2"
 juju relate kubeapi-load-balancer hacluster
 ```
 
@@ -47,7 +47,7 @@ juju relate kubeapi-load-balancer hacluster
 juju deploy kubernetes-core
 juju add-unit -n 2 kubernetes-master
 juju deploy hacluster
-juju config kubernetes-master ha-cluster-vips=”192.168.0.1 192.168.0.2”
+juju config kubernetes-master ha-cluster-vip="192.168.0.1 192.168.0.2"
 juju relate kubernetes-master hacluster
 ```
 

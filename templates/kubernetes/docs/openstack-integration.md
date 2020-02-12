@@ -77,13 +77,7 @@ have also been released.
 To use the overlay with the **Charmed Kubernetes** bundle, specify it during deploy like this:
 
 ```bash
-juju deploy charmed-kubernetes --overlay ~/path/openstack-overlay.yaml
-```
-
-Then run the command to share credentials with this charm:
-
-```bash
-juju trust openstack-integrator
+juju deploy charmed-kubernetes --overlay ~/path/openstack-overlay.yaml --trust
 ```
 
 ... and remember to fetch the configuration file!
