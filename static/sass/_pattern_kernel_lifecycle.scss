@@ -1,0 +1,22 @@
+// css menu for the /kernel/lifecycle page
+
+@mixin ubuntu-p-kernel-lifecycle {
+
+  .p-insta--hide {
+    display: none;
+  }
+
+  .p-menu-18-04:focus ~ #inst-18-04 ,
+  .p-menu-16-04:focus ~ #inst-16-04,
+  .p-menu-14-04:focus ~ #inst-14-04,
+  .p-menu-12-04:focus ~ #inst-12-04 {
+    display: block;
+  }
+
+  #inst-18-04,
+  #inst-16-04,
+  #inst-14-04,
+  #inst-12-04 {
+    padding-top: 2rem;
+  }
+}

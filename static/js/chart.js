@@ -182,6 +182,8 @@ function formatKeyLabel(key) {
   formattedKey = formattedKey.replace('kub', 'Kub');
   formattedKey = formattedKey.replace('Interim release', 'Interim release Standard Support');
   formattedKey = formattedKey.replace('Esm', 'Extended Security Maintenance (ESM)');
+  formattedKey = formattedKey.replace('Cve', 'CVE/Critical fixes only');
+  formattedKey = formattedKey.replace('Early', 'Early preview');
   return formattedKey;
 }
 

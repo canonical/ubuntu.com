@@ -1,0 +1,594 @@
+{% extends "kernel/base_kernel.html" %}
+
+{% block title %}Ubuntu kernel lifecycle and enablement stack{% endblock %}
+
+{% block meta_description %}Canonical provides long-term support (LTS) kernels for Ubuntu LTS releases. Canonical also provides interim operating system releases with updated kernels every 6 months. Learn about the lifecycle of each kernel through the lifespan of support.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1d01SFs7c56ge2o92g6Rwr3SjG8rtxm3jNwIyL1N8mQg/edit#heading=h.929qtgja1pr8{% endblock %}
+
+{% block content %}
+<section class="p-strip--suru-topped is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h1>
+        Ubuntu kernel lifecycle and enablement stack
+      </h1>
+      <p>
+        The Ubuntu LTS enablement also called HWE or Hardware Enablement, stacks provide the newer kernel and X support for existing Ubuntu LTS releases. These stacks can be installed manually, but are also available when installing with Ubuntu LTS point release media.
+      </p>
+      <p>
+        These newer enablement stacks are meant for desktop and server and even recommended for cloud or virtual images. However, if you want to remain on the original GA (General Availability) stacks, the options are:
+      </p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">
+          Install from a previous 12.04.0/12.04.1/14.04.0/14.04.1/16.04.0/16.04.1/18.04.0/18.04.1 point release and update. Previous releases are archived at <a class="" href="http://old-releases.ubuntu.com/">old-releases.ubuntu.com</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Perform an update or upgrade to an LTS release from a previous release
+        </li>
+        <li class="p-list__item is-ticked">
+          Perform a network install using the netboot images rather than the new &lt;release&gt;-netboot images
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>
+        Installation
+      </h2>
+
+      Show instructions for:
+      <a tabindex="1" class="p-menu-18-04">18.04 LTS</a> -
+      <a tabindex="2" class="p-menu-16-04">16.04 LTS</a> -
+      <a tabindex="3" class="p-menu-14-04">14.04 LTS</a> -
+      <a tabindex="4" class="p-menu-12-04">12.04 LTS</a>
+
+      <div class="p-insta--hide" id="inst-18-04">
+        <h2>
+          Ubuntu 18.04 LTS &mdash; Bionic Beaver
+        </h2>
+        <p>
+          Desktop:
+        </p>
+        <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-18.04 xserver-xorg-hwe-18.04</code></pre>
+        <p>
+          Server:
+        </p>
+        <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-18.04</code></pre>
+        <p>
+          The 18.04.2 and newer point releases will ship with an updated kernel and X stack by default for the desktop. Server installations will default to the GA kernel and provide the enablement kernel as optional.</p>
+          <p>
+            The 18.04 HWE Stacks will follow the Rolling Update Model.
+          </p>
+        </div>
+
+        <div class="p-insta--hide" id="inst-16-04">
+          <h2>
+            Ubuntu 16.04 LTS &mdash; Xenial Xerus
+          </h2>
+          <p>
+            Desktop:
+          </p>
+          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04</code></pre>
+          <p>
+            Server:
+          </p>
+          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-16.04</code></pre>
+          <p>
+            The 16.04.2 and newer point releases ship with an updated kernel and X stack by default for the desktop. Server installations default to the GA kernel and provide the enablement kernel as optional.The 16.04 HWE Stacks follow the Rolling Update Model.
+          </p>
+        </div>
+
+        <div class="p-insta--hide" id="inst-14-04">
+          <h2>
+            Ubuntu 14.04 LTS &mdash; Trusty Tahr
+          </h2>
+          <p>
+            Desktop:
+          </p>
+          <pre><code>sudo apt-get install --install-recommends linux-generic-lts-xenial xserver-xorg-core-lts-xenial xserver-xorg-lts-xenial xserver-xorg-video-all-lts-xenial xserver-xorg-input-all-lts-xenial libwayland-egl1-mesa-lts-xenial</code></pre>
+          <p>
+            Server:
+          </p>
+          <pre><code>sudo apt-get install --install-recommends linux-generic-lts-xenial</code></pre>
+          <p>
+            The 14.04.2 and newer point releases ship with an updated kernel and X stack by default. If you have installed with older media, you can use these instructions to install the newer HWE kernel derived from 16.04 (Xenial).
+          </p>
+        </div>
+
+        <div class="p-insta--hide" id="inst-12-04">
+          <h2>
+            Ubuntu 12.04 LTS &mdash; Precise Pangolin
+          </h2>
+          <p>
+            Desktop:
+          </p>
+          <pre><code>sudo apt-get install --install-recommends linux-generic-lts-trusty xserver-xorg-lts-trusty libgl1-mesa-glx-lts-trusty</code></pre>
+          <p>
+            Server:
+          </p>
+          <pre><code>sudo apt-get install --install-recommends linux-generic-lts-trusty</code></pre>
+          <p>
+            The 12.04.2 and newer point releases shipped with an updated kernel and X stack by default. The hardware enablement stack is comprised of the newer kernel and X stacks from 14.04 (Trusty).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="p-strip is-bordered">
+    <div class="row">
+      <div class="col-8">
+
+        <h2>
+          Check your support status
+        </h2>
+        <p>
+          To determine if your install is still supported, use <code>hwe-support-status</code> as documented on the <a href="/about/release-cycle">Ubuntu release cycle</a>.
+        </p>
+        <p>
+          <code>hwe-support-status --verbose</code>
+        </p>
+        <h2>
+          Kernel release schedule
+        </h2>
+        <p>
+          {image}
+        </p>
+        <h3>
+          Kernel support schedule
+        </h3>
+        <p>
+          Show schedule for: All releases - All LTS releases - 18.04 LTS -16.04 LTS - 14.04 LTS
+        </p>
+        <p>
+          {image for selected release}
+        </p>
+
+
+        <h3>
+          14.04.x Ubuntu Kernel Support
+        </h3>
+        <div class="u-hide--small" id="kernel1404"></div>
+        <p>
+          This is a distilled view of our 14.04.x Ubuntu Kernel Support Schedule.
+        </p>
+        <table class="u-hide--medium u-hide--large">
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <th scope="col">Released</th>
+              <th scope="col">End of Life</th>
+              <th scope="col">Extended security maintenance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ubuntu 14.04.5 LTS (v3.13)</strong></td>
+              <td>Aug 2016</td>
+              <td>Apr 2019</td>
+              <td>Apr 2022</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.4 LTS (v4.2)</strong></td>
+              <td>Feb 2016</td>
+              <td>Jul 2016</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.3 LTS (v3.19)</strong></td>
+              <td>Aug 2015</td>
+              <td>Jul 2016</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.2 LTS (v3.16)</strong></td>
+              <td>Feb 2015</td>
+              <td>Jul 2016</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.1 LTS (v3.13)</strong></td>
+              <td>Aug 2014</td>
+              <td>Apr 2019</td>
+              <td>Apr 2022</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
+              <td>Apr 2014</td>
+              <td>Apr 2019</td>
+              <td>Apr 2022</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>
+          16.04.x Ubuntu Kernel Support
+        </h3>
+        <div class="u-hide--small" id="kernel1604"></div>
+        <p>
+          This is a distilled view of our 16.04.x Ubuntu Kernel Support Schedule.
+        </p>
+        <table class="u-hide--medium u-hide--large">
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <th scope="col">Released</th>
+              <th scope="col">End of Life</th>
+              <th scope="col">Extended security maintenance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ubuntu 16.04.5 LTS (v4.15)</strong></td>
+              <td>Aug 2018</td>
+              <td>Apr 2021</td>
+              <td>Apr 2024</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.4 LTS (v4.13)</strong></td>
+              <td>Feb 2018</td>
+              <td>Jul 2018</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.3 LTS (v4.10)</strong></td>
+              <td>Aug 2017</td>
+              <td>Jan 2018</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.2 LTS (v4.8)</strong></td>
+              <td>Feb 2017</td>
+              <td>Jul 2017</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.1 LTS (v4.4)</strong></td>
+              <td>Aug 2016</td>
+              <td>Apr 2021</td>
+              <td>Apr 2024</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.0 LTS (v4.4)</strong></td>
+              <td>Apr 2016</td>
+              <td>Apr 2021</td>
+              <td>Apr 2024</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>
+          18.04.x Ubuntu Kernel Support
+        </h3>
+        <div class="u-hide--small" id="kernel1804"></div>
+        <p>
+          This is a distilled view of our 18.04.x Ubuntu Kernel Support Schedule.
+        </p>
+        <table class="u-hide--medium u-hide--large">
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <th scope="col">Released</th>
+              <th scope="col">End of Life</th>
+              <th scope="col">Extended security maintenance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ubuntu 18.04.5 LTS</strong></td>
+              <td>Aug 2020</td>
+              <td>Apr 2023</td>
+              <td>Apr 2028</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.4 LTS</strong></td>
+              <td>Feb 2020</td>
+              <td>Aug 2020</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.3 LTS  (v5.0)</strong></td>
+              <td>Aug 2019</td>
+              <td>Feb 2020</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.2 LTS (v4.18)</strong></td>
+              <td>Feb 2019</td>
+              <td>Aug 2019</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.1 LTS (v4.15)</strong></td>
+              <td>Jul 2018</td>
+              <td>Apr 2023</td>
+              <td>Apr 2028</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.0 LTS (v4.15)</strong></td>
+              <td>Apr 2018</td>
+              <td>Apr 2023</td>
+              <td>Apr 2028</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>
+          Ubuntu Kernel Support
+        </h3>
+        <div class="u-hide--small" id="kernelall"></div>
+        <p>
+          This is a combined view of the diagrams from above (ie the Ubuntu Kernel Release Schedule combined with the Distilled 14.04.x, 16.04.x, and 18.04.x Ubuntu Kernel Support diagrams)
+        </p>
+        <table class="u-hide--medium u-hide--large">
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <th scope="col">Early preview</th>
+              <th scope="col">Released</th>
+              <th scope="col">End of Life</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
+              <td>Jan 2014</td>
+              <td>Apr 2014</td>
+              <td>Apr 2019</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.1 LTS (v3.13)</strong></td>
+              <td>May 2014</td>
+              <td>Aug 2014</td>
+              <td>Apr 2019</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.2 LTS (v3.16)</strong></td>
+              <td>&nbsp;</td>
+              <td>Feb 2015</td>
+              <td>Jul 2016</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.3 LTS (v3.19)</strong></td>
+              <td>&nbsp;</td>
+              <td>Aug 2015</td>
+              <td>Jul 2016</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.4 LTS (v4.2)</strong></td>
+              <td>&nbsp;</td>
+              <td>Feb 2016</td>
+              <td>Jul 2016</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.0 LTS (v4.4)</strong></td>
+              <td>Jan 2016</td>
+              <td>Apr 2016</td>
+              <td>Apr 2021</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.5 LTS (v3.13)</strong></td>
+              <td>May 2016</td>
+              <td>Aug 2016</td>
+              <td>Apr 2019</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.1 LTS (v4.4)</strong></td>
+              <td>May 2016</td>
+              <td>Aug 2016</td>
+              <td>Apr 2021</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.2 LTS (v4.8)</strong></td>
+              <td>&nbsp;</td>
+              <td>Feb 2017</td>
+              <td>Jul 2017</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.3 LTS (v4.10)</strong></td>
+              <td>&nbsp;</td>
+              <td>Aug 2017</td>
+              <td>Jan 2018</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.4 LTS (v4.13)</strong></td>
+              <td>&nbsp;</td>
+              <td>Feb 2018</td>
+              <td>Jul 2018</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.0 LTS (v4.15)</strong></td>
+              <td>Jan 2018</td>
+              <td>Apr 2018</td>
+              <td>Apr 2023</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.1 LTS (v4.15)</strong></td>
+              <td>Apr 2018</td>
+              <td>Jul 2018</td>
+              <td>Apr 2023</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.5 LTS (v4.15)</strong></td>
+              <td>May 2018</td>
+              <td>Aug 2018</td>
+              <td>Apr 2021</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.2 LTS (v4.18)</strong></td>
+              <td>&nbsp;</td>
+              <td>Feb 2019</td>
+              <td>Aug 2019</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 19.04 (v5.0)</strong></td>
+              <td>&nbsp;</td>
+              <td>Apr 2019</td>
+              <td>Jan 2020</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.3 LTS (v5.0)</strong></td>
+              <td>&nbsp;</td>
+              <td>Aug 2019</td>
+              <td>Feb 2020</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 19.10 (v5.3)</strong></td>
+              <td>&nbsp;</td>
+              <td>Oct 2019</td>
+              <td>Jul 2020</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.4 LTS</strong></td>
+              <td>&nbsp;</td>
+              <td>Feb 2020</td>
+              <td>Aug 2020</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.5 LTS</strong></td>
+              <td>May 2020</td>
+              <td>Aug 2020</td>
+              <td>Apr 2023</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>
+          All LTS releases
+        </h3>
+        <div class="u-hide--small" id="kernellts"></div>
+        <p>
+          A more detailed view of our LTS Kernel Support Schedule. This includes views for 14.04.x, 16.04.x and 18.04.x as well as upstream stable commitments.
+        </p>
+        <table class="u-hide--medium u-hide--large">
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <th scope="col">Released</th>
+              <th scope="col">CVE/Critical fixes only</th>
+              <th scope="col">End of Life</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
+              <td>Apr 2014</td>
+              <td>Apr 2016</td>
+              <td>Apr 2019</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.1 LTS (v3.13)</strong></td>
+              <td>Aug 2014</td>
+              <td>Apr 2016</td>
+              <td>Apr 2019</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.2 LTS (v3.16)</strong></td>
+              <td>Feb 2015</td>
+              <td>May 2015</td>
+              <td>Jul 2016</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.3 LTS (v3.19)</strong></td>
+              <td>Aug 2015</td>
+              <td>&nbsp;</td>
+              <td>Jul 2016</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.4 LTS (v4.2)</strong></td>
+              <td>Feb 2016</td>
+              <td>&nbsp;</td>
+              <td>Jul 2016</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.0 LTS (v4.4)</strong></td>
+              <td>Apr 2016</td>
+              <td>Apr 2018</td>
+              <td>Mar 2023</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 14.04.5 LTS (v3.13)</strong></td>
+              <td>Aug 2016</td>
+              <td>Apr 2018</td>
+              <td>Apr 2019</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.1 LTS (v4.4)</strong></td>
+              <td>Aug 2016</td>
+              <td>Apr 2018</td>
+              <td>Apr 2021</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.2 LTS (v4.8)</strong></td>
+              <td>Feb 2017</td>
+              <td>&nbsp;</td>
+              <td>Jul 2017</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.3 LTS (v4.10)</strong></td>
+              <td>Aug 2017</td>
+              <td>&nbsp;</td>
+              <td>Jan 2018</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.4 LTS (v4.13)</strong></td>
+              <td>Feb 2018</td>
+              <td>&nbsp;</td>
+              <td>Jul 2018</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.0 LTS (v4.15)</strong></td>
+              <td>Apr 2018</td>
+              <td>Apr 2020</td>
+              <td>Mar 2025</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.1 LTS (v4.15)</strong></td>
+              <td>Jul 2018</td>
+              <td>Apr 2020</td>
+              <td>Apr 2023</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 16.04.5 LTS (v4.15)</strong></td>
+              <td>Aug 2018</td>
+              <td>Apr 2020</td>
+              <td>Apr 2021</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.2 LTS (v4.18)</strong></td>
+              <td>Feb 2019</td>
+              <td>&nbsp;</td>
+              <td>Jul 2019</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.3 LTS (v5.0)</strong></td>
+              <td>Aug 2019</td>
+              <td>&nbsp;</td>
+              <td>Jan 2020</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.4 LTS</strong></td>
+              <td>Feb 2020</td>
+              <td>&nbsp;</td>
+              <td>Jul 2020</td>
+            </tr>
+            <tr>
+              <td><strong>Ubuntu 18.04.5 LTS</strong></td>
+              <td>Aug 2020</td>
+              <td>Apr 2020</td>
+              <td>Apr 2023</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" defer></script>
+    <script src="{{ versioned_static('js/build/release-chart.min.js') }}" defer></script>
+
+    {% endblock %}
