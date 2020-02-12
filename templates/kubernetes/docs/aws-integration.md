@@ -49,13 +49,7 @@ relations:
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified during deploy like this:
 
 ```bash
-juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml
-```
-
-Then run the command to share credentials with this charm:
-
-```bash
-juju trust aws-integrator
+juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml --trust
 ```
 
 ... and remember to fetch the configuration file!
