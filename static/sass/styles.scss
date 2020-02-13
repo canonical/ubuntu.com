@@ -492,3 +492,12 @@ summary {
 .u-text-light {
   color: $color-mid-dark;
 }
+
+.p-list--no-borders {
+  .p-list__item {
+    &::after,
+    &:last-of-type {
+      border-bottom: 0 !important;
+    }
+  }
+}

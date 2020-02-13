@@ -5,7 +5,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/12GXYcP9WrOgoso6Sf3bQql6nALRUzpdlcRW3Gbu-npM/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--light is-bordered">
+<section class="p-strip--suru-topped is-bordered">
   <div class="row">
     <div class="col-10">
       <div>
@@ -14,46 +14,44 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 p-card--highlighted">
-      <div class="u-equal-height p-divider">
-        <div class="col-6 p-divider__block">
-          <h2>Install MAAS on your&nbsp;hardware</h2>
-          <p>Follow the instructions below to download, configure and install MAAS.</p>
-        </div>
-        <div class="col-6 p-divider__block">
-          <h3>Requirements</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">You will need one small server for MAAS and at least one server which can be managed with a BMC.</li>
-            <li class="p-list__item is-ticked">It is recommended to have the MAAS server provide DHCP and DNS on a network the managed machines are connected to.</li>
-          </ul>
-        </div>
-      </div>
+</section>
+<section class="p-strip--light is-bordered">
+  <div class="row u-equal-height p-divider">
+    <div class="col-4 p-divider__block">
+      <h2>Install MAAS on your&nbsp;hardware</h2>
+      <p>Follow the instructions below to download, configure and install MAAS.</p>
+    </div>
+    <div class="col-8 p-divider__block">
+      <h3>Requirements</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">You will need one small server for MAAS and at least one server which can be managed with a BMC.</li>
+        <li class="p-list__item is-ticked">It is recommended to have the MAAS server provide DHCP and DNS on a network the managed machines are connected to.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered" id="instructions">
+<section class="p-strip is-bordered" id="instructions">
   <div class="u-fixed-width">
     <h2>Install MAAS in 7 easy steps</h2>
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item ">
         <h3 class="p-stepped-list__title">
-          
+
           Setup your hardware
         </h3>
         <p class="p-stepped-list__content">You need one small server for MAAS and at least one server which can be managed with a <abbr title="Baseboard Management Controller">BMC</abbr>. It is recommended to have the MAAS server provide <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> and <abbr title="Domain Name Service">DNS</abbr> on a network the managed machines are connected to.</p>
       </li>
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">
-          
+
           Install Ubuntu Server
         </h3>
         <p class="p-stepped-list__content"><a aria-label="External link to download Ubuntu Server {{ releases.lts.short_version }} LTS" href="/download/server">Download Ubuntu Server {{ releases.lts.short_version }} LTS</a> and follow the step-by-step installation instructions on your MAAS server.</p>
       </li>
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">
-          
+
           Install MAAS
         </h3>
         <div class="p-stepped-list__content">
@@ -69,7 +67,7 @@
       </li>
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">
-          
+
           Create admin user
         </h3>
         <div class="p-stepped-list__content">
@@ -83,7 +81,6 @@
       </li>
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">
-          
           Complete the first user configuration journey
         </h3>
         <div class="p-stepped-list__content">
@@ -95,12 +92,12 @@
             <li>Ubuntu images</li>
             <li><abbr title="Secure shell">SSH</abbr> keys (for currently logged in user)</li>
           </ul>
-          <p><a href="https://assets.ubuntu.com/v1/e0915052-initial_setup.png" title="Initial screen of the first use journey"><img class="p-image--bordered" src="https://assets.ubuntu.com/v1/e0915052-initial_setup.png?w=552" width="552" alt="First user journey screenshot"></a></p>
+          <p><a href="https://assets.ubuntu.com/v1/e0915052-initial_setup.png" title="Initial screen of the first use journey"><img class="p-image--bordered" src="https://assets.ubuntu.com/v1/e0915052-initial_setup.png?w=504" alt="First user journey screenshot" width="504" height="316"></a></p>
         </div>
       </li>
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">
-          
+
           Turn on DHCP
         </h3>
         <div class="p-stepped-list__content">
@@ -111,13 +108,13 @@
             <li>Fill in the details for the dynamic range.</li>
           </ol>
           <p><a href="https://assets.ubuntu.com/v1/65c03778-provide_DHCP.png" title="VLAN details page in an active MAAS">
-            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/65c03778-provide_DHCP.png?w=552" width="552" class="image--shadow" alt="VLAN details">
+            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/65c03778-provide_DHCP.png?w=504" class="image--shadow" alt="VLAN details" width="504" height="316">
           </a></p>
         </div>
       </li>
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">
-          
+
           Enlist and commission servers
         </h3>
         <div class="p-stepped-list__content">
@@ -130,7 +127,7 @@
             <li>When machines have a &ldquo;Ready&rdquo; status you can start deploying</li>
           </ol>
           <p><a href="https://assets.ubuntu.com/v1/94f90490-machine_listing.png" title="The node listing page in MAAS">
-            <img src="https://assets.ubuntu.com/v1/94f90490-machine_listing.png?w=552" width="552" class="p-image--bordered" alt="MAAS node listing">
+            <img src="https://assets.ubuntu.com/v1/94f90490-machine_listing.png?w=504" class="p-image--bordered" alt="MAAS node listing" width="504" height="316">
           </a></p>
           <p><a class="p-link--external" href="https://docs.ubuntu.com/maas/2.3/en/">Refer to the user manual to get a more detailed guide in how to get up and running with MAAS</a></p>
         </div>
@@ -141,19 +138,16 @@
 
 <section class="p-strip">
   <div class="row u-equal-height">
-    <div class="col-6">
+    <div class="col-12">
       <h2>Technical documentation</h2>
       <p>For those looking to self-support MAAS we provide <a href="https://docs.ubuntu.com/maas/2.1/en/" class="p-link--external">extensive documentation</a> covering:</p>
-      <ul class="p-list">
+      <ul class="p-list--divided p-list--no-borders is-split">
         <li class="p-list__item is-ticked">What MAAS offers</li>
         <li class="p-list__item is-ticked">How MAAS works</li>
         <li class="p-list__item is-ticked">Key components and colocation of all services</li>
         <li class="p-list__item is-ticked">Installation methods</li>
         <li class="p-list__item is-ticked">Minimum requirements</li>
       </ul>
-    </div>
-    <div class="col-6 align-center u-hide--small u-align--center u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/75f86e11-pictogram-articles-orange-hex.svg" width="119" alt="">
     </div>
   </div>
 </section>
