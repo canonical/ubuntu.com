@@ -144,17 +144,13 @@
   }
 
   function fetchDropdown(url, id) {
-    const div = document.getElementById(id);
-    fetch(url)
-    .then(function(response) {
-      return response.text();
-    })
-    .then(function(text) {
-      div.innerHTML = text;
-    })
-    .catch(function(error) {
-      console.log('Request failed', error)
-    })
+    var div = document.getElementById(id);
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+    req.send();
+    req.addEventListener('load', function() {
+      div.innerHTML = this.responseText;
+    });
   }
 </script>
 
