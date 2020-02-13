@@ -633,6 +633,12 @@ export var kernelReleasesALL = [
     status: 'LTS'
   },
   {
+    startDate: new Date('2020-02-01T00:00:00'),
+    endDate: new Date('2020-07-31T00:00:00'),
+    taskName: 'Ubuntu 18.04.4 LTS',
+    status: 'LTS'
+  },
+  {
     startDate: new Date('2020-05-01T00:00:00'),
     endDate: new Date('2020-08-01T00:00:00'),
     taskName: 'Ubuntu 18.04.5 LTS',
@@ -1016,30 +1022,30 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelReleaseNames1804 = [
-  'Ubuntu 18.04.5 LTS',
-  'Ubuntu 18.04.4 LTS',
-  'Ubuntu 18.04.3 LTS (v5.0)',
-  'Ubuntu 18.04.2 LTS (v4.18)',
-  'Ubuntu 18.04.1 LTS (v4.15)',
   'Ubuntu 18.04.0 LTS (v4.15)',
+  'Ubuntu 18.04.1 LTS (v4.15)',
+  'Ubuntu 18.04.2 LTS (v4.18)',
+  'Ubuntu 18.04.3 LTS (v5.0)',
+  'Ubuntu 18.04.4 LTS',
+  'Ubuntu 18.04.5 LTS',
 ];
 
 export var kernelReleaseNames1604 = [
-  'Ubuntu 16.04.5 LTS (v4.15)',
-  'Ubuntu 16.04.4 LTS (v4.13)',
-  'Ubuntu 16.04.3 LTS (v4.10)',
-  'Ubuntu 16.04.2 LTS (v4.8)',
-  'Ubuntu 16.04.1 LTS (v4.4)',
   'Ubuntu 16.04.0 LTS (v4.4)',
+  'Ubuntu 16.04.1 LTS (v4.4)',
+  'Ubuntu 16.04.2 LTS (v4.8)',
+  'Ubuntu 16.04.3 LTS (v4.10)',
+  'Ubuntu 16.04.4 LTS (v4.13)',
+  'Ubuntu 16.04.5 LTS (v4.15)',
 ];
 
 export var kernelReleaseNames1404 = [
-  'Ubuntu 14.04.5 LTS (v3.13)',
-  'Ubuntu 14.04.4 LTS (v4.2)',
-  'Ubuntu 14.04.3 LTS (v3.19)',
-  'Ubuntu 14.04.2 LTS (v3.16)',
+  'Ubuntu 14.04.0 LTS (v3.13)',
   'Ubuntu 14.04.1 LTS (v3.13)',
-  'Ubuntu 14.04.0 LTS (v3.13)'
+  'Ubuntu 14.04.2 LTS (v3.16)',
+  'Ubuntu 14.04.3 LTS (v3.19)',
+  'Ubuntu 14.04.4 LTS (v4.2)',
+  'Ubuntu 14.04.5 LTS (v3.13)',
 ];
 
 export var kernelReleaseNamesALL = [
