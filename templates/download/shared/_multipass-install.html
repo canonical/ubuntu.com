@@ -1,4 +1,8 @@
-<section class="p-strip is-shallow">
+{% if strip == "light" %}
+<section class="p-strip--light is-shallow">
+{% else %}
+<section class="p-strip is-shallow"></section>
+{% endif %}
   <div class="row u-equal-height">
     <div class="col-7">
       <h2>Multipass for instant Ubuntu VMs</h2>
@@ -36,7 +40,7 @@
   if (navigator.appVersion.indexOf('Macintosh') != -1) { os = 'macOS' };
 
   multipassOScta.setAttribute(
-    'href', 
+    'href',
     baseInstallURL + '/installing-on-' + os.toLowerCase()
   );
   ctaSpan.innerText = 'Install on ' + os;
