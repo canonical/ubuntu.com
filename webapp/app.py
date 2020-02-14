@@ -217,6 +217,6 @@ def cache_headers(response):
     if flask.request.path in ["/", "/blog"]:
         response.headers[
             "Cache-Control"
-        ] = "public, max-age=60, stale-while-revalidate=90"
+        ] = "max-age=61, stale-while-revalidate=90"
 
     return response
