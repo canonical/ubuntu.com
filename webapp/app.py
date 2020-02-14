@@ -206,3 +206,17 @@ def index():
 
 
 tutorials_docs.init_app(app)
+
+
+@app.after_request
+def cache_headers(response):
+    """
+    Set cache expiry to 60 seconds for homepage and blog page
+    """
+
+    if flask.request.path in ["/", "/blog"]:
+        response.headers[
+            "Cache-Control"
+        ] = "public, max-age=60, stale-while-revalidate=90"
+
+    return response
