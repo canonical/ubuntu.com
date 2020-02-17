@@ -31,7 +31,7 @@
   <div class="row u-equal-height">
     <div class="{% if header_image %}col-7 {% else %}col-8{% endif %} u-vertically-center">
       <div>
-        <h1 {% if not header_subtitle and not header_date %}class="u-no-margin--bottom"{% endif %}>
+        <h1 {% if not header_subtitle and not header_date %}class="u-no-margin--bottom{% if title_class %} {{ title_class }}{% endif %}"{% endif %}>
           {{ header_title | safe }}
         </h1>
         {% if header_subtitle %}<h4>
