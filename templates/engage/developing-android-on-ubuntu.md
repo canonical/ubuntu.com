@@ -6,7 +6,7 @@ context:
      meta_image: dab160e2-anroid_on_ubuntu-social.png
      meta_copydoc: https://docs.google.com/document/d/10w-f6FEEYGPGcrFFPiZmWioZnfC3lfvfjqx_tMsi1nE/edit
      header_title: A guide to developing Android apps on Ubuntu
-     header_subtitle:
+     header_title_class: 'u-no-margin--bottom'
      header_image: 30f461a5-android-on-ubuntu.svg
      header_url: '#register-section'
      header_cta: Download the whitepaper

@@ -6,7 +6,7 @@ context:
   meta_image: "https://assets.ubuntu.com/v1/3bca057e-Meta+data+img.jpg"
   meta_copydoc: "https://docs.google.com/document/d/17JI-RzetZYq5GZF9COAuh-uHG2yHI2pGy25ePdfA9Qk/edit"
   header_title: "Cyberdyne keeps cleaning robots up to date in the field with snaps"
-  header_subtitle: 
+  header_title_class: 'u-no-margin--bottom'
   header_image: https://assets.ubuntu.com/v1/470ca6c0-logo_cyberdyne.png
   header_url: '#register-section'
   header_cta: Register for the webinar

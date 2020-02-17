@@ -6,7 +6,7 @@ context:
      meta_image: https://assets.ubuntu.com/v1/863b2860-Meta+data+img.jpg
      meta_copydoc: "https://docs.google.com/document/d/1FCaFi5ZuP_pPMF2POu3ySaB00yt60Qo-nrNJZ9jwhFw/edit"
      header_title: "Interana uses ESM to maintain system security while upgrading its customers to Ubuntu 18.04 LTS across public clouds"
-     title_class: p-heading--two
+     header_title_class: 'p-heading--two'
      header_image: "https://assets.ubuntu.com/v1/0026bea9-logo-interana.svg"
      header_url: '#register-section'
      header_cta: Download our case study

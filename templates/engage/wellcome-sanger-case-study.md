@@ -6,6 +6,7 @@ context:
      meta_image: "https://assets.ubuntu.com/v1/7d4ae717-Meta+data+img.jpg"
      meta_copydoc: "https://docs.google.com/document/d/1Q3qm-OpMojw1f2hoK7fOW2MZGacC2BJz8d5DsuRjHyA"
      header_title: "The Wellcome Sanger Institute turns to Canonical for high level Ceph support"
+     header_title_class: 'u-no-margin--bottom'
      header_image: "https://assets.ubuntu.com/v1/50aec8a8-sanger+++ceph.svg"
      header_url: '#register-section'
      header_cta: Download case study

@@ -6,7 +6,7 @@ context:
      meta_image: https://assets.ubuntu.com/v1/bb29b611-yahoo-japan-case-study-social.jpg
      meta_copydoc: https://docs.google.com/document/d/1WHnbQO6m6B4puJr8Vc3WxPC9BBJ0E7pvkTXSJUKvCM0/edit
      header_title: "Yahoo! Japan builds their IaaS environment with Canonical"
-     header_subtitle:
+     header_title_class: 'u-no-margin--bottom'
      header_image: "https://assets.ubuntu.com/v1/5d403409-2018-logo-yahoo-japan.svg"
      header_url: '#register-section'
      header_cta: Download case study
