@@ -6,6 +6,7 @@ context:
      meta_image: "https://assets.ubuntu.com/v1/41c9663c-Embedded+social+media+banner+.jpg"
      meta_copydoc: "https://docs.google.com/document/d/1ky7FmqiSEBi_fDMo3d2p7oeIrFhvSCCCJmohd6rc6uQ"
      header_title: "SBI Group unlocks infrastructure automation with secure, on-premises OpenStack cloud"
+     header_title_class: 'u-no-margin--bottom'
      header_url: '#register-section'
      header_cta: Download case study
      header_class: p-engage-banner--dark
