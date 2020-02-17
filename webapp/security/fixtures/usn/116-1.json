@@ -1,0 +1,29 @@
+{
+  "116-1": {
+    "description": "Imran Ghory discovered a race condition in the file permission restore\ncode of gzip and gunzip. While a user was compressing or decompressing\na file, a local attacker with write permissions in the directory of\nthat file could replace the target file with a hard link.  This would\ncause gzip to restore the file permissions to the hard link target\ninstead of to the gzip output file, which could be exploited to gain\nread or even write access to files of other users.  (CAN-2005-0988)\n\nUlf Harnhammar found a path traversal vulnerability when gunzip was\nused with the -N option. An attacker could exploit this to create\nfiles in an arbitrary directory with the permissions of a user if he\ntricked this user to decompress a specially crafted gzip file using\nthe -N option (which can also happen in systems that automatically\nprocess uploaded gzip files). (CAN-2005-1228)",
+    "releases": {
+      "hoary": {
+        "binaries": {
+          "gzip": {
+            "version": ""
+          }
+        }
+      },
+      "warty": {
+        "binaries": {
+          "gzip": {
+            "version": ""
+          }
+        }
+      }
+    },
+    "title": "gzip vulnerabilities",
+    "timestamp": 1115230683,
+    "summary": "gzip vulnerabilities",
+    "id": "116-1",
+    "cves": [
+      "CVE-2005-0988",
+      "CVE-2005-1228"
+    ]
+  }
+}
