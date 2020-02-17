@@ -1,4 +1,4 @@
-var navDropdowns = document.querySelectorAll('.p-navigation__dropdown-link');
+var navDropdowns = [].slice.call(document.querySelectorAll('.p-navigation__dropdown-link'));
 var dropdownWindow = document.querySelector('.dropdown-window');
 var dropdownWindowOverlay = document.querySelector('.dropdown-window-overlay');
 var navigationThresholdBreakpoint = 900;
@@ -80,7 +80,7 @@ if (window.location.hash) {
 }
 
 function closeMainMenu() {
-  var navigationLinks = document.querySelectorAll('.p-navigation__dropdown-link');
+  var navigationLinks = [].slice.call(document.querySelectorAll('.p-navigation__dropdown-link'));
 
   navigationLinks.forEach(function(navLink) {
     navLink.classList.remove('is-selected');
@@ -112,12 +112,12 @@ addGANavEvents('.p-footer--secondary', 'www.ubuntu.com-nav-footer-1');
 function addGANavEvents(target, category){
   var t = document.querySelector(target);
   if (t) {
-    t.querySelectorAll('a').forEach(function(a) {
+    [].slice.call(t.querySelectorAll('a')).forEach(function(a) {
       a.addEventListener('click', function(){
         dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : category,
-          'eventAction' : `from:${origin} to:${a.href}`,
+          'eventAction' : 'from:' + origin + ' to:' + a.href,
           'eventLabel' : a.text,
           'eventValue' : undefined
         });
@@ -131,10 +131,10 @@ addGAContentEvents('#main-content')
 function addGAContentEvents(target){
   var t = document.querySelector(target);
   if (t) {
-    t.querySelectorAll('a').forEach(function(a) {
-      if (a.className.includes('p-button--positive')) {
+    [].slice.call(t.querySelectorAll('a')).forEach(function(a) {
+      if (a.classList.contains('p-button--positive')) {
         var category = 'www.ubuntu.com-content-cta-0';
-      } else if (a.className.includes('p-button')) {
+      } else if (a.classList.contains('p-button')) {
         var category = 'www.ubuntu.com-content-cta-1';
       } else {
         var category = 'www.ubuntu.com-content-link';
@@ -144,7 +144,7 @@ function addGAContentEvents(target){
           dataLayer.push({
             'event' : 'GAEvent',
             'eventCategory' : category,
-            'eventAction' : `from:${origin} to:${a.href}`,
+            'eventAction' : 'from:' + origin + ' to:' + a.href,
             'eventLabel' : a.text,
             'eventValue' : undefined
           });
@@ -157,15 +157,15 @@ function addGAContentEvents(target){
 addGAImpressionEvents('.js-takeover')
 
 function addGAImpressionEvents(target){
-  var t = document.querySelectorAll(target);
+  var t = [].slice.call(document.querySelectorAll(target));
   if (t) {
     t.forEach(function(section) {
-      if (! section.className.includes('u-hide')){
+      if (! section.classList.contains('u-hide')){
         var a = section.querySelector("a");
         dataLayer.push({
           'event' : 'NonInteractiveGAEvent',
           'eventCategory' : "www.ubuntu.com-impression",
-          'eventAction' : `from:${origin} to:${a.href}`,
+          'eventAction' : 'from:' + origin + ' to:' + a.href,
           'eventLabel' : a.text,
           'eventValue' : undefined,
         });

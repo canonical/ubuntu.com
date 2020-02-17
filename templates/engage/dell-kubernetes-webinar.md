@@ -6,7 +6,7 @@ context:
      meta_image: "https://assets.ubuntu.com/v1/f0d09455-Meta+data+img.jpg"
      meta_copydoc: "https://docs.google.com/document/d/1wtlW9L69Y_3mexwQ38x4ENxOa65X-XUZNUb1bOWpaOI/edit"
      header_title: "A decision maker's guide to Kubernetes deployments"
-     header_subtitle: ""
+     header_title_class: 'u-no-margin--bottom'
      header_image: "https://assets.ubuntu.com/v1/11d594e7-K8s+logo+white+outline.svg"
      header_image_width: "200"
      header_url: '#register-section'

@@ -5,7 +5,8 @@ module.exports = {
     main: [
       "./static/js/dynamic-contact-form.js",
       "./static/js/core.js",
-      "./static/js/navigation.js",
+      // Temporary fix for IE11 (see: https://github.com/canonical-web-and-design/ubuntu.com/issues/6660)
+      // "./static/js/navigation.js",
       "./static/js/formValidation.js",
       "./static/js/scratch.js"
     ],

@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<section class="p-strip--suru is-dark is-deep">
+<section class="p-strip--suru is-dark">
   <div class="row u-vertically-center">
     <div class="col-6">
       <h1>Ubuntu for the Internet&nbsp;of&nbsp;Things</h1>
@@ -17,10 +17,10 @@
     <div class="col-5 col-start-large-8 u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/27b51b01-IOT_Ubuntu_devices_inforgrapic.svg",
+          url="https://assets.ubuntu.com/v1/049b4cc6-ubuntu+core+18+circular+white.svg ",
           alt="",
-          width="415",
-          height="285",
+          width="350",
+          height="350",
           hi_def=True,
         ) | safe
       }}
@@ -28,10 +28,10 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip is-bordered u-no-padding--bottom">
   <div class="u-fixed-width">
     <h4 class="p-muted-heading u-align--center">Leading brands choose Ubuntu Core for security, apps and updates</h4>
-    <ul class="p-inline-images">
+    <ul class="p-inline-images u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -213,7 +213,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Private App Store included</h2>
@@ -245,18 +245,30 @@
       <h2>Update Control</h2>
       <p>Regular updates for Ubuntu and your apps protect devices from ongoing attacks. Robust and reliable update mechanisms mean we safely address security issues automatically by default. If you want to review changes, Update Control ensures that changes are only applied after they are certified by the device manufacturer.</p>
     </div>
+
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/a43d61ae-update+control.svg",
+          alt="",
+          width="140",
+          height="140",
+          hi_def=True,
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row u-equal-height">
     <div class="col-5 u-align--center u-vertically-center u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/805f2b3a-core_black-orange_st_hex.svg",
           alt="",
-          width="200",
-          height="270",
+          width="150",
+          height="200",
           hi_def=True,
         ) | safe
       }}
@@ -276,7 +288,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Look who&rsquo;s leading</h2>
@@ -308,7 +320,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>From prototype to production on all major platforms</h2>
@@ -378,10 +390,10 @@
       <p>With Ubuntu, you can develop a packaged application on your laptop, then monetise it by publishing it directly to the snap store.</p>
       <p><a class="p-link--external" href="https://docs.ubuntu.com/core/en/">Learn about developing your IoT project with Ubuntu</a></p>
     </div>
-    <div class="col-5 u-align--center u-hide--small">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/527fbcef-picto-developer-warmgrey.svg",
+          url="https://assets.ubuntu.com/v1/061edebb-developer.svg",
           alt="",
           width="140",
           height="140",
@@ -392,23 +404,26 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="row">
-    <div class="col-2 u-align--left u-vertically-align u-hide--small">
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--left u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg",
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
           alt="",
-          width="140",
-          height="140",
+          width="280",
+          height="280",
           hi_def=True,
         ) | safe
       }}
     </div>
-    <div class="col-7 col-start-large-4">
-      <h2>Let&rsquo;s work together</h2>
-      <p class="clear">Talk to us if you are thinking about using Ubuntu Core for your next Internet of Things project.</p>
-      <p><a href="/internet-of-things/contact-us?product=iot-overview" class="p-button--neutral js-invoke-modal">Get in touch</a></p>
+
+    <div class="col-8 u-vertically-center">
+      <div>
+        <h2>Let&rsquo;s work together</h2>
+        <p class="clear">Talk to us if you are thinking about using Ubuntu Core for your next Internet of Things project.</p>
+        <p><a href="/internet-of-things/contact-us?product=iot-overview" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+      </div>
     </div>
   </div>
 </section>

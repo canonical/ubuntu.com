@@ -6,6 +6,7 @@ context:
      meta_image: "https://assets.ubuntu.com/v1/8b2a5baf-61620202-4f636100-ac68-11e9-9c88-ffdccb58ecdf.jpg"
      meta_copydoc: "https://docs.google.com/document/d/11E9O_mVN_U63ZLsZOvwsdXAyNtpRv0aF8_VWBDfrnRc"
      header_title: "Build smart display devices with Mir: fast to production, secure, open-source"
+     header_title_class: 'u-no-margin--bottom'
      header_url: '#register-section'
      header_cta: Build your smart display device
      header_class: p-engage-banner--dark

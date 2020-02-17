@@ -7,6 +7,7 @@ context:
      meta_image: https://assets.ubuntu.com/v1/48c73e93-Meta+data+img.jpg
      meta_copydoc: "https://docs.google.com/document/d/1KeCbhYudWJuKW2cMuNfsClvQXnyrpz0q2I-ILuwhfcY/edit?ts=5d6de4ad"
      header_title: "Ensuring security and isolation in Kubernetes with Kata Containers"
+     header_title_class: 'u-no-margin--bottom'
      header_image: "https://assets.ubuntu.com/v1/4cbd0535-kata+containers+kubernetes.svg"
      header_url: '#register-section'
      header_cta: Watch the webinar
