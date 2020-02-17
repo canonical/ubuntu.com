@@ -11,15 +11,18 @@ import flask
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 from geolite2 import geolite2
+from marshmallow import Schema, fields, EXCLUDE
+from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from requests.exceptions import HTTPError
 from sqlalchemy import asc, desc
+from sqlalchemy.orm.exc import NoResultFound
 
 # Local
 from webapp import auth
 from webapp.api import advantage
 from webapp.database import db_session
-from webapp.models import Notice, Release
+from webapp.models import CVE, Notice, Release
 
 
 ip_reader = geolite2.reader()
@@ -314,3 +317,79 @@ def notices():
             total_results=total_results,
         ),
     )
+
+
+# USN API
+# ===
+class NoticeSchema(Schema):
+    notice_id = fields.Str(data_key="id", required=True)
+    title = fields.Str(required=True)
+    summary = fields.Str(required=True)
+    description = fields.Str(required=True)
+    action = fields.Str()
+    releases = fields.Dict(required=True)
+    references = fields.List(fields.Str(), data_key="cves")
+    timestamp = fields.Float(required=True)
+
+
+def api_create_notice():
+    # Because we get a dict with ID as a key and the payload as a value
+    notice_id, payload = flask.request.json.popitem()
+
+    notice = db_session.query(Notice).filter(Notice.id == notice_id).first()
+    if notice:
+        return (
+            flask.jsonify({"message": f"Notice '{notice.id}' already exists"}),
+            400,
+        )
+
+    notice_schema = NoticeSchema()
+
+    try:
+        data = notice_schema.load(payload, unknown=EXCLUDE)
+    except ValidationError as error:
+        return (
+            flask.jsonify(
+                {"message": "Invalid payload", "errors": error.messages}
+            ),
+            400,
+        )
+
+    notice = Notice(
+        id=data["notice_id"],
+        title=data["title"],
+        summary=data["summary"],
+        details=data["description"],
+        instructions=data["action"],
+        packages=data["releases"],
+        published=datetime.datetime.fromtimestamp(data["timestamp"]),
+    )
+
+    # Link releases
+    for release_codename in data["releases"].keys():
+        try:
+            notice.releases.append(
+                db_session.query(Release)
+                .filter(Release.codename == release_codename)
+                .one()
+            )
+        except NoResultFound:
+            return (
+                flask.jsonify(
+                    {
+                        "message": f"No release with codename: {release_codename}."
+                    }
+                ),
+                400,
+            )
+
+    # Link CVEs, creating them if they don't exist
+    for reference in data.get("references", []):
+        if reference.startswith("CVE-"):
+            cve = CVE(id=reference[4:])
+            notice.cves.append(cve)
+
+    db_session.add(notice)
+    db_session.commit()
+
+    return flask.jsonify({"message": "Notice created"}), 201
