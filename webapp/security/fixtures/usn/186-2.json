@@ -1,0 +1,72 @@
+{
+ "186-2": {
+    "description": "USN-186-1 fixed several vulnerabilities in the Firefox browser for\nUbuntu 5.04. This update provides fixed packages for Ubuntu 4.10,\nwhich was vulnerable to the same issues.\n\nThe original advisory is available at\n\n  http://www.ubuntu.com/usn/usn-186-1",
+    "releases": {
+      "warty": {
+        "binaries": {
+          "mozilla-firefox": {
+            "version": ""
+          }
+        },
+        "archs": {
+          "source": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/m/mozilla-firefox/mozilla-firefox_1.0.7-0ubuntu0.0.2.diff.gz": {
+                "md5": "083acd2d0e08fabd282da4cfe9cbfa50",
+                "size": 233967
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/m/mozilla-firefox/mozilla-firefox_1.0.7.orig.tar.gz": {
+                "md5": "c7c83c060b13562fc1bb53cf51cb38fa",
+                "size": 41535890
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/m/mozilla-firefox/mozilla-firefox_1.0.7-0ubuntu0.0.2.dsc": {
+                "md5": "d3aa3892542ba185b353571727c06345",
+                "size": 1030
+              }
+            }
+          },
+          "i386": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/universe/m/mozilla-firefox/mozilla-firefox-dom-inspector_1.0.7-0ubuntu0.0.2_i386.deb": {
+                "md5": "d6865aef0580661f3cd4c0f8e1b85d83",
+                "size": 142668
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/m/mozilla-firefox/mozilla-firefox_1.0.7-0ubuntu0.0.2_i386.deb": {
+                "md5": "f5ee944820853d91f5cb94567af7ca2a",
+                "size": 9845724
+              }
+            }
+          },
+          "amd64": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/m/mozilla-firefox/mozilla-firefox_1.0.7-0ubuntu0.0.2_amd64.deb": {
+                "md5": "d06a188dcdbf4b59ccc135894634a067",
+                "size": 10673772
+              },
+              "http://security.ubuntu.com/ubuntu/pool/universe/m/mozilla-firefox/mozilla-firefox-dom-inspector_1.0.7-0ubuntu0.0.2_amd64.deb": {
+                "md5": "09217bfc9d8345c11006b7629ae2b04d",
+                "size": 147782
+              }
+            }
+          },
+          "powerpc": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/m/mozilla-firefox/mozilla-firefox_1.0.7-0ubuntu0.0.2_powerpc.deb": {
+                "md5": "24bd5b49248739b9032c22de06e0bbf9",
+                "size": 9503130
+              },
+              "http://security.ubuntu.com/ubuntu/pool/universe/m/mozilla-firefox/mozilla-firefox-dom-inspector_1.0.7-0ubuntu0.0.2_powerpc.deb": {
+                "md5": "c0f8190503bbb0f58d6ace5880923f36",
+                "size": 141430
+              }
+            }
+          }
+        }
+      }
+    },
+    "title": "Ubuntu 4.10 packages for USN-186-1 Firefox security update",
+    "timestamp": 1127690136,
+    "summary": "mozilla-firefox vulnerabilities",
+    "id": "186-2"
+  }
+}

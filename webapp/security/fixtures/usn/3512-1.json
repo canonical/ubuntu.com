@@ -1,0 +1,714 @@
+{
+  "3512-1": {
+    "description": "David Benjamin discovered that OpenSSL did not correctly prevent\nbuggy applications that ignore handshake errors from subsequently calling\ncertain functions. (CVE-2017-3737)\n\nIt was discovered that OpenSSL incorrectly performed the x86_64 Montgomery\nmultiplication procedure. While unlikely, a remote attacker could possibly\nuse this issue to recover private keys. (CVE-2017-3738)\n",
+    "releases": {
+      "zesty": {
+        "sources": {
+          "openssl": {
+            "version": "1.0.2g-1ubuntu11.4",
+            "description": "Secure Socket Layer (SSL) cryptographic library and tools"
+          }
+        },
+        "binaries": {
+          "libssl1.0.0": {
+            "version": "1.0.2g-1ubuntu11.4"
+          }
+        },
+        "archs": {
+          "all": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-doc_1.0.2g-1ubuntu11.4_all.deb": {
+                "md5": "1350048c943958c3eb2b42a883ad1562",
+                "size": 1059502
+              }
+            }
+          },
+          "amd64": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu11.4_amd64.udeb": {
+                "md5": "9d840f01a91e1a4ea14598ed0f3c1e92",
+                "size": 140974
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu11.4_amd64.deb": {
+                "md5": "45e280e6ffc63c21fa94b44d11c4ab29",
+                "size": 3236
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu11.4_amd64.deb": {
+                "md5": "00421505fd6fc80764f2aeb4e5e3eaa5",
+                "size": 1080220
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu11.4_amd64.deb": {
+                "md5": "289c7ef29a9188abe6b1719d1a523298",
+                "size": 3082604
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu11.4_amd64.deb": {
+                "md5": "d9cf4138ee781b01cf27fe56bd0784c3",
+                "size": 490786
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu11.4_amd64.deb": {
+                "md5": "fb7e7d711999aaf7869cc0003581ecc9",
+                "size": 1352406
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu11.4_amd64.udeb": {
+                "md5": "4e90265a54edf5c7e66e7ae799fc38e5",
+               "size": 852410
+              }
+            }
+          },
+          "ppc64el": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu11.4_ppc64el.udeb": {
+                "md5": "945f3adba82458187ba07c8bf28b641a",
+                "size": 604518
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu11.4_ppc64el.deb": {
+                "md5": "b6e4e42eacce550ef34227513c8fc575",
+                "size": 823618
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu11.4_ppc64el.deb": {
+                "md5": "387da8f69d9148d7df7651105160d727",
+                "size": 3236
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu11.4_ppc64el.deb": {
+                "md5": "a1577587ae4986079773c1aa266bf924",
+                "size": 483206
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu11.4_ppc64el.deb": {
+                "md5": "ebcb05543e2549aaed22897636cb63d6",
+                "size": 1172562
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu11.4_ppc64el.deb": {
+                "md5": "f916656a91dde37ea4cd80e9391c1b5b",
+                "size": 3242158
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu11.4_ppc64el.udeb": {
+                "md5": "21654dddec886281a7ceb474282b3268",
+                "size": 130832
+              }
+            }
+          },
+          "i386": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu11.4_i386.deb": {
+                "md5": "552c1710a988f50da333bbdac2a8a8db",
+                "size": 505522
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu11.4_i386.deb": {
+                "md5": "bd6187b29e29fca8f83158518f16cb2a",
+                "size": 1129548
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu11.4_i386.deb": {
+                "md5": "ee43fc5fa666f0b5c266f33c1fe1d3c7",
+                "size": 3236
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu11.4_i386.deb": {
+                "md5": "428962c36d29117d57b52f1eb47c47ce",
+                "size": 2504992
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu11.4_i386.udeb": {
+                "md5": "6803d9309367433aca26e90aa0d00d45",
+                "size": 665768
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu11.4_i386.udeb": {
+                "md5": "39a7134a5eb0f9055d1a0555f86edf25",
+                "size": 152226
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu11.4_i386.deb": {
+                "md5": "5f461ca9b877d067dcd79a85099769a6",
+                "size": 910036
+              }
+            }
+          },
+          "source": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu11.4.debian.tar.xz": {
+                "md5": "2f581f50fcf282f201a27e7566e345fe",
+                "size": 120068
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu11.4.dsc": {
+                "md5": "d2b74c731333442505042c39ccf60480",
+                "size": 2500
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g.orig.tar.gz": {
+                "md5": "f3c710c045cdee5fd114feb69feba7aa",
+                "size": 5266102
+             }
+            }
+          },
+          "s390x": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu11.4_s390x.deb": {
+                "md5": "f5da08f9723814ec08f18c2b60c3e0e8",
+                "size": 3092286
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu11.4_s390x.deb": {
+                "md5": "075f5a3af54aec1175ca4daeab15cf18",
+                "size": 775624
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu11.4_s390x.deb": {
+                "md5": "dbfdd7390030c6d977308278d6d37122",
+                "size": 3236
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu11.4_s390x.deb": {
+                "md5": "8712738aed7a7e6f4769b71a889bac4a",
+                "size": 1057922
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu11.4_s390x.deb": {
+                "md5": "7956f1dc3ae7da6baa87723586dc288b",
+                "size": 476914
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu11.4_s390x.udeb": {
+                "md5": "6ac90656c37494064496b3be7aad0365",
+               "size": 126652
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu11.4_s390x.udeb": {
+                "md5": "26b2544ca043190aaf3571faf21a7624",
+                "size": 565584
+              }
+            }
+          },
+          "armhf": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu11.4_armhf.udeb": {
+                "md5": "8e68a6e518045d93bb98d076352c147e",
+                "size": 114420
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu11.4_armhf.udeb": {
+                "md5": "0c18160689e2ef6a09880511e84fbfa5",
+                "size": 513222
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu11.4_armhf.deb": {
+                "md5": "c0c4dcb0237efe7306848a2db2cc47ed",
+                "size": 484318
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu11.4_armhf.deb": {
+                "md5": "d5247302ec937c241cdb9d97a01d1388",
+                "size": 709826
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu11.4_armhf.deb": {
+                "md5": "20dad799c08a9a59e503834ead3324e0",
+                "size": 2893110
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu11.4_armhf.deb": {
+                "md5": "4e69adb87672cfddd0e0efb9e852530a",
+                "size": 3236
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu11.4_armhf.deb": {
+                "md5": "c4c991ac8d74dd9523a78da8f9ed0724",
+                "size": 979932
+              }
+            }
+          },
+          "arm64": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu11.4_arm64.udeb": {
+                "md5": "6b7dddca70560939f47d943749363581",
+                "size": 113278
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu11.4_arm64.udeb": {
+                "md5": "e5b3de393a608779dc1d3cab4dd1a40a",
+                "size": 508798
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu11.4_arm64.deb": {
+                "md5": "083a8f45cd8901dacd7c94363c708b4f",
+                "size": 997742
+              },
+             "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu11.4_arm64.deb": {
+                "md5": "68ca667d196dba722b7edb756a37ea20",
+                "size": 3236
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu11.4_arm64.deb": {
+                "md5": "ce31ecad539244ce64b0ba18531c84a4",
+                "size": 701732
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu11.4_arm64.deb": {
+                "md5": "55f964d227a6a4d27f0d82a5bb65a667",
+                "size": 3030078
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu11.4_arm64.deb": {
+                "md5": "9dfa6bb8831580908a5d14d385fa687a",
+                "size": 470022
+              }
+            }
+          }
+        }
+      },
+      "artful": {
+        "sources": {
+          "openssl": {
+            "version": "1.0.2g-1ubuntu13.3",
+            "description": "Secure Socket Layer (SSL) cryptographic library and tools"
+          }
+        },
+        "binaries": {
+          "libssl1.0.0": {
+            "version": "1.0.2g-1ubuntu13.3"
+          }
+        },
+        "archs": {
+          "all": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-doc_1.0.2g-1ubuntu13.3_all.deb": {
+                "md5": "ba945639f5bbfd07da7d827bd38a0aa4",
+                "size": 1056356
+              }
+            }
+          },
+          "amd64": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu13.3_amd64.udeb": {
+                "md5": "aa2a32c8784adbfd52ab16038c4b5f09",
+                "size": 856526
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu13.3_amd64.udeb": {
+                "md5": "83edd01cade04d08aaa70068fa076ee8",
+                "size": 140678
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu13.3_amd64.deb": {
+                "md5": "508440f6f69c61b863a0ff4f985d8782",
+                "size": 1357728
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu13.3_amd64.deb": {
+                "md5": "d61730cdcac69ba83264062464fea196",
+                "size": 3236
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu13.3_amd64.deb": {
+                "md5": "da12915f94c6e1b9000968ff6ea5beb8",
+                "size": 495214
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu13.3_amd64.deb": {
+                "md5": "821d867d3a9d028b6ea8dbba5bc819fe",
+                "size": 3090840
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu13.3_amd64.deb": {
+                "md5": "07375744edec4ff8bae477fcf8f96e4f",
+                "size": 1085740
+              }
+            }
+          },
+          "ppc64el": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu13.3_ppc64el.udeb": {
+                "md5": "fc254237c82763a50a10c8c4a98cda0b",
+                "size": 138226
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu13.3_ppc64el.deb": {
+                "md5": "5fa22a35060bf7e845c6a0404f14916b",
+                "size": 884782
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu13.3_ppc64el.deb": {
+                "md5": "9438adc580f9af4cf6fb24d3475c782c",
+                "size": 1267484
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu13.3_ppc64el.deb": {
+                "md5": "e20bec700fd200b974a804a9738102f6",
+                "size": 520420
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu13.3_ppc64el.deb": {
+                "md5": "4d13a8780474e6ba404ea9c98b1fd2fb",
+                "size": 3376238
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu13.3_ppc64el.udeb": {
+                "md5": "47288b50cb450b86b7a12b926d115271",
+                "size": 656886
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu13.3_ppc64el.deb": {
+                "md5": "6df100d0f46e3beb9705484fd72c318a",
+                "size": 3236
+              }
+            }
+          },
+          "i386": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu13.3_i386.deb": {
+                "md5": "0bd21c3e589cdebbc40367089acf11e8",
+                "size": 1205538
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu13.3_i386.deb": {
+                "md5": "15adb99d0237d03347bd189dc47231a5",
+                "size": 507610
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu13.3_i386.deb": {
+                "md5": "1a0e1255af18ad6a239263ff3678a112",
+                "size": 3236
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu13.3_i386.udeb": {
+                "md5": "f860a68391ed95db95345dc831f91ca6",
+                "size": 152422
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu13.3_i386.deb": {
+                "md5": "f9be41eaf25e5176c6df39e738fe7d1f",
+                "size": 912440
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu13.3_i386.udeb": {
+                "md5": "3b87727e079bcefd2002106c7bedc64f",
+                "size": 667218
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu13.3_i386.deb": {
+                "md5": "4d515272347a8e9a5e5b7b91542ecc34",
+                "size": 2515626
+              }
+            }
+          },
+          "source": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu13.3.debian.tar.xz": {
+                "md5": "07d3080f3fe3ae3dfdbc9646cc4b6a28",
+                "size": 120520
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu13.3.dsc": {
+                "md5": "bf14fe7de58982c7aabf5c7ee98ddad2",
+                "size": 2500
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g.orig.tar.gz": {
+                "md5": "f3c710c045cdee5fd114feb69feba7aa",
+                "size": 5266102
+              }
+            }
+          },
+          "s390x": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu13.3_s390x.udeb": {
+                "md5": "93158a4c4f4134b143f20ea1ea437db1",
+                "size": 565278
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu13.3_s390x.deb": {
+                "md5": "e303d913041d4bbfba61501645fdafcc",
+                "size": 476612
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu13.3_s390x.udeb": {
+                "md5": "df9269b9500e188bef26ed598f3bd161",
+                "size": 126216
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu13.3_s390x.deb": {
+                "md5": "53fb542185bae3043a380f827c20cb9e",
+                "size": 776540
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu13.3_s390x.deb": {
+                "md5": "28a70a84bebc1800d6985266bdec6660",
+                "size": 1047786
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu13.3_s390x.deb": {
+                "md5": "e714fb466c186f00fd05e0ad9121a210",
+                "size": 3106116
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu13.3_s390x.deb": {
+                "md5": "39f138e5e7c4f1831e0187cdb27e333e",
+                "size": 3238
+              }
+            }
+          },
+          "armhf": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu13.3_armhf.udeb": {
+                "md5": "efcedf4143bcb385508feba97661c2b5",
+                "size": 513360
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu13.3_armhf.udeb": {
+                "md5": "8a629b3f29672ec4759b2817cbd045e2",
+                "size": 114250
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu13.3_armhf.deb": {
+                "md5": "10af7df94ea6bd75ac1847a06faaa872",
+                "size": 477176
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu13.3_armhf.deb": {
+                "md5": "477d303ca6c16aece98aef7692a5cdf7",
+                "size": 711324
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu13.3_armhf.deb": {
+                "md5": "4231b55e74fb69c29d32155fc99e4065",
+                "size": 1010562
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu13.3_armhf.deb": {
+                "md5": "11728fe87e1ba401d31402d5c28fedaa",
+                "size": 2908776
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu13.3_armhf.deb": {
+                "md5": "c9c1c390fbdbf0ca8b44f02036d301a4",
+                "size": 3236
+              }
+            }
+          },
+          "arm64": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0-dev_1.0.2g-1ubuntu13.3_arm64.deb": {
+                "md5": "f26f7a3c1a6baa19f317909cc219959d",
+                "size": 3236
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu13.3_arm64.udeb": {
+                "md5": "d91b2d2f19fc3a046734b4dae0306137",
+                "size": 524676
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu13.3_arm64.deb": {
+                "md5": "a199dcc1755a71322cc5bdcf4b9d45f1",
+                "size": 1026970
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu13.3_arm64.deb": {
+                "md5": "20eb165a82dafecef06812dd17d2145c",
+                "size": 721764
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu13.3_arm64.deb": {
+                "md5": "051ee1c3775c325a9b4d0659793dbed6",
+                "size": 3092146
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu13.3_arm64.deb": {
+                "md5": "34acbcffac6cc7b079fc4df0ab49432d",
+                "size": 466142
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu13.3_arm64.udeb": {
+                "md5": "f55e07424915968633eb8aad760cd457",
+                "size": 116518
+              }
+            }
+          }
+        }
+      },
+      "xenial": {
+        "sources": {
+          "openssl": {
+            "version": "1.0.2g-1ubuntu4.10",
+            "description": "Secure Socket Layer (SSL) cryptographic library and tools"
+          }
+        },
+        "binaries": {
+          "libssl1.0.0": {
+            "version": "1.0.2g-1ubuntu4.10"
+          }
+        },
+        "archs": {
+          "all": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-doc_1.0.2g-1ubuntu4.10_all.deb": {
+                "md5": "bc316a0ca9be243ca256cbf292715789",
+                "size": 1078668
+              }
+            }
+          },
+          "amd64": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu4.10_amd64.deb": {
+                "md5": "6cd2fb37ae1f596bc85829bf9f332beb",
+                "size": 2759206
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu4.10_amd64.udeb": {
+                "md5": "ba0cc4c82b4d4f3752f5cfcdfce552b3",
+                "size": 852392
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu4.10_amd64.udeb": {
+                "md5": "a79ff3457f89ae29562fe2a3cd6279dc",
+                "size": 140606
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.10_amd64.deb": {
+                "md5": "5a3f2879da40918dd7ea127009e633e0",
+                "size": 1083422
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu4.10_amd64.deb": {
+                "md5": "102f8e262e9aa897c1cd2916e9234e7b",
+                "size": 491774
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.10_amd64.deb": {
+                "md5": "c3fdf836eb27f7b70d890b6f1a3e2b2f",
+                "size": 1341396
+              }
+            }
+          },
+          "ppc64el": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.10_ppc64el.deb": {
+                "md5": "51add486b199b96ceb40c4df7558bbd9",
+                "size": 830932
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu4.10_ppc64el.udeb": {
+                "md5": "42d9033822b9718c02b2fd64b65b7151",
+                "size": 609498
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu4.10_ppc64el.deb": {
+                "md5": "5592daafa35fecc2fd61b790a78a6019",
+                "size": 481750
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu4.10_ppc64el.udeb": {
+                "md5": "0590651df4312aa11baa3af4d5b97712",
+                "size": 130446
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu4.10_ppc64el.deb": {
+                "md5": "b1181705e363c8e9c5a593762c57cf13",
+                "size": 2927184
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.10_ppc64el.deb": {
+                "md5": "a94cf32fffafc2836d4c41b1fb8a21ab",
+                "size": 1178432
+              }
+            }
+          },
+          "i386": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu4.10_i386.udeb": {
+                "md5": "06612af1f0426bd4419e779d2eebaad9",
+                "size": 152310
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu4.10_i386.udeb": {
+                "md5": "f3fcd566abc30d56a12df06b30e7db3c",
+                "size": 662946
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.10_i386.deb": {
+                "md5": "c9c84801b1f0f7c9e55b1217974c5475",
+                "size": 909438
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu4.10_i386.deb": {
+                "md5": "6c43a7ddd0904c6c069227956fe1d775",
+                "size": 2181706
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu4.10_i386.deb": {
+                "md5": "d455b1cea2048a9a63659fd4af93901b",
+                "size": 506232
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.10_i386.deb": {
+                "md5": "cdcb770cdb17d9804c68655fae548753",
+                "size": 1132452
+              }
+            }
+          },
+          "powerpc": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.10_powerpc.deb": {
+                "md5": "76398f65995c51ab51171849ad71b55b",
+                "size": 720358
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu4.10_powerpc.udeb": {
+                "md5": "0806d65e9c259c1d38c7a12bfca1339e",
+                "size": 117622
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu4.10_powerpc.deb": {
+                "md5": "73594a05ce847e3a2a3b9922cffe5926",
+                "size": 465694
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu4.10_powerpc.deb": {
+                "md5": "e7762f3c1558ecc1e486493ed30b1dc5",
+                "size": 2735184
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu4.10_powerpc.udeb": {
+                "md5": "40201a9090273ef257b6ba55597a0a06",
+                "size": 522434
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.10_powerpc.deb": {
+                "md5": "2d6859ad8abb8ef910d4dc85c5a46bca",
+                "size": 983160
+              }
+            }
+          },
+          "source": {
+            "urls": {
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu4.10.debian.tar.xz": {
+                "md5": "1cc834a52141de5bb16e226d36837f72",
+                "size": 120020
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu4.10.dsc": {
+                "md5": "136dfa6c421741c7515765691a0a2a41",
+                "size": 2439
+              },
+              "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.0.2g.orig.tar.gz": {
+                "md5": "f3c710c045cdee5fd114feb69feba7aa",
+                "size": 5266102
+              }
+            }
+          },
+          "s390x": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.10_s390x.deb": {
+                "md5": "cdc7a37c1a14da60948c85e8013205c4",
+                "size": 1065478
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu4.10_s390x.deb": {
+                "md5": "dc35da7e1a5f9b20e43fbe97f4834042",
+                "size": 2603686
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu4.10_s390x.deb": {
+                "md5": "2b168255af2f7c3865bfadf0afd5021b",
+                "size": 477856
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu4.10_s390x.udeb": {
+                "md5": "54a31190ea006e664a02a9b7c25d0b18",
+                "size": 565572
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.10_s390x.deb": {
+                "md5": "40676164c074b795f1fdcae21d97be1d",
+                "size": 779290
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu4.10_s390x.udeb": {
+                "md5": "59ff5472932ccef9e381c17e573e9624",
+                "size": 128840
+              }
+            }
+          },
+          "armhf": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu4.10_armhf.udeb": {
+                "md5": "972fe0e05acb2a2baacd1e7014b4d4cd",
+               "size": 114132
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu4.10_armhf.deb": {
+                "md5": "5ef988371a85bfbc9d3cb9003177e487",
+                "size": 2584960
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu4.10_armhf.deb": {
+                "md5": "2d54057360831f31c9a344ab393bae05",
+                "size": 485088
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.10_armhf.deb": {
+                "md5": "459dbfb8f4706a73765893c4e3c54310",
+                "size": 711644
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu4.10_armhf.udeb": {
+                "md5": "e02b8c9b46211f350e2b28508e4f4eb7",
+                "size": 513618
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.10_armhf.deb": {
+                "md5": "b95d72fabed67740b022cb126935d91d",
+                "size": 980462
+              }
+            }
+          },
+          "arm64": {
+            "urls": {
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-udeb_1.0.2g-1ubuntu4.10_arm64.udeb": {
+                "md5": "ba4bd85d322f1ddbdd9a616a6d620f0f",
+                "size": 111578
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libcrypto1.0.0-udeb_1.0.2g-1ubuntu4.10_arm64.udeb": {
+                "md5": "61da7e734cf278df7f9052c632346284",
+                "size": 499478
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.10_arm64.deb": {
+                "md5": "3574b335f2e923a47eadef0baf58621d",
+                "size": 691254
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/openssl_1.0.2g-1ubuntu4.10_arm64.deb": {
+                "md5": "e14b52c0336c96de93c3020c8b0f412f",
+                "size": 471046
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu4.10_arm64.deb": {
+                "md5": "9d4c893185d9216e1abb260f8a2fb8b4",
+                "size": 999300
+              },
+              "http://ports.ubuntu.com/pool/main/o/openssl/libssl1.0.0-dbg_1.0.2g-1ubuntu4.10_arm64.deb": {
+                "md5": "837e62d8b02d50f10b2e6dec23d0ea4a",
+                "size": 2708264
+              }
+            }
+          }
+        }
+      }
+    },
+    "title": "OpenSSL vulnerabilities",
+    "timestamp": 1513018147.208765,
+    "summary": "openssl vulnerabilities",
+    "action": "After a standard system update you need to reboot your computer to make\nall the necessary changes.\n",
+    "cves": [
+      "CVE-2017-3737",
+      "CVE-2017-3738"
+    ],
+    "id": "3512-1",
+    "isummary": "Several security issues were fixed in OpenSSL.\n"
+  }
+}

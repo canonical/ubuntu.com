@@ -34,6 +34,7 @@ from webapp.context import (
 from webapp.database import db_engine
 from webapp.models import Base
 from webapp.views import (
+    api_create_notice,
     advantage_view,
     blog_blueprint,
     blog_custom_group,
@@ -139,8 +140,12 @@ app.add_url_rule("/blog/press-centre", view_func=blog_press_centre)
 app.register_blueprint(blog_blueprint, url_prefix="/blog")
 
 # usn section
-app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
 app.add_url_rule("/security/notices", view_func=notices)
+app.add_url_rule(
+    "/security/notices", view_func=api_create_notice, methods=["POST"]
+)
+app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
+
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
