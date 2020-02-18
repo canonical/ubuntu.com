@@ -9,8 +9,48 @@
   const summaryBoard = document.querySelector('.js-summary-board');
   const summaryOS = document.querySelector('.js-summary-os');
   const summarySnaps = document.querySelector('.js-summary-snaps');
+  const snapSearch = document.querySelector('.js-snap-search');
+  const snapResults = document.querySelector('.js-snap-results');
   selectionListeners(boardSelection, 'board');
   selectionListeners(osSelection, 'os');
+  searchHandler();
+
+  function searchHandler() {
+    if (snapSearch) {
+      snapSearch.addEventListener('submit', e => {
+        e.preventDefault();
+        const searchInput = snapSearch.querySelector('.p-search-box__input');
+        if (searchInput) {
+          const searchValue = encodeURI(searchInput.value);
+          fetch(`/static/snapcraft-fixture.json?q=${searchValue}`)
+            .then((response) => {
+              return response.json();
+            })
+            .then((json) => {
+              renderSnapList(json["_embedded"]["clickindex:package"]);
+            });
+        }
+      });
+    }
+  }
+
+  function renderSnapList(snapResponce) {
+    if (snapResults) {
+      snapResponce.innerHTML = '';
+      snapResponce.forEach((item, index) => {
+        snapResults.insertAdjacentHTML('beforeend',
+          `<div class="p-media-object">
+            <img src="${item.icon_url}" alt="${item.title}" class="p-media-object__image">
+            <div class="p-media-object__details">
+              <h1 class="p-media-object__title">${item.title}</h1>
+              <p class="p-media-object__content">${item.developer_name}</p>
+              <a href="" class="p-button--neutral" data-index="${index}">Add</a>
+            </div>
+          </div>`
+        );
+      });
+    }
+  }
 
   function selectionListeners(collection, stateIndex) {
     collection.forEach(selection => {
