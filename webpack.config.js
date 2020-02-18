@@ -19,7 +19,8 @@ module.exports = {
     ],
     "release-chart": "./static/js/src/release-chart.js",
     tabotronic: "./static/js/src/tabotronic.js",
-    "sticky-nav": "./static/js/src/sticky-nav.js"
+    "sticky-nav": "./static/js/src/sticky-nav.js",
+    imageBuilder: "./static/js/src/imageBuilder.js"
   },
   mode: process.env.ENVIRONMENT === "devel" ? "development" : "production",
   output: {
