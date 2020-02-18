@@ -18,4 +18,8 @@
     @extend %p-card--highlighted;
     @include vf-highlight-bar(#ff8936);
   }
+
+  .p-card.is-selected {
+    @extend %p-card--highlighted;
+  }
 }
