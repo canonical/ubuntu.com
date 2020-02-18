@@ -287,7 +287,62 @@ export var kernelReleases = [
   }
 ];
 
-
+export var kernelReleases2004 = [
+  {
+    startDate: new Date('2022-08-11T00:00:00'),
+    endDate: new Date('2025-04-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.5 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2025-04-22T00:00:00'),
+    endDate: new Date('2030-04-21T00:00:00'),
+    taskName: 'Ubuntu 20.04.5 LTS',
+    status: 'ESM'
+  },
+  {
+    startDate: new Date('2022-02-12T00:00:00'),
+    endDate: new Date('2022-08-17T00:00:00'),
+    taskName: 'Ubuntu 20.04.4 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2021-08-16T00:00:00'),
+    endDate: new Date('2022-02-18T00:00:00'),
+    taskName: 'Ubuntu 20.04.3 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2021-02-17T00:00:00'),
+    endDate: new Date('2021-08-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.2 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2020-07-22T00:00:00'),
+    endDate: new Date('2025-04-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.1 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2025-04-22T00:00:00'),
+    endDate: new Date('2030-04-21T00:00:00'),
+    taskName: 'Ubuntu 20.04.1 LTS',
+    status: 'ESM'
+  },
+  {
+    startDate: new Date('2020-04-23T00:00:00'),
+    endDate: new Date('2025-04-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.0 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2025-04-22T00:00:00'),
+    endDate: new Date('2030-04-21T00:00:00'),
+    taskName: 'Ubuntu 20.04.0 LTS',
+    status: 'ESM'
+  },
+]
 
 export var kernelReleases1804 = [
   {
@@ -303,25 +358,25 @@ export var kernelReleases1804 = [
     status: 'ESM'
   },
   {
-    startDate: new Date('2020-02-01T00:00:00'),
-    endDate: new Date('2020-08-05T00:00:00'),
-    taskName: 'Ubuntu 18.04.4 LTS',
+    startDate: new Date('2020-02-06T00:00:00'),
+    endDate: new Date('2020-08-10T00:00:00'),
+    taskName: 'Ubuntu 18.04.4 LTS (v5.3)',
     status: 'LTS'
   },
   {
-    startDate: new Date('2019-08-01T00:00:00'),
-    endDate: new Date('2020-02-03T00:00:00'),
-    taskName: 'Ubuntu 18.04.3 LTS (v5.0)',
+    startDate: new Date('2019-08-08T00:00:00'),
+    endDate: new Date('2020-02-10T00:00:00'),
+    taskName: 'Ubuntu 18.04.3 LTS  (v5.0)',
     status: 'LTS'
   },
   {
-    startDate: new Date('2019-02-01T00:00:00'),
-    endDate: new Date('2019-08-06T00:00:00'),
+    startDate: new Date('2019-02-14T00:00:00'),
+    endDate: new Date('2019-08-19T00:00:00'),
     taskName: 'Ubuntu 18.04.2 LTS (v4.18)',
     status: 'LTS'
   },
   {
-    startDate: new Date('2018-07-01T00:00:00'),
+    startDate: new Date('2018-07-26T00:00:00'),
     endDate: new Date('2023-04-20T00:00:00'),
     taskName: 'Ubuntu 18.04.1 LTS (v4.15)',
     status: 'LTS'
@@ -333,19 +388,18 @@ export var kernelReleases1804 = [
     status: 'ESM'
   },
   {
-    startDate: new Date('2018-04-21T00:00:00'),
-    endDate: new Date('2023-04-20T00:00:00'),
+    startDate: new Date('2018-04-26T00:00:00'),
+    endDate: new Date('2023-04-25T00:00:00'),
     taskName: 'Ubuntu 18.04.0 LTS (v4.15)',
     status: 'LTS'
   },
   {
-    startDate: new Date('2023-04-20T00:00:00'),
-    endDate: new Date('2028-04-18T00:00:00'),
+    startDate: new Date('2023-04-25T00:00:00'),
+    endDate: new Date('2028-04-23T00:00:00'),
     taskName: 'Ubuntu 18.04.0 LTS (v4.15)',
     status: 'ESM'
-  }
+  },
 ];
-
 
 export var kernelReleases1604 = [
   {
@@ -403,7 +457,6 @@ export var kernelReleases1604 = [
     status: 'ESM'
   }
 ];
-
 
 export var kernelReleases1404 = [
   {
@@ -487,21 +540,18 @@ export var kernelReleasesALL = [
     taskName: 'Ubuntu 14.04.1 LTS (v3.13)',
     status: 'LTS'
   },
-
   {
     startDate: new Date('2015-02-01T00:00:00'),
     endDate: new Date('2016-07-31T00:00:00'),
     taskName: 'Ubuntu 14.04.2 LTS (v3.16)',
     status: 'LTS'
   },
-
   {
     startDate: new Date('2015-08-01T00:00:00'),
     endDate: new Date('2016-07-31T00:00:00'),
     taskName: 'Ubuntu 14.04.3 LTS (v3.19)',
     status: 'LTS'
   },
-
   {
     startDate: new Date('2016-02-01T00:00:00'),
     endDate: new Date('2016-07-31T00:00:00'),
@@ -544,21 +594,18 @@ export var kernelReleasesALL = [
     taskName: 'Ubuntu 16.04.1 LTS (v4.4)',
     status: 'LTS'
   },
-
   {
     startDate: new Date('2017-02-01T00:00:00'),
     endDate: new Date('2017-07-31T00:00:00'),
     taskName: 'Ubuntu 16.04.2 LTS (v4.8)',
     status: 'LTS'
   },
-
   {
     startDate: new Date('2017-08-01T00:00:00'),
     endDate: new Date('2018-01-31T00:00:00'),
     taskName: 'Ubuntu 16.04.3 LTS (v4.10)',
     status: 'LTS'
   },
-
   {
     startDate: new Date('2018-02-01T00:00:00'),
     endDate: new Date('2018-07-31T00:00:00'),
@@ -601,7 +648,6 @@ export var kernelReleasesALL = [
     taskName: 'Ubuntu 16.04.5 LTS (v4.15)',
     status: 'LTS'
   },
-
   {
     startDate: new Date('2019-02-01T00:00:00'),
     endDate: new Date('2019-08-06T00:00:00'),
@@ -628,14 +674,32 @@ export var kernelReleasesALL = [
   },
   {
     startDate: new Date('2020-02-01T00:00:00'),
-    endDate: new Date('2020-08-05T00:00:00'),
-    taskName: 'Ubuntu 18.04.4 LTS',
+    endDate: new Date('2020-07-31T00:00:00'),
+    taskName: 'Ubuntu 18.04.4 LTS (v5.3)',
     status: 'LTS'
   },
   {
-    startDate: new Date('2020-02-01T00:00:00'),
-    endDate: new Date('2020-07-31T00:00:00'),
-    taskName: 'Ubuntu 18.04.4 LTS',
+    startDate: new Date('2020-01-24T00:00:00'),
+    endDate: new Date('2020-04-23T00:00:00'),
+    taskName: 'Ubuntu 20.04.0 LTS',
+    status: 'EARLY'
+  },
+  {
+    startDate: new Date('2020-04-23T00:00:00'),
+    endDate: new Date('2025-04-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.0 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2020-04-23T00:00:00'),
+    endDate: new Date('2020-07-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.1 LTS',
+    status: 'EARLY'
+  },
+  {
+    startDate: new Date('2020-07-22T00:00:00'),
+    endDate: new Date('2025-04-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.1 LTS',
     status: 'LTS'
   },
   {
@@ -649,7 +713,37 @@ export var kernelReleasesALL = [
     endDate: new Date('2023-04-20T00:00:00'),
     taskName: 'Ubuntu 18.04.5 LTS',
     status: 'LTS'
-  }
+  },
+  {
+    startDate: new Date('2021-02-17T00:00:00'),
+    endDate: new Date('2021-08-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.2 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2021-08-16T00:00:00'),
+    endDate: new Date('2022-02-18T00:00:00'),
+    taskName: 'Ubuntu 20.04.3 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2022-02-12T00:00:00'),
+    endDate: new Date('2022-08-17T00:00:00'),
+    taskName: 'Ubuntu 20.04.4 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2022-05-13T00:00:00'),
+    endDate: new Date('2022-08-11T00:00:00'),
+    taskName: 'Ubuntu 20.04.5 LTS',
+    status: 'EARLY'
+  },
+  {
+    startDate: new Date('2022-08-11T00:00:00'),
+    endDate: new Date('2025-04-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.5 LTS',
+    status: 'LTS'
+  },
 ];
 
 export var kernelReleasesLTS = [
@@ -756,7 +850,7 @@ export var kernelReleasesLTS = [
     status: 'LTS'
   },
   {
-    startDate: new Date('2018-04-21T00:00:00'),
+    startDate: new Date('2018-04-26T00:00:00'),
     endDate: new Date('2020-04-01T00:00:00'),
     taskName: 'Ubuntu 18.04.0 LTS (v4.15)',
     status: 'LTS'
@@ -768,7 +862,7 @@ export var kernelReleasesLTS = [
     status: 'CVE'
   },
   {
-    startDate: new Date('2018-07-01T00:00:00'),
+    startDate: new Date('2018-07-26T00:00:00'),
     endDate: new Date('2020-04-01T00:00:00'),
     taskName: 'Ubuntu 18.04.1 LTS (v4.15)',
     status: 'LTS'
@@ -792,35 +886,89 @@ export var kernelReleasesLTS = [
     status: 'CVE'
   },
   {
-    startDate: new Date('2019-02-01T00:00:00'),
+    startDate: new Date('2019-02-14T00:00:00'),
     endDate: new Date('2019-07-31T00:00:00'),
     taskName: 'Ubuntu 18.04.2 LTS (v4.18)',
     status: 'LTS'
   },
   {
-    startDate: new Date('2019-08-01T00:00:00'),
+    startDate: new Date('2019-08-08T00:00:00'),
     endDate: new Date('2020-01-31T00:00:00'),
     taskName: 'Ubuntu 18.04.3 LTS (v5.0)',
     status: 'LTS'
   },
   {
-    startDate: new Date('2020-02-01T00:00:00'),
+    startDate: new Date('2020-02-06T00:00:00'),
     endDate: new Date('2020-07-31T00:00:00'),
-    taskName: 'Ubuntu 18.04.4 LTS',
+    taskName: 'Ubuntu 18.04.4 LTS (v5.3)',
     status: 'LTS'
+  },
+  {
+    startDate: new Date('2020-04-23T00:00:00'),
+    endDate: new Date('2022-04-23T00:00:00'),
+    taskName: 'Ubuntu 20.04.0 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2022-04-23T00:00:00'),
+    endDate: new Date('2025-04-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.0 LTS',
+    status: 'CVE'
+  },
+  {
+    startDate: new Date('2020-07-22T00:00:00'),
+    endDate: new Date('2022-04-13T00:00:00'),
+    taskName: 'Ubuntu 20.04.1 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2022-04-13T00:00:00'),
+    endDate: new Date('2025-04-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.1 LTS',
+    status: 'CVE'
   },
   {
     startDate: new Date('2020-08-01T00:00:00'),
-    endDate: new Date('2020-04-01T00:00:00'),
+    endDate: new Date('2022-04-23T00:00:00'),
     taskName: 'Ubuntu 18.04.5 LTS',
     status: 'LTS'
   },
   {
-    startDate: new Date('2020-04-01T00:00:00'),
+    startDate: new Date('2022-04-23T00:00:00'),
     endDate: new Date('2023-04-20T00:00:00'),
     taskName: 'Ubuntu 18.04.5 LTS',
     status: 'CVE'
-  }
+  },
+  {
+    startDate: new Date('2021-02-17T00:00:00'),
+    endDate: new Date('2021-08-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.2 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2021-08-16T00:00:00'),
+    endDate: new Date('2022-02-18T00:00:00'),
+    taskName: 'Ubuntu 20.04.3 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2022-02-12T00:00:00'),
+    endDate: new Date('2022-07-17T00:00:00'),
+    taskName: 'Ubuntu 20.04.4 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2022-08-11T00:00:00'),
+    endDate: new Date('2024-08-10T00:00:00'),
+    taskName: 'Ubuntu 20.04.5 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2024-08-10T00:00:00'),
+    endDate: new Date('2025-04-22T00:00:00'),
+    taskName: 'Ubuntu 20.04.5 LTS',
+    status: 'CVE'
+  },
 ];
 
 export var openStackReleases = [
@@ -1021,12 +1169,21 @@ export var kernelReleaseNames = [
   'Ubuntu 14.04.0 LTS (v3.13)'
 ];
 
+export var kernelReleaseNames2004 = [
+  'Ubuntu 20.04.0 LTS',
+  'Ubuntu 20.04.1 LTS',
+  'Ubuntu 20.04.2 LTS',
+  'Ubuntu 20.04.3 LTS',
+  'Ubuntu 20.04.4 LTS',
+  'Ubuntu 20.04.5 LTS',
+];
+
 export var kernelReleaseNames1804 = [
   'Ubuntu 18.04.0 LTS (v4.15)',
   'Ubuntu 18.04.1 LTS (v4.15)',
   'Ubuntu 18.04.2 LTS (v4.18)',
-  'Ubuntu 18.04.3 LTS (v5.0)',
-  'Ubuntu 18.04.4 LTS',
+  'Ubuntu 18.04.3 LTS  (v5.0)',
+  'Ubuntu 18.04.4 LTS (v5.3)',
   'Ubuntu 18.04.5 LTS',
 ];
 
@@ -1067,8 +1224,14 @@ export var kernelReleaseNamesALL = [
   'Ubuntu 19.04 (v5.0)',
   'Ubuntu 18.04.3 LTS (v5.0)',
   'Ubuntu 19.10 (v5.3)',
-  'Ubuntu 18.04.4 LTS',
-  'Ubuntu 18.04.5 LTS'
+  'Ubuntu 18.04.4 LTS (v5.3)',
+  'Ubuntu 20.04.0 LTS',
+  'Ubuntu 20.04.1 LTS',
+  'Ubuntu 18.04.5 LTS',
+  'Ubuntu 20.04.2 LTS',
+  'Ubuntu 20.04.3 LTS',
+  'Ubuntu 20.04.4 LTS',
+  'Ubuntu 20.04.5 LTS',
 ];
 
 export var kernelReleaseNamesLTS = [
@@ -1088,8 +1251,14 @@ export var kernelReleaseNamesLTS = [
   'Ubuntu 16.04.5 LTS (v4.15)',
   'Ubuntu 18.04.2 LTS (v4.18)',
   'Ubuntu 18.04.3 LTS (v5.0)',
-  'Ubuntu 18.04.4 LTS',
-  'Ubuntu 18.04.5 LTS'
+  'Ubuntu 18.04.4 LTS (v5.3)',
+  'Ubuntu 20.04.0 LTS',
+  'Ubuntu 20.04.1 LTS',
+  'Ubuntu 18.04.5 LTS',
+  'Ubuntu 20.04.2 LTS',
+  'Ubuntu 20.04.3 LTS',
+  'Ubuntu 20.04.4 LTS',
+  'Ubuntu 20.04.5 LTS',
 ];
 
 export var openStackReleaseNames = [
