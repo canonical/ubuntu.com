@@ -1,0 +1,162 @@
+{% extends "core/base_core.html" %}
+
+{% block title %}Ubuntu image builder{% endblock %}
+{% block meta_description %}Build your own image with pre-installed applications online{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1Hw_8dWAAUpHHm5Z_XNUVJaSVE5k5i2Vt6WANcJYUZvY/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+
+<section class="p-strip--suru-topped u-no-padding--bottom">
+  <div class="row">
+    <div class="col-6">
+      <h1>Create an image</h1>
+      <p>Build your own image by selecting your board, Operating System and applications to pre-install.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>What board are you using?</h2>
+      <p>Select the board for your device.</p>
+    </div>
+  </div>
+  <div class="row js-boards">
+    <button class="col-2 p-card js-selection">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png" alt="A photo the the Raspberry Pi 2">
+      <hr class="u-sv1">
+      <p class="p-card__content">Raspberry Pi2</p>
+    </button>
+    <button class="col-2 p-card js-selection">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png" alt="A photo the the Raspberry Pi 3">
+      <hr class="u-sv1">
+      <p class="p-card__content">Raspberry Pi3</p>
+    </button>
+    <button class="col-2 p-card js-selection">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png" alt="A photo the the Raspberry Pi 4">
+      <hr class="u-sv1">
+      <p class="p-card__content">Raspberry Pi4</p>
+    </button>
+    <button class="col-2 p-card js-selection">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/e7dccb69-intelnuc.png" alt="A photo the the Intel NUC">
+      <hr class="u-sv1">
+      <p class="p-card__content">Intel NUC</p>
+    </button>
+    <button class="col-2 p-card js-selection">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/df2cf6c9-snapdragon.png" alt="A photo the the Qualcomm DragonBoard">
+      <hr class="u-sv1">
+      <p class="p-card__content">Qualcomm DragonBoard</p>
+    </button>
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>What version of Ubuntu do you want? <a href=""><i class="p-icon--help">Help me choose</i></a></h2>
+      <p>Select the version of Ubuntu to install on the device.</p>
+    </div>
+  </div>
+  <div class="row js-os">
+    <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3 intel-nuc qualcomm-dragonboard">
+      <p class="p-card__content">Core 16</p>
+    </button>
+    <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3 raspberry-pi4 intel-nuc qualcomm-dragonboard">
+      <p class="p-card__content">Core 18</p>
+    </button>
+    <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3">
+      <p class="p-card__content">Classic 16.04</p>
+    </button>
+    <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3 raspberry-pi4">
+      <p class="p-card__content">Classic 18.04</p>
+    </button>
+    <button class="col-2 p-card js-selection" data-supports="raspberry-pi3 raspberry-pi4">
+      <p class="p-card__content">Classic 64-bit 18.04</p>
+    </button>
+  </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <h2>What snaps do you want preinstalled?</h2>
+      <p>Select the applications that will be pre-installed on the device. For Ubuntu Core this will be snaps, for Ubuntu Classic it will be snaps or packages.</p>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <form class="p-search-box">
+        <input type="search" class="p-search-box__input" name="search" placeholder="Search for snaps" required="">
+        <button type="reset" class="p-search-box__reset" alt="reset"><i class="p-icon--close"></i></button>
+        <button type="submit" class="p-search-box__button" alt="search"><i class="p-icon--search"></i></button>
+      </form>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h4 class="p-muted-heading">Pre-installed snaps</h4>
+      <hr class="u-sv1">
+      <div class="js-preinstalled-snaps-list">
+        <div class="p-media-object">
+          <img src="https://dashboard.snapcraft.io/site_media/appmedia/2019/05/icon_Jfu5bEq.png" alt="" class="p-media-object__image">
+          <div class="p-media-object__details">
+            <h1 class="p-media-object__title">Riot</h1>
+            <p class="p-media-object__content">Alan Pope</p>
+          </div>
+        </div>
+        <div class="p-media-object">
+          <img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/01/mumble_256.png" alt="" class="p-media-object__image">
+          <div class="p-media-object__details">
+            <h1 class="p-media-object__title">Mumble</h1>
+            <p class="p-media-object__content">Snapcrafters</p>
+          </div>
+        </div>
+        <div class="p-media-object">
+          <img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/11/logo-mark.png" alt="" class="p-media-object__image">
+          <div class="p-media-object__details">
+            <h1 class="p-media-object__title">Postman</h1>
+            <p class="p-media-object__content">Postman, Inc.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-shallow">
+  <div class="row">
+    <h2>Summary</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <dl>
+        <dt>Board</dt>
+        <dd class="js-summary-board"></dd>
+        <dt>Operating system</dt>
+        <dd class="js-summary-os"></dd>
+        <dt>Snaps</dt>
+        <dd><span class="js-summary-snaps">0</span> pre-installed snaps</dd>
+      </dl>
+    </div>
+    <div class="col-6 p-divider__block">
+      <p>This will trigger a build in Launchpad to create your image. Once the image has been built we will contact us via email on <strong>{email_address}</strong>. This build will only be available for a few days so please do not rely on Launchpad for future downloads</p>
+      <p>
+        <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+        <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+      </p>
+      <p><a href="" class="p-button--positive">Build image</a></p>
+    </div>
+  </div>
+</section>
+
+<script src="{{ versioned_static('js/build/imageBuilder.min.js') }}"></script>
+
+{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded" data-form-id="1266" data-lp-id="2166" data-return-url="https://www.ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
+
+
+
+{% endblock content %}

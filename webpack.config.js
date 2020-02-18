@@ -11,7 +11,8 @@ module.exports = {
       "./static/js/scratch.js"
     ],
     "release-chart": "./static/js/release-chart.js",
-    stickyNav: "./static/js/stickyNav.js"
+    stickyNav: "./static/js/stickyNav.js",
+    imageBuilder: "./static/js/imageBuilder.js"
   },
   mode: process.env.ENVIRONMENT === "devel" ? "development" : "production",
   output: {
