@@ -45,7 +45,7 @@
     snapAddButtons.forEach(addButton => {
       addButton.addEventListener('click', e => {
         e.preventDefault();
-        if (!lookup(snapSearchResults[e.target.dataset.index].snap_id, 'snap_id', STATE.snaps) ) {
+        if (!lookup(snapSearchResults[e.target.dataset.index].snap_id, 'snap_id', STATE.snaps)) {
           const selectedSnapContainer = e.target.closest('.p-media-object');
           if (selectedSnapContainer) {
             selectedSnapContainer.classList.add('u-hide');
@@ -61,19 +61,25 @@
   function removeSnapHandler() {
     const snapRemoveButtons = preinstallResults.querySelectorAll('.js-remove-snap');
     snapRemoveButtons.forEach(removeButton => {
-      removeButton.addEventListener('click', e=> {
+      removeButton.addEventListener('click', e => {
         e.preventDefault();
-        console.log(e.target.dataset.index);
+        searchIndex = lookup(STATE.snaps[e.target.dataset.index].snap_id, 'snap_id', snapSearchResults)
+        const revealItem = snapResults.querySelector(`[data-container-index="${searchIndex}"]`)
+        if (revealItem) {
+          revealItem.classList.remove('u-hide');
+        }
+        STATE.snaps.splice(e.target.dataset.index, 1);
+        renderSnapList(STATE.snaps, preinstallResults, 'Remove');
+        removeSnapHandler();
       });
     });
   }
-
   function renderSnapList(responce, results, buttonText) {
     if (results) {
       results.innerHTML = '';
       responce.forEach((item, index) => {
         results.insertAdjacentHTML('beforeend',
-          `<div class="p-media-object">
+          `<div class="p-media-object" data-container-index="${index}">
             <img src="${item.icon_url}" alt="${item.title}" class="p-media-object__image">
             <div class="p-media-object__details">
               <h1 class="p-media-object__title">${item.title}</h1>
@@ -157,9 +163,8 @@
   // Utils
   function lookup(name, key, arr) {
     for (var i = 0, len = arr.length; i < len; i++) {
-      console.log(arr[i][key], name);
       if (arr[i][key] === name) {
-        return true;
+        return i;
       }
     }
     return false;
