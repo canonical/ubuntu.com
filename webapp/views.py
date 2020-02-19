@@ -8,8 +8,10 @@ import dateutil.parser
 import feedparser
 import flask
 import pytz
+import talisker.requests
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
+from canonicalwebteam.store_api.stores.snapcraft import SnapcraftStoreApi
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
 from datetime import datetime
@@ -21,6 +23,7 @@ from webapp.api import advantage
 
 
 ip_reader = geolite2.reader()
+store_api = SnapcraftStoreApi(session=talisker.requests.get_session())
 
 
 def download_thank_you(category):
@@ -88,6 +91,24 @@ def releasenotes_redirect():
         return flask.redirect(f"https://wiki.ubuntu.com/{ver}/ReleaseNotes")
     else:
         return flask.redirect(f"https://wiki.ubuntu.com/Releases")
+
+
+def search_snaps():
+    """
+    A JSON endpoint to search the snap store API
+    """
+
+    query = flask.request.args.get("q", "")
+    arch = flask.request.args.get("arch", "amd64")
+    size = flask.request.args.get("size", "100")
+    page = flask.request.args.get("page", "1")
+
+    if not query:
+        return flask.jsonify({"error": "Query parameter 'q' empty"}), 400
+
+    return flask.jsonify(
+        store_api.search(query, size=size, page=page, arch=arch)
+    )
 
 
 def advantage_view():
