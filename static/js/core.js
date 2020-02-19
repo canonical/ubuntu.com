@@ -1,13 +1,15 @@
 import { createNav } from "@canonical/global-nav";
-import cpNs from "./cookie-proxy";
+import { cookiePolicy } from "@canonical/cookie-policy";
 
 // Initalise the global navigation.
 createNav({ showLogins: false });
 
 // Initalise the cookie policy notification.
-cpNs.cookiePolicy.setup({
+
+var options = {
   content: `We use cookies to improve your experience. By your continued use of
-      this site you accept such use.<br /> This notice will disappear by
-      itself.`,
-  duration: 10000
-});
+  this site you accept such use.<br /> This notice will disappear by
+  itself.`,
+  duration: 1000,
+};
+cookiePolicy(options);
