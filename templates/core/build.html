@@ -6,7 +6,11 @@
 
 {% block content %}
 
-
+{% if not openid %}
+<section>
+  <center><strong>You need to <a href="/login?next=/core/build">login</a> mate</strong></center>
+</section>
+{% else %}
 <section class="p-strip--suru-topped u-no-padding--bottom">
   <div class="row">
     <div class="col-6">
@@ -128,7 +132,7 @@
       </dl>
     </div>
     <div class="col-6 p-divider__block">
-      <p>This will trigger a build in Launchpad to create your image. Once the image has been built we will contact us via email on <strong>{email_address}</strong>. This build will only be available for a few days so please do not rely on Launchpad for future downloads</p>
+      <p>This will trigger a build in Launchpad to create your image. Once the image has been built we will contact us via email on <strong>{{ openid.email }}</strong>. This build will only be available for a few days so please do not rely on Launchpad for future downloads</p>
       <p>
         <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
         <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
@@ -146,6 +150,6 @@
   <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded" data-form-id="1266" data-lp-id="2166" data-return-url="https://www.ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
 
-
+{% endif %}
 
 {% endblock content %}

@@ -116,7 +116,6 @@ def advantage_view():
     personal_account = None
     enterprise_contracts = {}
     entitlements = {}
-    openid = flask.session.get("openid")
 
     if auth.is_authenticated(flask.session):
         try:
@@ -141,10 +140,7 @@ def advantage_view():
 
                 auth.empty_session(flask.session)
 
-                return (
-                    flask.render_template("advantage/index.html"),
-                    {"Cache-Control": "private"},
-                )
+                return flask.render_template("advantage/index.html")
 
             raise http_error
 
@@ -234,15 +230,11 @@ def advantage_view():
                         contract["accountInfo"]["name"], []
                     ).append(contract)
 
-    return (
-        flask.render_template(
-            "advantage/index.html",
-            openid=openid,
-            accounts=accounts,
-            enterprise_contracts=enterprise_contracts,
-            personal_account=personal_account,
-        ),
-        {"Cache-Control": "private"},
+    return flask.render_template(
+        "advantage/index.html",
+        accounts=accounts,
+        enterprise_contracts=enterprise_contracts,
+        personal_account=personal_account,
     )
 
 
