@@ -101,6 +101,7 @@ def context():
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),
+        "openid": flask.session.get("openid"),
         "utm_campaign": flask.request.args.get("utm_campaign", ""),
         "utm_medium": flask.request.args.get("utm_medium", ""),
         "utm_source": flask.request.args.get("utm_source", ""),
@@ -269,6 +270,9 @@ def cache_headers(response):
     """
     Set cache expiry to 60 seconds for homepage and blog page
     """
+
+    if flask.request.path in ["/core/build", "/advantage"]:
+        response.cache_control.private = True
 
     if flask.request.path in ["/", "/blog"]:
         response.headers[
