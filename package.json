@@ -10,7 +10,9 @@
     "build": "yarn run build-css && yarn run build-js",
     "watch": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/*.scss' -p 'static/js/*.js' -c 'yarn run build'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle static/js/build etc/",
-    "serve": "./entrypoint 0.0.0.0:${PORT}"
+    "serve": "./entrypoint 0.0.0.0:${PORT}",
+    "cypress:run": "cypress run --config-file tests/cypress/cypress.json --config baseUrl=http://0.0.0.0:${PORT}",
+    "cypress:open": "cypress open --config-file tests/cypress/cypress.json --config baseUrl=http://0.0.0.0:${PORT}"
   },
   "husky": {
     "hooks": {
@@ -45,6 +47,7 @@
   "dependencies": {
     "@canonical/global-nav": "2.4.0",
     "@canonical/cookie-policy": "2.0.3",
+    "cypress": "4.0.2",
     "vanilla-framework": "2.6.0"
   },
   "resolutions": {
