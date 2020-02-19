@@ -971,6 +971,45 @@ export var kernelReleasesLTS = [
   },
 ];
 
+export var kernelReleaseSchedule = [
+{
+  startDate: new Date('2014-04-21T00:00:00'),
+  endDate: new Date('2019-04-20T00:00:00'),
+  taskName: 'Ubuntu 14.04 LTS (v3.13)',
+  status: 'LTS'
+},
+{
+  startDate: new Date('2016-04-21T00:00:00'),
+  endDate: new Date('2021-04-20T00:00:00'),
+  taskName: 'Ubuntu 16.04 LTS (v4.4)',
+  status: 'LTS'
+},
+{
+  startDate: new Date('2018-04-21T00:00:00'),
+  endDate: new Date('2023-04-20T00:00:00'),
+  taskName: 'Ubuntu 18.04 LTS (v4.15)',
+  status: 'LTS'
+},
+{
+  startDate: new Date('2019-04-16T00:00:00'),
+  endDate: new Date('2020-01-20T00:00:00'),
+  taskName: 'Ubuntu 19.04 (v5.0)',
+  status: 'INTERIM_RELEASE'
+},
+{
+  startDate: new Date('2019-10-15T00:00:00'),
+  endDate: new Date('2020-07-20T00:00:00'),
+  taskName: 'Ubuntu 19.10 (v5.3)',
+  status: 'INTERIM_RELEASE'
+},
+{
+  startDate: new Date('2020-04-23T00:00:00'),
+  endDate: new Date('2025-04-22T00:00:00'),
+  taskName: 'Ubuntu 20.04 LTS',
+  status: 'LTS'
+}
+];
+
 export var openStackReleases = [
   {
     startDate: new Date('2016-04-01T00:00:00'),
@@ -1114,6 +1153,11 @@ export var kernelStatus = {
   LTS: 'chart__bar--orange',
   INTERIM_RELEASE: 'chart__bar--grey',
   ESM: 'chart__bar--aubergine'
+};
+
+export var kernelReleaseScheduleStatus = {
+  LTS: 'chart__bar--orange',
+  INTERIM_RELEASE: 'chart__bar--grey',
 };
 
 export var kernelStatusLTS = {
@@ -1285,3 +1329,12 @@ export var kubernetesReleaseNames = [
   'Kubernetes 1.15',
   'Kubernetes 1.14'
 ];
+
+export var kernelReleaseScheduleNames = [
+  'Ubuntu 14.04 LTS (v3.13)',
+  'Ubuntu 16.04 LTS (v4.4)',
+  'Ubuntu 18.04 LTS (v4.15)',
+  'Ubuntu 19.04 (v5.0)',
+  'Ubuntu 19.10 (v5.3)',
+  'Ubuntu 20.04 LTS',
+]

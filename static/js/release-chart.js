@@ -2,6 +2,7 @@ import {createChart} from './chart'
 import {
   serverAndDesktopReleases,
   kernelReleases,
+  kernelReleaseSchedule,
   kernelReleases2004,
   kernelReleases1804,
   kernelReleases1604,
@@ -12,12 +13,14 @@ import {
   kubernetesReleases,
   desktopServerStatus,
   kernelStatus,
+  kernelReleaseScheduleStatus,
   kernelStatusLTS,
   kernelStatusALL,
   openStackStatus,
   kubernetesStatus,
   desktopServerReleaseNames,
   kernelReleaseNames,
+  kernelReleaseScheduleNames,
   kernelReleaseNames2004,
   kernelReleaseNames1804,
   kernelReleaseNames1604,
@@ -73,6 +76,9 @@ function buildCharts() {
   if (document.querySelector('#kubernetes-eol')) {
     createChart('#kubernetes-eol', kubernetesReleaseNames, kubernetesStatus, kubernetesReleases);
   }
+  if (document.querySelector('#kernel-schedule')) {
+    createChart('#kernel-schedule', kernelReleaseScheduleNames, kernelReleaseScheduleStatus, kernelReleaseSchedule);
+  }
 }
 
 function clearCharts() {
@@ -105,6 +111,9 @@ function clearCharts() {
   }
   if (document.querySelector('#kubernetes-eol')) {
     document.querySelector('#kubernetes-eol').innerHTML = '';
+  }
+  if (document.querySelector('#kernel-schedule')) {
+    document.querySelector('#kernel-schedule').innerHTML = '';
   }
 }
 

@@ -6,17 +6,31 @@
     display: none;
   }
 
+  .p-menu-20-04:focus ~ #inst-20-04 ,
   .p-menu-18-04:focus ~ #inst-18-04 ,
   .p-menu-16-04:focus ~ #inst-16-04,
   .p-menu-14-04:focus ~ #inst-14-04,
-  .p-menu-12-04:focus ~ #inst-12-04 {
+  .p-menu-12-04:focus ~ #inst-12-04,
+  .p-menu-all:focus ~ #support-all ,
+  .p-menu-lts:focus ~ #support-lts ,
+  .p-menu-20-04:focus ~ #support-20-04 ,
+  .p-menu-18-04:focus ~ #support-18-04 ,
+  .p-menu-16-04:focus ~ #support-16-04,
+  .p-menu-14-04:focus ~ #support-14-04 {
     display: block;
   }
 
+  #inst-20-04,
   #inst-18-04,
   #inst-16-04,
   #inst-14-04,
-  #inst-12-04 {
+  #inst-12-04,
+  #support-all,
+  #support-lts,
+  #support-20-04,
+  #support-18-04,
+  #support-16-04,
+  #support-14-04 {
     padding-top: 2rem;
   }
 }
