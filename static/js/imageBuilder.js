@@ -11,6 +11,9 @@
   const summarySnaps = document.querySelector('.js-summary-snaps');
   const snapSearch = document.querySelector('.js-snap-search');
   const snapResults = document.querySelector('.js-snap-results');
+  const preinstallResults = document.querySelector('.js-preinstalled-snaps-list');
+  const buildButton = document.querySelector('.js-build-button');
+  let snapSearchResults;
   selectionListeners(boardSelection, 'board');
   selectionListeners(osSelection, 'os');
   searchHandler();
@@ -27,28 +30,60 @@
               return response.json();
             })
             .then((json) => {
-              renderSnapList(json["_embedded"]["clickindex:package"]);
+              snapSearchResults = json["_embedded"]["clickindex:package"];
+              renderSnapList(snapSearchResults, snapResults, 'Add');
+              addSnapHandler();
             });
         }
       });
     }
   }
 
-  function renderSnapList(snapResponce) {
-    if (snapResults) {
-      snapResponce.innerHTML = '';
-      snapResponce.forEach((item, index) => {
-        snapResults.insertAdjacentHTML('beforeend',
+  function addSnapHandler() {
+    const snapAddButtons = snapResults.querySelectorAll('.js-add-snap');
+
+    snapAddButtons.forEach(addButton => {
+      addButton.addEventListener('click', e => {
+        e.preventDefault();
+        if (!lookup(snapSearchResults[e.target.dataset.index].snap_id, 'snap_id', STATE.snaps) ) {
+          const selectedSnapContainer = e.target.closest('.p-media-object');
+          if (selectedSnapContainer) {
+            selectedSnapContainer.classList.add('u-hide');
+          }
+          STATE.snaps.push(snapSearchResults[e.target.dataset.index]);
+          renderSnapList(STATE.snaps, preinstallResults, 'Remove');
+          removeSnapHandler();
+        }
+      });
+    });
+  }
+
+  function removeSnapHandler() {
+    const snapRemoveButtons = preinstallResults.querySelectorAll('.js-remove-snap');
+    snapRemoveButtons.forEach(removeButton => {
+      removeButton.addEventListener('click', e=> {
+        e.preventDefault();
+        console.log(e.target.dataset.index);
+      });
+    });
+  }
+
+  function renderSnapList(responce, results, buttonText) {
+    if (results) {
+      results.innerHTML = '';
+      responce.forEach((item, index) => {
+        results.insertAdjacentHTML('beforeend',
           `<div class="p-media-object">
             <img src="${item.icon_url}" alt="${item.title}" class="p-media-object__image">
             <div class="p-media-object__details">
               <h1 class="p-media-object__title">${item.title}</h1>
               <p class="p-media-object__content">${item.developer_name}</p>
-              <a href="" class="p-button--neutral" data-index="${index}">Add</a>
+              <a href="" class="p-button--neutral js-${buttonText.toLowerCase()}-snap" data-index="${index}">${buttonText}</a>
             </div>
           </div>`
         );
       });
+      render();
     }
   }
 
@@ -100,6 +135,14 @@
     if (summarySnaps) {
       summarySnaps.innerText = STATE.snaps.length;
     }
+
+    if (STATE.board != '' && STATE.os != '') {
+      buildButton.setAttribute('aria-disabled', 'false');
+      buildButton.disabled = false;
+    } else {
+      buildButton.setAttribute('aria-disabled', 'true');
+      buildButton.disabled = true;
+    }
   }
 
   function render() {
@@ -109,5 +152,16 @@
   function changeState(key, value) {
     STATE[key] = value;
     render();
+  }
+
+  // Utils
+  function lookup(name, key, arr) {
+    for (var i = 0, len = arr.length; i < len; i++) {
+      console.log(arr[i][key], name);
+      if (arr[i][key] === name) {
+        return true;
+      }
+    }
+    return false;
   }
 })()
