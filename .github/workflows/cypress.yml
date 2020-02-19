@@ -1,0 +1,22 @@
+name: Run cypress at 7am every day
+
+on:
+  schedule:
+    - cron:  '0 7 * * *'
+
+jobs:
+  run-cypress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          start: /home/runner/work/ubuntu.com/ubuntu.com/run
+          wait-on: 'http://0.0.0.0:8001/_status/check'
+          wait-on-timeout: 180
+          browser: chrome
+          config-file: tests/cypress/cypress.json
+          config: baseUrl=http://0.0.0.0:8001
