@@ -45,7 +45,7 @@ function debounce(func, wait, immediate) {
 	};
 }
 
-function buildCharts() {
+window.buildCharts = function() {
   if (document.querySelector('#server-desktop-eol')) {
     createChart('#server-desktop-eol', desktopServerReleaseNames, desktopServerStatus, serverAndDesktopReleases);
   }
@@ -81,7 +81,7 @@ function buildCharts() {
   }
 }
 
-function clearCharts() {
+window.clearCharts = function() {
   if (document.querySelector('#server-desktop-eol')) {
     document.querySelector('#server-desktop-eol').innerHTML = '';
   }
