@@ -30,7 +30,7 @@
         const searchInput = snapSearch.querySelector('.p-search-box__input');
         if (searchInput) {
           const searchValue = encodeURI(searchInput.value);
-          fetch(`/static/snapcraft-fixture.json?q=${searchValue}`)
+          fetch(`/snaps?q=${searchValue}&size=12`)
             .then((response) => {
               return response.json();
             })
