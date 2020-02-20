@@ -38,6 +38,7 @@ from webapp.views import (
     blog_press_centre,
     download_thank_you,
     releasenotes_redirect,
+    search_snaps,
 )
 from webapp.login import login_handler, logout
 
@@ -132,6 +133,7 @@ app.add_url_rule("/logout", view_func=logout)
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
+app.add_url_rule("/snaps", view_func=search_snaps)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
 url_prefix = "/server/docs"
