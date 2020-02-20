@@ -24,7 +24,16 @@
       </p>
     </div>
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/4b47cae5-image-server.svg" width="400" height="121" alt="" />
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/4b47cae5-image-server.svg",
+            alt="",
+            width="400",
+            height="121",
+            hi_def=True,
+            loading="auto",
+        ) | safe
+      }}
     </div>
   </div>
 </div>
@@ -108,28 +117,109 @@
     <h3 class="p-muted-heading u-align--center">Works with all your hardware and software</h3>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/68713fd5-logo-lenovo.svg" width="144" alt="Lenovo" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/68713fd5-logo-lenovo.svg",
+              alt="Lenovo",
+              width="144",
+              height="24",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
+
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg" width="88" alt="Dell" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg",
+              alt="Dell",
+              width="88",
+              height="88",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/683950fd-logo-ibm.svg" width="144" alt="IBM" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/683950fd-logo-ibm.svg",
+              alt="IBM",
+              width="144",
+              height="58",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/a298e7ec-logo-hp.svg" width="88" alt="HP" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/a298e7ec-logo-hp.svg",
+              alt="HP",
+              width="88",
+              height="88",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="last-item p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg" width="132" alt="Intel" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg",
+              alt="Intel",
+              width="133",
+              height="88",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg" width="144" alt="Cisco" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg",
+              alt="Cisco",
+              width="144",
+              height="76",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/731aab6c-logo-amd.svg" width="144" alt="AMD" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/731aab6c-logo-amd.svg",
+              alt="AMD",
+              width="144",
+              height="44",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="last-item p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg" width="144" alt="Arm" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
+              alt="Arm",
+              width="144",
+              height="44",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "id": ""},
+          ) | safe
+        }}
       </li>
     </ul>
     <p class="u-align--center u-vertically-spaced"><a href="https://certification.ubuntu.com">
@@ -138,16 +228,56 @@
 
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/76999dfc-logo-centrify.png?w=132" width="132" alt="Centrify" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/76999dfc-logo-centrify.png?w=132",
+              alt="Centrify",
+              width="132",
+              height="87",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/eed716e9-logo-openstack.svg" width="88" alt="OpenStack" width="100%" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/eed716e9-logo-openstack.svg",
+              alt="OpenStack",
+              width="88",
+              height="88",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/c228b4e9-logo-likewise.png?w=144" width="144" alt="Likewise" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/c228b4e9-logo-likewise.png?w=144",
+              alt="Likewise",
+              width="144",
+              height="79",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
       <li class="last-item p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/64493bba-logo-openbravo.png?w=144" width="144" alt="Openbravo" />
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/64493bba-logo-openbravo.png?w=144",
+              alt="Openbravo",
+              width="144",
+              height="34",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo"},
+          ) | safe
+        }}
       </li>
     </ul>
     <p class="u-align--center u-vertically-spaced">
@@ -186,7 +316,17 @@
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/60bd6cf1-picto-juju.svg" alt="" width="100" height="100" />
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/60bd6cf1-picto-juju.svg",
+                alt="",
+                width="100",
+                height="100",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+            ) | safe
+          }}
           <h3 class="p-heading-icon__title">
             Juju &mdash; multi-cloud orchestration
           </h3>
@@ -204,7 +344,17 @@
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/0de4fcd5-logo-maas-icon.svg" alt="" width="100" height="100" />
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/0de4fcd5-logo-maas-icon.svg",
+                alt="",
+                width="100",
+                height="100",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+            ) | safe
+          }}
           <h3 class="p-heading-icon__title">
             MAAS &mdash; bare metal provisioning
           </h3>
@@ -222,7 +372,17 @@
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/425efe3a-lxd.svg" width="100" alt="LXD" />
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/425efe3a-lxd.svg",
+                alt="LXD",
+                width="100",
+                height="100",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+            ) | safe
+          }}
           <h3 class="p-heading-icon__title">
             LXD &mdash; machine containers
           </h3>
@@ -285,7 +445,17 @@
       </p>
     </div>
     <div class="col-3 u-vertically-center u-align--center">
-      <img src="https://assets.ubuntu.com/v1/039628d5-picto-community-orange.svg" class="u-hide--small" alt="" width="136" height="136" />
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/039628d5-picto-community-orange.svg",
+            alt="",
+            width="136",
+            height="136",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "u-hide--small"},
+        ) | safe
+      }}
     </div>
   </div>
 </section>
