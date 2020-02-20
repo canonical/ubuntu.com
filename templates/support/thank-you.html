@@ -14,7 +14,17 @@
       <p class="p-heading--four">A member of our team will be in touch within one working day or you can <a class="p-link--external" href="https://buy.ubuntu.com">visit our store</a> to purchase UA Infrastructure.</p>
     </div>
     <div class="col-5 u-vertically-center u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg",
+            alt="smile",
+            width="200",
+            height="200",
+            hi_def=True,
+            loading="auto",
+            attrs={"class": "", "id": ""},
+        ) | safe
+      }}
     </div>
   </div>
 </section>
