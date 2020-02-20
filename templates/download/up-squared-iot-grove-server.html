@@ -68,7 +68,16 @@
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-4 u-hide--small u-align--center u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/0c16085c-network-equipment_2px.svg" alt="" width="150">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/0c16085c-network-equipment_2px.svg",
+          alt="",
+          height="125",
+          width="142",
+          hi_def=True,
+          loading="lazy"
+        ) | safe
+      }}
     </div>
     <div class="col-8">
       <h3>Install and develop snaps</h3>
