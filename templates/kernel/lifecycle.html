@@ -76,6 +76,8 @@
         <p>Server:</p>
         <pre><code>sudo apt-get install --install-recommends linux-generic-lts-xenial</code></pre>
         <p>The 14.04.2 and newer point releases ship with an updated kernel and X stack by default. If you have installed with older media, you can use these instructions to install the newer HWE kernel derived from 16.04 (Xenial).</p>
+        <p>If you run a multiarch desktop (for example, i386 and amd64 on amd64, for gaming or Wine), you may find you need a slightly more involved command:</p>
+        <pre><code>sudo apt-get install --install-recommends linux-generic-lts-xenial xserver-xorg-core-lts-xenial xserver-xorg-lts-xenial xserver-xorg-video-all-lts-xenial xserver-xorg-input-all-lts-xenial libwayland-egl1-mesa-lts-xenial libgl1-mesa-glx-lts-xenial libgl1-mesa-glx-lts-xenial:i386 libglapi-mesa-lts-xenial:i386</code></pre>
       </div>
 
       <div class="p-tabs__content" id="installation-12-04" role="tabpanel" aria-labelledby="installation-12-04-tab">
@@ -157,7 +159,7 @@
       <div class="col-8">
         <h3>Kernel support schedule</h3>
 
-        <div class="p-tabs">
+        <nav class="p-tabs">
           <ul class="p-tabs__list" role="tablist">
             <li class="p-tabs__item" role="presentation">
               <a href="#support-all" class="p-tabs__link" role="tab" id="support-all-tab" aria-controls="support-all" aria-selected="true">All releases</a>
@@ -740,7 +742,7 @@
 
   <script>
     function initTabs() {
-      var tabLinks = document.querySelectorAll("a[href^='#']");
+      var tabLinks = document.querySelectorAll(".p-tabs__link");
 
       // prevent the page jumping around when switching tabs,
       // whilst still using :target
