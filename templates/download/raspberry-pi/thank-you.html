@@ -31,7 +31,16 @@
       {% endif %}
     </div>
     <div class="col-5 u-hide--small u-align--center">
-      <img src="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg" alt="" width="350">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg",
+          alt="",
+          height="227",
+          width="350",
+          hi_def=True,
+          loading="auto"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -90,7 +99,16 @@
       <p>Here are a few things you can do now that you have your Raspberry Pi running Ubuntu.</p>
     </div>
     <div class="col-5 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/a46ea917-3+-+Leverage+snaps+to+build+a+lean+custom+production+image.svg" alt="" width="350">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/a46ea917-3+-+Leverage+snaps+to+build+a+lean+custom+production+image.svg",
+          alt="",
+          height="227",
+          width="350",
+          hi_def=True,
+          loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
   <div class="row">
