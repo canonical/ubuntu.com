@@ -33,7 +33,17 @@
       </div>
     </div>
     <div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg" width="413" style="max-height: 410px; max-width: 250px;" alt="" >
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg",
+            alt="",
+            width="250",
+            height="160",
+            hi_def=True,
+            loading="auto",
+            attrs={"style": "max-height: 410px; max-width: 250px;"},
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -67,6 +77,8 @@ context:
      header_title: "From VMware to Charmed&nbsp;OpenStack"
      header_subtitle:
      header_image: "https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg"
+     header_image_width="250"
+     header_image_height="160"
      header_url: '#register-section'
      header_cta: Register for the webinar
      header_class: p-engage-banner--dark
@@ -100,6 +112,8 @@ This is some more text.
         <li class="p-list__item"><strong>header_title</strong> - text for the &lt;h1> of the pages</li>
         <li class="p-list__item"><strong>header_subtitle</strong> - <em>optional</em> - text for the &lt;h4> subtitle</li>
         <li class="p-list__item"><strong>header_image:</strong> - <em>optional</em> - url of the image to be on the right of the banner</li>
+        <li class="p-list__item"><strong>header_image_width</strong> - <em>required</em> the width of the header image in pixels</li>
+        <li class="p-list__item"><strong>  header_image_height</strong> <em>required</em> - the height of the header image in pixels</li>
         <li class="p-list__item"><strong>header_url</strong> - the url or anchor for the mobile view CTA - usually '#register-section'</li>
         <li class="p-list__item"><strong>header_cta</strong> - text for the mobile view CTA - usually 'Register for the webinar' or 'Download the whitepaper'</li>
         <li class="p-list__item"><strong>header_class</strong> - the class of the engage banner you want to use - usually one of: p-engage-banner--dark, p-engage-banner--grad, p-engage-banner--k8s, p-engage-banner--openstack, p-engage-banner--aqua, p-engage-banner--snapcraft</li>

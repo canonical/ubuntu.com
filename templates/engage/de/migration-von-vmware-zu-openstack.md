@@ -8,6 +8,8 @@ context:
      header_title: "Migration von VMware zu OpenStack"
      header_subtitle: "Wie ein Umstieg auf Charmed OpenStack die Gesamtkosten spürbar senken kann"
      header_image: "https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg"
+     header_image_width: "250"
+     header_image_height: "160"
      header_url:
      header_cta:
      header_class: p-engage-banner--dark
@@ -20,7 +22,7 @@ context:
 ---
 
 Aufgrund der Kosten für Lizenzen, Support und Beratung von VMware erreichen viele nicht ihr primäres Ziel - deutlich reduzierte Gesamtkosten. Auf der Suche nach Alternativen betrachten deshalb immer mehr Unternehmen andere Plattformen wie OpenStack genauer.
- 
+
 Dieses White Paper und Webinar:
 
 <ul class="p-list">
