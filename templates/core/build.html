@@ -51,8 +51,8 @@
   </div>
 </section>
 
-<div {% if not openid %}style="opacity: .2; pointer-events: none;"{% endif %}>
-  <section class="p-strip is-shallow">
+<div {% if not openid %}class="u-disable"{% endif %}>
+  <section class="p-strip is-shallow js-step-1">
     <div class="row">
       <div class="col-8">
         <h2>1 What board are you using?</h2>
@@ -87,7 +87,7 @@
     </div>
   </section>
 
-  <section class="p-strip is-shallow">
+  <section class="p-strip is-shallow js-step-2">
     <div class="row">
       <div class="col-8">
         <h2>2 What version of Ubuntu do you want?</h2>
@@ -122,7 +122,7 @@
     </div>
   </section>
 
-  <section class="p-strip is-shallow">
+  <section class="p-strip is-shallow js-step-3">
     <div class="row">
       <div class="col-8">
         <h2>3 What packages do you want preinstalled?</h2>
