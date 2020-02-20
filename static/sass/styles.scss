@@ -18,8 +18,8 @@
   font-family: "UbtuOverride";
   font-style: normal;
   font-weight: 300;
-  src:
-    url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"),
+  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
+      format("woff2"),
     url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
 }
 
@@ -560,6 +560,11 @@ summary {
       color: inherit;
     }
   }
+}
+
+.u-disable {
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 // XXX: Align accordion icons top instead of center
