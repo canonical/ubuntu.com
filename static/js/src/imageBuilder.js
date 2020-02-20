@@ -13,10 +13,15 @@
   const snapResults = document.querySelector('.js-snap-results');
   const preinstallResults = document.querySelector('.js-preinstalled-snaps-list');
   const buildButton = document.querySelector('.js-build-button');
+  const step1 = document.querySelector('.js-step-1');
+  const step2 = document.querySelector('.js-step-2');
+  const step3 = document.querySelector('.js-step-3');
   let snapSearchResults;
   selectionListeners(boardSelection, 'board');
   selectionListeners(osSelection, 'os');
   searchHandler();
+  step2.classList.add('u-disable');
+  step3.classList.add('u-disable');
 
   function searchHandler() {
     if (snapSearch) {
@@ -41,7 +46,6 @@
 
   function addSnapHandler() {
     const snapAddButtons = snapResults.querySelectorAll('.js-add-snap');
-
     snapAddButtons.forEach(addButton => {
       addButton.addEventListener('click', e => {
         e.preventDefault();
@@ -98,6 +102,11 @@
       selection.addEventListener('click', function() {
         selectCollection(collection, selection);
         const value = this.querySelector('.p-card__content').innerText;
+        if (stateIndex == 'board') {
+          step2.classList.remove('u-disable');
+        } else if (stateIndex == 'os') {
+          step3.classList.remove('u-disable');
+        }
         changeState(stateIndex, value);
         updateOSs();
       });
