@@ -71,82 +71,13 @@
         </li>
 
         <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Instal kfctl</h3>
+          <h3 class="p-stepped-list__title">Enable Kubeflow</h3>
           <div class="p-stepped-list__content">
             <p>
-              <code>kfctl</code> is a binary developed by the Kubeflow community that can be used to install the standard set of Kubeflow components.
-            </p>
-            <p>
-              The instructions below will download the binary as a compressed file, expand it into the current directory, and add it to the PATH.
+              Run the following command to enable Kubeflow.
             </p>
             <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="export OPSYS=linux" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest | grep browser_download | grep $OPSYS | cut -d '&#34;' -f 4 | xargs curl -O -L &&  tar -zvxf kfctl_*_${OPSYS}.tar.gz" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="export PATH=$PATH:$PWD" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-          </div>
-        </li>
-
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Install Kubeflow</h3>
-          <div class="p-stepped-list__content">
-            <p>
-              <code>kfctl</code> will install the standard set of Kubeflow components. The script below will create a directory, "kf-poc", which will store all the kubernetes kustomize yaml files.
-            </p>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="export KFAPP=&quot;kf-poc&quot;" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="curl -s https://api.github.com/repos/kubeflow/kubeflow/releases/latest | grep browser_download | grep $OPSYS | cut -d '&#34;' -f 4 | xargs curl -O -L &&  tar -zvxf kfctl_*_${OPSYS}.tar.gz" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="export CONFIG=&quot;https://raw.githubusercontent.com/kubeflow/kubeflow/${VERSION}/bootstrap/config/kfctl_k8s_istio.yaml&quot;" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="kfctl init ${KFAPP} --config=${CONFIG} -V" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="cd ${KFAPP}" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="kfctl generate all -V" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="kfctl apply all -V" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <p>
-              If you see a warning “..Could not find namespace kubeflow-anonymous..”, create the namespace manually:
-            </p>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="kubectl create namespace kubeflow-anonymous" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <p>
-              It will take several minutes for the cluster to become operational - there are many containers that will be downloaded and started. To check the install status, run this command:
-            </p>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="kubectl -n kubeflow get po" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <p>
-              You can use <code>watch</code> to automatically update the status of the pods:
-            </p>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="watch -c -n 10 kubectl -n kubeflow get po" readonly="readonly">
+              <input class="p-code-copyable__input" value="microk8s.enable kubeflow" readonly="readonly">
               <button class="p-code-copyable__action">Copy to clipboard</button>
             </div>
           </div>
@@ -162,21 +93,11 @@
               Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either <code>multipass list</code> or <code>multipass info kubeflow</code>.
             </p>
             <p>
-              In addition to the IP address, to access the Kubeflow home page, you’ll need the port number. The default nodeport should be `31380`, but to confirm, you can run the following command. It will highlight the http port to use.
-            </p>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="echo `kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name==&#34;http2&#34;)].nodePort}'`" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <p>
-              And now you should go to your browser and enter this URL:
-            </p>
-            <p>
               Now you should go to your browser and point browser to either:
             </p>
             <ul>
-              <li class="p-list__item"><code>http://&lt;kubeflow VM IP&gt;:&lt;Istio PORT&gt;</code></li>
-              <li class="p-list__item"><code>http://localhost:&lt;Istio PORT&gt;</code></li>
+              <li class="p-list__item"><code>http://localhost</code></li>
+              <li class="p-list__item"><code>http://&lt;kubeflow VM IP&gt;</code></li>
             </ul>
           </div>
         </li>
