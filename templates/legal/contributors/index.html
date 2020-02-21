@@ -1,10 +1,10 @@
 {% extends "legal/_base_legal.html" %}
 
 {% block title %}Contributor licence agreement{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1O7n0CijJxO60eY8NLisra3BQw03SusqMUgop0PRPx6M/edit{% endblock meta_copydoc %}
 
 {% block content %}
-
 <section class="p-strip is-deep u-no-padding--bottom">
   <div class="row">
     <div class="col-8">
@@ -14,8 +14,18 @@
     </div>
     <div class="col-4">
       <div class="u-align--center">
-        <img src="https://assets.ubuntu.com/v1/7b1d9e05-image-document-canonical.svg" width="166" alt="Canonical contributor licence agreement" class="u-hide--small" />
-      </div>
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/7b1d9e05-image-document-canonical.svg",
+              alt="Canonical contributor licence agreement",
+              width="166",
+              height="200",
+              hi_def=True,
+              loading="auto",
+              attrs={"class": "u-hide--small"},
+          ) | safe
+        }}
+	      </div>
     </div>
   </div>
 </section>

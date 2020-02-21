@@ -1,7 +1,9 @@
 {% extends "legal/_base_legal.html" %}
 
 {% block title %}Thank you for submitting your contributor licence agreement | Ubuntu and Canonical legal{% endblock %}
+
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1hF6GE5Ui-OzrubtSgjTE5-es2Nu10U999lddwgu2ROA/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -16,8 +18,17 @@
     </div>
     <div class="col-4">
       <div class="u-align--center">
-        <img src="https://assets.ubuntu.com/v1/6065c8e5-pictogram-smile-purple.png?w=164" width="164" alt="Smile">
-      </div>
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/6065c8e5-pictogram-smile-purple.png?w=164",
+              alt="Smile",
+              width="164",
+              height="162",
+              hi_def=True,
+              loading="auto",
+          ) | safe
+        }}
+	      </div>
     </div>
   </div>
 </section>
