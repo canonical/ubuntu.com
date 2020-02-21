@@ -5,6 +5,16 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1Hw_8dWAAUpHHm5Z_XNUVJaSVE5k5i2Vt6WANcJYUZvY/edit{% endblock meta_copydoc %}
 
 {% block content %}
+
+{% if build_info %}
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <h1>Build started</h1>
+    <p>We've kicked off <a href="{{ build_info.web_link }}">your build</a>.</p>
+    <pre>{{ build_info | tojson }}</pre>
+  </div>
+</section>
+{% else %}
 <section class="p-strip--suru-topped">
   <div class="row">
     <div class="col-7">
@@ -174,7 +184,9 @@
 
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded" data-form-id="1266" data-lp-id="2166" data-return-url="https://www.ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
 
-</div>
+{% endif %}
 
 {% endblock content %}
+
