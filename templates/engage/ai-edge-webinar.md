@@ -8,6 +8,8 @@ context:
      header_title: "Artificial Intelligence at the edge in a 5G world"
      header_subtitle: "Deploying AI/ML solutions in latency-sensitive environments requires a new solution architecture approach"
      header_image: "https://assets.ubuntu.com/v1/f0bce376-AI_lrg_white.svg"
+     header_image_width: "250"
+     header_image_height: "229"
      header_url: "#register-section"
      header_cta: "Watch the webinar"
      header_class: p-engage-banner--dark
