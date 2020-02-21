@@ -1,11 +1,12 @@
 {% extends "legal/_base_legal.html" %}
 
 {% block title %}Ubuntu legal terms and policies{% endblock %}
+
 {% block meta_description %}Ubuntu and Canonical Legal - legal terms and policies{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/19yTLYWu7rEErPrO0xDsqMeN8tcWKBjHuarw0tjxRlhY/edit{% endblock meta_copydoc %}
 
 {% block content %}
-
 <div class="p-strip is-deep u-no-padding--bottom">
   <div class="row">
     <div class="col-8">
@@ -14,7 +15,17 @@
     </div>
     <div class="col-4">
       <div class="u-align--center">
-        <img src="https://assets.ubuntu.com/v1/253da317-image-document-ubuntudocs.svg" width="214" alt="Ubuntu legal docs" class="u-hide--small" />
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/253da317-image-document-ubuntudocs.svg",
+          alt="Ubuntu legal docs",
+          width="214",
+          height="248",
+          hi_def=True,
+          loading="auto",
+          attrs={"class": "u-hide--small"},
+          ) | safe
+        }}
       </div>
     </div>
   </div>
