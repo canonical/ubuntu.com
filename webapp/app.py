@@ -41,6 +41,7 @@ from webapp.views import (
     get_renewal,
     post_stripe_method_id,
     post_stripe_invoice_id,
+    post_build,
     releasenotes_redirect,
     search_snaps,
     build_tutorials_index,
@@ -129,7 +130,7 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"],
+    "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
 )
 
 app.add_url_rule(
@@ -178,6 +179,7 @@ app.add_url_rule("/logout", view_func=logout)
 template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/snaps", view_func=search_snaps)
+app.add_url_rule("/core/build", view_func=post_build, methods=["POST"])
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
 url_prefix = "/server/docs"
