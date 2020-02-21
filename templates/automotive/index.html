@@ -22,6 +22,7 @@
           width="350",
           height="250",
           hi_def=True,
+          loading="auto",
         ) | safe
       }}
     </div>
@@ -187,11 +188,33 @@
     <h2 class="p-muted-heading u-align--center u-sv3">THESE AUTOMOTIVE INNOVATORS HAVE CHOSEN UBUNTU</h2>
     <ul class="p-inline-list u-align--center u-no-margin--bottom">
       <li class="p-inline-list__item">
-        <img src="https://assets.ubuntu.com/v1/3a94f633-Eurotech-logo-02.svg" alt="Eurotech logo" width="200" height="200">
+        <div class="u-inline--child">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/3a94f633-Eurotech-logo-02.svg",
+              alt="Eurotech logo",
+              height="200",
+              width="200",
+              hi_def=True,
+              loading="lazy",
+            ) | safe
+          }}
+        </div>
       </li>
       <li class="p-inline-list__item">&nbsp;</li>
       <li class="p-inline-list__item">
-        <img src="https://assets.ubuntu.com/v1/86293916-apollo-logo.svg" alt="Apollo logo" width="200" height="200">
+        <div class="u-inline--child">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/86293916-apollo-logo.svg",
+              alt="",
+              height="200",
+              width="200",
+              hi_def=True,
+              loading="lazy",
+            ) | safe
+          }}
+        </div>
       </li>
     </ul>
   </div>
@@ -220,7 +243,16 @@
       </p>
     </div>
     <div class="col-6 u-hide--small u-align--center u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg" class="u-hide--small" width="250" height="178" alt="">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+          alt="",
+          height="178",
+          width="250",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
