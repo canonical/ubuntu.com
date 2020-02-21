@@ -10,7 +10,16 @@
 
 <section class="p-strip p-strip--dark p-takeover">
   <div class="u-fixed-width navigation-logo-engage">
-    <a href="/"><img src="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg" width="143" height="auto" alt="Ubuntu"></a>
+    {{
+      image(
+      url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
+      alt="Ubuntu",
+      width="143",
+      height="32",
+      hi_def=True,
+      loading="auto",
+      ) | safe
+    }}
   </div>
   <div class="row u-equal-height">
     <div class="col-7 u-vertically-center">
@@ -28,7 +37,16 @@
     </div>
 
     <div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/03853de5-Joint+Lime-illustration-white.svg" alt="" style="width: 320px;">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/03853de5-Joint+Lime-illustration-white.svg",
+        alt="",
+        width="320",
+        height="336",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
