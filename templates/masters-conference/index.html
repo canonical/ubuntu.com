@@ -1,7 +1,9 @@
 {% extends "masters-conference/_base-masters-conference.html" %}
 
 {% block title %}Ubuntu Masters: the masters speak{% endblock %}
+
 {% block meta_description %}Ubuntu Masters are IT practitioners who are driving revolutionary change in the corporate space. Watch videos from our first Ubuntu Masters Conference, featuring these inspiring doers to hear how they are solving complex industry-wide challenges.{% endblock meta_description %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1BXbsNMORvI7aW3qBgix7-VN7kbc6WizxiraacNFC7_w/edit#{% endblock meta_copydoc %}
 
 {% block content %}
@@ -23,6 +25,7 @@
           height="130",
           width="300",
           hi_def=True,
+          loading="auto",
           attrs={"class": "u-hide--small"},
         ) | safe
       }}
@@ -42,7 +45,7 @@
         <a href="/masters-conference/contact-us" class="p-button--neutral js-invoke-modal">Get notified about future events</a>
       </p>
     </div>
-    
+
     <div class="col-6">
       <div class="u-embedded-media u-vertically-center--direct" style="width: 466px; max-width: 100%; margin-left: auto; margin-right: auto;">
         <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/uLExt4I-r-E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -74,7 +77,7 @@
       <p>
         <a href="https://www.youtube.com/watch?v=7pmXdG8-7WU" class="p-button--neutral"><span class="p-link--external">See the full keynote presentation</span></a>
       </p>
-      
+
       <p>
         <a href="/server">Find out more about Ubuntu Server&nbsp;&rsaquo;</a>
       </p>
@@ -95,7 +98,7 @@
 
       <p class="p-heading--five">
         Joe Sandoval, Adobe Ad Platform<br />
-        Site Reliability Engineering Manager          
+        Site Reliability Engineering Manager
       </p>
 
       <p>How do you support a diverse infrastructure that spans six data centres, three continents and the public cloud? Adobe uses open-source technologies, including Ubuntu, Kubernetes and OpenStack, to craft a feature-rich platform that developers can build on to best serve their customers. </p>
@@ -107,12 +110,12 @@
       <p>
         <a href="/kubernetes">Find out more about Kubernetes on Ubuntu&nbsp;&rsaquo;</a>
       </p>
-      
+
       <p class="u-no-margin--bottom">
         <a href="/openstack">Find out more about OpenStack on Ubuntu&nbsp;&rsaquo;</a>
       </p>
     </div>
-    
+
     <div class="col-6">
       <div class="u-embedded-media u-vertically-center--direct" style="width: 466px; max-width: 100%; margin-left: auto; margin-right: auto;">
         <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/7Msh_J4mjVo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -136,7 +139,7 @@
 
       <p class="p-heading--five">
         Rob Cameron, Roblox<br />
-        Technical Director for Cloud Services  
+        Technical Director for Cloud Services
       </p>
 
       <p>Roblox moved its game servers from Windows to Linux to reduce costs and create a better player experience. The work included the migration to containerised workloads (approximately 200k) in a very short timeframe. The infrastructure capabilities found with MAAS and Ubuntu with an updated kernel were two of the components that contributed to success as part of the path to full orchestration.</p>
