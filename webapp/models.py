@@ -47,7 +47,7 @@ class Notice(Base):
     instructions = Column(String)
     packages = Column(JSON)
     cves = relationship("CVE", secondary=notice_cves)
-    releases = relationship("Release", secondary=notice_releases)
+    releases = relationship("Release", secondary=notice_releases, order_by="-Release.version")
 
 
 class Release(Base):

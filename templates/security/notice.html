@@ -27,29 +27,47 @@
     </div>
   </div>
 
-  {% if notice.packages %}
   <div class="row">
     <div class="col-12">
       <h2>Packages</h2>
       <ul class="p-list">
         {% for package in notice.packages %}
-          <li class="p-list__item">{{ package.name }}</li>
-      	{% endfor %}
+          <li class="p-list__item">{{package}}</li>
+        {% endfor %}
       </ul>
     </div>
-  </div>
-  {% endif %}
-
+  
   <div class="row">
     <div class="col-8">
       <h2>Details</h2>
       <p>{{ notice.details|safe }}</p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-8">
       <h2>Update instructions</h2>
+      <p>The problem can be corrected by updating your system to the following package versions:</p>
+      {% for release, packages in notice.releases_packages.items() %}
+        <h5>Ubuntu {{release}}</h5>
+        <ul class="p-list">
+          {% for package in packages %}
+            <li class="p-list__item"><a href="https://launchpad.net/ubuntu/+source/{{package.name}}">{{package.name}}</a> - <a href="https://launchpad.net/ubuntu/+source/{{package.name}}/{{package.version}}">{{package.version}}</a></li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
       <p>{{ notice.instructions|safe }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <h2>References</h2>
+        <ul class="p-list">
+          {% for cve in notice.cves %}
+            <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{cve.id}}">CVE-{{cve.id}}</a></li>
+          {% endfor %}
+        </ul>
     </div>
   </div>
 </section>

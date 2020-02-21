@@ -3,6 +3,7 @@ import json
 import os
 import re
 import datetime
+from collections import OrderedDict
 from math import ceil
 
 # Packages
@@ -260,6 +261,24 @@ def notice(notice_id):
     if not notice:
         flask.abort(404)
 
+    notice_packages = set()
+    releases_packages = {}
+
+    for release, packages in notice.packages.items():
+        release_name = db_session.query(Release).filter(Release.codename == release).one().version
+        releases_packages[release_name] = []
+        for name, package in packages.get("sources", {}).items():
+            # Build pacakges per release dict
+            package["name"] = name
+            releases_packages[release_name].append(package)
+            # Build full package list
+            description = package.get("description")
+            package_name = f"{name} - {description}" if description else name
+            notice_packages.add(package_name)
+
+    # Guarantee release order
+    releases_packages = OrderedDict(sorted(releases_packages.items(), reverse=True))
+
     notice = {
         "id": notice.id,
         "title": notice.title,
@@ -267,8 +286,10 @@ def notice(notice_id):
         "summary": notice.summary,
         "details": markdown_parser(notice.details),
         "instructions": markdown_parser(notice.instructions),
-        "packages": notice.packages,
+        "packages": notice_packages,
+        "releases_packages": releases_packages,
         "releases": notice.releases,
+        "cves": notice.cves
     }
 
     return flask.render_template("security/notice.html", notice=notice)
