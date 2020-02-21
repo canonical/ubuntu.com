@@ -4,32 +4,59 @@ from urllib.parse import quote, unquote
 # Packages
 import flask
 import flask_openid
+import talisker.requests
 from pymacaroons import Macaroon
 
 # Local
-from webapp import auth
-from webapp.api import advantage as advantage_api
-from webapp.macaroons import MacaroonRequest, MacaroonResponse
+from webapp.macaroons import (
+    binary_serialize_macaroons,
+    MacaroonRequest,
+    MacaroonResponse,
+)
 
 
 open_id = flask_openid.OpenID(
     stateless=True, safe_roots=[], extension_responses=[MacaroonResponse]
 )
+session = talisker.requests.get_session()
+
+
+def is_authenticated(user_session):
+    """
+    Checks if the user is authenticated from the session
+    Returns True if the user is authenticated
+    """
+
+    return "openid" in user_session and "authentication_token" in user_session
+
+
+def empty_session(user_session):
+    """
+    Remove items from session
+    """
+
+    user_session.pop("macaroon_root", None)
+    user_session.pop("authentication_token", None)
+    user_session.pop("openid", None)
 
 
 @open_id.loginhandler
 def login_handler():
-    if auth.is_authenticated(flask.session):
+    if is_authenticated(flask.session):
         return flask.redirect(open_id.get_next_url())
 
-    root = advantage_api.get_macaroon()
+    response = session.request(
+        method="get",
+        url="https://contracts.canonical.com/v1/canonical-sso-macaroon",
+    )
+    flask.session["macaroon_root"] = response.json()["macaroon"]
 
-    for caveat in Macaroon.deserialize(root).third_party_caveats():
+    for caveat in Macaroon.deserialize(
+        flask.session["macaroon_root"]
+    ).third_party_caveats():
         if caveat.location == "login.ubuntu.com":
             openid_macaroon = MacaroonRequest(caveat_id=caveat.caveat_id)
             break
-
-    flask.session["macaroon_root"] = root
 
     return open_id.try_login(
         "https://login.ubuntu.com",
@@ -41,7 +68,13 @@ def login_handler():
 
 @open_id.after_login
 def after_login(resp):
-    flask.session["macaroon_discharge"] = resp.extensions["macaroon"].discharge
+    root = Macaroon.deserialize(flask.session.pop("macaroon_root"))
+    bound = root.prepare_for_request(
+        Macaroon.deserialize(resp.extensions["macaroon"].discharge)
+    )
+    flask.session["authentication_token"] = binary_serialize_macaroons(
+        [root, bound]
+    ).decode("utf-8")
 
     if not resp.nickname:
         return flask.redirect("https://login.ubuntu.com")
@@ -62,11 +95,9 @@ def logout():
 
     # Make sure return_to is URL encoded
     if return_to == unquote(return_to):
-        # Not encoded
         return_to = quote(return_to, safe="")
 
-    if auth.is_authenticated(flask.session):
-        auth.empty_session(flask.session)
+    empty_session(flask.session)
 
     return flask.redirect(
         "https://login.ubuntu.com/+logout"
