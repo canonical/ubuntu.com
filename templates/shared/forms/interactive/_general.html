@@ -7,7 +7,7 @@
     </header>
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Canonical certifies, secures and enables enterprise open source on Ubuntu. Tell us about your project so we bring the right team to the conversation.</p>
-        <div class="js-formfield">
+      <div class="js-formfield">
         <h3 class="p-heading--five">How would you like to make use of Ubuntu?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
@@ -248,7 +248,16 @@
             <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
           </div>
           <div class="col-5 u-vertically-center u-align--center u-hide--small">
-            <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+              alt="smile",
+              width="200",
+              height="200",
+              hi_def=True,
+              loading="auto",
+              ) | safe
+            }}
           </div>
         </div>
       </div>
@@ -256,4 +265,3 @@
     </div>
   </div>
 </div>
-
