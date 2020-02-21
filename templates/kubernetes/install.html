@@ -1,8 +1,9 @@
 {% extends "kubernetes/base_kubernetes.html" %}
 
-
 {% block title %}Install Kubernetes{% endblock %}
+
 {% block meta_description %}A step-by-step installation guide to Kubernetes on your software defined infrastructure.{% endblock meta_description %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1oiD6UUomf2daZitS3UOosujYBXPbiOMzPtXVZBq-ph0/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -14,7 +15,16 @@
       <p>Kubernetes on Ubuntu is free to use and always current - you get the latest innovations from the Kubernetes community within a week of upstream release.  It works on any cloud (public, private, and bare-metal). Kubernetes on Ubuntu is the productive, open source way to manage containers and microservices, automating the time-consuming tasks of installing, patching, upgrading, and carrying out cluster health checks.</p>
     </div>
     <div class="col-5 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/0822f908-kubernetes-instal.svg" width="140" alt="Install Kubernetes" />
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/0822f908-kubernetes-instal.svg",
+        alt="Install Kubernetes",
+        width="140",
+        height="188",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -271,52 +281,59 @@
 $ juju scp kubernetes-master/0:config ~/.kube/config
 $ snap install kubectl --classic
 $ kubectl cluster-info</code></pre>
-          <p><strong>Useful Links:</strong> Find out more about Charmed Kubernetes.</p>
-          <ul style="list-style-type: disc;">
-            <li><a href="/kubernetes/docs/install-manual">Manual Install&nbsp;&rsaquo;</a></li>
-            <li><a class="p-link--external" href="https://jaas.ai/docs/maas-cloud">Find out more about MAAS as a Cloud in Juju</a></li>
-            <li><a class="p-link--external" href="https://jaas.ai/docs">Full Juju documentation</a></li>
-            <li><a href="/kubernetes/docs">Full Kubernetes documentation&nbsp;&rsaquo;</a></li>
-          </ul>
-        </div>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    <h2 style="max-width: none">Easy Kubernetes deployment with Juju As A Service by Canonical</h2>
-    <p>This video explains how to easily deploy a production environment of Kubernetes with JAAS.</p>
-  </div>
-  <div class="u-fixed-width">
-    <div class="u-embedded-media">
-      <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/0Le2A-Uzr1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p><strong>Useful Links:</strong> Find out more about Charmed Kubernetes.</p>
+            <ul style="list-style-type: disc;">
+              <li><a href="/kubernetes/docs/install-manual">Manual Install&nbsp;&rsaquo;</a></li>
+              <li><a class="p-link--external" href="https://jaas.ai/docs/maas-cloud">Find out more about MAAS as a Cloud in Juju</a></li>
+              <li><a class="p-link--external" href="https://jaas.ai/docs">Full Juju documentation</a></li>
+              <li><a href="/kubernetes/docs">Full Kubernetes documentation&nbsp;&rsaquo;</a></li>
+            </ul>
+          </div>
+        </li>
+      </ol>
     </div>
-  </div>
-</section>
+  </section>
 
-{% include "kubernetes/_get_ebook.html" %}
+  <section class="p-strip is-bordered">
+    <div class="u-fixed-width">
+      <h2 style="max-width: none">Easy Kubernetes deployment with Juju As A Service by Canonical</h2>
+      <p>This video explains how to easily deploy a production environment of Kubernetes with JAAS.</p>
+    </div>
+    <div class="u-fixed-width">
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/0Le2A-Uzr1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
 
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-5 u-vertically-center u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg" width="280" alt="" />
+  {% include "kubernetes/_get_ebook.html" %}
+
+  <section class="p-strip">
+    <div class="row u-equal-height">
+      <div class="col-5 u-vertically-center u-align--center u-hide--small">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+          alt="",
+          width="280",
+          height="199",
+          hi_def=True,
+          loading="lazy",
+          ) | safe
+        }}
+      </div>
+      <div class="col-7 u-vertically-center">
+        <h2>Need more help?</h2>
+        <p>Let our cloud experts help you take the next step.</p>
+        <p><a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Contact us</a></p>
+      </div>
     </div>
-    <div class="col-7 u-vertically-center">
-      <h2>Need more help?</h2>
-      <p>Let our cloud experts help you take the next step.</p>
-      <p><a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Contact us</a></p>
-    </div>
-  </div>
-</section>
+  </section>
 
   {% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubernetes" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-install" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_kubernetes" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-install" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
 
-
-
-{% endblock content %}
+  {% endblock content %}
