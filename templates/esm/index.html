@@ -25,6 +25,7 @@
           height="200",
           width="200",
           hi_def=True,
+          loading="auto",
         ) | safe
       }}
     </div>
@@ -34,7 +35,16 @@
 <section class="p-strip--suru-accent is-dark">
   <div class="row">
     <div class="col-3 p-card u-hide--small u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/3e31f0f5-ITstrategen+logo.svg" alt="">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/3e31f0f5-ITstrategen+logo.svg",
+          alt="",
+          height="52",
+          width="229",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
     <div class="col-8 col-start-large-5">
       <div class="p-heading-icon--small">
@@ -46,6 +56,7 @@
               height="32",
               width="32",
               hi_def=True,
+              loading="lazy",
               attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
@@ -55,25 +66,6 @@
         <p>The security of customer data is of utmost importance to ITstrategen. That’s why Ubuntu is their server
           operating system of choice.</p>
         <p><a href="/engage/ITstrategen-case-study" class="p-button--neutral">Read the case study</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-slanted--bottom-left u-hide">
-  <div class="row">
-    <div class="col-3 p-card u-hide--small u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/3e31f0f5-ITstrategen+logo.svg" alt="">
-    </div>
-    <div class="col-8 col-start-large-5">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/f6d6f78b-Case+study.svg">
-          <p class="p-muted-heading u-sv3" style="line-height: 1.5rem;">CASE STUDY</p>
-        </div>
-        <h4>ITstrategen keeps their applications secure with ESM</h4>
-        <p>The security of customer data is of utmost importance to ITstrategen. That’s why Ubuntu is their server operating system of choice.</p>
-        <p><a href="/engage/ITstrategen-case-study">Read the case study&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </div>
@@ -136,7 +128,16 @@
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-5 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg" style="height:200px" alt="">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+          alt="",
+          height="200",
+          width="281",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
     <div class="col-7 u-vertically-center">
       <div>
