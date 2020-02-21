@@ -8,6 +8,8 @@ context:
      header_title: "Ubuntu Desktop for the enterprise"
      header_subtitle: "Learn why enterprises are beginning to adopt Linux as a desktop operating system"
      header_image: "https://assets.ubuntu.com/v1/5e2df4f0-Eoan+Ermine+laptop.png"
+     header_image_height: 146
+     header_image_width: 250
      header_url: '#register-section'
      header_cta: Download whitepaper
      header_cta_class: p-button--positive
@@ -28,4 +30,3 @@ This whitepaper explains how Ubuntu Desktop can benefit an enterprise, including
 - Integration with Microsoft and existing infrastructure environments to ensure other IT investments continue to deliver value.
 
 - The range of essential apps and office suites available on Linux to ensure all employees are productive and the selection of certified hardware Ubuntu Desktop is available on.  
-
