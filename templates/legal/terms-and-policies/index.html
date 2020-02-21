@@ -1,20 +1,30 @@
 {% extends "legal/_base_legal.html" %}
 
 {% block title %}Terms and policies{% endblock %}
+
 {% block meta_description %}Ubuntu and Canonical Legal - legal terms and policies{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1p3ZWroZ3nkw8XJJdPvPxSlWGYcLZLT8UbUVuppBcyHk/edit{% endblock meta_copydoc %}
 
 {% block content %}
-
 <div class="p-strip">
   <div class="row">
     <div class="col-8">
       <h1>Terms and&nbsp;policies</h1>
-      <p>We have legal agreements for the production of our software, the way we present it on our websites and the protection of intellectual property &mdash; both yours and ours. In the sections below, you can see all the legal terms and policies for Ubuntu
-        and Canonical.</p>
+      <p>We have legal agreements for the production of our software, the way we present it on our websites and the protection of intellectual property &mdash; both yours and ours. In the sections below, you can see all the legal terms and policies for Ubuntu and Canonical.</p>
     </div>
     <div class="col-3 col-start-large-10">
-      <img src="https://assets.ubuntu.com/v1/080c0e59-image-document-ubuntuterms.svg" width="166" alt="Ubuntu terms" class="u-hide--small" />
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/080c0e59-image-document-ubuntuterms.svg",
+        alt="Ubuntu terms",
+        width="166",
+        height="200",
+        hi_def=True,
+        loading="auto",
+        attrs={"class": "u-hide--small"},
+        ) | safe
+      }}
     </div>
   </div>
 </div>
