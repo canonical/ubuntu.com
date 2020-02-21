@@ -16,6 +16,7 @@
   const step2 = document.querySelector('.js-step-2');
   const step3 = document.querySelector('.js-step-3');
   let snapSearchResults;
+
   selectionListeners(boardSelection, 'board');
   selectionListeners(osSelection, 'os');
   searchHandler();
@@ -77,6 +78,7 @@
       });
     });
   }
+
   function renderSnapList(responce, results, buttonText) {
     if (results) {
       results.innerHTML = '';
@@ -101,15 +103,21 @@
       selection.addEventListener('click', function() {
         selectCollection(collection, selection);
         const value = this.querySelector('.p-card__content').innerText;
-        if (stateIndex == 'board') {
-          step2.classList.remove('u-disable');
-        } else if (stateIndex == 'os') {
-          step3.classList.remove('u-disable');
-        }
         changeState(stateIndex, value);
         updateOSs();
       });
     });
+  }
+
+  function checkDisabled() {
+    step2.classList.add('u-disable');
+    step3.classList.add('u-disable');
+    if (STATE.board != '') {
+      step2.classList.remove('u-disable');
+    }
+    if (STATE.os != '') {
+      step3.classList.remove('u-disable');
+    }
   }
 
   function selectCollection(collection, selected) {
@@ -166,6 +174,7 @@
   function changeState(key, value) {
     STATE[key] = value;
     render();
+    checkDisabled();
   }
 
   // Utils
