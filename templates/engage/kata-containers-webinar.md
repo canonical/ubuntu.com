@@ -9,6 +9,8 @@ context:
      header_title: "Ensuring security and isolation in Kubernetes with Kata Containers"
      header_title_class: 'u-no-margin--bottom'
      header_image: "https://assets.ubuntu.com/v1/4cbd0535-kata+containers+kubernetes.svg"
+     header_image_height: 145
+     header_image_width: 250
      header_url: '#register-section'
      header_cta: Watch the webinar
      header_class: p-engage-banner--dark
@@ -18,6 +20,6 @@ context:
 
 Join Tytus Kurek from Canonical and Eric Ernst from Intel to explore Kata Containers!
 
-Over the last few years, container technologies have dominated the market and become the de facto standard for implementing modern IT infrastructure. However, one of the main adoption concerns is around security and isolation. In response to those concerns, Kata Containers, which use lightweight virtual machines that seamlessly plug into the container ecosystem, have been developed. In this webinar, we will present the benefits of using Kata Containers in a Charmed Kubernetes environment to provide better security and isolation. 
+Over the last few years, container technologies have dominated the market and become the de facto standard for implementing modern IT infrastructure. However, one of the main adoption concerns is around security and isolation. In response to those concerns, Kata Containers, which use lightweight virtual machines that seamlessly plug into the container ecosystem, have been developed. In this webinar, we will present the benefits of using Kata Containers in a Charmed Kubernetes environment to provide better security and isolation.
 
 NOTE: This webinar is going to be interactive. If you would like to spin up your own Charmed Kubernetes cluster with Kata Containers together with us, please make sure that you have an AWS account or a local MAAS environment. Please follow the instructions at https://jaas.ai/docs/installing to install Juju, add your cloud account (for example AWS) and bootstrap a Juju controller prior to the webinar.
