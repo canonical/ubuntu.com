@@ -278,9 +278,9 @@
           </div>
           <p><strong>Accessing Kubernetes:</strong> Juju creates a .kubeconfig file that is required  for accessing the Kubernetes cluster it created. Follow these instructions to install kubectl (if needed) and export the configuration file: (use kubectl to run commands against Kubernetes clusters)</p>
           <pre><code>$ mkdir -p ~/.kube
-            $ juju scp kubernetes-master/0:config ~/.kube/config
-            $ snap install kubectl --classic
-            $ kubectl cluster-info</code></pre>
+$ juju scp kubernetes-master/0:config ~/.kube/config
+$ snap install kubectl --classic
+$ kubectl cluster-info</code></pre>
             <p><strong>Useful Links:</strong> Find out more about Charmed Kubernetes.</p>
             <ul style="list-style-type: disc;">
               <li><a href="/kubernetes/docs/install-manual">Manual Install&nbsp;&rsaquo;</a></li>
