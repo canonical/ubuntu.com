@@ -63,21 +63,20 @@
         {% set image_url = header_image %}
       {% endif %}
 
-      {% if not header_image_width %}
-        {% set header_image_height = "250" %}
-        {% set header_image_width = "250" %}
+      {% if header_image_width %}
+        {{
+          image(
+            url=image_url,
+            alt="",
+            height=header_image_height,
+            width=header_image_width,
+            hi_def=True,
+            loading="auto"
+          ) | safe
+        }}
+      {% else %}
+        <img src="{% image_url %}" width="413" style="max-height: 410px; max-width: 250px;" alt="" >
       {% endif %}
-
-      {{
-        image(
-          url=image_url,
-          alt="",
-          height=header_image_height,
-          width=header_image_width,
-          hi_def=True,
-          loading="auto"
-        ) | safe
-      }}
     </div>{% endif %}
   </div>
 </section>
