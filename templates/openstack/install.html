@@ -14,7 +14,16 @@
       <p>If you run into issues, or if you want support, training or architecture design consulting, please <a href="/openstack/contact-us" class="js-invoke-modal">contact Canonical</a> &mdash; we help the world&rsquo;s largest OpenStack users keep their clouds running smoothly.</p>
     </div>
     <div class="col-5 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/2b03a6b4-Install+Openstack.svg" alt="" width="290" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/2b03a6b4-Install+Openstack.svg",
+          alt="",
+          height="200",
+          width="290",
+          hi_def=True,
+          loading="auto",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -145,12 +154,32 @@ password: keystone</code></pre>
           <p>Type the credentials and press the ‘Sign In’ button:</p>
 
           <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
-            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png" alt="OpenStack login page" />
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png",
+                alt="OpenStack login page",
+                height="253",
+                width="456",
+                hi_def=True,
+                attrs={"class": "p-image--bordered"},
+                loading="lazy",
+              ) | safe
+            }}
           </a>
           <p>You should now see the OpenStack dashboard:</p>
 
           <a href="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png">
-            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png" alt="OpenStack dashboard" />
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png",
+                alt="OpenStack dashboard",
+                height="253",
+                width="456",
+                hi_def=True,
+                attrs={"class": "p-image--bordered"},
+                loading="lazy",
+              ) | safe
+            }}
           </a>
 
           <p>You can start playing with your local private cloud (i.e. create additional users, launch instances, etc.).</p>
@@ -239,7 +268,17 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/</code></pre>
           <p>You can also view the instance from the web GUI. Go to <a href="http://10.20.20.1/">http://10.20.20.1/</a> and click on the "Instances" tab on the left:</p>
 
           <a href="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png">
-            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png" alt="OpenStack instances page" />
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png",
+                alt="OpenStack instances page",
+                height="253",
+                width="456",
+                hi_def=True,
+                attrs={"class": "p-image--bordered"},
+                loading="lazy",
+              ) | safe
+            }}
           </a>
 
           <p>In order to perform a more advanced launch (e.g. specify the flavor, use a different image, etc.) refer to the python-openstackclient <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">documentation</a>. The syntax of the <code>microstack.openstack</code> command is the same as the syntax of the upstream client (for example <code>microstack.openstack server list</code>).</p>
@@ -358,12 +397,32 @@ password: keystone</code></pre>
           <p>Type the credentials and press the ‘Sign In’ button:</p>
 
           <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
-            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png" alt="OpenStack login page" />
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png",
+                alt="OpenStack login page",
+                height="253",
+                width="456",
+                hi_def=True,
+                attrs={"class": "p-image--bordered"},
+                loading="lazy",
+              ) | safe
+            }}
           </a>
           <p>You should now see the OpenStack dashboard:</p>
 
           <a href="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png">
-            <img class="p-image--bordered" src="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png" alt="OpenStack dashboard" />
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png",
+                alt="OpenStack dashboard",
+                height="253",
+                width="456",
+                hi_def=True,
+                attrs={"class": "p-image--bordered"},
+                loading="lazy",
+              ) | safe
+            }}
           </a>
 
           <p>You can start playing with your local private cloud (i.e. create additional users, launch instances, etc.).</p>
@@ -554,39 +613,79 @@ Import SSH keys [] (lp:user-id or gh:user-id): <strong>lp:tkurek</strong>
             user credentials and press the &ldquo;Login&rdquo; button:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/3d44ec9e-maas+login.png">
-              <img src="https://assets.ubuntu.com/v1/3d44ec9e-maas+login.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/3d44ec9e-maas+login.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Configure the &ldquo;DNS forwarder&rdquo; field to an IP address of a DNS server of your
             choice:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/643004c1-maas+dns+config.png">
-              <img src="https://assets.ubuntu.com/v1/643004c1-maas+dns+config.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/643004c1-maas+dns+config.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Then scroll down and press the &ldquo;Continue&rdquo; button:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/93b154d2-maas+continue+click.png">
-              <img src="https://assets.ubuntu.com/v1/93b154d2-maas+continue+click.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/93b154d2-maas+continue+click.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>One more time you have an opportunity to import public SSH keys from GitHub or
             Launchpad. Once you are done, press the &ldquo;Go to dashboard&rdquo; button:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/f6d2e353-maas+click+go+to+dashboard.png">
-              <img src="https://assets.ubuntu.com/v1/f6d2e353-maas+click+go+to+dashboard.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/f6d2e353-maas+click+go+to+dashboard.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>You should see the MAAS Machines page. Do not worry about the warning message
             for now:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/cafc7784-maas+warning+message.png">
-              <img src="https://assets.ubuntu.com/v1/cafc7784-maas+warning+message.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/cafc7784-maas+warning+message.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Unless you have imported your public SSH keys from GitHub/Launchpad in one of
@@ -595,39 +694,79 @@ Import SSH keys [] (lp:user-id or gh:user-id): <strong>lp:tkurek</strong>
             upload or import the keys:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/a5f53d7b-maas+ssh+keys.png">
-              <img src="https://assets.ubuntu.com/v1/a5f53d7b-maas+ssh+keys.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/a5f53d7b-maas+ssh+keys.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>For example, to upload the key, paste its value to the &ldquo;Public key&rdquo; field and
           press the &ldquo;Import&rdquo; button:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/ae8bcd36-maas+import+ssh+key.png">
-              <img src="https://assets.ubuntu.com/v1/ae8bcd36-maas+import+ssh+key.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/ae8bcd36-maas+import+ssh+key.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Then navigate to the &lsquo;Subnets&rdquo; tab in the top menu and press on the &ldquo;untagged&rdquo;
           VLAN next to the &ldquo;172.16.7.0/24&rdquo; subnet (the <code>provisioning</code> subnet):</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/cb64996c-maas+subnets.png">
-              <img src="https://assets.ubuntu.com/v1/cb64996c-maas+subnets.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/cb64996c-maas+subnets.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>From the &ldquo;Take action&rdquo; drop-down menu on the right select &ldquo;Provide DHCP&rdquo;:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/baa98c38-maas+default+vlan.png">
-              <img src="https://assets.ubuntu.com/v1/baa98c38-maas+default+vlan.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/baa98c38-maas+default+vlan.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Fill in the &ldquo;Dynamic range start IP&rdquo; and &ldquo;Dynamic range end IP&rdquo; fields and
           press the &ldquo;Provide DHCP&rdquo; button:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/d442bf3d-maas+dynamic+range+ip.png">
-              <img src="https://assets.ubuntu.com/v1/d442bf3d-maas+dynamic+range+ip.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/d442bf3d-maas+dynamic+range+ip.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>At this point, your MAAS instance is ready to provision other machines.</p>
@@ -643,9 +782,16 @@ Import SSH keys [] (lp:user-id or gh:user-id): <strong>lp:tkurek</strong>
           tab in MAAS:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/6b4c5476-maas+machines+1.png">
-              <img
-                src="https://assets.ubuntu.com/v1/6b4c5476-maas+machines+1.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/6b4c5476-maas+machines+1.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Then click on each of those machines and for each of them perform the following
@@ -657,8 +803,16 @@ Import SSH keys [] (lp:user-id or gh:user-id): <strong>lp:tkurek</strong>
             </li>
             <li class="p-list__item">
               <a href="https://assets.ubuntu.com/v1/ef687be0-maas+click+save.png">
-                <img src="https://assets.ubuntu.com/v1/ef687be0-maas+click+save.png?w=848"
-                  width="424" height="241" alt="" />
+                {{
+                  image(
+                    url="https://assets.ubuntu.com/v1/ef687be0-maas+click+save.png",
+                    alt="",
+                    height="241",
+                    width="424",
+                    hi_def=True,
+                    loading="lazy",
+                  ) | safe
+                }}
               </a>
             </li>
             <li class="p-list__item is-ticked">
@@ -669,8 +823,16 @@ Import SSH keys [] (lp:user-id or gh:user-id): <strong>lp:tkurek</strong>
             </li>
             <li class="p-list__item">
               <a href="https://assets.ubuntu.com/v1/b3cbda9d-maas+power+config+error.png">
-                <img src="https://assets.ubuntu.com/v1/b3cbda9d-maas+power+config+error.png?w=848"
-                  width="424" height="241" alt="" />
+                {{
+                  image(
+                    url="https://assets.ubuntu.com/v1/b3cbda9d-maas+power+config+error.png",
+                    alt="",
+                    height="241",
+                    width="424",
+                    hi_def=True,
+                    loading="lazy",
+                  ) | safe
+                }}
               </a>
             </li>
           </ul>
@@ -679,23 +841,47 @@ Import SSH keys [] (lp:user-id or gh:user-id): <strong>lp:tkurek</strong>
           the right:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/6284c987-maas+take+action.png">
-              <img src="https://assets.ubuntu.com/v1/6284c987-maas+take+action.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/6284c987-maas+take+action.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Press &ldquo;Commission 5 machines&rdquo; button:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/82090254-maas+commision+machines.png">
-              <img src="https://assets.ubuntu.com/v1/82090254-maas+commision+machines.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/82090254-maas+commision+machines.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>The nodes are going through the commissioning process. It may take a while.
           Once finished, you should see the following output:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/848adbb4-maas+machines+2.png">
-              <img src="https://assets.ubuntu.com/v1/848adbb4-maas+machines+2.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/848adbb4-maas+machines+2.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Click on each of the machines again and for each of them go to the &ldquo;Interfaces&rdquo;
@@ -704,8 +890,16 @@ Import SSH keys [] (lp:user-id or gh:user-id): <strong>lp:tkurek</strong>
           &ldquo;Actions&rdquo; and selecting &ldquo;Edit Physical&rdquo;:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/541cc462-maas+interfaces.png">
-              <img src="https://assets.ubuntu.com/v1/541cc462-maas+interfaces.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/541cc462-maas+interfaces.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>At this point the remaining machines are ready for being provisioned.</p>
@@ -868,9 +1062,16 @@ Machine  State    DNS           Inst id              Series  AZ       Message
           <p>
             <a
               href="https://assets.ubuntu.com/v1/cb5e2860-MAAS+machines.png">
-              <img
-                src="https://assets.ubuntu.com/v1/cb5e2860-MAAS+machines.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/cb5e2860-MAAS+machines.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>At this point, your OpenStack installation is ready for being tested.</p>
@@ -898,25 +1099,48 @@ Machine  State    DNS           Inst id              Series  AZ       Message
           &ldquo;admin_domain&rdquo; in the &ldquo;Domain&rdquo; field:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/88a77f0d-openstack+dashboard+login.png">
-              <img src="https://assets.ubuntu.com/v1/88a77f0d-openstack+dashboard+login.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/88a77f0d-openstack+dashboard+login.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>You should be able to see the OpenStack welcome screen. Click on the &ldquo;admin&rdquo;
             drop-down list in the top right corner and press &ldquo;OpenStack RC File&rdquo;:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/1dd72150-openstack+admin+click.png">
-              <img src="https://assets.ubuntu.com/v1/1dd72150-openstack+admin+click.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/1dd72150-openstack+admin+click.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Some browsers may require that you confirm that you want to download this file.
           If you are using Google Chrome, press &ldquo;Keep&rdquo; from the menu on the bottom:</p>
           <p>
             <a href="https://assets.ubuntu.com/v1/87387fd1-openstack+click+keep.png">
-              <img
-                src="https://assets.ubuntu.com/v1/87387fd1-openstack+click+keep.png?w=848"
-                width="424" height="241" alt="" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/87387fd1-openstack+click+keep.png",
+                  alt="",
+                  height="241",
+                  width="424",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </a>
           </p>
           <p>Place the downloaded file on a machine where you want to install the OpenStack
@@ -1009,7 +1233,16 @@ Machine  State    DNS           Inst id              Series  AZ       Message
 <div class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-4 u-align--center u-hide--small u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/0e5f4269-questions.svg" width="200" alt="" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
+          alt="",
+          height="200",
+          width="200",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
     <div class="col-6 col-start-large-6 u-vertically-center">
       <h2>Need more help?</h2>
