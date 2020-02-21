@@ -8,6 +8,8 @@ context:
      header_title: "Interana uses ESM to maintain system security while upgrading its customers to Ubuntu 18.04 LTS across public clouds"
      header_title_class: 'p-heading--two'
      header_image: "https://assets.ubuntu.com/v1/0026bea9-logo-interana.svg"
+     header_image_height: 86
+     header_image_width: 250
      header_url: '#register-section'
      header_cta: Download our case study
      header_cta_class: p-button--positive
@@ -18,17 +20,17 @@ context:
      form_return_url: https://pages.ubuntu.com/CStudy_Interana_TY.html
 ---
 
-Interana, an analytics software provider, enables users to run advanced big data queries on raw customer data and delivers answers in seconds. Their customers include Microsoft, Comcast and Salesforce. 
- 
+Interana, an analytics software provider, enables users to run advanced big data queries on raw customer data and delivers answers in seconds. Their customers include Microsoft, Comcast and Salesforce.
+
 Interana’s leading-edge platform is based on Ubuntu and deployed directly inside customers’ public cloud environments. This empowers users with some of the fastest analytics capabilities on the market. However, this also means that they have to schedule large-scale data migrations with each client.
- 
+
 Due to the large amounts of customer data that Interana handles, ensuring that security was tight was a priority. Rather than rush the upgrade from Ubuntu 14.04LTS, which would have been a major inconvenience for both Interana and its customers, Interana turned to Canonical and ESM. This ensured that their upgrade rollout was secured and controlled.
- 
+
 <blockquote class="p-pull-quote">
   <p class="p-pull-quote__quote">ESM literally saved our lives. It’s allowing us to upgrade from 14.04 LTS at our own pace.</p>
   <cite class="p-pull-quote__citation">Zivago Lee, Director of DevOps Engineering, Interana</cite>
 </blockquote>
- 
+
 Download the case study to learn:
 
 <ul class="p-list">
