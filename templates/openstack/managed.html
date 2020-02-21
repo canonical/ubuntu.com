@@ -12,7 +12,16 @@
       <h1>Fully managed OpenStack private cloud. Half the cost of VMware.</h1>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/95212c08-OpenStack_Logo_2016.svg" width="240" alt="" style="max-width: 240px;" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/95212c08-OpenStack_Logo_2016.svg",
+          alt="",
+          height="116",
+          width="240",
+          hi_def=True,
+          loading="auto",
+        ) | safe
+      }}
     </div>
   </div>
   <div class="row">
@@ -95,7 +104,18 @@
         <h4 class="p-muted-heading">Independent report</h4>
         <hr class="u-sv1" />
         <div class="p-card__content u-no-margin--top">
-          <p class="u-align--center" style="margin-top: 2rem; margin-bottom: 2rem;"><img style="max-width: 195px;" src="https://assets.ubuntu.com/v1/a6517959-451-research-vector-logo.svg" width="195" alt=""></p>
+          <div class="u-align--center" style="margin-top: 2rem; margin-bottom: 2rem;">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/a6517959-451-research-vector-logo.svg",
+                alt="",
+                height="72",
+                width="195",
+                hi_def=True,
+                loading="lazy",
+              ) | safe
+            }}
+          </div>
           <h3 class="p-card__title p-heading--four u-no-padding--top"><a href="/engage/cloud-economics?utm_source=blog&utm_campaign=FY19_Cloud_Openstack_Ebook_451">Busting the myth of private cloud economics&nbsp;&rsaquo;</a></h3>
           <p>451 Research, highlights savings gained from using BootStack</p>
         </div>
@@ -112,7 +132,17 @@
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
-            <img class="p-heading-icon__img p-heading-icon__img--small" src="https://assets.ubuntu.com/v1/6e184942-Webinar.svg" width="32" alt="" />
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+                alt="",
+                height="28",
+                width="32",
+                hi_def=True,
+                attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+                loading="lazy",
+              ) | safe
+            }}
             <h4 class="p-heading-icon__title">Webinar</h4>
           </div>
           <h3 class="p-heading--four"><a class="p-link--external" href="https://pages.ubuntu.com/QTS_webinar.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Watch the webinar Learn why Private Open Cloud Makes Financial Sense', 'eventValue' : undefined });">Why private open cloud makes financial&nbsp;sense</a></h3>
@@ -121,7 +151,17 @@
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
-            <img class="p-heading-icon__img p-heading-icon__img--small" src="https://assets.ubuntu.com/v1/6e184942-Webinar.svg" width="32" alt="" />
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+                alt="",
+                height="28",
+                width="32",
+                hi_def=True,
+                attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+                loading="lazy",
+              ) | safe
+            }}
             <h4 class="p-heading-icon__title">Webinar</h4>
           </div>
           <h3 class="p-heading--four"><a class="p-link--external" href="https://pages.ubuntu.com/Cloudbase-webinar.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Watch the webinar Run Windows workloads on BootStack', 'eventValue' : undefined });">Run Windows workloads on BootStack</a></h3>
@@ -130,7 +170,17 @@
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
-            <img class="p-heading-icon__img p-heading-icon__img--small" src="https://assets.ubuntu.com/v1/6e184942-Webinar.svg" width="32" alt="" />
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+                alt="",
+                height="28",
+                width="32",
+                hi_def=True,
+                attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+                loading="lazy",
+              ) | safe
+            }}
             <h4 class="p-heading-icon__title">Webinar</h4>
           </div>
           <h3 class="p-heading--four"><a class="p-link--external" href="https://pages.ubuntu.com/Supermicro_webinar.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Watch the webinar Build a hyperconverged cloud with BootStack and Supermicro', 'eventValue' : undefined });">Hyperconverged cloud with BootStack and&nbsp;Supermicro</a></h3>
@@ -205,34 +255,124 @@
   <div class="u-fixed-width">
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/25de1877-Tele2.svg" width="144" alt="Tele2" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/25de1877-Tele2.svg",
+            alt="Tele2",
+            height="57",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/d0b7aa28-logo-deutsche-telekom.png?w=144" width="144" alt="Deutsche Telekom" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/d0b7aa28-logo-deutsche-telekom.png",
+            alt="Deutsche Telekom",
+            height="72",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/481063cd-pccw.svg" width="144" alt="PCCW" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/481063cd-pccw.svg",
+            alt="PCCW",
+            height="50",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/246ea559-COGECO_Peer_1_Logo_RGB-620x250.png?w=144" width="144" alt="Cogeco Datacenters" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/246ea559-COGECO_Peer_1_Logo_RGB-620x250.png",
+            alt="Cogeco Datacenters",
+            height="58",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/ee5d503f-rabobank-4.svg" width="144" alt="Rabobank" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/ee5d503f-rabobank-4.svg",
+            alt="Rabobank",
+            height="26",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/7bf5e46b-fibernet-logo-sm-blk_260x47.png?w=144" width="144" alt="Fibernet" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/7bf5e46b-fibernet-logo-sm-blk_260x47.png",
+            alt="Fibernet",
+            height="26",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/d56d0b96-Biznet-Gio.png?w=144" width="144" alt="Biznet Gio" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/d56d0b96-Biznet-Gio.png",
+            alt="Biznet Gio",
+            height="65",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/ff4e18ac-mimedia_logo_lrg.png?w=144" width="144" alt="Mimedia" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/ff4e18ac-mimedia_logo_lrg.png",
+            alt="Mimedia",
+            height="31",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/507a0979-Voidbridge.jpg?w=144" width="144" alt="Voidbridge" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/507a0979-Voidbridge.jpg",
+            alt="Voidbridge",
+            height="39",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img src="https://assets.ubuntu.com/v1/43586963-uct.svg" width="80" alt="UCT" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/43586963-uct.svg",
+            alt="UCT",
+            height="92",
+            width="80",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
     </ul>
   </div>
@@ -414,7 +554,16 @@
               <p>Then we build your cloud. It takes no more than two weeks. We do this at your office and in your preferred data center.</p>
             </div>
             <div class="col-6 u-align--center u-vertically-center u-hide--small">
-              <img src="https://assets.ubuntu.com/v1/f5d56df2-OpenStack-consulting+design.svg" alt="" width="134">
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/f5d56df2-OpenStack-consulting+design.svg",
+                  alt="",
+                  height="86",
+                  width="134",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </div>
           </div>
         </li>
@@ -430,7 +579,16 @@
               <p>This period will prove the business case for your OpenStack and ensure high service levels during the critical early stages of your journey, so you can evaluate OpenStack without making a large commitment to skills in a complex and unfamiliar technology.</p>
             </div>
             <div class="col-6 u-align--center u-vertically-center u-hide--small">
-              <img src="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg" alt="" width="134" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg",
+                  alt="",
+                  height="134",
+                  width="134",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </div>
           </div>
         </li>
@@ -446,7 +604,16 @@
               <p>There’s no better way to learn OpenStack than to run a cloud shoulder to shoulder with Canonical.</p>
             </div>
             <div class="col-6 u-align--center u-vertically-center u-hide--small">
-              <img src="https://assets.ubuntu.com/v1/2131b805-We+transfer+control.svg" alt="" width="134" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/2131b805-We+transfer+control.svg",
+                  alt="",
+                  height="134",
+                  width="134",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </div>
           </div>
         </li>
@@ -459,7 +626,16 @@
               <p>Once you have control of the cloud, Canonical provides 24/7 enterprise telephone support. Since we know the architecture of your cloud, problems are faster to debug and easier to resolve.</p>
             </div>
             <div class="col-6 u-vertically-center u-align--center u-hide--small">
-              <img src="https://assets.ubuntu.com/v1/e9d3cf66-We+support+your+operations.svg" alt="" width="134" />
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/e9d3cf66-We+support+your+operations.svg",
+                  alt="",
+                  height="134",
+                  width="134",
+                  hi_def=True,
+                  loading="lazy",
+                ) | safe
+              }}
             </div>
           </div>
         </li>
