@@ -8,6 +8,8 @@ context:
   header_title: "Cyberdyne keeps cleaning robots up to date in the field with snaps"
   header_title_class: 'u-no-margin--bottom'
   header_image: https://assets.ubuntu.com/v1/470ca6c0-logo_cyberdyne.png
+  header_image_width: 250
+  header_image_height: 149
   header_url: '#register-section'
   header_cta: Register for the webinar
   header_class: p-engage-banner--dark
