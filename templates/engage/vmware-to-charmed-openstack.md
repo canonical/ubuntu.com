@@ -8,6 +8,8 @@ context:
      header_title: "From VMware to Charmed&nbsp;OpenStack"
      header_subtitle: "Reduce costs and increase the efficiency of your infrastructure with open source adoption"
      header_image: "https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg"
+     header_image_width: "250"
+     header_image_height: "160"
      header_url:
      header_cta:
      header_class: p-engage-banner--dark
@@ -20,7 +22,7 @@ context:
 ---
 
 Due to the costs associated with VMware licencing, support and professional services, many are not able to meet their primary goal - significantly reduced TCO. In search of alternative solutions, organisations have recently started exploring other open-source platforms such as OpenStack.
- 
+
 This whitepaper:
 
 <ul class="p-list">
@@ -29,6 +31,6 @@ This whitepaper:
      <li class="p-list__item is-ticked">Provides a detailed cost analysis highlighting the savings an organisation can make by migrating from VMware to Charmed OpenStack.</li>
 </ul>
 
-Also, watch the ‘From VMware to Charmed OpenStack’ <a href="#webinar">webinar</a> for a demonstration showing how to migrate an IT workload from VMware to Charmed OpenStack using the Cloud Migration as a Service tool from Cloudbase Solutions - Coriolis®. 
- 
+Also, watch the ‘From VMware to Charmed OpenStack’ <a href="#webinar">webinar</a> for a demonstration showing how to migrate an IT workload from VMware to Charmed OpenStack using the Cloud Migration as a Service tool from Cloudbase Solutions - Coriolis®.
+
 Coriolis is the simplest way to migrate Windows or Linux virtual machines alongside their associated storage and networking configurations across multiple cloud platforms. Among the advantages of Coriolis are it’s scalable architecture, agentless design, integrated scheduler and REST API allowing automated operations.
