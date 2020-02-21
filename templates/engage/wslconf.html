@@ -11,8 +11,17 @@
 <section class="p-strip p-engage-banner--grad">
   <div class="u-fixed-width navigation-logo-engage">
     <a href="/">
-      <img src="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg" width="143" height="32" alt="Ubuntu">
-    </a>
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
+            alt="Ubuntu",
+            width="143",
+            height="32",
+            hi_def=True,
+            loading="auto",
+        ) | safe
+      }}
+	    </a>
   </div>
   <div class="row u-equal-height">
     <div class="col-7 u-vertically-center">
@@ -20,7 +29,7 @@
         <h1>Register for WSLConf</h1>
         <h4>Join us for two days of community, workshops, and talks on Windows Subsystem for Linux.</h4>
       </div>
-      
+
       <noscript>
         <p>
           <a class="p-button--positive p-link--external" href="https://www.eventbrite.com/e/wslconf-tickets-83357202637" rel="noopener noreferrer" target="_blank">
@@ -28,7 +37,7 @@
           </a>
         </p>
       </noscript>
-  
+
       <!-- hidden by default so isn't displayed with JS disabled -->
       <p class="u-hide" id="wslconf-button">
         <button class="p-button--positive" id="eventbrite-widget-modal-trigger-83357202637" type="button">Sign up</button>
@@ -39,7 +48,7 @@
       </script>
 
       <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
-  
+
       <script>
         // Button widget
         window.EBWidgets.createWidget({
@@ -74,7 +83,7 @@
         <li>Patrick Wu, the creator of WSL Utilities</li>
         <li>Carlos Ramirez and the team behind Pengwin, Pengwin Enterprise, and Fedora Remix for WSL</li>
         <li>Simon Ferquel from the Docker team who created the new WSL2-powered Docker Desktop</li>
-      </ul>      
+      </ul>
       <p>Topics will include:</p>
       <ul>
         <li>The new Docker Desktop for Windows</li>
