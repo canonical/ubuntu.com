@@ -15,6 +15,7 @@ from ubuntu_release_info.data import Data
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 from canonicalwebteam.store_api.stores.snapcraft import SnapcraftStoreApi
+from canonicalwebteam.launchpad import Launchpad
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
 
@@ -101,6 +102,35 @@ def releasenotes_redirect():
             )
 
     return flask.redirect(f"https://wiki.ubuntu.com/Releases")
+
+
+def post_build():
+    """
+    Once they submit the build form on /core/build,
+    kick off the build with launchpad
+    """
+
+    if not is_authenticated(flask.session):
+        flask.abort(401)
+
+    launchpad = Launchpad(
+        username="image.build",
+        token=os.environ["LAUNCHPAD_TOKEN"],
+        secret=os.environ["LAUNCHPAD_SECRET"],
+        session=session,
+    )
+
+    response = launchpad.build_image(
+        board=flask.request.values.get("board"),
+        system=flask.request.values.get("system"),
+        snaps=flask.request.values.get("snaps", "").split(","),
+    )
+
+    build_response = launchpad.session.get(response.headers["Location"])
+
+    return flask.render_template(
+        "core/build.html", build_info=build_response.json()
+    )
 
 
 def search_snaps():
