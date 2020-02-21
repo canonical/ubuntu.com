@@ -5,7 +5,17 @@
 
   <div class="row">
     <div class="col-6">
-      <p class="u-hide--small"><img class="p-image--shadowed" src="https://assets.ubuntu.com/v1/daf4f278-k8s-ebook-cover-crop.jpg?w=400" width="400" alt="Cover of whitepaper"></p>
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/daf4f278-k8s-ebook-cover-crop.jpg?w=400",
+        alt="Cover of whitepaper",
+        width="400",
+        height="342",
+        hi_def=True,
+        loading="auto",
+        attrs={"class": "u-hide--small"},
+        ) | safe
+      }}
       <h3>The no-nonsense way to accelerate your business with containers</h3>
       <p>Download this whitepaper to learn:</p>
       <ul class="p-list">
