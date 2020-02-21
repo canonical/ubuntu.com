@@ -1,11 +1,12 @@
 {% extends "pricing/base_pricing.html" %}
 
 {% block title %}Thank you | Pricing{% endblock %}
+
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1Vya-1Uq7bqJ7SFQ36j9-REp1iDT3rFENjYyCzuY02r4/edit{% endblock meta_copydoc %}
 
 {% block content %}
-
 <section class="p-strip is-bordered is-deep">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
@@ -13,7 +14,16 @@
       <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
     </div>
     <div class="col-5  u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg",
+        alt="smile",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
     </div>
   </div>
 </section>

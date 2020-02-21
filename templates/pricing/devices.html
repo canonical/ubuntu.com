@@ -1,7 +1,9 @@
 {% extends "pricing/base_pricing.html" %}
 
 {% block title %}Ubuntu IoT and Devices | plans and pricing{% endblock %}
+
 {% block meta_description %}Canonical enables sophisticated devices to be designed, delivered and operated at scale with Ubuntu and Ubuntu Core, the all-snap solution to IoT software delivery and security.{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1uiKNaT59tk2rvjuM24vpqVblcNO90PmE4wUlq9A9Rsk/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -37,7 +39,7 @@
             <th class='u-align--right' style='padding-left: 1rem;'>24 hours</th>
             <th class='u-align--right' style='padding-left: 1rem;'>6 hours</th>
           </tr>
-          </thead>
+        </thead>
         <tbody>
           <tr>
             <td class='u-align--right' style='padding-left: 1rem;'>1,000</td>
@@ -249,11 +251,9 @@
       <hr class="u-sv1" />
       <p>A two-day workshop for executives that covers devices, edge clusters and cloud operations and strategy.</p>
 
-      <p>The architecture of IoT spans appliances, gateways and smart, connected devices, edge clouds and clusters, and
-        the public cloud.</p>
+      <p>The architecture of IoT spans appliances, gateways and smart, connected devices, edge clouds and clusters, and the public cloud.</p>
 
-      <p>Learn how to operate at high speed and precision for your all-digital business models. Two days for up to 10
-        people.</p>
+      <p>Learn how to operate at high speed and precision for your all-digital business models. Two days for up to 10 people.</p>
     </div>
 
     <div class="col-4 p-card">
@@ -261,11 +261,9 @@
       <p class="p-heading--three">$4,000 online</p>
       <hr class="u-sv1" />
       <div class="p-card__content">
-        <p>The all-snap Ubuntu Core guarantees high-reliability transactional updates of every application and the base
-          operating system itself.</p>
+        <p>The all-snap Ubuntu Core guarantees high-reliability transactional updates of every application and the base operating system itself.</p>
 
-        <p>Learn about the Ubuntu Core architecture, partitioning scheme, update mechanisms, secure boot, full disk
-          encryption, device recovery and registration methods. One day full time for up to 20 people.</p>
+        <p>Learn about the Ubuntu Core architecture, partitioning scheme, update mechanisms, secure boot, full disk encryption, device recovery and registration methods. One day full time for up to 20 people.</p>
       </div>
     </div>
 
@@ -274,11 +272,9 @@
       <p class="p-heading--three">$6,000 on site</p>
       <hr class="u-sv1" />
       <div class="p-card__content">
-        <p>Deliver your applications as snaps for high-reliability updates, global content distribution, canary rollouts,
-          bandwidth efficiency and strict security confinement.</p>
+        <p>Deliver your applications as snaps for high-reliability updates, global content distribution, canary rollouts, bandwidth efficiency and strict security confinement.</p>
 
-        <p>Learn about snap design and security, and how to package your existing apps as snaps. Setup continuous
-          integration, testing and delivery pipelines to your fleet. Two days full time for up to 20 people.</p>
+        <p>Learn about snap design and security, and how to package your existing apps as snaps. Setup continuous integration, testing and delivery pipelines to your fleet. Two days full time for up to 20 people.</p>
       </div>
     </div>
 
@@ -300,8 +296,7 @@
       <div class="p-card__content">
         <p>Get the most from your app store with our two-day in-depth training program.</p>
 
-        <p>Understand the relationship between devices, app stores, enterprise stores, and master offline operations. Learn how to manage your app portfolio per model, with full control of updates. Two days full time for up to 20
-          people.</p>
+        <p>Understand the relationship between devices, app stores, enterprise stores, and master offline operations. Learn how to manage your app portfolio per model, with full control of updates. Two days full time for up to 20 people.</p>
       </div>
     </div>
 
@@ -353,7 +348,21 @@
       <p>Certification for devices that include pre-installed snaps can include validation of the integrity of those snaps.</p>
     </div>
 
-    <div class="col-2 col-start-large-10 u-hide--small"><img src="https://assets.ubuntu.com/v1/706b259a-ubuntu_certified_hex.svg" alt="Ubuntu Certified"></div>
+
+    <div class="col-2 col-start-large-10 u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/706b259a-ubuntu_certified_hex.svg",
+        alt="Ubuntu Certified",
+        width="127",
+        height="159",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "col-2 col-start-large-10 u-hide--small"},
+        ) | safe
+      }}
+    </div>
+
   </div>
   <div class="u-fixed-width">
     <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get your board of device certified</a>
@@ -409,43 +418,203 @@
           </tr>
           <tr>
             <td>Application packaging and update management</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
           <tr>
             <td>Security and integration of software components</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
           <tr>
             <td>App store operations</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
           <tr>
             <td>Knowledge base access</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
           <tr>
             <td>OpenStack</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
           <tr>
             <td>Kubernetes</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
           <tr>
             <td>KVM/LXD</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
           <tr>
             <td>Legal assurance program</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
         </tbody>
       </table>
@@ -525,44 +694,224 @@
 
           <tr>
             <td><a href="/esm">Extended Security Maintenance</a> (ESM)</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
 
           <tr>
             <td><a href="/livepatch">Kernel Livepatch</a> service to avoid reboots</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
 
           <tr>
             <td><a href="https://landscape.canonical.com" class="p-link--external">Landscape</a> on-prem systems management</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
 
           <tr>
             <td>On-premise snap store cache</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
 
           <tr>
             <td>Private enterprise snap store</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
 
           <tr>
             <td>Knowledge base access</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
 
           <tr>
@@ -589,8 +938,28 @@
           <tr>
             <td>Legal assurance program</td>
             <td class="u-align--center">-</td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
-            <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" width="16" height="16" alt="Yes"></td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
+            <td class="u-align--center">{{
+              image(
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="Yes",
+              width="16",
+              height="16",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "u-align--center"},
+              ) | safe
+            }}</td>
           </tr>
         </tbody>
       </table>
@@ -607,6 +976,5 @@
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_general" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
-
 
 {% endblock %}
