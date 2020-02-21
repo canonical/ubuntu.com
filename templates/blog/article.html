@@ -113,7 +113,16 @@
         </div>
 
         <div class="col-4 u-align--center u-vertically-center u-hide--small">
-          <img width="100" src="https://assets.ubuntu.com/v1/39ebd977-robot.svg" alt="" />
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/39ebd977-robot.svg",
+              alt="",
+              height="157",
+              width="100",
+              hi_def=True,
+              loading="lazy"
+            ) | safe
+          }}
         </div>
       </div>
     </section>
