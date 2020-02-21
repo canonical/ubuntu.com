@@ -6,6 +6,8 @@ context:
      meta_image: "https://assets.ubuntu.com/v1/41c9663c-Embedded+social+media+banner+.jpg"
      meta_copydoc: "https://docs.google.com/document/d/1ky7FmqiSEBi_fDMo3d2p7oeIrFhvSCCCJmohd6rc6uQ"
      header_title: "SBI Group unlocks infrastructure automation with secure, on-premises OpenStack cloud"
+     header_image_width: "250"
+     header_image_height: "71"
      header_title_class: 'u-no-margin--bottom'
      header_url: '#register-section'
      header_cta: Download case study
@@ -29,7 +31,7 @@ To increase time to market and meet heavy client requirements, SBI BITs was look
 
 Taking just a few weeks to implement, SBI BITS are benefiting from an OpenStack cloud that is cost effective from both CAPEX and OPEX perspectives and providing them with the confidence to deploy across the entire SBI Group.
 
-In this case study, learn how SBI BITS: 
-- Met regulatory compliance through Canonical&rsquo;s OpenStack across two sites, utilising CEPH storage, and deployed using MAAS and Juju. 
-- Benefit from ongoing support through Ubuntu Advantage for Infrastructure to empower the internal team to focus on the core business. 
+In this case study, learn how SBI BITS:
+- Met regulatory compliance through Canonical&rsquo;s OpenStack across two sites, utilising CEPH storage, and deployed using MAAS and Juju.
+- Benefit from ongoing support through Ubuntu Advantage for Infrastructure to empower the internal team to focus on the core business.
 - Plans to implement Kubernetes, with Canonical support, as a managed service across the SBI Group.
