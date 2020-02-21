@@ -1,8 +1,9 @@
 # Standard library
+import datetime
 import json
+import math
 import os
 import re
-import datetime
 
 # Packages
 import feedparser
@@ -15,11 +16,12 @@ from geolite2 import geolite2
 from requests.exceptions import HTTPError
 
 # Local
-from webapp import auth
-from webapp.api import advantage
+from webapp.login import empty_session, is_authenticated
+from webapp.advantage import AdvantageContracts
 
 
 ip_reader = geolite2.reader()
+session = talisker.requests.get_session()
 store_api = SnapcraftStoreApi(session=talisker.requests.get_session())
 
 
@@ -114,9 +116,13 @@ def advantage_view():
     enterprise_contracts = []
     entitlements = {}
 
-    if auth.is_authenticated(flask.session):
+    if is_authenticated(flask.session):
+        advantage = AdvantageContracts(
+            session, flask.session["authentication_token"]
+        )
+
         try:
-            accounts = advantage.get_accounts(flask.session)
+            accounts = advantage.get_accounts()
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
                 # We got an unauthorized request, so we likely
@@ -135,25 +141,21 @@ def advantage_view():
                     }
                 )
 
-                auth.empty_session(flask.session)
+                empty_session(flask.session)
 
                 return flask.render_template("advantage/index.html")
 
             raise http_error
 
         for account in accounts:
-            account["contracts"] = advantage.get_account_contracts(
-                account, flask.session
-            )
+            account["contracts"] = advantage.get_account_contracts(account)
 
             for contract in account["contracts"]:
-                contract["token"] = advantage.get_contract_token(
-                    contract, flask.session
-                )
+                contract["token"] = advantage.get_contract_token(contract)
 
-                machines = advantage.get_contract_machines(
-                    contract, flask.session
-                ).get("machines")
+                machines = advantage.get_contract_machines(contract).get(
+                    "machines"
+                )
                 contract["machineCount"] = 0
 
                 if machines:
@@ -218,6 +220,49 @@ def advantage_view():
         enterprise_contracts=enterprise_contracts,
         personal_account=personal_account,
     )
+
+
+def build_tutorials_index(tutorials_docs):
+    def tutorials_index():
+        page = flask.request.args.get("page", default=1, type=int)
+        topic = flask.request.args.get("topic", default=None, type=str)
+        sort = flask.request.args.get("sort", default=None, type=str)
+        posts_per_page = 15
+        tutorials_docs.parser.parse()
+        if not topic:
+            metadata = tutorials_docs.parser.metadata
+        else:
+            metadata = [
+                doc
+                for doc in tutorials_docs.parser.metadata
+                if topic in doc["categories"]
+            ]
+
+        if sort == "difficulty-desc":
+            metadata = sorted(
+                metadata, key=lambda k: k["difficulty"], reverse=True
+            )
+
+        if sort == "difficulty-asc" or not sort:
+            metadata = sorted(
+                metadata, key=lambda k: k["difficulty"], reverse=False
+            )
+
+        total_pages = math.ceil(len(metadata) / posts_per_page)
+
+        return flask.render_template(
+            "tutorials/index.html",
+            navigation=tutorials_docs.parser.navigation,
+            forum_url=tutorials_docs.parser.api.base_url,
+            metadata=metadata,
+            page=page,
+            topic=topic,
+            sort=sort,
+            posts_per_page=posts_per_page,
+            total_pages=total_pages,
+        )
+
+    return tutorials_index
 
 
 # Blog
