@@ -8,6 +8,8 @@ context:
      header_title: "How Domotz streamlined provisioning of IoT devices"
      header_subtitle: "Learn how Ubuntu Core and snaps gives Domotz a competitive advantage"
      header_image: "https://assets.ubuntu.com/v1/b097ccfe-domotz-logo-white.svg"
+     header_image_width: 250
+     header_image_height: 52
      header_url: '#register-section'
      header_cta: Download case study
      header_class: p-engage-banner--dark
