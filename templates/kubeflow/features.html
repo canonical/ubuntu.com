@@ -17,7 +17,16 @@
       <p><a class="js-invoke-modal" href="/kubeflow/contact-us?product=ai-features">Contact us for machine learning, deep learning and AI consulting&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 col-start-large-9 u-vertically-center u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/1d5e357d-AI+ML_AW.svg" alt="Kubeflow" width="323" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/1d5e357d-AI+ML_AW.svg",
+          alt="",
+          height="194",
+          width="323",
+          hi_def=True,
+          loading="auto",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -59,7 +68,16 @@
 <section class="p-strip is-bordered">
   <div class="row u-equal-height">
     <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      <img src="https://assets.ubuntu.com/v1/da5a7c9e-Kubeflow-Logo.svg" width="151" alt="">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/da5a7c9e-Kubeflow-Logo.svg",
+          alt="",
+          height="150",
+          width="151",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
     <div class="col-8">
       <h2>Kubeflow</h2>
@@ -83,7 +101,17 @@
       </div>
       <div class="col-4 u-hide--small u-vertically-center">
         <figure class="u-no-margin">
-          <img src="https://assets.ubuntu.com/v1/710ddd41-mnist_tensorboard.png" width="323" class="p-image--shadowed" alt="" />
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/710ddd41-mnist_tensorboard.png",
+              alt="",
+              height="262",
+              width="323",
+              hi_def=True,
+              attrs={"class": "p-image--shadowed"},
+              loading="lazy",
+            ) | safe
+          }}
           <figcaption>Tensorflow from Google is officially published for Ubuntu</figcaption>
         </figure>
       </div>
@@ -93,7 +121,17 @@
   <section class="p-strip is-bordered u-image-position">
     <div class="row">
       <div class="col-6 u-hide--small">
-        <img src="https://assets.ubuntu.com/v1/3df02300-jupyterpreview.png" alt="" style="width: 45vw; max-width: 500px;" width="500" class="u-image-position--bottom u-hide--small"/>
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/3df02300-jupyterpreview.png",
+            alt="",
+            height="354",
+            width="500",
+            hi_def=True,
+            attrs={"class": "u-image-position--bottom u-hide--small", "style": "width: 45vw; max-width: 500px;"},
+            loading="lazy",
+          ) | safe
+        }}
       </div>
       <div class="col-6">
         <h2>JupyterHub</h2>
@@ -160,7 +198,16 @@
         </div>
       </div>
       <div class="u-fixed-width">
-        <img src="https://assets.ubuntu.com/v1/9f6916dd-k8s-prometheus-light.png?w=1200&fmt=jpg" alt="" width="1040" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/9f6916dd-k8s-prometheus-light.png?fmt=jpg",
+            alt="",
+            height="585",
+            width="1040",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </div>
     </section>
 
@@ -174,7 +221,16 @@
           <p><a class="p-button--positive js-invoke-modal" href="/kubeflow/contact-us?product=ai-features">Get in touch</a></p>
         </div>
         <div class="col-5 u-align--center u-hide--small">
-          <img src="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg" style="height:200px" alt="">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+              alt="",
+              height="200",
+              width="281",
+              hi_def=True,
+              loading="lazy",
+            ) | safe
+          }}
         </div>
       </div>
     </section>
