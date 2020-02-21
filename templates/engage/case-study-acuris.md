@@ -8,6 +8,8 @@ context:
     header_title: "TIM ensures system security and client confidence with ESM"
     header_title_class: 'u-no-margin--bottom'
     header_image: "https://assets.ubuntu.com/v1/e7043d2c-TIM_Logo_white.png"
+    header_image_width: "205"
+    header_image_height: "106"
     header_url: '#register-section'
     header_cta: Download case study
     header_class: p-engage-banner--dark
