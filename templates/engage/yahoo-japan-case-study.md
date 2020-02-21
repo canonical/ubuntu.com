@@ -8,6 +8,8 @@ context:
      header_title: "Yahoo! Japan builds their IaaS environment with Canonical"
      header_title_class: 'u-no-margin--bottom'
      header_image: "https://assets.ubuntu.com/v1/5d403409-2018-logo-yahoo-japan.svg"
+     header_image_width: "250"
+     header_image_height: "63"     
      header_url: '#register-section'
      header_cta: Download case study
      header_class: p-engage-banner--dark
