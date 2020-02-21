@@ -5,18 +5,7 @@
     {% if article.image and article.image.source_url %}
     <div class="u-crop--16-9">
       <a href="/blog/{{ article.slug }}">
-        <img
-          src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }}"
-          srcset="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }} 460w,
-                                                                                         https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_620/{{ article.image.source_url }} 620w,
-                                                                                                       https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_875/{{ article.image.source_url }} 875w"
-          sizes="(min-width: 1031px) 460px,
-                                                                                                     (max-width: 1030px) and (min-width: 876px) 460px,
-                                                                                                                   (max-width: 875px) and (min-width: 621px) 875px,
-                                                                                                                                 (max-width: 620px) and (min-width: 461px) 620px,
-                                                                                                                                               (max-width: 460px) 460px"
-          alt=""
-        />
+        <img src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }}" srcset="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }} 460w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_620/{{ article.image.source_url }} 620w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_875/{{ article.image.source_url }} 875w" sizes="(min-width: 1031px) 460px, (max-width: 1030px) and (min-width: 876px) 460px, (max-width: 875px) and (min-width: 621px) 875px, (max-width: 620px) and (min-width: 461px) 620px, (max-width: 460px) 460px" alt="" loading="lazy" />
       </a>
     </div>
     {% endif %}
@@ -26,13 +15,9 @@
     </h3>
 
     <p>
-      <em
-        >by
-        <a href="/blog/author/{{article.author.slug}}"
-          >{{ article.author.name }}</a
-        >
-        on {{ article.date }}</em
-      >
+      <em>by
+        <a href="/blog/author/{{article.author.slug}}">{{ article.author.name }}</a>
+        on {{ article.date }}</em>
     </p>
 
     {% if summary_visible or not article.image.source_url %}
