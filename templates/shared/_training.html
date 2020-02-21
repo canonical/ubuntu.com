@@ -1,18 +1,27 @@
 <section class="p-strip is-bordered">
- <div class="row u-equal-height">
-   <div class="col-8">
-     <h2>
-       {% if type %}{{ type }} training{% else %}Train with Ubuntu{% endif %}
-     </h2>
-     <p>
-       Train your sysadmins and devops engineers to become Ubuntu OpenStack, Ubuntu Server or Charmed Kubernetes experts. Canonical runs training programmes to suit all environments and all levels of experience. Get the most out of your investment.
-     </p>
-     <p>
-       <a href="/training">Learn more about training&nbsp;&rsaquo;</a>
-     </p>
-   </div>
-   <div class="col-4 u-vertically-center u-align--center u-hide--small">
-     <img src="https://assets.ubuntu.com/v1/0e5f4269-questions.svg" width="200" alt="">
-   </div>
- </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>
+        {% if type %}{{ type }} training{% else %}Train with Ubuntu{% endif %}
+      </h2>
+      <p>
+        Train your sysadmins and devops engineers to become Ubuntu OpenStack, Ubuntu Server or Charmed Kubernetes experts. Canonical runs training programmes to suit all environments and all levels of experience. Get the most out of your investment.
+      </p>
+      <p>
+        <a href="/training">Learn more about training&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
+        alt="",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+  </div>
 </section>

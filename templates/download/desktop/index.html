@@ -68,7 +68,17 @@
     <div class="col-4 p-card">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/cb3ecebb-picto-ubuntu.svg" width="60" alt="" />
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/cb3ecebb-picto-ubuntu.svg",
+                alt="",
+                width="60",
+                height="60",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+              ) | safe
+          }}
           <h3 class="p-heading-icon__title">From an older version</h3>
         </div>
       </div>
@@ -82,7 +92,17 @@
     <div class="col-4 p-card">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg" width="60"  alt="" />
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg",
+                alt="",
+                width="60",
+                height="60",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+                ) | safe
+          }}
           <h3 class="p-heading-icon__title">From Windows</h3>
         </div>
       </div>
@@ -96,7 +116,17 @@
     <div class="col-4 p-card">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/4239507e-picto-mac.svg" width="60"  alt="" />
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/4239507e-picto-mac.svg",
+                alt="",
+                width="60",
+                height="60",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+              ) | safe
+          }}
           <h3 class="p-heading-icon__title">From macOS</h3>
         </div>
       </div>
