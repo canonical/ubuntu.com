@@ -9,6 +9,7 @@ context:
      header_title_class: 'u-no-margin--bottom'
      header_image: "https://assets.ubuntu.com/v1/11d594e7-K8s+logo+white+outline.svg"
      header_image_width: "200"
+     header_image_height: "195"
      header_url: '#register-section'
      header_cta: Watch the webinar
      header_class: p-engage-banner--k8s

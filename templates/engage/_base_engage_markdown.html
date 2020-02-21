@@ -21,12 +21,34 @@
 <section {% if header_lang %}lang="{{ header_lang }}"{% endif %} class="{% if header_class %}p-strip {{ header_class }}{% else %}p-strip--light{% endif %}">
   {% if header_class %}
   <div class="u-fixed-width navigation-logo-engage">
-    <a href="/"><img src="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg" width="143" height="auto" alt="Ubuntu"></a>
+    <a href="/">
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
+            alt="Ubuntu",
+            width="143",
+            height="32",
+            hi_def=True,
+            loading="auto",
+        ) | safe
+      }}
+    </a>
   </div>
   {% else %}
   <div class="u-fixed-width navigation-logo-engage">
-    <a href="/"><img src="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg" width="143" height="auto" alt="Ubuntu"></a>
-  </div>
+    <a href="/">
+    {{
+      image(
+          url="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg",
+          alt="Ubuntu",
+          width="143",
+          height="32",
+          hi_def=True,
+          loading="auto",
+      ) | safe
+    }}
+    </a>
+</div>
   {% endif %}
   <div class="row u-equal-height">
     <div class="{% if header_image %}col-7 {% else %}col-8{% endif %} u-vertically-center">
@@ -52,7 +74,21 @@
       </div>
     </div>
     {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
-      <img src="{% if "http" not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" width="{% if header_image_width %}{{ header_image_width }}{% else %}413{% endif %}" style="max-height: 410px; max-width: 250px;" alt="" >
+      {% if header_image_width %}
+      {{
+        image(
+            url=header_image,
+            alt="",
+            width=header_image_width,
+            height=header_image_height,
+            hi_def=True,
+            loading="auto",
+            attrs={"style": "max-height: 410px; max-width: 250px;"},
+        ) | safe
+      }}
+      {% else %}
+        <img src="{{ header_image }}" alt="" style="max-height: 410px; max-width: 250px;" width="413">
+      {% endif %}
     </div>{% endif %}
   </div>
 </section>
@@ -62,7 +98,7 @@
     <div class="{% if form_id %}col-7{% else %}col-8{% endif %}">
       {{ content | safe }}
     </div>
-    {% if form_id %}      
+    {% if form_id %}
     <div class="col-5" id="register-section">
       {% if form_include %}
         {% set form = "engage/shared/_" + form_include + "_engage_form.html" %}

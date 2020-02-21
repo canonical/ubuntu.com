@@ -8,8 +8,10 @@ context:
      header_title: "Kubernetes: a secure, flexible and automated edge for IoT developers"
      header_subtitle: "The factors for implementing Kubernetes successfully at the edge"
      header_image: https://assets.ubuntu.com/v1/5096c143-451-research-vector-white-logo.svg
+     header_image_width: "250"
+     header_image_height: "93"
      header_url: '#register-section'
-     header_cta: Download the report by 451 Research 
+     header_cta: Download the report by 451 Research
      header_class: p-engage-banner--grad
      header_lang: en
      form_include: en

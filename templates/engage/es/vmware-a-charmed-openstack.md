@@ -8,6 +8,8 @@ context:
      header_title: "De VMware a Charmed OpenStack"
      header_subtitle: "Cómo la migración a Charmed OpenStack puede reducir significativamente el TCO"
      header_image: "https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg"
+     header_image_width: "250"
+     header_image_height: "160"
      header_url:
      header_cta:
      header_class: p-engage-banner--dark
@@ -20,7 +22,7 @@ context:
 ---
 
 Debido a los costes asociados a las licencias, el soporte y los servicios profesionales de VMware, muchos no pueden cumplir su objetivo principal: reducir significativamente el TCO. En busca de soluciones alternativas, las organizaciones han empezado recientemente a explorar otras plataformas de código abierto como OpenStack.
- 
+
 Este documento y webinar:
 
 <ul class="p-list">

@@ -8,6 +8,8 @@ context:
      header_title: "Cloud gaming for Android"
      header_subtitle: "Building a high performing and scalable platform"
      header_image: "https://assets.ubuntu.com/v1/7e3bd1ed-Anbox-Cloud+computing_outline.svg"
+     header_image_width: "250"
+     header_image_height: "182"
      header_url: '#register-section'
      header_cta: Download whitepaper
      header_cta_class: p-button--positive
