@@ -10,29 +10,49 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width navigation-logo-engage">
-    <a href="/"><img src="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg" width="143" height="auto" alt="Ubuntu"></a>
+    <a href="/">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg",
+        alt="Ubuntu",
+        width="143",
+        height="32",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
+    </a>
   </div>
-        <div class="row u-equal-height">
-          <div class="col-7  u-vertically-center">
-            <div>
-            <h1 class="u-no-margin--bottom">
-              Taking charge of the IoT's security vulnerabilities
-            </h1>
+  <div class="row u-equal-height">
+    <div class="col-7  u-vertically-center">
+      <div>
+        <h1 class="u-no-margin--bottom">
+          Taking charge of the IoT's security vulnerabilities
+        </h1>
 
 
-            <br class="u-hide--medium u-hide--large">
-            <p class="u-hide--medium u-hide--large">
-              <a href="#the-form" class="p-button--neutral">
-                Download the whitepaper
-              </a>
-            </p>
-            </div>
-          </div>
-          <div class="col-5 u-hide--small u-align--center u-vertically-center">
-            <img src="https://assets.ubuntu.com/v1/2217d1c8-Security.svg" width="150" style="max-height: 150px; max-width: 150px;" alt="">
-          </div>
-        </div>
-      </section>
+        <br class="u-hide--medium u-hide--large">
+        <p class="u-hide--medium u-hide--large">
+          <a href="#the-form" class="p-button--neutral">
+            Download the whitepaper
+          </a>
+        </p>
+      </div>
+    </div>
+    <div class="col-5 u-hide--small u-align--center u-vertically-center">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/2217d1c8-Security.svg",
+        alt="",
+        width="150",
+        height="150",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
 
 <section class="p-strip is-shallow">
   <div class="row">
@@ -47,7 +67,7 @@
       </ul>
     </div>
     <div class="col-5" id="the-form">
-    {% with id="1917", returnURL="https://pages.ubuntu.com/IoTSecurityWhitepaper-Fullreport.html", cta="Download the whitepaper" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
+      {% with id="1917", returnURL="https://pages.ubuntu.com/IoTSecurityWhitepaper-Fullreport.html", cta="Download the whitepaper" %}{% include "engage/shared/_en_engage_form.html" %}{% endwith %}
     </div>
   </div>
 </section>
