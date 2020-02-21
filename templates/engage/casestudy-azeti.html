@@ -8,7 +8,14 @@
 
 {% block content %}
 
-{% with title="Azeti uses Ubuntu Core to improve deployment and security", header_image="373e2562-2018-logo-azeti.svg", url="#the-form", cta="Download the case study" %}{% include "engage/shared/_header.html" %}{% endwith %}
+{% with 
+  title="Azeti uses Ubuntu Core to improve deployment and security", 
+  header_image="373e2562-2018-logo-azeti.svg", 
+  header_image_height="250",
+  header_image_width="250",
+  url="#the-form", 
+  cta="Download the case study" %}
+  {% include "engage/shared/_header.html" %}{% endwith %}
 
 <section class="p-strip is-shallow">
   <div class="row">
