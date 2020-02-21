@@ -13,7 +13,6 @@
   const snapResults = document.querySelector('.js-snap-results');
   const preinstallResults = document.querySelector('.js-preinstalled-snaps-list');
   const buildButton = document.querySelector('.js-build-button');
-  const step1 = document.querySelector('.js-step-1');
   const step2 = document.querySelector('.js-step-2');
   const step3 = document.querySelector('.js-step-3');
   let snapSearchResults;
