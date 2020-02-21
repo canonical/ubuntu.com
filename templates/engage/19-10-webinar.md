@@ -8,6 +8,8 @@ context:
    header_title: "What’s new in Ubuntu 19.10"
    header_subtitle: "Ubuntu 19.10 includes enhanced K8s capabilities for edge and AI/ML, OpenStack Train live-migration extensions for easier infrastructure deployments and more."
    header_image: "https://assets.ubuntu.com/v1/76095fd7-1910-eoan-ermine-mascot-white.svg"
+   header_image_width: "250"
+   header_image_height: "250"
    header_url: '#register-section'
    header_cta: Register for the webinar
    header_class: p-engage-banner--grad
