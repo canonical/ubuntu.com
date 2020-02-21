@@ -8,6 +8,8 @@ context:
      header_title: "Accelerating deep tech <br class='u-hide--small' />with Ubuntu"
      header_title_class: 'u-no-margin--bottom'
      header_image: "https://assets.ubuntu.com/v1/3f8c22da-Deep+tech+ubuntu+-+light.svg"
+     header_image_width: 250
+     header_image_height: 168
      header_url: '#register-section'
      header_cta: Register for the webinar
      header_class: p-engage-banner--aqua
