@@ -505,3 +505,11 @@ summary {
 .u-inline {
   display: inline;
 }
+
+.u-inline--child {
+  display: inline;
+
+  > * {
+    display: inline;
+  }
+}
