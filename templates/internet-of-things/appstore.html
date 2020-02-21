@@ -23,7 +23,17 @@
         </ul>
       </div>
       <div class="col-5 u-align--center u-vertically-center u-hide--small">
-        <img src="https://assets.ubuntu.com/v1/c3b8a9dd-Snap_Store_shopping_icon.svg" width="250" alt="">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/c3b8a9dd-Snap_Store_shopping_icon.svg",
+            alt="",
+            height="218",
+            width="250",
+            hi_def=True,
+            attrs={"class": ""},
+            loading="auto",
+          ) | safe
+        }}
       </div>
     </div>
   </div>
@@ -63,24 +73,84 @@
     <h2 class="p-muted-heading u-align--center">SEE WHO HAS BUILT APP STORES FOR IOT DEVICES</h2>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/6d588a1f-RigadoFullColorVert-800px.png?w=113" width="113" alt="Rigado" style="max-height: 4.5rem;">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/6d588a1f-RigadoFullColorVert-800px.png",
+            alt="",
+            height="71",
+            width="113",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/5c2662f7-dellemc.png" width="144" alt="Dell EMC">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/5c2662f7-dellemc.png",
+            alt="",
+            height="29",
+            width="162",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/55cfce66-orange-pi-logo.png?w=144" width="144" alt="Orange Pi">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/55cfce66-orange-pi-logo.png",
+            alt="",
+            height="43",
+            width="144",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+            loading="lazy",
+          ) | safe
+        }}
       </li>
     </ul>
     <ul class="p-inline-images u-no-margin">
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/c5ee407e-cyberdyne.png" width="136" alt="Cyberdyne">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/c5ee407e-cyberdyne.png",
+            alt="",
+            height="99",
+            width="158",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/5651e32d-lime.png" width="136" alt="Lime Micro" style="max-height: 8.5rem;">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/5651e32d-lime.png",
+            alt="",
+            height="69",
+            width="162",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/84d82478-domotz.svg" width="136" style="height: 2rem;" alt="Domotz">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/84d82478-domotz.svg",
+            alt="",
+            height="36",
+            width="162",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+            loading="lazy",
+          ) | safe
+        }}
       </li>
     </ul>
   </div>
@@ -88,7 +158,17 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <img src="https://assets.ubuntu.com/v1/0aa9c999-rigado.svg" alt="" />
+    {{
+      image(
+        url="https://assets.ubuntu.com/v1/0aa9c999-rigado.svg",
+        alt="",
+        height="35",
+        width="185",
+        hi_def=True,
+        attrs={"class": ""},
+        loading="lazy",
+      ) | safe
+    }}
     <blockquote class="p-pull-quote">
       <p class="p-pull-quote__quote">Large-scale commercial IoT deployments are not one size fits all. They require infrastructure that is open, scalable, and secure, with software that can evolve to meet the changing needs of the customer. Ubuntu Core brings a powerful and open architecture to IoT gateways, ensuring they’re an enabler of business success for customers, now and in the future.</p>
       <cite class="p-pull-quote__citation">Ben Corrado, Co-founder, Rigado</cite>
@@ -311,7 +391,17 @@
       </p>
     </div>
     <div class="col-5 u-align--center u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg" class="u-hide--small"  width="250" height="178" alt="">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+          alt="",
+          height="178",
+          width="250",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="lazy",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
