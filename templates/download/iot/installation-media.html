@@ -25,57 +25,48 @@
     <ol class="p-stepped-list">
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Download the Ubuntu image for your device in your <strong>`Downloads`</strong> folder
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Insert your SD card or USB flash drive
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Identify its address by opening the "Disks" application and look for the "Device" line. If the line is in the <code>/dev/mmcblk0p1</code> format, then your drive address is: <code>/dev/mmcblk0</code>. If it is in the <code>/dev/sdb1</code> format, then the address is <code>/dev/sdb</code>
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Unmount it by right-clicking its icon in the launcher bar, the eject icon in a file manager or the square icon in the "Disks" application
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Open a terminal (<code>Ctrl+Alt+T</code>) to copy the image to your removable drive
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           If the Ubuntu image file you have downloaded ends with an `.xz` file extension, run:
         </p>
         <pre><code>xzcat ~/Downloads/&lt;image-file.xz&gt; | sudo dd of=&lt;drive address&gt; bs=32M</code></pre>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Else, run:
         </p>
         <pre><code>sudo dd if=~/Downloads/&lt;image-file&gt; of=&lt;drive address&gt; bs=32M</code></pre>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Then, run the <code>sync</code> command to finalize the process
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           You can now eject your removable drive. You are ready to <a href="/download/iot">install Ubuntu on your device ›</a>
         </p>
       </li>
@@ -89,57 +80,69 @@
     <ol class="p-stepped-list">
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Download the Ubuntu image for your device in your <strong>`Downloads`</strong> folder
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           If the Ubuntu image file you have downloaded ends with an .xz file extension, you will need to extract it first. To do so, you might have to install an archive extractor software, like <a class="p-link--external" href="http://www.7-zip.org/">7-zip</a>
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Insert your SD card or USB flash drive
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Download and install <a class="p-link--external" href="http://sourceforge.net/projects/win32diskimager/files/latest/download">Win32DiskImager</a>, then launch it
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
-          Find out where your removable drive is mounted by opening a File Explorer window to check which mount point the drive is listed under. Here is an example of an SD card listed under <strong>E:</strong>
+          Find out where your removable drive is mounted by opening a File Explorer window to check which mount point the drive is listed under.
         </p>
-        <p>
-          <img alt="" src="http://i.imgur.com/QXLkLsa.png?w=138" width="138" />
-        </p>
+        <p>Here is an example of an SD card listed under <strong>E:</strong></p>
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/971aa15e-QXLkLsa.png?w=138",
+            alt="",
+            width="138",
+            height="52",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+        }}
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           In order to flash your card with the Ubuntu image, Win32DiskImager will need 2 elements:
         </p>
-        <ol>
-          <li>an <strong>Image File</strong>: navigate to your <code>Downloads</code> folder and select the image you have just extracted</li>
-          <li>a <strong>Device</strong>: the location of your SD card. Select the drive on which your SD card is mounted</li>
-          <p><img alt="" src="http://i.imgur.com/ebeQHKT.png?w=421" width="421" /></p>
+        <ol class="p-list">
+          <li class="p-list__item">an <strong>Image File</strong>: navigate to your <code>Downloads</code> folder and select the image you have just extracted</li>
+          <li class="p-list__item">
+            <p>a <strong>Device</strong>: the location of your SD card. Select the drive on which your SD card is mounted</p>
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/3c49ba2b-ebeQHKT.png?w=421",
+                alt="",
+                width="421",
+                height="213",
+                hi_def=True,
+                loading="lazy",
+              ) | safe
+            }}
+          </li>
         </ol>
+
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           When ready click on <strong>Write</strong> and wait for the process to complete.
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           You can now eject your removable drive. You are ready to <a href="/download/iot">install Ubuntu on your device ›</a>
         </p>
       </li>
@@ -153,22 +156,19 @@
     <ol class="p-stepped-list">
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Download the Ubuntu image for your device in your <strong>Downloads</strong> folder
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Insert your SD card or USB flash drive
         </p>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">
-
           Open a terminal window (Go to <strong>Application</strong> » <strong>Utilities</strong>, you will find the Terminal app there), then run this command:
         </p>
-        <p><pre><code>diskutil list</code></pre></p>
+        <pre><code>diskutil list</code></pre>
       </li>
       <li class="p-stepped-list__item">
         <p class="p-stepped-list__title">In the results, identify your removable drive device address, it will probably look like an entry like the ones below:</p>
