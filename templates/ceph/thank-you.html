@@ -12,7 +12,16 @@
       <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
     </div>
     <div class="col-5 u-vertically-center u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg",
+          alt="",
+          height="200",
+          width="200",
+          loading="auto",
+          hi_def=True
+        ) | safe
+      }}
     </div>
   </div>
 </div>

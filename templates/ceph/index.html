@@ -16,7 +16,16 @@
         <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" >Get in touch</a>
       </div>
       <div class="col-5 u-align--center u-vertically-center u-hide--small">
-        <img src="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg" width="250" alt="" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg",
+            alt="",
+            height="102",
+            width="250",
+            hi_def=True,
+            loading="auto"
+          ) | safe
+        }}
       </div>
     </div>
   </div>
@@ -32,7 +41,16 @@
 
   <div class="row">
     <div class="col-10 u-sv3">
-      <img src="https://assets.ubuntu.com/v1/b96d5736-Ceph-diagram-1+outlined.svg" alt="Ceph diagram" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/b96d5736-Ceph-diagram-1+outlined.svg",
+          alt="Ceph diagram",
+          height="345",
+          width="861",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
   </div>
 
@@ -45,14 +63,34 @@
 
   <div class="row u-equal-height">
     <div class="col-6 p-card">
-      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/5d403409-2018-logo-yahoo-japan.svg" alt="Yahoo! Japan" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/5d403409-2018-logo-yahoo-japan.svg",
+          alt="Yahoo! Japan",
+          height="32",
+          width="125",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-card__thumbnail"}
+        ) | safe
+      }}
       <hr class="u-sv1">
       <p class="p-card__content">In the early days of Ceph, Yahoo! Japan searched for a local company who could support them in the implementation of an open-source distributed storage solution from the Linux operating system all the way to Ceph. Canonical provided not only Ceph but also the tooling and expertise that reduced the OPEX associated with managing a large storage cluster.</p>
       <a href="/engage/yahoo-japan-case-study">Find out more about Yahoo! Japan’s Ceph cluster&nbsp;&rsaquo;</a>
     </div>
 
     <div class="col-6 p-card">
-      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/d8841399-Wellcome_Sanger_Institute_Logo_Landscape_Digital_RGB_Full_Colour.svg" alt="Wellcome Sanger Institute" style="max-width: 6rem;" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/d8841399-Wellcome_Sanger_Institute_Logo_Landscape_Digital_RGB_Full_Colour.svg",
+          alt="Wellcome Sanger Institute",
+          height="32",
+          width="96",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-card__thumbnail", "style": "max-width: 6rem;"}
+        ) | safe
+      }}
       <hr class="u-sv1">
       <p class="p-card__content">The Wellcome Sanger Institute initially opted for self-maintained Ceph storage, but as their capacity needs grew from 3 PB to over 20 PB, they turned to Canonical to resolve their scaling issues. With the help of Canonical support, the Institute’s latest Ceph rollout decreased from a month to just four days.</p>
       <a href="/engage/wellcome-sanger-case-study">Find out about Wellcome Sanger’s path to a cost-effective Ceph infrastructure&nbsp;&rsaquo;</a>
@@ -68,7 +106,16 @@
 
   <div class="row">
     <div class="col-9 u-sv3">
-      <img src="https://assets.ubuntu.com/v1/5c10565f-Ceph-diagram-2+outlined.svg" alt="Ceph support diagram" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/5c10565f-Ceph-diagram-2+outlined.svg",
+          alt="Ceph support diagram",
+          height="246",
+          width="772",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
   </div>
 
@@ -79,7 +126,16 @@
     </div>
 
     <div class="col-6 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/858d6aa5-ceph+++juju.svg" alt="" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/858d6aa5-ceph+++juju.svg",
+          alt="",
+          height="100",
+          width="298",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
   </div>
 
@@ -104,7 +160,16 @@
       <p>Charmed OpenStack allows for encryption at rest to be configured through our Ceph charms which provide data encryption and integrity assurance for Ceph OSDs. As Ubuntu supports volume encryption out of the box, mounting Cinder volumes into an instance and encrypting them is also fully supported. OpenStack Barbican can be used to store keys.</p>
     </div>
     <div class="col-6 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/3fa7445c-shield-17.svg" alt="shield" style="max-width: 260px;" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/3fa7445c-shield-17.svg",
+          alt="",
+          height="179",
+          width="260",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
 
     <hr class="p-separator" />
@@ -112,7 +177,16 @@
 
   <div class="row u-vertically-center">
     <div class="col-6 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/749e67a9-tested-18.svg" alt="shield" style="max-width: 260px;" />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/749e67a9-tested-18.svg",
+          alt="",
+          height="179",
+          width="260",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
 
     <div class="col-6">
@@ -164,7 +238,7 @@
   </div>
 
   <div class="u-fixed-width">
-      <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" >Get in touch</a>
+    <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" >Get in touch</a>
   </div>
 </section>
 {% endblock content %}
