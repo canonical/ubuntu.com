@@ -14,7 +14,16 @@
       </div>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg" width="200" alt="">
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
+            alt="",
+            width="200",
+            height="61",
+            hi_def=True,
+            loading="auto",
+          ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -79,7 +88,16 @@
       </ul>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/5eebb138-Servers.svg" alt="" width="294" />
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/5eebb138-Servers.svg",
+            alt="",
+            width="294",
+            height="132",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -87,7 +105,16 @@
 <section class="p-strip--light is-deep">
   <div class="row u-equal-height">
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg" alt="" width="281" />
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+            alt="",
+            width="281",
+            height="200",
+            hi_def=True,
+            loading="lazy",
+          ) | safe
+      }}
     </div>
     <div class="col-8">
       <h3>Commercially supported and ready to deploy today</h3>
