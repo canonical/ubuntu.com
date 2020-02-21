@@ -56,16 +56,82 @@
         <p>Was this tutorial useful?</p>
         <ul class="p-inline-list">
           <li class="p-inline-list__item">
-            <img class="l-tutorial__feedback-icon" src="https://assets.ubuntu.com/v1/aca5f600-Helpful-yes.svg" alt="Positive response" data-feedback-value="positive">
-            <img class="l-tutorial__feedback-icon has-color" src="https://assets.ubuntu.com/v1/784c0dc9-Helpful-yes-green.svg" alt="" data-feedback-value="positive">
+            <div class="u-inline--child">
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/aca5f600-Helpful-yes.svg",
+                  alt="Positive response",
+                  height="32",
+                  width="32",
+                  hi_def=True,
+                  attrs={"class": "l-tutorial__feedback-icon", "data-feedback-value": "positive"},
+                  loading="lazy",
+                ) | safe
+              }}
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/784c0dc9-Helpful-yes-green.svg",
+                  alt="positive",
+                  height="32",
+                  width="32",
+                  hi_def=True,
+                  attrs={"class": "l-tutorial__feedback-icon has-color", "data-feedback-value": "positive"},
+                  loading="lazy",
+                ) | safe
+              }}
+            </div>
           </li>
           <li class="p-inline-list__item">
-            <img class="l-tutorial__feedback-icon" src="https://assets.ubuntu.com/v1/5dacff00-Helpful-unsure.svg" alt="Neutral response" data-feedback-value="neutral">
-            <img class="l-tutorial__feedback-icon has-color" src="https://assets.ubuntu.com/v1/b601b52c-Helpful-unsure-orange.svg" alt="" data-feedback-value="neutral">
+            <div class="u-inline--child">
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/5dacff00-Helpful-unsure.svg",
+                  alt="Neutral response",
+                  height="32",
+                  width="32",
+                  hi_def=True,
+                  attrs={"class": "l-tutorial__feedback-icon", "data-feedback-value": "neutral"},
+                  loading="lazy",
+                ) | safe
+              }}
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/b601b52c-Helpful-unsure-orange.svg",
+                  alt="Neutral response",
+                  height="32",
+                  width="32",
+                  hi_def=True,
+                  attrs={"class": "l-tutorial__feedback-icon has-color", "data-feedback-value": "neutral"},
+                  loading="lazy",
+                ) | safe
+              }}
+            </div>
           </li>
           <li class="p-inline-list__item">
-            <img class="l-tutorial__feedback-icon" src="https://assets.ubuntu.com/v1/4ff77e8e-Helpful-no.svg" alt="Negative response" data-feedback-value="negative">
-            <img class="l-tutorial__feedback-icon has-color" src="https://assets.ubuntu.com/v1/b45bf2a3-Helpful-no-red.svg" alt="" data-feedback-value="negative">
+            <div class="u-inline--child">
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/4ff77e8e-Helpful-no.svg",
+                  alt="Negative response",
+                  height="32",
+                  width="32",
+                  hi_def=True,
+                  attrs={"class": "l-tutorial__feedback-icon", "data-feedback-value": "negative"},
+                  loading="lazy",
+                ) | safe
+              }}
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/b45bf2a3-Helpful-no-red.svg",
+                  alt="Negative response",
+                  height="32",
+                  width="32",
+                  hi_def=True,
+                  attrs={"class": "l-tutorial__feedback-icon has-color", "data-feedback-value": "negative"},
+                  loading="lazy",
+                ) | safe
+              }}
+            </div>
           </li>
         </ul>
       </div>
