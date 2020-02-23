@@ -1,7 +1,7 @@
 <article class="notice" style="padding-bottom: 32px;">
   <h3 class="u-no-margin p-heading--four" style="padding-bottom: 8px;"><a href="/security/notices/{{notice.id}}">USN-{{ notice.id }}: {{ notice.title }} ›</a></h3>
   <p class="u-no-margin u-no-padding--top" style="color: #666; font-size: 14px; padding-bottom: 8px;">{{ notice.published.strftime("%d %B %Y") }}</p>
-  <p class="u-no-margin u-no-padding--top" style="padding-bottom: 16px;">{{ notice.summary | safe }}</p>
+  <p class="u-no-margin u-no-padding--top" style="padding-bottom: 16px;">{{ notice.isummary or notice.summary | safe }}</p>
   <ul class="p-inline-list u-no-margin">
     {% for release in notice.releases %}
       <li class="p-inline-list__item">

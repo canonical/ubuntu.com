@@ -284,6 +284,7 @@ def notice(notice_id):
         "title": notice.title,
         "published": notice.published,
         "summary": notice.summary,
+        "isummary": notice.isummary,
         "details": markdown_parser(notice.details),
         "instructions": markdown_parser(notice.instructions),
         "packages": notice_packages,
@@ -346,6 +347,7 @@ class NoticeSchema(Schema):
     notice_id = fields.Str(data_key="id", required=True)
     title = fields.Str(required=True)
     summary = fields.Str(required=True)
+    isummary = fields.Str()
     description = fields.Str(required=True)
     action = fields.Str()
     releases = fields.Dict(required=True)
@@ -381,10 +383,15 @@ def api_create_notice():
         title=data["title"],
         summary=data["summary"],
         details=data["description"],
-        instructions=data["action"],
         packages=data["releases"],
         published=datetime.datetime.fromtimestamp(data["timestamp"]),
     )
+
+    if "action" in data:
+        notice.instructions = data["action"]
+
+    if "isummary" in data:
+        notice.isummary = data["isummary"]
 
     # Link releases
     for release_codename in data["releases"].keys():
