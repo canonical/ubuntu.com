@@ -22,6 +22,15 @@ notice_cves = Table(
     Column("cve_id", String, ForeignKey("cve.id")),
 )
 
+
+notice_references = Table(
+    "notice_references",
+    Base.metadata,
+    Column("notice_id", Integer, ForeignKey("notice.id")),
+    Column("reference_id", String, ForeignKey("reference.id")),
+)
+
+
 notice_releases = Table(
     "notice_releases",
     Base.metadata,
@@ -47,7 +56,15 @@ class Notice(Base):
     instructions = Column(String)
     packages = Column(JSON)
     cves = relationship("CVE", secondary=notice_cves)
+    references = relationship("Reference", secondary=notice_references)
     releases = relationship("Release", secondary=notice_releases, order_by="-Release.version")
+
+
+class Reference(Base):
+    __tablename__ = "reference"
+
+    id = Column(Integer, primary_key=True)
+    uri = Column(String)
 
 
 class Release(Base):
