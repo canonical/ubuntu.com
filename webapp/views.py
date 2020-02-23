@@ -23,7 +23,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from webapp import auth
 from webapp.api import advantage
 from webapp.database import db_session
-from webapp.models import CVE, Notice, Release
+from webapp.models import CVE, Notice, Reference, Release
 
 
 ip_reader = geolite2.reader()
@@ -405,10 +405,19 @@ def api_create_notice():
             )
 
     # Link CVEs, creating them if they don't exist
-    for reference in data.get("references", []):
-        if reference.startswith("CVE-"):
-            cve = CVE(id=reference[4:])
+    refs = set(data.get("references", []))
+    for ref in refs:
+        if ref.startswith("CVE-"):
+            cve_id = ref[4:]
+            cve = db_session.query(CVE).filter(CVE.id == cve_id).first()
+            if not cve:
+                cve = CVE(id=cve_id)
             notice.cves.append(cve)
+        else:
+            reference = db_session.query(Reference).filter(Reference.uri == ref).first()
+            if not reference:
+                reference = Reference(uri=ref)
+                notice.references.append(reference)
 
     db_session.add(notice)
     db_session.commit()
