@@ -8,7 +8,7 @@
     <div class="col-8">
 	    <h1>USN-{{ notice.id }}: {{ notice.title }}</h1>
       <p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
-      <p>{{ notice.summary|safe }}</p>
+      <p>{{ notice.isummary or notice.summary|safe }}</p>
     </div>
   </div>
 </section>

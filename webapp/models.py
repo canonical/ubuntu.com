@@ -52,12 +52,15 @@ class Notice(Base):
     title = Column(String)
     published = Column(DateTime)
     summary = Column(String)
+    isummary = Column(String)
     details = Column(String)
     instructions = Column(String)
     packages = Column(JSON)
     cves = relationship("CVE", secondary=notice_cves)
     references = relationship("Reference", secondary=notice_references)
-    releases = relationship("Release", secondary=notice_releases, order_by="-Release.version")
+    releases = relationship(
+        "Release", secondary=notice_releases, order_by="-Release.version"
+    )
 
 
 class Reference(Base):
