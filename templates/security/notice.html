@@ -67,6 +67,10 @@
           {% for cve in notice.cves %}
             <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{cve.id}}">CVE-{{cve.id}}</a></li>
           {% endfor %}
+
+          {% for reference in notice.references %}
+            <li class="p-list__item"><a href="{{ reference.uri }}">{{ reference.uri }}</li>
+          {% endfor %}
         </ul>
     </div>
   </div>
