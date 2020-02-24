@@ -100,6 +100,9 @@ def notices():
     total_pages = ceil(total_results / page_size)
     offset = page * page_size - page_size
 
+    if page < 1 or 1 < page > total_pages:
+        flask.abort(404)
+
     sort = asc if order_by == "oldest" else desc
     notices = (
         notices_query.order_by(sort(Notice.published))
@@ -116,6 +119,8 @@ def notices():
             current_page=page,
             total_pages=total_pages,
             total_results=total_results,
+            page_first_result=offset + 1,
+            page_last_result=offset + len(notices),
         ),
     )
 
