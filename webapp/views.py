@@ -289,7 +289,8 @@ def notice(notice_id):
         "packages": notice_packages,
         "releases_packages": releases_packages,
         "releases": notice.releases,
-        "cves": notice.cves
+        "cves": notice.cves,
+        "references": notice.references
     }
 
     return flask.render_template("security/notice.html", notice=notice)
@@ -423,7 +424,7 @@ def api_create_notice():
             reference = db_session.query(Reference).filter(Reference.uri == ref).first()
             if not reference:
                 reference = Reference(uri=ref)
-                notice.references.append(reference)
+            notice.references.append(reference)
 
     db_session.add(notice)
     db_session.commit()
