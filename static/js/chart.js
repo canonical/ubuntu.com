@@ -182,6 +182,8 @@ function formatKeyLabel(key) {
   formattedKey = formattedKey.replace('kub', 'Kub');
   formattedKey = formattedKey.replace('Interim release', 'Interim release Standard Support');
   formattedKey = formattedKey.replace('Esm', 'Extended Security Maintenance (ESM)');
+  formattedKey = formattedKey.replace('Cve', 'CVE/Critical fixes only');
+  formattedKey = formattedKey.replace('Early', 'Early preview');
   return formattedKey;
 }
 
@@ -206,7 +208,11 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   var timeDomainStart = d3.time.year.offset(tasks[0].startDate, -1);
   var timeDomainEnd = d3.time.year.offset(tasks[tasks.length - 1].endDate, +1);
   var height = taskTypes.length * rowHeight;
-  var width = document.querySelector(chartSelector).clientWidth - margin.right - margin.left;
+  var containerWidth = document.querySelector(chartSelector).clientWidth;
+  if (containerWidth <= 0) {
+    containerWidth = document.querySelector(chartSelector).closest('[class*="col-"]').clientWidth;
+  }
+  var width = containerWidth - margin.right - margin.left;
   var tickSize = 1;
 
   if (window.innerWidth < 1080) {

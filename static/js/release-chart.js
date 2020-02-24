@@ -2,14 +2,31 @@ import {createChart} from './chart'
 import {
   serverAndDesktopReleases,
   kernelReleases,
+  kernelReleaseSchedule,
+  kernelReleases2004,
+  kernelReleases1804,
+  kernelReleases1604,
+  kernelReleases1404,
+  kernelReleasesALL,
+  kernelReleasesLTS,
   openStackReleases,
   kubernetesReleases,
   desktopServerStatus,
   kernelStatus,
+  kernelReleaseScheduleStatus,
+  kernelStatusLTS,
+  kernelStatusALL,
   openStackStatus,
   kubernetesStatus,
   desktopServerReleaseNames,
   kernelReleaseNames,
+  kernelReleaseScheduleNames,
+  kernelReleaseNames2004,
+  kernelReleaseNames1804,
+  kernelReleaseNames1604,
+  kernelReleaseNames1404,
+  kernelReleaseNamesLTS,
+  kernelReleaseNamesALL,
   openStackReleaseNames,
   kubernetesReleaseNames,
 } from './chartData';
@@ -35,11 +52,32 @@ function buildCharts() {
   if (document.querySelector('#kernel-eol')) {
     createChart('#kernel-eol', kernelReleaseNames, kernelStatus, kernelReleases);
   }
+  if (document.querySelector('#kernel2004')) {
+    createChart('#kernel2004', kernelReleaseNames2004, kernelStatus, kernelReleases2004);
+  }
+  if (document.querySelector('#kernel1804')) {
+    createChart('#kernel1804', kernelReleaseNames1804, kernelStatus, kernelReleases1804);
+  }
+  if (document.querySelector('#kernel1604')) {
+    createChart('#kernel1604', kernelReleaseNames1604, kernelStatus, kernelReleases1604);
+  }
+  if (document.querySelector('#kernel1404')) {
+    createChart('#kernel1404', kernelReleaseNames1404, kernelStatus, kernelReleases1404);
+  }
+  if (document.querySelector('#kernellts')) {
+    createChart('#kernellts', kernelReleaseNamesLTS, kernelStatusLTS, kernelReleasesLTS);
+  }
+  if (document.querySelector('#kernelall')) {
+    createChart('#kernelall', kernelReleaseNamesALL, kernelStatusALL, kernelReleasesALL);
+  }
   if (document.querySelector('#openstack-eol')) {
     createChart('#openstack-eol', openStackReleaseNames, openStackStatus, openStackReleases);
   }
   if (document.querySelector('#kubernetes-eol')) {
     createChart('#kubernetes-eol', kubernetesReleaseNames, kubernetesStatus, kubernetesReleases);
+  }
+  if (document.querySelector('#kernel-schedule')) {
+    createChart('#kernel-schedule', kernelReleaseScheduleNames, kernelReleaseScheduleStatus, kernelReleaseSchedule);
   }
 }
 
@@ -50,11 +88,32 @@ function clearCharts() {
   if (document.querySelector('#kernel-eol')) {
     document.querySelector('#kernel-eol').innerHTML = '';
   }
+  if (document.querySelector('#kernel2004')) {
+    document.querySelector('#kernel2004').innerHTML = '';
+  }
+  if (document.querySelector('#kernel1804')) {
+    document.querySelector('#kernel1804').innerHTML = '';
+  }
+  if (document.querySelector('#kernel1604')) {
+    document.querySelector('#kernel1604').innerHTML = '';
+  }
+  if (document.querySelector('#kernel1404')) {
+    document.querySelector('#kernel1404').innerHTML = '';
+  }
+  if (document.querySelector('#kernellts')) {
+    document.querySelector('#kernellts').innerHTML = '';
+  }
+  if (document.querySelector('#kernelall')) {
+    document.querySelector('#kernelall').innerHTML = '';
+  }
   if (document.querySelector('#openstack-eol')) {
     document.querySelector('#openstack-eol').innerHTML = '';
   }
   if (document.querySelector('#kubernetes-eol')) {
     document.querySelector('#kubernetes-eol').innerHTML = '';
+  }
+  if (document.querySelector('#kernel-schedule')) {
+    document.querySelector('#kernel-schedule').innerHTML = '';
   }
 }
 

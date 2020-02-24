@@ -11,6 +11,7 @@ module.exports = {
       "./static/js/scratch.js"
     ],
     "release-chart": "./static/js/release-chart.js",
+    tabotronic: "./static/js/tabotronic.js",
     stickyNav: "./static/js/stickyNav.js"
   },
   mode: process.env.ENVIRONMENT === "devel" ? "development" : "production",

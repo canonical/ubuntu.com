@@ -1,6 +1,9 @@
 {% extends "kernel/base_kernel.html" %}
 
 {% block title %}Ubuntu kernels from Canonical{% endblock %}
+
+{% block meta_description %}Learn about the Linux kernel at the core of the Ubuntu operating system. It manages and controls the hardware resources like I/O, memory and CPU for your device or computer.{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1XLdk2Slh4vi4AjGnatcK1BmJGmMNKIjN27KwbTwG5iI/{% endblock %}
 
 {% block content %}
@@ -77,6 +80,7 @@
     <h2 id="kernel-os-and-releases">Kernel OS and releases</h2>
     <p>Canonical provides Long-term Support (LTS) kernels for <a href="/about/release-cycle">Ubuntu LTS releases</a>. Canonical also provides interim operating system releases with updated kernels every 6 months.</p>
     <p>For customers and business partners that don&rsquo;t have specialised bleeding-edge workloads or latest hardware needs, the latest  LTS release &ldquo;-generic&rdquo; kernel is the best option for them such as the 4.15 default kernel in Ubuntu 18.04 LTS. Customers who need the latest hardware support capability can install the latest HWE kernel such as the ones contained in interim releases, keeping in mind the shorter support lifespan associated with these kernels (9 months). HWE kernel customers are recommended to upgrade to a newer LTS release that supports their hardware and/or software needs as soon as it is available. Another option for customers is to use point releases. For example, there is an 18.04.2 point release as of February 2019, which includes an updated 4.18.x kernel but is also considered LTS, exactly like the original GA 4.15 kernel in 18.04. This new kernel inherits the five-year support duration of 18.04 LTS.</p>
+    <p><a href="/kernel/lifecycle">More details on the Ubuntu kernel support lifecycle</a></p>
   </div>
 </section>
 
@@ -90,7 +94,7 @@
 <section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <h2 id="general-availability-and-variant-ubuntu-kernels">General Availability (GA) and variant Ubuntu kernels</h2>
-    <p>How a kernel runs is based on what kernel modules are included and how the kernel is configured for both hardware, and the expected workloads that are run on it.</p>
+    <p>The complete functionality of any given kernel is determined by the included modules and the kernel configuration for both hardware and the expected workloads that are run on it.</p>
     <p>Kernel modules are binary programs that extend a kernel&rsquo;s ability to control the computing system&rsquo;s hardware or add additional system capabilities like high performance networking or non-standard graphics, etc. The GA kernel that is shipped by default, with the Canonical Ubuntu Long Term Support (LTS) and Hardware Enablement (HWE) releases, are tuned for stable, reliable, secure, high-performance operation over a wide variety of hardware platforms and workloads.</p>
     <p>A kernel variant is a kernel that deviates from the generic GA kernel by changes to its configuration, and/or by having modules added and/or removed.</p>
     <p><a href="/kernel/variants">Should my organisation use a variant kernel?&nbsp;&rsaquo;</a></p>
