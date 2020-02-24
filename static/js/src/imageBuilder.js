@@ -88,6 +88,7 @@
       results.innerHTML = '';
       if (Object.entries(responce).length !== 0) {
         responce.forEach((item, index) => {
+          item.icon_url = (item.icon_url)?item.icon_url:'https://assets.ubuntu.com/v1/be6eb412-snapcraft-missing-icon.svg';
           results.insertAdjacentHTML('beforeend',
             `<div class="p-media-object" data-container-index="${index}">
               <img src="${item.icon_url}" alt="${item.title}" class="p-media-object__image">
