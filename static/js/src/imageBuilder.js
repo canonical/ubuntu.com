@@ -91,7 +91,7 @@
           item.icon_url = (item.icon_url)?item.icon_url:'https://assets.ubuntu.com/v1/be6eb412-snapcraft-missing-icon.svg';
           results.insertAdjacentHTML('beforeend',
             `<div class="p-media-object" data-container-index="${index}">
-              <img src="${item.icon_url}" alt="${item.title}" class="p-media-object__image">
+              <img src="${item.icon_url}" alt="" class="p-media-object__image">
               <div class="p-media-object__details">
                 <h1 class="p-media-object__title">${item.title}</h1>
                 <p class="p-media-object__content">${item.developer_name}</p>
