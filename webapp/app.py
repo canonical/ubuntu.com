@@ -31,29 +31,26 @@ from webapp.context import (
     get_navigation,
     releases,
 )
-from webapp.database import db_engine
-from webapp.models import Base
 from webapp.views import (
-    api_create_notice,
     advantage_view,
     blog_blueprint,
     blog_custom_group,
     blog_custom_topic,
     blog_press_centre,
     download_thank_you,
-    notice,
-    notices,
     releasenotes_redirect,
 )
 from webapp.login import login_handler, logout
+from webapp.security.views import (
+    api_create_notice,
+    notice,
+    notices,
+)
 
 
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
 )
-
-# Create all tables
-Base.metadata.create_all(db_engine)
 
 # Set up application
 # ===
