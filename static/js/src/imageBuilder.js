@@ -25,24 +25,28 @@
 
   function searchHandler() {
     if (snapSearch) {
-      snapSearch.addEventListener('submit', e => {
+      snapSearch.addEventListener('keyup', e => {
         e.preventDefault();
-        const searchInput = snapSearch.querySelector('.p-search-box__input');
-        if (searchInput) {
-          const searchValue = encodeURI(searchInput.value);
-          fetch(`/snaps?q=${searchValue}&size=12`)
-            .then((response) => {
-              return response.json();
-            })
-            .then((json) => {
-              snapSearchResults = json["_embedded"]["clickindex:package"];
-              renderSnapList(snapSearchResults, snapResults, 'Add');
-              addSnapHandler();
-            });
-        }
+        triggerSearch();
       });
     }
   }
+
+  let triggerSearch = debounce(function() {
+    const searchInput = snapSearch.querySelector('.p-search-box__input');
+    if (searchInput) {
+      const searchValue = encodeURI(searchInput.value);
+      fetch(`/snaps?q=${searchValue}&size=12`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((json) => {
+          snapSearchResults = json["_embedded"]["clickindex:package"];
+          renderSnapList(snapSearchResults, snapResults, 'Add');
+          addSnapHandler();
+        });
+    }
+  }, 250);
 
   function addSnapHandler() {
     const snapAddButtons = snapResults.querySelectorAll('.js-add-snap');
@@ -186,4 +190,19 @@
     }
     return false;
   }
+
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
 })()
