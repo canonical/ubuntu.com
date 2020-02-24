@@ -1,0 +1,202 @@
+# Standard library
+import datetime
+from collections import OrderedDict
+from math import ceil
+
+# Packages
+import flask
+from marshmallow import EXCLUDE
+from marshmallow.exceptions import ValidationError
+from mistune import Markdown
+from sqlalchemy import asc, desc
+from sqlalchemy.orm.exc import NoResultFound
+
+# Local
+from webapp.security.database import db_engine, db_session
+from webapp.security.models import Base, CVE, Notice, Reference, Release
+from webapp.security.schemas import NoticeSchema
+
+
+# Create all tables
+Base.metadata.create_all(db_engine)
+
+
+markdown_parser = Markdown(
+    hard_wrap=True, parse_block_html=True, parse_inline_html=True
+)
+
+
+def notice(notice_id):
+    notice = db_session.query(Notice).get(notice_id)
+
+    if not notice:
+        flask.abort(404)
+
+    notice_packages = set()
+    releases_packages = {}
+
+    for release, packages in notice.packages.items():
+        release_name = (
+            db_session.query(Release)
+            .filter(Release.codename == release)
+            .one()
+            .version
+        )
+        releases_packages[release_name] = []
+        for name, package in packages.get("sources", {}).items():
+            # Build pacakges per release dict
+            package["name"] = name
+            releases_packages[release_name].append(package)
+            # Build full package list
+            description = package.get("description")
+            package_name = f"{name} - {description}" if description else name
+            notice_packages.add(package_name)
+
+    # Guarantee release order
+    releases_packages = OrderedDict(
+        sorted(releases_packages.items(), reverse=True)
+    )
+
+    notice = {
+        "id": notice.id,
+        "title": notice.title,
+        "published": notice.published,
+        "summary": notice.summary,
+        "isummary": notice.isummary,
+        "details": markdown_parser(notice.details),
+        "instructions": markdown_parser(notice.instructions),
+        "packages": notice_packages,
+        "releases_packages": releases_packages,
+        "releases": notice.releases,
+        "cves": notice.cves,
+        "references": notice.references,
+    }
+
+    return flask.render_template("security/notice.html", notice=notice)
+
+
+def notices():
+    page = flask.request.args.get("page", default=1, type=int)
+    details = flask.request.args.get("details", type=str)
+    release = flask.request.args.get("release", type=str)
+    order_by = flask.request.args.get("order", type=str)
+
+    releases = db_session.query(Release).all()
+    notices_query = db_session.query(Notice)
+
+    if release:
+        notices_query = notices_query.join(Release, Notice.releases).filter(
+            Release.codename == release
+        )
+
+    if details:
+        notices_query = notices_query.filter(
+            Notice.details.ilike(f"%{details}%")
+        )
+
+    # Snapshot total results for search
+    page_size = 10
+    total_results = notices_query.count()
+    total_pages = ceil(total_results / page_size)
+    offset = page * page_size - page_size
+
+    sort = asc if order_by == "oldest" else desc
+    notices = (
+        notices_query.order_by(sort(Notice.published))
+        .offset(offset)
+        .limit(page_size)
+        .all()
+    )
+
+    return flask.render_template(
+        "security/notices.html",
+        notices=notices,
+        releases=releases,
+        pagination=dict(
+            current_page=page,
+            total_pages=total_pages,
+            total_results=total_results,
+        ),
+    )
+
+
+# USN API
+# ===
+
+
+def api_create_notice():
+    # Because we get a dict with ID as a key and the payload as a value
+    notice_id, payload = flask.request.json.popitem()
+
+    notice = db_session.query(Notice).filter(Notice.id == notice_id).first()
+    if notice:
+        return (
+            flask.jsonify({"message": f"Notice '{notice.id}' already exists"}),
+            400,
+        )
+
+    notice_schema = NoticeSchema()
+
+    try:
+        data = notice_schema.load(payload, unknown=EXCLUDE)
+    except ValidationError as error:
+        return (
+            flask.jsonify(
+                {"message": "Invalid payload", "errors": error.messages}
+            ),
+            400,
+        )
+
+    notice = Notice(
+        id=data["notice_id"],
+        title=data["title"],
+        summary=data["summary"],
+        details=data["description"],
+        packages=data["releases"],
+        published=datetime.datetime.fromtimestamp(data["timestamp"]),
+    )
+
+    if "action" in data:
+        notice.instructions = data["action"]
+
+    if "isummary" in data:
+        notice.isummary = data["isummary"]
+
+    # Link releases
+    for release_codename in data["releases"].keys():
+        try:
+            notice.releases.append(
+                db_session.query(Release)
+                .filter(Release.codename == release_codename)
+                .one()
+            )
+        except NoResultFound:
+            message = f"No release with codename: {release_codename}."
+            return (
+                flask.jsonify({"message": message}),
+                400,
+            )
+
+    # Link CVEs, creating them if they don't exist
+    refs = set(data.get("references", []))
+    for ref in refs:
+        if ref.startswith("CVE-"):
+            cve_id = ref[4:]
+            cve = db_session.query(CVE).filter(CVE.id == cve_id).first()
+            if not cve:
+                cve = CVE(id=cve_id)
+            notice.cves.append(cve)
+        else:
+            reference = (
+                db_session.query(Reference)
+                .filter(Reference.uri == ref)
+                .first()
+            )
+            if not reference:
+                reference = Reference(uri=ref)
+            notice.references.append(reference)
+
+    db_session.add(notice)
+    db_session.commit()
+
+    return flask.jsonify({"message": "Notice created"}), 201
