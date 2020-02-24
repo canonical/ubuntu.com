@@ -41,7 +41,7 @@
           return response.json();
         })
         .then((json) => {
-          snapSearchResults = json["_embedded"]["clickindex:package"];
+          snapSearchResults = (json["_embedded"]) ? json["_embedded"]["clickindex:package"]:{};
           renderSnapList(snapSearchResults, snapResults, 'Add');
           addSnapHandler();
         });
@@ -86,19 +86,21 @@
   function renderSnapList(responce, results, buttonText) {
     if (results) {
       results.innerHTML = '';
-      responce.forEach((item, index) => {
-        results.insertAdjacentHTML('beforeend',
-          `<div class="p-media-object" data-container-index="${index}">
-            <img src="${item.icon_url}" alt="${item.title}" class="p-media-object__image">
-            <div class="p-media-object__details">
-              <h1 class="p-media-object__title">${item.title}</h1>
-              <p class="p-media-object__content">${item.developer_name}</p>
-              <a href="" class="p-button--neutral js-${buttonText.toLowerCase()}-snap" data-index="${index}">${buttonText}</a>
-            </div>
-          </div>`
-        );
-      });
-      render();
+      if (Object.entries(responce).length !== 0) {
+        responce.forEach((item, index) => {
+          results.insertAdjacentHTML('beforeend',
+            `<div class="p-media-object" data-container-index="${index}">
+              <img src="${item.icon_url}" alt="${item.title}" class="p-media-object__image">
+              <div class="p-media-object__details">
+                <h1 class="p-media-object__title">${item.title}</h1>
+                <p class="p-media-object__content">${item.developer_name}</p>
+                <a href="" class="p-button--neutral js-${buttonText.toLowerCase()}-snap" data-index="${index}">${buttonText}</a>
+              </div>
+            </div>`
+          );
+        });
+        render();
+      }
     }
   }
 
