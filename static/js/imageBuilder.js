@@ -25,24 +25,32 @@
 
   function searchHandler() {
     if (snapSearch) {
+      snapSearch.addEventListener('keyup', e => {
+        e.preventDefault();
+        triggerSearch();
+      });
       snapSearch.addEventListener('submit', e => {
         e.preventDefault();
-        const searchInput = snapSearch.querySelector('.p-search-box__input');
-        if (searchInput) {
-          const searchValue = encodeURI(searchInput.value);
-          fetch(`/static/snapcraft-fixture.json?q=${searchValue}`)
-            .then((response) => {
-              return response.json();
-            })
-            .then((json) => {
-              snapSearchResults = json["_embedded"]["clickindex:package"];
-              renderSnapList(snapSearchResults, snapResults, 'Add');
-              addSnapHandler();
-            });
-        }
+        triggerSearch();
       });
     }
   }
+
+  let triggerSearch = debounce(function() {
+    const searchInput = snapSearch.querySelector('.p-search-box__input');
+    if (searchInput) {
+      const searchValue = encodeURI(searchInput.value);
+      fetch(`/snaps?q=${searchValue}&size=12`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((json) => {
+          snapSearchResults = (json["_embedded"]) ? json["_embedded"]["clickindex:package"]:{};
+          renderSnapList(snapSearchResults, snapResults, 'Add');
+          addSnapHandler();
+        });
+    }
+  }, 250);
 
   function addSnapHandler() {
     const snapAddButtons = snapResults.querySelectorAll('.js-add-snap');
@@ -82,19 +90,28 @@
   function renderSnapList(responce, results, buttonText) {
     if (results) {
       results.innerHTML = '';
-      responce.forEach((item, index) => {
-        results.insertAdjacentHTML('beforeend',
-          `<div class="p-media-object" data-container-index="${index}">
-            <img src="${item.icon_url}" alt="${item.title}" class="p-media-object__image">
-            <div class="p-media-object__details">
-              <h1 class="p-media-object__title">${item.title}</h1>
-              <p class="p-media-object__content">${item.developer_name}</p>
-              <a href="" class="p-button--neutral js-${buttonText.toLowerCase()}-snap" data-index="${index}">${buttonText}</a>
-            </div>
-          </div>`
-        );
-      });
-      render();
+      if (Object.entries(responce).length !== 0) {
+        responce.forEach((item, index) => {
+          item.icon_url = (item.icon_url)?item.icon_url:'https://assets.ubuntu.com/v1/be6eb412-snapcraft-missing-icon.svg';
+          item.validation_icon = (item.developer_validation === 'verified')?`<span class="p-tooltip p-tooltip--top-center" aria-describedby="${item.package_name}-tooltip">
+          <img src="https://assets.ubuntu.com/v1/75654c90-rosette.svg">
+          <span class="p-tooltip__message u-align--center" role="tooltip" id="${item.package_name}-tooltip">Verified account</span>
+        </span>`:'';
+          results.insertAdjacentHTML('beforeend',
+            `<div class="p-media-object" data-container-index="${index}">
+              <img src="${item.icon_url}" alt="" class="p-media-object__image">
+              <div class="p-media-object__details">
+                <h1 class="p-media-object__title">${item.title}</h1>
+                <p class="p-media-object__content">
+                  ${item.publisher} ${item.validation_icon}
+                </p>
+                <a href="" class="p-button--neutral js-${buttonText.toLowerCase()}-snap" data-index="${index}">${buttonText}</a>
+              </div>
+            </div>`
+          );
+        });
+        render();
+      }
     }
   }
 
@@ -186,4 +203,19 @@
     }
     return false;
   }
+
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
 })()
