@@ -29,6 +29,10 @@
         e.preventDefault();
         triggerSearch();
       });
+      snapSearch.addEventListener('submit', e => {
+        e.preventDefault();
+        triggerSearch();
+      });
     }
   }
 
@@ -89,12 +93,18 @@
       if (Object.entries(responce).length !== 0) {
         responce.forEach((item, index) => {
           item.icon_url = (item.icon_url)?item.icon_url:'https://assets.ubuntu.com/v1/be6eb412-snapcraft-missing-icon.svg';
+          item.validation_icon = (item.developer_validation === 'verified')?`<span class="p-tooltip p-tooltip--top-center" aria-describedby="${item.package_name}-tooltip">
+          <img src="https://assets.ubuntu.com/v1/75654c90-rosette.svg">
+          <span class="p-tooltip__message u-align--center" role="tooltip" id="${item.package_name}-tooltip">Verified account</span>
+        </span>`:'';
           results.insertAdjacentHTML('beforeend',
             `<div class="p-media-object" data-container-index="${index}">
               <img src="${item.icon_url}" alt="" class="p-media-object__image">
               <div class="p-media-object__details">
                 <h1 class="p-media-object__title">${item.title}</h1>
-                <p class="p-media-object__content">${item.developer_name}</p>
+                <p class="p-media-object__content">
+                  ${item.publisher} ${item.validation_icon}
+                </p>
                 <a href="" class="p-button--neutral js-${buttonText.toLowerCase()}-snap" data-index="${index}">${buttonText}</a>
               </div>
             </div>`
