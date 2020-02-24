@@ -13,10 +13,15 @@
   const snapResults = document.querySelector('.js-snap-results');
   const preinstallResults = document.querySelector('.js-preinstalled-snaps-list');
   const buildButton = document.querySelector('.js-build-button');
+  const step2 = document.querySelector('.js-step-2');
+  const step3 = document.querySelector('.js-step-3');
   let snapSearchResults;
+
   selectionListeners(boardSelection, 'board');
   selectionListeners(osSelection, 'os');
   searchHandler();
+  step2.classList.add('u-disable');
+  step3.classList.add('u-disable');
 
   function searchHandler() {
     if (snapSearch) {
@@ -41,7 +46,6 @@
 
   function addSnapHandler() {
     const snapAddButtons = snapResults.querySelectorAll('.js-add-snap');
-
     snapAddButtons.forEach(addButton => {
       addButton.addEventListener('click', e => {
         e.preventDefault();
@@ -74,6 +78,7 @@
       });
     });
   }
+
   function renderSnapList(responce, results, buttonText) {
     if (results) {
       results.innerHTML = '';
@@ -102,6 +107,17 @@
         updateOSs();
       });
     });
+  }
+
+  function checkDisabled() {
+    step2.classList.add('u-disable');
+    step3.classList.add('u-disable');
+    if (STATE.board != '') {
+      step2.classList.remove('u-disable');
+    }
+    if (STATE.os != '') {
+      step3.classList.remove('u-disable');
+    }
   }
 
   function selectCollection(collection, selected) {
@@ -158,6 +174,7 @@
   function changeState(key, value) {
     STATE[key] = value;
     render();
+    checkDisabled();
   }
 
   // Utils
