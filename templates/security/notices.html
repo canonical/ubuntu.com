@@ -58,38 +58,38 @@
   </form>
 </section>
 <section class="p-strip">
-  {% if search %}
-  <div class="row">
-    <div class="col-8">
-      <h2 class="p-heading--four">
-        {{ notices|length }} of {{ pagination.total_results }} results
-      </h2>
-    </div>
-    <div class="col-4 p-form p-form--inline">
-      <div class="p-form__group">
-        <label class="p-form__label">Sort by:</label>
-        <select class="p-form__control u-no-margin--bottom js-order-select">
-          <option value="newest" {% if request.args.get('order') == 'newest'%} selected {% endif %}>Newest</option>
-          <option value="oldest" {% if request.args.get('order') == 'oldest'%} selected {% endif %}>Oldest</option>
-        </select>
+  {% if search and notices %}
+    <div class="row">
+      <div class="col-8">
+        <h2 class="p-heading--four">
+          {{ pagination.page_first_result}} - {{ pagination.page_last_result }} of {{ pagination.total_results }} results
+        </h2>
       </div>
+      <div class="col-4 p-form p-form--inline">
+        <div class="p-form__group">
+          <label class="p-form__label">Sort by:</label>
+          <select class="p-form__control u-no-margin--bottom js-order-select">
+            <option value="newest" {% if request.args.get('order') == 'newest'%} selected {% endif %}>Newest</option>
+            <option value="oldest" {% if request.args.get('order') == 'oldest'%} selected {% endif %}>Oldest</option>
+          </select>
+        </div>
+      </div>  
     </div>
-  </div>
-  <div class="u-fixed-width" style="margin-bottom: 2rem; margin-top: 2rem;">
-    <hr class="u-hide--small"/>
-  </div>
+    <div class="u-fixed-width" style="margin-bottom: 2rem; margin-top: 2rem;">
+      <hr class="u-hide--small"/>
+    </div>
   {% endif %}
   <div class="row">
     <div class="col-9">
       {% if not search %}
-      <h2>Latest Notices</h2>
+        <h2>Latest Notices</h2>
       {% endif %}
       {% if notices %}
-      {% for notice in notices %}
-      {% include "security/_notice-brief.html" %}
-      {% endfor %}
+        {% for notice in notices %}
+        {% include "security/_notice-brief.html" %}
+        {% endfor %}
       {% else %}
-      <p>No notices found.</p>
+        <h2 class="p-heading--four">No notices found</h2>
       {% endif %}
     </div>
     {% if not search %}
@@ -99,7 +99,7 @@
     {% endif %}
   </div>
   {% with total_pages = pagination.total_pages, current_page=pagination.current_page %}
-  {% include "shared/_pagination.html" %}
+    {% include "shared/_pagination.html" %}
   {% endwith %}
   {% if not search %}
   <div class="row u-hide--medium u-hide--large">
