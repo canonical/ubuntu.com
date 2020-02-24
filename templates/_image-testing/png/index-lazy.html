@@ -1,0 +1,43 @@
+{% extends "templates/image-testing_base.html" %}
+
+{% block head_extra %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block content %}
+
+{{
+  image(
+    url="https://assets.ubuntu.com/v1/3a05fc34-Dell_XPS_Laptop_Front-news.png",
+    alt="",
+    height="353",
+    width="700",
+    hi_def=True,
+    loading="auto",
+  ) | safe
+}}
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid maxime voluptate accusantium dolor hic molestias. Ab reiciendis eius adipisci non dolorem, quia, animi dolore sit nisi iusto porro. Modi, voluptatibus!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid maxime voluptate accusantium dolor hic molestias. Ab reiciendis eius adipisci non dolorem, quia, animi dolore sit nisi iusto porro. Modi, voluptatibus!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid maxime voluptate accusantium dolor hic molestias.Abreiciendis eius adipisci non dolorem, quia, animi dolore sit nisi iusto porro. Modi, voluptatibus!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid maxime voluptate accusantium dolor hic molestias. Ab reiciendis eius adipisci non dolorem, quia, animi dolore sit nisi iusto porro. Modi, voluptatibus!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid maxime voluptate accusantium dolor hic molestias. Ab reiciendis eius adipisci non dolorem, quia, animi dolore sit nisi iusto porro. Modi, voluptatibus!</p>
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid maxime voluptate accusantium dolor hic molestias. Ab reiciendis eius adipisci non dolorem, quia, animi dolore sit nisi iusto porro. Modi, voluptatibus!</p>
+
+{{
+  image(
+    url="https://assets.ubuntu.com/v1/971aa15e-QXLkLsa.png",
+    alt="",
+    width="138",
+    height="52",
+    hi_def=True,
+    loading="lazy",
+  ) | safe
+}}
+
+{% endblock content %}

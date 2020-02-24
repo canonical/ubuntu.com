@@ -1,0 +1,39 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}Image testing{% endblock %}
+
+{% block head_extra %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block content %}
+
+<section class="p-strip--suru is-dark is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h1>Image testing</h1>
+      <p>
+        Viewing images in isolation for testing purposes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <ul class="row">
+    <ul>
+      <li><a href="/_image-testing/jpg/">Jpeg (Native)</a></li>
+      <li><a href="/_image-testing/jpg/index-lazy">Jpeg (With image module)</a></li>
+    </ul>
+    <ul>
+      <li><a href="/_image-testing/png/">Png (Native)</a></li>
+      <li><a href="/_image-testing/png/index-lazy">Png (With image module)</a></li>
+    </ul>
+    <ul>
+      <li><a href="/_image-testing/svg/">SVG (Native)</a></li>
+      <li><a href="/_image-testing/svg/index-lazy">SVG (With image module)</a></li>
+    </ul>
+  </div>
+</section>
+
+{% endblock content %}
