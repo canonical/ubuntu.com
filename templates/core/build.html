@@ -15,7 +15,7 @@
   </div>
 </section>
 {% else %}
-<section class="p-strip--suru-topped">
+<section class="p-strip--suru-topped is-bordered">
   <div class="row">
     <div class="col-7">
       <h1>Build an Ubuntu IoT image</h1>
@@ -62,80 +62,75 @@
 </section>
 
 <div {% if not openid %}class="u-disable"{% endif %}>
-  <section class="p-strip is-shallow js-step-1">
+  <section class="p-strip js-step-1">
     <div class="row">
-      <div class="col-8">
-        <h2>1 What board are you using?</h2>
+      <div class="col-8 u-sv3">
+        <h2><span class="u-number-circle">1</span> What board are you using?</h2>
       </div>
     </div>
     <div class="row js-boards">
-      <button class="col-2 p-card js-selection">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png" alt="">
+      <button class="col-3 p-card js-selection">
+        <h4 class="js-name">Raspberry Pi2</h4>
         <hr class="u-sv1">
-        <p class="p-card__content">Raspberry Pi2</p>
+        <img src="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png" alt="">
       </button>
-      <button class="col-2 p-card js-selection">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png" alt="">
+      <button class="col-3 p-card js-selection">
+        <h4 class="js-name">Raspberry Pi3</h4>
         <hr class="u-sv1">
-        <p class="p-card__content">Raspberry Pi3</p>
+        <img src="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png" alt="">
       </button>
-      <button class="col-2 p-card js-selection">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png" alt="">
+      <button class="col-3 p-card js-selection">
+        <h4 class="js-name">Raspberry Pi4</h4>
         <hr class="u-sv1">
-        <p class="p-card__content">Raspberry Pi4</p>
+        <img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png" alt="">
       </button>
-      <button class="col-2 p-card js-selection">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/e7dccb69-intelnuc.png" alt="">
+      <button class="col-3 p-card js-selection">
+        <h4 class="js-name">Intel NUC</h4>
         <hr class="u-sv1">
-        <p class="p-card__content">Intel NUC</p>
-      </button>
-      <button class="col-2 p-card js-selection">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/df2cf6c9-snapdragon.png" alt="">
-        <hr class="u-sv1">
-        <p class="p-card__content">Qualcomm DragonBoard</p>
+        <img src="https://assets.ubuntu.com/v1/347b2456-intelnuc.png" alt="">
       </button>
     </div>
   </section>
 
   <section class="p-strip is-shallow js-step-2">
     <div class="row">
-      <div class="col-8">
-        <h2>2 What version of Ubuntu do you want?</h2>
+      <div class="col-8 u-sv3">
+        <h2><span class="u-number-circle">2</span> What version of Ubuntu do you want?</h2>
       </div>
     </div>
     <div class="row js-os">
-      <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3 intel-nuc qualcomm-dragonboard">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/c4f35e06-products-hero-ubuntu.svg" alt="Ubuntu logo">
+      <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3 intel-nuc">
+        <h4 class="js-name">Core 16</h4>
         <hr class="u-sv1"/>
-        <p class="p-card__content">Core 16</p>
+        <p class="p-card__content">Use if your apps or existing devices require it.</p>
       </button>
-      <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3 raspberry-pi4 intel-nuc qualcomm-dragonboard">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/c4f35e06-products-hero-ubuntu.svg" alt="Ubuntu logo">
+      <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3 raspberry-pi4 intel-nuc">
+        <p class="js-name">Core 18</p>
         <hr class="u-sv1"/>
-        <p class="p-card__content">Core 18</p>
+        <p class="p-card__content">Recommended for the most advanced security.</p>
       </button>
       <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/c4f35e06-products-hero-ubuntu.svg" alt="Ubuntu logo">
+        <p class="js-name">Classic 16.04</p>
         <hr class="u-sv1"/>
-        <p class="p-card__content">Classic 16.04</p>
+        <p class="p-card__content">Use if your apps or existing devices require it.</p>
       </button>
       <button class="col-2 p-card js-selection" data-supports="raspberry-pi2 raspberry-pi3 raspberry-pi4">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/c4f35e06-products-hero-ubuntu.svg" alt="Ubuntu logo">
+        <p class="js-name">Classic 18.04</p>
         <hr class="u-sv1"/>
-        <p class="p-card__content">Classic 18.04</p>
+        <p class="p-card__content">Recommended for best memory efficiency.</p>
       </button>
       <button class="col-2 p-card js-selection" data-supports="raspberry-pi3 raspberry-pi4">
-        <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/c4f35e06-products-hero-ubuntu.svg" alt="Ubuntu logo">
+        <p class="js-name">Classic 64-bit 18.04</p>
         <hr class="u-sv1"/>
-        <p class="p-card__content">Classic 64-bit 18.04</p>
+        <p class="p-card__content">Recommended for best maths performance.</p>
       </button>
     </div>
   </section>
 
   <section class="p-strip is-shallow js-step-3">
     <div class="row">
-      <div class="col-8">
-        <h2>3 What packages do you want preinstalled?</h2>
+      <div class="col-10 u-sv3">
+        <h2><span class="u-number-circle">3</span> What packages do you want preinstalled?</h2>
         <p>Select the applications that will be pre-installed on the device. For Ubuntu Core this will be snaps, for Ubuntu Classic it will be snaps or packages.</p>
       </div>
     </div>

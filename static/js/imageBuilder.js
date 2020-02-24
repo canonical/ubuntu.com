@@ -116,7 +116,7 @@
     collection.forEach(selection => {
       selection.addEventListener('click', function() {
         selectCollection(collection, selection);
-        const value = this.querySelector('.p-card__content').innerText;
+        const value = this.querySelector('.js-name').innerText;
         changeState(stateIndex, value);
         updateOSs();
       });
