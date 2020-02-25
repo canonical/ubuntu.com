@@ -1,24 +1,13 @@
-<div class="p-strip--accent is-deep">
+<div class="p-strip--light">
   <div class="row">
     <div class="col-12">
-      <h2>Before you start, you&rsquo;ll want this&nbsp;eBook</h2>
+      <h2 class="p-heading--three">Before you start, you&rsquo;ll want this&nbsp;eBook</h2>
     </div>
   </div>
+
   <div class="row">
     <div class="col-7">
-      <p class="u-hide--small">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/a3b75778-MAAS-ebook-web.svg",
-              alt="",
-              width="400",
-              height="279",
-              hi_def=True,
-              loading="lazy",
-            ) | safe
-        }}
-      </p>
-      <h3>
+      <h3 class="p-heading--four">
         Server provisioning: what Network Admins and IT pros need to know
       </h3>
       <p>
@@ -27,11 +16,26 @@
       <p>
         Canonical’s MAAS helps organisations to take full advantage of existing hardware investments by maximising hardware efficiency, and a pathway to leverage the performance and security of hardware based solutions with the economics and efficiencies of the cloud.
       </p>
+
+      <div class="p-card--highlighted" style="display: inline-block;">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/a7595f5e-network-admin-ebook.png",
+            alt="",
+            width="504",
+            height="338",
+            hi_def=True,
+            loading="lazy",
+            attrs={ "style": "display: block;" }
+          ) | safe
+        }}
+      </div>
     </div>
-    <div class="col-5">
+
+    <div class="col-4 col-start-large-9">
       <!-- MARKETO FORM -->
       <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1862" class="marketo-form">
-        <fieldset>
+        <fieldset style="border: 0;">
           <ul class="p-list">
             <li class="mktFormReq mktField p-list__item">
               <label for="1-FirstName" class="mktoLabel">First name:</label>
