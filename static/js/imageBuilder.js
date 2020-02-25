@@ -6,9 +6,6 @@
   };
   const boardSelection = document.querySelectorAll('.js-boards .js-selection');
   const osSelection = document.querySelectorAll('.js-os .js-selection');
-  const summaryBoard = document.querySelector('.js-summary-board');
-  const summaryOS = document.querySelector('.js-summary-os');
-  const summarySnaps = document.querySelector('.js-summary-snaps');
   const snapSearch = document.querySelector('.js-snap-search');
   const snapResults = document.querySelector('.js-snap-results');
   const preinstallResults = document.querySelector('.js-preinstalled-snaps-list');
@@ -165,16 +162,6 @@
   }
 
   function renderSummary() {
-    if (summaryBoard) {
-      summaryBoard.innerText = STATE.board;
-    }
-    if (summaryOS) {
-      summaryOS.innerText = STATE.os;
-    }
-    if (summarySnaps) {
-      summarySnaps.innerText = STATE.snaps.length;
-    }
-
     if (STATE.board != '' && STATE.os != '') {
       buildButton.setAttribute('aria-disabled', 'false');
       buildButton.disabled = false;

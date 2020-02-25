@@ -158,21 +158,8 @@
 
   <section class="p-strip--light is-shallow">
     <div class="row">
-      <h2>Summary</h2>
-    </div>
-    <div class="row p-divider">
-      <div class="col-6 p-divider__block">
-        <dl>
-          <dt>Board</dt>
-          <dd class="js-summary-board"></dd>
-          <dt>Operating system</dt>
-          <dd class="js-summary-os"></dd>
-          <dt>Packages</dt>
-          <dd><span class="js-summary-snaps">0</span> pre-installed packages</dd>
-        </dl>
-      </div>
-      <div class="col-6 p-divider__block">
-        <p>This will trigger a build in Launchpad to create your image. Once the image has been built we will contact you via email on <strong>{{ openid.email }}</strong>. This build will only be available for a few days so please do not rely on Launchpad for future downloads</p>
+      <div class="col-8">
+        <p>We’ll email you at {{ openid.email }} once the build is ready.</p>
         <p>
           <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
           <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
