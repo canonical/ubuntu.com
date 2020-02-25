@@ -14,6 +14,13 @@
     <pre>{{ build_info | tojson }}</pre>
   </div>
 </section>
+{% elif build_error %}
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <h1>Build error</h1>
+    <p>{{ build_error }}</p>
+  </div>
+</section>
 {% else %}
 <section class="p-strip--suru-topped">
   <div class="row">
@@ -168,12 +175,17 @@
   <section class="p-strip--light is-shallow">
     <div class="row">
       <div class="col-8">
-        <p>We’ll email you at {{ openid.email }} once the build is ready.</p>
-        <p>
-          <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
-          <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
-        </p>
-        <p><button class="p-button--positive js-build-button" aria-disabled="true" disabled="">Build image</button></p>
+        <form method="POST">
+          <p>We’ll email you at {{ openid.email }} once the build is ready.</p>
+          <p>
+            <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+            <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+          </p>
+          <input type="hidden" name="board" value="cm3" />
+          <input type="hidden" name="system" value="core16" />
+          <input type="hidden" name="snaps" value="toto,code,toto-fran" />
+          <p><button class="p-button--positive js-build-button">Build image</button></p>
+        </form>
       </div>
     </div>
   </section>

@@ -113,17 +113,38 @@ def post_build():
         session=session,
     )
 
-    response = launchpad.build_image(
-        board=flask.request.values.get("board"),
-        system=flask.request.values.get("system"),
-        snaps=flask.request.values.get("snaps", "").split(","),
-    )
+    context = {}
 
-    build_response = launchpad.session.get(response.headers["Location"])
+    try:
+        response = launchpad.build_image(
+            board=flask.request.values.get("board"),
+            system=flask.request.values.get("system"),
+            snaps=flask.request.values.get("snaps", "").split(","),
+        )
+        context["build_info"] = launchpad.session.get(
+            response.headers["Location"]
+        ).json()
+    except HTTPError as http_error:
+        if http_error.response.status_code == 400:
+            context["build_error"] = http_error.response.content.decode()
+        else:
+            raise http_error
 
-    return flask.render_template(
-        "core/build.html", build_info=build_response.json()
-    )
+    # Submit user to marketo
+    opt_in = flask.request.values.get("canonicalUpdatesOptIn")
+    if opt_in:
+        session.post(
+            "https://pages.ubuntu.com/index.php/leadCapture/save",
+            data={
+                "canonicalUpdatesOptIn": opt_in,
+                "formid": "1257",
+                "lpId": "2154",
+                "subId": "30",
+                "munchkinId": "066-EOV-335",
+            },
+        )
+
+    return flask.render_template("core/build.html", **context)
 
 
 def search_snaps():
