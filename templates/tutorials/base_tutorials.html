@@ -1,5 +1,6 @@
 {% extends "templates/base.html" %}
 
 {% block outer_content %}
-  {% block content %}{% endblock %}
+<script src="{{ versioned_static('js/build/tutorials.min.js') }}" defer></script>
+{% block content %}{% endblock %}
 {% endblock %}

@@ -1,6 +1,10 @@
 module.exports = {
   entry: {
     desktopStatistics: "./static/js/desktopStatistics.js",
+    tutorials: [
+      "./static/js/tutorial-list.js",
+      "./static/js/tutorial.js"
+    ],
     forms: "./static/js/forms.js",
     main: [
       "./static/js/dynamic-contact-form.js",

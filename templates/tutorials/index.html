@@ -83,41 +83,4 @@
   {% include "shared/_pagination.html" %}
 {% endwith %}
 
-<script>
-  (function() {
-    var topicsFilter = document.getElementById('tutorials-topic');
-    var sortFilter = document.getElementById('tutorials-sort');
-    var urlObj = new URL(window.location);
-
-    function handleFilter(key, el, url) {
-      if (url.searchParams.has(key)) {
-        el.value = url.searchParams.get(key);
-      }
-
-      el.addEventListener('change', function(e) {
-        var value = e.target.value;
-
-        if (url.searchParams.has('page')) {
-          url.searchParams.delete('page');
-        }
-
-        if (value) {
-          if (url.searchParams.has(key)) {
-            url.searchParams.delete(key);
-          }
-
-          url.searchParams.append(key, value);
-        } else {
-          url.searchParams.delete(key);
-        }
-
-        window.location = url;
-      });
-    }
-
-    handleFilter('topic', topicsFilter, urlObj);
-    handleFilter('sort', sortFilter, urlObj);
-  })();
-</script>
-
 {% endblock %}
