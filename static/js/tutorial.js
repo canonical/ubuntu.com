@@ -8,7 +8,7 @@
   }
 
   function setActiveLink(navigationItems) {
-    [].forEach.call(navigationItems, item => {
+    navigationItems.forEach(item => {
       const link = item.querySelector('.l-tutorial__nav-link');
       if (link.getAttribute('href') === window.location.hash) {
         item.classList.add('is-active');
@@ -27,7 +27,7 @@
 
   setActiveLink(navigationItems);
 
-  [].forEach.call(navigationItems, item => {
+  navigationItems.forEach(item => {
     const link = item.querySelector('.l-tutorial__nav-link');
     link.addEventListener('click', toggleTutorialNavigation);
   });
@@ -37,10 +37,10 @@
     setActiveLink(navigationItems);
   });
 
-  sectionIds = [];
+  const sectionIds = [];
 
   const tutorialSections = document.querySelectorAll('.l-tutorial__content section');
-  [].forEach.call(tutorialSections, section => {
+  tutorialSections.forEach(section => {
     sectionIds.push(section.id);
   });
 
@@ -66,7 +66,7 @@
   const tutorialFeedbackIcons = document.querySelectorAll('.js-feedback-icon');
   const tutorialFeedbackResult = document.querySelector('.l-tutorial__feedback-result');
 
-  [].forEach.call(tutorialFeedbackIcons, icon => {
+  tutorialFeedbackIcons.forEach(icon => {
     icon.addEventListener('click', function(e) {
       const feedbackValue = e.target.getAttribute('data-feedback-value');
       dataLayer.push({
@@ -86,11 +86,11 @@
 (function() {
   const polls = document.querySelectorAll('.poll');
 
-  [].forEach.call(polls, poll => {
+  polls.forEach(poll => {
     const answers = poll.querySelectorAll('[type="radio"]');
     const pollId = poll.getAttribute('data-poll-name');
 
-    [].forEach.call(answers, function(answer) {
+    answers.forEach(answer => {
       answer.addEventListener('change', e => {
         const answerLabel = document.querySelector('label[for="' + e.target.id + '"]');
         const eventLabel = answerLabel.innerText;
