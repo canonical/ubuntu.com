@@ -7,7 +7,7 @@ module.exports = {
     ],
     forms: "./static/js/forms.js",
     main: [
-      "./static/js/nodelist-foreach-polyfill.js",
+      "./static/js/polyfills.js",
       "./static/js/dynamic-contact-form.js",
       "./static/js/core.js",
       // Temporary fix for IE11 (see: https://github.com/canonical-web-and-design/ubuntu.com/issues/6660)
