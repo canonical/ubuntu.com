@@ -44,6 +44,7 @@ from webapp.security.views import (
     api_create_notice,
     notice,
     notices,
+    notices_feed,
 )
 
 # Set up application
@@ -131,6 +132,7 @@ app.register_blueprint(blog_blueprint, url_prefix="/blog")
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
+app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
 app.add_url_rule(
     "/security/notices", view_func=api_create_notice, methods=["POST"]
 )
