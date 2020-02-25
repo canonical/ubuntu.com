@@ -43,6 +43,30 @@
 </section>
 
 {% if enterprise_contracts %}
+
+<div class="p-modal u-hide" id="modal" style="z-index: 1000;">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="modal-title">Contract renewal</h2>
+      <button class="p-modal__close js-renew-button" aria-label="Close active modal" aria-controls="modal">Close</button>
+    </header>
+    <p id="modal-description">This contract is due to expire. Please, renew to continue to recieve this service.</p>
+    <div class="u-sv3">
+      <dl>
+        <dt>Name</dt>
+        <dd>ESM Apps Essential - Web Team QA</dd>
+        <dt>Attached machines value</dt>
+        <dd>42</dd>
+        <dt>Price per unit</dt>
+        <dd>EUR 100 for 12 months</dd>
+        <dt>Total price</dt>
+        <dd>EUR 470</dd>
+      </dl>
+    </div>
+    <p><a href="" class="p-button--positive u-no-margin--bottom">Pay with Stripe</a></p>
+  </div>
+</div>
+
 <section class="p-strip--light is-shallow" style="overflow: visible;">
   <div class="row">
     <div class="col-6">
@@ -92,7 +116,10 @@
           <tr class="p-table__row">
             <td>
               <button class="u-toggle u-no-padding--left" aria-controls="#expanded-details-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                  {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                {% if contract['contractInfo']['renewals'] %}
+                <i class="p-icon--question"></i>
+                {% endif %}
+                {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
               </button>
             </td>
             <td style="text-transform: capitalize"><span style="padding-top:.35rem;">{{ contract['supportLevel'] }}</span></td>
@@ -159,6 +186,14 @@
 
             <td id="expanded-details-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
+                {% if contract['contractInfo']['renewals'] %}
+                <div class="p-notification--information">
+                  <p class="p-notification__response">
+                    This contract is due to expire. Please, renew to continue to recieve this service.
+                    <a href="#" class="p-notification__action js-renew-button" aria-controls="modal">Renew</a>
+                  </p>
+                </div>
+                {% endif %}
                 <div class="col-12 u-align--center">
                   <dl>
                     <dt style="display: inline-block; width: 130px; text-align: right;">Created on:</dt>
@@ -252,7 +287,6 @@
     </div>
   </div>
   <div class="row u-sv3">
-
   </div>
 
 {% endif %}
@@ -265,7 +299,7 @@
 
   <div class="row">
     <div class="col-12 u-hide--small">
-        <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply). And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>      <p>Initially, this free subscription is available for Ubuntu 14.04 LTS only.</p>
+      <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply). And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>      <p>Initially, this free subscription is available for Ubuntu 14.04 LTS only.</p>
       <table style="width:auto;">
         <tr style="border: 0;">
           <td class="u-align--right">To attach a machine:</td>
@@ -287,7 +321,6 @@
     </div>
   </div>
 </section>
-
 
 {% if not enterprise_contracts %}
 <section class="p-strip is-shallow is-bordered">
@@ -469,6 +502,29 @@
   }
 
   setupContextualMenuListeners('.p-contextual-menu__toggle');
+</script>
+
+<script>
+  var renewalButtons = document.querySelectorAll('.js-renew-button');
+  renewalButtons.forEach(renewalButton => {
+    renewalButton.addEventListener('click', e => {
+      e.preventDefault();
+      var targetControls = e.target.getAttribute('aria-controls');
+      if (targetControls) {
+        toggleModal(document.getElementById(targetControls));
+      }
+    });
+  });
+
+  function toggleModal(modal) {
+    if (modal && modal.classList.contains('p-modal')) {
+      if (modal.classList.contains('u-hide')) {
+        modal.classList.remove('u-hide');
+      } else {
+        modal.classList.add('u-hide');
+      }
+    }
+  }
 </script>
 
 {% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
