@@ -5,7 +5,7 @@ context:
      meta_description: "Enpowering innovators to create righ digital experiences on various mobile form factors"
      meta_image: https://assets.ubuntu.com/v1/cee46078-Meta+data+img.jpg
      meta_copydoc: https://docs.google.com/document/d/1xJVtEHr5ROGNzDblPDNVNk4DcX5HGcXL7gyrRPKcUdE
-     header_title: "An introduction to Anbox Cloud"
+     header_title: "An introduction to <br class='u-hide--small'>Anbox Cloud"
      header_subtitle: "Scalable Android&trade; in the cloud"
      header_image: "https://assets.ubuntu.com/v1/7e3bd1ed-Anbox-Cloud+computing_outline.svg"
      header_image_width: "250"
