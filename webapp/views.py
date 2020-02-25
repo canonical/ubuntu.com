@@ -156,6 +156,10 @@ def advantage_view():
                             entitlements["fips"] = True
                         elif entitlement["type"] == "cc-eal":
                             entitlements["cc-eal"] = True
+                        elif entitlement["type"] == "esm-apps":
+                            entitlements["esm-apps"] = True
+                        elif entitlement["type"] == "esm-apps-python":
+                            entitlements["esm-apps-python"] = True
                     personal_account["entitlements"] = entitlements
                 else:
                     entitlements = {}
@@ -171,6 +175,10 @@ def advantage_view():
                             entitlements["fips"] = True
                         elif entitlement["type"] == "cc-eal":
                             entitlements["cc-eal"] = True
+                        elif entitlement["type"] == "esm-apps":
+                            entitlements["esm-apps"] = True
+                        elif entitlement["type"] == "esm-apps-python":
+                            entitlements["esm-apps-python"] = True
                         elif entitlement["type"] == "support":
                             contract["supportLevel"] = entitlement[
                                 "affordances"
