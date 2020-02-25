@@ -158,9 +158,9 @@
 
       // Check if the currently selected OS supports the this board
       if (osSupport.includes(selectedBoard)) {
-        selection.classList.remove('u-hide');
+        selection.closest('.js-selection-container').classList.remove('u-hide');
       } else {
-        selection.classList.add('u-hide');
+        selection.closest('.js-selection-container').classList.add('u-hide');
 
         // If current OS selection is not supported by the board reset OS
         if (selection.classList.contains('is-selected')) {
