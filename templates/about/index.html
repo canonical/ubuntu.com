@@ -25,16 +25,55 @@
   </div>
   <div class="row">
     <div class="col-8">
-      {{
-        image(
-            url="https://assets.ubuntu.com/v1/ddf53747-release-evergreen.png",
-            alt="",
-            width="681",
-            height="154",
-            hi_def=True,
-            loading="lazy",
-        ) | safe
-      }}
+      <div class="u-hide--small" id="small-eol"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Released</th>
+            <th scope="col">End of Life</th>
+            <th scope="col">Extended security maintenance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ubuntu 19.10</td>
+            <td>Oct 2019</td>
+            <td>Jul 2020</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04 LTS</strong></td>
+            <td>Apr 2020</td>
+            <td>Apr 2025</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 20.10</td>
+            <td>Oct 2020</td>
+            <td>Jul 2021</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 21.10</td>
+            <td>Oct 2021</td>
+            <td>Jul 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 21.04</td>
+            <td>Apr 2021</td>
+            <td>Jan 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04 LTS</strong></td>
+            <td>Apr 2022</td>
+            <td>Apr 2027</td>
+            <td>Apr 2032</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="row">
@@ -55,4 +94,6 @@
   </div>
 </section>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" defer></script>
+<script src="{{ versioned_static('js/build/release-chart.min.js') }}" defer></script>
 {% endblock content %}

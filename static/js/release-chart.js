@@ -1,5 +1,6 @@
 import {createChart} from './chart'
 import {
+  smallReleases,
   serverAndDesktopReleases,
   kernelReleases,
   kernelReleaseSchedule,
@@ -18,6 +19,7 @@ import {
   kernelStatusALL,
   openStackStatus,
   kubernetesStatus,
+  smallReleaseNames,
   desktopServerReleaseNames,
   kernelReleaseNames,
   kernelReleaseScheduleNames,
@@ -46,6 +48,9 @@ function debounce(func, wait, immediate) {
 }
 
 function buildCharts() {
+  if (document.querySelector('#small-eol')) {
+    createChart('#small-eol', smallReleaseNames, desktopServerStatus, smallReleases);
+  }
   if (document.querySelector('#server-desktop-eol')) {
     createChart('#server-desktop-eol', desktopServerReleaseNames, desktopServerStatus, serverAndDesktopReleases);
   }
@@ -82,6 +87,9 @@ function buildCharts() {
 }
 
 function clearCharts() {
+  if (document.querySelector('#small-eol')) {
+    document.querySelector('#small-eol').innerHTML = '';
+  }
   if (document.querySelector('#server-desktop-eol')) {
     document.querySelector('#server-desktop-eol').innerHTML = '';
   }
