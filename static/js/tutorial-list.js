@@ -1,7 +1,7 @@
 (function() {
-  var topicsFilter = document.getElementById('tutorials-topic');
-  var sortFilter = document.getElementById('tutorials-sort');
-  var urlObj = new URL(window.location);
+  const topicsFilter = document.getElementById('tutorials-topic');
+  const sortFilter = document.getElementById('tutorials-sort');
+  const urlObj = new URL(window.location);
 
   function handleFilter(key, el, url) {
     if (!el) {
@@ -12,8 +12,8 @@
       el.value = url.searchParams.get(key);
     }
 
-    el.addEventListener('change', function(e) {
-      var value = e.target.value;
+    el.addEventListener('change', e => {
+      const value = e.target.value;
 
       if (url.searchParams.has('page')) {
         url.searchParams.delete('page');
