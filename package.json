@@ -4,6 +4,7 @@
     "test-python": "python3 -m unittest discover tests",
     "lint-python": "flake8 webapp tests && black --check --line-length 79 webapp tests",
     "lint-scss": "sass-lint 'static/sass/**/*.scss' --verbose --no-exit -i static/sass/prism.scss",
+    "lint-js": "eslint static/js/**/*.js",
     "test-links": "./entrypoint 0.0.0.0:${PORT} && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --ignore-url /server/docs --no-warnings http://127.0.0.1:8000",
     "build-css": "node-sass --include-path node_modules static/sass --source-map true --output-style compressed --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
     "build-js": "webpack",
@@ -21,7 +22,8 @@
   },
   "lint-staged": {
     "*.scss": "./run exec yarn run lint-scss",
-    "*.py": "./run exec yarn run lint-python"
+    "*.py": "./run exec yarn run lint-python",
+    "*.js": "./run exec yarn run lint-js"
   },
   "keywords": [
     "website",
@@ -34,6 +36,8 @@
     "@babel/preset-env": "7.8.4",
     "autoprefixer": "9.7.4",
     "babel-loader": "8.0.6",
+    "eslint": "6.8.0",
+    "eslint-plugin-only-warn": "1.0.2",
     "exports-loader": "0.7.0",
     "husky": "4.2.1",
     "lint-staged": "10.0.7",
@@ -45,8 +49,8 @@
     "webpack-cli": "3.3.10"
   },
   "dependencies": {
-    "@canonical/global-nav": "2.4.0",
     "@canonical/cookie-policy": "2.0.3",
+    "@canonical/global-nav": "2.4.0",
     "vanilla-framework": "2.6.0"
   },
   "resolutions": {
