@@ -61,6 +61,14 @@ The `ceph-osd` and `ceph-mon` deployments should then be connected:
 juju add-relation ceph-osd ceph-mon
 ```
 
+If you wish to include CephFS support, which allows for ReadWriteMany volumes,
+you can also deploy and relate `ceph-fs`:
+
+```bash
+juju deploy -n1 ceph-fs
+juju add-relation ceph-fs ceph-mon
+```
+
 ### Relate to Charmed Kubernetes
 
 Making **Charmed Kubernetes** aware of your **Ceph** cluster requires 2 **Juju** relations.
@@ -135,15 +143,23 @@ kubectl get sc,po
 ```no-highlight
 NAME                                             PROVISIONER     AGE
 storageclass.storage.k8s.io/ceph-ext4            csi-rbdplugin    7m
+storageclass.storage.k8s.io/ceph-fs              csi-cephfs       7m
 storageclass.storage.k8s.io/ceph-xfs (default)   csi-rbdplugin    7m
 
 NAME                                                   READY     STATUS    RESTARTS   AGE
+pod/csi-cephfsplugin-2ljt6                             2/2       Running   0          7m
+pod/csi-cephfsplugin-attacher-0                        1/1       Running   0          7m
+pod/csi-cephfsplugin-cm5lq                             2/2       Running   0          7m
+pod/csi-cephfsplugin-provisioner-0                     2/2       Running   0          7m
+pod/csi-cephfsplugin-v57df                             2/2       Running   0          7m
 pod/csi-rbdplugin-attacher-0                           1/1       Running   0          7m
 pod/csi-rbdplugin-cnh9k                                2/2       Running   0          7m
 pod/csi-rbdplugin-lr66m                                2/2       Running   0          7m
 pod/csi-rbdplugin-mnn94                                2/2       Running   0          7m
 pod/csi-rbdplugin-provisioner-0                        1/1       Running   0          7m
 ```
+
+Note that the CephFS storage class and pods will only be present if CephFS was included above.
 
 ### Scaling out
 

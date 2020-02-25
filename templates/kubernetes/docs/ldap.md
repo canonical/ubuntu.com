@@ -253,14 +253,12 @@ juju config kubernetes-master authorization-mode="Node,RBAC"
 juju config kubernetes-master enable-keystone-authorization=true
 ```
 
- When authorisation is enabled, the policy is defined in the configuration. A new
- policy can be applied by running:
+ When authorisation is enabled, the [default policy defined in the configuration][policy] will be used.
+ Optionally, A custom policy can be applied by running:
 
 ```bash
 juju config kubernetes-master keystone-policy="$(cat policy.yaml)"
 ```
-
-The [default policy may be downloaded][policy] for easy editing.
 
 
 ## Custom Certificate Authority
