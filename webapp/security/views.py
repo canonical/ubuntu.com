@@ -1,10 +1,12 @@
 # Standard library
-import datetime
 from collections import OrderedDict
+from datetime import datetime
 from math import ceil
 
 # Packages
 import flask
+from feedgen.entry import FeedEntry
+from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
@@ -125,6 +127,61 @@ def notices():
     )
 
 
+# USN Feeds
+# ===
+
+
+def notices_feed(feed_type):
+    if feed_type not in ["atom", "rss"]:
+        flask.abort(404)
+
+    url_root = flask.request.url_root
+    base_url = flask.request.base_url
+
+    feed = FeedGenerator()
+    feed.generator("Feedgen")
+
+    feed.id(url_root)
+    feed.copyright(
+        f"{datetime.now().year} Canonical Ltd. "
+        "Ubuntu and Canonical are registered trademarks of Canonical Ltd."
+    )
+    feed.title("Ubuntu security notices")
+    feed.description("Recent content on Ubuntu security notices")
+    feed.link(href=base_url, rel="self")
+
+    def feed_entry(notice, url_root):
+        _id = f"USN-{notice.id}"
+        title = f"{_id}: {notice.title}"
+        description = notice.details
+        published = notice.published
+        notice_path = flask.url_for(".notice", notice_id=notice.id).lstrip("/")
+        link = f"{url_root}{notice_path}"
+
+        entry = FeedEntry()
+        entry.id(link)
+        entry.title(title)
+        entry.description(description)
+        entry.link(href=link)
+        entry.published(f"{published} UTC")
+        entry.author(dict(name="Ubuntu Security Team"))
+
+        return entry
+
+    notices = (
+        db_session.query(Notice)
+        .order_by(desc(Notice.published))
+        .limit(10)
+        .all()
+    )
+
+    for notice in notices:
+        feed.add_entry(feed_entry(notice, url_root), order="append")
+
+    payload = feed.atom_str() if feed_type == "atom" else feed.rss_str()
+    return flask.Response(payload, mimetype="text/xml")
+
+
 # USN API
 # ===
 
@@ -158,7 +215,7 @@ def api_create_notice():
         summary=data["summary"],
         details=data["description"],
         packages=data["releases"],
-        published=datetime.datetime.fromtimestamp(data["timestamp"]),
+        published=datetime.fromtimestamp(data["timestamp"]),
     )
 
     if "action" in data:
