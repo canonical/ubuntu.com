@@ -2,7 +2,7 @@ if (typeof forms !== 'undefined') {
   throw TypeError("Namespace 'forms' not available");
 }
 
-var forms = {}
+var forms = {};
 
 forms.stateFormField = function() {
   var countrySelect = document.getElementById('Country');
@@ -16,7 +16,7 @@ forms.stateFormField = function() {
   countrySelect.addEventListener('change', function(e) {
     var val = e.target.value;
     var optionGroup = document.querySelector('.mktoPlaceholderState__group--' + val);
-    
+
     formStateContainer.setAttribute('data-country', val);
 
     if (optionGroup) {
