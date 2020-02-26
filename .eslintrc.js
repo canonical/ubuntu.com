@@ -9,12 +9,19 @@ module.exports = {
     "extends": "eslint:recommended",
     "globals": {
         "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+        "SharedArrayBuffer": "readonly",
+        "dataLayer": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "rules": {
+      "indent": ["error", 2, {
+        "SwitchCase": 1
+      }],
+      "linebreak-style": ["error", "unix"],
+      "semi": ["error", "always"],
+      "object-curly-spacing": ["error", "always"]
     }
 };
