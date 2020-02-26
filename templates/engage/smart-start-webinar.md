@@ -11,6 +11,9 @@ context:
      header_image_width: "250"
      header_image_height: "250"
      header_class: p-engage-banner--grad
+     header_url: '#register-section'
+     header_cta: Watch the webinar
+     header_cta_class: p-button--positive
      webinar_code: '<div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 385799, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
 ---
 
