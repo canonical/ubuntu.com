@@ -219,7 +219,7 @@
   function lookup(name, key, arr) {
     for (var i = 0, len = arr.length; i < len; i++) {
       if (arr[i][key] === name) {
-        return i;
+        return true;
       }
     }
     return false;
