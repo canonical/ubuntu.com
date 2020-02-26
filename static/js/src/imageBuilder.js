@@ -37,7 +37,7 @@
   }
 
   let triggerSearch = debounce(function() {
-    snapResults.innerHTML = '<p><i class="p-icon--spinner u-animation--spin"></i> &nbsp;LoadingLoading snaps</p>';
+    snapResults.innerHTML = '<p><i class="p-icon--spinner u-animation--spin"></i> &nbsp;Loading snaps</p>';
     const searchInput = snapSearch.querySelector('.p-search-box__input');
     if (searchInput) {
       const searchValue = encodeURI(searchInput.value);
