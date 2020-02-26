@@ -6,7 +6,7 @@ context:
      meta_image: "https://assets.ubuntu.com/v1/c1d4abdf-Meta+data+img.jpg"
      meta_copydoc: "https://docs.google.com/document/d/1g0qFcM4VJbrnj-LRn0FS3Pj5pD2vYtQNhUgkH-vMHlw"
      header_title: "Accelerating IoT device time to market"
-     header_subtitle: "Challenges and soloutions for IoT execution "
+     header_subtitle: "Challenges and solutions for IoT execution "
      header_image: "https://assets.ubuntu.com/v1/049b4cc6-ubuntu+core+18+circular+white.svg"
      header_image_width: "250"
      header_image_height: "250"
