@@ -7,12 +7,25 @@
 
 {% block content %}
 
-<section class="p-strip--image is-deep is-dark" style="background-image: url('https://assets.ubuntu.com/v1/ebdfffbf-Aubergine_suru_background.png'); background-position: 77% 0%;">
+<section class="p-strip--suru is-dark">
   <div class="row">
     <div class="col-8">
       <h1>Dedicated to the security of Ubuntu</h1>
       <p>Since its inception in 2004, Ubuntu has been built on a foundation of enterprise-grade, industry leading security practices. From our toolchain to the suite of packages we use and from our update process to our industry standard certifications, Canonical never stops working to keep Ubuntu at the forefront of safety  and reliability.</p>
       <p><a class="p-button--positive" href="/engage/linux_security_webinar" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch the Ubuntu security webinar', 'eventLabel' : 'Watch the Ubuntu security webinar', 'eventValue' : undefined });" >Watch the Ubuntu security webinar</a></p>
+    </div>
+
+    <div class="col-4 u-hide--small u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/c3814c0a-shields-security-white.svg",
+          alt="",
+          height="185",
+          width="325",
+          hi_def=True,
+          loading="auto"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -41,15 +54,56 @@
   </div>
   <div class="row u-equal-height">
     <div class="col-4 p-card u-align--center">
-      <p><a href="https://usn.ubuntu.com/"><img src="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg" width="56" alt="" style="max-height: 47px;" /></a></p>
+      <p>
+        <a href="https://usn.ubuntu.com/">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/fd84bbdc-Document-open.svg",
+              alt="",
+              height="47",
+              width="56",
+              hi_def=True,
+              loading="lazy"
+            ) | safe
+          }}
+        </a>
+      </p>
+
       <h3 class="p-heading--four u-no-margin--bottom"><a class="p-link--external" href="https://usn.ubuntu.com/"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security notices', 'eventLabel' : 'Security notices - find out more' : undefined });">Security notices</a></h3>
     </div>
     <div class="col-4 p-card u-align--center">
-      <p><a href="/blog/tag/security"><img src="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg" width="56" alt="" style="max-height: 47px;" /></a></p>
+      <p>
+        <a href="/blog/tag/security">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/fd84bbdc-Document-open.svg",
+              alt="",
+              height="47",
+              width="56",
+              hi_def=True,
+              loading="lazy"
+            ) | safe
+          }}
+        </a>
+      </p>
+
       <h3 class="p-heading--four u-no-margin--bottom"><a href="/blog/tag/security" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security news', 'eventLabel' : 'Security news - find out more' : undefined });">Security news</a></h3>
     </div>
     <div class="col-4 p-card u-align--center">
-      <p><a href="https://wiki.ubuntu.com/Security/Features"><img src="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg" width="56" alt="" style="max-height: 47px;" /></a></p>
+      <p>
+        <a href="https://wiki.ubuntu.com/Security/Features">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/fd84bbdc-Document-open.svg",
+              alt="",
+              height="47",
+              width="56",
+              hi_def=True,
+              loading="lazy"
+            ) | safe
+          }}
+        </a>
+      </p>
       <h3 class="p-heading--four u-no-margin--bottom"><a href="https://wiki.ubuntu.com/Security/Features" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security hardening features', 'eventLabel' : 'Security hardening features - find out more' : undefined });">Security hardening features</a></h3>
     </div>
   </div>
@@ -59,7 +113,6 @@
   <div class="u-fixed-width">
     <div class='p-heading-icon'>
       <div class='p-heading-icon__header u-no-margin--bottom'>
-        <img class='p-heading-icon__img' src='https://assets.ubuntu.com/v1/53616a73-pictogram-heart-orange.svg' width="60" alt='' />
         <h2 class="p-heading-icon__title">Canonical puts security at the heart of Ubuntu</h2>
       </div>
     </div>
@@ -131,31 +184,121 @@
     <h2 class="p-muted-heading u-align--center">Ubuntu is trusted by</h2>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/b7693339-logo-bloomberg.svg" width="144" alt="Bloomberg" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/b7693339-logo-bloomberg.svg",
+            alt="Bloomberg",
+            height="28",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg" width="145" alt="AT&amp;T" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg",
+            alt="AT&amp;T",
+            height="88",
+            width="88",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/b3315d88-walmart.svg" width="144" alt="Walmart" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/b3315d88-walmart.svg",
+            alt="Walmart",
+            height="34",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg" width="144" alt="Deutsche Telekom">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg",
+            alt="Deutsche Telekom",
+            height="32",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/e0f7037f-logo-ebay.svg" width="144" alt="Ebay">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/e0f7037f-logo-ebay.svg",
+            alt="Ebay",
+            height="55",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg" width="144" alt="Cisco" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg",
+            alt="Cisco",
+            height="76",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/73135672-ntt-logo.svg" width="144" alt="NTT" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/73135672-ntt-logo.svg",
+            alt="NTT",
+            height="53",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/8393d534-logo-bestbuy.svg" width="144" alt="Best Buy">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/8393d534-logo-bestbuy.svg",
+            alt="Best Buy",
+            height="84",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
       </li>
       <li class="p-inline-images__item">
-        <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg" width="144" alt="PayPal" />
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg",
+            alt="PayPal",
+            height="36",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
       </li>
     </ul>
   </div>
@@ -169,8 +312,18 @@
       <p>For the first time, both a <abbr title="Defence Industry Security Association">DISA</abbr> approved <abbr title="Security Technical Implementation Guide">STIG</abbr> and a <abbr title="Center for Internet Security">CIS</abbr> Benchmark are available for Ubuntu 16.04 LTS. This is in addition to the CIS Benchmark already available for 14.04 LTS.</p>
       <a class="p-button--neutral" href="/blog/ubuntu-scores-highest-in-uk-gov-security-assessment"><span class="p-link--external">Read the <span class="u-off-screen">UK Gov Report Summary </span>case study</span></a>
     </div>
-    <div class="col-5 u-align--center">
-      <img class="u-image-position--top u-hide--small u-hide--medium u-no-margin--top" alt="" src="https://assets.ubuntu.com/v1/4107dc1c-image-ubuntu-medal.png" width="160" />
+    <div class="col-5 u-align--center u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/7953a068-security-1.svg",
+          alt="",
+          height="300",
+          width="250",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "u-hide--small u-hide--medium"}
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -184,7 +337,17 @@
       <!-- rtp section start -->
       <div class='p-heading-icon--muted'>
         <div class='p-heading-icon__header'>
-          <img class='p-heading-icon__img p-heading-icon__img--small' src='https://assets.ubuntu.com/v1/b061c401-White+paper.svg' width="32" alt='' />
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
+              alt="",
+              height="28",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
           <h4 class='p-heading-icon__title'>White paper</h4>
         </div>
       </div>
@@ -195,7 +358,17 @@
       <!-- rtp section start -->
       <div class='p-heading-icon--muted'>
         <div class='p-heading-icon__header'>
-          <img class='p-heading-icon__img p-heading-icon__img--small' src='https://assets.ubuntu.com/v1/b061c401-White+paper.svg' width="32" alt='' />
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
+              alt="",
+              height="28",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
           <h4 class='p-heading-icon__title'>White paper</h4>
         </div>
       </div>
@@ -206,7 +379,17 @@
       <!-- rtp section start -->
       <div class='p-heading-icon--muted'>
         <div class='p-heading-icon__header'>
-          <img class='p-heading-icon__img p-heading-icon__img--small' src='https://assets.ubuntu.com/v1/b061c401-White+paper.svg' width="32" alt='' />
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
+              alt="",
+              height="28",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
           <h4 class='p-heading-icon__title'>FAQ</h4>
         </div>
       </div>
@@ -274,7 +457,7 @@
   </div>
 </section>
 
-<section class="p-strip--accent">
+<section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-8">
       <h2>Talk to a member of our team</h2>
@@ -288,8 +471,18 @@
         </li>
       </ul>
     </div>
-    <div class="col-2 col-start-large-10 u-vertically-center">
-      <img src="https://assets.ubuntu.com/v1/1f1d581a-picto-quote-orange.svg" width="144" class="u-hide--small" alt="" />
+
+    <div class="col-4 u-hide--small u-align--center u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+          alt="",
+          height="178",
+          width="250",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
