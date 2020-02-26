@@ -1,23 +1,23 @@
 module.exports = {
   entry: {
-    desktopStatistics: "./static/js/desktopStatistics.js",
+    desktopStatistics: "./static/js/src/desktopStatistics.js",
     tutorials: [
-      "./static/js/tutorial-list.js",
-      "./static/js/tutorial.js"
+      "./static/js/src/tutorial-list.js",
+      "./static/js/src/tutorial.js"
     ],
-    forms: "./static/js/forms.js",
+    forms: "./static/js/src/forms.js",
     main: [
-      "./static/js/polyfills.js",
-      "./static/js/dynamic-contact-form.js",
-      "./static/js/core.js",
+      "./static/js/src/polyfills.js",
+      "./static/js/src/dynamic-contact-form.js",
+      "./static/js/src/core.js",
       // Temporary fix for IE11 (see: https://github.com/canonical-web-and-design/ubuntu.com/issues/6660)
-      // "./static/js/navigation.js",
-      "./static/js/formValidation.js",
-      "./static/js/scratch.js"
+      // "./static/js/src/navigation.js",
+      "./static/js/src/formValidation.js",
+      "./static/js/src/scratch.js"
     ],
-    "release-chart": "./static/js/release-chart.js",
-    tabotronic: "./static/js/tabotronic.js",
-    stickyNav: "./static/js/stickyNav.js"
+    "release-chart": "./static/js/src/release-chart.js",
+    tabotronic: "./static/js/src/tabotronic.js",
+    stickyNav: "./static/js/src/stickyNav.js"
   },
   mode: process.env.ENVIRONMENT === "devel" ? "development" : "production",
   output: {

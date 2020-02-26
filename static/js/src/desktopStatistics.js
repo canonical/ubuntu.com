@@ -823,8 +823,8 @@ function buildCharts() {
   createMap(
     "#where-are-users",
     dummyData.whereUsersAre.datasets,
-    "/static/js/world-110m.v1.json",
-    "/static/js/world-110m-country-names.tsv"
+    "/static/js/data/world-110m.v1.json",
+    "/static/js/data/world-110m-country-names.tsv"
   );
   createPieChart(
     "#default-settings-hw",
