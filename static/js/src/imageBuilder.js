@@ -108,7 +108,7 @@
         </span>`:'';
           results.insertAdjacentHTML('beforeend',
             `<div class="row js-snap-search-container" data-container-index="${index}">
-              <div class="col-5">
+              <div class="col-5 col-medium-5 col-small-3">
                 <div class="p-media-object u-no-margin--bottom" data-container-index="${index}">
                   <img src="${item.icon_url}" alt="" class="p-media-object__image">
                   <div class="p-media-object__details">
@@ -119,7 +119,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-1">
+              <div class="col-1 col-medium-1 col-small-1">
                 <a href="" class="p-button--base js-${buttonText.toLowerCase()}-snap" data-index="${index}"><i class="p-icon--${buttonIcon}">${buttonText}</i></a>
               </div>
             </div>
