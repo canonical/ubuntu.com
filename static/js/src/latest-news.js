@@ -20,8 +20,6 @@
     const link = articleFragment.querySelector('.article-link');
     const title = articleFragment.querySelector('.article-title');
 
-    let hostname = options.hostname || 'ubuntu.com';
-
     let url = '';
 
     if (options.hostname) {
@@ -45,7 +43,7 @@
               'eventLabel': article.slug
             }
           );
-        }
+        };
       }
     }
 
@@ -53,7 +51,7 @@
       title.innerHTML = article.title.rendered;
     }
 
-    return articleFragment
+    return articleFragment;
   }
 
   function _getTemplate(selector) {
@@ -118,7 +116,7 @@
     }
 
     if (params.length) {
-      url += "?" + params.join('&')
+      url += "?" + params.join('&');
     }
 
     const oReq = new XMLHttpRequest();
@@ -131,6 +129,6 @@
   }
 
   if (typeof (window.fetchLatestNews) == "undefined") {
-    window.fetchLatestNews = fetchLatestNews
+    window.fetchLatestNews = fetchLatestNews;
   }
 })();
