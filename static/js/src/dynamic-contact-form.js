@@ -18,11 +18,14 @@
 
     // recaptcha submitCallback
     window.CaptchaCallback = function() {
-      let recaptchas = document.querySelectorAll("div[class^=g-recaptcha]");
+      let recaptchas = [].slice.call(
+        document.querySelectorAll("div[class^=g-recaptcha]")
+      );
       recaptchas.forEach(function(field) {
         if (!field.hasAttribute("data-widget-id")) {
+          let siteKey = field.getAttribute("data-sitekey");
           const recaptchaWidgetId = grecaptcha.render(field, {
-            sitekey: "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
+            sitekey: siteKey
           });
           field.setAttribute("data-widget-id", recaptchaWidgetId);
         }
