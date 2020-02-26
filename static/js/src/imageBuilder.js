@@ -37,7 +37,7 @@
   }
 
   let triggerSearch = debounce(function() {
-    snapResults.innerHTML = '<p><i class="p-icon--spinner u-animation--spin"></i> Loading snaps</p>';
+    snapResults.innerHTML = '<p><i class="p-icon--spinner u-animation--spin"></i> &nbsp;LoadingLoading snaps</p>';
     const searchInput = snapSearch.querySelector('.p-search-box__input');
     if (searchInput) {
       const searchValue = encodeURI(searchInput.value);
@@ -68,6 +68,7 @@
           const selectedSnapContainer = button.closest('.js-snap-search-container');
           if (selectedSnapContainer) {
             selectedSnapContainer.classList.add('u-disable');
+            e.target.disabled = true;
           }
           STATE.snaps.push(snapSearchResults[button.dataset.index]);
           renderSnapList(STATE.snaps, preinstallResults, 'Remove');
@@ -87,6 +88,7 @@
         const revealItem = snapResults.querySelector(`[data-container-index="${searchIndex}"]`)
         if (revealItem) {
           revealItem.classList.remove('u-disable');
+          e.target.disabled = false;
         }
         STATE.snaps.splice(button.dataset.index, 1);
         renderSnapList(STATE.snaps, preinstallResults, 'Remove');
@@ -120,7 +122,7 @@
                 </div>
               </div>
               <div class="col-1 col-medium-1 col-small-1">
-                <a href="" class="p-button--base js-${buttonText.toLowerCase()}-snap" data-index="${index}"><i class="p-icon--${buttonIcon}">${buttonText}</i></a>
+                <button class="p-button--base js-${buttonText.toLowerCase()}-snap" data-index="${index}"><i class="p-icon--${buttonIcon}">${buttonText}</i></button>
               </div>
             </div>
             <hr />`
