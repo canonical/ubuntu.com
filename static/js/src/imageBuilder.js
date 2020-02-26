@@ -30,10 +30,14 @@
         e.preventDefault();
         triggerSearch();
       });
+      snapSearch.addEventListener('reset', e => {
+        clearSearch();
+      });
     }
   }
 
   let triggerSearch = debounce(function() {
+    snapResults.innerHTML = '<p><i class="p-icon--spinner u-animation--spin"></i> Loading snaps</p>';
     const searchInput = snapSearch.querySelector('.p-search-box__input');
     if (searchInput) {
       const searchValue = encodeURI(searchInput.value);
@@ -48,6 +52,11 @@
         });
     }
   }, 250);
+
+  function clearSearch() {
+    changeState('snaps', []);
+    renderSnapList(STATE.snaps, snapResults, 'Add');
+  }
 
   function addSnapHandler() {
     const snapAddButtons = snapResults.querySelectorAll('.js-add-snap');
@@ -118,6 +127,8 @@
           );
         });
         render();
+      } else {
+        results.innerHTML = '<p>No matching snaps</p>';
       }
     }
   }
