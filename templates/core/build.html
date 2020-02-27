@@ -7,19 +7,17 @@
 {% block content %}
 
 {% if build_info %}
-<section class="p-strip--suru-topped is-bordered">
+<section class="p-strip--suru-topped">
   <div class="row">
-    <div class="col-8">
+    <div class="col-8 u-sv3">
       <h1>Your Ubuntu image is building</h1>
       <p>We’ll email you at {{ openid.email }} when we’ve finished. A build usually takes less than 30 minutes.</p>
       <p><a href="{{ build_info.web_link }}" class="p-link--external">Build log</a></p>
     </div>
   </div>
-</section>
-<section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2 class="p-heading-three">Meanwhile, start getting ready the things you’ll need to flash your device:</h2>
+      <p>Meanwhile, start getting ready the things you’ll need to flash your device:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">A micro-USB power cable</li>
         <li class="p-list__item is-ticked">A microSD card</li>
