@@ -44,7 +44,7 @@ function addBarsToChart(svg, tasks, taskStatus, x, y) {
     .attr("transform", function(d) {
       return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
     })
-    .attr("height", function(d) {
+    .attr("height", function() {
       return y.rangeBand();
     })
     .attr("width", function(d) {
@@ -265,4 +265,4 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   emboldenLTSLabels(svg);
   addXAxisVerticalLines(svg, height);
   buildChartKey(chartSelector, taskStatus);
-};
+}

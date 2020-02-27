@@ -1,7 +1,6 @@
 var navDropdowns = [].slice.call(document.querySelectorAll('.p-navigation__dropdown-link'));
 var dropdownWindow = document.querySelector('.dropdown-window');
 var dropdownWindowOverlay = document.querySelector('.dropdown-window-overlay');
-var navigationThresholdBreakpoint = 900;
 
 navDropdowns.forEach(function(dropdown) {
   dropdown.addEventListener('click', function(event) {
@@ -36,7 +35,7 @@ navDropdowns.forEach(function(dropdown) {
 });
 
 // Close the menu if browser back button is clicked
-window.addEventListener('hashchange', function(event) {
+window.addEventListener('hashchange', function() {
   navDropdowns.forEach(function (dropdown) {
     const dropdownContent = document.getElementById(dropdown.id + "-content");
 
@@ -44,10 +43,10 @@ window.addEventListener('hashchange', function(event) {
       closeMenu(dropdown, dropdownContent);
     }
   });
-})
+});
 
 if (dropdownWindowOverlay) {
-  dropdownWindowOverlay.addEventListener('click', function(event) {
+  dropdownWindowOverlay.addEventListener('click', function() {
     navDropdowns.forEach(function(dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
 
@@ -58,7 +57,7 @@ if (dropdownWindowOverlay) {
   });
 }
 
-function closeMenu(dropdown, dropdownContent) {
+function closeMenu(dropdown) {
   dropdown.classList.remove('is-selected');
   dropdownWindow.classList.add('slide-animation');
   dropdownWindowOverlay.classList.add('fade-animation');
@@ -70,28 +69,11 @@ function closeMenu(dropdown, dropdownContent) {
 if (window.location.hash) {
   var tabId = window.location.hash.split('#')[1];
   var tab = document.getElementById(tabId);
-  var tabContent = document.getElementById(tabId + '-content');
 
   if (tab) {
     setTimeout(function() {
       document.getElementById(tabId).click();
     }, 0);
-  }
-}
-
-function closeMainMenu() {
-  var navigationLinks = [].slice.call(document.querySelectorAll('.p-navigation__dropdown-link'));
-
-  navigationLinks.forEach(function(navLink) {
-    navLink.classList.remove('is-selected');
-  });
-
-  if (!dropdownWindowOverlay.classList.contains('fade-animation')) {
-    dropdownWindowOverlay.classList.add('fade-animation');
-  }
-
-  if (!dropdownWindow.classList.contains('slide-animation')) {
-    dropdownWindow.classList.add('slide-animation');
   }
 }
 
@@ -126,18 +108,19 @@ function addGANavEvents(target, category){
   }
 }
 
-addGAContentEvents('#main-content')
+addGAContentEvents('#main-content');
 
 function addGAContentEvents(target){
   var t = document.querySelector(target);
   if (t) {
     [].slice.call(t.querySelectorAll('a')).forEach(function(a) {
+      let category;
       if (a.classList.contains('p-button--positive')) {
-        var category = 'www.ubuntu.com-content-cta-0';
+        category = 'www.ubuntu.com-content-cta-0';
       } else if (a.classList.contains('p-button')) {
-        var category = 'www.ubuntu.com-content-cta-1';
+        category = 'www.ubuntu.com-content-cta-1';
       } else {
-        var category = 'www.ubuntu.com-content-link';
+        category = 'www.ubuntu.com-content-link';
       }
       if (!a.href.startsWith("#")){
         a.addEventListener('click', function(){
@@ -154,7 +137,7 @@ function addGAContentEvents(target){
   }
 }
 
-addGAImpressionEvents('.js-takeover')
+addGAImpressionEvents('.js-takeover');
 
 function addGAImpressionEvents(target){
   var t = [].slice.call(document.querySelectorAll(target));
@@ -178,10 +161,10 @@ addUTMToForms();
 
 function addUTMToForms() {
   var params = new URLSearchParams(window.location.search);
-  utm_names = ["campaign", "source", "medium"]
-  for (i = 0; i < utm_names.length; i++) {
+  const utm_names = ["campaign", "source", "medium"];
+  for (let i = 0; i < utm_names.length; i++) {
     var utm_fields = document.getElementsByName("utm_" + utm_names[i]);
-    for (j = 0; j < utm_fields.length; j++) {
+    for (let j = 0; j < utm_fields.length; j++) {
       if (utm_fields[j]) {
         utm_fields[j].value = params.get("utm_" + utm_names[i]);
       }

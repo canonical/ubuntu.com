@@ -387,7 +387,7 @@ export var kernelReleases2004 = [
     taskName: 'Ubuntu 20.04.0 LTS',
     status: 'ESM'
   },
-]
+];
 
 export var kernelReleases1804 = [
   {
@@ -1389,4 +1389,4 @@ export var kernelReleaseScheduleNames = [
   'Ubuntu 19.04 (v5.0)',
   'Ubuntu 19.10 (v5.3)',
   'Ubuntu 20.04 LTS',
-]
+];

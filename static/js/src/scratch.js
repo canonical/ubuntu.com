@@ -18,7 +18,6 @@
         commandInput.select();
         e.preventDefault;
         try {
-          var successful = document.execCommand('copy');
           dataLayer.push({
             'event': 'GAEvent',
             'eventCategory': 'Copy to clipboard',
@@ -27,7 +26,7 @@
             'eventValue': undefined
           });
           node.classList.add('is-copied');
-          setTimeout(function(e) {
+          setTimeout(function() {
             node.classList.remove('is-copied');
           }, 300);
         } catch(err) {
@@ -38,9 +37,9 @@
     }
 
     if (commandInput) {
-      commandInput.addEventListener('click', function(e) {
+      commandInput.addEventListener('click', function() {
         this.select();
       });
     }
   });
-}())
+}());

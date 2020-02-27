@@ -16,7 +16,7 @@
         item.classList.remove('is-active');
       }
     });
-  };
+  }
 
   const navigationItems = document.querySelectorAll('.l-tutorial__nav-item');
   const toggleButton = document.querySelector('.l-tutorial__nav-toggle');
@@ -52,11 +52,11 @@
     }
   } else {
     // Redirect #0, #1 etc. to the correct section
-    match = window.location.hash.match(/^#(\d+)$/);
+    const match = window.location.hash.match(/^#(\d+)$/);
 
     if (match) {
-      index = parseInt(match[1]);
-      sectionId = sectionIds[index];
+      const index = parseInt(match[1]);
+      const sectionId = sectionIds[index];
       window.location.hash = '#' + sectionId;
       window.location.reload();
     }
