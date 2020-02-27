@@ -14,11 +14,6 @@ function debounce(func, wait, immediate) {
   };
 }
 
-function round(value, precision) {
-  var multiplier = Math.pow(10, precision || 0);
-  return Math.floor(value * multiplier) / multiplier;
-}
-
 function calcPercentage(dataset, datum) {
   var sum = d3.sum(dataset, function(d) {
     return d.value;
@@ -26,42 +21,6 @@ function calcPercentage(dataset, datum) {
   var percentage = (datum * 100) / sum;
 
   return percentage;
-}
-
-function formatTime(localData) {
-  return d3.max(localData, function(d) {
-    if (d.show) {
-      return (
-        Math.floor(d.value / 1000) +
-        ":" +
-        Math.round((d.value % 1000) * 0.1) +
-        "s"
-      );
-    }
-  });
-}
-
-function formatPercentage(localData) {
-  var localValue = round(
-    d3.max(localData, function(d) {
-      if (d.show) return calcPercentage(localData, d.value);
-    }),
-    1
-  );
-  return localValue + "%";
-}
-
-function setChartLabel(format, localData) {
-  var labelText = "";
-  switch (format) {
-    case "time":
-      labelText = formatTime(localData);
-      break;
-    default:
-      labelText = formatPercentage(localData);
-      break;
-  }
-  return labelText;
 }
 
 function manipulateData(data, options) {
@@ -151,20 +110,6 @@ function wrapText(text, width) {
   });
 }
 
-function showMaxDatum(target, dataset) {
-  var maxDatum = manipulateData(dataset, "descending", 1)[0];
-  var percentage = calcPercentage(dataset, maxDatum.value);
-  var roundedPercentage = round(percentage, 1);
-
-  document.querySelector(target).innerHTML =
-    '<h3 style="margin:0">' +
-    roundedPercentage +
-    "%</h3>" +
-    "<h4>" +
-    maxDatum.label +
-    "</h4>";
-}
-
 function createBarChart(selector, dataset, options) {
   // Set option defaults
   options = options || {};
@@ -175,11 +120,11 @@ function createBarChart(selector, dataset, options) {
   var margin = options.hasOwnProperty("margin")
     ? options.margin
     : {
-        top: 20,
-        right: 5,
-        bottom: 50,
-        left: 0
-      };
+      top: 20,
+      right: 5,
+      bottom: 50,
+      left: 0
+    };
   var colors = options.hasOwnProperty("colors")
     ? options.colors
     : ["#E95420", "#772953"];
@@ -292,11 +237,11 @@ function createHorizontalBarChart(selector, dataset, options) {
   var margin = options.hasOwnProperty("margin")
     ? options.margin
     : {
-        top: 20,
-        right: 30,
-        bottom: 20,
-        left: 60
-      };
+      top: 20,
+      right: 30,
+      bottom: 20,
+      left: 60
+    };
   var colors = options.hasOwnProperty("colors")
     ? options.colors
     : ["#E95420", "#772953"];
@@ -400,7 +345,7 @@ function createHorizontalBarChart(selector, dataset, options) {
       .enter()
       .append("text")
       .attr("class", "left-axis")
-      .attr("x", function(d) {
+      .attr("x", function() {
         return -70;
       })
       .attr("y", function(d) {
@@ -425,85 +370,6 @@ function createHorizontalBarChart(selector, dataset, options) {
         return d.label;
       });
   }
-}
-
-function createOrderedList(target, dataset, options) {
-  // Set option defaults
-  options = options || {};
-  var truncPoint = options.hasOwnProperty("truncPoint")
-    ? options.truncPoint
-    : undefined;
-  var data = dataset.slice();
-
-  var sortedList = data.sort(function(a, b) {
-    return d3.descending(a.value, b.value);
-  });
-  var count = Math.min(dataset.length, truncPoint);
-  var html = "";
-
-  for (var i = 0; i < count; i++) {
-    html += "<li>" + sortedList[i].label + "</li>";
-  }
-
-  document.querySelector(target).innerHTML = "<ol>" + html + "</ol>";
-}
-
-function createProgressChart(selector, dataset, options) {
-  // Set option defaults
-  options = options || {};
-  var parentWidth = document.querySelector(selector).parentNode.clientWidth;
-  var color = options.hasOwnProperty("color") ? options.color : "#E95420";
-  var size = options.hasOwnProperty("size") ? options.size : 300;
-  var format = options.hasOwnProperty("format") ? options.format : "percent";
-  // Create copy of dataset
-  var data = dataset.slice();
-  var label = setChartLabel(format, data);
-
-  // Orientate svg
-  size = Math.min(size, parentWidth);
-  var height = size;
-  var width = size;
-  var svg = d3
-    .select(selector)
-    .attr("height", height)
-    .attr("width", width)
-    .attr("class", "p-progress-chart");
-  var g = svg.append("g");
-
-  // Set axis domains and range
-  var x = d3.scaleBand().rangeRound([0, width]);
-
-  var y = d3
-    .scaleLinear()
-    .rangeRound([height, 0])
-    .domain([0, 100]);
-
-  // Generate bar
-  g.selectAll(".p-progress-chart__bar")
-    .data(dataset)
-    .enter()
-    .append("rect")
-    .attr("class", "p-progress-chart__bar")
-    .attr("fill", color)
-    .attr("y", function(d) {
-      return y(calcPercentage(data, d.value));
-    })
-    .attr("width", x.bandwidth())
-    .attr("height", function(d) {
-      if (d.show) return height - y(calcPercentage(data, d.value));
-    });
-
-  // Append percentage over top of graph
-  svg
-    .append("text")
-    .attr("class", "p-progress-chart__text")
-    .attr("transform", function() {
-      return "translate(" + height / 2 + "," + (width + 20) / 2 + ")";
-    })
-    .attr("text-anchor", "middle")
-    .text(function() {
-      return label;
-    });
 }
 
 function createPieChart(selector, dataset, options) {
@@ -606,7 +472,7 @@ function createPieChart(selector, dataset, options) {
 }
 
 function createMap(selector, options, mapData, countryNamesAndIds) {
-  var options = options || {};
+  options = options || {};
   var element = document.querySelector(selector).getBoundingClientRect();
   var width = element.width;
   var height = element.height;
@@ -623,11 +489,11 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
 
     var g = svg.append("g");
     var tooltip = d3.select(selector).append("div")
-                    .attr("class", "p-tooltip");
+      .attr("class", "p-tooltip");
     var tooltipMessage = tooltip.append("div")
-                          .attr("class", "p-tooltip__message p-tooltip__message--padding")
-                          .style("display", "none")
-                          .attr("role", "tooltip");
+      .attr("class", "p-tooltip__message p-tooltip__message--padding")
+      .style("display", "none")
+      .attr("role", "tooltip");
     var offset = width * 0.1;
     var projection = d3
       .geoNaturalEarth1()
@@ -669,7 +535,7 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
         country.id = (country.id.charAt(0) === "0") ? country.id.substr(1) : country.id;
         var countryName = countryNamesData.find(function (ctryName) {
           return ctryName.id === country.id;
-        })
+        });
         var countryStat = options.countryStats.find(function(ctryStat) {
           return parseInt(country.id, 10) === parseInt(ctryStat.id, 10);
         });
