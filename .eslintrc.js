@@ -24,6 +24,7 @@ module.exports = {
       }],
       "linebreak-style": ["error", "unix"],
       "semi": ["error", "always"],
-      "object-curly-spacing": ["error", "always"]
+      "object-curly-spacing": ["error", "always"],
+      "no-prototype-builtins": "off"
     }
 };
