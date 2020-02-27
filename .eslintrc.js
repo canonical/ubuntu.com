@@ -14,7 +14,8 @@ module.exports = {
         "d3": "readonly",
         "topojson": "readonly",
         "ga": "readonly",
-        "grecaptcha": "readonly"
+        "grecaptcha": "readonly",
+        "serialize": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018,
