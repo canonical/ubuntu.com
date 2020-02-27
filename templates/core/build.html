@@ -7,11 +7,27 @@
 {% block content %}
 
 {% if build_info %}
-<section class="p-strip--suru-topped">
+<section class="p-strip--suru-topped is-bordered">
   <div class="row">
-    <h1>Build started</h1>
-    <p>We've kicked off <a href="{{ build_info.web_link }}">your build</a>.</p>
-    <pre>{{ build_info | tojson }}</pre>
+    <div class="col-8">
+      <h1>Your Ubuntu image is building</h1>
+      <p>We’ll email you at {{ openid.email }} when we’ve finished. A build usually takes less than 30 minutes.</p>
+      <p><a href="{{ build_info.web_link }}" class="p-link--external">Build log</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading-three">Meanwhile, start getting ready the things you’ll need to flash your device:</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">A micro-USB power cable</li>
+        <li class="p-list__item is-ticked">A microSD card</li>
+        <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+        <li class="p-list__item is-ticked">An HDMI cable for the Pi 2 & 3, or a MicroHDMI cable for the Pi 4</li>
+        <li class="p-list__item is-ticked">A USB keyboard</li>
+      </ul>
+    </div>
   </div>
 </section>
 {% elif build_error %}
