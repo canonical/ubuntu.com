@@ -5,7 +5,7 @@ module.exports = {
     es6: true,
     jest: true
   },
-  extends: ["eslint:recommended", "eslint-config-prettier"],
+  extends: ["eslint:recommended", "eslint-config-prettier", "plugin:cypress/recommended"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
