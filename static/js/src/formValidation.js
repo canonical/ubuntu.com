@@ -3,7 +3,7 @@
 * to disable the normal submit, and instead use backgroundSubmit
 */
 
-backgroundSubmitHandlerClosure = function(submitEvent) {
+const backgroundSubmitHandlerClosure = function() {
   return function(submitEvent) {
 
     // Prevent normal submit
@@ -17,13 +17,13 @@ backgroundSubmitHandlerClosure = function(submitEvent) {
 
     // Submit the form in the background
     backgroundSubmit(marketoForm);
-  }
-}
+  };
+};
 
-backgroundSubmit = function(marketoForm, submitCallback) {
+const backgroundSubmit = function(marketoForm, submitCallback) {
   var request = new XMLHttpRequest();
   var submitUrl = marketoForm.getAttribute('action');
-  var formData = serialize(marketoForm);
+  let formData = serialize(marketoForm);
 
   request.open("POST", submitUrl, true);
 
@@ -33,13 +33,13 @@ backgroundSubmit = function(marketoForm, submitCallback) {
   // When request has finished, call the callback function
   if (submitCallback) {
     request.addEventListener(
-    'readystatechange',
-    function() {
-      if (this.readyState == 4) {
+      'readystatechange',
+      function() {
+        if (this.readyState == 4) {
         // Pass context and arguments on to submitCallback
-        submitCallback.apply(this, arguments);
-      }
-    });
+          submitCallback.apply(this, arguments);
+        }
+      });
   }
 
   // recaptcha test
@@ -62,7 +62,7 @@ backgroundSubmit = function(marketoForm, submitCallback) {
   }
 
   // copy recaptcha to marketo field
-  var formData = formData.concat("&grecaptcharesponse=" + response);
+  formData = formData.concat("&grecaptcharesponse=" + response);
 
   // Send off the POST request
   request.send(formData);
@@ -90,7 +90,6 @@ backgroundSubmit = function(marketoForm, submitCallback) {
   if (thankYouMessage != null) {
     thankYouMessage = thankYouMessage.value;
   }
-  formid = this.id;
 
   // reset form and captcha
   if (!document.querySelector('.js-feedback-notification')) {
@@ -102,14 +101,14 @@ backgroundSubmit = function(marketoForm, submitCallback) {
   afterSubmit(download_asset_url, return_url, isModal, thankYouMessage, marketoForm, isWhitepaper);
 
   return true;
-}
+};
 
 /**
 * After submit has happened
 * start download and send the user to the instructions page
 */
 
-afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage, marketoForm, isWhitepaper) {
+const afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage, marketoForm, isWhitepaper) {
 
   // Now start the download
   if (download_asset_url) {
@@ -160,19 +159,10 @@ afterSubmit = function(download_asset_url, return_url, isModal, thankYouMessage,
   if (isWhitepaper) {
     whitepaperAfterSubmit();
   }
-}
-
-// recaptcha submitCallback
-CaptchaCallback = function() {
-  let recaptchas = document.querySelectorAll("div[class^=g-recaptcha]");
-  recaptchas.forEach(function(field){
-    recaptchaWidgetId = grecaptcha.render(field, {'sitekey' : '6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if'});
-    field.setAttribute("data-widget-id", recaptchaWidgetId);
-  });
-}
+};
 
 // attach handler to all forms
 let marketoForm = document.querySelectorAll("form[id^=mktoForm]");
 marketoForm.forEach(function(form) {
-  form.addEventListener('submit', backgroundSubmitHandlerClosure())
+  form.addEventListener('submit', backgroundSubmitHandlerClosure());
 });
