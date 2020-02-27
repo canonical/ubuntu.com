@@ -23,7 +23,10 @@
   "lint-staged": {
     "*.scss": "./run exec yarn run lint-scss",
     "*.py": "./run exec yarn run lint-python",
-    "*.js": "./run exec yarn run lint-js"
+    "*.js": [
+      "./run exec yarn run lint-js",
+      "prettier --write"
+    ]
   },
   "keywords": [
     "website",
@@ -42,6 +45,7 @@
     "lint-staged": "10.0.7",
     "node-sass": "4.13.1",
     "postcss-cli": "7.1.0",
+    "prettier": "1.19.1",
     "sass-lint": "1.13.1",
     "watch-cli": "0.2.3",
     "webpack": "4.41.5",
