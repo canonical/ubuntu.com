@@ -67,7 +67,7 @@
       addButton.addEventListener('click', e => {
         e.preventDefault();
         const button = (e.target.classList.contains('js-add-snap'))?e.target:e.target.closest('.js-add-snap');
-        if (!lookup(snapSearchResults[button.dataset.index].package_name, 'package_name', STATE.snaps)) {
+        if (lookup(snapSearchResults[button.dataset.index].package_name, 'package_name', STATE.snaps) === false) {
           const selectedSnapContainer = button.closest('.js-snap-search-container');
           if (selectedSnapContainer) {
             selectedSnapContainer.classList.add('u-disable');
@@ -221,7 +221,7 @@
   function lookup(name, key, arr) {
     for (var i = 0, len = arr.length; i < len; i++) {
       if (arr[i][key] === name) {
-        return true;
+        return i;
       }
     }
     return false;
