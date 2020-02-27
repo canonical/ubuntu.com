@@ -12,8 +12,10 @@
         <h1>Ceph storage on Ubuntu</h1>
         <h2 class="p-heading--four">Ceph provides a flexible open source storage option for OpenStack, Kubernetes or as stand-alone storage cluster.</h2>
         <p>Use Ceph on Ubuntu to reduce the costs of running storage clusters at scale on commodity hardware. Get access to a proven storage technology solution and 24x7 support with Ubuntu Advantage for Infrastructure.</p>
-
-        <a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" >Get in touch</a>
+        <p>
+          <a href="/ceph/what-is-ceph" class="p-button--positive is-inline" >Learn more about Ceph</a>
+          <a href="/ceph/contact-us" class="js-invoke-modal" >Get in touch&nbsp;&rsaquo;</a>
+        </p>
       </div>
       <div class="col-5 u-align--center u-vertically-center u-hide--small">
         {{
@@ -34,30 +36,8 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-7">
-      <h2>What is Ceph?</h2>
-      <p>Ceph is a storage solution designed to address the object, block, and file storage needs of data centres adopting open source as the new norm for high-growth block storage, object stores and data lakes. Ceph provides enterprise scalable storage while keeping CAPEX and OPEX costs in line with the underlying bulk commodity disk prices.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-10 u-sv3">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/b96d5736-Ceph-diagram-1+outlined.svg",
-          alt="Ceph diagram",
-          height="345",
-          width="861",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-7">
-      <h3>Benefits of Ceph</h3>
-      <p>Designed from the ground up for petabyte-scale deployments, Canonical’s software-defined storage solutions include all-open-source components with highly automated operations to drive down the cost of ownership. We specifically offer pricing models that match either your CAPEX budget or consumption-oriented pay-for-what-you-use engagements that mirror public cloud pricing models at on-prem costs.</p>
+      <h2>Ceph storage done right</h2>
+      <p>Designed from the ground up for petabyte-scale deployments, Canonical’s Ceph solution includes all open source components with highly automated operations to drive down the cost of ownership. We specifically offer pricing models that match either your CAPEX budget or consumption-oriented pay-for-what-you-use engagements that mirror public cloud pricing models at on-prem costs.</p>
     </div>
   </div>
 
@@ -75,7 +55,7 @@
         ) | safe
       }}
       <hr class="u-sv1">
-      <p class="p-card__content">In the early days of Ceph, Yahoo! Japan searched for a local company who could support them in the implementation of an open-source distributed storage solution from the Linux operating system all the way to Ceph. Canonical provided not only Ceph but also the tooling and expertise that reduced the OPEX associated with managing a large storage cluster.</p>
+      <p class="p-card__content">In the early days of Ceph, Yahoo! Japan searched for a local company who could support them in the implementation of an open-source distributed storage solution from the Linux operating system all the way to Ceph. Canonical provided not only Ceph but also the tooling and expertise that reduced the OPEX associated with  managing a large storage cluster.</p>
       <a href="/engage/yahoo-japan-case-study">Find out more about Yahoo! Japan’s Ceph cluster&nbsp;&rsaquo;</a>
     </div>
 
@@ -100,8 +80,11 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2>Ceph storage done right</h2>
-    <p>Whether you choose to use your own operational framework or leverage the advantages of Charmed Ceph, the choice is yours. Each Ubuntu LTS release ships a version of Ceph that is supported for up to 10 years. Newer releases of Ceph can be installed from the Ubuntu Cloud Archive allowing flexibility for selecting the right version of Ceph for your environment. To maximise Ceph upgrade flexibility for customers, Ceph versions are regularly released and maintained via the Ubuntu updates and security repositories, as well as the Ubuntu Cloud Archive. This leads to predictability and a flexible mix between remaining at the forefront of innovation and long-term support predictability.</p>
+    <h2>Ceph storage deployment and operations</h2>
+    <p>Canonical can help you to design and install your Ceph cluster or provide consulting to enable you to run Ceph autonomously. If you are interested in having automated Ceph day 2 operations, you can opt for our offerings of Charmed Ceph, a Ceph cluster encapsulated in Juju charms, or Managed Ceph &mdash; a Ceph cluster fully managed by Canonical.</p>
+    <h3>Benefits of Ceph on Ubuntu</h3>
+    <p>Whether you choose to use your own operational framework or leverage the advantages of Charmed Ceph, the choice is yours. Each Ubuntu LTS release ships a version of Ceph that is supported for up to 10 years. Newer releases of Ceph can be installed from the Ubuntu Cloud Archive allowing flexibility for selecting the right version of Ceph for your environment. To maximise Ceph upgrade flexibility for customers, Ceph versions are regularly released and maintained via the Ubuntu updates and security repositories, as well as the Ubuntu Cloud Archive. This leads to a flexible mix between remaining at the forefront of innovation and long-term support predictability.</p>
+    <p>With many global enterprises and telco operators running Ceph on Ubuntu, organisations are able to combine block, object and file storage at scale while tapping into the economic and upstream benefits of open source.</p>
   </div>
 
   <div class="row">
@@ -120,26 +103,14 @@
   </div>
 
   <div class="row u-vertically-center">
-    <div class="col-6">
-      <h3>Charmed Ceph for best economics in the datacenter</h3>
+    <div class="col-8">
+      <h3>Charmed Ceph for best economics in&nbsp;the&nbsp;datacenter</h3>
       <p>Using Juju as our application model-driven operations tool, it is possible to manage the entire lifecycle of the configuration, management, operation and deployment process of a Ceph cluster. Ceph charms simplify both installation automation as well as day-2 operations orchestration such as upgrades and OSD maintenance operations while remaining interoperable with other configuration management recipes previously created.</p>
-    </div>
-
-    <div class="col-6 u-align--center u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/858d6aa5-ceph+++juju.svg",
-          alt="",
-          height="100",
-          width="298",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
     </div>
   </div>
 
   <div class="u-fixed-width">
+    <h4>Features of Charmed Ceph</h4>
     <ul class="p-list is-split">
       <li class="p-list__item is-ticked">Highly scalable from terabytes to exabytes</li>
       <li class="p-list__item is-ticked">Highly reliable with no single point of failure in the cluster</li>
