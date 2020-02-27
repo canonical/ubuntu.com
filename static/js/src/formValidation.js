@@ -166,3 +166,105 @@ let marketoForm = document.querySelectorAll("form[id^=mktoForm]");
 marketoForm.forEach(function(form) {
   form.addEventListener('submit', backgroundSubmitHandlerClosure());
 });
+
+// After submit has happened set a cookie and reveal the content
+function whitepaperAfterSubmit() {
+  setCookie(getCookieName(), 'true', 30);
+  revealContent();
+  window.location.hash = '#introduction';
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// Returns a unique cookie name for this URL path
+function getCookieName() {
+  var encodedPath = window.location.pathname.split('/').join('-');
+  return 'formFilled' + encodedPath;
+}
+
+function revealContent() {
+  var contentContainer = document.querySelector('.l-content');
+  if (contentContainer) {
+    fetchContent('robotics/_content', contentContainer);
+  }
+
+  if (hiddenContent) {
+    var content = document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li');
+    content.forEach(function(contentItem) {
+      contentItem.innerHTML = reverseContent(contentItem.innerText);
+    });
+    hiddenContent = false;
+  }
+
+  // Remove the obfuscating styling
+  var obfuscateItems = document.querySelectorAll('.u-obfuscate');
+  obfuscateItems.forEach(function(obfuscateItem) {
+    obfuscateItem.classList.remove('u-obfuscate');
+  });
+
+  // Hide the sign up form
+  var formElement = document.querySelector('.signup-form');
+  if (formElement) {
+    formElement.classList.add("u-hide");
+  }
+}
+
+function fetchContent(url, container) {
+  fetch(url)
+    .then(function(response) {
+      return response.text();
+    })
+    .then(function(text) {
+      container.innerHTML = text;
+      container.classList.add('u-reveal');
+    })
+    .catch(function(error) {
+      console.log('Request failed', error);
+    });
+}
+
+let hiddenContent = true;
+
+function reverseContent(contentString) {
+  var splitContent = contentString.split('');
+  var reverseArray = splitContent.reverse();
+  var reversedString = reverseArray.join('');
+  return reversedString;
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return null;
+}
+
+function hideContent() {
+  hiddenContent = true;
+  // Baffle to obfucast the text
+  var content = document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li');
+  content.forEach(function(contentItem) {
+    contentItem.innerText = reverseContent(contentItem.innerHTML);
+  });
+}
+
+window.onload = function() {
+  if (getCookie(getCookieName())) {
+    revealContent();
+  } else {
+    hideContent();
+  }
+};
