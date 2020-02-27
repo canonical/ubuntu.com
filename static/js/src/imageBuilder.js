@@ -54,8 +54,7 @@
   }, 250);
 
   function clearSearch() {
-    changeState('snaps', []);
-    renderSnapList(STATE.snaps, snapResults, 'Add');
+    renderSnapList([], snapResults, 'Add');
   }
 
   function addSnapHandler() {
@@ -84,11 +83,13 @@
       removeButton.addEventListener('click', e => {
         e.preventDefault();
         const button = (e.target.classList.contains('js-remove-snap'))?e.target:e.target.closest('.js-remove-snap');
-        const searchIndex = lookup(STATE.snaps[button.dataset.index].package_name, 'package_name', snapSearchResults)
-        const revealItem = snapResults.querySelector(`[data-container-index="${searchIndex}"]`)
-        if (revealItem) {
-          revealItem.classList.remove('u-disable');
-          e.target.disabled = false;
+        if (STATE.snaps[button.dataset.index]) {
+          const searchIndex = lookup(STATE.snaps[button.dataset.index].package_name, 'package_name', snapSearchResults)
+          const revealItem = snapResults.querySelector(`[data-container-index="${searchIndex}"]`)
+          if (revealItem) {
+            revealItem.classList.remove('u-disable');
+            e.target.disabled = false;
+          }
         }
         STATE.snaps.splice(button.dataset.index, 1);
         renderSnapList(STATE.snaps, preinstallResults, 'Remove');
@@ -130,7 +131,7 @@
         });
         render();
       } else {
-        results.innerHTML = '<p>No matching snaps</p>';
+        results.innerHTML = (buttonText == 'Add')?'<p>No matching snaps</p>':'<p>None</p>';
       }
     }
   }
