@@ -26,8 +26,11 @@
   function searchHandler() {
     if (snapSearch) {
       snapSearch.addEventListener('keyup', e => {
-        e.preventDefault();
-        triggerSearch();
+        // Only trigger is the key press changes a character
+        if ((e.which >= 46 && e.which <= 90) || e.which == 8) {
+          e.preventDefault();
+          triggerSearch();
+        }
       });
       snapSearch.addEventListener('submit', e => {
         e.preventDefault();
@@ -40,7 +43,7 @@
   }
 
   let triggerSearch = debounce(function() {
-    snapResults.innerHTML = '<p><i class="p-icon--spinner u-animation--spin"></i> &nbsp;Loading snaps</p>';
+    snapResults.innerHTML = '<p><i class="p-icon--spinner u-animation--spin"></i></p>';
     const searchInput = snapSearch.querySelector('.p-search-box__input');
     if (searchInput) {
       const searchValue = encodeURI(searchInput.value);
@@ -57,7 +60,7 @@
   }, 250);
 
   function clearSearch() {
-    renderSnapList([], snapResults, 'Add');
+    snapResults.innerHTML = '';
   }
 
   function addSnapHandler() {
@@ -106,6 +109,10 @@
       results.innerHTML = '';
       if (Object.entries(responce).length !== 0) {
         responce.forEach((item, index) => {
+          let disable = '';
+          if (lookup(item.package_name, 'package_name', STATE.snaps) !== false && buttonText === 'Add') {
+            disable = 'u-disable';
+          }
           buttonIcon = (buttonText === 'Add')?'plus':'minus';
           item.icon_url = (item.icon_url)?item.icon_url:'https://assets.ubuntu.com/v1/be6eb412-snapcraft-missing-icon.svg';
           item.validation_icon = (item.developer_validation === 'verified')?`<span class="p-tooltip p-tooltip--top-center" aria-describedby="${item.package_name}-tooltip">
@@ -113,7 +120,7 @@
           <span class="p-tooltip__message u-align--center" role="tooltip" id="${item.package_name}-tooltip">Verified account</span>
         </span>`:'';
           results.insertAdjacentHTML('beforeend',
-            `<div class="row js-snap-search-container" data-container-index="${index}">
+            `<div class="row js-snap-search-container ${disable}" data-container-index="${index}">
               <div class="col-5 col-medium-5 col-small-3">
                 <div class="p-media-object u-no-margin--bottom" data-container-index="${index}">
                   <img src="${item.icon_url}" alt="" class="p-media-object__image">
