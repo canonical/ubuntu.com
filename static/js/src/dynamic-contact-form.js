@@ -17,15 +17,15 @@
     });
 
     // recaptcha submitCallback
-    CaptchaCallback = function() {
+    const CaptchaCallback = function() {
       let recaptchas = document.querySelectorAll("div[class^=g-recaptcha]");
       recaptchas.forEach(function(field){
         if (!field.hasAttribute('data-widget-id')) {
-          recaptchaWidgetId = grecaptcha.render(field, {'sitekey' : '6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if'});
+          const recaptchaWidgetId = grecaptcha.render(field, { 'sitekey' : '6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if' });
           field.setAttribute("data-widget-id", recaptchaWidgetId);
         }
       });
-    }
+    };
 
     // Fetch, load and initialise form
     function fetchForm(formData, contactButton) {
@@ -42,8 +42,8 @@
           CaptchaCallback();
         })
         .catch(function (error) {
-          console.log('Request failed', error)
-        })
+          console.log('Request failed', error);
+        });
     }
 
     // Open the contact us modal
@@ -112,7 +112,6 @@
       var modalPaginationButtons = contactModal.querySelectorAll('.pagination a');
       var paginationContent = contactModal.querySelectorAll('.js-pagination');
       var submitButton = contactModal.querySelector('.mktoButton');
-      var inputs = contactModal.querySelectorAll('input, textarea');
       var comment = contactModal.querySelector('#Comments_from_lead__c');
       var otherContainers = document.querySelectorAll('.js-other-container');
 
@@ -124,7 +123,7 @@
       };
 
       if (submitButton) {
-        closeModal.addEventListener('click', function (e) {
+        closeModal.addEventListener('click', function () {
           ga('send', 'event', 'interactive-forms', 'submitted', window.location.pathname);
         });
       }
@@ -294,4 +293,4 @@
     }
     window.onhashchange = locationHashChanged;
   });
-})()
+})();

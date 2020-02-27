@@ -12,7 +12,9 @@ module.exports = {
         "SharedArrayBuffer": "readonly",
         "dataLayer": "readonly",
         "d3": "readonly",
-        "topojson": "readonly"
+        "topojson": "readonly",
+        "ga": "readonly",
+        "grecaptcha": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018,
