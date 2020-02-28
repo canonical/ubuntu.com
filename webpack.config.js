@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    desktopStatistics: "./static/js/src/desktopStatistics.js",
+    "desktop-statistics": "./static/js/src/desktop-statistics.js",
     tutorials: [
       "./static/js/src/tutorial-list.js",
       "./static/js/src/tutorial.js"
@@ -12,12 +12,12 @@ module.exports = {
       "./static/js/src/core.js",
       // Temporary fix for IE11 (see: https://github.com/canonical-web-and-design/ubuntu.com/issues/6660)
       // "./static/js/src/navigation.js",
-      "./static/js/src/formValidation.js",
+      "./static/js/src/form-validation.js",
       "./static/js/src/scratch.js"
     ],
     "release-chart": "./static/js/src/release-chart.js",
     tabotronic: "./static/js/src/tabotronic.js",
-    stickyNav: "./static/js/src/stickyNav.js"
+    "sticky-nav": "./static/js/src/sticky-nav.js"
   },
   mode: process.env.ENVIRONMENT === "devel" ? "development" : "production",
   output: {

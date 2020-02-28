@@ -1,28 +1,26 @@
-var stickyNav = document.querySelector('.p-sticky-nav');
-var stickyTabs = stickyNav.querySelectorAll('.js-sticky-tab');
+var stickyNav = document.querySelector(".p-sticky-nav");
+var stickyTabs = stickyNav.querySelectorAll(".js-sticky-tab");
 var didScroll = true;
 
 function isTabActive(tab) {
-  var sectionId = tab.href.split('#')[1];
+  var sectionId = tab.href.split("#")[1];
   var section = document.getElementById(sectionId);
-  if (section) {
-    var rect = section.getBoundingClientRect();
-    return (rect.top < stickyNav.clientHeight);
-  }
+  var rect = section.getBoundingClientRect();
+  return rect.top < stickyNav.clientHeight;
 }
 
 function render() {
   stickyTabs.forEach(function(tab) {
     if (isTabActive(tab)) {
       unsetActiveTabs();
-      tab.classList.add('is-active');
+      tab.classList.add("is-selected");
     }
   });
 }
 
 function unsetActiveTabs() {
   stickyTabs.forEach(function(tab) {
-    tab.classList.remove('is-active');
+    tab.classList.remove("is-selected");
   });
 }
 
@@ -36,6 +34,6 @@ function tick() {
 
 requestAnimationFrame(tick);
 
-window.addEventListener('scroll', function() {
+window.addEventListener("scroll", function() {
   didScroll = true;
 });
