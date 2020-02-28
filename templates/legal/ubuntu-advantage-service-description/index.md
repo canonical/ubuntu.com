@@ -103,7 +103,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
         1. [Deployment](#term-deployment) of [Charmed Kubernetes](#term-cdk) in at least the minimum deployment configuration, or a kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS.
         2. Highly-Available control plane either deployed using Charms in the Charmed Kubernetes reference architecture or in a similar fashion using kubeadm.
         3. Support must be purchased for all nodes in the supported Kubernetes cluster.
-        4. Supported versions of Kubernetes include the current stable minor release and the two most recent minor releases in the stable release channel. Additional information can be found at: [https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions](https://github.com/juju-solutions/bundle-canonical-kubernetes/wiki/Supported-Kubernetes-Versions)
+        4. Supported versions of Kubernetes include the current stable minor release and the two most recent minor releases in the stable release channel. Additional information can be found at: [https://ubuntu.com/kubernetes/docs/supported-versions](https://ubuntu.com/kubernetes/docs/supported-versions)
         5. For any deployment of Charmed Kubernetes carried out by Canonical while under contract for a deployment, which result in the customisation of any Charms, the customisation will be supported for 90 days after completion of the deployment.
     2. Unless Full-Stack Support requirements are met, support is limited to:
         1. The software packages and Charms necessary for running Charmed Kubernetes.
