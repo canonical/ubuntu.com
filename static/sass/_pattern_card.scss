@@ -20,7 +20,8 @@
   }
 
   .p-card.is-selected {
-    @extend %p-card--highlighted;
+    background-color: $color-mid-x-light;
+    border-color: $color-mid-dark;
   }
 
   .p-card.has-limited-height {
