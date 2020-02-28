@@ -12,6 +12,7 @@
   const buildButton = document.querySelector('.js-build-button');
   const step2 = document.querySelector('.js-step-2');
   const step3 = document.querySelector('.js-step-3');
+  const form = document.getElementById('build-form');
   let snapSearchResults;
 
   selectionListeners(boardSelection, 'board');
@@ -72,7 +73,7 @@
             selectedSnapContainer.classList.add('u-disable');
             e.target.disabled = true;
           }
-          STATE.snaps.push(snapSearchResults[button.dataset.index]);
+          changeState('snaps', snapSearchResults[e.target.dataset.index], 'ADD');
           renderSnapList(STATE.snaps, preinstallResults, 'Remove');
           removeSnapHandler();
         }
@@ -94,7 +95,7 @@
             e.target.disabled = false;
           }
         }
-        STATE.snaps.splice(button.dataset.index, 1);
+        changeState('snaps', e.target.dataset.index, 'REMOVE');
         renderSnapList(STATE.snaps, preinstallResults, 'Remove');
         removeSnapHandler();
       });
@@ -148,7 +149,7 @@
       selection.addEventListener('click', function() {
         selectCollection(collection, selection);
         const value = this.querySelector('.js-name').innerText;
-        changeState(stateIndex, value);
+        changeState(stateIndex, value, 'UPDATE');
         updateOSs();
       });
     });
@@ -185,7 +186,7 @@
 
         // If current OS selection is not supported by the board reset OS
         if (selection.classList.contains('is-selected')) {
-          changeState('os', '');
+          changeState('os', '', 'UPDATE');
           selection.classList.remove('is-selected');
         }
       }
@@ -204,12 +205,42 @@
 
   function render() {
     renderSummary();
+    updateForm();
+    checkDisabled();
   }
 
-  function changeState(key, value) {
-    STATE[key] = value;
+  function changeState(key, value, action) {
+    switch (action) {
+      case 'UPDATE':
+        STATE[key] = value;
+        break;
+      case 'ADD':
+        STATE[key].push(value);
+        break;
+      case 'REMOVE':
+        STATE[key].splice(value, 1);
+        break;
+      default:
+        console.log(`Error, do not understand a state change of "${action}"`);
+        return false;
+    }
     render();
-    checkDisabled();
+  }
+
+  function updateForm() {
+    const boardInput = form.querySelector('[name="board"]');
+    const systemInput = form.querySelector('[name="system"]');
+    const snapsInput = form.querySelector('[name="snaps"]');
+
+    boardInput.value = STATE.board.toLowerCase().replace(' ', '');
+    systemInput.value = STATE.os.toLowerCase().replace(' ', '').replace('-bit ', '');
+    let snapsString = '';
+    let comma = '';
+    STATE.snaps.forEach(snap => {
+      snapsString += `${comma}${snap.package_name}`;
+      comma = ',';
+    });
+    snapsInput.value = snapsString;
   }
 
   // Utils
