@@ -1,4 +1,4 @@
-import dummyData from './dummyData';
+import dummyData from "./dummy-data";
 
 function debounce(func, wait, immediate) {
   var timeout;
@@ -120,11 +120,11 @@ function createBarChart(selector, dataset, options) {
   var margin = options.hasOwnProperty("margin")
     ? options.margin
     : {
-      top: 20,
-      right: 5,
-      bottom: 50,
-      left: 0
-    };
+        top: 20,
+        right: 5,
+        bottom: 50,
+        left: 0
+      };
   var colors = options.hasOwnProperty("colors")
     ? options.colors
     : ["#E95420", "#772953"];
@@ -237,11 +237,11 @@ function createHorizontalBarChart(selector, dataset, options) {
   var margin = options.hasOwnProperty("margin")
     ? options.margin
     : {
-      top: 20,
-      right: 30,
-      bottom: 20,
-      left: 60
-    };
+        top: 20,
+        right: 30,
+        bottom: 20,
+        left: 60
+      };
   var colors = options.hasOwnProperty("colors")
     ? options.colors
     : ["#E95420", "#772953"];
@@ -481,16 +481,20 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
     //   Snapdata = country mapped to ids in objects
     // Get the countries and ids
     d3.select(selector).html("");
-    var svg = d3.select(selector)
+    var svg = d3
+      .select(selector)
       .append("svg")
       .attr("class", "p-map-chart")
       .attr("width", width)
       .attr("height", height);
 
     var g = svg.append("g");
-    var tooltip = d3.select(selector).append("div")
+    var tooltip = d3
+      .select(selector)
+      .append("div")
       .attr("class", "p-tooltip");
-    var tooltipMessage = tooltip.append("div")
+    var tooltipMessage = tooltip
+      .append("div")
       .attr("class", "p-tooltip__message p-tooltip__message--padding")
       .style("display", "none")
       .attr("role", "tooltip");
@@ -532,8 +536,9 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
       .on("mousemove", function(country) {
         var position = d3.mouse(g.node());
         // Check that country id starts with a zero trim the leading zeros
-        country.id = (country.id.charAt(0) === "0") ? country.id.substr(1) : country.id;
-        var countryName = countryNamesData.find(function (ctryName) {
+        country.id =
+          country.id.charAt(0) === "0" ? country.id.substr(1) : country.id;
+        var countryName = countryNamesData.find(function(ctryName) {
           return ctryName.id === country.id;
         });
         var countryStat = options.countryStats.find(function(ctryStat) {
@@ -543,15 +548,14 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
           var tooltipLocation = "";
           var rightOffset = width - 100;
           // Check where the top and left axis start from for each tooltip and reposition the tooltip message
-          if (position[0] < 150 )
-          {
+          if (position[0] < 150) {
             tooltipLocation = "p-tooltip p-tooltip--right";
-          } else if (position[1] < 50 && position[0] < 150 ) {
+          } else if (position[1] < 50 && position[0] < 150) {
             tooltipLocation = "p-tooltip p-tooltip--bottom-right";
-          } else if (position[1] < 50 ) {
+          } else if (position[1] < 50) {
             tooltipLocation = "p-tooltip p-tooltip--bottom-center";
           } else if (position[0] > rightOffset) {
-            tooltipLocation =  "p-tooltip p-tooltip--left";
+            tooltipLocation = "p-tooltip p-tooltip--left";
           } else {
             tooltipLocation = "p-tooltip p-tooltip--top-center";
           }
@@ -562,11 +566,16 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
             .style("display", "block")
             .style("position", "absolute")
             .style("opacity", "1");
-          var noOfUsers =  (countryStat.users.toFixed(1) < 1) ? "< 0.1" : countryStat.users.toFixed(1);
+          var noOfUsers =
+            countryStat.users.toFixed(1) < 1
+              ? "< 0.1"
+              : countryStat.users.toFixed(1);
 
           // unhiding the tooltip message tom prevent tooltip from showing when no country has been hovered over
           tooltipMessage.style("display", "block");
-          tooltipMessage.html(`<span>${countryName.name}:</span><span>&nbsp; ${noOfUsers}%</span>`);
+          tooltipMessage.html(
+            `<span>${countryName.name}:</span><span>&nbsp; ${noOfUsers}%</span>`
+          );
         }
       })
       .on("mouseout", function() {
@@ -574,16 +583,19 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
       });
   }
 
-  d3.tsv(countryNamesAndIds).then(function(countryNamesData) {
-    d3.json(mapData)
-      .then(function(world) {
-        return render(countryNamesData, world);
-      }).catch(function(error) {
-        throw new Error(error);
-      });
-  }).catch(function(error) {
-    throw new Error(error);
-  });
+  d3.tsv(countryNamesAndIds)
+    .then(function(countryNamesData) {
+      d3.json(mapData)
+        .then(function(world) {
+          return render(countryNamesData, world);
+        })
+        .catch(function(error) {
+          throw new Error(error);
+        });
+    })
+    .catch(function(error) {
+      throw new Error(error);
+    });
 }
 
 function clearCharts() {
