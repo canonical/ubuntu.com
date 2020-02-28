@@ -6,6 +6,7 @@ module.exports = {
       "./static/js/src/tutorial.js"
     ],
     forms: "./static/js/src/forms.js",
+    "image-download": "./static/js/src/image-download.js",
     main: [
       "./static/js/src/polyfills.js",
       "./static/js/src/dynamic-contact-form.js",

@@ -543,85 +543,18 @@
 
   {% block footer_extra %}
   {% if start_download %}
-  <script>
-    // Download file information
-    var defaultLocation = 'http://releases.ubuntu.com/'; // Default to releases.ubuntu.com
-    var version = '{{ version }}';
-    var architecture = '{{ architecture }}';
+  <script src="{{ versioned_static('js/build/image-download.min.js') }}"></script>
 
-    // Mirrors for this country
-    var mirrors = {{ mirror_list|safe }};
+  <script defer>
+    var architecture = '{{ architecture }}';
+    var mirrors = {{ mirror_list | safe }};
+    var version = '{{ version }}';
 
     if (version && architecture && architecture != 'amd64+mac') {
-      dataLayer.push({
-        'event': 'GAEvent',
-        'eventCategory': 'Download',
-        'eventAction': 'Downloaded',
-        'eventLabel': 'User downloaded Ubuntu (' + version + '-desktop-' + architecture + ')',
-        'eventValue': undefined
-      });
-      startDownload(mirrors, version, architecture, defaultLocation);
-    }
+      var GAlabel = version + '-desktop-' + architecture;
+      var imagePath = version + '/ubuntu-' + version + '-desktop-' + architecture + '.iso';
 
-    function startDownload(mirrors, version, architecture, defaultLocation) {
-      // Select a random mirror from list
-      var selectedMirror = chooseRandomMirror(mirrors);
-      var downloadLocation = defaultLocation;
-
-      // Build the download link
-      if (selectedMirror && selectedMirror.link) {
-        downloadLocation = selectedMirror.link;
-      }
-      var downloadLink = downloadLocation + version + '/ubuntu-' + version + '-desktop-' + architecture + '.iso';
-
-      // Start download
-      delayStartDownload(downloadLink, 3000);
-    }
-
-    /**
-    * Kick off a download link
-    * after a certain delay in milliseconds
-    */
-    function delayStartDownload(downloadLink, delay) {
-      window.setTimeout(
-      function() {
-        window.location.href = downloadLink;
-      },
-      delay
-      )
-    }
-
-    /**
-    * Choose randomly from a given list of mirrors
-    * Weight the choice by the bandwidth of each mirror
-    */
-    function chooseRandomMirror(mirrors) {
-      var selectedMirror = null;
-
-      // Calculate total bandwidth
-      var totalBandwidth = 0;
-      mirrors.forEach(function(mirror) {
-        mirror.bandwidth = parseInt(mirror.bandwidth) ? parseInt(mirror.bandwidth) : 0;
-        totalBandwidth += mirror.bandwidth;
-      });
-
-      // Random weight-point to download
-      var downloadPoint = Math.floor(Math.random() * totalBandwidth);
-      var weightPoint = 0;
-
-      // Select a mirror based on weighting
-      for (var mirrorIndex = 0; mirrorIndex < mirrors.length; mirrorIndex++) {
-        var mirror = mirrors[mirrorIndex];
-        weightPoint += mirror.bandwidth;
-
-        // If this is the random point to download
-        if (downloadPoint < weightPoint) {
-          selectedMirror = mirror;
-          break;
-        }
-      }
-
-      return selectedMirror;
+      window.initImageDownload(mirrors, imagePath, GAlabel);
     }
   </script>
   {% endif %}
