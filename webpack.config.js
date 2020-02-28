@@ -10,8 +10,7 @@ module.exports = {
       "./static/js/src/polyfills.js",
       "./static/js/src/dynamic-contact-form.js",
       "./static/js/src/core.js",
-      // Temporary fix for IE11 (see: https://github.com/canonical-web-and-design/ubuntu.com/issues/6660)
-      // "./static/js/src/navigation.js",
+      "./static/js/src/navigation.js",
       "./static/js/src/form-validation.js",
       "./static/js/src/scratch.js"
     ],
