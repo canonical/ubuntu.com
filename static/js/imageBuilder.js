@@ -23,17 +23,24 @@
   function searchHandler() {
     if (snapSearch) {
       snapSearch.addEventListener('keyup', e => {
-        e.preventDefault();
-        triggerSearch();
+        // Only trigger is the key press changes a character
+        if ((e.which >= 46 && e.which <= 90) || e.which == 8) {
+          e.preventDefault();
+          triggerSearch();
+        }
       });
       snapSearch.addEventListener('submit', e => {
         e.preventDefault();
         triggerSearch();
       });
+      snapSearch.addEventListener('reset', e => {
+        clearSearch();
+      });
     }
   }
 
   let triggerSearch = debounce(function() {
+    snapResults.innerHTML = '<p><i class="p-icon--spinner u-animation--spin"></i></p>';
     const searchInput = snapSearch.querySelector('.p-search-box__input');
     if (searchInput) {
       const searchValue = encodeURI(searchInput.value);
@@ -49,17 +56,23 @@
     }
   }, 250);
 
+  function clearSearch() {
+    snapResults.innerHTML = '';
+  }
+
   function addSnapHandler() {
     const snapAddButtons = snapResults.querySelectorAll('.js-add-snap');
     snapAddButtons.forEach(addButton => {
       addButton.addEventListener('click', e => {
         e.preventDefault();
-        if (!lookup(snapSearchResults[e.target.dataset.index].snap_id, 'snap_id', STATE.snaps)) {
-          const selectedSnapContainer = e.target.closest('.p-media-object');
+        const button = (e.target.classList.contains('js-add-snap'))?e.target:e.target.closest('.js-add-snap');
+        if (lookup(snapSearchResults[button.dataset.index].package_name, 'package_name', STATE.snaps) === false) {
+          const selectedSnapContainer = button.closest('.js-snap-search-container');
           if (selectedSnapContainer) {
-            selectedSnapContainer.classList.add('u-hide');
+            selectedSnapContainer.classList.add('u-disable');
+            e.target.disabled = true;
           }
-          STATE.snaps.push(snapSearchResults[e.target.dataset.index]);
+          STATE.snaps.push(snapSearchResults[button.dataset.index]);
           renderSnapList(STATE.snaps, preinstallResults, 'Remove');
           removeSnapHandler();
         }
@@ -72,12 +85,16 @@
     snapRemoveButtons.forEach(removeButton => {
       removeButton.addEventListener('click', e => {
         e.preventDefault();
-        searchIndex = lookup(STATE.snaps[e.target.dataset.index].snap_id, 'snap_id', snapSearchResults)
-        const revealItem = snapResults.querySelector(`[data-container-index="${searchIndex}"]`)
-        if (revealItem) {
-          revealItem.classList.remove('u-hide');
+        const button = (e.target.classList.contains('js-remove-snap'))?e.target:e.target.closest('.js-remove-snap');
+        if (STATE.snaps[button.dataset.index]) {
+          const searchIndex = lookup(STATE.snaps[button.dataset.index].package_name, 'package_name', snapSearchResults)
+          const revealItem = snapResults.querySelector(`[data-container-index="${searchIndex}"]`)
+          if (revealItem) {
+            revealItem.classList.remove('u-disable');
+            e.target.disabled = false;
+          }
         }
-        STATE.snaps.splice(e.target.dataset.index, 1);
+        STATE.snaps.splice(button.dataset.index, 1);
         renderSnapList(STATE.snaps, preinstallResults, 'Remove');
         removeSnapHandler();
       });
@@ -89,25 +106,39 @@
       results.innerHTML = '';
       if (Object.entries(responce).length !== 0) {
         responce.forEach((item, index) => {
+          let disable = '';
+          if (lookup(item.package_name, 'package_name', STATE.snaps) !== false && buttonText === 'Add') {
+            disable = 'u-disable';
+          }
+          buttonIcon = (buttonText === 'Add')?'plus':'minus';
           item.icon_url = (item.icon_url)?item.icon_url:'https://assets.ubuntu.com/v1/be6eb412-snapcraft-missing-icon.svg';
           item.validation_icon = (item.developer_validation === 'verified')?`<span class="p-tooltip p-tooltip--top-center" aria-describedby="${item.package_name}-tooltip">
           <img src="https://assets.ubuntu.com/v1/75654c90-rosette.svg">
           <span class="p-tooltip__message u-align--center" role="tooltip" id="${item.package_name}-tooltip">Verified account</span>
         </span>`:'';
           results.insertAdjacentHTML('beforeend',
-            `<div class="p-media-object" data-container-index="${index}">
-              <img src="${item.icon_url}" alt="" class="p-media-object__image">
-              <div class="p-media-object__details">
-                <h1 class="p-media-object__title">${item.title}</h1>
-                <p class="p-media-object__content">
-                  ${item.publisher} ${item.validation_icon}
-                </p>
-                <a href="" class="p-button--neutral js-${buttonText.toLowerCase()}-snap" data-index="${index}">${buttonText}</a>
+            `<div class="row js-snap-search-container ${disable}" data-container-index="${index}">
+              <div class="col-5 col-medium-5 col-small-3">
+                <div class="p-media-object u-no-margin--bottom" data-container-index="${index}">
+                  <img src="${item.icon_url}" alt="" class="p-media-object__image">
+                  <div class="p-media-object__details">
+                    <h1 class="p-media-object__title" style="line-height: 1.4rem">${item.title}</h1>
+                    <p class="p-media-object__content">
+                      ${item.publisher} ${item.validation_icon}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>`
+              <div class="col-1 col-medium-1 col-small-1">
+                <button class="p-button--base js-${buttonText.toLowerCase()}-snap" data-index="${index}"><i class="p-icon--${buttonIcon}">${buttonText}</i></button>
+              </div>
+            </div>
+            <hr />`
           );
         });
         render();
+      } else {
+        results.innerHTML = (buttonText == 'Add')?'<p>No matching snaps</p>':'<p>None</p>';
       }
     }
   }

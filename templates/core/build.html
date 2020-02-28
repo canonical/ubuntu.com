@@ -146,19 +146,28 @@
         <p>Select the applications that will be pre-installed on the device. For Ubuntu Core this will be snaps, for Ubuntu Classic it will be snaps or packages.</p>
       </div>
     </div>
-    <div class="row p-divider">
-      <div class="col-6 p-divider__block">
+    <div class="row">
+      <div class="col-6">
+        <h4>Available snaps:</h4>
         <form class="p-search-box js-snap-search">
-          <input type="search" class="p-search-box__input" name="search" placeholder="Search for snaps" required="">
+          <input type="search" class="p-search-box__input" name="search" required="">
           <button type="reset" class="p-search-box__reset" alt="reset"><i class="p-icon--close"></i></button>
           <button type="submit" class="p-search-box__button" alt="search"><i class="p-icon--search"></i></button>
         </form>
-        <div class="js-snap-results"></div>
+        <div class="p-card has-limited-height">
+          <div class="js-snap-results"></div>
+        </div>
       </div>
-      <div class="col-6 p-divider__block">
-        <h4 class="p-muted-heading">Pre-installed snaps</h4>
-        <hr class="u-sv1">
-        <div class="js-preinstalled-snaps-list"></div>
+      <div class="col-6">
+        <h4>Your chosen snaps:</h4>
+        <div class="p-card has-limited-height--large">
+          <div class="js-preinstalled-snaps-list"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <p>Got an app that isn’t in the Snap Store? Learn how to <a href="https://snapcraft.io/">publish it as a snap</a>.</p>
       </div>
     </div>
   </section>
