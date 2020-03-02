@@ -16,7 +16,6 @@ function sortTasks(tasks) {
   return tasks;
 }
 
-
 /**
  *
  * @param {*} svg
@@ -28,7 +27,8 @@ function sortTasks(tasks) {
  * Add bars to chart using supplied data
  */
 function addBarsToChart(svg, tasks, taskStatus, x, y) {
-  svg.selectAll(".chart")
+  svg
+    .selectAll(".chart")
     .data(tasks, function(d) {
       return d.startDate + d.taskName + d.endDate;
     })
@@ -45,13 +45,12 @@ function addBarsToChart(svg, tasks, taskStatus, x, y) {
       return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
     })
     .attr("height", function() {
-      return y.rangeBand();
+      return y.bandwidth();
     })
     .attr("width", function(d) {
       return x(d.endDate) - x(d.startDate);
     });
 }
-
 
 /**
  *
@@ -63,7 +62,8 @@ function addBarsToChart(svg, tasks, taskStatus, x, y) {
  * Add x axis to chart
  */
 function addXAxis(svg, height, margin, xAxis) {
-  svg.append("g")
+  svg
+    .append("g")
     .attr("class", "x axis")
     .attr(
       "transform",
@@ -73,7 +73,6 @@ function addXAxis(svg, height, margin, xAxis) {
     .call(xAxis);
 }
 
-
 /**
  *
  * @param {*} svg
@@ -82,12 +81,12 @@ function addXAxis(svg, height, margin, xAxis) {
  * Add y axis to chart
  */
 function addYAxis(svg, yAxis) {
-  svg.append("g")
+  svg
+    .append("g")
     .attr("class", "y axis")
     .transition()
     .call(yAxis);
 }
-
 
 /**
  *
@@ -96,15 +95,14 @@ function addYAxis(svg, yAxis) {
  * Clean up unwanted elements on chart put in by d3.js
  */
 function cleanUpChart(svg) {
-  svg.select(".domain").remove();
+  svg.selectAll(".domain").remove();
 }
 
-
-/**
+/* @param {*} svg
  *
- * @param {*} svg
+ * Embolden LTS labels on y axis**
  *
- * Embolden LTS labels on y axis
+ 
  */
 function emboldenLTSLabels(svg) {
   svg.selectAll(".tick text").select(function() {
@@ -115,7 +113,6 @@ function emboldenLTSLabels(svg) {
     }
   });
 }
-
 
 /**
  *
@@ -128,7 +125,6 @@ function addXAxisVerticalLines(svg, height) {
   svg.selectAll(".x.axis .tick line").attr("y1", -height);
 }
 
-
 /**
  *
  * @param {String} chartSelector
@@ -139,34 +135,35 @@ function addXAxisVerticalLines(svg, height) {
 function buildChartKey(chartSelector, taskStatus) {
   var taskStatusKeys = Object.keys(taskStatus);
 
-  var chartKey = d3.select(chartSelector)
+  var chartKey = d3
+    .select(chartSelector)
     .append("svg")
     .attr("class", "chart-key")
     .attr("width", "400")
     .attr("height", 24 * taskStatusKeys.length);
 
   taskStatusKeys.forEach(function(key, i) {
-    var keyRow = chartKey.append('g')
-      .attr('class', 'chart-key__row')
-      .attr('transform', 'translate(0, ' + 21 * i + ')')
-      .attr('height', 24);
+    var keyRow = chartKey
+      .append("g")
+      .attr("class", "chart-key__row")
+      .attr("transform", "translate(0, " + 21 * i + ")")
+      .attr("height", 24);
 
     keyRow
-      .append('rect')
-      .attr('class', taskStatus[key])
-      .attr('width', 18)
-      .attr('height', 14)
-      .attr('y', 0);
+      .append("rect")
+      .attr("class", taskStatus[key])
+      .attr("width", 18)
+      .attr("height", 14)
+      .attr("y", 0);
 
     keyRow
-      .append('text')
+      .append("text")
       .text(formatKeyLabel(key))
-      .attr('class', 'chart-key__label')
-      .attr('x', 24)
-      .attr('y', 13);
+      .attr("class", "chart-key__label")
+      .attr("x", 24)
+      .attr("y", 13);
   });
 }
-
 
 /**
  *
@@ -175,18 +172,27 @@ function buildChartKey(chartSelector, taskStatus) {
  * Formats key into readable string
  */
 function formatKeyLabel(key) {
-  var keyLowerCase = key.toLowerCase().replace(/_/g, ' ');
-  var formattedKey = keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
-  formattedKey = formattedKey.replace('Lts', 'Ubuntu LTS release Standard Support');
-  formattedKey = formattedKey.replace(' openstack ', ' OpenStack ');
-  formattedKey = formattedKey.replace('kub', 'Kub');
-  formattedKey = formattedKey.replace('Interim release', 'Interim release Standard Support');
-  formattedKey = formattedKey.replace('Esm', 'Extended Security Maintenance (ESM)');
-  formattedKey = formattedKey.replace('Cve', 'CVE/Critical fixes only');
-  formattedKey = formattedKey.replace('Early', 'Early preview');
+  var keyLowerCase = key.toLowerCase().replace(/_/g, " ");
+  var formattedKey =
+    keyLowerCase.charAt(0).toUpperCase() + keyLowerCase.substr(1);
+  formattedKey = formattedKey.replace(
+    "Lts",
+    "Ubuntu LTS release Standard Support"
+  );
+  formattedKey = formattedKey.replace(" openstack ", " OpenStack ");
+  formattedKey = formattedKey.replace("kub", "Kub");
+  formattedKey = formattedKey.replace(
+    "Interim release",
+    "Interim release Standard Support"
+  );
+  formattedKey = formattedKey.replace(
+    "Esm",
+    "Extended Security Maintenance (ESM)"
+  );
+  formattedKey = formattedKey.replace("Cve", "CVE/Critical fixes only");
+  formattedKey = formattedKey.replace("Early", "Early preview");
   return formattedKey;
 }
-
 
 /**
  *
@@ -205,41 +211,33 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
     left: 150
   };
   var rowHeight = 32;
-  var timeDomainStart = d3.time.year.offset(tasks[0].startDate, -1);
-  var timeDomainEnd = d3.time.year.offset(tasks[tasks.length - 1].endDate, +1);
+  var timeDomainStart = d3.timeYear.offset(tasks[0].startDate, -1);
+  var timeDomainEnd = d3.timeYear.offset(tasks[tasks.length - 1].endDate, +1);
   var height = taskTypes.length * rowHeight;
   var containerWidth = document.querySelector(chartSelector).clientWidth;
   if (containerWidth <= 0) {
-    containerWidth = document.querySelector(chartSelector).closest('[class*="col-"]').clientWidth;
+    containerWidth = document
+      .querySelector(chartSelector)
+      .closest('[class*="col-"]').clientWidth;
   }
   var width = containerWidth - margin.right - margin.left;
-  var tickSize = 1;
 
-  if (window.innerWidth < 1080) {
-    tickSize = 2;
-  }
-
-  var x = d3.time
-    .scale()
+  var x = d3
+    .scaleTime()
     .domain([timeDomainStart, timeDomainEnd])
     .range([0, width])
     .clamp(true);
 
-  var y = d3.scale
-    .ordinal()
+  var y = d3
+    .scaleBand()
     .domain(taskTypes)
-    .rangeRoundBands([0, height - margin.top - margin.bottom], 0.1);
+    .rangeRound([0, height - margin.top - margin.bottom])
+    .padding(0.1);
 
-  var xAxis = d3.svg
-    .axis()
-    .scale(x)
-    .orient("bottom")
-    .ticks(d3.time.years, tickSize);
+  var xAxis = d3.axisBottom(x);
 
-  var yAxis = d3.svg
-    .axis()
-    .scale(y)
-    .orient("right")
+  var yAxis = d3
+    .axisRight(y)
     .tickPadding(-margin.left)
     .tickSize(0);
 
@@ -261,8 +259,11 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   addBarsToChart(svg, tasks, taskStatus, x, y);
   addXAxis(svg, height, margin, xAxis);
   addYAxis(svg, yAxis);
-  cleanUpChart(svg);
-  emboldenLTSLabels(svg);
   addXAxisVerticalLines(svg, height);
+  cleanUpChart(svg);
   buildChartKey(chartSelector, taskStatus);
+
+  setTimeout(function() {
+    emboldenLTSLabels(svg);
+  }, 500);
 }
