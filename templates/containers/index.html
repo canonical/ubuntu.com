@@ -5,23 +5,22 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1OtyfNeA--EJgpgvDzqcbJ8jqa6d9H5H9xyxHNxcKXvc/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip is-deep is-bordered">
+<div class="p-strip--suru-topped is-bordered">
   <div class="row">
     <div class="col-7">
       <h1>Why is Ubuntu the #1 OS for Containers?</h1>
       <p>From Docker to Kubernetes, the experts choose Ubuntu for container operations. The single most important driver of quality, security and performance is the kernel version, and Canonical ensures that Ubuntu always has the very latest kernels with the latest security capabilities. That’s why the world’s biggest cloud operators and the world’s most sophisticated IT operations have chosen Ubuntu for containers.</p>
       <p><a class="js-invoke-modal" href="/containers/contact-us?product=containers-overview">Talk to us about your container strategy&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-5 u-hide--small">
+    <div class="col-5 u-hide--small u-vertically-center u-align--center">
       {{
         image(
-        url="https://assets.ubuntu.com/v1/a9aff224-Containers-illustration.svg",
+        url="https://assets.ubuntu.com/v1/72dcc529-containers-illustration_AW.svg",
         alt="",
         width="350",
         height="318",
         hi_def=True,
-        loading="auto",
-        attrs={"class": "u-float-right", "id": ""},
+        loading="auto"
         ) | safe
       }}
     </div>
@@ -30,25 +29,24 @@
 </div>
 
 <div class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-5 u-hide--small u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg",
-        alt="",
-        width="275",
-        height="267",
-        hi_def=True,
-        loading="auto",
-        attrs={"class": "", "id": ""},
-        ) | safe
-      }}
-    </div>
+  <div class="row u-equal-height"> 
     <div class="col-7">
       <h2>Kubernetes &mdash; the multi-cloud operations layer for next-gen apps</h2>
       <p class="p-heading--four">Kubernetes on Ubuntu supports VMware, Openstack, bare metal and every public cloud.</p>
       <p>The new wave of cloud-native applications are being designed for Kubernetes operations. With high performance auto-scaling, healing, service meshes and built-in primitives for CI/CD, K8s is the most significant change in IT operations since the emergence of public cloud in 2009.</p>
       <p><a href="/kubernetes">Learn more about Kubernetes on Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-5 u-hide--small u-vertically-center u-align--center">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg",
+        alt="",
+        width="250",
+        height="250",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
     </div>
   </div>
 </div>
@@ -85,19 +83,6 @@
 
 <div class="p-strip">
   <div class="row u-equal-height">
-    <div class="col-5 u-hide--small u-vertically-center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/9b153e96-lxd.svg",
-        alt="",
-        width="275",
-        height="275",
-        hi_def=True,
-        loading="lazy",
-        attrs={"class": "", "id": ""},
-        ) | safe
-      }}
-    </div>
     <div class="col-7">
       <h2>VM-style containers for legacy applications with LXD</h2>
       <p>LXD containers behave like regular VMs, so traditional applications can be installed there unmodified.</p>
