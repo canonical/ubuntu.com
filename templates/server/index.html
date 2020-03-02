@@ -6,14 +6,10 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1vxLhtbjgPs9PCNEhr7fbhEoErCPMXYFfU4UTKH7Kbq4/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip is-deep is-bordered">
-  <div class="u-fixed-width">
-    <h1>
-      Scale out with Ubuntu Server
-    </h1>
-  </div>
+<div class="p-strip--suru is-dark">
   <div class="row u-equal-height">
-    <div class="col-6">
+    <div class="col-7">
+      <h1>Scale out with Ubuntu Server</h1>
       <p>
         Ubuntu Server brings economic and technical scalability to your datacentre, public or private. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.
       </p>
@@ -23,12 +19,12 @@
         </a>
       </p>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small">
+    <div class="col-5 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-            url="https://assets.ubuntu.com/v1/4b47cae5-image-server.svg",
+            url="https://assets.ubuntu.com/v1/55eda3ae-Servers+-white.svg",
             alt="",
-            width="400",
+            width="350",
             height="121",
             hi_def=True,
             loading="auto",
@@ -38,7 +34,7 @@
   </div>
 </div>
 
-<div class="p-strip--light is-deep is-bordered">
+<div class="p-strip is-bordered">
   <div class="u-fixed-width">
     <h2>
       What&rsquo;s new in {{ releases.lts.short_version }} LTS
@@ -67,7 +63,7 @@
 </div>
 
 
-<div class="p-strip--light is-deep is-bordered">
+<div class="p-strip--light is-bordered">
   <div class="u-fixed-width">
     <h2>
       What&rsquo;s new in {{ releases.latest.short_version }}
@@ -447,10 +443,10 @@
     <div class="col-3 u-vertically-center u-align--center">
       {{
         image(
-            url="https://assets.ubuntu.com/v1/039628d5-picto-community-orange.svg",
+            url="https://assets.ubuntu.com/v1/5552afb7-community-support.svg",
             alt="",
-            width="136",
-            height="136",
+            width="150",
+            height="150",
             hi_def=True,
             loading="lazy",
             attrs={"class": "u-hide--small"},
