@@ -513,3 +513,11 @@ summary {
     display: inline;
   }
 }
+
+// XXX Steve: workaround for image template wrapping image in `div`
+// Bug: https://github.com/canonical-web-and-design/canonicalwebteam.image-template/issues/43
+.p-heading-icon__header {
+  .lazyloaded {
+    @extend .p-heading-icon__img;
+  }
+}
