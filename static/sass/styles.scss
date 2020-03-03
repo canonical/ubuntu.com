@@ -521,3 +521,11 @@ summary {
     @extend .p-heading-icon__img;
   }
 }
+
+.is-dark {
+  .p-heading-icon--muted {
+    .p-heading-icon__title {
+      color: inherit;
+    }
+  }
+}
