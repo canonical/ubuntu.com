@@ -6,7 +6,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1f56CCzH519lIVa4KvxDt0QpxYFMK-bMdVlKo4TvPSIk/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip is-deep is-bordered">
+<div class="p-strip--suru-bottomed">
   <div class="row u-equal-height">
     <div class="col-8 u-vertically-center">
       <h1>Ubuntu leads in hyperscale</h1>
@@ -14,24 +14,12 @@
       <p><a class="p-button--positive" href="/download/server">Download Ubuntu Server</a></p>
       <p><a href="/download/arm">Download Ubuntu for ARM &nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/ab812f69-image-server-hyperscale.svg",
-        alt="",
-        width="323",
-        height="258",
-        hi_def=True,
-        loading="auto",
-        ) | safe
-      }}
-    </div>
   </div>
 </div>
 
-<div class="p-strip--light is-deep is-bordered">
+<div class="p-strip--light is-bordered">
   <div class="row">
-    <div class="col-6">
+    <div class="col-12">
       <h2>Welcome to hyperscale, the future of the datacentre</h2>
       <p>Computing in the 21st century will be done at an unprecedented scale, connecting people across the continents to a vast network of business, social and entertainment services.</p>
       <p>Providing compute capacity at that magnitude is today&rsquo;s top infrastructure challenge. That challenge is being taken on by a new wave of ultra-dense hardware, combined with software designed to natively scale out.</p>
@@ -40,22 +28,21 @@
   </div>
 </div>
 
-<div class="p-strip is-deep">
+<div class="p-strip">
   <div class="u-fixed-width">
     <h2>Ubuntu Server for hyperscale</h2>
   </div>
-  <div class="row">
-    <div class="col-6">
-      <p>Ubuntu Server embraces the scale-out philosophy and comes out of the box with tools that make deploying a complex network of services as easy as drawing up a diagram and pressing &ldquo;go&rdquo;.</p>
-    </div>
-    <div class="col-6">
-      <p >Ubuntu works seamlessly across x86 and ARM. And it comes with all the leading open source and commercial workloads built in, including Apache Hadoop, Inktank Ceph, 10gen MongoDB and many others.</p>
-    </div>
+
+  <div class="u-fixed-width">
+    <p>Ubuntu Server embraces the scale-out philosophy and comes out of the box with tools that make deploying a complex network of services as easy as drawing up a diagram and pressing &ldquo;go&rdquo;.</p>
+
+    <p>Ubuntu works seamlessly across x86 and ARM. And it comes with all the leading open source and commercial workloads built in, including Apache Hadoop, Inktank Ceph, 10gen MongoDB and many others.</p>
   </div>
+
   <div class="u-fixed-width">
     <p></p>
     <h3>Here&rsquo;s why Ubuntu is the best answer to the scale-out challenge:</h3>
-    <ul class="p-list--divided is-split">
+    <ul class="p-list is-split">
       <li class="p-list__item is-ticked"><strong>Scale-out at the core</strong>: Ubuntu Server supports the scale-out compute model and provides tools which make it simple to manage the entire cluster.</li>
       <li class="p-list__item is-ticked"><strong>No end-user licence fee</strong>: Ubuntu is offered free to end-users. Adding 100 more nodes shouldn&rsquo;t require you to pay another 100 times for the OS!</li>
       <li class="p-list__item is-ticked"><strong>Partners</strong>: Canonical has a global program with SoC vendors and OEMs to ensure that platforms are enabled and certified to run Ubuntu.</li>
@@ -66,7 +53,7 @@
   </div>
 </div>
 
-<div class="p-strip--accent is-deep">
+<div class="p-strip--suru-accent is-dark">
   <div class="u-fixed-width">
     <blockquote class="p-pull-quote">
       <p class="p-pull-quote__quote">A new wave of workloads demand breakthrough efficiencies in density, energy, and operational costs which can be scaled to a customer&rsquo;s IT environment</p>
@@ -160,7 +147,7 @@
 
   <div class="row u-equal-height">
     <div class="col-6 p-card">
-      <div class="u-align--center u-vertically-center u-hide--small" style="min-height: 8rem;">
+      <div class="u-align--center u-vertically-center" style="min-height: 8rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/f38c9ed1-hpe_pri_grn_pos_rgb.svg",
@@ -172,12 +159,13 @@
           ) | safe
         }}
       </div>
+      <hr />
       <div class="u-sv2 u-hide--medium u-hide--large"></div>
       <p class="p-card__content">Canonical has been involved in the development of Moonshot, Hewlett Packard Enterprise&rsquo;s hyperscale platform, from its inception. Ubuntu is the only OS that supports the full range of HP Moonshot x86 and ARM Systems, announced by HP in April 2013, providing scale out innovation at speed.</p>
       <p class="p-card__content"><a href="http://partners.ubuntu.com/hewlett-packard-enterprise" class="p-link--external">Learn more</a></p>
     </div>
     <div class="col-6 p-card">
-      <div class="u-align--center u-vertically-center u-hide--small" style="min-height: 8rem;">
+      <div class="u-align--center u-vertically-center" style="min-height: 8rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
@@ -189,6 +177,7 @@
           ) | safe
         }}
       </div>
+      <hr />
       <div class="u-sv2 u-hide--medium u-hide--large"></div>
       <p class="p-card__content">Arm and Canonical have worked in close collaboration for a number of years to ensure that datacentres running advanced workloads such as distributed data processing or cloud infrastructure, run best on Ubuntu.</p>
       <p class="p-card__content"><a href="http://partners.ubuntu.com/arm" class="p-link--external">Learn more</a></p>
@@ -197,7 +186,7 @@
 
   <div class="row u-equal-height">
     <div class="col-6 p-card">
-      <div class="u-align--center u-vertically-center u-hide--small" style="min-height: 8rem;">
+      <div class="u-align--center u-vertically-center" style="min-height: 8rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/d0e5bf77-partners-logo-cavium.png",
@@ -209,12 +198,14 @@
           ) | safe
         }}
       </div>
+      <hr />
       <div class="u-sv2 u-hide--medium u-hide--large"></div>
       <p class="p-card__content">Cavium is a provider of highly integrated semiconductor processors that enable intelligent networking, communications, storage, video and security applications within enterprise, datacentre, broadband/consumer, and access and service provider equipment.</p>
       <p class="p-card__content"><a class="p-link--external" href="http://www.cavium.com">Learn more</a></p>
     </div>
+    
     <div class="col-6 p-card">
-      <div class="u-align--center u-vertically-center u-hide--small" style="min-height: 8rem;">
+      <div class="u-align--center u-vertically-center" style="min-height: 8rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/ca664713-partners-logo-apm.svg",
@@ -226,6 +217,7 @@
           ) | safe
         }}
       </div>
+      <hr />
       <div class="u-sv2 u-hide--medium u-hide--large"></div>
       <p class="p-card__content">Applied Micro Circuits Corporation is a global leader in computing and connectivity solutions for next-generation cloud infrastructure and data centers. AppliedMicro delivers silicon solutions that dramatically lower total cost of ownership.</p>
       <p class="p-card__content"><a class="p-link--external" href="https://www.apm.com/products/data-center/x-gene-family/">Learn more</a></p>
