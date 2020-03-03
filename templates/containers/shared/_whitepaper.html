@@ -1,22 +1,42 @@
-<div class="p-strip--accent">
+<div class="p-strip--suru-accent is-dark">
   <div class="row">
-    <div class="col-8">
-      <h2>For CTOs: The no-nonsense way to accelerate your business with containers</h2>
-      <p>This white paper explains why containers have become so popular on the Linux platform and how to leverage them. Learn the benefits of Docker, Kubernetes and LXD.</p>
-      <p><a class="p-button--neutral" href="https://pages.ubuntu.com/container-whitepaper.html" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Container whitepaper: {{ level_1 }} {{ level_2 }}', 'eventLabel' : 'Download the white paper', 'eventValue' : undefined });"><span class="p-link--external">Download the white paper</span></a></p>
-    </div>
-    <div class="col-4 u-vertically-center u-hide--small u-align--center">
-      {{
-        image(
-            url="https://assets.ubuntu.com/v1/3aa7e9a6-picto-articles-white.svg",
-            alt="",
-            width="175",
-            height="175",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "", "id": ""},
+    <div class="col-3 u-hide--small">
+      <div class="p-card">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/9b153e96-lxd.svg",
+          alt="",
+          width="275",
+          height="275",
+          hi_def=True,
+          loading="lazy"
           ) | safe
-      }}
+        }}
+      </div>
+    </div>
+    <div class="col-8 col-start-large-5">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
+              alt="",
+              height="32",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img"},
+            ) | safe
+          }}
+          <p class="p-muted-heading u-sv3" style="color: #fff; line-height: 1.5rem;">Whitepaper</p>
+        </div>
+        
+        <h2 class="p-heading--four">For CTOs: The no-nonsense way to accelerate your business with containers</h2>
+      
+        <p>This white paper explains why containers have become so popular on the Linux platform and how to leverage them. Learn the benefits of Docker, Kubernetes and LXD.</p>
+      
+        <p><a class="p-button--neutral" href="https://pages.ubuntu.com/container-whitepaper.html" class="button--primary" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Container whitepaper: {{ level_1 }} {{ level_2 }}', 'eventLabel' : 'Download the white paper', 'eventValue' : undefined });"><span class="p-link--external">Download the white paper</span></a></p>
+      </div>
     </div>
   </div>
 </div>
