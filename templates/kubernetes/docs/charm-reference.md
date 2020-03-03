@@ -59,15 +59,3 @@ linked below for specific usage and configuration.
 
 
 
-<!-- LINKS -->
-[aws-integrator]: /kubernetes/docs/aws-integration
-[gcp-integrator]: /kubernetes/docs/gcp-integration
-[openstack-integrator]: /kubernetes/docs/openstack-integration
-[kubernetes-master]: /kubernetes/docs/charm-kubernetes-master
-[kubernetes-worker]: /kubernetes/docs/charm-kubernetes-worker
-[kubernetes-worker-a]: /kubernetes/docs/charm-kubernetes-worker-a
-[kubernetes-worker-b]: /kubernetes/docs/charm-kubernetes-worker-b
-[kubernetes-worker-c]: /kubernetes/docs/charm-kubernetes-worker-c
-[kubeapi-load-balancer]: /kubernetes/docs/charm-kubeapi-load-balancer
-[etcd]: /kubernetes/docs/charm-etcd
-[cni]: /kubernetes/docs/cni-overview
