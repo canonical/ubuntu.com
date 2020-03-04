@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<section class="p-strip">
+<section class="p-strip--suru-topped is-bordered">
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>Security Certifications</h1>
@@ -20,7 +20,17 @@
       <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/2217d1c8-Security.svg" width="150" alt="">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/7953a068-security-1.svg",
+          alt="",
+          height="300",
+          width="250",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "u-hide--small u-hide--medium"}
+        ) | safe
+      }}
     </div>
   </div>
 </section>
