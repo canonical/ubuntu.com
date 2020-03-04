@@ -6,42 +6,20 @@ We use [Yarn](https://yarnpkg.com/lang/en/) for building static files like CSS t
 
 ## Running the site
 
-### With Docker
+### With dotrun
 
-The recommended way to run the site is with the existing `./run` script, which uses Docker behind the scenes.
-
-First [install Docker](https://docs.docker.com/engine/installation/) (on Linux you may need to and [add your user to the `docker` group](https://docs.docker.com/engine/installation/linux/linux-postinstall/)).
-
-Then to learn about this script's options, type:
+The recommended way to run the site is with [the `dotrun` snap](https://github.com/canonical-web-and-design/dotrun/):
 
 ``` bash
-./run --help
+sudo snap install dotrun
+dotrun  # Build dependencies and run the server
 ```
 
-The basic options are:
+Then to learn about `dotrun`'s options, type:
 
 ``` bash
-./run serve  # Start the Flask server
-./run build  # Build the CSS
-./run watch  # Watch and build the CSS whenever Sass changes
-./run clean  # Remove created files and docker containers
-./run stop   # Stop any running containers in this project
-
+dotrun --help
 ```
-
-#### Watching in the background
-
-The `start` function optionally takes a `--watch` argument:
-
-``` bash
-./run serve --watch
-```
-
-This will effectively run the `./run watch` command in the background while also running the server.
-
-**NB:** You won't see the output from the watcher by default. This makes it difficult to know if it's working properly.
-
-To check if the watcher daemon is running, use `docker ps`. Then you can use `docker attach` to follow the output from the background watcher.
 
 ### Running the site with native python
 
