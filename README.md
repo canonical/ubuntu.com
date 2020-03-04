@@ -14,13 +14,13 @@ If you have found a bug in the Ubuntu OS itself, the please file it [here](https
 
 ## Local development
 
-The simplest way to run the site locally is to first [install Docker](https://docs.docker.com/engine/installation/) (on Linux you may need to [add your user to the `docker` group](https://docs.docker.com/engine/installation/linux/linux-postinstall/)), and then use the `./run` script:
+The simplest way to run the site locally is using [the `dotrun` snap](https://github.com/canonical-web-and-design/dotrun/):
 
 ``` bash
-./run
+dotrun
 ```
 
-Once the containers are setup, you can visit <http://127.0.0.1:8001> in your browser.
+Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.
 
 For more detailed local development instructions, see [HACKING.md](HACKING.md).
 
