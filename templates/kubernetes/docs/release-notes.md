@@ -15,7 +15,7 @@ toc: False
 
 # 1.17+ck2 Bugfix release
 
-### March 2, 2020 - [charmed-kubernetes-407](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-407/archive/bundle.yaml)
+### March 2, 2020 - [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml)
 
 ## Fixes
 
