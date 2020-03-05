@@ -1,5 +1,6 @@
 module.exports = {
   entry: {
+    contributions: "./static/js/src/contributions.js",
     "desktop-statistics": "./static/js/src/desktop-statistics.js",
     tutorials: [
       "./static/js/src/tutorial-list.js",
