@@ -1,8 +1,8 @@
 /**
  * Select an equivalent item for a certain contribution amount
  */
-var chooseEquivalentItem = function(totalAmount) {
-  var items = [
+function chooseEquivalentItem(totalAmount) {
+  const items = [
     {
       imageFile: "86981cf1-skull.png?w=78",
       price: 0,
@@ -79,10 +79,10 @@ var chooseEquivalentItem = function(totalAmount) {
       description: "an eight year-old dromedary camel"
     }
   ];
+  const lastItem = items[items.length - 1];
+  let matchingItem = false;
 
-  var matchingItem = false;
-
-  items.forEach(function(item, itemIndex) {
+  items.forEach((item, itemIndex) => {
     if (
       item["price"] == totalAmount ||
       (item["price"] > totalAmount &&
@@ -92,52 +92,55 @@ var chooseEquivalentItem = function(totalAmount) {
     }
   });
 
-  var lastItem = items[items.length - 1];
   if (!matchingItem && totalAmount > lastItem["price"]) {
     matchingItem = lastItem;
   }
 
   return matchingItem;
-};
+}
 
-var updateEquivalentItem = function(item) {
-  var image = document.querySelector(".js-equivalent-image");
-  var description = document.querySelector(".js-equivalent-description");
+function updateEquivalentItem(item) {
+  const image = document.querySelector(".js-equivalent-image");
+  const description = document.querySelector(".js-equivalent-description");
 
   image.src = "https://assets.ubuntu.com/v1/" + item["imageFile"];
   image.alt = item["description"];
   description.innerText = item["description"];
-};
+}
 
-var toggleSubmit = function(total) {
-  var submit = document.querySelector(".js-contribute-submit");
+function toggleSubmit(total) {
+  const submit = document.querySelector(".js-contribute-submit");
 
   if (total == 0) {
     submit.disabled.disabled = true;
   } else {
     submit.classList.disabled = false;
   }
-};
+}
 
-var updateSummary = function() {
+function updateSummary() {
   // Get the total amount of all the contribution items selected
-  var total = 0;
-  document.querySelectorAll(".p-slider__input").forEach(function(valueElement) {
+  const inputs = document.querySelectorAll(".p-slider__input");
+  let total = 0;
+
+  inputs.forEach(valueElement => {
     total += parseInt(valueElement.value || 0);
   });
-  var item = chooseEquivalentItem(total);
+
+  const item = chooseEquivalentItem(total);
+
   document.querySelector(".js-total-amount").innerText = total;
   updateEquivalentItem(item);
   toggleSubmit(total);
-};
+}
 
 /**
  * Generate a random ID including the datestamp for uniqueness
  */
 function generateRandomId() {
   // really crude unique ID
-  var date = new Date();
-  var random = Math.floor(Math.random() * 1000);
+  let date = new Date();
+  let random = Math.floor(Math.random() * 1000);
   return date.valueOf() + "" + random;
 }
 
@@ -147,26 +150,26 @@ function generateRandomId() {
  */
 function sendContributionFormAnalytics() {
   // preparing GA submission. step 1 _addTrans
-  var orderId = generateRandomId();
-  var total = document.querySelector(".js-total-amount").innerText;
-  var transactionProducts = [];
+  const inputs = document.querySelectorAll(".p-slider__input");
+  const orderId = generateRandomId();
+  const total = document.querySelector(".js-total-amount").innerText;
+  let transactionProducts = [];
 
   // add the individual items
-  document
-    .querySelectorAll(".p-slider__input")
-    .forEach(function(amountElement) {
-      var name = amountElement.parentNode.parentNode.id;
-      var value = amountElement.value || 0;
-      if (value > 0) {
-        transactionProducts.push({
-          sku: name,
-          name: name,
-          category: "",
-          price: value,
-          quantity: 1
-        });
-      }
-    });
+  inputs.forEach(amountElement => {
+    const name = amountElement.parentNode.parentNode.id;
+    let value = amountElement.value || 0;
+
+    if (value > 0) {
+      transactionProducts.push({
+        sku: name,
+        name: name,
+        category: "",
+        price: value,
+        quantity: 1
+      });
+    }
+  });
 
   dataLayer.push({
     transactionId: orderId,
@@ -177,28 +180,6 @@ function sendContributionFormAnalytics() {
     transactionProducts: transactionProducts,
     event: "transactionComplete"
   });
-}
-
-function initContributionSummary(optionsArea) {
-  // Submit analytics before submitting form
-  document
-    .querySelector("#contributions-form")
-    .addEventListener("submit", sendContributionFormAnalytics);
-
-  /**
-   * Reset fields back to 0, if missing values
-   */
-  document.querySelectorAll(".p-slider__input").forEach(function(valueElement) {
-    valueElement.addEventListener("blur", function() {
-      if (isNaN(parseInt(valueElement.value))) {
-        valueElement.value = 0;
-      }
-    });
-  });
-
-  optionsArea.addEventListener("change", updateSummary);
-  optionsArea.addEventListener("input", updateSummary);
-  updateSummary();
 }
 
 function detectBrowser() {
@@ -217,18 +198,64 @@ function detectBrowser() {
   return browser;
 }
 
+function equaliseValues(receive, give) {
+  receive.value = give.value;
+  give.value = receive.value;
+}
+
+// Fix for Chrome and Safari as they don't support CSS slider progress
+function renderSlider(slider, progressColour, emptyColour, browser) {
+  if (browser === "Chrome" || browser === "Safari") {
+    const value = (slider.value - slider.min) / (slider.max - slider.min);
+
+    slider.style.backgroundImage =
+      "-webkit-gradient(linear, left top, right top, color-stop(" +
+      value +
+      ", " +
+      progressColour +
+      "), color-stop(" +
+      value +
+      ", " +
+      emptyColour +
+      "))";
+  }
+}
+
+function initContributionSummary(optionsArea) {
+  const form = document.querySelector("#contributions-form");
+  const inputs = document.querySelectorAll(".p-slider__input");
+
+  // Submit analytics before submitting form
+  form.addEventListener("submit", sendContributionFormAnalytics);
+
+  /**
+   * Reset fields back to 0, if missing values
+   */
+  inputs.forEach(valueElement => {
+    valueElement.addEventListener("blur", function() {
+      if (isNaN(parseInt(valueElement.value))) {
+        valueElement.value = 0;
+      }
+    });
+  });
+
+  optionsArea.addEventListener("change", updateSummary);
+  optionsArea.addEventListener("input", updateSummary);
+  updateSummary();
+}
+
 function initSliders(sliders) {
-  var browser = detectBrowser();
-  var progressColour = "#E95420";
-  var emptyColour = "#fff";
+  const browser = detectBrowser();
+  const progressColour = "#E95420";
+  const emptyColour = "#fff";
 
   sliders.forEach(function(slider) {
-    var input = document.getElementById(slider.id + "-input");
+    const input = document.getElementById(slider.id + "-input");
     renderSlider(slider, progressColour, emptyColour, browser);
 
     if (input) {
       equaliseValues(input, slider);
-      input.oninput = function() {
+      input.oninput = () => {
         if (!input.value) input.value = 0;
         equaliseValues(slider, input);
         renderSlider(slider, progressColour, emptyColour, browser);
@@ -247,28 +274,6 @@ function initSliders(sliders) {
       };
     }
   });
-}
-
-function equaliseValues(receive, give) {
-  receive.value = give.value;
-  give.value = receive.value;
-}
-
-// Fix for Chrome and Safari as they don't support CSS slider progress
-function renderSlider(slider, progressColour, emptyColour, browser) {
-  if (browser === "Chrome" || browser === "Safari") {
-    var value = (slider.value - slider.min) / (slider.max - slider.min);
-    slider.style.backgroundImage =
-      "-webkit-gradient(linear, left top, right top, color-stop(" +
-      value +
-      ", " +
-      progressColour +
-      "), color-stop(" +
-      value +
-      ", " +
-      emptyColour +
-      "))";
-  }
 }
 
 window.addEventListener("DOMContentLoaded", function() {
