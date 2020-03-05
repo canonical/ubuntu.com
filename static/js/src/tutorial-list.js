@@ -1,6 +1,6 @@
 (function() {
-  const topicsFilter = document.getElementById('tutorials-topic');
-  const sortFilter = document.getElementById('tutorials-sort');
+  const topicsFilter = document.getElementById("tutorials-topic");
+  const sortFilter = document.getElementById("tutorials-sort");
   const urlObj = new URL(window.location);
 
   function handleFilter(key, el, url) {
@@ -12,11 +12,11 @@
       el.value = url.searchParams.get(key);
     }
 
-    el.addEventListener('change', e => {
+    el.addEventListener("change", e => {
       const value = e.target.value;
 
-      if (url.searchParams.has('page')) {
-        url.searchParams.delete('page');
+      if (url.searchParams.has("page")) {
+        url.searchParams.delete("page");
       }
 
       if (value) {
@@ -33,6 +33,6 @@
     });
   }
 
-  handleFilter('topic', topicsFilter, urlObj);
-  handleFilter('sort', sortFilter, urlObj);
+  handleFilter("topic", topicsFilter, urlObj);
+  handleFilter("sort", sortFilter, urlObj);
 })();
