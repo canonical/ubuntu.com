@@ -249,12 +249,13 @@ function initSliders(sliders) {
   const progressColour = "#E95420";
   const emptyColour = "#fff";
 
-  sliders.forEach(function(slider) {
-    const input = document.getElementById(slider.id + "-input");
+  sliders.forEach(slider => {
+    let input = document.getElementById(slider.id + "-input");
     renderSlider(slider, progressColour, emptyColour, browser);
 
     if (input) {
       equaliseValues(input, slider);
+
       input.oninput = () => {
         if (!input.value) input.value = 0;
         equaliseValues(slider, input);
@@ -264,11 +265,11 @@ function initSliders(sliders) {
 
     // Fix for IE as it doesn't support 'oninput'
     if (browser === "IE") {
-      slider.onchange = function() {
+      slider.onchange = () => {
         if (input) equaliseValues(input, slider);
       };
     } else {
-      slider.oninput = function() {
+      slider.oninput = () => {
         if (input) equaliseValues(input, slider);
         renderSlider(slider, progressColour, emptyColour, browser);
       };
@@ -276,7 +277,7 @@ function initSliders(sliders) {
   });
 }
 
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", () => {
   const optionsArea = document.querySelector(".contribute__options");
   const sliders = document.querySelectorAll(".p-slider");
 
