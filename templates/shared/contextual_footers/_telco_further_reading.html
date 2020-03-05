@@ -1,26 +1,3 @@
-<div class="col-4 p-divider__block">
-  <h3 class="p-heading--four">Further reading</h3>
-  <ul class="p-list" id="latest-articles">
-    <i class="p-icon--spinner u-animation--spin">Loading...</i>
-  </ul>
-</div>
-
-<template style="display:none" id="article-template">
-  <li class="p-list__item">
-    <a class="article-link article-title">
-      <span class="article-title">&nbsp;›
-    </a>
-  </li>
-</template>
-
-<script src="{{ versioned_static('js/src/latest-news.js') }}"></script>
-<script>
-  fetchLatestNews(
-    {
-      articlesContainerSelector: "#latest-articles",
-      articleTemplateSelector: "#article-template",
-      limit: "5",
-      tagId: "1378"
-    }
-  )
-</script>
+{% with limit="5", tagId="1378" %}
+  {% include "shared/contextual_footers/_further_reading.html" %}
+{% endwith %}

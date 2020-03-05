@@ -1,15 +1,13 @@
 <div class="col-4 p-divider__block">
   <h3 class="p-heading--four">Further reading</h3>
   <ul class="p-list" id="latest-articles">
-    <i class="p-icon--spinner u-animation--spin">Loading...</i>
+    <li><i class="p-icon--spinner u-animation--spin">Loading...</i></li>
   </ul>
 </div>
 
 <template style="display:none" id="article-template">
   <li class="p-list__item">
-    <a class="article-link article-title">
-      <span class="article-title">&nbsp;›
-    </a>
+    <a class="article-link article-title"></a>
   </li>
 </template>
 
@@ -19,7 +17,13 @@
     {
       articlesContainerSelector: "#latest-articles",
       articleTemplateSelector: "#article-template",
-      limit: "5"
+      limit: "{{ limit }}",
+      {% if tagId %}
+      tagId: "{{ tagId }}",
+      {% endif %}
+      {% if groupId %}
+      groupId: "{{ groupId }}",
+      {% endif %}
     }
   )
 </script>
