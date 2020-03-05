@@ -1,6 +1,6 @@
 {% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
 
-<header id="navigation" class="p-navigation" role="banner">
+<header id="navigation" class="p-navigation">
   {% block header_banner %}
   <div class="p-navigation__row u-fixed-width">
     <div class="p-navigation__banner">
@@ -31,7 +31,7 @@
       <span class="u-off-screen">
         <a href="#main-content">Jump to main content</a>
       </span>
-      <ul class="p-navigation__links u-hide js-show-nav" >
+      <ul class="p-navigation__links u-hide js-show-nav" role="menu">
         <li class="p-navigation__dropdown-link" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/_navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
           <a class="p-navigation__link-anchor" href="#enterprise-content" onfocus="fetchDropdown('/templates/_navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
         </li>
@@ -46,11 +46,11 @@
         </li>
       </ul>
       <noscript>
-        <ul class="p-navigation__links">
+        <ul class="p-navigation__links" role="menu">
           {% include "templates/header_noscript.html" %}
         </ul>
       </noscript>
-      <div class="p-navigation__search" role="menuitem">
+      <div class="p-navigation__search">
         <form action="/search" class="p-search-box" id="google-appliance-search-form">
           <input type="search" class="p-search-box__input" name="q" placeholder="Search" required="" aria-label="Search">
           <button type="reset" class="p-search-box__reset u-no-margin--right"><i class="p-icon--close">Clear</i></button>
