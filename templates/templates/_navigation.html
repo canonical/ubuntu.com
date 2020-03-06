@@ -82,7 +82,7 @@
         {% for child in breadcrumbs.children %}
           {% if child.path == '/blog/topics' %}
           <li class="breadcrumbs__item p-contextual-menu u-hide--small">
-            <a aria-controls="#topics" class="breadcrumbs__link u-no-margin--bottom {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+            <a aria-controls="#topics" data-trigger="hover" class="breadcrumbs__link u-no-margin--bottom {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
 
             <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
               <span class="p-contextual-menu__group">
@@ -152,58 +152,4 @@
       div.innerHTML = this.responseText;
     });
   }
-</script>
-
-<script>
-  function toggleMenu(toggle, dropdown, show) {
-    toggle.setAttribute('aria-expanded', show);
-    dropdown.setAttribute('aria-hidden', !show);
-  }
-
-  function setupContextualMenuListeners(contextualMenuSelector) {
-    var menus = document.querySelectorAll(contextualMenuSelector);
-
-    for (var i = 0; i < menus.length; i++) {
-      var toggle = menus[i].querySelector('.p-contextual-menu__toggle'),
-          dropdown = menus[i].querySelector('.p-contextual-menu__dropdown'),
-          timer = null;
-
-      toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-      });
-
-      toggle.addEventListener('mouseover', function() {
-        clearTimeout(timer);
-        toggleMenu(toggle, dropdown, true);
-      });
-
-      toggle.addEventListener('mouseleave', function() {
-        toggleMenu(toggle, dropdown, true);
-
-        timer = setTimeout(function() {
-          toggleMenu(toggle, dropdown, false);
-        }, 50);
-      });
-
-      dropdown.addEventListener('mouseover', function() {
-        clearTimeout(timer);
-      });
-
-      dropdown.addEventListener('mouseleave', function() {
-        timer = setTimeout(function() {
-          toggleMenu(toggle, dropdown, false);
-        }, 50);
-      });
-
-      document.onkeydown = function(e) {
-        e = e || window.event;
-
-        if (e.keyCode === 27) {
-          toggleMenu(toggle, dropdown, false);
-        }
-      };
-    };
-  }
-
-  setupContextualMenuListeners('.p-contextual-menu');
 </script>

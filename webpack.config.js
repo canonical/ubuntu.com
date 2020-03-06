@@ -10,6 +10,7 @@ module.exports = {
     "image-download": "./static/js/src/image-download.js",
     main: [
       "./static/js/src/polyfills.js",
+      "./static/js/src/contextual-menu.js",
       "./static/js/src/dynamic-contact-form.js",
       "./static/js/src/core.js",
       "./static/js/src/navigation.js",
