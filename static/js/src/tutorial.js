@@ -53,6 +53,7 @@ if (!window.location.hash) {
     const url = window.location + hash;
 
     window.location.replace(url);
+    window.scrollTo(0, 0);
   }
 } else {
   // Redirect #0, #1 etc. to the correct section
