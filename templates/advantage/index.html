@@ -386,53 +386,6 @@
   }
 </script>
 
-<script>
-  function toggleMenu(element, show) {
-    element.setAttribute('aria-expanded', show);
-    document
-    .querySelector(element.getAttribute('aria-controls'))
-    .setAttribute('aria-hidden', !show);
-  }
-
-  function setupContextualMenuListeners(contextualMenuToggleSelector) {
-    var toggles = document.querySelectorAll(contextualMenuToggleSelector);
-
-    toggles.forEach(toggle => {
-      toggle.addEventListener('click', e => {
-        e.preventDefault();
-
-        var target = e.target;
-        var menuAlreadyOpen = target.getAttribute('aria-expanded') === 'true';
-
-        toggleMenu(target, !menuAlreadyOpen)
-      });
-    });
-
-    document.addEventListener('click', e => {
-      toggles.forEach(toggle => {
-        var contextualMenu = document.querySelector(toggle.getAttribute('aria-controls'));
-        var clickOutside = !(toggle.contains(e.target) || contextualMenu.contains(e.target));
-
-        if (clickOutside) {
-          toggleMenu(toggle, false);
-        }
-      })
-    });
-
-    document.onkeydown = e => {
-      e = e || window.event;
-
-      if (e.keyCode === 27) {
-        toggles.forEach(toggle => {
-          toggleMenu(toggle, false);
-        });
-      }
-    };
-  }
-
-  setupContextualMenuListeners('.p-contextual-menu__toggle');
-</script>
-
 {% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}
