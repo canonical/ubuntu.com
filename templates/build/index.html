@@ -1,4 +1,4 @@
-{% extends "core/base_core.html" %}
+{% extends "templates/base.html" %}
 
 {% block title %}Ubuntu image builder{% endblock %}
 {% block meta_description %}Build your own image with pre-installed applications online{% endblock meta_description %}
@@ -34,7 +34,7 @@
         <p>You are signed in as {{ openid.fullname }}<br />
         <small style="color:#666">({{ openid.email }})</small></p>
         <p class="u-no-margin--bottom">
-          <a href="/logout?return_to={{ request.host_url }}core/build" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
+          <a href="/logout?return_to={{ request.host_url }}build" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
             'event' : 'GAEvent',
             'eventCategory' : 'Advantage',
             'eventAction' : 'Authentication',
@@ -211,7 +211,7 @@
 {% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
   <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded" data-form-id="1266" data-lp-id="2166" data-return-url="https://www.ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/_embedded" data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/build" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
 
 {% endif %}

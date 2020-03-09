@@ -95,8 +95,8 @@ def releasenotes_redirect():
 
 def post_build():
     """
-    Once they submit the build form on /core/build,
-    kick off the build with launchpad
+    Once they submit the build form on /build,
+    kick off the build with Launchpad
     """
 
     if not is_authenticated(flask.session):
@@ -140,7 +140,7 @@ def post_build():
             },
         )
 
-    return flask.render_template("core/build.html", **context)
+    return flask.render_template("build/index.html", **context)
 
 
 def search_snaps():
