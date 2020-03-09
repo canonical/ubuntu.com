@@ -39,7 +39,7 @@
         <p>En soumettant ce formulaire, je confirme que j'ai lu et que j'accepte les conditions suivantes : <a href="/legal/data-privacy" target="_blank" class="mchNoDecorate">Politique de confidentialité</a></p>
       </li>
       <li class="mktField">
-        <div class="g-recaptcha" data-sitekey="6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if" style="margin: 2rem 0;"></div>
+        <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
       </li>
       <li class="mktField p-list__item">
         <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : 'server-esm', 'eventValue' : undefined });">{% if cta %}{{ cta }}{% else %}Télécharger le livre blanc{% endif %}</button>

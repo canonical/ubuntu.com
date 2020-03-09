@@ -3,6 +3,7 @@ A Flask application for ubuntu.com
 """
 
 # Packages
+import os
 import talisker.requests
 import flask
 import math
@@ -41,6 +42,10 @@ from webapp.views import (
 )
 from webapp.login import login_handler, logout
 
+
+CAPTCHA_TESTING_API_KEY = os.getenv(
+    "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
+)
 
 # Set up application
 # ===
@@ -87,6 +92,7 @@ def context():
         "utm_campaign": flask.request.args.get("utm_campaign", ""),
         "utm_medium": flask.request.args.get("utm_medium", ""),
         "utm_source": flask.request.args.get("utm_source", ""),
+        "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
     }
 
 
