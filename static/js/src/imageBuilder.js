@@ -71,9 +71,8 @@
           const selectedSnapContainer = button.closest('.js-snap-search-container');
           if (selectedSnapContainer) {
             selectedSnapContainer.classList.add('u-disable');
-            e.target.disabled = true;
           }
-          changeState('snaps', snapSearchResults[e.target.dataset.index], 'ADD');
+          changeState('snaps', snapSearchResults[button.dataset.index], 'ADD');
           renderSnapList(STATE.snaps, preinstallResults, 'Remove');
           removeSnapHandler();
         }
@@ -92,10 +91,9 @@
           const revealItem = snapResults.querySelector(`[data-container-index="${searchIndex}"]`)
           if (revealItem) {
             revealItem.classList.remove('u-disable');
-            e.target.disabled = false;
           }
         }
-        changeState('snaps', e.target.dataset.index, 'REMOVE');
+        changeState('snaps', button.dataset.index, 'REMOVE');
         renderSnapList(STATE.snaps, preinstallResults, 'Remove');
         removeSnapHandler();
       });
@@ -120,7 +118,7 @@
           results.insertAdjacentHTML('beforeend',
             `<div class="row js-snap-search-container ${disable}" data-container-index="${index}">
               <div class="col-5 col-medium-5 col-small-3">
-                <div class="p-media-object u-no-margin--bottom" data-container-index="${index}">
+                <div class="p-media-object u-no-margin--bottom" data-index="${index}">
                   <img src="${item.icon_url}" alt="" class="p-media-object__image">
                   <div class="p-media-object__details">
                     <h1 class="p-media-object__title" style="line-height: 1.4rem">${item.title}</h1>
