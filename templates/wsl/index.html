@@ -4,18 +4,31 @@
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1M7e2B08GgPA7K6Wx0ThE6s9_xQINM0MSkarfdKUTEYI/edit#{% endblock meta_copydoc %}
 
+{% block meta_description %}Access the Ubuntu terminal on Windows with WSL. Develop cross-platform applications and manage IT infrastructure without leaving Windows.{% endblock %}
+
 {% block outer_content %}
 {% block content %}
 
 <section class="p-strip--suru is-dark">
-  <div class="row">
+  <div class="row u-vertically-center">
     <div class="col-6">
       <h1>Ubuntu on WSL</h1>
       <p>Install a complete Ubuntu terminal environment in minutes on Windows 10 with Windows Subsystem for Linux (WSL).</p>
       <p>Access the Linux terminal on Windows, develop cross-platform applications, and manage IT infrastructure without leaving Windows.</p>
-      <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6" class="p-link--external p-button--positive">
-        Download from the Microsoft Store
-      </a>
+      <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6" class="p-link--external p-button--positive">Download from the Microsoft Store</a>
+    </div>
+
+    <div class="col-5 col-start-large-8 u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/f06b3499-ubuntu+windows.svg",
+          alt="",
+          height="167",
+          width="463",
+          hi_def=True,
+          loading="auto"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -24,7 +37,7 @@
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <h3 class="p-heading--four">Access the Linux terminal on Windows</h3>
-      <p>Benefit from all of Ubuntu&rsquo;s open source command-line tools inside your Windows machine.</p>
+      <p>In seconds, be able to access the linux terminal and run Linux applications and workflows on your Windows machine.</p>
     </div>
     <div class="col-4 p-divider__block">
       <h3 class="p-heading--four">Develop cross-platform</h3>
@@ -37,7 +50,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="u-fixed-width">
     <h2>What you never thought was possible on Windows</h2>
   </div>
@@ -101,14 +114,298 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <h2>Why Ubuntu on WSL</h2>
-    <ul class="p-list">
-      <li class="p-list__item is-ticked">Access the Ubuntu command line</li>
-      <li class="p-list__item is-ticked">Security</li>
-      <li class="p-list__item is-ticked">Enterprise support</li>
-    </ul>
+  </div>
+
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Enterprise support</h3>
+      <p>We certify Ubuntu on WSL through close collaboration with Microsoft. We are extending enterprise support for Ubuntu from Azure to Windows workstations creating a seamless operating environment.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Security</h3>
+      <p>Achieve the same first-class, out-of-the-box, compliant security
+        that is synonymous with Ubuntu.  With long-term support releases,  you’ll have five years of security patches and updates.</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--four">Easy to Use</h3>
+      <p>Ubuntu is intuitive, user-friendly, and offers the flexibility for customizations when operating within WSL.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered" id="install-ubuntu-on-wsl">
+  <div class="u-fixed-width">
+    <h2>Install Ubuntu on Windows Subsystem for Linux</h2>
+
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Enable WSL on Windows 10</h3>
+
+        <div class="p-stepped-list__content">
+          <p>Open PowerShell as Administrator:</p>
+
+          <a href="https://assets.ubuntu.com/v1/ab33f8fa-wsl1-enablewslonwindows10.png">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/ab33f8fa-wsl1-enablewslonwindows10.png",
+                alt="",
+                height="964",
+                width="852",
+                hi_def=True,
+                loading="lazy"
+              ) | safe
+            }}
+          </a>
+
+          <p>Type the following commands:</p>
+
+          <pre><code>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</code></pre>
+
+          <p>Restart your computer when prompted.</p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Install Ubuntu</h3>
+
+        <div class="p-stepped-list__content">
+          <p>Download Ubuntu for WSL from the Microsoft Store.</p>
+
+          <a class="u-sv3" href="https://assets.ubuntu.com/v1/ecc8acb4-installubuntu.png">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/ecc8acb4-installubuntu.png",
+                alt="",
+                height="903",
+                width="1208",
+                hi_def=True,
+                loading="lazy"
+              ) | safe
+            }}
+          </a>
+
+          <p>
+            <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6" class="p-button--positive p-link--external">Download from the Microsoft Store</a>
+          </p>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Run Ubuntu</h3>
+
+        <div class="p-stepped-list__content">
+          <p>Run Ubuntu from the Start Menu.</p>
+
+          <a href="https://assets.ubuntu.com/v1/293a2201-runubuntu.png">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/293a2201-runubuntu.png",
+                alt="",
+                height="497",
+                width="404",
+                hi_def=True,
+                loading="lazy"
+              ) | safe
+            }}
+          </a>
+        </div>
+      </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Set up Ubuntu</h3>
+
+        <div class="p-stepped-list__content">
+          <p>Select a username and password for your administrative user.</p>
+
+          <a href="https://assets.ubuntu.com/v1/01d46dfe-setupubuntu.png">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/01d46dfe-setupubuntu.png",
+                alt="",
+                height="268",
+                width="512",
+                hi_def=True,
+                loading="lazy"
+              ) | safe
+            }}
+          </a>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="p-strip is-deep">
+  <div class="u-fixed-width">
+    <h2>Getting Started with WSL</h2>
+  </div>
+
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block" id="ubuntu-com_core_left">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+              alt="",
+              height="32",
+              width="38",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL?action=subscribe#Installing_Packages_on_Ubuntu">Installing packages on Ubuntu on WSL</a></h3>
+    </div>
+
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+              alt="",
+              height="32",
+              width="38",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL#Running_Graphical_Applications">Running graphical applications with X on WSL</a></h3>
+    </div>
+
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+              alt="",
+              height="32",
+              width="38",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL?action=subscribe#Hello_Worlds">Hello World on WSL</a></h3>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>WSL 1 and WSL 2</h2>
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">WSL 1</h3>
+      <hr class="u-sv1">
+      <div class="p-card__content">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Powered by a Linux binary translation layer.</li>
+          <li class="p-list__item is-ticked">Supported on all versions of Windows 10 since Fall Creators Update.</li>
+          <li class="p-list__item is-ticked">Supported on all editions of Windows 10, including Home, Pro, Enterprise, and Server.</li>
+        </ul>
+
+        <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6" class="p-button--positive p-link--external">Download from the Microsoft Store</a>
+      </div>
+    </div>
+
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">WSL 2</h3>
+      <hr class="u-sv1">
+      <div class="p-card__content">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Powered by a Linux kernel running on Hyper-V technology.</li>
+          <li class="p-list__item is-ticked">Features significant speed and networking improvements.</li>
+          <li class="p-list__item is-ticked">Currently only available through the Windows Insiders program.
+          </li>
+          <li class="p-list__item is-ticked">Supported on all editions of Windows 10.</li>
+        </ul>
+
+        <a href="https://wiki.ubuntu.com/WSL" class="p-button--positive p-link--external">How to Enable WSL 2</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep">
+  <div class="u-fixed-width">
+    <h2>Discover more Ubuntu on WSL</h2>
+  </div>
+
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block" id="ubuntu-com_core_left">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+              alt="",
+              height="32",
+              width="38",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL#Getting_Help">Getting help with Ubuntu on WSL</a></h3>
+    </div>
+
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+              alt="",
+              height="32",
+              width="38",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL#Performance">WSL performance tips</a></h3>
+    </div>
+
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+              alt="",
+              height="32",
+              width="38",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL#Installing_Ubuntu_on_WSL_by_sideloading_the_.appx">Installing Ubuntu on WSL without Microsoft Store</a></h3>
+    </div>
   </div>
 </section>
 
