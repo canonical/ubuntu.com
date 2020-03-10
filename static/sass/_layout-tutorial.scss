@@ -73,6 +73,7 @@
   }
 
   .l-tutorial__content {
+    margin-top: -9rem; // ensure header is visible when navigating between steps (pt. 1 of 2)
     overflow: hidden; // stops pre from stretching out the flex column
     padding-top: $sp-large;
     width: 100%;
@@ -87,6 +88,7 @@
 
     &:target {
       display: block;
+      padding-top: 9rem; // ensure header is visible when navigating between steps (pt. 2 of 2)
     }
 
     h2 {
