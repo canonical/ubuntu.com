@@ -1,0 +1,175 @@
+<!--
+    todo:
+    - [ ] Add JS functionality
+    - [ ] Update with final copy
+    - [ ] Replace tooltip lorem ipsum
+    - [ ] Delete this comment when done
+-->
+
+{% extends "training/_base_training.html" %}
+
+{% block title %}TCO calculator{% endblock %}
+
+{% block meta_description %}{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1gyxy75qXC5Ta08o6Vnm13yK6aeN4qOnsETB2gZ4e0ZY/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru is-dark">
+  <div class="row">
+    <div class="col-8">
+      <h1>Total cost of ownership calculator</h1>
+      <p>Lorem ipsum</p>
+      <a href="#" class="p-button--positive">CTA</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-4">
+      <div class="row" style="height: 50%;">
+        <div class="col-4 p-card--highlighted" style="overflow: visible;">
+          <h2 class="p-heading--three">
+            Number of hosts
+            <span class="p-tooltip--top-center" aria-describedby="hosts-number-tooltip" style="margin-left: 0.5rem;">
+              <i class="p-icon--question"></i>
+              <span class="p-tooltip__message" role="tooltip" id="hosts-number-tooltip">Lorem ipsum</span>
+            </span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="row" style="height: 50%;">
+        <div class="col-4 p-card--highlighted" style="overflow: visible;">
+          <h2 class="p-heading--three">
+            Data volume
+            <span class="p-tooltip--top-center" aria-describedby="data-volume-tooltip" style="margin-left: 0.5rem;">
+              <i class="p-icon--question"></i>
+              <span class="p-tooltip__message" role="tooltip" id="data-volume-tooltip">Lorem ipsum</span>
+            </span>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4 p-card--highlighted" style="overflow: visible;">
+      <h2 class="p-heading--three">
+        Cloud type
+        <span class="p-tooltip--top-center" aria-describedby="cloud-type-tooltip" style="margin-left: 0.5rem;">
+          <i class="p-icon--question"></i>
+          <span class="p-tooltip__message" role="tooltip" id="cloud-type-tooltip">Lorem ipsum</span>
+        </span>
+      </h2>
+
+      <div>
+        <input type="radio" name="cloud-type" id="ct-openstack" value="openstack" checked="">
+        <label for="ct-openstack" class="is-h4">
+          <span class="p-heading--four">OpenStack</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque.</span>
+        </label>
+      </div>
+
+      <div>
+        <input type="radio" name="cloud-type" id="ct-k8s" value="kubernetes" checked="">
+        <label for="ct-k8s" class="is-h4">
+          <span class="p-heading--four">Kubernetes</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque.</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="col-4 p-card--highlighted" style="overflow: visible;">
+      <h2 class="p-heading--three">
+        Architecture type
+        <span class="p-tooltip--top-center" aria-describedby="arch-type-tooltip" style="margin-left: 0.5rem;">
+          <i class="p-icon--question"></i>
+          <span class="p-tooltip__message" role="tooltip" id="arch-type-tooltip">Lorem ipsum</span>
+        </span>
+      </h2>
+
+      <div>
+        <input type="radio" name="architecture-type" id="at-canonical" value="Canonical designed" checked="">
+        <label for="at-canonical" class="is-h4">
+          <span class="p-heading--four">Canonical designed</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+        </label>
+      </div>
+
+      <div>
+        <input type="radio" name="architecture-type" id="at-your" value="Your design" checked="">
+        <label for="at-your" class="is-h4">
+          <span class="p-heading--four">Your design</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+        </label>
+      </div>
+
+      <div>
+        <input type="radio" name="architecture-type" id="at-cloud-only" value="Supporting existing cloud only" checked="">
+        <label for="at-cloud-only" class="is-h4">
+          <span class="p-heading--four">Supporting existing cloud only</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 p-card--highlighted" style="overflow: visible;">
+      <h2 class="p-heading--three">
+        Managed
+        <span class="p-tooltip--top-center" aria-describedby="managed-tooltip" style="margin-left: 0.5rem;">
+          <i class="p-icon--question"></i>
+          <span class="p-tooltip__message" role="tooltip" id="managed-tooltip">Lorem ipsum</span>
+        </span>
+      </h2>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque. Etiam dictum nulla odio. Cras eu diam maximus, porta urna at, auctor neque. Etiam pulvinar arcu mollis, eleifend massa sed, ultricies magna.</p>
+
+      <p class="p-heading--five">* You will automatically get Ubuntu Advantage Advanced</p>
+
+      <hr />
+    </div>
+
+    <div class="col-6 p-card--highlighted" style="overflow: visible;">
+      <h2 class="p-heading--three">
+        Self-managed
+        <span class="p-tooltip--top-center" aria-describedby="self-mngd-tooltip" style="margin-left: 0.5rem;">
+          <i class="p-icon--question"></i>
+          <span class="p-tooltip__message" role="tooltip" id="self-mngd-tooltip">Lorem ipsum</span>
+        </span>
+      </h2>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque. Etiam dictum nulla odio. Cras eu diam maximus, porta urna at, auctor neque. Etiam pulvinar arcu mollis, eleifend massa sed, ultricies magna.</p>
+
+      <div>
+        <input type="radio" name="architecture-type" id="at-canonical" value="Canonical designed" checked="">
+        <label for="at-canonical" class="is-h4">
+          <span class="p-heading--four">Canonical designed</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+        </label>
+      </div>
+
+      <div>
+        <input type="radio" name="architecture-type" id="at-your" value="Your design" checked="">
+        <label for="at-your" class="is-h4">
+          <span class="p-heading--four">Your design</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+        </label>
+      </div>
+
+      <div>
+        <input type="radio" name="architecture-type" id="at-cloud-only" value="Supporting existing cloud only" checked="">
+        <label for="at-cloud-only" class="is-h4">
+          <span class="p-heading--four">Supporting existing cloud only</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+        </label>
+      </div>
+
+      <hr />
+
+      
+    </div>
+  </div>
+</section>
+{% endblock content %}
