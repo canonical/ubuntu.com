@@ -2,6 +2,7 @@
     todo:
     - [ ] Add JS functionality
     - [ ] Update with final copy
+    - [ ] Add bespoke CSS
     - [ ] Replace tooltip lorem ipsum
     - [ ] Delete this comment when done
 -->
@@ -25,7 +26,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip js-tco-calculator">
   <div class="row">
     <div class="col-4">
       <div class="row" style="height: 50%;">
@@ -37,6 +38,11 @@
               <span class="p-tooltip__message" role="tooltip" id="hosts-number-tooltip">Lorem ipsum</span>
             </span>
           </h2>
+
+          <div class="js-tco-calculator__range">
+            <input type="number" name="hosts" id="hosts__input" min="9" max="10000" value="9">
+            <input type="range" id="hosts__range" min="9" max="10000" value="9" step="1">
+          </div>
         </div>
       </div>
 
@@ -49,6 +55,11 @@
               <span class="p-tooltip__message" role="tooltip" id="data-volume-tooltip">Lorem ipsum</span>
             </span>
           </h2>
+
+          <div class="js-tco-calculator__range">
+            <input type="number" name="data-volume" id="data-volume__input" min="1" max="10000" value="1">
+            <input type="range" id="data-volume__range" min="1" max="10000" value="1" step="1">
+          </div>
         </div>
       </div>
     </div>
@@ -63,7 +74,7 @@
       </h2>
 
       <div>
-        <input type="radio" name="cloud-type" id="ct-openstack" value="openstack" checked="">
+        <input type="checkbox" name="cloud-type" id="ct-openstack" value="openstack">
         <label for="ct-openstack" class="is-h4">
           <span class="p-heading--four">OpenStack</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque.</span>
@@ -71,7 +82,7 @@
       </div>
 
       <div>
-        <input type="radio" name="cloud-type" id="ct-k8s" value="kubernetes" checked="">
+        <input type="checkbox" name="cloud-type" id="ct-k8s" value="kubernetes">
         <label for="ct-k8s" class="is-h4">
           <span class="p-heading--four">Kubernetes</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque.</span>
@@ -143,25 +154,25 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque. Etiam dictum nulla odio. Cras eu diam maximus, porta urna at, auctor neque. Etiam pulvinar arcu mollis, eleifend massa sed, ultricies magna.</p>
 
       <div>
-        <input type="radio" name="architecture-type" id="at-canonical" value="Canonical designed" checked="">
-        <label for="at-canonical" class="is-h4">
-          <span class="p-heading--four">Canonical designed</span>
+        <input type="radio" name="self-managed" id="sm-essential" value="essential" checked="">
+        <label for="sm-essential" class="is-h4">
+          <span class="p-heading--four">Essential</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
         </label>
       </div>
 
       <div>
-        <input type="radio" name="architecture-type" id="at-your" value="Your design" checked="">
-        <label for="at-your" class="is-h4">
-          <span class="p-heading--four">Your design</span>
+        <input type="radio" name="self-managed" id="sm-standard" value="standard" checked="">
+        <label for="sm-standard" class="is-h4">
+          <span class="p-heading--four">Standard</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
         </label>
       </div>
 
       <div>
-        <input type="radio" name="architecture-type" id="at-cloud-only" value="Supporting existing cloud only" checked="">
-        <label for="at-cloud-only" class="is-h4">
-          <span class="p-heading--four">Supporting existing cloud only</span>
+        <input type="radio" name="self-managed" id="sm-advanced" value="essential" checked="">
+        <label for="sm-advanced" class="is-h4">
+          <span class="p-heading--four">Advanced</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
         </label>
       </div>
@@ -172,4 +183,6 @@
     </div>
   </div>
 </section>
+
+<script src="{{ versioned_static('js/src/tco-calculator.js') }}"></script>
 {% endblock content %}
