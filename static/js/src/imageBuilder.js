@@ -1,9 +1,45 @@
 (function () {
-  const STATE = {
-    'board': '',
-    'os': '',
-    'snaps': []
-  };
+  // State management
+  class StateArray extends Array {
+    push(item) {
+      const result = super.push(item);
+      render();
+      return result;
+    }
+    pop() {
+      const item = super.pop();
+      render();
+      return item;
+    }
+    remove(index) {
+      const item = this.splice(index, 1);
+      render();
+      return item;
+    }
+  }
+
+  class StateManager {
+    constructor() {
+      this.states = {
+        "board": new StateArray(),
+        "os": new StateArray(),
+        "snaps": new StateArray()
+      };
+    }
+
+    set(name, items) {
+      this.states[name] = new StateArray(...items);
+      render();
+    }
+
+    get(name) {
+      return this.states[name];
+    }
+  }
+
+  state = new StateManager();
+
+  // Cached document queries
   const boardSelection = document.querySelectorAll('.js-boards .js-selection');
   const osSelection = document.querySelectorAll('.js-os .js-selection');
   const snapSearch = document.querySelector('.js-snap-search');
@@ -13,8 +49,8 @@
   const step2 = document.querySelector('.js-step-2');
   const step3 = document.querySelector('.js-step-3');
   const form = document.getElementById('build-form');
-  let snapSearchResults;
 
+  let snapSearchResults;
   selectionListeners(boardSelection, 'board');
   selectionListeners(osSelection, 'os');
   searchHandler();
@@ -67,13 +103,13 @@
       addButton.addEventListener('click', e => {
         e.preventDefault();
         const button = (e.target.classList.contains('js-add-snap'))?e.target:e.target.closest('.js-add-snap');
-        if (lookup(snapSearchResults[button.dataset.index].package_name, 'package_name', STATE.snaps) === false) {
+        if (lookup(snapSearchResults[button.dataset.index].package_name, 'package_name', state.get("snaps")) === false) {
           const selectedSnapContainer = button.closest('.js-snap-search-container');
           if (selectedSnapContainer) {
             selectedSnapContainer.classList.add('u-disable');
           }
-          changeState('snaps', snapSearchResults[button.dataset.index], 'ADD');
-          renderSnapList(STATE.snaps, preinstallResults, 'Remove');
+          state.get('snaps').push(snapSearchResults[button.dataset.index]);
+          renderSnapList(state.get("snaps"), preinstallResults, 'Remove');
           removeSnapHandler();
         }
       });
@@ -86,15 +122,15 @@
       removeButton.addEventListener('click', e => {
         e.preventDefault();
         const button = (e.target.classList.contains('js-remove-snap'))?e.target:e.target.closest('.js-remove-snap');
-        if (STATE.snaps[button.dataset.index]) {
-          const searchIndex = lookup(STATE.snaps[button.dataset.index].package_name, 'package_name', snapSearchResults)
+        if (state.get("snaps")[button.dataset.index]) {
+          const searchIndex = lookup(state.get("snaps")[button.dataset.index].package_name, 'package_name', snapSearchResults)
           const revealItem = snapResults.querySelector(`[data-container-index="${searchIndex}"]`)
           if (revealItem) {
             revealItem.classList.remove('u-disable');
           }
         }
-        changeState('snaps', button.dataset.index, 'REMOVE');
-        renderSnapList(STATE.snaps, preinstallResults, 'Remove');
+        state.get("snaps").remove(button.dataset.index);
+        renderSnapList(state.get("snaps"), preinstallResults, 'Remove');
         removeSnapHandler();
       });
     });
@@ -106,7 +142,7 @@
       if (Object.entries(responce).length !== 0) {
         responce.forEach((item, index) => {
           let disable = '';
-          if (lookup(item.package_name, 'package_name', STATE.snaps) !== false && buttonText === 'Add') {
+          if (lookup(item.package_name, 'package_name', state.get("snaps")) !== false && buttonText === 'Add') {
             disable = 'u-disable';
           }
           buttonIcon = (buttonText === 'Add')?'plus':'minus';
@@ -147,21 +183,10 @@
       selection.addEventListener('click', function() {
         selectCollection(collection, selection);
         const value = this.querySelector('.js-name').innerText;
-        changeState(stateIndex, value, 'UPDATE');
+        state.set(stateIndex, [value]);
         updateOSs();
       });
     });
-  }
-
-  function checkDisabled() {
-    step2.classList.add('u-disable');
-    step3.classList.add('u-disable');
-    if (STATE.board != '') {
-      step2.classList.remove('u-disable');
-    }
-    if (STATE.os != '') {
-      step3.classList.remove('u-disable');
-    }
   }
 
   function selectCollection(collection, selected) {
@@ -174,7 +199,7 @@
   function updateOSs() {
     osSelection.forEach(selection => {
       const osSupport = selection.dataset.supports;
-      const selectedBoard = STATE.board.replace(' ', '-').toLowerCase();
+      const selectedBoard = state.get("board")[0].replace(' ', '-').toLowerCase();
 
       // Check if the currently selected OS supports the this board
       if (osSupport.includes(selectedBoard)) {
@@ -184,15 +209,22 @@
 
         // If current OS selection is not supported by the board reset OS
         if (selection.classList.contains('is-selected')) {
-          changeState('os', '', 'UPDATE');
+          state.set("os", ['']);
           selection.classList.remove('is-selected');
         }
       }
     });
   }
 
+  // Render functions
+  function render() {
+    renderSummary();
+    updateForm();
+    checkDisabled();
+  }
+
   function renderSummary() {
-    if (STATE.board != '' && STATE.os != '') {
+    if (state.get("board") && state.get("board")[0] != '' && state.get('os') && state.get('os')[0] != '') {
       buildButton.setAttribute('aria-disabled', 'false');
       buildButton.disabled = false;
     } else {
@@ -201,47 +233,37 @@
     }
   }
 
-  function render() {
-    renderSummary();
-    updateForm();
-    checkDisabled();
-  }
-
-  function changeState(key, value, action) {
-    switch (action) {
-      case 'UPDATE':
-        STATE[key] = value;
-        break;
-      case 'ADD':
-        STATE[key].push(value);
-        break;
-      case 'REMOVE':
-        STATE[key].splice(value, 1);
-        break;
-      default:
-        console.log(`Error, do not understand a state change of "${action}"`);
-        return false;
-    }
-    render();
-  }
-
   function updateForm() {
     const boardInput = form.querySelector('[name="board"]');
     const systemInput = form.querySelector('[name="system"]');
     const snapsInput = form.querySelector('[name="snaps"]');
-
-    boardInput.value = STATE.board.toLowerCase().replace(' ', '');
-    systemInput.value = STATE.os.toLowerCase().replace(' ', '').replace('-bit ', '');
+    if (state.get("board").length >= 1) {
+      boardInput.value = state.get("board")[0].toLowerCase().replace(' ', '');
+    }
+    if (state.get("os").length >= 1) {
+      systemInput.value = state.get('os')[0].toLowerCase().replace(' ', '').replace('-bit ', '');
+    }
     let snapsString = '';
     let comma = '';
-    STATE.snaps.forEach(snap => {
+    state.get("snaps").forEach(snap => {
       snapsString += `${comma}${snap.package_name}`;
       comma = ',';
     });
     snapsInput.value = snapsString;
   }
 
-  // Utils
+  function checkDisabled() {
+    step2.classList.add('u-disable');
+    step3.classList.add('u-disable');
+    if (state.get("board") && state.get("board")[0] != '') {
+      step2.classList.remove('u-disable');
+    }
+    if (state.get("os") && state.get("os")[0] != '') {
+      step3.classList.remove('u-disable');
+    }
+  }
+
+  // Utils functions
   function lookup(name, key, arr) {
     for (var i = 0, len = arr.length; i < len; i++) {
       if (arr[i][key] === name) {
