@@ -3,4 +3,17 @@
   [class*="p-button"].is-wide {
     width: 100%;
   }
+
+  .p-button--tag {
+    @extend %p-button;
+
+    border-radius: 3px;
+    color: $color-mid-dark;
+    font-size: 14px;
+    padding: .1rem .4rem;
+
+    &:visited {
+      color: $color-mid-dark;
+    }
+  }
 }

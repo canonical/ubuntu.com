@@ -1,0 +1,81 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}USN-{{ notice.id }}: {{ notice.title }} | Ubuntu security notices{% endblock %}
+
+{% block content %}
+<section class="p-strip--suru-topped is-bordered">
+  <div class="row">
+    <div class="col-8">
+	    <h1>USN-{{ notice.id }}: {{ notice.title }}</h1>
+      <p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
+      <p>{{ notice.isummary or notice.summary|safe }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <h2>Releases</h2>
+      <ul class="p-inline-list u-no-margin--bottom">
+        {% for release in notice.releases %}
+          <li class="p-inline-list__item">
+            <a href="/security/notices?release={{release.codename}}" class="p-button--tag">Ubuntu {{ release.version }} {% if release.lts %} LTS {% endif %}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Packages</h2>
+      <ul class="p-list">
+        {% for package in notice.packages %}
+          <li class="p-list__item">{{package}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  
+  <div class="row">
+    <div class="col-8">
+      <h2>Details</h2>
+      <p>{{ notice.details|safe }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <h2>Update instructions</h2>
+      <p>The problem can be corrected by updating your system to the following package versions:</p>
+      {% for release, packages in notice.releases_packages.items() %}
+        <h5>Ubuntu {{release}}</h5>
+        <ul class="p-list">
+          {% for package in packages %}
+            <li class="p-list__item"><a href="https://launchpad.net/ubuntu/+source/{{package.name}}">{{package.name}}</a> - <a href="https://launchpad.net/ubuntu/+source/{{package.name}}/{{package.version}}">{{package.version}}</a></li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+      <p>{{ notice.instructions|safe }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <h2>References</h2>
+        <ul class="p-list">
+          {% for cve in notice.cves %}
+            <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{cve.id}}">CVE-{{cve.id}}</a></li>
+          {% endfor %}
+
+          {% for reference in notice.references %}
+            <li class="p-list__item"><a href="{{ reference.uri }}">{{ reference.uri }}</li>
+          {% endfor %}
+        </ul>
+    </div>
+  </div>
+</section>
+
+{% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+{% endblock %}

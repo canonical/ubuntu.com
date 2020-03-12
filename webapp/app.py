@@ -41,6 +41,12 @@ from webapp.views import (
     releasenotes_redirect,
 )
 from webapp.login import login_handler, logout
+from webapp.security.views import (
+    # api_create_notice,
+    notice,
+    notices,
+    notices_feed,
+)
 
 
 CAPTCHA_TESTING_API_KEY = os.getenv(
@@ -119,7 +125,7 @@ app.add_url_rule(
     "/search", "search", build_search_view(template_path="search.html")
 )
 
-# /blog section
+# blog section
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
     view_func=blog_custom_topic,
@@ -130,6 +136,15 @@ app.add_url_rule(
 )
 app.add_url_rule("/blog/press-centre", view_func=blog_press_centre)
 app.register_blueprint(blog_blueprint, url_prefix="/blog")
+
+# usn section
+app.add_url_rule("/security/notices", view_func=notices)
+app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
+# app.add_url_rule(
+#     "/security/notices", view_func=api_create_notice, methods=["POST"]
+# )
+app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
+
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
