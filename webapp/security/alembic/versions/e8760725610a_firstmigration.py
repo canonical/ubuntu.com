@@ -59,22 +59,22 @@ def upgrade():
     )
     op.create_table(
         "notice_cves",
-        sa.Column("notice_id", sa.Integer(), nullable=True),
+        sa.Column("notice_id", sa.String(), nullable=True),
         sa.Column("cve_id", sa.String(), nullable=True),
         sa.ForeignKeyConstraint(["cve_id"], ["cve.id"],),
         sa.ForeignKeyConstraint(["notice_id"], ["notice.id"],),
     )
     op.create_table(
         "notice_references",
-        sa.Column("notice_id", sa.Integer(), nullable=True),
-        sa.Column("reference_id", sa.String(), nullable=True),
+        sa.Column("notice_id", sa.String(), nullable=True),
+        sa.Column("reference_id", sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(["notice_id"], ["notice.id"],),
         sa.ForeignKeyConstraint(["reference_id"], ["reference.id"],),
     )
     op.create_table(
         "notice_releases",
-        sa.Column("notice_id", sa.Integer(), nullable=True),
-        sa.Column("release_id", sa.String(), nullable=True),
+        sa.Column("notice_id", sa.String(), nullable=True),
+        sa.Column("release_id", sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(["notice_id"], ["notice.id"],),
         sa.ForeignKeyConstraint(["release_id"], ["release.id"],),
     )
