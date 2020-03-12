@@ -14,13 +14,9 @@ from sqlalchemy import asc, desc
 from sqlalchemy.orm.exc import NoResultFound
 
 # Local
-from webapp.security.database import db_engine, db_session
-from webapp.security.models import Base, CVE, Notice, Reference, Release
+from webapp.security.database import db_session
+from webapp.security.models import CVE, Notice, Reference, Release
 from webapp.security.schemas import NoticeSchema
-
-
-# Create all tables
-Base.metadata.create_all(db_engine)
 
 
 markdown_parser = Markdown(

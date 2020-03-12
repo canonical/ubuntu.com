@@ -1,7 +1,7 @@
 import yaml
 
-from webapp.database import db_session
-from webapp.models import Release
+from webapp.security.database import db_session
+from webapp.security.models import Release
 
 
 with open("webapp/security/fixtures/releases.yaml") as file:
