@@ -73,7 +73,7 @@
       </h2>
 
       <div>
-        <input type="checkbox" name="cloud-type" id="ct-openstack" value="openstack">
+        <input type="checkbox" name="cloud-type" id="ct-openstack" class="js-tco-calulator__checkbox" value="openstack">
         <label for="ct-openstack" class="is-h4">
           <span class="p-heading--four">OpenStack</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">OpenStack is an open source cloud platform providing virtual machines on demand.</span>
@@ -81,7 +81,7 @@
       </div>
 
       <div>
-        <input type="checkbox" name="cloud-type" id="ct-k8s" value="kubernetes">
+        <input type="checkbox" name="cloud-type" id="ct-k8s" class="js-tco-calulator__checkbox" value="kubernetes">
         <label for="ct-k8s" class="is-h4">
           <span class="p-heading--four">Kubernetes</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Kubernetes is a container coordination platform. It can run standalone or on top of OpenStack.</span>
@@ -92,31 +92,31 @@
     <div class="col-4 p-card--highlighted" style="overflow: visible;">
       <h2 class="p-heading--three">
         Deployment type
-        <span class="p-tooltip--top-center" aria-describedby="arch-type-tooltip" style="margin-left: 0.5rem;">
+        <span class="p-tooltip--top-center" aria-describedby="dplmt-type-tooltip" style="margin-left: 0.5rem;">
           <i class="p-icon--question"></i>
-          <span class="p-tooltip__message" role="tooltip" id="arch-type-tooltip">Lorem ipsum</span>
+          <span class="p-tooltip__message" role="tooltip" id="dplmt-type-tooltip">Lorem ipsum</span>
         </span>
       </h2>
 
       <div>
-        <input type="radio" name="architecture-type" id="at-canonical" value="Canonical designed" checked="">
-        <label for="at-canonical" class="is-h4">
+        <input type="radio" name="deployment-type" id="dplmt-reference" class="js-tco-calulator__radio" value="reference" checked="">
+        <label for="dplmt-reference" class="is-h4">
           <span class="p-heading--four">Reference architecture</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Canonical deploys the cloud base on the reference architecture.</span>
         </label>
       </div>
 
       <div>
-        <input type="radio" name="architecture-type" id="at-your" value="Your design" checked="">
-        <label for="at-your" class="is-h4">
+        <input type="radio" name="deployment-type" id="dplmt-custom" class="js-tco-calulator__radio" value="custom" checked="">
+        <label for="dplmt-custom" class="is-h4">
           <span class="p-heading--four">Custom architecture</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Canonical designs and deploys the cloud according to customer’s requirements.</span>
         </label>
       </div>
 
       <div>
-        <input type="radio" name="architecture-type" id="at-cloud-only" value="Supporting existing cloud only" checked="">
-        <label for="at-cloud-only" class="is-h4">
+        <input type="radio" name="deployment-type" id="dplmt-existing" class="js-tco-calulator__radio" value="existing" checked="">
+        <label for="dplmt-existing" class="is-h4">
           <span class="p-heading--four">Existing deployment</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">The cloud has already been deployed. Just looking for support or fully managed services.</span>
         </label>
@@ -157,7 +157,7 @@
       <p>Self-managed option may be better for organisations which already have knowledge, experience and resources required to operate the cloud. In this case support services should be considered as described below:</p>
 
       <div>
-        <input type="radio" name="self-managed" id="sm-advanced" value="advanced" checked="">
+        <input type="radio" name="self-managed" id="sm-advanced" class="js-tco-calulator__radio" value="advanced" checked="">
         <label for="sm-advanced" class="is-h4">
           <span class="p-heading--four">Advanced</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">The most comprehensive package including 24*7 support, production-grade SLAs, Kernel Livepatch service, Landscape service, security patches and more.</span>
@@ -165,7 +165,7 @@
       </div>
 
       <div>
-        <input type="radio" name="self-managed" id="sm-standard" value="standard" checked="">
+        <input type="radio" name="self-managed" id="sm-standard" class="js-tco-calulator__radio" value="standard" checked="">
         <label for="sm-standard" class="is-h4">
           <span class="p-heading--four">Standard</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Includes 24*5 support, less demanding SLAs, Kernel Livepatch service, Landscape service, security patches and more. Half of the cost of the Advanced package.</span>
@@ -173,7 +173,7 @@
       </div>
 
       <div>
-        <input type="radio" name="self-managed" id="sm-essential" value="essential" checked="">
+        <input type="radio" name="self-managed" id="sm-essential" class="js-tco-calulator__radio" value="essential" checked="">
         <label for="sm-essential" class="is-h4">
           <span class="p-heading--four">Essential</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">The cheapest package for the least demanding organisations. Includes Kernel Livepatch service, Landscape service, security patches and more.</span>
@@ -181,7 +181,7 @@
       </div>
 
       <div>
-        <input type="radio" name="self-managed" id="sm-none" value="none" checked="">
+        <input type="radio" name="self-managed" id="sm-none" class="js-tco-calulator__radio" value="none" checked="">
         <label for="sm-none" class="is-h4">
           <span class="p-heading--four">None</span>
           <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Valid option for testing and development environments at zero cost. Security patches still apply.</span>
