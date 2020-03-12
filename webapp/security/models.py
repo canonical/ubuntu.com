@@ -18,7 +18,7 @@ Base = declarative_base()
 notice_cves = Table(
     "notice_cves",
     Base.metadata,
-    Column("notice_id", Integer, ForeignKey("notice.id")),
+    Column("notice_id", String, ForeignKey("notice.id")),
     Column("cve_id", String, ForeignKey("cve.id")),
 )
 
@@ -26,16 +26,15 @@ notice_cves = Table(
 notice_references = Table(
     "notice_references",
     Base.metadata,
-    Column("notice_id", Integer, ForeignKey("notice.id")),
-    Column("reference_id", String, ForeignKey("reference.id")),
+    Column("notice_id", String, ForeignKey("notice.id")),
+    Column("reference_id", Integer, ForeignKey("reference.id")),
 )
-
 
 notice_releases = Table(
     "notice_releases",
     Base.metadata,
-    Column("notice_id", Integer, ForeignKey("notice.id")),
-    Column("release_id", String, ForeignKey("release.id")),
+    Column("notice_id", String, ForeignKey("notice.id")),
+    Column("release_id", Integer, ForeignKey("release.id")),
 )
 
 
