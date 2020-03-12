@@ -19,9 +19,8 @@
 <section class="p-strip--suru is-dark">
   <div class="row">
     <div class="col-8">
-      <h1>Total cost of ownership calculator</h1>
-      <p>Lorem ipsum</p>
-      <a href="#" class="p-button--positive">CTA</a>
+      <h1>Private cloud TCO calculator</h1>
+      <p>One of the biggest promises behind the private cloud infrastructure is better economics compare to proprietary hardware and public clouds. Use the TCO (total cost of ownership) calculator below to estimate the cost of your private cloud infrastructure with Canonical.</p>
     </div>
   </div>
 </section>
@@ -77,7 +76,7 @@
         <input type="checkbox" name="cloud-type" id="ct-openstack" value="openstack">
         <label for="ct-openstack" class="is-h4">
           <span class="p-heading--four">OpenStack</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque.</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">OpenStack is an open source cloud platform providing virtual machines on demand.</span>
         </label>
       </div>
 
@@ -85,14 +84,14 @@
         <input type="checkbox" name="cloud-type" id="ct-k8s" value="kubernetes">
         <label for="ct-k8s" class="is-h4">
           <span class="p-heading--four">Kubernetes</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque.</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Kubernetes is a container coordination platform. It can run standalone or on top of OpenStack.</span>
         </label>
       </div>
     </div>
 
     <div class="col-4 p-card--highlighted" style="overflow: visible;">
       <h2 class="p-heading--three">
-        Architecture type
+        Deployment type
         <span class="p-tooltip--top-center" aria-describedby="arch-type-tooltip" style="margin-left: 0.5rem;">
           <i class="p-icon--question"></i>
           <span class="p-tooltip__message" role="tooltip" id="arch-type-tooltip">Lorem ipsum</span>
@@ -102,24 +101,24 @@
       <div>
         <input type="radio" name="architecture-type" id="at-canonical" value="Canonical designed" checked="">
         <label for="at-canonical" class="is-h4">
-          <span class="p-heading--four">Canonical designed</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+          <span class="p-heading--four">Reference architecture</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Canonical deploys the cloud base on the reference architecture.</span>
         </label>
       </div>
 
       <div>
         <input type="radio" name="architecture-type" id="at-your" value="Your design" checked="">
         <label for="at-your" class="is-h4">
-          <span class="p-heading--four">Your design</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+          <span class="p-heading--four">Custom architecture</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Canonical designs and deploys the cloud according to customer’s requirements.</span>
         </label>
       </div>
 
       <div>
         <input type="radio" name="architecture-type" id="at-cloud-only" value="Supporting existing cloud only" checked="">
         <label for="at-cloud-only" class="is-h4">
-          <span class="p-heading--four">Supporting existing cloud only</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+          <span class="p-heading--four">Existing deployment</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">The cloud has already been deployed. Just looking for support or fully managed services.</span>
         </label>
       </div>
     </div>
@@ -135,11 +134,15 @@
         </span>
       </h2>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque. Etiam dictum nulla odio. Cras eu diam maximus, porta urna at, auctor neque. Etiam pulvinar arcu mollis, eleifend massa sed, ultricies magna.</p>
+      <p>Canonical’s managed services for OpenStack and Kubernetes allow to fully outsource cloud operational tasks to the Canonical’s team of cloud experts. Managed services may be the best option during the initial phase of private cloud deployment process, but under certain circumstances they may be also cheaper than the self-managed option. Remember that the self-managed option on the right does not include the cloud operations team annual salary.</p>
 
-      <p class="p-heading--five">* You will automatically get Ubuntu Advantage Advanced</p>
+      <p class="p-heading--five">* Canonical provides managed services only for OpenStack and Kubernetes deployments based on Juju charms.</p>
 
+      <p class="p-heading--five">** Ubuntu Advantage Advanced will be included by default.</p>
       <hr />
+
+      <p id="intial-rollout--managed">$0</p>
+      <p id="yearly-cost--managed">$0</p>
     </div>
 
     <div class="col-6 p-card--highlighted" style="overflow: visible;">
@@ -151,13 +154,13 @@
         </span>
       </h2>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim, eget sodales augue. Proin at massa eget augue tincidunt pellentesque. Etiam dictum nulla odio. Cras eu diam maximus, porta urna at, auctor neque. Etiam pulvinar arcu mollis, eleifend massa sed, ultricies magna.</p>
+      <p>Self-managed option may be better for organisations which already have knowledge, experience and resources required to operate the cloud. In this case support services should be considered as described below:</p>
 
       <div>
-        <input type="radio" name="self-managed" id="sm-essential" value="essential" checked="">
-        <label for="sm-essential" class="is-h4">
-          <span class="p-heading--four">Essential</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+        <input type="radio" name="self-managed" id="sm-advanced" value="advanced" checked="">
+        <label for="sm-advanced" class="is-h4">
+          <span class="p-heading--four">Advanced</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">The most comprehensive package including 24*7 support, production-grade SLAs, Kernel Livepatch service, Landscape service, security patches and more.</span>
         </label>
       </div>
 
@@ -165,22 +168,35 @@
         <input type="radio" name="self-managed" id="sm-standard" value="standard" checked="">
         <label for="sm-standard" class="is-h4">
           <span class="p-heading--four">Standard</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Includes 24*5 support, less demanding SLAs, Kernel Livepatch service, Landscape service, security patches and more. Half of the cost of the Advanced package.</span>
         </label>
       </div>
 
       <div>
-        <input type="radio" name="self-managed" id="sm-advanced" value="essential" checked="">
-        <label for="sm-advanced" class="is-h4">
-          <span class="p-heading--four">Advanced</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget accumsan enim.</span>
+        <input type="radio" name="self-managed" id="sm-essential" value="essential" checked="">
+        <label for="sm-essential" class="is-h4">
+          <span class="p-heading--four">Essential</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">The cheapest package for the least demanding organisations. Includes Kernel Livepatch service, Landscape service, security patches and more.</span>
+        </label>
+      </div>
+
+      <div>
+        <input type="radio" name="self-managed" id="sm-none" value="none" checked="">
+        <label for="sm-none" class="is-h4">
+          <span class="p-heading--four">None</span>
+          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Valid option for testing and development environments at zero cost. Security patches still apply.</span>
         </label>
       </div>
 
       <hr />
 
-      
+      <p id="intial-rollout--self">$0</p>
+      <p id="yearly-cost--self">$0</p>
     </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <p class="p-heading--six"><em>NOTE: This calculator is for informational purposes only. Actual numbers may vary depending on your requirements. Also, discounts may apply for bigger clusters. For more detailed pricing, <a href="/openstack/managed#get-in-touch">contact Canonical’s sales team</a>.</em></p>
   </div>
 </section>
 
