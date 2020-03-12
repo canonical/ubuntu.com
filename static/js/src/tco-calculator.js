@@ -6,6 +6,7 @@ const SERVICE_LEVEL_COST_PER_HOST = {
 };
 
 function initTCOCalculator() {
+  updateTotals();
   attachRangeEvents();
 }
 
