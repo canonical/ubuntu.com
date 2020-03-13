@@ -150,7 +150,7 @@ function updateTotals() {
 
   // an additional 3 hosts are required to host MAAS, Juju, etc
   const hostCost = SERVICE_LEVEL_COST_PER_HOST[serviceLevel] * (hosts + 3);
-  const maasHostCosts = MANAGED_SERVICE_COSTS["maas"] * 3;
+  const maasHostCost = MANAGED_SERVICE_COSTS["maas"] * 3;
 
   let managedServicesCost = 0;
   let rollout = 0;
@@ -158,29 +158,30 @@ function updateTotals() {
   let storageCost = 0;
   let yearly = 0;
 
+  if (
+    dataVolume / hosts > 48 &&
+    serviceLevel !== "none" &&
+    serviceLevel !== "essential"
+  ) {
+    storageCost += calculateStorageCost(serviceLevel, dataVolume);
+  }
+
   if (openstack.checked && kubernetes.checked) {
     rollout += kubernetesDeploymentCost + openstackDeploymentCost;
-
-    // managedServicesCost += (hosts * MANAGED_SERVICE_COSTS['openstack_and_kubernetes']) + maasHostCosts;
+    managedServicesCost +=
+      hosts * MANAGED_SERVICE_COSTS["openstack_and_kubernetes"];
   } else if (openstack.checked) {
     rollout += openstackDeploymentCost;
-
-    managedServicesCost +=
-      hosts * MANAGED_SERVICE_COSTS["openstack"] + maasHostCosts;
+    managedServicesCost += hosts * MANAGED_SERVICE_COSTS["openstack"];
   } else if (kubernetes.checked) {
     rollout += kubernetesDeploymentCost;
+    managedServicesCost += hosts * MANAGED_SERVICE_COSTS["kubernetes"];
   }
 
   if (openstack.checked || kubernetes.checked) {
     yearly += hostCost + managedServicesCost + storageCost;
     selfYearly += hostCost + storageCost;
-  }
-
-  if (
-    dataVolume / hosts > 48 &&
-    serviceLevel !== "none" && serviceLevel !== "essential"
-  ) {
-    storageCost += calculateStorageCost(serviceLevel, dataVolume);
+    managedServicesCost += maasHostCost;
   }
 
   renderTotals(rollout, yearly, selfYearly);
