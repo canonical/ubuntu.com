@@ -133,7 +133,13 @@ def post_build():
         ).json()
     except HTTPError as http_error:
         if http_error.response.status_code == 400:
-            context["build_error"] = http_error.response.content.decode()
+            return (
+                flask.render_template(
+                    "core/build-error.html",
+                    build_error=http_error.response.content.decode(),
+                ),
+                400,
+            )
         else:
             raise http_error
 
