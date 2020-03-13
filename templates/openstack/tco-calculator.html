@@ -2,7 +2,6 @@
     todo:
     - [ ] Update with final copy
     - [ ] Add bespoke CSS
-    - [ ] Replace tooltip lorem ipsum
     - [ ] Delete this comment when done
 -->
 
@@ -33,7 +32,7 @@
             Number of hosts
             <span class="p-tooltip--top-center" aria-describedby="hosts-number-tooltip" style="margin-left: 0.5rem;">
               <i class="p-icon--question"></i>
-              <span class="p-tooltip__message" role="tooltip" id="hosts-number-tooltip">Lorem ipsum</span>
+              <span class="p-tooltip__message" role="tooltip" id="hosts-number-tooltip">A number of hosts that build the cloud. At least nine are required.<br />Moreover, three additional hosts are needed to run cloud supporting services.<br />Those will be included in the calculations. For bigger numbers contact us directly.</span>
             </span>
           </h2>
 
@@ -50,7 +49,7 @@
             Data volume
             <span class="p-tooltip--top-center" aria-describedby="data-volume-tooltip" style="margin-left: 0.5rem;">
               <i class="p-icon--question"></i>
-              <span class="p-tooltip__message" role="tooltip" id="data-volume-tooltip">Lorem ipsum</span>
+              <span class="p-tooltip__message" role="tooltip" id="data-volume-tooltip">A data volume of services running on the cloud.<br />For bigger numbers contact us directly.</span>
             </span>
           </h2>
 
@@ -67,7 +66,7 @@
         Cloud type
         <span class="p-tooltip--top-center" aria-describedby="cloud-type-tooltip" style="margin-left: 0.5rem;">
           <i class="p-icon--question"></i>
-          <span class="p-tooltip__message" role="tooltip" id="cloud-type-tooltip">Lorem ipsum</span>
+          <span class="p-tooltip__message" role="tooltip" id="cloud-type-tooltip">A desired cloud type: OpenStack, Kubernetes or both.<br />In case only one option is selected, it is assumed that the cloud will run directly on bare-metal machines.<br />If both are selected, it is assumed that Kubernetes will run on top of OpenStack.</span>
         </span>
       </h2>
 
@@ -93,7 +92,7 @@
         Deployment type
         <span class="p-tooltip--top-center" aria-describedby="dplmt-type-tooltip" style="margin-left: 0.5rem;">
           <i class="p-icon--question"></i>
-          <span class="p-tooltip__message" role="tooltip" id="dplmt-type-tooltip">Lorem ipsum</span>
+          <span class="p-tooltip__message" role="tooltip" id="dplmt-type-tooltip">Private cloud deployment can be either based on the reference architecture<br />or a custom one. Use the existing deployment option to just check<br />the pricing of support or fully managed services.</span>
         </span>
       </h2>
 
@@ -125,13 +124,7 @@
 
   <div class="row">
     <div class="col-6 p-card--highlighted" style="overflow: visible;">
-      <h2 class="p-heading--three">
-        Managed
-        <span class="p-tooltip--top-center" aria-describedby="managed-tooltip" style="margin-left: 0.5rem;">
-          <i class="p-icon--question"></i>
-          <span class="p-tooltip__message" role="tooltip" id="managed-tooltip">Lorem ipsum</span>
-        </span>
-      </h2>
+      <h2 class="p-heading--three">Managed</h2>
 
       <p>Canonical’s managed services for OpenStack and Kubernetes allow to fully outsource cloud operational tasks to the Canonical’s team of cloud experts. Managed services may be the best option during the initial phase of private cloud deployment process, but under certain circumstances they may be also cheaper than the self-managed option. Remember that the self-managed option on the right does not include the cloud operations team annual salary.</p>
 
@@ -148,13 +141,7 @@
     </div>
 
     <div class="col-6 p-card--highlighted" style="overflow: visible;">
-      <h2 class="p-heading--three">
-        Self-managed
-        <span class="p-tooltip--top-center" aria-describedby="self-mngd-tooltip" style="margin-left: 0.5rem;">
-          <i class="p-icon--question"></i>
-          <span class="p-tooltip__message" role="tooltip" id="self-mngd-tooltip">Lorem ipsum</span>
-        </span>
-      </h2>
+      <h2 class="p-heading--three">Self-managed</h2>
 
       <p>Self-managed option may be better for organisations which already have knowledge, experience and resources required to operate the cloud. In this case support services should be considered as described below:</p>
 
