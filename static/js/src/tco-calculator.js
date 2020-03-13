@@ -21,6 +21,25 @@ const SERVICE_LEVEL_COST_PER_HOST = {
   advanced: 1500
 };
 
+const STORAGE_COSTS = {
+  standard: {
+    tier_one: { base: 0, multiplier: 16.67 },
+    tier_two: { base: 2500, multiplier: 12.5 },
+    tier_three: { base: 19375, multiplier: 6.67 },
+    tier_four: { base: 29375, multiplier: 3.33 },
+    tier_five: { base: 69375, multiplier: 1.67 },
+    tier_six: { base: 94375, multiplier: 0 }
+  },
+  advanced: {
+    tier_one: { base: 0, multiplier: 33.33 },
+    tier_two: { base: 5000, multiplier: 25 },
+    tier_three: { base: 38750, multiplier: 13.33 },
+    tier_four: { base: 58750, multiplier: 6.67 },
+    tier_five: { base: 138750, multiplier: 3.33 },
+    tier_six: { base: 188750, multiplier: 0 }
+  }
+};
+
 function initTCOCalculator() {
   updateTotals();
   attachInputEvents();
@@ -63,6 +82,37 @@ function attachInputEvents() {
   });
 }
 
+function calculateStorageCost(serviceLevel, dataVolume) {
+  let tier = "tier_";
+  let adjustment = 0;
+
+  if (dataVolume <= 150) {
+    tier += "one";
+  } else if (dataVolume > 150 && dataVolume <= 1500) {
+    tier += "two";
+    adjustment = 150;
+  } else if (dataVolume > 1500 && dataVolume <= 3000) {
+    tier += "three";
+    adjustment = 1500;
+  } else if (dataVolume > 3000 && dataVolume <= 15000) {
+    tier += "four";
+    adjustment = 3000;
+  } else if (dataVolume > 15000 && dataVolume <= 30000) {
+    tier += "five";
+    adjustment = 15000;
+  } else if (dataVolume > 30000) {
+    tier += "six";
+    adjustment = 30000;
+  }
+
+  const storageCosts = STORAGE_COSTS[serviceLevel][tier];
+  const adjustedVolume = dataVolume - adjustment;
+  const finalCosts =
+    storageCosts.base + adjustedVolume * storageCosts.multiplier;
+
+  return finalCosts;
+}
+
 function renderTotals(rollout, yearly, selfYearly) {
   const rolloutEl = document.querySelector("#intial-rollout--managed");
   const selfRolloutEl = document.querySelector("#intial-rollout--self");
@@ -82,7 +132,9 @@ function renderTotals(rollout, yearly, selfYearly) {
 }
 
 function updateTotals() {
-  // const dataVolume = parseInt(document.querySelector("#data-volume__input").value);
+  const dataVolume = parseInt(
+    document.querySelector("#data-volume__input").value
+  );
   const deploymentType = document.querySelector(
     "[name='deployment-type']:checked"
   ).value;
@@ -100,10 +152,11 @@ function updateTotals() {
   const hostCost = SERVICE_LEVEL_COST_PER_HOST[serviceLevel] * (hosts + 3);
   const maasHostCosts = MANAGED_SERVICE_COSTS["maas"] * 3;
 
-  let rollout = 0;
-  let yearly = 0;
-  let selfYearly = 0;
   let managedServicesCost = 0;
+  let rollout = 0;
+  let selfYearly = 0;
+  let storageCost = 0;
+  let yearly = 0;
 
   if (openstack.checked && kubernetes.checked) {
     rollout += kubernetesDeploymentCost + openstackDeploymentCost;
@@ -119,8 +172,15 @@ function updateTotals() {
   }
 
   if (openstack.checked || kubernetes.checked) {
-    yearly += hostCost + managedServicesCost;
-    selfYearly += hostCost;
+    yearly += hostCost + managedServicesCost + storageCost;
+    selfYearly += hostCost + storageCost;
+  }
+
+  if (
+    dataVolume / hosts > 48 &&
+    serviceLevel !== "none" && serviceLevel !== "essential"
+  ) {
+    storageCost += calculateStorageCost(serviceLevel, dataVolume);
   }
 
   renderTotals(rollout, yearly, selfYearly);
