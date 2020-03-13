@@ -179,9 +179,8 @@ function updateTotals() {
   }
 
   if (openstack.checked || kubernetes.checked) {
-    yearly += hostCost + managedServicesCost + storageCost;
+    yearly += managedServicesCost + storageCost + maasHostCost;
     selfYearly += hostCost + storageCost;
-    managedServicesCost += maasHostCost;
   }
 
   renderTotals(rollout, yearly, selfYearly);
