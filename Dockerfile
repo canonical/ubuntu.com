@@ -55,7 +55,6 @@ ADD http://launchpad.net/ubuntu/+cdmirrors-rss etc/ubuntu-mirrors-rss.xml
 # Set revision ID
 ARG BUILD_ID
 ENV TALISKER_REVISION_ID "${BUILD_ID}"
-ADD http://launchpad.net/ubuntu/+cdmirrors-rss etc/ubuntu-mirrors-rss.xml
 
 # Setup commands to run server
 ENTRYPOINT ["./entrypoint"]
