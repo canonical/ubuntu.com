@@ -132,12 +132,20 @@ def post_build():
 
     # Submit user to marketo
     opt_in = flask.request.values.get("canonicalUpdatesOptIn")
+    full_name = flask.request.values.get("FullName")
+    split_name = full_name.split(" ")
+    first_name = split_name[0]
+    last_name = split_name[len(split_name) - 1] if len(split_name) > 1 else ""
+    email = flask.request.values.get("Email")
     if opt_in:
         session.post(
             "https://pages.ubuntu.com/index.php/leadCapture/save",
             data={
                 "canonicalUpdatesOptIn": opt_in,
-                "formid": "1257",
+                "FirstName": first_name,
+                "LastName": last_name,
+                "Email": email,
+                "formid": "3546",
                 "lpId": "2154",
                 "subId": "30",
                 "munchkinId": "066-EOV-335",
