@@ -1,10 +1,3 @@
-<!--
-    todo:
-    - [ ] Update with final copy
-    - [ ] Add bespoke CSS
-    - [ ] Delete this comment when done
--->
-
 {% extends "tco-calculator/_base_tco_calculator.html" %}
 
 {% block title %}TCO calculator{% endblock %}
@@ -23,14 +16,14 @@
   </div>
 </section>
 
-<section class="p-strip js-tco-calculator">
+<section class="p-strip js-tco-calculator is-bordered p-calculator">
   <div class="row">
     <div class="col-4">
       <div class="row" style="height: 50%;">
-        <div class="col-4 p-card--highlighted" style="overflow: visible;">
+        <div class="col-4 p-card--highlighted">
           <h2 class="p-heading--three">
             Number of hosts
-            <span class="p-tooltip--top-center" aria-describedby="hosts-number-tooltip" style="margin-left: 0.5rem;">
+            <span class="p-tooltip--top-center" aria-describedby="hosts-number-tooltip">
               <i class="p-icon--question"></i>
               <span class="p-tooltip__message" role="tooltip" id="hosts-number-tooltip">A number of hosts that build the cloud. At least nine are required.<br />Moreover, three additional hosts are needed to run cloud supporting services.<br />Those will be included in the calculations. For bigger numbers contact us directly.</span>
             </span>
@@ -44,10 +37,10 @@
       </div>
 
       <div class="row" style="height: 50%;">
-        <div class="col-4 p-card--highlighted" style="overflow: visible;">
+        <div class="col-4 p-card--highlighted">
           <h2 class="p-heading--three">
             Data volume
-            <span class="p-tooltip--top-center" aria-describedby="data-volume-tooltip" style="margin-left: 0.5rem;">
+            <span class="p-tooltip--top-center" aria-describedby="data-volume-tooltip">
               <i class="p-icon--question"></i>
               <span class="p-tooltip__message" role="tooltip" id="data-volume-tooltip">A data volume of services running on the cloud.<br />For bigger numbers contact us directly.</span>
             </span>
@@ -56,15 +49,20 @@
           <div class="js-tco-calculator__range">
             <input type="number" name="data-volume" id="data-volume__input" min="1" max="10000" value="1">
             <input type="range" id="data-volume__range" min="1" max="10000" value="1" step="1">
+            
+            <div class="p-calculator__range-hint">
+              <span>0</span>
+              <span class="u-align--right">10,000 TB</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-4 p-card--highlighted" style="overflow: visible;">
+    <div class="col-4 p-card--highlighted">
       <h2 class="p-heading--three">
         Cloud type
-        <span class="p-tooltip--top-center" aria-describedby="cloud-type-tooltip" style="margin-left: 0.5rem;">
+        <span class="p-tooltip--top-center" aria-describedby="cloud-type-tooltip">
           <i class="p-icon--question"></i>
           <span class="p-tooltip__message" role="tooltip" id="cloud-type-tooltip">A desired cloud type: OpenStack, Kubernetes or both.<br />In case only one option is selected, it is assumed that the cloud will run directly on bare-metal machines.<br />If both are selected, it is assumed that Kubernetes will run on top of OpenStack.</span>
         </span>
@@ -74,7 +72,7 @@
         <input type="checkbox" name="cloud-type" id="ct-openstack" class="js-tco-calulator__checkbox" value="openstack" checked="">
         <label for="ct-openstack" class="is-h4">
           <span class="p-heading--four">OpenStack</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">OpenStack is an open source cloud platform providing virtual machines on demand.</span>
+          <span class="p-calculator__checkbox-label-copy">OpenStack is an open source cloud platform providing virtual machines on demand.</span>
         </label>
       </div>
 
@@ -82,15 +80,15 @@
         <input type="checkbox" name="cloud-type" id="ct-k8s" class="js-tco-calulator__checkbox" value="kubernetes">
         <label for="ct-k8s" class="is-h4">
           <span class="p-heading--four">Kubernetes</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Kubernetes is a container coordination platform. It can run standalone or on top of OpenStack.</span>
+          <span class="p-calculator__checkbox-label-copy">Kubernetes is a container coordination platform. It can run standalone or on top of OpenStack.</span>
         </label>
       </div>
     </div>
 
-    <div class="col-4 p-card--highlighted" style="overflow: visible;">
+    <div class="col-4 p-card--highlighted">
       <h2 class="p-heading--three">
         Deployment type
-        <span class="p-tooltip--top-center" aria-describedby="dplmt-type-tooltip" style="margin-left: 0.5rem;">
+        <span class="p-tooltip--top-center" aria-describedby="dplmt-type-tooltip">
           <i class="p-icon--question"></i>
           <span class="p-tooltip__message" role="tooltip" id="dplmt-type-tooltip">Private cloud deployment can be either based on the reference architecture<br />or a custom one. Use the existing deployment option to just check<br />the pricing of support or fully managed services.</span>
         </span>
@@ -100,7 +98,7 @@
         <input type="radio" name="deployment-type" id="dplmt-reference" class="js-tco-calulator__radio" value="reference" checked="checked">
         <label for="dplmt-reference" class="is-h4">
           <span class="p-heading--four">Reference architecture</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Canonical deploys the cloud base on the reference architecture.</span>
+          <span class="p-calculator__checkbox-label-copy">Canonical deploys the cloud base on the reference architecture.</span>
         </label>
       </div>
 
@@ -108,7 +106,7 @@
         <input type="radio" name="deployment-type" id="dplmt-custom" class="js-tco-calulator__radio" value="custom">
         <label for="dplmt-custom" class="is-h4">
           <span class="p-heading--four">Custom architecture</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Canonical designs and deploys the cloud according to customer’s requirements.</span>
+          <span class="p-calculator__checkbox-label-copy">Canonical designs and deploys the cloud according to customer’s requirements.</span>
         </label>
       </div>
 
@@ -116,32 +114,75 @@
         <input type="radio" name="deployment-type" id="dplmt-existing" class="js-tco-calulator__radio" value="existing">
         <label for="dplmt-existing" class="is-h4">
           <span class="p-heading--four">Existing deployment</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">The cloud has already been deployed. Just looking for support or fully managed services.</span>
+          <span class="p-calculator__checkbox-label-copy">The cloud has already been deployed. Just looking for support or fully managed services.</span>
         </label>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-6 p-card--highlighted" style="overflow: visible;">
+    <div class="col-6 p-card--highlighted">
       <h2 class="p-heading--three">Managed</h2>
 
-      <p>Canonical’s managed services for OpenStack and Kubernetes allow to fully outsource cloud operational tasks to the Canonical’s team of cloud experts. Managed services may be the best option during the initial phase of private cloud deployment process, but under certain circumstances they may be also cheaper than the self-managed option. Remember that the self-managed option on the right does not include the cloud operations team annual salary.</p>
+      <hr />
+
+      <div class="row u-vertically-center">
+        <div class="col-3">
+          <p class="p-heading--five">Initial rollout:</p>
+        </div>
+
+        <div class="col-3 u-vertically-center">
+          <p class="p-heading--three" id="intial-rollout--managed">$0</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 u-vertically-center">
+          <p class="p-heading--five">Yearly operational cost:</p>
+        </div>
+
+        <div class="col-3 u-vertically-center">
+          <p class="p-heading--three" id="yearly-cost--managed">$0</p>
+        </div>
+      </div>  
+
+      <hr />
+      
+      <p>Canonical’s managed services for OpenStack and Kubernetes allow to fully outsource cloud operational tasks to the Canonical’s team of cloud experts. Managed services may be the best option during the initial phase of private cloud deployment process, but under certain circumstances they may be also cheaper than the self-managed option. Remember that the self-managed option on the right does not include the cloud operations team's annual salary.</p>
 
       <p class="p-heading--five">* Canonical provides managed services only for OpenStack and Kubernetes deployments based on Juju charms.</p>
 
       <p class="p-heading--five">** Ubuntu Advantage Advanced will be included by default.</p>
-      <hr />
 
-      <p>Initial rollout:</p>
-      <p id="intial-rollout--managed">$0</p>
-
-      <p>Yearly operational cost:</p>
-      <p id="yearly-cost--managed">$0</p>
+      <p class="p-heading--five">*** Includes Managed MAAS</p>
     </div>
 
-    <div class="col-6 p-card--highlighted" style="overflow: visible;">
+    <div class="col-6 p-card--highlighted">
       <h2 class="p-heading--three">Self-managed</h2>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-3 u-vertically-center">
+          <p class="p-heading--five">Initial rollout:</p>
+        </div>
+
+        <div class="col-3 u-vertically-center">
+          <p class="p-heading--three" id="intial-rollout--self">$0</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3 u-vertically-center">
+          <p class="p-heading--five">Yearly operational cost:</p>
+        </div>
+
+        <div class="col-3 u-vertically-center">
+          <p class="p-heading--three" id="yearly-cost--self">$0</p>
+        </div>
+      </div>
+
+      <hr />
 
       <p>Self-managed option may be better for organisations which already have knowledge, experience and resources required to operate the cloud. In this case support services should be considered as described below:</p>
 
@@ -149,7 +190,7 @@
         <input type="radio" name="self-managed" id="sm-advanced" class="js-tco-calulator__radio" value="advanced" checked="checked">
         <label for="sm-advanced" class="is-h4">
           <span class="p-heading--four">Advanced</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">The most comprehensive package including 24*7 support, production-grade SLAs, Kernel Livepatch service, Landscape service, security patches and more.</span>
+          <span class="p-calculator__checkbox-label-copy">The most comprehensive package including 24*7 support, production-grade SLAs, Kernel Livepatch service, Landscape service, security patches and more.</span>
         </label>
       </div>
 
@@ -157,7 +198,7 @@
         <input type="radio" name="self-managed" id="sm-standard" class="js-tco-calulator__radio" value="standard">
         <label for="sm-standard" class="is-h4">
           <span class="p-heading--four">Standard</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Includes 24*5 support, less demanding SLAs, Kernel Livepatch service, Landscape service, security patches and more. Half of the cost of the Advanced package.</span>
+          <span class="p-calculator__checkbox-label-copy">Includes 24*5 support, less demanding SLAs, Kernel Livepatch service, Landscape service, security patches and more. Half of the cost of the Advanced package.</span>
         </label>
       </div>
 
@@ -165,7 +206,7 @@
         <input type="radio" name="self-managed" id="sm-essential" class="js-tco-calulator__radio" value="essential">
         <label for="sm-essential" class="is-h4">
           <span class="p-heading--four">Essential</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">The cheapest package for the least demanding organisations. Includes Kernel Livepatch service, Landscape service, security patches and more.</span>
+          <span class="p-calculator__checkbox-label-copy">The cheapest package for the least demanding organisations. Includes Kernel Livepatch service, Landscape service, security patches and more.</span>
         </label>
       </div>
 
@@ -173,17 +214,9 @@
         <input type="radio" name="self-managed" id="sm-none" class="js-tco-calulator__radio" value="none">
         <label for="sm-none" class="is-h4">
           <span class="p-heading--four">None</span>
-          <span style="font-size: 1rem; display: block; line-height: 1.2rem;">Valid option for testing and development environments at zero cost. Security patches still apply.</span>
+          <span class="p-calculator__checkbox-label-copy">Valid option for testing and development environments at zero cost. Security patches still apply.</span>
         </label>
       </div>
-
-      <hr />
-
-      <p>Initial rollout:</p>
-      <p id="intial-rollout--self">$0</p>
-
-      <p>Yearly operational cost:</p>
-      <p id="yearly-cost--self">$0</p>
     </div>
   </div>
 
@@ -192,5 +225,15 @@
   </div>
 </section>
 
-<script src="{{ versioned_static('js/src/tco-calculator.js') }}"></script>
+<section class="p-strip--light is-bordered">
+  <div class="u-fixed-width">
+    <h2>From VMware to Charmed OpenStack</h2>
+    <p>Reduce costs and increase the efficiency of your infrastructure with open source adoption.</p>
+    <p>
+      <a class="p-button--positive" href="/engage/vmware-to-charmed-openstack">Read the whitepaper</a>
+    </p>
+  </div>
+</section>
+
+<script src="{{ versioned_static('js/build/tco-calculator.min.js') }}"></script>
 {% endblock content %}
