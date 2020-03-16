@@ -50,9 +50,9 @@ function attachInputEvents() {
     ".js-tco-calculator__range"
   );
   const checkboxInputs = document.querySelectorAll(
-    ".js-tco-calulator__checkbox"
+    ".js-tco-calculator__checkbox"
   );
-  const radioInputs = document.querySelectorAll(".js-tco-calulator__radio");
+  const radioInputs = document.querySelectorAll(".js-tco-calculator__radio");
 
   rangeContainers.forEach(container => {
     let input = container.querySelector("input[type='number']");
