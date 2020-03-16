@@ -531,3 +531,9 @@ summary {
     }
   }
 }
+
+// XXX: Align accordion icons top instead of center
+// Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/2926
+.p-accordion__tab {
+  background-position: top $spv-inner--medium left $sph-inner;
+}
