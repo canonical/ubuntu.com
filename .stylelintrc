@@ -1,0 +1,13 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-order"
+  ],
+  "ignoreFiles": ["static/sass/prism.scss"],
+  "rules": {
+    "order/properties-alphabetical-order": true,
+    "at-rule-no-unknown": [ true, {
+      "ignoreAtRules": ["extend", "include", "mixin", "for"]
+    } ],
+  }
+}
