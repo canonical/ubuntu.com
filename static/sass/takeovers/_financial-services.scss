@@ -36,6 +36,7 @@
 
     .p-takeover__text {
       @extend %vf-heading-4;
+
       color: $color-x-light;
       margin-bottom: 1.7rem;
     }
@@ -64,7 +65,7 @@
     }
 
     .light-grey-cloud {
-      animation: fade-right 1.5s cubic-bezier(.215, .61, .355, 1) .75s 1 forwards;
+      animation: fade-right 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) 0.75s 1 forwards;
       bottom: -12%;
       left: -18%;
       opacity: 0;
@@ -75,7 +76,7 @@
     }
 
     .aubergine-cloud {
-      animation: fade-left 1.25s cubic-bezier(.215, .61, .355, 1) .5s 1 forwards;
+      animation: fade-left 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s 1 forwards;
       bottom: -20%;
       opacity: 0;
       position: absolute;
