@@ -1,13 +1,13 @@
 @mixin p-takeover-upm {
-  $anim-circle: fade-in .5s ease-out;
-  $anim-line: line .3s cubic-bezier(.215, .61, .355, 1);
-  $anim-logo: .5s cubic-bezier(.215, .61, .355, 1);
-  $interval: .15s;
-  $start-delay: .8s;
+  $anim-circle: fade-in 0.5s ease-out;
+  $anim-line: line 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  $anim-logo: 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  $interval: 0.15s;
+  $start-delay: 0.8s;
 
   @keyframes fade-in {
-    0% {opacity: 0}
-    100% {opacity: 1}
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
 
   @keyframes lxd-logo {
