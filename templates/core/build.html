@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-8 u-sv3">
       <h1>Your Ubuntu image is building</h1>
-      <p>We’ll email you at {{ openid.email }} when we’ve finished. A build usually takes less than 30 minutes.</p>
+      <p>We’ll email you {% if openid.email %}at {{ openid.email }} {% endif %}when we’ve finished. A build usually takes less than 30 minutes.</p>
       <p><a href="{{ build_info.web_link }}" class="p-link--external">Build log</a></p>
     </div>
   </div>
