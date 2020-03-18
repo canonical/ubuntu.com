@@ -37,7 +37,7 @@
     }
   }
 
-  state = new StateManager();
+  let state = new StateManager();
 
   // Cached document queries
   const boardSelection = document.querySelectorAll(".js-boards .js-selection");
@@ -72,7 +72,7 @@
         e.preventDefault();
         triggerSearch();
       });
-      snapSearch.addEventListener("reset", e => {
+      snapSearch.addEventListener("reset", () => {
         clearSearch();
       });
     }
@@ -174,7 +174,7 @@
           ) {
             disable = "u-disable";
           }
-          buttonIcon = buttonText === "Add" ? "plus" : "minus";
+          let buttonIcon = buttonText === "Add" ? "plus" : "minus";
           item.icon_url = item.icon_url
             ? item.icon_url
             : "https://assets.ubuntu.com/v1/be6eb412-snapcraft-missing-icon.svg";
@@ -269,9 +269,9 @@
   function renderSummary() {
     if (
       state.get("board") &&
-      state.get("board")[0] != "" &&
+      state.get("board")[0] &&
       state.get("os") &&
-      state.get("os")[0] != ""
+      state.get("os")[0]
     ) {
       buildButton.setAttribute("aria-disabled", "false");
       buildButton.disabled = false;
@@ -343,4 +343,6 @@
       if (callNow) func.apply(context, args);
     };
   }
+
+  renderSummary();
 })();
