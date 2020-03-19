@@ -52,6 +52,7 @@ from webapp.security.views import (
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     cve_index,
 =======
 >>>>>>> Add page for cve release
@@ -63,6 +64,9 @@ from webapp.security.views import (
 =======
 >>>>>>> Add page for cve release
 >>>>>>> Add page for cve release
+=======
+    cve_index,
+>>>>>>> Handle cve routes
     cve,
 )
 
