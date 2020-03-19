@@ -51,7 +51,18 @@ from webapp.security.views import (
     notice,
     notices,
     notices_feed,
+<<<<<<< HEAD
     cve_index,
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    cve_index,
+=======
+>>>>>>> Add page for cve release
+=======
+    cve_index,
+>>>>>>> Handle cve routes
+>>>>>>> Handle cve routes
     cve,
 )
 
@@ -173,10 +184,9 @@ app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
 
 
 # cve section
-app.add_url_rule(
-    "/security/notices", view_func=create_notice, methods=["POST"]
-)
-app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
+app.add_url_rule("/security/cve", view_func=cve_index)
+app.add_url_rule("/security/<regex('cve-d{4}-d{4,7}'):cve_id>", view_func=cve)
+
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
