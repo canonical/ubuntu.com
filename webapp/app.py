@@ -49,10 +49,7 @@ from webapp.security.views import (
     notice,
     notices,
     notices_feed,
-<<<<<<< HEAD
     cve_index,
-=======
->>>>>>> Add page for cve release
     cve,
 )
 
