@@ -51,6 +51,7 @@ from webapp.security.views import (
     notice,
     notices,
     notices_feed,
+    cve_index,
     cve,
 )
 
