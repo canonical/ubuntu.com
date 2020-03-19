@@ -7,7 +7,7 @@ context:
      meta_copydoc: https://docs.google.com/document/d/1iSLsV7PD7BhF0OhxfD8KpfdQzDscxvO7UToLF7h_1vU/edit
      header_title: "Management of snaps in a controlled, enterprise environment"
      header_subtitle: "How the Snap Store Proxy overcomes challenges presented by restricted networks and management policies"
-     header_image: 9c67dde5-network-snap-logo.svg
+     header_image: https://assets.ubuntu.com/v1/9c67dde5-network-snap-logo.svg
      header_url: '#register-section'
      header_cta: "Download the whitepaper"
      header_class: "p-strip--dark p-takeover--ent-snap-mgmt"

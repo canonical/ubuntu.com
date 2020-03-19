@@ -7,7 +7,7 @@ context:
      meta_copydoc: https://docs.google.com/document/d/10w-f6FEEYGPGcrFFPiZmWioZnfC3lfvfjqx_tMsi1nE/edit
      header_title: A guide to developing Android apps on Ubuntu
      header_title_class: 'u-no-margin--bottom'
-     header_image: 30f461a5-android-on-ubuntu.svg
+     header_image: https://assets.ubuntu.com/v1/30f461a5-android-on-ubuntu.svg
      header_url: '#register-section'
      header_cta: Download the whitepaper
      header_class: p-strip--dark p-takeover--android-on-ubuntu
