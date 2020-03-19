@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-7">
       <h1>The Ubuntu lifecycle and release cadence</h1>
-      <p>Canonical publishes new releases of Ubuntu on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with certainty of access to newer open source upstream capabilities.</p>
+      <p>Canonical publishes new releases of Ubuntu on a regular cadence, enabling the community, businesses and developers to plan their roadmaps with the certainty of access to newer open source upstream capabilities.</p>
     </div>
     <div class="col-5 u-vertically-center u-align--center u-hide--small">
       {{
@@ -31,7 +31,7 @@
   <div class="row">
     <div class="col-8">
       <h2>Version numbers are YY.MM</h2>
-      <p>Releases of Ubuntu get a development codename (‘{{ releases.latest.slug }}’) and are versioned by the year and month of delivery - for example Ubuntu {{ releases.latest.short_version }} was released in {{ releases.latest.release_date }}.</p>
+      <p>Releases of Ubuntu get a development codename (‘{{ releases.latest.slug }}’) and are versioned by the year and month of delivery - for example, Ubuntu {{ releases.latest.short_version }} was released in {{ releases.latest.release_date }}.</p>
     </div>
 
     <div class="col-4">
@@ -144,7 +144,7 @@
     </div>
 
     <div class="u-fixed-width">
-      <p>Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artifact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for ‘main’ during their lifespan.</p>
+      <p>Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artefact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for ‘main’ during their lifespan.</p>
     </div>
   </section>
 
@@ -154,10 +154,10 @@
       <p>A release of Ubuntu is made through several different channels. What you consume will depend on where you are and what your interests happen to be.</p>
       <p>The heart of Ubuntu is a collection of ‘deb’ packages which are tested and integrated so that they work well as a set. Debs are optimised for highly structured dependency management, enabling you to combine debs very richly while ensuring that the necessary software dependencies for each deb (themselves delivered as debs) are installed on your machine.</p>
       <p>Ubuntu also supports ‘snap’ packages which are more suited for third-party applications and tools which evolve at their own speed, independently of Ubuntu. If you want to install a high-profile app like Skype or a toolchain like the latest version of Golang, you probably want the snap because it will give you fresher versions and more control of the specific major versions you want to track.</p>
-      <p>Snaps each pick a ‘base’, for example Ubuntu18 (corresponding to the set of minimal debs in Ubuntu 18.04 LTS). Nevertheless, the choice of base does not impact on your ability to use a snap on any of the supported Linux distributions or versions &mdash; it’s a choice of the publisher and should be invisible to you as a user or developer.</p>
-      <p>A snap can be strictly confined, which means that it operates in a secure box with only predefined points of access to the rest of the system. For third-party applications, this means that you will have a very high level of confidence that the app can only see appropriate data that you have provided to it. Snaps can also be ‘classic’ which means that they behave more like debs, and can see everything on your system. You should make sure you have a high level of confidence in the publisher of any classic snap you install, since a compromise or bad faith behaviour in that code is not confined to the app itself.</p>
+      <p>Snaps each pick a ‘base’, for example, Ubuntu18 (corresponding to the set of minimal debs in Ubuntu 18.04 LTS). Nevertheless, the choice of base does not impact on your ability to use a snap on any of the supported Linux distributions or versions &mdash; it’s a choice of the publisher and should be invisible to you as a user or developer.</p>
+      <p>A snap can be strictly confined, which means that it operates in a secure box with only predefined points of access to the rest of the system. For third-party applications, this means that you will have a very high level of confidence that the app can only see appropriate data that you have provided to it. Snaps can also be ‘classic’ which means that they behave more like debs, and can see everything on your system. You should make sure you have a high level of confidence in the publisher of any classic snap you install since a compromise or bad faith behaviour in that code is not confined to the app itself.</p>
       <p>It is also common to consume Ubuntu as an image on a public cloud, or as a container. Ubuntu is published by Canonical on all major public clouds, and the latest image for each LTS version will always include security updates rolled up to at most two weeks ago. You may benefit from installing newer updates than that, but the base image you boot on the cloud should always be the current one from Canonical to ensure that it is broadly up to date and the number of updates needed for full security is minimal.</p>
-      <p>Canonical also publishes a set of images and containers that you can download for use with VMware or other local hypervisors and private cloud technologies. These include standard Ubuntu images on the Docker Hub, and standard images for use with LXD and MAAS. These images are also kept up to date, with publication of rolled up security updated images on a regular cadence, and you should automate your use of the latest images to ensure consistent security coverage for your users.</p>
+      <p>Canonical also publishes a set of images and containers that you can download for use with VMware or other local hypervisors and private cloud technologies. These include standard Ubuntu images on the Docker Hub and standard images for use with LXD and MAAS. These images are also kept up to date, with the publication of rolled up security updated images on a regular cadence, and you should automate your use of the latest images to ensure consistent security coverage for your users.</p>
     </div>
   </section>
 
@@ -213,7 +213,7 @@
             <tr>
               <th>LTS security maintenance</th>
               <th scope="col">5 years initial period</th>
-              <th scope="col">Further 3 years</th>
+              <th scope="col">Additional 5 years</th>
             </tr>
           </thead>
           <tbody>
@@ -248,9 +248,9 @@
   <section class="p-strip is-bordered ">
     <div class="u-fixed-width">
       <h2 id="ubuntu-kernel-release-cycle">Ubuntu kernel release cycle</h2>
-      <p>Canonical maintains multiple kernel packages for each LTS version of Ubuntu, which serve different purposes. Several of the kernel packages address the need for kernels with specific performance priorities, for example the low-latency kernel package. Others are focused on optimisation for a particular hypervisor, for example the kernel packages which are named after public clouds. You are recommended to use the <a class="p-link--external" href="https://wiki.ubuntu.com/Kernel">detailed Ubuntu kernel guide</a> to select the best Ubuntu kernel for your application.</p>
-      <p>In general, all of the LTS kernel packages will use the same base version of the Linux kernel, for example Ubuntu 18.04 LTS kernels typically used the 4.15 upstream Linux kernel as a base. Some cloud-specific kernels may use a newer version in order to benefit from improved mechanisms in performance or security that are material to that cloud. These kernels are all supported for the full life of their underlying LTS release.</p>
-      <p>In addition, the kernel versions from the subsequent four releases are made available on the latest LTS release of Ubuntu. So Ubuntu 16.04 LTS received the kernels from Ubuntu 16.10, 17.04, 17.10 and 18.04 LTS. These kernels use newer upstream versions and as a result offer an easy path to newer features and newer classes of hardware for many users of Ubuntu. Note however that these kernels ‘roll’ which means that they jump every six months until the next LTS. Large scale deployments that adopt these ‘hardware enablement’ or HWE kernels should manage those transitions explicitly. These newer HWE kernels are accompanied by a collection of userspace tools closely tied to the kernel and hardware, specifically X display enablement on newer graphics cards.</p>
+      <p>Canonical maintains multiple kernel packages for each LTS version of Ubuntu, which serve different purposes. Several of the kernel packages address the need for kernels with specific performance priorities, for example, the low-latency kernel package. Others are focused on optimisation for a particular hypervisor, for example, the kernel packages which are named after public clouds. You are recommended to use the <a class="p-link--external" href="https://wiki.ubuntu.com/Kernel">detailed Ubuntu kernel guide</a> to select the best Ubuntu kernel for your application.</p>
+      <p>In general, all of the LTS kernel packages will use the same base version of the Linux kernel, for example, Ubuntu 18.04 LTS kernels typically used the 4.15 upstream Linux kernel as a base. Some cloud-specific kernels may use a newer version in order to benefit from improved mechanisms in performance or security that are material to that cloud. These kernels are all supported for the full life of their underlying LTS release.</p>
+      <p>In addition, the kernel versions from the subsequent four releases are made available on the latest LTS release of Ubuntu. So Ubuntu 16.04 LTS received the kernels from Ubuntu 16.10, 17.04, 17.10 and 18.04 LTS. These kernels use newer upstream versions and as a result, offer an easy path to newer features and newer classes of hardware for many users of Ubuntu. Note however that these kernels ‘roll’ which means that they jump every six months until the next LTS. Large scale deployments that adopt the ‘hardware enablement’ or HWE kernels should manage those transitions explicitly. These newer HWE kernels are accompanied by a collection of userspace tools closely tied to the kernel and hardware, specifically X display enablement on newer graphics cards.</p>
       <p>The Ubuntu kernel support lifecycle is as follows:</p>
     </div>
 
@@ -409,6 +409,7 @@
           <thead>
             <tr>
               <th>Release</th>
+              <th>Tech preview</th>
               <th>Released</th>
               <th>End of life</th>
               <th>Extended customer support</th>
@@ -418,85 +419,183 @@
             <tr>
               <td>OpenStack Ussuri LTS</td>
               <td>Apr 2020</td>
+              <td>May 2020</td>
               <td>Apr 2025</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
               <td>Ubuntu 20.04 LTS</td>
+              <td>&nbsp;</td>
               <td>Apr 2020</td>
               <td>Apr 2025</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
               <td>OpenStack Ussuri</td>
-              <td>Feb 2020</td>
+              <td>Apr 2020</td>
+              <td>May 2020</td>
               <td>Apr 2023</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
               <td>OpenStack Train</td>
+              <td>&nbsp;</td>
               <td>Aug 2019</td>
               <td>Feb 2021</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
               <td>OpenStack Stein</td>
+              <td>&nbsp;</td>
               <td>Apr 2019</td>
               <td>Oct 2020</td>
               <td>Apr 2022</td>
             </tr>
             <tr>
               <td>OpenStack Rocky</td>
+              <td>&nbsp;</td>
               <td>Aug 2018</td>
               <td>Feb 2020</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
               <td>OpenStack Queens</td>
+              <td>&nbsp;</td>
               <td>Apr 2018</td>
               <td>Apr 2023</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td><strong>Ubuntu 18.04 LTS</strong></td>
+              <td>Ubuntu 18.04 LTS</td>
+              <td>&nbsp;</td>
               <td>Apr 2018</td>
               <td>Apr 2023</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
               <td>OpenStack Queens</td>
+              <td>&nbsp;</td>
               <td>Feb 2018</td>
               <td>Apr 2021</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
               <td>OpenStack Pike</td>
+              <td>&nbsp;</td>
               <td>Aug 2017</td>
               <td>Feb 2019</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
               <td>OpenStack Ocata</td>
+              <td>&nbsp;</td>
               <td>Feb 2017</td>
               <td>Aug 2018</td>
               <td>Feb 2020</td>
             </tr>
             <tr>
               <td>OpenStack Newton</td>
+              <td>&nbsp;</td>
               <td>Oct 2016</td>
               <td>Apr 2018</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
               <td>OpenStack Mitaka</td>
+              <td>&nbsp;</td>
               <td>Apr 2016</td>
               <td>Apr 2021</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td><strong>Ubuntu 16.04 LTS</strong></td>
+              <td>Ubuntu 16.04 LTS</td>
+              <td>&nbsp;</td>
               <td>Apr 2016</td>
               <td>Apr 2021</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>OpenStack Mitaka</td>
+              <td>&nbsp;</td>
+              <td>Apr 2016</td>
+              <td>Apr 2019</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>OpenStack Liberty</td>
+              <td>&nbsp;</td>
+              <td>Oct 2015</td>
+              <td>Apr 2017</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>OpenStack Kilo</td>
+              <td>&nbsp;</td>
+              <td>Apr 2015</td>
+              <td>Oct 2016</td>
+              <td>Apr 2018</td>
+            </tr>
+            <tr>
+              <td>OpenStack Juno</td>
+              <td>&nbsp;</td>
+              <td>Oct 2014</td>
+              <td>Apr 2016</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>OpenStack Icehouse</td>
+              <td>&nbsp;</td>
+              <td>Apr 2014</td>
+              <td>Apr 2019</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Ubuntu 14.10 LTS</td>
+              <td>&nbsp;</td>
+              <td>Apr 2014</td>
+              <td>Apr 2019</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>OpenStack Icehouse</td>
+              <td>&nbsp;</td>
+              <td>Apr 2014</td>
+              <td>Apr 2017</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>OpenStack Havana</td>
+              <td>&nbsp;</td>
+              <td>Oct 2013</td>
+              <td>Jul 2014</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>OpenStack Grizzly</td>
+              <td>&nbsp;</td>
+              <td>May 2013</td>
+              <td>Aug 2014</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>OpenStack Folsom</td>
+              <td>&nbsp;</td>
+              <td>Sep 2012</td>
+              <td>Jun 2014</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>OpenStack Essex</td>
+              <td>&nbsp;</td>
+              <td>Apr 2012</td>
+              <td>Apr 2017</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Ubuntu 12.04 LTS</td>
+              <td>&nbsp;</td>
+              <td>Apr 2012</td>
+              <td>Apr 2017</td>
               <td>&nbsp;</td>
             </tr>
           </tbody>
@@ -530,6 +629,11 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td><strong>Kubernetes 1.19</strong></td>
+              <td align='right'>Jun 2020</td>
+              <td align='right'>Apr 2021</td>
+            </tr>
             <tr>
               <td><strong>Kubernetes 1.18</strong></td>
               <td align='right'>Mar 2020</td>

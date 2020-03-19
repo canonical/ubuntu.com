@@ -1135,22 +1135,34 @@ export var openStackReleases = [
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT"
   },
   {
-    startDate: new Date("2020-02-01T00:00:00"),
-    endDate: new Date("2023-04-01T00:00:00"),
-    taskName: "OpenStack Ussuri",
-    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT"
+    startDate: new Date('2020-04-01T00:00:00'),
+    endDate: new Date('2020-05-15T00:00:00'),
+    taskName: 'OpenStack Ussuri LTS',
+    status: 'TECH_PREVIEW'
   },
   {
-    startDate: new Date("2020-04-01T00:00:00"),
-    endDate: new Date("2025-04-01T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS",
-    status: "LTS"
+    startDate: new Date('2020-05-15T00:00:00'),
+    endDate: new Date('2025-04-01T00:00:00'),
+    taskName: 'OpenStack Ussuri LTS',
+    status: 'LTS'
   },
   {
-    startDate: new Date("2020-04-01T00:00:00"),
-    endDate: new Date("2025-04-01T00:00:00"),
-    taskName: "OpenStack Ussuri LTS",
-    status: "LTS"
+    startDate: new Date('2020-04-01T00:00:00'),
+    endDate: new Date('2025-04-01T00:00:00'),
+    taskName: 'Ubuntu 20.04 LTS',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2020-04-01T00:00:00'),
+    endDate: new Date('2020-05-15T00:00:00'),
+    taskName: 'OpenStack Ussuri',
+    status: 'TECH_PREVIEW'
+  },
+  {
+    startDate: new Date('2020-05-15T00:00:00'),
+    endDate: new Date('2023-04-01T00:00:00'),
+    taskName: 'OpenStack Ussuri',
+    status: 'MATCHING_OPENSTACK_RELEASE_SUPPORT'
   }
 ];
 
@@ -1184,6 +1196,12 @@ export var kubernetesReleases = [
     endDate: new Date("2020-12-23T00:00:00"),
     taskName: "Kubernetes 1.18",
     status: "CHARMED_KUBERNETES_SUPPORT"
+  },
+  {
+    startDate: new Date('2020-06-16T00:00:00'),
+    endDate: new Date('2021-04-16T00:00:00'),
+    taskName: 'Kubernetes 1.19',
+    status: 'CHARMED_KUBERNETES_SUPPORT'
   }
 ];
 
@@ -1216,6 +1234,7 @@ export var kernelStatusALL = {
 };
 
 export var openStackStatus = {
+  TECH_PREVIEW: "chart__bar--orange-light",
   LTS: "chart__bar--orange",
   MATCHING_OPENSTACK_RELEASE_SUPPORT: "chart__bar--grey",
   EXTENDED_SUPPORT_FOR_CUSTOMERS: "chart__bar--aubergine"
@@ -1375,6 +1394,7 @@ export var openStackReleaseNames = [
 ];
 
 export var kubernetesReleaseNames = [
+  "Kubernetes 1.19",
   "Kubernetes 1.18",
   "Kubernetes 1.17",
   "Kubernetes 1.16",
