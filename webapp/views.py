@@ -149,7 +149,9 @@ def advantage_view():
                         "resourceEntitlements"
                     ]:
                         if entitlement["type"] == "esm-infra":
-                            entitlements["esm"] = True
+                            entitlements["esm-infra"] = True
+                        elif entitlement["type"] == "esm-apps":
+                            entitlements["esm-apps"] = True
                         elif entitlement["type"] == "livepatch":
                             entitlements["livepatch"] = True
                         elif entitlement["type"] == "fips":
@@ -164,7 +166,9 @@ def advantage_view():
                     ]:
                         contract["supportLevel"] = "-"
                         if entitlement["type"] == "esm-infra":
-                            entitlements["esm"] = True
+                            entitlements["esm-infra"] = True
+                        elif entitlement["type"] == "esm-apps":
+                            entitlements["esm-apps"] = True
                         elif entitlement["type"] == "livepatch":
                             entitlements["livepatch"] = True
                         elif entitlement["type"] == "fips":

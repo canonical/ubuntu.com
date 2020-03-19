@@ -71,7 +71,7 @@
         <thead>
           <tr class="p-table__row">
             <th>{{ enterprise_contracts[0]['accountInfo']['name'] }}</th>
-            <th>UA</th>
+            <th>UA plan</th>
             <th class="u-align--center">Attached</th>
             <th class="u-align--center">ESM</th>
             <th class="u-align--center">Livepatch</th>
@@ -99,9 +99,9 @@
             </td>
 
             <td class="u-align--center">
-              {% if contract['entitlements']['esm'] == True %}
+              {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
               <button class="u-toggle" aria-controls="#expanded-row-esm-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                <i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                <i class="p-icon--success"></i> {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--contextual-menu">Open</i>
               </button>
               {% else %}
               <span style="padding-top:.35rem;">N/A</span>
@@ -161,6 +161,7 @@
             </td>
             <td id="expanded-row-esm-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
+                {% if contract['entitlements']['esm-infra'] == True %}
                 <div class="p-notification--information">
                   <p class="p-notification__response">
                     ESM is active by default on any newly-attached Ubuntu 14.04 LTS system.
@@ -170,6 +171,12 @@
                   To deactivate: <code>sudo ua disable esm-infra</code><br/>
                   To reactivate: <code>sudo ua enable esm-infra</code>&nbsp;&nbsp;
                 </div>
+                {% else %}
+                <div class="col-12 u-align--center">
+                  To deactivate: <code>sudo ua disable esm-apps</code><br/>
+                  To reactivate: <code>sudo ua enable esm-apps</code>&nbsp;&nbsp;
+                </div>
+                {% endif %}
               </div>
             </td>
             <td id="expanded-row-livepatch-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
