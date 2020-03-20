@@ -4,7 +4,7 @@ context:
     title: "Rigado cuts customers' time-to-market with Ubuntu Core and AWS"
     meta_description: "Rigado utilises Ubuntu Core and AWS to help their customers get their IoT devices to market quicker."
     meta_image: "https://assets.ubuntu.com/v1/ce17e616-Rigado+meta+data+img.jpg"
-    meta_copydoc: ""
+    meta_copydoc: "https://docs.google.com/document/d/12-M4FY2y3NfhD9FginMYGNXfPHmLOhnmXR1JHL7f3D0/edit?ts=5e73a853"
     header_title: "Rigado cuts customers' <span style=\"white-space: nowrap;\">time-to-market</span>"
     header_subtitle: "with Ubuntu Core and AWS"
     header_image: "https://assets.ubuntu.com/v1/d7fdba0b-Internet+of+Things_digital-gateways-white.svg"
