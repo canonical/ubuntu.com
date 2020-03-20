@@ -138,7 +138,7 @@
             <td id="expanded-details-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  <dl>
+                  <dl class="u-no-margin--bottom">
                     <dt style="display: inline-block; width: 130px; text-align: right;">Created on:</dt>
                     <dd style="display: inline-block;">{{ contract['contractInfo']['createdAtFormatted'] }}</dd>
                   </dl>
@@ -166,6 +166,11 @@
                   To reactivate: <code>sudo ua enable esm-infra</code>&nbsp;&nbsp;
                 </div>
                 {% else %}
+                <div class="p-notification--information">
+                  <p class="p-notification__response">
+                    ESM-apps is active by default on any newly-attached Ubuntu 14.04 LTS system.
+                  </p>
+                </div>
                 <div class="col-12 u-align--center">
                   To deactivate: <code>sudo ua disable esm-apps</code><br/>
                   To reactivate: <code>sudo ua enable esm-apps</code>&nbsp;&nbsp;
