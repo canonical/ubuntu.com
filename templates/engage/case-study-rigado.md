@@ -7,7 +7,7 @@ context:
     meta_copydoc: "https://docs.google.com/document/d/12-M4FY2y3NfhD9FginMYGNXfPHmLOhnmXR1JHL7f3D0/edit?ts=5e73a853"
     header_title: "Rigado cuts customers' <span style=\"white-space: nowrap;\">time-to-market</span>"
     header_subtitle: "with Ubuntu Core and AWS"
-    header_image: "https://assets.ubuntu.com/v1/d7fdba0b-Internet+of+Things_digital-gateways-white.svg"
+    header_image: "https://assets.ubuntu.com/v1/1fbf2fe2-Rigado-gateway.svg"
     header_image_width: "400"
     header_image_height: "200"
     header_url: '#register-section'
