@@ -188,15 +188,6 @@ def advantage_view():
                     ).strftime(
                         "%d %B %Y"
                     )
-                    if "effectiveFrom" in contract["contractInfo"]:
-                        contract["contractInfo"][
-                            "effectiveFromFormatted"
-                        ] = datetime.datetime.strptime(
-                            contract["contractInfo"]["effectiveFrom"],
-                            "%Y-%m-%dT%H:%M:%S.%fZ",
-                        ).strftime(
-                            "%d %B %Y"
-                        )
                     enterprise_contracts.append(contract)
 
     return (
