@@ -168,6 +168,16 @@ server_docs = DiscourseDocs(
     url_prefix=url_prefix,
 )
 
+# Allow templates to be queried from discourse.ubuntu.com
+app.add_url_rule(
+    "/templates/<filename>",
+    "templates",
+    lambda filename: (
+        flask.render_template(f"templates/{filename}.html"),
+        {"Access-Control-Allow-Origin": "discourse.ubuntu.com"},
+    ),
+)
+
 server_docs.init_app(app)
 
 url_prefix = "/tutorials"
