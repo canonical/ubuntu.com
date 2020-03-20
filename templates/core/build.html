@@ -233,7 +233,9 @@
   <div class="row">
     <div class="col-8">
       <form method="POST" id="build-form">
+        {% if openid.email %}
         <p>We’ll email you at {{ openid.email }} once the build is ready.</p>
+        {% endif %}
         <p>
           <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
           <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
