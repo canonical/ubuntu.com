@@ -3,16 +3,16 @@ wrapper_template: "engage/_base_engage_markdown.html"
 context:
     title: "Rigado cuts customers' time-to-market with Ubuntu Core and AWS"
     meta_description: "Rigado utilises Ubuntu Core and AWS to help their customers get their IoT devices to market quicker."
-    meta_image: ""
+    meta_image: "https://assets.ubuntu.com/v1/ce17e616-Rigado+meta+data+img.jpg"
     meta_copydoc: ""
-    header_title: "Rigado cuts customers' time-to-market with Ubuntu Core and AWS"
-    header_title_class: 'u-no-margin--bottom'
-    header_image: ""
-    header_image_width: "205"
-    header_image_height: "106"
+    header_title: "Rigado cuts customers' <span style=\"white-space: nowrap;\">time-to-market</span>"
+    header_subtitle: "with Ubuntu Core and AWS"
+    header_image: "https://assets.ubuntu.com/v1/d7fdba0b-Internet+of+Things_digital-gateways-white.svg"
+    header_image_width: "400"
+    header_image_height: "200"
     header_url: '#register-section'
     header_cta: Download case study
-    header_class: p-engage-banner--dark
+    header_class: p-engage-banner--grad
     header_lang: en
     form_cta: Download case study
     form_include: en
