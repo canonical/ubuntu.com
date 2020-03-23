@@ -6,6 +6,10 @@
 <section class="p-strip">
   <div class="u-fixed-width">
     <h1>CVE reports</h1>
+    <p><a href="/security/cve-2019-1010318">Example CVE page</a></p>
   </div>
 </section>
+
+{% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
 {% endblock %}
