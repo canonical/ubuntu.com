@@ -7,6 +7,7 @@ from math import ceil
 
 # Packages
 import flask
+import re
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
