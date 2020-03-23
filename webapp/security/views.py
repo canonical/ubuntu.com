@@ -1,6 +1,8 @@
 # Standard library
+import re
 from collections import OrderedDict
 from datetime import datetime
+from dateutil.parser import parse
 from math import ceil
 
 # Packages
@@ -10,16 +12,24 @@ from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
-from sqlalchemy import asc, desc
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy import asc, desc, or_
+from sqlalchemy.exc import IntegrityError, DataError
 from sqlalchemy.orm.exc import NoResultFound
 
 # Local
 from webapp.security.database import db_session
-from webapp.security.models import CVE, Notice, Reference, Release
+from webapp.security.models import (
+    Notice,
+    Reference,
+    Release,
+    CVE,
+    Package,
+    PackageReleaseStatus,
+    CVEReference,
+    Bug,
+)
 from webapp.security.schemas import NoticeSchema
 from webapp.security.auth import authorization_required
-
 
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
@@ -44,7 +54,7 @@ def notice(notice_id):
         )
         releases_packages[release_name] = []
         for name, package in packages.get("sources", {}).items():
-            # Build pacakges per release dict
+            # Build packages per release dict
             package["name"] = name
             releases_packages[release_name].append(package)
             # Build full package list
@@ -258,3 +268,274 @@ def create_notice():
         )
 
     return flask.jsonify({"message": "Notice created"}), 201
+
+
+# CVE views
+# ===
+def cve_index():
+    """
+    Display the list of CVEs, with pagination.
+    Also accepts the following filtering query parameters:
+    - order-by - "oldest" or "newest"
+    - query - search query for the description field
+    - priority
+    - limit - default 20
+    - offset - default 0
+    """
+
+    # Query parameters
+    order_by = flask.request.args.get("order-by", default="oldest")
+    query = flask.request.args.get("q", "").strip()
+    priority = flask.request.args.get("priority")
+    package = flask.request.args.get("package")
+    limit = flask.request.args.get("limit", default=20, type=int)
+    offset = flask.request.args.get("offset", default=0, type=int)
+
+    is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
+
+    if is_cve_id and db_session.query(CVE).get(query.upper()):
+        return flask.redirect(f"/security/{query.lower()}")
+
+    cves_query = db_session.query(CVE)
+    releases_query = db_session.query(Release)
+
+    # Apply search filters
+    if package:
+        cves_query = cves_query.join(Package, CVE.packages).filter(
+            Package.name.ilike(f"%{package}%")
+        )
+
+    if priority:
+        cves_query = cves_query.filter(CVE.priority == priority)
+
+    if query:
+        cves_query = cves_query.filter(CVE.description.ilike(f"%{query}%"))
+
+    sort = asc if order_by == "oldest" else desc
+
+    cves = (
+        cves_query.order_by(sort(CVE.public_date))
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
+
+    # Pagination
+    total_results = cves_query.count()
+    releases = releases_query.filter(
+        or_(
+            Release.support_expires > datetime.now(),
+            Release.esm_expires > datetime.now(),
+        )
+    )
+
+    return flask.render_template(
+        "security/cve/index.html",
+        releases=releases.all(),
+        cves=cves,
+        total_results=total_results,
+        total_pages=ceil(total_results / limit),
+        offset=offset,
+        limit=limit,
+        priority=priority,
+        query=query,
+        package=package,
+    )
+
+
+def cve(cve_id):
+    """
+    Retrieve and display an individual CVE details page
+    """
+
+    cve = db_session.query(CVE).get(cve_id.upper())
+    if not cve:
+        flask.abort(404)
+    return flask.render_template("security/cve/cve.html", cve=cve)
+
+
+# CVE API
+# ===
+
+
+@authorization_required
+def create_cve(cve_id):
+    """
+    Receives a POST request from load_cve.py
+    Parses the object and bulk inserts with add_all()
+    @params json: the body of the request
+    """
+
+    data = flask.request.json
+    packages = []
+    references = []
+    bugs = []
+
+    # Check if there are packages before mapping
+    if data.get("packages"):
+        for package_data in data["packages"]:
+            releases = []
+            for rel in package_data["releases"]:
+                releases.append(
+                    PackageReleaseStatus(
+                        name=rel["name"],
+                        status=rel["status"],
+                        status_description=rel["status_description"],
+                    )
+                )
+            packages.append(
+                Package(
+                    name=package_data["name"],
+                    source=package_data["source"],
+                    ubuntu=package_data["ubuntu"],
+                    debian=package_data["debian"],
+                    releases=releases,
+                )
+            )
+
+    if data.get("references"):
+        for ref in data["references"]:
+            references.append(CVEReference(uri=ref))
+
+    if data.get("bugs"):
+        for b in data["bugs"]:
+            bugs.append(Bug(uri=b))
+
+    cve = CVE(
+        id=data["id"],
+        status=data.get("status", ""),
+        last_updated_date=parse(data.get("last_updated_date"))
+        if data.get("last_updated_date")
+        else None,
+        public_date_usn=parse(data.get("last_updated_date"))
+        if data.get("public_date_usn")
+        else None,
+        public_date=parse(data.get("public_date"))
+        if data.get("public_date")
+        else None,
+        priority=data.get("priority"),
+        cvss=data.get("cvss"),
+        assigned_to=data.get("assigned_to"),
+        discovered_by=data.get("discovered_by"),
+        approved_by=data.get("approved_by"),
+        description=data.get("description"),
+        ubuntu_description=data.get("ubuntu_description"),
+        notes=data.get("notes", []),
+        packages=packages,
+        references=references,
+        bugs=bugs,
+    )
+
+    try:
+        db_session.add(cve)
+        db_session.commit()
+    # Duplicate key errors and Payload input errors
+    except (IntegrityError, DataError) as error:
+        return flask.jsonify({"message": error.orig.args[0]}), 409
+
+    return flask.jsonify({"message": "CVE created succesfully"}), 201
+
+
+@authorization_required
+def update_cve(cve_id):
+    data = flask.request.json
+    cve = db_session.query(CVE).get(cve_id)
+
+    # Check if CVE exists by candidate
+    if not cve:
+        response = flask.jsonify({"message": "CVE does not exist"}), 400
+        return response
+
+    cve.status = data.get("status")
+    cve.last_updated_date = (
+        parse(data.get("last_updated_date"))
+        if data.get("last_updated_date")
+        else None
+    )
+    cve.public_date_usn = (
+        datetime(data.get("last_updated_date"))
+        if data.get("public_date_usn")
+        else None
+    )
+    cve.public_date = (
+        parse(data.get("public_date")) if data.get("public_date") else None
+    )
+    cve.priority = data.get("priority")
+    cve.crd = data.get("crd")
+    cve.cvss = data.get("cvss")
+    cve.assigned_to = data.get("assigned_to")
+    cve.discovered_by = data.get("discovered_by")
+    cve.approved_by = data.get("approved_by")
+    cve.description = data.get("description")
+    cve.ubuntu_description = data.get("ubuntu_description")
+    cve.notes = data.get("notes")
+
+    if data.get("references"):
+        cve.references.clear()
+        for uri in data["references"]:
+            reference = (
+                db_session.query(CVEReference)
+                .filter(CVEReference.uri == uri)
+                .first()
+            )
+            if not reference:
+                reference = uri
+            cve.references.append(reference)
+
+    if data.get("bugs"):
+        cve.bugs.clear()
+        for b in data["bugs"]:
+            bug = db_session.query(Bug).filter(Bug.uri == uri).first()
+            if not bug:
+                bug = Bug(uri=b)
+            cve.bugs.append(bug)
+
+    # Packages
+    # Check if there are packages before mapping
+    if data.get("packages"):
+        cve.packages.clear()
+        for index, package_data in enumerate(data["packages"]):
+            package = Package(
+                name=package_data["name"],
+                source=package_data["source"],
+                ubuntu=package_data["ubuntu"],
+                debian=package_data["debian"],
+                releases=[],
+            )
+            package.releases.clear()
+            for release_data in package_data["releases"]:
+                package_release_status = PackageReleaseStatus(
+                    name=release_data["name"],
+                    status=release_data["status"],
+                    status_description=release_data["status_description"],
+                )
+
+                package.releases.append(package_release_status)
+            cve.packages.append(package)
+
+    try:
+        db_session.add(cve)
+        db_session.commit()
+    # Payload input errors
+    except DataError as error:
+        return (flask.jsonify({"message": error.orig.args[0]}), 400)
+    return flask.jsonify({"message": "CVE updated succesfully"}), 200
+
+
+@authorization_required
+def delete_cve(cve_id):
+    """
+    Delete a CVE from db
+    @params string: query string with the CVE id
+    """
+    cve_query = db_session.query(CVE)
+    cve = cve_query.filter(CVE.id == cve_id).first()
+
+    try:
+        db_session.delete(cve)
+        db_session.commit()
+
+    except IntegrityError as error:
+        return flask.jsonify({"message": error.orig.args[0]}), 400
+
+    return flask.jsonify({"message": "CVE deleted succesfully"}), 200
