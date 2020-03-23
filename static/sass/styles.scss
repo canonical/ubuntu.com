@@ -18,7 +18,10 @@
   font-family: "UbtuOverride";
   font-style: normal;
   font-weight: 300;
-  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"), url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
+  src:
+    url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
+    format("woff2"),
+    url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
 }
 
 // import vanilla-framework
@@ -27,7 +30,7 @@
 
 // Vanilla framework overrides
 $font-base-family: '"UbtuOverride", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif' !default;
-$color-shadow: rgba(0, 0, 0, .5) !default;
+$color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
 @import "pattern_blog-featured";
@@ -103,14 +106,23 @@ $color-shadow: rgba(0, 0, 0, .5) !default;
 
 // Layouts:
 @import "layout-documentation";
+
 @include layout-documentation;
+
 @import "layout-legal-pages";
+
 @include layout-legal-pages;
+
 @import "layout-whitepapers";
+
 @include layout-whitepapers;
+
 @import "layout-tutorials";
+
 @include layout-tutorials;
+
 @import "layout-tutorial";
+
 @include layout-tutorial;
 
 // Bug fixes
@@ -241,8 +253,6 @@ fieldset:last-child {
   }
 }
 
-.p-pull-quote--large
-
 // sass-lint:disable no-qualifying-elements
 h1.u-align--center,
 h2.u-align--center,
@@ -255,18 +265,17 @@ p.u-align--center {
 }
 // sass-lint:enable no-qualifying-elements
 
-
 /// XXX Caleb: abbr hotfix - to be fixed in Vanilla
 // https://github.com/vanilla-framework/vanilla-framework/issues/1962
 abbr[title] {
-  border-bottom: .1em dotted;
+  border-bottom: 0.1em dotted;
   cursor: help;
   text-decoration: none;
 }
 
 // Hack to change the global navigation styling to match the local header
 .global-nav .global-nav__header-logo-anchor {
-  padding: .6875rem 1rem !important;
+  padding: 0.6875rem 1rem !important;
 }
 
 // XXX Ant: is-bordered hotfix - to be removed when the following is resolved:
@@ -278,6 +287,7 @@ abbr[title] {
 // Override for wordpress use of <figure>
 .blog-article figure {
   @extend %max-width--p;
+
   text-align: center;
 }
 
@@ -297,6 +307,7 @@ summary {
 
   &--subtext {
     max-width: 28em;
+
     @media only screen and (max-width: 874px) and (min-width: 620px) {
       width: 50%;
     }
@@ -324,7 +335,7 @@ summary {
     }
 
     &:last-of-type::after {
-      bottom: .5rem;
+      bottom: 0.5rem;
     }
   }
 }
@@ -370,13 +381,21 @@ summary {
   transform: rotate(180deg);
 }
 
+.p-table-expanding__panel {
+  @extend %vf-card;
+  @extend %vf-is-bordered;
+  @extend %vf-has-round-corners;
+
+  margin-bottom: 0;
+}
+
 .p-table--advantage {
   overflow: visible;
 
   th,
   td {
-    padding-left: .5rem;
-    padding-right: .5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .p-table__row {
@@ -397,13 +416,6 @@ summary {
   code {
     background-color: transparent;
     box-shadow: none;
-  }
-
-  .p-table-expanding__panel {
-    @extend %vf-card;
-    @extend %vf-is-bordered;
-    @extend %vf-has-round-corners;
-    margin-bottom: 0;
   }
 
   .p-table--open {
@@ -429,7 +441,7 @@ summary {
   @media only screen and (min-width: $breakpoint-small) {
     &::after {
       background: $color-x-light;
-      box-shadow: -1px -1px 0 1px rgba(17, 17, 17, .1);
+      box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
       content: "";
       height: 1rem;
       pointer-events: none;
@@ -462,7 +474,6 @@ summary {
   a img {
     width: 143px;
   }
-
 }
 
 .p-tile {
@@ -541,4 +552,17 @@ summary {
 // Local override for custom table
 .p-accordion.is-compact .p-accordion__panel {
   padding-left: $sph-inner--small;
+}
+
+.p-corner-ribbon {
+  background-color: $color-brand;
+  color: $color-x-light;
+  padding-bottom: $spv-inner--x-small;
+  padding-top: $spv-inner--x-small;
+  position: absolute;
+  right: -50px;
+  text-align: center;
+  top: 38px;
+  transform: rotate(45deg);
+  width: 225px;
 }
