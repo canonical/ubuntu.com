@@ -7,7 +7,6 @@ from launchpadlib.launchpad import Launchpad
 from macaroonbakery import bakery, checkers, httpbakery
 from functools import wraps
 
-
 AUTHORIZED_TEAMS = ["canonical-security", "canonical-webmonkeys"]
 IDENTITY_CAVEATS = [
     checkers.need_declared_caveat(
