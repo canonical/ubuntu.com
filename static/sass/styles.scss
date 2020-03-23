@@ -350,6 +350,27 @@ summary {
   }
 }
 
+.p-table-expanding__panel {
+  @extend %vf-card;
+  @extend %vf-is-bordered;
+  @extend %vf-has-round-corners;
+
+  margin-bottom: 0;
+}
+
+.p-table--advantage-contract {
+  margin: 0 auto;
+  width: auto;
+
+  td {
+    display: table-cell;
+  }
+
+  tr {
+    display: table-row;
+  }
+}
+
 // Advantage section
 .p-table--advantage-contract {
   margin: 0 auto;
@@ -633,4 +654,25 @@ summary {
 // Local override for custom table
 .p-accordion.is-compact .p-accordion__panel {
   padding-left: $sph-inner--small;
+}
+
+.is-bordered--top {
+  @extend %vf-pseudo-border--top;
+}
+
+.cve-status-box,
+.cve-status-box--highlight {
+  @extend .p-card;
+
+  margin-bottom: $sp-small;
+}
+
+.cve-status-box {
+  background-color: $color-mid-x-light;
+}
+
+.cve-status-box--highlight {
+  background-color: $color-brand;
+  border: none;
+  color: $color-x-light;
 }
