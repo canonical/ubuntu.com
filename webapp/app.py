@@ -184,8 +184,14 @@ app.add_url_rule("/security/<cve_id>", view_func=cve)
 >>>>>>> Add page for cve release
 =======
 app.add_url_rule("/security/cve", view_func=cve_index)
+<<<<<<< HEAD
 app.add_url_rule("/security/<regex('cve-d{4}-d{4,7}'):cve_id>", view_func=cve)
 >>>>>>> Handle cve routes
+=======
+app.add_url_rule(
+    "/security/<regex('cve-\\d{4}-\\d{4,7}'):cve_id>", view_func=cve
+)
+>>>>>>> Build base CVE template
 
 
 # Login
