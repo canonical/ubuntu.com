@@ -5,6 +5,7 @@ from math import ceil
 
 # Packages
 import flask
+import re
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
@@ -258,3 +259,15 @@ def create_notice():
         )
 
     return flask.jsonify({"message": "Notice created"}), 201
+
+
+# CVE views
+# ===
+def cve(cve_id):
+    match_cves = re.compile(r"cve-\d{4}-\d{4,7}")
+    if cve_id == "cve":
+        return flask.render_template("security/cve/index.html")
+    elif match_cves.search(cve_id) is not None:
+        return flask.render_template("security/cve/cve.html")
+    else:
+        flask.abort(404)
