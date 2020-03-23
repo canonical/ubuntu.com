@@ -5,6 +5,7 @@ from math import ceil
 
 # Packages
 import flask
+import re
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
@@ -23,15 +24,7 @@ from webapp.security.models import (
     CVE,
 )
 from webapp.security.schemas import NoticeSchema
-<<<<<<< HEAD
-<<<<<<< HEAD
 from webapp.security.auth import authorization_required
-
-=======
-from webapp.security.helper import create_data
->>>>>>> All data
-=======
->>>>>>> Add script to load cve data
 
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
@@ -274,9 +267,11 @@ def create_notice():
 
 # CVE views
 # ===
-def cve_index():
-    return flask.render_template("security/cve/index.html")
-
-
 def cve(cve_id):
-    return flask.render_template("security/cve/cve.html")
+    match_cves = re.compile(r"cve-\d{4}-\d{4,7}")
+    if cve_id == "cve":
+        return flask.render_template("security/cve/index.html")
+    elif match_cves.search(cve_id) is not None:
+        return flask.render_template("security/cve/cve.html")
+    else:
+        flask.abort(404)
