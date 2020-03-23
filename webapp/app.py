@@ -49,7 +49,10 @@ from webapp.security.views import (
     notice,
     notices,
     notices_feed,
+<<<<<<< HEAD
     cve_index,
+=======
+>>>>>>> Add page for cve release
     cve,
 )
 
@@ -166,10 +169,14 @@ app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
 
 
 # cve section
+<<<<<<< HEAD
 app.add_url_rule("/security/cve", view_func=cve_index)
 app.add_url_rule(
     "/security/<regex('(cve-|CVE-)\\d{4}-\\d{4,7}'):cve_id>", view_func=cve
 )
+=======
+app.add_url_rule("/security/<cve_id>", view_func=cve)
+>>>>>>> Add page for cve release
 
 
 # Login
