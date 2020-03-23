@@ -34,74 +34,21 @@ def load_sample_cve():
                 },
                 {
                     "name": "Ubuntu 20.04 (Focal Fossa)",
-                    "status": "not-affected",
-                    "status_description": "(1.0.49-4)",
+                    "status": "not-affected (1.0.49-4)",
                 },
             ],
-        },
-        {
-            "name": "gitlab2",
-            "type": "package",
-            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
-            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
-            "debian": "https://tracker.debian.org/pkg/gitlab",
-            "releases": [
-                {"name": "Upstream", "status": "DNE"},
-                {
-                    "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
-                    "status": "needs-triage",
-                },
-                {
-                    "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
-                    "status": "needs-triage",
-                },
-            ],
-        },
-        {
-            "name": "gitlab3",
-            "type": "package",
-            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
-            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
-            "debian": "https://tracker.debian.org/pkg/gitlab",
-            "releases": [{"name": "Upstream", "status": "DNE"}],
-        },
-        {
-            "name": "gitlab4",
-            "type": "package",
-            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
-            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
-            "debian": "https://tracker.debian.org/pkg/gitlab",
-            "releases": [
-                {"name": "Upstream", "status": "DNE"},
-                {
-                    "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
-                    "status": "needs-triage",
-                },
-                {
-                    "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
-                    "status": "needs-triage",
-                },
-            ],
-        },
+        }
     ]
     objects = [
         CVE(
             id="CVE-2020-10535",
             status="active",
-            last_updated_date="2020-03-17 23:15:00 UTC",
             public_date_usn="2020-03-12 23:15:00 UTC",
             public_date="2020-03-12 23:15:00 UTC",
             priority="low",
-            cvss="9.6",
-            assigned_to="msalvatore",
-            discovered_by="msalvatore",
-            approved_by="mmorlino",
             description="GitLab 12.8.x before 12.8.6, when sign-up is enabled,"
             + " allows remote attackers "
             + "to bypass email domain",
-            ubuntu_description="Lorem ipsum dolor sit amet,"
-            + " consectetur adipiscing elit, sed do eiusmod tempor"
-            + " incididunt ut labore et dolore magna aliqua.",
             notes="msalvatore> Affects GitLab 12.8.0 to 12.8.5",
             packages=packages,
         ),
@@ -109,9 +56,7 @@ def load_sample_cve():
             id="CVE-2019-1010262",
             status="rejected",
             public_date="2020-03-12 23:15:00 UTC",
-            last_updated_date="2020-03-15 23:15:00 UTC",
             priority="medium",
-            cvss="8.2",
             description="** REJECT ** DO NOT USE THIS CANDIDATE NUMBER."
             + " ConsultIDs: CVE-2019-1010142. Reason: This candidate"
             + " is a reservation duplicate of CVE-2019-1010142.",
