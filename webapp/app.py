@@ -46,6 +46,8 @@ from webapp.security.views import (
     notice,
     notices,
     notices_feed,
+    cve_index,
+    cve,
 )
 
 
@@ -144,6 +146,11 @@ app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
 #     "/security/notices", view_func=api_create_notice, methods=["POST"]
 # )
 app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
+
+
+# cve section
+app.add_url_rule("/security/cve", view_func=cve_index)
+app.add_url_rule("/security/<regex('cve-d{4}-d{4,7}'):cve_id>", view_func=cve)
 
 
 # Login

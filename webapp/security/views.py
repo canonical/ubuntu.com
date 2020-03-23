@@ -258,3 +258,13 @@ def api_create_notice():
     db_session.commit()
 
     return flask.jsonify({"message": "Notice created"}), 201
+
+
+# CVE views
+# ===
+def cve_index():
+    return flask.render_template("security/cve/index.html")
+
+
+def cve(cve_id):
+    return flask.render_template("security/cve/cve.html")
