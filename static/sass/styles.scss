@@ -19,7 +19,12 @@
   font-style: normal;
   font-weight: 300;
   src:
+<<<<<<< HEAD
     url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"),
+=======
+    url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
+    format("woff2"),
+>>>>>>> Build base CVE template
     url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
 }
 
@@ -579,4 +584,17 @@ summary {
 // Local override for custom table
 .p-accordion.is-compact .p-accordion__panel {
   padding-left: $sph-inner--small;
+}
+
+.p-corner-ribbon {
+  background-color: $color-brand;
+  color: $color-x-light;
+  padding-bottom: $spv-inner--x-small;
+  padding-top: $spv-inner--x-small;
+  position: absolute;
+  right: -50px;
+  text-align: center;
+  top: 38px;
+  transform: rotate(45deg);
+  width: 225px;
 }
