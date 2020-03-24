@@ -28,7 +28,7 @@ March 30, 2020
 
 **Who should attend:** Open to IT teams in the Netherlands wanting to learn more about MicroK8s and Kubernetes, and how to innovate with these.
 
-**What you will learn:** Broad by design, we will discuss Canonical and Ubuntu, MicroK8s, Kubernetes. There will also be time for questions or scheduling 121s with us.
+**What you will learn:** Broad by design, we will discuss Canonical, Ubuntu, MicroK8s and Kubernetes. There will also be time for questions or scheduling 121s with us.
 
 **Takeaways:** Ideas and building blocks for today and the future.
 
