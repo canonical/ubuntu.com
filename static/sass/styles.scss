@@ -562,17 +562,23 @@ summary {
   width: 225px;
 }
 
-.u-negative {
-  background-color: $color-negative;
-  color: $color-x-light;
+.p-icon--container {
+  display: block;
+  float: left;
+  margin-right: 0.5rem;
+  width: 1rem;
 }
 
-.u-positive {
-  background-color: $color-positive;
-  color: $color-x-light;
+.p-container--icon {
+  float: left;
+  width: calc(100% - 1.5rem);
 }
 
-.u-caution {
-  background-color: $color-caution;
-  color: $color-x-light;
+.p-icon--placeholder {
+  display: inline-block;
+  height: 1em;
+  margin-right: 1em;
+  position: relative;
+  top: 2px;
+  width: 1em;
 }
