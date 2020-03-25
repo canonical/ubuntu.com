@@ -40,17 +40,54 @@ notice_releases = Table(
     Column("release_id", Integer, ForeignKey("release.id")),
 )
 
+cve_bugs = Table(
+    "cve_bugs",
+    Base.metadata,
+    Column("cve_id", String, ForeignKey("cve.id")),
+    Column("bug_id", Integer, ForeignKey("bug.id")),
+)
+
+cve_references = Table(
+    "cve_references",
+    Base.metadata,
+    Column("cve_id", String, ForeignKey("cve.id")),
+    Column("cve_reference_id", Integer, ForeignKey("cve_reference.id")),
+)
+
+package_release_status = Table(
+    "package_release_status",
+    Base.metadata,
+    Column("package_id", String, ForeignKey("package.id")),
+    Column("release_id", Integer, ForeignKey("release.id")),
+)
+
 
 class CVE(Base):
     __tablename__ = "cve"
 
-    id = Column(String, primary_key=True)
+    id = Column(String, primary_key=True, unique=True)
+    candidate = Column(String, unique=True)
+    public_date = Column(DateTime)
+    public_date_usn = Column(DateTime)
+    crd = Column(String)
+    description = Column(String)
+    ubuntu_description = Column(String)
+    notes = Column(String)
+    mitigation = Column(String)
+    priority = Column(String)
+    discovered_by = Column(String)
+    assigned_to = Column(String)
+    approved_by = Column(String)
+    cvss = Column(String)  # CVSS 3 and Base Score
+    references = relationship("CVEReference", secondary=cve_references)
+    bugs = relationship("Bug", secondary=cve_bugs)
+    packages = relationship("Package", secondary=package_release_status)
 
 
 class Notice(Base):
     __tablename__ = "notice"
 
-    id = Column(String, primary_key=True)
+    id = Column(Integer, primary_key=True)
     title = Column(String)
     published = Column(DateTime)
     summary = Column(String)
