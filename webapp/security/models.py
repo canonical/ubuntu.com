@@ -189,16 +189,6 @@ class Package(Base):
     launchpad = Column(String)
     ubuntu = Column(String)
     debian = Column(String)
-    type = Column(String)
-    releases_status = relationship(
-        "CVERelease", secondary=package_release_status
+    releases = relationship(
+        "PackageReleaseStatus", secondary=cve_package_release_status
     )
-
-
-class CVERelease(Base):
-    __tablename__ = "cve_release"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    status = Column(String)
-    status_description = Column(String)
