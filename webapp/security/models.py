@@ -126,7 +126,7 @@ class CVE(Base):
 class Notice(Base):
     __tablename__ = "notice"
 
-    id = Column(String, primary_key=True)
+    id = Column(Integer, primary_key=True)
     title = Column(String)
     published = Column(DateTime)
     summary = Column(String)
