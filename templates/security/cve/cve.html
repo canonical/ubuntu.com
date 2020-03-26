@@ -1,6 +1,34 @@
 {% extends "security/cve/base_cve.html" %} {% block title %}CVEs{% endblock %}
+
 {% block content %}
-<section class="p-strip">
+
+<nav class="p-navigation--secondary">
+  <div class="row">
+    <div class="col-12 u-equal-height">
+      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="/security">
+        <h5 class="p-navigation--secondary__logo">
+          Security
+        </h5>
+      </a>
+      <ul class="breadcrumbs--secondary">
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link p-link--soft" href="/security">Overview</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link p-link--soft" href="/security/certifications">Certifications</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link p-link--soft" href="https://usn.ubuntu.com">Notices</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link p-link--active" href="/security/cve">CVEs</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class=" p-strip">
   <div class="p-corner-ribbon u-hide--small">
     Not in Ubuntu
   </div>
@@ -8,8 +36,15 @@
     <h1>CVE-2019-1010318</h1>
     <p>Published 2020-03-18 20:14:22 UTC</p>
     <p>
-      ** REJECT ** DO NOT USE THIS CANDIDATE NUMBER. ConsultIDs: <a href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>.<br>
-      Reason: This candidate is a reservation duplicate of <a href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>.<br> Notes: All CVE users should reference <a href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a> instead of this candidate.<br>
+      ** REJECT ** DO NOT USE THIS CANDIDATE NUMBER. ConsultIDs: <a
+        href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>.<br>
+      Reason: This candidate is a reservation duplicate of <a
+        href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>.<br>
+      Notes:
+      All CVE users should reference <a
+        href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>
+      instead of
+      this candidate.<br>
       All references and descriptions in this candidate have been removed to prevent accidental usage.
     </p>
 
@@ -30,7 +65,10 @@
       <tbody>
         <tr>
           <td rowspan="7">
-            Source: <a href="https://people.canonical.com/~ubuntu-security/cve/pkg/docker.io.html">docker.io</a> (<a href="https://launchpad.net/distros/ubuntu/+source/docker.io">LP</a> <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords=docker.io">Ubuntu</a> <a href="https://tracker.debian.org/docker.io">Debian</a>)
+            Source: <a href="https://people.canonical.com/~ubuntu-security/cve/pkg/docker.io.html">docker.io</a> (<a
+              href="https://launchpad.net/distros/ubuntu/+source/docker.io">LP</a> <a
+              href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords=docker.io">Ubuntu</a>
+            <a href="https://tracker.debian.org/docker.io">Debian</a>)
           </td>
           <td>Upstream</td>
           <td>Needs triage</td>
@@ -45,13 +83,15 @@
         </tr>
         <tr>
           <td>
-            <a href="https://launchpad.net/ubuntu/xenial/+source/docker.io">Ubuntu 16.04 LTS (Xenial Xerus)</a>
+            <a href="https://launchpad.net/ubuntu/xenial/+source/docker.io">Ubuntu 16.04 LTS (Xenial
+              Xerus)</a>
           </td>
           <td>released (18.09.7-0ubuntu1~16.04.5</td>
         </tr>
         <tr>
           <td>
-            <a href="https://launchpad.net/ubuntu/bionic/+source/docker.io">Ubuntu 18.04 LTS (Bionic Beaver)</a>
+            <a href="https://launchpad.net/ubuntu/bionic/+source/docker.io">Ubuntu 18.04 LTS (Bionic
+              Beaver)</a>
           </td>
           <td>released (18.09.7-0ubuntu1~18.04.4</td>
         </tr>
@@ -69,7 +109,13 @@
         </tr>
         <tr>
           <td rowspan="7">
-            Source: <a href="https://people.canonical.com/~ubuntu-security/cve/pkg/golang-github-docker-docker-credential-helpers.html">golang-github-docker-credential-helpers</a> (<a href="https://launchpad.net/distros/ubuntu/+source/golang-github-docker-docker-credential-helpers">LP</a> <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords=golang-github-docker-docker-credential-helpers">Ubuntu</a> <a href="https://tracker.debian.org/golang-github-docker-docker-credential-helpers">Debian</a>)
+            Source: <a
+              href="https://people.canonical.com/~ubuntu-security/cve/pkg/golang-github-docker-docker-credential-helpers.html">golang-github-docker-credential-helpers</a>
+            (<a
+              href="https://launchpad.net/distros/ubuntu/+source/golang-github-docker-docker-credential-helpers">LP</a>
+            <a
+              href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords=golang-github-docker-docker-credential-helpers">Ubuntu</a>
+            <a href="https://tracker.debian.org/golang-github-docker-docker-credential-helpers">Debian</a>)
           </td>
           <td>Upstream</td>
           <td>needs-triage</td>
@@ -88,26 +134,33 @@
         </tr>
         <tr>
           <td>
-            <a href="https://launchpad.net/ubuntu/bionic/+source/golang-github-docker-docker-credential-helpers">Ubuntu 18.04 LTS (Bionic Beaver)</a>
+            <a href="https://launchpad.net/ubuntu/bionic/+source/golang-github-docker-docker-credential-helpers">Ubuntu
+              18.04 LTS (Bionic Beaver)</a>
           </td>
           <td class="u-negative">needed</td>
         </tr>
         <tr>
           <td>
-            <a href="https://launchpad.net/ubuntu/eoan/+source/golang-github-docker-docker-credential-helpers">Ubuntu 19.10 (Eoan Ermine)</a>
+            <a href="https://launchpad.net/ubuntu/eoan/+source/golang-github-docker-docker-credential-helpers">Ubuntu
+              19.10 (Eoan Ermine)</a>
           </td>
           <td class="u-positive">not-affected (0.6.1-4)</td>
         </tr>
         <tr>
           <td>
-            <a href="https://launchpad.net/ubuntu/focal/+source/golang-github-docker-docker-credential-helpers">Ubuntu 20.04 (Focal Fossa)</a>
+            <a href="https://launchpad.net/ubuntu/focal/+source/golang-github-docker-docker-credential-helpers">Ubuntu
+              20.04 (Focal Fossa)</a>
           </td>
           <td class="u-positive">not-affected (0.6.1-4)</td>
         </tr>
       </tbody>
     </table>
     <h2>Notes</h2>
-    <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi aliquam eos consequatur possimus nulla a velit minima, et aspernatur praesentium! Recusandae, dignissimos ex nostrum nihil molestiae non quibusdam et. Placeat!</P>
+    <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi aliquam eos consequatur possimus nulla
+      a velit
+      minima, et aspernatur praesentium! Recusandae, dignissimos ex nostrum nihil molestiae non quibusdam et.
+      Placeat!
+    </P>
     <h2>References</h2>
     <ul>
       <li>
