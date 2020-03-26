@@ -68,6 +68,7 @@
   <div class="u-hide" id="community-content"></div>
   <div class="u-hide" id="download-content"></div>
 </div>
+{% if not(hide_subnav == True) %}
 {% if breadcrumbs and breadcrumbs.children and breadcrumbs.children|length > 1 or breadcrumbs.grandchildren %}
 <nav class="p-navigation--secondary">
   <div class="row">
@@ -124,6 +125,7 @@
     </div>
   </div>
 </nav>
+{% endif %}
 {% endif %}
 
 <script>
