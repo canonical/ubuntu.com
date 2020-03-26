@@ -1,3 +1,4 @@
+import enum
 from sqlalchemy import (
     Boolean,
     Column,
@@ -7,12 +8,39 @@ from sqlalchemy import (
     JSON,
     String,
     Table,
+    Enum,
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
 
 Base = declarative_base()
+
+# Enums
+
+
+class CVEStatus(enum.Enum):
+    rejected = "rejected"
+    in_ubuntu = "active"
+    not_in_ubuntu = "not-for-us"  # txt file
+
+
+class PackageStatus(enum.Enum):
+    needs_triage = "needs-triage"
+    needed = "needed"
+    deferred = "deferred"
+    pending = "pending"
+    released = "released"
+    released_esm = "released-esm"
+    ignored = "ignored"
+    not_affected = "not-affected"
+    dne = "DNE"
+
+
+class PackageType(enum.Enum):
+    package = "package"
+    product = "product"
+    snap = "snap"
 
 
 notice_cves = Table(
@@ -51,21 +79,32 @@ cve_references = Table(
     Column("cve_reference_id", Integer, ForeignKey("cve_reference.id")),
 )
 
+cve_packages = Table(
+    "package_release_status",
+    Base.metadata,
+    Column("package_id", Integer, ForeignKey("package.id")),
+    Column("name", Integer, ForeignKey("release.id")),
+    Column("type", Enum(PackageType)),
+)
+
 package_release_status = Table(
     "package_release_status",
     Base.metadata,
-    Column("package_id", String, ForeignKey("package.id")),
+    Column("package_id", Integer, ForeignKey("package.id")),
     Column("release_id", Integer, ForeignKey("release.id")),
+    Column("status", Enum(PackageStatus)),
+    extend_existing=True,
 )
 
 
 class CVE(Base):
     __tablename__ = "cve"
 
-    id = Column(String, primary_key=True, unique=True)
+    id = Column(String, primary_key=True)
     candidate = Column(String, unique=True)
     public_date = Column(DateTime)
     public_date_usn = Column(DateTime)
+    status = Column(Enum(CVEStatus))
     crd = Column(String)
     description = Column(String)
     ubuntu_description = Column(String)
@@ -78,13 +117,13 @@ class CVE(Base):
     cvss = Column(String)  # CVSS 3 and Base Score
     references = relationship("CVEReference", secondary=cve_references)
     bugs = relationship("Bug", secondary=cve_bugs)
-    packages = relationship("Package", secondary=package_release_status)
+    packages = relationship("Package", secondary=cve_packages)
 
 
 class Notice(Base):
     __tablename__ = "notice"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(String, primary_key=True)
     title = Column(String)
     published = Column(DateTime)
     summary = Column(String)
@@ -135,3 +174,5 @@ class Package(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
+    type = Column(Enum(PackageType))
+    releases_status = relationship("Release", secondary=package_release_status)
