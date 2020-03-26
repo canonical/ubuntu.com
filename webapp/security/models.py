@@ -90,8 +90,6 @@ cve_packages = Table(
     Base.metadata,
     Column("cve_id", Integer, ForeignKey("cve.id")),
     Column("package_id", Integer, ForeignKey("package.id")),
-    Column("name", Integer, ForeignKey("release.id")),
-    Column("type", Enum(PackageType)),
 )
 
 package_release_status = Table(
@@ -107,10 +105,11 @@ package_release_status = Table(
 class CVE(Base):
     __tablename__ = "cve"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(String, primary_key=True)
     candidate = Column(String, unique=True)
     public_date = Column(DateTime)
     public_date_usn = Column(DateTime)
+    status = Column(Enum(CVEStatus))
     crd = Column(String)
     description = Column(String)
     ubuntu_description = Column(String)
@@ -124,13 +123,13 @@ class CVE(Base):
     references = relationship("CVEReference", secondary=cve_references)
     bugs = relationship("Bug", secondary=cve_bugs)
     packages = relationship("Package", secondary=cve_packages)
-    status = Column(Enum(CveStatus))
+    status = Column(String)
 
 
 class Notice(Base):
     __tablename__ = "notice"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(String, primary_key=True)
     title = Column(String)
     published = Column(DateTime)
     summary = Column(String)
