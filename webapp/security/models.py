@@ -1,3 +1,4 @@
+import enum
 from sqlalchemy import (
     Boolean,
     Column,
@@ -7,6 +8,7 @@ from sqlalchemy import (
     JSON,
     String,
     Table,
+    Enum,
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -14,6 +16,36 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
+<<<<<<< HEAD
+=======
+# Enums
+
+
+class CVEStatus(enum.Enum):
+    rejected = "rejected"
+    in_ubuntu = "active"
+    not_in_ubuntu = "not-for-us"  # txt file
+
+
+class PackageStatus(enum.Enum):
+    needs_triage = "needs-triage"
+    needed = "needed"
+    deferred = "deferred"
+    pending = "pending"
+    released = "released"
+    released_esm = "released-esm"
+    ignored = "ignored"
+    not_affected = "not-affected"
+    dne = "DNE"
+
+
+class PackageType(enum.Enum):
+    package = "package"
+    product = "product"
+    snap = "snap"
+
+
+>>>>>>> Add enums
 notice_cves = Table(
     "notice_cves",
     Base.metadata,
