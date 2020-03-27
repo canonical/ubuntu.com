@@ -44,6 +44,7 @@ from webapp.views import (
     releasenotes_redirect,
 )
 from webapp.login import login_handler, logout
+from webapp.security.database import db_session
 from webapp.security.views import (
     # api_create_notice,
     notice,
@@ -51,6 +52,9 @@ from webapp.security.views import (
     notices_feed,
     cve_index,
     cve,
+    create_cve,
+    delete_cve,
+    update_cve,
 )
 
 
@@ -171,6 +175,23 @@ app.add_url_rule(
     "/security/<regex('(cve-|CVE-)\\d{4}-\\d{4,7}'):cve_id>", view_func=cve
 )
 
+app.add_url_rule(
+    "/security/<regex('(cve-|CVE-)\\d{4}-\\d{4,7}'):cve_id>",
+    view_func=delete_cve,
+    methods=["DELETE"],
+)
+
+app.add_url_rule(
+    "/security/<regex('(cve-|CVE-)\\d{4}-\\d{4,7}'):cve_id>",
+    view_func=update_cve,
+    methods=["PUT"],
+)
+app.add_url_rule(
+    "/security/<regex('(cve-|CVE-)\\d{4}-\\d{4,7}'):cve_id>",
+    view_func=create_cve,
+    methods=["POST"],
+)
+
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
@@ -276,4 +297,10 @@ def cache_headers(response):
             "Cache-Control"
         ] = "max-age=61, stale-while-revalidate=90"
 
+    return response
+
+
+@app.teardown_appcontext
+def remove_db_session(response):
+    db_session.remove()
     return response
