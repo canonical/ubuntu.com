@@ -93,7 +93,7 @@ class CVE(Base):
     crd = Column(String)
     description = Column(String)
     ubuntu_description = Column(String)
-    notes = Column(String)
+    notes = Column(JSON)
     mitigation = Column(String)
     priority = Column(String)
     discovered_by = Column(String)

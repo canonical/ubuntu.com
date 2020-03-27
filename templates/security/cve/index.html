@@ -16,11 +16,11 @@
     <div class="row">
       <div class="col-3">
         <label for="q">CVE ID:</label>
-        <input type="text" name="q" id="q" value="{{query}}">
+        <input type="text" name="q" id="q" value="{{query or '' }}">
       </div>
       <div class="col-3">
         <label for="package">Package:</label>
-        <input type="text" name="package" id="package" value="{{package}}">
+        <input type="text" name="package" id="package" value="{{package or '' }}">
       </div>
       <div class="col-3">
         <label for="priority">Priority:</label>
