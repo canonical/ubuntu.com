@@ -23,15 +23,22 @@
     <section lang="de" class="p-strip js-takeover"></section> <!-- For german languages only -->
     <section lang="fr" class="p-strip js-takeover"></section> <!-- For french languages only -->
     <section lang="es" class="p-strip js-takeover"></section> <!-- For spanish languages only -->
+    <section lang="nl" class="p-strip js-takeover"></section> <!-- For dutch languages only -->
 #}
 
 {% block takeover_content %}
   {# GERMAN #}
-  {% include "takeovers/_vmware-to-charmed-openstack_german.html" %}
+  {% include "takeovers/de/_vmware-to-charmed-openstack_german.html" %}
+
   {# SPANISH #}
-  {% include "takeovers/_vmware-to-charmed-openstack_spanish.html" %}
+  {% include "takeovers/es/_vmware-to-charmed-openstack_spanish.html" %}
+
   {# DUTCH #}
-  {% include "takeovers/_nl-pre-kubecon.html" %}
+  {% include "takeovers/nl/_nl-pre-kubecon.html" %}
+
+  {# FRENCH #}
+  {% include "takeovers/fr/_vmware-to-charmed-openstack_french.html" %}
+
   {# ALL #}
   {% include "takeovers/_cloud-cost-analysis.html" %}
   {% include "takeovers/_451-microk8s.html" %}
