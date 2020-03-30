@@ -25,10 +25,10 @@ Base = declarative_base()
 # Enums
 
 
-class CVEStatus(enum.Enum):
+class CveStatus(enum.Enum):
     rejected = "rejected"
-    in_ubuntu = "active"
-    not_in_ubuntu = "not-for-us"  # txt file
+    active = "active"
+    not_for_us = "not-for-us"  # txt file
 
 
 class PackageStatus(enum.Enum):
@@ -86,7 +86,7 @@ cve_references = Table(
 )
 
 cve_packages = Table(
-    "package_release_status",
+    "cve_packages",
     Base.metadata,
     Column("package_id", Integer, ForeignKey("package.id")),
     Column("name", Integer, ForeignKey("release.id")),
@@ -110,7 +110,6 @@ class CVE(Base):
     candidate = Column(String, unique=True)
     public_date = Column(DateTime)
     public_date_usn = Column(DateTime)
-    status = Column(Enum(CVEStatus))
     crd = Column(String)
     description = Column(String)
     ubuntu_description = Column(String)
@@ -124,6 +123,7 @@ class CVE(Base):
     references = relationship("CVEReference", secondary=cve_references)
     bugs = relationship("Bug", secondary=cve_bugs)
     packages = relationship("Package", secondary=cve_packages)
+    # status = relationship("CVEStatus", secondary=cve_status)
 
 
 class Notice(Base):
