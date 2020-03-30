@@ -74,20 +74,21 @@ notice_releases = Table(
 cve_bugs = Table(
     "cve_bugs",
     Base.metadata,
-    Column("cve_id", String, ForeignKey("cve.id")),
+    Column("cve_id", Integer, ForeignKey("cve.id")),
     Column("bug_id", Integer, ForeignKey("bug.id")),
 )
 
 cve_references = Table(
     "cve_references",
     Base.metadata,
-    Column("cve_id", String, ForeignKey("cve.id")),
+    Column("cve_id", Integer, ForeignKey("cve.id")),
     Column("cve_reference_id", Integer, ForeignKey("cve_reference.id")),
 )
 
 cve_packages = Table(
     "cve_packages",
     Base.metadata,
+    Column("cve_id", Integer, ForeignKey("cve.id")),
     Column("package_id", Integer, ForeignKey("package.id")),
     Column("name", Integer, ForeignKey("release.id")),
     Column("type", Enum(PackageType)),
@@ -106,7 +107,7 @@ package_release_status = Table(
 class CVE(Base):
     __tablename__ = "cve"
 
-    id = Column(String, primary_key=True)
+    id = Column(Integer, primary_key=True)
     candidate = Column(String, unique=True)
     public_date = Column(DateTime)
     public_date_usn = Column(DateTime)
@@ -123,7 +124,7 @@ class CVE(Base):
     references = relationship("CVEReference", secondary=cve_references)
     bugs = relationship("Bug", secondary=cve_bugs)
     packages = relationship("Package", secondary=cve_packages)
-    # status = relationship("CVEStatus", secondary=cve_status)
+    status = Column(Enum(CveStatus))
 
 
 class Notice(Base):
