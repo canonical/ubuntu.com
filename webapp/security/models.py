@@ -17,36 +17,6 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
-<<<<<<< HEAD
-=======
-# Enums
-
-
-class CveStatus(enum.Enum):
-    rejected = "rejected"
-    active = "active"
-    not_for_us = "not-for-us"  # txt file
-
-
-class PackageStatus(enum.Enum):
-    needs_triage = "needs-triage"
-    needed = "needed"
-    deferred = "deferred"
-    pending = "pending"
-    released = "released"
-    released_esm = "released-esm"
-    ignored = "ignored"
-    not_affected = "not-affected"
-    dne = "DNE"
-
-
-class PackageType(enum.Enum):
-    package = "package"
-    product = "product"
-    snap = "snap"
-
-
->>>>>>> initial migration
 notice_cves = Table(
     "notice_cves",
     Base.metadata,
@@ -105,11 +75,17 @@ cve_releases = Table(
     "cve_releases",
     Base.metadata,
     Column("release_id", Integer, ForeignKey("release.id")),
+<<<<<<< HEAD
     Column(
         "package_release_status_id",
         Integer,
         ForeignKey("package_release_status.id"),
     ),
+=======
+    Column("status", Enum(PackageStatus)),
+    Column("status_description", Enum(PackageStatus)),
+    extend_existing=True,
+>>>>>>> initial
 )
 
 
@@ -120,6 +96,7 @@ class CVE(Base):
     public_date = Column(DateTime)
     last_updated_date = Column(DateTime)
     public_date_usn = Column(DateTime)
+    status = Column(Enum(CVEStatus))
     crd = Column(String)
     description = Column(String)
     ubuntu_description = Column(String)
@@ -139,7 +116,7 @@ class CVE(Base):
 class Notice(Base):
     __tablename__ = "notice"
 
-    id = Column(String, primary_key=True)
+    id = Column(Integer, primary_key=True)
     title = Column(String)
     published = Column(DateTime)
     summary = Column(String)
