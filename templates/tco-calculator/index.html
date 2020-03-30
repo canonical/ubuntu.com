@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-8">
       <h1>Private cloud TCO calculator</h1>
-      <p>One of the biggest promises behind the private cloud infrastructure is better economics compare to proprietary hardware and public clouds. Use the TCO (total cost of ownership) calculator below to estimate the cost of your private cloud infrastructure with Canonical.</p>
+      <p>One of the biggest promises behind the private cloud infrastructure is better economics compared to proprietary hardware and public clouds. Use the TCO (total cost of ownership) calculator below to estimate the cost of your private cloud infrastructure with Canonical.</p>
     </div>
   </div>
 </section>
@@ -25,13 +25,13 @@
             Number of hosts
             <span class="p-tooltip--top-center" aria-describedby="hosts-number-tooltip">
               <i class="p-icon--question"></i>
-              <span class="p-tooltip__message" role="tooltip" id="hosts-number-tooltip">A number of hosts that build the cloud. At least nine are required.<br />Moreover, three additional hosts are needed to run cloud supporting services.<br />Those will be included in the calculations. For bigger numbers contact us directly.</span>
+              <span class="p-tooltip__message" role="tooltip" id="hosts-number-tooltip">A number of hosts that build the cloud. At least 12 are required.<br />Three of them are needed to run cloud supporting services.<br />For bigger numbers contact us directly.</span>
             </span>
           </h2>
 
           <div class="js-tco-calculator__range">
-            <input type="number" name="hosts" id="hosts__input" min="9" max="10000" value="9">
-            <input type="range" id="hosts__range" min="9" max="10000" value="9" step="1">
+            <input type="number" name="hosts" id="hosts__input" min="12" max="10000" value="12">
+            <input type="range" id="hosts__range" min="9" max="10000" value="12" step="1">
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
       <div class="row">
         <div class="col-4 p-card--highlighted">
           <h2 class="p-heading--three">
-            Data volume
+            Maximum storage capacity
             <span class="p-tooltip--top-center" aria-describedby="data-volume-tooltip">
               <i class="p-icon--question"></i>
               <span class="p-tooltip__message" role="tooltip" id="data-volume-tooltip">A data volume of services running on the cloud.<br />For bigger numbers contact us directly.</span>
@@ -98,7 +98,7 @@
         <input type="radio" name="deployment-type" id="dplmt-reference" class="js-tco-calculator__radio" value="reference" checked="checked">
         <label for="dplmt-reference" class="is-h4">
           <span class="p-heading--four">Reference architecture</span>
-          <span class="p-calculator__checkbox-label-copy">Canonical deploys the cloud base on the reference architecture.</span>
+          <span class="p-calculator__checkbox-label-copy">Canonical deploys the cloud based on the reference architecture.</span>
         </label>
       </div>
 
@@ -114,7 +114,7 @@
         <input type="radio" name="deployment-type" id="dplmt-existing" class="js-tco-calculator__radio" value="existing">
         <label for="dplmt-existing" class="is-h4">
           <span class="p-heading--four">Existing deployment</span>
-          <span class="p-calculator__checkbox-label-copy">The cloud has already been deployed. Just looking for support or fully managed services.</span>
+          <span class="p-calculator__checkbox-label-copy">The cloud has already been deployed by Canonical. Just looking for support or fully managed services.</span>
         </label>
       </div>
     </div>
@@ -148,13 +148,13 @@
 
       <hr />
 
-      <p>Canonical’s managed services for OpenStack and Kubernetes allow to fully outsource cloud operational tasks to the Canonical’s team of cloud experts. Managed services may be the best option during the initial phase of private cloud deployment process, but under certain circumstances they may be also cheaper than the self-managed option. Remember that the self-managed option on the right does not include the cloud operations team's annual salary.</p>
+      <p>Canonical’s managed services for OpenStack and Kubernetes allow to fully outsource cloud operational tasks to the Canonical’s team of cloud experts. Managed services may be the best option during the initial phase of the private cloud deployment process, but under certain circumstances, they may be also cheaper than the self-managed option. Remember that the self-managed option on the right does not include the cloud operations team's annual salary.</p>
 
-      <p class="p-heading--five">* Canonical provides managed services only for OpenStack and Kubernetes deployments based on Juju charms.</p>
+      <p class="p-heading--five">* Canonical provides managed services only for OpenStack and Kubernetes deployments based on Juju charms that have been deployed by Canonical.</p>
 
       <p class="p-heading--five">** Ubuntu Advantage Advanced will be included by default.</p>
 
-      <p class="p-heading--five">*** Includes Managed MAAS</p>
+      <p class="p-heading--five">*** Includes Managed MAAS.</p>
     </div>
 
     <div class="col-6 p-card--highlighted">
