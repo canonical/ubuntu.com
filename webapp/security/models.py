@@ -17,6 +17,36 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
+<<<<<<< HEAD
+=======
+# Enums
+
+
+class CveStatus(enum.Enum):
+    rejected = "rejected"
+    active = "active"
+    not_for_us = "not-for-us"  # txt file
+
+
+class PackageStatus(enum.Enum):
+    needs_triage = "needs-triage"
+    needed = "needed"
+    deferred = "deferred"
+    pending = "pending"
+    released = "released"
+    released_esm = "released-esm"
+    ignored = "ignored"
+    not_affected = "not-affected"
+    dne = "DNE"
+
+
+class PackageType(enum.Enum):
+    package = "package"
+    product = "product"
+    snap = "snap"
+
+
+>>>>>>> initial migration
 notice_cves = Table(
     "notice_cves",
     Base.metadata,
