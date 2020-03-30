@@ -16,7 +16,7 @@ context:
      header_lang: fr
      form_include: fr
      form_id: 3515
-     form_return_url: "https://pages.ubuntu.com/VMwaretoOpenstack-TY.html"
+     form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/VMware_to_OpenStack _French_17.03.20 3.pdf"
 ---
 
 En raison du coût des licences, du support et des coûts de consultation de VMware, beaucoup n'atteignent pas leur objectif principal - des coûts considérablement réduits. Dans la recherche d'alternatives, de plus en plus d'entreprises se tournent vers d'autres plateformes comme OpenStack.
