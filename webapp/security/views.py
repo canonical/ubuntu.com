@@ -268,7 +268,12 @@ def create_notice():
 # ===
 def cve_index():
 
+<<<<<<< HEAD
     list_cve = db_session.query(CVE).limit(10)
+=======
+    cves_query = db_session.query(CVE)
+    list_cve = cves_query.order_by(CVE.public_date).limit(10).all()
+>>>>>>> Populate data into views
     return flask.render_template("security/cve/index.html", list_cve=list_cve)
 
 
