@@ -138,7 +138,7 @@ function updateTotals() {
   const deploymentType = document.querySelector(
     "[name='deployment-type']:checked"
   ).value;
-  const hosts = parseInt(document.querySelector("#hosts__input").value);
+  const hosts = parseInt(document.querySelector("#hosts__input").value)-3;
   const kubernetes = document.querySelector("#ct-k8s");
   const kubernetesDeploymentCost =
     DEPLOYMENT_TYPE_COSTS[`kubernetes_${deploymentType}`];
