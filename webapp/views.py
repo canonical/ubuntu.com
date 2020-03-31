@@ -4,8 +4,10 @@ import os
 import re
 
 # Packages
+import dateutil.parser
 import feedparser
 import flask
+import pytz
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 from geolite2 import geolite2
@@ -181,31 +183,30 @@ def advantage_view():
                                 "affordances"
                             ]["supportLevel"]
                     contract["entitlements"] = entitlements
+                    created_at = dateutil.parser.parse(
+                        contract["contractInfo"]["createdAt"]
+                    )
                     contract["contractInfo"][
                         "createdAtFormatted"
-                    ] = datetime.strptime(
-                        contract["contractInfo"]["createdAt"],
-                        "%Y-%m-%dT%H:%M:%S.%fZ",
-                    ).strftime(
-                        "%d %B %Y"
-                    )
-
+                    ] = created_at.strftime("%d %B %Y")
                     contract["contractInfo"]["status"] = "active"
-                    if contract["contractInfo"].get("effectiveTo"):
-                        effectiveTo = datetime.strptime(
-                            contract["contractInfo"]["effectiveTo"],
-                            "%Y-%m-%dT%H:%M:%SZ",
+
+                    if "effectiveTo" in contract["contractInfo"]:
+                        effective_to = dateutil.parser.parse(
+                            contract["contractInfo"]["effectiveTo"]
                         )
                         contract["contractInfo"][
                             "effectiveToFormatted"
-                        ] = effectiveTo.strftime("%d %B %Y")
+                        ] = effective_to.strftime("%d %B %Y")
 
-                        if effectiveTo < datetime.today():
+                        if effective_to < datetime.utcnow().replace(
+                            tzinfo=pytz.utc
+                        ):
                             contract["contractInfo"]["status"] = "expired"
-                    account_name = contract["accountInfo"]["name"]
-                    if account_name not in enterprise_contracts:
-                        enterprise_contracts[account_name] = []
-                    enterprise_contracts[account_name].append(contract)
+
+                    enterprise_contracts.setdefault(
+                        contract["accountInfo"]["name"], []
+                    ).append(contract)
 
     return (
         flask.render_template(
