@@ -23,13 +23,22 @@
     <section lang="de" class="p-strip js-takeover"></section> <!-- For german languages only -->
     <section lang="fr" class="p-strip js-takeover"></section> <!-- For french languages only -->
     <section lang="es" class="p-strip js-takeover"></section> <!-- For spanish languages only -->
+    <section lang="nl" class="p-strip js-takeover"></section> <!-- For dutch languages only -->
 #}
 
 {% block takeover_content %}
   {# GERMAN #}
-  {% include "takeovers/_vmware-to-charmed-openstack_german.html" %}
+  {% include "takeovers/de/_vmware-to-charmed-openstack_german.html" %}
+
   {# SPANISH #}
-  {% include "takeovers/_vmware-to-charmed-openstack_spanish.html" %}
+  {% include "takeovers/es/_vmware-to-charmed-openstack_spanish.html" %}
+
+  {# DUTCH #}
+  {% include "takeovers/nl/_nl-pre-kubecon.html" %}
+
+  {# FRENCH #}
+  {% include "takeovers/fr/_vmware-to-charmed-openstack_french.html" %}
+
   {# ALL #}
   {% include "takeovers/_cloud-cost-analysis.html" %}
   {% include "takeovers/_451-microk8s.html" %}
@@ -59,6 +68,10 @@
     {% include "shared/_notice_default.html" %}
   {% endwith %}
   {% with lang="zh", text="嗨！你知道我们有中文站吗？立即带我去！", url="https://cn.ubuntu.com", icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
+    {% include "shared/_notice_default.html" %}
+  {% endwith %}
+  {% with lang="en", text="
+Update: Canonical managed services and Ubuntu support during COVID-19 outbreak", url="/blog/canonical-managed-services-ubuntu-support-covid-19", icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
     {% include "shared/_notice_default.html" %}
   {% endwith %}
 {% endblock notices_content %}

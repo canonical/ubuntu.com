@@ -20,7 +20,7 @@ context:
      form_return_url: "https://pages.ubuntu.com/CStudy_Domotz_-TY.html"
 ---
 
-As the number of IoT devices scale, the challenges of provisioning and keeping them up to date in the field increases. Domotz, who manufacture an all-in-one, network monitoring and management device for enterprise IoT networks, found themselves with this challenge that was further compounded by their rapid software release cadence.
+As the number of IoT devices scale, the challenges of provisioning and keeping them up to date in the field increases. <a href="https://domotz.com" class="p-link--external">Domotz</a>, who manufacture an all-in-one, network monitoring and management device for enterprise IoT networks, found themselves with this challenge that was further compounded by their rapid software release cadence.
 
 One of the most crucial and difficult aspects for Domotz to solve was the delivery of automatic updates to the tens of thousands of devices deployed. Domotz turned to snaps and Ubuntu Core to meet their exacting requirements.
 
