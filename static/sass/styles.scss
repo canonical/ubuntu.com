@@ -557,3 +557,11 @@ summary {
 .p-accordion__tab {
   background-position: top $spv-inner--medium left $sph-inner;
 }
+
+#reveal-table {
+  @media only (min-width: $breakpoint-small) {
+    bottom: 0.3rem;
+    position: absolute;
+    right: 0;
+  }
+}

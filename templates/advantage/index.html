@@ -44,11 +44,11 @@
 
 {% if enterprise_contracts %}
 <section class="p-strip--light is-shallow" style="overflow: visible;">
-  <div class="row">
+  <div class="row u-equal-height">
     <div class="col-6">
       <h2 class="u-no-margin--bottom">Your paid subscriptions</h2>
     </div>
-    <div class="col-6 u-align--right">
+    <div class="col-6 u-align--right" style="position: relative;">
       <div id="reveal-table">
         <a href="#reveal-table" class="p-button u-no-margin--bottom" id="js-reveal-table" aria-controls="enterprise-table" aria-expanded="false">Add another subscription <i class="p-icon--contextual-menu">Open</i></a>
       </div>
@@ -91,7 +91,7 @@
                   {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
               </button>
             </td>
-            <td style="text-transform: capitalize"><span style="padding-top:.35rem;">{{ contract['supportLevel'] }}</span></td>
+            <td style="text-transform: capitalize"><span class="u-truncate" style="padding-top:.35rem;">{{ contract['supportLevel'] }}</span></td>
             <td class="u-align--center {% if loop.index == 1 %}p-table--open{% endif %}">
               <button class="u-toggle" aria-controls="#expanded-row-token-{{ loop.index }}" aria-expanded="{% if loop.index == 1 %}true{% else %}false{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
                 {{ contract['machineCount'] }} &nbsp;<i class="p-icon--contextual-menu {% if loop.index == 1 %}u-rotate{% endif %}">Open</i>
@@ -101,7 +101,7 @@
             <td class="u-align--center">
               {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
               <button class="u-toggle" aria-controls="#expanded-row-esm-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                <i class="p-icon--success"></i> {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--contextual-menu">Open</i>
+                <span class="u-truncate"><i class="p-icon--success"></i> {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--contextual-menu">Open</i></span>
               </button>
               {% else %}
               <span style="padding-top:.35rem;">N/A</span>
@@ -110,7 +110,7 @@
             <td class="u-align--center">
               {% if contract['entitlements']['livepatch'] == True %}
               <button class="u-toggle" aria-controls="#expanded-row-livepatch-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                <i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                <span class="u-truncate"><i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
               </button>
               {% else %}
               <span style="padding-top:.35rem;">N/A</span>
@@ -119,7 +119,7 @@
             <td class="u-align--center">
               {% if contract['entitlements']['fips']  == True %}
               <button class="u-toggle" aria-controls="#expanded-row-fips-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                <i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                <span class="u-truncate"><i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
               </button>
               {% else %}
               <span style="padding-top:.35rem;">N/A</span>
@@ -128,7 +128,7 @@
             <td class="u-align--center">
               {% if contract['entitlements']['cc-eal']  == True %}
               <button class="u-toggle" aria-controls="#expanded-row-cc-eal-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                <i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                <span class="u-truncate"><i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
               </button>
               {% else %}
               <span style="padding-top:.35rem;">N/A</span>
