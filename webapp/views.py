@@ -2,7 +2,6 @@
 import json
 import os
 import re
-import datetime
 
 # Packages
 import feedparser
@@ -11,6 +10,8 @@ from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
+from datetime import datetime
+
 
 # Local
 from webapp import auth
@@ -182,12 +183,25 @@ def advantage_view():
                     contract["entitlements"] = entitlements
                     contract["contractInfo"][
                         "createdAtFormatted"
-                    ] = datetime.datetime.strptime(
+                    ] = datetime.strptime(
                         contract["contractInfo"]["createdAt"],
                         "%Y-%m-%dT%H:%M:%S.%fZ",
                     ).strftime(
                         "%d %B %Y"
                     )
+
+                    contract["contractInfo"]["status"] = "active"
+                    if contract["contractInfo"].get("effectiveTo"):
+                        effectiveTo = datetime.strptime(
+                            contract["contractInfo"]["effectiveTo"],
+                            "%Y-%m-%dT%H:%M:%SZ",
+                        )
+                        contract["contractInfo"][
+                            "effectiveToFormatted"
+                        ] = effectiveTo.strftime("%d %B %Y")
+
+                        if effectiveTo < datetime.today():
+                            contract["contractInfo"]["status"] = "expired"
                     account_name = contract["accountInfo"]["name"]
                     if account_name not in enterprise_contracts:
                         enterprise_contracts[account_name] = []

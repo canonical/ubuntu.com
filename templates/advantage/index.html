@@ -87,6 +87,7 @@
         </thead>
         <tbody>
           {% for contract in enterprise_contracts[account] %}
+          {% if contract["contractInfo"]["status"] != 'expired' %}
           <tr class="p-table__row">
             <td>
               <button class="u-toggle u-align--left u-no-padding--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
@@ -140,10 +141,18 @@
             <td id="expanded-details-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
               <div class="row">
                 <div class="col-12 u-align--center">
-                  <dl class="u-no-margin--bottom">
-                    <dt style="display: inline-block; width: 130px; text-align: right;">Created on:</dt>
-                    <dd style="display: inline-block;">{{ contract['contractInfo']['createdAtFormatted'] }}</dd>
-                  </dl>
+                  <table class="p-table--advantage-contract">
+                    <tr>
+                      <td class="u-align--right">Created on:</td>
+                      <td class="u-align--left"><strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></td>
+                    </tr>
+                    {% if contract['contractInfo']['effectiveTo'] %}
+                    <tr>
+                      <td class="u-align--right">Effective to:</dt>
+                      <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong></td>
+                    </tr>
+                    {% endif %}
+                  </table>
                 </div>
               </div>
             </td>
@@ -216,6 +225,7 @@
               </div>
             </td>
           </tr>
+          {% endif %}
           {% endfor %}
         </tbody>
       </table>
