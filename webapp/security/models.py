@@ -43,14 +43,14 @@ notice_releases = Table(
 cve_bugs = Table(
     "cve_bugs",
     Base.metadata,
-    Column("cve_id", Integer, ForeignKey("cve.id")),
+    Column("cve_id", String, ForeignKey("cve.id")),
     Column("bug_id", Integer, ForeignKey("bug.id")),
 )
 
 cve_references = Table(
     "cve_references",
     Base.metadata,
-    Column("cve_id", Integer, ForeignKey("cve.id")),
+    Column("cve_id", String, ForeignKey("cve.id")),
     Column("cve_reference_id", Integer, ForeignKey("cve_reference.id")),
 )
 
