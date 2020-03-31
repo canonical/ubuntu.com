@@ -90,7 +90,7 @@ def releasenotes_redirect():
 def advantage_view():
     accounts = None
     personal_account = None
-    enterprise_contracts = []
+    enterprise_contracts = {}
     entitlements = {}
     openid = flask.session.get("openid")
 
@@ -188,7 +188,10 @@ def advantage_view():
                     ).strftime(
                         "%d %B %Y"
                     )
-                    enterprise_contracts.append(contract)
+                    account_name = contract["accountInfo"]["name"]
+                    if account_name not in enterprise_contracts:
+                        enterprise_contracts[account_name] = []
+                    enterprise_contracts[account_name].append(contract)
 
     return (
         flask.render_template(
