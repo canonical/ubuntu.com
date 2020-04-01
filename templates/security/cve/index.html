@@ -47,6 +47,9 @@
   <div class="row">
     <div class="col-9">
       <h2>Recent CVEs affecting Ubuntu</h2>
+      {% for cve in list_cve %}
+        <p>{{cve.id}}</p>
+      {% endfor %}
     </div>
     <div class="col-3">
       <select class="u-no-margin--bottom">
