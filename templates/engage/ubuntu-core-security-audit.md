@@ -11,8 +11,8 @@ context:
   header_cta: Download report
   header_class: p-engage-banner--grad
   header_image: "https://assets.ubuntu.com/v1/db57e396-ubuntu-core-security.svg"
-  header_lang: fr
-  form_include: fr
+  header_lang: en
+  form_include: en
   form_id: 3550
   form_return_url: "https://pages.ubuntu.com/CoreSecurityAudit_TY.html"
 ---

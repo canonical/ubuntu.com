@@ -11,6 +11,19 @@
       <h1>OpenStack distro comparison</h1>
       <p>Looking for a detailed OpenStack distro comparison? Have a look at the table below and see how Canonical’s Charmed OpenStack differs from other distributions. Discover more by clicking on each Charmed OpenStack cell. Use our <a href="/tco-calculator">calculator</a> to estimate the cost of your private cloud infrastructure with Canonical.</p>
     </div>
+    <div class="col-4">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/f66803a0-openstack-comparison.svg",
+          alt="",
+          height="200",
+          width="320",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
 
@@ -20,9 +33,48 @@
       <thead>
         <tr>
           <th></th>
-          <th>Charmed OpenStack</th>
-          <th>Red Hat OpenStack Platform</th>
-          <th>Mirantis Cloud Platform</th>
+          <th>
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/5d6da5c4-logo-canonical-aubergine.svg",
+                alt="",
+                height="30",
+                width="130",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy",
+              ) | safe
+            }}
+            <div>Charmed OpenStack</div>
+          </th>
+          <th>
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/82c62241-red-hat-2019-primary.svg",
+                alt="",
+                height="30",
+                width="127",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="auto",
+              ) | safe
+            }}
+            <div>Red Hat OpenStack Platform</div>
+          </th>
+          <th>
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/3ea3fad9-mirantis_logo.svg",
+                alt="",
+                height="30",
+                width="52",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy",
+              ) | safe
+            }}
+            <div>Mirantis Cloud Platform</div>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -211,17 +263,43 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="row">
+  <div class="row u-equal-height">
     <div class="col-8">
       <h2>Cheaper than Red Hat OpenStack Platform</h2>
       <p>By applying a per host pricing model, Canonical’s support services for OpenStack are cheaper than those offered by Red Hat. A per host model is much more predictable than the per socket-pair model as organisations only have to pay for the number of servers being used, regardless of the number of CPU units inside them. Moreover, no license is required to get started with Charmed OpenStack. This means that organisations only have to pay for the environments that require enterprise support, such as the production environment, while they can run their testing and development environments free of charge.</p>
+    </div>
+    <div class="col-4 u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/aab47d07-openstack-cheaper.svg",
+          alt="",
+          height="220",
+          width="320",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="lazy",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-8 col-start-large-5">
+  <div class="row u-equal-height">
+    <div class="col-4 u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/ab100b97-openstack-simpler.svg",
+          alt="",
+          height="220",
+          width="320",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
       <h2>Simpler than Mirantis Cloud Platform</h2>
       <p>Instead of relying on various interconnected tools, Canonical uses <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a> for OpenStack deployments, operations and upgrades while providing the same value. OpenStack Charms are orchestrated by Juju which abstracts the entire OpenStack complexity, enables an IaC (infrastructure as code) approach and provides a SaaS (software as a service) experience. This results in a simpler OpenStack platform, fewer resources required to maintain it and reduced operational costs.</p>
     </div>
@@ -229,17 +307,43 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="row">
+  <div class="row u-equal-height">
     <div class="col-8">
       <h2>Open source, unlike VMware</h2>
       <p>Charmed OpenStack is fully open source which allows it to benefit from a broader community, faster development process and broader selection of technology choices than those available in VMware’s vRealize platform. Choosing an open source platform avoids vendor lock-in. Charmed OpenStack is also much cheaper than VMware vRealize. Under certain circumstances, migrating from VMware to Charmed OpenStack can reduce costs by 88%.</p>
       <p><a href="/engage/vmware-to-charmed-openstack">Read the whitepaper ›</a></p>
     </div>
+    <div class="col-4 u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/d6271e62-openstack-opensource.svg",
+          alt="",
+          height="220",
+          width="320",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="lazy",
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
 
 <section class="p-strip">
-  <div class="row">
+  <div class="row u-equal-height">
+    <div class="col-4 u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/fdb3193d-openstack-more-secure.svg",
+          alt="",
+          height="220",
+          width="320",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="lazy",
+        ) | safe
+      }}
+    </div>
     <div class="col-8 col-start-large-5">
       <h2>More secure than public clouds</h2>
       <p>Security becomes one of the most important aspects when designing IT infrastructure. As a result, many organisations are migrating their sensitive data to a private cloud. Charmed OpenStack offers a production-grade solution for private cloud implementation providing the best possible security level. It can also be more cost-effective compared to public cloud providers, especially long-term and when running workloads at a large scale.</p>
