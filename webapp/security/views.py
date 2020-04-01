@@ -263,6 +263,7 @@ def create_notice():
 # CVE views
 # ===
 def cve_index():
+<<<<<<< HEAD
     """
     Display the list of CVEs, with pagination.
     Also accepts the following filtering query parameters:
@@ -314,6 +315,11 @@ def cve_index():
         priority=priority,
         query=query,
     )
+=======
+
+    list_cve = db_session.query(CVE).limit(10)
+    return flask.render_template("security/cve/index.html", list_cve=list_cve)
+>>>>>>> initial
 
 
 def cve(cve_id):
