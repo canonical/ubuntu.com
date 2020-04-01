@@ -1,0 +1,94 @@
+name: PR checks
+on: pull_request
+jobs:
+  run-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: DOCKER_BUILDKIT=1 docker build --tag ubuntu-com .
+
+      - name: Run image
+        run: |
+          docker run --detach --publish 80:80 --env DATABASE_URL=sqlite:///db.sqlite3 ubuntu-com
+          sleep 1
+          curl --head --fail --retry-delay 5 --retry 10  --retry-connrefused http://localhost
+
+  run-dotrun:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dotrun
+        run: |
+          sudo snap install dotrun
+          sudo chown root:root /
+
+      - name: Build assets
+        run: |
+          dotrun install
+          dotrun build
+          dotrun &
+          sleep 5
+          curl --head --fail --retry-delay 5 --retry 10 --retry-connrefused http://localhost:8001
+
+  lint-scss:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Lint scss
+        run: yarn lint-scss
+
+  lint-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install node dependencies
+        run: yarn install --immutable
+
+      - name: Install python dependencies
+        run: sudo pip3 install flake8 black
+
+      - name: Lint python
+        run: yarn lint-python
+
+  test-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install requirements
+        run: |
+          sudo apt-get update && sudo apt-get install --yes python3-setuptools
+          sudo pip3 install -r requirements.txt
+
+      - name: Install dependencies
+        run: sudo pip3 install coverage
+
+      - name: Run tests with coverage
+        run: |
+          coverage run  --source=. -m unittest discover tests
+          bash <(curl -s https://codecov.io/bash) -cF python
+
+  test-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Test JS
+        run: yarn test-js
