@@ -5,6 +5,7 @@ from math import ceil
 
 # Packages
 import flask
+import os
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
@@ -266,6 +267,10 @@ def cve_index():
 
     cves_query = db_session.query(CVE)
     list_cve = cves_query.order_by(CVE.public_date).limit(10).all()
+
+    if len(list_cve) == 0 and os.environ["FLASK_DEBUG"] == 'true':
+        api_create_cve()
+
     return flask.render_template("security/cve/index.html", list_cve=list_cve)
 
 
@@ -275,3 +280,177 @@ def cve(cve_id):
 
 # CVE API
 # ===
+
+def api_create_cve():
+    from sqlalchemy.sql import table, column
+
+    # ### Insert dummy data ###
+    # cve_table = table(
+    #     "cve",
+    #     column("id", String()),
+    #     column("status", sa.String()),
+    #     column("public_date", sa.String()),
+    #     column("priority", sa.String()),
+    #     column("description", sa.String()),
+    #     column("notes", sa.String()),
+    # )
+
+    # cve_packages = table(
+    #     "package",
+    #     column("cve_id", sa.String()),
+    #     column("package_id", sa.String()),
+    #     column("name", sa.String()),
+    #     column("type", sa.String()),
+    # )
+
+    # package_release_status = table(
+    #     "package_release_status",
+    #     column("package_id", sa.String()),
+    #     column("release_id", sa.String()),
+    #     column("status", sa.String())
+    # )
+
+    # cve_reference = table(
+    #     "cve_packages",
+    #     column("cve_id", sa.String()),
+    #     column("package_id", sa.String()),
+    #     column("name", sa.String()),
+    #     column("type", sa.String()),
+    # )
+
+    table.insert(
+        cve_table,
+        [
+            {
+                "id": "CVE-2020-10535",
+                "status": "active",
+                "public_date": "2020-03-12 23:15:00 UTC",
+                "priority": "low",
+                "description": "GitLab 12.8.x before 12.8.6, when sign-up is enabled, allows remote attackers to bypass email domain",
+                "notes": "",
+            },
+            {
+                "id": "CVE-2019-1010262",
+                "status": "rejected",
+                "public_date": "2019-07-18 17:15:00 UTC",
+                "priority": "medium",
+                "description": "** REJECT ** DO NOT USE THIS CANDIDATE NUMBER. ConsultIDs: CVE-2019-1010142. Reason: This candidate is a reservation duplicate of CVE-2019-1010142.",
+                "notes": "",
+            },
+            {
+                "id": "CVE-2020-9064",
+                "status": "not-for-us",
+                "public_date": "",
+                "priority": "",
+                "description": "",
+                "notes": 'Ubuntu-security Does not apply to software  found in Ubuntu. "Huawei"',
+            },
+        ],
+    )
+
+    op.bulk_insert(cve_packages, [
+        {
+            "cve_id": "CVE-2020-10535",
+            "package_id": 1,
+            "name": "gitlab",
+        },
+        {
+            "cve_id": "CVE-2019-1010262",
+            "package_id": 2,
+            "name": "scapy",
+        }
+    ])
+
+    op.bulk_insert(package_release_status, [
+        {
+            "package_id": 1,
+            "release_id": 11,
+            "name": "Upstream",
+            "status": "needs-triage",
+            "status_description": ""
+        },
+        {
+            "package_id": 1,
+            "release_id": 12,
+            "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
+            "status": "DNE",
+            "status_description": ""
+        },
+        {
+            "package_id": 1,
+            "release_id": 13,
+            "name": "Ubuntu 14.04 ESM (Trusty Tahr)",
+            "status": "DNE",
+            "status_description": ""
+        },
+        {
+            "package_id": 1,
+            "release_id": 14,
+            "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
+            "status": "needs-triage",
+            "status_description": ""
+        },
+        {
+            "package_id": 1,
+            "release_id": 15,
+            "name": "Ubuntu 18.04 LTS (Bionic Beaver)",
+            "status": "needs-triage",
+            "status_description": ""
+        },
+        # Rejected package
+        {
+            "package_id": 2,
+            "release_id": 21,
+            "name": "Upstream",
+            "status": "needs-triage",
+            "status_description": ""
+        },
+        {
+            "package_id": 2,
+            "release_id": 22,
+            "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
+            "status": "DNE",
+            "status_description": ""
+        },
+        {
+            "package_id": 2,
+            "release_id": 23,
+            "name": "Ubuntu 14.04 ESM (Trusty Tahr)",
+            "status": "DNE",
+            "status_description": ""
+        },
+        {
+            "package_id": 2,
+            "release_id": 24,
+            "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
+            "status": "not-affected",
+            "status_description": "code not present"
+        },
+        {
+            "package_id": 2,
+            "release_id": 25,
+            "name": "Ubuntu 18.04 LTS (Bionic Beaver)",
+            "status": "needs-triage",
+            "status_description": ""
+        },
+        {
+            "package_id": 2,
+            "release_id": 26,
+            "name": "Ubuntu 19.10 (Eoan Ermine)",
+            "status": "needs-triage",
+            "status_description": ""
+        },
+    ])
+
+    op.bulk_insert(cve_reference, [
+        {
+            "cve_id": "CVE-2020-10535",
+            "package_id": 1,
+            "name": "gitlab",
+        },
+        {
+            "cve_id": "CVE-2019-1010262",
+            "package_id": 2,
+            "name": "scapy",
+        }
+    ])
