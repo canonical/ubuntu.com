@@ -88,11 +88,14 @@
         <tbody>
           {% for contract in enterprise_contracts[account] %}
           {% if contract["contractInfo"]["status"] != 'expired' %}
+            {% if contract["contractInfo"]["daysTillExpiry"] %}
+              {% set expiring_soon = contract["contractInfo"]["daysTillExpiry"] < 3000 %}
+            {% endif %}
           <tr class="p-table__row">
             <td>
-              <button class="u-toggle u-align--left u-no-padding--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                  {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
-              </button>
+                <a href="#" class="u-toggle u-align--left u-no-padding--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
+                    {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if expiring_soon %}<div class="" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} d</div>{% endif %}
+                </a>
             </td>
             <td style="text-transform: capitalize"><span class="u-truncate" style="padding-top:.35rem;">{{ contract['supportLevel'] }}</span></td>
             <td class="u-align--center {% if loop.index == 1 and outer_loop.index == 1 %}p-table--open{% endif %}">
@@ -147,10 +150,17 @@
                       <td class="u-align--left"><strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></td>
                     </tr>
                     {% if contract['contractInfo']['effectiveTo'] %}
-                    <tr>
-                      <td class="u-align--right">Effective to:</dt>
-                      <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong></td>
-                    </tr>
+                      <tr>
+                      {% if expiring_soon %}
+                        <td class="u-align--right">
+                          <i class="p-icon--warning" style="margin-top: 0.3rem;"></i>&nbsp;&nbsp;Effective to:
+                        </td>
+                        <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>&nbsp;({{ contract['contractInfo']['daysTillExpiry'] }} days)</td>
+                      {% else %}
+                        <td class="u-align--right">Effective to:</td>
+                        <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong></td>
+                      {% endif %}
+                      </tr>
                     {% endif %}
                   </table>
                 </div>
@@ -347,6 +357,7 @@
       toggles = table.querySelectorAll('.u-toggle');
       for (var i = 0; i < toggles.length; i++) {
         toggles[i].addEventListener('click', function (e) {
+          e.preventDefault()
           var targetTable = e.target.closest('.p-table-expanding');
           var target = targetTable.querySelector(
             this.getAttribute('aria-controls')

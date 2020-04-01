@@ -199,10 +199,15 @@ def advantage_view():
                             "effectiveToFormatted"
                         ] = effective_to.strftime("%d %B %Y")
 
-                        if effective_to < datetime.utcnow().replace(
-                            tzinfo=pytz.utc
-                        ):
+                        time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+
+                        if effective_to < time_now:
                             contract["contractInfo"]["status"] = "expired"
+                        else:
+                            date_difference = effective_to - time_now
+                            contract["contractInfo"][
+                                "daysTillExpiry"
+                            ] = date_difference.days
 
                     if "renewals" in contract["contractInfo"]:
                         contract["renewal"] = contract["contractInfo"][
