@@ -2,15 +2,18 @@
 import json
 import os
 import re
-import datetime
 
 # Packages
+import dateutil.parser
 import feedparser
 import flask
+import pytz
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
+from datetime import datetime
+
 
 # Local
 from webapp import auth
@@ -90,7 +93,7 @@ def releasenotes_redirect():
 def advantage_view():
     accounts = None
     personal_account = None
-    enterprise_contracts = []
+    enterprise_contracts = {}
     entitlements = {}
     openid = flask.session.get("openid")
 
@@ -149,7 +152,9 @@ def advantage_view():
                         "resourceEntitlements"
                     ]:
                         if entitlement["type"] == "esm-infra":
-                            entitlements["esm"] = True
+                            entitlements["esm-infra"] = True
+                        elif entitlement["type"] == "esm-apps":
+                            entitlements["esm-apps"] = True
                         elif entitlement["type"] == "livepatch":
                             entitlements["livepatch"] = True
                         elif entitlement["type"] == "fips":
@@ -164,7 +169,9 @@ def advantage_view():
                     ]:
                         contract["supportLevel"] = "-"
                         if entitlement["type"] == "esm-infra":
-                            entitlements["esm"] = True
+                            entitlements["esm-infra"] = True
+                        elif entitlement["type"] == "esm-apps":
+                            entitlements["esm-apps"] = True
                         elif entitlement["type"] == "livepatch":
                             entitlements["livepatch"] = True
                         elif entitlement["type"] == "fips":
@@ -176,24 +183,30 @@ def advantage_view():
                                 "affordances"
                             ]["supportLevel"]
                     contract["entitlements"] = entitlements
+                    created_at = dateutil.parser.parse(
+                        contract["contractInfo"]["createdAt"]
+                    )
                     contract["contractInfo"][
                         "createdAtFormatted"
-                    ] = datetime.datetime.strptime(
-                        contract["contractInfo"]["createdAt"],
-                        "%Y-%m-%dT%H:%M:%S.%fZ",
-                    ).strftime(
-                        "%d %B %Y"
-                    )
-                    if "effectiveFrom" in contract["contractInfo"]:
-                        contract["contractInfo"][
-                            "effectiveFromFormatted"
-                        ] = datetime.datetime.strptime(
-                            contract["contractInfo"]["effectiveFrom"],
-                            "%Y-%m-%dT%H:%M:%S.%fZ",
-                        ).strftime(
-                            "%d %B %Y"
+                    ] = created_at.strftime("%d %B %Y")
+                    contract["contractInfo"]["status"] = "active"
+
+                    if "effectiveTo" in contract["contractInfo"]:
+                        effective_to = dateutil.parser.parse(
+                            contract["contractInfo"]["effectiveTo"]
                         )
-                    enterprise_contracts.append(contract)
+                        contract["contractInfo"][
+                            "effectiveToFormatted"
+                        ] = effective_to.strftime("%d %B %Y")
+
+                        if effective_to < datetime.utcnow().replace(
+                            tzinfo=pytz.utc
+                        ):
+                            contract["contractInfo"]["status"] = "expired"
+
+                    enterprise_contracts.setdefault(
+                        contract["accountInfo"]["name"], []
+                    ).append(contract)
 
     return (
         flask.render_template(
