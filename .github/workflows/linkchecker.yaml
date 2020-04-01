@@ -10,16 +10,19 @@ jobs:
 
     steps:
       - name: Checkout master
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Build image
         run: DOCKER_BUILDKIT=1 docker build --tag ubuntu-com .
 
-      - name: Run linkchecker against the server
-        run: |
-          docker run -d -p 80:80 ubuntu-com
-          sleep 5
-          linkchecker --threads 2 --ignore-url /usn --ignore-url /search --ignore-url ".*(?:png|jpg|jpeg|gif|bmp|svg|js)$" --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url /blog --ignore-url /server/docs --no-warnings http://127.0.0.1
+      - name: Run the server
+        run: docker run --detach --publish 80:80 --env DATABASE_URL=sqlite:///db.sqlite3 ubuntu-com
+
+      - name: Install linkchecker
+        run: sudo apt update && sudo apt install linkchecker
+
+      - name: Run linkchecker
+        run: linkchecker --threads 0 --timeout 120 --ignore-url /usn --ignore-url /search --ignore-url ".*(?:png|jpg|jpeg|gif|bmp|svg|js)$" --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url /blog --ignore-url /server/docs --no-warnings http://127.0.0.1
 
       - name: Send message on failure
         if: failure()
