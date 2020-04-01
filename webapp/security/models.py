@@ -100,10 +100,8 @@ class CVE(Base):
     __tablename__ = "cve"
 
     id = Column(String, primary_key=True)
-    candidate = Column(String, unique=True)
-    public_date = Column(DateTime)
-    public_date_usn = Column(DateTime)
-    status = Column(Enum(CVEStatus))
+    public_date = Column(String)
+    public_date_usn = Column(String)
     crd = Column(String)
     description = Column(String)
     ubuntu_description = Column(String)
