@@ -14,7 +14,7 @@
     "watch-css": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/**/*.scss' -c 'yarn run build-css'",
     "watch-js": "watch -p 'static/js/src/**/*.js' -p 'static/js/data/**/*.js' -p 'static/js/third-party/**/*.js' -c 'yarn run build-js'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle static/js/build etc/",
-    "serve": "./entrypoint $(hostname -I | awk '{print $1;}'):${PORT}",
+    "serve": "./entrypoint 0.0.0.0:${PORT}",
     "start": "yarn run build && concurrently --raw 'yarn run watch-css' 'yarn run watch-js' 'yarn run serve'",
     "cypress:run": "cypress run --config-file tests/cypress/cypress.json --config baseUrl=http://$(hostname -I | awk '{print $1;}'):${PORT}",
     "cypress:open": "cypress open --config-file tests/cypress/cypress.json --config baseUrl=http://$(hostname -I | awk '{print $1;}'):${PORT}"

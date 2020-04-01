@@ -16,9 +16,9 @@ If you have found a bug in the Ubuntu OS itself, the please file it [here](https
 
 ## Local development
 
-The simplest way to run the site locally is using [the `dotrun` snap](https://github.com/canonical-web-and-design/dotrun/):
+The simplest way to run the site locally is using [the `dotrun` snap](https://github.com/canonical-web-and-design/dotrun/), which will use an SQLite database:
 
-``` bash
+```bash
 dotrun
 ```
 
@@ -26,9 +26,17 @@ Once the server has started, you can visit <http://127.0.0.1:8001> in your brows
 
 For more detailed local development instructions, see [HACKING.md](HACKING.md).
 
+### Using postgresql
+
+If you want to run the site with postgresql, you'll need [docker-compose](https://docs.docker.com/compose/) to spin up the DB:
+
+```bash
+docker-compose up -d  # Run the database in the background
+dotrun --env DATABASE_URL=postgres://postgres:pw@localhost:5432/postgres
+```
+
 ## License
 
 The content of this project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/), and the underlying code used to format and display that content is licensed under the [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd](http://www.canonical.com/).
-
 
 With ♥ from Canonical
