@@ -92,6 +92,7 @@ package_release_status = Table(
     Column("package_id", Integer, ForeignKey("package.id")),
     Column("release_id", Integer, ForeignKey("release.id")),
     Column("status", Enum(PackageStatus)),
+    Column("status_description", Enum(PackageStatus)),
     extend_existing=True,
 )
 
