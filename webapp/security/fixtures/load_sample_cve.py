@@ -5,7 +5,7 @@ sys.path.insert(0, "")
 
 # Start of script
 from webapp.security.database import db_session  # noqa
-from webapp.security.models import CVE, CVEReference, Bug  # noqa
+from webapp.security.models import CVE, CVEReference, Bug, Release  # noqa
 
 
 def load_sample_cve():
@@ -21,15 +21,23 @@ def load_sample_cve():
             "releases": [
                 {"name": "Upstream", "status": "DNE"},
                 {
-                    "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
-                    "status": "needs-triage",
-                },
-                {
                     "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
                     "status": "needs-triage",
                 },
                 {
+                    "name": "Ubuntu 14.04 ESM (Precise Pangolin)",
+                    "status": "DNE",
+                },
+                {
+                    "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
+                    "status": "needs-triage",
+                },
+                {
                     "name": "Ubuntu 18.04 LTS (Bionic Beaver)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 19.10 (Eoan Ermine)",
                     "status": "needs-triage",
                 },
                 {
@@ -38,7 +46,103 @@ def load_sample_cve():
                     "status_description": "(1.0.49-4)",
                 },
             ],
-        }
+        },
+        {
+            "name": "gitlab2",
+            "type": "package",
+            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
+            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
+            "debian": "https://tracker.debian.org/pkg/gitlab",
+            "releases": [
+                {"name": "Upstream", "status": "DNE"},
+                {
+                    "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 14.04 ESM (Precise Pangolin)",
+                    "status": "DNE",
+                },
+                {
+                    "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 18.04 LTS (Bionic Beaver)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 19.10 (Eoan Ermine)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 20.04 (Focal Fossa)",
+                    "status": "not-affected",
+                    "status_description": "(1.0.49-4)",
+                },
+            ],
+        },
+        {
+            "name": "gitlab3",
+            "type": "package",
+            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
+            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
+            "debian": "https://tracker.debian.org/pkg/gitlab",
+            "releases": [
+                {"name": "Upstream", "status": "DNE"},
+                {
+                    "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
+                    "status": "DNE",
+                },
+                {
+                    "name": "Ubuntu 14.04 ESM (Precise Pangolin)",
+                    "status": "DNE",
+                },
+                {"name": "Ubuntu 16.04 LTS (Xenial Xerus)", "status": "DNE"},
+                {"name": "Ubuntu 18.04 LTS (Bionic Beaver)", "status": "DNE"},
+                {"name": "Ubuntu 19.10 (Eoan Ermine)", "status": "DNE"},
+                {
+                    "name": "Ubuntu 20.04 (Focal Fossa)",
+                    "status": "not-affected",
+                    "status_description": "(1.0.49-4)",
+                },
+            ],
+        },
+        {
+            "name": "gitlab4",
+            "type": "package",
+            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
+            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
+            "debian": "https://tracker.debian.org/pkg/gitlab",
+            "releases": [
+                {"name": "Upstream", "status": "DNE"},
+                {
+                    "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 14.04 ESM (Precise Pangolin)",
+                    "status": "DNE",
+                },
+                {
+                    "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 18.04 LTS (Bionic Beaver)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 19.10 (Eoan Ermine)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 20.04 (Focal Fossa)",
+                    "status": "not-affected",
+                    "status_description": "(1.0.49-4)",
+                },
+            ],
+        },
     ]
     objects = [
         CVE(
@@ -80,6 +184,41 @@ def load_sample_cve():
             + "found in Ubuntu. Huawei",
             packages=packages,
         ),
+        CVE(
+            id="CVE-2020-7629",
+            status="not-for-us",
+            notes="Ubuntu-security Does not apply to software "
+            + "found in Ubuntu. install-package node module",
+            packages=packages,
+        ),
+        CVE(
+            id="CVE-2020-7630",
+            status="not-for-us",
+            notes="Ubuntu-security Does not apply to software "
+            + "found in Ubuntu. install-package node module",
+            packages=packages,
+        ),
+        CVE(
+            id="CVE-2020-8637",
+            status="not-for-us",
+            notes="Ubuntu-security Does not apply to software "
+            + "found in Ubuntu. git-add-remote node module",
+            packages=packages,
+        ),
+        CVE(
+            id="CVE-2020-8638",
+            status="not-for-us",
+            notes="Ubuntu-security Does not apply to software "
+            + "found in Ubuntu. TestLinkOpenSourceTRMS",
+            packages=packages,
+        ),
+        CVE(
+            id="CVE-2020-8639",
+            status="not-for-us",
+            notes="Ubuntu-security Does not apply to software "
+            + "found in Ubuntu. TestLinkOpenSourceTRMS",
+            packages=packages,
+        ),
         CVEReference(
             uri="https://cve.mitre.org/cgi-bin/cvename.cgi?"
             + "name=CVE-2020-9365"
@@ -93,6 +232,54 @@ def load_sample_cve():
             + "36c6d268cb190282a2c17106acfd31863121b58e"
         ),
         Bug(uri="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=952471"),
+        Release(
+            name="Ubuntu 12.04",
+            version="12.04",
+            codename="Precise Pangolin",
+            lts=False,
+            esm=True,
+            development=False,
+        ),
+        Release(
+            name="Ubuntu 14.04",
+            version="14.04",
+            codename="Trusty Tahr",
+            lts=False,
+            esm=True,
+            development=False,
+        ),
+        Release(
+            name="Ubuntu 16.04",
+            version="16.04",
+            codename="Xenial Xerus",
+            lts=False,
+            esm=True,
+            development=False,
+        ),
+        Release(
+            name="Ubuntu 18.04",
+            version="18.04",
+            codename="Bionic Beaver",
+            lts=False,
+            esm=True,
+            development=False,
+        ),
+        Release(
+            name="Ubuntu 19.10",
+            version="19.10",
+            codename="Eoan Ermine",
+            lts=False,
+            esm=False,
+            development=False,
+        ),
+        Release(
+            name="Ubuntu 20.04",
+            version="20.04",
+            codename="Focal Fossa",
+            lts=False,
+            esm=False,
+            development=True,
+        ),
     ]
 
     db_session.bulk_save_objects(objects)

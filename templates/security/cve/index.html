@@ -47,8 +47,17 @@
   <div class="row">
     <div class="col-9">
       <h2>Recent CVEs affecting Ubuntu</h2>
+    <p>Pagination numbers:
+    {{pagination}}
+    </p>
+    <p>Below is the number of elements:</p>
+    <p>{{list_cve}}</p>
+    
+    <ul>
       {% for cve in list_cve %}
         <p>{{cve.packages}}</p>
+        <p>{{cve.id}}</p>
+        <p>{{cve.priority}}</p>
       {% endfor %}
     </div>
     <div class="col-3">
