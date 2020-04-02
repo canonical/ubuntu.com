@@ -166,3 +166,28 @@ class Release(Base):
             return "ESM"
 
         return ""
+
+
+class CVEReference(Base):
+    __tablename__ = "cve_reference"
+
+    id = Column(Integer, primary_key=True)
+    uri = Column(String)
+
+
+class Bug(Base):
+    __tablename__ = "bug"
+
+    id = Column(Integer, primary_key=True)
+    uri = Column(String)
+
+
+class Package(Base):
+    __tablename__ = "package"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, unique=True)
+    type = Column(Enum(PackageType))
+    releases_status = relationship(
+        "CVERelease", secondary=package_release_status
+    )
