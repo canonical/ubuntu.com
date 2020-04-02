@@ -56,7 +56,7 @@
       </div>
     </section>
 
-    <section class="p-strip is-shallow u-hide p-card u-no-margin--bottom" aria-hidden="true" id="enterprise-table" style="overflow: visible; border-left: 0; border-right: 0;">
+    <section class="p-strip--light is-shallow u-hide p-card u-no-margin--bottom" aria-hidden="true" id="enterprise-table" style="border-left: 0; border-right: 0; overflow: visible;">
       <div class="row u-arrow-up">
         <div class="col-12">
           {% include "advantage/_table.html" %}
@@ -94,8 +94,8 @@
                     {% endif %}
 
                     <tr class="p-table__row">
-                      <td>
-                          <a href="#" class="u-toggle u-align--left u-no-padding--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
+                      <td class="u-no-padding--left">
+                          <a href="#" class="p-button u-toggle u-toggle--full-width u-align--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show" style="padding-left: 0.5rem;">
                               {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if expiring_soon %}<div class="" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} d</div>{% endif %}
                           </a>
                       </td>
@@ -152,17 +152,19 @@
                                 <td class="u-align--left"><strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></td>
                               </tr>
                               {% if contract['contractInfo']['effectiveTo'] %}
-                                <tr>
                                 {% if expiring_soon %}
-                                  <td class="u-align--right">
-                                    <i class="p-icon--warning" style="margin-top: 0.3rem;"></i>&nbsp;&nbsp;Effective to:
-                                  </td>
-                                  <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>&nbsp;({{ contract['contractInfo']['daysTillExpiry'] }} days)</td>
+                                  <tr style="border-top: 0;">
+                                    <td class="u-align--right">
+                                      <i class="p-icon--warning" style="margin-top: 0.3rem;"></i>&nbsp;&nbsp;Effective to:
+                                    </td>
+                                    <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>&nbsp;({{ contract['contractInfo']['daysTillExpiry'] }} days)</td>
+                                  </tr>
                                 {% else %}
-                                  <td class="u-align--right">Effective to:</td>
-                                  <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong></td>
+                                  <tr style="border-top: 0;"></tr>
+                                    <td class="u-align--right">Effective to:</td>
+                                    <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong></td>
+                                  </tr>
                                 {% endif %}
-                                </tr>
                               {% endif %}
                             </table>
                           </div>

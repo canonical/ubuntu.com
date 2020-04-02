@@ -449,6 +449,21 @@ summary {
     background: transparent;
     border: 0;
     margin-bottom: 0;
+
+    &--full-width {
+      overflow: hidden;
+      padding-right: 2rem;
+      position: relative;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+
+      .p-icon--contextual-menu {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.6rem;
+      }
+    }
   }
 }
 
@@ -459,17 +474,23 @@ summary {
 
   @media only screen and (min-width: $breakpoint-small) {
     &::after {
-      background: $color-x-light;
+      background: $color-light;
       box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
       content: "";
       height: 1rem;
       pointer-events: none;
       position: absolute;
       right: 2.1rem;
-      top: -2rem;
+      top: -1.2rem;
       transform: rotate(45deg);
       width: 1rem;
       z-index: 5;
+    }
+  }
+
+  @media only screen and (min-width: $breakpoint-large) {
+    &::after {
+      top: -2rem;
     }
   }
 }
