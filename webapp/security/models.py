@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 from datetime import datetime
 
-=======
-import enum
->>>>>>> Add enums
 from sqlalchemy import (
     Boolean,
     Column,
