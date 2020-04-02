@@ -171,7 +171,9 @@ class Package(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
     type = Column(Enum(PackageType))
-    releases_status = relationship("CVERelease", secondary=package_release_status)
+    releases_status = relationship(
+        "CVERelease", secondary=package_release_status
+    )
 
 
 class CVERelease(Base):
