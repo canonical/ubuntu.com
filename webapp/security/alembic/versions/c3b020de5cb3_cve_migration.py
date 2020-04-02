@@ -1,8 +1,8 @@
 """“cve_migration”
 
-Revision ID: 0b3665f1ac13
+Revision ID: c3b020de5cb3
 Revises: e8760725610a
-Create Date: 2020-04-02 13:04:59.474941
+Create Date: 2020-04-02 17:06:48.979674
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = "0b3665f1ac13"
+revision = "c3b020de5cb3"
 down_revision = "e8760725610a"
 branch_labels = None
 depends_on = None
@@ -42,13 +42,12 @@ def upgrade():
         "package",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("name", sa.String(), nullable=True),
-        sa.Column(
-            "type",
-            sa.Enum("package", "product", "snap", name="packagetype"),
-            nullable=True,
-        ),
+        sa.Column("source", sa.String(), nullable=True),
+        sa.Column("launchpad", sa.String(), nullable=True),
+        sa.Column("ubuntu", sa.String(), nullable=True),
+        sa.Column("debian", sa.String(), nullable=True),
+        sa.Column("type", sa.String(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
-        sa.UniqueConstraint("name"),
     )
     op.create_table(
         "cve_bugs",
