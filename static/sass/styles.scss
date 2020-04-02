@@ -389,7 +389,17 @@ summary {
   margin-bottom: 0;
 }
 
+.p-table--advantage-contract {
+  margin: 0 auto;
+  max-width: 530px;
+
+  td {
+    flex: 1 !important;
+  }
+}
+
 .p-table--advantage {
+  margin-bottom: 2rem;
   overflow: visible;
 
   th,
@@ -404,6 +414,16 @@ summary {
     th:nth-child(1),
     td:nth-child(1) {
       flex: 3;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      flex: 0.75;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      flex: 0.75;
     }
 
     &:not(:last-of-type) {
@@ -447,7 +467,7 @@ summary {
       pointer-events: none;
       position: absolute;
       right: 2.1rem;
-      top: -2.5rem;
+      top: -2rem;
       transform: rotate(45deg);
       width: 1rem;
       z-index: 5;
@@ -547,6 +567,14 @@ summary {
 // Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/2926
 .p-accordion__tab {
   background-position: top $spv-inner--medium left $sph-inner;
+}
+
+#reveal-table {
+  @media only (min-width: $breakpoint-small) {
+    bottom: 0.3rem;
+    position: absolute;
+    right: 0;
+  }
 }
 
 // Local override for custom table

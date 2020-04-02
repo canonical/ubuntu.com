@@ -2,7 +2,7 @@ name: Cypress checks
 
 on:
   schedule:
-    - cron:  '0 7 * * *'
+    - cron: "0 7 * * *"
 
 jobs:
   run-cypress:
@@ -10,16 +10,18 @@ jobs:
 
     steps:
       - name: Checkout master
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
           start: /home/runner/work/ubuntu.com/ubuntu.com/run
-          wait-on: 'http://0.0.0.0:8001/_status/check'
+          wait-on: "http://0.0.0.0:8001/_status/check"
           wait-on-timeout: 180
           browser: chrome
           config-file: tests/cypress/cypress.json
           config: baseUrl=http://0.0.0.0:8001
+
       - name: Send message on failure
         if: failure()
         run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=%23web-team
