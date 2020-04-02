@@ -199,7 +199,7 @@ app.add_url_rule("/security/<regex('cve-d{4}-d{4,7}'):cve_id>", view_func=cve)
 >>>>>>> Handle cve routes
 =======
 app.add_url_rule(
-    "/security/<regex('cve-\\d{4}-\\d{4,7}'):cve_id>", view_func=cve
+    "/security/<regex('(cve-|CVE-)\\d{4}-\\d{4,7}'):cve_id>", view_func=cve
 )
 >>>>>>> Build base CVE template
 
