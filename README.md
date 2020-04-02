@@ -1,8 +1,10 @@
 # ![ubuntu](https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg "Ubuntu").com codebase
 
-[![CircleCI build status](https://circleci.com/gh/canonical-web-and-design/ubuntu.com.svg?style=shield)](https://circleci.com/gh/canonical-web-and-design/ubuntu.com)
 [![Code coverage](https://codecov.io/gh/canonical-web-and-design/ubuntu.com/branch/master/graph/badge.svg)](https://codecov.io/gh/canonical-web-and-design/ubuntu.com)
 [![Cypress checks](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Cypress%20checks/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Cypress+checks%22)
+[![Links in master](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Links%20in%20master/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Links+in+master%22)
+[![Links on live](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Links%20on%20live/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Links+on+live%22)
+[![External links](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Links%20on%20live/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Links+on+live%22)
 
 Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things. [Ubuntu.com](https://ubuntu.com) is the website that helps people learn about, download and get started with Ubuntu. This repo is the codebase and content for the [ubuntu.com](https://ubuntu.com) website.
 
@@ -18,7 +20,7 @@ If you have found a bug in the Ubuntu OS itself, the please file it [here](https
 
 The simplest way to run the site locally is using [the `dotrun` snap](https://github.com/canonical-web-and-design/dotrun/):
 
-``` bash
+```bash
 dotrun
 ```
 
@@ -29,6 +31,5 @@ For more detailed local development instructions, see [HACKING.md](HACKING.md).
 ## License
 
 The content of this project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/), and the underlying code used to format and display that content is licensed under the [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd](http://www.canonical.com/).
-
 
 With ♥ from Canonical
