@@ -225,6 +225,40 @@ def advantage_view():
     )
 
 
+def post_stripe_method_id():
+    if auth.is_authenticated(flask.session):
+        if not flask.request.is_json:
+            return flask.jsonify({"error": "JSON required"}), 400
+
+        stripe_method_id = flask.request.json.get("stripe_method_id")
+        if not stripe_method_id:
+            return flask.jsonify({"error": "stripe_method_id required"}), 400
+
+        account_id = flask.request.json.get("account_id")
+        if not account_id:
+            return flask.jsonify({"error": "account_id required"}), 400
+
+        return advantage.post_method_id(
+            flask.session, stripe_method_id, account_id
+        )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
+def get_renewal():
+    if auth.is_authenticated(flask.session):
+        if not flask.request.is_json:
+            return flask.jsonify({"error": "JSON required"}), 400
+
+        renewal_id = flask.request.json.get("renewal_id")
+        if not renewal_id:
+            return flask.jsonify({"error": "renewal_id required"}), 400
+
+        return advantage.get_renewal(flask.session, renewal_id)
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
 # Blog
 # ===
 

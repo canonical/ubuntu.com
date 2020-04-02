@@ -2,6 +2,7 @@ import os
 
 from requests import Request, Session
 from pymacaroons import Macaroon
+from requests.exceptions import HTTPError
 
 from webapp.macaroons import binary_serialize_macaroons
 
@@ -91,3 +92,40 @@ def get_contract_machines(contract, session):
 
     payload = response.json()
     return payload
+
+
+def post_method_id(session, account_id, stripe_method_id):
+    try:
+        response = _send(
+            _prepare_request(
+                method="post",
+                path=f"v1/accounts/{account_id}/payment-method/stripe",
+                data={"paymentMethodID": stripe_method_id},
+                session=session,
+            )
+        )
+    except HTTPError as e:
+        return (
+            {"method": e.response.text, "status_code": e.response.status_code},
+            e.response.status_code,
+        )
+
+    return response.json()
+
+
+def get_renewal(session, renewal_id):
+    try:
+        response = _send(
+            _prepare_request(
+                method="get",
+                path=f"v1/renewals/{renewal_id}",
+                session=session,
+            )
+        )
+    except HTTPError as e:
+        return (
+            {"method": e.response.text, "status_code": e.response.status_code},
+            e.response.status_code,
+        )
+
+    return response.json()
