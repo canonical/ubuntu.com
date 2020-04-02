@@ -1,11 +1,11 @@
-name: Check links
+name: Links in master
 
 on:
   schedule:
     - cron: "10 7 * * *"
 
 jobs:
-  run-cypress:
+  check-links:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,7 @@ jobs:
         run: sudo apt update && sudo apt install linkchecker
 
       - name: Run linkchecker
-        run: linkchecker --threads 0 --timeout 120 --ignore-url /usn --ignore-url /search --ignore-url ".*(?:png|jpg|jpeg|gif|bmp|svg|js)$" --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url /blog --ignore-url /server/docs --no-warnings http://127.0.0.1
+        run: linkchecker --threads 0 --timeout 120 --ignore-url /search --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url /blog --ignore-url /server/docs --no-warnings http://127.0.0.1
 
       - name: Send message on failure
         if: failure()
