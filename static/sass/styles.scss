@@ -18,8 +18,8 @@
   font-family: "UbtuOverride";
   font-style: normal;
   font-weight: 300;
-  src:
-    url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"),
+  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
+      format("woff2"),
     url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
 }
 
@@ -566,14 +566,6 @@ summary {
 // Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/2926
 .p-accordion__tab {
   background-position: top $spv-inner--medium left $sph-inner;
-}
-
-#reveal-table {
-  @media only (min-width: $breakpoint-small) {
-    bottom: 0.3rem;
-    position: absolute;
-    right: 0;
-  }
 }
 
 // Local override for custom table
