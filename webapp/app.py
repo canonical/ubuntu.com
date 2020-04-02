@@ -167,7 +167,11 @@ app.register_blueprint(blog_blueprint, url_prefix="/blog")
 app.add_url_rule("/security/notices", view_func=notices)
 app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
 app.add_url_rule(
+<<<<<<< HEAD
     "/security/notices", view_func=create_notice, methods=["POST"]
+=======
+    "/security/<regex('(cve-|CVE-)\\d{4}-\\d{4,7}'):cve_id>", view_func=cve
+>>>>>>> All data
 )
 app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
 

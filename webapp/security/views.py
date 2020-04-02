@@ -22,14 +22,14 @@ from webapp.security.models import (
     Reference,
     Release,
     CVE,
-    CVEReference,
-    Bug,
-    CVERelease,
-    Package,
 )
 from webapp.security.schemas import NoticeSchema
+<<<<<<< HEAD
 from webapp.security.auth import authorization_required
 
+=======
+from webapp.security.helper import create_data
+>>>>>>> All data
 
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
@@ -277,8 +277,8 @@ def cve_index():
     # Temporary fix for data to be displayed
     cves_query = db_session.query(CVE).first()
     if not cves_query and os.environ["FLASK_DEBUG"] == "true":
-        api_create_cve()
-    list_cve = cves_query.order_by(CVE.public_date).limit(10).all()
+        create_data()
+    list_cve = db_session.query(CVE).limit(10)
 
     return flask.render_template("security/cve/index.html", list_cve=list_cve)
 
@@ -288,7 +288,7 @@ def cve(cve_id):
     # Temporary fix for data to be displayed
     cves_query = db_session.query(CVE).first()
     if not cves_query and os.environ["FLASK_DEBUG"] == "true":
-        api_create_cve()
+        create_data()
 
     cve = db_session.query(CVE).get(cve_id.upper())
     if not cve:
@@ -301,64 +301,4 @@ def cve(cve_id):
 
 
 def api_create_cve():
-
-    package = Package(name="gitlab", type="package",)
-    objects = [
-        CVE(
-            id="CVE-2020-10535",
-            status="active",
-            public_date="2020-03-12 23:15:00 UTC",
-            priority="low",
-            description="GitLab 12.8.x before 12.8.6, when sign-up is enabled,"
-            + " allows remote attackers "
-            + "to bypass email domain",
-        ),
-        CVE(
-            id="CVE-2019-1010262",
-            status="active",
-            public_date="2020-03-12 23:15:00 UTC",
-            priority="medium",
-            description="** REJECT ** DO NOT USE THIS CANDIDATE NUMBER."
-            + " ConsultIDs: CVE-2019-1010142. Reason: This candidate"
-            + " is a reservation duplicate of CVE-2019-1010142.",
-        ),
-        CVE(
-            id="CVE-2020-9064",
-            status="not-for-us",
-            notes="Ubuntu-security Does not apply to software "
-            + "found in Ubuntu. Huawei",
-        ),
-        package,
-        CVERelease(name="Upstream", status="DNE",),
-        CVEReference(
-            uri="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-9365"
-        ),
-        CVEReference(
-            uri="https://github.com/jedisct1/pure-ftpd/commit/"
-            + "36c6d268cb190282a2c17106acfd31863121b"
-        ),
-        CVEReference(
-            uri="https://github.com/jedisct1/pure-ftpd/commit/"
-            + "36c6d268cb190282a2c17106acfd31863121b58e"
-        ),
-        Bug(uri="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=952471"),
-    ]
-
-    db_session.bulk_save_objects(objects)
-
-    # Link packages
-    cve = db_session.query(CVE).first()
-    release = db_session.query(CVERelease).first()
-    package_query = db_session.query(Package).first()
-    reference_query = db_session.query(CVEReference).all()
-    bugs_query = db_session.query(Bug).all()
-
-    package_query.releases_status.append(release)
-    cve.packages.append(package_query)
-    for ref in reference_query:
-        cve.references.append(ref)
-
-    for bug in bugs_query:
-        cve.bugs.append(bug)
-    db_session.add(cve)
-    db_session.commit()
+    pass
