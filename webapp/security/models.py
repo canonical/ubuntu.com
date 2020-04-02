@@ -1,4 +1,3 @@
-import enum
 from sqlalchemy import (
     Boolean,
     Column,
@@ -8,40 +7,12 @@ from sqlalchemy import (
     JSON,
     String,
     Table,
-    Enum,
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
 
 Base = declarative_base()
-
-# Enums
-
-
-class CveStatus(enum.Enum):
-    rejected = "rejected"
-    active = "active"
-    not_for_us = "not-for-us"  # txt file
-
-
-class PackageStatus(enum.Enum):
-    needs_triage = "needs-triage"
-    needed = "needed"
-    deferred = "deferred"
-    pending = "pending"
-    released = "released"
-    released_esm = "released-esm"
-    ignored = "ignored"
-    not_affected = "not-affected"
-    dne = "DNE"
-
-
-class PackageType(enum.Enum):
-    package = "package"
-    product = "product"
-    snap = "snap"
-
 
 notice_cves = Table(
     "notice_cves",
@@ -169,8 +140,12 @@ class Package(Base):
     __tablename__ = "package"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True)
-    type = Column(Enum(PackageType))
+    name = Column(String)
+    source = Column(String)
+    launchpad = Column(String)
+    ubuntu = Column(String)
+    debian = Column(String)
+    type = Column(String)
     releases_status = relationship(
         "CVERelease", secondary=package_release_status
     )
