@@ -156,3 +156,12 @@ class Package(Base):
     releases_status = relationship(
         "CVERelease", secondary=package_release_status
     )
+
+
+class CVERelease(Base):
+    __tablename__ = "cve_release"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    status = Column(String)
+    status_description = Column(String)
