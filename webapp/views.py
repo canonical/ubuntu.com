@@ -204,6 +204,11 @@ def advantage_view():
                         ):
                             contract["contractInfo"]["status"] = "expired"
 
+                    if "renewals" in contract["contractInfo"]:
+                        contract["renewal"] = contract["contractInfo"][
+                            "renewals"
+                        ][0]
+
                     enterprise_contracts.setdefault(
                         contract["accountInfo"]["name"], []
                     ).append(contract)
