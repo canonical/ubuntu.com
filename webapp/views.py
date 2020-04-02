@@ -259,6 +259,20 @@ def get_renewal():
         return flask.jsonify({"error": "authentication required"}), 401
 
 
+def accept_renewal():
+    if auth.is_authenticated(flask.session):
+        if not flask.request.is_json:
+            return flask.jsonify({"error": "JSON required"}), 400
+
+        renewal_id = flask.request.json.get("renewal_id")
+        if not renewal_id:
+            return flask.jsonify({"error": "renewal_id required"}), 400
+
+        return advantage.accept_renewal(flask.session, renewal_id)
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
 # Blog
 # ===
 

@@ -129,3 +129,21 @@ def get_renewal(session, renewal_id):
         )
 
     return response.json()
+
+
+def accept_renewal(session, renewal_id):
+    try:
+        response = _send(
+            _prepare_request(
+                method="post",
+                path=f"v1/renewals/{renewal_id}/acceptance",
+                session=session,
+            )
+        )
+    except HTTPError as e:
+        return (
+            {"method": e.response.text, "status_code": e.response.status_code},
+            e.response.status_code,
+        )
+
+    return response.json()
