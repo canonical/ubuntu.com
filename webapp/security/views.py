@@ -270,7 +270,10 @@ def cve_index():
 
 
 def cve(cve_id):
-    return flask.render_template("security/cve/cve.html")
+    cve = db_session.query(CVE).get(cve_id.upper())
+    if not cve:
+        flask.abort(404)
+    return flask.render_template("security/cve/cve.html", cve=cve)
 
 
 # CVE API
