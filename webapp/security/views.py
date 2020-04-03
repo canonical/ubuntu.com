@@ -5,7 +5,6 @@ from math import ceil
 
 # Packages
 import flask
-import os
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
@@ -23,7 +22,6 @@ from webapp.security.models import (
     CVE,
 )
 from webapp.security.schemas import NoticeSchema
-from webapp.security.helper import create_data
 
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
@@ -270,21 +268,11 @@ def api_create_notice():
 # ===
 def cve_index():
 
-    # Temporary fix for data to be displayed
-    cves_query = db_session.query(CVE).first()
-    if not cves_query and os.environ["FLASK_DEBUG"] == "true":
-        create_data()
     list_cve = db_session.query(CVE).limit(10)
-
     return flask.render_template("security/cve/index.html", list_cve=list_cve)
 
 
 def cve(cve_id):
-
-    # Temporary fix for data to be displayed
-    cves_query = db_session.query(CVE).first()
-    if not cves_query and os.environ["FLASK_DEBUG"] == "true":
-        create_data()
 
     cve = db_session.query(CVE).get(cve_id.upper())
     if not cve:
