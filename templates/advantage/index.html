@@ -22,7 +22,7 @@
       <div class="col-12">
         <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
         <p>You are signed in as {{ openid.fullname }}<br />
-        <small style="color:#666">({{ openid.email }})</small></p>
+        <small style="color: #666;">({{ openid.email }})</small></p>
         <p class="u-no-margin--bottom">
           <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
             'event' : 'GAEvent',
@@ -99,7 +99,7 @@
                               {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if expiring_soon %}<div class="" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} d</div>{% endif %}
                           </a>
                       </td>
-                      <td style="text-transform: capitalize"><span class="u-truncate" style="padding-top:.35rem;">{{ contract['supportLevel'] }}</span></td>
+                      <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
                       <td class="u-align--center {% if loop.index == 1 and outer_loop.index == 1 %}p-table--open{% endif %}">
                         <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if loop.index == 1 and outer_loop.index == 1 %}true{% else %}false{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
                           {{ contract['machineCount'] }} &nbsp;<i class="p-icon--contextual-menu {% if loop.index == 1 and outer_loop.index == 1 %}u-rotate{% endif %}">Open</i>
@@ -112,7 +112,7 @@
                           <span class="u-truncate"><i class="p-icon--success"></i> {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--contextual-menu">Open</i></span>
                         </button>
                         {% else %}
-                        <span style="padding-top:.35rem;">N/A</span>
+                        <span style="padding-top: 0.35rem;">N/A</span>
                         {% endif %}
                       </td>
                       <td class="u-align--center">
@@ -121,7 +121,7 @@
                           <span class="u-truncate"><i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
                         </button>
                         {% else %}
-                        <span style="padding-top:.35rem;">N/A</span>
+                        <span style="padding-top: 0.35rem;">N/A</span>
                         {% endif %}
                       </td>
                       <td class="u-align--center">
@@ -130,7 +130,7 @@
                           <span class="u-truncate"><i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
                         </button>
                         {% else %}
-                        <span style="padding-top:.35rem;">N/A</span>
+                        <span style="padding-top: 0.35rem;">N/A</span>
                         {% endif %}
                       </td>
                       <td class="u-align--center">
@@ -139,7 +139,7 @@
                           <span class="u-truncate"><i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
                         </button>
                         {% else %}
-                        <span style="padding-top:.35rem;">N/A</span>
+                        <span style="padding-top: 0.35rem;">N/A</span>
                         {% endif %}
                       </td>
 
