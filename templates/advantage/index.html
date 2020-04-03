@@ -21,8 +21,7 @@
     <div class="row">
       <div class="col-12">
         <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
-        <p>You are signed in as {{ openid.fullname }}<br />
-        <small style="color: #666;">({{ openid.email }})</small></p>
+        <p>You are signed in as {{ openid.fullname }} ({{ openid.email }})</p>
         <p class="u-no-margin--bottom">
           <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
             'event' : 'GAEvent',
@@ -38,15 +37,9 @@
 
   {% if enterprise_contracts %}
     <section class="p-strip is-shallow" style="overflow: visible;">
-      <div class="row u-equal-height">
-        <div class="col-12">
-          <hr />
-        </div>
-      </div>
-
       <div class="row">
         <div class="col-6 col-medium-3">
-          <h2 class="p-heading--four u-no-margin--bottom">Your paid subscriptions</h2>
+          <h2>Your paid subscriptions</h2>
         </div>
         <div class="col-6 col-medium-3 u-align--right">
           <div id="reveal-table">
@@ -96,7 +89,7 @@
                     <tr class="p-table__row">
                       <td class="u-no-padding--left">
                           <a href="#" class="p-button u-toggle u-toggle--full-width u-align--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show" style="padding-left: 0.5rem;">
-                              {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if expiring_soon %}<div class="" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} d</div>{% endif %}
+                              {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if expiring_soon %}<div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} days</div>{% endif %}
                           </a>
                       </td>
                       <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
@@ -155,13 +148,13 @@
                                 {% if expiring_soon %}
                                   <tr style="border-top: 0;">
                                     <td class="u-align--right">
-                                      <i class="p-icon--warning" style="margin-top: 0.3rem;"></i>&nbsp;&nbsp;Effective to:
+                                      <i class="p-icon--warning" style="margin-top: 0.3rem;"></i>&nbsp;&nbsp;Ends:
                                     </td>
-                                    <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>&nbsp;({{ contract['contractInfo']['daysTillExpiry'] }} days)</td>
+                                    <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>&nbsp;&mdash;&nbsp;in {{ contract['contractInfo']['daysTillExpiry'] }} days</td>
                                   </tr>
                                 {% else %}
                                   <tr style="border-top: 0;">
-                                    <td class="u-align--right">Effective to:</td>
+                                    <td class="u-align--right">Ends:</td>
                                     <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong></td>
                                   </tr>
                                 {% endif %}
@@ -246,25 +239,16 @@
           {% endfor %}
         </div>
       </div>
-      <div class="row u-sv3">
-
-      </div>
     </section>
   {% endif %}
 
-  <section class="p-strip is-shallow" style="overflow: visible;">
+  <section class="p-strip u-no-padding--top" style="overflow: visible;">
     <div class="row">
       <div class="col-12">
-        <hr />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-4">
-        <h2 class="p-heading--four">Your free personal subscription</h2>
+        <h2>Your free personal subscription</h2>
       </div>
 
-      <div class="col-8 u-hide--small">
+      <div class="col-12 u-hide--small">
         <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply). And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>      <p>Initially, this free subscription is available for Ubuntu 14.04 LTS only.</p>
 
         <table style="width: auto;">
@@ -279,7 +263,7 @@
         </table>
       </div>
 
-      <div class="col-8 u-hide--medium u-hide--large">
+      <div class="col-12 u-hide--medium u-hide--large">
         <dl>
           <dt>To attach a machine:</dt>
           <dd class="u-no-margin--left"><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua attach {{ personal_account.free_token }}</code></pre></dd>
@@ -294,7 +278,7 @@
   {% if not enterprise_contracts %}
     <section class="p-strip is-shallow is-bordered">
       <div class="row">
-        <h2 class="p-heading--four">Plans for enterprise use</h2>
+        <h2>Plans for enterprise use</h2>
         {% include "advantage/_table.html" %}
       </div>
     </section>
@@ -325,11 +309,6 @@
 
   <section class="p-strip is-shallow">
     <div class="row">
-      <div class="col-12">
-        <hr />
-      </div>
-    </div>
-    <div class="row">
       <div class="col-6">
         <h2>Free for personal use</h2>
         <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>
@@ -348,12 +327,6 @@
   </section>
 
   <section class="p-strip is-shallow is-bordered">
-    <div class="row">
-      <div class="col-12">
-        <hr />
-      </div>
-    </div>
-
     <div class="row">
       <h2>Plans for enterprise use</h2>
       {% include "advantage/_table.html" %}

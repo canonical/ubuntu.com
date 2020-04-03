@@ -390,7 +390,7 @@ summary {
 
 .p-table--advantage-contract {
   margin: 0 auto;
-  max-width: 530px;
+  max-width: 630px;
 
   td {
     flex: 1 !important;
@@ -463,6 +463,10 @@ summary {
         right: 0.5rem;
         top: 0.6rem;
       }
+    }
+
+    &[aria-expanded="true"] .u-toggle__supplemental {
+      display: none;
     }
   }
 }
