@@ -126,30 +126,3 @@ class Bug(Base):
 
     id = Column(Integer, primary_key=True)
     uri = Column(String)
-<<<<<<< HEAD
-=======
-
-
-class Package(Base):
-    __tablename__ = "package"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    source = Column(String)
-    launchpad = Column(String)
-    ubuntu = Column(String)
-    debian = Column(String)
-    type = Column(String)
-    releases_status = relationship(
-        "CVERelease", secondary=package_release_status
-    )
-
-
-class CVERelease(Base):
-    __tablename__ = "cve_release"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    status = Column(String)
-    status_description = Column(String)
->>>>>>> Models, remove enums and add uppercase cve url
