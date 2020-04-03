@@ -81,11 +81,45 @@ def releasenotes_redirect():
 
     Old apache redirects: https://pastebin.canonical.com/p/3TXyyNkWkg/
     """
+    releaseName = {
+        "12.04": "PrecisePangolin",
+        "12.10": "QuantalQuetzal",
+        "13.04": "RaringRingtail",
+        "13.10": "SaucySalamander",
+        "14.04": "TrustyTahr",
+        "14.10": "UtopicUnicorn",
+        "15.04": "VividVervet",
+        "15.10": "WilyWerewolf",
+        "16.04": "XenialXerus",
+        "16.10": "YakketyYak",
+        "17.04": "ZestyZapus",
+        "17.10": "BionicBeaver",
+        "18.04": "ArtfulAardvark",
+        "18.10": "CosmicCuttlefish",
+        "19.04": "DiscoDingo",
+        "19.10": "EoanErmine",
+        "20.04": "FocalFossa",
+    }
 
-    ver = flask.request.args.get("ver")
+    flavourName = {
+        "ubuntu": "",
+        "edubuntu": "Edubuntu",
+        "lubuntu": "Lubuntu",
+        "kubuntu": "Kubuntu",
+        "mythbuntu": "Mythbuntu",
+        "ubuntustudio": "UbuntuStudio",
+        "ubuntukylin": "UbuntuKylin",
+        "ubuntu-gnome": "Ubuntu-Gnome",
+        "xubuntu": "Xubuntu",
+    }
+
+    ver = releaseName[flask.request.args.get("ver")[:5]]
+    os = flavourName[flask.request.args.get("os")]
 
     if ver:
-        return flask.redirect(f"https://wiki.ubuntu.com/{ver}/ReleaseNotes")
+        return flask.redirect(
+            f"https://wiki.ubuntu.com/{ver}/ReleaseNotes/{os}"
+        )
     else:
         return flask.redirect(f"https://wiki.ubuntu.com/Releases")
 
