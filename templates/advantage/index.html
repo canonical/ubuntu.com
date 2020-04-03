@@ -90,7 +90,7 @@
                   {% if contract["contractInfo"]["status"] != 'expired' %}
 
                     {% if contract["contractInfo"]["daysTillExpiry"] %}
-                      {% set expiring_soon = contract["contractInfo"]["daysTillExpiry"] < 3000 %}
+                      {% set expiring_soon = contract["contractInfo"]["daysTillExpiry"] <= 30 %}
                     {% endif %}
 
                     <tr class="p-table__row">
