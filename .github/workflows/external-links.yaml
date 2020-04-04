@@ -1,8 +1,8 @@
-name: Links on live
+name: External links
 
 on:
-  schedule:
-    - cron: "30 7 * * 1"
+schedule:
+  - cron: "30 7 * * 1"
 
 jobs:
   check-links:
@@ -16,7 +16,7 @@ jobs:
         run: sudo apt update && sudo apt install linkchecker
 
       - name: Run linkchecker
-        run: linkchecker --check-extern --ignore-url '.*&start=.*' --ignore-url 'https://ubuntuforums.org' --ignore-url 'https://res.cloudinary.com' --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url '/blog/*' --no-warnings http://localhost
+        run: linkchecker --check-extern -threads 0 --ignore-url '.*&start=.*' --ignore-url 'https://ubuntuforums.org' --ignore-url 'https://res.cloudinary.com' --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url '/blog/*' --no-warnings https://ubuntu.com
 
       - name: Send message on failure
         if: failure()
