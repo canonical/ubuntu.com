@@ -174,7 +174,7 @@ app.add_url_rule(
     "templates",
     lambda filename: (
         flask.render_template(f"templates/{filename}.html"),
-        {"Access-Control-Allow-Origin": "discourse.ubuntu.com"},
+        {"Access-Control-Allow-Origin": "https://discourse.ubuntu.com"},
     ),
 )
 
