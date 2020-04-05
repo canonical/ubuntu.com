@@ -1,9 +1,9 @@
 # Standard library
-import datetime
 import json
 import math
 import os
 import re
+from datetime import datetime
 
 # Packages
 import dateutil.parser
@@ -17,7 +17,6 @@ from canonicalwebteam.store_api.stores.snapcraft import SnapcraftStoreApi
 from canonicalwebteam.launchpad import Launchpad
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
-from datetime import datetime
 
 
 # Local
