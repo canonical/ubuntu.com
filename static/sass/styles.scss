@@ -18,8 +18,8 @@
   font-family: "UbtuOverride";
   font-style: normal;
   font-weight: 300;
-  src:
-    url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"),
+  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
+      format("woff2"),
     url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
 }
 
@@ -390,10 +390,14 @@ summary {
 
 .p-table--advantage-contract {
   margin: 0 auto;
-  max-width: 530px;
+  width: auto;
 
   td {
-    flex: 1 !important;
+    display: table-cell;
+  }
+
+  tr {
+    display: table-row;
   }
 }
 
@@ -449,6 +453,25 @@ summary {
     background: transparent;
     border: 0;
     margin-bottom: 0;
+
+    &--full-width {
+      overflow: hidden;
+      padding-right: 2rem;
+      position: relative;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+
+      .p-icon--contextual-menu {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.6rem;
+      }
+    }
+
+    &[aria-expanded="true"] .u-toggle__supplemental {
+      display: none;
+    }
   }
 }
 
@@ -459,17 +482,23 @@ summary {
 
   @media only screen and (min-width: $breakpoint-small) {
     &::after {
-      background: $color-x-light;
+      background: $color-light;
       box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
       content: "";
       height: 1rem;
       pointer-events: none;
       position: absolute;
       right: 2.1rem;
-      top: -2rem;
+      top: -1.2rem;
       transform: rotate(45deg);
       width: 1rem;
       z-index: 5;
+    }
+  }
+
+  @media only screen and (min-width: $breakpoint-large) {
+    &::after {
+      top: -2rem;
     }
   }
 }
@@ -566,14 +595,6 @@ summary {
 // Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/2926
 .p-accordion__tab {
   background-position: top $spv-inner--medium left $sph-inner;
-}
-
-#reveal-table {
-  @media only (min-width: $breakpoint-small) {
-    bottom: 0.3rem;
-    position: absolute;
-    right: 0;
-  }
 }
 
 // Local override for custom table
