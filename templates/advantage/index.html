@@ -81,15 +81,10 @@
               <tbody>
                 {% for contract in enterprise_contracts[account] %}
                   {% if contract["contractInfo"]["status"] != 'expired' %}
-
-                    {% if contract["contractInfo"]["daysTillExpiry"] %}
-                      {% set expiring_soon = contract["contractInfo"]["daysTillExpiry"] <= 3000 %}
-                    {% endif %}
-
                     <tr class="p-table__row">
                       <td>
                           <a href="#" class="p-button u-toggle u-toggle--full-width u-align--left u-no-padding--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show" style="padding-left: 0.5rem;">
-                              {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if expiring_soon %}<div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} days</div>{% endif %}
+                              {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if contract["expiring"] %}<div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} days</div>{% endif %}
                           </a>
                       </td>
                       <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
@@ -145,7 +140,7 @@
                                 <td class="u-align--left"><strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></td>
                               </tr>
                               {% if contract['contractInfo']['effectiveTo'] %}
-                                {% if expiring_soon %}
+                                {% if contract["expiring"] %}
                                   <tr style="border-top: 0;">
                                     <td class="u-align--right">
                                       <i class="p-icon--warning" style="margin-top: 0.3rem;"></i>&nbsp;&nbsp;Ends:
