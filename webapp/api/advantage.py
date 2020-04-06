@@ -94,13 +94,13 @@ def get_contract_machines(contract, session):
     return payload
 
 
-def post_method_id(session, account_id, stripe_method_id):
+def put_method_id(session, account_id, payment_method_id):
     try:
         response = _send(
             _prepare_request(
-                method="post",
+                method="put",
                 path=f"v1/accounts/{account_id}/payment-method/stripe",
-                data={"paymentMethodID": stripe_method_id},
+                data={"paymentMethodID": payment_method_id},
                 session=session,
             )
         )
