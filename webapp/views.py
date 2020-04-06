@@ -239,7 +239,7 @@ def put_stripe_method_id():
             return flask.jsonify({"error": "account_id required"}), 400
 
         return advantage.put_method_id(
-            flask.session, payment_method_id, account_id
+            flask.session, account_id, payment_method_id
         )
     else:
         return flask.jsonify({"error": "authentication required"}), 401
