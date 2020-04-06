@@ -82,7 +82,24 @@ def releasenotes_redirect():
     Old apache redirects: https://pastebin.canonical.com/p/3TXyyNkWkg/
     """
 
-    ver = flask.request.args.get("ver")
+    releaseName = {
+        "12.04": "PrecisePangolin",
+        "12.10": "QuantalQuetzal",
+        "13.04": "RaringRingtail",
+        "13.10": "SaucySalamander",
+        "14.04": "TrustyTahr",
+        "14.10": "UtopicUnicorn",
+        "15.04": "VividVervet",
+        "15.10": "WilyWerewolf",
+        "16.10": "YakketyYak",
+        "17.04": "ZestyZapus",
+        "17.10": "ArtfulAardvark",
+    }
+
+    ver = flask.request.args.get("ver")[:5]
+
+    if ver in releaseName:
+        ver = releaseName[ver]
 
     if ver:
         return flask.redirect(f"https://wiki.ubuntu.com/{ver}/ReleaseNotes")
