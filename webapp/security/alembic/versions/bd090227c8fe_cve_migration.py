@@ -1,8 +1,8 @@
 """“cve_migration”
 
-Revision ID: c3b020de5cb3
+Revision ID: bd090227c8fe
 Revises: e8760725610a
-Create Date: 2020-04-02 17:06:48.979674
+Create Date: 2020-04-06 15:21:32.166263
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = "c3b020de5cb3"
+revision = "bd090227c8fe"
 down_revision = "e8760725610a"
 branch_labels = None
 depends_on = None
@@ -31,25 +31,6 @@ def upgrade():
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
-        "cve_release",
-        sa.Column("id", sa.Integer(), nullable=False),
-        sa.Column("name", sa.String(), nullable=True),
-        sa.Column("status", sa.String(), nullable=True),
-        sa.Column("status_description", sa.String(), nullable=True),
-        sa.PrimaryKeyConstraint("id"),
-    )
-    op.create_table(
-        "package",
-        sa.Column("id", sa.Integer(), nullable=False),
-        sa.Column("name", sa.String(), nullable=True),
-        sa.Column("source", sa.String(), nullable=True),
-        sa.Column("launchpad", sa.String(), nullable=True),
-        sa.Column("ubuntu", sa.String(), nullable=True),
-        sa.Column("debian", sa.String(), nullable=True),
-        sa.Column("type", sa.String(), nullable=True),
-        sa.PrimaryKeyConstraint("id"),
-    )
-    op.create_table(
         "cve_bugs",
         sa.Column("cve_id", sa.String(), nullable=True),
         sa.Column("bug_id", sa.Integer(), nullable=True),
@@ -57,25 +38,11 @@ def upgrade():
         sa.ForeignKeyConstraint(["cve_id"], ["cve.id"],),
     )
     op.create_table(
-        "cve_packages",
-        sa.Column("cve_id", sa.String(), nullable=True),
-        sa.Column("package_id", sa.Integer(), nullable=True),
-        sa.ForeignKeyConstraint(["cve_id"], ["cve.id"],),
-        sa.ForeignKeyConstraint(["package_id"], ["package.id"],),
-    )
-    op.create_table(
         "cve_references",
         sa.Column("cve_id", sa.String(), nullable=True),
         sa.Column("cve_reference_id", sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(["cve_id"], ["cve.id"],),
         sa.ForeignKeyConstraint(["cve_reference_id"], ["cve_reference.id"],),
-    )
-    op.create_table(
-        "package_release_status",
-        sa.Column("package_id", sa.Integer(), nullable=True),
-        sa.Column("release_id", sa.Integer(), nullable=True),
-        sa.ForeignKeyConstraint(["package_id"], ["package.id"],),
-        sa.ForeignKeyConstraint(["release_id"], ["cve_release.id"],),
     )
     op.add_column("cve", sa.Column("approved_by", sa.String(), nullable=True))
     op.add_column("cve", sa.Column("assigned_to", sa.String(), nullable=True))
@@ -87,6 +54,7 @@ def upgrade():
     )
     op.add_column("cve", sa.Column("mitigation", sa.String(), nullable=True))
     op.add_column("cve", sa.Column("notes", sa.String(), nullable=True))
+    op.add_column("cve", sa.Column("packages", sa.JSON(), nullable=True))
     op.add_column("cve", sa.Column("priority", sa.String(), nullable=True))
     op.add_column("cve", sa.Column("public_date", sa.String(), nullable=True))
     op.add_column(
@@ -106,6 +74,7 @@ def downgrade():
     op.drop_column("cve", "public_date_usn")
     op.drop_column("cve", "public_date")
     op.drop_column("cve", "priority")
+    op.drop_column("cve", "packages")
     op.drop_column("cve", "notes")
     op.drop_column("cve", "mitigation")
     op.drop_column("cve", "discovered_by")
@@ -114,12 +83,8 @@ def downgrade():
     op.drop_column("cve", "crd")
     op.drop_column("cve", "assigned_to")
     op.drop_column("cve", "approved_by")
-    op.drop_table("package_release_status")
     op.drop_table("cve_references")
-    op.drop_table("cve_packages")
     op.drop_table("cve_bugs")
-    op.drop_table("package")
-    op.drop_table("cve_release")
     op.drop_table("cve_reference")
     op.drop_table("bug")
     # ### end Alembic commands ###
