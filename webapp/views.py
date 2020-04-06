@@ -91,11 +91,14 @@ def releasenotes_redirect():
         "14.10": "UtopicUnicorn",
         "15.04": "VividVervet",
         "15.10": "WilyWerewolf",
+        "16.10": "YakketyYak",
+        "17.04": "ZestyZapus",
+        "17.10": "ArtfulAardvark",
     }
 
     ver = flask.request.args.get("ver")[:5]
 
-    if releaseName[ver]:
+    if ver in releaseName:
         ver = releaseName[ver]
 
     if ver:
