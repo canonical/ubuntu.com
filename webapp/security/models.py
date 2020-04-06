@@ -50,20 +50,6 @@ cve_references = Table(
     Column("cve_reference_id", Integer, ForeignKey("cve_reference.id")),
 )
 
-cve_packages = Table(
-    "cve_packages",
-    Base.metadata,
-    Column("cve_id", String, ForeignKey("cve.id")),
-    Column("package_id", Integer, ForeignKey("package.id")),
-)
-
-package_release_status = Table(
-    "package_release_status",
-    Base.metadata,
-    Column("package_id", Integer, ForeignKey("package.id")),
-    Column("release_id", Integer, ForeignKey("cve_release.id")),
-)
-
 
 class CVE(Base):
     __tablename__ = "cve"
@@ -71,6 +57,7 @@ class CVE(Base):
     id = Column(String, primary_key=True)
     public_date = Column(String)
     public_date_usn = Column(String)
+    last_updated_date = Column(String)
     crd = Column(String)
     description = Column(String)
     ubuntu_description = Column(String)
@@ -83,7 +70,7 @@ class CVE(Base):
     cvss = Column(String)  # CVSS 3 and Base Score
     references = relationship("CVEReference", secondary=cve_references)
     bugs = relationship("Bug", secondary=cve_bugs)
-    packages = relationship("Package", secondary=cve_packages)
+    packages = Column(JSON)
     status = Column(String)
 
 
@@ -134,27 +121,3 @@ class Bug(Base):
 
     id = Column(Integer, primary_key=True)
     uri = Column(String)
-
-
-class Package(Base):
-    __tablename__ = "package"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    source = Column(String)
-    launchpad = Column(String)
-    ubuntu = Column(String)
-    debian = Column(String)
-    type = Column(String)
-    releases_status = relationship(
-        "CVERelease", secondary=package_release_status
-    )
-
-
-class CVERelease(Base):
-    __tablename__ = "cve_release"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    status = Column(String)
-    status_description = Column(String)
