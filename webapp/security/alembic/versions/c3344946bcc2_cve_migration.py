@@ -1,8 +1,8 @@
 """“cve_migration”
 
-Revision ID: bd090227c8fe
+Revision ID: c3344946bcc2
 Revises: e8760725610a
-Create Date: 2020-04-06 15:21:32.166263
+Create Date: 2020-04-07 10:20:22.556357
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = "bd090227c8fe"
+revision = "c3344946bcc2"
 down_revision = "e8760725610a"
 branch_labels = None
 depends_on = None
@@ -52,6 +52,9 @@ def upgrade():
     op.add_column(
         "cve", sa.Column("discovered_by", sa.String(), nullable=True)
     )
+    op.add_column(
+        "cve", sa.Column("last_updated_date", sa.String(), nullable=True)
+    )
     op.add_column("cve", sa.Column("mitigation", sa.String(), nullable=True))
     op.add_column("cve", sa.Column("notes", sa.String(), nullable=True))
     op.add_column("cve", sa.Column("packages", sa.JSON(), nullable=True))
@@ -77,6 +80,7 @@ def downgrade():
     op.drop_column("cve", "packages")
     op.drop_column("cve", "notes")
     op.drop_column("cve", "mitigation")
+    op.drop_column("cve", "last_updated_date")
     op.drop_column("cve", "discovered_by")
     op.drop_column("cve", "description")
     op.drop_column("cve", "cvss")
