@@ -225,7 +225,7 @@ def advantage_view():
     )
 
 
-def put_stripe_method_id():
+def post_stripe_method_id():
     if auth.is_authenticated(flask.session):
         if not flask.request.is_json:
             return flask.jsonify({"error": "JSON required"}), 400
@@ -245,12 +245,8 @@ def put_stripe_method_id():
         return flask.jsonify({"error": "authentication required"}), 401
 
 
-def get_renewal():
+def get_renewal(renewal_id=""):
     if auth.is_authenticated(flask.session):
-        if not flask.request.is_json:
-            return flask.jsonify({"error": "JSON required"}), 400
-
-        renewal_id = flask.request.json.get("renewal_id")
         if not renewal_id:
             return flask.jsonify({"error": "renewal_id required"}), 400
 
@@ -259,12 +255,8 @@ def get_renewal():
         return flask.jsonify({"error": "authentication required"}), 401
 
 
-def accept_renewal():
+def accept_renewal(renewal_id=""):
     if auth.is_authenticated(flask.session):
-        if not flask.request.is_json:
-            return flask.jsonify({"error": "JSON required"}), 400
-
-        renewal_id = flask.request.json.get("renewal_id")
         if not renewal_id:
             return flask.jsonify({"error": "renewal_id required"}), 400
 

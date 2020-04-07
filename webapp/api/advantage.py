@@ -2,7 +2,6 @@ import os
 
 from requests import Request, Session
 from pymacaroons import Macaroon
-from requests.exceptions import HTTPError
 
 from webapp.macaroons import binary_serialize_macaroons
 
@@ -95,55 +94,35 @@ def get_contract_machines(contract, session):
 
 
 def put_method_id(session, account_id, payment_method_id):
-    try:
-        response = _send(
-            _prepare_request(
-                method="put",
-                path=f"v1/accounts/{account_id}/payment-method/stripe",
-                data={"paymentMethodID": payment_method_id},
-                session=session,
-            )
+    response = _send(
+        _prepare_request(
+            method="put",
+            path=f"v1/accounts/{account_id}/payment-method/stripe",
+            data={"paymentMethodID": payment_method_id},
+            session=session,
         )
-    except HTTPError as e:
-        return (
-            {"method": e.response.text, "status_code": e.response.status_code},
-            e.response.status_code,
-        )
+    )
 
     return response.json()
 
 
 def get_renewal(session, renewal_id):
-    try:
-        response = _send(
-            _prepare_request(
-                method="get",
-                path=f"v1/renewals/{renewal_id}",
-                session=session,
-            )
+    response = _send(
+        _prepare_request(
+            method="get", path=f"v1/renewals/{renewal_id}", session=session,
         )
-    except HTTPError as e:
-        return (
-            {"method": e.response.text, "status_code": e.response.status_code},
-            e.response.status_code,
-        )
+    )
 
     return response.json()
 
 
 def accept_renewal(session, renewal_id):
-    try:
-        response = _send(
-            _prepare_request(
-                method="post",
-                path=f"v1/renewals/{renewal_id}/acceptance",
-                session=session,
-            )
+    response = _send(
+        _prepare_request(
+            method="post",
+            path=f"v1/renewals/{renewal_id}/acceptance",
+            session=session,
         )
-    except HTTPError as e:
-        return (
-            {"method": e.response.text, "status_code": e.response.status_code},
-            e.response.status_code,
-        )
+    )
 
     return response.json()
