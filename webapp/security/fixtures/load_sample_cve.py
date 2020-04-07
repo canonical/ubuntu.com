@@ -38,7 +38,51 @@ def load_sample_cve():
                     "status_description": "(1.0.49-4)",
                 },
             ],
-        }
+        },
+        {
+            "name": "gitlab2",
+            "type": "package",
+            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
+            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
+            "debian": "https://tracker.debian.org/pkg/gitlab",
+            "releases": [
+                {"name": "Upstream", "status": "DNE"},
+                {
+                    "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
+                    "status": "needs-triage",
+                },
+            ],
+        },
+        {
+            "name": "gitlab3",
+            "type": "package",
+            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
+            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
+            "debian": "https://tracker.debian.org/pkg/gitlab",
+            "releases": [{"name": "Upstream", "status": "DNE"}],
+        },
+        {
+            "name": "gitlab4",
+            "type": "package",
+            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
+            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
+            "debian": "https://tracker.debian.org/pkg/gitlab",
+            "releases": [
+                {"name": "Upstream", "status": "DNE"},
+                {
+                    "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
+                    "status": "needs-triage",
+                },
+            ],
+        },
     ]
     objects = [
         CVE(
