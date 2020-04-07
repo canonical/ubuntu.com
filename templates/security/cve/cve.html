@@ -33,22 +33,29 @@
   <div class="p-corner-ribbon u-hide--small">
     Not in Ubuntu
   </div>
-  <div class="u-fixed-width">
-    {{cve.references}}
-    <h1>CVE-2019-1010318</h1>
-    <p>Published 2020-03-18 20:14:22 UTC</p>
-    <p>
-      ** REJECT ** DO NOT USE THIS CANDIDATE NUMBER. ConsultIDs: <a
-        href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>.<br>
-      Reason: This candidate is a reservation duplicate of <a
-        href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>.<br>
-      Notes:
-      All CVE users should reference <a
-        href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>
-      instead of
-      this candidate.<br>
-      All references and descriptions in this candidate have been removed to prevent accidental usage.
-    </p>
+  {% endif %}
+
+  <div class="row">
+    <div class="col-8">
+      <h1>{{ cve.id}}</h1>
+
+      {% if cve.public_date %}
+      <p>Published {{ cve.public_date }}</p>
+      {% endif %}
+
+      {% if cve.status == 'active' and cve.last_updated_date and cve.last_updated_date != cve.public_date %}
+      <p>Last updated {{ cve.last_updated_date }}</p>
+      {% endif %}
+
+      {% if cve.description %}
+      <p>{{ cve.description }}</p>
+      {% endif %}
+
+      {% if cve.ubuntu_description %}
+      <h2>From the Ubuntu security team</h2>
+      <p>{{ cve.ubuntu_description }}</p>
+      {% endif %}
+    </div>
 
     <h2>From the Ubuntu Security Team</h2>
     <p>Jasiel Spelman discovered that a double free existed in
