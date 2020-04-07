@@ -1,5 +1,11 @@
 {% extends "security/cve/base_cve.html" %} {% block title %}CVEs{% endblock %}
 
+{% block head_extra %}
+  {% if cve.status == 'rejected' or cve.status == 'not-for-us' %}
+  <meta name="robots" content="noindex">
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 
 <nav class="p-navigation--secondary">
@@ -28,262 +34,112 @@
   </div>
 </nav>
 
-<section class=" p-strip">
+{% if cve.status == 'rejected' or cve.status == 'not-for-us' %}
+<section class="p-strip--light is-bordered--top">
+{% else %}
+<section class="p-strip">
+{% endif %}
+
+  {% if cve.status == 'rejected' %}
+  <div class="p-corner-ribbon u-hide--small">
+    Rejected
+  </div>
+  {% endif %}
+
+  {% if cve.status == 'not-for-us' %}
   <div class="p-corner-ribbon u-hide--small">
     Not in Ubuntu
   </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="col-8">
+      <h1>{{ cve.id}}</h1>
+
+      {% if cve.public_date %}
+      <p>Published {{ cve.public_date }}</p>
+      {% endif %}
+
+      {% if cve.last_updated_date and cve.last_updated_date != cve.public_date %}
+      <p>Last updated {{ cve.last_updated_date }}</p>
+      {% endif %}
+
+      {% if cve.description %}
+      <p>{{ cve.description }}</p>
+      {% endif %}
+
+      {% if cve.ubuntu_description %}
+      <h2>From the Ubuntu security team</h2>
+      <p>{{ cve.ubuntu_description }}</p>
+      {% endif %}
+    </div>
+
+    {% if cve.status == 'active' %}
+    <div class="col-4">
+      <p>Priority: {{ cve.priority }}</p>
+      <p>CVSS base score: {{ cve.cvss }}</p>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if cve.status == 'active' %}
   <div class="u-fixed-width">
-    {{cve.references}}
-    <h1>CVE-2019-1010318</h1>
-    <p>Published 2020-03-18 20:14:22 UTC</p>
-    <p>
-      ** REJECT ** DO NOT USE THIS CANDIDATE NUMBER. ConsultIDs: <a
-        href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>.<br>
-      Reason: This candidate is a reservation duplicate of <a
-        href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>.<br>
-      Notes:
-      All CVE users should reference <a
-        href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-11498.html">CVE-2019-11498</a>
-      instead of
-      this candidate.<br>
-      All references and descriptions in this candidate have been removed to prevent accidental usage.
-    </p>
-
-    <h2>From the Ubuntu Security Team</h2>
-    <p>Jasiel Spelman discovered that a double free existed in
-      docker-credential-helpers. A local attacker could use this to cause a denial
-      of service (crash) or possibly execute arbitrary code.</p>
-
     <h2>Status</h2>
     <table>
       <thead>
         <tr>
           <th>Package</th>
           <th>Release</th>
-          <th>
-            <div class="p-icon--container">
-              <i class="p-icon--placeholder"></i>
-            </div>
-            <div class="p-container--icon">
-              Status
-            </div>
-          </th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td rowspan="7">
-            Source: <a href="https://people.canonical.com/~ubuntu-security/cve/pkg/docker.io.html">docker.io</a> (<a
-              href="https://launchpad.net/distros/ubuntu/+source/docker.io">LP</a> <a
-              href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords=docker.io">Ubuntu</a>
-            <a href="https://tracker.debian.org/docker.io">Debian</a>)
-          </td>
-          <td>Upstream</td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--placeholder"></i>
-            </div>
-            <div class="p-container--icon">
-              Needs triage
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Ubuntu 12.04 ESM (Precise Pangolin)</td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--success"></i>
-            </div>
-            <div class="p-container--icon">DNE</div>
-          </td>
-        </tr>
-        <tr>
-          <td>Ubuntu 14.04 ESM (Trusty Tahr)</td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--success"></i>
-            </div>
-            <div class="p-container--icon">DNE</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://launchpad.net/ubuntu/xenial/+source/docker.io">Ubuntu 16.04 LTS (Xenial
-              Xerus)</a>
-          </td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--placeholder"></i>
-            </div>
-            <div class="p-container--icon">
-              released (18.09.7-0ubuntu1~16.04.5)
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://launchpad.net/ubuntu/bionic/+source/docker.io">Ubuntu 18.04 LTS (Bionic
-              Beaver)</a>
-          </td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--placeholder"></i>
-            </div>
-            <div class="p-container--icon">
-              released (18.09.7-0ubuntu1~18.04.4)
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://launchpad.net/ubuntu/eoan/+source/docker.io">Ubuntu 19.10 (Eoan Ermine)</a>
-          </td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--success"></i>
-            </div>
-            <div class="p-container--icon">
-              not-affected (19.03.2-0ubuntu1)
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://launchpad.net/ubuntu/focal/+source/docker.io">Ubuntu 20.04 (Focal Fossa)</a>
-          </td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--success"></i>
-            </div>
-            <div class="p-container--icon">
-              not-affected (19.03.6-0ubuntu1)
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td rowspan="7">
-            Source: <a
-              href="https://people.canonical.com/~ubuntu-security/cve/pkg/golang-github-docker-docker-credential-helpers.html">golang-github-docker-credential-helpers</a>
-            (<a
-              href="https://launchpad.net/distros/ubuntu/+source/golang-github-docker-docker-credential-helpers">LP</a>
-            <a
-              href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords=golang-github-docker-docker-credential-helpers">Ubuntu</a>
-            <a href="https://tracker.debian.org/golang-github-docker-docker-credential-helpers">Debian</a>)
-          </td>
-          <td>Upstream</td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--placeholder"></i>
-            </div>
-            <div class="p-container--icon">
-              needs-triage
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Ubuntu 12.04 ESM (Precise Pangolin)</td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--success"></i>
-            </div>
-            <div class="p-container--icon">DNE</div>
-          </td>
-        </tr>
-        <tr>
-          <td>Ubuntu 14.04 ESM (Trusty Tahr)</td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--success"></i>
-            </div>
-            <div class="p-container--icon">DNE</div>
-          </td>
-        </tr>
-        <tr>
-          <td>Ubuntu 16.04 ESM (Xenial Xerus)</td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--success"></i>
-            </div>
-            <div class="p-container--icon">DNE</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://launchpad.net/ubuntu/bionic/+source/golang-github-docker-docker-credential-helpers">Ubuntu
-              18.04 LTS (Bionic Beaver)</a>
-          </td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--error"></i>
-            </div>
-            <div class="p-container--icon">
-              needed
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://launchpad.net/ubuntu/eoan/+source/golang-github-docker-docker-credential-helpers">Ubuntu
-              19.10 (Eoan Ermine)</a>
-          </td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--success"></i>
-            </div>
-            <div class="p-container--icon">
-              not-affected (0.6.1-4)
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <a href="https://launchpad.net/ubuntu/focal/+source/golang-github-docker-docker-credential-helpers">Ubuntu
-              20.04 (Focal Fossa)</a>
-          </td>
-          <td>
-            <div class="p-icon--container">
-              <i class="p-icon--success"></i>
-            </div>
-            <div class="p-container--icon">
-              not-affected (0.6.1-4)
-            </div>
-          </td>
-        </tr>
+        {% for package in cve.packages %}
+          <tr>
+            <td rowspan="{{ package.releases | length }}">{{ package.name }}</td>
+            <td>{{ package.releases[0].name }}</td>
+            <td>{{ package.releases[0].status }}</td>
+          </tr>
+          {% for n in range(package.releases | length) %}
+            {% if n > 0 %}
+            <tr>
+              <td>{{ package.releases[n].name }}</td>
+              <td>{{ package.releases[n].status }}</td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
       </tbody>
     </table>
+  </div>
+  {% endif %}
+
+  <div class="u-fixed-width">
+    {% if cve.status == 'active' and cve.notes %}
     <h2>Notes</h2>
-    <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi aliquam eos consequatur possimus nulla
-      a velit
-      minima, et aspernatur praesentium! Recusandae, dignissimos ex nostrum nihil molestiae non quibusdam et.
-      Placeat!
-    </P>
+    <p>{{ cve.notes }}</p>
+    {% endif %}
+
     <h2>References</h2>
+    {% if cve.references %}
+    <ul>
+    {% for reference in cve.references %}
+      <li><a href="{{ reference.uri }}">{{ reference.uri }}</a></li>
+    {% endfor %}
+    </ul>
+    {% else %}
     <ul>
       <li>
-        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1010318">
-          https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1010318
-        </a>
-      </li>
-      <li>
-        <a href="https://github.com/dbry/WavPack/commit/bc6cba3f552c44565f7f1e66dc1580189addb2b4">
-          https://github.com/dbry/WavPack/commit/bc6cba3f552c44565f7f1e66dc1580189addb2b4
-        </a>
-      </li>
-      <li>
-        <a href="https://github.com/dbry/WavPack/issues/67">
-          https://github.com/dbry/WavPack/issues/67
-        </a>
-      </li>
-      <li>
-        <a href="https://usn.ubuntu.com/usn/usn-4062-1">
-          https://usn.ubuntu.com/usn/usn-4062-1
+        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">
+          MITRE
         </a>
       </li>
     </ul>
+    {% endif %}
+
   </div>
 </section>
 
 {% with first_item="_security_discussion", second_item="_security_esm",
 third_item="_security_further_reading" %}{% include
-"shared/contextual_footers/_contextual_footer.html" %}{% endwith %} {% endblock
-%}
+"shared/contextual_footers/_contextual_footer.html" %}{% endwith %} {% endblock %}
