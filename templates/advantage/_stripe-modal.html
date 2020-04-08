@@ -1,0 +1,63 @@
+<div class="p-modal u-hide" id="renewal-modal" style="overflow: none; position: fixed; z-index: 100;">
+  <div
+    class="p-modal__dialog"
+    role="dialog"
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+    style="bottom: 1.5rem; left: 1.5rem; margin: auto; overflow: scroll; position: absolute; right: 1.5rem; top: 1.5rem; width: 600px;"
+  >
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="modal-title">Renew subscription</h2>
+      <button
+        class="p-modal__close"
+        aria-label="Close active modal"
+        aria-controls="renewal-modal"
+      >
+        Close
+      </button>
+    </header>
+    <p id="modal-description">
+      <ul class="p-list">
+        <li class="p-list__item js-renewal-name">Product name:</li>
+        <li class="p-list__item js-renewal-start">Effective from:</li>
+        <li class="p-list__item js-renewal-quantity">Quantity:</li>
+        <li class="p-list__item js-renewal-total">Total:</li>
+      </ul>
+      <form id="payment-form" method="POST" action="/advantage/payment-method">
+        <fieldset>
+          <label for="name">Name</label>
+          <input name="name" type="text" required>
+
+          <label for="email">Email</label>
+          <input name="email" type="email" required>
+
+          <label for="address">Address</label>
+          <input name="address" type="text">
+
+          <label for="city">City</label>
+          <input name="city" type="text">
+
+          <label for="postal_code">ZIP</label>
+          <input name="postal_code" type="text">
+
+          {% with raw="true" %}
+          {% include "shared/forms/_country.html" %}
+          {% endwith %}
+
+          <label>Payment information:</label>
+
+          <div id="card-errors" class="u-hide"></div>
+          <div id="card-element" class="field" style="padding: 9px; background: #fff; border: 1px solid #999; border-radius: .125rem; box-shadow: inset 0 1px 1px rgba(0,0,0,0.12);"></div>
+        </fieldset>
+
+        <button class="js-payment-method" disabled type="submit">Add payment method&nbsp;&nbsp;<i class="p-icon--spinner u-animation--spin u-hide"></i></button>
+
+        <button class="js-process-payment p-button--positive u-hide" disabled type="submit">Pay&nbsp;<span class="js-payment-total"></span>&nbsp;&nbsp;<i class="p-icon--spinner u-animation--spin u-hide"></i></button>
+      </form>
+    </p>
+  </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script src="{{ versioned_static('js/build/stripe.min.js') }}" defer></script>
