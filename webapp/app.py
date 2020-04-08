@@ -29,6 +29,7 @@ from webapp.context import (
     get_navigation,
     releases,
 )
+
 from webapp.views import (
     accept_renewal,
     advantage_view,
@@ -136,7 +137,7 @@ app.add_url_rule(
 )
 
 app.add_url_rule(
-    "/advantage/renewals/{renewal_id}/process-payment",
+    "/advantage/renewals/<renewal_id>/process-payment",
     view_func=accept_renewal,
     methods=["POST"],
 )
