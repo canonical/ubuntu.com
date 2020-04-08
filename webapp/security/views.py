@@ -10,12 +10,12 @@ from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
-from sqlalchemy import asc, desc, and_, func
+from sqlalchemy import asc, desc
 from sqlalchemy.orm.exc import NoResultFound
 
 # Local
 from webapp.security.database import db_session
-from webapp.security.models import Notice, Reference, Release, CVE
+from webapp.security.models import Notice, Reference, Release, CVE, Package
 from webapp.security.schemas import NoticeSchema
 
 markdown_parser = Markdown(
@@ -259,7 +259,6 @@ def api_create_notice():
 # CVE views
 # ===
 def cve_index():
-<<<<<<< HEAD
     """
     Display the list of CVEs, with pagination.
     Also accepts the following filtering query parameters:
@@ -274,26 +273,20 @@ def cve_index():
     order_by = flask.request.args.get("order-by", default="oldest")
     query = flask.request.args.get("q", default="")
     priority = flask.request.args.get("priority", default="")
+    package = flask.request.args.get("package", default="")
     limit = flask.request.args.get("limit", default=20, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
 
     # Basic queries
-=======
-
-    # Query parameters
-    order_by = flask.request.args.get("order_by", default="oldest", type=str)
-    search_desc = flask.request.args.get("search_desc", default="", type=str)
-    package = flask.request.args.get("package", default="", type=str)
-    priority = flask.request.args.get("priority", default="", type=str)
-    limit = flask.request.args.get("limit", default=20, type=int)
-    offset = flask.request.args.get("offset", type=int)
-
-<<<<<<< HEAD
->>>>>>> Model changes
     cves_query = db_session.query(CVE)
     releases_query = db_session.query(Release)
 
     # Apply search filters
+    if package:
+        cves_query = cves_query.join(Package, CVE.packages).filter(
+            Package.name.ilike(f"%{package}%")
+        )
+
     if priority:
         cves_query = cves_query.filter(CVE.priority == priority)
 
@@ -302,78 +295,19 @@ def cve_index():
 
     sort = asc if order_by == "oldest" else desc
 
-<<<<<<< HEAD
     cves = (
-=======
-    # Search functionality
-
-    if search_id:
-        cves_query = db_session.query(CVE).get(search_id.upper())
-
-    if search_desc:
-        cves_query = cves_query.filter(
-            CVE.description.ilike(f"%{search_desc}%")
-        )
-
-=======
-    # Basic queries
-    cves_query = db_session.query(CVE)
-    releases_query = db_session.query(Release)
-
-    # Search functionality
-    if search_desc and package and priority:
-        matched_desc = cves_query.filter(
-            and_(
-                CVE.description.ilike(f"%{search_desc}%"),
-                func.lower(CVE.priority) == func.lower(priority),
-            )
-        ).all()
-        print(matched_desc)
-
-    if search_desc and priority:
-        cves_query = cves_query.filter(
-            and_(
-                CVE.description.ilike(f"%{search_desc}%"),
-                func.lower(CVE.priority) == func.lower(priority),
-            )
-        )
-
-    # Pagination
-    total_results = cves_query.count()
-    total_pages = ceil(total_results / limit)
-
-    if offset > total_pages:
-        flask.abort(404)
-
-    sort = asc if order_by == "oldest" else desc
-
->>>>>>> Pagination corrections
-    list_cve = (
->>>>>>> Model changes
         cves_query.order_by(sort(CVE.public_date))
         .offset(offset)
         .limit(limit)
         .all()
     )
 
-<<<<<<< HEAD
     # Pagination
     total_results = cves_query.count()
-=======
-    pagination = (
-        dict(
-            total_pages=total_pages,
-            total_results=total_results,
-            page_first_result=offset + 1,
-            page_last_result=offset + len(list_cve),
-        ),
-    )
->>>>>>> Pagination corrections
 
     return flask.render_template(
         "security/cve/index.html",
         releases=releases_query.all(),
-<<<<<<< HEAD
         cves=cves,
         total_results=total_results,
         total_pages=ceil(total_results / limit),
@@ -381,10 +315,6 @@ def cve_index():
         limit=limit,
         priority=priority,
         query=query,
-=======
-        list_cve=list_cve,
-        pagination=pagination,
->>>>>>> Pagination corrections
     )
 
 
