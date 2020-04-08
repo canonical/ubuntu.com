@@ -46,6 +46,12 @@ def load_sample_cve():
                     "status_description": "(1.0.49-4)",
                 },
             ],
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        }
+=======
+>>>>>>> Pagination corrections
         },
         {
             "name": "gitlab2",
@@ -56,6 +62,7 @@ def load_sample_cve():
             "releases": [
                 {"name": "Upstream", "status": "DNE"},
                 {
+<<<<<<< HEAD
                     "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
                     "status": "needs-triage",
                 },
@@ -117,6 +124,8 @@ def load_sample_cve():
             "releases": [
                 {"name": "Upstream", "status": "DNE"},
                 {
+=======
+>>>>>>> Pagination corrections
                     "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
                     "status": "needs-triage",
                 },
@@ -143,6 +152,71 @@ def load_sample_cve():
                 },
             ],
         },
+<<<<<<< HEAD
+=======
+        {
+            "name": "gitlab3",
+            "type": "package",
+            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
+            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
+            "debian": "https://tracker.debian.org/pkg/gitlab",
+            "releases": [
+                {"name": "Upstream", "status": "DNE"},
+                {
+                    "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
+                    "status": "DNE",
+                },
+                {
+                    "name": "Ubuntu 14.04 ESM (Precise Pangolin)",
+                    "status": "DNE",
+                },
+                {"name": "Ubuntu 16.04 LTS (Xenial Xerus)", "status": "DNE"},
+                {"name": "Ubuntu 18.04 LTS (Bionic Beaver)", "status": "DNE"},
+                {"name": "Ubuntu 19.10 (Eoan Ermine)", "status": "DNE"},
+                {
+                    "name": "Ubuntu 20.04 (Focal Fossa)",
+                    "status": "not-affected",
+                    "status_description": "(1.0.49-4)",
+                },
+            ],
+        },
+        {
+            "name": "gitlab4",
+            "type": "package",
+            "source": "https://launchpad.net/distros/ubuntu/+source/gitlab",
+            "ubuntu": "https://launchpad.net/ubuntu/+source/gitlab",
+            "debian": "https://tracker.debian.org/pkg/gitlab",
+            "releases": [
+                {"name": "Upstream", "status": "DNE"},
+                {
+                    "name": "Ubuntu 12.04 ESM (Precise Pangolin)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 14.04 ESM (Precise Pangolin)",
+                    "status": "DNE",
+                },
+                {
+                    "name": "Ubuntu 16.04 LTS (Xenial Xerus)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 18.04 LTS (Bionic Beaver)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 19.10 (Eoan Ermine)",
+                    "status": "needs-triage",
+                },
+                {
+                    "name": "Ubuntu 20.04 (Focal Fossa)",
+                    "status": "not-affected",
+                    "status_description": "(1.0.49-4)",
+                },
+            ],
+        },
+>>>>>>> Pagination corrections
+>>>>>>> Pagination corrections
     ]
     objects = [
         CVE(

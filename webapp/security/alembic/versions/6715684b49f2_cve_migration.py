@@ -1,5 +1,13 @@
 """“cve_migration”
 
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:webapp/security/alembic/versions/6715684b49f2_cve_migration.py
+Revision ID: 6715684b49f2
+Revises: e8760725610a
+Create Date: 2020-04-08 11:06:29.210002
+========
+>>>>>>> Pagination corrections
 <<<<<<< HEAD:webapp/security/alembic/versions/6715684b49f2_cve_migration.py
 Revision ID: 6715684b49f2
 Revises: e8760725610a
@@ -9,6 +17,10 @@ Revision ID: 278925a9dfd2
 Revises: e8760725610a
 Create Date: 2020-04-07 13:24:57.479437
 >>>>>>> Model changes:webapp/security/alembic/versions/278925a9dfd2_cve_migration.py
+<<<<<<< HEAD
+=======
+>>>>>>>> Pagination corrections:webapp/security/alembic/versions/278925a9dfd2_cve_migration.py
+>>>>>>> Pagination corrections
 
 """
 from alembic import op
@@ -16,11 +28,21 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:webapp/security/alembic/versions/6715684b49f2_cve_migration.py
+revision = "6715684b49f2"
+========
+>>>>>>> Pagination corrections
 <<<<<<< HEAD:webapp/security/alembic/versions/6715684b49f2_cve_migration.py
 revision = "6715684b49f2"
 =======
 revision = "278925a9dfd2"
 >>>>>>> Model changes:webapp/security/alembic/versions/278925a9dfd2_cve_migration.py
+<<<<<<< HEAD
+=======
+>>>>>>>> Pagination corrections:webapp/security/alembic/versions/278925a9dfd2_cve_migration.py
+>>>>>>> Pagination corrections
 down_revision = "e8760725610a"
 branch_labels = None
 depends_on = None
