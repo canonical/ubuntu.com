@@ -1,13 +1,14 @@
 {% extends "robotics/base_robotics.html" %}
 
-
 {% block title %}Robotics | Ubuntu for the Internet of Things {% endblock %}
+
 {% block meta_description %}With hundreds of thousands of drones and robots deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the robotics sector. {% endblock meta_description %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1cDxhPCQbHA0r6n9JXNmO50ANLPZhCFdgwATX6f90guU{% endblock meta_copydoc %}
 
 {% block content %}
 
-<div class="p-strip--suru-bottomed js-livestream__intro">
+<section class="p-strip--suru-bottomed js-livestream__intro">
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>Build security into your robot&rsquo;s future with Ubuntu</h1>
@@ -31,14 +32,14 @@
       }}
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip--light">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     {% with title="Proven in the field - companies using ROS on Ubuntu", json_feed_url="https://partners.ubuntu.com/partners.json?technology__name=Robotics", feed_item_limit=10 %}{% include "shared/_partner-logos.html" %}{% endwith %}
     <p class="u-align--center"><a href="https://partners.ubuntu.com/find-a-partner?technology=robotics" class="p-link--external">See all of our robotics partners</a></p>
   </div>
-</div>
+</section>
 
 <section class="p-strip">
   <div class="u-fixed-width">
@@ -254,7 +255,7 @@
   </div>
 </section>
 
-<div class="p-strip">
+<section class="p-strip">
   <div class="u-fixed-width">
     <h3>Learn more about robotics</h3>
     <div class="row p-divider u-no-padding--left u-no-padding--right">
