@@ -32,12 +32,15 @@ from webapp.context import (
     releases,
 )
 from webapp.views import (
+    accept_renewal,
     advantage_view,
     blog_blueprint,
     blog_custom_group,
     blog_custom_topic,
     blog_press_centre,
     download_thank_you,
+    get_renewal,
+    post_stripe_method_id,
     releasenotes_redirect,
 )
 from webapp.login import login_handler, logout
@@ -112,6 +115,20 @@ def utility_processor():
 
 # Simple routes
 app.add_url_rule("/advantage", view_func=advantage_view)
+app.add_url_rule(
+    "/advantage/payment-method",
+    view_func=post_stripe_method_id,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/advantage/renewals/{renewal_id}", view_func=get_renewal, methods=["GET"],
+)
+
+app.add_url_rule(
+    "/advantage/renewals/{renewal_id}/process-payment",
+    view_func=accept_renewal,
+    methods=["POST"],
+)
 app.add_url_rule(
     (
         "/download"
