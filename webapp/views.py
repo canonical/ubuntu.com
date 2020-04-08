@@ -88,13 +88,10 @@ def releasenotes_redirect():
     for codename, release in Data().releases.items():
         short_version = ".".join(release.version.split(".")[:2])
         if version == short_version:
-            full_codename = (
-                re.match(r".*\((.*)\)$", release.name)
-                .groups()[0]
-                .replace(" ", "")
-            )
+            release_slug = release.full_codename.replace(" ", "")
+
             return flask.redirect(
-                f"https://wiki.ubuntu.com/{full_codename}/ReleaseNotes"
+                f"https://wiki.ubuntu.com/{release_slug}/ReleaseNotes"
             )
 
     return flask.redirect(f"https://wiki.ubuntu.com/Releases")
