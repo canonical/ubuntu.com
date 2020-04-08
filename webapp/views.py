@@ -341,6 +341,7 @@ def advantage_view():
     personal_account = None
     enterprise_contracts = {}
     entitlements = {}
+    open_subscription = flask.request.args.get("subscription", None)
 
     if user_info(flask.session):
         advantage = AdvantageContracts(
@@ -468,6 +469,7 @@ def advantage_view():
         accounts=accounts,
         enterprise_contracts=enterprise_contracts,
         personal_account=personal_account,
+        open_subscription=open_subscription,
     )
 
 
