@@ -17,7 +17,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 # Local
 from webapp.security.database import db_session
-from webapp.security.models import Notice, Reference, Release, CVE
+from webapp.security.models import Notice, Reference, Release, CVE, Package
 from webapp.security.schemas import NoticeSchema
 from webapp.security.auth import authorization_required
 
@@ -277,6 +277,7 @@ def cve_index():
     order_by = flask.request.args.get("order-by", default="oldest")
     query = flask.request.args.get("q", default="")
     priority = flask.request.args.get("priority", default="")
+    package = flask.request.args.get("package", default="")
     limit = flask.request.args.get("limit", default=20, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
 
@@ -284,6 +285,11 @@ def cve_index():
     releases_query = db_session.query(Release)
 
     # Apply search filters
+    if package:
+        cves_query = cves_query.join(Package, CVE.packages).filter(
+            Package.name.ilike(f"%{package}%")
+        )
+
     if priority:
         cves_query = cves_query.filter(CVE.priority == priority)
 
