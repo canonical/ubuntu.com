@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import urllib.parse
 
 # Packages
 import dateutil.parser
@@ -96,6 +97,11 @@ def advantage_view():
     enterprise_contracts = {}
     entitlements = {}
     openid = flask.session.get("openid")
+    open_subscription = flask.request.args.get("subscription", None)
+
+    if not auth.is_authenticated(flask.session) and open_subscription:
+        redirect_url = urllib.parse.quote(f"{flask.request.full_path}")
+        return flask.redirect(f"/login?next={redirect_url}")
 
     if auth.is_authenticated(flask.session):
         try:
@@ -220,6 +226,7 @@ def advantage_view():
             accounts=accounts,
             enterprise_contracts=enterprise_contracts,
             personal_account=personal_account,
+            open_subscription=open_subscription,
         ),
         {"Cache-Control": "private"},
     )
