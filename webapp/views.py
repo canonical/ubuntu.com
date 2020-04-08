@@ -8,6 +8,7 @@ import dateutil.parser
 import feedparser
 import flask
 import pytz
+from ubuntu_release_info.data import Data
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 from geolite2 import geolite2
@@ -82,29 +83,21 @@ def releasenotes_redirect():
     Old apache redirects: https://pastebin.canonical.com/p/3TXyyNkWkg/
     """
 
-    releaseName = {
-        "12.04": "PrecisePangolin",
-        "12.10": "QuantalQuetzal",
-        "13.04": "RaringRingtail",
-        "13.10": "SaucySalamander",
-        "14.04": "TrustyTahr",
-        "14.10": "UtopicUnicorn",
-        "15.04": "VividVervet",
-        "15.10": "WilyWerewolf",
-        "16.10": "YakketyYak",
-        "17.04": "ZestyZapus",
-        "17.10": "ArtfulAardvark",
-    }
+    version = flask.request.args.get("ver", "")[:5]
 
-    ver = flask.request.args.get("ver")[:5]
+    for codename, release in Data().releases.items():
+        short_version = ".".join(release.version.split(".")[:2])
+        if version == short_version:
+            full_codename = (
+                re.match(r".*\((.*)\)$", release.name)
+                .groups()[0]
+                .replace(" ", "")
+            )
+            return flask.redirect(
+                f"https://wiki.ubuntu.com/{full_codename}/ReleaseNotes"
+            )
 
-    if ver in releaseName:
-        ver = releaseName[ver]
-
-    if ver:
-        return flask.redirect(f"https://wiki.ubuntu.com/{ver}/ReleaseNotes")
-    else:
-        return flask.redirect(f"https://wiki.ubuntu.com/Releases")
+    return flask.redirect(f"https://wiki.ubuntu.com/Releases")
 
 
 def advantage_view():
