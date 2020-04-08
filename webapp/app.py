@@ -49,8 +49,8 @@ from webapp.security.views import (
     notice,
     notices,
     notices_feed,
+    api_create_notice,
 )
-
 
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
@@ -121,7 +121,7 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/advantage/renewals/{renewal_id}", view_func=get_renewal, methods=["GET"],
+    "/advantage/renewals/{renewal_id}", view_func=get_renewal, methods=["GET"]
 )
 
 app.add_url_rule(
@@ -157,11 +157,10 @@ app.register_blueprint(blog_blueprint, url_prefix="/blog")
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
 app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
-# app.add_url_rule(
-#     "/security/notices", view_func=api_create_notice, methods=["POST"]
-# )
+app.add_url_rule(
+    "/security/notices", view_func=api_create_notice, methods=["POST"]
+)
 app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
-
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
