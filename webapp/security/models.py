@@ -53,16 +53,43 @@ cve_references = Table(
     Column("cve_reference_id", Integer, ForeignKey("cve_reference.id")),
 )
 
+cve_packages = Table(
+    "cve_packages",
+    Base.metadata,
+    Column("cve_id", String, ForeignKey("cve.id")),
+    Column("cve_packages", Integer, ForeignKey("package.id")),
+)
+
+cve_package_release_status = Table(
+    "cve_package_release_status",
+    Base.metadata,
+    Column("package_id", Integer, ForeignKey("package.id")),
+    Column(
+        "package_release_status_id",
+        Integer,
+        ForeignKey("package_release_status.id"),
+    ),
+)
+
+cve_releases = Table(
+    "cve_releases",
+    Base.metadata,
+    Column("release_id", Integer, ForeignKey("release.id")),
+    Column(
+        "package_release_status_id",
+        Integer,
+        ForeignKey("package_release_status.id"),
+    ),
+)
+
 
 class CVE(Base):
     __tablename__ = "cve"
 
     id = Column(String, primary_key=True)
-    public_date = Column(String)
-    last_updated_date = Column(String)
-    public_date_usn = Column(String)
-    last_updated_date = Column(String)
-    component = Column(String)  # main, partner, universe
+    public_date = Column(DateTime)
+    last_updated_date = Column(DateTime)
+    public_date_usn = Column(DateTime)
     crd = Column(String)
     description = Column(String)
     ubuntu_description = Column(String)
@@ -75,7 +102,7 @@ class CVE(Base):
     cvss = Column(String)  # CVSS vector to convert into Base score
     references = relationship("CVEReference", secondary=cve_references)
     bugs = relationship("Bug", secondary=cve_bugs)
-    packages = Column(JSON)
+    packages = relationship("Package", secondary=cve_packages)
     status = Column(String)
 
 
@@ -141,6 +168,16 @@ class Bug(Base):
 
     id = Column(Integer, primary_key=True)
     uri = Column(String)
+
+
+class PackageReleaseStatus(Base):
+    __tablename__ = "package_release_status"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    status = Column(String)
+    status_description = Column(String)
+    release = relationship("Release", secondary=cve_releases)
 
 
 class Package(Base):
