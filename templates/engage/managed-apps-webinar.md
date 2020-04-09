@@ -14,5 +14,6 @@ context:
      header_cta: Watch the webinar
      header_cta_class: p-button--positive
      header_class: p-engage-banner--dark
+     content_class: u-hide
      webinar_code: '<div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 394568, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
 ---
