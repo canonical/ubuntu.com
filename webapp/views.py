@@ -454,7 +454,7 @@ def advantage_view():
                             contract["contractInfo"]["status"] = "expired"
                         else:
                             date_difference = effective_to - time_now
-                            contract["expiring"] = date_difference.days <= 30
+                            contract["expiring"] = date_difference.days <= 3000
                             contract["contractInfo"][
                                 "daysTillExpiry"
                             ] = date_difference.days
