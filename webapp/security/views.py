@@ -17,6 +17,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Reference, Release
 from webapp.security.schemas import NoticeSchema
+from webapp.security.auth import authorization_required
 
 
 markdown_parser = Markdown(
@@ -182,7 +183,11 @@ def notices_feed(feed_type):
 # ===
 
 
+@authorization_required
 def api_create_notice():
+    if not flask.request.json:
+        return (flask.jsonify({"message": f"No payload received"}), 400)
+
     # Because we get a dict with ID as a key and the payload as a value
     notice_id, payload = flask.request.json.popitem()
 
@@ -230,10 +235,7 @@ def api_create_notice():
             )
         except NoResultFound:
             message = f"No release with codename: {release_codename}."
-            return (
-                flask.jsonify({"message": message}),
-                400,
-            )
+            return (flask.jsonify({"message": message}), 400)
 
     # Link CVEs, creating them if they don't exist
     refs = set(data.get("references", []))
