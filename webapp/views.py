@@ -464,9 +464,15 @@ def advantage_view():
                             "renewals"
                         ][0]
 
-                    enterprise_contracts.setdefault(
+                    enterprise_contract = enterprise_contracts.setdefault(
                         contract["accountInfo"]["name"], []
-                    ).append(contract)
+                    )
+                    # If a subscription id is present and this contract matches
+                    # add it to the start of the list
+                    if contract["contractInfo"]["id"] == open_subscription:
+                        enterprise_contract.insert(0, contract)
+                    else:
+                        enterprise_contract.append(contract)
 
     return flask.render_template(
         "advantage/index.html",
