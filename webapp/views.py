@@ -2,7 +2,6 @@
 import json
 import os
 import re
-import urllib.parse
 
 # Packages
 import dateutil.parser
