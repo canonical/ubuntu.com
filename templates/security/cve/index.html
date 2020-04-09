@@ -54,10 +54,10 @@
     <p>{{list_cve}}</p>
     
     <ul>
-      {% for cve in list_cve %}
-        <p>{{cve.packages}}</p>
+      {% for cve in cves %}
         <p>{{cve.id}}</p>
         <p>{{cve.priority}}</p>
+        <p>{{cve.packages}}</p>
       {% endfor %}
     </div>
     <div class="col-3">
