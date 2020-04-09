@@ -188,7 +188,7 @@ def load_sample_cve():
                             name="Ubuntu 14.04 ESM (Precise Pangolin)",
                             status="DNE",
                         ),
-                        PackageReleaseStatus(
+                        Release(
                             name="Ubuntu 16.04 LTS (Xenial Xerus)",
                             status="needs-triage",
                         ),
@@ -1229,6 +1229,7 @@ def load_sample_cve():
             status="not-for-us",
             notes="Ubuntu-security Does not apply to software "
             + "found in Ubuntu. TestLinkOpenSourceTRMS",
+<<<<<<< HEAD
             packages=[
                 Package(
                     name="gitlab",
@@ -1419,6 +1420,19 @@ def load_sample_cve():
                     ],
                 ),
             ],
+=======
+<<<<<<< HEAD
+=======
+        ),
+        CVEReference(
+            uri="https://cve.mitre.org/cgi-bin/cvename.cgi?"
+            + "name=CVE-2020-9365"
+        ),
+        CVEReference(
+            uri="https://github.com/jedisct1/pure-ftpd/commit/"
+            + "36c6d268cb190282a2c17106acfd31863121b"
+>>>>>>> data changes
+>>>>>>> data changes
         ),
         Release(
             name="Ubuntu 12.04",
