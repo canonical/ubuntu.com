@@ -1,4 +1,4 @@
-(function() {
+(function () {
   function _formatDate(date) {
     const parsedDate = new Date(date);
     const monthNames = [
@@ -13,7 +13,7 @@
       "September",
       "October",
       "November",
-      "December"
+      "December",
     ];
     return (
       parsedDate.getDate() +
@@ -29,11 +29,29 @@
     const time = articleFragment.querySelector(".article-time");
     const link = articleFragment.querySelector(".article-link");
     const title = articleFragment.querySelector(".article-title");
+    const image = articleFragment.querySelector(".article-image");
 
     let url = "";
 
     if (options.hostname) {
       url = "https://" + options.hostname;
+    }
+
+    let articleImage;
+
+    if (
+      article._embedded &&
+      article._embedded["wp:featuredmedia"] &&
+      article._embedded["wp:featuredmedia"][0]
+    ) {
+      let media = article._embedded["wp:featuredmedia"][0];
+
+      articleImage = {
+        url: media.source_url,
+        alt: media.alt_text,
+        width: media.media_details.width,
+        height: media.media_details.height,
+      };
     }
 
     if (time) {
@@ -44,12 +62,12 @@
     if (link) {
       link.href = url + "/blog/" + article.slug;
       if (options.gtmEventLabel) {
-        link.onclick = function() {
+        link.onclick = function () {
           dataLayer.push({
             event: "GAEvent",
             eventCategory: "blog",
             eventAction: options.gtmEventLabel + " news link",
-            eventLabel: article.slug
+            eventLabel: article.slug,
           });
         };
       }
@@ -57,6 +75,15 @@
 
     if (title) {
       title.innerHTML = article.title.rendered;
+    }
+
+    if (image && articleImage) {
+      let img = document.createElement("img");
+      img.setAttribute("src", articleImage.url);
+      img.setAttribute("alt", articleImage.alt);
+      img.setAttribute("width", articleImage.width);
+      img.setAttribute("height", articleImage.height);
+      image.appendChild(img);
     }
 
     return articleFragment;
@@ -80,7 +107,7 @@
   }
 
   function _latestArticlesCallback(options) {
-    return function(event) {
+    return function (event) {
       const articlesContainer = document.querySelector(
         options.articlesContainerSelector
       );
@@ -110,7 +137,7 @@
       }
 
       if (data.latest_articles) {
-        data.latest_articles.forEach(function(article) {
+        data.latest_articles.forEach(function (article) {
           articlesContainer.appendChild(
             _articleDiv(article, options.articleTemplateSelector, options)
           );
