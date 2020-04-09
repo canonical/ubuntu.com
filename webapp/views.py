@@ -100,8 +100,7 @@ def advantage_view():
     open_subscription = flask.request.args.get("subscription", None)
 
     if not auth.is_authenticated(flask.session) and open_subscription:
-        redirect_url = urllib.parse.quote(f"{flask.request.full_path}")
-        return flask.redirect(f"/login?next={redirect_url}")
+        return flask.redirect(f"/login?next={flask.request.full_path}")
 
     if auth.is_authenticated(flask.session):
         try:
