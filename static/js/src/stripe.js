@@ -1,19 +1,15 @@
 (function () {
   const form = document.getElementById("payment-form");
   const modal = document.getElementById("renewal-modal");
+  const paymentMethodDetails = document.getElementById(
+    "payment-method-details"
+  );
   const renewalCTAs = document.querySelectorAll(".js-renewal-cta");
-  const addPaymentMethodButton = form.querySelector(".js-payment-method");
-  const processPaymentButton = form.querySelector(".js-process-payment");
+  const addPaymentMethodButton = document.querySelector(".js-payment-method");
+  const processPaymentButton = document.querySelector(".js-process-payment");
 
   const stripe = Stripe("pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46");
   const elements = stripe.elements();
-  const card = elements.create("card", { style });
-  const cardErrorElement = document.getElementById("card-errors");
-
-  let accountID;
-  let renewalID;
-  let subscriptionStatus;
-  let paymentIntentStatus;
 
   const style = {
     base: {
@@ -31,6 +27,15 @@
       },
     },
   };
+
+  const card = elements.create("card", { style });
+  const cardErrorElement = document.getElementById("card-errors");
+
+  let accountID;
+  let renewalID;
+  let invoice;
+  let subscriptionStatus;
+  let paymentIntentStatus;
 
   attachCTAevents();
   attachFormSubmitEvents();
@@ -84,9 +89,7 @@
     let formData = new FormData(form);
 
     addPaymentMethodButton.disabled = true;
-    addPaymentMethodButton
-      .querySelector(".p-icon--spinner")
-      .classList.remove("u-hide");
+    addPaymentMethodButton.classList.add("is-actioned");
 
     stripe
       .createPaymentMethod({
@@ -118,10 +121,9 @@
             }),
           }).then((response) => {
             if (response.ok) {
-              addPaymentMethodButton.classList.add("u-hide");
-              processPaymentButton.classList.remove("u-hide");
-              processPaymentButton.disabled = false;
+              showPayDialog(result.paymentMethod);
             } else {
+              console.log(response);
               // TODO: how do we want to handle errors creating payment methods?
               // Feels like it wouldn't inspire confidence to ask the user to try
               // inputting them again.
@@ -140,24 +142,39 @@
       });
   }
 
-  function handleIncompletePayment(pi_status) {
-    console.log(pi_status);
+  function handleIncompletePayment(invoice) {
+    if (
+      invoice.pi_status === "requires_payment_method" &&
+      invoice.decline_code
+    ) {
+      console.log("reached if: ", invoice.decline_code);
+    } else if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
+      stripe.confirmCardPayment(invoice.pi_secret).then(function (result) {
+        if (result.error) {
+          console.log("3D secure error: ", result.error);
+        } else {
+          console.log("3D secure success: ", result);
+        }
+      });
+    } else {
+      console.log("reached else: ", invoice);
+    }
   }
 
   function handleIncompleteRenewal(renewal) {
-    if (renewal.stripeInvoices.length > 0) {
-      subscriptionStatus =
-        renewal.stripeInvoices[renewal.stripeInvoices.length - 1]
-          .subscription_status;
+    if (renewal.stripeInvoices) {
+      invoice = renewal.stripeInvoices[renewal.stripeInvoices.length - 1];
+      subscriptionStatus = invoice.subscription_status;
 
-      paymentIntentStatus =
-        renewal.stripeInvoices[renewal.stripeInvoices.length - 1].pi_status;
+      paymentIntentStatus = invoice.pi_status;
     }
 
-    if (!subscriptionStatus) {
-      setTimeout(pollRenewalStatus(), 1000);
+    if (!subscriptionStatus || !paymentIntentStatus) {
+      setTimeout(() => {
+        pollRenewalStatus();
+      }, 3000);
     } else if (subscriptionStatus !== "active") {
-      handleIncompletePayment(paymentIntentStatus);
+      handleIncompletePayment(invoice);
     }
   }
 
@@ -195,9 +212,7 @@
 
   function processStripePayment() {
     processPaymentButton.disabled = true;
-    processPaymentButton
-      .querySelector(".p-icon--spinner")
-      .classList.remove("u-hide");
+    processPaymentButton.classList.add("is-actioned");
 
     fetch(`/advantage/renewals/${renewalID}/process-payment`, {
       method: "POST",
@@ -217,7 +232,6 @@
     const quantityElement = modal.querySelector(".js-renewal-quantity");
     const startElement = modal.querySelector(".js-renewal-start");
     const totalElement = modal.querySelector(".js-renewal-total");
-    const paymentTotalElement = modal.querySelector(".js-payment-total");
 
     let startDate = new Date(renewalData.start);
 
@@ -230,7 +244,6 @@
     quantityElement.innerHTML = `Quantity: ${renewalData.quantity}`;
     startElement.innerHTML = `Start date: ${startDate.toDateString()}`;
     totalElement.innerHTML = `Total: ${formattedTotal}`;
-    paymentTotalElement.innerHTML = formattedTotal;
   }
 
   function setupCardElements() {
@@ -245,5 +258,29 @@
       }
       addPaymentMethodButton.disabled = false;
     });
+  }
+
+  function showPayDialog(paymentMethod) {
+    const billingInfo = paymentMethod.billing_details;
+    const cardInfo = paymentMethod.card;
+    const cardText = `${cardInfo.brand} ending ${cardInfo.last4}`;
+    const cardExpiry = `${cardInfo.exp_month}/${cardInfo.exp_year}`;
+
+    const cardImgEl = document.querySelector(".js-customer-card-brand");
+    const cardTextEl = document.querySelector(".js-customer-card");
+    const cardExpiryEl = document.querySelector(".js-customer-card-expiry");
+    const customerNameEl = document.querySelector(".js-customer-name");
+    const customerEmailEl = document.querySelector(".js-customer-email");
+
+    cardImgEl.innerHTML = cardInfo.brand;
+    // TODO use the above to set an image of the card brand, rather than text
+    cardTextEl.innerHTML = cardText;
+    cardExpiryEl.innerHTML = cardExpiry;
+    customerNameEl.innerHTML = billingInfo.name;
+    customerEmailEl.innerHTML = billingInfo.email;
+
+    form.classList.add("u-hide");
+    paymentMethodDetails.classList.remove("u-hide");
+    processPaymentButton.disabled = false;
   }
 })();
