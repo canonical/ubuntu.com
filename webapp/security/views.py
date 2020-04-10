@@ -15,12 +15,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 # Local
 from webapp.security.database import db_session
-from webapp.security.models import (
-    Notice,
-    Reference,
-    Release,
-    CVE,
-)
+from webapp.security.models import Notice, Reference, Release, CVE
 from webapp.security.schemas import NoticeSchema
 
 markdown_parser = Markdown(
@@ -234,10 +229,7 @@ def api_create_notice():
             )
         except NoResultFound:
             message = f"No release with codename: {release_codename}."
-            return (
-                flask.jsonify({"message": message}),
-                400,
-            )
+            return (flask.jsonify({"message": message}), 400)
 
     # Link CVEs, creating them if they don't exist
     refs = set(data.get("references", []))
@@ -267,12 +259,63 @@ def api_create_notice():
 # CVE views
 # ===
 def cve_index():
+    """
+    Display the list of CVEs, with pagination.
+    Also accepts the following filtering query parameters:
+    - order-by - "oldest" or "newest"
+    - query - search query for the description field
+    - priority
+    - limit - default 20
+    - offset - default 0
+    """
 
-    list_cve = db_session.query(CVE).limit(10)
-    return flask.render_template("security/cve/index.html", list_cve=list_cve)
+    # Query parameters
+    order_by = flask.request.args.get("order-by", default="oldest")
+    query = flask.request.args.get("q", default="")
+    priority = flask.request.args.get("priority", default="")
+    limit = flask.request.args.get("limit", default=20, type=int)
+    offset = flask.request.args.get("offset", default=0, type=int)
+
+    # Basic queries
+    cves_query = db_session.query(CVE)
+    releases_query = db_session.query(Release)
+
+    # Apply search filters
+    if priority:
+        cves_query = cves_query.filter(CVE.priority == priority)
+
+    if query:
+        cves_query = cves_query.filter(CVE.description.ilike(f"%{query}%"))
+
+    sort = asc if order_by == "oldest" else desc
+
+    cves = (
+        cves_query.order_by(sort(CVE.public_date))
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
+
+    # Pagination
+    total_results = cves_query.count()
+
+    return flask.render_template(
+        "security/cve/index.html",
+        releases=releases_query.all(),
+        cves=cves,
+        total_results=total_results,
+        total_pages=ceil(total_results / limit),
+        offset=offset,
+        limit=limit,
+        priority=priority,
+        query=query,
+    )
 
 
 def cve(cve_id):
+    """
+    Retrieve and display an individual CVE details page
+    """
 
     cve = db_session.query(CVE).get(cve_id.upper())
     if not cve:

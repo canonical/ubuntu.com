@@ -56,8 +56,10 @@ class CVE(Base):
 
     id = Column(String, primary_key=True)
     public_date = Column(String)
+    last_updated_date = Column(String)
     public_date_usn = Column(String)
     last_updated_date = Column(String)
+    component = Column(String)  # main, partner, universe
     crd = Column(String)
     description = Column(String)
     ubuntu_description = Column(String)
@@ -67,7 +69,7 @@ class CVE(Base):
     discovered_by = Column(String)
     assigned_to = Column(String)
     approved_by = Column(String)
-    cvss = Column(String)  # CVSS 3 and Base Score
+    cvss = Column(String)  # CVSS vector to convert into Base score
     references = relationship("CVEReference", secondary=cve_references)
     bugs = relationship("Bug", secondary=cve_bugs)
     packages = Column(JSON)
@@ -107,6 +109,9 @@ class Release(Base):
     version = Column(String, unique=True)
     codename = Column(String, unique=True)
     lts = Column(Boolean)
+    esm = Column(Boolean)
+    development = Column(Boolean)
+    component = Column(String)
 
 
 class CVEReference(Base):
