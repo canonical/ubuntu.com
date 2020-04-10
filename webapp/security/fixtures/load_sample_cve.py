@@ -1114,6 +1114,14 @@ def load_sample_cve():
                         ),
                     ],
                 ),
+            ],
+        ),
+        CVE(
+            id="CVE-2020-8638",
+            status="not-for-us",
+            notes="Ubuntu-security Does not apply to software "
+            + "found in Ubuntu. TestLinkOpenSourceTRMS",
+            packages=[
                 Package(
                     name="gitlab2",
                     type="package",
@@ -1229,7 +1237,6 @@ def load_sample_cve():
             status="not-for-us",
             notes="Ubuntu-security Does not apply to software "
             + "found in Ubuntu. TestLinkOpenSourceTRMS",
-<<<<<<< HEAD
             packages=[
                 Package(
                     name="gitlab",
@@ -1420,19 +1427,10 @@ def load_sample_cve():
                     ],
                 ),
             ],
-=======
-<<<<<<< HEAD
-=======
         ),
         CVEReference(
             uri="https://cve.mitre.org/cgi-bin/cvename.cgi?"
             + "name=CVE-2020-9365"
-        ),
-        CVEReference(
-            uri="https://github.com/jedisct1/pure-ftpd/commit/"
-            + "36c6d268cb190282a2c17106acfd31863121b"
->>>>>>> data changes
->>>>>>> data changes
         ),
         Release(
             name="Ubuntu 12.04",
