@@ -84,7 +84,7 @@
 </section>
 
 {# lts row #}
-<section class="p-strip--light is-shallow u-no-padding--bottom">
+<section class="p-strip--light is-shallow u-no-padding--bottom {% if releases.latest.short_version < releases.lts.short_version %}is-bordered{% endif %}">
   <div class="row u-equal-height">
     <div class="col-3">
       <h4>Ubuntu {{ releases.lts.full_version }} LTS</h4>
@@ -126,6 +126,7 @@
 </section>
 
 {# latest row #}
+{% if releases.latest.short_version > releases.lts.short_version %}
 <section class="p-strip is-bordered is-shallow u-no-padding--bottom">
   <div class="row u-equal-height">
     <div class="col-3">
@@ -166,6 +167,7 @@
     </div>
   </div>
 </section>
+{% endif %}
 
 <section class="p-strip">
   <div class="row">
@@ -175,11 +177,13 @@
     </div>
   </div>
   <div class="row u-equal-height">
+    {% if releases.latest.short_version > releases.lts.short_version %}
     <div class="col-6 p-card">
       <h3>Ubuntu {{ releases.lts.full_version }} LTS vs Ubuntu {{ releases.latest.full_version }}</h3>
       <hr class="u-sv1">
       <p>Generally we recommend the Long Term Support (LTS) releases as they are supported for five years of free security and maintenance updates, guaranteed.  However, the interim releases often have the newest features and hardware support. Ubuntu {{ releases.latest.full_version }} comes with nine months of support, until {{ releases.latest.eol }}, so there is really no bad choice.</p>
     </div>
+    {% endif %}
     <div class="col-6 p-card">
       <h3>32 bit vs 64 bit</h3>
       <hr class="u-sv1">
