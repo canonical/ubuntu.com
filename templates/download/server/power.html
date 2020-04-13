@@ -22,15 +22,17 @@
           This is the iso image of the Ubuntu Server installer.
         </p>
         <p>
-          <a class="p-button--positive is-wide" href="http://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+          <a class="p-button--positive is-wide" href="http://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
             Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
           </a>
         </p>
+        {% if releases.latest.short_version > releases.lts.short_version %}
         <p>
           <a class="p-button--neutral is-wide" href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
             Download Ubuntu {{ releases.latest.full_version }}
           </a>
         </p>
+        {% endif %}
         <p>
           <a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a>
         </p>
@@ -41,16 +43,17 @@
       <div class="p-card__content">
         <p>This installer lets you install Ubuntu over the network.</p>
         <p>
-          <a  class="p-button--positive is-wide" href="http://cdimage.ubuntu.com/netboot/{{ releases.lts.full_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+          <a class="p-button--positive is-wide" href="http://cdimage.ubuntu.com/netboot/{{ releases.lts.short_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
             Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
           </a>
         </p>
-
+        {% if releases.latest.short_version > releases.lts.short_version %}
         <p>
-          <a  class="p-button--neutral is-wide" href="http://cdimage.ubuntu.com/netboot/{{ releases.latest.full_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+          <a class="p-button--neutral is-wide" href="http://cdimage.ubuntu.com/netboot/{{ releases.latest.short_version }}/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER netboot', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
             Download Ubuntu {{ releases.latest.full_version }}
           </a>
         </p>
+        {% endif %}
         <p>
           <a class="p-link--external" href="https://help.ubuntu.com/community/Installation/Netboot">Learn about netboot images</a>
         </p>
