@@ -4,12 +4,12 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1ScuTtdrm3-iAvizTDxksVTAerV6QkCUN8Sg60uUlJsk/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip--suru-topped is-bordered">
+<section class="p-strip--suru-topped is-bordered">
   <div class="u-fixed-width">
     <h1>Download Ubuntu Desktop</h1>
   </div>
-</div>
-<div class="p-strip--light is-bordered">
+</section>
+<section class="p-strip--light is-bordered">
   <div class="u-fixed-width">
     <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
     <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
@@ -34,11 +34,14 @@
       </div>
     </div>
   </div>
+
+  {% if releases.latest.short_version > releases.lts.short_version %}
   <div class="p-strip is-shallow">
     <div class="u-fixed-width">
       <hr>
     </div>
   </div>
+
   <div class="u-fixed-width">
     <h2>Ubuntu {{ releases.latest.full_version }}</h2>
     <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
@@ -57,9 +60,10 @@
       </div>
     </div>
   </div>
-</div>
+  {% endif %}
+</section>
 
-<div class="p-strip is-bordered">
+<section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <h2>Easy ways to switch to Ubuntu</h2>
   </div>
@@ -137,7 +141,7 @@
       </ul>
     </div>
   </div>
-</div>
+</section>
 
 {% with strip="light" %}
   {% include 'download/shared/_multipass-install.html' %}
