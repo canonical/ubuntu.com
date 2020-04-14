@@ -77,3 +77,5 @@ class Release(Base):
     version = Column(String, unique=True)
     codename = Column(String, unique=True)
     lts = Column(Boolean)
+    development = Column(Boolean)
+    release_date = Column(DateTime)
