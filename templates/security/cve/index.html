@@ -3,12 +3,76 @@
 {% block title %}CVEs{% endblock %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
+<section class="p-strip--suru-topped">
   <div class="u-fixed-width">
     <h1>CVE reports</h1>
-    <p>A brief explanation of CVEs. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia deleniti dolorum reprehenderit libero ad aliquid eligendi iste minus quis sunt facere ut mollitia ipsam, praesentium consectetur quaerat perferendis, tempora accusamus.</p>
+  </div>
 
-    <h2>Recent CVEs affecting Ubuntu</h2>
+  <div class="u-fixed-width">
+    <h2>Search</h2>
+  </div>
+
+  <form>
+    <div class="row">
+      <div class="col-3">
+        <label for="q">CVE ID:</label>
+        <input type="text" name="q" id="q" value="{{query}}">
+      </div>
+      <div class="col-3">
+        <label for="package">Package:</label>
+        <input type="text" name="package" id="package" value="{{package}}">
+      </div>
+      <div class="col-3">
+        <label for="priority">Priority:</label>
+        <select name="priority" id="priority">
+          <option value="">Any</option>
+          <option value="critical" {% if priority == 'critical' %}selected{% endif %}>
+            Critical
+          </option>
+          <option value="high" {% if priority == 'high' %}selected{% endif %}>
+            High
+          </option>
+          <option value="medium" {% if priority == 'medium' %}selected{% endif %}>
+            Medium
+          </option>
+          <option value="low" {% if priority == 'low' %}selected{% endif %}>
+            Low
+          </option>
+          <option value="negligible" {% if priority == 'negligible' %}selected{% endif %}>
+            Negligible
+          </option>
+        </select>
+      </div>
+      <div class="col-3">
+        <label>&nbsp;</label> <!-- required for layout -->
+        <button type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="u-fixed-width">
+    {% if query %}
+      <h2>
+        {% if total_results > 1 %}
+          {{ offset + 1 }} &ndash; {{ offset + limit  }} of
+        {% endif %}
+        {{ total_results }} result{% if total_results != 1 %}s{% endif %}
+      </h2>
+    {% else %}
+      <h2>Recent CVEs affecting Ubuntu</h2>
+    {% endif %}
+
+    <ul class="p-inline-list">
+      <li class="p-inline-list__item">
+        <a href="?{{ modify_query({'order-by': 'oldest'}) }}">Oldest first</a>
+      </li>
+      <li class="p-inline-list__item">
+        <a href="?{{ modify_query({'order-by': 'newest'}) }}">Newest first</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="u-fixed-width">
     <table>
       <thead>
         <tr>
@@ -49,6 +113,10 @@
         {% endfor %}
       </tbody>
     </table>
+
+    {% with %}
+      {% include "security/cve/_pagination.html" %}
+    {% endwith %}
   </div>
 </section>
 

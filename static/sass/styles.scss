@@ -616,23 +616,13 @@ summary {
   width: 225px;
 }
 
-.p-icon--container {
-  display: block;
-  float: left;
-  margin-right: 0.5rem;
-  width: 1rem;
+.is-bordered--top {
+  @extend %vf-pseudo-border--top;
 }
 
-.p-container--icon {
-  float: left;
-  width: calc(100% - 1.5rem);
-}
+.p-label--base {
+  @extend %vf-label;
 
-.p-icon--placeholder {
-  display: inline-block;
-  height: 1em;
-  margin-right: 1em;
-  position: relative;
-  top: 2px;
-  width: 1em;
+  background-color: $color-mid-dark;
+  color: $color-x-light;
 }
