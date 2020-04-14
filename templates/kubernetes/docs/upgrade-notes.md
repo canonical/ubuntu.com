@@ -19,6 +19,20 @@ The notes are organised according to the upgrade path below, but also be aware t
 upgrade that spans more than one minor version may need to beware of notes in
 any of the intervening steps.
 
+<a  id="1.18"> </a>
+
+## Upgrading to 1.18
+
+### CDK Addons
+
+As stated in the release notes, from 1.18, the `cluster-monitoring` addons (Heapster, InfluxDB, and Grafana)
+have been removed from the Kubernetes source tree and therefore removed from the `cdk-addons` snap as well. 
+
+Customers relying on these addons should migrate to a `metrics-server` solution prior to upgrading. 
+
+**Note:** these removals do not affect the Kubernetes Dashboard nor the methods described in
+[Monitoring Charmed Kubernetes](/kubernetes/docs/monitoring).
+
 <a  id="1.16"> </a>
 
 ## Upgrading to 1.16

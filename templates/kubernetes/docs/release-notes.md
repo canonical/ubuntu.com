@@ -13,6 +13,96 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.18
+
+### April 13, 2020 - [charmed-kubernetes-430](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-430/archive/bundle.yaml)
+
+Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
+
+## What's new
+
+- New SSL options for nginx-ingress-controller
+
+New configuration options on the kubernetes-worker charm,
+`ingress-default-ssl-certificate` and `ingress-default-ssl-key`, allow you to
+configure nginx-ingress-controller with your own SSL certificate for serving
+Kubernetes ingress traffic.
+
+- Multus support
+
+This release of Charmed Kubernetes introduces support for
+[Multus](https://github.com/intel/multus-cni), a CNI provider that makes it
+possible to attach multiple network interfaces to your pods.
+
+Along the way, we've also updated existing charms to make it possible for
+multiple CNI providers to be deployed together in the same cluster.
+
+Please note that while we are making Multus support available today, it is
+dependent on functionality in Juju that is not yet considered stable. For more
+details on the current state of Multus support in Charmed Kubernetes and how to
+get started, please refer to the
+[Multus documentation page](/kubernetes/docs/cni-multus).
+
+- CIS Benchmark 1.5.0
+
+The `cis-benchmark` action now supports version 1.5.0 of the CIS Kubernetes Benchmark.
+See the [CIS compliance](/kubernetes/docs/cis-compliance) page for information on
+running this action on Charmed Kubernetes components.
+
+- Containerd version hold
+
+The version of [containerd](https://containerd.io/) will now be held. This means 
+that the version of [containerd](https://containerd.io/) will not be upgraded along
+with the charm. To update containerd to the latest stable, currently 1.3.3, you can
+call the `upgrade-containerd` action:
+
+```bash
+juju run-action --wait containerd/0 upgrade-containerd
+```
+
+This will perform the upgrade and return any output. If you have more than
+one unit of containerd,  you should run this on each unit. The upgrades can be
+staggered to avoid downtime.
+
+## Component Upgrades
+
+Many of the components in Charmed Kubernetes 1.18 have been upgraded. The following list
+highlights some of the more notable version changes:
+
+- containerd 1.3.3 (see above)
+- coredns 1.6.7
+- dashboard 2.0.0-rc5
+- etcd 3.3.15
+- openstack-provider 1.17
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.18](https://launchpad.net/charmed-kubernetes/+milestone/1.18).
+
+## Notes / Known Issues
+
+- Heapster, InfluxDB, Grafana addons have been removed from `cdk-addons`
+
+Heapster was initially [deprecated][heapster-deprecation] in 1.11; users
+were encouraged to move to the `metrics-server` for similar functionality.
+With 1.18, the `cluster-monitoring` addons (Heapster, InfluxDB, and Grafana)
+have been removed from the Kubernetes source tree and therefore removed from
+the `cdk-addons` snap as well. Customers relying on these addons should
+migrate to a `metrics-server` solution prior to upgrading. Note: these
+removals do not affect the Kubernetes Dashboard nor the methods described in
+[Monitoring Charmed Kubernetes](/kubernetes/docs/monitoring).
+
+- Containerd cannot pull images from a registry with TLS mutual authentication
+
+An issue with the `containerd` charm prevents pulling images from a private
+container registry when TLS mutual authentication is enabled. Where possible,
+users can workaround this issue by disabling mutual authentication on the
+registry. More details can be found in the following bug:
+
+https://bugs.launchpad.net/charm-containerd/+bug/1853653
+
+=======
 # 1.17+ck2 Bugfix release
 
 ### March 2, 2020 - [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml)
@@ -476,6 +566,7 @@ Please see [this page][historic] for release notes of earlier versions.
 [containerd]: /kubernetes/docs/containerd
 [container-runtime]: /kubernetes/docs/container-runtime
 [cis-benchmark]: https://www.cisecurity.org/benchmark/kubernetes/
+[heapster-deprecation]: https://github.com/kubernetes-retired/heapster/blob/master/docs/deprecation.md
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

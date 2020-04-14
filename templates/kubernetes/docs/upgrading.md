@@ -40,10 +40,10 @@ As with all upgrades, there is a possibility that there may be unforeseen diffic
 
 You should also make sure:
 
-- The machine from which you will perform the backup has sufficient internet access to retrieve updated software
-- Your cluster is running normally
-- You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
-- You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
+-   The machine from which you will perform the backup has sufficient internet access to retrieve updated software
+-   Your cluster is running normally
+-   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
+-   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
 
 ## Infrastructure updates
 
@@ -54,21 +54,39 @@ This includes:
 - Docker
 - easyrsa
 - etcd
-- flannel
+- flannel, calico or other CNI
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
 
+
+
+<a id='upgrading-containerd'> </a>
+
+### Upgrading Containerd
+
+By default, Versions 1.15 and later use Containerd as the container
+runtime. This subordinate charm can be upgraded with the command:
+
+```bash
+juju upgrade-charm containerd
+```
+
 <a id='upgrading-docker'> </a>
 
-### Upgrading Docker
+### Upgrading Docker (if used)
 
-**Charmed Kubernetes** will use the latest stable version of Docker when it is deployed. Since upgrading Docker
-can cause service disruption, there will be no automatic upgrades and instead this process must
-be triggered by the operator.
+By default, versions of Charmed Kubernetes since 1.15 use the Containerd
+runtime. You will only need to upgrade the Docker runtime if you have
+explicitly set that to be the container runtime. If this is not the case, you
+should skip this section.
 
-Note that this upgrade step only applies to deployments which actually use the Docker
-container runtime. Versions 1.15 and later use containerd by default, and you should
-instead follow the [instructions below](#upgrading-containerd).
+**Charmed Kubernetes** will use the latest stable version of Docker when it is
+deployed. Since upgrading Docker can cause service disruption, there will be no
+automatic upgrades and instead this process must be triggered by the operator.
+
+Note that this upgrade step only applies to deployments which actually use the
+Docker container runtime. Versions 1.15 and later use containerd by default,
+and you should instead follow the [instructions above](#upgrading-containerd).
 
 #### Version 1.15 and later
 
@@ -115,16 +133,7 @@ juju run-action kubernetes-worker/0 upgrade-docker --wait
 As previously, wait between running the action on sucessive units to allow pods to migrate.
 
 
-<a id='upgrading-containerd'> </a>
 
-### Upgrading containerd
-
-By default, Versions 1.15 and later use Containerd as the container
-runtime. This subordinate charm can be upgraded with the command:
-
-```bash
-juju upgrade-charm containerd
-```
 
 ### Upgrading etcd
 
@@ -160,17 +169,21 @@ The other infrastructure applications can be upgraded by running the `upgrade-ch
 command:
 
 ```bash
-juju upgrade-charm flannel
 juju upgrade-charm easyrsa
 ```
 
-Any other infrastructure charms can be upgraded in a similar way.
+Any other infrastructure charms should be upgraded in a similar way. For
+example, if you are using the flannel CNI:
+
+```bash
+juju upgrade-charm flannel
+```
 
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Note:</span>
 Some services may be briefly interrupted during the upgrade process. Upgrading
-<strong>flannel</strong> will cause a small amount of network downtime. Upgrading
+your CNI (e.g. flannel) will cause a small amount of network downtime. Upgrading
 <strong>easyrsa</strong> will not cause any downtime. The behaviour of other
 components you have added to your cluster may vary - check individual documentation
 for these charms for more information on upgrades.
@@ -410,6 +423,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 
 [k8s-release]: https://github.com/kubernetes/kubernetes/releases
 [backups]: /kubernetes/docs/backups
+[release-notes]: /kubernetes/docs/release-notes
 [notes]: /kubernetes/docs/upgrade-notes
 [snap-channels]: https://docs.snapcraft.io/reference/channels
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
@@ -418,9 +432,9 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrading.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrading.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>
