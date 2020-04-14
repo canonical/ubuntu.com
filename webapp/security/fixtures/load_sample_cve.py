@@ -226,42 +226,812 @@ def load_sample_cve():
                     + "36c6d268cb190282a2c17106acfd31863121b58e"
                 ),
             ],
+            packages=[
+                Package(
+                    name="gitlab",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+            ],
         ),
         CVE(
             id="CVE-2020-9064",
             status="not-for-us",
             notes="Ubuntu-security Does not apply to software "
             + "found in Ubuntu. Huawei",
+            packages=[
+                Package(
+                    name="gitlab",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab2",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab4",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+            ],
         ),
         CVE(
             id="CVE-2020-7629",
             status="not-for-us",
             notes="Ubuntu-security Does not apply to software "
             + "found in Ubuntu. install-package node module",
+            packages=[
+                Package(
+                    name="gitlab",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab2",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab3",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab4",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+            ],
         ),
         CVE(
             id="CVE-2020-7630",
             status="not-for-us",
             notes="Ubuntu-security Does not apply to software "
             + "found in Ubuntu. install-package node module",
+            packages=[
+                Package(
+                    name="gitlab",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab2",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab3",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab4",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+            ],
         ),
         CVE(
             id="CVE-2020-8637",
             status="not-for-us",
             notes="Ubuntu-security Does not apply to software "
             + "found in Ubuntu. git-add-remote node module",
+            packages=[
+                Package(
+                    name="gitlab",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab2",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab3",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab4",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+            ],
         ),
         CVE(
             id="CVE-2020-8638",
             status="not-for-us",
             notes="Ubuntu-security Does not apply to software "
             + "found in Ubuntu. TestLinkOpenSourceTRMS",
+            packages=[
+                Package(
+                    name="gitlab",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+            ],
         ),
         CVE(
             id="CVE-2020-8639",
             status="not-for-us",
             notes="Ubuntu-security Does not apply to software "
             + "found in Ubuntu. TestLinkOpenSourceTRMS",
+            packages=[
+                Package(
+                    name="gitlab",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab2",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab3",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+                Package(
+                    name="gitlab4",
+                    type="package",
+                    source="https://launchpad.net/distros/"
+                    + "ubuntu/+source/gitlab",
+                    ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
+                    debian="https://tracker.debian.org/pkg/gitlab",
+                    releases=[
+                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(
+                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
+                            status="DNE",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 19.10 (Eoan Ermine)",
+                            status="needs-triage",
+                        ),
+                        PackageReleaseStatus(
+                            name="Ubuntu 20.04 (Focal Fossa)",
+                            status="not-affected",
+                            status_description="(1.0.49-4)",
+                        ),
+                    ],
+                ),
+            ],
         ),
         Release(
             name="Ubuntu 12.04",
