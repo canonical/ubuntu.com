@@ -6,7 +6,7 @@ context:
      meta_image: https://assets.ubuntu.com/v1/e4c3046f-orangebox-meta.png
      meta_copydoc: https://docs.google.com/document/d/1xJVtEHr5ROGNzDblPDNVNk4DcX5HGcXL7gyrRPKcUdE
      header_title: "Enter to win zero-ops Kubernetes in an Ubuntu Orange Box"
-     header_image: "https://assets.ubuntu.com/v1/67b862a1-k8s+microk8s.svg"
+     header_image: "https://assets.ubuntu.com/v1/21910613-kubernetes-orangebox.svg"
      header_image_width: "300"
      header_image_height: "200"
      header_url: '#enter-section'
@@ -22,7 +22,14 @@ Win an Ubuntu Orange Box with <a href="https://microk8s.io/" class="p-link--exte
 
 Simply fill out this questionnaire to enter, and the first four companies with more than 30 IT entrants will automatically win an Ubuntu Orange Box.
 
-Open now through 15 May 2020. Our team will be reaching out to the winners once the entry window closes. Terms and conditions apply.
+Open now through 15 May 2020. Our team will be reaching out to the winners once the entry window closes.
+
+<details>
+  <summary class="u-no-margin--bottom"><a>Terms and conditions</a></summary>
+  <p>The Ubuntu Orange Box competition is not open to students, freelancers or unemployed entrants. Entrants from all organisations with less than 100 employees, universities or any company in the education sector will not be considered in this competition.</p>
+  <p>There will be one main winner from the competition drawing, outside of the first four companies with more than 30 IT contacts entering, which will automatically win an Ubuntu Orange Box.</p>
+  <p>The prize includes an Ubuntu Orange Box with MicroK8s installed and one year of Ubuntu Advantage for Infrastructure 24/7 support.</p>
+</details>
 
 <h2 class="p-heading--four">Who should enter?</a>
 
