@@ -3,8 +3,8 @@ wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "Using Multiple Networks"
-  description: Using multiple networks with Charmed Kubernetes.
+  title: "Using Multiple Host Networks"
+  description: Using multiple host networks with Charmed Kubernetes.
 keywords: juju, network, networking
 tags: [operating]
 sidebar: k8smain-sidebar
@@ -12,6 +12,10 @@ permalink: multiple-networks.html
 layout: [base, ubuntu-com]
 toc: False
 ---
+
+This page is about using multiple host networks with Charmed Kubernetes. For
+information on using multiple container networks, please refer to the
+[Multus](/kubernetes/docs/cni-multus) page instead.
 
 Using network spaces and bindings in Juju, it's possible to deploy Charmed
 Kubernetes in an environment with multiple networks and assign traffic to
