@@ -75,10 +75,37 @@
       {% endif %}
     </div>
 
-    {% if cve.status == 'active' %}
-    <div class="col-4">
-      <p>Priority: {{ cve.priority }}</p>
-      <p>CVSS base score: {{ cve.cvss }}</p>
+    {% if cve.status == 'active' and cve.priority %}
+    <div class="col-4 u-align--right">
+      {% if cve.priority == 'critical' or cve.priority == 'high' %}
+        <div class="p-label--deprecated">
+          Priority: {{ cve.priority }}
+        </div>
+      {% endif %}
+
+      {% if cve.priority == 'medium' %}
+        <div class="p-label--in-progress">
+          Priority: {{ cve.priority }}
+        </div>
+      {% endif %}
+
+      {% if cve.priority == 'low' %}
+        <div class="p-label--validated">
+          Priority: {{ cve.priority }}
+        </div>
+      {% endif %}
+
+      {% if cve.priority == 'negligible' %}
+        <div class="p-label--updated">
+          Priority: {{ cve.priority }}
+        </div>
+      {% endif %}
+
+      {% if cve.cvss %}
+        <div class="p-label--base">
+          CVSS base score: {{ cve.cvss }}
+        </div>
+      {% endif %}
     </div>
     {% endif %}
   </div>
