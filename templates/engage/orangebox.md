@@ -7,8 +7,8 @@ context:
      meta_copydoc: https://docs.google.com/document/d/1xJVtEHr5ROGNzDblPDNVNk4DcX5HGcXL7gyrRPKcUdE
      header_title: "Enter to win zero-ops Kubernetes in an Ubuntu Orange Box"
      header_image: "https://assets.ubuntu.com/v1/21910613-kubernetes-orangebox.svg"
-     header_image_width: "300"
-     header_image_height: "200"
+     header_image_width: "395"
+     header_image_height: "300"
      header_url: '#enter-section'
      header_cta: Enter to win
      header_cta_class: p-button--positive
