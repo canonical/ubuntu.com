@@ -79,3 +79,5 @@ class Release(Base):
     lts = Column(Boolean)
     development = Column(Boolean)
     release_date = Column(DateTime)
+    esm_expires = Column(DateTime)
+    support_expires = Column(DateTime)
