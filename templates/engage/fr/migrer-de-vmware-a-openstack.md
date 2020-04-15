@@ -5,7 +5,7 @@ context:
      meta_description: "Réduisez vos coûts et augmentez l'efficacité de votre infrastructure en passant à l'open source"
      meta_image: https://assets.ubuntu.com/v1/27fed536-vmware-to-charmed-openstack-social.jpg
      meta_copydoc: https://docs.google.com/document/d/13aUs6sT_Z4kTv1-KiISD22yqh_1VOw9xLLqEMftJZyU/edit
-     header_title: "From VMware to Charmed&nbsp;OpenStack"
+     header_title: "Migrer de VMWare à OpenStack"
      header_subtitle: "Passez à Charmed OpenStack et réduisez considérablement vos coûts"
      header_image: "https://assets.ubuntu.com/v1/2d935f28-openstack-cloud.svg"
      header_image_width: "250"
