@@ -20,7 +20,7 @@ module.exports = {
     "release-chart": "./static/js/src/release-chart.js",
     tabotronic: "./static/js/src/tabotronic.js",
     "tco-calculator": "./static/js/src/tco-calculator.js",
-    stripe: "./static/js/src/stripe.js",
+    "renewal-modal": "./static/js/src/renewal-modal.js",
     "sticky-nav": "./static/js/src/sticky-nav.js",
   },
   mode: process.env.ENVIRONMENT === "devel" ? "development" : "production",
