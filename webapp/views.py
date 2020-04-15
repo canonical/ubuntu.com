@@ -15,7 +15,7 @@ from ubuntu_release_info.data import Data
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 from canonicalwebteam.store_api.stores.snapcraft import SnapcraftStoreApi
-from canonicalwebteam.launchpad import Launchpad
+from canonicalwebteam.launchpad import Launchpad, WebhookExistsError
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
 
@@ -110,6 +110,14 @@ def post_build():
     kick off the build with launchpad
     """
 
+    opt_in = flask.request.values.get("canonicalUpdatesOptIn")
+    full_name = flask.request.values.get("FullName")
+    names = full_name.split(" ")
+    email = flask.request.values.get("Email")
+    board = flask.request.values.get("board")
+    system = flask.request.values.get("system")
+    snaps = flask.request.values.get("snaps", "").split(",")
+
     if not is_authenticated(flask.session):
         flask.abort(401)
 
@@ -122,11 +130,38 @@ def post_build():
 
     context = {}
 
+    # Submit user to marketo
+    if opt_in:
+        session.post(
+            "https://pages.ubuntu.com/index.php/leadCapture/save",
+            data={
+                "canonicalUpdatesOptIn": opt_in,
+                "FirstName": names[0],
+                "LastName": names[-1] if len(names) > 1 else "",
+                "Email": email,
+                "formid": "3546",
+                "lpId": "2154",
+                "subId": "30",
+                "munchkinId": "066-EOV-335",
+            },
+        )
+
+    # Ensure webhook is created
+    try:
+        launchpad.create_system_build_webhook(
+            system, "https://ubuntu.com/core/build/notify"
+        )
+    except WebhookExistsError:
+        # It's fine if the webhook exists
+        pass
+
+    # Kick off image build
     try:
         response = launchpad.build_image(
-            board=flask.request.values.get("board"),
-            system=flask.request.values.get("system"),
-            snaps=flask.request.values.get("snaps", "").split(","),
+            board=board,
+            system=system,
+            snaps=snaps,
+            metadata={"_email": email, "_full_name": full_name},
         )
         context["build_info"] = launchpad.session.get(
             response.headers["Location"]
@@ -142,28 +177,6 @@ def post_build():
             )
         else:
             raise http_error
-
-    # Submit user to marketo
-    opt_in = flask.request.values.get("canonicalUpdatesOptIn")
-    full_name = flask.request.values.get("FullName")
-    split_name = full_name.split(" ")
-    first_name = split_name[0]
-    last_name = split_name[len(split_name) - 1] if len(split_name) > 1 else ""
-    email = flask.request.values.get("Email")
-    if opt_in:
-        session.post(
-            "https://pages.ubuntu.com/index.php/leadCapture/save",
-            data={
-                "canonicalUpdatesOptIn": opt_in,
-                "FirstName": first_name,
-                "LastName": last_name,
-                "Email": email,
-                "formid": "3546",
-                "lpId": "2154",
-                "subId": "30",
-                "munchkinId": "066-EOV-335",
-            },
-        )
 
     return flask.render_template("core/build.html", **context)
 
