@@ -42,10 +42,10 @@
     if (
       article._embedded &&
       article._embedded["wp:featuredmedia"] &&
-      article._embedded["wp:featuredmedia"][0]
+      article._embedded["wp:featuredmedia"][0] &&
+      article._embedded["wp:featuredmedia"][0].width
     ) {
       let media = article._embedded["wp:featuredmedia"][0];
-
       articleImage = {
         url: media.source_url,
         alt: media.alt_text,
