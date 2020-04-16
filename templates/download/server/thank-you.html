@@ -9,7 +9,7 @@
 
 {% if version and architecture %}
 <noscript>
-  <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
+  <meta http-equiv="refresh" content="3;url=https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
 </noscript>
 {% endif %}
 
@@ -20,7 +20,7 @@
         <h1>Thank you for downloading Ubuntu Server {{ version }}</h1>
         {% if version and architecture %}
         <p>Your download should start automatically. If it doesn&rsquo;t,
-          <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
+          <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-{{ architecture }}.iso">
             download now</a>.
           </p>
           {% with version=version, system="live-server", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
