@@ -13,7 +13,7 @@ context:
 
 This Privacy Notice tells you about the information collected from you when you enter into an online competition and agree to your personal data being stored by Canonical. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our privacy policy.
 
-# Who are we?
+## Who are we?
 
 We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to <a href="mailto:dataprotection@canonical.com">dataprotection@canonical.com</a> for the attention of “Legal”.
 
@@ -40,11 +40,11 @@ Your data may be shared with third parties as reasonably required for Canonical 
 
 Our legal basis for using your personal information is that it is necessary for our legitimate interest in holding the online competition, for your participation in the online competition and in accordance with the terms and conditions between us.
 
-We may contact you from time to time with information about products and services that we offer (see <a href="https://ubuntu.com/legal/data-privacy/partner-portal#mkt-comms">Marketing Communications to Businesses</a>). Our legal basis for using your personal information to contact you is that it is necessary for our legitimate interest in keeping you informed of the products and services that we offer. You can opt out of marketing communications as set out below.
+We may contact you from time to time with information about products and services that we offer (see <a href="/legal/data-privacy/partner-portal#mkt-comms">Marketing Communications to Businesses</a>). Our legal basis for using your personal information to contact you is that it is necessary for our legitimate interest in keeping you informed of the products and services that we offer. You can opt out of marketing communications as set out below.
 
 ### Your consent
 
-If you enter into an online  competition, you will have the option to provide your consent to us sending you information about the products and services that we offer (see <a href="https://ubuntu.com/legal/data-privacy/partner-portal#mkt-comms">Email Marketing Communications</a>). You can withdraw your consent at any time.
+If you enter into an online  competition, you will have the option to provide your consent to us sending you information about the products and services that we offer (see <a href="/legal/data-privacy/partner-portal#mkt-comms">Email Marketing Communications</a>). You can withdraw your consent at any time.
 
 ## How long do we keep your information for?
 
@@ -101,20 +101,28 @@ This Privacy Notice will be reviewed from time to time. If we decide to change t
 
 We hope that we can resolve any query or concern you raise about our use of your information. You can contact us at any time. Any questions, comments and requests regarding this Privacy Notice or any other related matter are welcomed and should be addressed to <a href="mailto:dataprotection@canonical.com">dataprotection@canonical.com</a> or to the address below:
 
-Legal, Canonical
-5th Floor, Blue Fin Building
-110 Southwark Street
-London, SE1 0SU
-United Kingdom
+<div style="margin: 2rem;">
+  <p>
+    Legal, Canonical<br />
+    5th Floor, Blue Fin Building<br />
+    110 Southwark Street<br />
+    London, SE1 0SU<br />
+    United Kingdom
+  </p>
+</div>
 
 Alternatively, you can use the relevant contact us form.
 
-If you have a complaint about our use of your information, you can contact the Information Commissioner’s Office via their website at <a href="https://ico.org.uk/make-a-complaint">ico.org.uk/make-a-complaint</a> or write to them at:
+If you have a complaint about our use of your information, you can contact the Information Commissioner’s Office via their website at <a class="p-link--external" href="https://ico.org.uk/make-a-complaint">ico.org.uk/make-a-complaint</a> or write to them at:
 
-Information Commissioner's Office
-Wycliffe House
-Water Lane
-Wilmslow
-Cheshire
-SK9 5AF
-United Kingdom
+<div style="margin: 2rem;">
+  <p>
+    Information Commissioner's Office<br />
+    Wycliffe House<br />
+    Water Lane<br />
+    Wilmslow<br />
+    Cheshire<br />
+    SK9 5AF<br />
+    United Kingdom
+  </p>
+</div>
