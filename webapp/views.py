@@ -62,6 +62,7 @@ def download_thank_you(category):
             {"link": mirror["link"], "bandwidth": mirror["mirror_bandwidth"]}
             for mirror in mirrors
             if mirror["mirror_countrycode"] == country_code
+            and mirror["link"].startwith("https")
         ]
     context["mirror_list"] = json.dumps(mirror_list)
 
