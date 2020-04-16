@@ -26,9 +26,12 @@ def _prepare_request(method, path, data=None, session=None):
     return request.prepare()
 
 
-def _send(request, timeout=3):
+def _send(request, timeout=5, raise_http_errors=True):
     response = api_session.send(request, timeout=timeout)
-    response.raise_for_status()
+
+    if raise_http_errors:
+        response.raise_for_status()
+
     return response
 
 
@@ -100,7 +103,21 @@ def put_method_id(session, account_id, payment_method_id):
             path=f"v1/accounts/{account_id}/payment-method/stripe",
             data={"paymentMethodID": payment_method_id},
             session=session,
-        )
+        ),
+        raise_http_errors=False,
+    )
+
+    return response.json()
+
+
+def post_stripe_invoice_id(session, invoice_id, renewal_id):
+    response = _send(
+        _prepare_request(
+            method="post",
+            path=f"v1/renewals/{renewal_id}/payment/stripe/{invoice_id}",
+            session=session,
+        ),
+        raise_http_errors=False,
     )
 
     return response.json()
@@ -122,7 +139,9 @@ def accept_renewal(session, renewal_id):
             method="post",
             path=f"v1/renewals/{renewal_id}/acceptance",
             session=session,
-        )
+        ),
+        timeout=30,
+        raise_http_errors=False,
     )
 
     return response.json()
