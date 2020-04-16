@@ -47,29 +47,45 @@
       }}
     </div>
   </div>
+  <div class="row">
+    <div class="col-12">
+      <hr style="margin: 0 0 3rem 0;">
+    </div>
+  </div>
   <div class="row u-equal-height">
     <div class="col-1 u-hide--small u-vertically-center u-align--center">
-      <img src="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg" alt="Ubuntu" class="p-heading-icon__img" />
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
+            alt="Ubuntu",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="auto",
+        ) | safe
+      }}
     </div>
-    <div class="col-6 u-vertically-center">
+    <div class="col-5 u-vertically-center">
       <span>
         Using Ubuntu in virtual machines? For a mini-cloud of instant Ubuntu VMs on Linux, Windows or macOS.<br />
         <a class="p-link--external" href="https://multipass.run/">Try Multipass</a>
       </span>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-7">
-      <hr style="margin-top: 15px;">
-    </div>
-  </div>
-  <div class="row u-equal-height">
     <div class="col-1 u-hide--small u-vertically-center u-align--center">
-      <img src="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg" alt="Windows" class="p-heading-icon__img" />
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg",
+            alt="Windows",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="auto",
+        ) | safe
+      }}
     </div>
-    <div class="col-6 u-vertically-center">
+    <div class="col-5 u-vertically-center">
       <span>
-        Use the Ubuntu terminal and run Linux applications on Windows.<br />
+        Use the Ubuntu terminal and run Linux applications on&nbsp;Windows.<br />
         <a href="/wsl">Enable Ubuntu on Windows Subsystem for Linux (WSL)&nbsp;&rsaquo;</a>
       </span>
     </div>
