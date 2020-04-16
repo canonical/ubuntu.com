@@ -258,6 +258,26 @@ def post_stripe_method_id():
         return flask.jsonify({"error": "authentication required"}), 401
 
 
+def post_stripe_invoice_id():
+    if auth.is_authenticated(flask.session):
+        if not flask.request.is_json:
+            return flask.jsonify({"error": "JSON required"}), 400
+
+        invoice_id = flask.request.json.get("invoice_id")
+        if not invoice_id:
+            return flask.jsonify({"error": "invoice_id required"}), 400
+
+        renewal_id = flask.request.json.get("renewal_id")
+        if not renewal_id:
+            return flask.jsonify({"error": "renewal_id required"}), 400
+
+        return advantage.post_stripe_invoice_id(
+            flask.session, invoice_id, renewal_id
+        )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
 def get_renewal(renewal_id):
     if auth.is_authenticated(flask.session):
         return advantage.get_renewal(flask.session, renewal_id)
