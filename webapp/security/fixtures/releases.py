@@ -17,6 +17,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2004-10-20", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2004-10-20", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2004-10-20", "%Y-%m-%d"),
         ),
         Release(
             codename="hoary",
@@ -25,6 +27,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2005-04-08", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2005-04-08", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2005-04-08", "%Y-%m-%d"),
         ),
         Release(
             codename="breezy",
@@ -33,6 +37,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2005-10-13", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2005-10-13", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2005-10-13", "%Y-%m-%d"),
         ),
         Release(
             codename="dapper",
@@ -41,6 +47,8 @@ def load_releases():
             development=False,
             lts=True,
             release_date=datetime.strptime("2006-06-01", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2006-06-01", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2006-06-01", "%Y-%m-%d"),
         ),
         Release(
             codename="edgy",
@@ -49,6 +57,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2006-10-26", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2006-10-26", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2006-10-26", "%Y-%m-%d"),
         ),
         Release(
             codename="feisty",
@@ -57,6 +67,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2007-04-19", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2007-04-19", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2007-04-19", "%Y-%m-%d"),
         ),
         Release(
             codename="gutsy",
@@ -65,6 +77,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2007-10-18", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2007-10-18", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2007-10-18", "%Y-%m-%d"),
         ),
         Release(
             codename="hardy",
@@ -73,6 +87,8 @@ def load_releases():
             development=False,
             lts=True,
             release_date=datetime.strptime("2008-04-24", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2008-04-24", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2008-04-24", "%Y-%m-%d"),
         ),
         Release(
             codename="intrepid",
@@ -81,6 +97,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2008-10-30", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2008-10-30", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2008-10-30", "%Y-%m-%d"),
         ),
         Release(
             codename="jaunty",
@@ -89,6 +107,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2009-04-23", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2008-10-30", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2008-10-30", "%Y-%m-%d"),
         ),
         Release(
             codename="karmic",
@@ -97,6 +117,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2009-10-29", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2009-10-29", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2009-10-29", "%Y-%m-%d"),
         ),
         Release(
             codename="lucid",
@@ -105,6 +127,8 @@ def load_releases():
             development=False,
             lts=True,
             release_date=datetime.strptime("2010-04-29", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2010-04-29", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2010-04-29", "%Y-%m-%d"),
         ),
         Release(
             codename="maverick",
@@ -113,6 +137,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2010-10-10", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2010-10-10", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2010-10-10", "%Y-%m-%d"),
         ),
         Release(
             codename="natty",
@@ -121,6 +147,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2011-04-28", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2011-04-28", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2011-04-28", "%Y-%m-%d"),
         ),
         Release(
             codename="oneiric",
@@ -129,6 +157,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2011-10-13", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2011-10-13", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2011-10-13", "%Y-%m-%d"),
         ),
         Release(
             codename="precise",
@@ -137,6 +167,8 @@ def load_releases():
             development=False,
             lts=True,
             release_date=datetime.strptime("2012-04-26", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2012-04-26", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2012-04-26", "%Y-%m-%d"),
         ),
         Release(
             codename="quantal",
@@ -145,6 +177,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2012-10-18", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2012-10-18", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2012-10-18", "%Y-%m-%d"),
         ),
         Release(
             codename="raring",
@@ -153,6 +187,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2013-04-25", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2013-04-25", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2013-04-25", "%Y-%m-%d"),
         ),
         Release(
             codename="saucy",
@@ -161,6 +197,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2013-10-17", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2013-10-17", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2013-10-17", "%Y-%m-%d"),
         ),
         Release(
             codename="trusty",
@@ -169,6 +207,8 @@ def load_releases():
             development=False,
             lts=True,
             release_date=datetime.strptime("2014-04-17", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2022-04-30", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2019-04-30", "%Y-%m-%d"),
         ),
         Release(
             codename="utopic",
@@ -177,6 +217,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2014-10-23", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2014-10-23", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2014-10-23", "%Y-%m-%d"),
         ),
         Release(
             codename="vivid",
@@ -185,6 +227,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2015-04-23", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2015-04-23", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2015-04-23", "%Y-%m-%d"),
         ),
         Release(
             codename="wily",
@@ -193,6 +237,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2015-10-22", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2015-10-22", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2015-10-22", "%Y-%m-%d"),
         ),
         Release(
             codename="xenial",
@@ -201,6 +247,8 @@ def load_releases():
             development=False,
             lts=True,
             release_date=datetime.strptime("2016-04-21", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2024-04-30", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2021-04-30", "%Y-%m-%d"),
         ),
         Release(
             codename="yakkety",
@@ -209,6 +257,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2016-10-13", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2016-10-13", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2016-10-13", "%Y-%m-%d"),
         ),
         Release(
             codename="zesty",
@@ -217,6 +267,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2017-04-13", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2017-04-13", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2017-04-13", "%Y-%m-%d"),
         ),
         Release(
             codename="artful",
@@ -225,6 +277,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2017-10-19", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2017-10-19", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2017-10-19", "%Y-%m-%d"),
         ),
         Release(
             codename="bionic",
@@ -233,6 +287,8 @@ def load_releases():
             development=False,
             lts=True,
             release_date=datetime.strptime("2018-04-26", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2028-04-30", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2023-04-30", "%Y-%m-%d"),
         ),
         Release(
             codename="cosmic",
@@ -241,6 +297,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2018-10-18", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2018-10-18", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2018-10-18", "%Y-%m-%d"),
         ),
         Release(
             codename="disco",
@@ -249,6 +307,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2019-04-18", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2019-04-18", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2019-04-18", "%Y-%m-%d"),
         ),
         Release(
             codename="eoan",
@@ -257,6 +317,8 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2019-10-17", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2019-10-17", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2019-10-17", "%Y-%m-%d"),
         ),
         Release(
             codename="focal",
@@ -265,6 +327,8 @@ def load_releases():
             development=False,
             lts=True,
             release_date=datetime.strptime("2020-04-23", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2030-04-30", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2025-04-30", "%Y-%m-%d"),
         ),
     ]
 
