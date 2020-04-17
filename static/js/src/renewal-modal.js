@@ -61,6 +61,7 @@ import {
   let renewalID;
   let subscriptionStatus;
   let submitted3DS = false;
+  let pollingTimer;
 
   attachCTAevents();
   attachModalButtonEvents();
@@ -196,8 +197,6 @@ import {
   function handleIncompletePayment(invoice) {
     toggleProcessingState();
 
-    console.log(invoice);
-
     if (invoice.pi_status === "requires_payment_method") {
       // the user's original payment method failed,
       // capture a new payment method, then post the
@@ -232,7 +231,9 @@ import {
     }
 
     if (!subscriptionStatus || !paymentIntentStatus || submitted3DS) {
-      setTimeout(() => {
+      clearTimeout(pollingTimer);
+
+      pollingTimer = setTimeout(() => {
         pollRenewalStatus();
       }, 3000);
     } else if (subscriptionStatus !== "active") {
