@@ -58,7 +58,7 @@ class Notice(Base):
     cves = relationship("CVE", secondary=notice_cves)
     references = relationship("Reference", secondary=notice_references)
     releases = relationship(
-        "Release", secondary=notice_releases, order_by="-Release.version"
+        "Release", secondary=notice_releases, order_by="-Release.release_date"
     )
 
 
@@ -79,3 +79,5 @@ class Release(Base):
     lts = Column(Boolean)
     development = Column(Boolean)
     release_date = Column(DateTime)
+    esm_expires = Column(DateTime)
+    support_expires = Column(DateTime)
