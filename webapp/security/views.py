@@ -190,25 +190,21 @@ def api_create_notice():
     if not flask.request.json:
         return (flask.jsonify({"message": f"No payload received"}), 400)
 
-    # Because we get a dict with ID as a key and the payload as a value
-    notice_id, payload = flask.request.json.popitem()
-
-    notice = db_session.query(Notice).filter(Notice.id == notice_id).first()
-    if notice:
-        return (
-            flask.jsonify({"message": f"Notice '{notice.id}' already exists"}),
-            400,
-        )
-
-    notice_schema = NoticeSchema()
-
     try:
-        data = notice_schema.load(payload, unknown=EXCLUDE)
+        notice_schema = NoticeSchema()
+        data = notice_schema.load(flask.request.json, unknown=EXCLUDE)
     except ValidationError as error:
         return (
             flask.jsonify(
                 {"message": "Invalid payload", "errors": error.messages}
             ),
+            400,
+        )
+
+    notice = db_session.query(Notice).get(data["notice_id"])
+    if notice:
+        return (
+            flask.jsonify({"message": f"Notice '{notice.id}' already exists"}),
             400,
         )
 
@@ -244,7 +240,7 @@ def api_create_notice():
     for ref in refs:
         if ref.startswith("CVE-"):
             cve_id = ref[4:]
-            cve = db_session.query(CVE).filter(CVE.id == cve_id).first()
+            cve = db_session.query(CVE).get(cve_id)
             if not cve:
                 cve = CVE(id=cve_id)
             notice.cves.append(cve)
