@@ -60,6 +60,7 @@ import {
   let paymentIntentStatus;
   let renewalID;
   let subscriptionStatus;
+  let submitted3DS = false;
 
   attachCTAevents();
   attachModalButtonEvents();
@@ -145,7 +146,7 @@ import {
               toggleProcessingState();
 
               if (data.message) {
-                handleCardError(data.message);
+                handleErrorResponse(data);
               } else if (data.createdAt) {
                 setPaymentInformation(result.paymentMethod);
                 showPayDialog();
@@ -153,8 +154,8 @@ import {
                 presentCardError();
               }
             })
-            .catch(() => {
-              presentCardError();
+            .catch((data) => {
+              handleErrorResponse(data);
             });
         } else {
           presentCardError(result.error.message);
@@ -165,35 +166,56 @@ import {
       });
   }
 
-  function handleCardError(data) {
+  function handleErrorResponse(data) {
     const errorString = "unexpected error setting customer payment method: ";
-    let errorMessage = null;
+    const processingString = "already accepted: processing";
 
-    if (data.code === "internal server error") {
-      if (data.message.includes(errorString)) {
-        const json_string = data.message.replace(errorString, "");
-        const error_object = JSON.parse(json_string);
+    if (
+      data.code === "renewal is blocked" &&
+      data.message.includes(processingString)
+    ) {
+      // the renewal is still processing, revert to polling its status
+      pollRenewalStatus(renewalID);
+    } else if (
+      data.code === "internal server error" &&
+      data.message.includes(errorString)
+    ) {
+      // Stripe returned an error to the ua-contracts service,
+      // find out what it is
+      const json_string = data.message.replace(errorString, "");
+      const error_object = JSON.parse(json_string);
 
-        errorMessage = error_object.message;
-      }
+      presentCardError(error_object.message);
+    } else {
+      // there was a problem with the ua-contracts service,
+      // direct the user to get in touch with a support contact
+      presentCardError();
     }
-
-    presentCardError(errorMessage);
   }
 
   function handleIncompletePayment(invoice) {
     toggleProcessingState();
 
+    console.log(invoice);
+
     if (invoice.pi_status === "requires_payment_method") {
+      // the user's original payment method failed,
+      // capture a new payment method, then post the
+      // renewal invoice number to trigger another
+      // payment attempt
+      // TODO handle this flow
       postInvoiceIDToRenewal(renewalID, invoice.invoice_id).then((data) => {
         console.log(data);
       });
     } else if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
+      // 3DS has been requested by Stripe
       stripe.confirmCardPayment(invoice.pi_secret).then(function (result) {
+        submitted3DS = true;
+
         if (result.error) {
-          console.log("3D secure error: ", result.error);
+          presentCardError();
         } else {
-          console.log("3D secure success: ", result);
+          pollRenewalStatus(renewalID);
         }
       });
     } else {
@@ -209,7 +231,7 @@ import {
       paymentIntentStatus = invoice.pi_status;
     }
 
-    if (!subscriptionStatus || !paymentIntentStatus) {
+    if (!subscriptionStatus || !paymentIntentStatus || submitted3DS) {
       setTimeout(() => {
         pollRenewalStatus();
       }, 3000);
@@ -243,9 +265,9 @@ import {
   function presentCardError(message = null) {
     if (!message) {
       message =
-        "We encountered a problem while creating your payment method. Please contact support.";
+        "Sorry, there was an unknown error with the payment. Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.";
     }
-    cardErrorElement.textContent = message;
+    cardErrorElement.innerHTML = message;
     cardErrorElement.classList.remove("u-hide");
   }
 
@@ -255,7 +277,7 @@ import {
     postRenewalIDToProcessPayment(renewalID)
       .then((data) => {
         if (data.code) {
-          handleCardError(data);
+          handleErrorResponse(data);
         } else {
           pollRenewalStatus();
         }
