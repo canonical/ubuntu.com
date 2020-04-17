@@ -2,7 +2,6 @@ export async function getRenewal(renewalID) {
   let response = await fetch(`/advantage/renewals/${renewalID}`);
 
   let data = await response.json();
-  console.log(data);
   return data;
 }
 
@@ -16,7 +15,6 @@ export async function postInvoiceIDToRenewal(renewalID, invoiceID) {
   );
 
   let data = await response.json();
-  console.log(data);
   return data;
 }
 
@@ -30,7 +28,6 @@ export async function postRenewalIDToProcessPayment(renewalID) {
   );
 
   let data = await response.json();
-  console.log(data);
   return data;
 }
 
@@ -52,6 +49,5 @@ export async function postPaymentMethodToStripeAccount(
   });
 
   let data = await response.json();
-  console.log(data);
   return data;
 }
