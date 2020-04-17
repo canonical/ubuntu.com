@@ -27,7 +27,9 @@ import {
   const startElement = modal.querySelector(".js-renewal-start");
   const totalElement = modal.querySelector(".js-renewal-total");
 
-  const resetModalButton = modal.querySelector(".js-reset-modal");
+  const changePaymentMethodButton = modal.querySelector(
+    ".js-change-payment-method"
+  );
   const cancelModalButton = modal.querySelector(".js-cancel-modal");
 
   const stripe = Stripe("pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46");
@@ -93,9 +95,9 @@ import {
       processStripePayment();
     });
 
-    resetModalButton.addEventListener("click", (e) => {
+    changePaymentMethodButton.addEventListener("click", (e) => {
       e.preventDefault();
-      resetModal();
+      showPaymentMethodDialog();
     });
 
     cancelModalButton.addEventListener("click", (e) => {
@@ -123,7 +125,7 @@ import {
   function createPaymentMethod() {
     let formData = new FormData(form);
 
-    toggleProcessingState();
+    enableProcessingState();
 
     stripe
       .createPaymentMethod({
@@ -142,29 +144,30 @@ import {
       })
       .then((result) => {
         if (result.paymentMethod) {
-          postPaymentMethodToStripeAccount(result.paymentMethod.id, accountID)
-            .then((data) => {
-              toggleProcessingState();
-
-              if (data.message) {
-                handleErrorResponse(data);
-              } else if (data.createdAt) {
-                setPaymentInformation(result.paymentMethod);
-                showPayDialog();
-              } else {
-                presentCardError();
-              }
-            })
-            .catch((data) => {
-              handleErrorResponse(data);
-            });
+          handlePaymentMethodResponse(result.paymentMethod);
         } else {
           presentCardError(result.error.message);
         }
       })
       .catch(() => {
+        disableProcessingState();
         presentCardError();
       });
+  }
+
+  function disableProcessingState() {
+    cancelModalButton.disabled = false;
+    loadingIndicator.classList.add("u-hide");
+  }
+
+  function enableProcessingState() {
+    addPaymentMethodButton.disabled = true;
+    cancelModalButton.disabled = true;
+    processPaymentButton.disabled = true;
+
+    setTimeout(() => {
+      loadingIndicator.classList.remove("u-hide");
+    }, 2000);
   }
 
   function handleErrorResponse(data) {
@@ -195,16 +198,19 @@ import {
   }
 
   function handleIncompletePayment(invoice) {
-    toggleProcessingState();
-
     if (invoice.pi_status === "requires_payment_method") {
       // the user's original payment method failed,
       // capture a new payment method, then post the
       // renewal invoice number to trigger another
       // payment attempt
-      // TODO handle this flow
       postInvoiceIDToRenewal(renewalID, invoice.invoice_id).then((data) => {
         console.log(data);
+        if (data.code) {
+          handleErrorResponse(data);
+        } else {
+          console.log("invoice else");
+          // pollRenewalStatus(renewalID);
+        }
       });
     } else if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
       // 3DS has been requested by Stripe
@@ -218,6 +224,7 @@ import {
         }
       });
     } else {
+      // TODO handle this
       console.log("reached else: ", invoice);
     }
   }
@@ -241,6 +248,23 @@ import {
     }
   }
 
+  function handlePaymentMethodResponse(paymentMethod) {
+    postPaymentMethodToStripeAccount(paymentMethod.id, accountID)
+      .then((data) => {
+        if (data.message) {
+          handleErrorResponse(data);
+        } else if (data.createdAt) {
+          setPaymentInformation(paymentMethod);
+          showPayDialog();
+        } else {
+          presentCardError();
+        }
+      })
+      .catch((data) => {
+        handleErrorResponse(data);
+      });
+  }
+
   function handleSuccessfulPayment() {
     setTimeout(() => {
       location.reload();
@@ -253,7 +277,6 @@ import {
         if (renewal.status !== "done") {
           handleIncompleteRenewal(renewal);
         } else {
-          toggleProcessingState();
           handleSuccessfulPayment();
         }
       })
@@ -264,6 +287,8 @@ import {
   }
 
   function presentCardError(message = null) {
+    disableProcessingState();
+
     if (!message) {
       message =
         "Sorry, there was an unknown error with the payment. Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.";
@@ -273,7 +298,7 @@ import {
   }
 
   function processStripePayment() {
-    toggleProcessingState();
+    enableProcessingState();
 
     postRenewalIDToProcessPayment(renewalID)
       .then((data) => {
@@ -345,27 +370,25 @@ import {
     });
   }
 
+  function showPaymentMethodDialog() {
+    disableProcessingState();
+    form.classList.remove("u-hide");
+    addPaymentMethodButton.classList.remove("u-hide");
+    addPaymentMethodButton.disabled = false;
+
+    paymentMethodDetails.classList.add("u-hide");
+    processPaymentButton.classList.add("u-hide");
+    processPaymentButton.disabled = true;
+  }
+
   function showPayDialog() {
+    disableProcessingState();
     form.classList.add("u-hide");
     addPaymentMethodButton.classList.add("u-hide");
+    addPaymentMethodButton.disabled = true;
 
     paymentMethodDetails.classList.remove("u-hide");
     processPaymentButton.classList.remove("u-hide");
     processPaymentButton.disabled = false;
-  }
-
-  function toggleProcessingState() {
-    if (loadingIndicator.classList.contains("u-hide")) {
-      addPaymentMethodButton.disabled = true;
-      cancelModalButton.disabled = true;
-      processPaymentButton.disabled = true;
-
-      setTimeout(() => {
-        loadingIndicator.classList.remove("u-hide");
-      }, 2000);
-    } else {
-      cancelModalButton.disabled = false;
-      loadingIndicator.classList.add("u-hide");
-    }
   }
 })();
