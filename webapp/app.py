@@ -45,12 +45,14 @@ from webapp.views import (
     releasenotes_redirect,
 )
 from webapp.login import login_handler, logout
+from webapp.security.database import db_session
 from webapp.security.views import (
     create_notice,
     notice,
     notices,
     notices_feed,
 )
+
 
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
@@ -271,4 +273,10 @@ def cache_headers(response):
             "Cache-Control"
         ] = "max-age=61, stale-while-revalidate=90"
 
+    return response
+
+
+@app.teardown_appcontext
+def remove_db_session(response):
+    db_session.remove()
     return response
