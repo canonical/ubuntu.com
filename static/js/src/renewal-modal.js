@@ -252,8 +252,6 @@ import { parseStripeError } from "./stripe/error-parser.js";
       invoice = renewal.stripeInvoices[renewal.stripeInvoices.length - 1];
       subscriptionStatus = invoice.subscription_status;
       paymentIntentStatus = invoice.pi_status;
-
-      console.log("has invoice");
     }
 
     if (
@@ -262,14 +260,12 @@ import { parseStripeError } from "./stripe/error-parser.js";
       subscriptionStatus === "active" ||
       submitted3DS
     ) {
-      console.log("isn't incomplete");
       clearTimeout(pollingTimer);
 
       pollingTimer = setTimeout(() => {
         pollRenewalStatus();
       }, 3000);
     } else if (subscriptionStatus !== "active") {
-      console.log("is incomplete");
       handleIncompletePayment(invoice);
     }
   }
@@ -322,15 +318,11 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function pollRenewalStatus() {
-    console.log("getting renewal");
     getRenewal(renewalID)
       .then((renewal) => {
-        console.log("renewal", renewal);
         if (renewal.status !== "done") {
-          console.log("incomplete");
           handleIncompleteRenewal(renewal);
         } else {
-          console.log("successful");
           handleSuccessfulPayment();
         }
       })
@@ -369,14 +361,11 @@ import { parseStripeError } from "./stripe/error-parser.js";
           errorMessage = parseStripeError(data);
 
           if (errorMessage) {
-            console.log("error", errorMessage, data);
             presentError();
           } else {
-            console.log("no error");
             pollRenewalStatus();
           }
         } else {
-          console.log("no code");
           pollRenewalStatus();
         }
       })
