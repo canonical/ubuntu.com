@@ -168,6 +168,7 @@
                                         id="showModal"
                                         class="js-renewal-cta p-button--positive u-no-margin--bottom"
                                         aria-controls="modal"
+                                        data-contract-id="{{ contract['contractInfo']['id'] }}"
                                         data-account-id="{{ enterprise_contracts[account][0].accountInfo.id }}"
                                         data-name="{{ contract['contractInfo']['name']}}"
                                         data-quantity="{{ contract['renewal']['renewalItems'][0]['allowance']['value'] }}"

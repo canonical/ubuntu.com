@@ -14,6 +14,8 @@ import { parseStripeError } from "./stripe/error-parser.js";
   const paymentMethodDetails = document.getElementById(
     "payment-method-details"
   );
+  const progressIndicator = document.getElementById("js-progress-indicator");
+
   const renewalCTAs = document.querySelectorAll(".js-renewal-cta");
 
   const addPaymentMethodButton = modal.querySelector(".js-payment-method");
@@ -24,7 +26,6 @@ import { parseStripeError } from "./stripe/error-parser.js";
   const customerNameEl = modal.querySelector(".js-customer-name");
   const nameElement = modal.querySelector(".js-renewal-name");
   const processPaymentButton = modal.querySelector(".js-process-payment");
-  const progressIndicator = modal.querySelector(".js-progress-indicator");
   const quantityElement = modal.querySelector(".js-renewal-quantity");
   const startElement = modal.querySelector(".js-renewal-start");
   const totalElement = modal.querySelector(".js-renewal-total");
@@ -62,6 +63,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   let accountID;
   let billingInfo;
   let cardInfo;
+  let contractID;
   let errorMessage;
   let invoice;
   let paymentIntentStatus;
@@ -86,6 +88,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
 
         modal.classList.remove("u-hide");
         accountID = renewalData.accountId;
+        contractID = renewalData.contractId;
         renewalID = renewalData.renewalId;
 
         setRenewalInformation(renewalData);
@@ -152,28 +155,24 @@ import { parseStripeError } from "./stripe/error-parser.js";
         },
       })
       .then((result) => {
-        console.log("result");
         if (result.paymentMethod) {
           handlePaymentMethodResponse(result.paymentMethod);
         } else {
-          console.log("error");
           presentError(result.error.message);
         }
       })
-      .catch(() => {
-        console.log("catch");
+      .catch((error) => {
+        console.log(error);
         disableProcessingState();
         presentError();
       });
   }
 
   function disableProcessingState() {
-    console.log("here disable");
     clearTimeout(progressTimer1);
     clearTimeout(progressTimer2);
     clearTimeout(progressTimer3);
     resetProgressIndicator();
-    console.log("here too");
     cancelModalButton.disabled = false;
   }
 
@@ -213,14 +212,24 @@ import { parseStripeError } from "./stripe/error-parser.js";
       // capture a new payment method, then post the
       // renewal invoice number to trigger another
       // payment attempt
-      postInvoiceIDToRenewal(renewalID, invoice.invoice_id).then((data) => {
-        if (data.message) {
-          errorMessage = parseStripeError(data);
-          presentError();
-        } else {
-          pollRenewalStatus(renewalID);
-        }
-      });
+      postInvoiceIDToRenewal(renewalID, invoice.invoice_id)
+        .then((data) => {
+          if (data.message) {
+            errorMessage = parseStripeError(data);
+
+            if (errorMessage) {
+              presentError();
+            } else {
+              pollRenewalStatus();
+            }
+          } else {
+            pollRenewalStatus();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          pollRenewalStatus();
+        });
     } else if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
       // 3DS has been requested by Stripe
       stripe.confirmCardPayment(invoice.pi_secret).then(function (result) {
@@ -229,12 +238,11 @@ import { parseStripeError } from "./stripe/error-parser.js";
         if (result.error) {
           presentError();
         } else {
-          pollRenewalStatus(renewalID);
+          pollRenewalStatus();
         }
       });
     } else {
       // TODO handle this
-      console.log("reached else: ", invoice);
       presentError();
     }
   }
@@ -243,17 +251,25 @@ import { parseStripeError } from "./stripe/error-parser.js";
     if (renewal.stripeInvoices) {
       invoice = renewal.stripeInvoices[renewal.stripeInvoices.length - 1];
       subscriptionStatus = invoice.subscription_status;
-
       paymentIntentStatus = invoice.pi_status;
+
+      console.log("has invoice");
     }
 
-    if (!subscriptionStatus || !paymentIntentStatus || submitted3DS) {
+    if (
+      !subscriptionStatus ||
+      !paymentIntentStatus ||
+      subscriptionStatus === "active" ||
+      submitted3DS
+    ) {
+      console.log("isn't incomplete");
       clearTimeout(pollingTimer);
 
       pollingTimer = setTimeout(() => {
         pollRenewalStatus();
       }, 3000);
     } else if (subscriptionStatus !== "active") {
+      console.log("is incomplete");
       handleIncompletePayment(invoice);
     }
   }
@@ -261,7 +277,6 @@ import { parseStripeError } from "./stripe/error-parser.js";
   function handlePaymentMethodResponse(paymentMethod) {
     postPaymentMethodToStripeAccount(paymentMethod.id, accountID)
       .then((data) => {
-        console.log(data);
         if (data.message) {
           // ua-contracts returned an error with information for us to parse
           errorMessage = parseStripeError(data);
@@ -282,7 +297,10 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function handleSuccessfulPayment() {
-    progressIndicator.querySelector("p-icon--spinner").classList.add("u-hide");
+    clearTimeout(progressTimer1);
+    clearTimeout(progressTimer2);
+    clearTimeout(progressTimer3);
+    progressIndicator.querySelector(".p-icon--spinner").classList.add("u-hide");
     progressIndicator
       .querySelector(".p-icon--success")
       .classList.remove("u-hide");
@@ -290,7 +308,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
     progressIndicator.classList.remove("u-hide");
 
     setTimeout(() => {
-      location.reload();
+      location.search = `subscription=${contractID}`;
     }, 3000);
   }
 
@@ -300,14 +318,19 @@ import { parseStripeError } from "./stripe/error-parser.js";
     renewalErrorElement.querySelector(".p-notification__message").innerHTML =
       "";
     renewalErrorElement.classList.add("u-hide");
+    errorMessage = null;
   }
 
   function pollRenewalStatus() {
+    console.log("getting renewal");
     getRenewal(renewalID)
       .then((renewal) => {
+        console.log("renewal", renewal);
         if (renewal.status !== "done") {
+          console.log("incomplete");
           handleIncompleteRenewal(renewal);
         } else {
+          console.log("successful");
           handleSuccessfulPayment();
         }
       })
@@ -344,13 +367,20 @@ import { parseStripeError } from "./stripe/error-parser.js";
       .then((data) => {
         if (data.code) {
           errorMessage = parseStripeError(data);
-          presentError();
+
+          if (errorMessage) {
+            console.log("error", errorMessage, data);
+            presentError();
+          } else {
+            console.log("no error");
+            pollRenewalStatus();
+          }
         } else {
+          console.log("no code");
           pollRenewalStatus();
         }
       })
       .catch((error) => {
-        // TODO handle this error
         console.log(error);
         presentError();
       });
@@ -359,19 +389,19 @@ import { parseStripeError } from "./stripe/error-parser.js";
   function resetModal() {
     form.reset();
     card.clear();
+    resetProgressIndicator();
     form.classList.remove("u-hide");
     paymentMethodDetails.classList.add("u-hide");
     addPaymentMethodButton.classList.remove("u-hide");
     addPaymentMethodButton.disabled = true;
     processPaymentButton.classList.add("u-hide");
     processPaymentButton.disabled = true;
-    resetProgressIndicator();
+    errorMessage = null;
   }
 
   function resetProgressIndicator() {
-    console.log("here reset");
     progressIndicator
-      .querySelector("p-icon--spinner")
+      .querySelector(".p-icon--spinner")
       .classList.remove("u-hide");
     progressIndicator.querySelector(".p-icon--success").classList.add("u-hide");
     progressIndicator.querySelector("span").innerHTML = "";
@@ -435,7 +465,6 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function showPayDialog() {
-    console.log("here");
     hideErrors();
     disableProcessingState();
     form.classList.add("u-hide");

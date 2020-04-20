@@ -11,6 +11,12 @@ export function parseStripeError(data) {
     // the renewal is processing, we can carry on
     return false;
   } else if (
+    data.code === "invoice payment failed" &&
+    data.message.includes("Invoice is already paid")
+  ) {
+    // the invoice was successfully paid on a reattempt
+    return false;
+  } else if (
     data.code === "internal server error" &&
     data.message.includes(unexpectedErrorString)
   ) {
