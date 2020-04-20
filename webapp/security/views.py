@@ -186,7 +186,7 @@ def notices_feed(feed_type):
 
 
 @authorization_required
-def api_create_notice():
+def create_notice():
     if not flask.request.json:
         return (flask.jsonify({"message": f"No payload received"}), 400)
 
