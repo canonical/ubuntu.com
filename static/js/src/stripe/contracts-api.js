@@ -1,5 +1,7 @@
 export async function getRenewal(renewalID) {
-  let response = await fetch(`/advantage/renewals/${renewalID}`);
+  let response = await fetch(`/advantage/renewals/${renewalID}`, {
+    cache: "no-store",
+  });
 
   let data = await response.json();
   return data;
@@ -9,8 +11,9 @@ export async function postInvoiceIDToRenewal(renewalID, invoiceID) {
   let response = await fetch(
     `/advantage/renewals/${renewalID}/invoices/${invoiceID}`,
     {
-      method: "POST",
+      cache: "no-store",
       credentials: "include",
+      method: "POST",
     }
   );
 
@@ -22,8 +25,9 @@ export async function postRenewalIDToProcessPayment(renewalID) {
   let response = await fetch(
     `/advantage/renewals/${renewalID}/process-payment`,
     {
-      method: "POST",
+      cache: "no-store",
       credentials: "include",
+      method: "POST",
     }
   );
 
@@ -37,6 +41,7 @@ export async function postPaymentMethodToStripeAccount(
 ) {
   let response = await fetch("/advantage/payment-method", {
     method: "POST",
+    cache: "no-store",
     credentials: "include",
     headers: {
       Accept: "application/json",
