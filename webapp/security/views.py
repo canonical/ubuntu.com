@@ -11,6 +11,7 @@ from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sqlalchemy import asc, desc
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
 # Local
@@ -201,13 +202,6 @@ def create_notice():
             400,
         )
 
-    notice = db_session.query(Notice).get(data["notice_id"])
-    if notice:
-        return (
-            flask.jsonify({"message": f"Notice '{notice.id}' already exists"}),
-            400,
-        )
-
     notice = Notice(
         id=data["notice_id"],
         title=data["title"],
@@ -254,7 +248,13 @@ def create_notice():
                 reference = Reference(uri=ref)
             notice.references.append(reference)
 
-    db_session.add(notice)
-    db_session.commit()
+    try:
+        db_session.add(notice)
+        db_session.commit()
+    except IntegrityError:
+        return (
+            flask.jsonify({"message": f"Notice '{notice.id}' already exists"}),
+            400,
+        )
 
     return flask.jsonify({"message": "Notice created"}), 201
