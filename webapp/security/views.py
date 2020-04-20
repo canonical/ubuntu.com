@@ -191,8 +191,8 @@ def create_notice():
     if not flask.request.json:
         return (flask.jsonify({"message": f"No payload received"}), 400)
 
+    notice_schema = NoticeSchema()
     try:
-        notice_schema = NoticeSchema()
         data = notice_schema.load(flask.request.json, unknown=EXCLUDE)
     except ValidationError as error:
         return (
