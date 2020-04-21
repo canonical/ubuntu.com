@@ -64,23 +64,12 @@ import { parseStripeError } from "./stripe/error-parser.js";
   const card = elements.create("card", { style });
 
   let accountID;
-  let billingInfo;
-  let cardInfo;
   let contractID;
-  let errorMessage;
-  let invoice;
-  let paymentIntentStatus;
   let renewalID;
-  let subscriptionStatus;
   let submitted3DS = false;
 
   let pollingTimer;
   let progressTimer;
-
-  attachCTAevents();
-  attachModalButtonEvents();
-  attachModalEvents();
-  setupCardElements();
 
   function attachCTAevents() {
     renewalCTAs.forEach((cta) => {
@@ -209,10 +198,10 @@ import { parseStripeError } from "./stripe/error-parser.js";
       postInvoiceIDToRenewal(renewalID, invoice.invoice_id)
         .then((data) => {
           if (data.message) {
-            errorMessage = parseStripeError(data);
+            const errorMessage = parseStripeError(data);
 
             if (errorMessage) {
-              presentError();
+              presentError(errorMessage);
             } else {
               pollRenewalStatus();
             }
@@ -230,8 +219,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
         submitted3DS = true;
 
         if (result.error) {
-          errorMessage = result.error.message;
-          presentError();
+          presentError(result.error.message);
           submitted3DS = false;
         } else {
           pollRenewalStatus();
@@ -243,10 +231,14 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function handleIncompleteRenewal(renewal) {
+    let invoice;
+    let paymentIntentStatus;
+    let subscriptionStatus;
+
     if (renewal.stripeInvoices) {
       invoice = renewal.stripeInvoices[renewal.stripeInvoices.length - 1];
-      subscriptionStatus = invoice.subscription_status;
       paymentIntentStatus = invoice.pi_status;
+      subscriptionStatus = invoice.subscription_status;
     }
 
     if (
@@ -270,8 +262,8 @@ import { parseStripeError } from "./stripe/error-parser.js";
       .then((data) => {
         if (data.message) {
           // ua-contracts returned an error with information for us to parse
-          errorMessage = parseStripeError(data);
-          presentError();
+          const errorMessage = parseStripeError(data);
+          presentError(errorMessage);
         } else if (data.createdAt) {
           // payment method was successfully attached,
           // ask user to click "Pay"
@@ -307,7 +299,6 @@ import { parseStripeError } from "./stripe/error-parser.js";
     renewalErrorElement.querySelector(".p-notification__message").innerHTML =
       "";
     renewalErrorElement.classList.add("u-hide");
-    errorMessage = null;
   }
 
   function pollRenewalStatus() {
@@ -325,19 +316,19 @@ import { parseStripeError } from "./stripe/error-parser.js";
       });
   }
 
-  function presentError(type = "renewal") {
-    if (!errorMessage) {
-      errorMessage =
+  function presentError(message = null, type = "renewal") {
+    if (!message) {
+      message =
         "Sorry, there was an unknown error with the payment. Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.";
     }
 
     if (type === "card") {
-      cardErrorElement.innerHTML = errorMessage;
+      cardErrorElement.innerHTML = message;
       cardErrorElement.classList.remove("u-hide");
     } else if (type === "renewal") {
       renewalErrorElement.querySelector(
         ".p-notification__message"
-      ).innerHTML = errorMessage;
+      ).innerHTML = message;
       renewalErrorElement.classList.remove("u-hide");
     }
 
@@ -350,10 +341,10 @@ import { parseStripeError } from "./stripe/error-parser.js";
     postRenewalIDToProcessPayment(renewalID)
       .then((data) => {
         if (data.code) {
-          errorMessage = parseStripeError(data);
+          const errorMessage = parseStripeError(data);
 
           if (errorMessage) {
-            presentError();
+            presentError(errorMessage);
           } else {
             pollRenewalStatus();
           }
@@ -391,7 +382,6 @@ import { parseStripeError } from "./stripe/error-parser.js";
     addPaymentMethodButton.disabled = true;
     processPaymentButton.classList.add("u-hide");
     processPaymentButton.disabled = true;
-    errorMessage = null;
   }
 
   function resetProgressIndicator() {
@@ -418,8 +408,8 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function setPaymentInformation(paymentMethod) {
-    billingInfo = paymentMethod.billing_details;
-    cardInfo = paymentMethod.card;
+    const billingInfo = paymentMethod.billing_details;
+    const cardInfo = paymentMethod.card;
 
     const cardBrandFormatted =
       cardInfo.brand.charAt(0).toUpperCase() + cardInfo.brand.slice(1);
@@ -438,8 +428,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
 
     card.on("change", ({ error }) => {
       if (error) {
-        errorMessage = error.message;
-        presentError("card");
+        presentError(error.message, "card");
       } else {
         hideErrors();
       }
@@ -469,4 +458,9 @@ import { parseStripeError } from "./stripe/error-parser.js";
     processPaymentButton.classList.remove("u-hide");
     processPaymentButton.disabled = false;
   }
+
+  attachCTAevents();
+  attachModalButtonEvents();
+  attachModalEvents();
+  setupCardElements();
 })();
