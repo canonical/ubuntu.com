@@ -24,8 +24,6 @@ export function parseStripeError(data) {
   const requiresAuthentication =
     data.code === "invoice payment failed" &&
     data.message.includes("This payment requires additional user action");
-  let json_string;
-  let error_object;
 
   if (isProcessing || invoicePaid || requiresAuthentication) {
     return false;
@@ -35,14 +33,13 @@ export function parseStripeError(data) {
   ) {
     // Stripe returned an error to the ua-contracts service,
     // find out what it is
-    json_string = data.message.replace(errorString(data.message), "");
-    error_object = JSON.parse(json_string);
+    const json_string = data.message.replace(errorString(data.message), "");
+    const error_object = JSON.parse(json_string);
 
     return error_object.message;
   } else if (data.code === "invoice payment failed") {
     // a subsequent attempt to pay with a new payment method failed
-    json_string = data.message;
-    error_object = JSON.parse(json_string);
+    const error_object = JSON.parse(data.message);
 
     return error_object.message;
   } else {
