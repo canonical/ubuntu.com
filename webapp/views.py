@@ -1,4 +1,6 @@
 # Standard library
+import hashlib
+import hmac
 import json
 import math
 import os
@@ -9,6 +11,7 @@ from datetime import datetime
 import dateutil.parser
 import feedparser
 import flask
+import gnupg
 import pytz
 import talisker.requests
 from ubuntu_release_info.data import Data
@@ -136,7 +139,7 @@ def post_build():
             "https://pages.ubuntu.com/index.php/leadCapture/save",
             data={
                 "canonicalUpdatesOptIn": opt_in,
-                "FirstName": names[0],
+                "FirstName": " ".join(names[:-1]),
                 "LastName": names[-1] if len(names) > 1 else "",
                 "Email": email,
                 "formid": "3546",
@@ -149,7 +152,9 @@ def post_build():
     # Ensure webhook is created
     try:
         launchpad.create_system_build_webhook(
-            system, "https://ubuntu.com/core/build/notify"
+            system=system,
+            delivery_url="https://ubuntu.com/core/build/notify",
+            secret=flask.current_app.config["SECRET_KEY"],
         )
     except WebhookExistsError:
         # It's fine if the webhook exists
@@ -161,7 +166,8 @@ def post_build():
             board=board,
             system=system,
             snaps=snaps,
-            metadata={"_email": email, "_full_name": full_name},
+            author_info={"name": full_name, "email": email, "board": board},
+            gpg_passphrase=flask.current_app.config["SECRET_KEY"],
         )
         context["build_info"] = launchpad.session.get(
             response.headers["Location"]
@@ -179,6 +185,95 @@ def post_build():
             raise http_error
 
     return flask.render_template("core/build.html", **context)
+
+
+def notify_build():
+    """
+    An endpoint to trigger an update about a build event to be sent.
+    This will usually be triggered by a webhook from Launchpad
+    """
+
+    # Verify contents
+    signature = hmac.new(
+        flask.current_app.config["SECRET_KEY"].encode("utf-8"),
+        flask.request.data,
+        hashlib.sha1,
+    ).hexdigest()
+
+    if "X-Hub-Signature" not in flask.request.headers:
+        return "No X-Hub-Signature provided\n", 403
+
+    if not hmac.compare_digest(
+        signature, flask.request.headers["X-Hub-Signature"].split("=")[1]
+    ):
+        return "X-Hub-Signature does not match\n", 400
+
+    event_content = flask.request.json
+
+    build_url = (
+        "https://api.launchpad.net/devel" + event_content["livefs_build"]
+    )
+
+    launchpad = Launchpad(
+        username="image.build",
+        token=os.environ["LAUNCHPAD_TOKEN"],
+        secret=os.environ["LAUNCHPAD_SECRET"],
+        session=session,
+    )
+
+    build = launchpad.request(build_url).json()
+    author_json = (
+        gnupg.GPG()
+        .decrypt(
+            build["metadata_override"]["_author_data"],
+            passphrase=flask.current_app.config["SECRET_KEY"],
+        )
+        .data
+    )
+
+    if author_json:
+        author = json.loads(author_json)
+    else:
+        return "_author_data could not be decoded\n", 400
+
+    email = author["email"]
+    names = author["name"].split(" ")
+    board = author["board"]
+    snaps = ", ".join(build["metadata_override"]["extra_snaps"])
+    codename = build["distro_series_link"].split("/")[-1]
+    version = Data().by_codename(codename).version
+    arch = build["distro_arch_series_link"].split("/")[-1]
+    build_link = build["web_link"]
+    status = build["buildstate"]
+
+    download_url = None
+
+    if status == "Successfully built":
+        download_url = launchpad.request(
+            f"{build_url}?ws.op=getFileUrls"
+        ).json()[-1]
+
+    session.post(
+        "https://pages.ubuntu.com/index.php/leadCapture/save",
+        data={
+            "FirstName": " ".join(names[:-1]),
+            "LastName": names[-1] if len(names) > 1 else "",
+            "Email": email,
+            "formid": "3546",
+            "lpId": "2154",
+            "subId": "30",
+            "munchkinId": "066-EOV-335",
+            "imageBuilderVersion": version,
+            "imageBuilderArchitecture": arch,
+            "imageBuilderBoard": board,
+            "imageBuilderSnaps": snaps,
+            "imageBuilderBuildlink": build_link,
+            "imageBuilderStatus": status,
+            "imageBuilderDownloadlink": download_url,
+        },
+    )
+
+    return "Submitted\n", 202
 
 
 def search_snaps():

@@ -37,6 +37,7 @@ from webapp.views import (
     blog_custom_group,
     blog_custom_topic,
     blog_press_centre,
+    build_tutorials_index,
     download_thank_you,
     get_renewal,
     post_stripe_method_id,
@@ -44,7 +45,7 @@ from webapp.views import (
     post_build,
     releasenotes_redirect,
     search_snaps,
-    build_tutorials_index,
+    notify_build,
 )
 from webapp.login import login_handler, logout
 from webapp.security.views import (
@@ -180,6 +181,9 @@ template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/snaps", view_func=search_snaps)
 app.add_url_rule("/core/build", view_func=post_build, methods=["POST"])
+app.add_url_rule(
+    "/core/build/notify", view_func=notify_build, methods=["POST"]
+)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
 url_prefix = "/server/docs"
