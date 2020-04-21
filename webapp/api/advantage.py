@@ -144,4 +144,7 @@ def accept_renewal(session, renewal_id):
         raise_http_errors=False,
     )
 
-    return response.json()
+    if response.status_code == 200:
+        return {}
+    else:
+        return response.json()
