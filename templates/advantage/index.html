@@ -80,7 +80,7 @@
               <tbody>
                 {% for contract in enterprise_contracts[account] %}
                   {% if contract["contractInfo"]["status"] != 'expired' %}
-                    {% if not open_subscription and (loop.index ==1 and outer_loop.index == 1) %}
+                    {% if not open_subscription and (loop.index == 1 and outer_loop.index == 1) %}
                       {% set default_open_cell = true %}
                     {% else %}
                       {% set default_open_cell = false %}
