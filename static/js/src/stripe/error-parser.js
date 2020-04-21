@@ -15,20 +15,19 @@ function errorString(message) {
 }
 
 export function parseStripeError(data) {
+  const isProcessing =
+    data.code === "renewal is blocked" &&
+    data.message.includes("already accepted: processing");
+  const invoicePaid =
+    data.code === "invoice payment failed" &&
+    data.message.includes("Invoice is already paid");
+  const requiresAuthentication =
+    data.code === "invoice payment failed" &&
+    data.message.includes("This payment requires additional user action");
   let json_string;
   let error_object;
 
-  if (
-    data.code === "renewal is blocked" &&
-    data.message.includes("already accepted: processing")
-  ) {
-    // the renewal is processing, we can carry on
-    return false;
-  } else if (
-    data.code === "invoice payment failed" &&
-    data.message.includes("Invoice is already paid")
-  ) {
-    // the invoice was successfully paid on a reattempt
+  if (isProcessing || invoicePaid || requiresAuthentication) {
     return false;
   } else if (
     data.code === "internal server error" &&

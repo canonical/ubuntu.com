@@ -221,14 +221,15 @@ import { parseStripeError } from "./stripe/error-parser.js";
           console.error(error);
           pollRenewalStatus();
         });
-    } else if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
+    } else if (requiresAuthentication(invoice)) {
       // 3DS has been requested by Stripe
       stripe.confirmCardPayment(invoice.pi_secret).then(function (result) {
         submitted3DS = true;
 
         if (result.error) {
-          errorMessage = result.error;
+          errorMessage = result.error.message;
           presentError();
+          submitted3DS = false;
         } else {
           pollRenewalStatus();
         }
@@ -361,6 +362,20 @@ import { parseStripeError } from "./stripe/error-parser.js";
         console.error(error);
         presentError();
       });
+  }
+
+  function requiresAuthentication(invoice) {
+    if (invoice.pi_decline_code) {
+      if (invoice.pi_decline_code === "authentication_required") {
+        return true;
+      }
+    }
+
+    if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
+      return true;
+    }
+
+    return false;
   }
 
   function resetModal() {
