@@ -16,8 +16,6 @@ import { parseStripeError } from "./stripe/error-parser.js";
   );
   const progressIndicator = document.getElementById("js-progress-indicator");
 
-  const renewalCTAs = document.querySelectorAll(".js-renewal-cta");
-
   const addPaymentMethodButton = modal.querySelector(".js-payment-method");
   const cardExpiryEl = modal.querySelector(".js-customer-card-expiry");
   const cardImgEl = modal.querySelector(".js-customer-card-brand");
@@ -74,7 +72,9 @@ import { parseStripeError } from "./stripe/error-parser.js";
   let pollingTimer;
   let progressTimer;
 
-  function attachCTAevents() {
+  function attachCTAevents(selector) {
+    const renewalCTAs = document.querySelectorAll(selector);
+
     renewalCTAs.forEach((cta) => {
       cta.addEventListener("click", () => {
         let renewalData = cta.dataset;
@@ -462,7 +462,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
     processPaymentButton.disabled = false;
   }
 
-  attachCTAevents();
+  attachCTAevents(".js-renewal-cta");
   attachModalButtonEvents();
   attachModalEvents();
   setupCardElements();
