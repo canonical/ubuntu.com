@@ -20,7 +20,7 @@ to directly  use Azure native features.
 
 ## Azure integrator
 
-The `aws-integrator` charm simplifies working with **Charmed Kubernetes** on
+The `azure-integrator` charm simplifies working with **Charmed Kubernetes** on
 Azure. Using the credentials provided to **Juju**, it acts as a proxy between
 Charmed Kubernetes and the underlying cloud, granting permissions to
 dynamically create, for example, storage.
@@ -28,13 +28,13 @@ dynamically create, for example, storage.
 ### Installing
 
 If you install **Charmed Kubernetes** [using the Juju bundle][install],
-you can add the aws-integrator at the same time by using the following
+you can add the azure-integrator at the same time by using the following
 overlay file ([download it here][asset-azure-overlay]):
 
 ```yaml
 description: Charmed Kubernetes overlay to add native Azure support.
 applications:
-  aws-integrator:
+  azure-integrator:
     annotations:
       gui-x: "600"
       gui-y: "300"
@@ -186,7 +186,7 @@ please see the [azure charm page][azure-integrator].
 <div class="p-notification--information">
   <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/aws-integration.md" class="p-notification__action">edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/azure-integration.md" class="p-notification__action">edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>

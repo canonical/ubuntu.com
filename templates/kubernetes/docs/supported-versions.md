@@ -16,9 +16,9 @@ toc: False
 Charmed Kubernetes officially supports the most recent three (3) minor releases
 of Kubernetes.
 
-Current Release: **1.17**
+Current Release: **1.18**
 
-Supported releases: **1.17.x, 1.16.x, 1.15.x**
+Supported releases: **1.18.x, 1.17.x, 1.16.x**
 
 ## Finding version info
 
