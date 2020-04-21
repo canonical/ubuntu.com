@@ -72,9 +72,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   let submitted3DS = false;
 
   let pollingTimer;
-  let progressTimer1;
-  let progressTimer2;
-  let progressTimer3;
+  let progressTimer;
 
   attachCTAevents();
   attachModalButtonEvents();
@@ -169,9 +167,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function disableProcessingState() {
-    clearTimeout(progressTimer1);
-    clearTimeout(progressTimer2);
-    clearTimeout(progressTimer3);
+    clearTimeout(progressTimer);
     resetProgressIndicator();
     cancelModalButton.disabled = false;
   }
@@ -182,10 +178,10 @@ import { parseStripeError } from "./stripe/error-parser.js";
     processPaymentButton.disabled = true;
 
     // show a loading spinner
-    progressTimer1 = setTimeout(() => {
+    progressTimer = setTimeout(() => {
       progressIndicator.classList.remove("u-hide");
 
-      progressTimer2 = setTimeout(() => {
+      progressTimer = setTimeout(() => {
         if (mode === "payment") {
           progressIndicator.querySelector("span").innerHTML =
             "Making payment...";
@@ -194,16 +190,11 @@ import { parseStripeError } from "./stripe/error-parser.js";
             "Saving details...";
         }
 
-        progressTimer3 = setTimeout(() => {
+        progressTimer = setTimeout(() => {
           progressIndicator.querySelector("span").innerHTML = "Still trying...";
         }, 11000);
       }, 2000);
     }, 2000);
-
-    // still trying
-    progressTimer3 = setTimeout(() => {
-      progressIndicator.querySelector("span").innerHTML = "Still trying...";
-    }, 15000);
   }
 
   function handleIncompletePayment(invoice) {
@@ -236,6 +227,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
         submitted3DS = true;
 
         if (result.error) {
+          console.log(result.error);
           presentError();
         } else {
           pollRenewalStatus();
@@ -293,9 +285,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function handleSuccessfulPayment() {
-    clearTimeout(progressTimer1);
-    clearTimeout(progressTimer2);
-    clearTimeout(progressTimer3);
+    clearTimeout(progressTimer);
     progressIndicator.querySelector(".p-icon--spinner").classList.add("u-hide");
     progressIndicator
       .querySelector(".p-icon--success")
