@@ -63,9 +63,12 @@ import { parseStripeError } from "./stripe/error-parser.js";
   const elements = stripe.elements();
   const card = elements.create("card", { style });
 
-  let accountID;
-  let contractID;
-  let renewalID;
+  const activeRenewal = {
+    accountId: null,
+    contractId: null,
+    renewalId: null,
+  };
+
   let submitted3DS = false;
 
   let pollingTimer;
@@ -77,9 +80,9 @@ import { parseStripeError } from "./stripe/error-parser.js";
         let renewalData = cta.dataset;
 
         modal.classList.remove("u-hide");
-        accountID = renewalData.accountId;
-        contractID = renewalData.contractId;
-        renewalID = renewalData.renewalId;
+        activeRenewal.accountId = renewalData.accountId;
+        activeRenewal.contractId = renewalData.contractId;
+        activeRenewal.renewalId = renewalData.renewalId;
 
         setRenewalInformation(renewalData);
       });
@@ -195,7 +198,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
       // capture a new payment method, then post the
       // renewal invoice number to trigger another
       // payment attempt
-      postInvoiceIDToRenewal(renewalID, invoice.invoice_id)
+      postInvoiceIDToRenewal(activeRenewal.renewalId, invoice.invoice_id)
         .then((data) => {
           if (data.message) {
             const errorMessage = parseStripeError(data);
@@ -258,7 +261,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function handlePaymentMethodResponse(paymentMethod) {
-    postPaymentMethodToStripeAccount(paymentMethod.id, accountID)
+    postPaymentMethodToStripeAccount(paymentMethod.id, activeRenewal.accountId)
       .then((data) => {
         if (data.message) {
           // ua-contracts returned an error with information for us to parse
@@ -289,7 +292,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
     progressIndicator.classList.remove("u-hide");
 
     setTimeout(() => {
-      location.search = `subscription=${contractID}`;
+      location.search = `subscription=${activeRenewal.contractId}`;
     }, 3000);
   }
 
@@ -302,7 +305,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function pollRenewalStatus() {
-    getRenewal(renewalID)
+    getRenewal(activeRenewal.renewalId)
       .then((renewal) => {
         if (renewal.status !== "done") {
           handleIncompleteRenewal(renewal);
@@ -338,7 +341,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   function processStripePayment() {
     enableProcessingState("payment");
 
-    postRenewalIDToProcessPayment(renewalID)
+    postRenewalIDToProcessPayment(activeRenewal.renewalId)
       .then((data) => {
         if (data.code) {
           const errorMessage = parseStripeError(data);
