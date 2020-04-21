@@ -306,6 +306,7 @@
     </section>
   {% endif %}
 
+  {% include 'advantage/_stripe-modal.html' %}
 {% else %}
   <section class="p-strip--suru-topped is-shallow" style="padding-top: 6rem;"></section>
     <div class="row">
@@ -355,8 +356,6 @@
     </div>
   </section>
 {% endif %}
-
-{% include 'advantage/_stripe-modal.html' %}
 
 <script>
   function contextualMenu() {
