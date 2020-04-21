@@ -160,7 +160,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         disableProcessingState();
         presentError();
       });
@@ -218,7 +218,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
           }
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           pollRenewalStatus();
         });
     } else if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
@@ -227,14 +227,13 @@ import { parseStripeError } from "./stripe/error-parser.js";
         submitted3DS = true;
 
         if (result.error) {
-          console.log(result.error);
+          errorMessage = result.error;
           presentError();
         } else {
           pollRenewalStatus();
         }
       });
     } else {
-      // TODO handle this
       presentError();
     }
   }
@@ -317,8 +316,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
         }
       })
       .catch((error) => {
-        // TODO handle this error
-        console.log(error);
+        console.error(error);
         presentError();
       });
   }
@@ -360,7 +358,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         presentError();
       });
   }
@@ -411,7 +409,6 @@ import { parseStripeError } from "./stripe/error-parser.js";
     const cardExpiry = `Expires: ${cardInfo.exp_month}/${cardInfo.exp_year}`;
 
     cardImgEl.innerHTML = cardInfo.brand;
-    // TODO use the above to set an image of the card brand, rather than text
     cardTextEl.innerHTML = cardText;
     cardExpiryEl.innerHTML = cardExpiry;
     customerNameEl.innerHTML = billingInfo.name;
