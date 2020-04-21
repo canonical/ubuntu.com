@@ -57,49 +57,48 @@
       </div>
     </section>
 
-<section class="p-strip--light u-no-padding--top is-shallow">
-  <div class="row">
-    <div class="col-12">
-      {% for account in enterprise_contracts %}
-      {% set outer_loop = loop %}
-      <table class="p-table-expanding p-table--advantage">
-        <thead>
-          <tr class="p-table__row">
-            <th>{{ account }}</th>
-            <th>UA plan</th>
-            <th class="u-align--center">Attached</th>
-            <th class="u-align--center">ESM</th>
-            <th class="u-align--center">Livepatch</th>
-            <th class="u-align--center">FIPS</th>
-            <th class="u-align--center">CC-EAL</th>
-            <th class="u-hide">&nbsp;</th>
-            <th class="u-hide">&nbsp;</th>
-            <th class="u-hide">&nbsp;</th>
-            <th class="u-hide">&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for contract in enterprise_contracts[account] %}
-          {% if contract["contractInfo"]["status"] != 'expired' %}
+    <section class="p-strip u-no-padding--top is-shallow">
+      <div class="row">
+        <div class="col-12">
+          {% for account in enterprise_contracts %}
+            {% set outer_loop = loop %}
+            <table class="p-table-expanding p-table--advantage">
+              <thead>
+                <tr class="p-table__row">
+                  <th>{{ account }}</th>
+                  <th>UA plan</th>
+                  <th class="u-align--center">Attached</th>
+                  <th class="u-align--center">ESM</th>
+                  <th class="u-align--center">Livepatch</th>
+                  <th class="u-align--center">FIPS</th>
+                  <th class="u-align--center">CC-EAL</th>
+                  <th class="u-hide">&nbsp;</th>
+                  <th class="u-hide">&nbsp;</th>
+                  <th class="u-hide">&nbsp;</th>
+                  <th class="u-hide">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for contract in enterprise_contracts[account] %}
+                  {% if contract["contractInfo"]["status"] != 'expired' %}
+                    {% if not open_subscription and (loop.index == 1 and outer_loop.index == 1) %}
+                      {% set default_open_cell = true %}
+                    {% else %}
+                      {% set default_open_cell = false %}
+                    {% endif %}
 
-          {% if not open_subscription and (loop.index ==1 and outer_loop.index == 1) %}
-            {% set default_open_cell = true %}
-          {% else %}
-            {% set default_open_cell = false %}
-          {% endif %}
-
-          <tr class="p-table__row">
-            <td{% if open_subscription == contract['contractInfo']['id'] %} class="p-table--open"{% endif %}>
-              <button class="u-toggle u-align--left u-no-padding--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                  {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu {% if open_subscription == contract['contractInfo']['id']%}u-rotate{% endif %}">Open</i>
-              </button>
-            </td>
-            <td style="text-transform: capitalize"><span class="u-truncate" style="padding-top:.35rem;">{{ contract['supportLevel'] }}</span></td>
-            <td class="u-align--center {% if default_open_cell %}p-table--open{% endif %}">
-              <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if default_cell_open %}true{% else %}false{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
-                {{ contract['machineCount'] }} &nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
-              </button>
-            </td>
+                    <tr class="p-table__row">
+                      <td {% if open_subscription == contract['contractInfo']['id'] %} class="p-table--open"{% endif %}>
+                        <button class="u-toggle u-toggle--full-width u-align--left u-no-padding--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
+                          {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if contract['expiring'] %}<div class="" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} day{% if contract["contractInfo"]["daysTillExpiry"] > 1 %}s{% endif %}</div>{% endif %}
+                        </button>
+                      </td>
+                      <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
+                      <td class="u-align--center {% if default_open_cell %}p-table--open{% endif %}">
+                        <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if default_cell_open %}true{% else %}false{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
+                          {{ contract['machineCount'] }} &nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
+                        </button>
+                      </td>
 
                       <td class="u-align--center">
                         {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
@@ -138,94 +137,127 @@
                         {% endif %}
                       </td>
 
-            <td id="expanded-details-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if open_subscription == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
-              <div class="row">
-                <div class="col-12 u-align--center">
-                  <table class="p-table--advantage-contract">
-                    <tr>
-                      <td class="u-align--right">Created on:</td>
-                      <td class="u-align--left"><strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></td>
-                    </tr>
-                    {% if contract['contractInfo']['effectiveTo'] %}
-                    <tr>
-                      <td class="u-align--right">Effective to:</dt>
-                      <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong></td>
-                    </tr>
-                    {% endif %}
-                  </table>
-                </div>
-              </div>
-            </td>
+                      <td id="expanded-details-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if open_subscription == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
+                        <div class="row">
+                          <div class="col-12 u-align--center">
+                            <table class="p-table--advantage-contract">
+                              <tr>
+                                <td class="u-align--right">Created on:</td>
+                                <td class="u-align--left"><strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></td>
+                              </tr>
+                              {% if contract['contractInfo']['effectiveTo'] %}
+                                {% if contract["expiring"] %}
+                                  <tr style="border-top: 0;">
+                                    <td class="u-align--right">
+                                      <i class="p-icon--warning" style="margin-top: 0.3rem;"></i>&nbsp;&nbsp;Ends:
+                                    </td>
+                                    <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>&nbsp;&mdash;&nbsp;in {{ contract['contractInfo']['daysTillExpiry'] }} days</td>
+                                  </tr>
+                                {% else %}
+                                  <tr style="border-top: 0;">
+                                    <td class="u-align--right">Ends:</td>
+                                    <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong></td>
+                                  </tr>
+                                {% endif %}
+                              {% endif %}
+                              {% if contract["renewal"] %}
+                                {% if contract["renewal"]["status"] != "done" %}
+                                  <tr style="border-top: 0;">
+                                    <td></td>
+                                    <td>
+                                      <button
+                                        id="showModal"
+                                        class="js-renewal-cta p-button--positive u-no-margin--bottom"
+                                        aria-controls="modal"
+                                        data-contract-id="{{ contract['contractInfo']['id'] }}"
+                                        data-account-id="{{ enterprise_contracts[account][0].accountInfo.id }}"
+                                        data-name="{{ contract['contractInfo']['name']}}"
+                                        data-quantity="{{ contract['renewal']['renewalItems'][0]['allowance']['value'] }}"
+                                        data-renewal-id="{{ contract['renewal']['id']}}"
+                                        data-start="{{ contract['renewal']['start'] }}"
+                                        data-total="{{ contract['renewal']['renewalItems'][0]['priceTotal']['value'] }}"
+                                        data-currency="{{ contract['renewal']['renewalItems'][0]['priceTotal']['currency'] }}">Renew</button>
+                                    </td>
+                                  </tr>
+                                {% endif %}
+                              {% endif %}
+                            </table>
+                          </div>
+                        </div>
+                      </td>
 
-            <td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if default_open_cell %}false{% else %}true{% endif %}">
-              <div class="row">
-                <div class="col-12 u-align--center">
-                  To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code>
-                </div>
-              </div>
-            </td>
-            <td id="expanded-row-esm-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
-              <div class="row">
-                {% if contract['entitlements']['esm-infra'] == True %}
-                <div class="p-notification--information">
-                  <p class="p-notification__response">
-                    ESM is active by default on any newly-attached Ubuntu 14.04 LTS system.
-                  </p>
-                </div>
-                <div class="col-12 u-align--center">
-                  To deactivate: <code>sudo ua disable esm-infra</code><br/>
-                  To reactivate: <code>sudo ua enable esm-infra</code>&nbsp;&nbsp;
-                </div>
-                {% else %}
-                <div class="p-notification--information">
-                  <p class="p-notification__response">
-                    ESM-apps is active by default on any newly-attached Ubuntu 14.04 LTS system.
-                  </p>
-                </div>
-                <div class="col-12 u-align--center">
-                  To deactivate: <code>sudo ua disable esm-apps</code><br/>
-                  To reactivate: <code>sudo ua enable esm-apps</code>&nbsp;&nbsp;
-                </div>
-                {% endif %}
-              </div>
-            </td>
-            <td id="expanded-row-livepatch-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
-              <div class="row">
-                <div class="col-12 u-align--center">
-                  To activate Livepatch: <code>sudo ua enable livepatch</code>
-                </div>
-              </div>
-            </td>
-            <td id="expanded-row-fips-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
-              <div class="row">
-                <div class="col-12">
-                  <div class="p-notification--caution">
-                    <p class="p-notification__response">
-                      Older versions of software are used for FIPS-certified packages. Use them only if your organisation requires it.
-                    </p>
-                  </div>
-                </div>
-                <div class="col-12 u-align--center">
-                  To activate FIPS: <code>sudo ua enable fips</code>
-                </div>
-              </div>
-            </td>
-            <td id="expanded-row-cc-eal-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
-              <div class="row">
-                <div class="col-12">
-                  <div class="p-notification--caution">
-                    <p class="p-notification__response">
-                      Older versions of software are used for CC-EAL-certified packages. Use them only if your organisation requires it.
-                    </p>
-                  </div>
-                </div>
-                <div class="col-12 u-align--center">
-                  To activate CC-EAL: <code>sudo ua enable cc-eal</code>
-                </div>
-              </div>
-            </td>
-          </tr>
-          {% endif %}
+                      <td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if loop.index == 1 and outer_loop.index == 1 %}false{% else %}true{% endif %}">
+                        <div class="row">
+                          <div class="col-12 u-align--center">
+                            To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code>
+                          </div>
+                        </div>
+                      </td>
+                      <td id="expanded-row-esm-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
+                        <div class="row">
+                          {% if contract['entitlements']['esm-infra'] == True %}
+                          <div class="p-notification--information">
+                            <p class="p-notification__response">
+                              ESM is active by default on any newly-attached Ubuntu 14.04 LTS system.
+                            </p>
+                          </div>
+                          <div class="col-12 u-align--center">
+                            To deactivate: <code>sudo ua disable esm-infra</code><br/>
+                            To reactivate: <code>sudo ua enable esm-infra</code>&nbsp;&nbsp;
+                          </div>
+                          {% else %}
+                          <div class="p-notification--information">
+                            <p class="p-notification__response">
+                              ESM-apps is active by default on any newly-attached Ubuntu 14.04 LTS system.
+                            </p>
+                          </div>
+                          <div class="col-12 u-align--center">
+                            To deactivate: <code>sudo ua disable esm-apps</code><br/>
+                            To reactivate: <code>sudo ua enable esm-apps</code>&nbsp;&nbsp;
+                          </div>
+                          {% endif %}
+                        </div>
+                      </td>
+                      <td id="expanded-row-livepatch-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
+                        <div class="row">
+                          <div class="col-12 u-align--center">
+                            To activate Livepatch: <code>sudo ua enable livepatch</code>
+                          </div>
+                        </div>
+                      </td>
+                      <td id="expanded-row-fips-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="p-notification--caution">
+                              <p class="p-notification__response">
+                                Older versions of software are used for FIPS-certified packages. Use them only if your organisation requires it.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-12 u-align--center">
+                            To activate FIPS: <code>sudo ua enable fips</code>
+                          </div>
+                        </div>
+                      </td>
+                      <td id="expanded-row-cc-eal-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="p-notification--caution">
+                              <p class="p-notification__response">
+                                Older versions of software are used for CC-EAL-certified packages. Use them only if your organisation requires it.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-12 u-align--center">
+                            To activate CC-EAL: <code>sudo ua enable cc-eal</code>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
           {% endfor %}
         </div>
       </div>
@@ -274,6 +306,7 @@
     </section>
   {% endif %}
 
+  {% include 'advantage/_stripe-modal.html' %}
 {% else %}
   <section class="p-strip--suru-topped is-shallow" style="padding-top: 6rem;"></section>
     <div class="row">
