@@ -315,6 +315,7 @@ def cve_index():
         limit=limit,
         priority=priority,
         query=query,
+        package=package,
     )
 
 
