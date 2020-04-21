@@ -38,9 +38,10 @@ import { parseStripeError } from "./stripe/error-parser.js";
   const cardErrorElement = document.getElementById("card-errors");
   const renewalErrorElement = document.getElementById("renewal-errors");
 
+  // initialise Stripe
   const stripe = Stripe("pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46");
-  const elements = stripe.elements();
 
+  // customise the Stripe card field
   const style = {
     base: {
       iconColor: "#e95420",
@@ -58,6 +59,8 @@ import { parseStripeError } from "./stripe/error-parser.js";
     },
   };
 
+  // create the Stripe card input, and apply the style to it
+  const elements = stripe.elements();
   const card = elements.create("card", { style });
 
   let accountID;
