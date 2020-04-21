@@ -17,7 +17,7 @@ import talisker.requests
 from ubuntu_release_info.data import Data
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
-from canonicalwebteam.store_api.stores.snapcraft import SnapcraftStoreApi
+from canonicalwebteam.store_api.stores.snapstore import SnapStore
 from canonicalwebteam.launchpad import Launchpad, WebhookExistsError
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
@@ -30,7 +30,7 @@ from webapp.advantage import AdvantageContracts
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
-store_api = SnapcraftStoreApi(session=talisker.requests.get_session())
+store_api = SnapStore(session=talisker.requests.get_session())
 
 
 def download_thank_you(category):
@@ -282,7 +282,7 @@ def search_snaps():
     """
 
     query = flask.request.args.get("q", "")
-    arch = flask.request.args.get("arch", "amd64")
+    arch = flask.request.args.get("arch", "wide")
     size = flask.request.args.get("size", "100")
     page = flask.request.args.get("page", "1")
 

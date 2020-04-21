@@ -1,4 +1,37 @@
-(function() {
+(function () {
+  const board_architectures = {
+    raspberrypi2: {
+      core16: { arch: "armhf", subarch: "raspi2" },
+      core18: { arch: "armhf", subarch: "raspi3" },
+      "classic16.04": { arch: "armhf", subarch: "raspi3" },
+      "classic18.04": { arch: "armhf", subarch: "raspi3" },
+    },
+    raspberrypi3: {
+      core16: { arch: "armhf", subarch: "raspi3" },
+      core18: { arch: "armhf", subarch: "raspi3" },
+      "classic16.04": { arch: "armhf", subarch: "raspi3" },
+      "classic18.04": { arch: "armhf", subarch: "raspi3" },
+      "classic6418.04": { arch: "arm64", subarch: "raspi3" },
+    },
+    raspberrypi4: {
+      core18: { arch: "armhf", subarch: "raspi3" },
+      "classic18.04": { arch: "armhf", subarch: "raspi3" },
+      "classic6418.04": { arch: "arm64", subarch: "raspi3" },
+    },
+    intelnuc: {
+      core16: { arch: "amd64", subarch: "" },
+      core18: { arch: "amd64", subarch: "" },
+    },
+    snapdragon: {
+      core16: { arch: "arm64", subarch: "snapdragon" },
+      core18: { arch: "arm64", subarch: "snapdragon" },
+    },
+    cm3: {
+      core16: { arch: "armhf", subarch: "cm3" },
+      core18: { arch: "armhf", subarch: "raspi3" },
+    },
+  };
+
   // State management
   class StateArray extends Array {
     push(item) {
@@ -16,6 +49,12 @@
       render();
       return item;
     }
+    reset() {
+      while (this.length > 0) {
+        this.pop();
+      }
+      render();
+    }
   }
 
   class StateManager {
@@ -23,7 +62,7 @@
       this.states = {
         board: new StateArray(),
         os: new StateArray(),
-        snaps: new StateArray()
+        snaps: new StateArray(),
       };
     }
 
@@ -44,6 +83,7 @@
   const osSelection = document.querySelectorAll(".js-os .js-selection");
   const snapSearch = document.querySelector(".js-snap-search");
   const snapResults = document.querySelector(".js-snap-results");
+  const archOutput = document.querySelector(".js-architecture");
   const preinstallResults = document.querySelector(
     ".js-preinstalled-snaps-list"
   );
@@ -61,14 +101,14 @@
 
   function searchHandler() {
     if (snapSearch) {
-      snapSearch.addEventListener("keyup", e => {
+      snapSearch.addEventListener("keyup", (e) => {
         // Only trigger is the key press changes a character
         if ((e.which >= 46 && e.which <= 90) || e.which == 8) {
           e.preventDefault();
           triggerSearch();
         }
       });
-      snapSearch.addEventListener("submit", e => {
+      snapSearch.addEventListener("submit", (e) => {
         e.preventDefault();
         triggerSearch();
       });
@@ -78,17 +118,20 @@
     }
   }
 
-  let triggerSearch = debounce(function() {
+  let triggerSearch = debounce(function () {
+    const board = parseSystemValues(state.get("board")[0]);
+    const os = parseSystemValues(state.get("os")[0]);
+    const architecture = board_architectures[board][os]["arch"];
     snapResults.innerHTML =
       '<p><i class="p-icon--spinner u-animation--spin"></i></p>';
     const searchInput = snapSearch.querySelector(".p-search-box__input");
     if (searchInput) {
       const searchValue = encodeURI(searchInput.value);
-      fetch(`/snaps?q=${searchValue}&size=12`)
-        .then(response => {
+      fetch(`/snaps?q=${searchValue}&size=12&architecture=${architecture}`)
+        .then((response) => {
           return response.json();
         })
-        .then(json => {
+        .then((json) => {
           snapSearchResults = json["_embedded"]
             ? json["_embedded"]["clickindex:package"]
             : {};
@@ -104,8 +147,8 @@
 
   function addSnapHandler() {
     const snapAddButtons = snapResults.querySelectorAll(".js-add-snap");
-    snapAddButtons.forEach(addButton => {
-      addButton.addEventListener("click", e => {
+    snapAddButtons.forEach((addButton) => {
+      addButton.addEventListener("click", (e) => {
         e.preventDefault();
         const button = e.target.classList.contains("js-add-snap")
           ? e.target
@@ -135,8 +178,8 @@
     const snapRemoveButtons = preinstallResults.querySelectorAll(
       ".js-remove-snap"
     );
-    snapRemoveButtons.forEach(removeButton => {
-      removeButton.addEventListener("click", e => {
+    snapRemoveButtons.forEach((removeButton) => {
+      removeButton.addEventListener("click", (e) => {
         e.preventDefault();
         const button = e.target.classList.contains("js-remove-snap")
           ? e.target
@@ -219,8 +262,8 @@
   }
 
   function selectionListeners(collection, stateIndex) {
-    collection.forEach(selection => {
-      selection.addEventListener("click", function() {
+    collection.forEach((selection) => {
+      selection.addEventListener("click", function () {
         selectCollection(collection, selection);
         const value = this.querySelector(".js-name").innerText;
         state.set(stateIndex, [value]);
@@ -230,19 +273,16 @@
   }
 
   function selectCollection(collection, selected) {
-    collection.forEach(item => {
+    collection.forEach((item) => {
       item.classList.remove("is-selected");
     });
     selected.classList.add("is-selected");
   }
 
   function updateOSs() {
-    osSelection.forEach(selection => {
+    osSelection.forEach((selection) => {
       const osSupport = selection.dataset.supports;
-      const selectedBoard = state
-        .get("board")[0]
-        .replace(" ", "-")
-        .toLowerCase();
+      const selectedBoard = parseSystemValues(state.get("board")[0]);
 
       // Check if the currently selected OS supports the this board
       if (osSupport.includes(selectedBoard)) {
@@ -286,21 +326,14 @@
     const systemInput = form.querySelector('[name="system"]');
     const snapsInput = form.querySelector('[name="snaps"]');
     if (state.get("board").length >= 1) {
-      boardInput.value = state
-        .get("board")[0]
-        .toLowerCase()
-        .replace(" ", "");
+      boardInput.value = parseSystemValues(state.get("board")[0]);
     }
     if (state.get("os").length >= 1) {
-      systemInput.value = state
-        .get("os")[0]
-        .toLowerCase()
-        .replace(" ", "")
-        .replace("-bit ", "");
+      systemInput.value = parseSystemValues(state.get("os")[0]);
     }
     let snapsString = "";
     let comma = "";
-    state.get("snaps").forEach(snap => {
+    state.get("snaps").forEach((snap) => {
       snapsString += `${comma}${snap.package_name}`;
       comma = ",";
     });
@@ -310,10 +343,22 @@
   function checkDisabled() {
     step2.classList.add("u-disable");
     step3.classList.add("u-disable");
-    if (state.get("board") && state.get("board")[0] != "") {
+    if (state.get("board") && state.get("board")[0]) {
       step2.classList.remove("u-disable");
     }
-    if (state.get("os") && state.get("os")[0] != "") {
+    if (state.get("os") && state.get("os")[0]) {
+      const board = parseSystemValues(state.get("board")[0]);
+      const os = parseSystemValues(state.get("os")[0]);
+      if (board_architectures[board][os]) {
+        const architecture = board_architectures[board][os]["arch"];
+        if (archOutput.innerText !== architecture) {
+          archOutput.innerText = architecture;
+          state.get("snaps").reset();
+          renderSnapList(state.get("snaps"), preinstallResults, "Remove");
+          removeSnapHandler();
+          clearSearch();
+        }
+      }
       step3.classList.remove("u-disable");
     }
   }
@@ -330,10 +375,10 @@
 
   function debounce(func, wait, immediate) {
     var timeout;
-    return function() {
+    return function () {
       var context = this,
         args = arguments;
-      var later = function() {
+      var later = function () {
         timeout = null;
         if (!immediate) func.apply(context, args);
       };
@@ -342,6 +387,11 @@
       timeout = setTimeout(later, wait);
       if (callNow) func.apply(context, args);
     };
+  }
+
+  function parseSystemValues(value) {
+    const parsed = value.replace(" ", "").toLowerCase().replace("-bit ", "");
+    return parsed;
   }
 
   renderSummary();
