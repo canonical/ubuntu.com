@@ -103,8 +103,11 @@ juju run-action new-etcd/0 restore --wait
 Once the restore action has finished, you should see output confirming that the operation is `completed`. The new etcd application will need to be connected to the rest of the deployment:
 
 ```bash
-juju add-relation new-etcd kubernetes-master
 juju add-relation new-etcd flannel
+juju add-relation new-etcd kubernetes-master
+juju add-relation kubeapi-load-balancer:certificates new-easyrsa:client
+juju add-relation kubernetes-master:certificates new-easyrsa:client
+juju add-relation kubernetes-worker:certificates new-easyrsa:client
 ```
 
 To restore the cluster capabilities of etcd, you can now add more units:

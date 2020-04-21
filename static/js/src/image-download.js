@@ -4,14 +4,14 @@ function initImageDownload(mirrors, imagePath, GAlabel) {
     eventCategory: "Download",
     eventAction: "Downloaded",
     eventLabel: "User downloaded Ubuntu (" + GAlabel + ")",
-    eventValue: undefined
+    eventValue: undefined,
   });
 
   startDownload(mirrors, imagePath);
 }
 
 function startDownload(mirrors, imagePath) {
-  var defaultLocation = "http://releases.ubuntu.com/";
+  var defaultLocation = "https://releases.ubuntu.com/";
   // Select a random mirror from list
   var selectedMirror = chooseRandomMirror(mirrors);
   var downloadLocation = defaultLocation;
@@ -32,7 +32,7 @@ function startDownload(mirrors, imagePath) {
  * after a certain delay in milliseconds
  */
 function delayStartDownload(downloadLink, delay) {
-  window.setTimeout(function() {
+  window.setTimeout(function () {
     window.location.href = downloadLink;
   }, delay);
 }
@@ -47,7 +47,7 @@ function chooseRandomMirror(mirrors) {
   // Calculate total bandwidth
   var totalBandwidth = 0;
 
-  mirrors.forEach(function(mirror) {
+  mirrors.forEach(function (mirror) {
     mirror.bandwidth = parseInt(mirror.bandwidth)
       ? parseInt(mirror.bandwidth)
       : 0;

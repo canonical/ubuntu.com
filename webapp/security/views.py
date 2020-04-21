@@ -80,7 +80,9 @@ def notices():
     release = flask.request.args.get("release", type=str)
     order_by = flask.request.args.get("order", type=str)
 
-    releases = db_session.query(Release).all()
+    releases = (
+        db_session.query(Release).order_by(desc(Release.release_date)).all()
+    )
     notices_query = db_session.query(Notice)
 
     if release:
