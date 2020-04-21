@@ -1,6 +1,20 @@
+function errorString(message) {
+  const unexpectedErrorStrings = [
+    "unexpected error setting customer payment method: ",
+    "unexpected creating customer: ",
+  ];
+  let error = false;
+
+  unexpectedErrorStrings.forEach((string) => {
+    if (message.includes(string)) {
+      error = string;
+    }
+  });
+
+  return error;
+}
+
 export function parseStripeError(data) {
-  const unexpectedErrorString =
-    "unexpected error setting customer payment method: ";
   let json_string;
   let error_object;
 
@@ -18,11 +32,11 @@ export function parseStripeError(data) {
     return false;
   } else if (
     data.code === "internal server error" &&
-    data.message.includes(unexpectedErrorString)
+    errorString(data.message)
   ) {
     // Stripe returned an error to the ua-contracts service,
     // find out what it is
-    json_string = data.message.replace(unexpectedErrorString, "");
+    json_string = data.message.replace(errorString(data.message), "");
     error_object = JSON.parse(json_string);
 
     return error_object.message;
