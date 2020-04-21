@@ -1,7 +1,7 @@
 function errorString(message) {
   const unexpectedErrorStrings = [
     "unexpected error setting customer payment method: ",
-    "unexpected creating customer: ",
+    "unexpected error creating customer: ",
   ];
   let error = false;
 
