@@ -329,6 +329,7 @@ These charms are frequently used with Charmed Kubernetes.
 These are the container images used by this release:
 
 <!-- GENERATED CONTAINER IMAGES -->
+
 -   addon-resizer-amd64:1.8.5
 -   addon-resizer-amd64:1.8.5
 -   addon-resizer-arm64:1.8.5
