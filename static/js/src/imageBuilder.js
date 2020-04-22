@@ -258,7 +258,9 @@
         render();
       } else {
         results.innerHTML =
-          buttonText == "Add" ? "<p>No matching snaps</p>" : "<p>None</p>";
+          buttonText == "Add"
+            ? "<p>No matching snaps</p>"
+            : "<p>No snaps to preinstall</p>";
       }
     }
   }
@@ -362,7 +364,6 @@
       step3.classList.remove("u-disable");
       const board = parseSystemValues(state.get("board")[0]);
       const os = parseSystemValues(state.get("os")[0]);
-      console.log(state.get("board")[0], state.get("os")[0]);
 
       if (board_architectures[board][os]) {
         const architecture = board_architectures[board][os]["arch"];
