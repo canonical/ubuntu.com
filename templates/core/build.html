@@ -199,7 +199,6 @@
     <div class="col-10 u-sv3">
       <h2><span class="u-number-circle">3</span> What packages do you want preinstalled?</h2>
       <p>Select the applications that will be pre-installed on the device. For Ubuntu Core this will be snaps, for Ubuntu Classic it will be snaps or packages.</p>
-      <p>Your selected archtecture is <strong class="js-architecture"></strong>. If you are missing a snap its probably not supported by this archtecture.</p>
     </div>
   </div>
   <div class="row">
@@ -218,6 +217,15 @@
       <h4>Your chosen snaps:</h4>
       <div class="p-card has-limited-height--large">
         <div class="js-preinstalled-snaps-list"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="p-notification--information js-architecture u-hide">
+        <p class="p-notification__response">
+          <span class="p-notification__status">Information:</span> Your selected architecture is <strong class="js-architecture-detail"></strong>. If you are missing a snap its probably not supported by this architecture.
+        </p>
       </div>
     </div>
   </div>
