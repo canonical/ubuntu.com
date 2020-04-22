@@ -268,9 +268,9 @@
       selection.addEventListener("click", function () {
         selectCollection(collection, selection);
         const value = this.querySelector(".js-name").innerText;
-        if (stateIndex == 'board') {
-          state.set('os', [""]);
-          state.get('snaps').reset();
+        if (stateIndex == "board") {
+          state.set("os", [""]);
+          state.get("snaps").reset();
           renderSnapList(state.get("snaps"), preinstallResults, "Remove");
           removeSnapHandler();
         }
@@ -279,7 +279,6 @@
       });
     });
   }
-
 
   function selectCollection(collection, selected) {
     collection.forEach((item) => {
@@ -355,11 +354,23 @@
   function checkDisabled() {
     step2.classList.add("u-disable");
     step3.classList.add("u-disable");
+    archOutput.classList.add("u-hide");
     if (state.get("board") && state.get("board")[0]) {
       step2.classList.remove("u-disable");
     }
     if (state.get("os") && state.get("os")[0]) {
       step3.classList.remove("u-disable");
+      const board = parseSystemValues(state.get("board")[0]);
+      const os = parseSystemValues(state.get("os")[0]);
+      console.log(state.get("board")[0], state.get("os")[0]);
+
+      if (board_architectures[board][os]) {
+        const architecture = board_architectures[board][os]["arch"];
+        archOutput.querySelector(
+          ".js-architecture-detail"
+        ).innerText = architecture;
+        archOutput.classList.remove("u-hide");
+      }
     }
 
     // If snaps is disabled clear all selections and values
