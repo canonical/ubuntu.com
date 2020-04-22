@@ -7,6 +7,7 @@
   - [Local install](/kubernetes/docs/install-local)
 - **Cloud Integration**
   - [AWS integration](/kubernetes/docs/aws-integration)
+  - [Azure integration](/kubernetes/docs/azure-integration)
   - [GCP integration](/kubernetes/docs/gcp-integration)
   - [OpenStack integration](/kubernetes/docs/openstack-integration)
   - [LXD](/kubernetes/docs/install-local)
@@ -16,6 +17,7 @@
   - [Calico](/kubernetes/docs/cni-calico)
   - [Canal](/kubernetes/docs/cni-canal)
   - [Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)  
+  - [Multus](/kubernetes/docs/cni-multus)
   - [Using multiple networks](/kubernetes/docs/multiple-networks)  
 - **Container Runtimes**
   - [Containerd & Docker](/kubernetes/docs/container-runtime)

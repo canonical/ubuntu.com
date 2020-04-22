@@ -9,7 +9,7 @@ markdown_includes:
 
 # Ubuntu Advantage service description
 
-**Valid since 28 January 2019**
+**Valid since 15 April 2020**
 
 *Capitalised terms shall have meanings as defined in the [Definitions section](#uasd-definitions).*
 
@@ -48,6 +48,9 @@ When an Ubuntu Advantage subscription is attached to a physical host running a [
 6. Common Criteria
   1. Access to packages and scripts (when available) sufficient for compliance with the Common Criteria EAL2 standard when used with Ubuntu on certain Intel x86\_64, IBM POWER8 and IBM Z hardware.
   2. Licences to such packages, to the extent not already licensed under open source software licences.
+6. CIS Benchmark
+  1. Access to packages (when available) sufficient for compliance with the Center for Internet Security (CIS) benchmark.
+  2. Licenses to such packages, to the extent not already licensed under open source software licences.
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
@@ -316,7 +319,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
   3. When setting the severity level, Canonical's Support Team will use the definitions as stated below:
   | | |
   |--|--|
-  |**Severity Level 1**<br />Core functionality not available|Canonical will use continuous effort according to the service level purchased, through appropriate support engineer(s) and/or development engineer(s), to provide a work-around or permanent solution. As soon as core functionality is available, the severity level will be lowered to the new appropriate severity level.
+  |**Severity Level 1**<br />Core functionality critical impact/<br />Service down|Canonical will use continuous effort according to the service level purchased, through appropriate support engineer(s) and/or development engineer(s), to provide a work-around or permanent solution. As soon as core functionality is available, the severity level will be lowered to the new appropriate severity level. Continuous effort support is dependent on the customer being available at all times to assist Canonical, otherwise Canonical may need to reduce the severity level and its ability to respond.
   |**Severity Level 2**<br />Core functionality severely degraded|Canonical will provide concerted efforts during the applicable Business Hours to provide the customer with a work-around or permanent solution. As soon as core functionality is no longer severely degraded, the severity level will be lowered to level 3.|
   |**Severity Level 3**<br />Standard support request|Canonical will use reasonable efforts during the applicable Business Hours to provide the customer with a work-around or permanent solution as soon as possible, balanced against higher severity level cases. If a work-around is provided, Canonical's support engineers will continue to work on developing a permanent resolution to the case.|
   |**Severity Level 4**<br />Non-urgent request|Level 4 requests include cosmetic issues, informational requests, feature requests, and similar matters. Canonical does not provide a timeline or guarantee for inclusion of any feature requests. Canonical will review each level 4 case and determine whether it is a product enhancement to be considered for a future release, an issue to be fixed in the current release or an issue to be fixed in a future release. Canonical will review and respond to information requests with a reasonable level of effort during coverage hours. Canonical may close cases representing level 4 issues after responding if Canonical believes it is appropriate to do so.|

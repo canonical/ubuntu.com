@@ -38,8 +38,8 @@ analysis.
 
 ```yaml
 results:
-  cmd: /home/ubuntu/kube-bench/kube-bench -D /home/ubuntu/kube-bench/cfg --version
-    1.13-snap-etcd --noremediations --noresults master
+  cmd: /home/ubuntu/kube-bench/kube-bench -D /home/ubuntu/kube-bench/cfg-ck
+    --benchmark cis-1.5 --noremediations --noresults run --targets etcd
   report: juju scp etcd/0:/home/ubuntu/kube-bench-results/results-text-49681_7h .
   summary: |
     == Summary ==
@@ -66,13 +66,12 @@ apply any automatic remediations.
 
 Specify an archive of custom configuration scripts to use during the benchmark.
 This parameter is set by default to an archive that is known to work with
-snap-based components.
+snap-related components.
 
 ### release
 
-Specify the `kube-bench` release to install and run. The default value of
-`upstream` will compile and use a local kube-bench binary built from the master
-branch of the [upstream repository][kube-bench].
+Specify the `kube-bench` release to install and run. This parameter is set by
+default to a release that is known to work with snap-related components.
 
 ## Example use case
 
@@ -81,20 +80,20 @@ configuration archive:
 
 ```bash
 juju run-action --wait kubernetes-worker/0 cis-benchmark \
-  config='https://github.com/charmed-kubernetes/kube-bench-config/archive/master.zip'
+  config='https://github.com/charmed-kubernetes/kube-bench-config/archive/cis-1.5.zip'
 ```
 
 ```yaml
 results:
-  cmd: /home/ubuntu/kube-bench/kube-bench -D /home/ubuntu/kube-bench/cfg --version
-    1.13-snap-k8s --noremediations --noresults node
-  report: juju scp kubernetes-worker/0:/home/ubuntu/kube-bench-results/results-text-8c71ktcn .
+  cmd: /home/ubuntu/kube-bench/kube-bench -D /home/ubuntu/kube-bench/cfg-ck
+    --benchmark cis-1.5 --noremediations --noresults run --targets node
+  report: juju scp kubernetes-worker/0:/home/ubuntu/kube-bench-results/results-text-nmmlsvy3 .
   summary: |
     == Summary ==
     16 checks PASS
-    5 checks FAIL
-    2 checks WARN
-    1 checks INFO
+    4 checks FAIL
+    3 checks WARN
+    0 checks INFO
 status: completed
 ```
 
@@ -104,36 +103,36 @@ configuration archive:
 ```bash
 juju run-action --wait kubernetes-worker/0 cis-benchmark \
   apply='dangerous' \
-  config='https://github.com/charmed-kubernetes/kube-bench-config/archive/master.zip'
+  config='https://github.com/charmed-kubernetes/kube-bench-config/archive/cis-1.5.zip'
 ```
 
 ```yaml
 results:
-  cmd: /home/ubuntu/kube-bench/kube-bench -D /home/ubuntu/kube-bench/cfg --version
-    1.13-snap-k8s --noremediations --noresults node
-  report: juju scp kubernetes-worker/0:/home/ubuntu/kube-bench-results/results-json-7b3g6jdg .
-  summary: Applied 5 remediations. Re-run with "apply=none" to generate a new report.
+  cmd: /home/ubuntu/kube-bench/kube-bench -D /home/ubuntu/kube-bench/cfg-ck
+    --benchmark cis-1.5 --noremediations --noresults run --targets node
+  report: juju scp kubernetes-worker/0:/home/ubuntu/kube-bench-results/results-json-dozp8j3z .
+  summary: Applied 4 remediations. Re-run with "apply=none" to generate a new report.
 status: completed
 ```
 
-Re-run the initial action to see if previous failures have been fixed:
+Re-run the earlier action to verify previous failures have been fixed:
 
 ```bash
 juju run-action --wait kubernetes-worker/0 cis-benchmark \
-  config='https://github.com/charmed-kubernetes/kube-bench-config/archive/master.zip'
+  config='https://github.com/charmed-kubernetes/kube-bench-config/archive/cis-1.5.zip'
 ```
 
 ```yaml
 results:
-  cmd: /home/ubuntu/kube-bench/kube-bench -D /home/ubuntu/kube-bench/cfg --version
-    1.13-snap-k8s --noremediations --noresults node
-  report: juju scp kubernetes-worker/0:/home/ubuntu/kube-bench-results/results-text-m72vicwe .
+  cmd: /home/ubuntu/kube-bench/kube-bench -D /home/ubuntu/kube-bench/cfg-ck
+    --benchmark cis-1.5 --noremediations --noresults run --targets node
+  report: juju scp kubernetes-worker/0:/home/ubuntu/kube-bench-results/results-text-4agbktbf .
   summary: |
     == Summary ==
-    21 checks PASS
+    20 checks PASS
     0 checks FAIL
-    2 checks WARN
-    1 checks INFO
+    3 checks WARN
+    0 checks INFO
 status: completed
 ```
 
