@@ -192,6 +192,19 @@ import { parseStripeError } from "./stripe/error-parser.js";
     }, 2000);
   }
 
+  function getCardImgFilename(brand) {
+    switch (brand) {
+      case "visa":
+        return "832cf121-visa.png";
+      case "mastercard":
+        return "83a09dbe-mastercard.png";
+      case "amex":
+        return "91e62c4f-amex.png";
+      default:
+        return false;
+    }
+  }
+
   function handleIncompletePayment(invoice) {
     if (invoice.pi_status === "requires_payment_method") {
       // the user's original payment method failed,
@@ -405,9 +418,9 @@ import { parseStripeError } from "./stripe/error-parser.js";
     });
 
     nameElement.innerHTML = `Renew "${renewalData.name}"`;
-    quantityElement.innerHTML = `Quantity: ${renewalData.quantity}`;
-    startElement.innerHTML = `Start date: ${startDate.toDateString()}`;
-    totalElement.innerHTML = `Total: ${formattedTotal}`;
+    quantityElement.innerHTML = renewalData.quantity;
+    startElement.innerHTML = startDate.toDateString();
+    totalElement.innerHTML = formattedTotal;
   }
 
   function setPaymentInformation(paymentMethod) {
@@ -418,8 +431,14 @@ import { parseStripeError } from "./stripe/error-parser.js";
       cardInfo.brand.charAt(0).toUpperCase() + cardInfo.brand.slice(1);
     const cardText = `${cardBrandFormatted} ending ${cardInfo.last4}`;
     const cardExpiry = `Expires: ${cardInfo.exp_month}/${cardInfo.exp_year}`;
+    const cardImage = getCardImgFilename(cardInfo.brand);
 
-    cardImgEl.innerHTML = cardInfo.brand;
+    if (cardImage) {
+      cardImgEl.innerHTML = `<img src="https://assets.ubuntu.com/v1/${cardImage}" />`;
+      cardImgEl.classList.remove("u-hide");
+    } else {
+      cardImgEl.classList.add("u-hide");
+    }
     cardTextEl.innerHTML = cardText;
     cardExpiryEl.innerHTML = cardExpiry;
     customerNameEl.innerHTML = billingInfo.name;
