@@ -77,7 +77,7 @@ def authorization_required(func):
         except bakery._error.DischargeRequiredError:
             macaroon = macaroon_bakery.oven.macaroon(
                 version=bakery.VERSION_2,
-                expiry=datetime.utcnow() + timedelta(seconds=600),
+                expiry=datetime.utcnow() + timedelta(minutes=30),
                 caveats=IDENTITY_CAVEATS,
                 ops=[bakery.LOGIN_OP],
             )
