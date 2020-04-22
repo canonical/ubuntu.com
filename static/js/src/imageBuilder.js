@@ -142,6 +142,8 @@
   }, 250);
 
   function clearSearch() {
+    const searchInput = snapSearch.querySelector(".p-search-box__input");
+    searchInput.value = "";
     snapResults.innerHTML = "";
   }
 
@@ -266,11 +268,18 @@
       selection.addEventListener("click", function () {
         selectCollection(collection, selection);
         const value = this.querySelector(".js-name").innerText;
+        if (stateIndex == 'board') {
+          state.set('os', [""]);
+          state.get('snaps').reset();
+          renderSnapList(state.get("snaps"), preinstallResults, "Remove");
+          removeSnapHandler();
+        }
         state.set(stateIndex, [value]);
         updateOSs();
       });
     });
   }
+
 
   function selectCollection(collection, selected) {
     collection.forEach((item) => {
@@ -282,19 +291,22 @@
   function updateOSs() {
     osSelection.forEach((selection) => {
       const osSupport = selection.dataset.supports;
+      const selectedOS = state.get("os")[0];
       const selectedBoard = parseSystemValues(state.get("board")[0]);
+      const selectionValue = selection.querySelector(".js-name").innerText;
+
+      // Update the selected OS based on the state
+      if (selectedOS == selectionValue) {
+        selection.classList.add("is-selected");
+      } else {
+        selection.classList.remove("is-selected");
+      }
 
       // Check if the currently selected OS supports the this board
       if (osSupport.includes(selectedBoard)) {
         selection.closest(".js-selection-container").classList.remove("u-hide");
       } else {
         selection.closest(".js-selection-container").classList.add("u-hide");
-
-        // If current OS selection is not supported by the board reset OS
-        if (selection.classList.contains("is-selected")) {
-          state.set("os", [""]);
-          selection.classList.remove("is-selected");
-        }
       }
     });
   }
@@ -347,19 +359,12 @@
       step2.classList.remove("u-disable");
     }
     if (state.get("os") && state.get("os")[0]) {
-      const board = parseSystemValues(state.get("board")[0]);
-      const os = parseSystemValues(state.get("os")[0]);
-      if (board_architectures[board][os]) {
-        const architecture = board_architectures[board][os]["arch"];
-        if (archOutput.innerText !== architecture) {
-          archOutput.innerText = architecture;
-          state.get("snaps").reset();
-          renderSnapList(state.get("snaps"), preinstallResults, "Remove");
-          removeSnapHandler();
-          clearSearch();
-        }
-      }
       step3.classList.remove("u-disable");
+    }
+
+    // If snaps is disabled clear all selections and values
+    if (!state.get("os")[0]) {
+      clearSearch();
     }
   }
 
@@ -394,5 +399,6 @@
     return parsed;
   }
 
-  renderSummary();
+  // Init
+  render();
 })();
