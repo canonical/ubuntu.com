@@ -1,123 +1,228 @@
-<div
-  class="p-modal u-hide"
-  id="renewal-modal"
-  style="overflow: none; position: fixed; z-index: 100;"
->
-  <div
-    class="p-modal__dialog"
-    role="dialog"
-    aria-labelledby="modal-title"
-    aria-describedby="modal-description"
-    style="width: 700px;"
-  >
+<div class="p-modal p-modal--renewal u-hide" id="renewal-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
     <header class="p-modal__header">
-      <h2 class="p-modal__title js-renewal-name" id="modal-title">
+      <h2
+        class="p-modal__title js-contract-name u-no-margin--bottom"
+        id="modal-title"
+      >
         Renew subscription
       </h2>
     </header>
-    <div id="modal-description" style="max-height: 70vh; overflow-x: scroll;">
-      <ul class="p-list">
-        <li class="p-list__item js-renewal-name">Plan type:</li>
-        <li class="p-list__item js-renewal-start">Effective from:</li>
-        <li class="p-list__item js-renewal-start">Ends:</li>
-        <li class="p-list__item js-renewal-quantity">Machines:</li>
-        <li class="p-list__item js-renewal-total">To pay:</li>
-      </ul>
-
-      <div id="renewal-errors" class="p-notification--negative u-hide">
-        <p class="p-notification__response">
-          <span class="p-notification__status">Error:</span>
-          <span class="p-notification__message"></span>
-        </p>
-      </div>
-
-      <form id="payment-form" method="POST" action="/advantage/payment-method">
-        <fieldset>
-          <label for="name">Name</label>
-          <input
-            name="name"
-            type="text"
-            required
-            value="{{ openid.fullname }}"
-          />
-
-          <label for="email">Email</label>
-          <input
-            name="email"
-            type="email"
-            required
-            value="{{ openid.email }}"
-          />
-
-          <label for="address">Address</label>
-          <input name="address" type="text" />
-
-          <label for="city">City</label>
-          <input name="city" type="text" />
-
-          <label for="postal_code">ZIP</label>
-          <input name="postal_code" type="text" />
-
-          {% with raw="true" %} {% include "shared/forms/_country.html" %} {%
-          endwith %}
-
-          <label>Payment information:</label>
-
-          <div id="card-errors" class="u-hide"></div>
-          <div
-            id="card-element"
-            style="
-              background: #fff;
-              border: 1px solid #999;
-              border-radius: 0.125rem;
-              box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.12);
-              padding: 9px;
-            "
-          ></div>
-        </fieldset>
-      </form>
-
-      <div id="payment-method-details" class="u-hide">
-        <h3 class="p-heading--four">Payment method:</h3>
-        <button class="p-button js-change-payment-method">Change</button>
-        <div class="p-card">
-          <div class="row">
-            <div class="col-2 js-customer-card-brand"></div>
-            <div class="col-8">
-              <span class="js-customer-name"></span><br />
-              <span class="js-customer-card"></span>
-            </div>
-            <div class="col-2 js-customer-card-expiry"></div>
-          </div>
+    <div id="modal-description" class="p-modal__body">
+      <section class="p-strip is-shallow is-bordered u-no-padding--top">
+        <div class="row u-no-padding">
+          <div class="col-3">Plan type:</div>
+          <div class="col-9 js-product-name"></div>
         </div>
 
-        <p>
-          A receipt will be emailed to:<br /><span
-            class="js-customer-email"
-          ></span>
-        </p>
-      </div>
+        <div class="row u-no-padding">
+          <div class="col-3">Effective from:</div>
+          <div class="col-9 js-renewal-start"></div>
+        </div>
+
+        <div class="row u-no-padding">
+          <div class="col-3">Ends:</div>
+          <div class="col-9 js-renewal-end"></div>
+        </div>
+
+        <div class="row u-no-padding">
+          <div class="col-3">Machines:</div>
+          <div class="col-9 js-renewal-quantity"></div>
+        </div>
+
+        <div class="row u-no-padding">
+          <div class="col-3">To pay:</div>
+          <div class="col-9 js-renewal-total"></div>
+        </div>
+      </section>
+
+      <section class="p-strip is-shallow" style="overflow-x: visible;">
+        <div id="renewal-errors" class="p-notification--negative u-hide">
+          <p class="p-notification__response">
+            <span class="p-notification__status">Error:</span>
+            <span class="p-notification__message"></span>
+          </p>
+        </div>
+
+        <form class="p-form p-form--stacked" id="payment-form">
+          <div class="p-form__group row u-no-padding">
+            <div class="col-9 col-start-large-4">
+              <span
+                id="card-errors"
+                class="p-form-validation__message u-hide"
+              ></span>
+            </div>
+
+            <div class="col-3">
+              <label>Payment card:</label>
+            </div>
+
+            <div class="col-9">
+              <div id="card-element"></div>
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding">
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+
+            <div class="col-3">
+              <label for="name">Name on card:</label>
+            </div>
+
+            <div class="col-9">
+              <input
+                class="p-form-validation__input"
+                name="name"
+                type="text"
+                required
+                value="{{ openid.fullname }}"
+              />
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding">
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+
+            <div class="col-3">
+              <label for="address">Address:</label>
+            </div>
+
+            <div class="col-9">
+              <input
+                class="p-form-validation__input"
+                name="address"
+                type="text"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding">
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+
+            <div class="col-3">
+              <label for="city">City:</label>
+            </div>
+
+            <div class="col-9">
+              <input
+                class="p-form-validation__input"
+                name="city"
+                type="text"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding">
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+
+            <div class="col-3">
+              <label for="postal_code">ZIP:</label>
+            </div>
+
+            <div class="col-9">
+              <input
+                class="p-form-validation__input"
+                name="postal_code"
+                type="text"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding">
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+
+            <div class="col-3">
+              <label>Country/region:</label>
+            </div>
+
+            <div class="col-9">
+              {% with raw="true" %} {% include "shared/forms/_country.html" %}
+              {% endwith %}
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding">
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+
+            <div class="col-3">
+              <label for="email">Email my invoice to:</label>
+            </div>
+
+            <div class="col-9">
+              <input
+                class="p-form-validation__input"
+                name="email"
+                type="email"
+                required
+                value="{{ openid.email }}"
+              />
+            </div>
+          </div>
+        </form>
+
+        <div id="payment-method-details" class="u-hide">
+          <div class="row u-no-padding">
+            <div class="col-6 u-vertically-center">
+              <h3 class="p-heading--four">Payment method:</h3>
+            </div>
+
+            <div class="col-6 u-align--right">
+              <button class="p-button js-change-payment-method">Change</button>
+            </div>
+          </div>
+
+          <div class="p-card">
+            <div class="row u-no-padding">
+              <div
+                class="col-2 js-customer-card-brand u-hide col-small-2"
+              ></div>
+              <div class="col-8 col-small-3">
+                <span class="js-customer-name"></span><br />
+                <span class="js-customer-card"></span>
+              </div>
+              <div
+                class="col-2 col-small-3 col-start-small-1 js-customer-card-expiry"
+              ></div>
+            </div>
+          </div>
+
+          <p class="u-no-margin--bottom">
+            A receipt will be emailed to:<br /><span
+              class="js-customer-email"
+            ></span>
+          </p>
+        </div>
+      </section>
     </div>
-    <footer class="p-modal__footer u-align--right" style="position: relative;">
-      <span
-        id="js-progress-indicator"
-        class="u-hide"
-        style="bottom: 0; left: 0; position: absolute;"
-      >
+
+    <footer class="p-modal__footer u-align--right">
+      <span id="js-progress-indicator" class="p-modal__progress u-hide">
         <i class="p-icon--success u-hide"></i>
         <i class="p-icon--spinner u-animation--spin"></i>&nbsp;&nbsp;
         <span></span>
       </span>
 
-      <button
-        class="js-cancel-modal u-no-margin--bottom"
-        aria-controls="renewal-modal"
-      >
+      <button class="js-cancel-modal">
         Cancel
       </button>
 
       <button
-        class="js-payment-method p-button--action u-no-margin--bottom"
+        class="js-payment-method p-button--action p-button--positive"
         disabled
         type="submit"
       >
@@ -125,7 +230,7 @@
       </button>
 
       <button
-        class="js-process-payment p-button--action p-button--positive u-no-margin--bottom u-hide"
+        class="js-process-payment p-button--action p-button--positive u-hide"
         disabled
         type="submit"
       >
