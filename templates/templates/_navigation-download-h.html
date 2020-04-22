@@ -14,7 +14,6 @@
           <a href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" class="p-button--positive p-button--small" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ releases.lts.short_version }} LTS', 'eventValue' : undefined });">{{ releases.lts.short_version }} LTS</a>
           {% if releases.latest.short_version > releases.lts.short_version %}<a href="/download/server/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64" class="p-button--neutral p-button--small" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">{{ releases.latest.short_version }}</a>{% endif %}
           <ul class='p-text-list--small is-bordered' >
-            <li class="p-list__item"><a href="/download/alternative-downloads#alternate-ubuntu-server-installer">Use the traditional installer</a></li>
             <li class='p-list__item'><a class='p-link' href='/download/server/arm'>
               ARM
             </a></li>
@@ -81,7 +80,7 @@
       </div>
       <div class="col-3">
         <h4 class="p-muted-heading--small">Other ways to download</h4>
-        <p class="p-p--small">Ubuntu is available via <a href='/download/alternative-downloads#bittorrents'>BitTorrents</a> and via a minimal <a href='/download/alternative-downloads#network-installer'>network installer</a> that allows you to customise what is installed, such as additional languages. You can also find <a href='http://releases.ubuntu.com/'>older releases</a>.</p>
+        <p class="p-p--small">Ubuntu is available via <a href='/download/alternative-downloads#bittorrents'>BitTorrents</a> and via a minimal <a href='/download/alternative-downloads#network-installer'>network installer</a> that allows you to customise what is installed, such as additional languages. You can also find <a href='https://releases.ubuntu.com/'>older releases</a>.</p>
       </div>
       <div class="col-3">
         <h4 class="p-muted-heading--small">Ubuntu flavours</h4>

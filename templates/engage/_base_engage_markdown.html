@@ -92,7 +92,7 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow is-bordered">
+<section class="{% if content_class %}{{ content_class }}{% else %}p-strip is-shallow is-bordered{% endif %}">
   <div class="row">
     <div class="{% if form_id %}col-7{% else %}col-8{% endif %}">
       {{ content | safe }}

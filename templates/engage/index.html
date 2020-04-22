@@ -951,6 +951,7 @@
       type="whitepaper" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
+  </div>
   <div class="row u-equal-height u-clearfix">
     {% with title="Ubuntu Core: a cybersecurity analysis",
       description="An independent evaluation of Ubuntu Core’s security capabilities",
@@ -967,14 +968,23 @@
       type="whitepaper" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
-
-    {% with title="What&rsquo;s new in Ubuntu 20.04 LTS?",
-      description="Learn all about the major features introduced as part of the Ubuntu 20.04 LTS release",
-      slug="20.04-webinars",
+    
+    {% with title="Managed apps webinar",
+      description="Maintaining business focus in a cloud-native world with Managed Apps",
+      slug="managed-apps-webinar",
       group="webinar",
       type="webinar" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
-  </div>
+    </div>
+    
+    <div class="row u-equal-height u-clearfix">
+    {% with title="What&rsquo;s new in Ubuntu 20.04 LTS?",
+      description="Learn all about the major features introduced as part of the Ubuntu 20.04 LTS release",
+      slug="20.04-webinars",
+          type="webinar" %}
+      {% include "engage/_article-card.html" %}
+    {% endwith %}
+    </div>
 </section>
 {% endblock content %}

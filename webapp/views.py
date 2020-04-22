@@ -62,6 +62,7 @@ def download_thank_you(category):
             {"link": mirror["link"], "bandwidth": mirror["mirror_bandwidth"]}
             for mirror in mirrors
             if mirror["mirror_countrycode"] == country_code
+            and mirror["link"].startswith("https")
         ]
     context["mirror_list"] = json.dumps(mirror_list)
 
@@ -253,6 +254,15 @@ def post_stripe_method_id():
 
         return advantage.put_method_id(
             flask.session, account_id, payment_method_id
+        )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
+def post_stripe_invoice_id(renewal_id, invoice_id):
+    if auth.is_authenticated(flask.session):
+        return advantage.post_stripe_invoice_id(
+            flask.session, invoice_id, renewal_id
         )
     else:
         return flask.jsonify({"error": "authentication required"}), 401

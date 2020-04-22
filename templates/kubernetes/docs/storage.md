@@ -69,6 +69,28 @@ juju deploy -n1 ceph-fs
 juju add-relation ceph-fs ceph-mon
 ```
 
+**Charmed Kubernetes** will then deploy the CephFS provisioner pod
+and create a `cephfs` storage class in the cluster.
+
+<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
+<span class="p-notification__status">Note:</span>
+Due to an upstream issue, containers running as a non-root user with a ReadWriteMany (RWX) CephFS volume
+will not be able to write to the mounted directory. This will be fixed with the next release after the
+next OpenStack charms release. In the meantime, you can work around this by adding a simple initContainer
+to your pod to adjust the mounted volume permissions, such as:
+<code>
+initContainers:
+  - name: fix-cephfs-rwx-volume-perm
+    securityContext:
+      runAsUser: 0
+    image: ubuntu  # or whatever image your pod is using
+    volumeMounts:
+      - name: shared-data  # adjust volume name and mountPath
+        mountPath: /data   # to match your pod spec
+    command: ['chmod', '0777', '/data']
+</code>
+</p></div>
+
 ### Relate to Charmed Kubernetes
 
 Making **Charmed Kubernetes** aware of your **Ceph** cluster requires 2 **Juju** relations.
@@ -141,22 +163,18 @@ kubectl get sc,po
 ... should return output similar to:
 
 ```no-highlight
-NAME                                             PROVISIONER     AGE
-storageclass.storage.k8s.io/ceph-ext4            csi-rbdplugin    7m
-storageclass.storage.k8s.io/ceph-fs              csi-cephfs       7m
-storageclass.storage.k8s.io/ceph-xfs (default)   csi-rbdplugin    7m
+NAME                                             PROVISIONER           RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/ceph-ext4            rbd.csi.ceph.com      Delete          Immediate           false                  7m
+storageclass.storage.k8s.io/ceph-xfs (default)   rbd.csi.ceph.com      Delete          Immediate           false                  7m
+storageclass.storage.k8s.io/cephfs               cephfs.csi.ceph.com   Delete          Immediate           false                  7m
 
-NAME                                                   READY     STATUS    RESTARTS   AGE
-pod/csi-cephfsplugin-2ljt6                             2/2       Running   0          7m
-pod/csi-cephfsplugin-attacher-0                        1/1       Running   0          7m
-pod/csi-cephfsplugin-cm5lq                             2/2       Running   0          7m
-pod/csi-cephfsplugin-provisioner-0                     2/2       Running   0          7m
-pod/csi-cephfsplugin-v57df                             2/2       Running   0          7m
-pod/csi-rbdplugin-attacher-0                           1/1       Running   0          7m
-pod/csi-rbdplugin-cnh9k                                2/2       Running   0          7m
-pod/csi-rbdplugin-lr66m                                2/2       Running   0          7m
-pod/csi-rbdplugin-mnn94                                2/2       Running   0          7m
-pod/csi-rbdplugin-provisioner-0                        1/1       Running   0          7m
+NAME                                 READY   STATUS    RESTARTS   AGE
+pod/csi-cephfsplugin-attacher-0      1/1     Running   0          7m
+pod/csi-cephfsplugin-bzzgn           2/2     Running   0          7m
+pod/csi-cephfsplugin-provisioner-0   2/2     Running   0          7m
+pod/csi-rbdplugin-69xp6              2/2     Running   0          7m
+pod/csi-rbdplugin-attacher-0         1/1     Running   0          7m
+pod/csi-rbdplugin-provisioner-0      3/3     Running   0          7m
 ```
 
 Note that the CephFS storage class and pods will only be present if CephFS was included above.

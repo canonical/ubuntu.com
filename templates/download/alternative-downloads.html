@@ -44,16 +44,16 @@
     <div class="col-4">
       <h3 class="p-heading--four"><span>Ubuntu {{ releases.latest.full_version }}</span></h3>
       <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.latest.full_version }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu {{ releases.latest.full_version }} Server (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.latest.full_version }} Desktop (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu {{ releases.latest.full_version }} Server (64-bit)</a></li>
       </ul>
     </div>
     {% endif %}
     <div class="col-4">
       <h3 class="p-heading--four"><span>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
       <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version }} Desktop (64-bit)</a></li>
-        <li class="p-list__item"><a class="download-torrent" href="http://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version }} Server (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version }} Desktop (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version }} Server (64-bit)</a></li>
       </ul>
     </div>
     <div class="col-4">
@@ -68,30 +68,15 @@
 
 <div class="p-strip--light">
   <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h2 id="alternate-ubuntu-server-installer">Alternative Ubuntu Server installer</h2>
-      <p>If you want to reuse your existing partitions, you will need to use the alternate installer.</p>
-      {% if releases.latest.short_version > releases.lts.short_version %}
-      <p>
-        <a href="http://cdimage.ubuntu.com/releases/{{ releases.latest.full_version }}/release/" class="p-link--external">Ubuntu {{ releases.latest.full_version }} alternative installer</a>
-      </p>
-      {% endif %}
-      <p>
-        <a href="http://cdimage.ubuntu.com/releases/{{ releases.lts.full_version }}/release/" class="p-link--external">Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr> alternative installer</a>
-      </p>
-      <p>
-        <a href="http://cdimage.ubuntu.com/releases/{{ releases.previous_lts.full_version }}/release/" class="p-link--external">Ubuntu {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr> alternative installer</a>
-      </p>
-    </div>
-    <div class="col-4 p-divider__block">
+    <div class="col-6 p-divider__block">
       <h2 id="other-images-and-mirrors">Other images and mirrors</h2>
       <p>For the full list of available Ubuntu images, we recommend you select a mirror local to you.</p>
       <p><a href="https://launchpad.net/ubuntu/+cdmirrors" class="p-link--external">See all Ubuntu mirrors</a></p>
     </div>
-    <div class="col-4 p-divider__block">
+    <div class="col-6 p-divider__block">
       <h2 id="past-releases-and-other-flavours">Past releases and other flavours</h2>
       <p>Looking for an older release of Ubuntu? Whether you need an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
-      <p><a class="p-link--external" href="http://releases.ubuntu.com/">Past releases</a></p>
+      <p><a class="p-link--external" href="https://releases.ubuntu.com/">Past releases</a></p>
     </div>
   </div>
 </div>

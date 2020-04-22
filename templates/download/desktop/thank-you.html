@@ -20,7 +20,7 @@
 <meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">
 {% else %}
 <noscript>
-  <meta http-equiv="refresh" content="3;url=http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">
+  <meta http-equiv="refresh" content="3;url=https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">
 </noscript>
 {% endif %}
 {% endif %}
@@ -35,7 +35,7 @@
           {% if architecture == 'amd64+mac' %}
           <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">download now</a>.
           {% else %}
-          <a href="http://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
+          <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-desktop-{{ architecture }}.iso">download now</a>.
           {% endif %}
         </p>
         {% with version=version, system="desktop", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
