@@ -143,7 +143,7 @@
   <div class="js-os">
     <div class="row  js-selection-container">
       <div class="col-3">
-        <button class="p-button is-wide js-selection" data-supports="raspberry-pi2 raspberry-pi3 intel-nuc">
+        <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3 intelnuc">
           <span class="js-name">Core 16</span>
         </button>
       </div>
@@ -153,7 +153,7 @@
     </div>
     <div class="row  js-selection-container">
       <div class="col-3">
-        <button class="p-button is-wide js-selection" data-supports="raspberry-pi2 raspberry-pi3 raspberry-pi4 intel-nuc">
+        <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3 raspberrypi4 intelnuc">
           <span class="js-name">Core 18</span>
         </button>
       </div>
@@ -163,7 +163,7 @@
     </div>
     <div class="row  js-selection-container">
       <div class="col-3">
-        <button class="p-button is-wide js-selection" data-supports="raspberry-pi2 raspberry-pi3">
+        <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3">
           <span class="js-name">Classic 16.04</span>
         </button>
       </div>
@@ -173,7 +173,7 @@
     </div>
     <div class="row  js-selection-container">
       <div class="col-3">
-        <button class="p-button is-wide js-selection" data-supports="raspberry-pi2 raspberry-pi3 raspberry-pi4">
+        <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3 raspberrypi4">
           <span class="js-name">Classic 18.04</span>
         </button>
       </div>
@@ -183,7 +183,7 @@
     </div>
     <div class="row  js-selection-container">
       <div class="col-3">
-        <button class="p-button is-wide js-selection" data-supports="raspberry-pi3 raspberry-pi4">
+        <button class="p-button is-wide js-selection" data-supports="raspberrypi3 raspberrypi4">
           <span class="js-name">Classic 64-bit 18.04</span>
         </button>
       </div>
@@ -217,6 +217,15 @@
       <h4>Your chosen snaps:</h4>
       <div class="p-card has-limited-height--large">
         <div class="js-preinstalled-snaps-list"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="p-notification--information js-architecture u-hide">
+        <p class="p-notification__response">
+          <span class="p-notification__status">Information:</span> Your selected architecture is <strong class="js-architecture-detail"></strong>. If you are missing a snap its probably not supported by this architecture.
+        </p>
       </div>
     </div>
   </div>
