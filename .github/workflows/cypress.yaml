@@ -1,4 +1,6 @@
 name: Cypress checks
+env:
+  SECRET_KEY: insecure_test_key
 
 on:
   schedule:

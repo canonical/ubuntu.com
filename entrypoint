@@ -5,11 +5,11 @@ set -e
 # Run migrations
 alembic upgrade head
 
+RUN_COMMAND="talisker.gunicorn.gevent webapp.app:app --bind $1 --worker-class gevent --name talisker-`hostname`"
+
 if [ "${FLASK_DEBUG}" = true ] || [ "${FLASK_DEBUG}" = 1 ]; then
-    echo ""
-    echo "= Running talisker with development settings ="
-    echo ""
-    talisker.gunicorn webapp.app:app --bind $1 --name talisker-`hostname` --reload --log-level debug --timeout 9999
-else
-    talisker.gunicorn webapp.app:app --bind $1 --name talisker-`hostname` --worker-class sync --workers 5
+    RUN_COMMAND="${RUN_COMMAND} --reload --log-level debug --timeout 9999"
 fi
+
+${RUN_COMMAND}
+

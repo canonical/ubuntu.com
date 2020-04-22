@@ -1,5 +1,8 @@
 name: PR checks
 on: pull_request
+env:
+  SECRET_KEY: insecure_test_key
+
 jobs:
   run-image:
     runs-on: ubuntu-latest
@@ -12,7 +15,7 @@ jobs:
 
       - name: Run image
         run: |
-          docker run --detach --publish 80:80 --env DATABASE_URL=sqlite:///db.sqlite3 ubuntu-com
+          docker run --detach --publish 80:80 --env SECRET_KEY=insecure_secret_key --env DATABASE_URL=sqlite:///db.sqlite3 ubuntu-com
           sleep 1
           curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost
 
