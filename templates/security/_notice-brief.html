@@ -5,7 +5,7 @@
   <ul class="p-inline-list u-no-margin">
     {% for release in notice.releases %}
       <li class="p-inline-list__item">
-        <a href="/security/notices?release={{release.codename}}" class="p-button--tag">Ubuntu {{ release.version }} {% if release.lts %} LTS {% endif %}</a>
+        <a href="/security/notices?release={{release.codename}}" class="p-button--tag">Ubuntu {{ release.version }} {{ release.support_tag }}</a>
       </li>
     {% endfor %}
   </ul>

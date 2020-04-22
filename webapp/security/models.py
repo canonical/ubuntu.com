@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy import (
     Boolean,
     Column,
@@ -9,6 +11,7 @@ from sqlalchemy import (
     Table,
 )
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship
 
 
@@ -81,3 +84,14 @@ class Release(Base):
     release_date = Column(DateTime)
     esm_expires = Column(DateTime)
     support_expires = Column(DateTime)
+
+    @hybrid_property
+    def support_tag(self):
+        now = datetime.now()
+
+        if self.lts and self.support_expires > now:
+            return "LTS"
+        elif self.lts and self.esm_expires > now:
+            return "ESM"
+
+        return ""
