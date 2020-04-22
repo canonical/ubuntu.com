@@ -17,17 +17,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   const progressIndicator = document.getElementById("js-progress-indicator");
 
   const addPaymentMethodButton = modal.querySelector(".js-payment-method");
-  const cardExpiryEl = modal.querySelector(".js-customer-card-expiry");
-  const cardImgEl = modal.querySelector(".js-customer-card-brand");
-  const cardTextEl = modal.querySelector(".js-customer-card");
-  const customerEmailEl = modal.querySelector(".js-customer-email");
-  const customerNameEl = modal.querySelector(".js-customer-name");
-  const nameElement = modal.querySelector(".js-renewal-name");
   const processPaymentButton = modal.querySelector(".js-process-payment");
-  const quantityElement = modal.querySelector(".js-renewal-quantity");
-  const startElement = modal.querySelector(".js-renewal-start");
-  const totalElement = modal.querySelector(".js-renewal-total");
-
   const changePaymentMethodButton = modal.querySelector(
     ".js-change-payment-method"
   );
@@ -67,6 +57,8 @@ import { parseStripeError } from "./stripe/error-parser.js";
     renewalId: null,
   };
 
+  let cardValid = false;
+  let changingPaymentMethod = false;
   let submitted3DS = false;
 
   let pollingTimer;
@@ -79,7 +71,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
       cta.addEventListener("click", () => {
         let renewalData = cta.dataset;
 
-        modal.classList.remove("u-hide");
+        toggleModal();
         activeRenewal.accountId = renewalData.accountId;
         activeRenewal.contractId = renewalData.contractId;
         activeRenewal.renewalId = renewalData.renewalId;
@@ -87,6 +79,16 @@ import { parseStripeError } from "./stripe/error-parser.js";
         setRenewalInformation(renewalData);
       });
     });
+  }
+
+  function attachFormEvents() {
+    for (let i = 0; i < form.elements.length; i++) {
+      const input = form.elements[i];
+
+      input.addEventListener("input", (e) => {
+        validateFormInput(e.target);
+      });
+    }
   }
 
   function attachModalButtonEvents() {
@@ -102,27 +104,19 @@ import { parseStripeError } from "./stripe/error-parser.js";
 
     changePaymentMethodButton.addEventListener("click", (e) => {
       e.preventDefault();
+      changingPaymentMethod = true;
       showPaymentMethodDialog();
     });
 
     cancelModalButton.addEventListener("click", (e) => {
       e.preventDefault();
-      resetModal();
-    });
-  }
 
-  function attachModalEvents() {
-    function toggleModal(modal) {
-      if (modal && modal.classList.contains("p-modal")) {
-        modal.classList.toggle("u-hide");
-      }
-    }
-
-    document.addEventListener("click", function (e) {
-      let targetControls = e.target.getAttribute("aria-controls");
-
-      if (targetControls) {
-        toggleModal(document.getElementById(targetControls));
+      if (changingPaymentMethod) {
+        changingPaymentMethod = false;
+        showPayDialog();
+      } else {
+        resetModal();
+        toggleModal();
       }
     });
   }
@@ -172,24 +166,26 @@ import { parseStripeError } from "./stripe/error-parser.js";
     cancelModalButton.disabled = true;
     processPaymentButton.disabled = true;
 
-    // show a loading spinner
+    // show a progress indicator that evolves over time
     progressTimer = setTimeout(() => {
       progressIndicator.classList.remove("u-hide");
-
-      progressTimer = setTimeout(() => {
-        if (mode === "payment") {
-          progressIndicator.querySelector("span").innerHTML =
-            "Making payment...";
-        } else if (mode === "payment_method") {
-          progressIndicator.querySelector("span").innerHTML =
-            "Saving details...";
-        }
-
-        progressTimer = setTimeout(() => {
-          progressIndicator.querySelector("span").innerHTML = "Still trying...";
-        }, 11000);
-      }, 2000);
     }, 2000);
+
+    progressTimer = setTimeout(() => {
+      if (mode === "payment") {
+        progressIndicator.querySelector("span").innerHTML = "Making payment...";
+      } else if (mode === "payment_method") {
+        progressIndicator.querySelector("span").innerHTML = "Saving details...";
+      }
+    }, 4000);
+
+    progressTimer = setTimeout(() => {
+      progressIndicator.querySelector("span").innerHTML = "Still trying...";
+    }, 15000);
+
+    progressTimer = setTimeout(() => {
+      // 3rd error state
+    }, 30000);
   }
 
   function getCardImgFilename(brand) {
@@ -231,6 +227,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
         });
     } else if (requiresAuthentication(invoice)) {
       // 3DS has been requested by Stripe
+      clearTimeout(pollingTimer);
       stripe.confirmCardPayment(invoice.pi_secret).then(function (result) {
         submitted3DS = true;
 
@@ -410,20 +407,42 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function setRenewalInformation(renewalData) {
-    let startDate = new Date(renewalData.start);
+    const contractNameElement = modal.querySelector(".js-contract-name");
+    const endElement = modal.querySelector(".js-renewal-end");
+    const productNameElement = modal.querySelector(".js-product-name");
+    const quantityElement = modal.querySelector(".js-renewal-quantity");
+    const startElement = modal.querySelector(".js-renewal-start");
+    const totalElement = modal.querySelector(".js-renewal-total");
+
+    const contractEndDate = new Date(renewalData.contractEnd);
+    const renewalStartDate = new Date(
+      contractEndDate.setDate(contractEndDate.getDate() + 1)
+    );
+    const renewalEndDate = new Date(
+      contractEndDate.setMonth(
+        contractEndDate.getMonth() + parseInt(renewalData.months)
+      )
+    );
 
     let formattedTotal = parseFloat(renewalData.total).toLocaleString("en", {
       style: "currency",
       currency: renewalData.currency,
     });
 
-    nameElement.innerHTML = `Renew "${renewalData.name}"`;
+    contractNameElement.innerHTML = `Renew "${renewalData.name}"`;
+    endElement.innerHTML = renewalEndDate.toDateString();
+    productNameElement.innerHTML = renewalData.products;
     quantityElement.innerHTML = renewalData.quantity;
-    startElement.innerHTML = startDate.toDateString();
+    startElement.innerHTML = renewalStartDate.toDateString();
     totalElement.innerHTML = formattedTotal;
   }
 
   function setPaymentInformation(paymentMethod) {
+    const cardExpiryEl = modal.querySelector(".js-customer-card-expiry");
+    const cardImgEl = modal.querySelector(".js-customer-card-brand");
+    const cardTextEl = modal.querySelector(".js-customer-card");
+    const customerEmailEl = modal.querySelector(".js-customer-email");
+    const customerNameEl = modal.querySelector(".js-customer-name");
     const billingInfo = paymentMethod.billing_details;
     const cardInfo = paymentMethod.card;
 
@@ -450,11 +469,13 @@ import { parseStripeError } from "./stripe/error-parser.js";
 
     card.on("change", ({ error }) => {
       if (error) {
+        addPaymentMethodButton.disabled = true;
         presentError(error.message, "card");
       } else {
+        cardValid = true;
         hideErrors();
+        validateForm();
       }
-      addPaymentMethodButton.disabled = false;
     });
   }
 
@@ -481,8 +502,56 @@ import { parseStripeError } from "./stripe/error-parser.js";
     processPaymentButton.disabled = false;
   }
 
+  function toggleModal() {
+    if (modal && modal.classList.contains("p-modal")) {
+      modal.classList.toggle("u-hide");
+      document.body.classList.toggle("p-modal--active");
+    }
+  }
+
+  function validateForm() {
+    const inputs = form.elements;
+    let inputsValidity = [cardValid];
+
+    for (let i = 0; i < inputs.length; i++) {
+      const isValid = inputs[i].checkValidity();
+      inputsValidity.push(isValid);
+    }
+
+    if (inputsValidity.includes(false)) {
+      addPaymentMethodButton.disabled = true;
+    } else {
+      addPaymentMethodButton.disabled = false;
+    }
+  }
+
+  function validateFormInput(input) {
+    const wrapper = input.closest(".p-form-validation");
+    let valid = false;
+
+    if (wrapper) {
+      const messageEl = wrapper.querySelector(".p-form-validation__message");
+
+      if (!input.checkValidity()) {
+        wrapper.classList.add("is-error");
+        messageEl.classList.remove("u-hide");
+        messageEl.innerHTML = input.validationMessage;
+      } else {
+        wrapper.classList.remove("is-error");
+        messageEl.classList.add("u-hide");
+        messageEl.innerHTML = "";
+
+        valid = true;
+      }
+
+      validateForm();
+    }
+
+    return valid;
+  }
+
   attachCTAevents(".js-renewal-cta");
+  attachFormEvents();
   attachModalButtonEvents();
-  attachModalEvents();
   setupCardElements();
 })();

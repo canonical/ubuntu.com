@@ -1,0 +1,91 @@
+@mixin ubuntu-p-renewal-modal {
+  .p-modal--active {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .p-modal--renewal {
+    overflow: none;
+    position: fixed;
+    z-index: 100;
+
+    .p-modal__dialog {
+      max-width: 50rem;
+      padding: 0;
+      width: 100%;
+    }
+
+    .p-modal__body,
+    .p-modal__footer,
+    .p-modal__header {
+      padding: 1rem;
+    }
+
+    .p-modal__body {
+      max-height: 70vh;
+      overflow-y: scroll;
+    }
+
+    .p-modal__header {
+      box-shadow: 0 1px 1px rgba($color-dark, 0.2);
+    }
+
+    .p-modal__footer {
+      box-shadow: 0 -1px 1px rgba($color-dark, 0.2);
+      position: relative;
+    }
+
+    .p-modal__progress {
+      bottom: 1rem;
+      left: 1rem;
+      position: absolute;
+    }
+
+    .p-form__group {
+      margin-bottom: 1.2rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .col-3 {
+      color: $color-mid-dark;
+
+      @media (min-width: $breakpoint-medium) {
+        text-align: right;
+      }
+    }
+
+    #card-element {
+      background: $color-x-light;
+      border: 1px solid #999;
+      border-radius: 0.125rem;
+      box-shadow: inset 0 1px 1px rgba($color-x-dark, 0.12);
+      padding: 9px;
+    }
+
+    .p-form-validation__message {
+      color: $color-negative;
+    }
+
+    button {
+      @media (min-width: $breakpoint-medium) {
+        margin-bottom: 0;
+      }
+    }
+
+    input,
+    select {
+      margin-bottom: 0;
+    }
+
+    img {
+      display: block;
+    }
+
+    label {
+      display: inline-block;
+    }
+  }
+}
