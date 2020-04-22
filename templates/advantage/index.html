@@ -168,13 +168,14 @@
                                       <button
                                         id="showModal"
                                         class="js-renewal-cta p-button--positive u-no-margin--bottom"
-                                        aria-controls="modal"
                                         data-contract-id="{{ contract['contractInfo']['id'] }}"
                                         data-account-id="{{ enterprise_contracts[account][0].accountInfo.id }}"
                                         data-name="{{ contract['contractInfo']['name']}}"
                                         data-quantity="{{ contract['renewal']['renewalItems'][0]['allowance']['value'] }}"
                                         data-renewal-id="{{ contract['renewal']['id']}}"
-                                        data-start="{{ contract['renewal']['start'] }}"
+                                        data-contract-end="{{ contract['contractInfo']['effectiveTo'] }}"
+                                        data-products="{{ contract['contractInfo']['products'] }}"
+                                        data-months="{{ contract['renewal']['renewalItems'][0]['priceTotal']['months'] }}"
                                         data-total="{{ contract['renewal']['renewalItems'][0]['priceTotal']['value'] }}"
                                         data-currency="{{ contract['renewal']['renewalItems'][0]['priceTotal']['currency'] }}">Renew</button>
                                     </td>
