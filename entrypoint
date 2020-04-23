@@ -3,7 +3,17 @@
 set -e
 
 # Run migrations
-alembic upgrade head
+{
+    alembic upgrade head
+} || {
+    read -p "Database migration failed. Erase database and try again? " -n 1 -r
+    if [[ $REPLY =~ ^[Yy] ]]; then
+        scripts/clear-database.py
+        alembic upgrade head
+    else
+        exit 1
+    fi
+}
 
 RUN_COMMAND="talisker.gunicorn.gevent webapp.app:app --bind $1 --worker-class gevent --name talisker-`hostname`"
 
