@@ -5,13 +5,14 @@
   }
 
   .p-modal--renewal {
-    overflow: none;
+    overflow: hidden;
     position: fixed;
     z-index: 100;
 
     .p-modal__dialog {
       max-width: 50rem;
       padding: 0;
+      position: static;
       width: 100%;
     }
 
@@ -42,11 +43,19 @@
     }
 
     .p-form__group {
-      margin-bottom: 1.2rem;
+      margin-bottom: 0;
 
       &:last-child {
         margin-bottom: 0;
       }
+
+      + .p-form__group {
+        margin-top: 0.3rem;
+      }
+    }
+
+    .row {
+      grid-gap: 0 1rem;
     }
 
     .col-3 {
@@ -69,14 +78,16 @@
       color: $color-negative;
     }
 
-    button {
+    button,
+    label {
       @media (min-width: $breakpoint-medium) {
         margin-bottom: 0;
       }
     }
 
     input,
-    select {
+    select,
+    textarea {
       margin-bottom: 0;
     }
 

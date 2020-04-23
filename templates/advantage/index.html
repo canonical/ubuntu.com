@@ -160,7 +160,7 @@
                                 {% endif %}
                               {% endif %}
                               {% if contract["renewal"] %}
-                                {% if contract["renewal"]["status"] != "done" %}
+                                {% if contract["renewal"]["renewable"] %}
                                   <tr style="border-top: 0;">
                                     <td></td>
                                     <td>
@@ -175,8 +175,17 @@
                                         data-contract-end="{{ contract['contractInfo']['effectiveTo'] }}"
                                         data-products="{{ contract['contractInfo']['products'] }}"
                                         data-months="{{ contract['renewal']['renewalItems'][0]['priceTotal']['months'] }}"
+                                        data-unit-price="{{ contract['renewal']['renewalItems'][0]['pricePerUnit']['value'] }}"
                                         data-total="{{ contract['renewal']['renewalItems'][0]['priceTotal']['value'] }}"
                                         data-currency="{{ contract['renewal']['renewalItems'][0]['priceTotal']['currency'] }}">Renew</button>
+                                    </td>
+                                  </tr>
+                                {% elif contract["renewal"]["status"] == "processing" %}
+                                  <tr style="border-top: 0;">
+                                    <td></td>
+                                    <td>
+                                      <button disabled class="p-button--positive u-no-margin--bottom">Renew</button>
+                                      <span>Renewal in progress...</span>
                                     </td>
                                   </tr>
                                 {% endif %}
