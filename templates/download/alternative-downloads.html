@@ -73,7 +73,14 @@
     </div>
     <div class="col-6 p-divider__block">
       <h2 id="past-releases-and-other-flavours">Past releases and other flavours</h2>
-      <p>Looking for an older release of Ubuntu? Whether you need an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
+      <p>Looking for an older release of Ubuntu? Whether you need a POWER, IBMz (s390x), ARM, an obsolete release or a previous LTS point release with its original stack, you can find them in past releases.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked"><a href="http://releases.ubuntu.com/{{ releases.previous_lts.full_version }}/">Ubuntu {{ releases.previous_lts.short_version }} LTS ({{ releases.previous_lts.name }})</a></li>
+        {% if releases.latest.short_version < releases.lts.short_version %}
+        <li class="p-list__item is-ticked"><a href="http://releases.ubuntu.com/{{ releases.latest.full_version }}/">Ubuntu {{ releases.latest.short_version }} ({{ releases.latest.name }})</a></li>
+        {% endif %}
+        <li class="p-list__item is-ticked"><a href="http://releases.ubuntu.com/{{ releases.previous_previous_lts.full_version }}/">Ubuntu {{ releases.previous_previous_lts.short_version }} LTS ({{ releases.previous_previous_lts.name }})</a></li>
+      </ul>
       <p><a class="p-link--external" href="https://releases.ubuntu.com/">Past releases</a></p>
     </div>
   </div>
