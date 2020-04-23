@@ -10,22 +10,22 @@
     </header>
     <div id="modal-description" class="p-modal__body">
       <section class="p-strip is-shallow is-bordered u-no-padding--top">
-        <div class="row u-no-padding">
+        <div class="row u-no-padding u-sv1">
           <div class="col-3">Plan type:</div>
           <div class="col-9 js-product-name"></div>
         </div>
 
-        <div class="row u-no-padding">
-          <div class="col-3">Effective from:</div>
+        <div class="row u-no-padding u-sv1">
+          <div class="col-3">Starts:</div>
           <div class="col-9 js-renewal-start"></div>
         </div>
 
-        <div class="row u-no-padding">
+        <div class="row u-no-padding u-sv1">
           <div class="col-3">Ends:</div>
           <div class="col-9 js-renewal-end"></div>
         </div>
 
-        <div class="row u-no-padding">
+        <div class="row u-no-padding u-sv1">
           <div class="col-3">Machines:</div>
           <div class="col-9 js-renewal-quantity"></div>
         </div>
@@ -46,13 +46,6 @@
 
         <form class="p-form p-form--stacked" id="payment-form">
           <div class="p-form__group row u-no-padding">
-            <div class="col-9 col-start-large-4">
-              <span
-                id="card-errors"
-                class="p-form-validation__message u-hide"
-              ></span>
-            </div>
-
             <div class="col-3">
               <label>Payment card:</label>
             </div>
@@ -60,13 +53,16 @@
             <div class="col-9">
               <div id="card-element"></div>
             </div>
+
+            <div class="col-9 col-start-large-4">
+              <span
+                id="card-errors"
+                class="p-form-validation__message u-hide"
+              ></span>
+            </div>
           </div>
 
           <div class="p-form__group p-form-validation row u-no-padding">
-            <div class="col-9 col-start-large-4">
-              <span class="p-form-validation__message u-hide"></span>
-            </div>
-
             <div class="col-3">
               <label for="name">Name on card:</label>
             </div>
@@ -80,85 +76,47 @@
                 value="{{ openid.fullname }}"
               />
             </div>
-          </div>
 
-          <div class="p-form__group p-form-validation row u-no-padding">
             <div class="col-9 col-start-large-4">
               <span class="p-form-validation__message u-hide"></span>
             </div>
+          </div>
 
+          <div class="p-form__group p-form-validation row u-no-padding">
             <div class="col-3">
-              <label for="address">Address:</label>
+              <label for="address">Billing address:</label>
             </div>
 
             <div class="col-9">
-              <input
+              <textarea
                 class="p-form-validation__input"
                 name="address"
-                type="text"
+                rows="4"
                 required
-              />
+              ></textarea>
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
             </div>
           </div>
 
           <div class="p-form__group p-form-validation row u-no-padding">
-            <div class="col-9 col-start-large-4">
-              <span class="p-form-validation__message u-hide"></span>
-            </div>
-
             <div class="col-3">
-              <label for="city">City:</label>
-            </div>
-
-            <div class="col-9">
-              <input
-                class="p-form-validation__input"
-                name="city"
-                type="text"
-                required
-              />
-            </div>
-          </div>
-
-          <div class="p-form__group p-form-validation row u-no-padding">
-            <div class="col-9 col-start-large-4">
-              <span class="p-form-validation__message u-hide"></span>
-            </div>
-
-            <div class="col-3">
-              <label for="postal_code">ZIP:</label>
-            </div>
-
-            <div class="col-9">
-              <input
-                class="p-form-validation__input"
-                name="postal_code"
-                type="text"
-                required
-              />
-            </div>
-          </div>
-
-          <div class="p-form__group p-form-validation row u-no-padding">
-            <div class="col-9 col-start-large-4">
-              <span class="p-form-validation__message u-hide"></span>
-            </div>
-
-            <div class="col-3">
-              <label>Country/region:</label>
+              <label>Country/Region:</label>
             </div>
 
             <div class="col-9">
               {% with raw="true" %} {% include "shared/forms/_country.html" %}
               {% endwith %}
             </div>
-          </div>
 
-          <div class="p-form__group p-form-validation row u-no-padding">
             <div class="col-9 col-start-large-4">
               <span class="p-form-validation__message u-hide"></span>
             </div>
+          </div>
 
+          <div class="p-form__group p-form-validation row u-no-padding">
             <div class="col-3">
               <label for="email">Email my invoice to:</label>
             </div>
@@ -172,6 +130,10 @@
                 value="{{ openid.email }}"
               />
             </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
           </div>
         </form>
 
@@ -182,30 +144,36 @@
             </div>
 
             <div class="col-6 u-align--right">
-              <button class="p-button js-change-payment-method">Change</button>
+              <button class="p-button js-change-payment-method">
+                Change...
+              </button>
             </div>
           </div>
 
           <div class="p-card">
             <div class="row u-no-padding">
               <div
-                class="col-2 js-customer-card-brand u-hide col-small-2"
+                class="col-2 col-small-1 js-customer-card-brand u-hide col-small-2"
               ></div>
               <div class="col-8 col-small-3">
                 <span class="js-customer-name"></span><br />
                 <span class="js-customer-card"></span>
               </div>
               <div
-                class="col-2 col-small-3 col-start-small-1 js-customer-card-expiry"
+                class="col-2 col-small-3 col-start-small-2 js-customer-card-expiry"
               ></div>
             </div>
           </div>
 
-          <p class="u-no-margin--bottom">
-            A receipt will be emailed to:<br /><span
-              class="js-customer-email"
-            ></span>
-          </p>
+          <div class="row u-no-padding">
+            <div class="col-3">
+              <p>Receipt will be sent to:</p>
+            </div>
+
+            <div class="col-9">
+              <p class="js-customer-email"></p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
