@@ -17,13 +17,10 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <p class="u-no-padding--top">
-        The long-term support version of Ubuntu Server, including the {{ releases.openstack_lts.slug }} release of OpenStack and support guaranteed until {{ releases.lts.eol }} &mdash; 64-bit only.
+        The long-term support version of Ubuntu Server, including the {{ releases.openstack_lts.slug }} release of OpenStack and support guaranteed until {{ releases.lts.eol }}.
       </p>
       <p>
-        This release uses our new installer, Subiquity. If you need support for options not implemented in Subiquity, such as encrypted filesystem support, the traditional installer can be found on the <a href="/download/alternative-downloads#alternate-ubuntu-server-installer">alternative downloads</a> page.
-      </p>
-      <p>
-        <a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu Server {{ releases.lts.short_version }} LTS release notes</a>
+        <a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.lts.short_version }} LTS release notes</a>
       </p>
     </div>
     <div class="col-4">
@@ -35,6 +32,7 @@
       </p>
     </div>
   </div>
+  {% if releases.latest.short_version > releases.lts.short_version %}
   <div class="p-strip is-shallow">
     <div class="u-fixed-width">
       <hr>
@@ -61,6 +59,7 @@
       </p>
     </div>
   </div>
+  {% endif %}
 </section>
 
 {% include 'download/shared/_multipass-install.html' %}
