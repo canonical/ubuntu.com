@@ -37,7 +37,7 @@
           {% for release in releases %}
           <option value="{{ release.codename }}"
             {% if request.args.get('release') == release.codename %}selected{% endif %}>
-            Ubuntu {{ release.version }} {% if release.lts %} LTS {% endif %}
+            Ubuntu {{ release.version }} {{ release.support_tag }}
           </option>
           {% endfor %}
         </select>
