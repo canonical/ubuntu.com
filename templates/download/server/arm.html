@@ -51,31 +51,6 @@
         <p><a href="/download/alternative-downloads">Alternative and previous releases&nbsp;&rsaquo;</a></p>
       </div>
     </div>
-    <div class="col-6 p-card is-divided">
-      <h3 class="p-card__title">Ubuntu netboot</h3>
-      <div class="p-card__content">
-        <p>
-          This installer lets you install Ubuntu over the network.
-        </p>
-        <p>
-          <a href="http://cdimage.ubuntu.com/netboot/{{ releases.lts.short_version }}" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-            Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
-          </a>
-        </p>
-        {% if releases.latest.short_version > releases.lts.short_version %}
-        <p>
-          <a href="http://cdimage.ubuntu.com/netboot/{{ releases.latest.short_version }}" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM netboot download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-            Download Ubuntu {{ releases.latest.full_version }}
-          </a>
-        </p>
-        {% endif %}
-        <p>
-          <a class="p-link--external" href="https://help.ubuntu.com/community/Installation/Netboot">
-            Learn about netboot images
-          </a>
-        </p>
-      </div>
-    </div>
   </div>
 </section>
 
