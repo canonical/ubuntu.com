@@ -180,10 +180,8 @@ app.add_url_rule("/logout", view_func=logout)
 template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/snaps", view_func=search_snaps)
-app.add_url_rule("/core/build", view_func=post_build, methods=["POST"])
-app.add_url_rule(
-    "/core/build/notify", view_func=notify_build, methods=["POST"]
-)
+app.add_url_rule("/build", view_func=post_build, methods=["POST"])
+app.add_url_rule("/build/notify", view_func=notify_build, methods=["POST"])
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
 url_prefix = "/server/docs"
@@ -236,7 +234,7 @@ def cache_headers(response):
     Set cache expiry to 60 seconds for homepage and blog page
     """
 
-    if flask.request.path in ["/core/build", "/advantage"]:
+    if flask.request.path in ["/build", "/advantage"]:
         response.cache_control.private = True
 
     if flask.request.path in ["/", "/blog"]:
