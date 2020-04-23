@@ -1,4 +1,4 @@
-{% extends "core/base_core.html" %}
+{% extends "build/base_build.html" %}
 
 {% block title %}Ubuntu image builder{% endblock %}
 {% block meta_description %}Build your own image with pre-installed applications online{% endblock meta_description %}
@@ -38,7 +38,7 @@
       <p>Choose your board, Ubuntu version, and the apps you want installed, and in a few minutes we’ll build an Ubuntu image ready for your IoT development.</p>
       {% if openid %}
       <p>You are signed in as {{ openid.fullname }} ({{ openid.email }})
-        <a href="/logout?return_to={{ request.host_url }}core/build" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
+        <a href="/logout?return_to={{ request.host_url }}build" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
           'eventAction' : 'Authentication',
