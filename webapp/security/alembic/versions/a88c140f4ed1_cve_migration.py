@@ -1,8 +1,8 @@
 """“cve_migration”
 
-Revision ID: a6bd4b6fba3d
+Revision ID: a88c140f4ed1
 Revises: e8760725610a
-Create Date: 2020-04-15 15:24:28.498956
+Create Date: 2020-04-16 00:55:36.066624
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = "a6bd4b6fba3d"
+revision = "a88c140f4ed1"
 down_revision = "e8760725610a"
 branch_labels = None
 depends_on = None
@@ -99,7 +99,7 @@ def upgrade():
         "cve", sa.Column("last_updated_date", sa.DateTime(), nullable=True)
     )
     op.add_column("cve", sa.Column("mitigation", sa.String(), nullable=True))
-    op.add_column("cve", sa.Column("notes", sa.String(), nullable=True))
+    op.add_column("cve", sa.Column("notes", sa.JSON(), nullable=True))
     op.add_column("cve", sa.Column("priority", sa.String(), nullable=True))
     op.add_column(
         "cve", sa.Column("public_date", sa.DateTime(), nullable=True)
