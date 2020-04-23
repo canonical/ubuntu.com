@@ -456,9 +456,37 @@ def advantage_view():
                             ] = date_difference.days
 
                     if "renewals" in contract["contractInfo"]:
-                        contract["renewal"] = contract["contractInfo"][
-                            "renewals"
-                        ][0]
+                        renewal = contract["contractInfo"]["renewals"][0]
+
+                        # If the renewal is processing, we need to find out
+                        # whether payment failed and requires user action,
+                        # which is information only available in the fuller
+                        # renewal object get_renewal gives us
+                        if renewal["status"] == "processing":
+                            renewal = advantage.get_renewal(
+                                flask.session, renewal["id"],
+                            )
+
+                        renewable = False
+
+                        if renewal["status"] == "pending":
+                            renewable = True
+                        elif (
+                            renewal["status"] == "processing"
+                            and "stripeInvoices" in renewal
+                        ):
+                            invoice = renewal["stripeInvoices"][-1]
+                            if (
+                                invoice["pi_status"]
+                                == "requires_payment_method"
+                            ) and (
+                                invoice["subscription_status"]
+                                != "incomplete_expired"
+                            ):
+                                renewable = True
+
+                        contract["renewal"] = renewal
+                        contract["renewal"]["renewable"] = renewable
 
                     enterprise_contract = enterprise_contracts.setdefault(
                         contract["accountInfo"]["name"], []
