@@ -7,6 +7,11 @@ import {
 
 import { parseStripeError } from "./stripe/error-parser.js";
 
+import {
+  setPaymentInformation,
+  setRenewalInformation,
+} from "./stripe/set-modal-info.js";
+
 (function () {
   const modal = document.getElementById("renewal-modal");
 
@@ -57,12 +62,22 @@ import { parseStripeError } from "./stripe/error-parser.js";
     renewalId: null,
   };
 
+  let customerInfo = {
+    name: null,
+    email: null,
+    country: null,
+    address: null,
+  };
+
   let cardValid = false;
   let changingPaymentMethod = false;
   let submitted3DS = false;
 
   let pollingTimer;
   let progressTimer;
+  let progressTimer2;
+  let progressTimer3;
+  let progressTimer4;
 
   function attachCTAevents(selector) {
     const renewalCTAs = document.querySelectorAll(selector);
@@ -76,7 +91,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
         activeRenewal.contractId = renewalData.contractId;
         activeRenewal.renewalId = renewalData.renewalId;
 
-        setRenewalInformation(renewalData);
+        setRenewalInformation(renewalData, modal);
       });
     });
   }
@@ -86,7 +101,11 @@ import { parseStripeError } from "./stripe/error-parser.js";
       const input = form.elements[i];
 
       input.addEventListener("input", (e) => {
-        validateFormInput(e.target);
+        validateFormInput(e.target, false);
+      });
+
+      input.addEventListener("blur", (e) => {
+        validateFormInput(e.target, true);
       });
     }
   }
@@ -105,6 +124,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
     changePaymentMethodButton.addEventListener("click", (e) => {
       e.preventDefault();
       changingPaymentMethod = true;
+      card.clear();
       showPaymentMethodDialog();
     });
 
@@ -113,16 +133,42 @@ import { parseStripeError } from "./stripe/error-parser.js";
 
       if (changingPaymentMethod) {
         changingPaymentMethod = false;
+        form.elements["address"].value = customerInfo.address;
+        form.elements["Country"].value = customerInfo.country;
+        form.elements["email"].value = customerInfo.email;
+        form.elements["name"].value = customerInfo.name;
         showPayDialog();
       } else {
         resetModal();
         toggleModal();
       }
     });
+
+    document.addEventListener("keyup", (e) => {
+      if (
+        e.key === "Escape" &&
+        document.body.classList.contains("p-modal--active")
+      ) {
+        resetModal();
+        toggleModal();
+      }
+    });
+  }
+
+  function clearProgressTimers() {
+    clearTimeout(progressTimer);
+    clearTimeout(progressTimer2);
+    clearTimeout(progressTimer3);
+    clearTimeout(progressTimer4);
   }
 
   function createPaymentMethod() {
     let formData = new FormData(form);
+
+    customerInfo.address = formData.get("address");
+    customerInfo.email = formData.get("email");
+    customerInfo.country = formData.get("Country");
+    customerInfo.name = formData.get("name");
 
     enableProcessingState("payment_method");
 
@@ -131,13 +177,11 @@ import { parseStripeError } from "./stripe/error-parser.js";
         type: "card",
         card: card,
         billing_details: {
-          name: formData.get("name"),
-          email: formData.get("email"),
+          name: customerInfo.name,
+          email: customerInfo.email,
           address: {
-            city: formData.get("city"),
-            country: formData.get("country"),
-            line1: formData.get("address"),
-            postal_code: formData.get("postal_code"),
+            country: customerInfo.country,
+            line1: customerInfo.address,
           },
         },
       })
@@ -156,7 +200,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function disableProcessingState() {
-    clearTimeout(progressTimer);
+    clearProgressTimers();
     resetProgressIndicator();
     cancelModalButton.disabled = false;
   }
@@ -169,36 +213,27 @@ import { parseStripeError } from "./stripe/error-parser.js";
     // show a progress indicator that evolves over time
     progressTimer = setTimeout(() => {
       progressIndicator.classList.remove("u-hide");
+
+      progressTimer2 = setTimeout(() => {
+        if (mode === "payment") {
+          progressIndicator.querySelector("span").innerHTML =
+            "Making payment...";
+        } else if (mode === "payment_method") {
+          progressIndicator.querySelector("span").innerHTML =
+            "Saving details...";
+        }
+
+        progressTimer3 = setTimeout(() => {
+          progressIndicator.querySelector("span").innerHTML = "Still trying...";
+
+          progressTimer4 = setTimeout(() => {
+            // the renewal is taking time to process, reload the page
+            // and highlight the in-progress renewal
+            location.search = `subscription=${activeRenewal.contractId}`;
+          }, 15000);
+        }, 11000);
+      }, 2000);
     }, 2000);
-
-    progressTimer = setTimeout(() => {
-      if (mode === "payment") {
-        progressIndicator.querySelector("span").innerHTML = "Making payment...";
-      } else if (mode === "payment_method") {
-        progressIndicator.querySelector("span").innerHTML = "Saving details...";
-      }
-    }, 4000);
-
-    progressTimer = setTimeout(() => {
-      progressIndicator.querySelector("span").innerHTML = "Still trying...";
-    }, 15000);
-
-    progressTimer = setTimeout(() => {
-      // 3rd error state
-    }, 30000);
-  }
-
-  function getCardImgFilename(brand) {
-    switch (brand) {
-      case "visa":
-        return "832cf121-visa.png";
-      case "mastercard":
-        return "83a09dbe-mastercard.png";
-      case "amex":
-        return "91e62c4f-amex.png";
-      default:
-        return false;
-    }
   }
 
   function handleIncompletePayment(invoice) {
@@ -280,7 +315,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
         } else if (data.createdAt) {
           // payment method was successfully attached,
           // ask user to click "Pay"
-          setPaymentInformation(paymentMethod);
+          setPaymentInformation(paymentMethod, modal);
           showPayDialog();
         } else {
           // an unexpected error occurred
@@ -293,7 +328,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   }
 
   function handleSuccessfulPayment() {
-    clearTimeout(progressTimer);
+    clearProgressTimers();
     progressIndicator.querySelector(".p-icon--spinner").classList.add("u-hide");
     progressIndicator
       .querySelector(".p-icon--success")
@@ -395,6 +430,13 @@ import { parseStripeError } from "./stripe/error-parser.js";
     addPaymentMethodButton.disabled = true;
     processPaymentButton.classList.add("u-hide");
     processPaymentButton.disabled = true;
+
+    customerInfo = {
+      name: null,
+      email: null,
+      country: null,
+      address: null,
+    };
   }
 
   function resetProgressIndicator() {
@@ -406,72 +448,15 @@ import { parseStripeError } from "./stripe/error-parser.js";
     progressIndicator.classList.add("u-hide");
   }
 
-  function setRenewalInformation(renewalData) {
-    const contractNameElement = modal.querySelector(".js-contract-name");
-    const endElement = modal.querySelector(".js-renewal-end");
-    const productNameElement = modal.querySelector(".js-product-name");
-    const quantityElement = modal.querySelector(".js-renewal-quantity");
-    const startElement = modal.querySelector(".js-renewal-start");
-    const totalElement = modal.querySelector(".js-renewal-total");
-
-    const contractEndDate = new Date(renewalData.contractEnd);
-    const renewalStartDate = new Date(
-      contractEndDate.setDate(contractEndDate.getDate() + 1)
-    );
-    const renewalEndDate = new Date(
-      contractEndDate.setMonth(
-        contractEndDate.getMonth() + parseInt(renewalData.months)
-      )
-    );
-
-    let formattedTotal = parseFloat(renewalData.total).toLocaleString("en", {
-      style: "currency",
-      currency: renewalData.currency,
-    });
-
-    contractNameElement.innerHTML = `Renew "${renewalData.name}"`;
-    endElement.innerHTML = renewalEndDate.toDateString();
-    productNameElement.innerHTML = renewalData.products;
-    quantityElement.innerHTML = renewalData.quantity;
-    startElement.innerHTML = renewalStartDate.toDateString();
-    totalElement.innerHTML = formattedTotal;
-  }
-
-  function setPaymentInformation(paymentMethod) {
-    const cardExpiryEl = modal.querySelector(".js-customer-card-expiry");
-    const cardImgEl = modal.querySelector(".js-customer-card-brand");
-    const cardTextEl = modal.querySelector(".js-customer-card");
-    const customerEmailEl = modal.querySelector(".js-customer-email");
-    const customerNameEl = modal.querySelector(".js-customer-name");
-    const billingInfo = paymentMethod.billing_details;
-    const cardInfo = paymentMethod.card;
-
-    const cardBrandFormatted =
-      cardInfo.brand.charAt(0).toUpperCase() + cardInfo.brand.slice(1);
-    const cardText = `${cardBrandFormatted} ending ${cardInfo.last4}`;
-    const cardExpiry = `Expires: ${cardInfo.exp_month}/${cardInfo.exp_year}`;
-    const cardImage = getCardImgFilename(cardInfo.brand);
-
-    if (cardImage) {
-      cardImgEl.innerHTML = `<img src="https://assets.ubuntu.com/v1/${cardImage}" />`;
-      cardImgEl.classList.remove("u-hide");
-    } else {
-      cardImgEl.classList.add("u-hide");
-    }
-    cardTextEl.innerHTML = cardText;
-    cardExpiryEl.innerHTML = cardExpiry;
-    customerNameEl.innerHTML = billingInfo.name;
-    customerEmailEl.innerHTML = billingInfo.email;
-  }
-
   function setupCardElements() {
     card.mount("#card-element");
 
-    card.on("change", ({ error }) => {
-      if (error) {
+    card.on("change", (event) => {
+      if (event.error) {
+        cardValid = false;
         addPaymentMethodButton.disabled = true;
-        presentError(error.message, "card");
-      } else {
+        presentError(event.error.message, "card");
+      } else if (event.complete) {
         cardValid = true;
         hideErrors();
         validateForm();
@@ -483,7 +468,6 @@ import { parseStripeError } from "./stripe/error-parser.js";
     disableProcessingState();
     form.classList.remove("u-hide");
     addPaymentMethodButton.classList.remove("u-hide");
-    addPaymentMethodButton.disabled = false;
 
     paymentMethodDetails.classList.add("u-hide");
     processPaymentButton.classList.add("u-hide");
@@ -505,7 +489,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
   function toggleModal() {
     if (modal && modal.classList.contains("p-modal")) {
       modal.classList.toggle("u-hide");
-      document.body.classList.toggle("p-modal--active");
+      document.documentElement.classList.toggle("p-modal--active");
     }
   }
 
@@ -525,7 +509,7 @@ import { parseStripeError } from "./stripe/error-parser.js";
     }
   }
 
-  function validateFormInput(input) {
+  function validateFormInput(input, callout) {
     const wrapper = input.closest(".p-form-validation");
     let valid = false;
 
@@ -533,9 +517,11 @@ import { parseStripeError } from "./stripe/error-parser.js";
       const messageEl = wrapper.querySelector(".p-form-validation__message");
 
       if (!input.checkValidity()) {
-        wrapper.classList.add("is-error");
-        messageEl.classList.remove("u-hide");
-        messageEl.innerHTML = input.validationMessage;
+        if (callout) {
+          wrapper.classList.add("is-error");
+          messageEl.classList.remove("u-hide");
+          messageEl.innerHTML = input.validationMessage;
+        }
       } else {
         wrapper.classList.remove("is-error");
         messageEl.classList.add("u-hide");
@@ -554,4 +540,5 @@ import { parseStripeError } from "./stripe/error-parser.js";
   attachFormEvents();
   attachModalButtonEvents();
   setupCardElements();
+  validateForm();
 })();
