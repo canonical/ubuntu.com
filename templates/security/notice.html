@@ -65,7 +65,7 @@
       <h2>References</h2>
         <ul class="p-list">
           {% for cve in notice.cves %}
-            <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{cve.id}}">CVE-{{cve.id}}</a></li>
+            <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/{{cve.id}}">{{cve.id}}</a></li>
           {% endfor %}
 
           {% for reference in notice.references %}

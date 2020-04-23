@@ -229,14 +229,14 @@ def create_notice():
             message = f"No release with codename: {release_codename}."
             return (flask.jsonify({"message": message}), 400)
 
-    # Link CVEs, creating them if they don't exist
+    # Link CVEs and other references
     refs = set(data.get("references", []))
     for ref in refs:
         if ref.startswith("CVE-"):
-            cve_id = ref[4:]
-            cve = db_session.query(CVE).get(cve_id)
+            cve = db_session.query(CVE).get(ref)
             if not cve:
-                cve = CVE(id=cve_id)
+                message = f"No CVE with ID: {ref}."
+                return (flask.jsonify({"message": message}), 400)
             notice.cves.append(cve)
         else:
             reference = (
