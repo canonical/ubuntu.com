@@ -11,7 +11,7 @@ from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
-from sqlalchemy import asc, desc
+from sqlalchemy import asc, desc, or_
 from sqlalchemy.exc import IntegrityError, DataError
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -316,10 +316,16 @@ def cve_index():
 
     # Pagination
     total_results = cves_query.count()
+    releases = releases_query.filter(
+        or_(
+            Release.support_expires > datetime.now(),
+            Release.esm_expires > datetime.now(),
+        )
+    )
 
     return flask.render_template(
         "security/cve/index.html",
-        releases=releases_query.all(),
+        releases=releases.all(),
         cves=cves,
         total_results=total_results,
         total_pages=ceil(total_results / limit),
