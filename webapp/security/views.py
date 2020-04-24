@@ -13,12 +13,10 @@ from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sqlalchemy import asc, desc
 from sqlalchemy.exc import IntegrityError, DataError
-from sqlalchemy import asc, desc, and_, func
 from sqlalchemy.orm.exc import NoResultFound
 
 # Local
 from webapp.security.database import db_session
-from webapp.security.auth import authorization_required
 from webapp.security.models import (
     Notice,
     Reference,
