@@ -2,9 +2,9 @@
 {% block title %}{{ cve.id  }}{% endblock %}
 
 {% block head_extra %}
-  {% if cve.status == 'rejected' or cve.status == 'not-for-us' %}
-  <meta name="robots" content="noindex">
-  {% endif %}
+{% if cve.status == 'rejected' or cve.status == 'not-for-us' %}
+<meta name="robots" content="noindex">
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -37,117 +37,117 @@
 
 {% if cve.status == 'rejected' or cve.status == 'not-for-us' %}
 <section class="p-strip--light is-bordered--top">
-{% else %}
-<section class="p-strip">
-{% endif %}
+  {% else %}
+  <section class="p-strip">
+    {% endif %}
 
-  <div class="row">
-    <div class="col-9">
-      <h1>{{ cve.id}}</h1>
+    <div class="row">
+      <div class="col-9">
+        <h1>{{ cve.id }}</h1>
 
-      {% if cve.public_date %}
-      <p>Published {{ cve.public_date }}</p>
-      {% endif %}
+        {% if cve.public_date %}
+        <p>Published: <strong>{{ cve.public_date.strftime("%d %B %Y") }}</strong></p>
+        {% endif %}
 
-      {% if cve.status == 'active' and cve.last_updated_date and cve.last_updated_date != cve.public_date %}
-      <p>Last updated {{ cve.last_updated_date }}</p>
-      {% endif %}
+        {% if cve.status == 'active' and cve.last_updated_date and cve.last_updated_date != cve.public_date %}
+        <p>Last updated: <strong>{{ cve.last_updated_date.strftime("%d %B %Y") }}</strong></p>
+        {% endif %}
 
-      {% if cve.description %}
-      <p>{{ cve.description }}</p>
-      {% endif %}
+        {% if cve.description %}
+        <p>{{ cve.description }}</p>
+        {% endif %}
 
-      {% if cve.ubuntu_description %}
-      <h2>From the Ubuntu security team</h2>
-      <p>{{ cve.ubuntu_description }}</p>
-      {% endif %}
-    </div>
+        {% if cve.ubuntu_description %}
+        <h2>From the Ubuntu security team</h2>
+        <p>{{ cve.ubuntu_description }}</p>
+        {% endif %}
+      </div>
 
-    <div class="col-3">
-      {% if cve.status == 'active' and cve.priority %}
+      <div class="col-3">
+        {% if cve.status == 'active' and cve.priority %}
         <div class="cve-status-box">
           <div class="p-heading--four u-no-margin--bottom">Priority {{ cve.priority | capitalize }}</div>
         </div>
         <p>CVSS 3 base score: {{ cve.cvss }}</p>
-      {% endif %}
+        {% endif %}
 
-      {% if cve.status == 'rejected' %}
+        {% if cve.status == 'rejected' %}
         <div class="cve-status-box--highlight">
           <div class="p-heading--four u-no-margin--bottom">
             Rejected
           </div>
         </div>
-      {% endif %}
+        {% endif %}
 
-      {% if cve.status == 'not-for-us' %}
-      <div class="cve-status-box--highlight">
-        <div class="p-heading--four u-no-margin--bottom">
-          Not in Ubuntu
+        {% if cve.status == 'not-for-us' %}
+        <div class="cve-status-box--highlight">
+          <div class="p-heading--four u-no-margin--bottom">
+            Not in Ubuntu
+          </div>
         </div>
+        {% endif %}
       </div>
-      {% endif %}
+
     </div>
 
-  </div>
-
-  {% if cve.status == 'active' %}
-  <div class="u-fixed-width">
-    <h2>Status</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Package</th>
-          <th>Release</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for package in cve.packages %}
+    {% if cve.status == 'active' %}
+    <div class="u-fixed-width">
+      <h2>Status</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Package</th>
+            <th>Release</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for package in cve.packages %}
           <tr>
             <td rowspan="{{ package.releases | length }}">{{ package.name }}</td>
             <td>{{ package.releases[0].name }}</td>
             <td>{{ package.releases[0].status }}</td>
           </tr>
           {% for n in range(package.releases | length) %}
-            {% if n > 0 %}
-            <tr>
-              <td>{{ package.releases[n].name }}</td>
-              <td>{{ package.releases[n].status }}</td>
-            </tr>
-            {% endif %}
+          {% if n > 0 %}
+          <tr>
+            <td>{{ package.releases[n].name }}</td>
+            <td>{{ package.releases[n].status }}</td>
+          </tr>
+          {% endif %}
           {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+
+    <div class="u-fixed-width">
+      {% if cve.status == 'active' and cve.notes %}
+      <h2>Notes</h2>
+      <p>{{ cve.notes }}</p>
+      {% endif %}
+
+      <h2>References</h2>
+      {% if cve.references %}
+      <ul>
+        {% for reference in cve.references %}
+        <li><a href="{{ reference.uri }}">{{ reference.uri }}</a></li>
         {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  {% endif %}
+      </ul>
+      {% else %}
+      <ul>
+        <li>
+          <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">
+            MITRE
+          </a>
+        </li>
+      </ul>
+      {% endif %}
 
-  <div class="u-fixed-width">
-    {% if cve.status == 'active' and cve.notes %}
-    <h2>Notes</h2>
-    <p>{{ cve.notes }}</p>
-    {% endif %}
+    </div>
+  </section>
 
-    <h2>References</h2>
-    {% if cve.references %}
-    <ul>
-    {% for reference in cve.references %}
-      <li><a href="{{ reference.uri }}">{{ reference.uri }}</a></li>
-    {% endfor %}
-    </ul>
-    {% else %}
-    <ul>
-      <li>
-        <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">
-          MITRE
-        </a>
-      </li>
-    </ul>
-    {% endif %}
-
-  </div>
-</section>
-
-{% with first_item="_security_discussion", second_item="_security_esm",
+  {% with first_item="_security_discussion", second_item="_security_esm",
 third_item="_security_further_reading" %}{% include
 "shared/contextual_footers/_contextual_footer.html" %}{% endwith %} {% endblock %}

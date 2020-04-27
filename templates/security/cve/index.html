@@ -3,24 +3,26 @@
 {% block title %}CVEs{% endblock %}
 
 {% block content %}
-<section class="p-strip--suru-topped">
+
+<section class="p-strip--suru-topped u-no-padding--bottom">
   <div class="u-fixed-width">
     <h1>CVE reports</h1>
   </div>
+</section>
 
+<section class="p-strip is-shallow">
   <div class="u-fixed-width">
     <h2>Search</h2>
   </div>
-
   <form>
     <div class="row">
-      <div class="col-3">
-        <label for="q">CVE ID:</label>
-        <input type="text" name="q" id="q" value="{{query or '' }}">
+      <div class="col-6">
+        <label for="q">CVE ID or description contains:</label>
+        <input type="text" name="q" id="q" value="{{ query or '' }}">
       </div>
       <div class="col-3">
         <label for="package">Package:</label>
-        <input type="text" name="package" id="package" value="{{package or '' }}">
+        <input type="text" name="package" id="package" value="{{ package or '' }}">
       </div>
       <div class="col-3">
         <label for="priority">Priority:</label>
@@ -43,38 +45,26 @@
           </option>
         </select>
       </div>
-      <div class="col-3 u-align--right">
-        <div class="p-form__group">
-          <label class="p-form__label">&nbsp;</label> <!-- required for layout -->
-          <div class="p-form__control">
-            <a href="/security/cve" class="p-button--neutral">Clear filters</a>
-            <button type="submit" class="p-button--positive">Search</button>
-          </div>
-        </div>
+      <div class="col-12">
+        <button type="submit" class="p-button--positive" id="cve-search-button">Search</button>
+        <a href="" class="p-button--positive u-hide" id="cve-redirect-button">Go to CVE</a>
       </div>
     </div>
   </form>
+</section>
 
+<section class="p-strip is-shallow">
   <div class="u-fixed-width">
-    {% if query %}
-      <h2>
-        {% if total_results > 1 %}
-          {{ offset + 1 }} &ndash; {{ offset + limit  }} of
-        {% endif %}
-        {{ total_results }} result{% if total_results != 1 %}s{% endif %}
-      </h2>
+    {% if query or package or priority %}
+    <h2>
+      {% if total_results > 1 %}
+      {{ offset + 1 }} &ndash; {{ offset + limit  }} of
+      {% endif %}
+      {{ total_results }} result{% if total_results != 1 %}s{% endif %}
+    </h2>
     {% else %}
-      <h2>Recent CVEs affecting Ubuntu</h2>
+    <h2>Recent CVEs affecting Ubuntu</h2>
     {% endif %}
-
-    <ul class="p-inline-list">
-      <li class="p-inline-list__item">
-        <a href="?{{ modify_query({'order-by': 'oldest'}) }}">Oldest first</a>
-      </li>
-      <li class="p-inline-list__item">
-        <a href="?{{ modify_query({'order-by': 'newest'}) }}">Newest first</a>
-      </li>
-    </ul>
   </div>
 
   <div class="u-fixed-width">
@@ -84,7 +74,7 @@
           <th>CVE</th>
           <th>Package</th>
           {% for release in releases %}
-            <th>{{ release.name }}</th>
+          <th>{{ release.name }}</th>
           {% endfor %}
         </tr>
       </thead>
@@ -93,37 +83,39 @@
         <tr>
           <td rowspan="{{ cve.packages | length }}"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></td>
           {% for package in cve.packages %}
-            {% if loop.index == 1 %}
-            <td>{{ package.name }}</td>
-              {% for rel in package.releases %}
-                {% if rel.name != 'Upstream' %}
-                <td>{{ rel.status }}</td>
-                {% endif %}
-              {% endfor %}
-            {% endif %}
+          {% if loop.index == 1 %}
+          <td>{{ package.name }}</td>
+          {% for rel in package.releases %}
+          {% if rel.name != 'Upstream' %}
+          <td>{{ rel.status }}</td>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
           {% endfor %}
         </tr>
-          {% for package in cve.packages %}
-            {% if loop.index > 1 %}
-            <tr>
-              <td>{{ package.name }}</td>
-              {% for rel in package.releases %}
-                {% if rel.name != 'Upstream' %}
-                  <td>{{ rel.status }}</td>
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-            </tr>
+        {% for package in cve.packages %}
+        {% if loop.index > 1 %}
+        <tr>
+          <td>{{ package.name }}</td>
+          {% for rel in package.releases %}
+          {% if rel.name != 'Upstream' %}
+          <td>{{ rel.status }}</td>
+          {% endif %}
           {% endfor %}
+          {% endif %}
+        </tr>
+        {% endfor %}
         {% endfor %}
       </tbody>
     </table>
 
     {% with %}
-      {% include "security/cve/_pagination.html" %}
+    {% include "security/cve/_pagination.html" %}
     {% endwith %}
   </div>
 </section>
+
+<script src="{{ versioned_static('js/build/cve.min.js') }}" defer></script>
 
 {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}
 {% include "shared/contextual_footers/_contextual_footer.html" %}
