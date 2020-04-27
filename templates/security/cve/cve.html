@@ -41,18 +41,6 @@
 <section class="p-strip">
 {% endif %}
 
-  {% if cve.status == 'rejected' %}
-  <div class="p-corner-ribbon u-hide--small">
-    Rejected
-  </div>
-  {% endif %}
-
-  {% if cve.status == 'not-for-us' %}
-  <div class="p-corner-ribbon u-hide--small">
-    Not in Ubuntu
-  </div>
-  {% endif %}
-
   <div class="row">
     <div class="col-9">
       <h1>{{ cve.id}}</h1>
@@ -75,14 +63,31 @@
       {% endif %}
     </div>
 
-    {% if cve.status == 'active' and cve.priority %}
     <div class="col-3">
-      <div class="priority-box">
-        <div class="p-heading--four u-no-margin--bottom">Priority {{ cve.priority | capitalize }}</div>
+      {% if cve.status == 'active' and cve.priority %}
+        <div class="cve-status-box">
+          <div class="p-heading--four u-no-margin--bottom">Priority {{ cve.priority | capitalize }}</div>
+        </div>
+        <p>CVSS 3 base score: {{ cve.cvss }}</p>
+      {% endif %}
+
+      {% if cve.status == 'rejected' %}
+        <div class="cve-status-box--highlight">
+          <div class="p-heading--four u-no-margin--bottom">
+            Rejected
+          </div>
+        </div>
+      {% endif %}
+
+      {% if cve.status == 'not-for-us' %}
+      <div class="cve-status-box--highlight">
+        <div class="p-heading--four u-no-margin--bottom">
+          Not in Ubuntu
+        </div>
       </div>
-      <p>CVSS 3 base score: {{ cve.cvss }}</p>
+      {% endif %}
     </div>
-    {% endif %}
+
   </div>
 
   {% if cve.status == 'active' %}

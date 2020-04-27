@@ -603,26 +603,23 @@ summary {
   padding-left: $sph-inner--small;
 }
 
-.p-corner-ribbon {
-  background-color: $color-brand;
-  color: $color-x-light;
-  padding-bottom: $spv-inner--x-small;
-  padding-top: $spv-inner--x-small;
-  position: absolute;
-  right: -50px;
-  text-align: center;
-  top: 38px;
-  transform: rotate(45deg);
-  width: 225px;
-}
-
 .is-bordered--top {
   @extend %vf-pseudo-border--top;
 }
 
-.priority-box {
+.cve-status-box,
+.cve-status-box--highlight {
   @extend .p-card;
 
-  background-color: $color-mid-x-light;
   margin-bottom: $sp-small;
+}
+
+.cve-status-box {
+  background-color: $color-mid-x-light;
+}
+
+.cve-status-box--highlight {
+  background-color: $color-brand;
+  border: none;
+  color: $color-x-light;
 }
