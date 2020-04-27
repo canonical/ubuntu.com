@@ -620,9 +620,9 @@ summary {
   @extend %vf-pseudo-border--top;
 }
 
-.p-label--base {
-  @extend %vf-label;
+.priority-box {
+  @extend .p-card;
 
-  background-color: $color-mid-dark;
-  color: $color-x-light;
+  background-color: $color-mid-x-light;
+  margin-bottom: $sp-small;
 }
