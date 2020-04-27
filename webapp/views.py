@@ -107,6 +107,17 @@ def releasenotes_redirect():
     return flask.redirect(f"https://wiki.ubuntu.com/Releases")
 
 
+def build():
+    """
+    Show build page
+    """
+
+    return flask.render_template(
+        "build/index.html",
+        board_architectures=json.dumps(Launchpad.board_architectures),
+    )
+
+
 def post_build():
     """
     Once they submit the build form on /build,
