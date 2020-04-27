@@ -234,7 +234,7 @@ window.renderImageBuilder = function (boardArchitectures) {
     collection.forEach((selection) => {
       selection.addEventListener("click", function () {
         selectCollection(collection, selection);
-        const value = this.querySelector(".js-name").innerText;
+        const value = this.querySelector(".js-name").dataset.value;
         if (stateIndex == "board") {
           state.set("os", [""]);
           state.get("snaps").reset();
@@ -259,7 +259,7 @@ window.renderImageBuilder = function (boardArchitectures) {
       const osSupport = selection.dataset.supports;
       const selectedOS = state.get("os")[0];
       const selectedBoard = parseSystemValues(state.get("board")[0]);
-      const selectionValue = selection.querySelector(".js-name").innerText;
+      const selectionValue = selection.querySelector(".js-name").dataset.value;
 
       // Update the selected OS based on the state
       if (selectedOS == selectionValue) {
