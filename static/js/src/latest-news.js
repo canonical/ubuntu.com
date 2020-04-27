@@ -43,7 +43,9 @@
       article._embedded &&
       article._embedded["wp:featuredmedia"] &&
       article._embedded["wp:featuredmedia"][0] &&
-      article._embedded["wp:featuredmedia"][0].width
+      article._embedded["wp:featuredmedia"][0].media_details &&
+      article._embedded["wp:featuredmedia"][0].media_details.width &&
+      article._embedded["wp:featuredmedia"][0].media_details.height
     ) {
       let media = article._embedded["wp:featuredmedia"][0];
       articleImage = {
