@@ -1,37 +1,4 @@
-(function () {
-  const board_architectures = {
-    raspberrypi2: {
-      core16: { arch: "armhf", subarch: "raspi2" },
-      core18: { arch: "armhf", subarch: "raspi3" },
-      "classic16.04": { arch: "armhf", subarch: "raspi3" },
-      "classic18.04": { arch: "armhf", subarch: "raspi3" },
-    },
-    raspberrypi3: {
-      core16: { arch: "armhf", subarch: "raspi3" },
-      core18: { arch: "armhf", subarch: "raspi3" },
-      "classic16.04": { arch: "armhf", subarch: "raspi3" },
-      "classic18.04": { arch: "armhf", subarch: "raspi3" },
-      "classic6418.04": { arch: "arm64", subarch: "raspi3" },
-    },
-    raspberrypi4: {
-      core18: { arch: "armhf", subarch: "raspi3" },
-      "classic18.04": { arch: "armhf", subarch: "raspi3" },
-      "classic6418.04": { arch: "arm64", subarch: "raspi3" },
-    },
-    intelnuc: {
-      core16: { arch: "amd64", subarch: "" },
-      core18: { arch: "amd64", subarch: "" },
-    },
-    snapdragon: {
-      core16: { arch: "arm64", subarch: "snapdragon" },
-      core18: { arch: "arm64", subarch: "snapdragon" },
-    },
-    cm3: {
-      core16: { arch: "armhf", subarch: "cm3" },
-      core18: { arch: "armhf", subarch: "raspi3" },
-    },
-  };
-
+window.renderImageBuilder = function (boardArchitectures) {
   // State management
   class StateArray extends Array {
     push(item) {
@@ -121,7 +88,7 @@
   let triggerSearch = debounce(function () {
     const board = parseSystemValues(state.get("board")[0]);
     const os = parseSystemValues(state.get("os")[0]);
-    const architecture = board_architectures[board][os]["arch"];
+    const architecture = boardArchitectures[board][os]["arch"];
     snapResults.innerHTML =
       '<p><i class="p-icon--spinner u-animation--spin"></i></p>';
     const searchInput = snapSearch.querySelector(".p-search-box__input");
@@ -365,8 +332,8 @@
       const board = parseSystemValues(state.get("board")[0]);
       const os = parseSystemValues(state.get("os")[0]);
 
-      if (board_architectures[board][os]) {
-        const architecture = board_architectures[board][os]["arch"];
+      if (boardArchitectures[board][os]) {
+        const architecture = boardArchitectures[board][os]["arch"];
         archOutput.querySelector(
           ".js-architecture-detail"
         ).innerText = architecture;
@@ -411,6 +378,5 @@
     return parsed;
   }
 
-  // Init
   render();
-})();
+};

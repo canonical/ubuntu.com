@@ -260,6 +260,10 @@
   </div>
 </section>
 <script src="{{ versioned_static('js/build/imageBuilder.min.js') }}"></script>
+<script>
+  const boardArchitectures = {{ board_architectures | safe }};
+  renderImageBuilder(boardArchitectures);
+</script>
 
 {% with first_item="_iot_developers", second_item="_iot_newsletter_signup", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
