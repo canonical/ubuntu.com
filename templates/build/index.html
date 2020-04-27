@@ -7,7 +7,7 @@
 {% block content %}
 
 {% if build_info %}
-<section class="p-strip--suru-topped">
+<section class="p-strip--suru-topped u-no-padding--bottom">
   <div class="row">
     <div class="col-8 u-sv3">
       <h1>Your Ubuntu image is building</h1>
@@ -31,7 +31,7 @@
   {% endif %}
 </section>
 {% else %}
-<section class="p-strip--suru-topped">
+<section class="p-strip--suru-topped u-no-padding--bottom">
   <div class="row">
     <div class="col-10">
       <h1>Build an Ubuntu IoT image</h1>
@@ -84,7 +84,7 @@
           ) | safe
         }}
       </div>
-      <h4 class="js-name u-no-margin--bottom">Raspberry Pi2</h4>
+      <h4 class="js-name u-no-margin--bottom" data-value="raspberrypi2">Raspberry Pi 2</h4>
     </button>
     <button class="col-3 p-card js-selection u-no-margin--right" style="width:100%;height:100%;">
       <div class="u-hide--small">
@@ -99,7 +99,7 @@
           ) | safe
         }}
       </div>
-      <h4 class="js-name u-no-margin--bottom">Raspberry Pi3</h4>
+      <h4 class="js-name u-no-margin--bottom" data-value="raspberrypi3">Raspberry Pi 3</h4>
     </button>
     <button class="col-3 p-card js-selection u-no-margin--right" style="width:100%;height:100%;">
       <div class="u-hide--small">
@@ -114,7 +114,7 @@
           ) | safe
         }}
       </div>
-      <h4 class="js-name u-no-margin--bottom">Raspberry Pi4</h4>
+      <h4 class="js-name u-no-margin--bottom" data-value="raspberrypi4">Raspberry Pi 4</h4>
     </button>
     <button class="col-3 p-card js-selection u-no-margin--right" style="width:100%;height:100%;">
       <div class="u-hide--small">
@@ -129,7 +129,7 @@
           ) | safe
         }}
       </div>
-      <h4 class="js-name u-no-margin--bottom">Intel NUC</h4>
+      <h4 class="js-name u-no-margin--bottom" data-value="intelnuc">Intel NUC</h4>
     </button>
   </div>
 </section>
@@ -144,7 +144,7 @@
     <div class="row  js-selection-container">
       <div class="col-3">
         <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3 intelnuc">
-          <span class="js-name">Core 16</span>
+          <span class="js-name" data-value="core16">Core 16</span>
         </button>
       </div>
       <div class="col-9">
@@ -154,7 +154,7 @@
     <div class="row  js-selection-container">
       <div class="col-3">
         <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3 raspberrypi4 intelnuc">
-          <span class="js-name">Core 18</span>
+          <span class="js-name" data-value="core18">Core 18</span>
         </button>
       </div>
       <div class="col-9">
@@ -164,7 +164,7 @@
     <div class="row  js-selection-container">
       <div class="col-3">
         <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3">
-          <span class="js-name">Classic 16.04</span>
+          <span class="js-name" data-value="classic16.04">16.04 LTS</span>
         </button>
       </div>
       <div class="col-9">
@@ -174,7 +174,7 @@
     <div class="row  js-selection-container">
       <div class="col-3">
         <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3 raspberrypi4">
-          <span class="js-name">Classic 18.04</span>
+          <span class="js-name" data-value="classic18.04">18.04 LTS 32-bit</span>
         </button>
       </div>
       <div class="col-9">
@@ -184,7 +184,7 @@
     <div class="row  js-selection-container">
       <div class="col-3">
         <button class="p-button is-wide js-selection" data-supports="raspberrypi3 raspberrypi4">
-          <span class="js-name">Classic 64-bit 18.04</span>
+          <span class="js-name" data-value="classic6418.04">18.04 LTS 64-bit</span>
         </button>
       </div>
       <div class="col-9">
@@ -198,14 +198,14 @@
   <div class="row">
     <div class="col-10 u-sv3">
       <h2><span class="u-number-circle">3</span> What packages do you want preinstalled?</h2>
-      <p>Select the applications that will be pre-installed on the device. For Ubuntu Core this will be snaps, for Ubuntu Classic it will be snaps or packages.</p>
+      <p>Select the applications that will be preinstalled on the device.</p>
     </div>
   </div>
   <div class="row">
     <div class="col-6">
       <h4>Available snaps:</h4>
       <form class="p-search-box js-snap-search">
-        <input type="search" class="p-search-box__input" name="search" required="">
+        <input type="search" class="p-search-box__input" name="search">
         <button type="reset" class="p-search-box__reset" alt="reset"><i class="p-icon--close"></i></button>
         <button type="submit" class="p-search-box__button" alt="search"><i class="p-icon--search"></i></button>
       </form>
@@ -224,7 +224,7 @@
     <div class="col-6">
       <div class="p-notification--information js-architecture u-hide">
         <p class="p-notification__response">
-          <span class="p-notification__status">Information:</span> Your selected architecture is <strong class="js-architecture-detail"></strong>. If you are missing a snap its probably not supported by this architecture.
+          Your selected architecture is <strong class="js-architecture-detail"></strong>. If you are missing a snap it's probably not supported by this architecture.
         </p>
       </div>
     </div>
@@ -238,7 +238,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-shallow  {% if not openid %}u-disable{% endif %}">
+<section class="p-strip is-shallow  {% if not openid %}u-disable{% endif %}">
   <div class="row">
     <div class="col-8">
       <form method="POST" id="build-form">

@@ -86,8 +86,8 @@ window.renderImageBuilder = function (boardArchitectures) {
   }
 
   let triggerSearch = debounce(function () {
-    const board = parseSystemValues(state.get("board")[0]);
-    const os = parseSystemValues(state.get("os")[0]);
+    const board = state.get("board")[0];
+    const os = state.get("os")[0];
     const architecture = boardArchitectures[board][os]["arch"];
     snapResults.innerHTML =
       '<p><i class="p-icon--spinner u-animation--spin"></i></p>';
@@ -216,7 +216,7 @@ window.renderImageBuilder = function (boardArchitectures) {
                 </div>
               </div>
               <div class="col-1 col-medium-1 col-small-1">
-                <button class="p-button--base js-${buttonText.toLowerCase()}-snap" data-index="${index}"><i class="p-icon--${buttonIcon}">${buttonText}</i></button>
+                <button class="p-button--neutral js-${buttonText.toLowerCase()}-snap" data-index="${index}"><i class="p-icon--${buttonIcon}">${buttonText}</i></button>
               </div>
             </div>
             <hr />`
@@ -225,9 +225,7 @@ window.renderImageBuilder = function (boardArchitectures) {
         render();
       } else {
         results.innerHTML =
-          buttonText == "Add"
-            ? "<p>No matching snaps</p>"
-            : "<p>No snaps to preinstall</p>";
+          buttonText == "Add" ? "<p>No matching snaps</p>" : "<p>None yet</p>";
       }
     }
   }
@@ -236,7 +234,7 @@ window.renderImageBuilder = function (boardArchitectures) {
     collection.forEach((selection) => {
       selection.addEventListener("click", function () {
         selectCollection(collection, selection);
-        const value = this.querySelector(".js-name").innerText;
+        const value = this.querySelector(".js-name").dataset.value;
         if (stateIndex == "board") {
           state.set("os", [""]);
           state.get("snaps").reset();
@@ -260,8 +258,8 @@ window.renderImageBuilder = function (boardArchitectures) {
     osSelection.forEach((selection) => {
       const osSupport = selection.dataset.supports;
       const selectedOS = state.get("os")[0];
-      const selectedBoard = parseSystemValues(state.get("board")[0]);
-      const selectionValue = selection.querySelector(".js-name").innerText;
+      const selectedBoard = state.get("board")[0];
+      const selectionValue = selection.querySelector(".js-name").dataset.value;
 
       // Update the selected OS based on the state
       if (selectedOS == selectionValue) {
@@ -306,10 +304,10 @@ window.renderImageBuilder = function (boardArchitectures) {
     const systemInput = form.querySelector('[name="system"]');
     const snapsInput = form.querySelector('[name="snaps"]');
     if (state.get("board").length >= 1) {
-      boardInput.value = parseSystemValues(state.get("board")[0]);
+      boardInput.value = state.get("board")[0];
     }
     if (state.get("os").length >= 1) {
-      systemInput.value = parseSystemValues(state.get("os")[0]);
+      systemInput.value = state.get("os")[0];
     }
     let snapsString = "";
     let comma = "";
@@ -329,8 +327,8 @@ window.renderImageBuilder = function (boardArchitectures) {
     }
     if (state.get("os") && state.get("os")[0]) {
       step3.classList.remove("u-disable");
-      const board = parseSystemValues(state.get("board")[0]);
-      const os = parseSystemValues(state.get("os")[0]);
+      const board = state.get("board")[0];
+      const os = state.get("os")[0];
 
       if (boardArchitectures[board][os]) {
         const architecture = boardArchitectures[board][os]["arch"];
@@ -371,11 +369,6 @@ window.renderImageBuilder = function (boardArchitectures) {
       timeout = setTimeout(later, wait);
       if (callNow) func.apply(context, args);
     };
-  }
-
-  function parseSystemValues(value) {
-    const parsed = value.replace(" ", "").toLowerCase().replace("-bit ", "");
-    return parsed;
   }
 
   render();
