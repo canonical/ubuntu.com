@@ -436,15 +436,8 @@ def cve(cve_id):
 # ===
 
 
-@authorization_required
-def create_cve(cve_id):
-    """
-    Receives a POST request from load_cve.py
-    Parses the object and bulk inserts with add_all()
-    @params json: the body of the request
-    """
+def create_cve(data):
 
-    data = flask.request.json
     packages = []
     references = []
     bugs = []
@@ -485,7 +478,7 @@ def create_cve(cve_id):
         last_updated_date=parse(data.get("last_updated_date"))
         if data.get("last_updated_date")
         else None,
-        public_date_usn=parse(data.get("last_updated_date"))
+        public_date_usn=parse(data.get("public_date_usn"))
         if data.get("public_date_usn")
         else None,
         public_date=parse(data.get("public_date"))
@@ -507,17 +500,21 @@ def create_cve(cve_id):
     try:
         db_session.add(cve)
         db_session.commit()
-    # Duplicate key errors and Payload input errors
-    except (IntegrityError, DataError) as error:
-        return flask.jsonify({"message": error.orig.args[0]}), 409
+    # Payload input errors
+    except DataError as error:
+        message = error
+        status = "OK"
+        cveid = data["id"]
+        return message, status, cveid
 
-    return flask.jsonify({"message": "CVE created succesfully"}), 201
+    message = "Successfully created CVE"
+    status = "OK"
+    cveid = data["id"]
+    return message, status, cveid
 
 
-@authorization_required
-def update_cve(cve_id):
-    data = flask.request.json
-    cve = db_session.query(CVE).get(cve_id)
+def update_cve(data):
+    cve = db_session.query(CVE).get(data["id"])
 
     # Check if CVE exists by candidate
     if not cve:
@@ -531,7 +528,7 @@ def update_cve(cve_id):
         else None
     )
     cve.public_date_usn = (
-        datetime(data.get("last_updated_date"))
+        parse(data.get("public_date_usn"))
         if data.get("public_date_usn")
         else None
     )
@@ -617,3 +614,55 @@ def delete_cve(cve_id):
         return flask.jsonify({"message": error.orig.args[0]}), 400
 
     return flask.jsonify({"message": "CVE deleted succesfully"}), 200
+
+
+@authorization_required
+def bulk_upsert_cve():
+    """
+    Receives a PUT request from load_cve.py
+    Parses the object and bulk inserts or updates
+    @returns 3 lists of CVEs, created CVEs, updated CVEs and failed CVEs
+    """
+
+    cves_data = flask.request.json
+    created = []
+    updated = []
+    failed = []
+
+    if not type(cves_data) == list:
+        return (
+            flask.jsonify(
+                {"message": "Please, submit a list (array) of CVEs"}
+            ),
+            400,
+        )
+
+    for data in cves_data:
+        cve = db_session.query(CVE).get(data["id"])
+        if cve:
+            updated_cve = update_cve(data)
+            if updated_cve[1] == "OK":
+                updated.append(updated_cve[2])
+            else:
+                message = {"error": update_cve[0], "cve": updated_cve[2]}
+                failed.append(message)
+        else:
+            created_cve = create_cve(data)
+            if created_cve[1] == "OK":
+                created.append(created_cve[2])
+            else:
+                message = {"error": update_cve[0], "cve": updated_cve[2]}
+                failed.append(message)
+
+    db_session.flush()
+    return (
+        flask.jsonify(
+            {
+                "message": "Finished bulk upserting session",
+                "created": created,
+                "updated": updated,
+                "failed": failed,
+            }
+        ),
+        200,
+    )
