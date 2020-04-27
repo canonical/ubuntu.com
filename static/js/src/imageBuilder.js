@@ -216,7 +216,7 @@ window.renderImageBuilder = function (boardArchitectures) {
                 </div>
               </div>
               <div class="col-1 col-medium-1 col-small-1">
-                <button class="p-button--base js-${buttonText.toLowerCase()}-snap" data-index="${index}"><i class="p-icon--${buttonIcon}">${buttonText}</i></button>
+                <button class="p-button--neutral js-${buttonText.toLowerCase()}-snap" data-index="${index}"><i class="p-icon--${buttonIcon}">${buttonText}</i></button>
               </div>
             </div>
             <hr />`
@@ -225,9 +225,7 @@ window.renderImageBuilder = function (boardArchitectures) {
         render();
       } else {
         results.innerHTML =
-          buttonText == "Add"
-            ? "<p>No matching snaps</p>"
-            : "<p>No snaps to preinstall</p>";
+          buttonText == "Add" ? "<p>No matching snaps</p>" : "<p>None yet</p>";
       }
     }
   }
