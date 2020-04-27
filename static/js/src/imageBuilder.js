@@ -374,7 +374,7 @@ window.renderImageBuilder = function (boardArchitectures) {
   }
 
   function parseSystemValues(value) {
-    const parsed = value.split(" ").join("").toLowerCase().replace("-bit ", "");
+    const parsed = value.split(" ").join("").toLowerCase().replace("-bit", "");
     return parsed;
   }
 
