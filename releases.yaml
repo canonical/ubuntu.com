@@ -1,33 +1,34 @@
 latest:
   slug: EoanErmine
+  name: "Eoan Ermine"
   short_version: "19.10"
   full_version: "19.10"
   release_date: "October 2019"
   eol: July 2020
 lts:
-  slug: BionicBeaver
+  slug: FocalFossa
+  name: "Focal Fossa"
+  short_version: "20.04"
+  full_version: "20.04"
+  release_date: "April 2020"
+  eol: April 2025
+openstack_lts:
+  slug: Ussuri
+previous_lts:
+  name: "Bionic Beaver"
   short_version: "18.04"
   full_version: "18.04.4"
-  release_date: "April 2018"
-  eol: April 2023
-openstack_lts:
-  slug: Train
-previous_lts:
+previous_previous_lts:
+  name: "Xenial Xerus"
   short_version: "16.04"
   full_version: "16.04.6"
 
 checksums:
   desktop:
-    "19.10": 96a8095001d447bbb9078925d72f7a77a3f62fbd78460093759af4394ce83d79 *ubuntu-19.10-desktop-amd64.iso
-    "18.04.4": c0d025e560d54434a925b3707f8686a7f588c42a5fbc609b8ea2447f88847041 *ubuntu-18.04.4-desktop-amd64.iso
+    "20.04": "e5b72e9cfe20988991c9cd87bde43c0b691e3b67b01f76d23f8150615883ce11 *ubuntu-20.04-desktop-amd64.iso"
   live-server:
-    "19.10": 3fe242f4b330ead8191b3c200bcf1d8d3be4243d62fe6b866a778499370c9dbb *ubuntu-19.10-live-server-amd64.iso
-    "18.04.4": 73b8d860e421000a6e35fdefbb0ec859b9385b0974cf8089f5d70a87de72f6b9 *ubuntu-18.04.4-live-server-amd64.iso
-  armhf+raspi2:
-    "18.04.4": 0382a2b87b6937ff645f59f546120e3480f2d5a2c2945712bf373379b9e82f51 *ubuntu-18.04.4-preinstalled-server-armhf+raspi2.img.xz
-  arm64+raspi3:
-    "19.10.1": 3fcae7490edebd35663cb30dcd7a6317b6b9601d0f59ed5caa3c20dfd936cbb1 *ubuntu-19.10.1-preinstalled-server-arm64+raspi3.img.xz
-    "18.04.4": f270d4a11fcef7f85ea77bc0642d1c6db2666ae734e9dcc4cb875a31c9f0dc57 *ubuntu-18.04.4-preinstalled-server-arm64+raspi3.img.xz
-  armhf+raspi3:
-    "19.10.1": d40820ba3933554b9902dc560e8a98d20352ae49b8544e71cacc6fdcfd2c2405 *ubuntu-19.10.1-preinstalled-server-armhf+raspi3.img.xz
-    "18.04.4": 0382a2b87b6937ff645f59f546120e3480f2d5a2c2945712bf373379b9e82f51 *ubuntu-18.04.4-preinstalled-server-armhf+raspi3.img.xz
+    "20.04": "caf3fd69c77c439f162e2ba6040e9c320c4ff0d69aad1340a514319a9264df9f *ubuntu-20.04-live-server-amd64.iso"
+  arm64+raspi:
+    "20.04": "48167067d65c5192ffe041c9cc4958cb7fcdfd74fa15e1937a47430ed7b9de99 *ubuntu-20.04-preinstalled-server-arm64+raspi.img.xz"
+  armhf+raspi:
+    "20.04": "e86a9043d5394c4ae3d22d3ba62cd07d400156ec2319270d1e238ba5a0d17d9b *ubuntu-20.04-preinstalled-server-armhf+raspi.img.xz"

@@ -1,6 +1,11 @@
 - **About**
   - [Home](/kubernetes/docs)
   - [Overview](/kubernetes/docs/overview)
+- **Supported versions**
+  - [1.18](/kubernetes/docs/1.18/components)
+  - [1.17](/kubernetes/docs/1.17/components)
+  - [1.16](/kubernetes/docs/1.16/components)
+  - [Version info](/kubernetes/docs/supported-versions)
 - **Install**
   - [Quickstart](/kubernetes/docs/quickstart)
   - [Install](/kubernetes/docs/install-manual)

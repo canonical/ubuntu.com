@@ -11,6 +11,7 @@ from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sqlalchemy import asc, desc
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
 # Local
@@ -186,24 +187,13 @@ def notices_feed(feed_type):
 
 
 @authorization_required
-def api_create_notice():
+def create_notice():
     if not flask.request.json:
         return (flask.jsonify({"message": f"No payload received"}), 400)
 
-    # Because we get a dict with ID as a key and the payload as a value
-    notice_id, payload = flask.request.json.popitem()
-
-    notice = db_session.query(Notice).filter(Notice.id == notice_id).first()
-    if notice:
-        return (
-            flask.jsonify({"message": f"Notice '{notice.id}' already exists"}),
-            400,
-        )
-
     notice_schema = NoticeSchema()
-
     try:
-        data = notice_schema.load(payload, unknown=EXCLUDE)
+        data = notice_schema.load(flask.request.json, unknown=EXCLUDE)
     except ValidationError as error:
         return (
             flask.jsonify(
@@ -244,7 +234,7 @@ def api_create_notice():
     for ref in refs:
         if ref.startswith("CVE-"):
             cve_id = ref[4:]
-            cve = db_session.query(CVE).filter(CVE.id == cve_id).first()
+            cve = db_session.query(CVE).get(cve_id)
             if not cve:
                 cve = CVE(id=cve_id)
             notice.cves.append(cve)
@@ -258,7 +248,13 @@ def api_create_notice():
                 reference = Reference(uri=ref)
             notice.references.append(reference)
 
-    db_session.add(notice)
-    db_session.commit()
+    try:
+        db_session.add(notice)
+        db_session.commit()
+    except IntegrityError:
+        return (
+            flask.jsonify({"message": f"Notice '{notice.id}' already exists"}),
+            400,
+        )
 
     return flask.jsonify({"message": "Notice created"}), 201

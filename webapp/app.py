@@ -49,13 +49,14 @@ from webapp.views import (
     notify_build,
 )
 from webapp.login import login_handler, logout
+from webapp.security.database import db_session
 from webapp.security.views import (
-    # api_create_notice,
+    create_notice,
     notice,
     notices,
     notices_feed,
-    api_create_notice,
 )
+
 
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
@@ -169,7 +170,7 @@ app.register_blueprint(blog_blueprint, url_prefix="/blog")
 app.add_url_rule("/security/notices", view_func=notices)
 app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
 app.add_url_rule(
-    "/security/notices", view_func=api_create_notice, methods=["POST"]
+    "/security/notices", view_func=create_notice, methods=["POST"]
 )
 app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
 
@@ -244,4 +245,10 @@ def cache_headers(response):
             "Cache-Control"
         ] = "max-age=61, stale-while-revalidate=90"
 
+    return response
+
+
+@app.teardown_appcontext
+def remove_db_session(response):
+    db_session.remove()
     return response

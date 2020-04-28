@@ -4,7 +4,7 @@
   {% block meta_copydoc %}https://docs.google.com/document/d/1VJ3xT2ViC-CvL0UmsAUzpYFmvpuqUP4AbpnlPm8tqOA/edit{% endblock meta_copydoc %}
 
   {% block content %}
-  <section class="u-image-position is-bordered p-strip--suru-topped">
+  <section class="u-image-position p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-6">
         <h1>Ubuntu Desktop for&nbsp;developers</h1>
@@ -14,10 +14,10 @@
       <div class="col-6 u-vertically-center u-align--center u-hide--small">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/79439f53-Dell_XPS_Laptop_Front-Developer.png",
+            url="https://assets.ubuntu.com/v1/d998d55f-vscode.jpg?w=1000",
             alt="",
-            height="191",
-            width="380",
+            height="300",
+            width="500",
             hi_def=True,
             attrs={"class": "col-6 u-vertically-center u-align--center u-hide--small"},
             loading="auto",
@@ -27,20 +27,23 @@
     </div>
   </section>
 
-  <section class="p-strip--light is-bordered">
+  <section class="p-strip--light">
     <div class="u-fixed-width">
       <h2>Why use Ubuntu for development?</h2>
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">The fastest route from development to deployment on desktop, mobile, server or cloud</li>
-        <li class="p-list__item is-ticked">The desktop of choice for developers at some of the world&rsquo;s leading technology companies</li>
         <li class="p-list__item is-ticked">The broadest and best development tools and libraries</li>
-        <li class="p-list__item is-ticked">Lightweight to either run natively or in a VM, on a PC or a Mac</li>
+        <li class="p-list__item is-ticked">All the most popular productivity apps such as Slack, Skype, Telegram and Discord, available in the snap store</li>
+        <li class="p-list__item is-ticked">Official snaps for Visual Studio Code and the JetBrains suite of IDEs</li>
+        <li class="p-list__item is-ticked">Hassle free gaming and AI development with nVIDIA GPUs supported out the box</li>
+        <li class="p-list__item is-ticked">Certified AI and developer laptops and workstations available from Dell, Lenovo and HP &mdash; get a seamless, pre-installed Ubuntu experience</li>
+        <li class="p-list__item is-ticked">Lightweight; run natively or in a VM</li>
         <li class="p-list__item is-ticked">Ideal for any resource-intensive environment, from data mining to large-scale financial modelling</li>
       </ul>
     </div>
   </section>
 
-  <section class="p-strip is-bordered">
+  <section class="p-strip">
     <div class="row">
       <div class="col-6">
         {{
@@ -65,7 +68,7 @@
     </div>
   </section>
 
-  <section class="p-strip--light is-bordered">
+  <section class="p-strip--light">
     <div class="row">
       <div class="col-8">
         <h2>What&rsquo;s new in Ubuntu {{ releases.lts.short_version }} LTS?</h2>
@@ -74,40 +77,21 @@
     </div>
     <div class="u-fixed-width">
       <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Linux 4.15 kernel</li>
-        <li class="p-list__item is-ticked">Core applications packaged as snaps</li>
-        <li class="p-list__item is-ticked">Apps available in store including Spotify, Skype and VLC</li>
+        <li class="p-list__item is-ticked">Linux 5.4 kernel</li>
+        <li class="p-list__item is-ticked">The fastest and most responsive GNOME Desktop, running v3.36 by default</li>
+        <li class="p-list__item is-ticked">A new default theme, Yaru, gives Ubuntu a fresh new look</li>
+        <li class="p-list__item is-ticked">Improved settings for WiFi, wallpaper and application groups in the Activities overview</li>
+        <li class="p-list__item is-ticked">Change between a light or dark environment directly from system settings</li>
+        <li class="p-list__item is-ticked">Support for ZFS as your root filesystem as well as zsys, with system snapshots, rolling backwards and forwards between snapshots and automated snapshots</li>
         <li class="p-list__item is-ticked">Latest versions of the popular browsers</li>
-        <li class="p-list__item is-ticked">LibreOffice 6</li>
-        <li class="p-list__item is-ticked">Minimal installation - only essential packages are included reducing disk footprint making it easier to configure your desktop just how you want it</li>
-        <li class="p-list__item is-ticked">Microsoft Hyper-V makes running virtualised guests on Windows easier, faster, and better integrated</li>
-        <li class="p-list__item is-ticked">GNOME Shell 3.28 replaces Unity 7 as the default desktop environment</li>
-        <li class="p-list__item is-ticked">Print without printer-specific drivers on AirPrint, IPP everywhere, Mopria and Wifi Direct printers</li>
+        <li class="p-list__item is-ticked">LibreOffice 6.4</li>
+        <li class="p-list__item is-ticked">nVIDIA hardware is now supported out of the box</li>
       </ul>
       <p><a class="p-link--external" href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes">Read the full release notes</a></p>
     </div>
   </section>
 
-  <section class="p-strip--light is-bordered">
-    <div class="row">
-      <div class="col-8">
-        <h2>What&rsquo;s new in Ubuntu {{ releases.latest.short_version }}?</h2>
-        <p>Ubuntu {{ releases.latest.short_version }} comes with a host of improvements and bug fixes giving you the snappiest GNOME experience.</p>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Thousands of updated snaps and packages such as Spotify, VLC, Skype, Slack, Discord, Visual Studio Code and Telegram</li>
-        <li class="p-list__item is-ticked">The fastest and most responsive GNOME Desktop, featuring improved settings for wifi, wallpaper and application groups in the Activities overview</li>
-        <li class="p-list__item is-ticked">Plugging in a USB drive now automatically display the device on the launcher giving you instant access to your files</li>
-        <li class="p-list__item is-ticked">Nvidia hardware is now supported out of the box. Now you can be up and running with your Nvidia graphics card from the moment you install</li>
-        <li class="p-list__item is-ticked">Support for ZFS as your root filesystem. When coupled with the new zsys package you get access to modern features such as file system snapshotting, rolling backwards and forwards between snapshots and automated snapshots. <div class="p-label--in-progress">Experimental feature</div></li>
-      </ul>
-      <p><a class="p-link--external" href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes">Read the full release notes</a></p>
-    </div>
-  </section>
-
-  <section class="p-strip is-bordered">
+  <section class="p-strip">
     <div class="row u-vertically-center">
       <div class="col-6">
         <h2>All the tools developers need</h2>
@@ -139,7 +123,7 @@
     </div>
   </section>
 
-  <section class="p-strip is-bordered">
+  <section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-6">
         <h2>Package, distribute, and update apps with Snapcraft</h2>
@@ -147,13 +131,13 @@
         <p>Snapcraft, the open source tool to publish snaps, picks up from your existing build artefacts or language of choice, be it Python, Go, C/C++, Node.js, or even .NET. With 20 minutes you can have your first app built and released in the Snap Store.</p>
         <p><a class="p-link--external" href="https://snapcraft.io/">Find out more about snaps</a></p>
       </div>
-      <div class="col-5 col-start-large-7 u-vertically-center">
+      <div class="col-5 col-start-large-7 u-align--center u-vertically-center">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/bb7f0c54-snaps-hero%403x.png",
+            url="https://assets.ubuntu.com/v1/2210191e-snapcraft_green-red-white_hex.svg",
             alt="",
-            height="223",
-            width="400",
+            height="248",
+            width="260",
             hi_def=True,
             attrs={"class": "u-hide--small"},
             loading="lazy",
@@ -163,7 +147,7 @@
     </div>
   </section>
 
-  <section class="p-strip--light is-bordered">
+  <section class="p-strip--light">
     <div class="u-fixed-width">
       <h2>Get started with Snaps</h2>
       <p>The easiest way to build and publish a snap is with snapcraft,<br>
@@ -215,7 +199,7 @@
     </div>
   </section>
 
-  <section class="p-strip is-bordered">
+  <section class="p-strip">
     <div class="row">
       <div class="col-7">
         <h2>By developers, for developers</h2>
@@ -225,9 +209,9 @@
       <div class="col-5 u-vertically-center">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/89abf289-Dell_XPS_Laptop_Left-Developer.png",
+            url="https://assets.ubuntu.com/v1/b3061ad7-laptop-dev.png",
             alt="",
-            height="256",
+            height="249",
             width="413",
             hi_def=True,
             loading="lazy"
@@ -247,7 +231,7 @@
     </div>
   </section>
 
-  <section class="p-strip is-bordered">
+  <section class="p-strip">
     <div class="row u-equal-height u-vertically-center">
       <div class="col-5">
         {{
