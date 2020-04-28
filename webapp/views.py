@@ -293,15 +293,29 @@ def search_snaps():
     """
 
     query = flask.request.args.get("q", "")
-    arch = flask.request.args.get("arch", "wide")
+    architecture = flask.request.args.get("architecture", "wide")
+    board = flask.request.args.get("board")
+    system = flask.request.args.get("system")
     size = flask.request.args.get("size", "100")
     page = flask.request.args.get("page", "1")
+
+    if board and system:
+        architecture = Launchpad.board_architectures[board][system]["arch"]
 
     if not query:
         return flask.jsonify({"error": "Query parameter 'q' empty"}), 400
 
+    search_response = store_api.search(
+        query, size=size, page=page, arch=architecture
+    )
+
     return flask.jsonify(
-        store_api.search(query, size=size, page=page, arch=arch)
+        {
+            "results": search_response.get("_embedded", {}).get(
+                "clickindex:package", {}
+            ),
+            "architecture": architecture,
+        }
     )
 
 
