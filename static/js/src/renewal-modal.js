@@ -468,6 +468,7 @@ import {
     disableProcessingState();
     form.classList.remove("u-hide");
     addPaymentMethodButton.classList.remove("u-hide");
+    validateForm();
 
     paymentMethodDetails.classList.add("u-hide");
     processPaymentButton.classList.add("u-hide");
