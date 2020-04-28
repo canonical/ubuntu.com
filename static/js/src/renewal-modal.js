@@ -40,7 +40,8 @@ import {
       iconColor: "#e95420",
       color: "#111",
       fontWeight: 300,
-      fontFamily: "Ubuntu, sans-serif",
+      fontFamily:
+        '"Ubuntu", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
       fontSmoothing: "antialiased",
       fontSize: "18px",
       "::placeholder": {
