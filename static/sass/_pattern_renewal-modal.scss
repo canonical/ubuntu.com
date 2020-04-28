@@ -37,9 +37,13 @@
     }
 
     .p-modal__progress {
-      bottom: 1rem;
+      bottom: 0;
       left: 1rem;
       position: absolute;
+
+      @media (min-width: $breakpoint-medium) {
+        bottom: 1rem;
+      }
     }
 
     .p-form__group {
