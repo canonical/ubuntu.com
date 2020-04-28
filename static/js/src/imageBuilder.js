@@ -1,4 +1,4 @@
-window.renderImageBuilder = function (boardArchitectures) {
+window.renderImageBuilder = function () {
   // State management
   class StateArray extends Array {
     push(item) {
@@ -88,22 +88,22 @@ window.renderImageBuilder = function (boardArchitectures) {
   let triggerSearch = debounce(function () {
     const board = state.get("board")[0];
     const os = state.get("os")[0];
-    const architecture = boardArchitectures[board][os]["arch"];
     snapResults.innerHTML =
       '<p><i class="p-icon--spinner u-animation--spin"></i></p>';
     const searchInput = snapSearch.querySelector(".p-search-box__input");
     if (searchInput) {
       const searchValue = encodeURI(searchInput.value);
-      fetch(`/snaps?q=${searchValue}&size=12&architecture=${architecture}`)
+      fetch(`/snaps?q=${searchValue}&size=12&board=${board}&system=${os}`)
         .then((response) => {
           return response.json();
         })
         .then((json) => {
-          snapSearchResults = json["_embedded"]
-            ? json["_embedded"]["clickindex:package"]
-            : {};
+          snapSearchResults = json["results"];
           renderSnapList(snapSearchResults, snapResults, "Add");
           addSnapHandler();
+          archOutput.querySelector(".js-architecture-detail").innerText =
+            json["architecture"];
+          archOutput.classList.remove("u-hide");
         });
     }
   }, 250);
@@ -327,14 +327,11 @@ window.renderImageBuilder = function (boardArchitectures) {
     }
     if (state.get("os") && state.get("os")[0]) {
       step3.classList.remove("u-disable");
-      const board = state.get("board")[0];
-      const os = state.get("os")[0];
 
-      if (boardArchitectures[board][os]) {
-        const architecture = boardArchitectures[board][os]["arch"];
-        archOutput.querySelector(
-          ".js-architecture-detail"
-        ).innerText = architecture;
+      if (
+        snapResults.hasChildNodes() &&
+        archOutput.querySelector(".js-architecture-detail").innerHTML.trim()
+      ) {
         archOutput.classList.remove("u-hide");
       }
     }
