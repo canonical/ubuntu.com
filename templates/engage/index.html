@@ -968,7 +968,7 @@
       type="whitepaper" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
-    
+
     {% with title="Managed apps webinar",
       description="Maintaining business focus in a cloud-native world with Managed Apps",
       slug="managed-apps-webinar",
@@ -977,12 +977,19 @@
       {% include "engage/_article-card.html" %}
     {% endwith %}
     </div>
-    
+
     <div class="row u-equal-height u-clearfix">
     {% with title="What&rsquo;s new in Ubuntu 20.04 LTS?",
       description="Learn all about the major features introduced as part of the Ubuntu 20.04 LTS release",
       slug="20.04-webinars",
           type="webinar" %}
+      {% include "engage/_article-card.html" %}
+    {% endwith %}
+
+    {% with title="Embracing the enterprise open source mandate",
+      description="85% of enterprises report an open source mandate, preference, or exploratory approach ",
+      slug="moving-to-opensource-whitepaper",
+          type="whitepaper" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
     </div>
