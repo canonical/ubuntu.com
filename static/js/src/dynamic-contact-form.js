@@ -1,11 +1,11 @@
-(function() {
-  document.addEventListener("DOMContentLoaded", function() {
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
     var triggeringHash = "#get-in-touch";
     var formContainer = document.getElementById("contact-form-container");
     var contactButtons = document.querySelectorAll(".js-invoke-modal");
 
-    contactButtons.forEach(function(contactButton) {
-      contactButton.addEventListener("click", function(e) {
+    contactButtons.forEach(function (contactButton) {
+      contactButton.addEventListener("click", function (e) {
         e.preventDefault();
         if (contactButton.dataset.formLocation) {
           fetchForm(contactButton.dataset, contactButton);
@@ -17,15 +17,15 @@
     });
 
     // recaptcha submitCallback
-    window.CaptchaCallback = function() {
+    window.CaptchaCallback = function () {
       let recaptchas = [].slice.call(
         document.querySelectorAll("div[class^=g-recaptcha]")
       );
-      recaptchas.forEach(function(field) {
+      recaptchas.forEach(function (field) {
         if (!field.hasAttribute("data-widget-id")) {
           let siteKey = field.getAttribute("data-sitekey");
           const recaptchaWidgetId = grecaptcha.render(field, {
-            sitekey: siteKey
+            sitekey: siteKey,
           });
           field.setAttribute("data-widget-id", recaptchaWidgetId);
         }
@@ -35,10 +35,10 @@
     // Fetch, load and initialise form
     function fetchForm(formData, contactButton) {
       fetch(formData.formLocation)
-        .then(function(response) {
+        .then(function (response) {
           return response.text();
         })
-        .then(function(text) {
+        .then(function (text) {
           formContainer.classList.remove("u-hide");
           formContainer.innerHTML = text
             .replace(/%% formid %%/g, formData.formId)
@@ -50,7 +50,7 @@
           initialiseForm();
           window.CaptchaCallback();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log("Request failed", error);
         });
     }
@@ -88,13 +88,10 @@
       // eg. /kubernetes/install -> kubernetes-install
       // fallbacks to "global"
       var product =
-        window.location.pathname
-          .split("/")
-          .slice(1)
-          .join("-") || "global";
+        window.location.pathname.split("/").slice(1).join("-") || "global";
       // If present, override with product parameter from button URL
       if (contactButton) {
-        contactButton.search.split("&").forEach(function(param) {
+        contactButton.search.split("&").forEach(function (param) {
           if (param.startsWith("product") || param.startsWith("?product")) {
             product = param.split("=")[1];
           }
@@ -109,21 +106,17 @@
     }
 
     function setUTMs() {
-      var params = new URLSearchParams(window.location.search);
-
       var utm_campaign = document.getElementById("utm_campaign");
       if (utm_campaign) {
-        utm_campaign.value = params.get("utm_campaign");
+        utm_campaign.value = localStorage.getItem("utm_campaign");
       }
-
       var utm_source = document.getElementById("utm_source");
       if (utm_source) {
-        utm_source.value = params.get("utm_source");
+        utm_source.value = localStorage.getItem("utm_source");
       }
-
       var utm_medium = document.getElementById("utm_medium");
       if (utm_medium) {
-        utm_medium.value = params.get("utm_medium");
+        utm_medium.value = localStorage.getItem("utm_medium");
       }
     }
 
@@ -140,7 +133,7 @@
       var comment = contactModal.querySelector("#Comments_from_lead__c");
       var otherContainers = document.querySelectorAll(".js-other-container");
 
-      document.onkeydown = function(evt) {
+      document.onkeydown = function (evt) {
         evt = evt || window.event;
         if (evt.keyCode == 27) {
           close();
@@ -148,7 +141,7 @@
       };
 
       if (submitButton) {
-        closeModal.addEventListener("click", function() {
+        closeModal.addEventListener("click", function () {
           ga(
             "send",
             "event",
@@ -160,21 +153,21 @@
       }
 
       if (closeModal) {
-        closeModal.addEventListener("click", function(e) {
+        closeModal.addEventListener("click", function (e) {
           e.preventDefault();
           close();
         });
       }
 
       if (closeModalButton) {
-        closeModalButton.addEventListener("click", function(e) {
+        closeModalButton.addEventListener("click", function (e) {
           e.preventDefault();
           close();
         });
       }
 
       if (contactModal) {
-        contactModal.addEventListener("click", function(e) {
+        contactModal.addEventListener("click", function (e) {
           if (e.target.id == "contact-modal") {
             e.preventDefault();
             close();
@@ -182,8 +175,8 @@
         });
       }
 
-      modalPaginationButtons.forEach(function(modalPaginationButton) {
-        modalPaginationButton.addEventListener("click", function(e) {
+      modalPaginationButtons.forEach(function (modalPaginationButton) {
+        modalPaginationButton.addEventListener("click", function (e) {
           e.preventDefault();
           var button = e.target.closest("a");
           var index = contactIndex;
@@ -211,12 +204,12 @@
         });
       });
 
-      otherContainers.forEach(function(otherContainer) {
+      otherContainers.forEach(function (otherContainer) {
         var checkbox = otherContainer.querySelector(
           ".js-other-container__checkbox"
         );
         var input = otherContainer.querySelector(".js-other-container__input");
-        checkbox.addEventListener("change", function(e) {
+        checkbox.addEventListener("change", function (e) {
           if (e.target.checked) {
             input.style.opacity = 1;
             input.focus();
@@ -266,7 +259,7 @@
         var currentContent = contactModal.querySelector(
           ".js-pagination--" + contactIndex
         );
-        paginationContent.forEach(function(content) {
+        paginationContent.forEach(function (content) {
           content.classList.add("u-hide");
         });
         currentContent.classList.remove("u-hide");
@@ -277,13 +270,13 @@
         var message = "";
 
         var formFields = contactModal.querySelectorAll(".js-formfield");
-        formFields.forEach(function(formField) {
+        formFields.forEach(function (formField) {
           var comma = "";
           var fieldTitle = formField.querySelector(".p-heading--five");
           var inputs = formField.querySelectorAll("input, textarea");
           message += fieldTitle.innerText + "\r\n";
 
-          inputs.forEach(function(input) {
+          inputs.forEach(function (input) {
             switch (input.type) {
               case "radio":
                 if (input.checked) {
