@@ -85,6 +85,7 @@ function attachCTAevents(selector) {
       let renewalData = cta.dataset;
 
       toggleModal();
+      sendGAEvent("opened payment modal");
       activeRenewal.accountId = renewalData.accountId;
       activeRenewal.contractId = renewalData.contractId;
       activeRenewal.renewalId = renewalData.renewalId;
@@ -111,11 +112,13 @@ function attachFormEvents() {
 function attachModalButtonEvents() {
   addPaymentMethodButton.addEventListener("click", (e) => {
     e.preventDefault();
+    sendGAEvent("submitted payment details");
     createPaymentMethod();
   });
 
   processPaymentButton.addEventListener("click", (e) => {
     e.preventDefault();
+    sendGAEvent("clicked 'Pay'");
     processStripePayment();
   });
 
@@ -137,6 +140,7 @@ function attachModalButtonEvents() {
       form.elements["name"].value = customerInfo.name;
       showPayDialog();
     } else {
+      sendGAEvent("exited payment modal (clicked cancel)");
       resetModal();
       toggleModal();
     }
@@ -147,6 +151,7 @@ function attachModalButtonEvents() {
       e.key === "Escape" &&
       document.body.classList.contains("p-modal--active")
     ) {
+      sendGAEvent("exited payment modal (pressed escape key)");
       resetModal();
       toggleModal();
     }
@@ -330,6 +335,7 @@ function handlePaymentMethodResponse(paymentMethod) {
 }
 
 function handleSuccessfulPayment() {
+  sendGAEvent("payment succeeded");
   clearProgressTimers();
   progressIndicator.querySelector(".p-icon--spinner").classList.add("u-hide");
   progressIndicator
@@ -393,6 +399,7 @@ function processStripePayment() {
         const errorMessage = parseStripeError(data);
 
         if (errorMessage) {
+          sendGAEvent("payment failed");
           presentError(errorMessage);
         } else {
           pollRenewalStatus();
@@ -403,6 +410,7 @@ function processStripePayment() {
     })
     .catch((error) => {
       console.error(error);
+      sendGAEvent("payment failed");
       presentError();
     });
 }
@@ -447,6 +455,16 @@ function resetProgressIndicator() {
   progressIndicator.querySelector(".p-icon--success").classList.add("u-hide");
   progressIndicator.querySelector("span").innerHTML = "";
   progressIndicator.classList.add("u-hide");
+}
+
+function sendGAEvent(label) {
+  dataLayer.push({
+    event: "GAEvent",
+    eventCategory: "advantage",
+    eventAction: "renewal",
+    eventLabel: label,
+    eventValue: undefined,
+  });
 }
 
 function setupCardElements() {
