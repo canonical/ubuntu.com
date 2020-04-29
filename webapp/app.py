@@ -11,7 +11,6 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog.wordpress_api import api_session
-from werkzeug.middleware.proxy_fix import ProxyFix
 from canonicalwebteam.discourse_docs import (
     DiscourseAPI,
     DiscourseDocs,
@@ -70,10 +69,6 @@ app = FlaskBase(
     "ubuntu.com",
     template_folder="../templates",
     static_folder="../static",
-)
-
-app.wsgi_app = ProxyFix(
-    app.wsgi_app, x_for=2, x_host=2, x_prefix=2, x_port=2, x_proto=2
 )
 
 talisker.requests.configure(api_session)
