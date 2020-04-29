@@ -113,14 +113,14 @@ def build():
     """
 
     return flask.render_template(
-        "build/index.html",
+        "core/build/index.html",
         board_architectures=json.dumps(Launchpad.board_architectures),
     )
 
 
 def post_build():
     """
-    Once they submit the build form on /build,
+    Once they submit the build form on /core/build,
     kick off the build with Launchpad
     """
 
@@ -166,7 +166,7 @@ def post_build():
     try:
         launchpad.create_system_build_webhook(
             system=system,
-            delivery_url="https://ubuntu.com/build/notify",
+            delivery_url="https://ubuntu.com/core/build/notify",
             secret=flask.current_app.config["SECRET_KEY"],
         )
     except WebhookExistsError:
@@ -189,7 +189,7 @@ def post_build():
         if http_error.response.status_code == 400:
             return (
                 flask.render_template(
-                    "build/error.html",
+                    "core/build/error.html",
                     build_error=http_error.response.content.decode(),
                 ),
                 400,
@@ -197,7 +197,7 @@ def post_build():
         else:
             raise http_error
 
-    return flask.render_template("build/index.html", **context)
+    return flask.render_template("core/build/index.html", **context)
 
 
 def notify_build():
