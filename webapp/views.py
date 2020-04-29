@@ -1,27 +1,36 @@
 # Standard library
+import hashlib
+import hmac
 import json
+import math
 import os
 import re
+from datetime import datetime
 
 # Packages
 import dateutil.parser
 import feedparser
 import flask
+import gnupg
 import pytz
+import talisker.requests
 from ubuntu_release_info.data import Data
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
+from canonicalwebteam.store_api.stores.snapstore import SnapStore
+from canonicalwebteam.launchpad import Launchpad, WebhookExistsError
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
-from datetime import datetime
 
 
 # Local
-from webapp import auth
-from webapp.api import advantage
+from webapp.login import empty_session, is_authenticated
+from webapp.advantage import AdvantageContracts
 
 
 ip_reader = geolite2.reader()
+session = talisker.requests.get_session()
+store_api = SnapStore(session=talisker.requests.get_session())
 
 
 def download_thank_you(category):
@@ -98,16 +107,234 @@ def releasenotes_redirect():
     return flask.redirect(f"https://wiki.ubuntu.com/Releases")
 
 
+def build():
+    """
+    Show build page
+    """
+
+    return flask.render_template(
+        "build/index.html",
+        board_architectures=json.dumps(Launchpad.board_architectures),
+    )
+
+
+def post_build():
+    """
+    Once they submit the build form on /build,
+    kick off the build with Launchpad
+    """
+
+    opt_in = flask.request.values.get("canonicalUpdatesOptIn")
+    full_name = flask.request.values.get("FullName")
+    names = full_name.split(" ")
+    email = flask.request.values.get("Email")
+    board = flask.request.values.get("board")
+    system = flask.request.values.get("system")
+    snaps = flask.request.values.get("snaps", "").split(",")
+
+    if not is_authenticated(flask.session):
+        flask.abort(401)
+
+    launchpad = Launchpad(
+        username="imagebuild",
+        token=os.environ["LAUNCHPAD_TOKEN"],
+        secret=os.environ["LAUNCHPAD_SECRET"],
+        session=session,
+        auth_consumer="image.build",
+    )
+
+    context = {}
+
+    # Submit user to marketo
+    if opt_in:
+        session.post(
+            "https://pages.ubuntu.com/index.php/leadCapture/save",
+            data={
+                "canonicalUpdatesOptIn": opt_in,
+                "FirstName": " ".join(names[:-1]),
+                "LastName": names[-1] if len(names) > 1 else "",
+                "Email": email,
+                "formid": "3546",
+                "lpId": "2154",
+                "subId": "30",
+                "munchkinId": "066-EOV-335",
+                "imageBuilderStatus": "",
+            },
+        )
+
+    # Ensure webhook is created
+    try:
+        launchpad.create_system_build_webhook(
+            system=system,
+            delivery_url="https://ubuntu.com/build/notify",
+            secret=flask.current_app.config["SECRET_KEY"],
+        )
+    except WebhookExistsError:
+        # It's fine if the webhook exists
+        pass
+
+    # Kick off image build
+    try:
+        response = launchpad.build_image(
+            board=board,
+            system=system,
+            snaps=snaps,
+            author_info={"name": full_name, "email": email, "board": board},
+            gpg_passphrase=flask.current_app.config["SECRET_KEY"],
+        )
+        context["build_info"] = launchpad.session.get(
+            response.headers["Location"]
+        ).json()
+    except HTTPError as http_error:
+        if http_error.response.status_code == 400:
+            return (
+                flask.render_template(
+                    "build/error.html",
+                    build_error=http_error.response.content.decode(),
+                ),
+                400,
+            )
+        else:
+            raise http_error
+
+    return flask.render_template("build/index.html", **context)
+
+
+def notify_build():
+    """
+    An endpoint to trigger an update about a build event to be sent.
+    This will usually be triggered by a webhook from Launchpad
+    """
+
+    # Verify contents
+    signature = hmac.new(
+        flask.current_app.config["SECRET_KEY"].encode("utf-8"),
+        flask.request.data,
+        hashlib.sha1,
+    ).hexdigest()
+
+    if "X-Hub-Signature" not in flask.request.headers:
+        return "No X-Hub-Signature provided\n", 403
+
+    if not hmac.compare_digest(
+        signature, flask.request.headers["X-Hub-Signature"].split("=")[1]
+    ):
+        return "X-Hub-Signature does not match\n", 400
+
+    event_content = flask.request.json
+
+    build_url = (
+        "https://api.launchpad.net/devel" + event_content["livefs_build"]
+    )
+
+    launchpad = Launchpad(
+        username="imagebuild",
+        token=os.environ["LAUNCHPAD_TOKEN"],
+        secret=os.environ["LAUNCHPAD_SECRET"],
+        session=session,
+        auth_consumer="image.build",
+    )
+
+    build = launchpad.request(build_url).json()
+    author_json = (
+        gnupg.GPG()
+        .decrypt(
+            build["metadata_override"]["_author_data"],
+            passphrase=flask.current_app.config["SECRET_KEY"],
+        )
+        .data
+    )
+
+    if author_json:
+        author = json.loads(author_json)
+    else:
+        return "_author_data could not be decoded\n", 400
+
+    email = author["email"]
+    names = author["name"].split(" ")
+    board = author["board"]
+    snaps = ", ".join(build["metadata_override"]["extra_snaps"])
+    codename = build["distro_series_link"].split("/")[-1]
+    version = Data().by_codename(codename).version
+    arch = build["distro_arch_series_link"].split("/")[-1]
+    build_link = build["web_link"]
+    status = build["buildstate"]
+
+    download_url = None
+
+    if status == "Successfully built":
+        download_url = launchpad.request(
+            f"{build_url}?ws.op=getFileUrls"
+        ).json()[-1]
+
+    session.post(
+        "https://pages.ubuntu.com/index.php/leadCapture/save",
+        data={
+            "FirstName": " ".join(names[:-1]),
+            "LastName": names[-1] if len(names) > 1 else "",
+            "Email": email,
+            "formid": "3546",
+            "lpId": "2154",
+            "subId": "30",
+            "munchkinId": "066-EOV-335",
+            "imageBuilderVersion": version,
+            "imageBuilderArchitecture": arch,
+            "imageBuilderBoard": board,
+            "imageBuilderSnaps": snaps,
+            "imageBuilderBuildlink": build_link,
+            "imageBuilderStatus": status,
+            "imageBuilderDownloadlink": download_url,
+        },
+    )
+
+    return "Submitted\n", 202
+
+
+def search_snaps():
+    """
+    A JSON endpoint to search the snap store API
+    """
+
+    query = flask.request.args.get("q", "")
+    architecture = flask.request.args.get("architecture", "wide")
+    board = flask.request.args.get("board")
+    system = flask.request.args.get("system")
+    size = flask.request.args.get("size", "100")
+    page = flask.request.args.get("page", "1")
+
+    if board and system:
+        architecture = Launchpad.board_architectures[board][system]["arch"]
+
+    if not query:
+        return flask.jsonify({"error": "Query parameter 'q' empty"}), 400
+
+    search_response = store_api.search(
+        query, size=size, page=page, arch=architecture
+    )
+
+    return flask.jsonify(
+        {
+            "results": search_response.get("_embedded", {}).get(
+                "clickindex:package", {}
+            ),
+            "architecture": architecture,
+        }
+    )
+
+
 def advantage_view():
     accounts = None
     personal_account = None
     enterprise_contracts = {}
     entitlements = {}
-    openid = flask.session.get("openid")
 
-    if auth.is_authenticated(flask.session):
+    if is_authenticated(flask.session):
+        advantage = AdvantageContracts(
+            session, flask.session["authentication_token"]
+        )
+
         try:
-            accounts = advantage.get_accounts(flask.session)
+            accounts = advantage.get_accounts()
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
                 # We got an unauthorized request, so we likely
@@ -126,28 +353,21 @@ def advantage_view():
                     }
                 )
 
-                auth.empty_session(flask.session)
+                empty_session(flask.session)
 
-                return (
-                    flask.render_template("advantage/index.html"),
-                    {"Cache-Control": "private"},
-                )
+                return flask.render_template("advantage/index.html")
 
             raise http_error
 
         for account in accounts:
-            account["contracts"] = advantage.get_account_contracts(
-                account, flask.session
-            )
+            account["contracts"] = advantage.get_account_contracts(account)
 
             for contract in account["contracts"]:
-                contract["token"] = advantage.get_contract_token(
-                    contract, flask.session
-                )
+                contract["token"] = advantage.get_contract_token(contract)
 
-                machines = advantage.get_contract_machines(
-                    contract, flask.session
-                ).get("machines")
+                machines = advantage.get_contract_machines(contract).get(
+                    "machines"
+                )
                 contract["machineCount"] = 0
 
                 if machines:
@@ -227,20 +447,18 @@ def advantage_view():
                         contract["accountInfo"]["name"], []
                     ).append(contract)
 
-    return (
-        flask.render_template(
-            "advantage/index.html",
-            openid=openid,
-            accounts=accounts,
-            enterprise_contracts=enterprise_contracts,
-            personal_account=personal_account,
-        ),
-        {"Cache-Control": "private"},
+    return flask.render_template(
+        "advantage/index.html",
+        accounts=accounts,
+        enterprise_contracts=enterprise_contracts,
+        personal_account=personal_account,
     )
 
 
 def post_stripe_method_id():
-    if auth.is_authenticated(flask.session):
+    if is_authenticated(flask.session):
+        advantage = AdvantageContracts(flask.session["authentication_token"])
+
         if not flask.request.is_json:
             return flask.jsonify({"error": "JSON required"}), 400
 
@@ -260,7 +478,9 @@ def post_stripe_method_id():
 
 
 def post_stripe_invoice_id(renewal_id, invoice_id):
-    if auth.is_authenticated(flask.session):
+    if is_authenticated(flask.session):
+        advantage = AdvantageContracts(flask.session["authentication_token"])
+
         return advantage.post_stripe_invoice_id(
             flask.session, invoice_id, renewal_id
         )
@@ -269,17 +489,64 @@ def post_stripe_invoice_id(renewal_id, invoice_id):
 
 
 def get_renewal(renewal_id):
-    if auth.is_authenticated(flask.session):
+    if is_authenticated(flask.session):
+        advantage = AdvantageContracts(flask.session["authentication_token"])
+
         return advantage.get_renewal(flask.session, renewal_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 
 
 def accept_renewal(renewal_id):
-    if auth.is_authenticated(flask.session):
+    if is_authenticated(flask.session):
+        advantage = AdvantageContracts(flask.session["authentication_token"])
+
         return advantage.accept_renewal(flask.session, renewal_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
+
+
+def build_tutorials_index(tutorials_docs):
+    def tutorials_index():
+        page = flask.request.args.get("page", default=1, type=int)
+        topic = flask.request.args.get("topic", default=None, type=str)
+        sort = flask.request.args.get("sort", default=None, type=str)
+        posts_per_page = 15
+        tutorials_docs.parser.parse()
+        if not topic:
+            metadata = tutorials_docs.parser.metadata
+        else:
+            metadata = [
+                doc
+                for doc in tutorials_docs.parser.metadata
+                if topic in doc["categories"]
+            ]
+
+        if sort == "difficulty-desc":
+            metadata = sorted(
+                metadata, key=lambda k: k["difficulty"], reverse=True
+            )
+
+        if sort == "difficulty-asc" or not sort:
+            metadata = sorted(
+                metadata, key=lambda k: k["difficulty"], reverse=False
+            )
+
+        total_pages = math.ceil(len(metadata) / posts_per_page)
+
+        return flask.render_template(
+            "tutorials/index.html",
+            navigation=tutorials_docs.parser.navigation,
+            forum_url=tutorials_docs.parser.api.base_url,
+            metadata=metadata,
+            page=page,
+            topic=topic,
+            sort=sort,
+            posts_per_page=posts_per_page,
+            total_pages=total_pages,
+        )
+
+    return tutorials_index
 
 
 # Blog
