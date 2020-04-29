@@ -32,7 +32,7 @@ import {
   const renewalErrorElement = document.getElementById("renewal-errors");
 
   // initialise Stripe
-  const stripe = Stripe("pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46");
+  const stripe = window.Stripe("pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46");
 
   // customise the Stripe card field
   const style = {
@@ -190,7 +190,13 @@ import {
         if (result.paymentMethod) {
           handlePaymentMethodResponse(result.paymentMethod);
         } else {
-          presentError(result.error.message);
+          const errorMessage = parseStripeError(result.error);
+
+          if (result.error.type === "validation_error") {
+            presentError(errorMessage, "card");
+          } else {
+            presentError(errorMessage);
+          }
         }
       })
       .catch((error) => {
