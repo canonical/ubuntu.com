@@ -359,165 +359,147 @@ def cve(cve_id):
 # ===
 
 
-def create_cve(data):
+def prepare_cves_to_create(cve_data):
 
+    cve_object = []
     packages = []
     references = []
     bugs = []
 
-    # Check if there are packages before mapping
-    if data.get("packages"):
-        for package_data in data["packages"]:
-            releases = []
-            for rel in package_data["releases"]:
-                releases.append(
-                    PackageReleaseStatus(
-                        name=rel["name"],
-                        status=rel["status"],
-                        status_description=rel["status_description"],
+    for data in cve_data:
+        # Check if there are packages before mapping
+        if data.get("packages"):
+            for package_data in data["packages"]:
+                releases = []
+                for rel in package_data["releases"]:
+                    releases.append(
+                        PackageReleaseStatus(
+                            name=rel["name"],
+                            status=rel["status"],
+                            status_description=rel["status_description"],
+                        )
+                    )
+                packages.append(
+                    Package(
+                        name=package_data["name"],
+                        source=package_data["source"],
+                        ubuntu=package_data["ubuntu"],
+                        debian=package_data["debian"],
+                        releases=releases,
                     )
                 )
-            packages.append(
-                Package(
+
+        if data.get("references"):
+            for ref in data["references"]:
+                references.append(CVEReference(uri=ref))
+
+        if data.get("bugs"):
+            for b in data["bugs"]:
+                bugs.append(Bug(uri=b))
+
+        cve = CVE(
+            id=data["id"],
+            status=data.get("status", ""),
+            last_updated_date=parse(data.get("last_updated_date"))
+            if data.get("last_updated_date")
+            else None,
+            public_date_usn=parse(data.get("public_date_usn"))
+            if data.get("public_date_usn")
+            else None,
+            public_date=parse(data.get("public_date"))
+            if data.get("public_date")
+            else None,
+            priority=data.get("priority"),
+            cvss=data.get("cvss"),
+            assigned_to=data.get("assigned_to"),
+            discovered_by=data.get("discovered_by"),
+            approved_by=data.get("approved_by"),
+            description=data.get("description"),
+            ubuntu_description=data.get("ubuntu_description"),
+            notes=data.get("notes", []),
+            packages=packages,
+            references=references,
+            bugs=bugs,
+        )
+        cve_object.append(cve)
+    return cve_object
+
+
+def prepare_cves_to_update(cve_data):
+
+    cve_object = []
+
+    for data in cve_data:
+        cve = db_session.query(CVE).get(data["id"])
+        cve.status = data.get("status")
+        cve.last_updated_date = (
+            parse(data.get("last_updated_date"))
+            if data.get("last_updated_date")
+            else None
+        )
+        cve.public_date_usn = (
+            parse(data.get("public_date_usn"))
+            if data.get("public_date_usn")
+            else None
+        )
+        cve.public_date = (
+            parse(data.get("public_date")) if data.get("public_date") else None
+        )
+        cve.priority = data.get("priority")
+        cve.crd = data.get("crd")
+        cve.cvss = data.get("cvss")
+        cve.assigned_to = data.get("assigned_to")
+        cve.discovered_by = data.get("discovered_by")
+        cve.approved_by = data.get("approved_by")
+        cve.description = data.get("description")
+        cve.ubuntu_description = data.get("ubuntu_description")
+        cve.notes = data.get("notes")
+
+        if data.get("references"):
+            cve.references.clear()
+            for uri in data["references"]:
+                reference = (
+                    db_session.query(CVEReference)
+                    .filter(CVEReference.uri == uri)
+                    .first()
+                )
+                if not reference:
+                    reference = uri
+                cve.references.append(reference)
+
+        if data.get("bugs"):
+            cve.bugs.clear()
+            for b in data["bugs"]:
+                bug = db_session.query(Bug).filter(Bug.uri == uri).first()
+                if not bug:
+                    bug = Bug(uri=b)
+                cve.bugs.append(bug)
+
+        # Packages
+        # Check if there are packages before mapping
+        if data.get("packages"):
+            cve.packages.clear()
+            for index, package_data in enumerate(data["packages"]):
+                package = Package(
                     name=package_data["name"],
                     source=package_data["source"],
                     ubuntu=package_data["ubuntu"],
                     debian=package_data["debian"],
-                    releases=releases,
+                    releases=[],
                 )
-            )
-
-    if data.get("references"):
-        for ref in data["references"]:
-            references.append(CVEReference(uri=ref))
-
-    if data.get("bugs"):
-        for b in data["bugs"]:
-            bugs.append(Bug(uri=b))
-
-    cve = CVE(
-        id=data["id"],
-        status=data.get("status", ""),
-        last_updated_date=parse(data.get("last_updated_date"))
-        if data.get("last_updated_date")
-        else None,
-        public_date_usn=parse(data.get("public_date_usn"))
-        if data.get("public_date_usn")
-        else None,
-        public_date=parse(data.get("public_date"))
-        if data.get("public_date")
-        else None,
-        priority=data.get("priority"),
-        cvss=data.get("cvss"),
-        assigned_to=data.get("assigned_to"),
-        discovered_by=data.get("discovered_by"),
-        approved_by=data.get("approved_by"),
-        description=data.get("description"),
-        ubuntu_description=data.get("ubuntu_description"),
-        notes=data.get("notes", []),
-        packages=packages,
-        references=references,
-        bugs=bugs,
-    )
-
-    try:
-        db_session.add(cve)
-        db_session.commit()
-    # Payload input errors
-    except DataError as error:
-        message = error
-        status = "OK"
-        cveid = data["id"]
-        return message, status, cveid
-
-    message = "Successfully created CVE"
-    status = "OK"
-    cveid = data["id"]
-    return message, status, cveid
-
-
-def update_cve(data):
-    cve = db_session.query(CVE).get(data["id"])
-
-    # Check if CVE exists by candidate
-    if not cve:
-        response = flask.jsonify({"message": "CVE does not exist"}), 400
-        return response
-
-    cve.status = data.get("status")
-    cve.last_updated_date = (
-        parse(data.get("last_updated_date"))
-        if data.get("last_updated_date")
-        else None
-    )
-    cve.public_date_usn = (
-        parse(data.get("public_date_usn"))
-        if data.get("public_date_usn")
-        else None
-    )
-    cve.public_date = (
-        parse(data.get("public_date")) if data.get("public_date") else None
-    )
-    cve.priority = data.get("priority")
-    cve.crd = data.get("crd")
-    cve.cvss = data.get("cvss")
-    cve.assigned_to = data.get("assigned_to")
-    cve.discovered_by = data.get("discovered_by")
-    cve.approved_by = data.get("approved_by")
-    cve.description = data.get("description")
-    cve.ubuntu_description = data.get("ubuntu_description")
-    cve.notes = data.get("notes")
-
-    if data.get("references"):
-        cve.references.clear()
-        for uri in data["references"]:
-            reference = (
-                db_session.query(CVEReference)
-                .filter(CVEReference.uri == uri)
-                .first()
-            )
-            if not reference:
-                reference = uri
-            cve.references.append(reference)
-
-    if data.get("bugs"):
-        cve.bugs.clear()
-        for b in data["bugs"]:
-            bug = db_session.query(Bug).filter(Bug.uri == uri).first()
-            if not bug:
-                bug = Bug(uri=b)
-            cve.bugs.append(bug)
-
-    # Packages
-    # Check if there are packages before mapping
-    if data.get("packages"):
-        cve.packages.clear()
-        for index, package_data in enumerate(data["packages"]):
-            package = Package(
-                name=package_data["name"],
-                source=package_data["source"],
-                ubuntu=package_data["ubuntu"],
-                debian=package_data["debian"],
-                releases=[],
-            )
-            package.releases.clear()
-            for release_data in package_data["releases"]:
-                package_release_status = PackageReleaseStatus(
-                    name=release_data["name"],
-                    status=release_data["status"],
-                    status_description=release_data["status_description"],
-                )
+                package.releases.clear()
+                for release_data in package_data["releases"]:
+                    package_release_status = PackageReleaseStatus(
+                        name=release_data["name"],
+                        status=release_data["status"],
+                        status_description=release_data["status_description"],
+                    )
 
                 package.releases.append(package_release_status)
             cve.packages.append(package)
+        cve_object.append(cve)
 
-    try:
-        db_session.add(cve)
-        db_session.commit()
-    # Payload input errors
-    except DataError as error:
-        return (flask.jsonify({"message": error.orig.args[0]}), 400)
-    return flask.jsonify({"message": "CVE updated succesfully"}), 200
+    return cve_object
 
 
 @authorization_required
@@ -548,9 +530,8 @@ def bulk_upsert_cve():
     """
 
     cves_data = flask.request.json
-    created = []
-    updated = []
-    failed = []
+    cves_to_create = []
+    cves_to_update = []
 
     if not type(cves_data) == list:
         return (
@@ -563,29 +544,29 @@ def bulk_upsert_cve():
     for data in cves_data:
         cve = db_session.query(CVE).get(data["id"])
         if cve:
-            updated_cve = update_cve(data)
-            if updated_cve[1] == "OK":
-                updated.append(updated_cve[2])
-            else:
-                message = {"error": update_cve[0], "cve": updated_cve[2]}
-                failed.append(message)
+            cves_to_update.append(data)
         else:
-            created_cve = create_cve(data)
-            if created_cve[1] == "OK":
-                created.append(created_cve[2])
-            else:
-                message = {"error": update_cve[0], "cve": updated_cve[2]}
-                failed.append(message)
+            cves_to_create.append(data)
 
-    db_session.flush()
+    try:
+        db_session.add_all(prepare_cves_to_update(cves_to_update))
+        db_session.add_all(prepare_cves_to_create(cves_to_create))
+        db_session.commit()
+
+    except DataError as error:
+        return (
+            flask.jsonify(
+                {
+                    "message": "Failed bulk upserting session",
+                    "error": error.orig.args[0],
+                }
+            ),
+            400,
+        )
+
     return (
         flask.jsonify(
-            {
-                "message": "Finished bulk upserting session",
-                "created": created,
-                "updated": updated,
-                "failed": failed,
-            }
+            {"message": "Successfully finished bulk upserting session"}
         ),
         200,
     )
