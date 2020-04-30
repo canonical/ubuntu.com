@@ -27,7 +27,16 @@
     $financial-services-background: #171717;
 
     background-color: $financial-services-background;
-    background-image: linear-gradient(45deg, $financial-services-background 0%, #181818 9%, #262626 34%, #2d2d2d 67%, #383838 88%, #2e2e2e 100%, #393939 100%); // sass-lint:disable-line no-color-literals
+    background-image: linear-gradient(
+      45deg,
+      $financial-services-background 0%,
+      #181818 9%,
+      #262626 34%,
+      #2d2d2d 67%,
+      #383838 88%,
+      #2e2e2e 100%,
+      #393939 100%
+    ); // sass-lint:disable-line no-color-literals
 
     .p-takeover__title {
       color: $color-x-light;
@@ -65,7 +74,8 @@
     }
 
     .light-grey-cloud {
-      animation: fade-right 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) 0.75s 1 forwards;
+      animation: fade-right 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) 0.75s 1
+        forwards;
       bottom: -12%;
       left: -18%;
       opacity: 0;
@@ -76,7 +86,8 @@
     }
 
     .aubergine-cloud {
-      animation: fade-left 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s 1 forwards;
+      animation: fade-left 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s 1
+        forwards;
       bottom: -20%;
       opacity: 0;
       position: absolute;

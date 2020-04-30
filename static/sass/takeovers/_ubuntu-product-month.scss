@@ -6,8 +6,12 @@
   $start-delay: 0.8s;
 
   @keyframes fade-in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   @keyframes lxd-logo {
@@ -104,7 +108,8 @@
   }
 
   .upm-openstack-logo {
-    animation: openstack-logo $anim-logo ($start-delay + ($interval * 4)) 1 forwards;
+    animation: openstack-logo $anim-logo ($start-delay + ($interval * 4)) 1
+      forwards;
     opacity: 0;
     transform: scale(0);
     transform-origin: 32px 32px;
@@ -118,7 +123,8 @@
   }
 
   .upm-snappy-logo {
-    animation: snappy-logo $anim-logo ($start-delay + ($interval * 7)) 1 forwards;
+    animation: snappy-logo $anim-logo ($start-delay + ($interval * 7)) 1
+      forwards;
     opacity: 0;
     transform: scale(0);
     transform-origin: 32px 32px;
