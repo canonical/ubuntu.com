@@ -31,7 +31,12 @@ const INSUFFICIENT_FUNDS_CODES = [
 
 const INCORRECT_CVC_CODES = ["incorrect_cvc", "invalid_cvc", "incomplete_cvc"];
 
-const INCORRECT_EXPIRY_CODES = ["incomplete_expiry", "invalid_expiry_year"];
+const INCORRECT_EXPIRY_CODES = [
+  "incomplete_expiry",
+  "invalid_expiry_year",
+  "invalid_expiry_year_past",
+  "invalid_expiry_month_past",
+];
 
 const INCORRECT_NUMBER_CODES = [
   "incorrect_number",
@@ -41,49 +46,63 @@ const INCORRECT_NUMBER_CODES = [
 
 const INCORRECT_ZIP_CODES = ["incorrect_zip", "incomplete_zip"];
 
-function customErrorMessage(errorData) {
+function customErrorResponse(errorData) {
   const code = errorData.code;
-  let errorMessage = errorData.message;
+  let error = {
+    message: errorData.message,
+    type: "notification",
+  };
 
+  console.log(errorData);
   if (
     INSUFFICIENT_FUNDS_CODES.includes(code) ||
-    errorMessage.includes("Your card has insufficient funds")
+    error.message.includes("Your card has insufficient funds")
   ) {
-    errorMessage =
+    error.message =
       "That card doesn’t have enough funds to make this payment. Please contact your card issuer, or try a different card.";
   } else if (INCORRECT_NUMBER_CODES.includes(code)) {
-    errorMessage =
+    error.message =
       "That card number is incorrect. Check the number and try again.";
+    error.type = "card";
   } else if (INCORRECT_CVC_CODES.includes(code)) {
-    errorMessage =
+    error.message =
       "That CVC number is incorrect. Check the number and try again.";
+    error.type = "card";
   } else if (INCORRECT_ZIP_CODES.includes(code)) {
-    errorMessage =
+    error.message =
       "That ZIP/postal code is incorrect. Check the code and try again.";
+    error.type = "card";
   } else if (INCORRECT_EXPIRY_CODES.includes(code)) {
-    errorMessage =
+    error.message =
       "That expiry date is incorrect. Check the date and try again.";
+    error.type = "card";
   } else if (code === "card_not_supported") {
-    errorMessage =
+    error.message =
       "That card doesn’t allow this kind of payment. Please contact your card issuer, or try a different card.";
+    error.type = "notification";
   } else if (code === "currency_not_supported") {
-    errorMessage =
+    error.message =
       "That card doesn’t allow payments in this currency. Please contact your card issuer, or try a different card.";
+    error.type = "notification";
   } else if (code === "expired_card") {
-    errorMessage = "That card has expired. Try a different card.";
+    error.message = "That card has expired. Try a different card.";
+    error.type = "notification";
   } else if (code === "testmode_decline") {
-    errorMessage = "Test completed.";
+    error.message = "Test completed.";
+    error.type = "dialog";
   } else if (CARD_DECLINED_CODES.includes(code)) {
-    errorMessage =
+    error.message =
       "Your card has been declined. Please contact your card issuer, or try a different card.";
+    error.type = "notification";
   }
 
-  return errorMessage;
+  return error;
 }
 
 function errorString(message) {
   const unexpectedErrorStrings = [
     "unexpected error setting customer payment method: ",
+    "unexpected error updating customer information: ",
     "unexpected error creating customer: ",
   ];
   let error = false;
@@ -97,7 +116,7 @@ function errorString(message) {
   return error;
 }
 
-export function parseStripeError(data) {
+export function parseForErrorObject(data) {
   const isProcessing =
     data.code === "renewal is blocked" &&
     data.message.includes("already accepted: processing");
@@ -108,6 +127,7 @@ export function parseStripeError(data) {
     data.code === "invoice payment failed" &&
     data.message.includes("This payment requires additional user action");
   const knownError = errorString(data.message);
+  let errorObject;
 
   if (isProcessing || invoicePaid || requiresAuthentication) {
     return false;
@@ -115,18 +135,29 @@ export function parseStripeError(data) {
     // Stripe returned an error to the ua-contracts service,
     // find out what it is
     const jsonString = data.message.replace(knownError, "");
-    const errorObject = JSON.parse(jsonString);
+    const errorJson = JSON.parse(jsonString);
 
-    return customErrorMessage(errorObject);
+    errorObject = customErrorResponse(errorJson);
   } else if (data.code === "invoice payment failed") {
     // a subsequent attempt to pay with a new payment method failed
-    const errorObject = JSON.parse(data.message);
+    const errorJson = JSON.parse(data.message);
 
-    return customErrorMessage(errorObject);
+    errorObject = customErrorResponse(errorJson);
   } else if (data.type === "validation_error") {
-    return customErrorMessage(data);
+    errorObject = customErrorResponse(data);
+  } else if (data.code === "renewal is blocked") {
+    errorObject = {
+      message:
+        "Our Sales team will be in touch shortly to finalise this renewal. Your card has not been charged.",
+      type: "dialog",
+    };
   } else {
     // there was a problem with the ua-contracts service
-    return null;
+    errorObject = {
+      message: null,
+      type: "notification",
+    };
   }
+
+  return errorObject;
 }

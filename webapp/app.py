@@ -128,7 +128,7 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"],
+    "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
 )
 
 app.add_url_rule(

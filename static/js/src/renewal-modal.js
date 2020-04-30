@@ -5,7 +5,7 @@ import {
   postRenewalIDToProcessPayment,
 } from "./stripe/contracts-api.js";
 
-import { parseStripeError } from "./stripe/error-parser.js";
+import { parseForErrorObject } from "./stripe/error-handler.js";
 
 import {
   setPaymentInformation,
@@ -14,8 +14,8 @@ import {
 
 const modal = document.getElementById("renewal-modal");
 
-const form = document.getElementById("payment-form");
-const paymentMethodDetails = document.getElementById("payment-method-details");
+const form = document.getElementById("details-form");
+const errorDialog = document.getElementById("payment-error-dialog");
 const progressIndicator = document.getElementById("js-progress-indicator");
 
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
@@ -24,6 +24,7 @@ const changePaymentMethodButton = modal.querySelector(
   ".js-change-payment-method"
 );
 const cancelModalButton = modal.querySelector(".js-cancel-modal");
+const closeModalButton = modal.querySelector(".js-close-modal");
 
 const cardErrorElement = document.getElementById("card-errors");
 const renewalErrorElement = document.getElementById("renewal-errors");
@@ -108,6 +109,14 @@ function attachFormEvents() {
     input.addEventListener("blur", (e) => {
       validateFormInput(e.target, true);
     });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      if (!addPaymentMethodButton.disabled) {
+        addPaymentMethodButton.click();
+      }
+    });
   }
 }
 
@@ -146,6 +155,14 @@ function attachModalButtonEvents() {
       resetModal();
       toggleModal();
     }
+  });
+
+  closeModalButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    sendGAEvent("exited payment modal (clicked close)");
+    resetModal();
+    toggleModal();
   });
 
   document.addEventListener("keyup", (e) => {
@@ -197,12 +214,12 @@ function createPaymentMethod() {
         handlePaymentMethodResponse(result.paymentMethod);
       } else {
         console.log(result);
-        const errorMessage = parseStripeError(result.error);
+        const errorObject = parseForErrorObject(result.error);
 
         if (result.error.type === "validation_error") {
-          presentError(errorMessage, "card");
+          presentError(errorObject);
         } else {
-          presentError(errorMessage);
+          presentError(errorObject);
         }
       }
     })
@@ -259,10 +276,10 @@ function handleIncompletePayment(invoice) {
     postInvoiceIDToRenewal(activeRenewal.renewalId, invoice.invoice_id)
       .then((data) => {
         if (data.message) {
-          const errorMessage = parseStripeError(data);
+          const errorObject = parseForErrorObject(data);
 
-          if (errorMessage) {
-            presentError(errorMessage);
+          if (errorObject) {
+            presentError(errorObject);
           } else {
             pollRenewalStatus();
           }
@@ -324,8 +341,8 @@ function handlePaymentMethodResponse(paymentMethod) {
     .then((data) => {
       if (data.message) {
         // ua-contracts returned an error with information for us to parse
-        const errorMessage = parseStripeError(data);
-        presentError(errorMessage);
+        const errorObject = parseForErrorObject(data);
+        presentError(errorObject);
       } else if (data.createdAt) {
         // payment method was successfully attached,
         // ask user to click "Pay"
@@ -337,8 +354,8 @@ function handlePaymentMethodResponse(paymentMethod) {
       }
     })
     .catch((data) => {
-      const errorMessage = parseStripeError(data);
-      presentError(errorMessage);
+      const errorObject = parseForErrorObject(data);
+      presentError(errorObject);
     });
 }
 
@@ -379,23 +396,34 @@ function pollRenewalStatus() {
     });
 }
 
-function presentError(message = null, type = "renewal") {
-  if (!message) {
-    message =
-      "Sorry, there was an unknown error with the payment. Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.";
+export function presentError(errorObject) {
+  if (!errorObject) {
+    errorObject = {
+      message:
+        "Sorry, there was an unknown error with the payment. Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
+      type: "notification",
+    };
   }
 
-  if (type === "card") {
-    cardErrorElement.innerHTML = message;
+  console.log(errorObject);
+
+  if (errorObject.type === "card") {
+    cardErrorElement.innerHTML = errorObject.message;
     cardErrorElement.classList.remove("u-hide");
-  } else if (type === "renewal") {
-    renewalErrorElement.querySelector(
-      ".p-notification__message"
-    ).innerHTML = message;
+    showPaymentMethodDialog();
+  } else if (errorObject.type === "notification") {
+    renewalErrorElement.querySelector(".p-notification__message").innerHTML =
+      errorObject.message;
     renewalErrorElement.classList.remove("u-hide");
+    showPaymentMethodDialog();
+  } else if (errorObject.type === "dialog") {
+    disableProcessingState();
+    modal.classList.remove("is-pay-mode", "is-details-mode");
+    modal.classList.add("is-dialog-mode");
+    errorDialog.innerHTML = errorObject.message;
+    processPaymentButton.disabled = true;
+    processPaymentButton.disabled = true;
   }
-
-  showPaymentMethodDialog();
 }
 
 function processStripePayment() {
@@ -405,11 +433,11 @@ function processStripePayment() {
   postRenewalIDToProcessPayment(activeRenewal.renewalId)
     .then((data) => {
       if (data.code) {
-        const errorMessage = parseStripeError(data);
+        const errorObject = parseForErrorObject(data);
 
-        if (errorMessage) {
+        if (errorObject) {
           sendGAEvent("payment failed");
-          presentError(errorMessage);
+          presentError(errorObject);
         } else {
           pollRenewalStatus();
         }
@@ -442,11 +470,9 @@ function resetModal() {
   form.reset();
   card.clear();
   resetProgressIndicator();
-  form.classList.remove("u-hide");
-  paymentMethodDetails.classList.add("u-hide");
-  addPaymentMethodButton.classList.remove("u-hide");
+  modal.classList.remove("is-dialog-mode", "is-pay-mode");
+  modal.classList.add("is-details-mode");
   addPaymentMethodButton.disabled = true;
-  processPaymentButton.classList.add("u-hide");
   processPaymentButton.disabled = true;
 
   customerInfo = {
@@ -481,9 +507,10 @@ function setupCardElements() {
 
   card.on("change", (event) => {
     if (event.error) {
+      const errorObject = parseForErrorObject(event.error);
       cardValid = false;
       addPaymentMethodButton.disabled = true;
-      presentError(event.error.message, "card");
+      presentError(errorObject);
     } else if (event.complete) {
       cardValid = true;
       hideErrors();
@@ -494,24 +521,18 @@ function setupCardElements() {
 
 function showPaymentMethodDialog() {
   disableProcessingState();
-  form.classList.remove("u-hide");
-  addPaymentMethodButton.classList.remove("u-hide");
-  validateForm();
-
-  paymentMethodDetails.classList.add("u-hide");
-  processPaymentButton.classList.add("u-hide");
+  modal.classList.remove("is-pay-mode", "is-dialog-mode");
+  modal.classList.add("is-details-mode");
   processPaymentButton.disabled = true;
+  validateForm();
 }
 
 function showPayDialog() {
   hideErrors();
   disableProcessingState();
-  form.classList.add("u-hide");
-  addPaymentMethodButton.classList.add("u-hide");
+  modal.classList.remove("is-details-mode", "is-dialog-mode");
+  modal.classList.add("is-pay-mode");
   addPaymentMethodButton.disabled = true;
-
-  paymentMethodDetails.classList.remove("u-hide");
-  processPaymentButton.classList.remove("u-hide");
   processPaymentButton.disabled = false;
 }
 
