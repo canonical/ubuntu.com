@@ -369,9 +369,7 @@ function handleSuccessfulPayment() {
   progressIndicator.querySelector("span").innerHTML = "Payment complete";
   progressIndicator.classList.remove("u-hide");
 
-  setTimeout(() => {
-    location.search = `subscription=${activeRenewal.contractId}`;
-  }, 3000);
+  location.search = `subscription=${activeRenewal.contractId}`;
 }
 
 function hideErrors() {
