@@ -146,21 +146,20 @@ def post_build():
     context = {}
 
     # Submit user to marketo
-    if opt_in:
-        session.post(
-            "https://pages.ubuntu.com/index.php/leadCapture/save",
-            data={
-                "canonicalUpdatesOptIn": opt_in,
-                "FirstName": " ".join(names[:-1]),
-                "LastName": names[-1] if len(names) > 1 else "",
-                "Email": email,
-                "formid": "3546",
-                "lpId": "2154",
-                "subId": "30",
-                "munchkinId": "066-EOV-335",
-                "imageBuilderStatus": "",
-            },
-        )
+    session.post(
+        "https://pages.ubuntu.com/index.php/leadCapture/save",
+        data={
+            "canonicalUpdatesOptIn": opt_in,
+            "FirstName": " ".join(names[:-1]),
+            "LastName": names[-1] if len(names) > 1 else "",
+            "Email": email,
+            "formid": "3546",
+            "lpId": "2154",
+            "subId": "30",
+            "munchkinId": "066-EOV-335",
+            "imageBuilderStatus": "NULL",
+        },
+    )
 
     # Ensure webhook is created
     try:
