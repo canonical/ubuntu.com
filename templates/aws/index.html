@@ -1,7 +1,7 @@
 {% extends "aws/base_aws.html" %}
 
 {% block title %}Ubuntu on AWS{% endblock %}
-{% block meta_description %}Ubuntu is the operating system platform of choice for AWS, powering innovation on public cloud in environments ranging from dev/test to mission-critical production. Run Ubuntu on AWS, benefit from our worldwide mirroring and publication, and talk to Canonical about how we can help optimize your cloud workloads.{% endblock %}
+{% block meta_description %}Ubuntu is the operating system platform of choice for AWS. Run Ubuntu on AWS, benefit from our worldwide mirroring and publication and talk to Canonical about how we can help optimize your cloud workloads.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1lkH-MSPmgjCMP4gI0FW29YIKVDvBuddxA63iQhmsYIU{% endblock meta_copydoc %}
 
 {% block content %}
@@ -113,7 +113,7 @@
           <li class="p-list__item is-ticked">Updates mirrored and images published in all AWS regions worldwide</li>
           <li class="p-list__item is-ticked">5-year lifetime</li>
         </ul>
-        <p>Run Ubuntu 18.04 LTS: <a href="https://aws.amazon.com/marketplace/pp/B07CQ33QKV" class="p-link--external">Standard</a> | <a href="https://aws.amazon.com/marketplace/pp/B07J5RRYGN" class="p-link--external">Minimal</a></p>
+        <p><a href="https://aws.amazon.com/marketplace/pp/B087QQNGF1" class="p-link--external">Run Ubuntu Server 20.04 LTS</a></p>
       </div>
     </div>
     <div class="col-6 p-card">
@@ -129,7 +129,7 @@
           <li class="p-list__item is-ticked">Integration with AWS security and compliance features</li>
           <li class="p-list__item is-ticked">10-year lifetime</li>
         </ul>
-        <p><a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2" class="p-button--positive"><span class="p-link--external">Launch Ubuntu Pro 18.04 LTS</span></a></p>
+        <p><a href="https://aws.amazon.com/marketplace/pp/B087L1R4G4" class="p-button--positive"><span class="p-link--external">Launch Ubuntu Pro 20.04 LTS</span></a></p>
         <p><a href="/aws/pro">More about Ubuntu Pro for AWS&nbsp;&rsaquo;</a></p>
       </div>
     </div>
@@ -158,29 +158,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-12">
-      <h2>Get Ubuntu Pro on AWS now:</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--four"><a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2" class="p-link--external">18.04 LTS</a></h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--four"><a href="https://aws.amazon.com/marketplace/pp/B0821WW873" class="p-link--external">16.04 LTS</a></h3>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--four"><a href="https://aws.amazon.com/marketplace/pp/B0821V7QJP" class="p-link--external">14.04 LTS</a></h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <p class="u-no-margin--bottom"><strong>Read more about</strong> <a href="/aws/pro">Ubuntu Pro&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
+{% include "/aws/shared/_get_pro.html" %}
 
 <section class="p-strip">
   <div class="row">
