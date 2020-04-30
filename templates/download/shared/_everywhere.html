@@ -1,0 +1,129 @@
+<section class="p-strip--light">
+
+  <div class="u-fixed-width">
+    <h2>
+      More ways to use Ubuntu everywhere
+    </h2>
+    <ul class="p-matrix">
+
+      {# LXD #}
+      <li class="p-matrix__item linux">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/459e1d4b-lxd_black-pictogram.svg",
+          alt="LXD",
+          width="48",
+          height="48",
+          hi_def=True,
+          loading="lazy",
+          attrs={ "class": "p-matrix__img" },
+          ) | safe
+        }}
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title"><a href="https://linuxcontainers.org">LXD</a></h3>
+          <p class="p-matrix__desc">
+            A pure-container hypervisor. Replace legacy app VMs with containers for speed and density
+          </p>
+        </div>
+      </li>
+
+      {# Multipass #}
+      <li class="p-matrix__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
+          alt="Multipass",
+          width="48",
+          height="48",
+          hi_def=True,
+          loading="lazy",
+          attrs={ "class": "p-matrix__img" },
+          ) | safe
+        }}
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title"><a href="https://multipass.run">Multipass</a></h3>
+          <p class="p-matrix__desc">
+            On-demand build-and-test VMs for cloud devs on Windows, Mac and Linux desktops
+          </p>
+        </div>
+      </li>
+
+      {# MircoK8s #}
+      <li class="p-matrix__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/9309d097-MicroK8s_SnapStore_icon.svg",
+          alt="MicroK8s",
+          width="48",
+          height="48",
+          hi_def=True,
+          loading="lazy",
+          attrs={ "class": "p-matrix__img" },
+          ) | safe
+        }}
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title"><a href="https://microk8s.io/">MicroK8s</a></h3>
+          <p class="p-matrix__desc">
+            Small, fast, and fully-conformant Kubernetes. Made for developers and devops. Great for edge and IoT.
+          </p>
+        </div>
+      </li>
+
+      {# WSL #}
+      <li class="p-matrix__item windows">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg",
+          alt="Ubuntu on WSL",
+          width="48",
+          height="48",
+          hi_def=True,
+          loading="lazy",
+          attrs={ "class": "p-matrix__img" },
+          ) | safe
+        }}
+        <div class="p-matrix__content">
+          <h3 class="p-matrix__title"><a href="https://ubuntu.com/wsl">Ubuntu on WSL</a></h3>
+          <p class="p-matrix__desc">
+            Install a complete Ubuntu terminal environment in minutes on Windows 10 with Windows Subsystem for Linux (WSL).
+          </p>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+
+<script>
+
+  var linux = document.querySelectorAll('.linux');
+  var macos = document.querySelectorAll('.macos');
+  var windows = document.querySelectorAll('.windows');
+
+  if (navigator.appVersion.indexOf('Win') != -1) {
+    macos.forEach((item, i) => {
+      item.remove();
+    });
+    linux.forEach((item, i) => {
+      item.remove();
+    });
+  }
+  else if (navigator.appVersion.indexOf('MacOS') != -1 || navigator.appVersion.indexOf('Mac OS') != -1) {
+    windows.forEach((item, i) => {
+      item.remove();
+    });
+    linux.forEach((item, i) => {
+      item.remove();
+    });
+  }
+  else {
+    macos.forEach((item, i) => {
+      item.remove();
+    });
+    windows.forEach((item, i) => {
+      item.remove();
+    });
+  }
+
+</script>
