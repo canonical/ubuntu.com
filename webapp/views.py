@@ -218,17 +218,22 @@ def notify_build():
     if not hmac.compare_digest(
         signature, flask.request.headers["X-Hub-Signature"].split("=")[1]
     ):
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "request_headers": str(flask.request.headers.keys()),
-                "message": "x-hub-signature did not match",
-                "expected_signature": signature,
-                "header_contents": flask.request.headers["X-Hub-Signature"],
-                "extracted_signature": flask.request.headers[
-                    "X-Hub-Signature"
-                ].split("=")[1],
-            }
-        )
+        try:
+            raise HTTPError(400)
+        except HTTPError:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "request_headers": str(flask.request.headers.keys()),
+                    "message": "x-hub-signature did not match",
+                    "expected_signature": signature,
+                    "header_contents": flask.request.headers[
+                        "X-Hub-Signature"
+                    ],
+                    "extracted_signature": flask.request.headers[
+                        "X-Hub-Signature"
+                    ].split("=")[1],
+                }
+            )
 
         return "X-Hub-Signature does not match\n", 400
 
