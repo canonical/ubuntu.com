@@ -9,6 +9,35 @@
     position: fixed;
     z-index: 100;
 
+    &.is-pay-mode {
+      #details-form,
+      #payment-error-dialog,
+      .js-payment-method,
+      .js-close-modal {
+        display: none;
+      }
+    }
+
+    &.is-details-mode {
+      #renewal-summary,
+      #payment-error-dialog,
+      .js-process-payment,
+      .js-close-modal {
+        display: none;
+      }
+    }
+
+    &.is-dialog-mode {
+      #renewal-summary,
+      #renewal-info,
+      #details-form,
+      .js-cancel-modal,
+      .js-payment-method,
+      .js-process-payment {
+        display: none;
+      }
+    }
+
     .p-modal__dialog {
       max-width: 50rem;
       padding: 0;
