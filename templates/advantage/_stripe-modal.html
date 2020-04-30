@@ -1,4 +1,4 @@
-<div class="p-modal p-modal--renewal u-hide" id="renewal-modal">
+<div class="p-modal p-modal--renewal u-hide is-details-mode" id="renewal-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
     <header class="p-modal__header">
       <h2
@@ -9,7 +9,7 @@
       </h2>
     </header>
     <div id="modal-description" class="p-modal__body">
-      <section class="p-strip is-shallow is-bordered u-no-padding--top">
+      <section id="renewal-info" class="p-strip is-shallow is-bordered u-no-padding--top">
         <div class="row u-no-padding u-sv1">
           <div class="col-3">Plan type:</div>
           <div class="col-9 js-product-name"></div>
@@ -43,7 +43,7 @@
           </p>
         </div>
 
-        <form class="p-form p-form--stacked" id="payment-form">
+        <form class="p-form p-form--stacked" id="details-form">
           <div class="p-form__group row u-no-padding">
             <div class="col-3">
               <label>Payment card:</label>
@@ -137,7 +137,7 @@
           </div>
         </form>
 
-        <div id="payment-method-details" class="u-hide">
+        <div id="renewal-summary">
           <div class="row u-no-padding">
             <div class="col-6 u-vertically-center">
               <h3 class="p-heading--four">Payment method:</h3>
@@ -175,6 +175,10 @@
             </div>
           </div>
         </div>
+
+        <div id="payment-error-dialog">
+          <p></p>
+        </div>
       </section>
     </div>
 
@@ -190,7 +194,7 @@
       </button>
 
       <button
-        class="js-payment-method p-button--action p-button--positive"
+        class="js-payment-method p-button--positive u-no-margin--right"
         disabled
         type="submit"
       >
@@ -198,12 +202,14 @@
       </button>
 
       <button
-        class="js-process-payment p-button--action p-button--positive u-hide"
+        class="js-process-payment p-button--positive u-no-margin--right"
         disabled
         type="submit"
       >
         Pay
       </button>
+
+      <button class="js-close-modal p-button">OK</button>
     </footer>
   </div>
 </div>
