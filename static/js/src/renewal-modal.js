@@ -71,6 +71,8 @@ let cardValid = false;
 let changingPaymentMethod = false;
 let submitted3DS = false;
 
+let mode = "payment_method";
+
 let pollingTimer;
 let progressTimer;
 let progressTimer2;
@@ -173,7 +175,8 @@ function createPaymentMethod() {
   customerInfo.country = formData.get("Country");
   customerInfo.name = formData.get("name");
 
-  enableProcessingState("payment_method");
+  mode = "payment_method";
+  enableProcessingState();
 
   stripe
     .createPaymentMethod({
@@ -190,8 +193,10 @@ function createPaymentMethod() {
     })
     .then((result) => {
       if (result.paymentMethod) {
+        console.log(result);
         handlePaymentMethodResponse(result.paymentMethod);
       } else {
+        console.log(result);
         const errorMessage = parseStripeError(result.error);
 
         if (result.error.type === "validation_error") {
@@ -214,7 +219,7 @@ function disableProcessingState() {
   cancelModalButton.disabled = false;
 }
 
-function enableProcessingState(mode) {
+function enableProcessingState() {
   addPaymentMethodButton.disabled = true;
   cancelModalButton.disabled = true;
   processPaymentButton.disabled = true;
@@ -236,7 +241,9 @@ function enableProcessingState(mode) {
         progressTimer4 = setTimeout(() => {
           // the renewal is taking time to process, reload the page
           // and highlight the in-progress renewal
-          location.search = `subscription=${activeRenewal.contractId}`;
+          if (mode === "payment") {
+            location.search = `subscription=${activeRenewal.contractId}`;
+          }
         }, 15000);
       }, 11000);
     }, 2000);
@@ -330,7 +337,8 @@ function handlePaymentMethodResponse(paymentMethod) {
       }
     })
     .catch((data) => {
-      parseStripeError(data);
+      const errorMessage = parseStripeError(data);
+      presentError(errorMessage);
     });
 }
 
@@ -391,7 +399,8 @@ function presentError(message = null, type = "renewal") {
 }
 
 function processStripePayment() {
-  enableProcessingState("payment");
+  mode = "payment";
+  enableProcessingState();
 
   postRenewalIDToProcessPayment(activeRenewal.renewalId)
     .then((data) => {
