@@ -7,11 +7,29 @@
 
   .p-takeover--rigado-webinar {
     background-color: $rigado-background;
-    background-image: linear-gradient(-32deg, $rigado-background 0%, $rigado-background 9%, $rigado-background-gradient-1 33%, $rigado-background-gradient-2 69%, $rigado-background-gradient-3 90%, $rigado-background-gradient-4 100%);
+    background-image: linear-gradient(
+      -32deg,
+      $rigado-background 0%,
+      $rigado-background 9%,
+      $rigado-background-gradient-1 33%,
+      $rigado-background-gradient-2 69%,
+      $rigado-background-gradient-3 90%,
+      $rigado-background-gradient-4 100%
+    );
 
     @media (min-width: $breakpoint-medium) {
       background-color: $rigado-background;
-      background-image: url('#{$assets-path}ca263eff-left-side-suru-rigado-takeover.png'), url('#{$assets-path}58d3e923-right-side-suru-rigado-takeover.png'), linear-gradient(-32deg, $rigado-background 0%, $rigado-background 9%, $rigado-background-gradient-1 33%, $rigado-background-gradient-2 69%, $rigado-background-gradient-3 90%, $rigado-background-gradient-4 100%);
+      background-image: url("#{$assets-path}ca263eff-left-side-suru-rigado-takeover.png"),
+        url("#{$assets-path}58d3e923-right-side-suru-rigado-takeover.png"),
+        linear-gradient(
+          -32deg,
+          $rigado-background 0%,
+          $rigado-background 9%,
+          $rigado-background-gradient-1 33%,
+          $rigado-background-gradient-2 69%,
+          $rigado-background-gradient-3 90%,
+          $rigado-background-gradient-4 100%
+        );
       background-position: bottom left, bottom right;
       background-repeat: no-repeat;
       background-size: contain;
