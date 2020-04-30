@@ -468,7 +468,7 @@ def advantage_view():
                         # renewal object get_renewal gives us
                         if renewal["status"] == "processing":
                             renewal = advantage.get_renewal(
-                                flask.session, renewal["id"],
+                                flask.session, renewal["id"]
                             )
 
                         renewable = False
@@ -495,8 +495,8 @@ def advantage_view():
                     enterprise_contract = enterprise_contracts.setdefault(
                         contract["accountInfo"]["name"], []
                     )
-                    # If a subscription id is present and this contract matches
-                    # add it to the start of the list
+                    # If a subscription id is present and this contract
+                    # matches add it to the start of the list
                     if contract["contractInfo"]["id"] == open_subscription:
                         enterprise_contract.insert(0, contract)
                     else:
@@ -530,8 +530,11 @@ def post_stripe_method_id():
         if not account_id:
             return flask.jsonify({"error": "account_id required"}), 400
 
+        address = flask.request.json.get("address")
+        tax_id = flask.request.json.get("tax_id")
+
         return advantage.put_method_id(
-            flask.session, account_id, payment_method_id
+            flask.session, account_id, payment_method_id, address, tax_id
         )
     else:
         return flask.jsonify({"error": "authentication required"}), 401

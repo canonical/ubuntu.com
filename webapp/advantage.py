@@ -52,11 +52,15 @@ class AdvantageContracts:
 
         return response.json()
 
-    def put_method_id(self, account_id, payment_method_id):
+    def put_method_id(self, account_id, payment_method_id, address, tax_id):
         response = self._request(
             method="put",
-            path=f"v1/accounts/{account_id}/payment-method/stripe",
-            data={"paymentMethodID": payment_method_id},
+            path=f"v1/accounts/{account_id}/customer-info/stripe",
+            data={
+                "paymentMethodID": payment_method_id,
+                "address": address,
+                "taxID": tax_id,
+            },
         )
 
         return response.json()
