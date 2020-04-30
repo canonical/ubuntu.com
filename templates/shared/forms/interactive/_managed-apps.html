@@ -35,6 +35,8 @@
             <label for="apps-using-MySQL">MySQL</label>
             <input type="checkbox" id="apps-using-Prometheus">
             <label for="apps-using-Prometheus">Prometheus</label>
+            <input type="checkbox" id="apps-using-cassandra">
+            <label for="apps-using-cassandra">Cassandra</label>
           </div>
         </div>
       </div>
@@ -42,40 +44,34 @@
         <h3 class="p-heading--five">And any of these?</h3>
         <div class="row u-no-padding u-equal-height">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="other-apps-Hadoop">
-            <label for="other-apps-Hadoop">Hadoop</label>
-            <input type="checkbox" id="other-apps-HBase">
-            <label for="other-apps-HBase">HBase</label>
-            <input type="checkbox" id="other-apps-Spark">
-            <label for="other-apps-Spark">Spark+</label>
-            <input type="checkbox" id="other-apps-Beam-Apache">
-            <label for="other-apps-Beam-Apache">Beam (Apache)</label>
-            <input type="checkbox" id="other-apps-Helm">
-            <label for="other-apps-Helm">Helm</label>
+            <input type="checkbox" id="other-apps-redis">
+            <label for="other-apps-redis">Redis</label>
+            <input type="checkbox" id="other-apps-nginx">
+            <label for="other-apps-nginx">NGINX</label>
+            <input type="checkbox" id="other-apps-nodejs">
+            <label for="other-apps-nodejs">NodeJS</label>
+            <input type="checkbox" id="other-apps-collectd">
+            <label for="other-apps-collectd">Collectd</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="other-apps-Tiller">
-            <label for="other-apps-Tiller">Tiller</label>
-            <input type="checkbox" id="other-apps-Istio">
-            <label for="other-apps-Istio">Istio</label>
-            <input type="checkbox" id="other-apps-KNative">
-            <label for="other-apps-KNative">KNative</label>
-            <input type="checkbox" id="other-apps-Kubeflow">
-            <label for="other-apps-Kubeflow">Kubeflow</label>
-            <input type="checkbox" id="other-apps-Jupyter">
-            <label for="other-apps-Jupyter">Jupyter</label>
+            <input type="checkbox" id="other-apps-etcd">
+            <label for="other-apps-etcd">Etcd</label>
+            <input type="checkbox" id="other-apps-glusterfs">
+            <label for="other-apps-glusterfs">GlusterFS</label>
+            <input type="checkbox" id="other-apps-openjdk">
+            <label for="other-apps-openjdk">OpenJDK</label>
+            <input type="checkbox" id="other-apps-nagios">
+            <label for="other-apps-nagios">Nagios</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="other-apps-Argo UI">
-            <label for="other-apps-Argo UI">Argo UI</label>
-            <input type="checkbox" id="other-apps-Tensorflow">
-            <label for="other-apps-Tensorflow">Tensorflow</label>
-            <input type="checkbox" id="other-apps-minio">
-            <label for="other-apps-minio">minio</label>
-            <input type="checkbox" id="other-apps-Seldon">
-            <label for="other-apps-Seldon">Seldon</label>
-            <input type="checkbox" id="other-apps-PyTorch">
-            <label for="other-apps-PyTorch">PyTorch</label>
+            <input type="checkbox" id="other-apps-vault">
+            <label for="other-apps-vault">Vault</label>
+            <input type="checkbox" id="other-apps-filebeat">
+            <label for="other-apps-filebeat">Filebeat</label>
+            <input type="checkbox" id="other-apps-telegraf">
+            <label for="other-apps-telegraf">Telegraf</label>
+            <input type="checkbox" id="other-apps-thruck">
+            <label for="other-apps-thruck">Thruk</label>
             <div class="js-other-container">
               <input type="checkbox" class="js-other-container__checkbox" id="other-apps-other">
               <label for="other-apps-other">Other</label>
@@ -96,25 +92,30 @@
         <h3 class="p-heading--five">And how are you running it?</h3>
         <div class="row u-no-padding u-equal-height">
           <div class="col-4 u-sv3">
-            <h4>Public clouds</h4>
-            <input type="checkbox" id="where-running-Public-cloud-Amazon-Web-Services">
-            <label for="where-running-Public-cloud-Amazon-Web-Services">Amazon Web Services</label>
-            <input type="checkbox" id="where-running-Public cloud-Microsoft-Azure">
-            <label for="where-running-Public cloud-Microsoft-Azure">Microsoft Azure</label>
-            <input type="checkbox" id="where-running-Public-cloud-Google-Cloud">
-            <label for="where-running-Public-cloud-Google-Cloud">Google Cloud</label>
+            <input type="checkbox" id="where-running-Public-cloud-amazon-web-services">
+            <label for="where-running-Public-cloud-amazon-web-services">Amazon Web Services</label>
+            <input type="checkbox" id="where-running-Public-cloud-microsoft-azure">
+            <label for="where-running-Public-cloud-microsoft-azure">Microsoft Azure</label>
+            <input type="checkbox" id="where-running-Public-cloud-google-cloud">
+            <label for="where-running-Public-cloud-google-cloud">Google Cloud</label>
+            <input type="checkbox" id="where-running-Public-cloud-kubernetes">
+            <label for="where-running-Public-cloud-kubernetes">Kubernetes</label>
           </div>
           <div class="col-4 u-sv3">
-            <h4>On premises</h4>
-            <input type="checkbox" id="where-running-On-premises-Oracle">
-            <label for="where-running-On-premises-Oraclee">Oracle</label>
-            <input type="checkbox" id="where-running-On-premises-VMWare">
-            <label for="where-running-On-premises-VMWare">VMWare</label>
-            <input type="checkbox" id="where-running-On-premises-Cisco">
-            <label for="where-running-On-premises-Cisco">Cisco</label>
+            <input type="checkbox" id="where-running-Public-cloud-openstack">
+            <label for="where-running-Public-cloud-openstack">OpenStack</label>
+            <input type="checkbox" id="where-running-Public-cloud-oracle">
+            <label for="where-running-Public-cloud-oracle">Oracle</label>
+            <input type="checkbox" id="where-running-Public-cloud-vmware">
+            <label for="where-running-Public-cloud-vmware">VMWare</label>
+            <input type="checkbox" id="where-running-Public-cloud-cisco">
+            <label for="where-running-Public-cloud-cisco">Cisco</label>
           </div>
           <div class="col-4 u-sv3">
-            <h4>Other host</h4>
+            <input type="checkbox" id="where-running-Public-cloud-other-public-cloud">
+            <label for="where-running-Public-cloud-other-public-cloud">Other public cloud</label>
+            <input type="checkbox" id="where-running-Public-cloud-on-premises">
+            <label for="where-running-Public-cloud-other-on-premises">Other on-premises</label>
             <div class="js-other-container">
               <input type="checkbox" class="js-other-container__checkbox" id="other-where-running-other">
               <label for="other-where-running-other">Other</label>
