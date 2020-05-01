@@ -53,7 +53,6 @@ function customErrorResponse(errorData) {
     type: "notification",
   };
 
-  console.log(errorData);
   if (
     INSUFFICIENT_FUNDS_CODES.includes(code) ||
     error.message.includes("Your card has insufficient funds")
