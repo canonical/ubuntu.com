@@ -24,7 +24,7 @@ from requests.exceptions import HTTPError
 
 
 # Local
-from webapp.login import empty_session, is_authenticated
+from webapp.login import empty_session, user_info
 from webapp.advantage import AdvantageContracts
 
 
@@ -132,7 +132,7 @@ def post_build():
     system = flask.request.values.get("system")
     snaps = flask.request.values.get("snaps", "").split(",")
 
-    if not is_authenticated(flask.session):
+    if not user_info(flask.session):
         flask.abort(401)
 
     launchpad = Launchpad(
@@ -344,7 +344,7 @@ def advantage_view():
     enterprise_contracts = {}
     entitlements = {}
 
-    if is_authenticated(flask.session):
+    if user_info(flask.session):
         advantage = AdvantageContracts(
             session, flask.session["authentication_token"]
         )
@@ -472,7 +472,7 @@ def advantage_view():
 
 
 def post_stripe_method_id():
-    if is_authenticated(flask.session):
+    if user_info(flask.session):
         advantage = AdvantageContracts(flask.session["authentication_token"])
 
         if not flask.request.is_json:
@@ -494,7 +494,7 @@ def post_stripe_method_id():
 
 
 def post_stripe_invoice_id(renewal_id, invoice_id):
-    if is_authenticated(flask.session):
+    if user_info(flask.session):
         advantage = AdvantageContracts(flask.session["authentication_token"])
 
         return advantage.post_stripe_invoice_id(
@@ -505,7 +505,7 @@ def post_stripe_invoice_id(renewal_id, invoice_id):
 
 
 def get_renewal(renewal_id):
-    if is_authenticated(flask.session):
+    if user_info(flask.session):
         advantage = AdvantageContracts(flask.session["authentication_token"])
 
         return advantage.get_renewal(flask.session, renewal_id)
@@ -514,7 +514,7 @@ def get_renewal(renewal_id):
 
 
 def accept_renewal(renewal_id):
-    if is_authenticated(flask.session):
+    if user_info(flask.session):
         advantage = AdvantageContracts(flask.session["authentication_token"])
 
         return advantage.accept_renewal(flask.session, renewal_id)

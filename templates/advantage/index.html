@@ -6,7 +6,7 @@
 
 {% block content %}
 
-{% if openid %}
+{% if user_info %}
   <section class="p-strip--suru-topped is-shallow" style="padding-top: 6rem;">
     <script>
       dataLayer.push({
@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-12">
         <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
-        <p>You are signed in as {{ openid.fullname }} ({{ openid.email }})</p>
+        <p>You are signed in as {{ user_info.fullname }} ({{ user_info.email }})</p>
         <p class="u-no-margin--bottom">
           <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
             'event' : 'GAEvent',

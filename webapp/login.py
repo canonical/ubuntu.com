@@ -21,13 +21,20 @@ open_id = flask_openid.OpenID(
 session = talisker.requests.get_session()
 
 
-def is_authenticated(user_session):
+def user_info(user_session):
     """
     Checks if the user is authenticated from the session
     Returns True if the user is authenticated
     """
 
-    return "openid" in user_session and "authentication_token" in user_session
+    if "openid" in user_session and "authentication_token" in user_session:
+        return {
+            "fullname": user_session["openid"]["fullname"],
+            "email": user_session["openid"]["email"],
+            "authentication_token": user_session["authentication_token"],
+        }
+    else:
+        return None
 
 
 def empty_session(user_session):
@@ -42,7 +49,7 @@ def empty_session(user_session):
 
 @open_id.loginhandler
 def login_handler():
-    if is_authenticated(flask.session):
+    if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
 
     response = session.request(
