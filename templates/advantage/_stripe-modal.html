@@ -1,10 +1,7 @@
 <div class="p-modal p-modal--renewal u-hide is-details-mode" id="renewal-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
     <header class="p-modal__header">
-      <h2
-        class="p-modal__title js-contract-name u-no-margin--bottom"
-        id="modal-title"
-      >
+      <h2 class="p-modal__title js-contract-name u-no-margin--bottom" id="modal-title">
         Renew subscription
       </h2>
     </header>
@@ -54,10 +51,7 @@
             </div>
 
             <div class="col-9 col-start-large-4">
-              <span
-                id="card-errors"
-                class="p-form-validation__message u-hide"
-              ></span>
+              <span id="card-errors" class="p-form-validation__message u-hide"></span>
             </div>
           </div>
 
@@ -67,13 +61,7 @@
             </div>
 
             <div class="col-9">
-              <input
-                class="p-form-validation__input"
-                name="name"
-                type="text"
-                required
-                value="{{ openid.fullname }}"
-              />
+              <input class="p-form-validation__input" name="name" type="text" required value="{{ openid.fullname }}" />
             </div>
 
             <div class="col-9 col-start-large-4">
@@ -83,17 +71,12 @@
 
           <div class="p-form__group p-form-validation row u-no-padding">
             <div class="col-3">
-              <label for="address">Billing address:</label>
+              <label class="u-no-padding--top" for="address">Billing address:</label>
             </div>
 
             <div class="col-9">
-              <textarea
-                autocomplete="street-address"
-                class="p-form-validation__input"
-                name="address"
-                rows="4"
-                required
-              ></textarea>
+              <textarea autocomplete="street-address" class="p-form-validation__input" name="address" rows="4"
+                required></textarea>
             </div>
 
             <div class="col-9 col-start-large-4">
@@ -116,19 +99,23 @@
             </div>
           </div>
 
+          <div class="p-form__group row u-no-padding u-hide js-vat-container">
+            <div class="col-3">
+              <label>VAT number:</label>
+            </div>
+
+            <div class="col-9">
+              <input name="tax" type="text" />
+            </div>
+          </div>
+
           <div class="p-form__group p-form-validation row u-no-padding">
             <div class="col-3">
               <label for="email">Email my invoice to:</label>
             </div>
 
             <div class="col-9">
-              <input
-                class="p-form-validation__input"
-                name="email"
-                type="email"
-                required
-                value="{{ openid.email }}"
-              />
+              <input class="p-form-validation__input" name="email" type="email" required value="{{ openid.email }}" />
             </div>
 
             <div class="col-9 col-start-large-4">
@@ -152,16 +139,12 @@
 
           <div class="p-card">
             <div class="row u-no-padding">
-              <div
-                class="col-2 col-small-1 js-customer-card-brand u-hide col-small-2"
-              ></div>
+              <div class="col-2 col-small-1 js-customer-card-brand u-hide col-small-2"></div>
               <div class="col-8 col-small-3">
                 <span class="js-customer-name"></span><br />
                 <span class="js-customer-card"></span>
               </div>
-              <div
-                class="col-2 col-small-3 col-start-small-2 js-customer-card-expiry"
-              ></div>
+              <div class="col-2 col-small-3 col-start-small-2 js-customer-card-expiry"></div>
             </div>
           </div>
 
@@ -193,19 +176,11 @@
         Cancel
       </button>
 
-      <button
-        class="js-payment-method p-button--positive u-no-margin--right"
-        disabled
-        type="submit"
-      >
+      <button class="js-payment-method p-button--positive u-no-margin--right" disabled type="submit">
         Save payment details
       </button>
 
-      <button
-        class="js-process-payment p-button--positive u-no-margin--right"
-        disabled
-        type="submit"
-      >
+      <button class="js-process-payment p-button--positive u-no-margin--right" disabled type="submit">
         Pay
       </button>
 
@@ -216,8 +191,4 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 
-<script
-  src="{{ versioned_static('js/build/renewal-modal.min.js') }}"
-  type="module"
-  defer
-></script>
+<script src="{{ versioned_static('js/build/renewal-modal.min.js') }}" type="module" defer></script>
