@@ -3,13 +3,13 @@ wrapper_template: "engage/_base_engage_markdown.html"
 context:
      title: "Embracing the open source mandate"
      meta_description: "85% of enterprises have an open source mandate, preference or are exploring"
-     meta_image: https://assets.ubuntu.com/v1/4ede4e56-moving-to-open-source-meta.png
+     meta_image: https://assets.ubuntu.com/v1/a437c4f8-moving-to-open-source-meta.png
      meta_copydoc: https://docs.google.com/document/d/10Pp_AkdhYPfh-edQCq9HngRKVEMUfOCP39E3P5_VXpo/edit
      header_title: "Embracing the open source mandate"
      header_subtitle: "85% of enterprises have an open source mandate, preference or are exploring"
-     header_image: https://assets.ubuntu.com/v1/f2e4e9fb-slide-opensource.svg
-     header_image_width: "400"
-     header_image_height: "275"
+     header_image: https://assets.ubuntu.com/v1/5096c143-451-research-vector-white-logo.svg
+     header_image_width: "250"
+     header_image_height: "93"
      header_url: '#register-section'
      header_cta: "Download the whitepaper"
      header_class: "p-engage-banner--grad"
