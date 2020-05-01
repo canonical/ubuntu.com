@@ -6,12 +6,12 @@
 
 {% block content %}
 
-{% if build_info %}
+{% if build_info and user_info %}
 <section class="p-strip--suru-topped u-no-padding--bottom">
   <div class="row">
     <div class="col-8 u-sv3">
       <h1>Your Ubuntu image is building</h1>
-      <p>We’ll email you {% if openid.email %}at {{ openid.email }} {% endif %}when we’ve finished. A build usually takes less than 30 minutes.</p>
+      <p>We’ll email you {% if user_info.email %}at {{ user_info.email }} {% endif %}when we’ve finished. A build usually takes less than 30 minutes.</p>
       <p><a href="{{ build_info.web_link }}" class="p-link--external">Build log</a></p>
     </div>
   </div>
@@ -38,8 +38,8 @@
     <div class="col-10">
       <h1>Build an Ubuntu IoT image</h1>
       <p>Choose your board, Ubuntu version, and the apps you want installed, and in a few minutes we’ll build an Ubuntu image ready for your IoT development.</p>
-      {% if openid %}
-      <p>You are signed in as {{ openid.fullname }} ({{ openid.email }})
+      {% if user_info %}
+      <p>You are signed in as {{ user_info.fullname }} ({{ user_info.email }})
         <a href="/logout?return_to={{ request.host_url }}build" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
@@ -66,7 +66,7 @@
     </div>
   </div>
 </section>
-<section class="p-strip js-step-1 {% if not openid %}u-disable{% endif %}">
+<section class="p-strip js-step-1 {% if not user_info %}u-disable{% endif %}">
   <div class="row">
     <div class="col-8 u-sv3">
       <h2><span class="u-number-circle">1</span> What board are you using?</h2>
@@ -209,12 +209,12 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow  {% if not openid %}u-disable{% endif %}">
+<section class="p-strip is-shallow  {% if not user_info %}u-disable{% endif %}">
   <div class="row">
     <div class="col-8">
       <form method="POST" id="build-form">
-        {% if openid.email %}
-        <p>We’ll email you at {{ openid.email }} once the build is ready.</p>
+        {% if user_info.email %}
+        <p>We’ll email you at {{ user_info.email }} once the build is ready.</p>
         {% endif %}
         <p>
           <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
@@ -223,8 +223,8 @@
         <input type="hidden" name="board" value="" />
         <input type="hidden" name="system" value="" />
         <input type="hidden" name="snaps" value="" />
-        <input type="hidden" name="FullName" value="{{ openid.fullname }}" />
-        <input type="hidden" name="Email" value="{{ openid.email }}" />
+        <input type="hidden" name="FullName" value="{{ user_info.fullname }}" />
+        <input type="hidden" name="Email" value="{{ user_info.email }}" />
         <p><button class="p-button--positive js-build-button">Build image</button></p>
       </form>
     </div>

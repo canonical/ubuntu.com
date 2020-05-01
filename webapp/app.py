@@ -47,7 +47,7 @@ from webapp.views import (
     search_snaps,
     notify_build,
 )
-from webapp.login import login_handler, logout
+from webapp.login import login_handler, logout, user_info
 from webapp.security.database import db_session
 from webapp.security.views import create_notice, notice, notices, notices_feed
 
@@ -94,7 +94,7 @@ def context():
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),
-        "openid": flask.session.get("openid"),
+        "user_info": user_info(flask.session),
         "utm_campaign": flask.request.args.get("utm_campaign", ""),
         "utm_medium": flask.request.args.get("utm_medium", ""),
         "utm_source": flask.request.args.get("utm_source", ""),
