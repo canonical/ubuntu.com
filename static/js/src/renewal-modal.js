@@ -1,7 +1,7 @@
 import {
   getRenewal,
   postInvoiceIDToRenewal,
-  postPaymentMethodToStripeAccount,
+  postCustomerInfoToStripeAccount,
   postRenewalIDToProcessPayment,
 } from "./stripe/contracts-api.js";
 
@@ -28,6 +28,38 @@ const closeModalButton = modal.querySelector(".js-close-modal");
 
 const cardErrorElement = document.getElementById("card-errors");
 const renewalErrorElement = document.getElementById("renewal-errors");
+
+const vatCountries = [
+  "AL",
+  "AT",
+  "BE",
+  "BG",
+  "HR",
+  "CY",
+  "CZ",
+  "DK",
+  "EE",
+  "FI",
+  "FR",
+  "DE",
+  "EL",
+  "HU",
+  "IE",
+  "IT",
+  "LV",
+  "LT",
+  "LU",
+  "MT",
+  "NL",
+  "PL",
+  "PT",
+  "RO",
+  "SK",
+  "SI",
+  "ES",
+  "SE",
+  "GB",
+];
 
 // initialise Stripe
 const stripe = window.Stripe("pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46");
@@ -66,6 +98,7 @@ let customerInfo = {
   email: null,
   country: null,
   address: null,
+  tax: null,
 };
 
 let cardValid = false;
@@ -99,6 +132,9 @@ function attachCTAevents(selector) {
 }
 
 function attachFormEvents() {
+  const countryDropdown = modal.querySelector("select");
+  const vatContainer = modal.querySelector(".js-vat-container");
+
   for (let i = 0; i < form.elements.length; i++) {
     const input = form.elements[i];
 
@@ -109,15 +145,23 @@ function attachFormEvents() {
     input.addEventListener("blur", (e) => {
       validateFormInput(e.target, true);
     });
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      if (!addPaymentMethodButton.disabled) {
-        addPaymentMethodButton.click();
-      }
-    });
   }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (!addPaymentMethodButton.disabled) {
+      addPaymentMethodButton.click();
+    }
+  });
+
+  countryDropdown.addEventListener("change", (e) => {
+    if (vatCountries.includes(e.target.value)) {
+      vatContainer.classList.remove("u-hide");
+    } else {
+      vatContainer.classList.add("u-hide");
+    }
+  });
 }
 
 function attachModalButtonEvents() {
@@ -149,6 +193,7 @@ function attachModalButtonEvents() {
       form.elements["Country"].value = customerInfo.country;
       form.elements["email"].value = customerInfo.email;
       form.elements["name"].value = customerInfo.name;
+      form.elements["tax"].value = customerInfo.tax;
       showPayDialog();
     } else {
       sendGAEvent("exited payment modal (clicked cancel)");
@@ -191,6 +236,7 @@ function createPaymentMethod() {
   customerInfo.email = formData.get("email");
   customerInfo.country = formData.get("Country");
   customerInfo.name = formData.get("name");
+  customerInfo.tax = formData.get("tax");
 
   mode = "payment_method";
   enableProcessingState();
@@ -210,10 +256,8 @@ function createPaymentMethod() {
     })
     .then((result) => {
       if (result.paymentMethod) {
-        console.log(result);
         handlePaymentMethodResponse(result.paymentMethod);
       } else {
-        console.log(result);
         const errorObject = parseForErrorObject(result.error);
 
         if (result.error.type === "validation_error") {
@@ -337,26 +381,49 @@ function handleIncompleteRenewal(renewal) {
 }
 
 function handlePaymentMethodResponse(paymentMethod) {
-  postPaymentMethodToStripeAccount(paymentMethod.id, activeRenewal.accountId)
+  const stripeAddressObject = {
+    line1: customerInfo.address,
+    country: customerInfo.country,
+  };
+
+  let stripeTaxObject = null;
+
+  if (customerInfo.tax) {
+    stripeTaxObject = {
+      value: customerInfo.tax,
+      type: "eu_vat",
+    };
+  }
+
+  postCustomerInfoToStripeAccount(
+    paymentMethod.id,
+    activeRenewal.accountId,
+    stripeAddressObject,
+    stripeTaxObject
+  )
     .then((data) => {
-      if (data.message) {
-        // ua-contracts returned an error with information for us to parse
-        const errorObject = parseForErrorObject(data);
-        presentError(errorObject);
-      } else if (data.createdAt) {
-        // payment method was successfully attached,
-        // ask user to click "Pay"
-        setPaymentInformation(paymentMethod, modal);
-        showPayDialog();
-      } else {
-        // an unexpected error occurred
-        presentError();
-      }
+      handleCustomerInfoResponse(paymentMethod, data);
     })
     .catch((data) => {
       const errorObject = parseForErrorObject(data);
       presentError(errorObject);
     });
+}
+
+function handleCustomerInfoResponse(paymentMethod, data) {
+  if (data.message) {
+    // ua-contracts returned an error with information for us to parse
+    const errorObject = parseForErrorObject(data);
+    presentError(errorObject);
+  } else if (data.createdAt) {
+    // payment method was successfully attached,
+    // ask user to click "Pay"
+    setPaymentInformation(paymentMethod, modal);
+    showPayDialog();
+  } else {
+    // an unexpected error occurred
+    presentError();
+  }
 }
 
 function handleSuccessfulPayment() {
@@ -402,8 +469,6 @@ export function presentError(errorObject) {
       type: "notification",
     };
   }
-
-  console.log(errorObject);
 
   if (errorObject.type === "card") {
     cardErrorElement.innerHTML = errorObject.message;
@@ -478,6 +543,7 @@ function resetModal() {
     email: null,
     country: null,
     address: null,
+    tax: null,
   };
 }
 

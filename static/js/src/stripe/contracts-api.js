@@ -35,9 +35,11 @@ export async function postRenewalIDToProcessPayment(renewalID) {
   return data;
 }
 
-export async function postPaymentMethodToStripeAccount(
+export async function postCustomerInfoToStripeAccount(
   paymentMethodID,
-  accountID
+  accountID,
+  address,
+  taxID
 ) {
   let response = await fetch("/advantage/payment-method", {
     method: "POST",
@@ -50,6 +52,8 @@ export async function postPaymentMethodToStripeAccount(
     body: JSON.stringify({
       payment_method_id: paymentMethodID,
       account_id: accountID,
+      address: address,
+      tax_id: taxID,
     }),
   });
 
