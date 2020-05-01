@@ -131,6 +131,36 @@ function attachCTAevents(selector) {
   });
 }
 
+function attachCustomerInfoToStripeAccount(paymentMethod) {
+  const stripeAddressObject = {
+    line1: customerInfo.address,
+    country: customerInfo.country,
+  };
+
+  let stripeTaxObject = null;
+
+  if (customerInfo.tax) {
+    stripeTaxObject = {
+      value: customerInfo.tax,
+      type: "eu_vat",
+    };
+  }
+
+  postCustomerInfoToStripeAccount(
+    paymentMethod.id,
+    activeRenewal.accountId,
+    stripeAddressObject,
+    stripeTaxObject
+  )
+    .then((data) => {
+      handleCustomerInfoResponse(paymentMethod, data);
+    })
+    .catch((data) => {
+      const errorObject = parseForErrorObject(data);
+      presentError(errorObject);
+    });
+}
+
 function attachFormEvents() {
   const countryDropdown = modal.querySelector("select");
   const vatContainer = modal.querySelector(".js-vat-container");
@@ -181,7 +211,7 @@ function attachModalButtonEvents() {
     e.preventDefault();
     changingPaymentMethod = true;
     card.clear();
-    showPaymentMethodDialog();
+    showDetailsMode();
   });
 
   cancelModalButton.addEventListener("click", (e) => {
@@ -194,7 +224,7 @@ function attachModalButtonEvents() {
       form.elements["email"].value = customerInfo.email;
       form.elements["name"].value = customerInfo.name;
       form.elements["tax"].value = customerInfo.tax;
-      showPayDialog();
+      showPayMode();
     } else {
       sendGAEvent("exited payment modal (clicked cancel)");
       resetModal();
@@ -255,17 +285,7 @@ function createPaymentMethod() {
       },
     })
     .then((result) => {
-      if (result.paymentMethod) {
-        handlePaymentMethodResponse(result.paymentMethod);
-      } else {
-        const errorObject = parseForErrorObject(result.error);
-
-        if (result.error.type === "validation_error") {
-          presentError(errorObject);
-        } else {
-          presentError(errorObject);
-        }
-      }
+      handlePaymentMethodResponse(result);
     })
     .catch((error) => {
       console.error(error);
@@ -319,17 +339,7 @@ function handleIncompletePayment(invoice) {
     // payment attempt
     postInvoiceIDToRenewal(activeRenewal.renewalId, invoice.invoice_id)
       .then((data) => {
-        if (data.message) {
-          const errorObject = parseForErrorObject(data);
-
-          if (errorObject) {
-            presentError(errorObject);
-          } else {
-            pollRenewalStatus();
-          }
-        } else {
-          pollRenewalStatus();
-        }
+        handleInvoicePostResponse(data);
       })
       .catch((error) => {
         console.error(error);
@@ -339,14 +349,7 @@ function handleIncompletePayment(invoice) {
     // 3DS has been requested by Stripe
     clearTimeout(pollingTimer);
     stripe.confirmCardPayment(invoice.pi_secret).then(function (result) {
-      submitted3DS = true;
-
-      if (result.error) {
-        presentError(result.error.message);
-        submitted3DS = false;
-      } else {
-        pollRenewalStatus();
-      }
+      handle3DSresponse(result);
     });
   } else {
     presentError();
@@ -364,12 +367,13 @@ function handleIncompleteRenewal(renewal) {
     subscriptionStatus = invoice.subscription_status;
   }
 
-  if (
+  let processing =
     !subscriptionStatus ||
     !paymentIntentStatus ||
     subscriptionStatus === "active" ||
-    submitted3DS
-  ) {
+    submitted3DS;
+
+  if (processing) {
     clearTimeout(pollingTimer);
 
     pollingTimer = setTimeout(() => {
@@ -380,34 +384,29 @@ function handleIncompleteRenewal(renewal) {
   }
 }
 
-function handlePaymentMethodResponse(paymentMethod) {
-  const stripeAddressObject = {
-    line1: customerInfo.address,
-    country: customerInfo.country,
-  };
+function handlePaymentMethodResponse(data) {
+  if (data.paymentMethod) {
+    attachCustomerInfoToStripeAccount(data.paymentMethod);
+  } else {
+    const errorObject = parseForErrorObject(data.error);
 
-  let stripeTaxObject = null;
-
-  if (customerInfo.tax) {
-    stripeTaxObject = {
-      value: customerInfo.tax,
-      type: "eu_vat",
-    };
-  }
-
-  postCustomerInfoToStripeAccount(
-    paymentMethod.id,
-    activeRenewal.accountId,
-    stripeAddressObject,
-    stripeTaxObject
-  )
-    .then((data) => {
-      handleCustomerInfoResponse(paymentMethod, data);
-    })
-    .catch((data) => {
-      const errorObject = parseForErrorObject(data);
+    if (data.error.type === "validation_error") {
       presentError(errorObject);
-    });
+    } else {
+      presentError(errorObject);
+    }
+  }
+}
+
+function handle3DSresponse(data) {
+  submitted3DS = true;
+
+  if (data.error) {
+    presentError(data.error.message);
+    submitted3DS = false;
+  } else {
+    pollRenewalStatus();
+  }
 }
 
 function handleCustomerInfoResponse(paymentMethod, data) {
@@ -419,10 +418,40 @@ function handleCustomerInfoResponse(paymentMethod, data) {
     // payment method was successfully attached,
     // ask user to click "Pay"
     setPaymentInformation(paymentMethod, modal);
-    showPayDialog();
+    showPayMode();
   } else {
     // an unexpected error occurred
     presentError();
+  }
+}
+
+function handleInvoicePostResponse(data) {
+  if (data.message) {
+    const errorObject = parseForErrorObject(data);
+
+    if (errorObject) {
+      sendGAEvent("payment failed");
+      presentError(errorObject);
+    } else {
+      pollRenewalStatus();
+    }
+  } else {
+    pollRenewalStatus();
+  }
+}
+
+function handleProcessPaymentResponse(data) {
+  if (data.code) {
+    const errorObject = parseForErrorObject(data);
+
+    if (errorObject) {
+      sendGAEvent("payment failed");
+      presentError(errorObject);
+    } else {
+      pollRenewalStatus();
+    }
+  } else {
+    pollRenewalStatus();
   }
 }
 
@@ -473,19 +502,14 @@ export function presentError(errorObject) {
   if (errorObject.type === "card") {
     cardErrorElement.innerHTML = errorObject.message;
     cardErrorElement.classList.remove("u-hide");
-    showPaymentMethodDialog();
+    showDetailsMode();
   } else if (errorObject.type === "notification") {
     renewalErrorElement.querySelector(".p-notification__message").innerHTML =
       errorObject.message;
     renewalErrorElement.classList.remove("u-hide");
-    showPaymentMethodDialog();
+    showDetailsMode();
   } else if (errorObject.type === "dialog") {
-    disableProcessingState();
-    modal.classList.remove("is-pay-mode", "is-details-mode");
-    modal.classList.add("is-dialog-mode");
-    errorDialog.innerHTML = errorObject.message;
-    processPaymentButton.disabled = true;
-    processPaymentButton.disabled = true;
+    showDialogMode(errorObject.message);
   }
 }
 
@@ -495,18 +519,7 @@ function processStripePayment() {
 
   postRenewalIDToProcessPayment(activeRenewal.renewalId)
     .then((data) => {
-      if (data.code) {
-        const errorObject = parseForErrorObject(data);
-
-        if (errorObject) {
-          sendGAEvent("payment failed");
-          presentError(errorObject);
-        } else {
-          pollRenewalStatus();
-        }
-      } else {
-        pollRenewalStatus();
-      }
+      handleProcessPaymentResponse(data);
     })
     .catch((error) => {
       console.error(error);
@@ -583,7 +596,7 @@ function setupCardElements() {
   });
 }
 
-function showPaymentMethodDialog() {
+function showDetailsMode() {
   disableProcessingState();
   modal.classList.remove("is-pay-mode", "is-dialog-mode");
   modal.classList.add("is-details-mode");
@@ -591,7 +604,16 @@ function showPaymentMethodDialog() {
   validateForm();
 }
 
-function showPayDialog() {
+function showDialogMode(message) {
+  disableProcessingState();
+  errorDialog.innerHTML = message;
+  modal.classList.remove("is-pay-mode", "is-details-mode");
+  modal.classList.add("is-dialog-mode");
+  processPaymentButton.disabled = true;
+  processPaymentButton.disabled = true;
+}
+
+function showPayMode() {
   hideErrors();
   disableProcessingState();
   modal.classList.remove("is-details-mode", "is-dialog-mode");
@@ -623,7 +645,7 @@ function validateForm() {
   }
 }
 
-function validateFormInput(input, callout) {
+function validateFormInput(input, highlightError) {
   const wrapper = input.closest(".p-form-validation");
   let valid = false;
 
@@ -631,7 +653,7 @@ function validateFormInput(input, callout) {
     const messageEl = wrapper.querySelector(".p-form-validation__message");
 
     if (!input.checkValidity()) {
-      if (callout) {
+      if (highlightError) {
         wrapper.classList.add("is-error");
         messageEl.classList.remove("u-hide");
         messageEl.innerHTML = input.validationMessage;
