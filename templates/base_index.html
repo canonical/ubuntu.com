@@ -27,7 +27,14 @@
     {% block notices_content %}
     {% endblock notices_content %}
 
-    <section class="p-strip is-deep is-bordered">
+    <noscript>
+      <section class="p-strip is-bordered">
+        <div class="u-fixed-width">
+          <h3><a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a></h3>
+        </div>
+      </section>
+    </noscript>
+    <section class="p-strip is-deep is-bordered u-hide" data-js="latest-news">
       <div class="row p-divider">
         <div class="col-9">
           <h3>Latest news from our blog</h3>
@@ -55,6 +62,14 @@
         </div>
       </template>
 
+      <div class="u-sv3"></div>
+
+      <div class="u-fixed-width">
+        <a href="/blog" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
+          View more from our blog
+        </a>
+      </div>
+
       <script src="{{ versioned_static('js/src/latest-news.js') }}"></script>
       <script>
         fetchLatestNews(
@@ -67,14 +82,6 @@
           }
         )
       </script>
-
-      <div class="u-sv3"></div>
-
-      <div class="u-fixed-width">
-        <a href="/blog" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
-          View more from our blog
-        </a>
-      </div>
     </section>
 
     <section class="p-strip--light is-bordered">
