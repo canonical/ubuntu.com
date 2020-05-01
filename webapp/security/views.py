@@ -1,4 +1,5 @@
 # Standard library
+import re
 from collections import OrderedDict
 from datetime import datetime
 from dateutil.parser import parse
@@ -53,7 +54,7 @@ def notice(notice_id):
         )
         releases_packages[release_name] = []
         for name, package in packages.get("sources", {}).items():
-            # Build pacakges per release dict
+            # Build packages per release dict
             package["name"] = name
             releases_packages[release_name].append(package)
             # Build full package list
@@ -284,11 +285,16 @@ def cve_index():
 
     # Query parameters
     order_by = flask.request.args.get("order-by", default="oldest")
-    query = flask.request.args.get("q")
+    query = flask.request.args.get("q", "").strip()
     priority = flask.request.args.get("priority")
     package = flask.request.args.get("package")
     limit = flask.request.args.get("limit", default=20, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
+
+    is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
+
+    if is_cve_id and db_session.query(CVE).get(query.upper()):
+        return flask.redirect(f"/security/{query.lower()}")
 
     cves_query = db_session.query(CVE)
     releases_query = db_session.query(Release)
@@ -512,10 +518,7 @@ def update_cve(cve_id):
         db_session.commit()
     # Payload input errors
     except DataError as error:
-        return (
-            flask.jsonify({"message": error.orig.args[0]}),
-            400,
-        )
+        return (flask.jsonify({"message": error.orig.args[0]}), 400)
     return flask.jsonify({"message": "CVE updated succesfully"}), 200
 
 
