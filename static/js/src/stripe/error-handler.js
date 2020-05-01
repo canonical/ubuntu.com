@@ -153,10 +153,7 @@ export function parseForErrorObject(data) {
     };
   } else {
     // there was a problem with the ua-contracts service
-    errorObject = {
-      message: null,
-      type: "notification",
-    };
+    errorObject = null;
   }
 
   return errorObject;
