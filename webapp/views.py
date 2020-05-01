@@ -18,7 +18,7 @@ from ubuntu_release_info.data import Data
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
 from canonicalwebteam.store_api.stores.snapstore import SnapStore
-from canonicalwebteam.launchpad import Launchpad, WebhookExistsError
+from canonicalwebteam.launchpad import Launchpad
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
 
@@ -162,15 +162,12 @@ def post_build():
     )
 
     # Ensure webhook is created
-    try:
-        launchpad.create_system_build_webhook(
+    if flask.request.host == "ubuntu.com":
+        launchpad.create_update_system_build_webhook(
             system=system,
             delivery_url="https://ubuntu.com/core/build/notify",
             secret=flask.current_app.config["SECRET_KEY"],
         )
-    except WebhookExistsError:
-        # It's fine if the webhook exists
-        pass
 
     # Kick off image build
     try:
@@ -238,7 +235,7 @@ def notify_build():
         return "X-Hub-Signature does not match\n", 400
 
     event_content = flask.request.json
-
+    status = event_content["status"]
     build_url = (
         "https://api.launchpad.net/devel" + event_content["livefs_build"]
     )
@@ -274,14 +271,14 @@ def notify_build():
     version = Data().by_codename(codename).version
     arch = build["distro_arch_series_link"].split("/")[-1]
     build_link = build["web_link"]
-    status = build["buildstate"]
+    build_id = build_link.split("/")[-1]
 
     download_url = None
 
     if status == "Successfully built":
         download_url = launchpad.request(
             f"{build_url}?ws.op=getFileUrls"
-        ).json()[-1]
+        ).json()[0]
 
     session.post(
         "https://pages.ubuntu.com/index.php/leadCapture/save",
@@ -297,6 +294,7 @@ def notify_build():
             "imageBuilderArchitecture": arch,
             "imageBuilderBoard": board,
             "imageBuilderSnaps": snaps,
+            "imageBuilderID": build_id,
             "imageBuilderBuildlink": build_link,
             "imageBuilderStatus": status,
             "imageBuilderDownloadlink": download_url,
