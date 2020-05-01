@@ -98,12 +98,15 @@ export function setRenewalInformation(data, modal) {
 
   const products = getProductsString(data.products);
 
-  const formattedUnitPrice = parseFloat(data.unitPrice).toLocaleString("en", {
-    style: "currency",
-    currency: data.currency,
-  });
+  const formattedUnitPrice = parseFloat(data.unitPrice / 100).toLocaleString(
+    "en",
+    {
+      style: "currency",
+      currency: data.currency,
+    }
+  );
 
-  const formattedTotal = parseFloat(data.total).toLocaleString("en", {
+  const formattedTotal = parseFloat(data.total / 100).toLocaleString("en", {
     style: "currency",
     currency: data.currency,
   });
