@@ -1,4 +1,11 @@
 (function () {
+  function _revealSection() {
+    const latestNewsSection = document.querySelector("[data-js='latest-news']");
+    if (latestNewsSection) {
+      latestNewsSection.classList.remove("u-hide");
+    }
+  }
+
   function _formatDate(date) {
     const parsedDate = new Date(date);
     const monthNames = [
@@ -151,6 +158,8 @@
   function fetchLatestNews(options) {
     let url = "https://ubuntu.com/blog/latest-news";
     let params = [];
+
+    _revealSection();
 
     if (options.limit) {
       params.push("limit=" + options.limit);
