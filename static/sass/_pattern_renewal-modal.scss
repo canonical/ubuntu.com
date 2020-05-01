@@ -129,7 +129,9 @@
     }
 
     label {
-      display: inline-block;
+      @media (min-width: $breakpoint-medium) {
+        float: right;
+      }
     }
   }
 }

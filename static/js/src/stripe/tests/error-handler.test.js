@@ -38,13 +38,13 @@ describe("parseForErrorObject", () => {
 
     describe("given an incorrect CVC error", () => {
       it("should return an appropriate error object", () => {
-        expect(
-          parseForErrorObject(contractsErrorObjects.cvcIncorrect)
-        ).toEqual({
-          message:
-            "That CVC number is incorrect. Check the number and try again.",
-          type: "card",
-        });
+        expect(parseForErrorObject(contractsErrorObjects.cvcIncorrect)).toEqual(
+          {
+            message:
+              "That CVC number is incorrect. Check the number and try again.",
+            type: "card",
+          }
+        );
       });
     });
 

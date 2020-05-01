@@ -73,7 +73,7 @@ const style = {
     fontFamily:
       '"Ubuntu", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
     fontSmoothing: "antialiased",
-    fontSize: "18px",
+    fontSize: "16px",
     "::placeholder": {
       color: "#666",
     },
@@ -84,7 +84,16 @@ const style = {
 };
 
 // create the Stripe card input, and apply the style to it
-const elements = stripe.elements();
+const elements = stripe.elements({
+  fonts: [
+    {
+      family: "Ubuntu",
+      src:
+        'url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"), url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff")',
+    },
+  ],
+});
+
 const card = elements.create("card", { style });
 
 const activeRenewal = {
@@ -184,6 +193,12 @@ function attachFormEvents() {
       addPaymentMethodButton.click();
     }
   });
+
+  if (vatCountries.includes(countryDropdown.value)) {
+    vatContainer.classList.remove("u-hide");
+  } else {
+    vatContainer.classList.add("u-hide");
+  }
 
   countryDropdown.addEventListener("change", (e) => {
     if (vatCountries.includes(e.target.value)) {
@@ -490,7 +505,7 @@ function pollRenewalStatus() {
     });
 }
 
-export function presentError(errorObject) {
+function presentError(errorObject) {
   if (!errorObject) {
     errorObject = {
       message:
@@ -509,7 +524,8 @@ export function presentError(errorObject) {
     renewalErrorElement.classList.remove("u-hide");
     showDetailsMode();
   } else if (errorObject.type === "dialog") {
-    showDialogMode(errorObject.message);
+    errorDialog.innerHTML = errorObject.message;
+    showDialogMode();
   }
 }
 
@@ -596,17 +612,16 @@ function setupCardElements() {
   });
 }
 
-function showDetailsMode() {
+const showDetailsMode = () => {
   disableProcessingState();
   modal.classList.remove("is-pay-mode", "is-dialog-mode");
   modal.classList.add("is-details-mode");
   processPaymentButton.disabled = true;
   validateForm();
-}
+};
 
-function showDialogMode(message) {
+function showDialogMode() {
   disableProcessingState();
-  errorDialog.innerHTML = message;
   modal.classList.remove("is-pay-mode", "is-details-mode");
   modal.classList.add("is-dialog-mode");
   processPaymentButton.disabled = true;
@@ -677,3 +692,5 @@ attachFormEvents();
 attachModalButtonEvents();
 setupCardElements();
 validateForm();
+
+export { presentError };
