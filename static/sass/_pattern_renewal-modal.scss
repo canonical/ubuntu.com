@@ -76,6 +76,7 @@
     }
 
     .p-form__group {
+      align-items: start;
       margin-bottom: 0;
 
       &:last-child {
@@ -92,8 +93,6 @@
     }
 
     .col-3 {
-      color: $color-mid-dark;
-
       @media (min-width: $breakpoint-medium) {
         text-align: right;
       }
@@ -104,7 +103,23 @@
       border: 1px solid #999;
       border-radius: 0.125rem;
       box-shadow: inset 0 1px 1px rgba($color-x-dark, 0.12);
-      padding: 9px;
+      padding: 9px 2rem 9px 9px;
+
+      &.StripeElement--focus {
+        outline: 0.1875rem solid #19b6ee;
+        outline-offset: -0.1875rem;
+
+        &.StripeElement--invalid {
+          outline-color: $color-negative;
+        }
+      }
+
+      &.StripeElement--invalid {
+        background-image: url("https://assets.ubuntu.com/v1/4b0cd7fc-icon-error.svg");
+        background-position: calc(100% - 0.5rem) 50%;
+        background-repeat: no-repeat;
+        border-color: $color-negative;
+      }
     }
 
     .p-form-validation__message {
