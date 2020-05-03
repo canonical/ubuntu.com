@@ -130,6 +130,7 @@ function attachCTAevents(selector) {
       let renewalData = cta.dataset;
 
       toggleModal();
+      card.focus();
       sendGAEvent("opened payment modal");
       activeRenewal.accountId = renewalData.accountId;
       activeRenewal.contractId = renewalData.contractId;
@@ -477,7 +478,8 @@ function handleSuccessfulPayment() {
   progressIndicator
     .querySelector(".p-icon--success")
     .classList.remove("u-hide");
-  progressIndicator.querySelector("span").innerHTML = "Payment complete";
+  progressIndicator.querySelector("span").innerHTML =
+    "Payment complete. One moment...";
   progressIndicator.classList.remove("u-hide");
 
   location.search = `subscription=${activeRenewal.contractId}`;
@@ -612,13 +614,14 @@ function setupCardElements() {
   });
 }
 
-const showDetailsMode = () => {
+function showDetailsMode() {
   disableProcessingState();
   modal.classList.remove("is-pay-mode", "is-dialog-mode");
   modal.classList.add("is-details-mode");
   processPaymentButton.disabled = true;
+  card.focus();
   validateForm();
-};
+}
 
 function showDialogMode() {
   disableProcessingState();
