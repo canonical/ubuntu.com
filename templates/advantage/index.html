@@ -156,7 +156,12 @@
                                 {% else %}
                                   <tr style="border-top: 0;">
                                     <td class="u-align--right">Ends:</td>
-                                    <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong></td>
+                                    <td class="u-align--left">
+                                      <strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>
+                                      {% if open_subscription == contract['contractInfo']['id'] and request.args.get('renewed') %}
+                                      <div class="p-label--updated">Renewed</div>
+                                      {% endif %}
+                                    </td>
                                   </tr>
                                 {% endif %}
                               {% endif %}

@@ -482,7 +482,7 @@ function handleSuccessfulPayment() {
     "Payment complete. One moment...";
   progressIndicator.classList.remove("u-hide");
 
-  location.search = `subscription=${activeRenewal.contractId}`;
+  location.search = `subscription=${activeRenewal.contractId}&renewed=true`;
 }
 
 function hideErrors() {
