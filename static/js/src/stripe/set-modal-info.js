@@ -14,23 +14,23 @@ function getCardImgFilename(brand) {
 function getProductName(slug) {
   switch (slug) {
     case "uai-essential-desktop":
-      return "Desktop Essential";
+      return "UA Infra Essential Desktop";
     case "uai-standard-desktop":
-      return "Desktop Standard";
+      return "UA Infra Standard Desktop";
     case "uai-advanced-desktop":
-      return "Desktop Advanced";
+      return "UA Infra Advanced Desktop";
     case "uai-essential-physical-server":
-      return "Physical Essential";
+      return "UA Infra Essential Physical Server";
     case "uai-standard-physical-server":
-      return "Physical Standard";
+      return "UA Infra Standar Physical Server";
     case "uai-advanced-physical-server":
-      return "Physical Advanced";
+      return "UA Infra Advance Physical Server";
     case "uai-essential-virtual-server":
-      return "Virtual Server Essential";
+      return "UA Infra Essential Virtual Server";
     case "uai-standard-virtual-server":
-      return "Virtual Server Standard";
+      return "UA Infra Standard Virtual Server";
     case "uai-advanced-virtual-server":
-      return "Virtual Server Advanced";
+      return "UA Infra Advanced Virtual Server";
     default:
       return false;
   }
@@ -64,7 +64,7 @@ export function setPaymentInformation(paymentMethod, modal) {
   const cardBrandFormatted =
     cardInfo.brand.charAt(0).toUpperCase() + cardInfo.brand.slice(1);
   const cardText = `${cardBrandFormatted} ending ${cardInfo.last4}`;
-  const cardExpiry = `Expires: ${cardInfo.exp_month}/${cardInfo.exp_year}`;
+  const cardExpiry = `${cardInfo.exp_month}/${cardInfo.exp_year}`;
   const cardImage = getCardImgFilename(cardInfo.brand);
 
   if (cardImage) {
@@ -112,9 +112,9 @@ export function setRenewalInformation(data, modal) {
   });
 
   contractNameElement.innerHTML = `Renew "${data.name}"`;
-  endElement.innerHTML = renewalEndDate.toDateString();
+  endElement.innerHTML = renewalEndDate.toISOString().split("T", 1)[0];
   productNameElement.innerHTML = products;
-  quantityElement.innerHTML = `${data.quantity} x ${formattedUnitPrice}/year`;
-  startElement.innerHTML = renewalStartDate.toDateString();
+  quantityElement.innerHTML = `${data.quantity} &#215; ${formattedUnitPrice}/year`;
+  startElement.innerHTML = renewalStartDate.toISOString().split("T", 1)[0];
   totalElement.innerHTML = formattedTotal;
 }
