@@ -89,7 +89,7 @@
                     <tr class="p-table__row">
                       <td {% if open_subscription == contract['contractInfo']['id'] %} class="p-table--open"{% endif %}>
                         <button class="u-toggle u-toggle--full-width u-align--left u-no-padding--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if contract['expiring'] %}<div class="" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} day{% if contract["contractInfo"]["daysTillExpiry"] > 1 %}s{% endif %}</div>{% endif %}
+                          {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if contract['expiring'] %}<div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} day{% if contract["contractInfo"]["daysTillExpiry"] > 1 %}s{% endif %}</div>{% endif %}
                         </button>
                       </td>
                       <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
@@ -177,7 +177,7 @@
                                         data-months="{{ contract['renewal']['renewalItems'][0]['priceTotal']['months'] }}"
                                         data-unit-price="{{ contract['renewal']['renewalItems'][0]['pricePerUnit']['value'] }}"
                                         data-total="{{ contract['renewal']['renewalItems'][0]['priceTotal']['value'] }}"
-                                        data-currency="{{ contract['renewal']['renewalItems'][0]['priceTotal']['currency'] }}">Renew</button>
+                                        data-currency="{{ contract['renewal']['renewalItems'][0]['priceTotal']['currency'] }}">Renew...</button>
                                     </td>
                                   </tr>
                                 {% elif contract["renewal"]["status"] == "processing" %}

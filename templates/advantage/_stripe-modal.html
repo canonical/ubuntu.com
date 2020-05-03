@@ -8,27 +8,27 @@
     <div id="modal-description" class="p-modal__body">
       <section id="renewal-info" class="p-strip is-shallow is-bordered u-no-padding--top">
         <div class="row u-no-padding u-sv1">
-          <div class="col-3">Plan type:</div>
+          <div class="col-3 u-text-light">Plan type:</div>
           <div class="col-9 js-product-name"></div>
         </div>
 
         <div class="row u-no-padding u-sv1">
-          <div class="col-3">Starts:</div>
+          <div class="col-3 u-text-light">Starts:</div>
           <div class="col-9 js-renewal-start"></div>
         </div>
 
         <div class="row u-no-padding u-sv1">
-          <div class="col-3">Ends:</div>
+          <div class="col-3 u-text-light">Ends:</div>
           <div class="col-9 js-renewal-end"></div>
         </div>
 
         <div class="row u-no-padding u-sv1">
-          <div class="col-3">Machines:</div>
+          <div class="col-3 u-text-light">Machines:</div>
           <div class="col-9 js-renewal-quantity"></div>
         </div>
 
         <div class="row u-no-padding">
-          <div class="col-3">To pay:</div>
+          <div class="col-3 u-text-light">To pay:</div>
           <div class="col-9 js-renewal-total"></div>
         </div>
       </section>
@@ -43,7 +43,7 @@
         <form class="p-form p-form--stacked" id="details-form">
           <div class="p-form__group row u-no-padding u-vertically-center">
             <div class="col-3">
-              <label>Payment card:</label>
+              <label class="u-no-padding--top">Payment card:</label>
             </div>
 
             <div class="col-9">
@@ -57,7 +57,7 @@
 
           <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
             <div class="col-3">
-              <label for="name">Name on card:</label>
+              <label class="u-no-padding--top" for="name">Name on card:</label>
             </div>
 
             <div class="col-9">
@@ -69,7 +69,7 @@
             </div>
           </div>
 
-          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
+          <div class="p-form__group p-form-validation row u-no-padding">
             <div class="col-3">
               <label for="address">Billing address:</label>
             </div>
@@ -86,7 +86,7 @@
 
           <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
             <div class="col-3">
-              <label>Country/Region:</label>
+              <label class="u-no-padding--top" >Country/Region:</label>
             </div>
 
             <div class="col-9">
@@ -101,7 +101,7 @@
 
           <div class="p-form__group row u-no-padding u-vertically-center u-hide js-vat-container">
             <div class="col-3">
-              <label>VAT number:</label>
+              <label class="u-no-padding--top" >VAT number:</label>
             </div>
 
             <div class="col-9">
@@ -111,7 +111,7 @@
 
           <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
             <div class="col-3">
-              <label for="email">Email my invoice to:</label>
+              <label class="u-no-padding--top" for="email">Email my invoice to:</label>
             </div>
 
             <div class="col-9">
@@ -127,7 +127,7 @@
         <div id="renewal-summary">
           <div class="row u-no-padding">
             <div class="col-6 u-vertically-center">
-              <h3 class="p-heading--four">Payment method:</h3>
+              <p class="u-text-light">Payment method:</p>
             </div>
 
             <div class="col-6 u-align--right">
@@ -144,7 +144,10 @@
                 <span class="js-customer-name"></span><br />
                 <span class="js-customer-card"></span>
               </div>
-              <div class="col-2 col-small-3 col-start-small-2 js-customer-card-expiry"></div>
+              <div class="col-2 col-small-3 col-start-small-2">
+                <span class="u-text-light">Expires:</span><br />
+                <span class="js-customer-card-expiry"></span>
+              </div>
             </div>
           </div>
 
@@ -191,4 +194,4 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 
-<script src="{{ versioned_static('js/build/renewal-modal.min.js') }}" type="module" defer></script>
+<script src="{{ versioned_static('js/src/renewal-modal.js') }}" type="module" defer></script>
