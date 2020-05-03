@@ -52,6 +52,15 @@ function getProductsString(productsString) {
   return formattedString;
 }
 
+function formattedCurrency(amount, currency) {
+  const currencyString = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: currency,
+  }).format(parseFloat(amount / 100));
+
+  return currencyString.replace(".00", "");
+}
+
 export function setPaymentInformation(paymentMethod, modal) {
   const cardExpiryEl = modal.querySelector(".js-customer-card-expiry");
   const cardImgEl = modal.querySelector(".js-customer-card-brand");
@@ -98,23 +107,12 @@ export function setRenewalInformation(data, modal) {
 
   const products = getProductsString(data.products);
 
-  const formattedUnitPrice = parseFloat(data.unitPrice / 100).toLocaleString(
-    "en",
-    {
-      style: "currency",
-      currency: data.currency,
-    }
-  );
-
-  const formattedTotal = parseFloat(data.total / 100).toLocaleString("en", {
-    style: "currency",
-    currency: data.currency,
-  });
-
   contractNameElement.innerHTML = `Renew "${data.name}"`;
   endElement.innerHTML = renewalEndDate.toISOString().split("T", 1)[0];
   productNameElement.innerHTML = products;
-  quantityElement.innerHTML = `${data.quantity} &#215; ${formattedUnitPrice}/year`;
+  quantityElement.innerHTML = `${data.quantity} &#215; ${
+    (data.unitPrice, data.currency)
+  }/year`;
   startElement.innerHTML = renewalStartDate.toISOString().split("T", 1)[0];
-  totalElement.innerHTML = formattedTotal;
+  totalElement.innerHTML = formattedCurrency(data.total, data.currency);
 }
