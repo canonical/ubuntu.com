@@ -1,52 +1,34 @@
-function getCardImgFilename(brand) {
-  switch (brand) {
-    case "visa":
-      return "832cf121-visa.png";
-    case "mastercard":
-      return "83a09dbe-mastercard.png";
-    case "amex":
-      return "91e62c4f-amex.png";
-    default:
-      return false;
-  }
-}
+const productNames = {
+  "uai-essential-desktop": "UA Infra Essential Desktop",
+  "uai-standard-desktop": "UA Infra Standard Desktop",
+  "uai-advanced-desktop": "UA Infra Advanced Desktop",
+  "uai-essential-physical-server": "UA Infra Essential Physical Server",
+  "uai-standard-physical-server": "UA Infra Standar Physical Server",
+  "uai-advanced-physical-server": "UA Infra Advance Physical Server",
+  "uai-essential-virtual-server": "UA Infra Essential Virtual Server",
+  "uai-standard-virtual-server": "UA Infra Standard Virtual Server",
+  "uai-advanced-virtual-server": "UA Infra Advanced Virtual Server",
+};
 
-function getProductName(slug) {
-  switch (slug) {
-    case "uai-essential-desktop":
-      return "UA Infra Essential Desktop";
-    case "uai-standard-desktop":
-      return "UA Infra Standard Desktop";
-    case "uai-advanced-desktop":
-      return "UA Infra Advanced Desktop";
-    case "uai-essential-physical-server":
-      return "UA Infra Essential Physical Server";
-    case "uai-standard-physical-server":
-      return "UA Infra Standar Physical Server";
-    case "uai-advanced-physical-server":
-      return "UA Infra Advance Physical Server";
-    case "uai-essential-virtual-server":
-      return "UA Infra Essential Virtual Server";
-    case "uai-standard-virtual-server":
-      return "UA Infra Standard Virtual Server";
-    case "uai-advanced-virtual-server":
-      return "UA Infra Advanced Virtual Server";
-    default:
-      return false;
-  }
-}
+const cardBrandImages = {
+  visa: "832cf121-visa.png",
+  mastercard: "83a09dbe-mastercard.png",
+  amex: "91e62c4f-amex.png",
+};
 
 function getProductsString(productsString) {
   const productSlugs = eval(productsString);
-  let productNames = [];
+  let products = [];
   let formattedString = "";
 
   if (productSlugs instanceof Array) {
     productSlugs.forEach((slug) => {
-      productNames.push(getProductName(slug));
+      if (slug in productNames) {
+        products.push(productNames[slug]);
+      }
     });
 
-    formattedString = productNames.join(", ");
+    formattedString = products.join(", ");
   }
 
   return formattedString;
@@ -74,7 +56,7 @@ export function setPaymentInformation(paymentMethod, modal) {
     cardInfo.brand.charAt(0).toUpperCase() + cardInfo.brand.slice(1);
   const cardText = `${cardBrandFormatted} ending ${cardInfo.last4}`;
   const cardExpiry = `${cardInfo.exp_month}/${cardInfo.exp_year}`;
-  const cardImage = getCardImgFilename(cardInfo.brand);
+  const cardImage = cardBrandImages[cardInfo.brand];
 
   if (cardImage) {
     cardImgEl.innerHTML = `<img src="https://assets.ubuntu.com/v1/${cardImage}" />`;
