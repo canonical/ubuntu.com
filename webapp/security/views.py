@@ -7,7 +7,6 @@ from math import ceil
 
 # Packages
 import flask
-import re
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
@@ -362,21 +361,32 @@ def cve(cve_id):
 def prepare_cves_to_create(cve_data):
 
     cve_object = []
-    packages = []
-    references = []
-    bugs = []
 
     for data in cve_data:
+        packages = []
+        references = []
+        bugs = []
+
         # Check if there are packages before mapping
         if data.get("packages"):
             for package_data in data["packages"]:
                 releases = []
-                for rel in package_data["releases"]:
+                for release_data in package_data["releases"]:
+
+                    get_release_object = (
+                        db_session.query(Release)
+                        .filter(Release.codename == release_data["name"])
+                        .all()
+                    )
+
                     releases.append(
                         PackageReleaseStatus(
-                            name=rel["name"],
-                            status=rel["status"],
-                            status_description=rel["status_description"],
+                            name=release_data["name"],
+                            status=release_data["status"],
+                            status_description=release_data[
+                                "status_description"
+                            ],
+                            release=get_release_object,
                         )
                     )
                 packages.append(
@@ -479,7 +489,7 @@ def prepare_cves_to_update(cve_data):
         # Check if there are packages before mapping
         if data.get("packages"):
             cve.packages.clear()
-            for index, package_data in enumerate(data["packages"]):
+            for package_data in data["packages"]:
                 package = Package(
                     name=package_data["name"],
                     source=package_data["source"],
@@ -487,16 +497,23 @@ def prepare_cves_to_update(cve_data):
                     debian=package_data["debian"],
                     releases=[],
                 )
-                package.releases.clear()
                 for release_data in package_data["releases"]:
+
+                    get_release_object = (
+                        db_session.query(Release)
+                        .filter(Release.codename == release_data["name"])
+                        .all()
+                    )
+
                     package_release_status = PackageReleaseStatus(
                         name=release_data["name"],
                         status=release_data["status"],
                         status_description=release_data["status_description"],
+                        release=get_release_object,
                     )
 
-                package.releases.append(package_release_status)
-            cve.packages.append(package)
+                    package.releases.append(package_release_status)
+                cve.packages.append(package)
         cve_object.append(cve)
 
     return cve_object
