@@ -44,25 +44,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="disco", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -75,29 +72,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -110,29 +100,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -145,29 +128,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -227,29 +203,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -262,29 +231,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -297,29 +259,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -332,29 +287,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -375,29 +323,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -410,29 +351,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -445,29 +379,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -480,29 +407,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -523,29 +443,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -558,29 +471,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -593,29 +499,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -628,29 +527,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -671,29 +563,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -706,29 +591,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -741,29 +619,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -776,29 +647,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -811,29 +675,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -846,29 +703,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -881,29 +731,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -924,29 +767,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -967,29 +803,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -1002,29 +831,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -1037,29 +859,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -1080,29 +895,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -1123,29 +931,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -1158,29 +959,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -1193,29 +987,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE"),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),
@@ -1228,29 +1015,22 @@ def load_sample_cve():
                     ubuntu="https://launchpad.net/ubuntu/+source/gitlab",
                     debian="https://tracker.debian.org/pkg/gitlab",
                     releases=[
-                        PackageReleaseStatus(name="Upstream", status="DNE",),
+                        PackageReleaseStatus(name="upstream", status="DNE"),
                         PackageReleaseStatus(
-                            name="Ubuntu 12.04 ESM (Precise Pangolin)",
-                            status="needs-triage",
+                            name="precise", status="needs-triage",
+                        ),
+                        PackageReleaseStatus(name="trusty", status="DNE"),
+                        PackageReleaseStatus(
+                            name="xenial", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 14.04 ESM (Precise Pangolin)",
-                            status="DNE",
+                            name="bionic", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 16.04 LTS (Xenial Xerus)",
-                            status="needs-triage",
+                            name="eon", status="needs-triage",
                         ),
                         PackageReleaseStatus(
-                            name="Ubuntu 18.04 LTS (Bionic Beaver)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 19.10 (Eoan Ermine)",
-                            status="needs-triage",
-                        ),
-                        PackageReleaseStatus(
-                            name="Ubuntu 20.04 (Focal Fossa)",
+                            name="focal",
                             status="not-affected",
                             status_description="(1.0.49-4)",
                         ),

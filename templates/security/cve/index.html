@@ -74,7 +74,7 @@
           <th>CVE</th>
           <th>Package</th>
           {% for release in releases %}
-          <th>{{ release.name }}</th>
+          <th>Ubuntu {{ release.name }} {{ release.version }} {{ release.support_tag }}</th>
           {% endfor %}
         </tr>
       </thead>
@@ -86,9 +86,11 @@
           {% if loop.index == 1 %}
           <td>{{ package.name }}</td>
           {% for rel in package.releases %}
-          {% if rel.name != 'Upstream' %}
-          <td>{{ rel.status }}</td>
-          {% endif %}
+            {% if rel.name != 'upstream' %}
+              {% if (rel.release[0].esm_expires.strftime('%Y-%m-%d') > now('%Y-%m-%d')) %}
+              <td>{{ rel.status }}</td>
+              {% endif %}
+            {% endif %}
           {% endfor %}
           {% endif %}
           {% endfor %}
@@ -98,9 +100,11 @@
         <tr>
           <td>{{ package.name }}</td>
           {% for rel in package.releases %}
-          {% if rel.name != 'Upstream' %}
-          <td>{{ rel.status }}</td>
-          {% endif %}
+            {% if rel.name != 'upstream' %}
+              {% if rel.release[0].esm_expires.strftime('%Y-%m-%d') > now('%Y-%m-%d') %}
+              <td>{{ rel.status }}</td>
+              {% endif %}
+            {% endif %}
           {% endfor %}
           {% endif %}
         </tr>
