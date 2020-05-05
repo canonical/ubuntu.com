@@ -89,7 +89,18 @@
                     <tr class="p-table__row">
                       <td class="u-no-padding{% if open_subscription == contract['contractInfo']['id'] %} p-table--open"{% endif %}">
                         <button class="u-toggle u-toggle--full-width u-align--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>{% if contract['expiring'] %}<div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} day{% if contract["contractInfo"]["daysTillExpiry"] > 1 %}s{% endif %}</div>{% endif %}
+                          {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                          {% if contract['expiring'] %}
+                            <div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;
+                              {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
+                                Ends today
+                              {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
+                                Ends in 1 day
+                              {% else %}
+                                Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} days
+                              {% endif %}
+                            </div>
+                          {% endif %}
                         </button>
                       </td>
                       <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
@@ -150,7 +161,15 @@
                                     <td class="u-align--right">
                                       <i class="p-icon--warning" style="margin-top: 0.3rem;"></i>&nbsp;&nbsp;Ends:
                                     </td>
-                                    <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>&nbsp;&mdash;&nbsp;in {{ contract['contractInfo']['daysTillExpiry'] }} days</td>
+                                    <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>&nbsp;&mdash;&nbsp;
+                                      {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
+                                        today
+                                      {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
+                                        in 1 day
+                                      {% else %}
+                                        in {{ contract["contractInfo"]["daysTillExpiry"] }} days
+                                      {% endif %}
+                                    </td>
                                   </tr>
                                 {% else %}
                                   <tr style="border-top: 0;">
