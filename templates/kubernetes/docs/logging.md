@@ -239,7 +239,7 @@ the Graylog web interface, configure the reverse proxy with the following
 template ([download it here][graylog-vhost]):
 
 <pre><code class="lang-bash">&lt;Location &quot;/&quot;&gt;
-    RequestHeader set X-Graylog-Server-URL &quot;http:///&quot;
+    RequestHeader set X-Graylog-Server-URL &quot;http://&#123;&#123;servername&#125;&#125;/&quot;
     ProxyPass http://&#123;&#123;graylog_web&#125;&#125;/
     ProxyPassReverse http://&#123;&#123;graylog_web&#125;&#125;/
 &lt;/Location&gt;
