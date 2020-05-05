@@ -34,8 +34,8 @@ function getProductsString(productsString) {
   return formattedString;
 }
 
-function formattedCurrency(amount, currency) {
-  const currencyString = new Intl.NumberFormat("en-GB", {
+function formattedCurrency(amount, currency, locale) {
+  const currencyString = new Intl.NumberFormat(locale, {
     style: "currency",
     currency: currency,
   }).format(parseFloat(amount / 100));
@@ -92,9 +92,11 @@ export function setRenewalInformation(data, modal) {
   contractNameElement.innerHTML = `Renew "${data.name}"`;
   endElement.innerHTML = renewalEndDate.toISOString().split("T", 1)[0];
   productNameElement.innerHTML = products;
-  quantityElement.innerHTML = `${data.quantity} &#215; ${
-    (data.unitPrice, data.currency)
-  }/year`;
+  quantityElement.innerHTML = `${data.quantity} &#215; ${formattedCurrency(
+    data.unitPrice,
+    data.currency,
+    "en-GB"
+  )}/year`;
   startElement.innerHTML = renewalStartDate.toISOString().split("T", 1)[0];
-  totalElement.innerHTML = formattedCurrency(data.total, data.currency);
+  totalElement.innerHTML = formattedCurrency(data.total, data.currency, "en");
 }
