@@ -364,6 +364,8 @@ function handleIncompletePayment(invoice) {
   } else if (requiresAuthentication(invoice)) {
     // 3DS has been requested by Stripe
     clearTimeout(pollingTimer);
+    resetProgressIndicator();
+
     stripe.confirmCardPayment(invoice.pi_secret).then(function (result) {
       handle3DSresponse(result);
     });
@@ -418,9 +420,13 @@ function handle3DSresponse(data) {
   submitted3DS = true;
 
   if (data.error) {
-    presentError(data.error.message);
+    presentError({
+      message: data.error.message,
+      type: "notification",
+    });
     submitted3DS = false;
   } else {
+    enableProcessingState();
     pollRenewalStatus();
   }
 }
@@ -474,6 +480,7 @@ function handleProcessPaymentResponse(data) {
 function handleSuccessfulPayment() {
   sendGAEvent("payment succeeded");
   clearProgressTimers();
+  resetProgressIndicator();
   progressIndicator.querySelector(".p-icon--spinner").classList.add("u-hide");
   progressIndicator
     .querySelector(".p-icon--success")
@@ -528,6 +535,8 @@ function presentError(errorObject) {
   } else if (errorObject.type === "dialog") {
     errorDialog.innerHTML = errorObject.message;
     showDialogMode();
+  } else {
+    console.error(`invalid argument: ${errorObject}`);
   }
 }
 
