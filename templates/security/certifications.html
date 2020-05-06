@@ -46,21 +46,28 @@
         The standard puts stringent requirements on testing and ensuring that the cryptographic implementations meet the standards and work as expected. The testing and validation must be performed by a laboratory, which is accredited under the Cryptographic and Security Testing (CST) Laboratory Accreditation Program (LAP) and is part of NIST’s <a class="p-link--external" href="https://www.nist.gov/nvlap/">National Voluntary Laboratory Accreditation Program (NVLAP)</a>. The validation testing for Ubuntu 16.04 was performed by atsec Information Security, a U.S. Govt and BSI accredited laboratory.
       </p>
       <p>
-        Anyone deploying systems for U.S. Federal government use including the cloud services are required to use FIPS 140-2 compliant systems. FIPS 140-2 is also used commonly outside of US Federal space. It has been adopted in regulated industries like finance, healthcare, legal and manufacturing and few others where there are Federal regulations on data security.
+        Anyone deploying systems for U.S. Federal government use including the cloud services is required to use FIPS 140-2 compliant systems. FIPS 140-2 is also used commonly outside of US Federal space. It has been adopted in regulated industries like finance, healthcare, legal and manufacturing and a few others where there are Federal regulations on data security.
       </p>
       <p>
-        Canonical has validated the following cryptographic modules for Ubuntu 16.04:
+        Canonical has validated the following cryptographic modules for Ubuntu 18.04 LTS (the modules are certified on Intel x86_64 and IBM Z hardware platforms):
       </p>
-      <ul class="p-list">
+      <ul>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/Projects/Cryptographic-Module-Validation-Program/Certificate/3633">OpenSSH-Client validated level 1 March 2020 (#3633)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3632">OpenSSH-Server validated level 1 March 2020 (#3632)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3622">OpenSSL validated level 1 Feb. 2020 (#3622)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3647">Kernel Crypto API validated level 1 April 2020 (#3647)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/Projects/Cryptographic-Module-Validation-Program/Certificate/3648">Strongswan validated level 1 April 2020 (#3648)</a></li>
+      </ul>
+      <p>
+        Canonical has validated the following cryptographic modules for Ubuntu 16.04 LTS (the modules are certified on Intel x86_64, IBM Power8 and IBM Z hardware platforms):
+      </p>
+      <ul>
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2907">OpenSSH-Client validated level 1 May 2017 (#2907)</a></li>
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2906">OpenSSH-Server validated level 1 May 2017 (#2906)</a></li>
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2888">OpenSSL validated level 1 April 2017 (#2888)</a></li>
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2962">Kernel Crypto API validated level 1 July 2017 (#2962)</a></li>
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2978">Strongswan validated level 1 July 2017 (#2978)</a></li>
       </ul>
-      <p>
-        The modules are certified on Intel x86_64, IBM Power8 and IBM Z hardware platforms.
-      </p>
     </div>
     <div class="col-4 u-vertically-center u-hide--small">
       <img src="https://assets.ubuntu.com/v1/6c2ebd36-fips-validated-140-2-logo.png" alt="" width="150">
