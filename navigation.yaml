@@ -15,14 +15,24 @@ azure:
       hidden: True
 
 appliance:
-  title: Appliances
-  path: /appliance
+  title: Appliance
+  path: /Appliance
 
   children:
+    - title: Overview
+      path: /appliance
     - title: Governance
       path: /appliance/governance
     - title: About
       path: /appliance/about
+    - title: Contact us
+      path: /appliance/contact-us
+      hidden: True
+
+      children:
+        - title: Thank you
+          path: /appliance/thank-you
+          hidden: True
 
 aws:
   title: AWS

@@ -1,0 +1,15 @@
+{% extends "appliance/_base-appliance.html" %}
+
+{% block title %}Contact us | Ubuntu appliApplianceance{% endblock %}
+
+{% block content %}
+
+{% with h1="Contact us",
+  intro_text="If you are thinking about using Ubuntu Appliance in your commerical product or anything else, please fill in your details below and a member of our team will get in touch.",
+  formid="1266",
+  lpId="2166",
+  returnURL="https://www.ubuntu.com/appliance/thank-you" %}
+  {% include "shared/_client-contact-us-form.html" %}
+{% endwith %}
+
+{% endblock content %}
