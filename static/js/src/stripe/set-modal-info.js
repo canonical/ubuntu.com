@@ -16,12 +16,17 @@ const cardBrandImages = {
   amex: "91e62c4f-amex.png",
 };
 
-function getProductsString(productsString) {
-  const productSlugs = eval(productsString);
-  let products = [];
+function getProductsString(productsArrayString) {
+  const arrayRegex = /[[\]']+/g;
+  const isArray = arrayRegex.test(productsArrayString);
   let formattedString = "";
 
-  if (productSlugs instanceof Array) {
+  if (isArray) {
+    const productSlugs = productsArrayString
+      .replace(arrayRegex, "")
+      .split(", ");
+    let products = [];
+
     productSlugs.forEach((slug) => {
       if (slug in productNames) {
         products.push(productNames[slug]);
