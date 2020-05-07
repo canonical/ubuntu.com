@@ -62,7 +62,7 @@ const vatCountries = [
 ];
 
 // initialise Stripe
-const stripe = window.Stripe("pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46");
+const stripe = window.Stripe(window.stripePublishableKey);
 
 // customise the Stripe card field
 const style = {
