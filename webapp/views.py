@@ -105,6 +105,9 @@ def advantage_view():
     entitlements = {}
     openid = flask.session.get("openid")
     open_subscription = flask.request.args.get("subscription", None)
+    stripe_publishable_key = os.getenv(
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
+    )
 
     if not auth.is_authenticated(flask.session) and open_subscription:
         return flask.redirect(f"/login?next={flask.request.full_path}")
@@ -273,6 +276,7 @@ def advantage_view():
             enterprise_contracts=enterprise_contracts,
             personal_account=personal_account,
             open_subscription=open_subscription,
+            stripe_publishable_key=stripe_publishable_key,
         ),
         {"Cache-Control": "private"},
     )
