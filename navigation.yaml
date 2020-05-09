@@ -14,6 +14,26 @@ azure:
       path: /azure/thank-you
       hidden: True
 
+appliance:
+  title: Appliance
+  path: /Appliance
+
+  children:
+    - title: Overview
+      path: /appliance
+    - title: Governance
+      path: /appliance/governance
+    - title: About
+      path: /appliance/about
+    - title: Contact us
+      path: /appliance/contact-us
+      hidden: True
+
+      children:
+        - title: Thank you
+          path: /appliance/thank-you
+          hidden: True
+
 aws:
   title: AWS
   path: /aws
