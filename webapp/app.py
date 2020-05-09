@@ -203,7 +203,22 @@ server_docs_parser = DocParser(
     url_prefix=url_prefix,
 )
 server_docs = DiscourseDocs(
+    blueprint_name="server_docs",
     parser=server_docs_parser,
+    document_template="/docs/document.html",
+    url_prefix=url_prefix,
+)
+
+url_prefix = "/appliance/docs"
+appliance_docs_parser = DocParser(
+    api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
+    category_id=46,
+    index_topic_id=16032,
+    url_prefix=url_prefix,
+)
+appliance_docs = DiscourseDocs(
+    blueprint_name="appliance_docs",
+    parser=appliance_docs_parser,
     document_template="/docs/document.html",
     url_prefix=url_prefix,
 )
@@ -219,6 +234,7 @@ app.add_url_rule(
 )
 
 server_docs.init_app(app)
+appliance_docs.init_app(app)
 
 tutorials_path = "/tutorials"
 tutorials_docs_parser = DocParser(
