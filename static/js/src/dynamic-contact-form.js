@@ -220,15 +220,6 @@
         });
       });
 
-      // Hack for now but updates the styling based on the thank you panel
-      function checkThankYou() {
-        if (contactIndex == 4) {
-          contactModal.classList.add("thank-you");
-        } else {
-          contactModal.classList.remove("thank-you");
-        }
-      }
-
       // Updates the index and renders the changes
       function setState(index) {
         contactIndex = index;
@@ -252,8 +243,6 @@
 
       // Update the content of the modal based on the current index
       function render() {
-        checkThankYou();
-
         comment.value = createMessage();
 
         var currentContent = contactModal.querySelector(
