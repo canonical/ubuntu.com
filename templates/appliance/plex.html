@@ -10,248 +10,162 @@
 
 <section class="p-strip--light">
   <div class="row">
-    <div class="col-12">
+    <div class="col-8">
       <div class="p-media-object u-no-margin--bottom">
-        <img src="https://via.placeholder.com/150" class="p-media-object__image is-round">
+        <img src="https://assets.ubuntu.com/v1/402069bd-plex-media-server.png?w=75" class="p-media-object__image is-round" height="75" width="75">
         <div class="p-media-object__details">
           <h1>
-            Plex Media Server Ubuntu Appliance
+            Plex Media Server
           </h1>
-          <p class="p-media-object__content">By Plex, Inc.</p>
-          <p class="p-media-object__content">Plex Media allows you to organise and stream your own collection of movies, TV, music, podcasts and more from one place. Gone are the days of frustration when your favourite shows aren’t on Netflix or when someone else is using your Spotify or a Prime account.</p>
+          <p class="p-heading--three">Ubuntu Appliance</p>
+          <ul class="p-inline-list--middot">
+            <li class="p-inline-list__item">By Plex, Inc.</li>
+            <li class="p-inline-list__item">Entertainment</li>
+          </ul>
         </div>
       </div>
+    </div>
+    <div class="col-4 u-align--right">
+      <form class="p-form--inline js-download">
+        <div class="p-form__group">
+          <label for="platform" class="u-off-screen">Platform</label>
+          <select id="platform" class="js-platform-select">
+            <option value="rpi">Raspberry Pi</option>
+            <option value="kvm">KVM</option>
+            <option value="intel-nuc">Intel NUC</option>
+          </select>
+        </div>
+        <div class="p-form__group">
+          <a href="/appliance/plex/rpi" class="p-button--positive p-form__control js-download-link">Download</a>
+        </div>
+      </form>
     </div>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="row">
-    <div class="col-12">
-      <div class="js-tab-container">
-        <nav class="p-tabs">
-          <ul class="p-tabs__list" role="tablist">
-            <li class="p-tabs__item" role="presentation">
-              <a href="#installation-14-04" class="p-tabs__link" id="raspberry-pi-tab" role="tab" aria-controls="raspberry-pi" aria-selected="true">Raspberry Pi</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#installation-14-04" class="p-tabs__link" id="kvm-tab" role="tab" aria-controls="kvm">KVM</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#installation-14-04" class="p-tabs__link" id="intel-nuc-tab" role="tab" aria-controls="intel-nuc">Intel NUC</a>
-            </li>
-          </ul>
-        </nav>
+    <div class="col-10">
+      <div class="u-embedded-media u-no-margin--top">
+        <iframe class="u-embedded-media__element" src="https://www.youtube.com/embed/Ldq38kkeIZQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col-2 u-align--center">
+      <ul class="p-list">
+        <li class="p-list__item">
+          <img src="https://assets.ubuntu.com/v1/5295340e-plex-screen-1.png?w=200" alt="Plex screenshot" height="150" width="150">
+        </li>
+        <li class="p-list__item">
+          <img src="https://assets.ubuntu.com/v1/c19761fb-plex-screen-2.png?w=200" alt="Plex screenshot" height="150" width="150">
+        </li>
+        <li class="p-list__item">
+          <img src="https://assets.ubuntu.com/v1/f9acbfaf-plex-screen-3.png?w=200" alt="Plex screenshot" height="150" width="150">
+        </li>
+        <li class="p-list__item">
+          <img src="https://assets.ubuntu.com/v1/4316c98c-plex-screen-4.png?w=200" alt="Plex screenshot" height="150" width="150">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-        <div class="p-tabs__content" id="raspberry-pi" role="tabpanel" aria-labelledby="raspberry-pi-tab">
-          <h2 class="p-heading--three">Install Plex on Raspberry Pi</h2>
-          <h3 class="p-heading--four">What you will need</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">A microSD card (4GB minimum, 8GB recommended)</li>
-            <li class="p-list__item is-ticked">A computer with a microSD card drive</li>
-            <li class="p-list__item is-ticked">A Raspberry Pi 2, 3 or 4</li>
-            <li class="p-list__item is-ticked">A micro-USB power cable (USB-C for the Pi 4)</li>
-            <li class="p-list__item is-ticked">A Wi-Fi network or an ethernet cable with an internet connection</li>
-            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
-            <li class="p-list__item is-ticked">An HDMI cable for the Pi 2 & 3 (micro HDMI cable for the Pi 4)</li>
-            <li class="p-list__item is-ticked">A USB keyboard</li>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--three">Plex magically organizes your media libraries and streams them to any device</h2>
+      <p>Plex magically organizes your media libraries and streams them to any device – including all your video, music, and photo libraries. With a Plex Pass, supported tuner, and digital antenna, you can also watch and record FREE over-the-air broadcast TV, including major networks. You can also enjoy podcasts Plus Plex News – the most balanced and comprehensive personalized video newsfeed out there. </p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Magically organize all your personal media – photos, music, movies, shows, even DVR-ed TV – and stream it to any device in a beautiful, simple interface, and Plex adds rich descriptions, artwork, and other related information</li>
+        <li class="p-list__item is-ticked">Podcasts are here! Search for your favorites or discover new ones through personalized recommendations. Plus: 30-second skip, variable speed playback, rich discovery, and full Plex-style support for cross-device playback status (including On Deck, so you can pick back up where you left off on any device)</li>
+        <li class="p-list__item is-ticked">Get personalized and trusted video news from over 190 global publisher partners (and growing!), including CBS, Financial Times, Euronews, and top local news sources for over 80% of markets in the US</li>
+        <li class="p-list__item is-ticked">Cut the cord! Go premium with a Plex Pass and use Plex Live TV & DVR so you can watch and record free over-the-air HD TV, like NBC, ABC, CBS, and FOX, with any supported digital antenna and tuner</li>
+        <li class="p-list__item is-ticked">Enjoy free features, like remote access, sharing, security, and casting, see your media beautifully enhanced with rich descriptions, artwork, ratings, and more</li>
+        <li class="p-list__item is-ticked">Enjoy premium features with a Plex Pass subscription: DVR & Live TV, Camera Upload, Premium Photos, Mobile Sync, Parental Controls, VIP Perks, and much more</li>
+        <li class="p-list__item is-ticked">Want to use Plex on all of your devices, any time, anywhere? Visit <a href="https://www.plex.tv/">https://www.plex.tv/</a> for more information.</li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <h2 class="p-heading--three">Snaps in the image</h2>
+      <div class="p-media-object">
+        <img src="https://assets.ubuntu.com/v1/402069bd-plex-media-server.png?w=75" class="p-media-object__image is-round" height="75" width="75">
+        <div class="p-media-object__details">
+          <h3 class="p-media-object__title">
+            <a href="https://snapcraft.io/plexmediaserver" class="p-link--external">Plex Media Server</a>
+          </h3>
+          <p class="p-media-object__content">By Plex, Inc. (plexinc)</p>
+          <ul class="p-media-object__meta-list">
+            <li>
+              <h4 class="p-muted-heading">Channel</h4>
+              <p>latest/stable</p>
+            </li>
+            <li>
+              <h4 class="p-muted-heading">Version</h4>
+              <p>1.19.3.2764-ef515a800</p>
+            </li>
+            <li>
+              <h4 class="p-muted-heading">Published</h4>
+              <p>29 April 2020</p>
+            </li>
           </ul>
-          <h3 class="p-heading--four">Get set up</h3>
-          <ol class="p-stepped-list">
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                Download the Plex Ubuntu appliance image
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                Use the <a href="https://snapcraft.io/rpi-imager" class="p-link--external">Raspberry Pi imager</a> to flash to an SDcard
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                <a href="https://ubuntu.com/tutorials/how-to-install-ubuntu-core-on-raspberry-pi#3-create-an-ubuntu-sso-account">Setup Ubuntu Core</a>
-              </p>
-              <p class="p-stepped-list__content"></p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                On a computer or mobile device, visit your Pis IP in the browser at port 32400. (E.g http://192.168.1.107:32400)
-              </p>
-              <p class="p-stepped-list__content"></p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                That’s it!
-              </p>
-              <p class="p-stepped-list__content"></p>
-            </li>
-          </ol>
-        </div>
-
-        <div class="p-tabs__content" id="kvm" role="tabpanel" aria-labelledby="kvm-tab">
-          <h2 class="p-heading--three">Install Plex on KVM</h2>
-          <h3 class="p-heading--four">What you will need</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">An Ubuntu SSO account with an SSH key</li>
-            <li class="p-list__item is-ticked">A computer running Ubuntu Desktop</li>
-          </ul>
-          <h3 class="p-heading--four">Get set up</h3>
-          <ol class="p-stepped-list">
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                Start by creating an Ubuntu SSO account
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                Import an SSH Key into your Ubuntu SSO account (instructions).
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                Download the Ubuntu Core image for amd64
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                Uncompress the image with the following command:
-                unxz ubuntu-core-16-amd64.img.xz
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                Install the qemu-kvm package with the following command:
-                sudo apt install qemu-kvm
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                Then, run the kvm-ok command to check KVM status and your hardware:
-                kvm-ok
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                The message should say:
-                INFO: /dev/kvm exists
-                KVM acceleration can be used
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                You can now launch a virtual machine with KVM, using the following command:
-              </p>
-              <p><code>kvm -smp 2 -m 1500 -netdev user,id=mynet0,hostfwd=tcp::8022-:22,hostfwd=tcp::8090-:80 -device virtio-net-pci,netdev=mynet0 -vga qxl -drive file=ubuntu-core-16-amd64.img,format=raw</code></p>
-              <div class="p-notification--information">
-                <p class="p-notification__response">
-                  <span class="p-notification__status">Note:</span>this command sets up port redirections: <br>
-                  <code>localhost:8022</code> is redirecting to port 22 of the virtual machine for accessing it through SSH<br> <code>localhost:8090</code> is redirecting to its port 80
-                </p>
-              </div>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                You should now see a window, with your Ubuntu Core virtual machine booting inside it.
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                The system will boot then become ready to configure. The device will display the prompt “Press enter to configure”
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                Press enter then select “Start” to begin configuring your network and an administrator account. Follow the instructions on the screen, you will be asked to configure your network and enter your Ubuntu SSO credentials
-              </p>
-            </li>
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-                At the end of the process, you will see your credentials to access your Ubuntu Core machine:
-                This device is registered to [Ubuntu SSO email address].
-                Remote access was enabled via authentication with the SSO user [Ubuntu SSO user name]
-                Public SSH keys were added to the device for remote access
-                Once setup is done, you can login with SSH into Ubuntu Core, using the following command:
-                ssh -p 8022 [Ubuntu SSO user name]@localhost
-              </p>
-            </li>
-          </ol>
-          <p>Your user name is your Ubuntu SSO user name, which you will have been reminded of at the end of the account configuration step.</p>
-        </div>
-
-        <div class="p-tabs__content" id="intel-nuc" role="tabpanel" aria-labelledby="intel-nuc-tab">
-          <h2 class="p-heading--three">Install Plex on an Intel NUC</h2>
-          <h3 class="p-heading--four">What you will need</h3>
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Two USB 2.0/3.0 drives (at least 2 GB each)</li>
-            <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
-            <li class="p-list__item is-ticked">A Wi-Fi network or an ethernet cable with an internet connection</li>
-            <li class="p-list__item is-ticked">A USB power cable</li>
-            <li class="p-list__item is-ticked">A Mini HDMI to HDMI cable</li>
-            <li class="p-list__item is-ticked">A USB keyboard</li>
-          </ul>
-          <h3 class="p-heading--four">Get set up</h3>
-          <ol class="p-stepped-list">
-            <li class="p-stepped-list__item u-no-padding--bottom">
-              <p class="p-stepped-list__title">
-          <p>Get set up by <a href="/download/intel-nuc">following the instructions</a></p>
         </div>
       </div>
+      <hr>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
   <div class="row">
-    <div class="col-6">
+    <div class="col-8">
       <h2>Appliance policies</h2>
       <p>Every Ubuntu appliance publisher is responsible for providing privacy policies and rights to operate with their brand. More information can be found on the governance page.</p>
-      <a href="" class="p-button--neutral">Plex Media Server Policies</a>
+      <a href="https://www.plex.tv/en-gb/about/privacy-legal/" class="p-button--neutral p-link--external">Plex Media Server Policies</a>
     </div>
-    <div class="col-6">
-      [image or quote]
+    <div class="col-4 u-align--center">
+      <img src="https://assets.ubuntu.com/v1/cb5ac5c9-privacy-policy.svg" alt="" height="200" width="200">
     </div>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="row">
-    <div class="col-6">
+    <div class="col-8">
       <h2>The developers</h2>
       <p>The Plex media Ubuntu appliance is a commercial appliance and the software is produced by developers at Plexinc.</p>
-      <a href="https://plex.tv" class="p-button--neutral">Plex.tv</a>
+      <a href="https://plex.tv" class="p-button--neutral p-link--external">Plex.tv</a>
     </div>
-    <div class="col-6">
-      [image or quote]
+    <div class="col-4 u-align--center u-vertically-center">
+      <img src="https://assets.ubuntu.com/v1/3cd85693-Plex.png" alt="" height="100" width="250">
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
   <div class="row">
-    <div class="col-6">
+    <div class="col-8">
       <h2>Get started</h2>
       <p>Once you have installed and set up your Plex Media Server Ubuntu appliance you will be taken through set up in your browser. If you have any more questions or want to go further, the developers of Plex Media Server have lots of documentation to help you get started.</p>
-      <a href="" class="p-button--neutral">Get Started</a>
+      <a href="https://snapcraft.io/plexmediaserver" class="p-button--neutral p-link--external">Get Started</a>
     </div>
-    <div class="col-6">
-      [image or quote]
+    <div class="col-4 u-align--center u-vertically-center">
+      <img src="https://assets.ubuntu.com/v1/402069bd-plex-media-server.png?w=150" height="150" width="150">
     </div>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="row">
-    <div class="col-6">
+    <div class="col-8">
       <h2>Build your own appliance</h2>
       <p>Making with Ubuntu is easy. If you have an application that you would like to make a part of the Ubuntu appliance portfolio, read our guidelines and get in touch. Soon you will have a page like this.</p>
-      <a href="" class="p-button--neutral">Get in touch</a>
+      <a href="/appliance/contact-us" class="p-button--neutral">Get in touch</a>
     </div>
-    <div class="col-6">
-      [image or quote]
+    <div class="col-4 u-align--center">
+      <img src="https://assets.ubuntu.com/v1/03d1807c-2+-+Build+your+own+stack+and+prototype+your+application.svg" alt="" height="300" width="400">
     </div>
   </div>
 </section>
 
-<script src="{{ versioned_static('js/build/tabotronic.min.js') }}" defer></script>
+<script src="{{ versioned_static('js/build/appliance.min.js') }}" defer></script>
+
 {% endblock content %}
