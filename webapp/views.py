@@ -104,7 +104,7 @@ def releasenotes_redirect():
                 f"https://wiki.ubuntu.com/{release_slug}/ReleaseNotes"
             )
 
-    return flask.redirect(f"https://wiki.ubuntu.com/Releases")
+    return flask.redirect("https://wiki.ubuntu.com/Releases")
 
 
 def build():
