@@ -344,7 +344,9 @@ def advantage_view():
 
     if user_info(flask.session):
         advantage = AdvantageContracts(
-            session, flask.session["authentication_token"]
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
         try:
@@ -471,7 +473,11 @@ def advantage_view():
 
 def post_stripe_method_id():
     if user_info(flask.session):
-        advantage = AdvantageContracts(flask.session["authentication_token"])
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
 
         if not flask.request.is_json:
             return flask.jsonify({"error": "JSON required"}), 400
@@ -493,7 +499,11 @@ def post_stripe_method_id():
 
 def post_stripe_invoice_id(renewal_id, invoice_id):
     if user_info(flask.session):
-        advantage = AdvantageContracts(flask.session["authentication_token"])
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
 
         return advantage.post_stripe_invoice_id(
             flask.session, invoice_id, renewal_id
@@ -504,7 +514,11 @@ def post_stripe_invoice_id(renewal_id, invoice_id):
 
 def get_renewal(renewal_id):
     if user_info(flask.session):
-        advantage = AdvantageContracts(flask.session["authentication_token"])
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
 
         return advantage.get_renewal(flask.session, renewal_id)
     else:
@@ -513,7 +527,11 @@ def get_renewal(renewal_id):
 
 def accept_renewal(renewal_id):
     if user_info(flask.session):
-        advantage = AdvantageContracts(flask.session["authentication_token"])
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
 
         return advantage.accept_renewal(flask.session, renewal_id)
     else:

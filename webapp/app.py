@@ -66,6 +66,14 @@ app = FlaskBase(
     static_folder="../static",
 )
 
+# Settings
+app.config["CONTRACTS_API_URL"] = os.getenv(
+    "CONTRACTS_API_URL", "https://contracts.canonical.com"
+).rstrip("/")
+app.config["CANONICAL_LOGIN_URL"] = os.getenv(
+    "CANONICAL_LOGIN_URL", "https://login.ubuntu.com"
+).rstrip("/")
+
 talisker.requests.configure(api_session)
 
 

@@ -3,7 +3,7 @@ class AdvantageContracts:
         self,
         session,
         authentication_token,
-        api_url="https://contracts.canonical.com/",
+        api_url="https://contracts.canonical.com",
     ):
         """
         Expects a Talisker session in most circumstances,
@@ -12,12 +12,12 @@ class AdvantageContracts:
 
         self.session = session
         self.authentication_token = authentication_token
-        self.api_url = api_url
+        self.api_url = api_url.rstrip("/")
 
     def _request(self, method, path, json=None):
         return self.session.request(
             method=method,
-            url=f"{self.api_url}{path}",
+            url=f"{self.api_url}/{path}",
             json=json,
             headers={"Authorization": f"Macaroon {self.authentication_token}"},
         )

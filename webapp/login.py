@@ -52,9 +52,10 @@ def login_handler():
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
 
+    api_url = flask.current_app.config["CONTRACTS_API_URL"]
+
     response = session.request(
-        method="get",
-        url="https://contracts.canonical.com/v1/canonical-sso-macaroon",
+        method="get", url=f"{api_url}/v1/canonical-sso-macaroon"
     )
     flask.session["macaroon_root"] = response.json()["macaroon"]
 
@@ -66,7 +67,7 @@ def login_handler():
             break
 
     return open_id.try_login(
-        "https://login.ubuntu.com",
+        flask.current_app.config["CANONICAL_LOGIN_URL"],
         ask_for=["email", "nickname", "image"],
         ask_for_optional=["fullname"],
         extensions=[openid_macaroon],
@@ -84,7 +85,7 @@ def after_login(resp):
     ).decode("utf-8")
 
     if not resp.nickname:
-        return flask.redirect("https://login.ubuntu.com")
+        return flask.redirect(flask.current_app.config["CANONICAL_LOGIN_URL"])
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
@@ -106,7 +107,8 @@ def logout():
 
     empty_session(flask.session)
 
+    login_url = flask.current_app.config["CANONICAL_LOGIN_URL"]
+
     return flask.redirect(
-        "https://login.ubuntu.com/+logout"
-        f"?return_to={return_to}&return_now=True"
+        f"{login_url}/+logout?return_to={return_to}&return_now=True"
     )
