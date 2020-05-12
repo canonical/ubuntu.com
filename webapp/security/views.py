@@ -1,6 +1,5 @@
 # Standard library
 import re
-import time
 from collections import OrderedDict
 from datetime import datetime
 from dateutil.parser import parse

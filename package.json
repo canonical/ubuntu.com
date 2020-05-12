@@ -3,6 +3,7 @@
     "test": "yarn run lint-scss && yarn run lint-python && yarn run test-python",
     "test-python": "python3 -m unittest discover tests",
     "lint-python": "flake8 webapp tests && black --check --line-length 79 webapp tests",
+    "format-python": "black --line-length 79 webapp tests",
     "lint-scss": "stylelint static/sass/**/*.scss",
     "lint-js": "eslint static/js/src/**/*.js",
     "test-js": "NODE_ICU_DATA=node_modules/full-icu jest",
