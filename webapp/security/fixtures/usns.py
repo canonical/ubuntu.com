@@ -8,7 +8,7 @@ import json
 from macaroonbakery import httpbakery
 
 
-parser = argparse.ArgumentParser(description="CLI to post USNs",)
+parser = argparse.ArgumentParser(description="CLI to post USNs")
 parser.add_argument("file_path", action="store", type=str)
 parser.add_argument(
     "--host", action="store", type=str, default="http://localhost:8001"

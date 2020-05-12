@@ -77,6 +77,7 @@ app = FlaskBase(
 
 talisker.requests.configure(api_session)
 
+
 # Error pages
 @app.errorhandler(404)
 def not_found_error(error):
