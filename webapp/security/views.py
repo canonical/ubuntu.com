@@ -1,5 +1,6 @@
 # Standard library
 import re
+import time
 from collections import OrderedDict
 from datetime import datetime
 from dateutil.parser import parse
@@ -19,14 +20,13 @@ from sqlalchemy.orm.exc import NoResultFound
 # Local
 from webapp.security.database import db_session
 from webapp.security.models import (
+    Bug,
+    CVE,
     Notice,
+    Package,
+    PackageStatus,
     Reference,
     Release,
-    CVE,
-    Package,
-    PackageReleaseStatus,
-    CVEReference,
-    Bug,
 )
 from webapp.security.schemas import NoticeSchema
 from webapp.security.auth import authorization_required
@@ -92,7 +92,10 @@ def notices():
     order_by = flask.request.args.get("order", type=str)
 
     releases = (
-        db_session.query(Release).order_by(desc(Release.release_date)).all()
+        db_session.query(Release)
+        .order_by(desc(Release.release_date))
+        .filter(Release.version)
+        .all()
     )
     notices_query = db_session.query(Notice)
 
@@ -404,11 +407,11 @@ def cve_index():
             Release.support_expires > datetime.now(),
             Release.esm_expires > datetime.now(),
         )
-    )
+    ).all()
 
     return flask.render_template(
         "security/cve/index.html",
-        releases=releases.all(),
+        releases=releases,
         cves=cves,
         total_results=total_results,
         total_pages=ceil(total_results / limit),
@@ -433,167 +436,87 @@ def cve(cve_id):
 
 # CVE API
 # ===
+def _find_by_uri(object_list, uri):
+    for item in object_list:
+        if item.uri == uri:
+            return item
 
 
-def prepare_cves_to_create(cve_data):
+def _find_by_codename(object_list, codename):
+    for item in object_list:
+        if item.codename == codename:
+            return item
 
-    cve_object = []
-
-    for data in cve_data:
-        packages = []
-        references = []
-        bugs = []
-
-        # Check if there are packages before mapping
-        if data.get("packages"):
-            for package_data in data["packages"]:
-                releases = []
-                for release_data in package_data["releases"]:
-
-                    get_release_object = (
-                        db_session.query(Release)
-                        .filter(Release.codename == release_data["name"])
-                        .all()
-                    )
-
-                    releases.append(
-                        PackageReleaseStatus(
-                            name=release_data["name"],
-                            status=release_data["status"],
-                            status_description=release_data[
-                                "status_description"
-                            ],
-                            release=get_release_object,
-                        )
-                    )
-                packages.append(
-                    Package(
-                        name=package_data["name"],
-                        source=package_data["source"],
-                        ubuntu=package_data["ubuntu"],
-                        debian=package_data["debian"],
-                        releases=releases,
-                    )
-                )
-
-        if data.get("references"):
-            for ref in data["references"]:
-                references.append(CVEReference(uri=ref))
-
-        if data.get("bugs"):
-            for b in data["bugs"]:
-                bugs.append(Bug(uri=b))
-
-        cve = CVE(
-            id=data["id"],
-            status=data.get("status", ""),
-            last_updated_date=parse(data.get("last_updated_date"))
-            if data.get("last_updated_date")
-            else None,
-            public_date_usn=parse(data.get("public_date_usn"))
-            if data.get("public_date_usn")
-            else None,
-            public_date=parse(data.get("public_date"))
-            if data.get("public_date")
-            else None,
-            priority=data.get("priority"),
-            cvss=data.get("cvss"),
-            assigned_to=data.get("assigned_to"),
-            discovered_by=data.get("discovered_by"),
-            approved_by=data.get("approved_by"),
-            description=data.get("description"),
-            ubuntu_description=data.get("ubuntu_description"),
-            notes=data.get("notes", []),
-            packages=packages,
-            references=references,
-            bugs=bugs,
-        )
-        cve_object.append(cve)
-    return cve_object
+    raise Exception(f"No release found with codename '{codename}'")
 
 
-def prepare_cves_to_update(cve_data):
+def update_cve(cve, data, references, bugs, releases):
+    cve.status = data.get("status")
+    cve.last_updated_date = (
+        parse(data.get("last_updated_date"))
+        if data.get("last_updated_date")
+        else None
+    )
+    cve.public_date_usn = (
+        parse(data.get("public_date_usn"))
+        if data.get("public_date_usn")
+        else None
+    )
+    cve.public_date = (
+        parse(data.get("public_date")) if data.get("public_date") else None
+    )
+    cve.priority = data.get("priority")
+    cve.crd = data.get("crd")
+    cve.cvss = data.get("cvss")
+    cve.assigned_to = data.get("assigned_to")
+    cve.discovered_by = data.get("discovered_by")
+    cve.approved_by = data.get("approved_by")
+    cve.description = data.get("description")
+    cve.ubuntu_description = data.get("ubuntu_description")
+    cve.notes = data.get("notes")
 
-    cve_object = []
+    if data.get("references"):
+        cve.references.clear()
+        for uri in data["references"]:
+            reference = _find_by_uri(references, uri) or Reference(uri=uri)
+            cve.references.append(reference)
 
-    for data in cve_data:
-        cve = db_session.query(CVE).get(data["id"])
-        cve.status = data.get("status")
-        cve.last_updated_date = (
-            parse(data.get("last_updated_date"))
-            if data.get("last_updated_date")
-            else None
-        )
-        cve.public_date_usn = (
-            parse(data.get("public_date_usn"))
-            if data.get("public_date_usn")
-            else None
-        )
-        cve.public_date = (
-            parse(data.get("public_date")) if data.get("public_date") else None
-        )
-        cve.priority = data.get("priority")
-        cve.crd = data.get("crd")
-        cve.cvss = data.get("cvss")
-        cve.assigned_to = data.get("assigned_to")
-        cve.discovered_by = data.get("discovered_by")
-        cve.approved_by = data.get("approved_by")
-        cve.description = data.get("description")
-        cve.ubuntu_description = data.get("ubuntu_description")
-        cve.notes = data.get("notes")
+    if data.get("bugs"):
+        cve.bugs.clear()
+        for bug_url in data["bugs"]:
+            bug = _find_by_uri(bugs, uri) or Bug(uri=bug_url)
+            cve.bugs.append(bug)
 
-        if data.get("references"):
-            cve.references.clear()
-            for uri in data["references"]:
-                reference = (
-                    db_session.query(CVEReference)
-                    .filter(CVEReference.uri == uri)
-                    .first()
-                )
-                if not reference:
-                    reference = uri
-                cve.references.append(reference)
+    # Packages
+    # Check if there are packages before mapping
+    if data.get("packages"):
+        cve.packages.clear()
 
-        if data.get("bugs"):
-            cve.bugs.clear()
-            for b in data["bugs"]:
-                bug = db_session.query(Bug).filter(Bug.uri == uri).first()
-                if not bug:
-                    bug = Bug(uri=b)
-                cve.bugs.append(bug)
+        for package_data in data["packages"]:
+            package_statuses = []
 
-        # Packages
-        # Check if there are packages before mapping
-        if data.get("packages"):
-            cve.packages.clear()
-            for package_data in data["packages"]:
-                package = Package(
-                    name=package_data["name"],
-                    source=package_data["source"],
-                    ubuntu=package_data["ubuntu"],
-                    debian=package_data["debian"],
-                    releases=[],
-                )
-                for release_data in package_data["releases"]:
-
-                    get_release_object = (
-                        db_session.query(Release)
-                        .filter(Release.codename == release_data["name"])
-                        .all()
-                    )
-
-                    package_release_status = PackageReleaseStatus(
-                        name=release_data["name"],
+            for release_data in package_data["releases"]:
+                package_statuses.append(
+                    PackageStatus(
                         status=release_data["status"],
                         status_description=release_data["status_description"],
-                        release=get_release_object,
+                        release=_find_by_codename(
+                            releases, release_data["name"]
+                        ),
                     )
+                )
 
-                    package.releases.append(package_release_status)
-                cve.packages.append(package)
-        cve_object.append(cve)
+            package = Package(
+                name=package_data["name"],
+                source=package_data["source"],
+                ubuntu=package_data["ubuntu"],
+                debian=package_data["debian"],
+                package_statuses=package_statuses,
+            )
 
-    return cve_object
+            cve.packages.append(package)
+
+    return cve
 
 
 @authorization_required
@@ -624,8 +547,6 @@ def bulk_upsert_cve():
     """
 
     cves_data = flask.request.json
-    cves_to_create = []
-    cves_to_update = []
 
     if not type(cves_data) == list:
         return (
@@ -635,16 +556,15 @@ def bulk_upsert_cve():
             400,
         )
 
+    releases = db_session.query(Release).all()
+    references = db_session.query(Reference).all()
+    bugs = db_session.query(Bug).all()
+
     for data in cves_data:
-        cve = db_session.query(CVE).get(data["id"])
-        if cve:
-            cves_to_update.append(data)
-        else:
-            cves_to_create.append(data)
+        cve = db_session.query(CVE).get(data["id"]) or CVE(id=data["id"])
+        db_session.add(update_cve(cve, data, references, bugs, releases))
 
     try:
-        db_session.add_all(prepare_cves_to_update(cves_to_update))
-        db_session.add_all(prepare_cves_to_create(cves_to_create))
         db_session.commit()
 
     except DataError as error:

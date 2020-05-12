@@ -50,7 +50,7 @@ cve_references = Table(
     "cve_references",
     Base.metadata,
     Column("cve_id", String, ForeignKey("cve.id")),
-    Column("cve_reference_id", Integer, ForeignKey("cve_reference.id")),
+    Column("reference_id", Integer, ForeignKey("reference.id")),
 )
 
 cve_packages = Table(
@@ -58,28 +58,6 @@ cve_packages = Table(
     Base.metadata,
     Column("cve_id", String, ForeignKey("cve.id")),
     Column("cve_packages", Integer, ForeignKey("package.id")),
-)
-
-cve_package_release_status = Table(
-    "cve_package_release_status",
-    Base.metadata,
-    Column("package_id", Integer, ForeignKey("package.id")),
-    Column(
-        "package_release_status_id",
-        Integer,
-        ForeignKey("package_release_status.id"),
-    ),
-)
-
-cve_releases = Table(
-    "cve_releases",
-    Base.metadata,
-    Column("release_id", Integer, ForeignKey("release.id")),
-    Column(
-        "package_release_status_id",
-        Integer,
-        ForeignKey("package_release_status.id"),
-    ),
 )
 
 
@@ -100,7 +78,7 @@ class CVE(Base):
     assigned_to = Column(String)
     approved_by = Column(String)
     cvss = Column(String)  # CVSS vector to convert into Base score
-    references = relationship("CVEReference", secondary=cve_references)
+    references = relationship("Reference", secondary=cve_references)
     bugs = relationship("Bug", secondary=cve_bugs)
     packages = relationship("Package", secondary=cve_packages)
     status = Column(String)
@@ -145,6 +123,7 @@ class Release(Base):
     release_date = Column(DateTime)
     esm_expires = Column(DateTime)
     support_expires = Column(DateTime)
+    package_statuses = relationship("PackageStatus")
 
     @hybrid_property
     def support_tag(self):
@@ -158,13 +137,6 @@ class Release(Base):
         return ""
 
 
-class CVEReference(Base):
-    __tablename__ = "cve_reference"
-
-    id = Column(Integer, primary_key=True)
-    uri = Column(String)
-
-
 class Bug(Base):
     __tablename__ = "bug"
 
@@ -172,14 +144,18 @@ class Bug(Base):
     uri = Column(String)
 
 
-class PackageReleaseStatus(Base):
-    __tablename__ = "package_release_status"
+class PackageStatus(Base):
+    __tablename__ = "package_status"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
     status = Column(String)
     status_description = Column(String)
-    release = relationship("Release", secondary=cve_releases)
+
+    package_id = Column(Integer, ForeignKey("package.id"))
+    package = relationship("Package", back_populates="package_statuses")
+
+    release_id = Column(Integer, ForeignKey("release.id"))
+    release = relationship("Release", back_populates="package_statuses")
 
 
 class Package(Base):
@@ -191,6 +167,9 @@ class Package(Base):
     launchpad = Column(String)
     ubuntu = Column(String)
     debian = Column(String)
-    releases = relationship(
-        "PackageReleaseStatus", secondary=cve_package_release_status
-    )
+    package_statuses = relationship("PackageStatus")
+
+    def get_status_by_codename(self, codename):
+        for package_status in self.package_statuses:
+            if package_status.release.codename == codename:
+                return package_status.status
