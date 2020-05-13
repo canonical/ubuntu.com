@@ -43,6 +43,7 @@ function formattedCurrency(amount, currency, locale) {
   const currencyString = new Intl.NumberFormat(locale, {
     style: "currency",
     currency: currency,
+    currencyDisplay: "symbol",
   }).format(parseFloat(amount / 100));
 
   return currencyString.replace(".00", "");
@@ -81,10 +82,10 @@ export function getRenewalInformation(data) {
     quantity: `${data.quantity} &#215; ${formattedCurrency(
       data.unitPrice,
       data.currency,
-      "en-GB"
+      "en-CA"
     )}/year`,
     startDate: startDate.toISOString().split("T", 1)[0],
-    total: formattedCurrency(data.total, data.currency, "en"),
+    total: formattedCurrency(data.total, data.currency, "en-US"),
   };
 }
 
