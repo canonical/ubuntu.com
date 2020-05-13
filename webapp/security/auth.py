@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import flask
 from launchpadlib.launchpad import Launchpad
 from macaroonbakery import bakery, checkers, httpbakery
+from functools import wraps
 
 
 AUTHORIZED_TEAMS = ["canonical-security", "canonical-webmonkeys"]
@@ -54,6 +55,7 @@ def authorization_required(func):
     to login page if not.
     """
 
+    @wraps(func)
     def is_authorized(*args, **kwargs):
         macaroon_bakery = bakery.Bakery(
             location="ubuntu.com/security",
