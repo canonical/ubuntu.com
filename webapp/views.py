@@ -470,9 +470,7 @@ def advantage_view():
                         # which is information only available in the fuller
                         # renewal object get_renewal gives us
                         if renewal["status"] == "processing":
-                            renewal = advantage.get_renewal(
-                                flask.session, renewal["id"]
-                            )
+                            renewal = advantage.get_renewal(renewal["id"])
 
                         renewable = False
 
@@ -538,7 +536,7 @@ def post_stripe_method_id():
         tax_id = flask.request.json.get("tax_id")
 
         return advantage.put_method_id(
-            flask.session, account_id, payment_method_id, address, tax_id
+            account_id, payment_method_id, address, tax_id
         )
     else:
         return flask.jsonify({"error": "authentication required"}), 401
@@ -555,6 +553,8 @@ def post_stripe_invoice_id(renewal_id, invoice_id):
         return advantage.post_stripe_invoice_id(
             flask.session, invoice_id, renewal_id
         )
+
+        return advantage.post_stripe_invoice_id(invoice_id, renewal_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 
@@ -567,7 +567,7 @@ def get_renewal(renewal_id):
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
-        return advantage.get_renewal(flask.session, renewal_id)
+        return advantage.get_renewal(renewal_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 
@@ -580,7 +580,7 @@ def accept_renewal(renewal_id):
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
-        return advantage.accept_renewal(flask.session, renewal_id)
+        return advantage.accept_renewal(renewal_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 

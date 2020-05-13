@@ -56,7 +56,7 @@ class AdvantageContracts:
         response = self._request(
             method="put",
             path=f"v1/accounts/{account_id}/customer-info/stripe",
-            data={
+            json={
                 "paymentMethodID": payment_method_id,
                 "address": address,
                 "taxID": tax_id,
@@ -81,10 +81,8 @@ class AdvantageContracts:
         return response.json()
 
     def accept_renewal(self, renewal_id):
-        response = (
-            self._request(
-                method="post", path=f"v1/renewals/{renewal_id}/acceptance"
-            ),
+        response = self._request(
+            method="post", path=f"v1/renewals/{renewal_id}/acceptance"
         )
 
         return response.json()
