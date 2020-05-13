@@ -44,6 +44,12 @@ export const contractsErrorObjects = {
       'unexpected error updating customer information: {"code":"expired_card","doc_url":"https://stripe.com/docs/error-codes/expired-card","status":402,"message":"Your card has expired.","param":"exp_month","request_id":"req_7XZLOD3l39DNzs","type":"card_error"}',
     traceId: "cd5d9216-e582-4f4e-a263-f133d5dc9283",
   },
+  expiredPaymentMethod: {
+    code: "payment method error",
+    message:
+      '{"code":"expired_card","doc_url":"https://stripe.com/docs/error-codes/expired-card","status":402,"message":"Your card has expired.","request_id":"req_mQc1F6zkIAvCoh","type":"card_error"}',
+    traceId: "c53e5308-4c1b-4f66-b588-467e124539f6",
+  },
   cvcIncorrect: {
     code: "internal server error",
     message:
