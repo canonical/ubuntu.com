@@ -1,0 +1,44 @@
+<li class="p-stepped-list__item">
+  <h3 class="p-stepped-list__title">
+    Generate Secure Shell (SSH) keys
+  </h3>
+  <div class="p-stepped-list__content">
+    <p>
+      The ‘Secure Shell’ protocol provides access to your Ubuntu Appliance and uses cryptographic keys to authenticate you to the device. You will need SSH software and keys.
+    </p>
+    <p>
+      Terminal is the terminal emulator which provides a text-based command-line interface (CLI) to the Unix shell of macOS.
+    </p>
+    <p>
+      To open the macOS Terminal:
+    </p>
+    <ol>
+      <li>
+        In Finder, select Utilities from the Applications folder.
+      </li>
+      <li>
+        Find Terminal in the utilities list.
+      </li>
+    </ol>
+    <p>
+      To generate SSH keys in macOS:
+    </p>
+    <ol>
+      <li>
+        Enter the following command: <code>ssh-keygen -t rsa</code>
+      </li>
+      <li>
+        This starts the key generation process. When you execute this command, the <code>ssh-keygen</code> utility prompts you to indicate where to store the key
+      </li>
+      <li>
+        Press the <code>ENTER</code> key to accept the default location. The <code>ssh-keygen</code> utility prompts you for a passphrase
+      </li>
+      <li>
+        Type in a passphrase
+      </li>
+    </ol>
+    <p>
+      Your private key is saved to the id_rsa file in the .ssh directory and is used to verify the public key you use belongs to the same account.
+    </p>
+    </div>
+  </li>
