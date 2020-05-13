@@ -76,7 +76,14 @@
           <th>CVE</th>
           <th>Package</th>
           {% for release in releases %}
-            <th>Ubuntu {{ release.name }} {{ release.version }} {{ release.support_tag }}</th>
+            <th>
+              <div class="icon-container__icon">
+                <i class="p-icon--placeholder"></i>
+              </div>
+              <div class="icon-container__text">
+                Ubuntu {{ release.name }} {{ release.version }} {{ release.support_tag }}
+              </div>
+            </th>
           {% endfor %}
         </tr>
       </thead>
@@ -89,7 +96,32 @@
               {% endif %}
               <td>{{ package.name }}</td>
               {% for release in releases %}
-                <td>{{ package.get_status_by_codename(release.codename) }}</td>
+                <td>
+                  <div class="icon-container__icon">
+                    {% if release.status == 'DNE' or release.status == 'not-affected' %}
+                      <i class="p-icon--placeholder"></i>
+                    {% else %}
+                      {% if cve.priority == 'unknown' %}
+                        <i class="p-icon--unknown-priority"></i>
+                      {% elif cve.priority == 'negligible' %}
+                        <i class="p-icon--negligible-priority"></i>
+                      {% elif cve.priority == 'low' %}
+                        <i class="p-icon--low-priority"></i>
+                      {% elif cve.priority == 'medium' %}
+                        <i class="p-icon--medium-priority"></i>
+                      {% elif cve.priority == 'high' %}
+                        <i class="p-icon--high-priority"></i>
+                      {% elif cve.priority == 'critical' %}
+                        <i class="p-icon--critical-priority"></i>
+                      {% else %}
+                        <i class="p-icon--placeholder"></i>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                  <div class="icon-container__text">
+                    {{ package.get_status_by_codename(release.codename) }}
+                  </div>
+                </td>
               {% endfor %}
             </tr>
           {% endfor %}
