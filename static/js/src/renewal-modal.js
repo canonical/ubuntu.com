@@ -6,6 +6,7 @@ import {
 } from "./stripe/contracts-api.js";
 
 import { parseForErrorObject } from "./stripe/error-handler.js";
+import { vatCountries } from "./stripe/vat-countries.js";
 
 import {
   setPaymentInformation,
@@ -28,38 +29,6 @@ const closeModalButton = modal.querySelector(".js-close-modal");
 
 const cardErrorElement = document.getElementById("card-errors");
 const renewalErrorElement = document.getElementById("renewal-errors");
-
-const vatCountries = [
-  "AL",
-  "AT",
-  "BE",
-  "BG",
-  "HR",
-  "CY",
-  "CZ",
-  "DK",
-  "EE",
-  "FI",
-  "FR",
-  "DE",
-  "EL",
-  "HU",
-  "IE",
-  "IT",
-  "LV",
-  "LT",
-  "LU",
-  "MT",
-  "NL",
-  "PL",
-  "PT",
-  "RO",
-  "SK",
-  "SI",
-  "ES",
-  "SE",
-  "GB",
-];
 
 // initialise Stripe
 const stripe = window.Stripe(window.stripePublishableKey);
@@ -113,8 +82,6 @@ let customerInfo = {
 let cardValid = false;
 let changingPaymentMethod = false;
 let submitted3DS = false;
-
-let mode = "payment_method";
 
 let pollingTimer;
 let progressTimer;
@@ -242,18 +209,13 @@ function attachModalButtonEvents() {
       form.elements["tax"].value = customerInfo.tax;
       showPayMode();
     } else {
-      sendGAEvent("exited payment modal (clicked cancel)");
-      resetModal();
-      toggleModal();
+      closeModal("clicked cancel");
     }
   });
 
   closeModalButton.addEventListener("click", (e) => {
     e.preventDefault();
-
-    sendGAEvent("exited payment modal (clicked close)");
-    resetModal();
-    toggleModal();
+    closeModal("clicked close");
   });
 
   document.addEventListener("keyup", (e) => {
@@ -261,9 +223,7 @@ function attachModalButtonEvents() {
       e.key === "Escape" &&
       document.body.classList.contains("p-modal--active")
     ) {
-      sendGAEvent("exited payment modal (pressed escape key)");
-      resetModal();
-      toggleModal();
+      closeModal("pressed escape key");
     }
   });
 }
@@ -275,6 +235,12 @@ function clearProgressTimers() {
   clearTimeout(progressTimer4);
 }
 
+function closeModal(label) {
+  sendGAEvent(`exited payment modal (${label})`);
+  resetModal();
+  toggleModal();
+}
+
 function createPaymentMethod() {
   let formData = new FormData(form);
 
@@ -284,8 +250,7 @@ function createPaymentMethod() {
   customerInfo.name = formData.get("name");
   customerInfo.tax = formData.get("tax");
 
-  mode = "payment_method";
-  enableProcessingState();
+  enableProcessingState("payment_method");
 
   stripe
     .createPaymentMethod({
@@ -316,7 +281,7 @@ function disableProcessingState() {
   cancelModalButton.disabled = false;
 }
 
-function enableProcessingState() {
+function enableProcessingState(mode) {
   addPaymentMethodButton.disabled = true;
   cancelModalButton.disabled = true;
   processPaymentButton.disabled = true;
@@ -336,10 +301,20 @@ function enableProcessingState() {
         progressIndicator.querySelector("span").innerHTML = "Still trying...";
 
         progressTimer4 = setTimeout(() => {
-          // the renewal is taking time to process, reload the page
+          // the renewal payment is taking time to process, reload the page
           // and highlight the in-progress renewal
           if (mode === "payment") {
             location.search = `subscription=${activeRenewal.contractId}`;
+          }
+
+          // there is potentially a problem with one of the APIs preventing
+          // payment methods from being created
+          if (mode === "payment_method") {
+            presentError({
+              message:
+                "Sorry, your payment method can’t be set up at the moment. Try again in a few minutes.",
+              type: "dialog",
+            });
           }
         }, 15000);
       }, 11000);
@@ -355,7 +330,7 @@ function handleIncompletePayment(invoice) {
     // payment attempt
     postInvoiceIDToRenewal(activeRenewal.renewalId, invoice.invoice_id)
       .then((data) => {
-        handleInvoicePostResponse(data);
+        handlePaymentAttemptResponse(data);
       })
       .catch((error) => {
         console.error(error);
@@ -426,7 +401,7 @@ function handle3DSresponse(data) {
     });
     submitted3DS = false;
   } else {
-    enableProcessingState();
+    enableProcessingState("payment");
     pollRenewalStatus();
   }
 }
@@ -447,22 +422,7 @@ function handleCustomerInfoResponse(paymentMethod, data) {
   }
 }
 
-function handleInvoicePostResponse(data) {
-  if (data.message) {
-    const errorObject = parseForErrorObject(data);
-
-    if (errorObject) {
-      sendGAEvent("payment failed");
-      presentError(errorObject);
-    } else {
-      pollRenewalStatus();
-    }
-  } else {
-    pollRenewalStatus();
-  }
-}
-
-function handleProcessPaymentResponse(data) {
+function handlePaymentAttemptResponse(data) {
   if (data.code) {
     const errorObject = parseForErrorObject(data);
 
@@ -479,8 +439,7 @@ function handleProcessPaymentResponse(data) {
 
 function handleSuccessfulPayment() {
   sendGAEvent("payment succeeded");
-  clearProgressTimers();
-  resetProgressIndicator();
+  disableProcessingState();
   progressIndicator.querySelector(".p-icon--spinner").classList.add("u-hide");
   progressIndicator
     .querySelector(".p-icon--success")
@@ -541,12 +500,11 @@ function presentError(errorObject) {
 }
 
 function processStripePayment() {
-  mode = "payment";
-  enableProcessingState();
+  enableProcessingState("payment");
 
   postRenewalIDToProcessPayment(activeRenewal.renewalId)
     .then((data) => {
-      handleProcessPaymentResponse(data);
+      handlePaymentAttemptResponse(data);
     })
     .catch((error) => {
       console.error(error);
@@ -572,11 +530,7 @@ function requiresAuthentication(invoice) {
 function resetModal() {
   form.reset();
   card.clear();
-  resetProgressIndicator();
-  modal.classList.remove("is-dialog-mode", "is-pay-mode");
-  modal.classList.add("is-details-mode");
-  addPaymentMethodButton.disabled = true;
-  processPaymentButton.disabled = true;
+  showDetailsMode();
 
   customerInfo = {
     name: null,
@@ -627,6 +581,7 @@ function showDetailsMode() {
   disableProcessingState();
   modal.classList.remove("is-pay-mode", "is-dialog-mode");
   modal.classList.add("is-details-mode");
+  addPaymentMethodButton.disabled = true;
   processPaymentButton.disabled = true;
   card.focus();
   validateForm();
