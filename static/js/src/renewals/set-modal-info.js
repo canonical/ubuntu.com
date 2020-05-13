@@ -75,8 +75,10 @@ export function getRenewalInformation(data) {
     contractEndDate.setMonth(contractEndDate.getMonth() + parseInt(data.months))
   );
 
+  const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+
   return {
-    endDate: endDate.toISOString().split("T", 1)[0],
+    endDate: endDate.toLocaleString("en-GB", dateOptions),
     name: `Renew "${data.name}"`,
     products: getProductsString(data.products),
     quantity: `${data.quantity} &#215; ${formattedCurrency(
@@ -84,7 +86,7 @@ export function getRenewalInformation(data) {
       data.currency,
       "en-CA"
     )}/year`,
-    startDate: startDate.toISOString().split("T", 1)[0],
+    startDate: startDate.toLocaleString("en-GB", dateOptions),
     total: formattedCurrency(data.total, data.currency, "en-US"),
   };
 }
