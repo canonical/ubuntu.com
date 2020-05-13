@@ -2,7 +2,7 @@ import { parseForErrorObject } from "../error-handler.js";
 import {
   contractsErrorObjects,
   stripeErrorObjects,
-} from "./fixtures/test-responses.js";
+} from "./fixtures/error-responses.js";
 
 describe("parseForErrorObject", () => {
   describe("given an insufficient funds error", () => {
