@@ -3,15 +3,15 @@ import {
   postInvoiceIDToRenewal,
   postCustomerInfoToStripeAccount,
   postRenewalIDToProcessPayment,
-} from "./stripe/contracts-api.js";
+} from "./renewals/contracts-api.js";
 
-import { parseForErrorObject } from "./stripe/error-handler.js";
-import { vatCountries } from "./stripe/vat-countries.js";
+import { parseForErrorObject } from "./renewals/error-handler.js";
+import { vatCountries } from "./renewals/vat-countries.js";
 
 import {
   setPaymentInformation,
   setRenewalInformation,
-} from "./stripe/set-modal-info.js";
+} from "./renewals/set-modal-info.js";
 
 const modal = document.getElementById("renewal-modal");
 
