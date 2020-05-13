@@ -48,34 +48,71 @@ function formattedCurrency(amount, currency, locale) {
   return currencyString.replace(".00", "");
 }
 
-export function setPaymentInformation(paymentMethod, modal) {
-  const cardExpiryEl = modal.querySelector(".js-customer-card-expiry");
-  const cardImgEl = modal.querySelector(".js-customer-card-brand");
-  const cardTextEl = modal.querySelector(".js-customer-card");
-  const customerEmailEl = modal.querySelector(".js-customer-email");
-  const customerNameEl = modal.querySelector(".js-customer-name");
+export function getPaymentInformation(paymentMethod) {
   const billingInfo = paymentMethod.billing_details;
   const cardInfo = paymentMethod.card;
 
   const cardBrandFormatted =
     cardInfo.brand.charAt(0).toUpperCase() + cardInfo.brand.slice(1);
-  const cardText = `${cardBrandFormatted} ending ${cardInfo.last4}`;
-  const cardExpiry = `${cardInfo.exp_month}/${cardInfo.exp_year}`;
-  const cardImage = cardBrandImages[cardInfo.brand];
 
-  if (cardImage) {
-    cardImgEl.innerHTML = `<img src="https://assets.ubuntu.com/v1/${cardImage}" />`;
+  return {
+    cardText: `${cardBrandFormatted} ending ${cardInfo.last4}`,
+    cardExpiry: `${cardInfo.exp_month}/${cardInfo.exp_year}`,
+    cardImage: cardBrandImages[cardInfo.brand] || null,
+    email: billingInfo.email,
+    name: billingInfo.name,
+  };
+}
+
+export function getRenewalInformation(data) {
+  const contractEndDate = new Date(data.contractEnd);
+  const startDate = new Date(
+    contractEndDate.setDate(contractEndDate.getDate() + 1)
+  );
+
+  const endDate = new Date(
+    contractEndDate.setMonth(contractEndDate.getMonth() + parseInt(data.months))
+  );
+
+  return {
+    endDate: endDate.toISOString().split("T", 1)[0],
+    name: `Renew "${data.name}"`,
+    products: getProductsString(data.products),
+    quantity: `${data.quantity} &#215; ${formattedCurrency(
+      data.unitPrice,
+      data.currency,
+      "en-GB"
+    )}/year`,
+    startDate: startDate.toISOString().split("T", 1)[0],
+    total: formattedCurrency(data.total, data.currency, "en"),
+  };
+}
+
+export function setPaymentInformation(paymentMethod, modal) {
+  const paymentInfo = getPaymentInformation(paymentMethod);
+
+  const cardExpiryEl = modal.querySelector(".js-customer-card-expiry");
+  const cardImgEl = modal.querySelector(".js-customer-card-brand");
+  const cardTextEl = modal.querySelector(".js-customer-card");
+  const customerEmailEl = modal.querySelector(".js-customer-email");
+  const customerNameEl = modal.querySelector(".js-customer-name");
+
+  if (paymentInfo.cardImage) {
+    cardImgEl.innerHTML = `<img src="https://assets.ubuntu.com/v1/${paymentInfo.cardImage}" />`;
     cardImgEl.classList.remove("u-hide");
   } else {
     cardImgEl.classList.add("u-hide");
   }
-  cardTextEl.innerHTML = cardText;
-  cardExpiryEl.innerHTML = cardExpiry;
-  customerNameEl.innerHTML = billingInfo.name;
-  customerEmailEl.innerHTML = billingInfo.email;
+
+  cardTextEl.innerHTML = paymentInfo.cardText;
+  cardExpiryEl.innerHTML = paymentInfo.cardExpiry;
+  customerNameEl.innerHTML = paymentInfo.name;
+  customerEmailEl.innerHTML = paymentInfo.email;
 }
 
 export function setRenewalInformation(data, modal) {
+  const renewalInfo = getRenewalInformation(data);
+
   const contractNameElement = modal.querySelector(".js-contract-name");
   const endElement = modal.querySelector(".js-renewal-end");
   const productNameElement = modal.querySelector(".js-product-name");
@@ -83,25 +120,10 @@ export function setRenewalInformation(data, modal) {
   const startElement = modal.querySelector(".js-renewal-start");
   const totalElement = modal.querySelector(".js-renewal-total");
 
-  const contractEndDate = new Date(data.contractEnd);
-  const renewalStartDate = new Date(
-    contractEndDate.setDate(contractEndDate.getDate() + 1)
-  );
-
-  const renewalEndDate = new Date(
-    contractEndDate.setMonth(contractEndDate.getMonth() + parseInt(data.months))
-  );
-
-  const products = getProductsString(data.products);
-
-  contractNameElement.innerHTML = `Renew "${data.name}"`;
-  endElement.innerHTML = renewalEndDate.toISOString().split("T", 1)[0];
-  productNameElement.innerHTML = products;
-  quantityElement.innerHTML = `${data.quantity} &#215; ${formattedCurrency(
-    data.unitPrice,
-    data.currency,
-    "en-GB"
-  )}/year`;
-  startElement.innerHTML = renewalStartDate.toISOString().split("T", 1)[0];
-  totalElement.innerHTML = formattedCurrency(data.total, data.currency, "en");
+  contractNameElement.innerHTML = renewalInfo.name;
+  endElement.innerHTML = renewalInfo.endDate;
+  productNameElement.innerHTML = renewalInfo.products;
+  quantityElement.innerHTML = renewalInfo.quantity;
+  startElement.innerHTML = renewalInfo.startDate;
+  totalElement.innerHTML = renewalInfo.total;
 }
