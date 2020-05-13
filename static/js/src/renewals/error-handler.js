@@ -46,6 +46,8 @@ const INCORRECT_NUMBER_CODES = [
 
 const INCORRECT_ZIP_CODES = ["incorrect_zip", "incomplete_zip"];
 
+const PAYMENT_ERRORS = ["invoice payment failed", "payment method error"];
+
 function customErrorResponse(errorData) {
   const code = errorData.code;
   let error = {
@@ -137,8 +139,8 @@ export function parseForErrorObject(data) {
     const errorJson = JSON.parse(jsonString);
 
     errorObject = customErrorResponse(errorJson);
-  } else if (data.code === "invoice payment failed") {
-    // a subsequent attempt to pay with a new payment method failed
+  } else if (PAYMENT_ERRORS.includes(data.code)) {
+    // an attempt to create or use a payment method failed
     const errorJson = JSON.parse(data.message);
 
     errorObject = customErrorResponse(errorJson);
