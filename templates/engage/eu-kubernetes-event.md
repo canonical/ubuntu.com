@@ -6,7 +6,7 @@ context:
   meta_image: https://assets.ubuntu.com/v1/baab00bc-pre-kubeconf-meta-image.png
   meta_copydoc: https://docs.google.com/document/d/1VYYmd6kS0eWApEpbVCgTUq0NOHUTEeRWVj7ujtFEsHs/
   header_title: "Streamlined Kubernetes, from Cloud to Edge"
-  header_subtitle: "Innovating and scaling efficiently, with Charmed Kuberenetes and MicroK8s"
+  header_subtitle: "Innovating and scaling efficiently, with Charmed Kubernetes and MicroK8s"
   header_image: "https://assets.ubuntu.com/v1/67b862a1-k8s+microk8s.svg"
   header_image_width: "419"
   header_image_height: "172"
