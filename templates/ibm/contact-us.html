@@ -1,0 +1,15 @@
+{% extends "ibm/base_ibm.html" %}
+
+{% block title %}Contact us | IBM &amp; Ubuntu{% endblock %}
+
+{% block content %}
+
+{% with h1="Contact us",
+  intro_text="From the servers to tje cloud, IBM and Canonical work together to bring you joint solutions that work out-of-the-box for a consistent open source experience spanning the IBM  portfolio.",
+  formid="1444",
+  lpId="2649",
+  returnURL="https://ubuntu.com/ibm/thank-you" %}
+  {% include "shared/_client-contact-us-form.html" %}
+{% endwith %}
+
+{% endblock content %}
