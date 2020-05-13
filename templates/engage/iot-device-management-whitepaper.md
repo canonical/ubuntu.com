@@ -8,8 +8,8 @@ context:
      header_title: "Secure IoT device management"
      header_subtitle: "Build and deploy a central IoT management solution"
      header_image: "https://assets.ubuntu.com/v1/9c1315fb-IOT_Ubuntu_devices_inforgrapic+v3.svg"
-     header_image_width: "500"
-     header_image_height: "300"
+     header_image_width: "470"
+     header_image_height: "320"
      header_url: '#register-section'
      header_cta: Download whitepaper
      header_cta_class: p-button--positive
