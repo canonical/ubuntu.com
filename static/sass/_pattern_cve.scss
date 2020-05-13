@@ -1,0 +1,14 @@
+@mixin ubuntu-p-cve {
+  .cve-status-box,
+  .cve-status-box--highlight {
+    @extend .p-card;
+
+    margin-bottom: $sp-small;
+  }
+
+  .cve-status-box--highlight {
+    background-color: $color-brand;
+    border: none;
+    color: $color-x-light;
+  }
+}

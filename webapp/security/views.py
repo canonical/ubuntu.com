@@ -349,6 +349,8 @@ def update_notice():
     db_session.commit()
 
     return flask.jsonify({"message": "Notice updated"}), 200
+
+
 # CVE views
 # ===
 def cve_index():

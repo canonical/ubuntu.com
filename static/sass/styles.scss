@@ -18,9 +18,8 @@
   font-family: "UbtuOverride";
   font-style: normal;
   font-weight: 300;
-  src:
-    url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
-    format("woff2"),
+  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
+      format("woff2"),
     url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
 }
 
@@ -45,6 +44,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_chart";
 @import "pattern_contact-modal";
 @import "pattern_contextual-footer";
+@import "pattern_cve";
 @import "pattern_desktop-statistics";
 @import "pattern_divider";
 @import "pattern_gaming";
@@ -83,6 +83,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-card;
 @include ubuntu-p-contact-modal;
 @include ubuntu-p-contextual-footer;
+@include ubuntu-p-cve;
 @include ubuntu-p-desktop-statistics;
 @include ubuntu-p-divider;
 @include ubuntu-p-footer;
@@ -621,19 +622,62 @@ summary {
   @extend %vf-pseudo-border--top;
 }
 
-.cve-status-box,
-.cve-status-box--highlight {
-  @extend .p-card;
-
-  margin-bottom: $sp-small;
+// Utilities for using icons in table cells
+.icon-container__icon {
+  display: block;
+  float: left;
+  margin-right: 0.5rem;
+  width: 1rem;
 }
 
-.cve-status-box {
-  background-color: $color-mid-x-light;
+.icon-container__text {
+  float: left;
+  width: calc(100% - 1.5rem);
 }
 
-.cve-status-box--highlight {
-  background-color: $color-brand;
-  border: none;
-  color: $color-x-light;
+.p-icon--placeholder {
+  height: 1rem;
+  margin-right: 1rem;
+  width: 1rem;
+}
+
+// Icons introduced in CVE work
+.p-icon--unknown-priority,
+.p-icon--negligible-priority,
+.p-icon--low-priority,
+.p-icon--medium-priority,
+.p-icon--high-priority,
+.p-icon--critical-priority {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  height: 1rem;
+  position: relative;
+  vertical-align: calc(0.5px + 0.3456em - 0.5em);
+  width: 1rem;
+}
+
+.p-icon--unknown-priority {
+  background-image: url("#{$assets-path}e85d00c8-CVE-Priority-icon-Unknown.svg");
+}
+
+.p-icon--negligible-priority {
+  background-image: url("#{$assets-path}f6820eae-CVE-Priority-icon-Negligible.svg");
+}
+
+.p-icon--low-priority {
+  background-image: url("#{$assets-path}2c18ab71-CVE-Priority-icon-Low.svg");
+}
+
+.p-icon--medium-priority {
+  background-image: url("#{$assets-path}6d25e065-CVE-Priority-icon-Medium.svg");
+}
+
+.p-icon--high-priority {
+  background-image: url("#{$assets-path}a9a5dc21-CVE-Priority-icon-High.svg");
+}
+
+.p-icon--critical-priority {
+  background-image: url("#{$assets-path}428a85f3-CVE-Priority-icon-Critical.svg");
 }
