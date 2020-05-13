@@ -704,5 +704,3 @@ attachFormEvents();
 attachModalButtonEvents();
 setupCardElements();
 validateForm();
-
-export { presentError };
