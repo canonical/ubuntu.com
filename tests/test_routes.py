@@ -32,7 +32,11 @@ class TestRoutes(unittest.TestCase):
         we should return a 200 status code
         """
         with self.client.session_transaction() as s:
-            s["openid"] = "openid"
+            s["openid"] = {
+                "fullname": "Joe Bloggs",
+                "email": "hello@example.com",
+            }
+            s["authentication_token"] = "test_token"
 
         self.assertEqual(self.client.get("/advantage").status_code, 200)
 
