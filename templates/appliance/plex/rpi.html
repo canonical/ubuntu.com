@@ -1,0 +1,142 @@
+{% extends "appliance/_base-appliance.html" %}
+
+{% block title %}Install {{ name }} on a Raspberry Pi - Ubuntu Appliance{% endblock %}
+
+{% block meta_description %}How to install and setup the {{ name }} Ubuntu appliance on the Raspberry Pi.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1H_4L-kqKx6HJ0_3krpzdDVZ24pdVm5jb0evLMT6mcuo/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+{% if iso_url %}
+<meta http-equiv="refresh" content="3;url={{ iso_url }}">
+{% endif %}
+
+<section class="p-strip--suru-topped" style="overflow: visible;">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      {% if iso_url %}
+      <h1>Thank you for downloading the Ubuntu {{ name }} appliance for Raspberry Pi</h1>
+      <p>Your download should start automatically. If it doesn&rsquo;t,
+        <a href="{{ iso_url }}">download now</a>.
+      </p>
+      {% include "appliance/shared/_verify-checksums.html" %}
+      {% else %}
+      <h1>Setup your Ubuntu Plex appliance for Raspberry Pi</h1>
+      {% endif %}
+    </div>
+    <div class="col-5 u-hide--small u-align--center">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg",
+        alt="",
+        height="227",
+        width="350",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Installation instructions</h2>
+      <p>We will walk you through the steps of flashing your {{ name }} Ubuntu appliance on to your Raspberry Pi and getting logged in.</p>
+      <h3>What you&rsquo;ll need</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">A microSD card (4GB minimum, 8GB recommended)</li>
+        <li class="p-list__item is-ticked">A Raspberry Pi 2, 3, or 4</li>
+        <li class="p-list__item is-ticked">A computer with a microSD card drive</li>
+        <li class="p-list__item is-ticked">A micro-USB power cable (USB-C for the Pi 4)</li>
+        <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
+        <li class="p-list__item is-ticked">An HDMI cable for the Pi 2 &amp; 3 and a MicroHDMI cable for the Pi 4</li>
+        <li class="p-list__item is-ticked">A USB keyboard</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <nav class="p-tabs">
+        <ul class="p-tabs__list" role="tablist">
+          <li class="p-tabs__item" role="presentation">
+            <a href="#ubuntu" class="p-tabs__link" id="ubuntu-tab" role="tab" aria-controls="ubuntu" aria-selected="true">
+              Ubuntu
+            </a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#windows" class="p-tabs__link" tabindex="-1" role="tab" id="windows-tab" role="tab" aria-controls="windows">
+              Windows
+            </a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#macos" class="p-tabs__link" tabindex="-1" role="tab" id="macos-tab" role="tab" aria-controls="macos"">
+              macOS
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div id="ubuntu" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntu-tab">
+      <ol class="p-stepped-list">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Install the Raspberry Pi Imaging Tool
+          </h3>
+          <p class="p-stepped-list__content">
+            <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager_amd64.deb">
+              Download the Imaging Tool for Ubuntu
+            </a>
+          </p>
+        </li>
+        {% include 'appliance/shared/_steps_pi_2.html' %}
+        {% include 'appliance/shared/_steps_pi_3_ubuntu.html' %}
+        {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
+      </ol>
+    </div>
+
+    <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
+      <ol class="p-stepped-list">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Install the Raspberry Pi Imaging Tool
+          </h3>
+          <p class="p-stepped-list__content">
+            <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.exe">
+              Download the Imaging Tool for Windows
+            </a>
+          </p>
+        </li>
+        {% include 'appliance/shared/_steps_pi_2.html' %}
+        {% include 'appliance/shared/_steps_pi_3_windows.html' %}
+        {% with command='type' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
+      </ol>
+    </div>
+
+    <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
+      <ol class="p-stepped-list">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Install the Raspberry Pi Imaging Tool
+          </h3>
+          <p class="p-stepped-list__content">
+            <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.dmg">
+              Download the Imaging Tool for macOS
+            </a>
+          </p>
+        </li>
+        {% include 'appliance/shared/_steps_pi_2.html' %}
+        {% include 'appliance/shared/_steps_pi_3_macos.html' %}
+        {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script src="{{ versioned_static('js/build/tabotronic.min.js') }}" defer></script>
+
+{% endblock content %}

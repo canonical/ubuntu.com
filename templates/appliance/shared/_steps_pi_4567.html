@@ -1,0 +1,66 @@
+<li class="p-stepped-list__item">
+  <h3 class="p-stepped-list__title">
+    Create an Ubuntu SSO account
+  </h3>
+  <div class="p-stepped-list__content">
+    <p>
+      Your Ubuntu Appliance will be added to your Ubuntu cloud account, and use your SSH keys to identify you. Add your keys to your account at <a class="p-link--external" href="https://login.ubuntu.com/ssh-keys">https://login.ubuntu.com/ssh-keys</a>.
+    </p>
+    <p>
+      To do so, run the following command in your terminal.
+    </p>
+    <p>
+      <code>{{ command }} ~/.ssh/id_rsa.pub</code>
+    </p>
+    <p>
+      Copy the result into the text field on the website. Click import and will have the key set up.
+    </p>
+  </div>
+</li>
+
+<li class="p-stepped-list__item">
+  <h3 class="p-stepped-list__title">
+    Boot your Raspberry Pi from the SDcard
+  </h3>
+  <div class="p-stepped-list__content">
+    <p>
+      Wait for the Raspberry Pi images to complete. Remove the SDcard from your computer and insert it into the Raspberry Pi. Attach your monitor and keyboard to the Pi, you will use them for the initial device configuration.
+    </p>
+    <p>
+      If you want to use a wired network, connect your ethernet cable to the Pi before booting.
+    </p>
+    <p>
+      Power up the Pi by connecting it to your USB power supply.
+    </p>
+    <p>
+      Your Pi will boot, and present you with a series of configuration choices. You need to ensure that the Pi has Internet access so that it can get updates and verify your SSH keys.
+    </p>
+    <p>
+      Next, you will need to enter your Ubuntu cloud account email address.
+    </p>
+  </div>
+</li>
+<li class="p-stepped-list__item">
+  <h3 class="p-stepped-list__title">
+    SSH in
+  </h3>
+  <div class="p-stepped-list__content">
+    <p>
+      Once you have connected the Pi to your Ubuntu cloud account it will show an ssh command to access the device. It will be something like:
+    </p>
+    <p>
+      <code>ssh rhys-davies@192.168.1.xxx</code>
+    </p>
+    <p>
+      Your terminal will welcome you to Ubuntu Core.
+    </p>
+  </div>
+</li>
+<li class="p-stepped-list__item">
+  <h3 class="p-stepped-list__title">
+    That’s it
+  </h3>
+  <div class="p-stepped-list__content">
+    Now that you’re in your Pi you will be able to use your Ubuntu Appliance image.
+  </div>
+</li>
