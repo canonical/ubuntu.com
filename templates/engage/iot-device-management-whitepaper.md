@@ -16,7 +16,7 @@ context:
      header_class: p-engage-banner--dark
      form_include: en
      form_id: 3480
-     form_return_url: "https://pages.ubuntu.com/IOTDeviceMangement-TY.html"
+     form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/IoT_DM_Whitepaper_11.05.20.pdf"
 ---
 
 With IoT devices being installed everywhere from factories, to offices, vehicles, and hospitals, it’s hard to get away from the Internet of Things in the enterprise landscape. Open source operating systems and applications are making it easier than ever for businesses to develop and deploy IoT devices, but this is giving rise to a new challenge: how can organisations efficiently monitor and maintain their IoT fleets?
