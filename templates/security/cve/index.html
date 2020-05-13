@@ -74,37 +74,23 @@
           <th>CVE</th>
           <th>Package</th>
           {% for release in releases %}
-          <th>{{ release.name }}</th>
+            <th>Ubuntu {{ release.name }} {{ release.version }} {{ release.support_tag }}</th>
           {% endfor %}
         </tr>
       </thead>
       <tbody>
         {% for cve in cves %}
-        <tr>
-          <td rowspan="{{ cve.packages | length }}"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></td>
           {% for package in cve.packages %}
-          {% if loop.index == 1 %}
-          <td>{{ package.name }}</td>
-          {% for rel in package.releases %}
-          {% if rel.name != 'Upstream' %}
-          <td>{{ rel.status }}</td>
-          {% endif %}
+            <tr>
+              {% if loop.index == 1 %}
+                <td rowspan="{{ cve.packages | length }}"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></td>
+              {% endif %}
+              <td>{{ package.name }}</td>
+              {% for release in releases %}
+                <td>{{ package.get_status_by_codename(release.codename) }}</td>
+              {% endfor %}
+            </tr>
           {% endfor %}
-          {% endif %}
-          {% endfor %}
-        </tr>
-        {% for package in cve.packages %}
-        {% if loop.index > 1 %}
-        <tr>
-          <td>{{ package.name }}</td>
-          {% for rel in package.releases %}
-          {% if rel.name != 'Upstream' %}
-          <td>{{ rel.status }}</td>
-          {% endif %}
-          {% endfor %}
-          {% endif %}
-        </tr>
-        {% endfor %}
         {% endfor %}
       </tbody>
     </table>
