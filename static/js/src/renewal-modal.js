@@ -573,6 +573,8 @@ function setupCardElements() {
       cardValid = true;
       hideErrors();
       validateForm();
+    } else {
+      hideErrors();
     }
   });
 }
