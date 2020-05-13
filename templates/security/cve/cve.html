@@ -65,8 +65,38 @@
 
       <div class="col-3">
         {% if cve.status == 'active' and cve.priority %}
-        <div class="cve-status-box">
-          <div class="p-heading--four u-no-margin--bottom">Priority {{ cve.priority | capitalize }}</div>
+        <div class="cve-status-box u-no-margin--bottom">
+          <div class="p-muted-heading">Priority</div>
+          <div class="p-heading-icon--small">
+            <div class="p-heading-icon__header">
+              {% if cve.priority == 'unknown' %}
+                <img src="https://assets.ubuntu.com/v1/e85d00c8-CVE-Priority-icon-Unknown.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'negligible' %}
+                <img src="https://assets.ubuntu.com/v1/f6820eae-CVE-Priority-icon-Negligible.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'low' %}
+                <img src="https://assets.ubuntu.com/v1/2c18ab71-CVE-Priority-icon-Low.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'medium' %}
+                <img src="https://assets.ubuntu.com/v1/6d25e065-CVE-Priority-icon-Medium.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'high' %}
+                <img src="https://assets.ubuntu.com/v1/a9a5dc21-CVE-Priority-icon-High.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'critical' %}
+                <img src="https://assets.ubuntu.com/v1/428a85f3-CVE-Priority-icon-Critical.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+              <h4 class="p-heading-icon__title u-no-margin--bottom">
+                {{ cve.priority | capitalize }}
+              </h4>
+            </div>
+          </div>
         </div>
         <p>CVSS 3 base score: {{ cve.cvss }}</p>
         {% endif %}
@@ -104,18 +134,18 @@
         <tbody>
           {% for package in cve.packages %}
           <tr>
-            <td rowspan="{{ package.releases | length }}">{{ package.name }}</td>
-            <td>{{ package.releases[0].name }}</td>
-            <td>{{ package.releases[0].status }}</td>
+            <td rowspan="{{ package.package_statuses | length }}">{{ package.name }}</td>
+            <td>{{ package.package_statuses[0].release.name }}</td>
+            <td>{{ package.package_statuses[0].status }}</td>
           </tr>
-          {% for n in range(package.releases | length) %}
-          {% if n > 0 %}
-          <tr>
-            <td>{{ package.releases[n].name }}</td>
-            <td>{{ package.releases[n].status }}</td>
-          </tr>
-          {% endif %}
-          {% endfor %}
+            {% for n in range(package.package_statuses | length) %}
+            {% if n > 0 %}
+            <tr>
+              <td>{{ package.package_statuses[n].release.name }}</td>
+              <td>{{ package.package_statuses[n].status }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
           {% endfor %}
         </tbody>
       </table>
