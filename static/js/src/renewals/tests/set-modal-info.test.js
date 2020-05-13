@@ -36,11 +36,11 @@ describe("getRenewalInformation", () => {
   describe("given a renewal data object", () => {
     it("should return an object of appropriate values that can be added to the DOM", () => {
       expect(getRenewalInformation(renewalData.advancedDesktop)).toEqual({
-        endDate: "2021-05-21",
+        endDate: "21 May 2021",
         name: 'Renew "uai-testing"',
         products: "UA Infra Advanced Desktop",
         quantity: "5 &#215; US$25/year",
-        startDate: "2020-05-21",
+        startDate: "21 May 2020",
         total: "$125",
       });
     });
