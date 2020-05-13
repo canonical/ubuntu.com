@@ -253,8 +253,87 @@ def create_notice():
         db_session.commit()
     except IntegrityError:
         return (
-            flask.jsonify({"message": f"Notice '{notice.id}' already exists"}),
+            flask.jsonify({"message": f"Notice {notice.id} already exists"}),
             400,
         )
 
     return flask.jsonify({"message": "Notice created"}), 201
+
+
+@authorization_required
+def update_notice():
+    if not flask.request.json:
+        return (flask.jsonify({"message": "No payload received"}), 400)
+
+    notice_schema = NoticeSchema()
+    try:
+        data = notice_schema.load(flask.request.json, unknown=EXCLUDE)
+    except ValidationError as error:
+        return (
+            flask.jsonify(
+                {"message": "Invalid payload", "errors": error.messages}
+            ),
+            400,
+        )
+
+    notice = db_session.query(Notice).get(data["notice_id"])
+    if not notice:
+        return (
+            flask.jsonify(
+                {"message": f"Notice {data['notice_id']} doesn't exist"}
+            ),
+            404,
+        )
+
+    notice.title = data["title"]
+    notice.summary = data["summary"]
+    notice.details = data["description"]
+    notice.packages = data["releases"]
+    notice.published = datetime.fromtimestamp(data["timestamp"])
+
+    if "action" in data:
+        notice.instructions = data["action"]
+
+    if "isummary" in data:
+        notice.isummary = data["isummary"]
+
+    # Clear m2m relations to re-add
+    notice.cves.clear()
+    notice.releases.clear()
+    notice.references.clear()
+
+    # Link releases
+    for release_codename in data["releases"].keys():
+        try:
+            notice.releases.append(
+                db_session.query(Release)
+                .filter(Release.codename == release_codename)
+                .one()
+            )
+        except NoResultFound:
+            message = f"No release with codename: {release_codename}."
+            return (flask.jsonify({"message": message}), 400)
+
+    # Link CVEs, creating them if they don't exist
+    refs = set(data.get("references", []))
+    for ref in refs:
+        if ref.startswith("CVE-"):
+            cve_id = ref[4:]
+            cve = db_session.query(CVE).get(cve_id)
+            if not cve:
+                cve = CVE(id=cve_id)
+            notice.cves.append(cve)
+        else:
+            reference = (
+                db_session.query(Reference)
+                .filter(Reference.uri == ref)
+                .first()
+            )
+            if not reference:
+                reference = Reference(uri=ref)
+            notice.references.append(reference)
+
+    db_session.add(notice)
+    db_session.commit()
+
+    return flask.jsonify({"message": "Notice updated"}), 200
