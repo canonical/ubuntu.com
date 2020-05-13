@@ -38,7 +38,7 @@
     </div>
   </div>
 </section>
-<section class="p-strip--light">
+<section class="p-strip is-shallow">
   <div class="row">
     <div class="col-8">
       <h2>Installation instructions</h2>
@@ -57,82 +57,84 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip--light is-shallow">
   <div class="row">
     <div class="col-8">
-      <nav class="p-tabs">
-        <ul class="p-tabs__list" role="tablist">
-          <li class="p-tabs__item" role="presentation">
-            <a href="#ubuntu" class="p-tabs__link" id="ubuntu-tab" role="tab" aria-controls="ubuntu" aria-selected="true">
-              Ubuntu
-            </a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#windows" class="p-tabs__link" tabindex="-1" role="tab" id="windows-tab" role="tab" aria-controls="windows">
-              Windows
-            </a>
-          </li>
-          <li class="p-tabs__item" role="presentation">
-            <a href="#macos" class="p-tabs__link" tabindex="-1" role="tab" id="macos-tab" role="tab" aria-controls="macos"">
-              macOS
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+      <div class="js-tab-container">
+        <nav class="p-tabs">
+          <ul class="p-tabs__list" role="tablist">
+            <li class="p-tabs__item" role="presentation">
+              <a href="#ubuntu" class="p-tabs__link" id="ubuntu-tab" role="tab" aria-controls="ubuntu" aria-selected="true">
+                Ubuntu
+              </a>
+            </li>
+            <li class="p-tabs__item" role="presentation">
+              <a href="#windows" class="p-tabs__link" tabindex="-1" role="tab" id="windows-tab" role="tab" aria-controls="windows">
+                Windows
+              </a>
+            </li>
+            <li class="p-tabs__item" role="presentation">
+              <a href="#macos" class="p-tabs__link" tabindex="-1" role="tab" id="macos-tab" role="tab" aria-controls="macos"">
+                macOS
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
-    <div id="ubuntu" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntu-tab">
-      <ol class="p-stepped-list">
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">
-            Install the Raspberry Pi Imaging Tool
-          </h3>
-          <p class="p-stepped-list__content">
-            <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager_amd64.deb">
-              Download the Imaging Tool for Ubuntu
-            </a>
-          </p>
-        </li>
-        {% include 'appliance/shared/_steps_pi_2.html' %}
-        {% include 'appliance/shared/_steps_pi_3_ubuntu.html' %}
-        {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
-      </ol>
-    </div>
+      <div id="ubuntu" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntu-tab">
+        <ol class="p-stepped-list">
+          <li class="p-stepped-list__item">
+            <h3 class="p-stepped-list__title">
+              Install the Raspberry Pi Imaging Tool
+            </h3>
+            <p class="p-stepped-list__content">
+              <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager_amd64.deb">
+                Download the Imaging Tool for Ubuntu
+              </a>
+            </p>
+          </li>
+          {% include 'appliance/shared/_steps_pi_2.html' %}
+          {% include 'appliance/shared/_steps_pi_3_ubuntu.html' %}
+          {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
+        </ol>
+      </div>
 
-    <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
-      <ol class="p-stepped-list">
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">
-            Install the Raspberry Pi Imaging Tool
-          </h3>
-          <p class="p-stepped-list__content">
-            <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.exe">
-              Download the Imaging Tool for Windows
-            </a>
-          </p>
-        </li>
-        {% include 'appliance/shared/_steps_pi_2.html' %}
-        {% include 'appliance/shared/_steps_pi_3_windows.html' %}
-        {% with command='type' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
-      </ol>
-    </div>
+      <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
+        <ol class="p-stepped-list">
+          <li class="p-stepped-list__item">
+            <h3 class="p-stepped-list__title">
+              Install the Raspberry Pi Imaging Tool
+            </h3>
+            <p class="p-stepped-list__content">
+              <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.exe">
+                Download the Imaging Tool for Windows
+              </a>
+            </p>
+          </li>
+          {% include 'appliance/shared/_steps_pi_2.html' %}
+          {% include 'appliance/shared/_steps_pi_3_windows.html' %}
+          {% with command='type' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
+        </ol>
+      </div>
 
-    <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
-      <ol class="p-stepped-list">
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">
-            Install the Raspberry Pi Imaging Tool
-          </h3>
-          <p class="p-stepped-list__content">
-            <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.dmg">
-              Download the Imaging Tool for macOS
-            </a>
-          </p>
-        </li>
-        {% include 'appliance/shared/_steps_pi_2.html' %}
-        {% include 'appliance/shared/_steps_pi_3_macos.html' %}
-        {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
-      </ol>
+      <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
+        <ol class="p-stepped-list">
+          <li class="p-stepped-list__item">
+            <h3 class="p-stepped-list__title">
+              Install the Raspberry Pi Imaging Tool
+            </h3>
+            <p class="p-stepped-list__content">
+              <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.dmg">
+                Download the Imaging Tool for macOS
+              </a>
+            </p>
+          </li>
+          {% include 'appliance/shared/_steps_pi_2.html' %}
+          {% include 'appliance/shared/_steps_pi_3_macos.html' %}
+          {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
+        </ol>
+      </div>
     </div>
   </div>
 </section>
