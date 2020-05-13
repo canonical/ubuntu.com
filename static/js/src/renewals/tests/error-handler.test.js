@@ -34,6 +34,13 @@ describe("parseForErrorObject", () => {
         type: "notification",
       });
 
+      expect(
+        parseForErrorObject(contractsErrorObjects.expiredPaymentMethod)
+      ).toEqual({
+        message: "That card has expired. Try a different card.",
+        type: "notification",
+      });
+
       expect(parseForErrorObject(stripeErrorObjects.expiryIncomplete)).toEqual({
         message: "That expiry date is incorrect. Check the date and try again.",
         type: "card",
