@@ -85,4 +85,7 @@ class AdvantageContracts:
             method="post", path=f"v1/renewals/{renewal_id}/acceptance"
         )
 
-        return response.json()
+        if response.ok:
+            return {}
+        else:
+            return response.json()
