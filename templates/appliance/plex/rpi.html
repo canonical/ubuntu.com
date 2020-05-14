@@ -38,24 +38,6 @@
     </div>
   </div>
 </section>
-<section class="p-strip is-shallow">
-  <div class="row">
-    <div class="col-8">
-      <h2>Installation instructions</h2>
-      <p>We will walk you through the steps of flashing your {{ name }} Ubuntu appliance on to your Raspberry Pi and getting logged in.</p>
-      <h3>What you&rsquo;ll need</h3>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">A microSD card (4GB minimum, 8GB recommended)</li>
-        <li class="p-list__item is-ticked">A Raspberry Pi 2, 3, or 4</li>
-        <li class="p-list__item is-ticked">A computer with a microSD card drive</li>
-        <li class="p-list__item is-ticked">A micro-USB power cable (USB-C for the Pi 4)</li>
-        <li class="p-list__item is-ticked">A monitor with an HDMI interface</li>
-        <li class="p-list__item is-ticked">An HDMI cable for the Pi 2 &amp; 3 and a MicroHDMI cable for the Pi 4</li>
-        <li class="p-list__item is-ticked">A USB keyboard</li>
-      </ul>
-    </div>
-  </div>
-</section>
 
 <section class="p-strip--light is-shallow">
   <div class="row">
@@ -83,6 +65,7 @@
       </div>
 
       <div id="ubuntu" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntu-tab">
+        {% include "appliance/shared/_install_instructions_rpi.html" %}
         <ol class="p-stepped-list">
           <li class="p-stepped-list__item">
             <h3 class="p-stepped-list__title">
@@ -101,6 +84,7 @@
       </div>
 
       <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
+        {% include "appliance/shared/_install_instructions_rpi.html" %}
         <ol class="p-stepped-list">
           <li class="p-stepped-list__item">
             <h3 class="p-stepped-list__title">
@@ -119,6 +103,7 @@
       </div>
 
       <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
+        {% include "appliance/shared/_install_instructions_rpi.html" %}
         <ol class="p-stepped-list">
           <li class="p-stepped-list__item">
             <h3 class="p-stepped-list__title">
