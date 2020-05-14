@@ -39,6 +39,7 @@ from webapp.views import (
     build,
     build_tutorials_index,
     download_thank_you,
+    appliance_install,
     get_renewal,
     post_stripe_method_id,
     post_stripe_invoice_id,
@@ -69,6 +70,8 @@ app = FlaskBase(
 talisker.requests.configure(api_session)
 
 # Error pages
+
+
 @app.errorhandler(404)
 def not_found_error(error):
     return flask.render_template("404.html"), 404
@@ -143,7 +146,10 @@ app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
     "/search", "search", build_search_view(template_path="search.html")
 )
-
+app.add_url_rule(
+    "/appliance/<regex('.+'):app>/<regex('.+'):device>",
+    view_func=appliance_install,
+)
 # blog section
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
