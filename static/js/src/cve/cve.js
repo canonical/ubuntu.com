@@ -1,25 +1,18 @@
-import {
-  isValidCveId,
-  disableField,
-  enableField,
-  constructCveId,
-} from "./cve-search.js";
+import { isValidCveId, disableField, enableField } from "./cve-search.js";
 
 const searchInput = document.querySelector("#q");
 
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
   const priorityInput = document.querySelector("#priority");
-  const searchButton = document.querySelector("#cve-search-button");
-  const redirectButton = document.querySelector("#cve-redirect-button");
+  const searchButtonText = document.querySelector(".cve-search-text");
+  const searchButtonValidCveText = document.querySelector(
+    ".cve-search-valid-cve-text"
+  );
 
   if (isValidCveId(value)) {
-    const cveId = constructCveId(value);
-
-    redirectButton.setAttribute("href", `/security/${cveId}`);
-
-    redirectButton.classList.remove("u-hide");
-    searchButton.classList.add("u-hide");
+    searchButtonValidCveText.classList.remove("u-hide");
+    searchButtonText.classList.add("u-hide");
 
     disableField(packageInput);
     disableField(priorityInput);
@@ -27,8 +20,8 @@ function handleCveIdInput(value) {
     enableField(packageInput);
     enableField(priorityInput);
 
-    searchButton.classList.remove("u-hide");
-    redirectButton.classList.add("u-hide");
+    searchButtonText.classList.remove("u-hide");
+    searchButtonValidCveText.classList.add("u-hide");
   }
 }
 
