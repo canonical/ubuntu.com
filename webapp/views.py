@@ -546,10 +546,6 @@ def post_stripe_invoice_id(renewal_id, invoice_id):
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
-        return advantage.post_stripe_invoice_id(
-            flask.session, invoice_id, renewal_id
-        )
-
         return advantage.post_stripe_invoice_id(invoice_id, renewal_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
