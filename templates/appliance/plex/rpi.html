@@ -1,27 +1,27 @@
 {% extends "appliance/_base-appliance.html" %}
 
-{% block title %}Install {{ name }} on a Raspberry Pi - Ubuntu Appliance{% endblock %}
+{% block title %}Install {{ appliance.name }} on a Raspberry Pi - Ubuntu Appliance{% endblock title %}
 
-{% block meta_description %}How to install and setup the {{ name }} Ubuntu appliance on the Raspberry Pi.{% endblock %}
+{% block meta_description %}How to install and setup the {{ appliance.name }} Ubuntu appliance on the Raspberry Pi.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1H_4L-kqKx6HJ0_3krpzdDVZ24pdVm5jb0evLMT6mcuo/edit#{% endblock meta_copydoc %}
 
 {% block content %}
-{% if iso_url %}
-<!-- meta http-equiv="refresh" content="3;url={{ iso_url }}" -->
+{% if appliance.iso_url.rpi %}
+<meta http-equiv="refresh" content="3;url={{ appliance.iso_url.rpi }}">
 {% endif %}
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
   <div class="row u-vertically-center">
     <div class="col-7">
-      {% if iso_url %}
-      <h1>Thank you for downloading the Ubuntu {{ name }} appliance for Raspberry Pi</h1>
+      {% if appliance.iso_url.rpi %}
+      <h1>Thank you for downloading the Ubuntu {{ appliance.name }} appliance for Raspberry Pi</h1>
       <p>Your download should start automatically. If it doesn&rsquo;t,
-        <a href="{{ iso_url }}">download now</a>.
+        <a href="{{ appliance.iso_url.rpi }}">download now</a>.
       </p>
       {% include "appliance/shared/_verify-checksums.html" %}
       {% else %}
-      <h1>Setup your Ubuntu {{ name }} appliance for Raspberry Pi</h1>
+      <h1>Setup your Ubuntu {{ appliance.name }} appliance for Raspberry Pi</h1>
       {% endif %}
     </div>
     <div class="col-5 u-hide--small u-align--center">
@@ -62,63 +62,63 @@
             </li>
           </ul>
         </nav>
-      </div>
 
-      <div id="ubuntu" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntu-tab">
-        {% include "appliance/shared/_install_instructions_rpi.html" %}
-        <ol class="p-stepped-list">
-          <li class="p-stepped-list__item">
-            <h3 class="p-stepped-list__title">
-              Install the Raspberry Pi Imaging Tool
-            </h3>
-            <p class="p-stepped-list__content">
-              <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager_amd64.deb">
-                Download the Imaging Tool for Ubuntu
-              </a>
-            </p>
-          </li>
-          {% include 'appliance/shared/_steps_pi_2.html' %}
-          {% include 'appliance/shared/_steps_pi_3_ubuntu.html' %}
-          {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
-        </ol>
-      </div>
+        <div id="ubuntu" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntu-tab">
+          {% include "appliance/shared/_install_instructions_rpi.html" %}
+          <ol class="p-stepped-list">
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">
+                Install the Raspberry Pi Imaging Tool
+              </h3>
+              <p class="p-stepped-list__content">
+                <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager_amd64.deb">
+                  Download the Imaging Tool for Ubuntu
+                </a>
+              </p>
+            </li>
+            {% include 'appliance/shared/_steps_pi_2.html' %}
+            {% include 'appliance/shared/_steps_pi_3_ubuntu.html' %}
+            {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
+          </ol>
+        </div>
 
-      <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
-        {% include "appliance/shared/_install_instructions_rpi.html" %}
-        <ol class="p-stepped-list">
-          <li class="p-stepped-list__item">
-            <h3 class="p-stepped-list__title">
-              Install the Raspberry Pi Imaging Tool
-            </h3>
-            <p class="p-stepped-list__content">
-              <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.exe">
-                Download the Imaging Tool for Windows
-              </a>
-            </p>
-          </li>
-          {% include 'appliance/shared/_steps_pi_2.html' %}
-          {% include 'appliance/shared/_steps_pi_3_windows.html' %}
-          {% with command='type' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
-        </ol>
-      </div>
+        <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
+          {% include "appliance/shared/_install_instructions_rpi.html" %}
+          <ol class="p-stepped-list">
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">
+                Install the Raspberry Pi Imaging Tool
+              </h3>
+              <p class="p-stepped-list__content">
+                <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.exe">
+                  Download the Imaging Tool for Windows
+                </a>
+              </p>
+            </li>
+            {% include 'appliance/shared/_steps_pi_2.html' %}
+            {% include 'appliance/shared/_steps_pi_3_windows.html' %}
+            {% with command='type' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
+          </ol>
+        </div>
 
-      <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
-        {% include "appliance/shared/_install_instructions_rpi.html" %}
-        <ol class="p-stepped-list">
-          <li class="p-stepped-list__item">
-            <h3 class="p-stepped-list__title">
-              Install the Raspberry Pi Imaging Tool
-            </h3>
-            <p class="p-stepped-list__content">
-              <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.dmg">
-                Download the Imaging Tool for macOS
-              </a>
-            </p>
-          </li>
-          {% include 'appliance/shared/_steps_pi_2.html' %}
-          {% include 'appliance/shared/_steps_pi_3_macos.html' %}
-          {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
-        </ol>
+        <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
+          {% include "appliance/shared/_install_instructions_rpi.html" %}
+          <ol class="p-stepped-list">
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">
+                Install the Raspberry Pi Imaging Tool
+              </h3>
+              <p class="p-stepped-list__content">
+                <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.dmg">
+                  Download the Imaging Tool for macOS
+                </a>
+              </p>
+            </li>
+            {% include 'appliance/shared/_steps_pi_2.html' %}
+            {% include 'appliance/shared/_steps_pi_3_macos.html' %}
+            {% with command='cat' %}{% include 'appliance/shared/_steps_pi_4567.html' %}{% endwith %}
+          </ol>
+        </div>
       </div>
     </div>
   </div>

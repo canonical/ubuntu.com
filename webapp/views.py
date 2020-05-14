@@ -14,6 +14,7 @@ import flask
 import gnupg
 import pytz
 import talisker.requests
+import yaml
 from ubuntu_release_info.data import Data
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
@@ -88,18 +89,14 @@ def download_thank_you(category):
 
 
 def appliance_install(app, device):
-    context = {"http_host": flask.request.host}
+    with open("appliances.yaml") as appliances:
+        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
 
-    name = flask.request.args.get("name", "")
-    iso_url = flask.request.args.get("iso_url", "")
-    checksum = flask.request.args.get("checksum", "")
-
-    if name:
-        context["iso_url"] = iso_url
-        context["name"] = name
-        context["checksum"] = checksum
-
-    return flask.render_template(f"appliance/{app}/{device}.html", **context)
+    return flask.render_template(
+        f"appliance/{app}/{device}.html",
+        http_host=flask.request.host,
+        appliance=appliances["appliances"][app],
+    )
 
 
 def releasenotes_redirect():
