@@ -8,7 +8,7 @@
 
 {% block content %}
 {% if iso_url %}
-<meta http-equiv="refresh" content="3;url={{ iso_url }}">
+<!-- meta http-equiv="refresh" content="3;url={{ iso_url }}" -->
 {% endif %}
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
@@ -21,7 +21,7 @@
       </p>
       {% include "appliance/shared/_verify-checksums.html" %}
       {% else %}
-      <h1>Setup your Ubuntu Plex appliance for Raspberry Pi</h1>
+      <h1>Setup your Ubuntu {{ name }} appliance for Raspberry Pi</h1>
       {% endif %}
     </div>
     <div class="col-5 u-hide--small u-align--center">
