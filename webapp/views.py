@@ -83,6 +83,21 @@ def download_thank_you(category):
     )
 
 
+def appliance_install(app, device):
+    context = {"http_host": flask.request.host}
+
+    name = flask.request.args.get("name", "")
+    iso_url = flask.request.args.get("iso_url", "")
+    checksum = flask.request.args.get("checksum", "")
+
+    if name:
+        context["iso_url"] = iso_url
+        context["name"] = name
+        context["checksum"] = checksum
+
+    return flask.render_template(f"appliance/{app}/{device}.html", **context)
+
+
 def releasenotes_redirect():
     """
     View to redirect to https://wiki.ubuntu.com/ URLs for release notes.
