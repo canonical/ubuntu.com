@@ -14,8 +14,8 @@ export const visa = {
 export const unknownBrand = {
   card: {
     brand: "foo",
-    exp_month: "04",
-    exp_year: "29",
+    exp_month: 4,
+    exp_year: 2029,
     last4: "6789",
   },
   billing_details: {
