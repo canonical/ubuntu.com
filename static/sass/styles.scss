@@ -616,6 +616,13 @@ summary {
   padding-left: $sph-inner--small;
 }
 
+// XXX: 14.05.2020 remove when this is fixed https://github.com/canonical-web-and-design/vanilla-framework/issues/3066
+@media (min-width: $breakpoint-large) {
+  h4.p-stepped-list__title + .p-stepped-list__content {
+    margin-left: 0;
+  }
+}
+
 // XXX: Muted text patterm - will be added to Vanilla
 // Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/3063
 .p-muted-text {
