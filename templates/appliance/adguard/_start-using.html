@@ -1,0 +1,30 @@
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-6 u-vertically-center">
+      <div>
+        <h2>
+          Start using your {{ appliance.name }} Ubuntu Appliance
+        </h2>
+        <p>
+          When you run AdGuard Home for the first time, it will start listening to <code>http://0.0.0.0:3000</code> or <code>http://127.0.0.1:3000</code> and prompt you to open it in your browser.
+        </p>
+        <p>
+          There you will go through the initial configuration wizard.
+        </p>
+        <p>
+          Now you can follow the instructions on screen to get started using your new {{ appliance.name }} Ubuntu Appliance. For more information or more documentation on what to do next, the <a class="p-link--external" href="https://adguard.com/">AdGuard website</a> is the best place to go next.
+        </p>
+      </div>
+    </div>
+    <div class="col-6 u-hide--small u-align--center">
+      {{  image(
+        url="https://assets.ubuntu.com/v1/636bd444-adguard-first-screen.png",
+        alt="AdGuard wizard screen",
+        width="600",
+        height="619",
+        hi_def=True,
+        loading="lazy",
+        ) | safe}}
+      </div>
+    </div>
+  </section>
