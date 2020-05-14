@@ -16,7 +16,7 @@ azure:
 
 appliance:
   title: Appliance
-  path: /Appliance
+  path: /appliance
 
   children:
     - title: Overview
@@ -39,7 +39,10 @@ appliance:
           hidden: True
     - title: Plex
       path: /appliance/plex
-      persist: True
+      hidden: True
+    - title: Adguard
+      path: /appliance/adguard
+      hidden: True
 aws:
   title: AWS
   path: /aws
