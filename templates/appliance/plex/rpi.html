@@ -2,7 +2,7 @@
 
 {% block title %}Install {{ appliance.name }} on a Raspberry Pi - Ubuntu Appliance{% endblock title %}
 
-{% block meta_description %}How to install and setup the {{ appliance.name }} Ubuntu appliance on the Raspberry Pi.{% endblock meta_description %}
+{% block meta_description %}Install and setup the {{ appliance.name }} Ubuntu appliance on the Raspberry Pi.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1H_4L-kqKx6HJ0_3krpzdDVZ24pdVm5jb0evLMT6mcuo/edit#{% endblock meta_copydoc %}
 
@@ -13,9 +13,9 @@
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
   <div class="row u-vertically-center">
-    <div class="col-7">
+    <div class="col-8">
       {% if appliance.iso_url.rpi %}
-      <h1>Thank you for downloading the Ubuntu {{ appliance.name }} appliance for Raspberry Pi</h1>
+      <h1 class="u-no-margin--bottom">Install the Ubuntu {{ appliance.name }} appliance for Raspberry Pi</h1>
       <p>Your download should start automatically. If it doesn&rsquo;t,
         <a href="{{ appliance.iso_url.rpi }}">download now</a>.
       </p>
@@ -24,7 +24,7 @@
       <h1>Setup your Ubuntu {{ appliance.name }} appliance for Raspberry Pi</h1>
       {% endif %}
     </div>
-    <div class="col-5 u-hide--small u-align--center">
+    <div class="col-4 u-hide--small u-align--center">
       {{
         image(
         url="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg",
@@ -64,7 +64,7 @@
         </nav>
 
         <div id="ubuntu" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntu-tab">
-          {% include "appliance/shared/_install_instructions_rpi.html" %}
+          {% with logo="https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg" %}{% include "appliance/shared/_install_instructions_rpi.html" %}{% endwith %}
           <ol class="p-stepped-list">
             <li class="p-stepped-list__item">
               <h3 class="p-stepped-list__title">
@@ -83,7 +83,7 @@
         </div>
 
         <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
-          {% include "appliance/shared/_install_instructions_rpi.html" %}
+          {% with logo="https://assets.ubuntu.com/v1/30574235-windows-logo.svg" %}{% include "appliance/shared/_install_instructions_rpi.html" %}{% endwith %}
           <ol class="p-stepped-list">
             <li class="p-stepped-list__item">
               <h3 class="p-stepped-list__title">
@@ -102,7 +102,7 @@
         </div>
 
         <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
-          {% include "appliance/shared/_install_instructions_rpi.html" %}
+          {% with logo="https://assets.ubuntu.com/v1/6042056d-MacOS_wordmark.svg" %}{% include "appliance/shared/_install_instructions_rpi.html" %}{% endwith %}
           <ol class="p-stepped-list">
             <li class="p-stepped-list__item">
               <h3 class="p-stepped-list__title">
