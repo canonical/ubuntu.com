@@ -53,12 +53,15 @@ export function getPaymentInformation(paymentMethod) {
   const billingInfo = paymentMethod.billing_details;
   const cardInfo = paymentMethod.card;
 
+  const formattedExpiryMonth = cardInfo.exp_month.toString().padStart(2, "0");
+  const formattedExpiryYear = cardInfo.exp_year.toString().slice(-2);
+
   const cardBrandFormatted =
     cardInfo.brand.charAt(0).toUpperCase() + cardInfo.brand.slice(1);
 
   return {
     cardText: `${cardBrandFormatted} ending ${cardInfo.last4}`,
-    cardExpiry: `${cardInfo.exp_month}/${cardInfo.exp_year}`,
+    cardExpiry: `${formattedExpiryMonth}/${formattedExpiryYear}`,
     cardImage: cardBrandImages[cardInfo.brand] || null,
     email: billingInfo.email,
     name: billingInfo.name,
@@ -79,7 +82,7 @@ export function getRenewalInformation(data) {
 
   return {
     endDate: endDate.toLocaleString("en-GB", dateOptions),
-    name: `Renew "${data.name}"`,
+    name: `Renew &ldquo;${data.name}&rdquo;`,
     products: getProductsString(data.products),
     quantity: `${data.quantity} &#215; ${formattedCurrency(
       data.unitPrice,
