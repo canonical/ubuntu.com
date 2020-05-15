@@ -18,15 +18,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 # Local
 from webapp.security.database import db_session
-from webapp.security.models import (
-    Bug,
-    CVE,
-    Notice,
-    Package,
-    PackageStatus,
-    Reference,
-    Release,
-)
+from webapp.security.models import CVE, Notice, Package, PackageStatus, Release
 from webapp.security.schemas import NoticeSchema
 from webapp.security.auth import authorization_required
 
@@ -220,6 +212,7 @@ def create_notice():
         summary=data["summary"],
         details=data["description"],
         packages=data["releases"],
+        references=data.get("reference", []),
         published=datetime.fromtimestamp(data["timestamp"]),
     )
 
@@ -240,25 +233,6 @@ def create_notice():
         except NoResultFound:
             message = f"No release with codename: {release_codename}."
             return (flask.jsonify({"message": message}), 400)
-
-    # Link CVEs, creating them if they don't exist
-    refs = set(data.get("references", []))
-    for ref in refs:
-        if ref.startswith("CVE-"):
-            cve_id = ref[4:]
-            cve = db_session.query(CVE).get(cve_id)
-            if not cve:
-                cve = CVE(id=cve_id)
-            notice.cves.append(cve)
-        else:
-            reference = (
-                db_session.query(Reference)
-                .filter(Reference.uri == ref)
-                .first()
-            )
-            if not reference:
-                reference = Reference(uri=ref)
-            notice.references.append(reference)
 
     try:
         db_session.add(notice)
@@ -437,21 +411,7 @@ def cve(cve_id):
 
 # CVE API
 # ===
-def _find_by_uri(object_list, uri):
-    for item in object_list:
-        if item.uri == uri:
-            return item
-
-
-def _find_by_codename(object_list, codename):
-    for item in object_list:
-        if item.codename == codename:
-            return item
-
-    raise Exception(f"No release found with codename '{codename}'")
-
-
-def update_cve(cve, data, references, bugs, releases):
+def update_cve(cve, data):
     cve.status = data.get("status")
     cve.last_updated_date = (
         parse(data.get("last_updated_date"))
@@ -475,49 +435,48 @@ def update_cve(cve, data, references, bugs, releases):
     cve.description = data.get("description")
     cve.ubuntu_description = data.get("ubuntu_description")
     cve.notes = data.get("notes")
+    cve.references = data.get("references")
+    cve.bugs = data.get("bugs")
 
-    if data.get("references"):
-        cve.references.clear()
-        for uri in data["references"]:
-            reference = _find_by_uri(references, uri) or Reference(uri=uri)
-            cve.references.append(reference)
+    return cve
 
-    if data.get("bugs"):
-        cve.bugs.clear()
-        for bug_url in data["bugs"]:
-            bug = _find_by_uri(bugs, uri) or Bug(uri=bug_url)
-            cve.bugs.append(bug)
 
-    # Packages
-    # Check if there are packages before mapping
+def create_package_statuses(cve, data, packages, releases):
+    objects_to_create = []
+
     if data.get("packages"):
-        cve.packages.clear()
-
         for package_data in data["packages"]:
-            package_statuses = []
+            if package_data["name"] in packages:
+                package = packages[package_data["name"]]
+            else:
+                package = Package(
+                    name=package_data["name"],
+                    source=package_data["source"],
+                    ubuntu=package_data["ubuntu"],
+                    debian=package_data["debian"],
+                )
+                packages[package_data["name"]] = package
+                objects_to_create.append(package)
 
             for release_data in package_data["releases"]:
-                package_statuses.append(
+                codename = release_data["name"]
+
+                if codename not in releases:
+                    raise Exception(
+                        f"No release found with codename '{codename}'"
+                    )
+
+                objects_to_create.append(
                     PackageStatus(
                         status=release_data["status"],
                         status_description=release_data["status_description"],
-                        release=_find_by_codename(
-                            releases, release_data["name"]
-                        ),
+                        release=releases[codename],
+                        package=package,
+                        cve=cve,
                     )
                 )
 
-            package = Package(
-                name=package_data["name"],
-                source=package_data["source"],
-                ubuntu=package_data["ubuntu"],
-                debian=package_data["debian"],
-                package_statuses=package_statuses,
-            )
-
-            cve.packages.append(package)
-
-    return cve
+    return objects_to_create
 
 
 @authorization_required
@@ -557,13 +516,24 @@ def bulk_upsert_cve():
             400,
         )
 
-    releases = db_session.query(Release).all()
-    references = db_session.query(Reference).all()
-    bugs = db_session.query(Bug).all()
+    releases = {}
+
+    for release in db_session.query(Release).all():
+        releases[release.codename] = release
+
+    packages = {}
+
+    for package in db_session.query(Package).all():
+        packages[package.name] = package
 
     for data in cves_data:
         cve = db_session.query(CVE).get(data["id"]) or CVE(id=data["id"])
-        db_session.add(update_cve(cve, data, references, bugs, releases))
+        cve = update_cve(cve, data)
+        package_objects = create_package_statuses(
+            cve, data, packages, releases
+        )
+        db_session.add(cve)
+        db_session.add_all(package_objects)
 
     try:
         db_session.commit()
