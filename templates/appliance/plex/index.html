@@ -26,19 +26,9 @@
       </div>
     </div>
     <div class="col-4 u-align--right">
-      <form class="p-form--inline" action="#">
-        <div class="p-form__group">
-          <label for="platform" class="u-off-screen">Platform</label>
-          <select id="platform">
-            <option value="rpi">Raspberry Pi</option>
-            <option value="pc">PC</option>
-            <option value="intel-nuc">Intel NUC</option>
-          </select>
-        </div>
-        <div class="p-form__group">
-          <input type="submit" class="p-button--positive p-form__control" value="Download">
-        </div>
-      </form>
+      {% with app="plex" %}
+      {% include 'appliance/shared/_download_widget.html' %}
+      {% endwith %}
     </div>
   </div>
 </section>
