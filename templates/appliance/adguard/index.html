@@ -2,7 +2,7 @@
 
 {% block title %}Adguard | Ubuntu Appliance{% endblock %}
 
-{% block meta_description %}AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it'll cover ALL your home devices, and you don't need any client-side software for that.{% endblock %}
+{% block meta_description %}Build your Adgaurd appliance with Ubuntu Appliance images with preinstalled snaps. AdGuard Home is a network-wide software for blocking ads & tracking.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1-OETrr26H36YpewFgSlCxOaSXSf3QoWpKZV5lc8ONbs/{% endblock meta_copydoc %}
 
@@ -69,6 +69,33 @@
       <p>It operates as a DNS server that re-routes tracking domains to a &ldquo;black hole,&rdquo; thus preventing your devices from connecting to those servers. It's based on software we use for our public AdGuard DNS servers &mdash; both share a lot of common code.</p>
     </div>
     <div class="col-4">
+      <h5 class="u-no-margin--bottom u-no-padding--top">Relevant links</h5>
+      <ul class="p-list">
+        <li class="p-list__item"><a href="https://adguard.com/en/privacy.html">AdGuard Home Privacy Policies</a></li>
+        <li class="p-list__item"><a href="https://adguard.com">AdGuard Home website</a></li>
+        <li class="p-list__item"><a href="https://adguard.com/en/rewards.html">AdGuard Home developer license</a></li>
+        <li class="p-list__item"><a href="https://github.com/AdguardTeam/AdGuardHome/issues">AdGuard Home issue tracker</a></li>
+        <li class="p-list__item"><a href="/appliance/governance">Ubuntu appliance governance</a></li>
+      </ul>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Privacy compliance</h5>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">EU GDPR</li>
+        <li class="p-list__item is-ticked">California law</li>
+      </ul>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Base</h5>
+      <p>core20</p>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Date published</h5>
+      <p>YYYY-MM-DD</p>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Security maintenance until</h5>
+      <p>YYYY-MM-DD</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip u-no-padding--top">
+  <div class="row">
+    <div class="col-6">
       <h2 class="p-heading--four">Snaps in the image</h2>
       <div class="p-media-object">
         <img src="https://assets.ubuntu.com/v1/1ec45573-AdGuard.png?w=75" alt="" class="p-media-object__image is-round" height="75" width="75">
@@ -76,7 +103,7 @@
           <h3 class="p-heading--5 u-no-margin--bottom u-sv-1">
             <a href="https://snapcraft.io/adguard-home" class="p-link--external">AdGuard Home</a>
           </h3>
-          <p class="p-muted-text">By Plex, Inc. (plexinc)</p>
+          <p class="p-muted-text">By AdGuard, (ameshkov)</p>
           <p class="u-sv-1"><span class="p-muted-text">Channel: </span>latest/stable</p>
           <p class="u-sv-1"><span class="p-muted-text">Version: </span>0.101.0</p>
           <p><span class="p-muted-text">Published: </span>24 April 2020</p>
@@ -86,48 +113,39 @@
   </div>
 </section>
 
+<section class="p-strip u-no-padding--top">
+  <div class="row">
+    <div class="col-6">
+      <h4>This appliance works on:</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <a href="/appliance/adguard/raspberry-pi" class="p-link--soft">
+        <h3 class="p-heading--five u-no-padding--top">Raspberry Pi</h3>
+        <hr />
+        <div class="u-align--center">
+          <img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png?h=200" alt="" style="margin:1rem 0; width: 85%;">
+        </div>
+      </a>
+      <p><a href="/appliance/adguard/raspberry-pi">Install on Raspberry&nbsp;Pi</a></p>
+    </div>
+
+    <div class="col-2">
+      <a href="/appliance/adguard/intel-nuc" class="p-link--soft">
+        <h3 class="p-heading--five u-no-padding--top">NUC</h3>
+        <hr />
+        <div class="u-align--center">
+          <img src="https://assets.ubuntu.com/v1/78b65554-1920px-Intel_NUC8.jpg?h=200" style="margin:1rem 0; width: 85%;">
+        </div>
+      </a>
+      <p><a href="/appliance/adguard/intel-nuc">Install on NUC</a></p>
+    </div>
+  </div>
+</section>
+
 <section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Appliance policies</h2>
-      <p>Every Ubuntu appliance publisher is responsible for providing privacy policies and rights to operate with their brand. More information can be found on the governance page.</p>
-      <p><a href="https://github.com/AdguardTeam/AdGuardHome" class="p-link--external">AdGuard policies</a></p>
-      <p><a href="/appliance/governance">Ubuntu appliance governance&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/cb5ac5c9-privacy-policy.svg" alt="" height="200" width="200">
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>The developers</h2>
-      <p>The Adguard Ubuntu appliance is a commercial appliance and the software is produced by developers under the Adguard brand.</p>
-      <p><a href="https://adguard.com/en/welcome.html" class="p-link--external">Developer website</a></p>
-      <p><a href="https://github.com/AdguardTeam/AdGuardHome" class="p-link--external">Contact AdGuard</a></p>
-    </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/061edebb-developer.svg" alt="" height="200" width="200">
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Get started</h2>
-      <p>Once you have installed AdGuard and set up your AdGuard Ubuntu appliance you will be taken through set up in your browser. If you have any more questions or want to go further, the developers of AdGuard have lots of documentation to help you get started.</p>
-      <a href="https://github.com/AdguardTeam/AdGuardHome/wiki/Getting-Started" class="p-link--external">Get Started</a>
-    </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/1ec45573-AdGuard.png?w=200" height="200" width="200">
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Build your own appliance</h2>

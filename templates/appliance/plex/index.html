@@ -2,7 +2,7 @@
 
 {% block title %}Plex Media Server | Ubuntu Appliance{% endblock %}
 
-{% block meta_description %}Plex magically organizes your media libraries and streams them to any device – including all your video, music, and photo libraries.{% endblock %}
+{% block meta_description %}Build your Plex appliance with Ubuntu Appliance images with preinstalled snaps. Plex magically organizes your media libraries and streams them to any device – including all your video, music, and photo libraries.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1zgOl4GCK6O6Clv6oxp-DXDSKYIKO2pvpXaYXALiTlpo/{% endblock meta_copydoc %}
 
@@ -73,9 +73,9 @@
   <div class="row">
     <div class="col-8">
       <h2 class="p-heading--four">Plex magically organizes your media libraries and streams them to any device</h2>
-      <p>Plex magically organizes your media libraries and streams them to any device – including all your video, music, and photo libraries. With a Plex Pass, supported tuner, and digital antenna, you can also watch and record FREE over-the-air broadcast TV, including major networks. You can also enjoy podcasts Plus Plex News – the most balanced and comprehensive personalized video newsfeed out there. </p>
+      <p>Plex magically organizes your media libraries and streams them to any device &mdash; including all your video, music, and photo libraries. With a Plex Pass, supported tuner, and digital antenna, you can also watch and record FREE over-the-air broadcast TV, including major networks. You can also enjoy podcasts Plus Plex News &mdash; the most balanced and comprehensive personalized video newsfeed out there. </p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Magically organize all your personal media – photos, music, movies, shows, even DVR-ed TV – and stream it to any device in a beautiful, simple interface, and Plex adds rich descriptions, artwork, and other related information</li>
+        <li class="p-list__item is-ticked">Magically organize all your personal media &mdash; photos, music, movies, shows, even DVR-ed TV &mdash; and stream it to any device in a beautiful, simple interface, and Plex adds rich descriptions, artwork, and other related information</li>
         <li class="p-list__item is-ticked">Podcasts are here! Search for your favorites or discover new ones through personalized recommendations. Plus: 30-second skip, variable speed playback, rich discovery, and full Plex-style support for cross-device playback status (including On Deck, so you can pick back up where you left off on any device)</li>
         <li class="p-list__item is-ticked">Get personalized and trusted video news from over 190 global publisher partners (and growing!), including CBS, Financial Times, Euronews, and top local news sources for over 80% of markets in the US</li>
         <li class="p-list__item is-ticked">Cut the cord! Go premium with a Plex Pass and use Plex Live TV & DVR so you can watch and record free over-the-air HD TV, like NBC, ABC, CBS, and FOX, with any supported digital antenna and tuner</li>
@@ -85,6 +85,31 @@
       </ul>
     </div>
     <div class="col-4">
+      <h5 class="u-no-margin--bottom u-no-padding--top">Relevant links</h5>
+      <ul class="p-list">
+        <li class="p-list__item"><a href="https://www.plex.tv/en-gb/about/privacy-legal/">Plex Media Server Policies</a></li>
+        <li class="p-list__item"><a href="https://www.plex.tv/">Plex Media Server website</a></li>
+        <li class="p-list__item"><a href="https://support.plex.tv/articles/204096476-license-information/">Plex Media Server license</a></li>
+        <li class="p-list__item"><a href="/appliance/governance">Ubuntu appliance governance</a></li>
+      </ul>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Privacy compliance</h5>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">EU GDPR</li>
+        <li class="p-list__item is-ticked">California law</li>
+      </ul>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Base</h5>
+      <p>core20</p>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Date published</h5>
+      <p>YYYY-MM-DD</p>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Security maintenance until</h5>
+      <p>YYYY-MM-DD</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row">
+    <div class="col-6">
       <h2 class="p-heading--four">Snaps in the image</h2>
       <div class="p-media-object">
         <img src="https://assets.ubuntu.com/v1/402069bd-plex-media-server.png?w=75" alt="" class="p-media-object__image is-round" height="75" width="75">
@@ -102,46 +127,39 @@
   </div>
 </section>
 
+<section class="p-strip u-no-padding--top">
+  <div class="row">
+    <div class="col-6">
+      <h4>This appliance works on:</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <a href="/appliance/plex/raspberry-pi" class="p-link--soft">
+        <h3 class="p-heading--five u-no-padding--top">Raspberry Pi</h3>
+        <hr />
+        <div class="u-align--center">
+          <img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png?h=200" alt="" style="margin:1rem 0; width: 85%;">
+        </div>
+      </a>
+      <p><a href="/appliance/plex/raspberry-pi">Install on Raspberry&nbsp;Pi</a></p>
+    </div>
+
+    <div class="col-2">
+      <a href="/appliance/plex/intel-nuc" class="p-link--soft">
+        <h3 class="p-heading--five u-no-padding--top">NUC</h3>
+        <hr />
+        <div class="u-align--center">
+          <img src="https://assets.ubuntu.com/v1/78b65554-1920px-Intel_NUC8.jpg?h=200" style="margin:1rem 0; width: 85%;">
+        </div>
+      </a>
+      <p><a href="/appliance/plex/intel-nuc">Install on NUC</a></p>
+    </div>
+  </div>
+</section>
+
 <section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Appliance policies</h2>
-      <p>Every Ubuntu appliance publisher is responsible for providing privacy policies and rights to operate with their brand. More information can be found on the governance page.</p>
-      <a href="https://www.plex.tv/en-gb/about/privacy-legal/" class="p-link--external">Plex Media Server Policies</a>
-    </div>
-    <div class="col-4 u-align--center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/cb5ac5c9-privacy-policy.svg" alt="" height="200" width="200">
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>The developers</h2>
-      <p>The Plex media Ubuntu appliance is a commercial appliance and the software is produced by developers at Plexinc.</p>
-      <a href="https://plex.tv" class="p-link--external">Plex.tv</a>
-    </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/3cd85693-Plex.png" alt="" height="100" width="250">
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Get started</h2>
-      <p>Once you have installed and set up your Plex Media Server Ubuntu appliance you will be taken through set up in your browser. If you have any more questions or want to go further, the developers of Plex Media Server have lots of documentation to help you get started.</p>
-      <a href="https://snapcraft.io/plexmediaserver" class="p-link--external">Get Started</a>
-    </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/402069bd-plex-media-server.png?w=200" height="200" width="200">
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Build your own appliance</h2>
