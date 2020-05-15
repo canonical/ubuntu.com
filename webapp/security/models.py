@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import (
+    ARRAY,
     Boolean,
     Column,
     DateTime,
@@ -24,40 +25,11 @@ notice_cves = Table(
     Column("cve_id", String, ForeignKey("cve.id")),
 )
 
-
-notice_references = Table(
-    "notice_references",
-    Base.metadata,
-    Column("notice_id", String, ForeignKey("notice.id")),
-    Column("reference_id", Integer, ForeignKey("reference.id")),
-)
-
 notice_releases = Table(
     "notice_releases",
     Base.metadata,
     Column("notice_id", String, ForeignKey("notice.id")),
     Column("release_id", Integer, ForeignKey("release.id")),
-)
-
-cve_bugs = Table(
-    "cve_bugs",
-    Base.metadata,
-    Column("cve_id", String, ForeignKey("cve.id")),
-    Column("bug_id", Integer, ForeignKey("bug.id")),
-)
-
-cve_references = Table(
-    "cve_references",
-    Base.metadata,
-    Column("cve_id", String, ForeignKey("cve.id")),
-    Column("reference_id", Integer, ForeignKey("reference.id")),
-)
-
-cve_packages = Table(
-    "cve_packages",
-    Base.metadata,
-    Column("cve_id", String, ForeignKey("cve.id")),
-    Column("cve_packages", Integer, ForeignKey("package.id")),
 )
 
 
@@ -78,9 +50,9 @@ class CVE(Base):
     assigned_to = Column(String)
     approved_by = Column(String)
     cvss = Column(String)  # CVSS vector to convert into Base score
-    references = relationship("Reference", secondary=cve_references)
-    bugs = relationship("Bug", secondary=cve_bugs)
-    packages = relationship("Package", secondary=cve_packages)
+    references = Column(ARRAY(String))
+    bugs = Column(ARRAY(String))
+    package_statuses = relationship("PackageStatus")
     status = Column(String)
 
 
@@ -96,17 +68,10 @@ class Notice(Base):
     instructions = Column(String)
     packages = Column(JSON)
     cves = relationship("CVE", secondary=notice_cves)
-    references = relationship("Reference", secondary=notice_references)
+    references = Column(ARRAY(String))
     releases = relationship(
         "Release", secondary=notice_releases, order_by="-Release.release_date"
     )
-
-
-class Reference(Base):
-    __tablename__ = "reference"
-
-    id = Column(Integer, primary_key=True)
-    uri = Column(String)
 
 
 class Release(Base):
@@ -135,19 +100,15 @@ class Release(Base):
         return ""
 
 
-class Bug(Base):
-    __tablename__ = "bug"
-
-    id = Column(Integer, primary_key=True)
-    uri = Column(String)
-
-
 class PackageStatus(Base):
     __tablename__ = "package_status"
 
     id = Column(Integer, primary_key=True)
     status = Column(String)
     status_description = Column(String)
+
+    cve_id = Column(String, ForeignKey("cve.id"))
+    cve = relationship("CVE", back_populates="package_statuses")
 
     package_id = Column(Integer, ForeignKey("package.id"))
     package = relationship("Package", back_populates="package_statuses")
