@@ -1,0 +1,27 @@
+<form class="p-form--inline js-download">
+  <div class="p-form__group">
+    <label for="platform" class="u-off-screen">Platform</label>
+    <select id="platform" class="js-platform-select">
+      <option value="raspberry-pi">Raspberry Pi</option>
+      <option value="pc">PC</option>
+      <option value="intel-nuc">Intel NUC</option>
+    </select>
+  </div>
+  <div class="p-form__group">
+    <a href="/appliance/{{app}}/raspberry-pi" class="p-button--positive p-form__control js-download-button">Download</a>
+  </div>
+</form>
+<script>
+  (function () {
+    var downloadForm = document.querySelector(".js-download");
+    if (downloadForm) {
+      const linkElement = downloadForm.querySelector('.js-download-button');
+      const selectElement = downloadForm.querySelector('.js-platform-select');
+      if (linkElement && selectElement) {
+        selectElement.addEventListener('change', function() {
+          linkElement.href = window.location.pathname + '/' + selectElement.value;
+        });
+      }
+    }
+  })();
+</script>
