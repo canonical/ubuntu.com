@@ -1,0 +1,14 @@
+{% extends "appliance/_base-appliance.html" %}
+
+{% block title %}Install the {{ appliance.name }} Ubuntu Appliance on your Ubuntu desktop{% endblock title %}
+
+{% block meta_description %}Install and setup the {{ appliance.name }} Ubuntu Appliance on your Ubuntu desktop.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1G8IJoHrhd1RP3dHqyiasteMxPrxCwW5Sf0Vh3AY2SHQ/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include 'appliance/shared/_pc.html' %}
+{% include 'appliance/adguard/_start-using.html' %}
+
+{% endblock content %}
