@@ -1,0 +1,55 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Canonical annonce Managed Apps: l'infogérance des applications sur votre cloud.{% endblock %}
+
+{% block content %}
+<header class="p-strip--image is-shallow" style="background-image: url(https://assets.ubuntu.com/v1/f8a323a7-image-background-paper.png);">
+  <div class="row">
+    <div class="col-8">
+      <h1>Canonical annonce Managed Apps: l'infogérance des applications sur votre cloud.</h1>
+    </div>
+  </div>
+</header>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      {{
+        image(
+          url="https://admin.insights.ubuntu.com/wp-content/uploads/ab82/Screen-Shot-2020-04-17-at-11.50.42.png",
+          alt="",
+          height="428",
+          width="960",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="lazy",
+        ) | safe
+      }}
+
+      <p>Canonical, l'éditeur d’Ubuntu, annonce Managed Apps - Permettant aux entreprises d’avoir leurs applications déployées et gérées par Canonical. Au lancement, Canonical couvre dix applications très fortement utilisées dans le cloud.  Des bases de données “cloud native” et les applications de logging,  de surveillances et d’alertes.  Ces applications peuvent être installées dans des containers gérés par Kubernetes, dans des VMs, et ensuite hébergées dans le cloud public ou privé.  Le service permets aux équipes de se concentrer sur le développement et laisser la gestion de ces applications à Canonical pour un coût défini à l’avance.</p>
+      <p>Le service inclus:</p>
+      <ul>
+        <li>Les bases de données suivantes: MySQL, InfluxDB, PostgreSQL, MongoDB et ElasticSearch.</li>
+        <li>Open Source Mano (OSM)</li>
+        <li>Les plateformes de streaming d'événements; Kafka.</li>
+      </ul>
+      <p>La fiabilité des applications est assurée avec le service qui inclut les activités suivantes:</p>
+      <ul>
+        <li>Déploiement et montée en charge (Scaling)</li>
+        <li>Haute disponibilité</li>
+        <li>Patching de securité</li>
+        <li>Mise à jour de versions</li>
+      </ul>
+      <p>Le service est couvert avec un SLA sur la disponibilité, 24/7 break/fix et les  dashboards qui permettent aux entreprises de surveiller les applications.</p>
+      <p>“En passant de plus en plus à une approche cloud, les entreprises sont ralenties par les applications elles même et passent trop de temps à gérer le cloud et ces applications” disant Stephan Fabel, Directeur des produits a Canonical.  Notre Managed Apps leur redonne le temps de se concentrer sur les priorités de l‘entreprise avec la réassurance que leurs applications sont maintenues de façon fiable, sécurisée et peuvent monter en charge avec les besoins”.</p>
+      <p>En plus, en utilisant les équipes de Canonical, les entreprises peuvent combler un manque de compétences et réduire le coût nécessaire pour employer des personnes avec les compétences de ces applications. Toute cela en assurant un service global et 24 heures sur 24, 7 jours sur 7.</p>
+      <p>Tous ces services : gestion du cycle de vie, mise à l'échelle des ressources et haute disponibilité sont délivrés par les équipes managed services de Canonical qui ont la certification  MSPAlliance CloudVerify* – qui est  l’équivalent de SOC 2 Type2, ISO 27001 / ISO 27002. Le service est aussi RGPD.</p>
+      <p>En couvrant dix des applications les plus utilisées (et la liste sera étendue), Canonical enlève le besoin pour les entreprises de devoir contractualiser avec plusieurs fournisseurs. En rassemblant toutes vos applications sous un fournisseur, vous avez la réassurance d’un SLA unique. La subscription inclut Ubuntu Advantage for infrastructure, couvrant de facto votre OS Ubuntu , Kubernetes, Openstack et CEPH.</p>
+      <p class="u-align--center"><em>&lt;Ends&gt;</em></p>
+      <p>*Certification prévue pour Avril 2020.</p>
+      <p><strong>A propos de Canonical</strong></p>
+      <p>Canonical est ‘éditeur d’Ubuntu, l’ OS le plus utilisé du cloud public et des objets connectés, des robots et des voitures autonomes. . Canonical est aussi fournisseur de service de sécurité, de support et services professionnel aux entreprises des produits Ubuntu. Établie en  2004, Canonical est une entreprise privée.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
