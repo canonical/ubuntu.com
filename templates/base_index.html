@@ -70,9 +70,9 @@
         </a>
       </div>
 
-      <script src="{{ versioned_static('js/src/latest-news.js') }}"></script>
+      <script src="{{ versioned_static('js/build/latest-news.js') }}"></script>
       <script>
-        fetchLatestNews(
+        canonicalLatestNews.fetchLatestNews(
           {
             articlesContainerSelector: "#latest-articles",
             articleTemplateSelector: "#articles-template",
