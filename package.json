@@ -8,8 +8,9 @@
     "test-js": "jest",
     "test-links": "./entrypoint 0.0.0.0:${PORT} && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --ignore-url /server/docs --no-warnings http://127.0.0.1:8000",
     "copy-global-nav": "cp node_modules/@canonical/global-nav/dist/global-nav.js static/js/build/",
+    "copy-latest-news": "cp node_modules/@canonical/latest-news/dist/latest-news.js static/js/build",
     "build-css": "node-sass --include-path node_modules static/sass --source-map true --output-style compressed --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
-    "build-js": "webpack && yarn run copy-global-nav",
+    "build-js": "webpack && yarn run copy-global-nav && yarn run copy-latest-news",
     "build": "yarn run build-css && yarn run build-js && yarn copy-global-nav",
     "watch-css": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/**/*.scss' -c 'yarn run build-css'",
     "watch-js": "watch -p 'static/js/src/**/*.js' -p 'static/js/data/**/*.js' -p 'static/js/third-party/**/*.js' -c 'yarn run build-js'",
@@ -56,9 +57,9 @@
     "postcss-cli": "7.1.1",
     "prettier": "2.0.5",
     "stylelint": "13.4.1",
+    "stylelint-config-prettier": "8.0.1",
     "stylelint-config-standard": "20.0.0",
     "stylelint-order": "4.0.0",
-    "stylelint-config-prettier": "8.0.1",
     "stylelint-prettier": "1.1.2",
     "stylelint-scss": "3.17.2",
     "watch-cli": "0.2.3",
@@ -68,7 +69,8 @@
   "dependencies": {
     "@canonical/cookie-policy": "2.0.3",
     "@canonical/global-nav": "2.4.1",
-    "vanilla-framework": "2.11.0"
+    "vanilla-framework": "2.11.0",
+    "@canonical/latest-news": "1.0.1",
   },
   "resolutions": {
     "lodash": "4.17.15",
