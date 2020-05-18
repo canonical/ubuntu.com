@@ -1,0 +1,170 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Utiliser des GPGPUS avec Kubernetes{% endblock %}
+
+{% block content %}
+<header class="p-strip--image is-shallow" style="background-image: url(https://assets.ubuntu.com/v1/f8a323a7-image-background-paper.png);">
+  <div class="row">
+    <div class="col-8">
+      <h1>Utiliser des GPGPUs avec Kubernetes</h1>
+    </div>
+  </div>
+</header>
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-8">
+      <p>Ce post décrit l’utilisation de GPGPUs avec Kubernetes et <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/">DevicePlugins</a>.</p>
+      <p>Nous allons utiliser MicroK8s pour une station de développement et le Charmed K8s pour un cluster, cela est consistant avec une approche multi-cloud.  Les différents CAAS disponible sur les clouds public comme GKE ont aussi une option GPGPU, vous pouvez aussi essayer cela aussi.</p>
+      <p>Nous allons utiliser Ubuntu comme OS parce que simplement parce que GPGPU fonctionne bien sur tous les clouds en version Ubuntu et avec tout le hardware locale. Et faire les images Docker sur Ubuntu garantie que les libraries CUDA soient alignées avec les drivers.</p>
+      <p>Pour que tout cela fonctionne, le bon driver a besoin d'être installé sur le node du worker pour que le GPGPU soit accessible à l’OS; et typiquement, cela demande aussi des librairies userland pour fonctionner.</p>
+      <p>Avec NVIDIA GPUs, cette habilitation dépend en plus de devoir utiliser le bon Docker runtime (nvisia-docker2) qui demande des configurations supplémentaires au niveau du host et une installation après déploiement.</p>
+      <p>Tout cela est automatisé sur Ubuntu avec MicroK8s et le charmed kubernetes, sur tous les clouds ou GPGPU est disponible. A present, cela est active sur GKE, les autres CASS clouds publics vont suivre.</p>
+      <h2>GPGPU containers sur station de developpement avec Microk8s</h2>
+      <p>MicroK8s est un snap de l’upstream Kubernetes qui est pour le développement.  Ce n’est pas un cluster mais il vous donne une environement Kubernetes avec aucun travail d’exploitation et qui en plus est compatible avec les offres CAAS multi-cloud. Il est donc important que MicroK8s inclus GPGPU.</p>
+      <p>Pour installation MicroK8s:</p>
+      <pre><code>$ snap install microk8s --classic</code></pre>
+      <p>Cela vous donne la dernière version stable de MicroK8s qui traque de très près les releases upstream.</p>
+      <p>Vous pouvez sélectionner une version particulière en utilisation l’option  ‘snap channels’, regarder ‘<code>snap info microk8s</code>’ pour voir les différentes versions.</p>
+      <p>En sélectionnant une version particulière, vous pouvez vous ‘locker’ sur cette version.</p>
+      <p>Par défaut, vous êtes sur la dernière version et vous avez les upgrades quand Kubernetes release une nouvelle version stable.</p>
+      <p>Sélectionner une version particulière avec l’option: <code>--channel=track/stability</code></p>
+      <pre><code>$ snap info microk8s
+[...]
+channels:
+  stable:         v1.13.0  (340) 204MB classic
+  candidate:      v1.13.0  (340) 204MB classic
+  beta:           v1.13.0  (340) 204MB classic
+  edge:           v1.13.0  (340) 204MB classic
+  1.13/stable:    v1.13.0  (340) 204MB classic
+  1.13/candidate: v1.13.0  (340) 204MB classic
+  1.13/beta:      v1.13.0  (340) 204MB classic
+  1.13/edge:      v1.13.0  (341) 204MB classic
+  1.12/stable:    v1.12.3  (336) 226MB classic
+  1.12/candidate: v1.12.3  (336) 226MB classic
+  1.12/beta:      v1.12.3  (336) 226MB classic
+  1.12/edge:      v1.12.3  (336) 226MB classic
+  1.11/stable:    v1.11.5  (322) 219MB classic
+  1.11/candidate: v1.11.5  (322) 219MB classic
+  1.11/beta:      v1.11.5  (322) 219MB classic
+  1.11/edge:      v1.11.5  (322) 219MB classic
+  1.10/stable:    v1.10.11 (321) 175MB classic
+  1.10/candidate: v1.10.11 (321) 175MB classic
+  1.10/beta:      v1.10.11 (321) 175MB classic
+  1.10/edge:      v1.10.11 (321) 175MB classic</code></pre>
+      <p>En prenant l’assomption que vous avez un GPU Nvidia avec le bon driver installé, vous pouvez activer son support avec la sous command “enable”.</p>
+      <pre><code>$ microk8s.enable gpu</code></pre>
+      <p>Vous pouvez confirmer que la GPU est disponible avec la commande suivante:</p>
+      <pre><code>$ microk8s.status
+microk8s is running
+addons:
+gpu: enabled
+storage: disabled
+registry: disabled
+ingress: disabled
+dns: disabled
+metrics-server: disabled
+istio: disabled
+dashboard: disabled</code></pre>
+      <h2>Faire tourner des GPGPU-accelerated containers sur K8s</h2>
+      <p>Maintenant que vous avez de la capacité GPGPU disponible pour votre Kubernetes, vous pouvez déployer des containers qui ont accès au hardware.</p>
+      <p>Vos containers ont besoin des bon userspaces, donc nous vous suggérons de construire vos images OCI sur Ubuntu avec les librairies CUDA fournit; ces derniers seront portable sur toutes les offres CAAS de Canonical, VMware, Pivotal, Cisco et autres qui utilise Ubuntu pour K8s.</p>
+      <p>Vos workloads peuvent maintenant utiliser quelque chose comme cela pour sélectionner le bon worker node. (exemple extrait from <a href="https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/#deploying-nvidia-gpu-device-plugin">ici</a>):</p>
+      <p><strong>Listing 1:</strong>nvidia-pod-example.yaml</p>
+      <pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: cuda-vector-add
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: cuda-vector-add
+      image: "k8s.gcr.io/cuda-vector-add:v0.1"
+      resources:
+        limits:
+          <strong>nvidia.com/gpu: 1 # requesting 1 GPU</strong>
+        </code></pre>
+        <h2>Kubernetes cluster deployment with GPGPUs</h2>
+        <p>Une caractéristique intéressante de <a href="/kubernetes">Charmed Distribution of Kubernetes (CDK)</a> est qu’il active automatique les ressources GPGPU qui sont présentent sur le worker node utilisé par les pods.</p>
+        <p>Les ressources GPU sont activé par l’usage de Device Plugins qui sont déployés comme <a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">DaemonSets</a>.  Cela assure que chaque worker avec GPU peut accéder à la GPU et mettre le bon path vers le driver plugins du host. Avec DaemonSet déployé, le scheduler de Kubernetes peut prendre avantage du NodeSelector pour filtrer les worker node candidats qui mettent en avant la vidia.com/gpu quand il schedule les workloads.</p>
+        <p>Les Charmes automatisent complètement le déploiement de Kubernetes d’une façon qui est “model driven” et fournit donc une flexibilité sur différent type de cloud ou cluster. Nous utilisons les Charmes pour les déploiements HPC de Kubernetes, par exemple, <a href="https://tutorials.ubuntu.com/tutorial/get-started-kubeflow#0">making the deployment of AI/ML pipelines</a> au dessus de Kubernetes plus facile. Activation de GPU est important pour ce genre de workload.</p>
+        <p>Cependant, avant de déployer Kubeflow ou autre, la couche Kubernetes doit être complètement automatiser et les GPU actives.</p>
+        <p>Les Charmes de K8s font tout le travail. Au fur et à mesure que les nodes sont commissionnés dans le modèle, les Charmes de K8s automatiquement détectent la présence des cartes nvidia, installent les bons drivers et les bonnes librairies, mettent le runtime du container qui supporte NVIDIA, déploient le DaemonSet pour le DevicePlugin et finalement labelisent les nodes automatically!</p>
+        <p>Le plus facile est de déployer le cluster K8s avec <a href="https://conjure-up.io/">conjure-up</a> qui fournit un wizard pour vous accompagner tout le long du processus. Vous pouvez utiliser conjure-up sur un cloud public avec des instances GPU activées, or sur du bare metal avec MAAS et des serveurs qui contiennent des GPUs. Dans les deux cas, le déploiement est exactement le même.</p>
+        <p>Par exemple, vous pouvez utiliser des instances p2.xlarge sur AWS. Pour que cela fonctionne, vous devez passer la contrainte dans le command line de conjure-up pour qu’il force l’usage d’instances avec des GPU active quand on déploie les clusters.</p>
+        <p><strong>Listing 2:</strong> cdk-gpu-worker.yaml</p>
+        <pre><code>services:
+  "kubernetes-worker":
+    charm: "cs:~containers/kubernetes-worker"
+    num_units: 1
+    options:
+      channel: 1.13/stable
+    expose: true
+    constraints: "instance-type=p2.xlarge root-disk=32768"</code></pre>
+      <p>Passez cela à conjure-up:</p>
+      <pre><code>$ conjure-up canonical-kubernetes --bundle-add cdk-gpu-worker.yaml</code></pre>
+      <p>Cela démarrera l‘interface wizard de conjure-up et vous permettra de sélectionner les add-on à déployer, par exemple, Kubeflow peut être sélectionné à ce niveau.</p>
+      <p>À l'écran de sélection du controller, vous pouvez soit déployer un contrôleur Juju dédié (nécessite une VM) ou vous pouvez prendre avantage de JAAS qui fournit Juju As a Service sur tous les clouds publics majeurs.</p>
+      <p>Une fois que l’installation commence, vous avez cet écran:</p>
+      {{
+        image(
+          url="https://admin.insights.ubuntu.com/wp-content/uploads/1c93/conjureupdistribution.png",
+          alt="",
+          height="403",
+          width="640",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="lazy",
+        ) | safe
+      }}
+      <p>Le statut peut aussi être visualisé en utilisant la commande Juju directement. Si vous utilisez JAAS, vous pouvez trouver le model en tapant:</p>
+      <pre><code>$ juju models -c jaas
+Controller: jaas
+
+Model                         Cloud/Region   Status     Machines  Cores  Access  Last connection
+conjure-canonical-kubern-9dc  aws/us-east-1  available         0      0  admin   never connected</code></pre>
+      <p>Inspectez alors le statut du model:</p>
+      <pre><code>$ juju status -m jaas:conjure-canonical-kubern-9dc
+Model                         Controller  Cloud/Region   Version  SLA          Timestamp
+conjure-canonical-kubern-9dc  jaas        aws/us-east-1  2.4.5    unsupported  16:13:37-08:00
+
+App                    Version  Status       Scale  Charm                  Store       Rev  OS      Notes
+aws-integrator         1.15.71  active           1  aws-integrator         jujucharms    7  ubuntu
+easyrsa                3.0.1    maintenance      1  easyrsa                jujucharms  117  ubuntu
+etcd                            maintenance      3  etcd                   jujucharms  209  ubuntu
+flannel                         waiting          0  flannel                jujucharms  146  ubuntu
+kubeapi-load-balancer           maintenance      1  kubeapi-load-balancer  jujucharms  162  ubuntu  exposed
+kubernetes-master               maintenance      2  kubernetes-master      jujucharms  219  ubuntu
+kubernetes-worker               waiting        0/1  kubernetes-worker      jujucharms  239  ubuntu  exposed
+
+Unit                      Workload     Agent       Machine  Public address  Ports  Message
+aws-integrator/0*         active       idle        0        54.165.35.94           ready
+easyrsa/0*                maintenance  executing   1        34.234.207.232         (install) installing charm
+etcd/0*                   maintenance  executing   2        54.208.163.252         (install) installing charm
+etcd/1                    maintenance  executing   3        34.201.210.154         (install) installing charm
+etcd/2                    maintenance  executing   4        54.235.228.45          (install) installing charm
+kubeapi-load-balancer/0*  maintenance  executing   5        34.228.169.37          (install) installing charm
+kubernetes-master/0       maintenance  executing   6        18.207.179.122         (install) installing charm
+kubernetes-master/1*      maintenance  executing   7        18.212.150.203         (install) installing charm
+kubernetes-worker/0       waiting      allocating  8        35.175.104.2           waiting for machine
+
+Machine  State    DNS             Inst id              Series  AZ          Message
+0        started  54.165.35.94    i-083ce279733998d59  bionic  us-east-1a  running
+1        started  34.234.207.232  i-04828688ddfdb0c6c  bionic  us-east-1b  running
+2        started  54.208.163.252  i-03d910e892e7c09f6  bionic  us-east-1a  running
+3        started  34.201.210.154  i-00adeecd668174ee0  bionic  us-east-1b  running
+4        started  54.235.228.45   i-032875fd24a1c1e78  bionic  us-east-1c  running
+5        started  34.228.169.37   i-0008405049b9bed6d  bionic  us-east-1d  running
+6        started  18.207.179.122  i-003abf7f3612a2f18  bionic  us-east-1b  running
+7        started  18.212.150.203  i-0abe01060e8179618  bionic  us-east-1a  running
+8        pending  35.175.104.2    i-0d493a35776b9217d  bionic  us-east-1e  running</code></pre>
+      <p>Une fois l’installation fini, toutes les ressources GPGPU sont configurées correctement et disponible pour l'opérateur K8s. Vous pouvez vérifier cela avec la commande: </p>
+      <pre><code>$ kubectl get no -o wide -L cuda,gpu</code></pre>
+      <h2>Conclusion</h2>
+      <p>Utiliser les resources GPGPU dans votre cluster Kubernetes est automatique et facile avec le  Charmed Distribution of Kubernetes (CDK) ou Microk8s.</p>
+      <p>Quand pensez vous? Nous aimerions discuter de votre projet and comment fonctionne  CDK et/ou MicroK8s avec vos workloads.</p>
+      <p><a href="/contact-us">Nous contacter</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}
