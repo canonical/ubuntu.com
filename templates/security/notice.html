@@ -8,7 +8,7 @@
     <div class="col-8">
 	    <h1>{{ notice.id }}: {{ notice.title }}</h1>
       <p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
-      <p>{{ notice.isummary or notice.summary|safe }}</p>
+      <p>{{ notice.summary | safe }}</p>
     </div>
   </div>
 </section>
@@ -60,20 +60,22 @@
     </div>
   </div>
 
+  {% if notice.cves or notice.references %}
   <div class="row">
     <div class="col-8">
       <h2>References</h2>
-        <ul class="p-list">
-          {% for cve in notice.cves %}
-            <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{cve.id}}">CVE-{{cve.id}}</a></li>
-          {% endfor %}
+      <ul class="p-list">
+        {% for cve in notice.cves %}
+          <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{cve.id}}">CVE-{{cve.id}}</a></li>
+        {% endfor %}
 
-          {% for reference in notice.references %}
-            <li class="p-list__item"><a href="{{ reference.uri }}">{{ reference.uri }}</li>
-          {% endfor %}
-        </ul>
+        {% for reference in notice.references %}
+          <li class="p-list__item"><a href="{{ reference }}">{{ reference }}</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
+  {% endif %}
 </section>
 
 {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
