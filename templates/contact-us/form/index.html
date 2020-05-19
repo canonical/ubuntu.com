@@ -16,6 +16,16 @@
     {% include "shared/_cloud-contact-us-form.html" %}
   {% endwith %}
 
+{% elif product == 'ossa' %}
+
+  {% with h1="Contact us about the Open Source Security Assessment",
+    intro_text="Fill in your details below and a member of our team will be in touch.",
+    formid="3394",
+    lpId="2154",
+    returnURL="https://ubuntu.com/contact-us/form/thank-you" %}
+    {% include "shared/_cloud-contact-us-form.html" %}
+  {% endwith %}
+
 {% else %}
 
 {% with h1="Contact Canonical",

@@ -61,7 +61,9 @@ class Notice(Base):
     cves = relationship("CVE", secondary=notice_cves)
     references = relationship("Reference", secondary=notice_references)
     releases = relationship(
-        "Release", secondary=notice_releases, order_by="-Release.release_date"
+        "Release",
+        secondary=notice_releases,
+        order_by="desc(Release.release_date)",
     )
 
 
