@@ -34,12 +34,15 @@
       If you already have Ubuntu or another Linux, the following instructions are all you need. However, if you are on Windows or Mac, consider using <a class="p-link--external" href="https://github.com/CanonicalLtd/multipass">Multipass</a> to easily create an Ubuntu VM to work with.
     </p>
     <p>
-      Kubeflow runs on top of Kubernetes. Visit our <a href="/kubernetes/install">Kubernetes install</a> page and follow the instructions to install the Kubernetes as you want.
-    </p>
-    <p>
       The following step assumes you want to install <a class="p-link--external" href="https://microk8s.io/">MicroK8s</a> as your Kubernetes cluster.
     </p>
     <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Requirements</h3>
+        <div class="p-stepped-list__content">
+          <p>In order to install kubeflow you will need an Ubuntu machine with 16Gb of RAM and 50Gb of free disk. </p>
+        </div>
+      </li>
 
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">Install MicroK8s</h3>
@@ -51,10 +54,6 @@
             <input class="p-code-copyable__input" value="sudo snap install microk8s --classic" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="microk8s.status --wait-ready" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
           <p>
             To get the most out of your Kubernetes cluster, including enabling required features like storage and dns, run these commands:
           </p>
@@ -62,16 +61,8 @@
             <input class="p-code-copyable__input" value="microk8s.enable dns storage dashboard" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="sudo snap alias microk8s.kubectl kubectl" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="microk8s.kubectl config view --raw > $HOME/.kube/config" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
           <p>
-            If you have a GPU, run:
+            If you have a GPU, run (optional):
           </p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="microk8s.enable gpu" readonly="readonly">
@@ -89,25 +80,19 @@
               <input class="p-code-copyable__input" value="microk8s.enable kubeflow" readonly="readonly">
               <button class="p-code-copyable__action">Copy to clipboard</button>
             </div>
+            <p>This will take a few minutes.</p>
           </div>
         </li>
 
         <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Access Kubeflow</h3>
+          <h3 class="p-stepped-list__title">Access Kubeflow dashboard</h3>
           <div class="p-stepped-list__content">
             <p>
-              If you installed MicroK8s on your local host, then you can use localhost as the IP address in your browser.
+              After installing kubeflow, an IP address and credentials will be prompted on your terminal. 
             </p>
             <p>
-              Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either <code>multipass list</code> or <code>multipass info kubeflow</code>.
+              If you installed Microk8s on your local host, you simply need to access the IP address provided on your browser: <code>https://[kubeflow dashboard IP]</kubeflow></code>.
             </p>
-            <p>
-              Now you should go to your browser and point browser to either:
-            </p>
-            <ul>
-              <li class="p-list__item"><code>https://localhost</code></li>
-              <li class="p-list__item"><code>https://&lt;kubeflow VM IP&gt;</code></li>
-            </ul>
           </div>
         </li>
 
@@ -122,7 +107,7 @@
             </p>
             <ul>
               <li class="p-list__item">
-                <a class="p-link--external" href="https://kubeflow.org/">Kubeflow</a> - the main Kubeflow site
+                <a class="p-link--external" href="https://kubeflow.org/">Kubeflow</a> - the main Kubeflow website
               </li>
               <li class="p-list__item">
                 <a class="p-link--external" href="https://www.kubeflow.org/docs/examples/kubeflow-samples/">Kubeflow samples</a> - several examples to help you get started with leveraging Kubeflow
@@ -139,18 +124,17 @@
               <li class="p-list__item">
                 <a class="p-link--external" href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">TensorFlow: CNN benchmarks</a> - high performance benchmarks
               </li>
-
             </ul>
+            <p>For tailored Enterprise training and assistance, please consider our <a href="/kubeflow/consulting">AI Consulting and Delivery</a> services.</p>
           </div>
         </li>
-
-
       </ol>
     </div>
   </div>
 </div>
 
 {% include "kubeflow/shared/_learn-more.html" %}
+
 <div class="p-strip is-deep">
   <div class="row u-equal-height">
     <div class="col-4 u-align--center u-hide--small u-vertically-center">
