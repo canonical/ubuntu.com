@@ -63,7 +63,6 @@ def notice(notice_id):
         "title": notice.title,
         "published": notice.published,
         "summary": notice.summary,
-        "isummary": notice.isummary,
         "details": markdown_parser(notice.details),
         "instructions": markdown_parser(notice.instructions),
         "packages": notice_packages,
@@ -85,7 +84,7 @@ def notices():
     releases = (
         db_session.query(Release)
         .order_by(desc(Release.release_date))
-        .filter(Release.version)
+        .filter(Release.version.isnot(None))
         .all()
     )
     notices_query = db_session.query(Notice)
@@ -219,23 +218,19 @@ def create_notice():
     if "action" in data:
         notice.instructions = data["action"]
 
-    if "isummary" in data:
-        notice.isummary = data["isummary"]
-
     # Link releases
     for release_codename in data["releases"].keys():
-        try:
-            notice.releases.append(
-                db_session.query(Release)
-                .filter(Release.codename == release_codename)
-                .one()
-            )
-        except NoResultFound:
+        release = db_session.query(Release).get(release_codename)
+
+        if not release:
             message = f"No release with codename: {release_codename}."
             return (flask.jsonify({"message": message}), 400)
 
+        notice.releases.append(release)
+
+    db_session.add(notice)
+
     try:
-        db_session.add(notice)
         db_session.commit()
     except IntegrityError:
         return (
@@ -292,31 +287,22 @@ def update_notice():
     for release_codename in data["releases"].keys():
         try:
             notice.releases.append(
-                db_session.query(Release)
-                .filter(Release.codename == release_codename)
-                .one()
+                db_session.query(Release).get(release_codename)
             )
         except NoResultFound:
             message = f"No release with codename: {release_codename}."
             return (flask.jsonify({"message": message}), 400)
 
     # Link CVEs, creating them if they don't exist
-    refs = set(data.get("references", []))
-    for ref in refs:
-        if ref.startswith("CVE-"):
-            cve_id = ref[4:]
+    references = set(data.get("references", []))
+    for reference in references:
+        if reference.startswith("CVE-"):
+            cve_id = reference[4:]
             cve = db_session.query(CVE).get(cve_id)
             if not cve:
                 cve = CVE(id=cve_id)
             notice.cves.append(cve)
         else:
-            reference = (
-                db_session.query(Reference)
-                .filter(Reference.uri == ref)
-                .first()
-            )
-            if not reference:
-                reference = Reference(uri=ref)
             notice.references.append(reference)
 
     db_session.add(notice)

@@ -28,7 +28,11 @@ response = client.request(http_method, url=notice_endpoint)
 
 with open(args.file_path) as usn_json:
     payload = json.load(usn_json).items()
+
     for notice_id, notice in payload:
+        if "isummary" in notice and notice["isummary"]:
+            notice["summary"] = notice["isummary"]
+            del notice["isummary"]
         response = client.request(
             http_method, url=notice_endpoint, json=notice
         )

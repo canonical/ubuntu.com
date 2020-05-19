@@ -82,7 +82,7 @@ class Notice(Base):
         "Release",
         secondary=notice_releases,
         back_populates="notices",
-        order_by="-Release.release_date",
+        order_by="desc(Release.release_date)",
     )
 
 
