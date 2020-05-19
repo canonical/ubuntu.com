@@ -1,6 +1,6 @@
 # Standard library
 import re
-from collections import OrderedDict
+from collections import defaultdict, OrderedDict
 from datetime import datetime
 from dateutil.parser import parse
 from math import ceil
@@ -18,7 +18,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 # Local
 from webapp.security.database import db_session
-from webapp.security.models import CVE, Notice, Package, PackageStatus, Release
+from webapp.security.models import CVE, Notice, Package, Status, Release
 from webapp.security.schemas import NoticeSchema
 from webapp.security.auth import authorization_required
 
@@ -352,7 +352,6 @@ def cve_index():
         return flask.redirect(f"/security/{query.lower()}")
 
     cves_query = db_session.query(CVE)
-    releases_query = db_session.query(Release)
 
     # Apply search filters
     if package:
@@ -377,12 +376,17 @@ def cve_index():
 
     # Pagination
     total_results = cves_query.count()
-    releases = releases_query.filter(
-        or_(
-            Release.support_expires > datetime.now(),
-            Release.esm_expires > datetime.now(),
+    releases = (
+        db_session.query(Release)
+        .order_by(desc(Release.release_date))
+        .filter(
+            or_(
+                Release.support_expires > datetime.now(),
+                Release.esm_expires > datetime.now(),
+            )
         )
-    ).all()
+        .all()
+    )
 
     return flask.render_template(
         "security/cve/index.html",
@@ -404,9 +408,26 @@ def cve(cve_id):
     """
 
     cve = db_session.query(CVE).get(cve_id.upper())
+
     if not cve:
         flask.abort(404)
-    return flask.render_template("security/cve/cve.html", cve=cve)
+
+    releases = (
+        db_session.query(Release)
+        .order_by(desc(Release.release_date))
+        .filter(
+            or_(
+                Release.codename == "upstream",
+                Release.support_expires > datetime.now(),
+                Release.esm_expires > datetime.now(),
+            )
+        )
+        .all()
+    )
+
+    return flask.render_template(
+        "security/cve/cve.html", cve=cve, releases=releases
+    )
 
 
 # CVE API
@@ -441,42 +462,41 @@ def update_cve(cve, data):
     return cve
 
 
-def create_package_statuses(cve, data, packages, releases):
-    objects_to_create = []
+def update_statuses(cve, data, packages, releases):
+    updated_statuses = []
 
-    if data.get("packages"):
-        for package_data in data["packages"]:
-            if package_data["name"] in packages:
-                package = packages[package_data["name"]]
-            else:
-                package = Package(
-                    name=package_data["name"],
-                    source=package_data["source"],
-                    ubuntu=package_data["ubuntu"],
-                    debian=package_data["debian"],
-                )
-                packages[package_data["name"]] = package
-                objects_to_create.append(package)
+    for package_data in data.get("packages", []):
+        name = package_data["name"]
+        package = packages.get(name) or Package(name=name)
+        package.source = package_data["source"]
+        package.ubuntu = package_data["ubuntu"]
+        package.debian = package_data["debian"]
+        packages[name] = package
 
-            for release_data in package_data["releases"]:
-                codename = release_data["name"]
+        statuses = defaultdict(dict)
 
-                if codename not in releases:
-                    raise Exception(
-                        f"No release found with codename '{codename}'"
-                    )
+        for status in cve.statuses:
+            statuses[status.package_name][status.release_codename] = status
 
-                objects_to_create.append(
-                    PackageStatus(
-                        status=release_data["status"],
-                        status_description=release_data["status_description"],
-                        release=releases[codename],
-                        package=package,
-                        cve=cve,
-                    )
-                )
+        for release_data in package_data["releases"]:
+            codename = release_data["name"]
+            release = releases.get(codename)
 
-    return objects_to_create
+            if not release:
+                raise Exception(f"No release found with codename '{codename}'")
+
+            status = statuses[name].get(codename) or Status(
+                cve=cve, package=package, release=release
+            )
+
+            status.status = release_data["status"]
+            status.detail = release_data["status_description"]
+
+            statuses[name][codename] = status
+
+            updated_statuses.append(status)
+
+    return updated_statuses
 
 
 @authorization_required
@@ -516,28 +536,35 @@ def bulk_upsert_cve():
             400,
         )
 
-    releases = {}
-
-    for release in db_session.query(Release).all():
-        releases[release.codename] = release
+    if len(cves_data) > 300:
+        return (
+            flask.jsonify(
+                {
+                    "message": (
+                        "Please only submit up to 300 CVEs at a time. "
+                        f"({len(cves_data)} submitted)"
+                    )
+                }
+            ),
+            413,
+        )
 
     packages = {}
-
     for package in db_session.query(Package).all():
         packages[package.name] = package
 
     for data in cves_data:
         cve = db_session.query(CVE).get(data["id"]) or CVE(id=data["id"])
-        cve = update_cve(cve, data)
-        package_objects = create_package_statuses(
-            cve, data, packages, releases
+
+        statuses = update_statuses(
+            cve, data, packages, releases=db_session.query(Release)
         )
-        db_session.add(cve)
-        db_session.add_all(package_objects)
+
+        db_session.add(update_cve(cve, data))
+        db_session.add_all(statuses)
 
     try:
         db_session.commit()
-
     except DataError as error:
         return (
             flask.jsonify(

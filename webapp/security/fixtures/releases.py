@@ -332,7 +332,7 @@ def load_releases():
             esm_expires=datetime.strptime("2030-04-30", "%Y-%m-%d"),
             support_expires=datetime.strptime("2025-04-30", "%Y-%m-%d"),
         ),
-        Release(codename="upstream"),
+        Release(codename="upstream", name="Upstream"),
     ]
 
     db_session.bulk_save_objects(releases)
