@@ -10,7 +10,7 @@ context:
   header_image: "https://assets.ubuntu.com/v1/67b862a1-k8s+microk8s.svg"
   header_image_width: "419"
   header_image_height: "172"
-  header_url: "#register-section"
+  header_url: "https://www.brighttalk.com/webcast/6793/406196"
   header_cta: Register now
   header_cta_class: p-button--positive
   header_class: p-engage-banner--dark
@@ -22,7 +22,7 @@ context:
 
 **Date and time**
 May 28, 2020
-[4-6pm GMT]
+[5-7pm BST]
 
 **What it is**: A free digital event on Kubernetes, including a live, interactive discussion with a panel of experts, demos, use cases, Q&A, and more.
 
