@@ -151,7 +151,7 @@ def notices_feed(feed_type):
     feed.link(href=base_url, rel="self")
 
     def feed_entry(notice, url_root):
-        _id = f"USN-{notice.id}"
+        _id = notice.id
         title = f"{_id}: {notice.title}"
         description = notice.details
         published = notice.published

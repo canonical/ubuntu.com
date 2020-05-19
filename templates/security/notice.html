@@ -1,12 +1,12 @@
 {% extends "templates/one-column.html" %}
 
-{% block title %}USN-{{ notice.id }}: {{ notice.title }} | Ubuntu security notices{% endblock %}
+{% block title %}{{ notice.id }}: {{ notice.title }} | Ubuntu security notices{% endblock %}
 
 {% block content %}
 <section class="p-strip--suru-topped is-bordered">
   <div class="row">
     <div class="col-8">
-	    <h1>USN-{{ notice.id }}: {{ notice.title }}</h1>
+	    <h1>{{ notice.id }}: {{ notice.title }}</h1>
       <p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
       <p>{{ notice.isummary or notice.summary|safe }}</p>
     </div>
