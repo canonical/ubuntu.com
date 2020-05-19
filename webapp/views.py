@@ -37,6 +37,7 @@ def download_thank_you(category):
     context = {"http_host": flask.request.host}
 
     version = flask.request.args.get("version", "")
+    versionPatch = flask.request.args.get("versionPatch", "")
     architecture = flask.request.args.get("architecture", "")
 
     # Sanitise for paths
@@ -48,6 +49,7 @@ def download_thank_you(category):
     if architecture and version_pattern.match(version):
         context["start_download"] = version and architecture
         context["version"] = version
+        context["versionPatch"] = versionPatch
         context["architecture"] = architecture
 
     # Add mirrors

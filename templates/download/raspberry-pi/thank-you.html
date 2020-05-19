@@ -12,7 +12,7 @@
 
 {% block content %}
 {% if start_download %}
-<meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-server-{{ architecture }}.img.xz">
+<meta http-equiv="refresh" content="3;url=http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}{{ versionPatch }}-preinstalled-server-{{ architecture }}.img.xz">
 {% endif %}
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
@@ -22,7 +22,7 @@
       <h1>Thank you for downloading<br />
         Ubuntu Server {{ version }}<br />
         for Raspberry Pi</h1>
-      <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-server-{{ architecture }}.img.xz">download now</a>.</p>
+      <p>Your download should start automatically. If it doesn&rsquo;t, <a href="http://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}{{ versionPatch }}-preinstalled-server-{{ architecture }}.img.xz">download now</a>.</p>
       {% with version=version, system=architecture, architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
       {% else %}
       <h1>Thank you</h1>
