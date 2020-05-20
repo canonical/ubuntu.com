@@ -9,8 +9,10 @@ function initLightbox() {
 
   let lightboxClosure = function(event, currentElement, images) {
     event.preventDefault();
+    let imageURL = currentElement.href;
+    imageURL = imageURL.substring(0, imageURL.indexOf('?'));
     lightbox.openLightbox(
-      currentElement.href,
+      imageURL,
       images
     );
   };
