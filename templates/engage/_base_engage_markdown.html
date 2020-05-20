@@ -62,8 +62,14 @@
         {% if header_date %}<p>
           {{ header_date }}
         </p>{% endif %}
-        {% if header_cta %}<br class="u-hide--medium u-hide--large" />
-        <p class="u-hide--medium u-hide--large">
+        {% if header_cta %}
+          {% if header_cta_all_sizes %}
+            <br />
+            <p>
+          {% else %}
+            <br class="u-hide--medium u-hide--large" />
+            <p class="u-hide--medium u-hide--large">
+          {% endif %}
           <a href="{{ header_url }}" class="{% if header_cta_class %}{{ header_cta_class }}{% else %}p-button--neutral{% endif %}">
             {{ header_cta }}
           </a>
