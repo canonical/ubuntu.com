@@ -2,7 +2,7 @@
 wrapper_template: "engage/_base_engage_markdown.html"
 context:
   title: "Kubernetes & MicroK8s virtual event EU"
-  meta_description: "Kubernetes, microK8s, K8s, canonical, ubuntu"
+  meta_description: "Kubernetes & MicroK8s virtual event EMEA"
   meta_image: https://assets.ubuntu.com/v1/baab00bc-pre-kubeconf-meta-image.png
   meta_copydoc: https://docs.google.com/document/d/1VYYmd6kS0eWApEpbVCgTUq0NOHUTEeRWVj7ujtFEsHs/
   header_title: "Streamlined Kubernetes, from Cloud to Edge"
@@ -13,6 +13,7 @@ context:
   header_url: "https://www.brighttalk.com/webcast/6793/406196"
   header_cta: Register now
   header_cta_class: p-button--positive
+  header_cta_all_sizes: true
   header_class: p-engage-banner--dark
   header_lang: en
   webinar_code: '<div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 406196, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
