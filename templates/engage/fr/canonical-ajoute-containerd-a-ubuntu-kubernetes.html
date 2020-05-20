@@ -1,12 +1,12 @@
 {% extends "engage/base_engage.html" %}
 
-{% block title %}Canonical ajoute containerd à Ubuntu Kubernetes{% endblock %}
+{% block title %}Canonical intègre containerd à Ubuntu Kubernetes{% endblock %}
 
 {% block content %}
 <header class="p-strip--image is-shallow" style="background-image: url(https://assets.ubuntu.com/v1/f8a323a7-image-background-paper.png);">
   <div class="row">
     <div class="col-8">
-      <h1>Canonical ajoute containerd à Ubuntu Kubernetes</h1>
+      <h1>Canonical intègre containerd à Ubuntu Kubernetes</h1>
     </div>
   </div>
 </header>
@@ -26,17 +26,17 @@
         ) | safe
       }}
       <p>Canonical fournit maintenant un support pour <a href="https://containerd.io/">containerd</a> dans la version 1.14 de <a href="http://www.ubuntu.com/kubernetes">Charmed Kubernetes</a> et de <a href="http://microk8s.io/">Microk8s</a>, améliorant la sécurité et la stabilité.</p>
-      <p>“Containerd est devenu l’industrie standard du container runtime. Il est focusé sur la simplicité, la stabilité et la portabilité” affirme Carmine Rimi, directeur des produits pour Kubernetes à Canonical.</p>
-      <p>En permettant à Kubernetes de diriger directement containerd, on réduit le nombre de pièces en mouvement. Cela réduit le temps de démarrage des pods et améliore ainsi l’usage CPU et mémoire de chaque node dans le cluster.</p>
-      <p>Le runtime traditionnel docker est encore supporté par la distribution charmé de Canonical (Charmed Kubernetes). Les clusters garderont leurs choix de runtime pendant les montées de versions.</p>
-      <p>“Après avoir été accepté dans le CNCF il y a presque deux ans, containerd continue de voir une belle dynamique &mdash; démonstrant la demande pour une technologie de container comme foundation.</p>
+      <p>“ Containerd est devenu le standard de l'’industrie du container runtime. Il est concentré sur la simplicité, la stabilité et la portabilité” affirme Carmine Rimi, directeur de produit pour Kubernetes à Canonical.</p>
+      <p>En permettant à Kubernetes de diriger directement containerd, on réduit le nombre de pièces en mouvement. Cela réduit le temps de démarrage des pods et améliore ainsi l'utilisation CPU et mémoire de chaque node dans le cluster.</p>
+      <p>Le runtime traditionnel docker est toujours supporté par la distribution charmé de Canonical (Charmed Kubernetes). Les clusters garderont leurs choix de runtime pendant les montées de versions.</p>
+      <p>“Après avoir été accepté dans le CNCF il y a près de deux ans, containerd continue de voir une belle dynamique - démontrant la demande pour une technologie de container comme foundation."</p>
       <p>Canonical fournit un Kubernetes avec exploitation multi-cloud, compatible et portable. Nous supportons nos clients sur Amazon EKS, Azure AKS et Google GKE avec des nodes Ubuntu worker. Nous supportons aussi Charmed Kubernetes et MicroK8s pour les Kubernetes on premise.</p>
-      <p>Vous trouverez plus d’information containerd:</p>
+      <p>Pour plus d’informations containerd :</p>
       <ul>
         <li><a href="https://containerd.io/">containerd</a> est disponible pour Linux et Windows.</li>
-        <li>containerd manage complètement le cycle de vie du container, incluant l’image transfer, l'exécution du container, le processus de supervision, le stockage bas niveau et les attachement réseaux.</li>
+        <li>containerd gère complètement le cycle de vie du container, incluant le transfert d'image, l'exécution du container, le processus de supervision, le stockage bas niveau et les attachement réseaux.</li>
+        <li>Les sources de containerd sont sur <a href="https://github.com/containerd/containerd">GitHub</a></li>
       </ul>
-      <p>containerd est developé a <a href="https://github.com/containerd/containerd">https://github.com/containerd/containerd</a>.</p>
     </div>
   </div>
 </section>
