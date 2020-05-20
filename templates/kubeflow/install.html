@@ -10,7 +10,7 @@
   <div class="row u-equal-height">
     <div class="col-7 u-vertically-center">
       <h1>Install Kubeflow on Ubuntu</h1>
-      <p>Create and train machine learning models on your laptop, in your data center, or in the cloud.</p>
+      <p>Create and train machine learning models on your laptop, in your data centre, or in the cloud.</p>
     </div>
     <div class="col-5 u-align--center u-hide--small">
       {{
@@ -31,15 +31,21 @@
   <div class="u-fixed-width">
     <h2>How to deploy Kubeflow</h2>
     <p>
-      If you already have Ubuntu or another Linux, the following instructions are all you need. However, if you are on Windows or Mac, consider using <a class="p-link--external" href="https://github.com/CanonicalLtd/multipass">Multipass</a> to easily create an Ubuntu VM to work with.
+      If you already have Ubuntu or another Linux, the following instructions are all you need. However, if you are on Windows or Mac, consider using <a class="p-link--external" href="https://multipass.run">Multipass</a> to easily create an Ubuntu VM to work with.
     </p>
     <p>
-      Kubeflow runs on top of Kubernetes. Visit our <a href="/kubernetes/install">Kubernetes install</a> page and follow the instructions to install the Kubernetes as you want.
+      For a more detailed guide, consider following the <a href="/tutorials/deploy-kubeflow-ubuntu-windows-mac">Deploy Kubeflow on Ubuntu, Windows and MacOS</a> tutorial.
     </p>
     <p>
       The following step assumes you want to install <a class="p-link--external" href="https://microk8s.io/">MicroK8s</a> as your Kubernetes cluster.
     </p>
     <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Requirements</h3>
+        <div class="p-stepped-list__content">
+          <p>In order to install kubeflow you will need an Ubuntu machine with 16Gb of RAM and 50Gb of free disk. </p>
+        </div>
+      </li>
 
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">Install MicroK8s</h3>
@@ -51,106 +57,87 @@
             <input class="p-code-copyable__input" value="sudo snap install microk8s --classic" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="microk8s.status --wait-ready" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
           <p>
-            To get the most out of your Kubernetes cluster, including enabling required features like storage and dns, run these commands:
+            You can enable features on your Kubernetes cluster with the following commands:
           </p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="microk8s.enable dns storage dashboard" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="sudo snap alias microk8s.kubectl kubectl" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="microk8s.kubectl config view --raw > $HOME/.kube/config" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
           <p>
-            If you have a GPU, run:
+            If you have a GPU, run (optional):
           </p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="microk8s.enable gpu" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Enable Kubeflow</h3>
-          <div class="p-stepped-list__content">
-            <p>
-              Run the following command to enable Kubeflow.
-            </p>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="microk8s.enable kubeflow" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Enable Kubeflow</h3>
+        <div class="p-stepped-list__content">
+          <p>
+            Run the following command to enable Kubeflow.
+          </p>
+          <div class="p-code-copyable">
+            <input class="p-code-copyable__input" value="microk8s.enable kubeflow" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-        </li>
+          <p>This will take a few minutes.</p>
+        </div>
+      </li>
 
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Access Kubeflow</h3>
-          <div class="p-stepped-list__content">
-            <p>
-              If you installed MicroK8s on your local host, then you can use localhost as the IP address in your browser.
-            </p>
-            <p>
-              Otherwise, if you used Multipass as per the instructions above, you can get the IP address of the VM with either <code>multipass list</code> or <code>multipass info kubeflow</code>.
-            </p>
-            <p>
-              Now you should go to your browser and point browser to either:
-            </p>
-            <ul>
-              <li class="p-list__item"><code>https://localhost</code></li>
-              <li class="p-list__item"><code>https://&lt;kubeflow VM IP&gt;</code></li>
-            </ul>
-          </div>
-        </li>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Access Kubeflow dashboard</h3>
+        <div class="p-stepped-list__content">
+          <p>
+            After installing kubeflow, an IP address and credentials will be prompted on your terminal. 
+          </p>
+          <p>
+            If you installed Microk8s on your local host, you simply need to access the IP address provided on your browser: <code>https://[kubeflow dashboard IP]</code>.
+          </p>
+        </div>
+      </li>
 
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Next Steps</h3>
-          <div class="p-stepped-list__content">
-            <p>
-              To get more information on this install process, including screen shots of the process, please visit the <a class="p-link--external" href="/tutorials/get-started-kubeflow">Getting Started with Kubeflow tutorial</a>.
-            </p>
-            <p>
-              More recommended reading:
-            </p>
-            <ul>
-              <li class="p-list__item">
-                <a class="p-link--external" href="https://kubeflow.org/">Kubeflow</a> - the main Kubeflow site
-              </li>
-              <li class="p-list__item">
-                <a class="p-link--external" href="https://www.kubeflow.org/docs/examples/kubeflow-samples/">Kubeflow samples</a> - several examples to help you get started with leveraging Kubeflow
-              </li>
-              <li class="p-list__item">
-                <a class="p-link--external" href="https://www.kubeflow.org/docs/pipelines/">Kubeflow pipelines</a> - use or create standard workflows for your models, automating tasks from training to production
-              </li>
-              <li class="p-list__item">
-                <a class="p-link--external" href="https://www.kubeflow.org/docs/fairing/">Kubeflow fairing</a> - interact with Kubeflow through Python code
-              </li>
-              <li class="p-list__item">
-                <a class="p-link--external" href="https://www.tensorflow.org/">TensorFlow</a> - open source library to help you develop and train ML models
-              </li>
-              <li class="p-list__item">
-                <a class="p-link--external" href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">TensorFlow: CNN benchmarks</a> - high performance benchmarks
-              </li>
-
-            </ul>
-          </div>
-        </li>
-
-
-      </ol>
-    </div>
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Next Steps</h3>
+        <div class="p-stepped-list__content">
+          <p>
+            To get more information on this install process, including screenshots of the process, please visit the <a class="p-link--external" href="/tutorials/get-started-kubeflow">Getting Started with Kubeflow tutorial</a>.
+          </p>
+          <p>
+            More recommended reading:
+          </p>
+          <ul>
+            <li class="p-list__item">
+              <a class="p-link--external" href="https://kubeflow.org/">Kubeflow</a> - the main Kubeflow website
+            </li>
+            <li class="p-list__item">
+              <a class="p-link--external" href="https://www.kubeflow.org/docs/examples/kubeflow-samples/">Kubeflow samples</a> - several examples to help you get started with leveraging Kubeflow
+            </li>
+            <li class="p-list__item">
+              <a class="p-link--external" href="https://www.kubeflow.org/docs/pipelines/">Kubeflow pipelines</a> - use or create standard workflows for your models, automating tasks from training to production
+            </li>
+            <li class="p-list__item">
+              <a class="p-link--external" href="https://www.kubeflow.org/docs/fairing/">Kubeflow fairing</a> - interact with Kubeflow through Python code
+            </li>
+            <li class="p-list__item">
+              <a class="p-link--external" href="https://www.tensorflow.org/">TensorFlow</a> - open source library to help you develop and train ML models
+            </li>
+            <li class="p-list__item">
+              <a class="p-link--external" href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">TensorFlow: CNN benchmarks</a> - high performance benchmarks
+            </li>
+          </ul>
+          <p>For tailored Enterprise training and assistance, please consider our <a href="/kubeflow/consulting">AI Consulting and Delivery</a> services.</p>
+        </div>
+      </li>
+    </ol>
   </div>
 </div>
 
 {% include "kubeflow/shared/_learn-more.html" %}
+
 <div class="p-strip is-deep">
   <div class="row u-equal-height">
     <div class="col-4 u-align--center u-hide--small u-vertically-center">
