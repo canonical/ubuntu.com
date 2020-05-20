@@ -10,7 +10,7 @@
   <div class="row u-equal-height">
     <div class="col-7 u-vertically-center">
       <h1>Install Kubeflow on Ubuntu</h1>
-      <p>Create and train machine learning models on your laptop, in your data center, or in the cloud.</p>
+      <p>Create and train machine learning models on your laptop, in your data centre, or in the cloud.</p>
     </div>
     <div class="col-5 u-align--center u-hide--small">
       {{
@@ -31,7 +31,10 @@
   <div class="u-fixed-width">
     <h2>How to deploy Kubeflow</h2>
     <p>
-      If you already have Ubuntu or another Linux, the following instructions are all you need. However, if you are on Windows or Mac, consider using <a class="p-link--external" href="https://github.com/CanonicalLtd/multipass">Multipass</a> to easily create an Ubuntu VM to work with.
+      If you already have Ubuntu or another Linux, the following instructions are all you need. However, if you are on Windows or Mac, consider using <a class="p-link--external" href="https://multipass.run">Multipass</a> to easily create an Ubuntu VM to work with.
+    </p>
+    <p>
+      For a more detailed guide, consider following the <a href="https://ubuntu.com/tutorials/deploy-kubeflow-ubuntu-windows-mac">Deploy Kubeflow on Ubuntu, Windows and MacOS</a> tutorial.
     </p>
     <p>
       The following step assumes you want to install <a class="p-link--external" href="https://microk8s.io/">MicroK8s</a> as your Kubernetes cluster.
@@ -55,7 +58,7 @@
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
           <p>
-            To get the most out of your Kubernetes cluster, including enabling required features like storage and dns, run these commands:
+            You can enable features on your Kubernetes cluster with the following commands:
           </p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="microk8s.enable dns storage dashboard" readonly="readonly">
@@ -100,7 +103,7 @@
           <h3 class="p-stepped-list__title">Next Steps</h3>
           <div class="p-stepped-list__content">
             <p>
-              To get more information on this install process, including screen shots of the process, please visit the <a class="p-link--external" href="/tutorials/get-started-kubeflow">Getting Started with Kubeflow tutorial</a>.
+              To get more information on this install process, including screenshots of the process, please visit the <a class="p-link--external" href="/tutorials/get-started-kubeflow">Getting Started with Kubeflow tutorial</a>.
             </p>
             <p>
               More recommended reading:
