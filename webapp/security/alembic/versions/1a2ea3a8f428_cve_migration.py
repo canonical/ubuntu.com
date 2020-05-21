@@ -1,8 +1,8 @@
 """cve_migration
 
-Revision ID: ced17fb68da5
+Revision ID: 1a2ea3a8f428
 Revises: c2bc5f0b027d
-Create Date: 2020-05-18 11:57:04.695608
+Create Date: 2020-05-21 23:53:07.940572
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = "ced17fb68da5"
+revision = "1a2ea3a8f428"
 down_revision = "c2bc5f0b027d"
 branch_labels = None
 depends_on = None
@@ -27,56 +27,82 @@ def upgrade():
         sa.Column("debian", sa.String(), nullable=True),
         sa.PrimaryKeyConstraint("name"),
     )
+    op.drop_table("notice_references")
+    op.drop_table("reference")
+    op.drop_table("notice_cves")
+    op.drop_table("cve")
 
-    # Change primary key for releases table
-    op.execute("ALTER TABLE release DROP CONSTRAINT release_pkey CASCADE")
-    op.create_primary_key("release_pkey", "release", ["codename"])
+    op.create_table(
+        "cve",
+        sa.Column("id", sa.String(), nullable=False),
+        sa.Column("bugs", sa.JSON(), nullable=True),
+        sa.Column("cvss3", sa.Float(), nullable=True),
+        sa.Column("description", sa.String(), nullable=True),
+        sa.Column("notes", sa.JSON(), nullable=True),
+        sa.Column(
+            "priority",
+            sa.Enum(
+                "unknown",
+                "negligible",
+                "low",
+                "medium",
+                "high",
+                "critical",
+                name="priorities",
+            ),
+            nullable=True,
+        ),
+        sa.Column("published", sa.DateTime(), nullable=True),
+        sa.Column("references", sa.JSON(), nullable=True),
+        sa.Column("status", sa.String(), nullable=True),
+        sa.Column("ubuntu_description", sa.String(), nullable=True),
+        sa.PrimaryKeyConstraint("id"),
+    )
+    op.create_table(
+        "notice_cves",
+        sa.Column("notice_id", sa.String(), nullable=True),
+        sa.Column("cve_id", sa.String(), nullable=True),
+        sa.ForeignKeyConstraint(["cve_id"], ["cve.id"]),
+        sa.ForeignKeyConstraint(["notice_id"], ["notice.id"]),
+    )
 
     op.create_table(
         "status",
         sa.Column("cve_id", sa.String(), nullable=False),
         sa.Column("package_name", sa.String(), nullable=False),
         sa.Column("release_codename", sa.String(), nullable=False),
-        sa.Column("status", sa.String(), nullable=True),
-        sa.Column("detail", sa.String(), nullable=True),
+        sa.Column(
+            "status",
+            sa.Enum(
+                "released",
+                "DNE",
+                "needed",
+                "not-affected",
+                "deferred",
+                "needs-triage",
+                "ignored",
+                "pending",
+                name="statuses",
+            ),
+            nullable=True,
+        ),
+        sa.Column("description", sa.String(), nullable=True),
         sa.ForeignKeyConstraint(["cve_id"], ["cve.id"]),
         sa.ForeignKeyConstraint(["package_name"], ["package.name"]),
         sa.ForeignKeyConstraint(["release_codename"], ["release.codename"]),
         sa.PrimaryKeyConstraint("cve_id", "package_name", "release_codename"),
     )
-    op.drop_table("notice_references")
-    op.drop_table("reference")
-    op.add_column("cve", sa.Column("approved_by", sa.String(), nullable=True))
-    op.add_column("cve", sa.Column("assigned_to", sa.String(), nullable=True))
-    op.add_column("cve", sa.Column("bugs", sa.JSON(), nullable=True))
-    op.add_column("cve", sa.Column("crd", sa.String(), nullable=True))
-    op.add_column("cve", sa.Column("cvss", sa.String(), nullable=True))
-    op.add_column("cve", sa.Column("description", sa.String(), nullable=True))
-    op.add_column(
-        "cve", sa.Column("discovered_by", sa.String(), nullable=True)
-    )
-    op.add_column(
-        "cve", sa.Column("last_updated_date", sa.DateTime(), nullable=True)
-    )
-    op.add_column("cve", sa.Column("mitigation", sa.String(), nullable=True))
-    op.add_column("cve", sa.Column("notes", sa.JSON(), nullable=True))
-    op.add_column("cve", sa.Column("priority", sa.String(), nullable=True))
-    op.add_column(
-        "cve", sa.Column("public_date", sa.DateTime(), nullable=True)
-    )
-    op.add_column(
-        "cve", sa.Column("public_date_usn", sa.DateTime(), nullable=True)
-    )
-    op.add_column("cve", sa.Column("references", sa.JSON(), nullable=True))
-    op.add_column("cve", sa.Column("status", sa.String(), nullable=True))
-    op.add_column(
-        "cve", sa.Column("ubuntu_description", sa.String(), nullable=True)
-    )
+
     op.add_column("notice", sa.Column("references", sa.JSON(), nullable=True))
     op.drop_column("notice", "isummary")
     op.add_column(
         "notice_releases",
         sa.Column("release_codename", sa.String(), nullable=True),
+    )
+    op.drop_constraint(
+        "notice_releases_release_id_fkey",
+        "notice_releases",
+        type_="foreignkey",
     )
     op.create_foreign_key(
         None, "notice_releases", "release", ["release_codename"], ["codename"]
@@ -90,7 +116,13 @@ def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
     op.add_column(
         "release",
-        sa.Column("id", sa.INTEGER(), autoincrement=True, nullable=False),
+        sa.Column(
+            "id",
+            sa.INTEGER(),
+            server_default=sa.text("nextval('release_id_seq'::regclass)"),
+            autoincrement=True,
+            nullable=False,
+        ),
     )
     op.create_unique_constraint(
         "release_codename_key", "release", ["codename"]
@@ -120,19 +152,25 @@ def downgrade():
     op.drop_column("cve", "ubuntu_description")
     op.drop_column("cve", "status")
     op.drop_column("cve", "references")
-    op.drop_column("cve", "public_date_usn")
-    op.drop_column("cve", "public_date")
+    op.drop_column("cve", "published")
     op.drop_column("cve", "priority")
     op.drop_column("cve", "notes")
-    op.drop_column("cve", "mitigation")
-    op.drop_column("cve", "last_updated_date")
-    op.drop_column("cve", "discovered_by")
     op.drop_column("cve", "description")
-    op.drop_column("cve", "cvss")
-    op.drop_column("cve", "crd")
+    op.drop_column("cve", "cvss3")
     op.drop_column("cve", "bugs")
-    op.drop_column("cve", "assigned_to")
-    op.drop_column("cve", "approved_by")
+    op.create_table(
+        "reference",
+        sa.Column(
+            "id",
+            sa.INTEGER(),
+            server_default=sa.text("nextval('reference_id_seq'::regclass)"),
+            autoincrement=True,
+            nullable=False,
+        ),
+        sa.Column("uri", sa.VARCHAR(), autoincrement=False, nullable=True),
+        sa.PrimaryKeyConstraint("id", name="reference_pkey"),
+        postgresql_ignore_search_path=False,
+    )
     op.create_table(
         "notice_references",
         sa.Column(
@@ -151,12 +189,6 @@ def downgrade():
             ["reference.id"],
             name="notice_references_reference_id_fkey",
         ),
-    )
-    op.create_table(
-        "reference",
-        sa.Column("id", sa.INTEGER(), autoincrement=True, nullable=False),
-        sa.Column("uri", sa.VARCHAR(), autoincrement=False, nullable=True),
-        sa.PrimaryKeyConstraint("id", name="reference_pkey"),
     )
     op.drop_table("status")
     op.drop_table("package")

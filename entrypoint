@@ -6,10 +6,9 @@ set -e
 {
     alembic upgrade head
 } || {
-    read -p "Database migration failed. Erase database and try again? " -n 1 -r
+    read -p "Database migration failed. Create database from scratch? " -n 1 -r
     if [[ $REPLY =~ ^[Yy] ]]; then
-        scripts/clear-database.py
-        alembic upgrade head
+        scripts/reset-database.py
     else
         exit 1
     fi

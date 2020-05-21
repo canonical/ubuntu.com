@@ -5,6 +5,8 @@ from sqlalchemy import (
     Boolean,
     Column,
     DateTime,
+    Enum,
+    Float,
     ForeignKey,
     JSON,
     String,
@@ -36,26 +38,29 @@ class CVE(Base):
     __tablename__ = "cve"
 
     id = Column(String, primary_key=True)
-    public_date = Column(DateTime)
-    last_updated_date = Column(DateTime)
-    public_date_usn = Column(DateTime)
-    crd = Column(String)
+    published = Column(DateTime)
     description = Column(String)
     ubuntu_description = Column(String)
     notes = Column(JSON)
-    mitigation = Column(String)
-    priority = Column(String)
-    discovered_by = Column(String)
-    assigned_to = Column(String)
-    approved_by = Column(String)
-    cvss = Column(String)  # CVSS vector to convert into Base score
+    priority = Column(
+        Enum(
+            "unknown",
+            "negligible",
+            "low",
+            "medium",
+            "high",
+            "critical",
+            name="priorities",
+        )
+    )
+    cvss3 = Column(Float)
     references = Column(JSON)
     bugs = Column(JSON)
+    status = Column(String)
     statuses = relationship("Status", cascade="all, delete-orphan")
     notices = relationship(
         "Notice", secondary=notice_cves, back_populates="cves"
     )
-    status = Column(String)
 
     @hybrid_property
     def status_tree(self):
@@ -122,8 +127,20 @@ class Status(Base):
     release_codename = Column(
         String, ForeignKey("release.codename"), primary_key=True
     )
-    status = Column(String)
-    detail = Column(String)
+    status = Column(
+        Enum(
+            "released",
+            "DNE",
+            "needed",
+            "not-affected",
+            "deferred",
+            "needs-triage",
+            "ignored",
+            "pending",
+            name="statuses",
+        )
+    )
+    description = Column(String)
 
     cve = relationship("CVE", back_populates="statuses")
     package = relationship("Package", back_populates="statuses")

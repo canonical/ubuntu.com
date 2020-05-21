@@ -1,5 +1,5 @@
 {% extends "security/cve/base_cve.html" %}
-{% block title %}{{ cve.id  }}{% endblock %}
+{% block title %}{{ cve.id }}{% endblock %}
 
 {% block head_extra %}
   {% if cve.status == 'rejected' or cve.status == 'not-for-us' %}
@@ -45,12 +45,8 @@
       <div class="col-9">
         <h1>{{ cve.id }}</h1>
 
-        {% if cve.public_date %}
-        <p>Published: <strong>{{ cve.public_date.strftime("%d %B %Y") }}</strong></p>
-        {% endif %}
-
-        {% if cve.status == 'active' and cve.last_updated_date and cve.last_updated_date != cve.public_date %}
-        <p>Last updated: <strong>{{ cve.last_updated_date.strftime("%d %B %Y") }}</strong></p>
+        {% if cve.published %}
+        <p>Published: <strong>{{ cve.published.strftime("%d %B %Y") }}</strong></p>
         {% endif %}
 
         {% if cve.description %}
@@ -98,7 +94,7 @@
             </div>
           </div>
         </div>
-        <p>CVSS 3 base score: {{ cve.cvss }}</p>
+        <p>CVSS 3 base score: {{ cve.cvss3 }}</p>
         {% endif %}
 
         {% if cve.status == 'rejected' %}
@@ -130,7 +126,6 @@
               <th>Package</th>
               <th>Release</th>
               <th>Status</th>
-              <th>Detail</th>
             </tr>
           </thead>
           <tbody>
@@ -142,8 +137,12 @@
                       <td rowspan="{{ releases | length }}">{{ package_name }}</td>
                     {% endif %}
                     <td>{{ release.name }}</td>
-                    <td>{{ statuses[release.codename].status }}</td>
-                    <td>{{ statuses[release.codename].status_description }}</td>
+                    <td>
+                      {{ statuses[release.codename].status }}
+                      {% if statuses[release.codename].description %}
+                        ({{ statuses[release.codename].description }})
+                      {% endif %}
+                    </td>
                   </tr>
                 {% endif %}
               {% endfor %}
@@ -161,7 +160,10 @@
           <table>
             <tr><th style="width: 10em;">Author</th><th>Note</th></tr>
             {% for note in cve.notes %}
-            <tr><td><a href="https://launchpad.net/~{{ note[0] }}">{{ note[0] }}</a></td><td>{{ note[1] }}</td></tr>
+            <tr>
+              <td><a href="https://launchpad.net/~{{ note.author }}">{{ note.author }}</a></td>
+              <td>{{ note.note }}</td>
+            </tr>
             {% endfor %}
           </table>
         {% endif %}
