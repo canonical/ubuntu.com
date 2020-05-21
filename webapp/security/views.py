@@ -2,7 +2,6 @@
 import re
 from collections import defaultdict, OrderedDict
 from datetime import datetime
-from dateutil.parser import parse
 from math import ceil
 
 # Packages
@@ -19,12 +18,28 @@ from sqlalchemy.orm.exc import NoResultFound
 # Local
 from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Package, Status, Release
-from webapp.security.schemas import NoticeSchema
+from webapp.security.schemas import CVESchema, NoticeSchema
 from webapp.security.auth import authorization_required
 
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
 )
+
+
+def _link_notice_references(notice, references):
+    """
+    Link CVEs, creating them if they don't exist
+    """
+
+    for reference in references:
+        if reference.startswith("CVE-"):
+            cve_id = reference[4:]
+            cve = db_session.query(CVE).get(cve_id)
+            if not cve:
+                cve = CVE(id=cve_id)
+            notice.cves.append(cve)
+        else:
+            notice.references.append(reference)
 
 
 def notice(notice_id):
@@ -167,7 +182,7 @@ def notices_feed(feed_type):
         entry.description(description)
         entry.link(href=link)
         entry.published(f"{published} UTC")
-        entry.author(dict(name="Ubuntu Security Team"))
+        entry.author({"name": "Ubuntu Security Team"})
 
         return entry
 
@@ -196,7 +211,7 @@ def create_notice():
 
     notice_schema = NoticeSchema()
     try:
-        data = notice_schema.load(flask.request.json, unknown=EXCLUDE)
+        data = notice_schema.load(flask.request.json)
     except ValidationError as error:
         return (
             flask.jsonify(
@@ -227,6 +242,9 @@ def create_notice():
             return (flask.jsonify({"message": message}), 400)
 
         notice.releases.append(release)
+
+    # Link CVEs, creating them if they don't exist
+    _link_notice_references(notice, data.get("references", []))
 
     db_session.add(notice)
 
@@ -275,13 +293,10 @@ def update_notice():
     if "action" in data:
         notice.instructions = data["action"]
 
-    if "isummary" in data:
-        notice.isummary = data["isummary"]
-
     # Clear m2m relations to re-add
     notice.cves.clear()
     notice.releases.clear()
-    notice.references.clear()
+    notice.references = []
 
     # Link releases
     for release_codename in data["releases"].keys():
@@ -294,16 +309,7 @@ def update_notice():
             return (flask.jsonify({"message": message}), 400)
 
     # Link CVEs, creating them if they don't exist
-    references = set(data.get("references", []))
-    for reference in references:
-        if reference.startswith("CVE-"):
-            cve_id = reference[4:]
-            cve = db_session.query(CVE).get(cve_id)
-            if not cve:
-                cve = CVE(id=cve_id)
-            notice.cves.append(cve)
-        else:
-            notice.references.append(reference)
+    _link_notice_references(notice, data.get("references", []))
 
     db_session.add(notice)
     db_session.commit()
@@ -354,7 +360,7 @@ def cve_index():
     sort = asc if order_by == "oldest" else desc
 
     cves = (
-        cves_query.order_by(sort(CVE.public_date))
+        cves_query.order_by(sort(CVE.published))
         .offset(offset)
         .limit(limit)
         .all()
@@ -420,25 +426,9 @@ def cve(cve_id):
 # ===
 def update_cve(cve, data):
     cve.status = data.get("status")
-    cve.last_updated_date = (
-        parse(data.get("last_updated_date"))
-        if data.get("last_updated_date")
-        else None
-    )
-    cve.public_date_usn = (
-        parse(data.get("public_date_usn"))
-        if data.get("public_date_usn")
-        else None
-    )
-    cve.public_date = (
-        parse(data.get("public_date")) if data.get("public_date") else None
-    )
+    cve.published = data.get("published")
     cve.priority = data.get("priority")
-    cve.crd = data.get("crd")
-    cve.cvss = data.get("cvss")
-    cve.assigned_to = data.get("assigned_to")
-    cve.discovered_by = data.get("discovered_by")
-    cve.approved_by = data.get("approved_by")
+    cve.cvss3 = data.get("cvss3")
     cve.description = data.get("description")
     cve.ubuntu_description = data.get("ubuntu_description")
     cve.notes = data.get("notes")
@@ -464,8 +454,8 @@ def update_statuses(cve, data, packages, releases):
         for status in cve.statuses:
             statuses[status.package_name][status.release_codename] = status
 
-        for release_data in package_data["releases"]:
-            codename = release_data["name"]
+        for status_data in package_data["statuses"]:
+            codename = status_data["release_codename"]
             release = releases.get(codename)
 
             if not release:
@@ -475,8 +465,8 @@ def update_statuses(cve, data, packages, releases):
                 cve=cve, package=package, release=release
             )
 
-            status.status = release_data["status"]
-            status.detail = release_data["status_description"]
+            status.status = status_data["status"]
+            status.description = status_data["description"]
 
             statuses[name][codename] = status
 
@@ -501,7 +491,7 @@ def delete_cve(cve_id):
     except IntegrityError as error:
         return flask.jsonify({"message": error.orig.args[0]}), 400
 
-    return flask.jsonify({"message": "CVE deleted succesfully"}), 200
+    return flask.jsonify({"message": "CVE deleted successfully"}), 200
 
 
 @authorization_required
@@ -512,12 +502,13 @@ def bulk_upsert_cve():
     @returns 3 lists of CVEs, created CVEs, updated CVEs and failed CVEs
     """
 
-    cves_data = flask.request.json
-
-    if not type(cves_data) == list:
+    cve_schema = CVESchema(many=True)
+    try:
+        cves_data = cve_schema.load(flask.request.json)
+    except ValidationError as error:
         return (
             flask.jsonify(
-                {"message": "Please, submit a list (array) of CVEs"}
+                {"message": "Invalid payload", "errors": error.messages}
             ),
             400,
         )
