@@ -14,6 +14,9 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@v2
 
+      - name: Install dependencies and build JS/CSS
+        uses: ./run build
+
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
