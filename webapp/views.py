@@ -5,7 +5,10 @@ import json
 import math
 import os
 import re
-from datetime import datetime
+from datetime import (
+    datetime,
+    timezone,
+)
 
 # Packages
 import dateutil.parser
@@ -460,36 +463,9 @@ def advantage_view():
                                 "daysTillExpiry"
                             ] = date_difference.days
 
-                    if "renewals" in contract["contractInfo"]:
-                        renewal = contract["contractInfo"]["renewals"][0]
-
-                        # If the renewal is processing, we need to find out
-                        # whether payment failed and requires user action,
-                        # which is information only available in the fuller
-                        # renewal object get_renewal gives us
-                        if renewal["status"] == "processing":
-                            renewal = advantage.get_renewal(renewal["id"])
-
-                        renewable = False
-
-                        if renewal["status"] == "pending":
-                            renewable = True
-                        elif (
-                            renewal["status"] == "processing"
-                            and "stripeInvoices" in renewal
-                        ):
-                            invoice = renewal["stripeInvoices"][-1]
-                            if (
-                                invoice["pi_status"]
-                                == "requires_payment_method"
-                            ) and (
-                                invoice["subscription_status"]
-                                != "incomplete_expired"
-                            ):
-                                renewable = True
-
-                        contract["renewal"] = renewal
-                        contract["renewal"]["renewable"] = renewable
+                    contract["renewal"] = make_renewal(
+                        advantage, contract["contractInfo"]
+                    )
 
                     enterprise_contract = enterprise_contracts.setdefault(
                         contract["accountInfo"]["name"], []
@@ -509,6 +485,53 @@ def advantage_view():
         open_subscription=open_subscription,
         stripe_publishable_key=stripe_publishable_key,
     )
+
+
+def make_renewal(advantage, contract_info):
+    """Return the renewal as present in the given info, or None."""
+    renewals = contract_info.get("renewals")
+    if not renewals:
+        return None
+
+    renewal = renewals[0]
+
+    # If the renewal is processing, we need to find out
+    # whether payment failed and requires user action,
+    # which is information only available in the fuller
+    # renewal object get_renewal gives us.
+    if renewal["status"] == "processing":
+        renewal = advantage.get_renewal(renewal["id"])
+
+    renewal["renewable"] = False
+
+    # Only actionable renewals are renewable.
+    if not renewal["actionable"]:
+        return renewal
+
+    # The renewal is renewable only during its time window.
+    start = dateutil.parser.parse(renewal["start"])
+    end = dateutil.parser.parse(renewal["end"])
+    if not (start <= datetime.now(timezone.utc) <= end):
+        return renewal
+
+    # Pending renewals are renewable.
+    if renewal["status"] == "pending":
+        renewal["renewable"] = True
+        return renewal
+
+    # Renewals not pending or processing are never renewable.
+    if renewal["status"] != "processing":
+        return renewal
+
+    invoices = renewal.get("stripeInvoices")
+    if invoices:
+        invoice = invoices[-1]
+        renewal["renewable"] = (
+            invoice["pi_status"] == "requires_payment_method"
+            and invoice["subscription_status"] == "incomplete"
+        )
+
+    return renewal
 
 
 def post_stripe_method_id():
