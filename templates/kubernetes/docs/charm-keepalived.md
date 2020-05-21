@@ -14,13 +14,23 @@ toc: False
 ---
 
 [Keepalived](http://www.keepalived.org/) is software which provides high
-availability by assigning two or more nodes a virtual IP and monitoring
+availability by assigning two or more nodes a virtual IP (VIP) and monitoring
 those nodes, failing over when one goes down.
 
 ## Usage
 
 The Keepalived charm is a
 [subordinate](https://jujucharms.com/docs/stable/authors-subordinate-applications).
+
+Allocating a VIP and ensuring that it can route to all of the instances is a
+manual process which depends on your infrastructure.  It does require that the
+VIP be able to route to each instance, and that the VRRP protocol is allowed on
+the network.  While this should be the case on bare metal and MAAS, and can be
+made to work on [OpenStack][openstack-vip], it will generally not be possible
+on public clouds. Thus, in those cases it is generally better to go with a
+cloud-provided load balancer with health checks, such as Octavia or ELB.
+
+[openstack-vip]: https://medium.com/jexia/virtual-ip-with-openstack-neutron-dd9378a48bdf
 
 ### Using with Kubernetes ([Charmed Kubernetes](https://jujucharms.com/canonical-kubernetes))
 
@@ -52,7 +62,6 @@ juju relate kubernetes-master:kube-api-endpoint kubeapi-load-balancer:apiserver 
 # configure keepalived (values are examples, substitute your own)
 export VIP_HOSTNAME=test.example.com
 juju config keepalived virtual_ip=10.10.74.250
-juju config keepalived port=443
 juju config keepalived vip_hostname=$VIP_HOSTNAME
 
 # set extra_sans to update api server ssl cert

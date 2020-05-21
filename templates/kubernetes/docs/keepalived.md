@@ -18,17 +18,17 @@ of the kube-api-loadbalancer. For many use cases this is perfectly adequate,
 but in a production environment you should be keen to eliminate any single
 point of failure.
 
-The recommended way to provide a failover for the kube-api-loadbalancer is by
-using [keepalived][keepalived-home]. This is available as a **Juju** charm and
-can be deployed into your **Charmed Kubernetes** model and configured as
-follows:
+The recommended way to provide a failover for the kube-api-loadbalancer on bare
+metal or MAAS is by using [keepalived][keepalived-home]. This is available as a
+**Juju** charm and can be deployed into your **Charmed Kubernetes** model and
+configured as follows:
 
 1. Deploy the `keepalived` charm:
     ```bash
     juju deploy cs:~containers/keepalived
     ```
 
-1. Add the required relations :   
+1. Add the required relations:
     ```bash
     juju add-relation keepalived:juju-info kubeapi-load-balancer:juju-info
     juju add-relation keepalived:lb-sink kubeapi-load-balancer:website
@@ -44,9 +44,16 @@ follows:
     export VIP=10.10.74.250
     export VIP_HOSTNAME=test.example.com
     juju config keepalived virtual_ip=$VIP
-    juju config keepalived port=443
     juju config keepalived vip_hostname=$VIP_HOSTNAME
     ```
+    Allocating a VIP and ensuring that it can route to all of the instances is a manual
+    process which depends on your infrastructure.  It does require that the VIP be able
+    to route to each instance, and that the VRRP protocol is allowed on the network.
+    While this should be the case on bare metal and MAAS, and can be made to
+    work on [OpenStack][openstack-vip], it will generally not be possible on
+    public clouds. Thus, it is generally better to in those cases to replace
+    kubeapi-load-balancer with a cloud-provided load balancer with health
+    checks, such as Octavia or ELB.
 
 1.  Add both the new hostname and VIP to the API server certificate. This is done by specifying
     additional [SANs][]:
@@ -92,6 +99,7 @@ balancer.
 [SANs]: https://www.openssl.org/docs/manmaster/man5/x509v3_config.html#Subject-Alternative-Name
 [logging-doc]: /kubernetes/docs/logging
 [subordinate-charm]: https://docs.jujucharms.com/stable/en/authors-subordinate-applications
+[openstack-vip]: https://medium.com/jexia/virtual-ip-with-openstack-neutron-dd9378a48bdf
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
