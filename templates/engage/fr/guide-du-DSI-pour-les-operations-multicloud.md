@@ -43,7 +43,7 @@ Dans ce whitepaper, vous trouverez une discussion objective des différentes app
 
 Ce document est parfait si vous voulez apprendre comment choisir une architecture cloud rentable, en savoir plus sur les stratégies cloud et les technologies émergentes.
 
-Points clés du livre blanc:
+Points clés du whitepaper :
 
 <ul class="p-list">
   <li class="p-list__item is-ticked">Apprenez en plus sur tous les types d'architecture cloud</li>
