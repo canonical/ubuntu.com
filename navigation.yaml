@@ -40,12 +40,42 @@ appliance:
     - title: Plex
       path: /appliance/plex
       hidden: True
+      children:
+        - title: Raspberry Pi
+          path: /appliance/plex/raspberry-pi
+          hidden: True
+        - title: Intel NUC
+          path: /appliance/plex/intel-nuc
+          hidden: True
+        - title: PC
+          path: /appliance/plex/pc
+          hidden: True
     - title: Adguard
       path: /appliance/adguard
       hidden: True
+      children:
+        - title: Raspberry Pi
+          path: /appliance/adguard/raspberry-pi
+          hidden: True
+        - title: Intel NUC
+          path: /appliance/adguard/intel-nuc
+          hidden: True
+        - title: PC
+          path: /appliance/adguard/pc
+          hidden: True
     - title: OpenHAB
       path: /appliance/openhab
       hidden: True
+      children:
+        - title: Raspberry Pi
+          path: /appliance/openhab/raspberry-pi
+          hidden: True
+        - title: Intel NUC
+          path: /appliance/openhab/intel-nuc
+          hidden: True
+        - title: PC
+          path: /appliance/openhab/pc
+          hidden: True
 
 aws:
   title: AWS
