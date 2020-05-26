@@ -1,8 +1,8 @@
 ---
 wrapper_template: "engage/_base_engage_markdown.html"
 context:
-  title: "Kubernetes & MicroK8s virtual event EU"
-  meta_description: "Kubernetes & MicroK8s virtual event EMEA"
+  title: "Kubernetes from Cloud to Edge: A Virtual Event"
+  meta_description: "From public cloud, to containers, and even lightweight devices, discover strategies for optimising your Kubernetes deployment and operations. Join us live on 28 May 2020."
   meta_image: https://assets.ubuntu.com/v1/baab00bc-pre-kubeconf-meta-image.png
   meta_copydoc: https://docs.google.com/document/d/1VYYmd6kS0eWApEpbVCgTUq0NOHUTEeRWVj7ujtFEsHs/
   header_title: "Streamlined Kubernetes, from Cloud to Edge"
