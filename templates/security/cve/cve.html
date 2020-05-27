@@ -94,7 +94,11 @@
             </div>
           </div>
         </div>
-        <p>CVSS 3 base score: {{ cve.cvss3 }}</p>
+
+        {% if cve.cvss3 %}
+          <p>CVSS 3 base score: {{ cve.cvss3 }}</p>
+        {% endif %}
+
         {% endif %}
 
         {% if cve.status == 'rejected' %}

@@ -180,23 +180,27 @@ app.register_blueprint(blog_blueprint, url_prefix="/blog")
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
-app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
 app.add_url_rule(
     "/security/notices", view_func=create_notice, methods=["POST"]
 )
-app.add_url_rule("/security/notices", view_func=update_notice, methods=["PUT"])
+
 app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
+app.add_url_rule(
+    "/security/notices/<notice_id>", view_func=update_notice, methods=["PUT"]
+)
+
+app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
 
 
 # cve section
-app.add_url_rule("/security/cve", view_func=bulk_upsert_cve, methods=["PUT"])
 app.add_url_rule("/security/cve", view_func=cve_index)
-app.add_url_rule(
-    "/security/<regex('(cve-|CVE-)\\d{4}-\\d{4,7}'):cve_id>", view_func=cve
-)
+app.add_url_rule("/security/cve", view_func=bulk_upsert_cve, methods=["PUT"])
 
 app.add_url_rule(
-    "/security/<regex('(cve-|CVE-)\\d{4}-\\d{4,7}'):cve_id>",
+    r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
+)
+app.add_url_rule(
+    r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>",
     view_func=delete_cve,
     methods=["DELETE"],
 )

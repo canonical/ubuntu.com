@@ -80,7 +80,7 @@ class Notice(Base):
     summary = Column(String)
     details = Column(String)
     instructions = Column(String)
-    packages = Column(JSON)
+    release_packages = Column(JSON)
     cves = relationship("CVE", secondary=notice_cves, back_populates="notices")
     references = Column(JSON)
     releases = relationship(
