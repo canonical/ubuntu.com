@@ -30,7 +30,7 @@ class ParsedDateTime(DateTime):
 
 # Notices
 # --
-def _validate_release_packages(release_packages):
+def _validate_release_codenames(release_packages):
     codenames = set(rel.codename for rel in db_session.query(Release).all())
     unrecognised_codenames = set(release_packages.keys()) - codenames
 
@@ -38,6 +38,12 @@ def _validate_release_packages(release_packages):
         raise ValidationError(
             f"Unrecognised release codenames: {unrecognised_codenames}"
         )
+
+
+class Package(Schema):
+    name = Str(required=True)
+    version = Str(required=True)
+    description = Str(required=True)
 
 
 class NoticeSchema(Schema):
@@ -49,7 +55,11 @@ class NoticeSchema(Schema):
     cves = List(Str(validate=Regexp(r"(cve-|CVE-)\d{4}-\d{4,7}")))
     published = ParsedDateTime(required=True)
     description = Str(allow_none=True)
-    release_packages = Dict(validate=_validate_release_packages)
+    release_packages = Dict(
+        keys=Str(),
+        values=List(Nested(Package), required=True),
+        validate=_validate_release_codenames,
+    )
 
 
 # CVEs
