@@ -3,6 +3,9 @@
 # Standard library
 import argparse
 import json
+import os
+from datetime import datetime
+from http.cookiejar import MozillaCookieJar
 
 # Packages
 from macaroonbakery import httpbakery
@@ -17,23 +20,54 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-client = httpbakery.Client()
+client = httpbakery.Client(cookies=MozillaCookieJar(".login"))
+
+if os.path.exists(client.cookies.filename):
+    client.cookies.load(ignore_discard=True)
+
 notice_endpoint = f"{args.host}/security/notices"
 
 http_method = "PUT" if args.update else "POST"
 
 # Make a first call to make sure we are logged in
 response = client.request(http_method, url=notice_endpoint)
+client.cookies.save(ignore_discard=True)
 
 
 with open(args.file_path) as usn_json:
     payload = json.load(usn_json).items()
 
     for notice_id, notice in payload:
-        if "isummary" in notice and notice["isummary"]:
-            notice["summary"] = notice["isummary"]
-            del notice["isummary"]
+        # format release_packages
+        release_packages = {}
+
+        for codename, packages in notice["releases"].items():
+            release_packages[codename] = list(packages["sources"].keys())
+
+        # format CVEs and references
+        cves = []
+        references = []
+        for reference in notice["cves"]:
+            if reference.startswith("CVE-"):
+                cves.append(reference)
+            else:
+                references.append(reference)
+
         response = client.request(
-            http_method, url=notice_endpoint, json=notice
+            http_method,
+            url=notice_endpoint,
+            json={
+                "id": notice["id"],
+                "description": notice["description"],
+                "references": references,
+                "cves": cves,
+                "release_packages": release_packages,
+                "title": notice["title"],
+                "published": datetime.fromtimestamp(
+                    notice["timestamp"]
+                ).isoformat(),
+                "summary": notice["summary"],
+                "instructions": notice.get("action"),
+            },
         )
         print(response, response.text)

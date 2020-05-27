@@ -1,16 +1,16 @@
 """cve_migration
 
-Revision ID: 1a2ea3a8f428
+Revision ID: 9efd907db2f8
 Revises: c2bc5f0b027d
-Create Date: 2020-05-21 23:53:07.940572
+Create Date: 2020-05-26 11:05:59.708736
 
 """
 from alembic import op
 import sqlalchemy as sa
-
+from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = "1a2ea3a8f428"
+revision = "9efd907db2f8"
 down_revision = "c2bc5f0b027d"
 branch_labels = None
 depends_on = None
@@ -27,45 +27,6 @@ def upgrade():
         sa.Column("debian", sa.String(), nullable=True),
         sa.PrimaryKeyConstraint("name"),
     )
-    op.drop_table("notice_references")
-    op.drop_table("reference")
-    op.drop_table("notice_cves")
-    op.drop_table("cve")
-
-    op.create_table(
-        "cve",
-        sa.Column("id", sa.String(), nullable=False),
-        sa.Column("bugs", sa.JSON(), nullable=True),
-        sa.Column("cvss3", sa.Float(), nullable=True),
-        sa.Column("description", sa.String(), nullable=True),
-        sa.Column("notes", sa.JSON(), nullable=True),
-        sa.Column(
-            "priority",
-            sa.Enum(
-                "unknown",
-                "negligible",
-                "low",
-                "medium",
-                "high",
-                "critical",
-                name="priorities",
-            ),
-            nullable=True,
-        ),
-        sa.Column("published", sa.DateTime(), nullable=True),
-        sa.Column("references", sa.JSON(), nullable=True),
-        sa.Column("status", sa.String(), nullable=True),
-        sa.Column("ubuntu_description", sa.String(), nullable=True),
-        sa.PrimaryKeyConstraint("id"),
-    )
-    op.create_table(
-        "notice_cves",
-        sa.Column("notice_id", sa.String(), nullable=True),
-        sa.Column("cve_id", sa.String(), nullable=True),
-        sa.ForeignKeyConstraint(["cve_id"], ["cve.id"]),
-        sa.ForeignKeyConstraint(["notice_id"], ["notice.id"]),
-    )
-
     op.create_table(
         "status",
         sa.Column("cve_id", sa.String(), nullable=False),
@@ -92,8 +53,45 @@ def upgrade():
         sa.ForeignKeyConstraint(["release_codename"], ["release.codename"]),
         sa.PrimaryKeyConstraint("cve_id", "package_name", "release_codename"),
     )
-
+    op.drop_table("notice_references")
+    op.drop_table("reference")
+    op.add_column("cve", sa.Column("bugs", sa.JSON(), nullable=True))
+    op.add_column("cve", sa.Column("cvss3", sa.Float(), nullable=True))
+    op.add_column("cve", sa.Column("description", sa.String(), nullable=True))
+    op.add_column("cve", sa.Column("notes", sa.JSON(), nullable=True))
+    op.execute(
+        (
+            "CREATE TYPE priorities AS ENUM ('unknown', 'negligible', "
+            "'low', 'medium', 'high', 'critical');"
+        )
+    )
+    op.add_column(
+        "cve",
+        sa.Column(
+            "priority",
+            sa.Enum(
+                "unknown",
+                "negligible",
+                "low",
+                "medium",
+                "high",
+                "critical",
+                name="priorities",
+            ),
+            nullable=True,
+        ),
+    )
+    op.add_column("cve", sa.Column("published", sa.DateTime(), nullable=True))
+    op.add_column("cve", sa.Column("references", sa.JSON(), nullable=True))
+    op.add_column("cve", sa.Column("status", sa.String(), nullable=True))
+    op.add_column(
+        "cve", sa.Column("ubuntu_description", sa.String(), nullable=True)
+    )
     op.add_column("notice", sa.Column("references", sa.JSON(), nullable=True))
+    op.add_column(
+        "notice", sa.Column("release_packages", sa.JSON(), nullable=True)
+    )
+    op.drop_column("notice", "packages")
     op.drop_column("notice", "isummary")
     op.add_column(
         "notice_releases",
@@ -148,6 +146,16 @@ def downgrade():
             "isummary", sa.VARCHAR(), autoincrement=False, nullable=True
         ),
     )
+    op.add_column(
+        "notice",
+        sa.Column(
+            "packages",
+            postgresql.JSON(astext_type=sa.Text()),
+            autoincrement=False,
+            nullable=True,
+        ),
+    )
+    op.drop_column("notice", "release_packages")
     op.drop_column("notice", "references")
     op.drop_column("cve", "ubuntu_description")
     op.drop_column("cve", "status")

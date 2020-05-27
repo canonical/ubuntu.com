@@ -13,7 +13,6 @@ from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sqlalchemy import asc, desc, or_
 from sqlalchemy.exc import IntegrityError, DataError
-from sqlalchemy.orm.exc import NoResultFound
 
 # Local
 from webapp.security.database import db_session
@@ -26,22 +25,6 @@ markdown_parser = Markdown(
 )
 
 
-def _link_notice_references(notice, references):
-    """
-    Link CVEs, creating them if they don't exist
-    """
-
-    for reference in references:
-        if reference.startswith("CVE-"):
-            cve_id = reference[4:]
-            cve = db_session.query(CVE).get(cve_id)
-            if not cve:
-                cve = CVE(id=cve_id)
-            notice.cves.append(cve)
-        else:
-            notice.references.append(reference)
-
-
 def notice(notice_id):
     notice = db_session.query(Notice).get(notice_id)
 
@@ -51,7 +34,7 @@ def notice(notice_id):
     notice_packages = set()
     releases_packages = {}
 
-    for release, packages in notice.packages.items():
+    for release, packages in notice.release_packages.items():
         release_name = (
             db_session.query(Release)
             .filter(Release.codename == release)
@@ -202,16 +185,42 @@ def notices_feed(feed_type):
 
 # USN API
 # ===
+def _update_notice_object(notice, data):
+    """
+    Set fields on a Notice model object
+    """
+
+    notice.title = data["title"]
+    notice.summary = data["summary"]
+    notice.details = data["description"]
+    notice.release_packages = data["release_packages"]
+    notice.published = data["published"]
+    notice.references = data["references"]
+    notice.instructions = data["instructions"]
+    notice.releases = [
+        db_session.query(Release).get(codename)
+        for codename in data["release_packages"].keys()
+    ]
+
+    notice.cves.clear()
+    for cve_id in data["cves"]:
+        notice.cves.append(db_session.query(CVE).get(cve_id) or CVE(id=cve_id))
+
+    return notice
 
 
 @authorization_required
 def create_notice():
+    """
+    POST method to create a new notice
+    """
+
     if not flask.request.json:
         return (flask.jsonify({"message": "No payload received"}), 400)
 
     notice_schema = NoticeSchema()
     try:
-        data = notice_schema.load(flask.request.json)
+        notice_data = notice_schema.load(flask.request.json)
     except ValidationError as error:
         return (
             flask.jsonify(
@@ -220,39 +229,17 @@ def create_notice():
             400,
         )
 
-    notice = Notice(
-        id=data["notice_id"],
-        title=data["title"],
-        summary=data["summary"],
-        details=data["description"],
-        packages=data["releases"],
-        references=data.get("reference", []),
-        published=datetime.fromtimestamp(data["timestamp"]),
+    db_session.add(
+        _update_notice_object(Notice(id=notice_data["id"]), notice_data)
     )
-
-    if "action" in data:
-        notice.instructions = data["action"]
-
-    # Link releases
-    for release_codename in data["releases"].keys():
-        release = db_session.query(Release).get(release_codename)
-
-        if not release:
-            message = f"No release with codename: {release_codename}."
-            return (flask.jsonify({"message": message}), 400)
-
-        notice.releases.append(release)
-
-    # Link CVEs, creating them if they don't exist
-    _link_notice_references(notice, data.get("references", []))
-
-    db_session.add(notice)
 
     try:
         db_session.commit()
     except IntegrityError:
         return (
-            flask.jsonify({"message": f"Notice {notice.id} already exists"}),
+            flask.jsonify(
+                {"message": f"Notice {notice_data['id']} already exists"}
+            ),
             400,
         )
 
@@ -260,13 +247,13 @@ def create_notice():
 
 
 @authorization_required
-def update_notice():
-    if not flask.request.json:
-        return (flask.jsonify({"message": "No payload received"}), 400)
+def update_notice(notice_id):
+    """
+    PUT method to update a single notice
+    """
 
-    notice_schema = NoticeSchema()
     try:
-        data = notice_schema.load(flask.request.json, unknown=EXCLUDE)
+        notice_data = NoticeSchema().load(flask.request.json, unknown=EXCLUDE)
     except ValidationError as error:
         return (
             flask.jsonify(
@@ -275,41 +262,17 @@ def update_notice():
             400,
         )
 
-    notice = db_session.query(Notice).get(data["notice_id"])
+    notice = db_session.query(Notice).get(notice_id)
+
     if not notice:
         return (
             flask.jsonify(
-                {"message": f"Notice {data['notice_id']} doesn't exist"}
+                {"message": f"Notice {notice_data['notice_id']} doesn't exist"}
             ),
             404,
         )
 
-    notice.title = data["title"]
-    notice.summary = data["summary"]
-    notice.details = data["description"]
-    notice.packages = data["releases"]
-    notice.published = datetime.fromtimestamp(data["timestamp"])
-
-    if "action" in data:
-        notice.instructions = data["action"]
-
-    # Clear m2m relations to re-add
-    notice.cves.clear()
-    notice.releases.clear()
-    notice.references = []
-
-    # Link releases
-    for release_codename in data["releases"].keys():
-        try:
-            notice.releases.append(
-                db_session.query(Release).get(release_codename)
-            )
-        except NoResultFound:
-            message = f"No release with codename: {release_codename}."
-            return (flask.jsonify({"message": message}), 400)
-
-    # Link CVEs, creating them if they don't exist
-    _link_notice_references(notice, data.get("references", []))
+    notice = _update_notice_object(notice, notice_data)
 
     db_session.add(notice)
     db_session.commit()
@@ -424,20 +387,6 @@ def cve(cve_id):
 
 # CVE API
 # ===
-def update_cve(cve, data):
-    cve.status = data.get("status")
-    cve.published = data.get("published")
-    cve.priority = data.get("priority")
-    cve.cvss3 = data.get("cvss3")
-    cve.description = data.get("description")
-    cve.ubuntu_description = data.get("ubuntu_description")
-    cve.notes = data.get("notes")
-    cve.references = data.get("references")
-    cve.bugs = data.get("bugs")
-
-    return cve
-
-
 def update_statuses(cve, data, packages, releases):
     updated_statuses = []
 
@@ -533,11 +482,21 @@ def bulk_upsert_cve():
     for data in cves_data:
         cve = db_session.query(CVE).get(data["id"]) or CVE(id=data["id"])
 
+        cve.status = data.get("status")
+        cve.published = data.get("published")
+        cve.priority = data.get("priority")
+        cve.cvss3 = data.get("cvss3")
+        cve.description = data.get("description")
+        cve.ubuntu_description = data.get("ubuntu_description")
+        cve.notes = data.get("notes")
+        cve.references = data.get("references")
+        cve.bugs = data.get("bugs")
+
         statuses = update_statuses(
             cve, data, packages, releases=db_session.query(Release)
         )
 
-        db_session.add(update_cve(cve, data))
+        db_session.add(cve)
         db_session.add_all(statuses)
 
     try:
