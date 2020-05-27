@@ -23,7 +23,7 @@ context:
 
 **Date and time**
 May 28, 2020
-[5-7pm BST]
+[4-6pm BST]
 
 **What it is**: A free digital event on Kubernetes, including a live, interactive discussion with a panel of experts, demos, use cases, Q&A, and more.
 
