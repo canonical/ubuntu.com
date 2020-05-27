@@ -68,7 +68,7 @@ def download_thank_you(category):
     )
     mirror_list = []
 
-    if ip_location:
+    if ip_location and "country" in ip_location:
         country_code = ip_location["country"]["iso_code"]
 
         mirror_list = [
