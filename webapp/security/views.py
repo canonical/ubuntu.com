@@ -31,30 +31,18 @@ def notice(notice_id):
     if not notice:
         flask.abort(404)
 
-    notice_packages = set()
-    releases_packages = {}
+    packages = set()
+    release_packages = {}
 
-    for release, packages in notice.release_packages.items():
-        release_name = (
+    for codename, pkgs in notice.release_packages.items():
+        release_version = (
             db_session.query(Release)
-            .filter(Release.codename == release)
+            .filter(Release.codename == codename)
             .one()
             .version
         )
-        releases_packages[release_name] = []
-        for name, package in packages.get("sources", {}).items():
-            # Build packages per release dict
-            package["name"] = name
-            releases_packages[release_name].append(package)
-            # Build full package list
-            description = package.get("description")
-            package_name = f"{name} - {description}" if description else name
-            notice_packages.add(package_name)
-
-    # Guarantee release order
-    releases_packages = OrderedDict(
-        sorted(releases_packages.items(), reverse=True)
-    )
+        release_packages[release_version] = pkgs
+        packages.update([pkg["name"] for pkg in pkgs])
 
     notice = {
         "id": notice.id,
@@ -63,8 +51,10 @@ def notice(notice_id):
         "summary": notice.summary,
         "details": markdown_parser(notice.details),
         "instructions": markdown_parser(notice.instructions),
-        "packages": notice_packages,
-        "releases_packages": releases_packages,
+        "packages": sorted(list(packages)),
+        "release_packages": OrderedDict(
+            sorted(release_packages.items(), reverse=True)
+        ),
         "releases": notice.releases,
         "cves": notice.cves,
         "references": notice.references,
