@@ -63,7 +63,9 @@ def download_thank_you(category):
 
     # Check country code
     country_code = "NO_COUNTRY_CODE"
-    ip_location = ip_reader.get(flask.request.remote_addr)
+    ip_location = ip_reader.get(
+        flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
+    )
     mirror_list = []
 
     if ip_location:
