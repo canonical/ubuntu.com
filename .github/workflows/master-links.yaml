@@ -8,6 +8,12 @@ jobs:
   check-links:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: pw
+
     steps:
       - name: Checkout master
         uses: actions/checkout@v2
@@ -16,7 +22,7 @@ jobs:
         run: DOCKER_BUILDKIT=1 docker build --tag ubuntu-com .
 
       - name: Run the server
-        run: docker run --detach --publish 80:80 --env SECRET_KEY=insecure_secret_key --env DATABASE_URL=sqlite:///db.sqlite3 ubuntu-com
+        run: docker run --detach --publish 80:80 --env SECRET_KEY=insecure_secret_key --env DATABASE_URL=postgres://postgres:pw@localhost:5432/postgres ubuntu-com
 
       - name: Install linkchecker
         run: sudo apt update && sudo apt install linkchecker
