@@ -42,7 +42,15 @@ with open(args.file_path) as usn_json:
         release_packages = {}
 
         for codename, packages in notice["releases"].items():
-            release_packages[codename] = list(packages["sources"].keys())
+            release_packages[codename] = []
+            for name, info in packages["sources"].items():
+                release_packages[codename].append(
+                    {
+                        "name": name,
+                        "version": info["version"],
+                        "description": info["description"],
+                    }
+                )
 
         # format CVEs and references
         cves = []
