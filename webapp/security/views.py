@@ -312,8 +312,17 @@ def cve_index():
 
     sort = asc if order_by == "oldest" else desc
 
+    valid_statuses = [
+        "released",
+        "needed",
+        "deferred",
+        "needs-triage",
+        "pending",
+    ]
+
     cves = (
-        cves_query.order_by(sort(CVE.published))
+        cves_query.filter(CVE.statuses.any(Status.status.in_(valid_statuses)))
+        .order_by(sort(desc(CVE.published)))
         .offset(offset)
         .limit(limit)
         .all()
@@ -489,6 +498,15 @@ def bulk_upsert_cve():
         db_session.add(cve)
         db_session.add_all(statuses)
 
+    created = defaultdict(lambda: 0)
+    updated = defaultdict(lambda: 0)
+
+    for item in db_session.new:
+        created[type(item).__name__] += 1
+
+    for item in db_session.dirty:
+        updated[type(item).__name__] += 1
+
     try:
         db_session.commit()
     except DataError as error:
@@ -502,9 +520,5 @@ def bulk_upsert_cve():
             400,
         )
 
-    return (
-        flask.jsonify(
-            {"message": "Successfully finished bulk upserting session"}
-        ),
-        200,
-    )
+    return (flask.jsonify({"created": created, "updated": updated}), 200)
+
