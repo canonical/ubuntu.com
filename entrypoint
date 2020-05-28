@@ -2,23 +2,23 @@
 
 set -e
 
-# Run migrations
-{
-    alembic upgrade head
-} || {
-    read -p "Database migration failed. Create database from scratch? " -n 1 -r
-    if [[ $REPLY =~ ^[Yy] ]]; then
-        scripts/reset-database.py
-    else
-        exit 1
-    fi
-}
-
 RUN_COMMAND="talisker.gunicorn.gevent webapp.app:app --bind $1 --worker-class gevent --name talisker-`hostname`"
 
 if [ "${FLASK_DEBUG}" = true ] || [ "${FLASK_DEBUG}" = 1 ]; then
-    RUN_COMMAND="${RUN_COMMAND} --reload --log-level debug --timeout 9999"
+    {
+        alembic upgrade head
+    } || {
+        read -p "Database migration failed. Create database from scratch? " -n 1 -r
+        if [[ $REPLY =~ ^[Yy] ]]; then
+            scripts/clear-database.py
+            alembic upgrade head
+        else
+            exit 1
+        fi
+    }
+
+    ${RUN_COMMAND} --reload --log-level debug --timeout 9999
+else
+    alembic upgrade head
+    ${RUN_COMMAND}
 fi
-
-${RUN_COMMAND}
-
