@@ -40,7 +40,7 @@ def _validate_release_codenames(release_packages):
         )
 
 
-class Package(Schema):
+class NoticePackage(Schema):
     name = Str(required=True)
     version = Str(required=True)
     description = Str(required=True)
@@ -57,7 +57,7 @@ class NoticeSchema(Schema):
     description = Str(allow_none=True)
     release_packages = Dict(
         keys=Str(),
-        values=List(Nested(Package), required=True),
+        values=List(Nested(NoticePackage), required=True),
         validate=_validate_release_codenames,
     )
 
@@ -70,7 +70,7 @@ class Status(Schema):
     description = Str()
 
 
-class Package(Schema):
+class CvePackage(Schema):
     name = Str(required=True)
     source = Str(required=True)
     ubuntu = Str(required=True)
@@ -92,6 +92,6 @@ class CVESchema(Schema):
     priority = Str()
     status = Str()
     cvss3 = Float(allow_none=True)
-    packages = List(Nested(Package))
+    packages = List(Nested(CvePackage))
     references = List(Str())
     bugs = List(Str())
