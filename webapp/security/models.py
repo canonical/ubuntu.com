@@ -56,7 +56,9 @@ class CVE(Base):
     cvss3 = Column(Float)
     references = Column(JSON)
     bugs = Column(JSON)
-    status = Column(String)
+    status = Column(
+        Enum("not-in-ubuntu", "active", "rejected", name="cve_statuses")
+    )
     statuses = relationship("Status", cascade="all, delete-orphan")
     notices = relationship(
         "Notice", secondary=notice_cves, back_populates="cves"

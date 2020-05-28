@@ -2,7 +2,7 @@
 {% block title %}{{ cve.id }}{% endblock %}
 
 {% block head_extra %}
-  {% if cve.status == 'rejected' or cve.status == 'not-for-us' %}
+  {% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
     <meta name="robots" content="noindex">
   {% endif %}
 {% endblock %}
@@ -35,7 +35,7 @@
   </div>
 </nav>
 
-{% if cve.status == 'rejected' or cve.status == 'not-for-us' %}
+{% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
 <section class="p-strip--light is-bordered--top">
   {% else %}
   <section class="p-strip">
@@ -109,7 +109,7 @@
         </div>
         {% endif %}
 
-        {% if cve.status == 'not-for-us' %}
+        {% if cve.status == 'not-in-ubuntu' %}
         <div class="cve-status-box--highlight">
           <div class="p-heading--four u-no-margin--bottom">
             Not in Ubuntu
