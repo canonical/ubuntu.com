@@ -119,7 +119,7 @@
                     {% endif %}
                   </div>
                   <div class="icon-container__text">
-                    {{ statuses[release.codename].status }}
+                    {{ statuses[release.codename].status if release.codename in statuses else "-" }}
                   </div>
                 </td>
               {% endfor %}
