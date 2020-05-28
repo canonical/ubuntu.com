@@ -347,6 +347,9 @@ if [[ -n "${run_command}" ]]; then shift; fi
 # Do the real business
 case $run_command in
     ""|"serve")
+        echo "starting database"
+        docker-compose up -d
+
         update_dependencies
 
         # Read optional arguments
