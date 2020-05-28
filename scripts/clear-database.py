@@ -12,4 +12,3 @@ from webapp.security.database import db_engine  # noqa
 metadata = MetaData(db_engine)
 metadata.reflect()
 metadata.drop_all()
-metadata.create_all()
