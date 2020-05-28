@@ -142,9 +142,13 @@
                     {% endif %}
                     <td>{{ release.name }}</td>
                     <td>
-                      {{ statuses[release.codename].status }}
-                      {% if statuses[release.codename].description %}
-                        ({{ statuses[release.codename].description }})
+                      {% if release.codename in statuses %}
+                        {{ statuses[release.codename].status }}
+                        {% if statuses[release.codename].description %}
+                          ({{ statuses[release.codename].description }})
+                        {% endif %}
+                      {% else %}
+                        -
                       {% endif %}
                     </td>
                   </tr>
