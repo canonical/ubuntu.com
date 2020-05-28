@@ -67,7 +67,7 @@ class NoticeSchema(Schema):
 class Status(Schema):
     release_codename = Str(required=True)
     status = Str(required=True)
-    description = Str()
+    description = Str(allow_none=True)
 
 
 class CvePackage(Schema):
@@ -85,12 +85,12 @@ class Note(Schema):
 
 class CVESchema(Schema):
     id = Str(required=True)
-    published = ParsedDateTime()
-    description = Str()
-    ubuntu_description = Str()
+    published = ParsedDateTime(allow_none=True)
+    description = Str(allow_none=True)
+    ubuntu_description = Str(allow_none=True)
     notes = List(Nested(Note))
-    priority = Str()
-    status = Str()
+    priority = Str(allow_none=True)
+    status = Str(allow_none=True)
     cvss3 = Float(allow_none=True)
     packages = List(Nested(CvePackage))
     references = List(Str())
