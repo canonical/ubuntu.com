@@ -1,6 +1,6 @@
 # Standard library
 import re
-from collections import defaultdict, OrderedDict
+from collections import defaultdict
 from datetime import datetime
 from math import ceil
 
