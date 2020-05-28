@@ -284,7 +284,6 @@ def cve_index():
     """
 
     # Query parameters
-    order_by = flask.request.args.get("order-by", default="oldest")
     query = flask.request.args.get("q", "").strip()
     priority = flask.request.args.get("priority")
     package = flask.request.args.get("package")
@@ -310,8 +309,6 @@ def cve_index():
     if query:
         cves_query = cves_query.filter(CVE.description.ilike(f"%{query}%"))
 
-    sort = asc if order_by == "oldest" else desc
-
     valid_statuses = [
         "released",
         "needed",
@@ -322,7 +319,7 @@ def cve_index():
 
     cves = (
         cves_query.filter(CVE.statuses.any(Status.status.in_(valid_statuses)))
-        .order_by(sort(desc(CVE.published)))
+        .order_by(desc(CVE.published))
         .offset(offset)
         .limit(limit)
         .all()
@@ -521,4 +518,3 @@ def bulk_upsert_cve():
         )
 
     return (flask.jsonify({"created": created, "updated": updated}), 200)
-
