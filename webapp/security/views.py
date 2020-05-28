@@ -11,6 +11,7 @@ from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
+from sortedcontainers import SortedDict
 from sqlalchemy import asc, desc, or_
 from sqlalchemy.exc import IntegrityError, DataError
 
@@ -31,8 +32,8 @@ def notice(notice_id):
     if not notice:
         flask.abort(404)
 
-    packages = set()
-    release_packages = {}
+    packages = SortedDict()
+    release_packages = SortedDict()
 
     for codename, pkgs in notice.release_packages.items():
         release_version = (
@@ -42,7 +43,8 @@ def notice(notice_id):
             .version
         )
         release_packages[release_version] = pkgs
-        packages.update([pkg["name"] for pkg in pkgs])
+        for package in pkgs:
+            packages[package["name"]] = package
 
     notice = {
         "id": notice.id,
@@ -51,10 +53,8 @@ def notice(notice_id):
         "summary": notice.summary,
         "details": markdown_parser(notice.details),
         "instructions": markdown_parser(notice.instructions),
-        "packages": sorted(list(packages)),
-        "release_packages": OrderedDict(
-            sorted(release_packages.items(), reverse=True)
-        ),
+        "packages": packages,
+        "release_packages": release_packages,
         "releases": notice.releases,
         "cves": notice.cves,
         "references": notice.references,
