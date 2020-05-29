@@ -295,8 +295,10 @@ def cve_index():
     if is_cve_id and db_session.query(CVE).get(query.upper()):
         return flask.redirect(f"/security/{query.lower()}")
 
-    cves_query = db_session.query(CVE).filter(
-        CVE.statuses.any(Status.status.in_(Status.active_statuses))
+    cves_query = (
+        db_session.query(CVE)
+        .filter(CVE.statuses.any(Status.status.in_(Status.active_statuses)))
+        .filter(CVE.status == "active")
     )
 
     # Apply search filters
