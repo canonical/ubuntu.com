@@ -89,10 +89,10 @@
       </thead>
       <tbody>
         {% for cve in cves %}
-          {% for package_name, statuses in cve.status_tree.items() %}
+          {% for package_name, statuses in cve.active_status_tree.items() %}
             <tr>
               {% if loop.index == 1 %}
-                <td rowspan="{{ cve.status_tree | length }}"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></td>
+                <td rowspan="{{ cve.active_status_tree | length }}"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></td>
               {% endif %}
               <td>{{ package_name }}</td>
               {% for release in releases %}
