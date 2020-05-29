@@ -295,12 +295,14 @@ def cve_index():
     if is_cve_id and db_session.query(CVE).get(query.upper()):
         return flask.redirect(f"/security/{query.lower()}")
 
-    cves_query = db_session.query(CVE)
+    cves_query = db_session.query(CVE).filter(
+        CVE.statuses.any(Status.status.in_(Status.active_statuses))
+    )
 
     # Apply search filters
     if package:
-        cves_query = cves_query.join(Package, CVE.packages).filter(
-            Package.name.ilike(f"%{package}%")
+        cves_query = cves_query.filter(
+            CVE.statuses.any(Status.package_name.ilike(f"%{package}%"))
         )
 
     if priority:
@@ -309,17 +311,8 @@ def cve_index():
     if query:
         cves_query = cves_query.filter(CVE.description.ilike(f"%{query}%"))
 
-    valid_statuses = [
-        "released",
-        "needed",
-        "deferred",
-        "needs-triage",
-        "pending",
-    ]
-
     cves = (
-        cves_query.filter(CVE.statuses.any(Status.status.in_(valid_statuses)))
-        .order_by(desc(CVE.published))
+        cves_query.order_by(desc(CVE.published))
         .offset(offset)
         .limit(limit)
         .all()

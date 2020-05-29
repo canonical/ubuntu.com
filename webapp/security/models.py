@@ -72,6 +72,21 @@ class CVE(Base):
 
         return status_tree
 
+    @hybrid_property
+    def active_status_tree(self):
+        active_package_statuses = {}
+
+        for package_name, release_statuses in self.status_tree.items():
+            for status in release_statuses.values():
+                if (
+                    status.status in Status.active_statuses
+                    and status.release.version
+                    and status.release.support_tag
+                ):
+                    active_package_statuses[package_name] = release_statuses
+
+        return active_package_statuses
+
 
 class Notice(Base):
     __tablename__ = "notice"
@@ -123,6 +138,14 @@ class Release(Base):
 
 class Status(Base):
     __tablename__ = "status"
+
+    active_statuses = [
+        "released",
+        "needed",
+        "deferred",
+        "needs-triage",
+        "pending",
+    ]
 
     cve_id = Column(String, ForeignKey("cve.id"), primary_key=True)
     package_name = Column(String, ForeignKey("package.name"), primary_key=True)
