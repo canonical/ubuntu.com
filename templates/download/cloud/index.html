@@ -9,7 +9,7 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>Optimised Ubuntu on&nbsp;public&nbsp;clouds</h1>
-      <p>Ubuntu builds optimised and certified server images for partners like Amazon AWS, Microsoft Azure, Google Cloud Platform, Oracle, Rackspace and IBM Cloud. In addition, Canonical offers Ubuntu Advantage, enterprise-grade commercial support, on these images.</p>
+      <p>Ubuntu builds optimised and certified server images for partners like Amazon AWS, Microsoft Azure, Google Cloud Platform, IBM Cloud, Rackspace and Oracle. In addition, Canonical offers Ubuntu Advantage, enterprise-grade commercial support, on these images.</p>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
       {{
@@ -36,6 +36,56 @@
     <div class="p-card col-4">
       <div class="p-card__content">
         <h4>
+          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="http://cloud-images.ubuntu.com/locator/ec2/">
+            {{
+              image(
+                  url="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_200,h_119/https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+                  alt="Amazon Web Services",
+                  width="160",
+                  height="60",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"style": "align-self: center;max-height: 10rem; max-width:10rem;"},
+                ) | safe
+            }}
+          </a>
+        </h4>
+        <p>Amazon Web Services offers reliable, scalable, and inexpensive cloud computing services.</p>
+      </div>
+      <ul class="p-list">
+        <li class="p-list__item u-no-margin--top"><a href="https://help.ubuntu.com/community/EC2StartersGuide" class="p-link--external">Ubuntu's guide to using EC2</a></li>
+        <li class="p-list__item"><a href="http://cloud-images.ubuntu.com/locator/ec2/" class="p-link--external">Amazon EC2 AMI Locator</a></li>
+        <li class="p-list__item"><a href="http://ubuntu.com/aws">Ubuntu Pro on AWS</a></li>
+      </ul>
+    </div>
+    <div class="p-card col-4">
+      <div class="p-card__content">
+        <h4>
+          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuServer">
+            {{
+              image(
+                  url="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_350,h_100/https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+                  alt="Microsoft Azure",
+                  width="184",
+                  height="53",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"style": "align-self: center;max-height: 10rem; max-width:12rem;"},
+                ) | safe
+            }}
+          </a>
+        </h4>
+        <p>Microsoft Azure is an open, flexible, enterprise-grade cloud computing platform.</p>
+      </div>
+      <ul class="p-list">
+        <li class="p-list__item u-no-margin--top"><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/" class="p-link--external">Guide to using Microsoft Azure</a></li>
+        <li class="p-list__item"><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuServer" class="p-link--external">Launch Ubuntu on Azure</a></li>
+        <li class="p-list__item"><a href="http://ubuntu.com/azure/pro">Ubuntu Pro on Azure</a></li>
+      </ul>
+    </div>
+    <div class="p-card col-4">
+      <div class="p-card__content">
+        <h4>
           <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free">
             {{
               image(
@@ -55,54 +105,6 @@
       <ul class="p-list">
         <li class="p-list__item u-no-margin--top"><a href="https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu" class="p-link--external">Guide to using GCP</a></li>
         <li class="p-list__item"><a href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free" class="p-link--external">Get started on GCP</a></li>
-      </ul>
-    </div>
-    <div class="p-card col-4">
-      <div class="p-card__content">
-        <h4>
-          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="http://cloud-images.ubuntu.com/locator/ec2/">
-            {{
-              image(
-                  url="https://assets.ubuntu.com/v1/39002345-AmazonWebservices_Logo.svg",
-                  alt="Amazon Web Services",
-                  width="160",
-                  height="60",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"style": "align-self: center;max-height: 10rem; max-width:10rem;"},
-                ) | safe
-            }}
-          </a>
-        </h4>
-        <p>Amazon Web Services offers reliable, scalable, and inexpensive cloud computing services.</p>
-      </div>
-      <ul class="p-list">
-        <li class="p-list__item u-no-margin--top"><a href="https://help.ubuntu.com/community/EC2StartersGuide" class="p-link--external">Ubuntu's guide to using EC2</a></li>
-        <li class="p-list__item"><a href="http://cloud-images.ubuntu.com/locator/ec2/" class="p-link--external">Amazon EC2 AMI Locator</a></li>
-      </ul>
-    </div>
-    <div class="p-card col-4">
-      <div class="p-card__content">
-        <h4>
-          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuServer">
-            {{
-              image(
-                  url="https://assets.ubuntu.com/v1/208cd3a7-azure-logo-blue-on-white.svg",
-                  alt="Microsoft Azure",
-                  width="184",
-                  height="53",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"style": "align-self: center;max-height: 10rem; max-width:12rem;"},
-                ) | safe
-            }}
-          </a>
-        </h4>
-        <p>Microsoft Azure is an open, flexible, enterprise-grade cloud computing platform.</p>
-      </div>
-      <ul class="p-list">
-        <li class="p-list__item u-no-margin--top"><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/" class="p-link--external">Guide to using Microsoft Azure</a></li>
-        <li class="p-list__item"><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuServer" class="p-link--external">Launch Ubuntu on Azure</a></li>
       </ul>
     </div>
   </div>
