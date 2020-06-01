@@ -127,6 +127,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
     paymentMethod.id,
     activeRenewal.accountId,
     stripeAddressObject,
+    customerInfo.name,
     stripeTaxObject
   )
     .then((data) => {
