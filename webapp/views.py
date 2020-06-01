@@ -536,7 +536,7 @@ def make_renewal(advantage, contract_info):
     return renewal
 
 
-def post_stripe_method_id():
+def post_customer_info():
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
@@ -558,7 +558,7 @@ def post_stripe_method_id():
         address = flask.request.json.get("address")
         tax_id = flask.request.json.get("tax_id")
 
-        return advantage.put_method_id(
+        return advantage.put_customer_info(
             account_id, payment_method_id, address, tax_id
         )
     else:

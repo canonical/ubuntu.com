@@ -41,7 +41,7 @@ export async function postCustomerInfoToStripeAccount(
   address,
   taxID
 ) {
-  let response = await fetch("/advantage/payment-method", {
+  let response = await fetch("/advantage/customer-info", {
     method: "POST",
     cache: "no-store",
     credentials: "include",
