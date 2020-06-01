@@ -530,8 +530,8 @@ def make_renewal(advantage, contract_info):
         invoice = invoices[-1]
         renewal["renewable"] = (
             invoice["pi_status"] == "requires_payment_method"
-            and invoice["subscription_status"] == "incomplete"
-        )
+            or invoice["pi_status"] == "requires_action"
+        ) and invoice["subscription_status"] == "incomplete"
 
     return renewal
 
