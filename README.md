@@ -18,24 +18,16 @@ If you have found a bug in the Ubuntu OS itself, the please file it [here](https
 
 ## Local development
 
-The simplest way to run the site locally is using [the `dotrun` snap](https://github.com/canonical-web-and-design/dotrun/), which will use an SQLite database:
+The simplest way to run the site locally is using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) and [`docker`](https://snapcraft.io/docker)snaps:
 
 ```bash
+docker-compose up -d
 dotrun
 ```
 
 Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.
 
-For more detailed local development instructions, see [HACKING.md](HACKING.md).
-
-### Using postgresql
-
-If you want to run the site with postgresql, you'll need [docker-compose](https://docs.docker.com/compose/) to spin up the DB:
-
-```bash
-docker-compose up -d  # Run the database in the background
-dotrun --env DATABASE_URL=postgres://postgres:pw@localhost:5432/postgres
-```
+After you close the server with `<ctrl>+c`, then you should run `docker-compose down` to stop the database.
 
 ## License
 

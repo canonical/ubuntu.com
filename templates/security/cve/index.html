@@ -73,7 +73,7 @@
     <table>
       <thead>
         <tr>
-          <th>CVE</th>
+          <th style="width: 12em">CVE</th>
           <th>Package</th>
           {% for release in releases %}
             <th>
@@ -89,12 +89,12 @@
       </thead>
       <tbody>
         {% for cve in cves %}
-          {% for package in cve.packages %}
+          {% for package_name, statuses in cve.active_status_tree.items() %}
             <tr>
               {% if loop.index == 1 %}
-                <td rowspan="{{ cve.packages | length }}"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></td>
+                <td rowspan="{{ cve.active_status_tree | length }}"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></td>
               {% endif %}
-              <td>{{ package.name }}</td>
+              <td>{{ package_name }}</td>
               {% for release in releases %}
                 <td>
                   <div class="icon-container__icon">
@@ -119,7 +119,7 @@
                     {% endif %}
                   </div>
                   <div class="icon-container__text">
-                    {{ package.get_status_by_codename(release.codename) }}
+                    {{ statuses[release.codename].status if release.codename in statuses else "-" }}
                   </div>
                 </td>
               {% endfor %}

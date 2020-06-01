@@ -8,7 +8,7 @@
     <div class="col-8">
 	    <h1>USN-{{ notice.id }}: {{ notice.title }}</h1>
       <p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
-      <p>{{ notice.isummary or notice.summary|safe }}</p>
+      <p>{{ notice.summary | safe }}</p>
     </div>
   </div>
 </section>
@@ -20,7 +20,7 @@
       <ul class="p-inline-list u-no-margin--bottom">
         {% for release in notice.releases %}
           <li class="p-inline-list__item">
-            <a href="/security/notices?release={{release.codename}}" class="p-button--tag">Ubuntu {{ release.version }} {{ release.support_tag }}</a>
+            <a href="/security/notices?release={{ release.codename }}" class="p-button--tag">Ubuntu {{ release.version }} {{ release.support_tag }}</a>
           </li>
         {% endfor %}
       </ul>
@@ -31,8 +31,8 @@
     <div class="col-12">
       <h2>Packages</h2>
       <ul class="p-list">
-        {% for package in notice.packages %}
-          <li class="p-list__item">{{package}}</li>
+        {% for name, package in notice.packages.items() %}
+          <li class="p-list__item">{{ package.name }} - {{ package.description }}</li>
         {% endfor %}
       </ul>
     </div>
@@ -48,11 +48,14 @@
     <div class="col-8">
       <h2>Update instructions</h2>
       <p>The problem can be corrected by updating your system to the following package versions:</p>
-      {% for release, packages in notice.releases_packages.items() %}
-        <h5>Ubuntu {{release}}</h5>
+      {% for version in notice.release_packages.__reversed__() %}
+        <h5>Ubuntu {{ version }}</h5>
         <ul class="p-list">
-          {% for package in packages %}
-            <li class="p-list__item"><a href="https://launchpad.net/ubuntu/+source/{{package.name}}">{{package.name}}</a> - <a href="https://launchpad.net/ubuntu/+source/{{package.name}}/{{package.version}}">{{package.version}}</a></li>
+          {% for package in notice.release_packages[version] %}
+            <li class="p-list__item">
+              <a href="https://launchpad.net/ubuntu/+source/{{ package.name }}">{{ package.name }}</a> -
+              <a href="https://launchpad.net/ubuntu/+source/{{ package.name }}/{{ package.version }}">{{ package.version }}</a>
+            </li>
           {% endfor %}
         </ul>
       {% endfor %}
@@ -60,20 +63,22 @@
     </div>
   </div>
 
+  {% if notice.cves or notice.references %}
   <div class="row">
     <div class="col-8">
       <h2>References</h2>
-        <ul class="p-list">
-          {% for cve in notice.cves %}
-            <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{cve.id}}">CVE-{{cve.id}}</a></li>
-          {% endfor %}
+      <ul class="p-list">
+        {% for cve in notice.cves %}
+          <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{ cve.id }}">CVE-{{ cve.id }}</a></li>
+        {% endfor %}
 
-          {% for reference in notice.references %}
-            <li class="p-list__item"><a href="{{ reference.uri }}">{{ reference.uri }}</li>
-          {% endfor %}
-        </ul>
+        {% for reference in notice.references %}
+          <li class="p-list__item"><a href="{{ reference }}">{{ reference }}</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
+  {% endif %}
 </section>
 
 {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
