@@ -536,7 +536,7 @@ def make_renewal(advantage, contract_info):
     return renewal
 
 
-def post_stripe_method_id():
+def post_customer_info():
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
@@ -556,10 +556,11 @@ def post_stripe_method_id():
             return flask.jsonify({"error": "account_id required"}), 400
 
         address = flask.request.json.get("address")
+        name = flask.request.json.get("name")
         tax_id = flask.request.json.get("tax_id")
 
-        return advantage.put_method_id(
-            account_id, payment_method_id, address, tax_id
+        return advantage.put_customer_info(
+            account_id, payment_method_id, address, name, tax_id
         )
     else:
         return flask.jsonify({"error": "authentication required"}), 401

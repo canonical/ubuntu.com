@@ -41,7 +41,7 @@ from webapp.views import (
     build_tutorials_index,
     download_thank_you,
     get_renewal,
-    post_stripe_method_id,
+    post_customer_info,
     post_stripe_invoice_id,
     post_build,
     releasenotes_redirect,
@@ -129,9 +129,7 @@ def utility_processor():
 # Simple routes
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
-    "/advantage/payment-method",
-    view_func=post_stripe_method_id,
-    methods=["POST"],
+    "/advantage/customer-info", view_func=post_customer_info, methods=["POST"],
 )
 app.add_url_rule(
     "/advantage/renewals/<renewal_id>/invoices/<invoice_id>",
