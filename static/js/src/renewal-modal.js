@@ -294,7 +294,8 @@ function enableProcessingState(mode) {
       if (mode === "payment") {
         progressIndicator.querySelector("span").innerHTML = "Making payment...";
       } else if (mode === "payment_method") {
-        progressIndicator.querySelector("span").innerHTML = "Saving details...";
+        progressIndicator.querySelector("span").innerHTML =
+          "Checking details...";
       }
 
       progressTimer3 = setTimeout(() => {
