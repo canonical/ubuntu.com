@@ -96,7 +96,7 @@
 
   {% endblock content %}
   {% block footer_extra %}
-  <script src="{{ versioned_static('js/build/image-download.min.js') }}"></script>
+  <script src="{{ versioned_static('js/dist/image-download.min.js') }}"></script>
 
   <script defer>
     var architecture = '{{ architecture }}';
@@ -104,7 +104,7 @@
     var version = '{{ version }}';
 
     if (version && architecture) {
-      var GAlabel = version + '-server-' + architecture; 
+      var GAlabel = version + '-server-' + architecture;
       var imagePath = version + '/ubuntu-' + version + '-live-server-' + architecture + '.iso';
 
       window.initImageDownload(mirrors, imagePath, GAlabel);
