@@ -11,7 +11,7 @@ context:
   header_image_width: "419"
   header_image_height: "172"
   header_url: "https://www.brighttalk.com/webcast/6793/406196"
-  header_cta: Register now
+  header_cta: Watch now
   header_cta_class: p-button--positive
   header_cta_all_sizes: true
   header_class: p-engage-banner--dark
