@@ -19,6 +19,7 @@ const form = document.getElementById("details-form");
 const errorDialog = document.getElementById("payment-error-dialog");
 const progressIndicator = document.getElementById("js-progress-indicator");
 
+const termsCheckbox = modal.querySelector(".js-terms");
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
 const processPaymentButton = modal.querySelector(".js-process-payment");
 const changePaymentMethodButton = modal.querySelector(
@@ -176,11 +177,20 @@ function attachFormEvents() {
       vatContainer.classList.add("u-hide");
     }
   });
+
+  termsCheckbox.addEventListener("change", () => {
+    if (termsCheckbox.checked) {
+      processPaymentButton.disabled = false;
+    } else {
+      processPaymentButton.disabled = true;
+    }
+  });
 }
 
 function attachModalButtonEvents() {
   addPaymentMethodButton.addEventListener("click", (e) => {
     e.preventDefault();
+    changingPaymentMethod = false;
     sendGAEvent("submitted payment details");
     createPaymentMethod();
   });
@@ -285,7 +295,6 @@ function disableProcessingState() {
 function enableProcessingState(mode) {
   addPaymentMethodButton.disabled = true;
   cancelModalButton.disabled = true;
-  processPaymentButton.disabled = true;
 
   // show a progress indicator that evolves over time
   progressTimer = setTimeout(() => {
@@ -587,6 +596,7 @@ function showDetailsMode() {
   modal.classList.add("is-details-mode");
   addPaymentMethodButton.disabled = true;
   processPaymentButton.disabled = true;
+  termsCheckbox.checked = false;
   card.focus();
   validateForm();
 }
@@ -595,8 +605,9 @@ function showDialogMode() {
   disableProcessingState();
   modal.classList.remove("is-pay-mode", "is-details-mode");
   modal.classList.add("is-dialog-mode");
+  addPaymentMethodButton.disabled = true;
   processPaymentButton.disabled = true;
-  processPaymentButton.disabled = true;
+  termsCheckbox.checked = false;
 }
 
 function showPayMode() {
@@ -605,7 +616,8 @@ function showPayMode() {
   modal.classList.remove("is-details-mode", "is-dialog-mode");
   modal.classList.add("is-pay-mode");
   addPaymentMethodButton.disabled = true;
-  processPaymentButton.disabled = false;
+  processPaymentButton.disabled = true;
+  termsCheckbox.checked = false;
 }
 
 function toggleModal() {
