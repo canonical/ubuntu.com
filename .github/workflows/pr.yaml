@@ -103,4 +103,6 @@ jobs:
         run: yarn install --immutable
 
       - name: Test JS
-        run: yarn test-js
+        run: |
+          yarn test-js --collect-coverage
+          bash <(curl -s https://codecov.io/bash) -cF node
