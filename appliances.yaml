@@ -1,25 +1,169 @@
 appliances:
   plex:
     name: "Plex"
+    url_name: "plex"
+    appliance_name: "Plex Media Server"
+    company_name: "Plex Inc. (plexinc)"
+    logo: "https://assets.ubuntu.com/v1/402069bd-plex-media-server.png"
+    category: "Entertainment"
+    meta_description: "Build your Plex appliance with Ubuntu Appliance images with preinstalled snaps. Plex magically organizes your media libraries and streams them to any device – including all your video, music, and photo libraries."
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-ubuntu-core-18-pi-arm64.img.xz"
       pc: "http://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-ubuntu-core-18-amd64.img.xz"
     checksum:
       raspberrypi: "8889a56eadef03196ad1f4f9131d21de5c664625751ae3bd3715dc5a04e4aa87 *plexmediaserver-ubuntu-core-18-pi-arm64.img.xz"
       pc: "ea001bde90753b6e7d620a018c6c9e31a196c48009802e177f60fd6751ba979a *plexmediaserver-ubuntu-core-18-amd64.img.xz"
+    description: |
+      <h2 class="p-heading--four">Plex magically organizes your media libraries and streams them to any device</h2>
+      <p>Plex magically organizes your media libraries and streams them to any device &mdash; including all your video, music, and photo libraries. With a Plex Pass, supported tuner, and digital antenna, you can also watch and record FREE over-the-air broadcast TV, including major networks. You can also enjoy podcasts Plus Plex News &mdash; the most balanced and comprehensive personalized video newsfeed out there. </p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Magically organize all your personal media &mdash; photos, music, movies, shows, even DVR-ed TV &mdash; and stream it to any device in a beautiful, simple interface, and Plex adds rich descriptions, artwork, and other related information</li>
+        <li class="p-list__item is-ticked">Podcasts are here! Search for your favorites or discover new ones through personalized recommendations. Plus: 30-second skip, variable speed playback, rich discovery, and full Plex-style support for cross-device playback status (including On Deck, so you can pick back up where you left off on any device)</li>
+        <li class="p-list__item is-ticked">Get personalized and trusted video news from over 190 global publisher partners (and growing!), including CBS, Financial Times, Euronews, and top local news sources for over 80% of markets in the US</li>
+        <li class="p-list__item is-ticked">Cut the cord! Go premium with a Plex Pass and use Plex Live TV & DVR so you can watch and record free over-the-air HD TV, like NBC, ABC, CBS, and FOX, with any supported digital antenna and tuner</li>
+        <li class="p-list__item is-ticked">Enjoy free features, like remote access, sharing, security, and casting, see your media beautifully enhanced with rich descriptions, artwork, ratings, and more</li>
+        <li class="p-list__item is-ticked">Enjoy premium features with a Plex Pass subscription: DVR & Live TV, Camera Upload, Premium Photos, Mobile Sync, Parental Controls, VIP Perks, and much more</li>
+        <li class="p-list__item is-ticked">Want to use Plex on all of your devices, any time, anywhere? Visit <a href="https://www.plex.tv/" class="p-link--external">www.plex.tv</a> for more information.</li>
+      </ul>
+    screenshots:
+      1: https://youtu.be/Ldq38kkeIZQ
+      2: https://assets.ubuntu.com/v1/5295340e-plex-screen-1.png
+      3: https://assets.ubuntu.com/v1/c19761fb-plex-screen-2.png
+      4: https://assets.ubuntu.com/v1/f9acbfaf-plex-screen-3.png
+      5: https://assets.ubuntu.com/v1/4316c98c-plex-screen-4.png
+    links:
+      1:
+        title: "Plex Media Server Policies"
+        url: "https://www.plex.tv/en-gb/about/privacy-legal/"
+      2:
+        title: "Plex Media Server website"
+        url: "https://www.plex.tv/"
+      3:
+        title: "Plex Media Server license"
+        url: "https://support.plex.tv/articles/204096476-license-information/"
+    compliance:
+      1: "EU GDPR"
+      2: "California law"
+    base: "core20"
+    published_date: "YYYY-MM-DD"
+    maintenance_date: "YYYY-MM-DD"
+    snaps:
+      1:
+        name: "Plex Media Server"
+        icon: "https://assets.ubuntu.com/v1/402069bd-plex-media-server.png"
+        link: "https://snapcraft.io/plexmediaserver"
+        publisher: "By Plex, Inc. (plexinc)"
+        channel: "latest/stable"
+        version: "1.19.3.2764-ef515a800"
+        published_date: "29 April 2020"
   adguard:
     name: "Adguard"
+    url_name: "adguard"
+    appliance_name: "Adguard"
+    company_name: "AdGuard, (ameshkov)"
+    logo: "https://assets.ubuntu.com/v1/1ec45573-AdGuard.png?w=90"
+    category: "Security"
+    meta_description: "Build your Adgaurd appliance with Ubuntu Appliance images with preinstalled snaps. AdGuard Home is a network-wide software for blocking ads & tracking."
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/adguard-home-ubuntu-core-18-pi-arm64.img.xz"
       pc: "http://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-ubuntu-core-18-amd64.img.xz"
     checksum:
       raspberrypi: "72dfbc102571fd0c465ef87d2fc8cce51d419836712e7dbd5678e62444d132e5 *adguard-home-ubuntu-core-18-pi-arm64.img.xz"
       pc: "f904ad1ae804c768a8a0a2ab02617a6589c00ca17d764dccaec0d54b19fd4619 *adguard-home-ubuntu-core-18-amd64.img.xz"
+    description: |
+      <h2 class="p-heading--four">Network-wide ads & trackers blocking DNS server</h2>
+      <p>AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it'll cover ALL your home devices, and you don't need any client-side software for that.</p>
+      <p>It operates as a DNS server that re-routes tracking domains to a &ldquo;black hole,&rdquo; thus preventing your devices from connecting to those servers. It's based on software we use for our public AdGuard DNS servers &mdash; both share a lot of common code.</p>
+    screenshots:
+      1: https://assets.ubuntu.com/v1/1febeddd-adguard-main-image.png
+      2: https://assets.ubuntu.com/v1/21176b69-adguard-advert.png
+      3: https://assets.ubuntu.com/v1/9eb41b64-adguard-advert-1.png
+    links:
+      1:
+        title: "AdGuard Home Privacy Policies"
+        url: "https://adguard.com/en/privacy.html"
+      2:
+        title: "AdGuard Home website"
+        url: "https://adguard.com/"
+      3:
+        title: "AdGuard Home developer license"
+        url: "https://adguard.com/en/rewards.html"
+      4:
+        title: "AdGuard Home issue tracker"
+        url: "https://github.com/AdguardTeam/AdGuardHome/issues"
+    compliance:
+      1: "EU GDPR"
+      2: "California law"
+    base: "core20"
+    published_date: "YYYY-MM-DD"
+    maintenance_date: "YYYY-MM-DD"
+    snaps:
+      1:
+        name: "AdGuard Home"
+        icon: "https://assets.ubuntu.com/v1/1ec45573-AdGuard.png"
+        link: "https://snapcraft.io/adguard-home"
+        publisher: "AdGuard, (ameshkov)"
+        channel: "latest/stable"
+        version: "0.101.0"
+        published_date: "24 April 2020"
   openhab:
     name: "OpenHAB"
+    url_name: "openhab"
+    appliance_name: "OpenHAB"
+    company_name: "openHAB Foundation e.V. (openhab)"
+    logo: "https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png?w=90"
+    category: "Smart Home"
+    meta_description: "Build your OpenHAB appliance with Ubuntu Appliance images with preinstalled snaps. The open Home Automation Bus is technology agnostic home automation platform which runs as the center of your smart home."
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/openhab-ubuntu-core-18-pi-arm64.img.xz"
       pc: "http://cdimage.ubuntu.com/ubuntu-core/appliances/openhab-ubuntu-core-18-amd64.img.xz"
     checksum:
       raspberrypi: "51799ebbf8e56a2ba2b144438136acbf56ad56950f563729df615c009198be2b *openhab-ubuntu-core-18-pi-arm64.img.xz"
       pc: "19dab5bec3b5d7840b3655cd8b6c2d33d0bd9cb1073dfa6bff5890eaba83fe9d *openhab-ubuntu-core-18-amd64.img.xz"
+    description: |
+      <h2 class="p-heading--four">Empowering the smart home</h2>
+      <p>The open Home Automation Bus (openHAB, pronounced ˈəʊpənˈhæb) is an open source, technology agnostic home automation platform which runs as the center of your smart home!</p>
+      <p>Some of openHAB's strengths are:</p>
+      <ul>
+        <li>Its ability to integrate a multitude of other devices and systems. openHAB includes other home automation systems, (smart) devices and other technologies into a single solution</li>
+        <li>To provide a uniform user interface and a common approach to automation rules across the entire system, regardless of the number of manufacturers and sub-systems involved</li>
+        <li>Giving you the most flexible tool available to make almost any home automation wish come true; if you can think it, odds are that you can implement it with openHAB</li>
+      </ul>
+      <p>When home automation just seems to work, it is always the result of hard work. Home automation is fascinating and requires a considerable investment of your time. Here are some key considerations especially for new users. To be successful, you will need to:</p>
+      <ul>
+        <li>Start slowly and one step at a time</li>
+        <li>Be prepared to learn</li>
+        <li>Remain flexible in how you want to achieve your goal</li>
+        <li>Celebrate all the small successes</li>
+      </ul>
+      <p>Remember, openHAB is just a computer program. The computer will only do what you tell it to do. openHAB can provide many default solutions that are easy to setup. On the flip side, the more you insist that everything should look and work exactly as you want it, the more work you will have to do. openHAB is fully customizable, but doing so will require substantial effort on your part.</p>
+    screenshots:
+      1: https://assets.ubuntu.com/v1/56268be0-openhab-screenshot-1.png
+      2: https://assets.ubuntu.com/v1/07b4d31f-openhab-screenshot-2.png
+      3: https://assets.ubuntu.com/v1/a0d79df1-openhab-screenshot-3.png
+      4: https://assets.ubuntu.com/v1/8d38f054-openhab-screenshot-4.png
+    links:
+      1:
+        title: "OpenHAB Privacy Policies"
+        url: "https://www.openhab.org/privacy.html"
+      2:
+        title: "OpenHAB website"
+        url: "https://www.openhab.org/"
+      3:
+        title: "OpenHAB source code"
+        url: "https://github.com/openhab"
+    compliance:
+      1: "EU GDPR"
+      2: "California law"
+    base: "core20"
+    published_date: "YYYY-MM-DD"
+    maintenance_date: "YYYY-MM-DD"
+    snaps:
+      1:
+        name: "openhab"
+        icon: "https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png"
+        link: "https://snapcraft.io/openhab"
+        publisher: "openHAB Foundation e.V. (openhab)"
+        channel: "latest/stable"
+        version: "2.5.4"
+        published_date: "4 May 2020"

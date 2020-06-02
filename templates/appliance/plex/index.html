@@ -1,8 +1,8 @@
 {% extends "appliance/_base-appliance.html" %}
 
-{% block title %}Plex Media Server | Ubuntu Appliance{% endblock %}
+{% block title %}{{ appliance.appliance_name }} | Ubuntu Appliance{% endblock %}
 
-{% block meta_description %}Build your Plex appliance with Ubuntu Appliance images with preinstalled snaps. Plex magically organizes your media libraries and streams them to any device – including all your video, music, and photo libraries.{% endblock %}
+{% block meta_description %}{{ appliance.meta_description }}{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1zgOl4GCK6O6Clv6oxp-DXDSKYIKO2pvpXaYXALiTlpo/{% endblock meta_copydoc %}
 
@@ -12,21 +12,21 @@
   <div class="row">
     <div class="col-8">
       <div class="p-media-object u-no-margin--bottom">
-        <img src="https://assets.ubuntu.com/v1/402069bd-plex-media-server.png?w=90" alt="" class="p-media-object__image is-round" height="90" width="90">
+        <img src="{{ appliance.logo }}?w=90" alt="" class="p-media-object__image is-round" height="90" width="90">
         <div class="p-media-object__details">
           <h1 class="p-heading--three u-no-margin--bottom">
-            Plex Media Server
+            {{ appliance.appliance_name }}
           </h1>
           <p class="p-muted-heading">Ubuntu Appliance</p>
           <ul class="p-inline-list--middot u-no-margin--bottom">
-            <li class="p-inline-list__item">By Plex, Inc. (plexinc)</li>
-            <li class="p-inline-list__item">Entertainment<br class="u-hide--medium"></li>
+            <li class="p-inline-list__item">By {{ appliance.company_name }}</li>
+            <li class="p-inline-list__item">{{ appliance.category }}<br class="u-hide--medium"></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="col-4 u-align--right">
-      {% with app="plex" %}
+      {% with app="{{ appliance }}" %}
       {% include 'appliance/shared/_download_widget.html' %}
       {% endwith %}
     </div>
@@ -37,31 +37,23 @@
   <div class="row">
     <div class="col-10">
       <div class="u-embedded-media u-no-margin--top" style="margin-bottom: 1rem;">
-        <iframe class="u-embedded-media__element" src="https://www.youtube.com/embed/Ldq38kkeIZQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+        {% if "youtu.be" in appliance.screenshots.1 %}
+        <iframe class="u-embedded-media__element" src="{{ appliance.screenshots.1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% else %}
+        <img src="{{ appliance.screenshots.1 }}" class="p-image--shadowed" alt="{{ appliance.appliance_name }} screenshots">
+        {% endif %}
+     </div>
+{# need to deal with no video #}
     </div>
     <div class="col-2 u-align--center">
       <ul class="p-list row">
+        {% for image in appliance.screenshots.values() %}
         <li class="p-list__item col-small-1 col-medium-1 col-2">
-          <a href="https://assets.ubuntu.com/v1/5295340e-plex-screen-1.png" class="js-lightbox-item">
-            <img src="https://assets.ubuntu.com/v1/5295340e-plex-screen-1.png?w=200" alt="Plex screenshot" height="150" width="150">
+          <a href="{{ image }}" class="js-lightbox-item">
+            <img src="{{ image }}?w=200" alt="{{ appliance.name }} screenshot" height="150" width="150">
           </a>
         </li>
-        <li class="p-list__item col-small-1 col-medium-1 col-2">
-          <a href="https://assets.ubuntu.com/v1/c19761fb-plex-screen-2.png" class="js-lightbox-item">
-            <img src="https://assets.ubuntu.com/v1/c19761fb-plex-screen-2.png?w=200" alt="Plex screenshot" height="150" width="150">
-          </a>
-        </li>
-        <li class="p-list__item col-small-1 col-medium-1 col-2">
-          <a href="https://assets.ubuntu.com/v1/f9acbfaf-plex-screen-3.png" class="js-lightbox-item">
-            <img src="https://assets.ubuntu.com/v1/f9acbfaf-plex-screen-3.png?w=200" alt="Plex screenshot" height="150" width="150">
-          </a>
-        </li>
-        <li class="p-list__item col-small-1 col-medium-1 col-2">
-          <a href="https://assets.ubuntu.com/v1/4316c98c-plex-screen-4.png" class="js-lightbox-item">
-            <img src="https://assets.ubuntu.com/v1/4316c98c-plex-screen-4.png?w=200" alt="Plex screenshot" height="150" width="150">
-          </a>
-        </li>
+        {% endfor %}
       </ul>
     </div>
   </div>
@@ -70,37 +62,27 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2 class="p-heading--four">Plex magically organizes your media libraries and streams them to any device</h2>
-      <p>Plex magically organizes your media libraries and streams them to any device &mdash; including all your video, music, and photo libraries. With a Plex Pass, supported tuner, and digital antenna, you can also watch and record FREE over-the-air broadcast TV, including major networks. You can also enjoy podcasts Plus Plex News &mdash; the most balanced and comprehensive personalized video newsfeed out there. </p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Magically organize all your personal media &mdash; photos, music, movies, shows, even DVR-ed TV &mdash; and stream it to any device in a beautiful, simple interface, and Plex adds rich descriptions, artwork, and other related information</li>
-        <li class="p-list__item is-ticked">Podcasts are here! Search for your favorites or discover new ones through personalized recommendations. Plus: 30-second skip, variable speed playback, rich discovery, and full Plex-style support for cross-device playback status (including On Deck, so you can pick back up where you left off on any device)</li>
-        <li class="p-list__item is-ticked">Get personalized and trusted video news from over 190 global publisher partners (and growing!), including CBS, Financial Times, Euronews, and top local news sources for over 80% of markets in the US</li>
-        <li class="p-list__item is-ticked">Cut the cord! Go premium with a Plex Pass and use Plex Live TV & DVR so you can watch and record free over-the-air HD TV, like NBC, ABC, CBS, and FOX, with any supported digital antenna and tuner</li>
-        <li class="p-list__item is-ticked">Enjoy free features, like remote access, sharing, security, and casting, see your media beautifully enhanced with rich descriptions, artwork, ratings, and more</li>
-        <li class="p-list__item is-ticked">Enjoy premium features with a Plex Pass subscription: DVR & Live TV, Camera Upload, Premium Photos, Mobile Sync, Parental Controls, VIP Perks, and much more</li>
-        <li class="p-list__item is-ticked">Want to use Plex on all of your devices, any time, anywhere? Visit <a href="https://www.plex.tv/" class="p-link--external">https://www.plex.tv/</a> for more information.</li>
-      </ul>
+      {{ appliance.description | safe }}
     </div>
     <div class="col-4">
       <h5 class="u-no-margin--bottom u-no-padding--top">Relevant links</h5>
       <ul class="p-list">
-        <li class="p-list__item"><a href="https://www.plex.tv/en-gb/about/privacy-legal/">Plex Media Server Policies</a></li>
-        <li class="p-list__item"><a href="https://www.plex.tv/">Plex Media Server website</a></li>
-        <li class="p-list__item"><a href="https://support.plex.tv/articles/204096476-license-information/">Plex Media Server license</a></li>
-        <li class="p-list__item"><a href="/appliance/governance">Ubuntu appliance governance</a></li>
+        {% for link in appliance.links.values() %}
+        <li class="p-list__item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
       </ul>
       <h5 class="u-no-margin--bottom u-no-padding--top">Privacy compliance</h5>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">EU GDPR</li>
-        <li class="p-list__item is-ticked">California law</li>
+        {% for comp in appliance.compliance.values() %}
+        <li class="p-list__item is-ticked">{{ comp }}</li>
+        {% endfor %}
       </ul>
       <h5 class="u-no-margin--bottom u-no-padding--top">Base</h5>
-      <p>core20</p>
+      <p>{{ appliance.base }}</p>
       <h5 class="u-no-margin--bottom u-no-padding--top">Date published</h5>
-      <p>YYYY-MM-DD</p>
+      <p>{{ appliance.published_date }}</p>
       <h5 class="u-no-margin--bottom u-no-padding--top">Security maintenance until</h5>
-      <p>YYYY-MM-DD</p>
+      <p>{{ appliance.maintenance_date }}</p>
     </div>
   </div>
 </section>
@@ -109,18 +91,20 @@
   <div class="row">
     <div class="col-6">
       <h2 class="p-heading--four">Snaps in the image</h2>
+      {% for snap in appliance.snaps.values() %}
       <div class="p-media-object">
-        <img src="https://assets.ubuntu.com/v1/402069bd-plex-media-server.png?w=75" alt="" class="p-media-object__image is-round" height="75" width="75">
+        <img src="{{ snap.icon }}?w=75" alt="" class="p-media-object__image is-round" height="75" width="75">
         <div class="p-media-object__details">
           <h3 class="p-heading--5 u-no-margin--bottom u-sv-1">
-            <a href="https://snapcraft.io/plexmediaserver" class="p-link--external">Plex Media Server</a>
+            <a href="{{ snap.link }}" class="p-link--external">{{ snap.name }}</a>
           </h3>
-          <p class="p-muted-text">By Plex, Inc. (plexinc)</p>
-          <p class="u-sv-1"><span class="p-muted-text">Channel: </span>latest/stable</p>
-          <p class="u-sv-1"><span class="p-muted-text">Version: </span>1.19.3.2764-ef515a800 </p>
-          <p><span class="p-muted-text">Published: </span>29 April 2020 </p>
+          <p class="p-muted-text">By {{ snap.publisher }}</p>
+          <p class="u-sv-1"><span class="p-muted-text">Channel: </span>{{ snap.channel }}</p>
+          <p class="u-sv-1"><span class="p-muted-text">Version: </span>{{ snap.version }}</p>
+          <p><span class="p-muted-text">Published: </span>{{ snap.published_date }}</p>
         </div>
       </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -133,27 +117,30 @@
   </div>
 
   <div class="row">
+    {% if appliance.iso_url.raspberrypi %}
     <div class="col-2">
-      <a href="/appliance/plex/raspberry-pi" class="p-link--soft">
+      <a href="/appliance/{{ appliance.url_name }}/raspberry-pi" class="p-link--soft">
         <h3 class="p-heading--five u-no-padding--top">Raspberry Pi</h3>
         <hr />
         <div class="u-align--center">
           <img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png?h=200" alt="" style="margin:1rem 0; width: 85%;">
         </div>
       </a>
-      <p><a href="/appliance/plex/raspberry-pi">Install on Raspberry&nbsp;Pi</a></p>
+      <p><a href="/appliance/{{ appliance.url_name }}/raspberry-pi">Install on Raspberry&nbsp;Pi</a></p>
     </div>
-
+    {% endif %}
+    {% if appliance.iso_url.pc %}
     <div class="col-2">
-      <a href="/appliance/plex/intel-nuc" class="p-link--soft">
+      <a href="/appliance/{{ appliance.url_name }}/intel-nuc" class="p-link--soft">
         <h3 class="p-heading--five u-no-padding--top">NUC</h3>
         <hr />
         <div class="u-align--center">
           <img src="https://assets.ubuntu.com/v1/78b65554-1920px-Intel_NUC8.jpg?h=200" style="margin:1rem 0; width: 85%;">
         </div>
       </a>
-      <p><a href="/appliance/plex/intel-nuc">Install on NUC</a></p>
+      <p><a href="/appliance/{{ appliance.url_name }}/intel-nuc">Install on NUC</a></p>
     </div>
+    {% endif %}
   </div>
 </section>
 

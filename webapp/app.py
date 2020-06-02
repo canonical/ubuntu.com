@@ -39,6 +39,7 @@ from webapp.views import (
     build,
     build_tutorials_index,
     download_thank_you,
+    appliance_index,
     appliance_install,
     get_renewal,
     post_stripe_method_id,
@@ -160,6 +161,9 @@ app.add_url_rule(
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
     "/search", "search", build_search_view(template_path="search.html")
+)
+app.add_url_rule(
+    "/appliance/<regex('.+'):app>", view_func=appliance_index,
 )
 app.add_url_rule(
     "/appliance/<regex('.+'):app>/<regex('.+'):device>",

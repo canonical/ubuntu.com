@@ -1,10 +1,10 @@
 {% extends "appliance/_base-appliance.html" %}
 
-{% block title %}OpenHAB | Ubuntu Appliance{% endblock %}
+{% block title %}{{ appliance.appliance_name }} | Ubuntu Appliance{% endblock %}
 
-{% block meta_description %}Build your OpenHAB appliance with Ubuntu Appliance images with preinstalled snaps. The open Home Automation Bus is technology agnostic home automation platform which runs as the center of your smart home.{% endblock %}
+{% block meta_description %}{{ appliance.meta_description }}{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/14sEgchP6BUjnUtJt67XJ-fKl7k8dAevaf5EJac9Pmyc/{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1zgOl4GCK6O6Clv6oxp-DXDSKYIKO2pvpXaYXALiTlpo/{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -12,33 +12,23 @@
   <div class="row">
     <div class="col-8">
       <div class="p-media-object u-no-margin--bottom">
-        <img src="https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png?w=90" alt="" class="p-media-object__image is-round" height="90" width="90">
+        <img src="{{ appliance.logo }}?w=90" alt="" class="p-media-object__image is-round" height="90" width="90">
         <div class="p-media-object__details">
           <h1 class="p-heading--three u-no-margin--bottom">
-            OpenHAB
+            {{ appliance.appliance_name }}
           </h1>
           <p class="p-muted-heading">Ubuntu Appliance</p>
           <ul class="p-inline-list--middot u-no-margin--bottom">
-            <li class="p-inline-list__item">By openHAB Foundation e.V. (openhab)</li>
-            <li class="p-inline-list__item">Smart Home<br class="u-hide--medium"></li>
+            <li class="p-inline-list__item">By {{ appliance.company_name }}</li>
+            <li class="p-inline-list__item">{{ appliance.category }}<br class="u-hide--medium"></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="col-4 u-align--right">
-      <form class="p-form--inline" action="#">
-        <div class="p-form__group">
-          <label for="platform" class="u-off-screen">Platform</label>
-          <select id="platform">
-            <option value="rpi">Raspberry Pi</option>
-            <option value="pc">PC</option>
-            <option value="intel-nuc">Intel NUC</option>
-          </select>
-        </div>
-        <div class="p-form__group">
-          <input type="submit" class="p-button--positive p-form__control" value="Download">
-        </div>
-      </form>
+      {% with app="{{ appliance }}" %}
+      {% include 'appliance/shared/_download_widget.html' %}
+      {% endwith %}
     </div>
   </div>
 </section>
@@ -46,19 +36,24 @@
 <section class="p-strip--light">
   <div class="row">
     <div class="col-10">
-      <img src="https://assets.ubuntu.com/v1/8d38f054-openhab-screenshot-4.png" class="p-image--shadowed" alt="OpenHAB screenshot" />
+      <div class="u-embedded-media u-no-margin--top" style="margin-bottom: 1rem;">
+        {% if "youtu.be" in appliance.screenshots.1 %}
+        <iframe class="u-embedded-media__element" src="{{ appliance.screenshots.1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% else %}
+        <img src="{{ appliance.screenshots.1 }}" class="p-image--shadowed" alt="{{ appliance.appliance_name }} screenshot">
+        {% endif %}
+     </div>
+{# need to deal with no video #}
     </div>
     <div class="col-2 u-align--center">
       <ul class="p-list row">
+        {% for image in appliance.screenshots.values() %}
         <li class="p-list__item col-small-1 col-medium-1 col-2">
-          <img src="https://assets.ubuntu.com/v1/07b4d31f-openhab-screenshot-2.png?w=200" class="p-image--shadowed" alt="OpenHAB screenshot" height="150" width="150">
+          <a href="{{ image }}" class="js-lightbox-item">
+            <img src="{{ image }}?w=200" alt="{{ appliance.name }} screenshot" height="150" width="150">
+          </a>
         </li>
-        <li class="p-list__item col-small-1 col-medium-1 col-2">
-          <img src="https://assets.ubuntu.com/v1/a0d79df1-openhab-screenshot-3.png?w=200" class="p-image--shadowed" alt="OpenHAB screenshot" height="150" width="150">
-        </li>
-        <li class="p-list__item col-small-1 col-medium-1 col-2">
-          <img src="https://assets.ubuntu.com/v1/56268be0-openhab-screenshot-1.png?w=200" class="p-image--shadowed" alt="OpenHAB screenshot" height="150" width="150">
-        </li>
+        {% endfor %}
       </ul>
     </div>
   </div>
@@ -67,42 +62,27 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2 class="p-heading--four">Empowering the smart home</h2>
-      <p>The open Home Automation Bus (openHAB, pronounced ˈəʊpənˈhæb) is an open source, technology agnostic home automation platform which runs as the center of your smart home!</p>
-      <p>Some of openHAB's strengths are:</p>
-      <ul>
-        <li>Its ability to integrate a multitude of other devices and systems. openHAB includes other home automation systems, (smart) devices and other technologies into a single solution</li>
-        <li>To provide a uniform user interface and a common approach to automation rules across the entire system, regardless of the number of manufacturers and sub-systems involved</li>
-        <li>Giving you the most flexible tool available to make almost any home automation wish come true; if you can think it, odds are that you can implement it with openHAB</li>
-      </ul>
-      <p>When home automation just seems to work, it is always the result of hard work. Home automation is fascinating and requires a considerable investment of your time. Here are some key considerations especially for new users. To be successful, you will need to:</p>
-      <ul>
-        <li>Start slowly and one step at a time</li>
-        <li>Be prepared to learn</li>
-        <li>Remain flexible in how you want to achieve your goal</li>
-        <li>Celebrate all the small successes</li>
-      </ul>
-      <p>Remember, openHAB is just a computer program. The computer will only do what you tell it to do. openHAB can provide many default solutions that are easy to setup. On the flip side, the more you insist that everything should look and work exactly as you want it, the more work you will have to do. openHAB is fully customizable, but doing so will require substantial effort on your part.</p>
+      {{ appliance.description | safe }}
     </div>
     <div class="col-4">
       <h5 class="u-no-margin--bottom u-no-padding--top">Relevant links</h5>
       <ul class="p-list">
-        <li class="p-list__item"><a href="https://www.openhab.org/privacy.html">OpenHAB Privacy Policies</a></li>
-        <li class="p-list__item"><a href="https://www.openhab.org/">OpenHAB website</a></li>
-        <li class="p-list__item"><a href="https://github.com/openhab">OpenHAB source code</a></li>
-        <li class="p-list__item"><a href="/appliance/governance">Ubuntu appliance governance</a></li>
+        {% for link in appliance.links.values() %}
+        <li class="p-list__item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
       </ul>
       <h5 class="u-no-margin--bottom u-no-padding--top">Privacy compliance</h5>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">EU GDPR</li>
-        <li class="p-list__item is-ticked">California law</li>
+        {% for comp in appliance.compliance.values() %}
+        <li class="p-list__item is-ticked">{{ comp }}</li>
+        {% endfor %}
       </ul>
       <h5 class="u-no-margin--bottom u-no-padding--top">Base</h5>
-      <p>core20</p>
+      <p>{{ appliance.base }}</p>
       <h5 class="u-no-margin--bottom u-no-padding--top">Date published</h5>
-      <p>YYYY-MM-DD</p>
+      <p>{{ appliance.published_date }}</p>
       <h5 class="u-no-margin--bottom u-no-padding--top">Security maintenance until</h5>
-      <p>YYYY-MM-DD</p>
+      <p>{{ appliance.maintenance_date }}</p>
     </div>
   </div>
 </section>
@@ -111,18 +91,20 @@
   <div class="row">
     <div class="col-6">
       <h2 class="p-heading--four">Snaps in the image</h2>
+      {% for snap in appliance.snaps.values() %}
       <div class="p-media-object">
-        <img src="https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png?w=75" alt="" class="p-media-object__image is-round" height="75" width="75">
+        <img src="{{ snap.icon }}?w=75" alt="" class="p-media-object__image is-round" height="75" width="75">
         <div class="p-media-object__details">
           <h3 class="p-heading--5 u-no-margin--bottom u-sv-1">
-            <a href="https://snapcraft.io/openhab" class="p-link--external">openhab</a>
+            <a href="{{ snap.link }}" class="p-link--external">{{ snap.name }}</a>
           </h3>
-          <p class="p-muted-text">By openHAB Foundation e.V. (openhab)</p>
-          <p class="u-sv-1"><span class="p-muted-text">Channel: </span>latest/stable</p>
-          <p class="u-sv-1"><span class="p-muted-text">Version: </span>2.5.4</p>
-          <p><span class="p-muted-text">Published: </span>4 May 2020</p>
+          <p class="p-muted-text">By {{ snap.publisher }}</p>
+          <p class="u-sv-1"><span class="p-muted-text">Channel: </span>{{ snap.channel }}</p>
+          <p class="u-sv-1"><span class="p-muted-text">Version: </span>{{ snap.version }}</p>
+          <p><span class="p-muted-text">Published: </span>{{ snap.published_date }}</p>
         </div>
       </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -135,27 +117,30 @@
   </div>
 
   <div class="row">
+    {% if appliance.iso_url.raspberrypi %}
     <div class="col-2">
-      <a href="/appliance/openhab/raspberry-pi" class="p-link--soft">
+      <a href="/appliance/{{ appliance.url_name }}/raspberry-pi" class="p-link--soft">
         <h3 class="p-heading--five u-no-padding--top">Raspberry Pi</h3>
         <hr />
         <div class="u-align--center">
           <img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png?h=200" alt="" style="margin:1rem 0; width: 85%;">
         </div>
       </a>
-      <p><a href="/appliance/openhab/raspberry-pi">Install on Raspberry&nbsp;Pi</a></p>
+      <p><a href="/appliance/{{ appliance.url_name }}/raspberry-pi">Install on Raspberry&nbsp;Pi</a></p>
     </div>
-
+    {% endif %}
+    {% if appliance.iso_url.pc %}
     <div class="col-2">
-      <a href="/appliance/openhab/intel-nuc" class="p-link--soft">
+      <a href="/appliance/{{ appliance.url_name }}/intel-nuc" class="p-link--soft">
         <h3 class="p-heading--five u-no-padding--top">NUC</h3>
         <hr />
         <div class="u-align--center">
           <img src="https://assets.ubuntu.com/v1/78b65554-1920px-Intel_NUC8.jpg?h=200" style="margin:1rem 0; width: 85%;">
         </div>
       </a>
-      <p><a href="/appliance/openhab/intel-nuc">Install on NUC</a></p>
+      <p><a href="/appliance/{{ appliance.url_name }}/intel-nuc">Install on NUC</a></p>
     </div>
+    {% endif %}
   </div>
 </section>
 
