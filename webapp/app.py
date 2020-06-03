@@ -163,9 +163,6 @@ app.add_url_rule(
     "/search", "search", build_search_view(template_path="search.html")
 )
 app.add_url_rule(
-    "/appliance/<regex('.+'):app>", view_func=appliance_index,
-)
-app.add_url_rule(
     "/appliance/<regex('.+'):app>/<regex('.+'):device>",
     view_func=appliance_install,
 )

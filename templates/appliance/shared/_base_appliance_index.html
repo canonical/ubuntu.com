@@ -1,34 +1,49 @@
 {% extends "appliance/_base-appliance.html" %}
 
-{% block title %}{{ appliance.appliance_name }} | Ubuntu Appliance{% endblock %}
+{% block title %}{{ appliance_name }} | Ubuntu Appliance{% endblock %}
 
-{% block meta_description %}{{ appliance.meta_description }}{% endblock %}
+{% block meta_description %}{{ meta_description }}{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1zgOl4GCK6O6Clv6oxp-DXDSKYIKO2pvpXaYXALiTlpo/{% endblock meta_copydoc %}
 
 {% block content %}
-
 <section class="p-strip is-shallow">
   <div class="row">
     <div class="col-8">
       <div class="p-media-object u-no-margin--bottom">
-        <img src="{{ appliance.logo }}?w=90" alt="" class="p-media-object__image is-round" height="90" width="90">
+        <img src="{{ logo }}?w=90" alt="" class="p-media-object__image is-round" height="90" width="90">
         <div class="p-media-object__details">
           <h1 class="p-heading--three u-no-margin--bottom">
-            {{ appliance.appliance_name }}
+            {{ appliance_name }}
           </h1>
           <p class="p-muted-heading">Ubuntu Appliance</p>
           <ul class="p-inline-list--middot u-no-margin--bottom">
-            <li class="p-inline-list__item">By {{ appliance.company_name }}</li>
-            <li class="p-inline-list__item">{{ appliance.category }}<br class="u-hide--medium"></li>
+            <li class="p-inline-list__item">By {{ company_name }}</li>
+            <li class="p-inline-list__item">{{ category }}<br class="u-hide--medium"></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="col-4 u-align--right">
-      {% with app="{{ appliance }}" %}
-      {% include 'appliance/shared/_download_widget.html' %}
-      {% endwith %}
+      <form class="p-form--inline js-download">
+        <div class="p-form__group">
+          <label for="platform" class="u-off-screen">Platform</label>
+          <select id="platform" class="js-platform-select">
+            {% if downloads.raspberrypi %}
+            <option value="raspberry-pi">Raspberry Pi</option>
+            {% endif %}
+            {% if downloads.pc %}
+            <option value="pc">PC</option>
+            {% endif %}
+            {% if downloads.intelnuc %}
+            <option value="intel-nuc">Intel NUC</option>
+            {% endif %}
+          </select>
+        </div>
+        <div class="p-form__group">
+          <a href="/appliance/{{ short_name }}/raspberry-pi" class="p-button--positive p-form__control js-download-button">Download</a>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -37,20 +52,20 @@
   <div class="row">
     <div class="col-10">
       <div class="u-embedded-media u-no-margin--top" style="margin-bottom: 1rem;">
-        {% if "youtu.be" in appliance.screenshots.1 %}
-        <iframe class="u-embedded-media__element" src="{{ appliance.screenshots.1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% if "youtu" in screenshots.1 %}
+        <iframe class="u-embedded-media__element" src="{{ screenshots.1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         {% else %}
-        <img src="{{ appliance.screenshots.1 }}" class="p-image--shadowed" alt="{{ appliance.appliance_name }} screenshots">
+        <img src="{{ screenshots.1 }}" class="p-image--shadowed" alt="{{ appliance_name }} screenshots">
         {% endif %}
      </div>
     </div>
     <div class="col-2 u-align--center">
       <ul class="p-list row">
-        {% for image in appliance.screenshots.values() %}
-          {% if "youtu.be" not in image %}
+        {% for image in screenshots.values() %}
+          {% if "youtu" not in image %}
         <li class="p-list__item col-small-1 col-medium-1 col-2">
           <a href="{{ image }}" class="js-lightbox-item">
-            <img src="{{ image }}?w=200" alt="{{ appliance.name }} screenshot" height="150" width="150">
+            <img src="{{ image }}?w=200" alt="{{ name }} screenshot" height="150" width="150">
           </a>
         </li>
         {% endif %}
@@ -63,27 +78,27 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      {{ appliance.description | safe }}
+      {{ content | safe }}
     </div>
     <div class="col-4">
       <h5 class="u-no-margin--bottom u-no-padding--top">Relevant links</h5>
       <ul class="p-list">
-        {% for link in appliance.links.values() %}
+        {% for link in links.values() %}
         <li class="p-list__item"><a href="{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
       </ul>
       <h5 class="u-no-margin--bottom u-no-padding--top">Privacy compliance</h5>
       <ul class="p-list">
-        {% for comp in appliance.compliance.values() %}
+        {% for comp in compliance.values() %}
         <li class="p-list__item is-ticked">{{ comp }}</li>
         {% endfor %}
       </ul>
       <h5 class="u-no-margin--bottom u-no-padding--top">Base</h5>
-      <p>{{ appliance.base }}</p>
+      <p>{{ base }}</p>
       <h5 class="u-no-margin--bottom u-no-padding--top">Date published</h5>
-      <p>{{ appliance.published_date }}</p>
+      <p>{{ published_date }}</p>
       <h5 class="u-no-margin--bottom u-no-padding--top">Security maintenance until</h5>
-      <p>{{ appliance.maintenance_date }}</p>
+      <p>{{ maintenance_date }}</p>
     </div>
   </div>
 </section>
@@ -92,7 +107,7 @@
   <div class="row">
     <div class="col-6">
       <h2 class="p-heading--four">Snaps in the image</h2>
-      {% for snap in appliance.snaps.values() %}
+      {% for snap in snaps.values() %}
       <div class="p-media-object">
         <img src="{{ snap.icon }}?w=75" alt="" class="p-media-object__image is-round" height="75" width="75">
         <div class="p-media-object__details">
@@ -118,28 +133,28 @@
   </div>
 
   <div class="row">
-    {% if appliance.iso_url.raspberrypi %}
+    {% if downloads.raspberrypi %}
     <div class="col-2">
-      <a href="/appliance/{{ appliance.url_name }}/raspberry-pi" class="p-link--soft">
+      <a href="/appliance/{{ short_name }}/raspberry-pi" class="p-link--soft">
         <h3 class="p-heading--five u-no-padding--top">Raspberry Pi</h3>
         <hr />
         <div class="u-align--center">
           <img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png?h=200" alt="" style="margin:1rem 0; width: 85%;">
         </div>
       </a>
-      <p><a href="/appliance/{{ appliance.url_name }}/raspberry-pi">Install on Raspberry&nbsp;Pi</a></p>
+      <p><a href="/appliance/{{ short_name }}/raspberry-pi">Install on Raspberry&nbsp;Pi</a></p>
     </div>
     {% endif %}
-    {% if appliance.iso_url.pc %}
+    {% if downloads.pc %}
     <div class="col-2">
-      <a href="/appliance/{{ appliance.url_name }}/intel-nuc" class="p-link--soft">
+      <a href="/appliance/{{ short_name }}/intel-nuc" class="p-link--soft">
         <h3 class="p-heading--five u-no-padding--top">NUC</h3>
         <hr />
         <div class="u-align--center">
           <img src="https://assets.ubuntu.com/v1/78b65554-1920px-Intel_NUC8.jpg?h=200" style="margin:1rem 0; width: 85%;">
         </div>
       </a>
-      <p><a href="/appliance/{{ appliance.url_name }}/intel-nuc">Install on NUC</a></p>
+      <p><a href="/appliance/{{ short_name }}/intel-nuc">Install on NUC</a></p>
     </div>
     {% endif %}
   </div>
@@ -157,5 +172,20 @@
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var downloadForm = document.querySelector(".js-download");
+    if (downloadForm) {
+      const linkElement = downloadForm.querySelector('.js-download-button');
+      const selectElement = downloadForm.querySelector('.js-platform-select');
+      if (linkElement && selectElement) {
+        selectElement.addEventListener('change', function() {
+          linkElement.href = window.location.pathname + '/' + selectElement.value;
+        });
+      }
+    }
+  })();
+</script>
 
 {% endblock content %}
