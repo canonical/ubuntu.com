@@ -5,15 +5,13 @@
   </h4>
   <div class="p-stepped-list__content">
     <p>
-      The ‘Secure Shell’ protocol provides access to your Ubuntu Appliance and uses cryptographic keys to authenticate you to the device. You will need SSH software and keys.
+      The ‘Secure Shell’ protocol provides access to your Ubuntu Appliance and uses cryptographic keys to authenticate you to the device. You need SSH software and keys.
     </p>
     <p>
       Run the following commands:
     </p>
 
-    <pre><code>mkdir ~/.ssh
-chmod 700 ~/.ssh
-ssh-keygen -t rsa</code></pre>
+    <pre><code>ssh-keygen -t rsa</code></pre>
 
     <ol>
       <li>
@@ -27,7 +25,7 @@ ssh-keygen -t rsa</code></pre>
       </li>
     </ol>
     <p>
-      You now have a public and private key that you can use to authenticate. Next place the public key on your Raspberry Pi so that you can use SSH-key-based authentication to log in.
+      You now have a public and private key that you can use to authenticate.
     </p>
     </div>
   </li>

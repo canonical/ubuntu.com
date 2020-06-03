@@ -1,6 +1,7 @@
 appliances:
   plex:
     name: "Plex"
+    appliance_name: "Plex Media Server"
     url_name: "plex"
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-ubuntu-core-18-pi-arm64.img.xz"
@@ -10,6 +11,7 @@ appliances:
       pc: "ea001bde90753b6e7d620a018c6c9e31a196c48009802e177f60fd6751ba979a *plexmediaserver-ubuntu-core-18-amd64.img.xz"
   adguard:
     name: "Adguard"
+    appliance_name: "Adguard"
     url_name: "adguard"
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/adguard-home-ubuntu-core-18-pi-arm64.img.xz"
@@ -19,6 +21,7 @@ appliances:
       pc: "f904ad1ae804c768a8a0a2ab02617a6589c00ca17d764dccaec0d54b19fd4619 *adguard-home-ubuntu-core-18-amd64.img.xz"
   openhab:
     name: "OpenHAB"
+    appliance_name: "OpenHAB"
     url_name: "openhab"
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/openhab-ubuntu-core-18-pi-arm64.img.xz"
