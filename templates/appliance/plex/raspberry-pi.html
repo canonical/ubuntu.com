@@ -10,6 +10,6 @@
 
 {% include 'appliance/shared/_raspberry-pi.html' %}
 
-{{ appliance.next_steps }}
+{% include 'appliance/'+appliance.url_name+'/_next-steps.html' %}
 
 {% endblock content %}
