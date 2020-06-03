@@ -11,8 +11,12 @@
       <li>Select the USB flash drive as a boot option</li>
       <li>Select <code>"Try Ubuntu without installing"</code></li>
       <li>Once the Ubuntu session has started, insert the second USB flash drive containing the appliance image file</li>
-      <li>Open a terminal and use the following command to find out the target disk device to install the appliance to: <code>sudo fdisk -l</code></li>
-      <li>Run the following command, where &lt;disk label&gt; is the label of the second USB flash drive: <code>xzcat /media/ubuntu/&lt;disk label&gt;/dawson-uc18-m7-20190122-10.img.xz | sudo dd of=/dev/&lt;target disk device> bs=32M status=progress; sync</code></li>
+      <li>Open a terminal and use the following command to find out the target disk device to install the appliance to:
+<pre><code>sudo fdisk -l</code></pre>
+      </li>
+      <li>Run the following command, where &lt;disk label&gt; is the label of the second USB flash drive:
+<pre><code>xzcat /media/ubuntu/&lt;disk label&gt;/dawson-uc18-m7-20190122-10.img.xz | sudo dd of=/dev/&lt;target disk device&gt; bs=32M status=progress; sync</code></pre>
+</li>
       <li>Reboot the system and remove the flash drives when prompted. It will then boot from the internal memory where your appliance image has been flashed
       </li>
     </ol>
