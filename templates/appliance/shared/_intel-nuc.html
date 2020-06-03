@@ -6,7 +6,7 @@
   <div class="row u-vertically-center">
     <div class="col-8">
       {% if appliance.iso_url.pc %}
-      <h1>Install the Ubuntu {{ appliance.name }} appliance for Intel NUC</h1>
+      <h1>Install the {{ appliance.appliance_name }} Ubuntu Appliance for Intel NUC</h1>
       <p class="u-no-margin--bottom">Your download should start automatically. If it doesn&rsquo;t,
         <a href="{{ appliance.iso_url.pc }}">download now</a>.
         {% include "appliance/shared/_verify-checksums-pc.html" %}
