@@ -295,6 +295,7 @@ function disableProcessingState() {
 function enableProcessingState(mode) {
   addPaymentMethodButton.disabled = true;
   cancelModalButton.disabled = true;
+  processPaymentButton.disabled = true;
 
   // show a progress indicator that evolves over time
   progressTimer = setTimeout(() => {
