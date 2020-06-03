@@ -5,7 +5,7 @@ context:
   short_name: "openhab"
   appliance_name: "OpenHAB"
   company_name: "openHAB Foundation e.V. (openhab)"
-  logo: "https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png?w=90"
+  logo: "https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png"
   category: "Smart Home"
   meta_description: "Build your OpenHAB appliance with Ubuntu Appliance images with preinstalled snaps. The open Home Automation Bus is technology agnostic home automation platform which runs as the center of your smart home."
   downloads:

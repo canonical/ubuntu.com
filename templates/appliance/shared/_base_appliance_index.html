@@ -62,7 +62,7 @@
     <div class="col-2 u-align--center">
       <ul class="p-list row">
         {% for image in screenshots.values() %}
-          {% if "youtu" not in image %}
+        {% if "youtu" not in image %}
         <li class="p-list__item col-small-1 col-medium-1 col-2">
           <a href="{{ image }}" class="js-lightbox-item">
             <img src="{{ image }}?w=200" alt="{{ name }} screenshot" height="150" width="150">

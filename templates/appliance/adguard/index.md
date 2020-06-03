@@ -5,7 +5,7 @@ context:
   short_name: "adguard"
   appliance_name: "Adguard"
   company_name: "AdGuard, (ameshkov)"
-  logo: "https://assets.ubuntu.com/v1/1ec45573-AdGuard.png?w=90"
+  logo: "https://assets.ubuntu.com/v1/1ec45573-AdGuard.png"
   category: "Security"
   meta_description: "Build your Adgaurd appliance with Ubuntu Appliance images with preinstalled snaps. AdGuard Home is a network-wide software for blocking ads & tracking."
   downloads:
