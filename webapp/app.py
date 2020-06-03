@@ -81,7 +81,11 @@ app.config["CANONICAL_LOGIN_URL"] = os.getenv(
     "CANONICAL_LOGIN_URL", "https://login.ubuntu.com"
 ).rstrip("/")
 
+session = talisker.requests.get_session()
 talisker.requests.configure(api_session)
+discourse_api = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/", session=session
+)
 
 
 # Error pages
@@ -195,17 +199,17 @@ app.add_url_rule(
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
 url_prefix = "/server/docs"
-server_docs_parser = DocParser(
-    api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
-    category_id=26,
-    index_topic_id=11322,
-    url_prefix=url_prefix,
-)
 server_docs = DiscourseDocs(
-    parser=server_docs_parser,
+    parser=DocParser(
+        api=discourse_api,
+        category_id=26,
+        index_topic_id=11322,
+        url_prefix=url_prefix,
+    ),
     document_template="/docs/document.html",
     url_prefix=url_prefix,
 )
+server_docs.init_app(app)
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
@@ -217,17 +221,14 @@ app.add_url_rule(
     ),
 )
 
-server_docs.init_app(app)
-
 tutorials_path = "/tutorials"
-tutorials_docs_parser = DocParser(
-    api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
-    category_id=34,
-    index_topic_id=13611,
-    url_prefix=tutorials_path,
-)
 tutorials_docs = DiscourseDocs(
-    parser=tutorials_docs_parser,
+    parser=DocParser(
+        api=discourse_api,
+        category_id=34,
+        index_topic_id=13611,
+        url_prefix=tutorials_path,
+    ),
     document_template="/tutorials/tutorial.html",
     url_prefix=tutorials_path,
     blueprint_name="tutorials",
