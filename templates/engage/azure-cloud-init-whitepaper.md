@@ -16,7 +16,7 @@ context:
   header_class: p-engage-banner--grad
   form_include: en
   form_id: 3542
-  form_return_url: "https://pages.ubuntu.com/AzureCloudInit_TY.html"
+  form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/Cloud-init_on_Azure.pdf"
 ---
 
 Cloud-init is the industry standard for initialising cloud instances. Available on Ubuntu images by default, it enables users to automate the provisioning of an operating system image into a fully running state – with key initialisation tasks handled at the first boot of an instance.
