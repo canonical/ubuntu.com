@@ -43,16 +43,17 @@
         <img src="{{ appliance.screenshots.1 }}" class="p-image--shadowed" alt="{{ appliance.appliance_name }} screenshots">
         {% endif %}
      </div>
-{# need to deal with no video #}
     </div>
     <div class="col-2 u-align--center">
       <ul class="p-list row">
         {% for image in appliance.screenshots.values() %}
+          {% if "youtu.be" not in image %}
         <li class="p-list__item col-small-1 col-medium-1 col-2">
           <a href="{{ image }}" class="js-lightbox-item">
             <img src="{{ image }}?w=200" alt="{{ appliance.name }} screenshot" height="150" width="150">
           </a>
         </li>
+        {% endif %}
         {% endfor %}
       </ul>
     </div>
