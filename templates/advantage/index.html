@@ -212,6 +212,46 @@
                                       <span>Renewal in progress...</span>
                                     </td>
                                   </tr>
+                                {% elif contract["renewal"]["actionable"] == false %}
+                                  </table>
+                                  
+                                  <table class="u-no-margin--bottom">
+                                    <tr style="border-top: 0;">
+                                      <td class="u-align--center">
+                                        <div class="p-notification--information u-no-margin--bottom">
+                                          <p class="p-notification__response">
+                                            Sorry, this subscription can't be renewed online. Please call us.
+                                          </p>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </table>
+
+                                  <table class="p-table--advantage-contract">
+                                    <tr style="border-top: 0;">
+                                      <td class="u-align--right">United States:</td>
+                                      <td class="u-align--left"><a href="tel:+1 737 2040291">+1 737 2040291</a></td>
+                                    </tr>
+                                    <tr style="border-top: 0;">
+                                      <td class="u-align--right">United Kingdom:</td>
+                                      <td class="u-align--left"><a href="tel:+44 203 656 5291">+44 203 656 5291</a></td>
+                                    </tr>
+                                    <tr style="border-top: 0;">
+                                      <td class="u-align--right">Germany:</td>
+                                      <td class="u-align--left"><a href="tel:+49 61512746816">+49 61512746816</a></td>
+                                    </tr>
+                                    <tr style="border-top: 0;">
+                                      <td class="u-align--right">Spain:</td>
+                                      <td class="u-align--left"><a href="tel:+34 932201131">+34 932201131</a></td>
+                                    </tr>
+                                    <tr style="border-top: 0;">
+                                      <td class="u-align--right">France:</td>
+                                      <td class="u-align--left"><a href="tel:+33 184889319">+33 184889319</a></td>
+                                    </tr>
+                                    <tr style="border-top: 0;">
+                                      <td class="u-align--right">Japan:</td>
+                                      <td class="u-align--left"><a href="tel:+81-3 6205 3075">+81-3 6205 3075</a></td>
+                                    </tr>
                                 {% endif %}
                               {% endif %}
                             </table>

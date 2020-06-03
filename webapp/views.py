@@ -507,7 +507,12 @@ def make_renewal(advantage, contract_info):
     renewal["renewable"] = False
 
     # Only actionable renewals are renewable.
-    if not renewal["actionable"]:
+    # If "actionable" isn't set, it's not actionable
+    # If "actionable" IS set, but not true, it's not actionable
+    if "actionable" not in renewal:
+        renewal["actionable"] = False
+        return renewal
+    elif not renewal["actionable"]:
         return renewal
 
     # The renewal is renewable only during its time window.
