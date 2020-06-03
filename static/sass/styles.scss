@@ -353,12 +353,10 @@ summary {
 // Advantage section
 .p-table--advantage-contract {
   margin: 0 auto;
-  table-layout: fixed;
   width: auto;
 
   td {
     display: table-cell;
-    width: 50%;
   }
 
   tr {
@@ -405,6 +403,17 @@ summary {
   @extend %vf-has-round-corners;
 
   margin-bottom: 0;
+}
+
+.p-table--advantage-contact {
+  @media only screen and (min-width: $breakpoint-large) {
+    width: 66%;
+  }
+
+  th,
+  td {
+    flex: 1 !important;
+  }
 }
 
 .p-table--advantage {
