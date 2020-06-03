@@ -21,6 +21,7 @@ RUN --mount=type=cache,target=/usr/local/share/.cache/yarn yarn install
 FROM yarn-dependencies AS build-js
 ADD static/js static/js
 ADD webpack.config.js .
+ADD .babelrc .
 RUN yarn run build-js
 
 
