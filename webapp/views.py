@@ -5,7 +5,10 @@ import json
 import math
 import os
 import re
-from datetime import datetime
+from datetime import (
+    datetime,
+    timezone,
+)
 
 # Packages
 import dateutil.parser
@@ -345,6 +348,10 @@ def advantage_view():
     personal_account = None
     enterprise_contracts = {}
     entitlements = {}
+    open_subscription = flask.request.args.get("subscription", None)
+    stripe_publishable_key = os.getenv(
+        "STRIPE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+    )
 
     if user_info(flask.session):
         advantage = AdvantageContracts(
@@ -458,24 +465,83 @@ def advantage_view():
                                 "daysTillExpiry"
                             ] = date_difference.days
 
-                    if "renewals" in contract["contractInfo"]:
-                        contract["renewal"] = contract["contractInfo"][
-                            "renewals"
-                        ][0]
+                    contract["renewal"] = make_renewal(
+                        advantage, contract["contractInfo"]
+                    )
 
-                    enterprise_contracts.setdefault(
+                    enterprise_contract = enterprise_contracts.setdefault(
                         contract["accountInfo"]["name"], []
-                    ).append(contract)
+                    )
+                    # If a subscription id is present and this contract
+                    # matches add it to the start of the list
+                    if contract["contractInfo"]["id"] == open_subscription:
+                        enterprise_contract.insert(0, contract)
+                    else:
+                        enterprise_contract.append(contract)
 
     return flask.render_template(
         "advantage/index.html",
         accounts=accounts,
         enterprise_contracts=enterprise_contracts,
         personal_account=personal_account,
+        open_subscription=open_subscription,
+        stripe_publishable_key=stripe_publishable_key,
     )
 
 
-def post_stripe_method_id():
+def make_renewal(advantage, contract_info):
+    """Return the renewal as present in the given info, or None."""
+    renewals = contract_info.get("renewals")
+    if not renewals:
+        return None
+
+    renewal = renewals[0]
+
+    # If the renewal is processing, we need to find out
+    # whether payment failed and requires user action,
+    # which is information only available in the fuller
+    # renewal object get_renewal gives us.
+    if renewal["status"] == "processing":
+        renewal = advantage.get_renewal(renewal["id"])
+
+    renewal["renewable"] = False
+
+    # Only actionable renewals are renewable.
+    # If "actionable" isn't set, it's not actionable
+    # If "actionable" IS set, but not true, it's not actionable
+    if "actionable" not in renewal:
+        renewal["actionable"] = False
+        return renewal
+    elif not renewal["actionable"]:
+        return renewal
+
+    # The renewal is renewable only during its time window.
+    start = dateutil.parser.parse(renewal["start"])
+    end = dateutil.parser.parse(renewal["end"])
+    if not (start <= datetime.now(timezone.utc) <= end):
+        return renewal
+
+    # Pending renewals are renewable.
+    if renewal["status"] == "pending":
+        renewal["renewable"] = True
+        return renewal
+
+    # Renewals not pending or processing are never renewable.
+    if renewal["status"] != "processing":
+        return renewal
+
+    invoices = renewal.get("stripeInvoices")
+    if invoices:
+        invoice = invoices[-1]
+        renewal["renewable"] = (
+            invoice["pi_status"] == "requires_payment_method"
+            or invoice["pi_status"] == "requires_action"
+        ) and invoice["subscription_status"] == "incomplete"
+
+    return renewal
+
+
+def post_customer_info():
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
@@ -494,8 +560,12 @@ def post_stripe_method_id():
         if not account_id:
             return flask.jsonify({"error": "account_id required"}), 400
 
-        return advantage.put_method_id(
-            flask.session, account_id, payment_method_id
+        address = flask.request.json.get("address")
+        name = flask.request.json.get("name")
+        tax_id = flask.request.json.get("tax_id")
+
+        return advantage.put_customer_info(
+            account_id, payment_method_id, address, name, tax_id
         )
     else:
         return flask.jsonify({"error": "authentication required"}), 401
@@ -509,9 +579,7 @@ def post_stripe_invoice_id(renewal_id, invoice_id):
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
-        return advantage.post_stripe_invoice_id(
-            flask.session, invoice_id, renewal_id
-        )
+        return advantage.post_stripe_invoice_id(invoice_id, renewal_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 
@@ -524,7 +592,7 @@ def get_renewal(renewal_id):
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
-        return advantage.get_renewal(flask.session, renewal_id)
+        return advantage.get_renewal(renewal_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 
@@ -537,7 +605,7 @@ def accept_renewal(renewal_id):
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
-        return advantage.accept_renewal(flask.session, renewal_id)
+        return advantage.accept_renewal(renewal_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 

@@ -3,7 +3,7 @@ class AdvantageContracts:
         self,
         session,
         authentication_token,
-        api_url="https://contracts.canonical.com",
+        api_url="https://contracts.staging.canonical.com",
     ):
         """
         Expects a Talisker session in most circumstances,
@@ -52,11 +52,18 @@ class AdvantageContracts:
 
         return response.json()
 
-    def put_method_id(self, account_id, payment_method_id):
+    def put_customer_info(
+        self, account_id, payment_method_id, address, name, tax_id
+    ):
         response = self._request(
             method="put",
-            path=f"v1/accounts/{account_id}/payment-method/stripe",
-            data={"paymentMethodID": payment_method_id},
+            path=f"v1/accounts/{account_id}/customer-info/stripe",
+            json={
+                "paymentMethodID": payment_method_id,
+                "address": address,
+                "name": name,
+                "taxID": tax_id,
+            },
         )
 
         return response.json()
@@ -77,10 +84,11 @@ class AdvantageContracts:
         return response.json()
 
     def accept_renewal(self, renewal_id):
-        response = (
-            self._request(
-                method="post", path=f"v1/renewals/{renewal_id}/acceptance"
-            ),
+        response = self._request(
+            method="post", path=f"v1/renewals/{renewal_id}/acceptance"
         )
 
-        return response.json()
+        if response.ok:
+            return {}
+        else:
+            return response.json()

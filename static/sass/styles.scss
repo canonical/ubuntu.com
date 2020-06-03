@@ -55,6 +55,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_matrix";
 @import "pattern_navigation";
 @import "pattern_pie_chart";
+@import "pattern_renewal-modal";
 @import "pattern_separator";
 @import "pattern_strip";
 @import "pattern_strip-photos";
@@ -93,6 +94,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-navigation;
 @include ubuntu-p-strip;
 @include ubuntu-p-pie-chart;
+@include ubuntu-p-renewal-modal;
 @include ubuntu-p-separator;
 @include ubuntu-p-strip-photos;
 @include ubuntu-p-table-of-contents;
@@ -349,6 +351,19 @@ summary {
 }
 
 // Advantage section
+.p-table--advantage-contract {
+  margin: 0 auto;
+  width: auto;
+
+  td {
+    display: table-cell;
+  }
+
+  tr {
+    display: table-row;
+  }
+}
+
 .advantage-table {
   overflow: visible;
 
@@ -390,16 +405,10 @@ summary {
   margin-bottom: 0;
 }
 
-.p-table--advantage-contract {
-  margin: 0 auto;
-  width: auto;
-
+.p-table--advantage-contact {
+  th,
   td {
-    display: table-cell;
-  }
-
-  tr {
-    display: table-row;
+    flex: 1 !important;
   }
 }
 
@@ -457,7 +466,9 @@ summary {
     margin-bottom: 0;
 
     &--full-width {
+      height: 100%;
       overflow: hidden;
+      padding: 0.5rem 2.5rem 0.5rem 0.5rem;
       padding-right: 2rem;
       position: relative;
       text-overflow: ellipsis;
@@ -467,7 +478,7 @@ summary {
       .p-icon--contextual-menu {
         position: absolute;
         right: 0.5rem;
-        top: 0.6rem;
+        top: 1rem;
       }
     }
 
