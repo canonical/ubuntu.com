@@ -39,7 +39,6 @@ from webapp.views import (
     build,
     build_tutorials_index,
     download_thank_you,
-    appliance_index,
     appliance_install,
     get_renewal,
     post_stripe_method_id,

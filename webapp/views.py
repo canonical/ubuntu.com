@@ -88,17 +88,6 @@ def download_thank_you(category):
     )
 
 
-def appliance_index(app):
-    with open("appliances.yaml") as appliances:
-        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
-
-    return flask.render_template(
-        f"appliance/{app}/index.html",
-        http_host=flask.request.host,
-        appliance=appliances["appliances"][app],
-    )
-
-
 def appliance_install(app, device):
     with open("appliances.yaml") as appliances:
         appliances = yaml.load(appliances, Loader=yaml.FullLoader)
