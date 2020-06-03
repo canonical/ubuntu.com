@@ -18,8 +18,8 @@
   font-family: "UbtuOverride";
   font-style: normal;
   font-weight: 300;
-  src:
-    url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"),
+  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
+      format("woff2"),
     url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
 }
 
@@ -403,6 +403,13 @@ summary {
   @extend %vf-has-round-corners;
 
   margin-bottom: 0;
+}
+
+.p-table--advantage-contact {
+  th,
+  td {
+    flex: 1 !important;
+  }
 }
 
 .p-table--advantage {
