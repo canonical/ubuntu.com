@@ -181,7 +181,7 @@ install time, and can be retrieved by running:
 juju ssh nagios/0 sudo cat /var/lib/juju/nagios.passwd
 ```
 
-![nagios dashboard image][https://assets.ubuntu.com/v1/4b109895-cdk-nagios.png]
+![nagios dashboard image][https://assets.ubuntu.com/v1/4b109895-CDK-nagios.png]
 
 ### Using an existing Nagios service
 
