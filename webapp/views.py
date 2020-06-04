@@ -5,10 +5,7 @@ import json
 import math
 import os
 import re
-from datetime import (
-    datetime,
-    timezone,
-)
+from datetime import datetime, timedelta, timezone
 
 # Packages
 import dateutil.parser
@@ -350,7 +347,7 @@ def advantage_view():
     entitlements = {}
     open_subscription = flask.request.args.get("subscription", None)
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
     )
 
     if user_info(flask.session):
@@ -505,6 +502,17 @@ def make_renewal(advantage, contract_info):
         renewal = advantage.get_renewal(renewal["id"])
 
     renewal["renewable"] = False
+
+    if renewal["status"] == "done":
+        try:
+            renewal_modified_date = dateutil.parser.parse(
+                renewal["lastModified"]
+            )
+            oneHourAgo = datetime.now(timezone.utc) - timedelta(hours=1)
+
+            renewal["recently_renewed"] = oneHourAgo < renewal_modified_date
+        except KeyError:
+            renewal["recently_renewed"] = False
 
     # Only actionable renewals are renewable.
     # If "actionable" isn't set, it's not actionable

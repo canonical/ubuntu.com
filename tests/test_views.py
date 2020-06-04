@@ -17,17 +17,24 @@ class TestMakeRenewal(unittest.TestCase):
         self.assertIsNone(renewal)
 
     def test_processing(self):
-        """Procesisng renewals are re-fetched."""
-        advantage = make_advantage(renewal={"id": "1", "actionable": False})
+        """Processing renewals are re-fetched."""
+        advantage = make_advantage(
+            renewal={"id": "1", "actionable": False, "status": "processing"}
+        )
         contract_info = {
             "renewals": [{"id": "1", "status": "processing"}],
         }
         got = views.make_renewal(advantage, contract_info)
-        want = {"id": "1", "actionable": False, "renewable": False}
+        want = {
+            "id": "1",
+            "actionable": False,
+            "renewable": False,
+            "status": "processing",
+        }
         self.assertEqual(got, want)
 
     def test_not_actionable(self):
-        """Not actioable renewals are not renewable."""
+        """Not actionable renewals are not renewable."""
         advantage = make_advantage()
         contract_info = {
             "renewals": [
@@ -40,6 +47,56 @@ class TestMakeRenewal(unittest.TestCase):
             "status": "pending",
             "actionable": False,
             "renewable": False,
+        }
+        self.assertEqual(got, want)
+
+    def test_recently_renewed(self):
+        """Renewals recently completed are marked as such."""
+        advantage = make_advantage()
+        now = str(datetime.now(timezone.utc))
+        contract_info = {
+            "renewals": [
+                {
+                    "id": "1",
+                    "status": "done",
+                    "actionable": False,
+                    "lastModified": now,
+                }
+            ],
+        }
+        got = views.make_renewal(advantage, contract_info)
+        want = {
+            "actionable": False,
+            "id": "1",
+            "lastModified": now,
+            "recently_renewed": True,
+            "renewable": False,
+            "status": "done",
+        }
+        self.assertEqual(got, want)
+
+    def test_not_recently_renewed(self):
+        """Renewals completed > 1 hr ago are not marked as recently renewed."""
+        advantage = make_advantage()
+        two_hours_ago = str(datetime.now(timezone.utc) - timedelta(hours=2))
+        contract_info = {
+            "renewals": [
+                {
+                    "id": "1",
+                    "status": "done",
+                    "actionable": False,
+                    "lastModified": two_hours_ago,
+                }
+            ],
+        }
+        got = views.make_renewal(advantage, contract_info)
+        want = {
+            "actionable": False,
+            "id": "1",
+            "lastModified": two_hours_ago,
+            "recently_renewed": False,
+            "renewable": False,
+            "status": "done",
         }
         self.assertEqual(got, want)
 
