@@ -1,8 +1,6 @@
 name: Links on live
 
-on:
-  schedule:
-    - cron: "20 7 * * *"
+on: pull_request
 
 jobs:
   check-links:
@@ -13,11 +11,17 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install linkchecker
-        run: sudo apt update && sudo apt install linkchecker
+        # As soon as version 10 is released we should replace this:
+        run: sudo apt install linkchecker
 
       - name: Run linkchecker
-        run: linkchecker --threads 0 --ignore-url '.*&start=.*' --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url /blog --no-warnings https://ubuntu.com
+        run: linkchecker --check-extern --threads 0 --ignore-url '.*&start=.*' --ignore-url 'https://ubuntuforums.org' --ignore-url 'https://res.cloudinary.com' --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url '/blog/*' --no-warnings https://ubuntu.com --output csv > links-report.csv || true
 
-      - name: Send message on failure
-        if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=%23web-team
+      - name: Update Google Spreadsheet
+        uses: canonical-web-and-design/csv-to-google-spreadsheet@stable
+        with:
+          csv_path: links-report.csv
+          spreadsheet_id: ${{ secrets.google_spreadsheet_id_linkchecker }}
+          worksheet: 0
+          google_service_account_email: ${{ secrets.google_service_account_email }}
+          google_service_account_private_key: ${{ secrets.google_service_account_private_key }}

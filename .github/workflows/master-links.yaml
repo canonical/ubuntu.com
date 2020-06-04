@@ -2,7 +2,7 @@ name: Links in master
 
 on:
   schedule:
-    - cron: "10 7 * * *"
+    - cron: "0 8 * * 1-5"
 
 jobs:
   check-links:
@@ -25,11 +25,8 @@ jobs:
         run: docker run --detach --publish 80:80 --env SECRET_KEY=insecure_secret_key --env DATABASE_URL=postgres://postgres:pw@localhost:5432/postgres ubuntu-com
 
       - name: Install linkchecker
-        run: sudo apt update && sudo apt install linkchecker
+        # As soon as version 10 is released we should replace this:
+        run: pip3 install git+https://github.com/linkchecker/linkchecker.git
 
       - name: Run linkchecker
         run: linkchecker --threads 0 --timeout 120 --ignore-url /search --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url /blog --ignore-url /server/docs --no-warnings http://127.0.0.1
-
-      - name: Send message on failure
-        if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=%23web-team
