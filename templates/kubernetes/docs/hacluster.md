@@ -14,15 +14,16 @@ toc: False
 ---
 
 **HAcluster** is a **Juju** subordinate charm that encapsulates **corosync**
-and *pacemaker** for floating virtual IP or DNS addresses and is similar to
+and **pacemaker** for floating virtual IP or DNS addresses and is similar to
 [keepalived][keepalived]. It differentiates itself in that it allows servers
 to span subnets via the DNS option, which communicates directly with
 [MAAS][maas]. It also has the ability to shoot the other node in the
 head(STONITH) via **MAAS** to prevent issues in a split-brain scenario.
 
-**Charmed Kubernetes** supports **HAcluster** via a relation and the configuration options
-`ha-cluster-vip` and `ha-cluster-dns`. Relations to the kubernetes-master and
-kubeapi-load-balancer charms are supported. These options are mutually exclusive.
+**Charmed Kubernetes** supports **HAcluster** via a relation and the
+configuration options `ha-cluster-vip` and `ha-cluster-dns`. Relations to the
+kubernetes-master and kubeapi-load-balancer charms are supported. These options
+are mutually exclusive.
 
 ## Deploying
 
@@ -69,9 +70,9 @@ juju scp kubernetes-master/0:config ~/.kube/config
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/hacluster.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/hacluster.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>
