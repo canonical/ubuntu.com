@@ -17,13 +17,20 @@ class TestMakeRenewal(unittest.TestCase):
         self.assertIsNone(renewal)
 
     def test_processing(self):
-        """Procesisng renewals are re-fetched."""
-        advantage = make_advantage(renewal={"id": "1", "actionable": False})
+        """Processing renewals are re-fetched."""
+        advantage = make_advantage(
+            renewal={"id": "1", "actionable": False, "status": "processing"}
+        )
         contract_info = {
             "renewals": [{"id": "1", "status": "processing"}],
         }
         got = views.make_renewal(advantage, contract_info)
-        want = {"id": "1", "actionable": False, "renewable": False}
+        want = {
+            "id": "1",
+            "actionable": False,
+            "renewable": False,
+            "status": "processing",
+        }
         self.assertEqual(got, want)
 
     def test_not_actionable(self):
