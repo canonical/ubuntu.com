@@ -76,7 +76,7 @@ class TestMakeRenewal(unittest.TestCase):
         self.assertEqual(got, want)
 
     def test_not_recently_renewed(self):
-        """Renewals completed > 1 hour ago are not marked as recently renewed."""
+        """Renewals completed > 1 hr ago are not marked as recently renewed."""
         advantage = make_advantage()
         two_hours_ago = str(datetime.now(timezone.utc) - timedelta(hours=2))
         contract_info = {
