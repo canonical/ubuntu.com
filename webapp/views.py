@@ -5,7 +5,7 @@ import json
 import math
 import os
 import re
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 
 # Packages
 import dateutil.parser
@@ -504,11 +504,15 @@ def make_renewal(advantage, contract_info):
     renewal["renewable"] = False
 
     if renewal["status"] == "done":
-        renewalModifiedDate = dateutil.parser.parse(renewal["lastModified"])
-        oneHourAgo = datetime.now(timezone.utc) - timedelta(hours=1)
+        try:
+            renewal_modified_date = dateutil.parser.parse(
+                renewal["lastModified"]
+            )
+            oneHourAgo = datetime.now(timezone.utc) - timedelta(hours=1)
 
-        if oneHourAgo < renewalModifiedDate:
-            renewal["recently_renewed"] = True
+            renewal["recently_renewed"] = oneHourAgo < renewal_modified_date
+        except KeyError:
+            renewal["recently_renewed"] = False
 
     # Only actionable renewals are renewable.
     # If "actionable" isn't set, it's not actionable
