@@ -4,12 +4,13 @@
     Set up and install a vm using Multipass
   </h4>
   <div class="p-stepped-list__content">
+    <p>
+      There are two ways to do this, using the downloading and running the Multipass installer or using Brew:
+    </p>
+    <h5>
+      Method 1 - Multipass installer
+    </h5>
     <ol>
-      <li>
-        <p>
-        Make sure the network you’re connected to is marked Private, otherwise Windows will prevent Multipass from starting.
-        </p>
-      </li>
       <li>
         <p>
           <a class="p-link--external" href="https://multipass.run/#install">Download Multipass for macOS</a>
@@ -17,7 +18,7 @@
       </li>
       <li>
         <p>
-          Activate the downloaded installer and it will guide you through the steps necessary. You will need an account with Administrator privileges to complete the installation.
+          Activate the downloaded installer. You will need an account with Administrator privileges to complete the installation.
         </p>
         {{
           image (
@@ -26,11 +27,80 @@
       </li>
       <li>
         <p>
-          There’s a script to uninstall multipass if you need it:
+          There’s a script to uninstall Multipass if you need it:
         </p>
         <pre><code>sudo sh "/Library/Application Support/com.canonical.multipass/uninstall.sh"</code></pre>
       </li>
       {% include "appliance/shared/_steps-multipass-launch.html" %}
     </ol>
+    <h5>
+      Method 2 - Using Brew
+    </h5>
+    <ol>
+      <li>
+        <p>
+          Look at <a class="p-link--external" href="https://brew.sh/">brew.sh</a> instructions to install Brew itself. Then, it’s simple, run:
+        </p>
+        <p>
+          <pre><code>brew cask install multipass</code></pre>
+        </p>
+      </li>
+      <li>
+        <p>
+          And to uninstall:
+        </p>
+        <pre><code>brew cask uninstall multipass</code></pre>
+        <p>or</p>
+        <pre><code>brew cask zap multipass</code></pre>
+        <p>
+          to destroy all data, too
+        </p>
+      </li>
+    </ol>
+  </div>
+</li>
+
+<hr>
+<li class="p-stepped-list__item">
+  <h4 class="p-stepped-list__title">
+    First run
+  </h4>
+  <div class="p-stepped-list__content">
+    <p>
+      To start using VirtualBox run:
+    </p>
+    <pre><code>multipass set local.driver=virtualbox</code></pre>
+    <div class="p-notification" id="notification">
+      <div class="p-notification__response">
+        <span class="p-notification__status">Note:</span>
+        <p>
+          After the next command Multipass gives your appliance an <code>instance name</code>. To name it yourself add <code>--name &lt;new name&gt;</code>  to the end of the next command.
+        </p>
+      </div>
+    </div>
+    <p>
+      Now, open the Terminal app and launch your appliance image in a vm:
+    </p>
+    <pre><code>multipass launch appliance:&lt;appliance name&gt;</code></pre>
+  </div>
+</li>
+
+<li class="p-stepped-list__item">
+  <h4 class="p-stepped-list__title">
+    Find and connect to your appliance
+  </h4>
+  <div class="p-stepped-list__content">
+    <p>
+      To use VirtualBox’s port forwarding feature run:
+    </p>
+    <pre><code>sudo VBoxManage modifyvm "&lt;instance name&gt;" --natpf2 "&lt;appliance name&gt;,tcp,,{{ appliance.port }},,&lt;local port&gt;"</code></pre>
+    <div class="p-notification" id="notification">
+      <div class="p-notification__response">
+        <span class="p-notification__status">Note:</span>
+        <p>
+          You can find more information about what this command means in the <a class="p-link--external" href="https://multipass.run/docs/using-virtualbox-in-multipass-macos#port-forwarding">Multipass documentation</a>.
+        </p>
+      </div>
+    </div>
   </div>
 </li>
