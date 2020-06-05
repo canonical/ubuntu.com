@@ -1,0 +1,15 @@
+{% extends "appliance/_base-appliance.html" %}
+
+{% block title %}Try the {{ appliance.appliance_name }} Ubuntu Appliance in a virtual machine{% endblock title %}
+
+{% block meta_description %}Install and setup the {{ appliance.appliance_name }} Ubuntu Appliance on your Ubuntu desktop with KVM.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1G8IJoHrhd1RP3dHqyiasteMxPrxCwW5Sf0Vh3AY2SHQ/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include 'appliance/shared/_vm.html' %}
+
+{% include 'appliance/' ~ appliance.url_name ~ '/_next-steps.html' %}
+
+{% endblock content %}

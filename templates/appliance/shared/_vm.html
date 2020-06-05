@@ -1,19 +1,31 @@
 {% if appliance.iso_url.pc %}
-<meta http-equiv="refresh" content="3;url={{ appliance.iso_url.pc }}">
+<meta http-equiv="re fresh" content="3;url={{ appliance.iso_url.pc }}">
 {% endif %}
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
-  <div class="row u-vertically-center">
+  <div class="row u-equal-height">
     <div class="col-8">
       {% if appliance.iso_url.pc %}
-      <h1>Install the Ubuntu {{ appliance.name }} appliance with KVM on your Ubuntu desktop</h1>
+      <h1>Try the Ubuntu {{ appliance.appliance_name }} Ubuntu Appliance in a virtual machine</h1>
       <p class="u-no-margin--bottom">Your download should start automatically. If it doesn&rsquo;t,
         <a href="{{ appliance.iso_url.pc }}">download now</a>.
         {% include "appliance/shared/_verify-checksums-pc.html" %}
       </p>
       {% else %}
-      <h1>Setup your Ubuntu {{ appliance.name }} appliance with KVM on your Ubuntu desktop</h1>
+      <h1>Setup the {{ appliance.appliance_name }} Ubuntu Appliance in a virtual machine</h1>
       {% endif %}
+    </div>
+    <div class="col-4 u-hide-small u-vertically-center u-align--center">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
+        alt="",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -44,32 +56,29 @@
       </nav>
 
       <div id="ubuntuos" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntuos-tab">
-        {% with logo="https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg" %}{% include "appliance/shared/_install_instructions_pc.html" %}{% endwith %}
+        {% include "appliance/shared/_steps_vm_intro.html" %}
+        {% include "appliance/shared/_install_instructions_vm_ubuntu.html" %}
         <ol class="p-stepped-list--detailed">
-          {% include 'appliance/shared/_steps_ssh-keys_ubuntu.html' %}
-          {% with command='cat' %}{% include 'appliance/shared/_steps_sso.html' %}{% endwith %}
-          {% include 'appliance/shared/_steps_setup-kvm.html' %}
-          {% include 'appliance/shared/_steps_pc_thats-it.html' %}
+          {% include "appliance/shared/_steps_multipass_ubuntu.html" %}
+          {% include 'appliance/shared/_steps_vm_thats-it.html' %}
         </ol>
       </div>
 
       <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
-        {% with logo="https://assets.ubuntu.com/v1/30574235-windows-logo.svg" %}{% include "appliance/shared/_install_instructions_pc.html" %}{% endwith %}
+        {% include "appliance/shared/_steps_vm_intro.html" %}
+        {% include "appliance/shared/_install_instructions_vm_windows.html" %}
         <ol class="p-stepped-list--detailed">
-          {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
-          {% with command='type' %}{% include 'appliance/shared/_steps_sso.html' %}{% endwith %}
-          {% include 'appliance/shared/_steps_setup-kvm.html' %}
-          {% include 'appliance/shared/_steps_pc_thats-it.html' %}
+          {% include "appliance/shared/_steps_multipass_windows.html" %}
+          {% include 'appliance/shared/_steps_vm_thats-it.html' %}
         </ol>
       </div>
 
       <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
-        {% with logo="https://assets.ubuntu.com/v1/6042056d-MacOS_wordmark.svg" %}{% include "appliance/shared/_install_instructions_pc.html" %}{% endwith %}
+        {% include "appliance/shared/_steps_vm_intro.html" %}
+        {% include "appliance/shared/_install_instructions_vm_macos.html" %}
         <ol class="p-stepped-list--detailed">
-          {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
-          {% with command='cat' %}{% include 'appliance/shared/_steps_sso.html' %}{% endwith %}
-          {% include 'appliance/shared/_steps_setup-kvm.html' %}
-          {% include 'appliance/shared/_steps_pc_thats-it.html' %}
+          {% include "appliance/shared/_steps_multipass_macos.html" %}
+          {% include 'appliance/shared/_steps_vm_thats-it.html' %}
         </ol>
       </div>
     </div>
