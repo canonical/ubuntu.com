@@ -31,7 +31,7 @@
     <div class="col-12">
       <h2>Packages</h2>
       <ul class="p-list">
-        {% for name, package in notice.packages.items() %}
+        {% for package in notice.packages %}
           <li class="p-list__item">{{ package.name }} - {{ package.description }}</li>
         {% endfor %}
       </ul>
@@ -53,8 +53,17 @@
         <ul class="p-list">
           {% for package in notice.release_packages[version] %}
             <li class="p-list__item">
-              <a href="https://launchpad.net/ubuntu/+source/{{ package.name }}">{{ package.name }}</a> -
-              <a href="https://launchpad.net/ubuntu/+source/{{ package.name }}/{{ package.version }}">{{ package.version }}</a>
+              {% if package.source_link %}
+                <a href="{{package.source_link}}">{{ package.name }}</a>
+              {% else %}
+                {{ package.name }}
+              {% endif %}
+              -
+              {% if package.version_link %}
+                <a href="{{package.version_link}}">{{ package.version }}</a>
+              {% else%}
+                {{ package.version }}
+              {% endif %}
             </li>
           {% endfor %}
         </ul>

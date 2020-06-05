@@ -1,6 +1,14 @@
 import dateutil.parser
 from marshmallow import Schema, ValidationError
-from marshmallow.fields import DateTime, Dict, Float, List, Nested, Str
+from marshmallow.fields import (
+    Boolean,
+    DateTime,
+    Dict,
+    Float,
+    List,
+    Nested,
+    Str,
+)
 from marshmallow.validate import Regexp
 
 
@@ -43,7 +51,10 @@ def _validate_release_codenames(release_packages):
 class NoticePackage(Schema):
     name = Str(required=True)
     version = Str(required=True)
-    description = Str(required=True)
+    description = Str()
+    is_source = Boolean(required=True)
+    source_link = Str(allow_none=True)
+    version_link = Str(allow_none=True)
 
 
 class NoticeSchema(Schema):

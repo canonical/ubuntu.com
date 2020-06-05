@@ -21,6 +21,7 @@ from webapp.security.models import CVE, Notice, Package, Status, Release
 from webapp.security.schemas import CVESchema, NoticeSchema
 from webapp.security.auth import authorization_required
 
+
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
 )
@@ -32,7 +33,7 @@ def notice(notice_id):
     if not notice:
         flask.abort(404)
 
-    packages = SortedDict()
+    packages = []
     release_packages = SortedDict()
 
     for codename, pkgs in notice.release_packages.items():
@@ -42,9 +43,19 @@ def notice(notice_id):
             .one()
             .version
         )
-        release_packages[release_version] = pkgs
+
+        release_packages[release_version] = []
         for package in pkgs:
-            packages[package["name"]] = package
+            if package["is_source"]:
+                packages.append(package)
+            else:
+                release_packages[release_version].append(package)
+
+        # Order packages for release by the name key
+        release_packages[release_version].sort(key=lambda pkg: pkg["name"])
+
+    # Order source packages by the name key
+    packages.sort(key=lambda pkg: pkg["name"])
 
     notice = {
         "id": notice.id,
