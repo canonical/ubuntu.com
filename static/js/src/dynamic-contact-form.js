@@ -331,6 +331,38 @@
 
         return message;
       }
+
+      // Toggles the description textarea field for radio buttons
+      function setupRadioDescriptionFields() {
+        const radioGroups = document.querySelectorAll(".js-radio-group");
+
+        radioGroups.forEach((radioGroup) => {
+          const radioButtons = radioGroup.querySelectorAll("[type='radio']");
+
+          const descriptionToggle = radioGroup.querySelector(
+            ".js-toggle-description-field"
+          );
+
+          const descriptionField = document.getElementById(
+            descriptionToggle.dataset.descriptionFieldId
+          );
+
+          radioButtons.forEach((radioButton) => {
+            radioButton.addEventListener("change", (e) => {
+              if (
+                e.currentTarget === descriptionToggle &&
+                e.currentTarget.checked
+              ) {
+                descriptionField.classList.remove("u-hide");
+              } else {
+                descriptionField.classList.add("u-hide");
+              }
+            });
+          });
+        });
+      }
+
+      setupRadioDescriptionFields();
     }
 
     // Opens the form when the initial hash matches the trigger
