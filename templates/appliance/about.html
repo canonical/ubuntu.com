@@ -2,35 +2,36 @@
 
 {% block title %}About Ubuntu Appliances{% endblock %}
 
-{% block meta_description %}An Ubuntu Appliance is an official system image which blends a single application with Ubuntu Core. Ubuntu Appliances are certified to run flawlessly on Raspberry Pi and PC boards. They are free, privacy-friendly and come with maintenance guarantees.{% endblock %}
+{% block meta_description %}An Ubuntu Appliance is a system disk image which turns a Raspberry Pi or PC into a specialised appliance on Ubuntu Core. They are free to download and install, with clear privacy policies and ten years of security fixes.{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1UM4K9n9SFNiWdmKIBnPGCsjLQrPSOnqZHMNIMwQ2CZI/edit#heading=h.mhr3ck1sv2v4{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1UM4K9n9SFNiWdmKIBnPGCsjLQrPSOnqZHMNIMwQ2CZI/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
 <section class="p-strip--suru-topped">
   <div class="row">
     <div class="col-8">
-      <h2>What is an Ubuntu Appliance?</h2>
-      <p>An Ubuntu Appliance Image turns a PC or board into an appliance that does a specific thing for home or work. It is an official system disk image, built on Ubuntu Core for security and updates. Almost all Ubuntu Appliances are certified to run flawlessly on a PC or Raspberry Pi, as well as a wide range of additional boards. Some Ubuntu Appliances will require specific hardware and are only certified on a subset of the standard hardware platforms. They are free, privacy-friendly and come with long term security maintenance guarantees.</p>
+      <h1>What is an Ubuntu Appliance?</h1>
+      <p>An Ubuntu Appliance turns a computer into a specialised appliance for home or work. It is a system disk image for a PC or Raspberry Pi, built for security and simplicity. Ubuntu Appliances have strong privacy policies and long term security maintenance guarantees. They are published by companies and open source communities, who follow the Ubuntu code of conduct and appliance guidelines, together with Canonical, the publisher of Ubuntu.</p>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Why are we hosting Ubuntu Appliances?</h2>
+      <p>Software is everywhere in the modern home and office &mdash; in your fridge, in your vacuum cleaner, in your heating and lighting system. Software-based appliances enhance our modern lives. But they also represent a risk &mdash; of bad data practices, or bad software. Ubuntu Appliances set the standard for smart connected devices that meet consistent criteria for security, privacy, maintenance and operations.</p>
+      <p>The Ubuntu Appliance mission is to enable secure, self-healing, smart things, everywhere. Open source is the backbone of the platform, and both open and commercial appliances co-exist in the ecosystem.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Free to download and use</h2>
-      <p>Most Ubuntu Appliances are entirely open source, but there are also some Ubuntu Appliances for proprietary software. All of them are free to download and install.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>Securely built on trusted infrastructure</h2>
-      <p>All Ubuntu Appliance images are assembled on the same secure infrastructure that builds the Ubuntu operating system. The underlying open source applications that perform the appliance-specific functions are also built on that infrastructure. Ubuntu Appliances for proprietary applications are either built on that same infrastructure or built by the official vendor for that application, just like the software you would download directly from them. Since an Ubuntu Appliance is made up of a collection of digitally signed packages, you always know exactly where each component comes from.</p>
+      <p>All Ubuntu Appliances are free to download and install.</p>
     </div>
   </div>
 </section>
@@ -38,8 +39,8 @@
 <section class="p-strip--light">
   <div class="row">
     <div class="col-8">
-      <h2>Easy to install</h2>
-      <p>Each Ubuntu Appliance image is a boot disk image - simply write it onto a disk using a standard disk imaging tool and boot the board or box from that disk. We provide recommended disk imaging tools for all the standard platforms. On first boot, you have the opportunity to customise the appliance and register it to yourself so you can keep track of it.</p>
+      <h2>Easy to install, low maintenance</h2>
+      <p>Each Ubuntu Appliance is a boot disk image. Install it on a spare disk with a disk imaging tool and boot from it. You will need a keyboard and monitor. Or give it a try in a virtual machine on Windows, Mac or Linux. During startup you make yourself the owner and set up the appliance. That&rsquo;s it! Leave it running and it will take care of itself.</p>
     </div>
   </div>
 </section>
@@ -47,35 +48,17 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2>Automatic system updates for ten years</h2>
-      <p>The underlying operating system of all Ubuntu Appliance images is Ubuntu Core, the highly secure, fully containerised Linux platform that uses transactional update mechanisms to ensure it can always roll back to a known-good state. The platform elements of Ubuntu Core are maintained for ten years, so Ubuntu Appliances can meet enterprise security and longevity requirements.</p>
+      <h2>App store included</h2>
+      <p>Ubuntu Appliances have an app store to upgrade them with extra features. Find retro games for your console, better routing on your mesh network, or a fancier autopilot for your quadcopter. Each app is strictly confined. Integration between apps is secure. Apps can be specific to an appliance, or published for many types of appliances.</p>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>A single-minded system</h2>
-      <p>Ubuntu Appliances provide software foundations that anybody may use to create secure and reliable smart devices. You will enrich your personal computing estate with self-made appliances that carry out single jobs perfectly. The catalogue of Ubuntu Appliances will provide a broad selection of applications encompassing home automation, gaming, media centres, networking, storage, security, 3d printing, robots and drones.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Clear privacy policy</h2>
-      <p>Ubuntu Appliances comply with established privacy policies. Users should be able to trust in the devices they use at home, in the office or in the factory. They deserve total transparency regarding what happens with their data. Publishers of Ubuntu Appliances will disclose their use of data, should their users require the information. Detailed information can be found on the <a href="/appliance/governance">governance page</a> or in Canonical’s own <a href="/legal/data-privacy">privacy documentation</a>. </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Security first</h2>
-      <p>Ubuntu Appliances are designed to make your devices worry-free. Each benefits from the advanced security features of <a href="/core">Ubuntu Core</a>. Served applications are packaged as <a href="https://docs.ubuntu.com/core/en/coresnaps" class="p-link--external">snaps</a> - a format that strictly confines and monitors software to mitigate cybersecurity risks. Ubuntu Appliances provide the highest level of endpoint security even for the most casual use cases.</p>
+      <p>Every Ubuntu Appliance has a clear privacy policy which explains what data leaves the device, where it goes and who has access to it. The privacy policy must comply with global standards such as EU GDPR and California privacy law, and the appliance page makes it clear what commitments the publisher makes. If an appliance fails to meet that standard then it is removed from the portfolio.</p>
     </div>
   </div>
 </section>
@@ -83,27 +66,69 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2>Always fresh</h2>
-      <p>Ubuntu Appliances are always synced with the latest stable application release, thanks to automatic updates. You can opt-in to sync on beta and candidate releases. Your device will fetch and install software updates at a regular frequency. Leveraging Ubuntu Core’s resilient software update mechanism, Ubuntu Appliances self-heal in case of failed updates.</p>
-      <p>Open source appliances are also maintained for the same length of time by Canonical, the company behind Ubuntu. Proprietary appliances will follow the commercial maintenance plan of the vendor behind the software on the appliance.</p>
+      <h2>Security and simplicity, by design</h2>
+      <p>The Ubuntu Appliance goal is automatic widespread security without human supervision, in every building and on every street. Security is a many-layered endeavour - Ubuntu Appliances respond with defence in depth. Every aspect of an Ubuntu Appliance is built with security in mind:</p>
+      <ul>
+        <li>Secure boot protocols defend against low-level attacks on system integrity.</li>
+        <li>Strict confinement of every application reduces the blast radius of a compromised or malicious application.</li>
+        <li>Transactional updates enable automatic security patches with rollback on failure.</li>
+        <li>Full disk encryption and hardware key management protect your data.</li>
+      </ul>
+      <p>Canonical scans every app for known vulnerabilities and proactively notifies community and commercial publishers to fix them. Canonical blocks any app that turns out to be malware, and keeps a rigorous log of all the artefacts used in the creation of every image and every component to fix them or analyse them in the future.</p>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Long term security</h2>
+      <p>Ubuntu Core and the open source Ubuntu Appliances are securely maintained for ten years by Canonical to meet enterprise security and longevity requirements.  Proprietary Ubuntu Appliances follow the maintenance commitment of the appliance vendor. Each appliance tells you exactly what commitment is being made, and for how long.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Built on trusted infrastructure</h2>
+      <p>All Ubuntu Appliance images and open source components are assembled on the same secure infrastructure as Ubuntu. Proprietary components are built by the official vendor for that application, just like the software you download directly from them. Since an Ubuntu Appliance is made of digitally signed packages, you always know exactly where each component comes from, when it was updated, and which versions are available.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Automatic system updates</h2>
+      <p>All Ubuntu Appliances are Ubuntu Core, the highly secure, fully containerised Linux with transactional updates and data snapshot guardrails that can always roll back to a known-good state. Emergency repair mechanisms provide safety nets in the event of a bad update. Ubuntu Appliances evolve and improve automatically, every day, with no human intervention needed. Millions of devices use these mechanisms every day for critical software updates around the world. The underlying package delivery system optimises bandwidth and efficiency with compressed binary delta updates that reduce total traffic and speed up the delivery of critical fixes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Always fresh and future-proof</h2>
+      <p>Appliance software components follow stable channels by default. They can follow beta or candidate channels for pre-release testing and early access to future features. The device chooses stable versions when there is nothing new to test, and rolls back from failed updates automatically. Automatic healing makes it safer to live on the edge.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Enterprise grade security and control</h2>
+      <p>Control the flow of changes to enterprise Ubuntu Appliances with a local enterprise app store. Groups of devices are guaranteed a coherent view of updates, to ensure consistency in a critical cluster or highly available set. A local enterprise store can restrict the use of particular applications across your estate, or adjust the specific versions used by your devices. Enterprise Ubuntu Appliances typically use full disk encryption with hardware crypto keys to protect data at rest, and Secure Boot for system integrity at every stage of deployment and recycling of old hardware.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Standardised experience</h2>
-      <p>Users can expect the same great things for every Ubuntu Appliance: frictionless experience, software reliability, state-of-the-art endpoint security, and predictable application performance. Ubuntu Appliances are continuously tested to work flawlessly on certified boards.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>Community and commercial</h2>
-      <p>Commercial software can be both good and popular. Limiting Ubuntu Appliances to open-source, community-driven software only would limit users in the appliances they can create. In the portfolio, whether an appliance is commercial or community-driven is clearly marked. If a user would prefer to only have open-source or commercial Ubuntu appliances the option is available.</p>
+      <p>All Ubuntu Appliances share common capabilities and consistent operations. The platform guarantees a standard approach to software updates and versioning, and evolution to newer platform versions. Multiple devices from multiple manufacturers all fit into a single management framework, and receive updates consistently across the estate.</p>
     </div>
   </div>
 </section>
@@ -111,8 +136,17 @@
 <section class="p-strip--light">
   <div class="row">
     <div class="col-8">
+      <h2>Community and commercial, together</h2>
+      <p>Ubuntu Appliances bring enterprise and community together. Ubuntu Core is completely open-source, so open source appliances are true free software devices. Commercial software appliances reuse the same mechanisms, and by doing so enhance and expand the capabilities of the free platform enjoyed by community publishers.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
       <h2>Widely compatible</h2>
-      <p>Ubuntu Appliances are made to work the same on Raspberry Pi’s or PC boards. All of which are accessible, affordable, popular bases for personal smart devices.</p>
+      <p>Ubuntu Appliances benefit from the testing and investment that makes Ubuntu so popular on PCs and servers. Canonical, the publisher of Ubuntu, works with all major manufacturers to enable and certify a wide range of hardware. As they add hardware for Ubuntu server or desktop, you gain more options for your appliances as well. Certified Ubuntu Appliances are continuously tested to work perfectly on certified boards.</p>
     </div>
   </div>
 </section>
