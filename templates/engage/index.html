@@ -944,15 +944,6 @@
       {% include "engage/_article-card.html" %}
     {% endwith %}
 
-    {% with title="Migrer de VMWare à OpenStack",
-      description="Réduisez vos coûts et augmentez l'efficacité de votre infrastructure en passant à l'open source",
-      slug="fr/migrer-de-vmware-a-openstack",
-      group="whitepaper",
-      type="whitepaper" %}
-      {% include "engage/_article-card.html" %}
-    {% endwith %}
-  </div>
-  <div class="row u-equal-height u-clearfix">
     {% with title="Ubuntu Core: a cybersecurity analysis",
       description="An independent evaluation of Ubuntu Core’s security capabilities",
       slug="ubuntu-core-security-audit",
@@ -960,7 +951,8 @@
       type="whitepaper" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
-
+  </div>
+  <div class="row u-equal-height u-clearfix">
     {% with title="A guide to a successful OpenStack adoption and deployment",
       description="Discover Canonical’s proven OpenStack implementation process",
       slug="charmed-openstack-adoption-whitepaper",
@@ -976,15 +968,16 @@
       type="webinar" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
-    </div>
 
-    <div class="row u-equal-height u-clearfix">
     {% with title="What&rsquo;s new in Ubuntu 20.04 LTS?",
       description="Learn all about the major features introduced as part of the Ubuntu 20.04 LTS release",
       slug="20.04-webinars",
           type="webinar" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
+
+  </div>
+  <div class="row u-equal-height u-clearfix">
 
     {% with title="Embracing the open source mandate",
       description="85% of enterprises have an open source mandate, preference or are exploring",
@@ -999,15 +992,17 @@
       type="event" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
-    </div>
 
-    <div class="row u-equal-height u-clearfix">
-      {% with title="Leveraging open source with Ubuntu Pro on Azure",
+    {% with title="Leveraging open source with Ubuntu Pro on Azure",
         description="How Microsoft and Canonical are partnering to ensure every organisation can achive more through open source software in a trusted way",
         slug="azure-webinar",
         type="webinar" %}
         {% include "engage/_article-card.html" %}
     {% endwith %}
+
+    </div>
+
+    <div class="row u-equal-height u-clearfix">
 
     {% with title="Secure IoT device management",
       description="Build and deploy a central IoT management solution",
@@ -1022,15 +1017,6 @@
       type="whitepaper" %}
       {% include "engage/_article-card.html" %}
     {% endwith %}
-    </div>
-
-    <div class="row u-equal-height u-clearfix">
-      {% with title="GUIDE DU DSI pour les opérations multicloud",
-      description="Choisir une architecture cloud rentable",
-      slug="fr/guide-du-DSI-pour-les-operations-multicloud",
-      type="whitepaper" %}
-        {% include "engage/_article-card.html" %}
-      {% endwith %}
 
       {% with title="Kafka in production", description="Learn how to plan and operate a fast, reliable and secure Kafka deployment",
       slug="kafka-in-production",
@@ -1038,14 +1024,16 @@
         {% include "engage/_article-card.html" %}
       {% endwith %}
 
+    </div>
+
+    <div class="row u-equal-height u-clearfix">
+
       {% with title="Standardising machine learning &mdash; from workstation to production", description="Leverage the best tools for AI/ML from workstation to data center",
       slug="ml-dell-webinar",
       type="webinar" %}
         {% include "engage/_article-card.html" %}
       {% endwith %}
-    </div>
 
-    <div class="row u-equal-height u-clearfix">
       {% with title="Utilising cloud-init on Microsoft Azure",
       description="Simplify cloud instance deployment with Ubuntu on Azure",
       slug="azure-cloud-init-whitepaper",
