@@ -124,7 +124,7 @@
     <div class="row">
       <div class="col-9">
         <h2>Status</h2>
-        <table>
+        <table class="cve-table">
           <thead>
             <tr>
               <th>Package</th>
@@ -143,12 +143,36 @@
                     <td>{{ release.name }}</td>
                     <td>
                       {% if release.codename in statuses %}
-                        {{ statuses[release.codename].status }}
+                        {% if statuses[release.codename].status == "DNE" %}
+                          Does not exist
+                          <div class="cve-color-strip--dne"></div>
+                        {% elif statuses[release.codename].status == "needs-triage" %}
+                          Needs triage
+                          <div class="cve-color-strip--needs-triage"></div>
+                        {% elif statuses[release.codename].status == "not-affected" %}
+                          Not vulnerable
+                          <div class="cve-color-strip--not-affected"></div>
+                        {% elif statuses[release.codename].status == "needed" %}
+                          Needed
+                          <div class="cve-color-strip--needed"></div>
+                        {% elif statuses[release.codename].status == "deferred" %}
+                          Deferred
+                          <div class="cve-color-strip--deferred"></div>
+                        {% elif statuses[release.codename].status == "ignored" %}
+                          Ignored
+                          <div class="cve-color-strip--ignored"></div>
+                        {% elif statuses[release.codename].status == "pending" %}
+                          Pending
+                          <div class="cve-color-strip--pending"></div>
+                        {% elif statuses[release.codename].status == "released" %}
+                          <div class="cve-color-strip--released"></div>
+                          Released
+                        {% endif %}
                         {% if statuses[release.codename].description %}
                           ({{ statuses[release.codename].description }})
                         {% endif %}
                       {% else %}
-                        -
+                        &mdash;
                       {% endif %}
                     </td>
                   </tr>
