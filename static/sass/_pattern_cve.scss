@@ -11,4 +11,64 @@
     border: none;
     color: $color-x-light;
   }
+
+  .cve-table td {
+    position: relative;
+  }
+
+  .cve-color-strip {
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .cve-color-strip--dne {
+    @extend .cve-color-strip;
+
+    border-bottom-color: #666;
+  }
+
+  .cve-color-strip--needs-triage {
+    @extend .cve-color-strip;
+
+    border-bottom-color: #a6761d;
+  }
+
+  .cve-color-strip--not-affected {
+    @extend .cve-color-strip;
+
+    border-bottom-color: #e6ab02;
+  }
+
+  .cve-color-strip--needed {
+    @extend .cve-color-strip;
+
+    border-bottom-color: #e7298a;
+  }
+
+  .cve-color-strip--deferred {
+    @extend .cve-color-strip;
+
+    border-bottom-color: #7570b3;
+  }
+
+  .cve-color-strip--ignored {
+    @extend .cve-color-strip;
+
+    border-bottom-color: #d95f02;
+  }
+
+  .cve-color-strip--pending {
+    @extend .cve-color-strip;
+
+    border-bottom-color: #1b9e77;
+  }
+
+  .cve-color-strip--released {
+    @extend .cve-color-strip;
+
+    border-bottom-color: #66a61e;
+  }
 }

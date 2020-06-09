@@ -70,7 +70,7 @@
   </div>
 
   <div class="u-fixed-width">
-    <table>
+    <table class="cve-table">
       <thead>
         <tr>
           <th style="width: 12em">CVE</th>
@@ -97,6 +97,25 @@
               <td>{{ package_name }}</td>
               {% for release in releases %}
                 <td>
+                {% if release.codename in statuses %}
+                  {% if statuses[release.codename].status == "DNE" %}
+                    <div class="cve-color-strip--dne"></div>
+                  {% elif statuses[release.codename].status == "needs-triage" %}
+                    <div class="cve-color-strip--needs-triage"></div>
+                  {% elif statuses[release.codename].status == "not-affected" %}
+                    <div class="cve-color-strip--not-affected"></div>
+                  {% elif statuses[release.codename].status == "needed" %}
+                    <div class="cve-color-strip--needed"></div>
+                  {% elif statuses[release.codename].status == "deferred" %}
+                    <div class="cve-color-strip--deferred"></div>
+                  {% elif statuses[release.codename].status == "ignored" %}
+                    <div class="cve-color-strip--ignored"></div>
+                  {% elif statuses[release.codename].status == "pending" %}
+                    <div class="cve-color-strip--pending"></div>
+                  {% elif statuses[release.codename].status == "released" %}
+                    <div class="cve-color-strip--released"></div>
+                  {% endif %}
+                {% endif %}
                   <div class="icon-container__icon">
                     {% if release.status == 'DNE' or release.status == 'not-affected' %}
                       <i class="p-icon--placeholder"></i>
@@ -119,7 +138,29 @@
                     {% endif %}
                   </div>
                   <div class="icon-container__text">
-                    {{ statuses[release.codename].status if release.codename in statuses else "-" }}
+                    {% if release.codename in statuses %}
+                      {% if statuses[release.codename].status == "DNE" %}
+                        Does not exist
+                      {% elif statuses[release.codename].status == "needs-triage" %}
+                        Needs triage
+                      {% elif statuses[release.codename].status == "not-affected" %}
+                        Not vulnerable
+                      {% elif statuses[release.codename].status == "needed" %}
+                        Needed
+                      {% elif statuses[release.codename].status == "deferred" %}
+                        Deferred
+                      {% elif statuses[release.codename].status == "ignored" %}
+                        Ignored
+                      {% elif statuses[release.codename].status == "pending" %}
+                        Pending
+                      {% elif statuses[release.codename].status == "released" %}
+                        Released
+                      {% else %}
+                        &mdash;
+                      {% endif %}
+                    {% else %}
+                      &mdash;
+                    {% endif %}
                   </div>
                 </td>
               {% endfor %}
