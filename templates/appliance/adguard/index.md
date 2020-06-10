@@ -1,9 +1,9 @@
 ---
 wrapper_template: "appliance/shared/_base_appliance_index.html"
 context:
-  name: "Adguard"
+  name: "AdGuard"
   short_name: "adguard"
-  appliance_name: "Adguard"
+  appliance_name: "AdGuard"
   company_name: "AdGuard, (ameshkov)"
   logo: "https://assets.ubuntu.com/v1/1ec45573-AdGuard.png"
   category: "Security"

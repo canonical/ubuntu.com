@@ -12,7 +12,7 @@
         {% include "appliance/shared/_verify-checksums.html" %}
       </p>
       {% else %}
-      <h1>Setup your Ubuntu {{ appliance.name }} appliance for Raspberry Pi</h1>
+      <h1>Setup your Ubuntu {{ appliance.appliance_name }} appliance for Raspberry Pi</h1>
       {% endif %}
     </div>
     <div class="col-4 u-hide--small u-align--center">
@@ -56,18 +56,10 @@
       </nav>
 
       <div id="ubuntuos" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntuos-tab">
-        {% with logo="https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
+        {% include "appliance/shared/_what_you_will_need_pi.html" %}
+        {% with os="Ubuntu" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
         <ol class="p-stepped-list--detailed">
-          <li class="p-stepped-list__item">
-            <h4 class="p-stepped-list__title">
-              Install the Raspberry Pi Imaging Tool
-            </h4>
-            <p class="p-stepped-list__content">
-              <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager_amd64.deb">
-                Download the Imaging Tool for Ubuntu
-              </a>
-            </p>
-          </li>
+          {% include 'appliance/shared/_steps_pi_imager_ubuntu.html' %}
           {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
           {% include 'appliance/shared/_steps_ssh-keys_ubuntu.html' %}
           {% include 'appliance/shared/_steps_sso.html' %}
@@ -78,18 +70,10 @@
       </div>
 
       <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
-        {% with logo="https://assets.ubuntu.com/v1/30574235-windows-logo.svg" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
+        {% include "appliance/shared/_what_you_will_need_pi.html" %}
+        {% with  os="Windows" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
         <ol class="p-stepped-list--detailed">
-          <li class="p-stepped-list__item">
-            <h4 class="p-stepped-list__title">
-              Install the Raspberry Pi Imaging Tool
-            </h4>
-            <p class="p-stepped-list__content">
-              <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.exe">
-                Download the Imaging Tool for Windows
-              </a>
-            </p>
-          </li>
+          {% include 'appliance/shared/_steps_pi_imager_windows.html' %}
           {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
           {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
           {% include 'appliance/shared/_steps_sso.html' %}
@@ -100,18 +84,10 @@
       </div>
 
       <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
-        {% with logo="https://assets.ubuntu.com/v1/6042056d-MacOS_wordmark.svg" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
+        {% include "appliance/shared/_what_you_will_need_pi.html" %}
+        {% with os="macOS" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
         <ol class="p-stepped-list--detailed">
-          <li class="p-stepped-list__item">
-            <h4 class="p-stepped-list__title">
-              Install the Raspberry Pi Imaging Tool
-            </h4>
-            <p class="p-stepped-list__content">
-              <a class="p-link--external" href="https://downloads.raspberrypi.org/imager/imager.dmg">
-                Download the Imaging Tool for macOS
-              </a>
-            </p>
-          </li>
+          {% include 'appliance/shared/_steps_pi_imager_macos.html' %}
           {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
           {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
           {% include 'appliance/shared/_steps_sso.html' %}
