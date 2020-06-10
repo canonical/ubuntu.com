@@ -1,15 +1,15 @@
 <div class="col-4 blog-p-card--post">
   {% include 'blog/blog-card-header.html' %}
-  
+
   <div class="blog-p-card__content">
     {% if article.image and article.image.source_url %}
     <div class="u-crop--16-9">
-      <a href="/blog/{{ article.slug }}">
+      <a href="/blog/{{ article.slug }}" aria-hidden="true" tabindex="-1">
         <img src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }}" srcset="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }} 460w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_620/{{ article.image.source_url }} 620w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_875/{{ article.image.source_url }} 875w" sizes="(min-width: 1031px) 460px, (max-width: 1030px) and (min-width: 876px) 460px, (max-width: 875px) and (min-width: 621px) 875px, (max-width: 620px) and (min-width: 461px) 620px, (max-width: 460px) 460px" alt="" loading="lazy" />
       </a>
     </div>
     {% endif %}
-    
+
     <h3 class="p-heading--four">
       <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
     </h3>
