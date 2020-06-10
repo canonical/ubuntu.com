@@ -6,7 +6,11 @@ RUN_COMMAND="talisker.gunicorn.gevent webapp.app:app --bind $1 --worker-class ge
 
 if [ "${FLASK_DEBUG}" = true ] || [ "${FLASK_DEBUG}" = 1 ]; then
     {
-        alembic upgrade head
+        if grep -q docker /proc/1/cgroup 2>/dev/null; then
+            echo "Don't use DB inside ./run script"
+        else
+            alembic upgrade head
+        fi
     } || {
         read -p "Database migration failed. Create database from scratch? " -n 1 -r
         if [[ $REPLY =~ ^[Yy] ]]; then
