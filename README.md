@@ -18,15 +18,16 @@ If you have found a bug in the Ubuntu OS itself, the please file it [here](https
 
 ## Local development
 
-The simplest way to run the site locally is using [the `dotrun` snap](https://github.com/canonical-web-and-design/dotrun/):
+The simplest way to run the site locally is using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) and [`docker`](https://snapcraft.io/docker)snaps:
 
 ```bash
+docker-compose up -d
 dotrun
 ```
 
 Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.
 
-For more detailed local development instructions, see [HACKING.md](HACKING.md).
+After you close the server with `<ctrl>+c`, then you should run `docker-compose down` to stop the database.
 
 ## License
 

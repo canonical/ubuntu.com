@@ -1,11 +1,13 @@
+from collections import defaultdict
 from datetime import datetime
 
 from sqlalchemy import (
     Boolean,
     Column,
     DateTime,
+    Enum,
+    Float,
     ForeignKey,
-    Integer,
     JSON,
     String,
     Table,
@@ -17,7 +19,6 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
-
 notice_cves = Table(
     "notice_cves",
     Base.metadata,
@@ -25,19 +26,11 @@ notice_cves = Table(
     Column("cve_id", String, ForeignKey("cve.id")),
 )
 
-
-notice_references = Table(
-    "notice_references",
-    Base.metadata,
-    Column("notice_id", String, ForeignKey("notice.id")),
-    Column("reference_id", Integer, ForeignKey("reference.id")),
-)
-
 notice_releases = Table(
     "notice_releases",
     Base.metadata,
     Column("notice_id", String, ForeignKey("notice.id")),
-    Column("release_id", Integer, ForeignKey("release.id")),
+    Column("release_codename", String, ForeignKey("release.codename")),
 )
 
 
@@ -45,6 +38,54 @@ class CVE(Base):
     __tablename__ = "cve"
 
     id = Column(String, primary_key=True)
+    published = Column(DateTime)
+    description = Column(String)
+    ubuntu_description = Column(String)
+    notes = Column(JSON)
+    priority = Column(
+        Enum(
+            "unknown",
+            "negligible",
+            "low",
+            "medium",
+            "high",
+            "critical",
+            name="priorities",
+        )
+    )
+    cvss3 = Column(Float)
+    references = Column(JSON)
+    bugs = Column(JSON)
+    status = Column(
+        Enum("not-in-ubuntu", "active", "rejected", name="cve_statuses")
+    )
+    statuses = relationship("Status", cascade="all, delete-orphan")
+    notices = relationship(
+        "Notice", secondary=notice_cves, back_populates="cves"
+    )
+
+    @hybrid_property
+    def status_tree(self):
+        status_tree = defaultdict(dict)
+        for status in self.statuses:
+            status_tree[status.package_name][status.release_codename] = status
+
+        return status_tree
+
+    @hybrid_property
+    def active_status_tree(self):
+        active_package_statuses = {}
+
+        for package_name, release_statuses in self.status_tree.items():
+            for status in release_statuses.values():
+                if (
+                    status.status in Status.active_statuses
+                    and status.release.version
+                    and status.release.support_tag
+                ):
+                    active_package_statuses[package_name] = release_statuses
+
+        return active_package_statuses
 
 
 class Notice(Base):
@@ -54,38 +95,34 @@ class Notice(Base):
     title = Column(String)
     published = Column(DateTime)
     summary = Column(String)
-    isummary = Column(String)
     details = Column(String)
     instructions = Column(String)
-    packages = Column(JSON)
-    cves = relationship("CVE", secondary=notice_cves)
-    references = relationship("Reference", secondary=notice_references)
+    release_packages = Column(JSON)
+    cves = relationship("CVE", secondary=notice_cves, back_populates="notices")
+    references = Column(JSON)
     releases = relationship(
         "Release",
         secondary=notice_releases,
         order_by="desc(Release.release_date)",
+        back_populates="notices",
     )
-
-
-class Reference(Base):
-    __tablename__ = "reference"
-
-    id = Column(Integer, primary_key=True)
-    uri = Column(String)
 
 
 class Release(Base):
     __tablename__ = "release"
 
-    id = Column(Integer, primary_key=True)
+    codename = Column(String, primary_key=True)
     name = Column(String, unique=True)
     version = Column(String, unique=True)
-    codename = Column(String, unique=True)
     lts = Column(Boolean)
     development = Column(Boolean)
     release_date = Column(DateTime)
     esm_expires = Column(DateTime)
     support_expires = Column(DateTime)
+    statuses = relationship("Status", cascade="all, delete-orphan")
+    notices = relationship(
+        "Notice", secondary=notice_releases, back_populates="releases"
+    )
 
     @hybrid_property
     def support_tag(self):
@@ -97,3 +134,50 @@ class Release(Base):
             return "ESM"
 
         return ""
+
+
+class Status(Base):
+    __tablename__ = "status"
+
+    active_statuses = [
+        "released",
+        "needed",
+        "deferred",
+        "needs-triage",
+        "pending",
+    ]
+
+    cve_id = Column(String, ForeignKey("cve.id"), primary_key=True)
+    package_name = Column(String, ForeignKey("package.name"), primary_key=True)
+    release_codename = Column(
+        String, ForeignKey("release.codename"), primary_key=True
+    )
+    status = Column(
+        Enum(
+            "released",
+            "DNE",
+            "needed",
+            "not-affected",
+            "deferred",
+            "needs-triage",
+            "ignored",
+            "pending",
+            name="statuses",
+        )
+    )
+    description = Column(String)
+
+    cve = relationship("CVE", back_populates="statuses")
+    package = relationship("Package", back_populates="statuses")
+    release = relationship("Release", back_populates="statuses")
+
+
+class Package(Base):
+    __tablename__ = "package"
+
+    name = Column(String, primary_key=True)
+    source = Column(String)
+    launchpad = Column(String)
+    ubuntu = Column(String)
+    debian = Column(String)
+    statuses = relationship("Status", cascade="all, delete-orphan")
