@@ -1,15 +1,15 @@
 ---
 wrapper_template: "engage/_base_engage_markdown.html"
 context:
-  title: "Migrating your infrastructure to Ubuntu 20.04 LTS"
+  title: "Migrating yourinfrastructure to Ubuntu 20.04 LTS"
   meta_description: "Find out the right time to migrate to Ubuntu 20.04 and what factors you should take into account when planning a migration."
   meta_image: "https://assets.ubuntu.com/v1/451bf40c-focal_meta_image.png"
   meta_copydoc: "https://docs.google.com/document/d/1-K3MlEPYdA1ChVs81pjqnQ4UpU_al2fOHToXqhZLgys/edit"
-  header_title: "Migrating your infrastructure to Ubuntu 20.04 LTS:"
+  header_title: "Migrating your <br>infrastructure to Ubuntu&nbsp;20.04&nbsp;LTS:"
   header_subtitle: "How, when and why?"
   header_image: "https://assets.ubuntu.com/v1/6d623607-Focal+Fossa_orange_RGB.svg"
-  header_image_width: "250"
-  header_image_height: "194"
+  header_image_width: "380"
+  header_image_height: "290"
   header_url: "#register-section"
   header_cta: "Watch Webinar"
   header_cta_class: p-button--positive
