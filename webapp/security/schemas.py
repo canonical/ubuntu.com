@@ -75,8 +75,13 @@ class NoticeSchema(Schema):
 
 # CVEs
 # --
+def _validate_codename(codename):
+    if not db_session.query(Release).get(codename):
+        raise ValidationError(f"Unrecognised release codename: {codename}")
+
+
 class Status(Schema):
-    release_codename = Str(required=True)
+    release_codename = Str(required=True, validate=_validate_codename)
     status = Str(required=True)
     description = Str(allow_none=True)
 
