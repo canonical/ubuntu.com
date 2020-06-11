@@ -82,15 +82,6 @@
     <div class="row u-equal-height">
       <div class="col-8">
         <div class="p-post__content">
-          {% for tag in tags %}
-            {% if tag.name == 'BootStack' %}
-              <div class="p-card">
-                <h4 class="p-card__title">Looking for a fully managed private cloud?</h4>
-                <p class="p-card__content">Designed with economics in mind, Canonical's Managed OpenStack is the most cost-efficient path to a fully managed private cloud.<br/><br/></p>
-                <p><a class="" href="/openstack/managed">Learn more about Canonical's Managed OpenStack &rsaquo;</a></p>
-              </div>
-            {% endif %}
-          {% endfor %}
           {{ article.content.rendered|safe }}
         </div>
       </div>
