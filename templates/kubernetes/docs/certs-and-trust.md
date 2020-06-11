@@ -129,7 +129,7 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [websockets]: https://en.wikipedia.org/wiki/WebSocket
 [cloud-init]: https://cloud-init.io/
 [relation]: https://docs.jujucharms.com/stable/en/juju-concepts#relation
-[vault-charm]: https://jujucharms.com/u/openstack-charmers-next/vault/
+[vault-charm]: https://jujucharms.com/u/openstack-charmers/vault/
 [vault]: https://www.vaultproject.io
 [easyrsa-charm]: https://jujucharms.com/u/containers/easyrsa/
 [easy-rsa]: https://github.com/OpenVPN/easy-rsa
@@ -157,9 +157,9 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/certs-and-trust.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/certs-and-trust.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>
