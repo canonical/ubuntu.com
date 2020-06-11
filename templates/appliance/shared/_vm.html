@@ -6,7 +6,7 @@
   <div class="row u-equal-height">
     <div class="col-8">
       {% if appliance.iso_url.pc %}
-      <h1>Try the Ubuntu {{ appliance.appliance_name }} Ubuntu Appliance in a virtual machine</h1>
+      <h1>Try the {{ appliance.appliance_name }} Ubuntu Appliance in a virtual machine</h1>
       <p class="u-no-margin--bottom">Your download should start automatically. If it doesn&rsquo;t,
         <a href="{{ appliance.iso_url.pc }}">download now</a>.
         {% include "appliance/shared/_verify-checksums-pc.html" %}
@@ -20,8 +20,8 @@
         image(
         url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
         alt="",
-        width="200",
-        height="200",
+        width="180",
+        height="180",
         hi_def=True,
         loading="auto",
         ) | safe
@@ -60,6 +60,8 @@
         {% include "appliance/shared/_install_instructions_vm_ubuntu.html" %}
         <ol class="p-stepped-list--detailed">
           {% include "appliance/shared/_steps_multipass_ubuntu.html" %}
+          {% include "appliance/shared/_steps-multipass-launch.html" %}
+          {% include "appliance/shared/_steps-multipass-find-ip-ubuntu.html" %}
           {% include 'appliance/shared/_steps_vm_thats-it.html' %}
         </ol>
       </div>
@@ -69,6 +71,8 @@
         {% include "appliance/shared/_install_instructions_vm_windows.html" %}
         <ol class="p-stepped-list--detailed">
           {% include "appliance/shared/_steps_multipass_windows.html" %}
+          {% include "appliance/shared/_steps-multipass-launch.html" %}
+          {% include "appliance/shared/_steps-multipass-find-ip-windows.html" %}
           {% include 'appliance/shared/_steps_vm_thats-it.html' %}
         </ol>
       </div>
@@ -78,6 +82,8 @@
         {% include "appliance/shared/_install_instructions_vm_macos.html" %}
         <ol class="p-stepped-list--detailed">
           {% include "appliance/shared/_steps_multipass_macos.html" %}
+          {% include "appliance/shared/_steps-multipass-launch.html" %}
+          {% include "appliance/shared/_steps-multipass-find-ip-macos.html" %}
           {% include 'appliance/shared/_steps_vm_thats-it.html' %}
         </ol>
       </div>
