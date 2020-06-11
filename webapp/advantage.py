@@ -25,6 +25,8 @@ class AdvantageContracts:
     def get_accounts(self):
         response = self._request(method="get", path="v1/accounts")
 
+        response.raise_for_status()
+
         return response.json().get("accounts", [])
 
     def get_account_contracts(self, account):
