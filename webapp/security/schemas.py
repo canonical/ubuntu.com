@@ -10,10 +10,11 @@ from marshmallow.fields import (
     Str,
 )
 from marshmallow.validate import Regexp
-
-
 from webapp.security.database import db_session
 from webapp.security.models import Release
+
+
+CODENAMES = set(rel.codename for rel in db_session.query(Release).all())
 
 
 # Types
@@ -39,8 +40,7 @@ class ParsedDateTime(DateTime):
 # Notices
 # --
 def _validate_release_codenames(release_packages):
-    codenames = set(rel.codename for rel in db_session.query(Release).all())
-    unrecognised_codenames = set(release_packages.keys()) - codenames
+    unrecognised_codenames = set(release_packages.keys()) - CODENAMES
 
     if unrecognised_codenames:
         raise ValidationError(
@@ -76,7 +76,7 @@ class NoticeSchema(Schema):
 # CVEs
 # --
 def _validate_codename(codename):
-    if not db_session.query(Release).get(codename):
+    if codename not in CODENAMES:
         raise ValidationError(f"Unrecognised release codename: {codename}")
 
 
