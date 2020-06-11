@@ -464,12 +464,12 @@ def bulk_upsert_cve():
             400,
         )
 
-    if len(cves_data) > 300:
+    if len(cves_data) > 50:
         return (
             flask.jsonify(
                 {
                     "message": (
-                        "Please only submit up to 300 CVEs at a time. "
+                        "Please only submit up to 50 CVEs at a time. "
                         f"({len(cves_data)} submitted)"
                     )
                 }
