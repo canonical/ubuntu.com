@@ -1,11 +1,15 @@
-<section class="p-strip--light">
+<section class="p-strip--light is-deep">
   <div class="row">
     <div class="col-8">
       <h2>
         Join the community
       </h2>
       <p>
-        Our <a href="https://discourse.ubuntu.com/c/appliance">Discourse forum for {{ appliance_name }}</a> is the best place for news and views.
+        {% if appliance_name %}
+        Our <a href="https://discourse.ubuntu.com/c/appliance">Discourse forum for {{ appliance_name }}</a> is the best place news views.
+        {% else %}
+        Our <a href="https://discourse.ubuntu.com/c/appliance">discussion forum for Ubuntu Appliances</a> is the best place for news and views.
+        {% endif %}
       </p>
     </div>
     <div class="col-4 u-align--center u-hide--small">
