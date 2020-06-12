@@ -20,26 +20,9 @@ in Juju.
 
 ## Requirements
 
-### Juju 2.8 features
+### Juju 2.8.0
 
-The Multus charm requires functionality from Juju 2.8+, which is currently
-under active development. In order to run Multus, you will need a Juju
-controller running a Juju 2.8 build from edge.
-
-Install the Juju 2.8 client from edge:
-
-```
-sudo snap install juju --channel edge --classic
-```
-
-Or if Juju is already installed, refresh it:
-
-```
-sudo snap refresh juju --channel edge
-```
-
-Once you have the Juju 2.8 edge client, any new controllers you bootstrap will
-include the 2.8 features required by Multus.
+The Multus charm requires Juju 2.8.0 or newer.
 
 ### CNI providers
 

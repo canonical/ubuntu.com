@@ -355,17 +355,29 @@ juju run-action kubernetes-worker/1 upgrade
 ...
 ```
 
-## Verify your upgrade
+<a id='upgrading-series'> </a>
 
-The output from:
+## Upgrading the Machine's Series
+
+All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/upgrading-series).
+As each machine is upgraded, the applications on that machine will be stopped and the unit will
+go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
+from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed
+from the pool until the upgrade is complete.
+
+<a id='verify-upgrade'> </a>
+
+## Verify an Upgrade
+
+Once an upgrade is complete and units settle, the output from:
 
 ```bash
 juju status
 ```
 
-... should now indicate the selected version of **Kubernetes** is running.
+... should indicate that all units are active and the correct version of **Kubernetes** is running.
 
-It is recommended that you run a [cluster validation][validation] to ensure that the cluster upgrade has successfully completed.
+It is recommended that you run a [cluster validation][validation] to ensure that the cluster is fully functional.
 
 
 ## Known Issues

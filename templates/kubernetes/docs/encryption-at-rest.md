@@ -35,7 +35,7 @@ with the following overlay:
 ```yaml
 applications:
   vault:
-    charm: cs:~openstack-charmers-next/vault
+    charm: cs:vault
     num_units: 1
   percona-cluster:
     charm: cs:percona-cluster
@@ -72,15 +72,15 @@ storage pool, or even full-disk-encryption on the host machine.
 [encryption at rest]: https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
 [HashiCorp's Vault]: https://www.vaultproject.io/
 [VaultLocker]: https://github.com/openstack-charmers/vaultlocker
-[Vault charm]: https://jujucharms.com/u/openstack-charmers-next/vault/
+[Vault charm]: https://jujucharms.com/u/openstack-charmers/vault/
 [unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#initialize-and-unseal-vault
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/encryption-at-rest.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/encryption-at-rest.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>
