@@ -216,10 +216,11 @@ def create_notice():
     POST method to create a new notice
     """
 
-    if not flask.request.json:
-        return (flask.jsonify({"message": "No payload received"}), 400)
-
     notice_schema = NoticeSchema()
+    notice_schema.context["release_codenames"] = [
+        rel.codename for rel in db_session.query(Release).all()
+    ]
+
     try:
         notice_data = notice_schema.load(flask.request.json)
     except ValidationError as error:
@@ -409,9 +410,6 @@ def update_statuses(cve, data, packages, releases):
             codename = status_data["release_codename"]
             release = releases.get(codename)
 
-            if not release:
-                raise Exception(f"No release found with codename '{codename}'")
-
             status = statuses[name].get(codename) or Status(
                 cve=cve, package=package, release=release
             )
@@ -453,9 +451,13 @@ def bulk_upsert_cve():
     @returns 3 lists of CVEs, created CVEs, updated CVEs and failed CVEs
     """
 
-    cve_schema = CVESchema(many=True)
+    cves_schema = CVESchema(many=True)
+    cves_schema.context["release_codenames"] = [
+        rel.codename for rel in db_session.query(Release).all()
+    ]
+
     try:
-        cves_data = cve_schema.load(flask.request.json)
+        cves_data = cves_schema.load(flask.request.json)
     except ValidationError as error:
         return (
             flask.jsonify(

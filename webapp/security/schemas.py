@@ -1,5 +1,5 @@
 import dateutil.parser
-from marshmallow import Schema, ValidationError
+from marshmallow import Schema
 from marshmallow.fields import (
     Boolean,
     DateTime,
@@ -7,14 +7,9 @@ from marshmallow.fields import (
     Float,
     List,
     Nested,
-    Str,
+    String,
 )
 from marshmallow.validate import Regexp
-from webapp.security.database import db_session
-from webapp.security.models import Release
-
-
-CODENAMES = set(rel.codename for rel in db_session.query(Release).all())
 
 
 # Types
@@ -33,81 +28,78 @@ class ParsedDateTime(DateTime):
         return super()._deserialize(date.isoformat(), attr, data, **kwargs)
 
 
+class ReleaseCodename(String):
+    default_error_messages = {
+        "unrecognised_codename": "Cannot find a release with codename {input}"
+    }
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        if value not in self.context["release_codenames"]:
+            raise self.make_error("unrecognised_codename", input=value)
+
+        return super()._deserialize(value, attr, data, **kwargs)
+
+
 # Schemas
 # ===
 
 
 # Notices
 # --
-def _validate_release_codenames(release_packages):
-    unrecognised_codenames = set(release_packages.keys()) - CODENAMES
-
-    if unrecognised_codenames:
-        raise ValidationError(
-            f"Unrecognised release codenames: {unrecognised_codenames}"
-        )
-
-
 class NoticePackage(Schema):
-    name = Str(required=True)
-    version = Str(required=True)
-    description = Str()
+    name = String(required=True)
+    version = String(required=True)
+    description = String()
     is_source = Boolean(required=True)
-    source_link = Str(allow_none=True)
-    version_link = Str(allow_none=True)
+    source_link = String(allow_none=True)
+    version_link = String(allow_none=True)
 
 
 class NoticeSchema(Schema):
-    id = Str(required=True)
-    title = Str(required=True)
-    summary = Str(required=True)
-    instructions = Str(required=True)
-    references = List(Str())
-    cves = List(Str(validate=Regexp(r"(cve-|CVE-)\d{4}-\d{4,7}")))
+    id = String(required=True)
+    title = String(required=True)
+    summary = String(required=True)
+    instructions = String(required=True)
+    references = List(String())
+    cves = List(String(validate=Regexp(r"(cve-|CVE-)\d{4}-\d{4,7}")))
     published = ParsedDateTime(required=True)
-    description = Str(allow_none=True)
+    description = String(allow_none=True)
     release_packages = Dict(
-        keys=Str(),
+        keys=ReleaseCodename(),
         values=List(Nested(NoticePackage), required=True),
-        validate=_validate_release_codenames,
     )
 
 
 # CVEs
 # --
-def _validate_codename(codename):
-    if codename not in CODENAMES:
-        raise ValidationError(f"Unrecognised release codename: {codename}")
-
-
 class Status(Schema):
-    release_codename = Str(required=True, validate=_validate_codename)
-    status = Str(required=True)
-    description = Str(allow_none=True)
+    release_codename = ReleaseCodename(required=True)
+    status = String(required=True)
+    description = String(allow_none=True)
 
 
 class CvePackage(Schema):
-    name = Str(required=True)
-    source = Str(required=True)
-    ubuntu = Str(required=True)
-    debian = Str(required=True)
+    name = String(required=True)
+    source = String(required=True)
+    ubuntu = String(required=True)
+    debian = String(required=True)
     statuses = List(Nested(Status))
 
 
 class Note(Schema):
-    author = Str(required=True)
-    note = Str(required=True)
+    author = String(required=True)
+    note = String(required=True)
 
 
 class CVESchema(Schema):
-    id = Str(required=True)
+    id = String(required=True)
     published = ParsedDateTime(allow_none=True)
-    description = Str(allow_none=True)
-    ubuntu_description = Str(allow_none=True)
+    description = String(allow_none=True)
+    ubuntu_description = String(allow_none=True)
     notes = List(Nested(Note))
-    priority = Str(allow_none=True)
-    status = Str(allow_none=True)
+    priority = String(allow_none=True)
+    status = String(allow_none=True)
     cvss3 = Float(allow_none=True)
     packages = List(Nested(CvePackage))
-    references = List(Str())
-    bugs = List(Str())
+    references = List(String())
+    bugs = List(String())
