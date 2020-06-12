@@ -4,10 +4,10 @@ context:
   name: "OpenHAB"
   short_name: "openhab"
   appliance_name: "OpenHAB"
-  company_name: "openHAB Foundation e.V. (openhab)"
+  company_name: "openHAB Foundation e.V."
   logo: "https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png"
   category: "Smart Home"
-  meta_description: "Build your OpenHAB appliance with Ubuntu Appliance images with preinstalled snaps. The open Home Automation Bus is technology agnostic home automation platform which runs as the center of your smart home."
+  meta_description: "Build your openHAB appliance with the Ubuntu Appliance image’s preinstalled snaps. openHAB puts the control of your data and your home at your finger tips. openHAB is the most flexible tool available to make almost any home automation wish come true."
   downloads:
     raspberrypi: True
     pc: True
@@ -25,23 +25,24 @@ context:
       title: "OpenHAB website"
       url: "https://www.openhab.org/"
     3:
-      title: "OpenHAB source code"
-      url: "https://github.com/openhab"
+      title: "OpenHAB license"
+      url: "https://github.com/openhab/openhab-distro/blob/master/LICENSE"
   compliance:
     1: "EU GDPR"
     2: "California law"
   base: "core20"
-  published_date: "YYYY-MM-DD"
-  maintenance_date: "YYYY-MM-DD"
+  published_date: "2020-06-16"
+  maintenance_date: "2020-06-16"
+  certification_note: "Not guaranteed to work on the Raspberry Pi 3A+"
   snaps:
     1:
       name: "openhab"
       icon: "https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png"
       link: "https://snapcraft.io/openhab"
-      publisher: "openHAB Foundation e.V. (openhab)"
+      publisher: "openHAB Foundation e.V."
       channel: "latest/stable"
-      version: "2.5.4"
-      published_date: "4 May 2020"
+      version: "2.5.5"
+      published_date: "19 May 2020"
 ---
 #### Empowering the smart home
 
