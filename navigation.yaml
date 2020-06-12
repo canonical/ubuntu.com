@@ -47,40 +47,65 @@ appliance:
       children:
         - title: Raspberry Pi
           path: /appliance/plex/raspberry-pi
-          hidden: True
+          hidden: False
         - title: Intel NUC
           path: /appliance/plex/intel-nuc
-          hidden: True
-        - title: PC
-          path: /appliance/plex/pc
-          hidden: True
-    - title: Adguard
+          hidden: False
+        - title: VM
+          path: /appliance/plex/vm
+          hidden: False
+    - title: AdGuard
       path: /appliance/adguard
       hidden: True
       children:
         - title: Raspberry Pi
           path: /appliance/adguard/raspberry-pi
-          hidden: True
+          hidden: False
         - title: Intel NUC
           path: /appliance/adguard/intel-nuc
-          hidden: True
-        - title: PC
-          path: /appliance/adguard/pc
-          hidden: True
+          hidden: False
+        - title: VM
+          path: /appliance/adguard/vm
+          hidden: False
     - title: OpenHAB
       path: /appliance/openhab
       hidden: True
       children:
         - title: Raspberry Pi
           path: /appliance/openhab/raspberry-pi
-          hidden: True
+          hidden: False
         - title: Intel NUC
           path: /appliance/openhab/intel-nuc
-          hidden: True
-        - title: PC
-          path: /appliance/openhab/pc
-          hidden: True
-
+          hidden: False
+        - title: VM
+          path: /appliance/openhab/vm
+          hidden: False
+    - title: NexCloud
+      path: /appliance/nextcloud
+      hidden: True
+      children:
+        - title: Raspberry Pi
+          path: /appliance/nextcloud/raspberry-pi
+          hidden: False
+        - title: Intel NUC
+          path: /appliance/nextcloud/intel-nuc
+          hidden: False
+        - title: VM
+          path: /appliance/nextcloud/vm
+          hidden: False
+    - title: Mosquitto
+      path: /appliance/mosquitto
+      hidden: True
+      children:
+        - title: Raspberry Pi
+          path: /appliance/mosquitto/raspberry-pi
+          hidden: False
+        - title: Intel NUC
+          path: /appliance/mosquitto/intel-nuc
+          hidden: False
+        - title: VM
+          path: /appliance/mosquitto/vm
+          hidden: False
 aws:
   title: AWS
   path: /aws
