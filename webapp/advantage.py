@@ -1,3 +1,6 @@
+from requests.exceptions import HTTPError
+
+
 class AdvantageContracts:
     def __init__(
         self,
@@ -15,12 +18,15 @@ class AdvantageContracts:
         self.api_url = api_url.rstrip("/")
 
     def _request(self, method, path, json=None):
-        return self.session.request(
+        response = self.session.request(
             method=method,
             url=f"{self.api_url}/{path}",
             json=json,
             headers={"Authorization": f"Macaroon {self.authentication_token}"},
         )
+        response.raise_for_status()
+
+        return response
 
     def get_accounts(self):
         response = self._request(method="get", path="v1/accounts")
@@ -84,11 +90,14 @@ class AdvantageContracts:
         return response.json()
 
     def accept_renewal(self, renewal_id):
-        response = self._request(
-            method="post", path=f"v1/renewals/{renewal_id}/acceptance"
-        )
+        try:
+            response = self._request(
+                method="post", path=f"v1/renewals/{renewal_id}/acceptance"
+            )
+        except HTTPError as http_error:
+            if http_error.code == 500:
+                return response.json()
+            else:
+                raise http_error
 
-        if response.ok:
-            return {}
-        else:
-            return response.json()
+        return {}
