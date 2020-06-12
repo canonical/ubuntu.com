@@ -30,6 +30,10 @@ appliance:
     - title: Docs
       path: /appliance/docs
       persist: True
+      hidden: True
+    - title: Vitual machines
+      path: /appliance/vm
+      hidden: True
     - title: Contact us
       path: /appliance/contact-us
       hidden: True
@@ -1158,19 +1162,19 @@ pricing:
 
 documentation:
   title: Docs
-  path: /_docs
+  path: /0_docs
 
   children:
     - title: Overview
-      path: /_docs
+      path: /0_docs
     - title: Hero strips
-      path: /_docs/strips
+      path: /0_docs/strips
     - title: Takeovers
-      path: /_docs/takeovers
+      path: /0_docs/takeovers
     - title: Engage pages
-      path: /_docs/engage_pages
+      path: /0_docs/engage_pages
     - title: Content strips
-      path: /_docs/content_strips
+      path: /0_docs/content_strips
 
 kernel:
   title: Kernel
