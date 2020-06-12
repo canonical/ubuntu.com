@@ -1,0 +1,533 @@
+{% extends "appliance/_base-appliance.html" %}
+
+{% block title %}Recommended and Certified Hardware for Ubuntu Appliances{% endblock %}
+
+{% block meta_description %}We test every Ubuntu Appliance to work perfectly across all certified boards and boxes.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/179RBNgtGr5Y8CkkYaUa6sdFaaTJTTvs_VCTr6UzECFo/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-10">
+      <h1>Recommended and Certified Hardware</h1>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block u-align--center">
+      <a href="/appliances/pc">
+        <img src="https://assets.ubuntu.com/v1/81dffc6e-Intel-header.jpg?h=150" alt="" />
+        <p class="p-heading--four">PC and Server Family</p>
+      </a>
+    </div>
+    <div class="col-4 p-divider__block u-align--center">
+      <a href="/appliances/pc">
+        <img src="https://assets.ubuntu.com/v1/05caa6c5-Multipass-mark.svg?h=150" style="margin-bottom: 1rem; margin-top: 0.75rem;" alt="" />
+        <p class="p-heading--four">Virtual Machines for testing</p>
+      </a>
+    </div>
+    <div class="col-4 p-divider__block u-align--center">
+      <a href="/appliances/pc">
+        <img src=" https://assets.ubuntu.com/v1/74b47ae6-Pi4.png?h=150" alt="" />
+        <p class="p-heading--four">Raspberry Pi Family</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Not the hardware you’re looking for?</h2>
+      <p>We test every Ubuntu Appliance to work perfectly across all certified boards and boxes.</p>
+      <p><a href="https://certification.ubuntu.com/iot" class="p-link--external">See all Canonical certified hardware</a></p>
+      <p>If you want your hardware to be certified for Ubuntu Appliances let us know.</p>
+      <p><a href="/appliance/contact-us" class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      <img src="https://assets.ubuntu.com/v1/ff567950-hardware-compatible.svg" alt="">
+    </div>
+  </div>
+</section>
+
+<div class="js-tab-container">
+  <section class="p-strip u-no-padding--bottom">
+    <div class="row">
+      <nav class="p-tabs">
+        <ul class="p-tabs__list" role="tablist">
+          <li class="p-tabs__item" role="presentation">
+            <a href="#ubuntuos" class="p-tabs__link" id="pi-tab" role="tab" aria-controls="pi-panel" aria-selected="true">
+              Rasberry Pi
+            </a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#windows" class="p-tabs__link" tabindex="-1" role="tab" id="intel-tab" aria-controls="intel-panel">
+              Intel NUC
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <div id="pi-panel" class="p-tabs__content" role="tabpanel" aria-labelledby="pi-tab">
+    <section class="p-strip is-shallow u-no-padding--bottom">
+      <div class="row u-equal-height">
+        <div class="col-8">
+          <h2>The Raspberry Pi device family</h2>
+          <p>The world’s most famous maker board! Fully certified and supported by Canonical. Ubuntu works on all 64-bit Raspberry Pi devices and is our primary focus for testing and development of new ARM Ubuntu Appliances.</p>
+          <p>The popular single-board computer with 40-pin connector is a de facto standard for prototyping and experimentation and the Compute Module range is suited for production embedding in a wide range of devices.</p>
+        </div>
+        <div class="col-4 u-vertically-center u-align--center u-hide--small">
+          <img src="https://assets.ubuntu.com/v1/016b770d-raspberry+pi+horizontal.svg" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip">
+      <div class="row">
+        <h3>Cerified Devices</h3>
+      </div>
+      <div class="row u-equal-height">
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>Raspberry Pi 4</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/74b47ae6-Pi4.png?w=225" alt="">
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item">
+                Choice of RAM 1GB, 2GB, 4GB or 8GB
+              </li>
+              <li class="p-list__item">
+                Micro-HDMI x2
+              </li>
+              <li class="p-list__item">
+                USB 2.0 x2
+              </li>
+              <li class="p-list__item">
+                USB 3.0 x2
+              </li>
+              <li class="p-list__item">
+                USB-C power supply
+              </li>
+              <li class="p-list__item">
+                Wifi
+              </li>
+              <li class="p-list__item">
+                Bluetooth 5.0
+              </li>
+              <li class="p-list__item">
+                40 pin GPIO
+              </li>
+            </ul>
+          </div>
+          <div class="p-card__footer">
+            <a href="https://thepihut.com/products/raspberry-pi-4-model-b" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Buy it</span></a>
+          </div>
+        </div>
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>Raspberry Pi 3B+</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/2076fbff-Pi3-B+.jpg?w=225" alt="">
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item">
+                1GB RAM
+              </li>
+              <li class="p-list__item">
+                Full-size HDMI
+              </li>
+              <li class="p-list__item">
+                USB 2.0 x4
+              </li>
+              <li class="p-list__item">
+                Micro-USB power supply
+              </li>
+              <li class="p-list__item">
+                Wifi
+              </li>
+              <li class="p-list__item">
+                Bluetooth 4.2
+              </li>
+              <li class="p-list__item">
+                40 pin GPIO
+              </li>
+            </ul>
+          </div>
+          <div class="p-card__footer">
+            <a href="https://thepihut.com/products/raspberry-pi-3-model-b-plus" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Buy it</span></a>
+          </div>
+        </div>
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>Raspberry Pi 3B</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/2076fbff-Pi3-B.jpg?w=225" alt="">
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item">
+                1GB RAM
+              </li>
+              <li class="p-list__item">
+                Full-size HDMI
+              </li>
+              <li class="p-list__item">
+                USB 2.0 x4
+              </li>
+              <li class="p-list__item">
+                Micro-USB power supply
+              </li>
+              <li class="p-list__item">
+                Wifi
+              </li>
+              <li class="p-list__item">
+                Bluetooth 4.2
+              </li>
+              <li class="p-list__item">
+                40 pin GPIO
+              </li>
+            </ul>
+          </div>
+          <div class="p-card__footer">
+            <a href="https://thepihut.com/products/raspberry-pi-3-model-b" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Buy it</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="row u-equal-height">
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>RPi Compute Module 3 (lite)</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/a7fd386a-Module-3-%28Lite%29.jpg?w=225" alt="">
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item">
+                1GB RAM
+              </li>
+              <li class="p-list__item">
+                1.2GHz BCM2837processor
+              </li>
+              <li class="p-list__item">
+                Fits a DDR2 SODIMM connector
+              </li>
+            </ul>
+          </div>
+          <div class="p-card__footer">
+            <a href="https://thepihut.com/products/raspberry-pi-compute-module-3-lite" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Buy it</span></a>
+          </div>
+        </div>
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>RPi Compute Module 3+</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/a7fd386a-Module-3+.jpg?w=225" alt="">
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item">
+                1GB RAM
+              </li>
+              <li class="p-list__item">
+                1.2GHz BCM2837processor
+              </li>
+              <li class="p-list__item">
+                Fits a DDR2 SODIMM connector
+              </li>
+            </ul>
+          </div>
+          <div class="p-card__footer">
+            <button class="p-button--positive u-no-margin--bottom" disabled="disabled">Discontinued</a>
+          </div>
+        </div>
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>Raspberry Pi 2</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/fb8a736f-Pi2.jpg?w=225" alt="">
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item">
+                1GB RAM
+              </li>
+              <li class="p-list__item">
+                Full-size HDMI
+              </li>
+              <li class="p-list__item">
+                USB 2.0 x4
+              </li>
+              <li class="p-list__item">
+                Micro-USB power supply
+              </li>
+              <li class="p-list__item">
+                40 pin GPIO
+              </li>
+            </ul>
+          </div>
+          <div class="p-card__footer">
+            <button class="p-button--positive u-no-margin--bottom" disabled="disabled">Discontinued</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="u-fixed-width">
+        <hr class="p-separator" style="margin: 2rem 0;" />
+      </div>
+
+      <div class="row">
+        <h3 class="u-sv3">Certified appliances for Raspberry Pi</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+          <a href="/appliance/openhab" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">OpenHab</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/fa5dd451-OpenHAB.png" style="height:32px; margin-top:2rem;">
+            </div>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="/appliance/plex" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">Plex</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/3cd85693-Plex.png" alt="" style="height:32px; margin-top:2rem;">
+            </div>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="/appliance/nextcloud" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">NextCloud</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/d3a211c9-Nextcloud.png" alt="" style="height:62px; margin-top:1.25rem;">
+            </div>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="/appliance/adguard" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">Adguard</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/1ec45573-AdGuard.png" alt="" style="height:62px; margin-top:1.25rem;">
+            </div>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="/appliance/mosquitto" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">Mosquitto</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/08/mosquitto-logo-only.svg.png" alt="" style="height:72px; margin-top:1rem;">
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="intel-panel" class="p-tabs__content" role="tabpanel" aria-labelledby="intel-tab">
+    <section class="p-strip is-shallow u-no-padding--bottom">
+      <div class="row u-equal-height">
+        <div class="col-8">
+          <h2>The PC device family</h2>
+          <p>The board that puts the power of a full-size PC in the palm of your hand. Fully certified and supported by Canonical. Ubuntu ‘just works’ on numerous Intel-NUC devices, and is recommended for testing and development of Ubuntu Appliances that require X86 architecture or more computational power than a Raspberry Pi.</p>
+          <p>This small-form-factor PC can be thought of as a laptop without a screen or battery. It is the best choice for discreet or computationally heavy appliances.</p>
+        </div>
+        <div class="col-4 u-vertically-center u-align--center u-hide--small">
+          <img src="https://assets.ubuntu.com/v1/26b411f9-Intel+NUC.png" alt="">
+        </div>
+      </div>
+    </section>
+    <section class="p-strip">
+      <div class="row">
+        <h3>Cerified Devices</h3>
+      </div>
+      <div class="row u-equal-height">
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>Intel NUC7CJYH</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/64f3e120-Intel-NUC7CJYH-Box1.jpg?w=225" style="margin: 1rem 0;" alt="">
+            </div>
+          </div>
+          <div class="p-card__footer">
+            <a href="https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc/mini-pcs.html" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Buy it</span></a>
+          </div>
+        </div>
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>Intel NUC7PJYH</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/85d6a514-Intel-NUC7PJYH-Box2.jpg?w=225" style="margin: 1rem 0;" alt="">
+            </div>
+          </div>
+          <div class="p-card__footer">
+            <a href="https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc/mini-pcs.html" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Buy it</span></a>
+          </div>
+        </div>
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>Intel NUC7i3DNHE</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/270058f5-Intel-NUC7i3DNHE-Box3.jpg?w=225" style="margin: 1rem 0;" alt="">
+            </div>
+          </div>
+          <div class="p-card__footer">
+            <a href="https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc/mini-pcs.html" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Buy it</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="row u-equal-height">
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>Intel NUC7i5DNHE</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/d45cf681-Intel-NUC7i5DNHE-Box4.jpg?w=225" style="margin: 1rem 0;" alt="">
+            </div>
+          </div>
+          <div class="p-card__footer">
+            <a href="https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc/mini-pcs.html" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Buy it</span></a>
+          </div>
+        </div>
+        <div class="col-4 p-card--layout">
+          <div class="p-card__header">
+            <h4>Intel TANK-870-Q170</h4>
+            <div class="p-label--new">CERTIFIED</div>
+          </div>
+          <div class="p-card__main">
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/139526f0-Intel-TANK-870-Q170-Box5.jpg?h=150" alt="">
+            </div>
+          </div>
+          <div class="p-card__footer">
+            <a href="https://www.intel.co.uk/content/www/uk/en/products/boards-kits/nuc/mini-pcs.html" class="p-button--positive u-no-margin--bottom"><span class="p-link--external">Buy it</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="u-fixed-width">
+        <hr class="p-separator" style="margin: 2rem 0;" />
+      </div>
+
+      <div class="row">
+        <h3 class="u-sv3">Certified appliances for Intel NUC</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-2">
+          <a href="/appliance/openhab" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">OpenHab</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/fa5dd451-OpenHAB.png" style="height:32px; margin-top:2rem;">
+            </div>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="/appliance/plex" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">Plex</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/3cd85693-Plex.png" alt="" style="height:32px; margin-top:2rem;">
+            </div>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="/appliance/nextcloud" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">NextCloud</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/d3a211c9-Nextcloud.png" alt="" style="height:62px; margin-top:1.25rem;">
+            </div>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="/appliance/adguard" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">Adguard</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://assets.ubuntu.com/v1/1ec45573-AdGuard.png" alt="" style="height:62px; margin-top:1.25rem;">
+            </div>
+          </a>
+        </div>
+        <div class="col-2">
+          <a href="/appliance/mosquitto" class="p-link--soft">
+            <h3 class="p-heading--five u-no-padding--top">Mosquitto</h3>
+            <hr />
+            <div class="u-align--center">
+              <img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/08/mosquitto-logo-only.svg.png" alt="" style="height:72px; margin-top:1rem;">
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Appliance hardware partners</h2>
+      <p>Canonical works with these hardware vendors to certify and maintain enterprise-grade appliances.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/6077ee45-Dell.svg" alt="Dell">
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/1ca57ae1-Lenovo.svg" alt="Lenovo">
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/ffda2d20-HP.svg" alt="HP">
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/185a14f4-Avnet.png" alt="Avnet">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script src="{{ versioned_static('js/build/tabotronic.min.js') }}" defer></script>
+
+{% endblock content %}
