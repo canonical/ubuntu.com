@@ -1,0 +1,23 @@
+{% extends "appliance/_base-appliance.html" %}
+
+{% block title %}Ubuntu Appliance{% endblock %}
+
+{% block meta_description %}Ubuntu Appliances are certified to run flawlessly on Raspberry Pi and PC boards. They are free, privacy-friendly and come with maintenance guarantees.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1DABafCPzl9WwOmHX8ejkkiUEKXI2fTlF7UXNB0Xhlo0/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru is-dark">
+  <div class="row">
+    <h1>Find your favourite Ubuntu Appliance</h1>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  {% with heading="Featured today" %}{% include "/appliance/shared/_featured_appliances.html" %}{% endwith %}
+</section>
+
+{% include "/appliance/shared/_join_the_community.html" %}
+
+{% endblock %}
