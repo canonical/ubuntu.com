@@ -2,11 +2,11 @@ import dummyData from "./dummy-data";
 
 function debounce(func, wait, immediate) {
   var timeout;
-  return function() {
+  return function () {
     var context = this,
       args = arguments;
     clearTimeout(timeout);
-    timeout = setTimeout(function() {
+    timeout = setTimeout(function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
     }, wait);
@@ -15,7 +15,7 @@ function debounce(func, wait, immediate) {
 }
 
 function calcPercentage(dataset, datum) {
-  var sum = d3.sum(dataset, function(d) {
+  var sum = d3.sum(dataset, function (d) {
     return d.value;
   });
   var percentage = (datum * 100) / sum;
@@ -34,13 +34,13 @@ function manipulateData(data, options) {
 
   switch (sort) {
     case "descending":
-      sortedData.sort(function(a, b) {
+      sortedData.sort(function (a, b) {
         return d3.descending(a.value, b.value);
       });
       return sortedData.slice(0, truncPoint);
 
     case "ascending":
-      sortedData.sort(function(a, b) {
+      sortedData.sort(function (a, b) {
         return d3.ascending(a.value, b.value);
       });
       return sortedData.slice(
@@ -72,12 +72,9 @@ function colorShade(usageRange, colors) {
 }
 
 function wrapText(text, width) {
-  text.each(function() {
+  text.each(function () {
     var text = d3.select(this);
-    var words = text
-      .text()
-      .split(/\s+/)
-      .reverse();
+    var words = text.text().split(/\s+/).reverse();
     var word;
     var line = [];
     var lineNumber = 0;
@@ -123,7 +120,7 @@ function createBarChart(selector, dataset, options) {
         top: 20,
         right: 5,
         bottom: 50,
-        left: 0
+        left: 0,
       };
   var colors = options.hasOwnProperty("colors")
     ? options.colors
@@ -134,7 +131,7 @@ function createBarChart(selector, dataset, options) {
   var data = dataset.slice();
   data = manipulateData(data, {
     sort: sort,
-    truncPoint: truncPoint
+    truncPoint: truncPoint,
   });
 
   // Orientate svg and give it class name
@@ -154,7 +151,7 @@ function createBarChart(selector, dataset, options) {
     .rangeRound([0, width])
     .padding(0.1)
     .domain(
-      data.map(function(d) {
+      data.map(function (d) {
         return d.label;
       })
     );
@@ -165,21 +162,16 @@ function createBarChart(selector, dataset, options) {
     .domain([
       0,
       Math.ceil(
-        d3.max(data, function(d) {
+        d3.max(data, function (d) {
           return calcPercentage(data, d.value);
         })
-      )
+      ),
     ]);
 
   // Generate axes
   g.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(
-      d3
-        .axisBottom(x)
-        .tickSize(0)
-        .tickPadding(16)
-    )
+    .call(d3.axisBottom(x).tickSize(0).tickPadding(16))
     .selectAll(".tick text")
     .attr("text-anchor", "middle")
     .call(wrapText, x.bandwidth());
@@ -193,17 +185,17 @@ function createBarChart(selector, dataset, options) {
     .enter()
     .append("rect")
     .attr("class", "p-bar-chart__bar")
-    .attr("fill", function(d, i) {
+    .attr("fill", function (d, i) {
       return ordinalColors(i);
     })
-    .attr("x", function(d) {
+    .attr("x", function (d) {
       return x(d.label);
     })
-    .attr("y", function(d) {
+    .attr("y", function (d) {
       return y(calcPercentage(data, d.value));
     })
     .attr("width", x.bandwidth() - 24)
-    .attr("height", function(d) {
+    .attr("height", function (d) {
       return height - y(calcPercentage(data, d.value));
     });
 
@@ -214,15 +206,15 @@ function createBarChart(selector, dataset, options) {
     .enter()
     .append("text")
     .style("font-size", "16px")
-    .attr("x", function(d) {
+    .attr("x", function (d) {
       return x(d.label) + x.bandwidth() / 2 - 24;
     })
     .attr("dy", "-10px") // add padding to top of bar
-    .attr("y", function(d) {
+    .attr("y", function (d) {
       return y(calcPercentage(data, d.value));
     })
     .attr("class", "label")
-    .text(function(d) {
+    .text(function (d) {
       return Math.floor(calcPercentage(data, d.value), 1) + "%";
     });
 }
@@ -240,7 +232,7 @@ function createHorizontalBarChart(selector, dataset, options) {
         top: 20,
         right: 30,
         bottom: 20,
-        left: 60
+        left: 60,
       };
   var colors = options.hasOwnProperty("colors")
     ? options.colors
@@ -252,7 +244,7 @@ function createHorizontalBarChart(selector, dataset, options) {
   var data = dataset.slice().reverse();
   data = manipulateData(data, {
     sort: sort,
-    truncPoint: truncPoint
+    truncPoint: truncPoint,
   });
 
   // Orientate svg and give it class name
@@ -272,7 +264,7 @@ function createHorizontalBarChart(selector, dataset, options) {
     .range([height, 0])
     .padding(0.5)
     .domain(
-      data.map(function(d) {
+      data.map(function (d) {
         return d.label;
       })
     );
@@ -283,10 +275,10 @@ function createHorizontalBarChart(selector, dataset, options) {
     .domain([
       0,
       Math.ceil(
-        d3.max(data, function(d) {
+        d3.max(data, function (d) {
           return calcPercentage(data, d.value);
         })
-      )
+      ),
     ]);
 
   // Generate bars
@@ -295,11 +287,11 @@ function createHorizontalBarChart(selector, dataset, options) {
     .enter()
     .append("rect")
     .attr("class", "p-bar-chart__bar")
-    .attr("fill", function(d, i) {
+    .attr("fill", function (d, i) {
       return ordinalColors(i);
     })
     .attr("x", -3)
-    .attr("y", function(d, i) {
+    .attr("y", function (d, i) {
       if (chartTitle) {
         if (i > 0) {
           return y(d.label) + y.bandwidth() / 2 - 10;
@@ -310,7 +302,7 @@ function createHorizontalBarChart(selector, dataset, options) {
       return y(d.label);
     })
     .attr("height", "16px")
-    .attr("width", function(d) {
+    .attr("width", function (d) {
       return x(calcPercentage(data, d.value));
     });
 
@@ -320,10 +312,10 @@ function createHorizontalBarChart(selector, dataset, options) {
     .enter()
     .append("text")
     .style("font-size", "14px")
-    .attr("x", function(d) {
+    .attr("x", function (d) {
       return x(calcPercentage(data, d.value)) + 4;
     })
-    .attr("y", function(d, i) {
+    .attr("y", function (d, i) {
       if (chartTitle) {
         if (i > 0) {
           return y(d.label) + y.bandwidth() / 2 + 4;
@@ -334,7 +326,7 @@ function createHorizontalBarChart(selector, dataset, options) {
       return y(d.label) + y.bandwidth() / 2 + 4;
     })
     .attr("class", "label")
-    .text(function(d) {
+    .text(function (d) {
       return Math.floor(calcPercentage(data, d.value), 1) + "%";
     });
 
@@ -345,14 +337,14 @@ function createHorizontalBarChart(selector, dataset, options) {
       .enter()
       .append("text")
       .attr("class", "left-axis")
-      .attr("x", function() {
+      .attr("x", function () {
         return -70;
       })
-      .attr("y", function(d) {
+      .attr("y", function (d) {
         return y(d.label) + y.bandwidth() / 2 + 5 - y.bandwidth();
       })
       .attr("class", "label")
-      .text(function(d, i) {
+      .text(function (d, i) {
         if (i % 2 === 0) return chartTitle;
       });
   } else {
@@ -363,10 +355,10 @@ function createHorizontalBarChart(selector, dataset, options) {
       .attr("text-anchor", "end")
       .attr("class", "left-axis")
       .attr("x", "-10")
-      .attr("y", function(d) {
+      .attr("y", function (d) {
         return y(d.label) + y.bandwidth() / 2 + 4;
       })
-      .text(function(d) {
+      .text(function (d) {
         return d.label;
       });
   }
@@ -398,11 +390,11 @@ function createPieChart(selector, dataset, options) {
 
   if (labelKey && !noStats) {
     // Sum all the data
-    var sum = d3.sum(data, function(d) {
+    var sum = d3.sum(data, function (d) {
       return d.value;
     });
 
-    var labelData = data.find(function(d) {
+    var labelData = data.find(function (d) {
       return d.label.toUpperCase() === labelKey.toUpperCase();
     });
 
@@ -414,7 +406,7 @@ function createPieChart(selector, dataset, options) {
 
   data = manipulateData(data, {
     sort: sort,
-    truncPoint: truncPoint
+    truncPoint: truncPoint,
   });
 
   // Orientate svg
@@ -430,15 +422,12 @@ function createPieChart(selector, dataset, options) {
     .attr("transform", "translate(" + radius + "," + radius + ")");
 
   // Generate pie values
-  var pie = d3.pie().value(function(d) {
+  var pie = d3.pie().value(function (d) {
     return d.value;
   });
 
   // Generate the arcs
-  var arc = d3
-    .arc()
-    .innerRadius(donutRadius)
-    .outerRadius(radius);
+  var arc = d3.arc().innerRadius(donutRadius).outerRadius(radius);
 
   // Generate the groups
   var arcs = g
@@ -451,7 +440,7 @@ function createPieChart(selector, dataset, options) {
   // Draw arc paths
   arcs
     .append("path")
-    .attr("fill", function(d, i) {
+    .attr("fill", function (d, i) {
       return ordinalColors(i);
     })
     .attr("d", arc);
@@ -489,10 +478,7 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
       .attr("height", height);
 
     var g = svg.append("g");
-    var tooltip = d3
-      .select(selector)
-      .append("div")
-      .attr("class", "p-tooltip");
+    var tooltip = d3.select(selector).append("div").attr("class", "p-tooltip");
     var tooltipMessage = tooltip
       .append("div")
       .attr("class", "p-tooltip__message p-tooltip__message--padding")
@@ -510,10 +496,10 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
       .data(countries)
       .enter()
       .append("path")
-      .attr("fill", function(country) {
+      .attr("fill", function (country) {
         if (country) {
           // Return the ubuntu usage stats for the country
-          var countryStat = options.countryStats.find(function(ctryStat) {
+          var countryStat = options.countryStats.find(function (ctryStat) {
             return parseInt(country.id, 10) === parseInt(ctryStat.id, 10);
           });
 
@@ -527,21 +513,21 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
       .attr("stroke", "#FFFFFF")
       .attr("stroke-width", "0.25px")
       .attr("d", geoPath)
-      .attr("id", function(d) {
+      .attr("id", function (d) {
         return d.id;
       })
-      .attr("title", function(d) {
+      .attr("title", function (d) {
         return d.properties.name;
       })
-      .on("mousemove", function(country) {
+      .on("mousemove", function (country) {
         var position = d3.mouse(g.node());
         // Check that country id starts with a zero trim the leading zeros
         country.id =
           country.id.charAt(0) === "0" ? country.id.substr(1) : country.id;
-        var countryName = countryNamesData.find(function(ctryName) {
+        var countryName = countryNamesData.find(function (ctryName) {
           return ctryName.id === country.id;
         });
-        var countryStat = options.countryStats.find(function(ctryStat) {
+        var countryStat = options.countryStats.find(function (ctryStat) {
           return parseInt(country.id, 10) === parseInt(ctryStat.id, 10);
         });
         if (countryName) {
@@ -550,7 +536,7 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
           // Check where the top and left axis start from for each tooltip and reposition the tooltip message
           if (position[0] < 150) {
             tooltipLocation = "p-tooltip p-tooltip--right";
-          } else if (position[1] < 50 && position[0] < 150) {
+          } else if (position[1] < 50 && position[0] > 150) {
             tooltipLocation = "p-tooltip p-tooltip--bottom-right";
           } else if (position[1] < 50) {
             tooltipLocation = "p-tooltip p-tooltip--bottom-center";
@@ -578,22 +564,22 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
           );
         }
       })
-      .on("mouseout", function() {
+      .on("mouseout", function () {
         tooltip.style("display", "none");
       });
   }
 
   d3.tsv(countryNamesAndIds)
-    .then(function(countryNamesData) {
+    .then(function (countryNamesData) {
       d3.json(mapData)
-        .then(function(world) {
+        .then(function (world) {
           return render(countryNamesData, world);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           throw new Error(error);
         });
     })
-    .catch(function(error) {
+    .catch(function (error) {
       throw new Error(error);
     });
 }
@@ -602,7 +588,7 @@ function clearCharts() {
   var charts = document.querySelectorAll(
     ".p-bar-chart, .p-pie-chart, .p-progress-chart"
   );
-  charts.forEach(function(chart) {
+  charts.forEach(function (chart) {
     chart.innerHTML = "";
   });
 }
@@ -615,52 +601,52 @@ function buildCharts() {
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: "One Screen"
-    }
+      title: "One Screen",
+    },
   });
   createPieChart("#what-graphics-one-gpu", dummyData.numberGPUs.dataset, {
     colors: ["#772953", "#CCC"],
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: "One GPU"
-    }
+      title: "One GPU",
+    },
   });
 
   createPieChart("#opt-in", dummyData.optIn.dataset, {
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: "Opt-In"
-    }
+      title: "Opt-In",
+    },
   });
   createPieChart("#real-or-virtual", dummyData.realOrVirtual.dataset, {
     size: 184,
-    donutRadius: 76
+    donutRadius: 76,
   });
   createPieChart("#firmware-hw", dummyData.firmware.datasets.hardware, {
     colors: ["#772953", "#E95420", "#CCC"],
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: "Physical"
+      title: "Physical",
     },
-    noStats: true
+    noStats: true,
   });
 
   createPieChart("#os-architecture", dummyData.osArchitecture.dataset, {
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: "amd64"
-    }
+      title: "amd64",
+    },
   });
   createPieChart("#display-server", dummyData.displayServer.dataset, {
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: "X11"
-    }
+      title: "X11",
+    },
   });
 
   createHorizontalBarChart(
@@ -673,8 +659,8 @@ function buildCharts() {
         top: 5,
         right: 40,
         bottom: 20,
-        left: 100
-      }
+        left: 100,
+      },
     }
   );
   createBarChart("#number-of-cpus", dummyData.cpus.dataset, {
@@ -683,8 +669,8 @@ function buildCharts() {
       top: 20,
       right: 20,
       bottom: 30,
-      left: -10
-    }
+      left: -10,
+    },
   });
   createBarChart("#size-of-ram", dummyData.ram.dataset, {
     colors: ["#E95420", "#772953"],
@@ -692,8 +678,8 @@ function buildCharts() {
       top: 20,
       right: 20,
       bottom: 30,
-      left: -10
-    }
+      left: -10,
+    },
   });
   createBarChart("#pixel-density", dummyData.pixelDensity.dataset);
   createBarChart("#partition-number", dummyData.partitionNum.dataset);
@@ -711,8 +697,8 @@ function buildCharts() {
       size: 184,
       donutRadius: 76,
       centreLabel: {
-        title: "Physical"
-      }
+        title: "Physical",
+      },
     }
   );
   createPieChart(
@@ -722,16 +708,16 @@ function buildCharts() {
       size: 184,
       donutRadius: 76,
       centreLabel: {
-        title: "Physical"
-      }
+        title: "Physical",
+      },
     }
   );
   createPieChart("#auto-login-hw", dummyData.autoLogin.datasets.hardware, {
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: "Physical"
-    }
+      title: "Physical",
+    },
   });
   createPieChart(
     "#minimal-install-hw",
@@ -740,8 +726,8 @@ function buildCharts() {
       size: 184,
       donutRadius: 76,
       centreLabel: {
-        title: "Physical"
-      }
+        title: "Physical",
+      },
     }
   );
   createPieChart(
@@ -751,8 +737,8 @@ function buildCharts() {
       size: 184,
       donutRadius: 76,
       centreLabel: {
-        title: "Physical"
-      }
+        title: "Physical",
+      },
     }
   );
 
@@ -764,8 +750,8 @@ function buildCharts() {
       size: 184,
       donutRadius: 76,
       centreLabel: {
-        title: "Virtual"
-      }
+        title: "Virtual",
+      },
     }
   );
   createPieChart("#firmware-vm", dummyData.firmware.datasets.virtual, {
@@ -773,9 +759,9 @@ function buildCharts() {
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: "Virtual"
+      title: "Virtual",
     },
-    noStats: true
+    noStats: true,
   });
   createPieChart(
     "#restrict-add-on-vm",
@@ -785,8 +771,8 @@ function buildCharts() {
       size: 184,
       donutRadius: 76,
       centreLabel: {
-        title: "Virtual"
-      }
+        title: "Virtual",
+      },
     }
   );
   createPieChart("#auto-login-vm", dummyData.autoLogin.datasets.virtual, {
@@ -794,8 +780,8 @@ function buildCharts() {
     size: 184,
     donutRadius: 76,
     centreLabel: {
-      title: "Virtual"
-    }
+      title: "Virtual",
+    },
   });
   createPieChart(
     "#minimal-install-vm",
@@ -805,8 +791,8 @@ function buildCharts() {
       size: 184,
       donutRadius: 76,
       centreLabel: {
-        title: "Virtual"
-      }
+        title: "Virtual",
+      },
     }
   );
   createPieChart(
@@ -817,8 +803,8 @@ function buildCharts() {
       size: 184,
       donutRadius: 76,
       centreLabel: {
-        title: "Virtual"
-      }
+        title: "Virtual",
+      },
     }
   );
 
@@ -830,8 +816,8 @@ function buildCharts() {
         top: 20,
         right: 30,
         bottom: 20,
-        left: 100
-      }
+        left: 100,
+      },
     }
   );
 
@@ -843,11 +829,11 @@ function buildCharts() {
         top: 40,
         right: 10,
         bottom: 60,
-        left: 10
-      }
+        left: 10,
+      },
     });
     createBarChart("#physical-disk", dummyData.physicalDisk.dataset, {
-      colors: ["#E95420", "#772953"]
+      colors: ["#E95420", "#772953"],
     });
     createBarChart("#partition-type", dummyData.partitionType.dataset, {
       sort: "descending",
@@ -855,12 +841,12 @@ function buildCharts() {
         top: 20,
         right: 20,
         bottom: 70,
-        left: -5
-      }
+        left: -5,
+      },
     });
   } else {
     createHorizontalBarChart("#physical-disk", dummyData.physicalDisk.dataset, {
-      colors: ["#E95420", "#772953"]
+      colors: ["#E95420", "#772953"],
     });
     createHorizontalBarChart(
       "#partition-type",
@@ -870,15 +856,15 @@ function buildCharts() {
           top: 20,
           right: 40,
           bottom: 20,
-          left: 200
-        }
+          left: 200,
+        },
       }
     );
     createHorizontalBarChart(
       "#language-list-chart",
       dummyData.languageList.dataset,
       {
-        sort: "ascending"
+        sort: "ascending",
       }
     );
   }
@@ -886,7 +872,7 @@ function buildCharts() {
 
 window.addEventListener(
   "resize",
-  debounce(function() {
+  debounce(function () {
     clearCharts();
     buildCharts();
   }, 250)
