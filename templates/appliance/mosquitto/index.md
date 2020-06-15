@@ -29,7 +29,7 @@ context:
     1: "EU GDPR"
     2: "California law"
   base: "core20"
-  published_date: "YYYY-MM-DD"
+  published_date: "2020-06-12"
   maintenance_date: "2030-06-16"
   snaps:
     1:

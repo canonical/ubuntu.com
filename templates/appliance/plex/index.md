@@ -1,13 +1,13 @@
 ---
 wrapper_template: "appliance/shared/_base_appliance_index.html"
 context:
-  name: "Plex"
+  name: "Plex Media Server"
   short_name: "plex"
   appliance_name: "Plex Media Server"
   company_name: "Plex Inc. (plexinc)"
   logo: "https://assets.ubuntu.com/v1/402069bd-plex-media-server.png"
   category: "Entertainment"
-  meta_description: "Build your Plex appliance with Ubuntu Appliance images with preinstalled snaps. Plex magically organizes your media libraries and streams them to any device – including all your video, music, and photo libraries."
+  meta_description: "Build your Plex Media Server appliance with the Ubuntu Appliance image. Plex organises your media libraries and streams them to any device – including all your video, music and photo libraries."
   downloads:
     raspberrypi: True
     pc: True
@@ -32,8 +32,9 @@ context:
     1: "EU GDPR"
     2: "California law"
   base: "core20"
-  published_date: "YYYY-MM-DD"
-  maintenance_date: "YYYY-MM-DD"
+  published_date: "2020-06-16"
+  maintenance_date: "2020-06-16"
+  certification_note: "Not guaranteed to work on the Raspberry Pi 3A+"
   snaps:
     1:
       name: "Plex Media Server"
@@ -55,4 +56,5 @@ Plex magically organizes your media libraries and streams them to any device &md
 - Cut the cord! Go premium with a Plex Pass and use Plex Live TV & DVR so you can watch and record free over-the-air HD TV, like NBC, ABC, CBS, and FOX, with any supported digital antenna and tuner
 - Enjoy free features, like remote access, sharing, security, and casting, see your media beautifully enhanced with rich descriptions, artwork, ratings, and more
 - Enjoy premium features with a Plex Pass subscription: DVR & Live TV, Camera Upload, Premium Photos, Mobile Sync, Parental Controls, VIP Perks, and much more
-- Want to use Plex on all of your devices, any time, anywhere? Visit <a href="https://www.plex.tv/" class="p-link--external">www.plex.tv</a> for more information.
+
+Want to use Plex on all of your devices, any time, anywhere? Visit <a href="https://www.plex.tv/" class="p-link--external">www.plex.tv</a> for more information.

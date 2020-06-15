@@ -105,6 +105,9 @@
     <div class="col-3">
       {% if maintenance_date %}
       <div class="p-label--new">Certified</div>
+      {% if certification_note %}
+      <p><em>{{ certification_note }}</em></p>
+      {% endif %}
       <p>Maintained until {{ maintenance_date }}<br />
         {% if downloads.raspberrypi %}ARM{% endif %}{% if downloads.pc and downloads.raspberrypi %}, {% endif %}{% if downloads.pc %}x86{% endif %}
       </p>
