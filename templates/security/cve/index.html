@@ -117,11 +117,11 @@
                   {% endif %}
                 {% endif %}
                   <div class="icon-container__icon">
-                    {% if release.status == 'DNE' or release.status == 'not-affected' %}
+                    {% if statuses[release.codename].status == 'DNE' or statuses[release.codename].status == 'not-affected' %}
                       <i class="p-icon--placeholder"></i>
                     {% else %}
                       {% if cve.priority == 'unknown' %}
-                        <i class="p-icon--unknown-priority"></i>
+                        <i class="p-icon--placeholder"></i>
                       {% elif cve.priority == 'negligible' %}
                         <i class="p-icon--negligible-priority"></i>
                       {% elif cve.priority == 'low' %}
