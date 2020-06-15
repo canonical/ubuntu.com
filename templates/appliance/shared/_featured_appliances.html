@@ -1,4 +1,9 @@
 <div class="row">
+  {% if heading %}
+  <div class="col-2">
+    <h2 class="p-muted-heading">{{ heading }}</h2>
+  </div>
+  {% endif %}
   <div class="col-2">
     <a href="/appliance/openhab" class="p-link--soft">
       <h3 class="p-heading--five u-no-padding--top">OpenHab</h3>
@@ -28,7 +33,7 @@
   </div>
   <div class="col-2">
     <a href="/appliance/adguard" class="p-link--soft">
-      <h3 class="p-heading--five u-no-padding--top">Adguard</h3>
+      <h3 class="p-heading--five u-no-padding--top">AdGuard</h3>
       <hr />
       <div class="u-align--center">
         <img src="https://assets.ubuntu.com/v1/1ec45573-AdGuard.png" alt="" style="height:62px; margin-top:1.25rem;">
