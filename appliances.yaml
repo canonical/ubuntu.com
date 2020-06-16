@@ -8,9 +8,11 @@ appliances:
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-pi.img.xz"
       pc: "http://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-amd64.img.xz"
+      pi2: "http://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-pi-armhf.img.xz"
     checksum:
       raspberrypi: "a05439e8ff97f9542bb611d16be6469943b5285934a5dff4d3b98164fea8d3f9 *plexmediaserver-core18-pi.img.xz"
       pc: "fec85292571d68a08b12991e9e044840d7379c35333b3a2d44176daa25507f49 *plexmediaserver-core18-amd64.img.xz"
+      pi2: "6a5b29459185ef7056e7359ac7bbee5cbf400ca256e7574bbf24509bb651cf49 *plexmediaserver-core18-pi-armhf.img.xz"
   adguard:
     name: "AdGuard"
     appliance_name: "AdGuard"
@@ -19,10 +21,12 @@ appliances:
     port: 3000
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/adguard-home-core18-pi.img.xz"
-      pc: "http://cdimage.ubuntu.com/ubuntu-core/appliances/adguard-core18-amd64.img.xz"
+      pc: "http://cdimage.ubuntu.com/ubuntu-core/appliances/adguard-home-core18-amd64.img.xz"
+      pi2: "http://cdimage.ubuntu.com/ubuntu-core/appliances/adguard-home-core18-pi-armhf.img.xz"
     checksum:
       raspberrypi: "5c72286dee4c683dd24128455340285a6a7a0b82efaf004ccc7b2afe5ae2a1d8 *adguard-home-core18-pi.img.xz"
       pc: "6fc90a0695ec2b1e731be4cdd8583021aa284b4b829d99aba75e54d2da23fd14 *adguard-home-core18-amd64.img.xz"
+      pi2: "e94c3a58549b2faaa1bf817b2336e4f2c532f52a59b5d680f9649147fb70ed17 *adguard-home-core18-pi-armhf.img.xz"
   openhab:
     name: "OpenHAB"
     appliance_name: "OpenHAB"
@@ -32,9 +36,11 @@ appliances:
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/openhab-core18-pi.img.xz"
       pc: "http://cdimage.ubuntu.com/ubuntu-core/appliances/openhab-core18-amd64.img.xz"
+      pi2: "http://cdimage.ubuntu.com/ubuntu-core/appliances/openhab-core18-pi-armhf.img.xz"
     checksum:
       raspberrypi: "757b834c103313637d6930ddf3ab1701a969e2af4f28373622dd21c6de6f6eef *openhab-core18-pi.img.xz"
       pc: "d56b97b4df707f5299b45f075fd9f29734ebd6cf22b2950276a98e795f805a36 *openhab-core18-amd64.img.xz"
+      pi2: "5cf226fbb3f126f1571dc0b4708abca5acc47cf8dc6f206042fbb1888ed94904 *openhab-core18-pi-armhf.img.xz"
   mosquitto:
     name: "mosquitto"
     appliance_name: "Mosquitto"
@@ -44,9 +50,11 @@ appliances:
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/mosquitto-core18-pi.img.xz"
       pc: "http://cdimage.ubuntu.com/ubuntu-core/appliances/mosquitto-core18-amd64.img.xz"
+      pi2: "http://cdimage.ubuntu.com/ubuntu-core/appliances/mosquitto-core18-pi-armhf.img.xz"
     checksum:
       raspberrypi: "0fe7c069190e0e9bd8a1727ecfec540367a0890b6030831d5216090649848bb4 *mosquitto-core18-pi.img.xz"
       pc: "5a67a1de6f68cc55f5b27fb0210a83246e47f535ec7fd714ba207a5f4a10ed65 *mosquitto-core18-amd64.img.xz"
+      pi2: "ee9b10feda3bbe34cdad14528f6d2f7232027c7f9bf151b80c4082d8ccadc373 *mosquitto-core18-pi-armhf.img.xz"
   nextcloud:
     name: "NextCloud"
     appliance_name: "NextCloud"
@@ -56,6 +64,8 @@ appliances:
     iso_url:
       raspberrypi: "http://cdimage.ubuntu.com/ubuntu-core/appliances/nextcloud-core18-pi.img.xz"
       pc: "http://cdimage.ubuntu.com/ubuntu-core/appliances/nextcloud-core18-amd64.img.xz"
+      pi2: "http://cdimage.ubuntu.com/ubuntu-core/appliances/nextcloud-core18-pi-armhf.img.xz"
     checksum:
       raspberrypi: "b123b94f9ccec67dd207c90c48ea96c68c3cf45d896bcc31a5b466f55fcfb05a *nextcloud-core18-pi.img.xz"
       pc: "090560765f61b5ab509a303a2778c3782f13fa2d7cadae3e95b84a33c9bc558c *nextcloud-core18-amd64.img.xz"
+      pi2: "c6e6e8ea221e2573f61ec41a5e1694eec8cb4269761a46a726a167ce2abbad5e *nextcloud-core18-pi-armhf.img.xz"
