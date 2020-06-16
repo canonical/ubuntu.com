@@ -8,8 +8,8 @@ context:
   header_title: "A technical intro to Ubuntu&nbsp;Pro"
   header_subtitle: ""
   header_image: "https://assets.ubuntu.com/v1/605efe63-ubuntu-microsoft-azure-logos.svg"
-  header_image_width: "320"
-  header_image_height: "267"
+  header_image_width: "280"
+  header_image_height: "234"
   header_url: "#register-section"
   header_cta: "Watch Webinar"
   header_cta_class: p-button--positive
