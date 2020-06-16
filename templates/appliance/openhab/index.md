@@ -30,7 +30,7 @@ context:
   compliance:
     1: "EU GDPR"
     2: "California law"
-  base: "core20"
+  base: "core18"
   published_date: "2020-06-16"
   maintenance_date: "2030-06-16"
   certification_note: "Not guaranteed to work on the Raspberry Pi 3A+"
