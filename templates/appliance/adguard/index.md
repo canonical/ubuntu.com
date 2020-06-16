@@ -31,7 +31,7 @@ context:
     2: "California law"
   base: "core20"
   published_date: "2020-06-16"
-  maintenance_date: "2020-06-16"
+  maintenance_date: "2030-06-16"
   snaps:
     1:
       name: "AdGuard Home"
