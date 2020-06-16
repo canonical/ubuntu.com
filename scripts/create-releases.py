@@ -169,7 +169,7 @@ def load_releases():
             development=False,
             lts=True,
             release_date=datetime.strptime("2012-04-26", "%Y-%m-%d"),
-            esm_expires=datetime.strptime("2012-04-26", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2021-04-30", "%Y-%m-%d"),
             support_expires=datetime.strptime("2012-04-26", "%Y-%m-%d"),
         ),
         Release(
@@ -319,7 +319,7 @@ def load_releases():
             development=False,
             lts=False,
             release_date=datetime.strptime("2019-10-17", "%Y-%m-%d"),
-            esm_expires=datetime.strptime("2019-10-17", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2020-07-31", "%Y-%m-%d"),
             support_expires=datetime.strptime("2019-10-17", "%Y-%m-%d"),
         ),
         Release(
@@ -332,6 +332,7 @@ def load_releases():
             esm_expires=datetime.strptime("2030-04-30", "%Y-%m-%d"),
             support_expires=datetime.strptime("2025-04-30", "%Y-%m-%d"),
         ),
+        Release(codename="upstream", name="Upstream"),
     ]
 
     db_session.bulk_save_objects(releases)

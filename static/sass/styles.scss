@@ -44,6 +44,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_chart";
 @import "pattern_contact-modal";
 @import "pattern_contextual-footer";
+@import "pattern_cve";
 @import "pattern_desktop-statistics";
 @import "pattern_divider";
 @import "pattern_gaming";
@@ -56,6 +57,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_matrix";
 @import "pattern_navigation";
 @import "pattern_pie_chart";
+@import "pattern_renewal-modal";
 @import "pattern_separator";
 @import "pattern_strip";
 @import "pattern_strip-photos";
@@ -83,6 +85,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-cards;
 @include ubuntu-p-contact-modal;
 @include ubuntu-p-contextual-footer;
+@include ubuntu-p-cve;
 @include ubuntu-p-desktop-statistics;
 @include ubuntu-p-divider;
 @include ubuntu-p-footer;
@@ -95,6 +98,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-navigation;
 @include ubuntu-p-strip;
 @include ubuntu-p-pie-chart;
+@include ubuntu-p-renewal-modal;
 @include ubuntu-p-separator;
 @include ubuntu-p-strip-photos;
 @include ubuntu-p-table-of-contents;
@@ -350,7 +354,41 @@ summary {
   }
 }
 
+.p-table-expanding__panel {
+  @extend %vf-card;
+  @extend %vf-is-bordered;
+  @extend %vf-has-round-corners;
+
+  margin-bottom: 0;
+}
+
+.p-table--advantage-contract {
+  margin: 0 auto;
+  width: auto;
+
+  td {
+    display: table-cell;
+  }
+
+  tr {
+    display: table-row;
+  }
+}
+
 // Advantage section
+.p-table--advantage-contract {
+  margin: 0 auto;
+  width: auto;
+
+  td {
+    display: table-cell;
+  }
+
+  tr {
+    display: table-row;
+  }
+}
+
 .advantage-table {
   overflow: visible;
 
@@ -392,18 +430,10 @@ summary {
   margin-bottom: 0;
 }
 
-.p-table--advantage-contract {
-  margin: 0 auto;
-  width: auto;
-
+.p-table--advantage-contact {
+  th,
   td {
-    display: table-cell;
-  }
-
-  // Stylelint has a bug here. It is getting confused with `.advantage-table`.
-  /* stylelint-disable no-descending-specificity */
-  tr {
-    display: table-row;
+    flex: 1 !important;
   }
   /* stylelint-enable no-descending-specificity */
 }
@@ -462,7 +492,9 @@ summary {
     margin-bottom: 0;
 
     &--full-width {
+      height: 100%;
       overflow: hidden;
+      padding: 0.5rem 2.5rem 0.5rem 0.5rem;
       padding-right: 2rem;
       position: relative;
       text-overflow: ellipsis;
@@ -472,7 +504,7 @@ summary {
       .p-icon--contextual-menu {
         position: absolute;
         right: 0.5rem;
-        top: 0.6rem;
+        top: 1rem;
       }
     }
 
@@ -570,6 +602,14 @@ summary {
   }
 }
 
+.is-ticked__cross {
+  background-image: url("https://assets.ubuntu.com/v1/9cdb5b1e-cross-darkaubergine.svg");
+  background-position-y: 0.65rem;
+  background-repeat: no-repeat;
+  background-size: 0.875rem;
+  padding-left: 2rem;
+}
+
 .u-inline {
   display: inline;
 }
@@ -639,4 +679,68 @@ h4.p-stepped-list__title + .p-stepped-list__content {
   h4.p-stepped-list__title + .p-stepped-list__content {
     margin-left: 0;
   }
+}
+
+.is-bordered--top {
+  @extend %vf-pseudo-border--top;
+}
+
+// Utilities for using icons in table cells
+.icon-container__icon {
+  display: block;
+  float: left;
+  margin-right: 0.5rem;
+  width: 1rem;
+}
+
+.icon-container__text {
+  float: left;
+  width: calc(100% - 1.5rem);
+}
+
+.p-icon--placeholder {
+  height: 1rem;
+  margin-right: 1rem;
+  width: 1rem;
+}
+
+// Icons introduced in CVE work
+.p-icon--unknown-priority,
+.p-icon--negligible-priority,
+.p-icon--low-priority,
+.p-icon--medium-priority,
+.p-icon--high-priority,
+.p-icon--critical-priority {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  height: 1rem;
+  position: relative;
+  vertical-align: calc(0.5px + 0.3456em - 0.5em);
+  width: 1rem;
+}
+
+.p-icon--unknown-priority {
+  background-image: url("#{$assets-path}2dff197f-CVE-Priority-icon-Unknown.svg");
+}
+
+.p-icon--negligible-priority {
+  background-image: url("#{$assets-path}ef6c75b8-CVE-Priority-icon-Negligible.svg");
+}
+
+.p-icon--low-priority {
+  background-image: url("#{$assets-path}03ac6f86-CVE-Priority-icon-Low.svg");
+}
+
+.p-icon--medium-priority {
+  background-image: url("#{$assets-path}8010f9e0-CVE-Priority-icon-Medium.svg");
+}
+
+.p-icon--high-priority {
+  background-image: url("#{$assets-path}3887354e-CVE-Priority-icon-High.svg");
+}
+
+.p-icon--critical-priority {
+  background-image: url("#{$assets-path}c96f27b9-CVE-Priority-icon-Critical.svg");
 }

@@ -1,5 +1,6 @@
 # Standard library
-from collections import OrderedDict
+import re
+from collections import defaultdict
 from datetime import datetime
 from math import ceil
 
@@ -10,14 +11,14 @@ from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
-from sqlalchemy import asc, desc
-from sqlalchemy.exc import IntegrityError
-from sqlalchemy.orm.exc import NoResultFound
+from sortedcontainers import SortedDict
+from sqlalchemy import asc, desc, or_
+from sqlalchemy.exc import IntegrityError, DataError
 
 # Local
 from webapp.security.database import db_session
-from webapp.security.models import CVE, Notice, Reference, Release
-from webapp.security.schemas import NoticeSchema
+from webapp.security.models import CVE, Notice, Package, Status, Release
+from webapp.security.schemas import CVESchema, NoticeSchema
 from webapp.security.auth import authorization_required
 
 
@@ -32,41 +33,39 @@ def notice(notice_id):
     if not notice:
         flask.abort(404)
 
-    notice_packages = set()
-    releases_packages = {}
+    packages = []
+    release_packages = SortedDict()
 
-    for release, packages in notice.packages.items():
-        release_name = (
+    for codename, pkgs in notice.release_packages.items():
+        release_version = (
             db_session.query(Release)
-            .filter(Release.codename == release)
+            .filter(Release.codename == codename)
             .one()
             .version
         )
-        releases_packages[release_name] = []
-        for name, package in packages.get("sources", {}).items():
-            # Build pacakges per release dict
-            package["name"] = name
-            releases_packages[release_name].append(package)
-            # Build full package list
-            description = package.get("description")
-            package_name = f"{name} - {description}" if description else name
-            notice_packages.add(package_name)
 
-    # Guarantee release order
-    releases_packages = OrderedDict(
-        sorted(releases_packages.items(), reverse=True)
-    )
+        release_packages[release_version] = []
+        for package in pkgs:
+            if package["is_source"]:
+                packages.append(package)
+            else:
+                release_packages[release_version].append(package)
+
+        # Order packages for release by the name key
+        release_packages[release_version].sort(key=lambda pkg: pkg["name"])
+
+    # Order source packages by the name key
+    packages.sort(key=lambda pkg: pkg["name"])
 
     notice = {
         "id": notice.id,
         "title": notice.title,
         "published": notice.published,
         "summary": notice.summary,
-        "isummary": notice.isummary,
         "details": markdown_parser(notice.details),
         "instructions": markdown_parser(notice.instructions),
-        "packages": notice_packages,
-        "releases_packages": releases_packages,
+        "packages": packages,
+        "release_packages": release_packages,
         "releases": notice.releases,
         "cves": notice.cves,
         "references": notice.references,
@@ -82,7 +81,10 @@ def notices():
     order_by = flask.request.args.get("order", type=str)
 
     releases = (
-        db_session.query(Release).order_by(desc(Release.release_date)).all()
+        db_session.query(Release)
+        .order_by(desc(Release.release_date))
+        .filter(Release.version.isnot(None))
+        .all()
     )
     notices_query = db_session.query(Notice)
 
@@ -164,7 +166,7 @@ def notices_feed(feed_type):
         entry.description(description)
         entry.link(href=link)
         entry.published(f"{published} UTC")
-        entry.author(dict(name="Ubuntu Security Team"))
+        entry.author({"name": "Ubuntu Security Team"})
 
         return entry
 
@@ -184,16 +186,43 @@ def notices_feed(feed_type):
 
 # USN API
 # ===
+def _update_notice_object(notice, data):
+    """
+    Set fields on a Notice model object
+    """
+
+    notice.title = data["title"]
+    notice.summary = data["summary"]
+    notice.details = data["description"]
+    notice.release_packages = data["release_packages"]
+    notice.published = data["published"]
+    notice.references = data["references"]
+    notice.instructions = data["instructions"]
+    notice.releases = [
+        db_session.query(Release).get(codename)
+        for codename in data["release_packages"].keys()
+    ]
+
+    notice.cves.clear()
+    for cve_id in data["cves"]:
+        notice.cves.append(db_session.query(CVE).get(cve_id) or CVE(id=cve_id))
+
+    return notice
 
 
 @authorization_required
 def create_notice():
-    if not flask.request.json:
-        return (flask.jsonify({"message": "No payload received"}), 400)
+    """
+    POST method to create a new notice
+    """
 
     notice_schema = NoticeSchema()
+    notice_schema.context["release_codenames"] = [
+        rel.codename for rel in db_session.query(Release).all()
+    ]
+
     try:
-        data = notice_schema.load(flask.request.json, unknown=EXCLUDE)
+        notice_data = notice_schema.load(flask.request.json)
     except ValidationError as error:
         return (
             flask.jsonify(
@@ -202,58 +231,17 @@ def create_notice():
             400,
         )
 
-    notice = Notice(
-        id=data["notice_id"],
-        title=data["title"],
-        summary=data["summary"],
-        details=data["description"],
-        packages=data["releases"],
-        published=datetime.fromtimestamp(data["timestamp"]),
+    db_session.add(
+        _update_notice_object(Notice(id=notice_data["id"]), notice_data)
     )
 
-    if "action" in data:
-        notice.instructions = data["action"]
-
-    if "isummary" in data:
-        notice.isummary = data["isummary"]
-
-    # Link releases
-    for release_codename in data["releases"].keys():
-        try:
-            notice.releases.append(
-                db_session.query(Release)
-                .filter(Release.codename == release_codename)
-                .one()
-            )
-        except NoResultFound:
-            message = f"No release with codename: {release_codename}."
-            return (flask.jsonify({"message": message}), 400)
-
-    # Link CVEs, creating them if they don't exist
-    refs = set(data.get("references", []))
-    for ref in refs:
-        if ref.startswith("CVE-"):
-            cve_id = ref[4:]
-            cve = db_session.query(CVE).get(cve_id)
-            if not cve:
-                cve = CVE(id=cve_id)
-            notice.cves.append(cve)
-        else:
-            reference = (
-                db_session.query(Reference)
-                .filter(Reference.uri == ref)
-                .first()
-            )
-            if not reference:
-                reference = Reference(uri=ref)
-            notice.references.append(reference)
-
     try:
-        db_session.add(notice)
         db_session.commit()
     except IntegrityError:
         return (
-            flask.jsonify({"message": f"Notice {notice.id} already exists"}),
+            flask.jsonify(
+                {"message": f"Notice {notice_data['id']} already exists"}
+            ),
             400,
         )
 
@@ -261,13 +249,13 @@ def create_notice():
 
 
 @authorization_required
-def update_notice():
-    if not flask.request.json:
-        return (flask.jsonify({"message": "No payload received"}), 400)
+def update_notice(notice_id):
+    """
+    PUT method to update a single notice
+    """
 
-    notice_schema = NoticeSchema()
     try:
-        data = notice_schema.load(flask.request.json, unknown=EXCLUDE)
+        notice_data = NoticeSchema().load(flask.request.json, unknown=EXCLUDE)
     except ValidationError as error:
         return (
             flask.jsonify(
@@ -276,64 +264,265 @@ def update_notice():
             400,
         )
 
-    notice = db_session.query(Notice).get(data["notice_id"])
+    notice = db_session.query(Notice).get(notice_id)
+
     if not notice:
         return (
             flask.jsonify(
-                {"message": f"Notice {data['notice_id']} doesn't exist"}
+                {"message": f"Notice {notice_data['notice_id']} doesn't exist"}
             ),
             404,
         )
 
-    notice.title = data["title"]
-    notice.summary = data["summary"]
-    notice.details = data["description"]
-    notice.packages = data["releases"]
-    notice.published = datetime.fromtimestamp(data["timestamp"])
-
-    if "action" in data:
-        notice.instructions = data["action"]
-
-    if "isummary" in data:
-        notice.isummary = data["isummary"]
-
-    # Clear m2m relations to re-add
-    notice.cves.clear()
-    notice.releases.clear()
-    notice.references.clear()
-
-    # Link releases
-    for release_codename in data["releases"].keys():
-        try:
-            notice.releases.append(
-                db_session.query(Release)
-                .filter(Release.codename == release_codename)
-                .one()
-            )
-        except NoResultFound:
-            message = f"No release with codename: {release_codename}."
-            return (flask.jsonify({"message": message}), 400)
-
-    # Link CVEs, creating them if they don't exist
-    refs = set(data.get("references", []))
-    for ref in refs:
-        if ref.startswith("CVE-"):
-            cve_id = ref[4:]
-            cve = db_session.query(CVE).get(cve_id)
-            if not cve:
-                cve = CVE(id=cve_id)
-            notice.cves.append(cve)
-        else:
-            reference = (
-                db_session.query(Reference)
-                .filter(Reference.uri == ref)
-                .first()
-            )
-            if not reference:
-                reference = Reference(uri=ref)
-            notice.references.append(reference)
+    notice = _update_notice_object(notice, notice_data)
 
     db_session.add(notice)
     db_session.commit()
 
     return flask.jsonify({"message": "Notice updated"}), 200
+
+
+# CVE views
+# ===
+def cve_index():
+    """
+    Display the list of CVEs, with pagination.
+    Also accepts the following filtering query parameters:
+    - order-by - "oldest" or "newest"
+    - query - search query for the description field
+    - priority
+    - limit - default 20
+    - offset - default 0
+    """
+
+    # Query parameters
+    query = flask.request.args.get("q", "").strip()
+    priority = flask.request.args.get("priority")
+    package = flask.request.args.get("package")
+    limit = flask.request.args.get("limit", default=20, type=int)
+    offset = flask.request.args.get("offset", default=0, type=int)
+
+    is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
+
+    if is_cve_id and db_session.query(CVE).get(query.upper()):
+        return flask.redirect(f"/security/{query.lower()}")
+
+    cves_query = (
+        db_session.query(CVE)
+        .filter(CVE.statuses.any(Status.status.in_(Status.active_statuses)))
+        .filter(CVE.status == "active")
+    )
+
+    # Apply search filters
+    if package:
+        cves_query = cves_query.filter(
+            CVE.statuses.any(Status.package_name.ilike(f"%{package}%"))
+        )
+
+    if priority:
+        cves_query = cves_query.filter(CVE.priority == priority)
+
+    if query:
+        cves_query = cves_query.filter(CVE.description.ilike(f"%{query}%"))
+
+    cves = (
+        cves_query.order_by(desc(CVE.published))
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
+
+    # Pagination
+    total_results = cves_query.count()
+    releases = (
+        db_session.query(Release)
+        .order_by(desc(Release.release_date))
+        .filter(
+            or_(
+                Release.support_expires > datetime.now(),
+                Release.esm_expires > datetime.now(),
+            )
+        )
+        .all()
+    )
+
+    return flask.render_template(
+        "security/cve/index.html",
+        releases=releases,
+        cves=cves,
+        total_results=total_results,
+        total_pages=ceil(total_results / limit),
+        offset=offset,
+        limit=limit,
+        priority=priority,
+        query=query,
+        package=package,
+    )
+
+
+def cve(cve_id):
+    """
+    Retrieve and display an individual CVE details page
+    """
+
+    cve = db_session.query(CVE).get(cve_id.upper())
+
+    if not cve:
+        flask.abort(404)
+
+    releases = (
+        db_session.query(Release)
+        .order_by(desc(Release.release_date))
+        .filter(
+            or_(
+                Release.codename == "upstream",
+                Release.support_expires > datetime.now(),
+                Release.esm_expires > datetime.now(),
+            )
+        )
+        .all()
+    )
+
+    return flask.render_template(
+        "security/cve/cve.html", cve=cve, releases=releases
+    )
+
+
+# CVE API
+# ===
+def update_statuses(cve, data, packages, releases):
+    updated_statuses = []
+
+    for package_data in data.get("packages", []):
+        name = package_data["name"]
+        package = packages.get(name) or Package(name=name)
+        package.source = package_data["source"]
+        package.ubuntu = package_data["ubuntu"]
+        package.debian = package_data["debian"]
+        packages[name] = package
+
+        statuses = defaultdict(dict)
+
+        for status in cve.statuses:
+            statuses[status.package_name][status.release_codename] = status
+
+        for status_data in package_data["statuses"]:
+            codename = status_data["release_codename"]
+            release = releases.get(codename)
+
+            status = statuses[name].get(codename) or Status(
+                cve=cve, package=package, release=release
+            )
+
+            status.status = status_data["status"]
+            status.description = status_data["description"]
+
+            statuses[name][codename] = status
+
+            updated_statuses.append(status)
+
+    return updated_statuses
+
+
+@authorization_required
+def delete_cve(cve_id):
+    """
+    Delete a CVE from db
+    @params string: query string with the CVE id
+    """
+    cve_query = db_session.query(CVE)
+    cve = cve_query.filter(CVE.id == cve_id).first()
+
+    try:
+        db_session.delete(cve)
+        db_session.commit()
+
+    except IntegrityError as error:
+        return flask.jsonify({"message": error.orig.args[0]}), 400
+
+    return flask.jsonify({"message": "CVE deleted successfully"}), 200
+
+
+@authorization_required
+def bulk_upsert_cve():
+    """
+    Receives a PUT request from load_cve.py
+    Parses the object and bulk inserts or updates
+    @returns 3 lists of CVEs, created CVEs, updated CVEs and failed CVEs
+    """
+
+    cves_schema = CVESchema(many=True)
+    cves_schema.context["release_codenames"] = [
+        rel.codename for rel in db_session.query(Release).all()
+    ]
+
+    try:
+        cves_data = cves_schema.load(flask.request.json)
+    except ValidationError as error:
+        return (
+            flask.jsonify(
+                {"message": "Invalid payload", "errors": error.messages}
+            ),
+            400,
+        )
+
+    if len(cves_data) > 50:
+        return (
+            flask.jsonify(
+                {
+                    "message": (
+                        "Please only submit up to 50 CVEs at a time. "
+                        f"({len(cves_data)} submitted)"
+                    )
+                }
+            ),
+            413,
+        )
+
+    packages = {}
+    for package in db_session.query(Package).all():
+        packages[package.name] = package
+
+    for data in cves_data:
+        cve = db_session.query(CVE).get(data["id"]) or CVE(id=data["id"])
+
+        cve.status = data.get("status")
+        cve.published = data.get("published")
+        cve.priority = data.get("priority")
+        cve.cvss3 = data.get("cvss3")
+        cve.description = data.get("description")
+        cve.ubuntu_description = data.get("ubuntu_description")
+        cve.notes = data.get("notes")
+        cve.references = data.get("references")
+        cve.bugs = data.get("bugs")
+
+        statuses = update_statuses(
+            cve, data, packages, releases=db_session.query(Release)
+        )
+
+        db_session.add(cve)
+        db_session.add_all(statuses)
+
+    created = defaultdict(lambda: 0)
+    updated = defaultdict(lambda: 0)
+
+    for item in db_session.new:
+        created[type(item).__name__] += 1
+
+    for item in db_session.dirty:
+        updated[type(item).__name__] += 1
+
+    try:
+        db_session.commit()
+    except DataError as error:
+        return (
+            flask.jsonify(
+                {
+                    "message": "Failed bulk upserting session",
+                    "error": error.orig.args[0],
+                }
+            ),
+            400,
+        )
+
+    return (flask.jsonify({"created": created, "updated": updated}), 200)

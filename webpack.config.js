@@ -1,46 +1,34 @@
+/* eslint-env node */
+
+const entry = require("./webpack.config.entry.js");
+const rules = require("./webpack.config.rules.js");
+
+const TerserPlugin = require("terser-webpack-plugin");
+
+const production = process.env.ENVIRONMENT !== "devel";
+
+// turn on terser plugin on production
+const minimizer = production
+  ? [
+      new TerserPlugin({
+        sourceMap: true,
+      }),
+    ]
+  : [];
+
 module.exports = {
-  entry: {
-    contributions: "./static/js/src/contributions.js",
-    "desktop-statistics": "./static/js/src/desktop-statistics.js",
-    tutorials: [
-      "./static/js/src/tutorial-list.js",
-      "./static/js/src/tutorial.js",
-    ],
-    forms: "./static/js/src/forms.js",
-    "image-download": "./static/js/src/image-download.js",
-    main: [
-      "./static/js/src/polyfills.js",
-      "./static/js/src/contextual-menu.js",
-      "./static/js/src/dynamic-contact-form.js",
-      "./static/js/src/core.js",
-      "./static/js/src/navigation.js",
-      "./static/js/src/form-validation.js",
-      "./static/js/src/scratch.js",
-    ],
-    "release-chart": "./static/js/src/release-chart.js",
-    tabotronic: "./static/js/src/tabotronic.js",
-    "tco-calculator": "./static/js/src/tco-calculator.js",
-    "sticky-nav": "./static/js/src/sticky-nav.js",
-    imageBuilder: "./static/js/src/imageBuilder.js",
-    appliance: "./static/js/src/appliance.js"
-  },
-  mode: process.env.ENVIRONMENT === "devel" ? "development" : "production",
+  entry: entry,
   output: {
-    filename: "[name].min.js",
-    path: __dirname + "/static/js/build",
+    filename: "[name].js",
+    path: __dirname + "/static/js/dist",
   },
+  mode: production ? "production" : "development",
+  devtool: production ? "source-map" : "eval-source-map",
   module: {
-    rules: [
-      {
-        test: /\.m?js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"],
-          },
-        },
-      },
-    ],
+    rules: rules,
+  },
+  optimization: {
+    minimize: true,
+    minimizer,
   },
 };

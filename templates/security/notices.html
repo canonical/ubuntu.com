@@ -69,8 +69,8 @@
         <div class="p-form__group">
           <label class="p-form__label">Sort by:</label>
           <select class="p-form__control u-no-margin--bottom js-order-select">
-            <option value="newest" {% if request.args.get('order') == 'newest'%} selected {% endif %}>Newest</option>
-            <option value="oldest" {% if request.args.get('order') == 'oldest'%} selected {% endif %}>Oldest</option>
+            <option value="newest" {% if request.args.order == 'newest'%} selected {% endif %}>Newest</option>
+            <option value="oldest" {% if request.args.order == 'oldest'%} selected {% endif %}>Oldest</option>
           </select>
         </div>
       </div>  

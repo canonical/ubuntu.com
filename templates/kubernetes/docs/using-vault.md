@@ -35,7 +35,7 @@ The following overlay file ([download][vault-pki-yaml]) alters
 applications:
   easyrsa: null
   vault:
-    charm: cs:~openstack-charmers-next/vault
+    charm: cs:vault
     num_units: 1
     options:
       # this makes Vault act as a self-signed root CA
@@ -129,7 +129,7 @@ Deploy **Vault** and Percona Cluster:
 
 ```bash
 juju deploy cs:percona-cluster
-juju deploy cs:~openstack-charmers-next/vault
+juju deploy cs:vault
 juju config vault auto-generate-root-ca-cert=true
 juju add-relation vault:shared-db percona-cluster:shared-db
 ```
@@ -211,7 +211,7 @@ deploy, init, and unseal Vault:
 applications:
   easyrsa: null
   vault:
-    charm: cs:~openstack-charmers-next/vault
+    charm: cs:vault
     num_units: 2
     options:
       auto-generate-root-ca-cert: true

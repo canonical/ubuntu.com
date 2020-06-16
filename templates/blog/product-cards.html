@@ -1,4 +1,19 @@
-{% if article.group and article.group.slug == "kubernetes" %}
+
+{% if article.tags and 1572 in article.tags %}
+<div class="p-card" id="rtp-bootstack">
+<img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/00633f99-ubuntu-cloud-2.svg" alt="header image">
+<hr class="u-sv1">
+  <h3>
+    <a href="/openstack/managed">
+      Looking for a fully managed private cloud?
+    </a>
+  </h3>
+  <p>
+    Designed with economics in mind, Canonical's Managed OpenStack is the most cost-efficient path to a fully managed private cloud.
+  </p>
+  <p><a href="/openstack/managed">Learn more about Managed OpenStack &rsaquo;</a></p>
+</div>
+{% elif article.group and article.group.slug == "kubernetes" %}
 <div class="p-card" id="rtp-k8s">
   <h3>
     <a href="/kubernetes">

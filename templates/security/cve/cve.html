@@ -1,0 +1,225 @@
+{% extends "security/cve/base_cve.html" %}
+{% block title %}{{ cve.id }}{% endblock %}
+
+{% block head_extra %}
+  {% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<nav class="p-navigation--secondary">
+  <div class="row">
+    <div class="col-12 u-equal-height">
+      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="/security">
+        <h5 class="p-navigation--secondary__logo">
+          Security
+        </h5>
+      </a>
+      <ul class="breadcrumbs--secondary">
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link p-link--soft" href="/security">Overview</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link p-link--soft" href="/security/certifications">Certifications</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link p-link--soft" href="https://usn.ubuntu.com">Notices</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link p-link--active" href="/security/cve">CVEs</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
+<section class="p-strip--light is-bordered--top">
+  {% else %}
+  <section class="p-strip">
+    {% endif %}
+
+    <div class="row">
+      <div class="col-9">
+        <h1>{{ cve.id }}</h1>
+
+        {% if cve.published %}
+        <p>Published: <strong>{{ cve.published.strftime("%d %B %Y") }}</strong></p>
+        {% endif %}
+
+        {% if cve.description %}
+        <p>{{ cve.description }}</p>
+        {% endif %}
+
+        {% if cve.ubuntu_description %}
+        <h2>From the Ubuntu security team</h2>
+        <p>{{ cve.ubuntu_description }}</p>
+        {% endif %}
+      </div>
+
+      <div class="col-3">
+        {% if cve.status == 'active' and cve.priority %}
+        <div class="cve-status-box u-no-margin--bottom">
+          <div class="p-muted-heading">Priority</div>
+          <div class="p-heading-icon--small">
+            <div class="p-heading-icon__header">
+              {% if cve.priority == 'unknown' %}
+                <img src="https://assets.ubuntu.com/v1/2dff197f-CVE-Priority-icon-Unknown.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'negligible' %}
+                <img src="https://assets.ubuntu.com/v1/ef6c75b8-CVE-Priority-icon-Negligible.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'low' %}
+                <img src="https://assets.ubuntu.com/v1/03ac6f86-CVE-Priority-icon-Low.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'medium' %}
+                <img src="https://assets.ubuntu.com/v1/8010f9e0-CVE-Priority-icon-Medium.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'high' %}
+                <img src="https://assets.ubuntu.com/v1/3887354e-CVE-Priority-icon-High.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+
+              {% if cve.priority == 'critical' %}
+                <img src="https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg" alt="" class="p-heading-icon__img">
+              {% endif %}
+              <h4 class="p-heading-icon__title u-no-margin--bottom">
+                {{ cve.priority | capitalize }}
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        {% if cve.cvss3 %}
+          <p>CVSS 3 base score: {{ cve.cvss3 }}</p>
+        {% endif %}
+
+        {% endif %}
+
+        {% if cve.status == 'rejected' %}
+        <div class="cve-status-box--highlight">
+          <div class="p-heading--four u-no-margin--bottom">
+            Rejected
+          </div>
+        </div>
+        {% endif %}
+
+        {% if cve.status == 'not-in-ubuntu' %}
+        <div class="cve-status-box--highlight">
+          <div class="p-heading--four u-no-margin--bottom">
+            Not in Ubuntu
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+
+    {% if cve.status == 'active' %}
+    <div class="row">
+      <div class="col-9">
+        <h2>Status</h2>
+        <table class="cve-table">
+          <thead>
+            <tr>
+              <th>Package</th>
+              <th>Release</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for package_name, statuses in cve.status_tree.items() %}
+              {% for release in releases %}
+                {% if release.codename in statuses %}
+                  <tr>
+                    {% if loop.index == 1 %}
+                      <td rowspan="{{ releases | length }}">{{ package_name }}</td>
+                    {% endif %}
+                    <td>{{ release.name }}</td>
+                    <td>
+                      {% if release.codename in statuses %}
+                        {% if statuses[release.codename].status == "DNE" %}
+                          Does not exist
+                          <div class="cve-color-strip--dne"></div>
+                        {% elif statuses[release.codename].status == "needs-triage" %}
+                          Needs triage
+                          <div class="cve-color-strip--needs-triage"></div>
+                        {% elif statuses[release.codename].status == "not-affected" %}
+                          Not vulnerable
+                          <div class="cve-color-strip--not-affected"></div>
+                        {% elif statuses[release.codename].status == "needed" %}
+                          Needed
+                          <div class="cve-color-strip--needed"></div>
+                        {% elif statuses[release.codename].status == "deferred" %}
+                          Deferred
+                          <div class="cve-color-strip--deferred"></div>
+                        {% elif statuses[release.codename].status == "ignored" %}
+                          Ignored
+                          <div class="cve-color-strip--ignored"></div>
+                        {% elif statuses[release.codename].status == "pending" %}
+                          Pending
+                          <div class="cve-color-strip--pending"></div>
+                        {% elif statuses[release.codename].status == "released" %}
+                          <div class="cve-color-strip--released"></div>
+                          Released
+                        {% endif %}
+                        {% if statuses[release.codename].description %}
+                          ({{ statuses[release.codename].description }})
+                        {% endif %}
+                      {% else %}
+                        &mdash;
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+      <div class="col-9">
+        {% if cve.status == 'active' and cve.notes %}
+          <h2>Notes</h2>
+          <table>
+            <tr><th style="width: 10em;">Author</th><th>Note</th></tr>
+            {% for note in cve.notes %}
+            <tr>
+              <td><a href="https://launchpad.net/~{{ note.author }}">{{ note.author }}</a></td>
+              <td>{{ note.note }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        {% endif %}
+
+        <h2>References</h2>
+        {% if cve.references %}
+        <ul>
+          {% for reference in cve.references %}
+          <li><a href="{{ reference }}">{{ reference }}</a></li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <ul>
+          <li>
+            <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name={{ cve.id }}">
+              MITRE
+            </a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% with first_item="_security_discussion", second_item="_security_esm",
+third_item="_security_further_reading" %}{% include
+"shared/contextual_footers/_contextual_footer.html" %}{% endwith %} {% endblock %}

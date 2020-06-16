@@ -7,7 +7,6 @@ from launchpadlib.launchpad import Launchpad
 from macaroonbakery import bakery, checkers, httpbakery
 from functools import wraps
 
-
 AUTHORIZED_TEAMS = ["canonical-security", "canonical-webmonkeys"]
 IDENTITY_CAVEATS = [
     checkers.need_declared_caveat(
@@ -79,7 +78,7 @@ def authorization_required(func):
         except bakery._error.DischargeRequiredError:
             macaroon = macaroon_bakery.oven.macaroon(
                 version=bakery.VERSION_2,
-                expiry=datetime.utcnow() + timedelta(minutes=30),
+                expiry=datetime.utcnow() + timedelta(days=1),
                 caveats=IDENTITY_CAVEATS,
                 ops=[bakery.LOGIN_OP],
             )

@@ -1,0 +1,217 @@
+<div class="p-modal p-modal--renewal u-hide is-details-mode" id="renewal-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title js-contract-name u-no-margin--bottom" id="modal-title">
+        Renew subscription
+      </h2>
+    </header>
+    <div id="modal-description" class="p-modal__body">
+      <section id="renewal-info" class="p-strip is-shallow is-bordered u-no-padding--top">
+        <div class="row u-no-padding u-sv1">
+          <div class="col-3 u-text-light">Plan type:</div>
+          <div class="col-9 js-product-name"></div>
+        </div>
+
+        <div class="row u-no-padding u-sv1">
+          <div class="col-3 u-text-light">Will continue from:</div>
+          <div class="col-9 js-renewal-start"></div>
+        </div>
+
+        <div class="row u-no-padding u-sv1">
+          <div class="col-3 u-text-light">Ends:</div>
+          <div class="col-9 js-renewal-end"></div>
+        </div>
+
+        <div class="row u-no-padding u-sv1">
+          <div class="col-3 u-text-light">Machines:</div>
+          <div class="col-9 js-renewal-quantity"></div>
+        </div>
+
+        <div class="row u-no-padding">
+          <div class="col-3 u-text-light">To pay:</div>
+          <div class="col-9 js-renewal-total"></div>
+          <div class="col-start-large-4 col-9"><small>Excluding VAT</small></div>
+        </div>
+      </section>
+
+      <section class="p-strip is-shallow" style="overflow-x: visible;">
+        <div id="renewal-errors" class="p-notification--negative u-hide">
+          <p class="p-notification__response">
+            <span class="p-notification__message"></span>
+          </p>
+        </div>
+
+        <form class="p-form p-form--stacked" id="details-form">
+          <div class="p-form__group row u-no-padding u-vertically-center">
+            <div class="col-3">
+              <label class="u-no-padding--top">Payment card:</label>
+            </div>
+
+            <div class="col-9">
+              <div id="card-element"></div>
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span id="card-errors" class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
+            <div class="col-3">
+              <label class="u-no-padding--top" for="name">Name on card:</label>
+            </div>
+
+            <div class="col-9">
+              <input class="p-form-validation__input" name="name" type="text" required value="{{ user_info.fullname }}" />
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding">
+            <div class="col-3">
+              <label for="address">Billing address:</label>
+            </div>
+
+            <div class="col-9">
+              <textarea autocomplete="street-address" class="p-form-validation__input" name="address" rows="4"
+                required></textarea>
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
+            <div class="col-3">
+              <label class="u-no-padding--top" >Country/Region:</label>
+            </div>
+
+            <div class="col-9">
+              {% with raw="true" %} {% include "shared/forms/_country.html" %}
+              {% endwith %}
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="p-form__group row u-no-padding u-vertically-center u-hide js-vat-container">
+            <div class="col-3">
+              <label class="u-no-padding--top" >VAT number:</label>
+            </div>
+
+            <div class="col-7">
+              <input name="tax" type="text" />
+            </div>
+
+            <div class="col-2">
+              (if required)
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
+            <div class="col-3">
+              <label class="u-no-padding--top" for="email">Email my invoice to:</label>
+            </div>
+
+            <div class="col-9">
+              <input class="p-form-validation__input" name="email" type="email" required value="{{ user_info.email }}" />
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+        </form>
+
+        <div id="renewal-summary">
+          <div class="row u-no-padding">
+            <div class="col-6 u-vertically-center">
+              <p class="u-text-light">Payment method:</p>
+            </div>
+
+            <div class="col-6 u-align--right">
+              <button class="p-button js-change-payment-method">
+                Change...
+              </button>
+            </div>
+          </div>
+
+          <div class="p-card">
+            <div class="row u-no-padding">
+              <div class="col-2 col-small-1 js-customer-card-brand u-hide col-small-2"></div>
+              <div class="col-8 col-small-3">
+                <span class="js-customer-name"></span><br />
+                <span class="js-customer-card"></span>
+              </div>
+              <div class="col-2 col-small-3 col-start-small-2">
+                <span class="u-text-light">Expires:</span><br />
+                <span class="js-customer-card-expiry"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row u-no-padding">
+            <div class="col-3">
+              <p>Receipt will be sent to:</p>
+            </div>
+
+            <div class="col-9">
+              <p class="js-customer-email"></p>
+            </div>
+          </div>
+
+          <div class="row u-no-padding">
+            <div class="col-12">
+              <form>
+                <input type="checkbox" id="renewal-terms" checked="" class="js-terms">
+                <label class="u-float-left" for="renewal-terms">I agree to the <a href="/legal/ubuntu-advantage-service-terms" target="_blank">Ubuntu Advantage service terms</a></label>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div id="payment-error-dialog">
+          <p></p>
+        </div>
+      </section>
+    </div>
+
+    <footer class="p-modal__footer u-align--right">
+      <span id="js-progress-indicator" class="p-modal__progress u-hide">
+        <i class="p-icon--success u-hide"></i>
+        <i class="p-icon--spinner u-animation--spin"></i>&nbsp;&nbsp;
+        <span></span>
+      </span>
+
+      <button class="js-cancel-modal" style="min-width: 5.5rem;">
+        Cancel
+      </button>
+
+      <button class="js-payment-method p-button--positive u-no-margin--right" disabled type="submit" style="min-width: 5.5rem;">
+        Continue
+      </button>
+
+      <button class="js-process-payment p-button--positive u-no-margin--right" disabled type="submit" style="min-width: 5.5rem;">
+        Pay
+      </button>
+
+      <button class="js-close-modal p-button">OK</button>
+    </footer>
+  </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  window.stripePublishableKey = "{{ stripe_publishable_key }}";
+</script>
+<script src="{{ versioned_static('js/dist/renewal-modal.js') }}" type="module" defer></script>

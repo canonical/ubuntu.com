@@ -4,7 +4,6 @@
 
 .chart__bar--orange {
   fill: #e95420; // sass-lint:disable-line no-color-literals
-
   stroke: #e95420; // sass-lint:disable-line no-color-literals
   stroke-width: 1px;
 }
@@ -27,6 +26,12 @@
   stroke-width: 1px;
 }
 
+.chart__bar--green {
+  fill: green; // sass-lint:disable-line no-color-literals
+  stroke: green; // sass-lint:disable-line no-color-literals
+  stroke-width: 1px;
+}
+
 .chart__label--bold {
   font-weight: bold;
 }
@@ -41,6 +46,10 @@
   font-size: 14px;
 }
 
+.chart-key text {
+  font-size: 14px;
+}
+
 .x.axis text {
   font-size: 12px;
   text-anchor: start !important;
@@ -52,8 +61,4 @@
 
 .chart-key__row {
   display: block;
-}
-
-.chart-key text {
-  font-size: 14px;
 }

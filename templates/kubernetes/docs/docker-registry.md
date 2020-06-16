@@ -32,7 +32,7 @@ If needed, consult the [quickstart guide][quickstart] to install
 follows.
 
 ```bash
-juju deploy ~containers/docker-registry
+juju deploy cs:~containers/docker-registry
 juju add-relation docker-registry easyrsa:client
 juju config docker-registry \
   auth-basic-user='admin' \

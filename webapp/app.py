@@ -29,6 +29,7 @@ from webapp.context import (
     get_navigation,
     releases,
 )
+
 from webapp.views import (
     accept_renewal,
     advantage_view,
@@ -41,7 +42,7 @@ from webapp.views import (
     download_thank_you,
     appliance_install,
     get_renewal,
-    post_stripe_method_id,
+    post_customer_info,
     post_stripe_invoice_id,
     post_build,
     releasenotes_redirect,
@@ -56,6 +57,10 @@ from webapp.security.views import (
     notices,
     notices_feed,
     update_notice,
+    cve_index,
+    cve,
+    delete_cve,
+    bulk_upsert_cve,
 )
 
 
@@ -81,7 +86,11 @@ app.config["CANONICAL_LOGIN_URL"] = os.getenv(
     "CANONICAL_LOGIN_URL", "https://login.ubuntu.com"
 ).rstrip("/")
 
+session = talisker.requests.get_session()
 talisker.requests.configure(api_session)
+discourse_api = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/", session=session
+)
 
 
 # Error pages
@@ -131,9 +140,7 @@ def utility_processor():
 # Simple routes
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
-    "/advantage/payment-method",
-    view_func=post_stripe_method_id,
-    methods=["POST"],
+    "/advantage/customer-info", view_func=post_customer_info, methods=["POST"],
 )
 app.add_url_rule(
     "/advantage/renewals/<renewal_id>/invoices/<invoice_id>",
@@ -145,7 +152,7 @@ app.add_url_rule(
 )
 
 app.add_url_rule(
-    "/advantage/renewals/{renewal_id}/process-payment",
+    "/advantage/renewals/<renewal_id>/process-payment",
     view_func=accept_renewal,
     methods=["POST"],
 )
@@ -179,12 +186,30 @@ app.register_blueprint(blog_blueprint, url_prefix="/blog")
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
-app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
 app.add_url_rule(
     "/security/notices", view_func=create_notice, methods=["POST"]
 )
-app.add_url_rule("/security/notices", view_func=update_notice, methods=["PUT"])
+
 app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
+app.add_url_rule(
+    "/security/notices/<notice_id>", view_func=update_notice, methods=["PUT"]
+)
+
+app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
+
+
+# cve section
+app.add_url_rule("/security/cve", view_func=cve_index)
+app.add_url_rule("/security/cve", view_func=bulk_upsert_cve, methods=["PUT"])
+
+app.add_url_rule(
+    r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
+)
+app.add_url_rule(
+    r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>",
+    view_func=delete_cve,
+    methods=["DELETE"],
+)
 
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
@@ -202,18 +227,17 @@ app.add_url_rule(
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
 url_prefix = "/server/docs"
-server_docs_parser = DocParser(
-    api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
-    category_id=26,
-    index_topic_id=11322,
-    url_prefix=url_prefix,
-)
 server_docs = DiscourseDocs(
-    blueprint_name="server_docs",
-    parser=server_docs_parser,
+    parser=DocParser(
+        api=discourse_api,
+        category_id=26,
+        index_topic_id=11322,
+        url_prefix=url_prefix,
+    ),
     document_template="/docs/document.html",
     url_prefix=url_prefix,
 )
+server_docs.init_app(app)
 
 url_prefix = "/appliance/docs"
 appliance_docs_parser = DocParser(
@@ -239,18 +263,14 @@ app.add_url_rule(
     ),
 )
 
-server_docs.init_app(app)
-appliance_docs.init_app(app)
-
 tutorials_path = "/tutorials"
-tutorials_docs_parser = DocParser(
-    api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
-    category_id=34,
-    index_topic_id=13611,
-    url_prefix=tutorials_path,
-)
 tutorials_docs = DiscourseDocs(
-    parser=tutorials_docs_parser,
+    parser=DocParser(
+        api=discourse_api,
+        category_id=34,
+        index_topic_id=13611,
+        url_prefix=tutorials_path,
+    ),
     document_template="/tutorials/tutorial.html",
     url_prefix=tutorials_path,
     blueprint_name="tutorials",

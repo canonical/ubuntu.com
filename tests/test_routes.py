@@ -18,6 +18,28 @@ class TestRoutes(unittest.TestCase):
 
         self.assertEqual(self.client.get("/").status_code, 200)
 
+    def test_advantage(self):
+        """
+        When given the advantage URL,
+        we should return a 200 status code
+        """
+        self.assertEqual(self.client.get("/advantage").status_code, 200)
+
+    def test_advantage_logged_in(self):
+        """
+        When given the advantage URL,
+        and the user is logged in,
+        we should return a 200 status code
+        """
+        with self.client.session_transaction() as s:
+            s["openid"] = {
+                "fullname": "Joe Bloggs",
+                "email": "hello@example.com",
+            }
+            s["authentication_token"] = "test_token"
+
+        self.assertEqual(self.client.get("/advantage").status_code, 200)
+
     def test_not_found(self):
         """
         When given a non-existent URL,

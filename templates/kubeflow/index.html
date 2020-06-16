@@ -1,8 +1,9 @@
 {% extends "kubeflow/base_kubeflow.html" %}
 
-
 {% block title %}Kubeflow: AI and Machine Learning on Ubuntu{% endblock %}
-{% block meta_description %}Charmed Kubeflow is the default platform for Tensorflow, PyTorch and other AI/ML frameworks, with automatic hardware GPGPU acceleration on Ubuntu. Canonical provides training and access to machine learning experts.{% endblock %}
+
+{% block meta_description %}Charmed Kubeflow is the default platform for Tensorflow, PyTorch and other AI/ML frameworks, with automatic hardware GPU acceleration on Ubuntu. Canonical provides training and access to machine learning experts.{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1mJq8PxH8FVRVF9i1Xzh0f6M73eyjqZE4NaKYHRcRAKM/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -75,14 +76,14 @@
         <li class="p-list__item is-ticked">Accelerate data science</li>
         <li class="p-list__item is-ticked">Lightest footprint</li>
         <li class="p-list__item is-ticked">Laptop to workstation</li>
-        <li class="p-list__item is-ticked">GPGPU optional</li>
+        <li class="p-list__item is-ticked">GPU optional</li>
         <li class="p-list__item is-ticked">Develop and test AI</li>
       </ul>
     </div>
     <div class="col-6 p-card">
       <h3 class="p-card__title">Bare metal AI</h3>
       <hr>
-      <p>Kubernetes on bare metal with NVIDIA GPGPU acceleration</p>
+      <p>Kubernetes on bare metal with NVIDIA GPU acceleration</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Highest performance</li>
         <li class="p-list__item is-ticked">On-premises with local data</li>
@@ -95,7 +96,7 @@
     <div class="col-6 p-card">
       <h3 class="p-card__title">Google Cloud AI</h3>
       <hr>
-      <p>GKE on Ubuntu with NVIDIA GPGPU acceleration</p>
+      <p>GKE on Ubuntu with NVIDIA GPU acceleration</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Effectively infinite scale</li>
         <li class="p-list__item is-ticked">Portable workloads</li>
@@ -105,7 +106,7 @@
     <div class="col-6 p-card">
       <h3 class="p-card__title">Canonical Cloud AI</h3>
       <hr>
-      <p>Kubeflow on Kubernetes on Openstack with NVIDIA GPGPU acceleration</p>
+      <p>Kubeflow on Kubernetes on Openstack with NVIDIA GPU acceleration</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Maximize benefits of OpenStack</li>
         <li class="p-list__item is-ticked">On-premises with local data</li>
@@ -126,7 +127,7 @@
     </div>
     <div class="col-6">
       <p>Initiated by Google on Ubuntu for perfect portability of AI workloads from your workstation, to your data center rack on Canonical’s bare-metal k8s or Canonical’s OpenStack virtualization, to Google’s Cloud Kubernetes service GKE which also runs on Ubuntu. Simple.</p>
-      <p>Canonical’s Kubeflow and Kubernetes on bare-metal servers, with NVIDIA GPGPUs, provides an ultra high-performance machine learning cluster. Deployment, support, and optional remote management and remote operations make it the best way to accelerate your data science and machine learning.</p>
+      <p>Canonical’s Kubeflow and Kubernetes on bare-metal servers, with NVIDIA GPUs, provides an ultra high-performance machine learning cluster. Deployment, support, and optional remote management and remote operations make it the best way to accelerate your data science and machine learning.</p>
     </div>
   </div>
   <div class="u-fixed-width">

@@ -148,6 +148,8 @@ openstack:
       path: /tco-calculator
     - title: Install
       path: /openstack/install
+    - title: Apps
+      path: /managed
     - title: Thank you
       path: /openstack/newsletter-thank-you
       hidden: True
@@ -232,6 +234,8 @@ kubernetes:
   children:
     - title: Overview
       path: /kubernetes
+    - title: What is Kubernetes
+      path: /kubernetes/what-is-kubernetes
     - title: Features
       path: /kubernetes/features
     - title: Managed
@@ -242,6 +246,8 @@ kubernetes:
       path: /kubernetes/install
     - title: Docs
       path: /kubernetes/docs
+    - title: Apps
+      path: /managed
 
       children:
         - title: Home
@@ -1112,6 +1118,9 @@ security:
     - title: Notices
       path: https://usn.ubuntu.com
       persist: True
+    # Hidden for soft launch
+    # - title: CVEs
+    # path: /security/cve
 
 licensing:
   title: Licensing
