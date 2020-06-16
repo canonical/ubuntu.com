@@ -1,0 +1,15 @@
+{% extends "appliance/_base-appliance.html" %}
+
+{% block title %}Install the {{ appliance.name }} Ubuntu Appliance on an Intel NUC{% endblock title %}
+
+{% block meta_description %}Install and setup the {{ appliance.name }} Ubuntu Appliance on an Intel NUC.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1gb03YbX5ZQ_oO74M36b3ybCPwqq29d8Q17c6KaguW18/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include 'appliance/shared/_intel-nuc.html' %}
+
+{% include 'appliance/' ~ appliance.url_name ~ '/_next-steps.html' %}
+
+{% endblock content %}

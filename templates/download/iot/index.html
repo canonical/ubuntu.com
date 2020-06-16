@@ -146,6 +146,13 @@
       </div>
     </section>
 
+    <section class="p-strip--light is-deep">
+      {% with head="Make something great today", subhead="Download appliance images for your PC, Raspberry Pi or a virtual machinei" %}{% include "/appliance/shared/_appliance-advert-strip.html" %}{% endwith %}
+    </section>
+
+
+    {% with heading="Not finding the board you want? " %}{% include "/pricing/shared/_enablement-strip.html" %}{% endwith %}
+
     {% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
     {% endblock content %}

@@ -1,0 +1,103 @@
+{% if appliance.iso_url.raspberrypi %}
+<meta http-equiv="refresh" content="3;url={{ appliance.iso_url.raspberrypi }}">
+{% endif %}
+
+<section class="p-strip--suru-topped" style="overflow: visible;">
+  <div class="row u-vertically-center">
+    <div class="col-8">
+      {% if appliance.iso_url.raspberrypi %}
+      <h1>Install the {{ appliance.appliance_name }} Ubuntu Appliance for Raspberry Pi</h1>
+      <p class="u-no-margin--bottom">Your download should start automatically. If it doesn&rsquo;t,
+        <a href="{{ appliance.iso_url.raspberrypi }}">download now</a>.
+        {% include "appliance/shared/_verify-checksums.html" %}
+      </p>
+      {% else %}
+      <h1>Setup your Ubuntu {{ appliance.appliance_name }} appliance for Raspberry Pi</h1>
+      {% endif %}
+    </div>
+    <div class="col-4 u-hide--small u-align--center">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg",
+        alt="",
+        height="227",
+        width="350",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<hr>
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <h2>Installation instructions</h2>
+    <div class="js-tab-container">
+      <nav class="p-tabs">
+        <ul class="p-tabs__list" role="tablist">
+          <li class="p-tabs__item" role="presentation">
+            <a href="#ubuntuos" class="p-tabs__link" id="ubuntuos-tab" role="tab" aria-controls="ubuntuos" aria-selected="true">
+              Ubuntu
+            </a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#windows" class="p-tabs__link" tabindex="-1" role="tab" id="windows-tab" aria-controls="windows">
+              Windows
+            </a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#macos" class="p-tabs__link" tabindex="-1" role="tab" id="macos-tab" aria-controls="macos">
+              macOS
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div id="ubuntuos" class="p-tabs__content" role="tabpanel" aria-labelledby="ubuntuos-tab">
+        {% include "appliance/shared/_what_you_will_need_pi.html" %}
+        {% with os="Ubuntu" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
+        <ol class="p-stepped-list--detailed">
+          {% include 'appliance/shared/_steps_pi_imager_ubuntu.html' %}
+          {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
+          {% include 'appliance/shared/_steps_ssh-keys_ubuntu.html' %}
+          {% include 'appliance/shared/_steps_sso.html' %}
+          {% with command='cat' %}{% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}{% endwith %}
+          {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
+          {% include 'appliance/shared/_steps_pi_thats-it.html' %}
+        </ol>
+      </div>
+
+      <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
+        {% include "appliance/shared/_what_you_will_need_pi.html" %}
+        {% with  os="Windows" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
+        <ol class="p-stepped-list--detailed">
+          {% include 'appliance/shared/_steps_pi_imager_windows.html' %}
+          {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
+          {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
+          {% include 'appliance/shared/_steps_sso.html' %}
+          {% with command='type' %}{% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}{% endwith %}
+          {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
+          {% include 'appliance/shared/_steps_pi_thats-it.html' %}
+        </ol>
+      </div>
+
+      <div id="macos" class="p-tabs__content" role="tabpanel" aria-labelledby="macos-tab">
+        {% include "appliance/shared/_what_you_will_need_pi.html" %}
+        {% with os="macOS" %}{% include "appliance/shared/_install_instructions_raspberry-pi.html" %}{% endwith %}
+        <ol class="p-stepped-list--detailed">
+          {% include 'appliance/shared/_steps_pi_imager_macos.html' %}
+          {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
+          {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
+          {% include 'appliance/shared/_steps_sso.html' %}
+          {% with command='cat' %}{% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}{% endwith %}
+          {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
+          {% include 'appliance/shared/_steps_pi_thats-it.html' %}
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>

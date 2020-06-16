@@ -1,4 +1,9 @@
-@mixin ubuntu-p-card {
+@mixin ubuntu-p-cards {
+  @include ubuntu-card;
+  @include ubuntu-card-layout;
+}
+
+@mixin ubuntu-card {
   .p-card--cloud-and-server {
     @extend %p-card--highlighted;
     @include vf-highlight-bar(#2b939c);
@@ -30,5 +35,28 @@
 
   .p-card.has-limited-height--large {
     height: 23.5rem;
+  }
+}
+
+@mixin ubuntu-card-layout {
+  .p-card--layout {
+    @extend %vf-card;
+    @extend %vf-is-bordered;
+    @extend %vf-has-round-corners;
+
+    display: flex;
+    flex-direction: column;
+
+    .p-card__header {
+      @extend %vf-pseudo-border--bottom;
+    }
+
+    .p-card__main {
+      padding-top: calc(#{$spv-inner--large} - 1px);
+    }
+
+    .p-card__footer {
+      margin-top: auto;
+    }
   }
 }

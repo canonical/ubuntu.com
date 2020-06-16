@@ -14,6 +14,90 @@ azure:
       path: /azure/thank-you
       hidden: True
 
+appliance:
+  title: Appliance
+  path: /appliance
+
+  children:
+    - title: Overview
+      path: /appliance
+    - title: About
+      path: /appliance/about
+    - title: Portfolio
+      path: /appliance/portfolio
+    - title: Community
+      path: /appliance/community
+    - title: Hardware
+      path: /appliance/hardware
+    - title: Virtual machines
+      path: /appliance/vm
+    - title: Contact us
+      path: /appliance/contact-us
+      hidden: True
+      children:
+        - title: Thank you
+          path: /appliance/thank-you
+          hidden: True
+    - title: Plex
+      path: /appliance/plex
+      hidden: True
+      children:
+        - title: Raspberry Pi 2
+          path: /appliance/plex/raspberry-pi2
+        - title: Raspberry Pi 3 & 4
+          path: /appliance/plex/raspberry-pi
+        - title: Intel NUC
+          path: /appliance/plex/intel-nuc
+        - title: VM
+          path: /appliance/plex/vm
+    - title: AdGuard
+      path: /appliance/adguard
+      hidden: True
+      children:
+        - title: Raspberry Pi 2
+          path: /appliance/adguard/raspberry-pi2
+        - title: Raspberry Pi 3 & 4
+          path: /appliance/adguard/raspberry-pi
+        - title: Intel NUC
+          path: /appliance/adguard/intel-nuc
+        - title: VM
+          path: /appliance/adguard/vm
+    - title: OpenHAB
+      path: /appliance/openhab
+      hidden: True
+      children:
+        - title: Raspberry Pi 2
+          path: /appliance/openhab/raspberry-pi2
+        - title: Raspberry Pi 3 & 4
+          path: /appliance/openhab/raspberry-pi
+        - title: Intel NUC
+          path: /appliance/openhab/intel-nuc
+        - title: VM
+          path: /appliance/openhab/vm
+    - title: NexCloud
+      path: /appliance/nextcloud
+      hidden: True
+      children:
+        - title: Raspberry Pi 2
+          path: /appliance/nextcloud/raspberry-pi2
+        - title: Raspberry Pi 3 & 4
+          path: /appliance/nextcloud/raspberry-pi
+        - title: Intel NUC
+          path: /appliance/nextcloud/intel-nuc
+        - title: VM
+          path: /appliance/nextcloud/vm
+    - title: Mosquitto
+      path: /appliance/mosquitto
+      hidden: True
+      children:
+        - title: Raspberry Pi 2
+          path: /appliance/mosquitto/raspberry-pi2
+        - title: Raspberry Pi 3 & 4
+          path: /appliance/mosquitto/raspberry-pi
+        - title: Intel NUC
+          path: /appliance/mosquitto/intel-nuc
+        - title: VM
+          path: /appliance/mosquitto/vm
 aws:
   title: AWS
   path: /aws
@@ -1104,19 +1188,19 @@ pricing:
 
 documentation:
   title: Docs
-  path: /_docs
+  path: /0_docs
 
   children:
     - title: Overview
-      path: /_docs
+      path: /0_docs
     - title: Hero strips
-      path: /_docs/strips
+      path: /0_docs/strips
     - title: Takeovers
-      path: /_docs/takeovers
+      path: /0_docs/takeovers
     - title: Engage pages
-      path: /_docs/engage_pages
+      path: /0_docs/engage_pages
     - title: Content strips
-      path: /_docs/content_strips
+      path: /0_docs/content_strips
 
 kernel:
   title: Kernel

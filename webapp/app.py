@@ -40,6 +40,7 @@ from webapp.views import (
     build,
     build_tutorials_index,
     download_thank_you,
+    appliance_install,
     get_renewal,
     post_customer_info,
     post_stripe_invoice_id,
@@ -93,6 +94,8 @@ discourse_api = DiscourseAPI(
 
 
 # Error pages
+
+
 @app.errorhandler(404)
 def not_found_error(error):
     return flask.render_template("404.html"), 404
@@ -137,7 +140,7 @@ def utility_processor():
 # Simple routes
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
-    "/advantage/customer-info", view_func=post_customer_info, methods=["POST"],
+    "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
 )
 app.add_url_rule(
     "/advantage/renewals/<renewal_id>/invoices/<invoice_id>",
@@ -165,7 +168,10 @@ app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
     "/search", "search", build_search_view(template_path="search.html")
 )
-
+app.add_url_rule(
+    "/appliance/<regex('.+'):app>/<regex('.+'):device>",
+    view_func=appliance_install,
+)
 # blog section
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",

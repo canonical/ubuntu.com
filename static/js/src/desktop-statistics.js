@@ -536,6 +536,8 @@ function createMap(selector, options, mapData, countryNamesAndIds) {
           // Check where the top and left axis start from for each tooltip and reposition the tooltip message
           if (position[0] < 150) {
             tooltipLocation = "p-tooltip p-tooltip--right";
+          } else if (position[1] < 50 && position[0] > 150) {
+            tooltipLocation = "p-tooltip p-tooltip--bottom-right";
           } else if (position[1] < 50) {
             tooltipLocation = "p-tooltip p-tooltip--bottom-center";
           } else if (position[0] > rightOffset) {

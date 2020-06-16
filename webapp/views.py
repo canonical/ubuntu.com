@@ -14,6 +14,7 @@ import flask
 import gnupg
 import pytz
 import talisker.requests
+import yaml
 from ubuntu_release_info.data import Data
 from canonicalwebteam.blog import BlogViews
 from canonicalwebteam.blog.flask import build_blueprint
@@ -84,6 +85,17 @@ def download_thank_you(category):
             f"download/{category}/thank-you.html", **context
         ),
         {"Cache-Control": "no-cache"},
+    )
+
+
+def appliance_install(app, device):
+    with open("appliances.yaml") as appliances:
+        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
+
+    return flask.render_template(
+        f"appliance/{app}/{device}.html",
+        http_host=flask.request.host,
+        appliance=appliances["appliances"][app],
     )
 
 

@@ -69,7 +69,7 @@
   <div class="u-hide" id="download-content"></div>
 </div>
 {% if not(hide_subnav == True) %}
-{% if breadcrumbs and breadcrumbs.children and breadcrumbs.children|length > 1 or breadcrumbs.grandchildren %}
+{% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
 <nav class="p-navigation--secondary">
   <div class="row">
     <div class="col-12 u-equal-height">

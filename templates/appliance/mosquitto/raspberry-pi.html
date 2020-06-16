@@ -1,0 +1,15 @@
+{% extends "appliance/_base-appliance.html" %}
+
+{% block title %}Install {{ appliance.name }} on a Raspberry Pi - Ubuntu Appliance{% endblock title %}
+
+{% block meta_description %}Install and setup the {{ appliance.name }} Ubuntu appliance on the Raspberry Pi.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1H_4L-kqKx6HJ0_3krpzdDVZ24pdVm5jb0evLMT6mcuo/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% include 'appliance/shared/_raspberry-pi.html' %}
+
+{% include 'appliance/' ~ appliance.url_name ~ '/_next-steps.html' %}
+
+{% endblock content %}
