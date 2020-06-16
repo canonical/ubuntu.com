@@ -1,0 +1,15 @@
+<div class="row" style="padding-bottom: 2rem;">
+  <div class="col-8">
+    {% if head %}
+    <h2>
+      {{ head }}
+    </h2>
+    {% endif %}
+    {% if subhead %}
+    <p>
+      {{ subhead }}
+    </p>
+    {% endif %}
+  </div>
+</div>
+{% include "/appliance/shared/_featured_appliances.html" %}

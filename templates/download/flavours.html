@@ -5,7 +5,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1M5nkigcSRzq1YVjiXOZkeU4EUCqT0uYBR3Y_sjxM-wM/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<div class="p-strip--suru-topped is-bordered">
+<section class="p-strip--suru-topped is-bordered">
   <div class="row u-equal-height">
     <div class="col-7">
       <h1>Ubuntu flavours</h1>
@@ -16,9 +16,9 @@
       </p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="p-strip is-shallow">
+<section class="p-strip is-shallow">
   <div class="row">
     <div class="col-12">
       <ul class="p-matrix is-trisected">
@@ -149,7 +149,11 @@
       <p>A complete list of known flavours, editions and customisations is maintained on the <a class="p-link--external" href="https://wiki.ubuntu.com/UbuntuFlavors">Ubuntu Wiki's UbuntuFlavors page</a>.</p>
     </div>
   </div>
-</div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  {% with head="Download an Ubuntu Appliance", subhead="Try a new class of Ubuntu derivative using Ubuntu Core" %}{% include "/appliance/shared/_appliance-advert-strip.html" %}{% endwith %}
+</section>
 
 {% with first_item="_download_more_info_enterprise", second_item="_download_all_installation", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 

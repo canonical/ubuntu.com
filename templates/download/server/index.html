@@ -64,7 +64,11 @@
 
 {% include 'download/shared/_multipass-install.html' %}
 
-<section class="p-strip--light is-shallow">
+<section class="p-strip--light is-bordered">
+  {% with head="Make something great today", subhead="Download appliance images for your PC, Raspberry Pi or a virtual machine" %}{% include "/appliance/shared/_appliance-advert-strip.html" %}{% endwith %}
+</section>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-10">
       <h2>Alternative architectures</h2>
