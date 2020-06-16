@@ -140,7 +140,7 @@ def utility_processor():
 # Simple routes
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
-    "/advantage/customer-info", view_func=post_customer_info, methods=["POST"],
+    "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
 )
 app.add_url_rule(
     "/advantage/renewals/<renewal_id>/invoices/<invoice_id>",
@@ -238,20 +238,6 @@ server_docs = DiscourseDocs(
     url_prefix=url_prefix,
 )
 server_docs.init_app(app)
-
-url_prefix = "/appliance/docs"
-appliance_docs_parser = DocParser(
-    api=DiscourseAPI(base_url="https://discourse.ubuntu.com/"),
-    category_id=46,
-    index_topic_id=16032,
-    url_prefix=url_prefix,
-)
-appliance_docs = DiscourseDocs(
-    blueprint_name="appliance_docs",
-    parser=appliance_docs_parser,
-    document_template="/docs/document.html",
-    url_prefix=url_prefix,
-)
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
