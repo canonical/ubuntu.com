@@ -48,13 +48,10 @@ context:
 
 #### Plex magically organizes your media libraries and streams them to any device
 
-Plex magically organizes your media libraries and streams them to any device &mdash; including all your video, music, and photo libraries. With a Plex Pass, supported tuner, and digital antenna, you can also watch and record FREE over-the-air broadcast TV, including major networks. You can also enjoy podcasts Plus Plex News &mdash; the most balanced and comprehensive personalized video newsfeed out there.
+Master your Mediaverse. Stream all your personal video, music, and photo collections, as well as your preferred podcasts, web shows, and online news, plus thousands of free movies and TV shows, to any of your devices.
 
-- Magically organize all your personal media &mdash; photos, music, movies, shows, even DVR-ed TV &mdash; and stream it to any device in a beautiful, simple interface, and Plex adds rich descriptions, artwork, and other related information
-- Podcasts are here! Search for your favorites or discover new ones through personalized recommendations. Plus: 30-second skip, variable speed playback, rich discovery, and full Plex-style support for cross-device playback status (including On Deck, so you can pick back up where you left off on any device)
+- Magically organize all your personal media—photos, music, movies, shows, even DVR-ed TV—and stream it to any device in a beautiful, simple interface; Plex adds rich descriptions, artwork, and other related information
+- Search for your favourite podcast or discover new ones through personalized recommendations. Plus: 30 second skip, variable speed playback, rich discovery, and full Plex-style support for cross-device playback status (including On Deck, so you can pick back up where you left off on any device)
 - Get personalized and trusted video news from over 190 global publisher partners (and growing!), including CBS, Financial Times, Euronews, and top local news sources for over 80% of markets in the US
-- Cut the cord! Go premium with a Plex Pass and use Plex Live TV & DVR so you can watch and record free over-the-air HD TV, like NBC, ABC, CBS, and FOX, with any supported digital antenna and tuner
-- Enjoy free features, like remote access, sharing, security, and casting, see your media beautifully enhanced with rich descriptions, artwork, ratings, and more
-- Enjoy premium features with a Plex Pass subscription: DVR & Live TV, Camera Upload, Premium Photos, Mobile Sync, Parental Controls, VIP Perks, and much more
-
-Want to use Plex on all of your devices, any time, anywhere? Visit <a href="https://www.plex.tv/" class="p-link--external">www.plex.tv</a> for more information.
+- Stream 1000s of FREE movies and TV shows from filmmakers around the world. From Oscar™ award-winning movies to Anime, Bollywood musicals, documentaries, family-friendly shows, and much more
+- Cut the cord! Go premium with a Plex Pass and use Plex Live TV & DVR so you can watch and record free over-the-air HD TV, at home or away, like NBC, ABC, CBS, and FOX, with any supported digital antenna and tuner
