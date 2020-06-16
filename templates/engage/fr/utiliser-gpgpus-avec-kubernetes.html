@@ -1,12 +1,12 @@
 {% extends "engage/base_engage.html" %}
 
-{% block title %}Utiliser des GPGPUs avec Kubernetes{% endblock %}
+{% block title %}Utiliser des GPUs avec Kubernetes{% endblock %}
 
 {% block content %}
 <header class="p-strip--image is-shallow" style="background-image: url(https://assets.ubuntu.com/v1/f8a323a7-image-background-paper.png);">
   <div class="row">
     <div class="col-8">
-      <h1>Utiliser des GPGPUs avec Kubernetes</h1>
+      <h1>Utiliser des GPUs avec Kubernetes</h1>
     </div>
   </div>
 </header>
@@ -14,14 +14,14 @@
 <section class="p-strip is-shallow">
   <div class="row">
     <div class="col-8">
-      <p>Ce post décrit l’utilisation de GPGPUs avec Kubernetes et <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/">DevicePlugins</a>.</p>
-      <p>Nous allons utiliser MicroK8s pour une station de développement et Charmed K8s pour un cluster. Ceci est consistant avec une approche multi-cloud.  Les différents CAAS disponibles sur les clouds public comme GKE ont aussi une option GPGPU, vous pouvez aussi essayer cela.</p>
-      <p>Nous allons utiliser Ubuntu comme OS simplement parce que GPGPU fonctionne bien sur tous les clouds en version Ubuntu et avec tout le hardware local. Et faire les images Docker sur Ubuntu garantit que les librairies CUDA soient alignées avec les drivers.</p>
-      <p>Pour que tout cela fonctionne, le bon driver a besoin d'être installé sur le worker node pour que le GPGPU soit accessible à partir de l’OS; et typiquement, cela demande aussi des librairies userland pour fonctionner.</p>
+      <p>Ce post décrit l’utilisation de GPUs avec Kubernetes et <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/">DevicePlugins</a>.</p>
+      <p>Nous allons utiliser MicroK8s pour une station de développement et Charmed K8s pour un cluster. Ceci est consistant avec une approche multi-cloud.  Les différents CAAS disponibles sur les clouds public comme GKE ont aussi une option GPU, vous pouvez aussi essayer cela.</p>
+      <p>Nous allons utiliser Ubuntu comme OS simplement parce que GPU fonctionne bien sur tous les clouds en version Ubuntu et avec tout le hardware local. Et faire les images Docker sur Ubuntu garantit que les librairies CUDA soient alignées avec les drivers.</p>
+      <p>Pour que tout cela fonctionne, le bon driver a besoin d'être installé sur le worker node pour que le GPU soit accessible à partir de l’OS; et typiquement, cela demande aussi des librairies userland pour fonctionner.</p>
       <p>Avec NVIDIA GPUs, cette activation dépend en plus de la bonne utilisation de Docker runtime (nvisia-docker2) qui demande des configurations supplémentaires au niveau du host et une installation après déploiement.</p>
       <p>Tout cela est automatisé sur Ubuntu avec MicroK8s et les charms Charmed Kubernetes, sur tous les clouds publics où les GPUs sont disponibles. Ceci est aussi disponible pour GKE et les autres offres CAAS vont suivre.</p>
-      <h2>Des conteneurs GPGPU sur workstation avec Microk8s</h2>
-      <p>MicroK8s est un snap Kubernetes upstream conçu pour le développement.  Ce n’est pas un cluster mais un environnement Kubernetes sans besoin d’opération qui est compatible avec les offres Kubernetes multi-cloud. Pour arriver à nos fins il faut que l’option GPGPU soient actives dès la sortie de l’emballage.</p>
+      <h2>Des conteneurs GPU sur workstation avec Microk8s</h2>
+      <p>MicroK8s est un snap Kubernetes upstream conçu pour le développement.  Ce n’est pas un cluster mais un environnement Kubernetes sans besoin d’opération qui est compatible avec les offres Kubernetes multi-cloud. Pour arriver à nos fins il faut que l’option GPU soient actives dès la sortie de l’emballage.</p>
       <p>Pour installer MicroK8s:</p>
       <pre><code>$ snap install microk8s --classic</code></pre>
       <p>Cela vous donne la dernière version stable de MicroK8s qui trace de très près les sorties upstream.</p>
@@ -67,8 +67,8 @@ dns: disabled
 metrics-server: disabled
 istio: disabled
 dashboard: disabled</code></pre>
-    <h2>Faire tourner des conteneurs GPGPU accélérés sur K8s</h2>
-    <p>Maintenant que vous avez de la capacité GPGPU disponible pour votre Kubernetes, vous pouvez déployer des containers qui ont accès au hardware dont ils ont besoin.</p>
+    <h2>Faire tourner des conteneurs GPU accélérés sur K8s</h2>
+    <p>Maintenant que vous avez de la capacité GPU disponible pour votre Kubernetes, vous pouvez déployer des containers qui ont accès au hardware dont ils ont besoin.</p>
     <p>Vos containers ont besoin des bonnes pièces userspaces, donc nous vous suggérons de construire les images OCI sur Ubuntu avec les librairies CUDA fournies; ces derniers seront portables sur toutes les offres CAAS cloud ainsi que les offres de Canonical, VMware, Pivotal, Cisco et autres qui utilise Ubuntu pour K8s.</p>
     <p>Vos workloads peuvent maintenant utiliser quelque chose comme cela pour sélectionner le bon worker node. (exemple extrait d’<a href="https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/#deploying-nvidia-gpu-device-plugin">ici</a>):</p>
     <p><strong>Listing 1</strong>:  nvidia-pod-example.yaml</p>
@@ -84,8 +84,8 @@ spec:
       resources:
         limits:
           nvidia.com/gpu: 1 # requesting 1 GPU</code></pre>
-        <h2>Déploiement d’un cluster Kubernetes avec GPGPUs</h2>
-        <p>Une caractéristique intéressante de <a href="https://www.ubuntu.com/kubernetes">Charmed Distribution of Kubernetes (CDK)</a> est qu’il active automatique les ressources GPGPU qui sont présentent sur le worker node pour être utilisées par les pods.</p>
+        <h2>Déploiement d’un cluster Kubernetes avec GPUs</h2>
+        <p>Une caractéristique intéressante de <a href="https://www.ubuntu.com/kubernetes">Charmed Distribution of Kubernetes (CDK)</a> est qu’il active automatique les ressources GPU qui sont présentent sur le worker node pour être utilisées par les pods.</p>
         <p>Les ressources GPU sont activé par l’usage de Device Plugins qui sont déployés comme <a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">DaemonSets</a>.  Cela assure que chaque worker node avec activation GPU puisse accéder au GPU et mette en place le bon chemin vers les drivers plugins du host. Avec DaemonSet déployé, le planificateur Kubernetes peut prendre avantage du NodeSelector pour filtrer les worker nodes qui proposent la fonction nvidia.com/gpu quand il planifie les workloads.</p>
         <p>Les Charms automatisent complètement le déploiement de Kubernetes d’une façon qui est orientée modèle et sont donc flexibles pour être utilisés sur différents types de clouds ou clusters. Nous utilisons les Charms pour les déploiements HPC de Kubernetes, par exemple, <a href="https://tutorials.ubuntu.com/tutorial/get-started-kubeflow#0">déployer des pipelines AI/ML</a> au dessus de Kubernetes de manière plus facile. L’activation du GPU est important pour ce genre de workload.</p>
         <p>Cependant, avant de déployer Kubeflow ou d’autres frameworks, la couche Kubernetes doit être complètement automatisée et les GPUs actives.</p>
@@ -158,11 +158,11 @@ Machine  State    DNS             Inst id              Series  AZ          Messa
 6        started  18.207.179.122  i-003abf7f3612a2f18  bionic  us-east-1b  running
 7        started  18.212.150.203  i-0abe01060e8179618  bionic  us-east-1a  running
 8        pending  35.175.104.2    i-0d493a35776b9217d  bionic  us-east-1e  running</code></pre>
-      <p>Une fois l’installation finie, toutes les ressources GPGPU sont configurées correctement et disponibles pour l'opérateur K8s. Vous pouvez vérifier cela avec la commande: </p>
+      <p>Une fois l’installation finie, toutes les ressources GPU sont configurées correctement et disponibles pour l'opérateur K8s. Vous pouvez vérifier cela avec la commande: </p>
       <pre><code>$ kubectl get no -o wide -L cuda,gpu</code></pre>
       <h2>Conclusion</h2>
-      <p>Utiliser les ressources GPGPU dans votre cluster Kubernetes est automatique et facile avec Charmed Distribution of Kubernetes (CDK) ou Microk8s.</p>
-      <p>Qu’en pensez vous? Nous serions ravis de discuter de votre projet et de la façon dont CDK et/ou MicroK8s vous ont aidé avec vos workloads sensitifs aux GPGPUs.</p>
+      <p>Utiliser les ressources GPU dans votre cluster Kubernetes est automatique et facile avec Charmed Distribution of Kubernetes (CDK) ou Microk8s.</p>
+      <p>Qu’en pensez vous? Nous serions ravis de discuter de votre projet et de la façon dont CDK et/ou MicroK8s vous ont aidé avec vos workloads sensitifs aux GPUs.</p>
       <p><a class="p-button--positive" href="/contact-us">Nous contacter&nbsp;&rsaquo;</a></p>
     </div>
   </div>
