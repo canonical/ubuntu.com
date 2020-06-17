@@ -47,6 +47,9 @@
           {% with section=nav_sections.security %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
+          {% with section=nav_sections.managedapps %}
+          {% include 'templates/_footer_item.html' %}
+          {% endwith %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
@@ -82,9 +85,6 @@
               {% include 'templates/_footer_item.html' %}
               {% endwith %}
               {% with section=nav_sections.tutorials %}
-              {% include 'templates/_footer_item.html' %}
-              {% endwith %}
-              {% with section=nav_sections.managedapps %}
               {% include 'templates/_footer_item.html' %}
               {% endwith %}
             </ul>
