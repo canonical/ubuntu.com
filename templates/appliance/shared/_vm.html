@@ -1,19 +1,7 @@
-{% if appliance.iso_url.pc %}
-<meta http-equiv="refresh" content="3;url={{ appliance.iso_url.pc }}">
-{% endif %}
-
 <section class="p-strip--suru-topped" style="overflow: visible;">
   <div class="row u-equal-height">
     <div class="col-8">
-      {% if appliance.iso_url.pc %}
-      <h1>Try the {{ appliance.appliance_name }} Ubuntu Appliance in a virtual machine</h1>
-      <p class="u-no-margin--bottom">Your download should start automatically. If it doesn&rsquo;t,
-        <a href="{{ appliance.iso_url.pc }}">download now</a>.
-        {% include "appliance/shared/_verify-checksums-pc.html" %}
-      </p>
-      {% else %}
       <h1>Setup the {{ appliance.appliance_name }} Ubuntu Appliance in a virtual machine</h1>
-      {% endif %}
     </div>
     <div class="col-4 u-hide-small u-vertically-center u-align--center">
       {{
