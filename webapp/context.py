@@ -73,9 +73,9 @@ def get_navigation(path):
                 # always show "Topics" as active on child topic pages
                 child["active"] = True
                 break
-            elif child["path"] == path or (
-                child.get("persist") and path.startswith(child["path"])
-            ):
+            elif (
+                child["path"] == path and path.startswith(nav_section["path"])
+            ) or (child.get("persist") and path.startswith(child["path"])):
                 # If child path matches current path or has persist set to true
                 child["active"] = True
                 nav_section["active"] = True
