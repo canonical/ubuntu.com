@@ -362,19 +362,6 @@ summary {
   margin-bottom: 0;
 }
 
-.p-table--advantage-contract {
-  margin: 0 auto;
-  width: auto;
-
-  td {
-    display: table-cell;
-  }
-
-  tr {
-    display: table-row;
-  }
-}
-
 // Advantage section
 .p-table--advantage-contract {
   margin: 0 auto;
@@ -420,14 +407,6 @@ summary {
 
 .u-rotate {
   transform: rotate(180deg);
-}
-
-.p-table-expanding__panel {
-  @extend %vf-card;
-  @extend %vf-is-bordered;
-  @extend %vf-has-round-corners;
-
-  margin-bottom: 0;
 }
 
 .p-table--advantage-contact {
@@ -710,7 +689,8 @@ h4.p-stepped-list__title + .p-stepped-list__content {
 .p-icon--low-priority,
 .p-icon--medium-priority,
 .p-icon--high-priority,
-.p-icon--critical-priority {
+.p-icon--critical-priority,
+.p-icon--dark-tick {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -743,4 +723,8 @@ h4.p-stepped-list__title + .p-stepped-list__content {
 
 .p-icon--critical-priority {
   background-image: url("#{$assets-path}c96f27b9-CVE-Priority-icon-Critical.svg");
+}
+
+.p-icon--dark-tick {
+  background-image: url("#{$assets-path}f1a7515d-tick-darkaubergine.svg");
 }
