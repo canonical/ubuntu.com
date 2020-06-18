@@ -76,6 +76,7 @@
     {% endif %}
   </div>
 
+  {% if total_results > 0 %}
   <div class="u-fixed-width">
     <table class="cve-table">
       <thead>
@@ -96,10 +97,10 @@
       </thead>
       <tbody>
         {% for cve in cves %}
-          {% for package_name, statuses in cve.active_status_tree.items() %}
+          {% for package_name, statuses in cve.status_tree.items() %}
             <tr>
               {% if loop.index == 1 %}
-                <td rowspan="{{ cve.active_status_tree | length }}"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></td>
+                <td rowspan="{{ cve.status_tree | length }}"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></td>
               {% endif %}
               <td>{{ package_name }}</td>
               {% for release in releases %}
@@ -181,6 +182,7 @@
     {% include "security/cve/_pagination.html" %}
     {% endwith %}
   </div>
+  {% endif %}
 </section>
 
 <script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>
