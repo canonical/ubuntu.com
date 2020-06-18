@@ -140,7 +140,13 @@
                     {% if loop.index == 1 %}
                       <td rowspan="{{ releases | length }}">{{ package_name }}</td>
                     {% endif %}
-                    <td>{{ release.name }}</td>
+                    <td>
+                      {% if release.name == "Upstream" %}
+                        {{ release.name }}
+                      {% else %}
+                        Ubuntu {{ release.version }} {{ release.support_tag }} ({{ release.name }})
+                      {% endif %}
+                    </td>
                     <td>
                       {% if release.codename in statuses %}
                         {% if statuses[release.codename].status == "DNE" %}
