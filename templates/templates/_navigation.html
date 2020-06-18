@@ -75,7 +75,7 @@
     <div class="col-12 u-equal-height">
       <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}">
         <h5 class="p-navigation--secondary__logo">
-          {{ breadcrumbs.section.title }}
+          {{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}
         </h5>
       </a>
       {% if breadcrumbs.children %}
