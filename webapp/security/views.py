@@ -36,23 +36,24 @@ def notice(notice_id):
     packages = []
     release_packages = SortedDict()
 
-    for codename, pkgs in notice.release_packages.items():
-        release_version = (
-            db_session.query(Release)
-            .filter(Release.codename == codename)
-            .one()
-            .version
-        )
+    if notice.release_packages:
+        for codename, pkgs in notice.release_packages.items():
+            release_version = (
+                db_session.query(Release)
+                .filter(Release.codename == codename)
+                .one()
+                .version
+            )
 
-        release_packages[release_version] = []
-        for package in pkgs:
-            if package["is_source"]:
-                packages.append(package)
-            else:
-                release_packages[release_version].append(package)
+            release_packages[release_version] = []
+            for package in pkgs:
+                if package["is_source"]:
+                    packages.append(package)
+                else:
+                    release_packages[release_version].append(package)
 
-        # Order packages for release by the name key
-        release_packages[release_version].sort(key=lambda pkg: pkg["name"])
+            # Order packages for release by the name key
+            release_packages[release_version].sort(key=lambda pkg: pkg["name"])
 
     # Order source packages by the name key
     packages.sort(key=lambda pkg: pkg["name"])
