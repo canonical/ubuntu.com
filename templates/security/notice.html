@@ -27,6 +27,7 @@
     </div>
   </div>
 
+  {% if notice.packages %}
   <div class="row">
     <div class="col-12">
       <h2>Packages</h2>
@@ -36,7 +37,8 @@
         {% endfor %}
       </ul>
     </div>
-  
+  {% endif %}
+
   <div class="row">
     <div class="col-8">
       <h2>Details</h2>
@@ -47,6 +49,7 @@
   <div class="row">
     <div class="col-8">
       <h2>Update instructions</h2>
+      {% if notice.release_packages %}
       <p>The problem can be corrected by updating your system to the following package versions:</p>
       {% for version in notice.release_packages.__reversed__() %}
         <h5>Ubuntu {{ version }}</h5>
@@ -68,6 +71,7 @@
           {% endfor %}
         </ul>
       {% endfor %}
+      {% endif %}
       <p>{{ notice.instructions|safe }}</p>
     </div>
   </div>
