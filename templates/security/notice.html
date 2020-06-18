@@ -81,13 +81,17 @@
     <div class="col-8">
       <h2>References</h2>
       <ul class="p-list">
-        {% for cve in notice.cves %}
-          <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{ cve.id }}">CVE-{{ cve.id }}</a></li>
-        {% endfor %}
+        {% if notice.cves %}
+          {% for cve in notice.cves %}
+            <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/CVE-{{ cve.id }}">CVE-{{ cve.id }}</a></li>
+          {% endfor %}
+        {% endif %}
 
-        {% for reference in notice.references %}
-          <li class="p-list__item"><a href="{{ reference }}">{{ reference }}</li>
-        {% endfor %}
+        {% if notice.references %}
+          {% for reference in notice.references %}
+            <li class="p-list__item"><a href="{{ reference }}">{{ reference }}</li>
+          {% endfor %}
+        {% endif %}
       </ul>
     </div>
   </div>
