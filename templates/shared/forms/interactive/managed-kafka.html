@@ -2,103 +2,172 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
-      <h2 class="p-modal__title u-sv1" id="modal-title">Canonical’s Managed Kafka</h2>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Accelerated Apache Kafka with Canonical</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Apache Kafka, managed by the open source experts.</p>
-
+      <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Canonical’s app engineers will provide a free quote and architecture assessment - start by sharing the details below.</p>
       <div class="js-formfield">
-        <h3 class="p-heading--five">What version of Kafka are you running?</h3>
+        <h3 class="p-heading--five">Where do you want to run Kafka?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="version-of-kafka-1x">
-            <label for="version-of-kafka-1x">1.x</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-our-own-data-centre-on-prem">
+            <label for="where-do-you-want-to-run-kafka-our-own-data-centre-on-prem">Our own data centre (on-prem)</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-public-cloud---aws-gcp-or-azure">
+            <label for="where-do-you-want-to-run-kafka-public-cloud---aws-gcp-or-azure">Public Cloud - AWS, GCP or Azure</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="version-of-kafka-2x">
-            <label for="version-of-kafka-2x">2.x</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-hybrid-cloud-public-cloud-and-on-prem">
+            <label for="where-do-you-want-to-run-kafka-hybrid-cloud-public-cloud-and-on-prem">Hybrid-cloud (public cloud and on-prem)</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-multi-cloud-several-public-clouds">
+            <label for="where-do-you-want-to-run-kafka-multi-cloud-several-public-clouds">Multi-cloud (several public clouds)</label>
           </div>
         </div>
       </div>
-
       <div class="js-formfield">
-        <h3 class="p-heading--five">Where are you running it?</h3>
+        <h3 class="p-heading--five">What is the primary use-case for Kafka?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-are-you-running-kafka-amazon-web-services">
-            <label for="where-are-you-running-kafka-amazon-web-services">Amazon Web Services</label>
-            <input type="checkbox" id="where-are-you-running-kafka-microsoft-azure">
-            <label for="where-are-you-running-kafka-microsoft-azure">Microsoft Azure</label>
-            <input type="checkbox" id="where-are-you-running-kafka-google-cloud">
-            <label for="where-are-you-running-kafka-google-cloud">Google Cloud</label>
-            <input type="checkbox" id="where-are-you-running-kafka-kubernetes">
-            <label for="where-are-you-running-kafka-kubernetes">Kubernetes</label>
+            <input type="checkbox" id="where-are-you-running-kafka-messaging">
+            <label for="where-are-you-running-kafka-messaging">Messaging</label>
+            <input type="checkbox" id="where-are-you-running-kafka-website-activity-tracking">
+            <label for="where-are-you-running-kafka-website-activity-tracking">Website Activity Tracking</label>
+            <input type="checkbox" id="where-are-you-running-kafka-metrics">
+            <label for="where-are-you-running-kafka-metrics">Metrics</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-are-you-running-kafka-openstack">
-            <label for="where-are-you-running-kafka-openstack">OpenStack</label>
-            <input type="checkbox" id="where-are-you-running-kafka-oracle">
-            <label for="where-are-you-running-kafka-oracle">Oracle</label>
-            <input type="checkbox" id="where-are-you-running-kafka-vmware">
-            <label for="where-are-you-running-kafka-vmware">VMWare</label>
-            <input type="checkbox" id="where-are-you-running-kafka-cisco">
-            <label for="where-are-you-running-kafka-cisco">Cisco</label>
+            <input type="checkbox" id="where-are-you-running-kafka-log-aggregation">
+            <label for="where-are-you-running-kafka-log-aggregation">Log Aggregation</label>
+            <input type="checkbox" id="where-are-you-running-kafka-stream-processing">
+            <label for="where-are-you-running-kafka-stream-processing">Stream Processing</label>
+            <input type="checkbox" id="where-are-you-running-kafka-event-sourcing">
+            <label for="where-are-you-running-kafka-event-sourcing">Event Sourcing</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-are-you-running-kafka-other-public-cloud">
-            <label for="where-are-you-running-kafka-other-public-cloud">Other public cloud</label>
-            <input type="checkbox" id="where-are-you-running-kafka-other-on-premises">
-            <label for="where-are-you-running-kafka-other-on-premises">Other on-premises</label>
+            <input type="checkbox" id="where-are-you-running-kafka-commit-log">
+            <label for="where-are-you-running-kafka-commit-log">Commit Log</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="where-are-you-running-kafka--other">
+              <label for="where-are-you-running-kafka--other">Other</label>
+              <input type="text" id="where-are-you-running-kafka--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="What?">
+            </div>
           </div>
         </div>
       </div>
-
+            <div class="js-formfield">
+        <h3 class="p-heading--five">What Kafka capabilities matter to you?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <h4 class="p-heading--five">Kafka pain points</h4>
+            <input type="checkbox" id="what-capabilities-matter-kafka-on-kubernetes">
+            <label for="what-capabilities-matter-kafka-on-kubernetes">Kafka on Kubernetes</label>
+            <input type="checkbox" id="what-capabilities-matter-general-operations">
+            <label for="what-capabilities-matter-general-operations">General Operations</label>
+            <input type="checkbox" id="what-capabilities-matter-scaling">
+            <label for="what-capabilities-matter-scaling">Scaling</label>
+            <input type="checkbox" id="what-capabilities-matter-integrations">
+            <label for="what-capabilities-matter-integrations">Integrations</label>
+            <input type="checkbox" id="what-capabilities-matter-updates">
+            <label for="what-capabilities-matter-updates">Updates</label>
+            <input type="checkbox" id="what-capabilities-matter-security">
+            <label for="what-capabilities-matter-security">Security</label>
+            <input type="checkbox" id="what-capabilities-matter-migration">
+            <label for="what-capabilities-matter-migration">Migration</label>
+            <input type="checkbox" id="what-capabilities-matter-initial-deployment">
+            <label for="what-capabilities-matter-initial-deployment">Initial deployment</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <h4 class="p-heading--five">Kafka add-ons</h4>
+            <input type="checkbox" id="what-capabilities-matter-schema-registry">
+            <label for="what-capabilities-matter-schema-registry">Schema Registry</label>
+            <input type="checkbox" id="what-capabilities-matter-ksql">
+            <label for="what-capabilities-matter-ksql">KSQL</label>
+            <input type="checkbox" id="what-capabilities-matter-mirror-maker">
+            <label for="what-capabilities-matter-mirror-maker">Mirror Maker</label>
+            <input type="checkbox" id="what-capabilities-matter-kafka-connect">
+            <label for="what-capabilities-matter-kafka-connect">Kafka Connect</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <h4 class="p-heading--five">App requirements</h4>
+            <input type="checkbox" id="what-capabilities-matter-high-availability">
+            <label for="what-capabilities-matter-high-availability">High availability</label>
+            <input type="checkbox" id="what-capabilities-matter-24/7-operations">
+            <label for="what-capabilities-matter-24/7-operations">24/7 operations</label>
+            <input type="checkbox" id="what-capabilities-matter-update-scheduling">
+            <label for="what-capabilities-matter-update-scheduling">Update scheduling</label>
+            <input type="checkbox" id="what-capabilities-matter-version-control">
+            <label for="what-capabilities-matter-version-control">Version control</label>
+            <input type="checkbox" id="what-capabilities-matter-security-patching">
+            <label for="what-capabilities-matter-security-patching">Security patching</label>
+            <input type="checkbox" id="what-capabilities-matter-monitoring">
+            <label for="what-capabilities-matter-monitoring">Monitoring</label>
+          </div>
+        </div>
+      </div>
       <div class="pagination">
         <a class="p-button--positive pagination__link--next" href="">Next</a>
       </div>
     </div>
-
     <div class="js-pagination js-pagination--2 u-hide">
       <div class="js-formfield">
-        <h3 class="p-heading--five">And are you using any other apps with it?</h3>
+        <h3 class="p-heading--five">What advice from our app engineers would be most helpful?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="using-any-other-apps-with-kafka-elasticsearch">
-            <label for="using-any-other-apps-with-kafka-elasticsearch">ElasticSearch</label>
-            <input type="checkbox" id="using-any-other-apps-with-kafka-open-source-mano">
-            <label for="using-any-other-apps-with-kafka-open-source-mano">Open Source Mano</label>
-            <input type="checkbox" id="using-any-other-apps-with-kafka-influxdb">
-            <label for="using-any-other-apps-with-kafka-influxdb">InfluxDB</label>
-            <input type="checkbox" id="using-any-other-apps-with-kafka-postgresql">
-            <label for="using-any-other-apps-with-kafka-postgresql">PostgreSQL</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-architecture-design">
+            <label for="where-do-you-want-to-run-kafka-architecture-design">Architecture design</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-performance-tuning">
+            <label for="where-do-you-want-to-run-kafka-performance-tuning">Performance tuning</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-workload-migration">
+            <label for="where-do-you-want-to-run-kafka-workload-migration">Workload migration</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-app-integration">
+            <label for="where-do-you-want-to-run-kafka-app-integration">App integration</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-version-upgrades">
+            <label for="where-do-you-want-to-run-kafka-version-upgrades">Version upgrades</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="using-any-other-apps-with-kafka-graylog">
-            <label for="using-any-other-apps-with-kafka-graylog">Graylog</label>
-            <input type="checkbox" id="using-any-other-apps-with-kafka-grafana">
-            <label for="using-any-other-apps-with-kafka-grafana">Grafana</label>
-            <input type="checkbox" id="using-any-other-apps-with-kafka-mongodb">
-            <label for="using-any-other-apps-with-kafka-mongodb">MongoDB</label>
-            <input type="checkbox" id="using-any-other-apps-with-kafka-mysql">
-            <label for="using-any-other-apps-with-kafka-mysql">MySQL</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-upstream-enhancement">
+            <label for="where-do-you-want-to-run-kafka-upstream-enhancement">Upstream enhancement</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-training">
+            <label for="where-do-you-want-to-run-kafka-training">Training</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-skills-certification">
+            <label for="where-do-you-want-to-run-kafka-skills-certification">Skills certification</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-hardware-selection">
+            <label for="where-do-you-want-to-run-kafka-hardware-selection">Hardware selection</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-data-replication">
+            <label for="where-do-you-want-to-run-kafka-data-replication">Data replication</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="using-any-other-apps-with-kafka-prometheus">
-            <label for="using-any-other-apps-with-kafka-prometheus">Prometheus</label>
-            <input type="checkbox" id="using-any-other-apps-with-kafka-cassandra">
-            <label for="using-any-other-apps-with-kafka-cassandra">Cassandra</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-backup-and-recovery">
+            <label for="where-do-you-want-to-run-kafka-backup-and-recovery">Backup and recovery</label>
+            <input type="checkbox" id="where-do-you-want-to-run-kafka-monitoring">
+            <label for="where-do-you-want-to-run-kafka-monitoring">Monitoring</label>
           </div>
         </div>
       </div>
-
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Are you already running Kafka?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="are-you-already-running-kafka-in-a-production-environment">
+            <label for="are-you-already-running-kafka-in-a-production-environment">In a production environment</label>
+            <input type="checkbox" id="are-you-already-running-kafka-in-a-test-or-dev-environment">
+            <label for="are-you-already-running-kafka-in-a-test-or-dev-environment">In a test or dev environment</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="are-you-already-running-kafka-planned-deployment">
+            <label for="are-you-already-running-kafka-planned-deployment">Planned deployment</label>
+          </div>
+        </div>
+      </div>
+      <div class="row u-no-padding js-formfield">
+        <h3 class="p-heading--five">And anything else?</h3>
+        <textarea id="apps-using-other-info" aria-label="And anything else?" rows="3" placeholder="Where are you located? Is this initiative for a specific workload or for the business as a whole? Do you have particular regulatory constraints or priorities?"></textarea>
+      </div>
       <div class="pagination">
         <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
         <a class="pagination__link--next p-button--positive" href="">Next</a>
       </div>
     </div>
-
     <div class="js-pagination js-pagination--3 u-hide">
-
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6">
@@ -116,10 +185,6 @@
                 <label for="Email" class="mktoLabel">Work email:</label>
                 <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
               </li>
-              <li class="mktFormReq mktField p-list__item">
-                <label for="Phone" class="mktoLabel ">Mobile/cell phone number:</label>
-                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" required="required" />
-              </li>
               <li class="mktField p-list__item">
                 <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
                 <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
@@ -129,7 +194,6 @@
                 <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
               </li>
             </ul>
-
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -156,7 +220,6 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" class="mktoField" id="utm_medium" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" class="mktoField" id="utm_source" value="" />
             </div>
-
             <div class="pagination">
               <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</button>
@@ -165,7 +228,6 @@
         </div>
       </div>
     </div>
-
     <div class="js-pagination js-pagination--4 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
