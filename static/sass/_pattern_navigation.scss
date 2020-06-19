@@ -209,10 +209,13 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
       &__logo {
         @extend %paragraph;
+
         align-items: center;
         color: $color-x-light;
         display: flex;
+        font-size: 0.875rem;
         margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
+        padding-top: 0.55rem;
         position: relative;
 
         @media (max-width: $breakpoint-navigation-threshold - 1) {
