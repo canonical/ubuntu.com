@@ -283,6 +283,25 @@ def update_notice(notice_id):
     return flask.jsonify({"message": "Notice updated"}), 200
 
 
+@authorization_required
+def delete_notice(notice_id):
+    """
+    DELETE method to delete a single notice
+    """
+    notice = db_session.query(Notice).get(notice_id)
+
+    if not notice:
+        return (
+            flask.jsonify({"message": f"Notice {notice_id} doesn't exist"}),
+            404,
+        )
+
+    db_session.delete(notice)
+    db_session.commit()
+
+    return flask.jsonify({"message": f"Notice {notice_id} deleted"}), 200
+
+
 # CVE views
 # ===
 def cve_index():

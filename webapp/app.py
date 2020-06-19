@@ -53,6 +53,7 @@ from webapp.login import login_handler, logout, user_info
 from webapp.security.database import db_session
 from webapp.security.views import (
     create_notice,
+    delete_notice,
     notice,
     notices,
     notices_feed,
@@ -193,6 +194,11 @@ app.add_url_rule(
 app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
 app.add_url_rule(
     "/security/notices/<notice_id>", view_func=update_notice, methods=["PUT"]
+)
+app.add_url_rule(
+    "/security/notices/<notice_id>",
+    view_func=delete_notice,
+    methods=["DELETE"],
 )
 
 app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
