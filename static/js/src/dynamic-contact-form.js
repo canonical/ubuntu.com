@@ -352,6 +352,50 @@
       }
 
       setupRadioDescriptionFields();
+
+      // Sets a limit of checkboxes and disables remaining fields
+      function setCheckboxLimit() {
+        const choiceLimitContainers = document.querySelectorAll(
+          ".js-choice-limit"
+        );
+
+        const checkedChoices = (choices) => {
+          return Array.from(choices).filter((choice) => {
+            return choice.checked;
+          });
+        };
+
+        const uncheckedChoices = (choices) => {
+          return Array.from(choices).filter((choice) => {
+            return !choice.checked;
+          });
+        };
+
+        const handleChoiceLimitContainer = (choiceLimitContainer) => {
+          const choiceLimit = choiceLimitContainer.dataset.choiceLimit;
+          const choices = choiceLimitContainer.querySelectorAll(
+            "[type='checkbox']"
+          );
+
+          choices.forEach((choice) => {
+            choice.addEventListener("change", () => {
+              if (checkedChoices(choices).length >= choiceLimit) {
+                uncheckedChoices(choices).forEach((c) => {
+                  c.setAttribute("disabled", true);
+                });
+              } else {
+                uncheckedChoices(choices).forEach((c) => {
+                  c.removeAttribute("disabled");
+                });
+              }
+            });
+          });
+        };
+
+        choiceLimitContainers.forEach(handleChoiceLimitContainer);
+      }
+
+      setCheckboxLimit();
     }
 
     // Opens the form when the initial hash matches the trigger
