@@ -56,7 +56,7 @@ class NoticePackage(Schema):
 
 
 class NoticeSchema(Schema):
-    id = String(required=True)
+    id = String(required=True, validate=Regexp(r"USN-\d{4}-\d{1,2}"))
     title = String(required=True)
     summary = String(required=True)
     instructions = String(required=True)

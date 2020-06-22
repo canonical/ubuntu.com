@@ -72,7 +72,6 @@ if os.path.exists(client.cookies.filename):
     client.cookies.load(ignore_discard=True)
 
 notice_endpoint = f"{args.host}/security/notices"
-
 http_method = "PUT" if args.update else "POST"
 
 # Make a first call to make sure we are logged in
@@ -121,11 +120,16 @@ with open(args.file_path) as usn_json:
             else:
                 references.append(reference)
 
+        # Build endpoint
+        endpoint = notice_endpoint
+        if http_method == "PUT"
+            endpoint = f"{notice_endpoint}/{notice['id']}"
+
         response = client.request(
             http_method,
-            url=notice_endpoint,
+            url=endpoint,
             json={
-                "id": notice["id"],
+                "id": f"USN-{notice['id']}",
                 "description": notice["description"],
                 "references": references,
                 "cves": cves,
