@@ -355,16 +355,23 @@
       <div class="col-12 u-hide--small">
         <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply). And if you’re a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it’s free on up to 50 machines.</p>      <p>Initially, this free subscription is available for Ubuntu 14.04 LTS only.</p>
 
-        <table style="width: auto;">
-          <tr style="border: 0;">
-            <td class="u-align--right">To attach a machine:</td>
-            <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua attach {{ personal_account.free_token }}</code></pre></td>
-          </tr>
-          <tr style="border: 0;">
-            <td class="u-align--right">To check status:</td>
-            <td><pre style="border: 0; padding: 0;" class="u-no-margin--bottom"><code>sudo ua status</code></pre></td>
-          </tr>
-        </table>
+        <span class="p-contextual-menu--left p-contextual-menu--advantage">
+          <a href="#" class="p-contextual-menu__toggle p-button--neutral" data-trigger="click" aria-controls="#free-sub" aria-expanded="false" aria-haspopup="true">Get your free token&nbsp;<i class="p-icon--contextual-menu">Open</i></a>
+          <span class="p-contextual-menu__dropdown p-table-expanding__panel" id="free-sub" aria-hidden="true" style="max-width: 70vw; padding: 1rem; width: 1170px; z-index: 10;">
+            <span class="p-contextual-menu__group">
+              <table class="p-table--advantage" style="width: auto;">
+                <tr style="border: 0;">
+                  <td class="u-align--right">To attach a machine:</td>
+                  <td class="u-no-padding--left"><code class="u-no-margin--left">sudo ua attach {{ personal_account.free_token }}</code></td>
+                </tr>
+                <tr style="border: 0;">
+                  <td class="u-align--right">To check status:</td>
+                  <td class="u-no-padding--left"><code class="u-no-margin--left">sudo ua status</code></td>
+                </tr>
+              </table>
+            </span>
+          </span>
+        </span>
       </div>
 
       <div class="col-12 u-hide--medium u-hide--large">

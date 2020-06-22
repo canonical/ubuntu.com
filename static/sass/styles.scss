@@ -493,6 +493,35 @@ summary {
   }
 }
 
+.p-contextual-menu--advantage {
+  .p-table--advantage {
+    margin: 0 auto;
+  }
+
+  .p-contextual-menu__toggle {
+    margin-bottom: -1px;
+
+    &[aria-expanded="true"] {
+      border-bottom-color: $color-x-light;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-left-color: $color-mid-light;
+      border-right-color: $color-mid-light;
+      border-top-color: $color-mid-light;
+      position: relative;
+      z-index: 11;
+
+      .p-icon--contextual-menu {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .p-contextual-menu__dropdown {
+    box-shadow: none;
+  }
+}
+
 .u-arrow-up {
   overflow: visible;
   position: relative;
