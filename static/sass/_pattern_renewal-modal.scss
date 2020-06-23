@@ -1,13 +1,17 @@
-@mixin ubuntu-p-renewal-modal {
+@mixin ubuntu-p-ua-payment-modal {
   .p-modal--active {
     height: 100vh;
     overflow: hidden;
   }
 
-  .p-modal--renewal {
+  .p-modal--ua-payment {
     overflow: hidden;
     position: fixed;
     z-index: 100;
+
+    &.u-hide:target {
+      display: flex !important;
+    }
 
     &.is-pay-mode {
       #details-form,
@@ -19,7 +23,7 @@
     }
 
     &.is-details-mode {
-      #renewal-summary,
+      #order-summary,
       #payment-error-dialog,
       .js-process-payment,
       .js-close-modal {
@@ -28,8 +32,8 @@
     }
 
     &.is-dialog-mode {
-      #renewal-summary,
-      #renewal-info,
+      #order-summary,
+      #order-info,
       #details-form,
       .js-cancel-modal,
       .js-payment-method,
