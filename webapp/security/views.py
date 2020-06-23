@@ -33,7 +33,7 @@ def notice(notice_id):
     if not notice:
         flask.abort(404)
 
-    packages = []
+    package_descriptions = set()
     release_packages = SortedDict()
 
     if notice.release_packages:
@@ -48,15 +48,14 @@ def notice(notice_id):
             release_packages[release_version] = []
             for package in pkgs:
                 if package["is_source"]:
-                    packages.append(package)
+                    package_descriptions.add(
+                        f"{package['name']} - {package['description']}"
+                    )
                 else:
                     release_packages[release_version].append(package)
 
             # Order packages for release by the name key
             release_packages[release_version].sort(key=lambda pkg: pkg["name"])
-
-    # Order source packages by the name key
-    packages.sort(key=lambda pkg: pkg["name"])
 
     notice = {
         "id": notice.id,
@@ -65,7 +64,7 @@ def notice(notice_id):
         "summary": notice.summary,
         "details": markdown_parser(notice.details),
         "instructions": markdown_parser(notice.instructions),
-        "packages": packages,
+        "package_descriptions": sorted(package_descriptions),
         "release_packages": release_packages,
         "releases": notice.releases,
         "cves": notice.cves,

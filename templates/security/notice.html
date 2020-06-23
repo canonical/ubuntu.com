@@ -27,13 +27,13 @@
     </div>
   </div>
 
-  {% if notice.packages %}
+  {% if notice.package_descriptions %}
   <div class="row">
     <div class="col-12">
       <h2>Packages</h2>
       <ul class="p-list">
-        {% for package in notice.packages %}
-          <li class="p-list__item">{{ package.name }} - {{ package.description }}</li>
+        {% for package_description in notice.package_descriptions %}
+          <li class="p-list__item">{{ package_description }}</li>
         {% endfor %}
       </ul>
     </div>
