@@ -29,6 +29,7 @@ from webapp.context import (
 from webapp.views import (
     accept_renewal,
     advantage_view,
+    advantage_shop_view,
     BlogCustomGroup,
     BlogCustomTopic,
     BlogPressCentre,
@@ -146,6 +147,7 @@ def utility_processor():
 
 # Simple routes
 app.add_url_rule("/advantage", view_func=advantage_view)
+app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule(
     "/advantage/subscribe",
     view_func=post_advantage_subscriptions,

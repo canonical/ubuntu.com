@@ -567,6 +567,17 @@ def post_advantage_subscriptions():
     return flask.jsonify({}), 200
 
 
+def advantage_shop_view():
+    stripe_publishable_key = os.getenv(
+        "STRIPE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+    )
+
+    return flask.render_template(
+        "advantage/subscribe.html",
+        stripe_publishable_key=stripe_publishable_key,
+    )
+
+
 def make_renewal(advantage, contract_info):
     """Return the renewal as present in the given info, or None."""
     renewals = contract_info.get("renewals")
