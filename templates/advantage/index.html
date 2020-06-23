@@ -194,8 +194,9 @@
                                   <tr style="border-top: 0;">
                                     <td></td>
                                     <td>
-                                      <button
+                                      <a
                                         id="showModal"
+                                        href="#ua-payment-modal"
                                         class="js-ua-payment-cta p-button--positive u-no-margin--bottom"
                                         data-contract-id="{{ contract['contractInfo']['id'] }}"
                                         data-account-id="{{ enterprise_contracts[account][0].accountInfo.id }}"
@@ -211,7 +212,7 @@
                                         data-months="{{ contract['renewal']['renewalItems'][0]['priceTotal']['months'] }}"
                                         data-unit-price="{{ contract['renewal']['renewalItems'][0]['pricePerUnit']['value'] }}"
                                         data-total="{{ contract['renewal']['renewalItems'][0]['priceTotal']['value'] }}"
-                                        data-currency="{{ contract['renewal']['renewalItems'][0]['priceTotal']['currency'] }}">Renew...</button>
+                                        data-currency="{{ contract['renewal']['renewalItems'][0]['priceTotal']['currency'] }}">Renew...</a>
                                     </td>
                                   </tr>
                                 {% elif contract["renewal"]["status"] == "processing" %}
