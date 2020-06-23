@@ -16,8 +16,6 @@ import pytz
 import talisker.requests
 import yaml
 from ubuntu_release_info.data import Data
-from canonicalwebteam.blog import BlogViews
-from canonicalwebteam.blog.flask import build_blueprint
 from canonicalwebteam.store_api.stores.snapstore import SnapStore
 from canonicalwebteam.launchpad import Launchpad
 from geolite2 import geolite2
@@ -675,31 +673,38 @@ def build_tutorials_index(tutorials_docs):
 
 # Blog
 # ===
-
-blog_views = BlogViews(excluded_tags=[3184, 3265, 3408], per_page=11)
-blog_blueprint = build_blueprint(blog_views)
-
-
-def blog_custom_topic(slug):
-    page_param = flask.request.args.get("page", default=1, type=int)
-    context = blog_views.get_topic(slug, page_param)
-
-    return flask.render_template(f"blog/topics/{slug}.html", **context)
+class BlogView(flask.views.View):
+    def __init__(self, blog_views):
+        self.blog_views = blog_views
 
 
-def blog_custom_group(slug):
-    page_param = flask.request.args.get("page", default=1, type=int)
-    category_param = flask.request.args.get("category", default="", type=str)
-    context = blog_views.get_group(slug, page_param, category_param)
+class BlogCustomTopic(BlogView):
+    def dispatch_request(self, slug):
+        page_param = flask.request.args.get("page", default=1, type=int)
+        context = self.blog_views.get_topic(slug, page_param)
 
-    return flask.render_template(f"blog/{slug}.html", **context)
+        return flask.render_template(f"blog/topics/{slug}.html", **context)
 
 
-def blog_press_centre():
-    page_param = flask.request.args.get("page", default=1, type=int)
-    category_param = flask.request.args.get("category", default="", type=str)
-    context = blog_views.get_group(
-        "canonical-announcements", page_param, category_param
-    )
+class BlogCustomGroup(BlogView):
+    def dispatch_request(self, slug):
+        page_param = flask.request.args.get("page", default=1, type=int)
+        category_param = flask.request.args.get(
+            "category", default="", type=str
+        )
+        context = self.blog_views.get_group(slug, page_param, category_param)
 
-    return flask.render_template("blog/press-centre.html", **context)
+        return flask.render_template(f"blog/{slug}.html", **context)
+
+
+class BlogPressCentre(BlogView):
+    def dispatch_request(self):
+        page_param = flask.request.args.get("page", default=1, type=int)
+        category_param = flask.request.args.get(
+            "category", default="", type=str
+        )
+        context = self.blog_views.get_group(
+            "canonical-announcements", page_param, category_param
+        )
+
+        return flask.render_template("blog/press-centre.html", **context)
