@@ -22,7 +22,7 @@ module.exports = {
   tabotronic: "./static/js/src/tabotronic.js",
   appliance: "./static/js/src/appliance.js",
   "tco-calculator": "./static/js/src/tco-calculator.js",
-  "renewal-modal": "./static/js/src/renewal-modal.js",
+  "ua-payment-modal": "./static/js/src/ua-payment-modal.js",
   "sticky-nav": "./static/js/src/sticky-nav.js",
   imageBuilder: "./static/js/src/imageBuilder.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
