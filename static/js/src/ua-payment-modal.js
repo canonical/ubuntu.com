@@ -3,15 +3,15 @@ import {
   postInvoiceIDToRenewal,
   postCustomerInfoToStripeAccount,
   postRenewalIDToProcessPayment,
-} from "./renewals/contracts-api.js";
+} from "./advantage/contracts-api.js";
 
-import { parseForErrorObject } from "./renewals/error-handler.js";
-import { vatCountries } from "./renewals/vat-countries.js";
+import { parseForErrorObject } from "./advantage/error-handler.js";
+import { vatCountries } from "./advantage/vat-countries.js";
 
 import {
   setPaymentInformation,
   setRenewalInformation,
-} from "./renewals/set-modal-info.js";
+} from "./advantage/set-modal-info.js";
 
 const modal = document.getElementById("ua-payment-modal");
 
