@@ -1,4 +1,4 @@
-<div class="p-modal p-modal--renewal u-hide is-details-mode" id="renewal-modal">
+<div class="p-modal p-modal--renewal u-hide is-details-mode" id="ua-payment-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
     <header class="p-modal__header">
       <h2 class="p-modal__title js-contract-name u-no-margin--bottom" id="modal-title">
@@ -42,6 +42,20 @@
         </div>
 
         <form class="p-form p-form--stacked" id="details-form">
+          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
+            <div class="col-3">
+              <label class="u-no-padding--top" for="email">Email my invoice to:</label>
+            </div>
+
+            <div class="col-9">
+              <input class="p-form-validation__input" name="email" type="email" required value="{{ user_info.email }}" />
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
           <div class="p-form__group row u-no-padding u-vertically-center">
             <div class="col-3">
               <label class="u-no-padding--top">Payment card:</label>
@@ -117,20 +131,6 @@
               <small>e.g. GB101111, CY99999999L</small>
             </div>
             
-            <div class="col-9 col-start-large-4">
-              <span class="p-form-validation__message u-hide"></span>
-            </div>
-          </div>
-
-          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
-            <div class="col-3">
-              <label class="u-no-padding--top" for="email">Email my invoice to:</label>
-            </div>
-
-            <div class="col-9">
-              <input class="p-form-validation__input" name="email" type="email" required value="{{ user_info.email }}" />
-            </div>
-
             <div class="col-9 col-start-large-4">
               <span class="p-form-validation__message u-hide"></span>
             </div>
@@ -218,4 +218,4 @@
 <script>
   window.stripePublishableKey = "{{ stripe_publishable_key }}";
 </script>
-<script src="{{ versioned_static('js/dist/renewal-modal.js') }}" type="module" defer></script>
+<script src="{{ versioned_static('js/dist/ua-payment-modal.js') }}" type="module" defer></script>
