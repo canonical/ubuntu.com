@@ -94,7 +94,8 @@ function attachCTAevents(selector) {
   const renewalCTAs = document.querySelectorAll(selector);
 
   renewalCTAs.forEach((cta) => {
-    cta.addEventListener("click", () => {
+    cta.addEventListener("click", (e) => {
+      e.preventDefault();
       let renewalData = cta.dataset;
 
       toggleModal();
