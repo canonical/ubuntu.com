@@ -13,7 +13,7 @@ import {
   setRenewalInformation,
 } from "./renewals/set-modal-info.js";
 
-const modal = document.getElementById("renewal-modal");
+const modal = document.getElementById("ua-payment-modal");
 
 const form = document.getElementById("details-form");
 const errorDialog = document.getElementById("payment-error-dialog");
@@ -672,7 +672,7 @@ function validateFormInput(input, highlightError) {
   return valid;
 }
 
-attachCTAevents(".js-renewal-cta");
+attachCTAevents(".js-ua-payment-cta");
 attachFormEvents();
 attachModalButtonEvents();
 setupCardElements();
