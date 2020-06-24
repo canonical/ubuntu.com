@@ -147,7 +147,13 @@
                         Ubuntu {{ release.version }} {{ release.support_tag }} ({{ release.name }})
                       {% endif %}
                     </td>
-                    <td>
+                    {% if release.codename in statuses %}
+                        {% if statuses[release.codename].status == "DNE" or statuses[release.codename].status == "not-affected" %}
+                          <td class="cve-table-cell--muted">
+                        {% else %}
+                          <td class="cve-table-cell">
+                        {% endif %}
+                      {% endif %}
                       {% if release.codename in statuses %}
                         {% if statuses[release.codename].status == "DNE" %}
                           Does not exist

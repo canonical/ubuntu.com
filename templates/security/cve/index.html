@@ -104,7 +104,13 @@
               {% endif %}
               <td>{{ package_name }}</td>
               {% for release in releases %}
-                <td>
+                {% if release.codename in statuses %}
+                  {% if statuses[release.codename].status == "DNE" or statuses[release.codename].status == "not-affected" %}
+                    <td class="cve-table-cell--muted">
+                  {% else %}
+                    <td class="cve-table-cell">
+                  {% endif %}
+                {% endif %}
                 {% if release.codename in statuses %}
                   {% if statuses[release.codename].status == "DNE" %}
                     <div class="cve-color-strip--dne"></div>

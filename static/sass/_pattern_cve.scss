@@ -12,22 +12,44 @@
     color: $color-x-light;
   }
 
+  .cve-table thead tr {
+    border-bottom: 0;
+  }
+
+  .cve-table tbody tr {
+    border-top: 0;
+  }
+
   .cve-table td {
+    border-top: 1px solid $color-mid-light;
     position: relative;
+  }
+
+  .cve-table .cve-table-cell {
+    border-top: 0;
+    overflow: visible;
+  }
+
+  .cve-table-cell--muted {
+    @extend .cve-table-cell;
+
+    color: $color-mid-dark;
   }
 
   .cve-color-strip {
     border-bottom-style: solid;
     border-bottom-width: 3px;
-    top: 0;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
     position: absolute;
-    width: 100%;
+    top: -1px;
+    width: calc(100% - 0.5rem);
   }
 
   .cve-color-strip--dne {
     @extend .cve-color-strip;
 
-    border-bottom-color: #666;
+    border-bottom-color: $color-mid-light;
   }
 
   .cve-color-strip--needs-triage {
@@ -39,7 +61,7 @@
   .cve-color-strip--not-affected {
     @extend .cve-color-strip;
 
-    border-bottom-color: #e6ab02;
+    border-bottom-color: $color-mid-light;
   }
 
   .cve-color-strip--needed {
