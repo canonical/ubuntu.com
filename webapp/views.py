@@ -549,6 +549,24 @@ class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
         return str(self.attached)
 
 
+def post_advantage_subscriptions():
+    # 500 if 'error' arg is provided
+    if flask.request.args.get("error"):
+        return flask.jsonify({}), 500
+
+    payload = flask.request.json
+    if not payload:
+        return flask.jsonify({}), 400
+
+    customer_id = payload.get("customer_id")
+    products = payload.get("products")
+
+    if not customer_id or not products:
+        return flask.jsonify({}), 400
+
+    return flask.jsonify({}), 200
+
+
 def make_renewal(advantage, contract_info):
     """Return the renewal as present in the given info, or None."""
     renewals = contract_info.get("renewals")

@@ -38,6 +38,7 @@ from webapp.views import (
     download_thank_you,
     appliance_install,
     get_renewal,
+    post_advantage_subscriptions,
     post_customer_info,
     post_stripe_invoice_id,
     post_build,
@@ -145,6 +146,11 @@ def utility_processor():
 
 # Simple routes
 app.add_url_rule("/advantage", view_func=advantage_view)
+app.add_url_rule(
+    "/advantage/subscribe",
+    view_func=post_advantage_subscriptions,
+    methods=["POST"],
+)
 app.add_url_rule(
     "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
 )
