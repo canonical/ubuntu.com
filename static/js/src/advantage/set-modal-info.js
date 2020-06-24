@@ -16,6 +16,35 @@ const cardBrandImages = {
   amex: "91e62c4f-amex.png",
 };
 
+function setModalTitle(title, modal) {
+  const modalTitleEl = modal.querySelector("#modal-title");
+
+  modalTitleEl.innerHTML = title;
+}
+
+function setSummaryInfo(infoArray, modal) {
+  const infoContainer = modal.querySelector("#order-info");
+
+  // clear anything that was there previously
+  infoContainer.innerHTML = "";
+
+  infoArray.forEach((item) => {
+    const isLastItem = item === infoArray[infoArray.length - 1];
+    const infoRow = buildInfoRow(item, isLastItem);
+
+    infoContainer.innerHTML += infoRow;
+  });
+
+  infoContainer.classList.remove("u-hide");
+}
+
+function buildInfoRow(item, isLastItem) {
+  return `<div class="row u-no-padding ${isLastItem ? "" : "u-sv1"}">
+    <div class="col-3 u-text-light">${item.label}</div>
+    <div class="col-9">${item.value}</div>
+  </div>`;
+}
+
 function getProductsString(productsArrayString) {
   const arrayRegex = /[[\]']+/g;
   const isArray = arrayRegex.test(productsArrayString);
@@ -118,18 +147,29 @@ export function setPaymentInformation(paymentMethod, modal) {
 
 export function setRenewalInformation(data, modal) {
   const renewalInfo = getRenewalInformation(data);
+  const renewalInfoArray = [
+    {
+      label: "Plan type:",
+      value: renewalInfo.products,
+    },
+    {
+      label: "Will continue from:",
+      value: renewalInfo.startDate,
+    },
+    {
+      label: "Ends:",
+      value: renewalInfo.endDate,
+    },
+    {
+      label: "Machines:",
+      value: renewalInfo.quantity,
+    },
+    {
+      label: "Subtotal:",
+      value: renewalInfo.total,
+    },
+  ];
 
-  const contractNameElement = modal.querySelector(".js-contract-name");
-  const endElement = modal.querySelector(".js-renewal-end");
-  const productNameElement = modal.querySelector(".js-product-name");
-  const quantityElement = modal.querySelector(".js-renewal-quantity");
-  const startElement = modal.querySelector(".js-renewal-start");
-  const totalElement = modal.querySelector(".js-renewal-total");
-
-  contractNameElement.innerHTML = renewalInfo.name;
-  endElement.innerHTML = renewalInfo.endDate;
-  productNameElement.innerHTML = renewalInfo.products;
-  quantityElement.innerHTML = renewalInfo.quantity;
-  startElement.innerHTML = renewalInfo.startDate;
-  totalElement.innerHTML = renewalInfo.total;
+  setModalTitle(renewalInfo.name, modal);
+  setSummaryInfo(renewalInfoArray, modal);
 }
