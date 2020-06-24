@@ -10,7 +10,7 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
-from canonicalwebteam.blog.wordpress_api import api_session
+from canonicalwebteam.blog import build_blueprint, BlogViews, Wordpress
 from canonicalwebteam.discourse_docs import (
     DiscourseAPI,
     DiscourseDocs,
@@ -33,10 +33,9 @@ from webapp.context import (
 from webapp.views import (
     accept_renewal,
     advantage_view,
-    blog_blueprint,
-    blog_custom_group,
-    blog_custom_topic,
-    blog_press_centre,
+    BlogCustomGroup,
+    BlogCustomTopic,
+    BlogPressCentre,
     build,
     build_tutorials_index,
     download_thank_you,
@@ -88,7 +87,6 @@ app.config["CANONICAL_LOGIN_URL"] = os.getenv(
 ).rstrip("/")
 
 session = talisker.requests.get_session()
-talisker.requests.configure(api_session)
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/", session=session
 )
@@ -174,16 +172,25 @@ app.add_url_rule(
     view_func=appliance_install,
 )
 # blog section
+
+blog_views = BlogViews(
+    api=Wordpress(session=session),
+    excluded_tags=[3184, 3265, 3408],
+    per_page=11,
+)
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
-    view_func=blog_custom_topic,
+    view_func=BlogCustomTopic.as_view("blog_topic", blog_views=blog_views),
 )
 app.add_url_rule(
     "/blog/<regex('cloud-and-server|desktop|internet-of-things'):slug>",
-    view_func=blog_custom_group,
+    view_func=BlogCustomGroup.as_view("blog_group", blog_views=blog_views),
 )
-app.add_url_rule("/blog/press-centre", view_func=blog_press_centre)
-app.register_blueprint(blog_blueprint, url_prefix="/blog")
+app.add_url_rule(
+    "/blog/press-centre",
+    view_func=BlogPressCentre.as_view("press_centre", blog_views=blog_views),
+)
+app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
