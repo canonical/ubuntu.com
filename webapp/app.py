@@ -158,6 +158,11 @@ app.add_url_rule(
     defaults={"preview": True},
 )
 app.add_url_rule(
+    "/advantage/subscribe",
+    view_func=post_advantage_subscriptions,
+    methods=["POST"],
+)
+app.add_url_rule(
     "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
 )
 app.add_url_rule(
