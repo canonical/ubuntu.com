@@ -91,21 +91,40 @@ let progressTimer3;
 let progressTimer4;
 
 function attachCTAevents(selector) {
-  const renewalCTAs = document.querySelectorAll(selector);
+  const CTAs = document.querySelectorAll(selector);
 
-  renewalCTAs.forEach((cta) => {
+  CTAs.forEach((cta) => {
     cta.addEventListener("click", (e) => {
       e.preventDefault();
-      let renewalData = cta.dataset;
+      let data = cta.dataset;
 
       toggleModal();
       card.focus();
       sendGAEvent("opened payment modal");
-      activeRenewal.accountId = renewalData.accountId;
-      activeRenewal.contractId = renewalData.contractId;
-      activeRenewal.renewalId = renewalData.renewalId;
 
-      setRenewalInformation(renewalData, modal);
+      if (data.transactionType === "renewal") {
+        activeRenewal.accountId = data.accountId;
+        activeRenewal.contractId = data.contractId;
+        activeRenewal.renewalId = data.renewalId;
+
+        setRenewalInformation(data, modal);
+      } else if (data.transactionType === "purchase") {
+        // dummy data until we implement product selection
+        const orderItems = [
+          {
+            name: "UA Infra Advanced Server",
+            quantity: 10,
+            unitPrice: 5000,
+          },
+          {
+            name: "UA Apps Server",
+            quantity: 10,
+            unitPrice: 5000,
+          },
+        ];
+
+        setOrderInformation(orderItems, modal);
+      }
     });
   });
 }
