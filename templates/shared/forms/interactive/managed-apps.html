@@ -3,9 +3,24 @@
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
       <h2 class="p-modal__title u-sv1" id="modal-title">Canonical, the managed app experts</h2>
-      <p>No matter where they run, we can manage your applications so you can run your business. Share with us some detail on your project and let's get started.</p>
     </header>
     <div class="js-pagination js-pagination--1">
+      <p>Canonical&rsquo;s app engineers will provide a free quote and architecture assessment &mdash; start by sharing the details below.</p>
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Where do you want to run your apps?</h3>
+        <div class="row u-no-padding u-equal-height">
+          <div class="col-12 u-sv3">
+            <input type="checkbox" id="run-apps-on-prem">
+            <label for="run-apps-on-prem">Our own data centre (on-prem)</label>
+            <input type="checkbox" id="run-apps-public">
+            <label for="run-apps-public">Public Cloud &mdash; AWS, GCP or Azure</label>
+            <input type="checkbox" id="run-apps-hybrid">
+            <label for="run-apps-hybrid">Hybrid-cloud (public cloud and on-prem)</label>
+            <input type="checkbox" id="run-apps-multi">
+            <label for="run-apps-multi">Multi-cloud (several public clouds)</label>
+          </div>
+        </div>
+      </div>
       <div class="js-formfield">
         <h3 class="p-heading--five">What apps are you using?</h3>
         <div class="row u-no-padding u-equal-height">
@@ -18,66 +33,34 @@
             <label for="apps-using-InfluxDB">InfluxDB</label>
             <input type="checkbox" id="apps-using-PostgreSQL">
             <label for="apps-using-PostgreSQL">PostgreSQL</label>
-          </div>
-          <div class="col-4 u-sv3">
             <input type="checkbox" id="apps-using-Kafka">
             <label for="apps-using-Kafka">Kafka</label>
+          </div>
+          <div class="col-4 u-sv3">
             <input type="checkbox" id="apps-using-Graylog">
             <label for="apps-using-Graylog">Graylog</label>
             <input type="checkbox" id="apps-using-Grafana">
             <label for="apps-using-Grafana">Grafana</label>
             <input type="checkbox" id="apps-using-MongoDB">
             <label for="apps-using-MongoDB">MongoDB</label>
-          </div>
-          <div class="col-4 u-sv3">
             <input type="checkbox" id="apps-using-MySQL">
             <label for="apps-using-MySQL">MySQL</label>
             <input type="checkbox" id="apps-using-Prometheus">
             <label for="apps-using-Prometheus">Prometheus</label>
+          </div>
+          <div class="col-4 u-sv3">
             <input type="checkbox" id="apps-using-cassandra">
             <label for="apps-using-cassandra">Cassandra</label>
+            <input type="checkbox" id="apps-using-rabbitmq">
+            <label for="apps-using-rabbitmq">RabbitMQ</label>
+            <input type="checkbox" id="apps-using-other">
+            <label for="apps-using-other">Other</label>
           </div>
         </div>
       </div>
-      <div class="js-formfield">
-        <h3 class="p-heading--five">And any of these?</h3>
-        <div class="row u-no-padding u-equal-height">
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="other-apps-redis">
-            <label for="other-apps-redis">Redis</label>
-            <input type="checkbox" id="other-apps-nginx">
-            <label for="other-apps-nginx">NGINX</label>
-            <input type="checkbox" id="other-apps-nodejs">
-            <label for="other-apps-nodejs">NodeJS</label>
-            <input type="checkbox" id="other-apps-collectd">
-            <label for="other-apps-collectd">Collectd</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="other-apps-etcd">
-            <label for="other-apps-etcd">Etcd</label>
-            <input type="checkbox" id="other-apps-glusterfs">
-            <label for="other-apps-glusterfs">GlusterFS</label>
-            <input type="checkbox" id="other-apps-openjdk">
-            <label for="other-apps-openjdk">OpenJDK</label>
-            <input type="checkbox" id="other-apps-nagios">
-            <label for="other-apps-nagios">Nagios</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="other-apps-vault">
-            <label for="other-apps-vault">Vault</label>
-            <input type="checkbox" id="other-apps-filebeat">
-            <label for="other-apps-filebeat">Filebeat</label>
-            <input type="checkbox" id="other-apps-telegraf">
-            <label for="other-apps-telegraf">Telegraf</label>
-            <input type="checkbox" id="other-apps-thruck">
-            <label for="other-apps-thruck">Thruk</label>
-            <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="other-apps-other">
-              <label for="other-apps-other">Other</label>
-              <input type="text" id="other-apps-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other apps">
-            </div>
-          </div>
-        </div>
+      <div class="row u-no-padding js-formfield">
+        <h3 class="p-heading--five">Tell us about your other apps</h3>
+        <textarea id="apps-using-other-info" aria-label="Tell us about your other apps" rows="3" placeholder=""></textarea>
       </div>
       <div class="row u-no-padding">
         <div class="pagination">
@@ -85,57 +68,108 @@
         </div>
       </div>
     </div>
-
     <div class="js-pagination js-pagination--2 u-hide">
-      <div class="js-formfield">
-        <h3 class="p-heading--five">And how are you running it?</h3>
+      <div class="js-formfield js-choice-limit" data-choice-limit="4">
+        <h3 class="p-heading--five">What app and cloud capabilities matter to you?</h3>
+        <p>Pick the top 4 items out of the below.</p>
         <div class="row u-no-padding u-equal-height">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-running-Public-cloud-amazon-web-services">
-            <label for="where-running-Public-cloud-amazon-web-services">Amazon Web Services</label>
-            <input type="checkbox" id="where-running-Public-cloud-microsoft-azure">
-            <label for="where-running-Public-cloud-microsoft-azure">Microsoft Azure</label>
-            <input type="checkbox" id="where-running-Public-cloud-google-cloud">
-            <label for="where-running-Public-cloud-google-cloud">Google Cloud</label>
-            <input type="checkbox" id="where-running-Public-cloud-kubernetes">
-            <label for="where-running-Public-cloud-kubernetes">Kubernetes</label>
+            <h4 class="p-heading--five">App requirements</h4>
+            <input type="checkbox" id="requirements-apps-on-kubernetes">
+            <label for="requirements-apps-on-kubernetes">Apps on Kubernetes</label>
+            <input type="checkbox" id="requirements-high-availability">
+            <label for="requirements-high-availability">High availability</label>
+            <input type="checkbox" id="requirements-24-7-operations">
+            <label for="requirements-24-7-operations">24/7 operations</label>
+            <input type="checkbox" id="requirements-update-scheduling">
+            <label for="requirements-update-scheduling">Update scheduling</label>
+            <input type="checkbox" id="requirements-security-patching">
+            <label for="requirements-security-patching">Security patching</label>
+            <input type="checkbox" id="requirements-monitoring">
+            <label for="requirements-monitoring">Monitoring</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-running-Public-cloud-openstack">
-            <label for="where-running-Public-cloud-openstack">OpenStack</label>
-            <input type="checkbox" id="where-running-Public-cloud-oracle">
-            <label for="where-running-Public-cloud-oracle">Oracle</label>
-            <input type="checkbox" id="where-running-Public-cloud-vmware">
-            <label for="where-running-Public-cloud-vmware">VMWare</label>
-            <input type="checkbox" id="where-running-Public-cloud-cisco">
-            <label for="where-running-Public-cloud-cisco">Cisco</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-running-Public-cloud-other-public-cloud">
-            <label for="where-running-Public-cloud-other-public-cloud">Other public cloud</label>
-            <input type="checkbox" id="where-running-Public-cloud-on-premises">
-            <label for="where-running-Public-cloud-other-on-premises">Other on-premises</label>
-            <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="other-where-running-other">
-              <label for="other-where-running-other">Other</label>
-              <input type="text" id="other-where-running-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other where running">
-            </div>
+            <h4 class="p-heading--five">Use-case</h4>
+            <input type="checkbox" id="use-case-ai-ml">
+            <label for="use-case-ai-ml">AI / ML</label>
+            <input type="checkbox" id="use-case-big-data">
+            <label for="use-case-big-data">Big data</label>
+            <input type="checkbox" id="use-case-analytics">
+            <label for="use-case-analytics">Analytics</label>
+            <input type="checkbox" id="use-case-hpc">
+            <label for="use-case-hpc">HPC</label>
+            <input type="checkbox" id="use-case-telco-nfv">
+            <label for="use-case-telco-nfv">Telco NFV</label>
+            <input type="checkbox" id="use-case-web-apps">
+            <label for="use-case-web-apps">Web apps</label>
+            <input type="checkbox" id="use-case-other">
+            <label for="use-case-other">Other</label>
           </div>
         </div>
       </div>
-    <div class="row u-no-padding js-formfield">
-      <h3 class="p-heading--five">Can you summarize in a few words your project and what assistance you're looking for?</h3>
-      <textarea id="summarize-your-project" aria-label="Can you summarize in a few words your project and what assistance you're looking for?" rows="3" placeholder=""></textarea>
-    </div>
-    <div class="row u-no-padding">
-      <div class="pagination">
-        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
-        <a class="pagination__link--next p-button--positive" href="">Next</a>
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Are you already running the application?</h3>
+        <div class="row u-no-padding u-equal-height">
+          <div class="col-12 u-sv3">
+            <input type="checkbox" id="apps-running-production">
+            <label for="apps-running-production">In a production environment</label>
+            <input type="checkbox" id="apps-running-development">
+            <label for="apps-running-development">In a test or dev environment</label>
+            <input type="checkbox" id="apps-running-planned-deployment">
+            <label for="apps-running-planned-deployment">Planned deployment</label>
+            <input type="checkbox" id="apps-running-mixture">
+            <label for="apps-running-mixture">Mixture across apps</label>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="row u-no-padding js-formfield">
+        <h3 class="p-heading--five">And anything else?</h3>
+        <textarea id="apps-capabilities-anything-else" aria-label="And anything else" rows="3" placeholder="Where are you located? Is this initiative for a specific workload or for the business as a whole? Do you have particular regulatory constraints or priorities?"></textarea>
+      </div>
+      <div class="row u-no-padding">
+        <div class="pagination">
+          <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+          <a class="pagination__link--next p-button--positive" href="">Next</a>
+        </div>
+      </div>
   </div>
 
   <div class="js-pagination js-pagination--3 u-hide">
+    <div class="js-formfield">
+      <h3 class="p-heading--five">What topics should we focus our advice and review on?</h3>
+      <div class="row u-no-padding u-equal-height">
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="topics-architecture-design">
+          <label for="topics-architecture-design">Architecture design</label>
+          <input type="checkbox" id="topics-performance-tuning">
+          <label for="topics-performance-tuning">Performance tuning</label>
+          <input type="checkbox" id="topics-workload-migration">
+          <label for="topics-workload-migration">Workload migration</label>
+          <input type="checkbox" id="topics-app-integration">
+          <label for="topics-app-integration">App integration</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="topics-app-version-upgrades">
+          <label for="topics-app-version-upgrades">Version upgrades</label>
+          <input type="checkbox" id="topics-upstream-enhancement">
+          <label for="topics-upstream-enhancement">Upstream enhancement</label>
+          <input type="checkbox" id="topics-training">
+          <label for="topics-training">Training</label>
+          <input type="checkbox" id="topics-skills-certification">
+          <label for="topics-skills-certification">Skills certification</label>
+        </div>
+        <div class="col-4 u-sv3">
+          <input type="checkbox" id="topics-hardware-selection">
+          <label for="topics-hardware-selection">Hardware selection</label>
+          <input type="checkbox" id="topics-data-replication">
+          <label for="topics-data-replication">Data replication</label>
+          <input type="checkbox" id="topics-backup-and-recovery">
+          <label for="topics-backup-and-recovery">Backup and recovery</label>
+          <input type="checkbox" id="topics-monitoring">
+          <label for="topics-monitoring">Monitoring</label>
+        </div>
+      </div>
+    </div>
     <h3 class="p-heading--five">How should we get in touch?</h3>
     <div class="row u-no-padding">
       <div class="col-6">
