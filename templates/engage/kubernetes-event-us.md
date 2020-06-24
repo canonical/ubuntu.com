@@ -31,7 +31,7 @@ context:
 wanting to learn more about how to overcome common Kubernetes challenges in a variety of contexts, and the most efficient solutions for executing their Kubernetes strategy.
 
 **What you will learn**: Best tools and strategies for streamlining your Kubernetes deployment and operations from public cloud, to containers, and even lightweight devices. We will also discuss the Kubernetes portfolio of Canonical and Ubuntu, and how its main components - MicroK8s and Charmed Kubernetes - can contribute to the flexibility you need deployment at every stage of your container DevOps cycle.
-
+## Speakers:
 <div class="p-media-object--large">
   {{
     image(
