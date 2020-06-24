@@ -2,36 +2,10 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
     <header class="p-modal__header">
       <h2 class="p-modal__title js-contract-name u-no-margin--bottom" id="modal-title">
-        Renew subscription
       </h2>
     </header>
     <div id="modal-description" class="p-modal__body">
-      <section id="order-info" class="p-strip is-shallow is-bordered u-no-padding--top">
-        <div class="row u-no-padding u-sv1">
-          <div class="col-3 u-text-light">Plan type:</div>
-          <div class="col-9 js-product-name"></div>
-        </div>
-
-        <div class="row u-no-padding u-sv1">
-          <div class="col-3 u-text-light">Will continue from:</div>
-          <div class="col-9 js-renewal-start"></div>
-        </div>
-
-        <div class="row u-no-padding u-sv1">
-          <div class="col-3 u-text-light">Ends:</div>
-          <div class="col-9 js-renewal-end"></div>
-        </div>
-
-        <div class="row u-no-padding u-sv1">
-          <div class="col-3 u-text-light">Machines:</div>
-          <div class="col-9 js-renewal-quantity"></div>
-        </div>
-
-        <div class="row u-no-padding">
-          <div class="col-3 u-text-light">To pay:</div>
-          <div class="col-9 js-renewal-total"></div>
-          <div class="col-start-large-4 col-9"><small>Excluding VAT</small></div>
-        </div>
+      <section id="order-info" class="p-strip is-shallow is-bordered u-no-padding--top u-hide">
       </section>
 
       <section class="p-strip is-shallow" style="overflow-x: visible;">
@@ -133,6 +107,18 @@
             
             <div class="col-9 col-start-large-4">
               <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="stuff">
+            <div class="p-form__group row u-no-padding u-vertically-center">
+              <div class="col-3">
+                <label class="u-no-padding--top" >Country/Region:</label>
+              </div>
+
+              <div class="col-9">
+                Stuff
+              </div>
             </div>
           </div>
         </form>
