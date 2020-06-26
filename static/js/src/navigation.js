@@ -165,7 +165,7 @@ function addUTMToForms() {
   for (let i = 0; i < utm_names.length; i++) {
     var utm_fields = document.getElementsByName("utm_" + utm_names[i]);
     for (let j = 0; j < utm_fields.length; j++) {
-      if (utm_fields[j]) {
+      if (utm_fields[j] && localStorage.getItem("utm_" + utm_names[i])) {
         utm_fields[j].value = localStorage.getItem("utm_" + utm_names[i]);
       }
     }
