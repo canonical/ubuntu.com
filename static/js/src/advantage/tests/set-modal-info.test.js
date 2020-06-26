@@ -1,8 +1,10 @@
 import {
   getPaymentInformation,
   getRenewalInformation,
+  setRenewalInformation,
 } from "../set-modal-info.js";
 
+import * as modalTemplates from "./fixtures/modal-templates.js";
 import * as paymentMethods from "./fixtures/payment-methods.js";
 import * as renewalData from "./fixtures/renewal-data.js";
 
@@ -41,8 +43,25 @@ describe("getRenewalInformation", () => {
         products: "UA Infra Advanced Desktop",
         quantity: "5 &#215; US$25/year",
         startDate: "21 May 2020",
+        subtotal: "$125",
         total: "$125",
+        vat: "$0",
       });
+    });
+  });
+});
+
+describe("setRenewalInformation", () => {
+  describe("given a renewal data object", () => {
+    it("should update the DOM with pre-purchase information about the current renewal", () => {
+      document.body.innerHTML = modalTemplates.emptySummary;
+      const modal = document.querySelector(".modal");
+
+      setRenewalInformation(renewalData.advancedDesktop, modal);
+
+      expect(modal.outerHTML).toMatch(
+        modalTemplates.advancedDesktopRenewalSummary
+      );
     });
   });
 });
