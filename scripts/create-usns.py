@@ -123,7 +123,7 @@ with open(args.file_path) as usn_json:
         # Build endpoint
         endpoint = notice_endpoint
         if http_method == "PUT":
-            endpoint = f"{notice_endpoint}/{notice['id']}"
+            endpoint = f"{notice_endpoint}/USN-{notice['id']}"
 
         response = client.request(
             http_method,
