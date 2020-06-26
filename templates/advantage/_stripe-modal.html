@@ -5,10 +5,10 @@
       </h2>
     </header>
     <div id="modal-description" class="p-modal__body">
-      <section id="order-info" class="p-strip is-shallow is-bordered u-no-padding--top u-hide">
+      <section id="order-info" class="p-strip is-shallow u-no-padding--top u-hide">
       </section>
 
-      <section class="p-strip is-shallow" style="overflow-x: visible;">
+      <section class="p-strip is-shallow u-no-padding" style="overflow-x: visible;">
         <div id="renewal-errors" class="p-notification--negative u-hide">
           <p class="p-notification__response">
             <span class="p-notification__message"></span>
@@ -109,21 +109,19 @@
               <span class="p-form-validation__message u-hide"></span>
             </div>
           </div>
-
-          <div class="stuff">
-            <div class="p-form__group row u-no-padding u-vertically-center">
-              <div class="col-3">
-                <label class="u-no-padding--top" >Country/Region:</label>
-              </div>
-
-              <div class="col-9">
-                Stuff
-              </div>
-            </div>
-          </div>
         </form>
 
         <div id="order-summary">
+          <div class="row u-no-padding">
+            <div class="col-3">
+              <p class="u-text-light">Receipt will be sent to:</p>
+            </div>
+
+            <div class="col-9">
+              <p class="js-customer-email"></p>
+            </div>
+          </div>
+
           <div class="row u-no-padding">
             <div class="col-6 u-vertically-center">
               <p class="u-text-light">Payment method:</p>
@@ -149,29 +147,24 @@
               </div>
             </div>
           </div>
-
-          <div class="row u-no-padding">
-            <div class="col-3">
-              <p>Receipt will be sent to:</p>
-            </div>
-
-            <div class="col-9">
-              <p class="js-customer-email"></p>
-            </div>
-          </div>
-
-          <div class="row u-no-padding">
-            <div class="col-12">
-              <form>
-                <input type="checkbox" id="renewal-terms" checked="" class="js-terms">
-                <label class="u-float-left" for="renewal-terms">I agree to the <a href="/legal/ubuntu-advantage-service-terms" target="_blank">Ubuntu Advantage service terms</a></label>
-              </form>
-            </div>
-          </div>
         </div>
 
         <div id="payment-error-dialog">
           <p></p>
+        </div>
+      </section>
+
+      <section id="order-totals" class="p-strip is-shallow u-hide">
+      </section>
+
+      <section id="order-terms" class="p-strip is-shallow u-no-padding--top">
+        <div class="row u-no-padding">
+          <div class="col-12">
+            <form>
+              <input type="checkbox" id="renewal-terms" checked="" class="js-terms">
+              <label class="u-float-left" for="renewal-terms">I agree to the <a href="/legal/ubuntu-advantage-service-terms" target="_blank">Ubuntu Advantage service terms</a></label>
+            </form>
+          </div>
         </div>
       </section>
     </div>

@@ -9,6 +9,7 @@ import { parseForErrorObject } from "./advantage/error-handler.js";
 import { vatCountries } from "./advantage/vat-countries.js";
 
 import {
+  setOrderInformation,
   setPaymentInformation,
   setRenewalInformation,
 } from "./advantage/set-modal-info.js";
@@ -110,7 +111,7 @@ function attachCTAevents(selector) {
         setRenewalInformation(data, modal);
       } else if (data.transactionType === "purchase") {
         // dummy data until we implement product selection
-        const orderItems = [
+        data.items = [
           {
             name: "UA Infra Advanced Server",
             quantity: 10,
@@ -123,7 +124,7 @@ function attachCTAevents(selector) {
           },
         ];
 
-        setOrderInformation(orderItems, modal);
+        setOrderInformation(data, modal);
       }
     });
   });
