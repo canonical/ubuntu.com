@@ -22,24 +22,43 @@ function setModalTitle(title, modal) {
   modalTitleEl.innerHTML = title;
 }
 
-function setSummaryInfo(infoArray, modal) {
+function setSummaryInfo(summaryObject, modal) {
   const infoContainer = modal.querySelector("#order-info");
+  const totalsContainer = modal.querySelector("#order-totals");
 
   // clear anything that was there previously
   infoContainer.innerHTML = "";
+  totalsContainer.innerHTML = "";
 
-  infoArray.forEach((item) => {
-    const isLastItem = item === infoArray[infoArray.length - 1];
-    const infoRow = buildInfoRow(item, isLastItem);
+  summaryObject.items.forEach((itemObject) => {
+    const itemValues = Object.values(itemObject);
 
-    infoContainer.innerHTML += infoRow;
+    itemValues.forEach((item) => {
+      infoContainer.innerHTML += buildInfoRow(item);
+    });
+  });
+
+  infoContainer.innerHTML += buildInfoRow({
+    label: "Subtotal: ",
+    value: summaryObject.subtotal,
+  });
+
+  totalsContainer.innerHTML += buildInfoRow({
+    label: "VAT: ",
+    value: summaryObject.vat,
+  });
+
+  totalsContainer.innerHTML += buildInfoRow({
+    label: "Total: ",
+    value: summaryObject.total,
   });
 
   infoContainer.classList.remove("u-hide");
+  totalsContainer.classList.remove("u-hide");
 }
 
-function buildInfoRow(item, isLastItem) {
-  return `<div class="row u-no-padding ${isLastItem ? "" : "u-sv1"}">
+function buildInfoRow(item) {
+  return `<div class="row u-no-padding u-sv1">
     <div class="col-3 u-text-light">${item.label}</div>
     <div class="col-9">${item.value}</div>
   </div>`;
@@ -99,28 +118,34 @@ export function getPaymentInformation(paymentMethod) {
 
 export function getRenewalInformation(data) {
   const contractEndDate = new Date(data.contractEnd);
+  const dateOptions = { year: "numeric", month: "long", day: "numeric" };
   const startDate = new Date(
     contractEndDate.setDate(contractEndDate.getDate() + 1)
   );
-
   const endDate = new Date(
     contractEndDate.setMonth(contractEndDate.getMonth() + parseInt(data.months))
   );
-
-  const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+  const quantityString = `${data.quantity} &#215; ${formattedCurrency(
+    data.unitPrice,
+    data.currency,
+    "en-CA"
+  )}/year`;
 
   return {
     endDate: endDate.toLocaleString("en-GB", dateOptions),
     name: `Renew &ldquo;${data.name}&rdquo;`,
     products: getProductsString(data.products),
-    quantity: `${data.quantity} &#215; ${formattedCurrency(
-      data.unitPrice,
-      data.currency,
-      "en-CA"
-    )}/year`,
+    quantity: quantityString,
     startDate: startDate.toLocaleString("en-GB", dateOptions),
+    subtotal: formattedCurrency(data.total, data.currency, "en-US"),
     total: formattedCurrency(data.total, data.currency, "en-US"),
+    vat: formattedCurrency(0, data.currency, "en-US"),
   };
+}
+
+export function setOrderInformation(products, modal) {
+  setModalTitle("Complete purchase", modal);
+  setSummaryInfo(products, modal);
 }
 
 export function setPaymentInformation(paymentMethod, modal) {
@@ -147,29 +172,32 @@ export function setPaymentInformation(paymentMethod, modal) {
 
 export function setRenewalInformation(data, modal) {
   const renewalInfo = getRenewalInformation(data);
-  const renewalInfoArray = [
-    {
-      label: "Plan type:",
-      value: renewalInfo.products,
-    },
-    {
-      label: "Will continue from:",
-      value: renewalInfo.startDate,
-    },
-    {
-      label: "Ends:",
-      value: renewalInfo.endDate,
-    },
-    {
-      label: "Machines:",
-      value: renewalInfo.quantity,
-    },
-    {
-      label: "Subtotal:",
-      value: renewalInfo.total,
-    },
-  ];
+  const renewalSummary = {
+    items: [
+      {
+        plan: {
+          label: "Plan type:",
+          value: renewalInfo.products,
+        },
+        start: {
+          label: "Will continue from:",
+          value: renewalInfo.startDate,
+        },
+        end: {
+          label: "Ends:",
+          value: renewalInfo.endDate,
+        },
+        quantity: {
+          label: "Machines:",
+          value: renewalInfo.quantity,
+        },
+      },
+    ],
+    subtotal: renewalInfo.subtotal,
+    vat: renewalInfo.vat,
+    total: renewalInfo.total,
+  };
 
   setModalTitle(renewalInfo.name, modal);
-  setSummaryInfo(renewalInfoArray, modal);
+  setSummaryInfo(renewalSummary, modal);
 }
