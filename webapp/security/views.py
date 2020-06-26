@@ -253,25 +253,27 @@ def update_notice(notice_id):
     """
     PUT method to update a single notice
     """
+    notice = db_session.query(Notice).get(notice_id)
+
+    if not notice:
+        return (
+            flask.jsonify({"message": f"Notice {notice_id} doesn't exist"}),
+            404,
+        )
+
+    notice_schema = NoticeSchema()
+    notice_schema.context["release_codenames"] = [
+        rel.codename for rel in db_session.query(Release).all()
+    ]
 
     try:
-        notice_data = NoticeSchema().load(flask.request.json, unknown=EXCLUDE)
+        notice_data = notice_schema.load(flask.request.json, unknown=EXCLUDE)
     except ValidationError as error:
         return (
             flask.jsonify(
                 {"message": "Invalid payload", "errors": error.messages}
             ),
             400,
-        )
-
-    notice = db_session.query(Notice).get(notice_id)
-
-    if not notice:
-        return (
-            flask.jsonify(
-                {"message": f"Notice {notice_data['notice_id']} doesn't exist"}
-            ),
-            404,
         )
 
     notice = _update_notice_object(notice, notice_data)
