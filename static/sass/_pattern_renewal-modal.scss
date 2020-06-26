@@ -24,6 +24,7 @@
 
     &.is-details-mode {
       #order-summary,
+      #order-terms,
       #payment-error-dialog,
       .js-process-payment,
       .js-close-modal {
@@ -32,8 +33,9 @@
     }
 
     &.is-dialog-mode {
-      #order-summary,
       #order-info,
+      #order-summary,
+      #order-terms,
       #details-form,
       .js-cancel-modal,
       .js-payment-method,
