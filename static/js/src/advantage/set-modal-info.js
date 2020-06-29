@@ -1,4 +1,14 @@
-const productNames = {
+import moment from "moment";
+
+const CARD_BRAND_IMAGES = {
+  visa: "832cf121-visa.png",
+  mastercard: "83a09dbe-mastercard.png",
+  amex: "91e62c4f-amex.png",
+};
+
+const DATE_FORMAT = "DD MMMM YYYY";
+
+const PRODUCT_NAMES = {
   "uai-essential-desktop": "UA Infra Essential Desktop",
   "uai-standard-desktop": "UA Infra Standard Desktop",
   "uai-advanced-desktop": "UA Infra Advanced Desktop",
@@ -10,11 +20,53 @@ const productNames = {
   "uai-advanced-virtual-server": "UA Infra Advanced Virtual Server",
 };
 
-const cardBrandImages = {
-  visa: "832cf121-visa.png",
-  mastercard: "83a09dbe-mastercard.png",
-  amex: "91e62c4f-amex.png",
-};
+function buildInfoRow(item) {
+  return `<div class="row u-no-padding u-sv1">
+    <div class="col-3 u-text-light">${item.label}</div>
+    <div class="col-9">${item.value}</div>
+  </div>`;
+}
+
+function buildQuantityString(quantity, unitPrice, currency) {
+  return `${quantity} &#215; ${formattedCurrency(
+    unitPrice,
+    currency,
+    "en-CA"
+  )}/year`;
+}
+
+function getProductsString(productsArrayString) {
+  const arrayRegex = /[[\]']+/g;
+  const isArray = arrayRegex.test(productsArrayString);
+  let formattedString = "";
+
+  if (isArray) {
+    const productSlugs = productsArrayString
+      .replace(arrayRegex, "")
+      .split(", ");
+    let products = [];
+
+    productSlugs.forEach((slug) => {
+      if (slug in PRODUCT_NAMES) {
+        products.push(PRODUCT_NAMES[slug]);
+      }
+    });
+
+    formattedString = products.join(", ");
+  }
+
+  return formattedString;
+}
+
+function formattedCurrency(amount, currency, locale) {
+  const currencyString = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: currency,
+    currencyDisplay: "symbol",
+  }).format(parseFloat(amount / 100));
+
+  return currencyString.replace(".00", "");
+}
 
 function setModalTitle(title, modal) {
   const modalTitleEl = modal.querySelector("#modal-title");
@@ -57,44 +109,48 @@ function setSummaryInfo(summaryObject, modal) {
   totalsContainer.classList.remove("u-hide");
 }
 
-function buildInfoRow(item) {
-  return `<div class="row u-no-padding u-sv1">
-    <div class="col-3 u-text-light">${item.label}</div>
-    <div class="col-9">${item.value}</div>
-  </div>`;
-}
+export function getOrderInformation(products) {
+  const items = [];
+  const currency = "USD";
+  const vatCurrency = "GBP";
+  const startDate = moment();
+  const endDate = moment().add(12, "months");
+  let subtotal = 0;
 
-function getProductsString(productsArrayString) {
-  const arrayRegex = /[[\]']+/g;
-  const isArray = arrayRegex.test(productsArrayString);
-  let formattedString = "";
+  products.forEach((product, i) => {
+    subtotal = subtotal + product.quantity * product.unitPrice;
 
-  if (isArray) {
-    const productSlugs = productsArrayString
-      .replace(arrayRegex, "")
-      .split(", ");
-    let products = [];
-
-    productSlugs.forEach((slug) => {
-      if (slug in productNames) {
-        products.push(productNames[slug]);
-      }
+    items.push({
+      plan: {
+        label: `Plan ${i + 1}:`,
+        value: product.name,
+      },
+      start: {
+        label: "Starts:",
+        value: moment(startDate).format(DATE_FORMAT),
+      },
+      end: {
+        label: "Ends:",
+        value: moment(endDate).format(DATE_FORMAT),
+      },
+      quantity: {
+        label: "Machines:",
+        value: buildQuantityString(
+          product.quantity,
+          product.unitPrice,
+          currency
+        ),
+      },
     });
+  });
 
-    formattedString = products.join(", ");
-  }
-
-  return formattedString;
-}
-
-function formattedCurrency(amount, currency, locale) {
-  const currencyString = new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency: currency,
-    currencyDisplay: "symbol",
-  }).format(parseFloat(amount / 100));
-
-  return currencyString.replace(".00", "");
+  return {
+    items: items,
+    subtotal: formattedCurrency(subtotal, currency, "en-US"),
+    total: formattedCurrency(subtotal, currency, "en-US"),
+    // TODO: handle actual VAT
+    vat: formattedCurrency(0, vatCurrency, "en-US"),
+  };
 }
 
 export function getPaymentInformation(paymentMethod) {
@@ -110,33 +166,41 @@ export function getPaymentInformation(paymentMethod) {
   return {
     cardText: `${cardBrandFormatted} ending ${cardInfo.last4}`,
     cardExpiry: `${formattedExpiryMonth}/${formattedExpiryYear}`,
-    cardImage: cardBrandImages[cardInfo.brand] || null,
+    cardImage: CARD_BRAND_IMAGES[cardInfo.brand] || null,
     email: billingInfo.email,
     name: billingInfo.name,
   };
 }
 
 export function getRenewalInformation(data) {
-  const contractEndDate = new Date(data.contractEnd);
-  const dateOptions = { year: "numeric", month: "long", day: "numeric" };
-  const startDate = new Date(
-    contractEndDate.setDate(contractEndDate.getDate() + 1)
-  );
-  const endDate = new Date(
-    contractEndDate.setMonth(contractEndDate.getMonth() + parseInt(data.months))
-  );
-  const quantityString = `${data.quantity} &#215; ${formattedCurrency(
-    data.unitPrice,
-    data.currency,
-    "en-CA"
-  )}/year`;
+  const startDate = moment(data.contractEnd).add(1, "days");
+  const endDate = moment(data.contractEnd).add(parseInt(data.months), "months");
 
   return {
-    endDate: endDate.toLocaleString("en-GB", dateOptions),
-    name: `Renew &ldquo;${data.name}&rdquo;`,
-    products: getProductsString(data.products),
-    quantity: quantityString,
-    startDate: startDate.toLocaleString("en-GB", dateOptions),
+    items: [
+      {
+        plan: {
+          label: "Plan type:",
+          value: getProductsString(data.products),
+        },
+        start: {
+          label: "Will continue from:",
+          value: moment(startDate).format(DATE_FORMAT),
+        },
+        end: {
+          label: "Ends:",
+          value: moment(endDate).format(DATE_FORMAT),
+        },
+        quantity: {
+          label: "Machines:",
+          value: buildQuantityString(
+            data.quantity,
+            data.unitPrice,
+            data.currency
+          ),
+        },
+      },
+    ],
     subtotal: formattedCurrency(data.total, data.currency, "en-US"),
     total: formattedCurrency(data.total, data.currency, "en-US"),
     vat: formattedCurrency(0, data.currency, "en-US"),
@@ -144,8 +208,10 @@ export function getRenewalInformation(data) {
 }
 
 export function setOrderInformation(products, modal) {
+  const orderSummary = getOrderInformation(products);
+
   setModalTitle("Complete purchase", modal);
-  setSummaryInfo(products, modal);
+  setSummaryInfo(orderSummary, modal);
 }
 
 export function setPaymentInformation(paymentMethod, modal) {
@@ -171,33 +237,8 @@ export function setPaymentInformation(paymentMethod, modal) {
 }
 
 export function setRenewalInformation(data, modal) {
-  const renewalInfo = getRenewalInformation(data);
-  const renewalSummary = {
-    items: [
-      {
-        plan: {
-          label: "Plan type:",
-          value: renewalInfo.products,
-        },
-        start: {
-          label: "Will continue from:",
-          value: renewalInfo.startDate,
-        },
-        end: {
-          label: "Ends:",
-          value: renewalInfo.endDate,
-        },
-        quantity: {
-          label: "Machines:",
-          value: renewalInfo.quantity,
-        },
-      },
-    ],
-    subtotal: renewalInfo.subtotal,
-    vat: renewalInfo.vat,
-    total: renewalInfo.total,
-  };
+  const renewalSummary = getRenewalInformation(data);
 
-  setModalTitle(renewalInfo.name, modal);
+  setModalTitle(`Renew &ldquo;${data.name}&rdquo;`, modal);
   setSummaryInfo(renewalSummary, modal);
 }

@@ -111,7 +111,7 @@ function attachCTAevents(selector) {
         setRenewalInformation(data, modal);
       } else if (data.transactionType === "purchase") {
         // dummy data until we implement product selection
-        data.items = [
+        const products = [
           {
             name: "UA Infra Advanced Server",
             quantity: 10,
@@ -124,7 +124,7 @@ function attachCTAevents(selector) {
           },
         ];
 
-        setOrderInformation(data, modal);
+        setOrderInformation(products, modal);
       }
     });
   });
