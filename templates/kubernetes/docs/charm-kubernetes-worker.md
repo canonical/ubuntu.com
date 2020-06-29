@@ -74,8 +74,11 @@ For more information, see the [snap documentation](/kubernetes/docs/snap-refresh
 
 ## Configuration
 
-This charm supports options to configure a Kubernetes cluster
-to work well in your environment. These are detailed in the section below.
+This charm supports some configuration options to set up a Kubernetes cluster
+that works in your environment, detailed in the section below.
+
+For some specific Kubernetes service configuration tasks, please also see the
+section on [configuring K8s services](#k8s-services).
 Please also see the [`kubernetes-master` charm configuration][charm-kubernetes-master]
 for other settings relating to Kubernetes services.
 
@@ -265,6 +268,89 @@ the setting of conntrack-max-per-core vs nf_conntrack_max.
 <!-- CONFIG ENDS -->
 
 
+<a id="k8s-services"> </a>
+## Configuring K8s services
+
+### IPVS (IP Virtual Server)
+
+This requires configuration of both the `kubernetes-master` and
+`kubernetes-worker` charms. Please see the configuration section on
+the [kubernetes-master page](../charm-kubernetes-master#config-ipvs).
+
+### Configuring kubelet
+
+Each worker runs the node agent, `kubelet` with a set of arguments and
+configuration set by this charm. In some cases it may be desirable to add
+options or arguments, for which the charm provides two mechanisms
+
+[kubelet-extra-args](#kubelet-extra-args-description) for command line options.
+[kubelet-extra-config](#kubelet-extra-config-description) for configuration.
+
+The definitive reference for `kubelet` is the [upstream documentation][kubelet-docs].
+
+### HugePages
+
+HugePages are a standard memory management feature of the Linux kernel to
+decrease overhead for processes which consume large amounts of memory.
+
+Kubernetes includes support for using HugePages with pods (see the
+[upstream documentation](https://kubernetes.io/docs/tasks/manage-hugepages/scheduling-hugepages/)).
+
+To use HugePages in your pods with **Charmed Kubernetes**, it is necessary to
+update the configuration for the workers:
+
+1.  Fetch the current 'sysctl' configuration from the worker:
+    ```bash
+    juju config kubernetes-worker sysctl
+    ```
+    This should return a string of config options, e.g.:
+    ```
+    { net.ipv4.conf.all.forwarding : 1, net.ipv4.neigh.default.gc_thresh1 : 128, net.ipv4.neigh.default.gc_thresh2 : 28672, net.ipv4.neigh.default.gc_thresh3 : 32768, net.ipv6.neigh.default.gc_thresh1 : 128, net.ipv6.neigh.default.gc_thresh2 : 28672, net.ipv6.neigh.default.gc_thresh3 : 32768, fs.inotify.max_user_instances : 8192, fs.inotify.max_user_watches: 1048576 }
+    ```
+2.  The config option for HugePages is `vm.nr_hugepages`. To add this
+    configuration, you should **append** it to the string and set the whole
+    configuration. For example, for 100 2Mi pages:
+    ```bash
+    juju config kubernetes-worker sysctl="{ net.ipv4.conf.all.forwarding : 1, net.ipv4.neigh.default.gc_thresh1 : 128, net.ipv4.neigh.default.gc_thresh2 : 28672, net.ipv4.neigh.default.gc_thresh3 : 32768, net.ipv6.neigh.default.gc_thresh1 : 128, net.ipv6.neigh.default.gc_thresh2 : 28672, net.ipv6.neigh.default.gc_thresh3 : 32768, fs.inotify.max_user_instances : 8192, fs.inotify.max_user_watches: 1048576, vm.nr_hugepages: 100}"
+    ```
+3.  HugePages can now be consumed via container level resource requirements
+    using the resource name <code>hugepages-&lt;size&gt;</code>.
+
+    For example:
+
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: hugepages-test
+    spec:
+      containers:
+      - image: ubuntu:latest
+        command:
+        - sleep
+        - inf
+        name: example
+        volumeMounts:
+        - mountPath: /hugepages
+          name: hugepage
+        resources:
+          limits:
+            hugepages-2Mi: 100Mi
+            memory: 100Mi
+          requests:
+            memory: 100Mi      
+      volumes:
+      - name: hugepage
+        emptyDir:
+          medium: HugePages  
+    ```
+    Huge page usage in a namespace can be managed with ResourceQuota,
+    similar to other compute resources.
+4.  To verify, you can exec into the pod and check the `/proc/meminfo`.
+    ```
+    kubectl exec hugepage-test cat /proc/meminfo | grep HugePages_
+    ```
+
 ## Actions
 
 The kubernetes-worker charm models a few one time operations called
@@ -284,3 +370,4 @@ migrate unless otherwise directed via their application declaration.
 
 <!-- LINKS -->
 [charm-kubernetes-master]: /charm-kubernetes-master
+[kubelet-docs]: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/

@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '822'
+charm_revision: '850'
 bundle_release: '1.18'
 ---
 
@@ -82,7 +82,10 @@ For more information, see the [snap documentation](/kubernetes/docs/snap-refresh
 ## Configuration
 
 This charm supports some configuration options to set up a Kubernetes cluster
-that works in your environment:
+that works in your environment, detailed in the section below.
+
+For some specific Kubernetes service configuration tasks, please also see the
+section on [configuring K8s services](#k8s-services).
 
 
 <!-- CONFIG STARTS -->
@@ -566,12 +569,40 @@ the setting of conntrack-max-per-core vs nf_conntrack_max.
 
 <!-- CONFIG ENDS -->
 
+<a id="k8s-services"> </a>
+# Configuring K8s services
 
+**Charmed Kubernetes** ships with sensible, tested default configurations to
+ensure a reliable Kubernetes experience, but of course these can be changed to
+reflect the purpose and resources of your cluster.
+The configuration section above details all available configuration options,
+this section deals with specific, commonly used settings.
+
+## IPVS (IP Virtual Server)
+
+IPVS implements transport-layer load balancing as part of the Linux kernel, and
+can be used by the `kube-proxy` service to handle service routing. By default
+`kube-proxy` uses a solution based on iptables, but this can cause a lot of
+overhead in systems with large numbers of nodes. There is more information on
+this in the upstream Kubernetes [IPVS deep dive][] documentation.
+
+IPVS is an extra option for kube-proxy, and can be enabled by changing the
+configuration:
+
+```
+juju config kubernetes-master proxy-extra-args="proxy-mode=ipvs"
+```
+
+It is also necessary to change this configuration option on the worker:
+
+```
+juju config kubernetes-worker proxy-extra-args="proxy-mode=ipvs"
+```
 
 # DNS for the cluster
 
 The DNS add-on allows pods to have DNS names in addition to IP addresses.
-The Kubernetes cluster DNS server (based off the SkyDNS library) supports
+The Kubernetes cluster DNS server (based on the SkyDNS library) supports
 forward lookups (A records), service lookups (SRV records) and reverse IP
 address lookups (PTR records). More information about the DNS can be obtained
 from the [Kubernetes DNS admin guide](http://kubernetes.io/docs/admin/dns/).
@@ -599,3 +630,6 @@ This action restarts the master processes `kube-apiserver`,
  - [Kubernetes issue tracker](https://github.com/kubernetes/kubernetes/issues)
  - [Kubernetes documentation](http://kubernetes.io/docs/)
  - [Kubernetes releases](https://github.com/kubernetes/kubernetes/releases)
+
+<!-- LINKS -->
+[IPVS deep dive]: https://kubernetes.io/blog/2018/07/09/ipvs-based-in-cluster-load-balancing-deep-dive/

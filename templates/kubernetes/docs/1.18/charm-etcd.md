@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '502'
+charm_revision: '521'
 bundle_release: '1.18'
 ---
 
@@ -40,8 +40,8 @@ observation.
 We can deploy a single node with the following commands:
 
 ```shell
-juju deploy ~containers/easyrsa
-juju deploy ~containers/etcd
+juju deploy cs:~containers/easyrsa
+juju deploy cs:~containers/etcd
 juju add-relation etcd easyrsa
 ```
 And add capacity with:
@@ -325,7 +325,7 @@ individually. Best practice would be to migrate an individual unit at a time
 to ensure the cluster upgrades completely.
 
 ```
-juju run-action etcd/0 snap-upgrade  
+juju run-action etcd/0 snap-upgrade
 # Repeat this command for other etcd units in your cluster.
 ```
 

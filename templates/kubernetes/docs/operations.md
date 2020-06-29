@@ -279,6 +279,7 @@ things you may wish to try:
 - [Scaling your cluster][scaling]
 - [Examining logs][logging]
 - [Decommissioning the cluster][decommission]
+- [Explore the addons][addons]
 - Need help or want to chat? [Get in touch!][get-in-touch]
 
 ## Additional Resources
@@ -291,6 +292,7 @@ things you may wish to try:
 
 <!--LINKS-->
 [next]: #next
+[addons]: /kubernetes/docs/cdk-addons
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [storage]: /kubernetes/docs/storage
 [scaling]: /kubernetes/docs/scaling
@@ -302,9 +304,9 @@ things you may wish to try:
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/operations.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/operations.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>
