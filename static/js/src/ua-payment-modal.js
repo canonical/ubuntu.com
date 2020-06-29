@@ -434,6 +434,7 @@ function handlePaymentMethodResponse(data) {
       // TODO: for demo purposes only,
       // handle properly when we have real endpoints and data
       setPaymentInformation(data.paymentMethod, modal);
+      showPayMode();
     }
   } else {
     const errorObject = parseForErrorObject(data.error);
