@@ -32,6 +32,7 @@ applications:
   aws-integrator:
     charm: cs:~containers/aws-integrator
     num_units: 1
+    trust: true
 relations:
   - ['aws-integrator', 'kubernetes-master']
   - ['aws-integrator', 'kubernetes-worker']
@@ -40,20 +41,40 @@ relations:
 Then deploy Charmed Kubernetes using this overlay:
 
 ```
-juju deploy cs:charmed-kubernetes --overlay ./k8s-aws-overlay.yaml
+juju deploy cs:charmed-kubernetes --overlay ./k8s-aws-overlay.yaml --trust
 ```
 
-The charm then needs to be granted access to credentials that it can use to
-setup integrations.  Using Juju 2.4 or later, you can easily grant access to
-the credentials used deploy the integrator itself:
+<div class="p-notification--caution">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+This trusts the AWS Integrator charm with the credentials used by Juju.  You
+could instead provide alternate credentials via the `credentials` charm config
+option.
+  </p>
+</div>
 
-```
-juju trust aws-integrator
-```
+## RDS
 
-To deploy with earlier versions of Juju, or if you wish to provide it different
-credentials, you will need to provide the cloud credentials via the `credentials`,
-charm config options.
+In addition to the integrator relation, this charm also provides a proxy to the
+AWS Relational Database Service (RDS) for charms using the `mysql` interface.
+Charms attached to the `rds-mysql` relation endpoint will have an RDS MySQL
+database instance created for them and access information provided via the relation.
+
+For example, if this was deployed alongside the Mediawiki charm, it could provide
+the database for backing the wiki:
+
+```yaml
+applications:
+  aws-integrator:
+    charm: cs:~containers/aws-integrator
+    num_units: 1
+    trust: true
+  mediawiki:
+    charm: cs:mediawiki
+    num_units; 1
+relations:
+  - ['aws-integrator:rds-mysql', 'mediawiki:db']
+```
 
 # Permissions Requirements
 
@@ -91,6 +112,13 @@ The credentials given to the charm must include the following access rights:
 | STS                           |
 | ----------------------------- |
 | GetCallerIdentity             |
+
+| RDS                             |
+| ------------------------------- |
+| DescribeDBInstances             |
+| CreateDBInstance                |
+| DeleteDBInstance                |
+| DeleteDBInstanceAutomatedBackup |
 
 Note that these may be different from the permissions that Juju requires to operate.
 

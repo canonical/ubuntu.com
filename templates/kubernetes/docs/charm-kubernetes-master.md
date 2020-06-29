@@ -270,9 +270,9 @@ DNS provider addon to use. Can be "auto", "core-dns", "kube-dns", or
 CoreDNS is only supported on Kubernetes 1.14+.
 
 When set to "auto", the behavior is as follows:
-- New deployments of Kubernetes 1.14+ will use CoreDNS
-- New deployments of Kubernetes 1.13 or older will use KubeDNS
-- Upgraded deployments will continue to use whichever provider was
+-   New deployments of Kubernetes 1.14+ will use CoreDNS
+-   New deployments of Kubernetes 1.13 or older will use KubeDNS
+-   Upgraded deployments will continue to use whichever provider was
 previously used.
 
 [Back to table](#table-dns-provider)
@@ -572,7 +572,10 @@ ensure a reliable Kubernetes experience, but of course these can be changed to
 reflect the purpose and resources of your cluster.
 The configuration section above details all available configuration options,
 this section deals with specific, commonly used settings.
+You may wish to also read the [Addons page][] for information on the extra
+services installed with **Charmed Kubernetes**.
 
+<a id="config-ipvs"> </a>
 ## IPVS (IP Virtual Server)
 
 IPVS implements transport-layer load balancing as part of the Linux kernel, and
@@ -594,7 +597,29 @@ It is also necessary to change this configuration option on the worker:
 juju config kubernetes-worker proxy-extra-args="proxy-mode=ipvs"
 ```
 
-# DNS for the cluster
+## Admission controls
+
+As with other aspects of the Kubernetes API, admission controls can be
+enabled by adding extra values to the charm's
+[api-extra-args](#api-extra-args-description) configuration.
+
+For admission controls, it may be useful to refer to the
+[Kubernetes blog][blog-admission] for more information on the options, but
+for example, to add the `PodSecurityPolicy` admission controller:
+
+1.  Check any current config settings for `api-extra-args` (there are none by default):
+    ```bash
+    juju config kubernetes-master api-extra-args
+    ```
+2.  Append the desired config option to the previous output and apply:
+    ```bash
+    juju config kubernetes-master api-extra-args="enable-admission-plugins=PodSecurityPolicy"
+    ```
+
+Note that prior to Kubernetes 1.16 (kubernetes-master revision 778), the config
+setting was `admission-control`, rather than `enable-admission-plugins`.
+
+## DNS for the cluster
 
 The DNS add-on allows pods to have DNS names in addition to IP addresses.
 The Kubernetes cluster DNS server (based on the SkyDNS library) supports
@@ -621,10 +646,12 @@ This action restarts the master processes `kube-apiserver`,
 
 # More information
 
- - [Kubernetes github project](https://github.com/kubernetes/kubernetes)
- - [Kubernetes issue tracker](https://github.com/kubernetes/kubernetes/issues)
- - [Kubernetes documentation](http://kubernetes.io/docs/)
- - [Kubernetes releases](https://github.com/kubernetes/kubernetes/releases)
+-   [Kubernetes github project](https://github.com/kubernetes/kubernetes)
+-   [Kubernetes issue tracker](https://github.com/kubernetes/kubernetes/issues)
+-   [Kubernetes documentation](http://kubernetes.io/docs/)
+-   [Kubernetes releases](https://github.com/kubernetes/kubernetes/releases)
 
 <!-- LINKS -->
 [IPVS deep dive]: https://kubernetes.io/blog/2018/07/09/ipvs-based-in-cluster-load-balancing-deep-dive/
+[blog-admission]: https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/
+[Addons page]: /kubernetes/docs/cdk-addons

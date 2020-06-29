@@ -29,6 +29,7 @@
   - [Kata](/kubernetes/docs/kata)
 - **Operations**
   - [Basic operations](/kubernetes/docs/operations)
+  - [Addons](/kubernetes/docs/cdk-addons)
   - [Logging](/kubernetes/docs/logging)
   - [Monitoring](/kubernetes/docs/monitoring)
   - [Backups](/kubernetes/docs/backups)

@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '49'
+charm_revision: '74'
 bundle_release: '1.18'
 ---
 
@@ -72,16 +72,9 @@ OpenStack's PersistentDisk.
 ```sh
 #!/bin/bash
 
-# create a storage class using the `kubernetes.io/cinder` provisioner
-kubectl create -f - <<EOY
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: openstack-standard
-provisioner: kubernetes.io/cinder
-EOY
-
-# create a persistent volume claim using that storage class
+# create a persistent volume claim using the StorageClass which is
+# automatically created by Charmed Kubernetes when it is related to
+# the openstack-integrator
 kubectl create -f - <<EOY
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -93,7 +86,7 @@ spec:
   resources:
     requests:
       storage: 100Mi
-  storageClassName: openstack-standard
+  storageClassName: cdk-cinder
 EOY
 
 # create the busybox pod with a volume using that PVC:

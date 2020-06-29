@@ -92,6 +92,15 @@ registry. More details can be found in the following bug:
 
 https://bugs.launchpad.net/charm-containerd/+bug/1853653
 
+- New provisioner value for Cinder storage classes
+
+The new version of the openstack-provisioner includes an upstream change
+to the `provisioner` field for storage classes using Cinder. The `cdk-cinder`
+storage class will be automatically updated, but any manually created storage
+classes will need to be edited and the `provisioner` field changed to
+`cinder.csi.openstack.org`. Existing volumes will be unaffected, but new
+PVCs using those storage classes will hang until the storage class is updated.
+
 ## Previous releases
 
 Please see [this page][historic] for release notes of earlier versions.

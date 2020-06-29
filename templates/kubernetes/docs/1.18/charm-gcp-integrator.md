@@ -4,7 +4,7 @@ markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
   title: 'Gcp-integrator charm '
-  description: "Pharm to enable GCP integrations via Juju relations.\n"
+  description: "Charm to enable GCP integrations via Juju relations.\n"
 keywords: component, charms, versions, release
 tags:
     - reference
@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '20'
+charm_revision: '43'
 bundle_release: '1.18'
 ---
 
