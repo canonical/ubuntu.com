@@ -9,12 +9,29 @@
   <div class="p-strip">
     <div class="row">
       <div class="col-12 u-align--center">
-        <a
-          href="#ua-payment-modal"
-          id="showModal"
-          class="js-ua-payment-cta p-button--positive u-no-margin--bottom"
-          data-transaction-type="purchase"
-        >Buy</a>
+        <form>
+          <input type="checkbox" id="product_one" name="product" value="UA Infra Advanced Server">
+          <label for="product_one">UA Infra Advanced Server</label>
+          <label for="quantity_one">Quantity:</label>
+          <input type="number" data-product="product_one" name="quantity_one" value="10" data-unit-price="5000"/>
+
+          <input type="checkbox" id="product_two" name="product" value="UA Apps Server">
+          <label for="product_two">UA Apps Server</label>
+          <label for="quantity_two">Quantity:</label>
+          <input type="number" data-product="product_two" name="quantity_two" value="10" data-unit-price="5000"/>
+
+          <input type="checkbox" id="product_three" name="product" value="UA Ultra Edition">
+          <label for="product_three">UA Ultra Edition</label>
+          <label for="quantity_three">Quantity:</label>
+          <input type="number" data-product="product_three" name="quantity_three" value="10" data-unit-price="50000"/>
+
+          <a
+            href="#ua-payment-modal"
+            id="showModal"
+            class="js-ua-payment-cta p-button--positive u-no-margin--bottom"
+            data-transaction-type="purchase"
+          >Buy</a>
+        </form>
       </div>
     </div>
   </div>

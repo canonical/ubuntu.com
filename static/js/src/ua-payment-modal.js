@@ -113,18 +113,23 @@ function attachCTAevents(selector) {
         setRenewalInformation(data, modal);
       } else if (currentTransaction.type === "purchase") {
         // TODO: for demo purposes only, remove when we have real endpoints and data and data
-        const products = [
-          {
-            name: "UA Infra Advanced Server",
-            quantity: 10,
-            unitPrice: 5000,
-          },
-          {
-            name: "UA Apps Server",
-            quantity: 10,
-            unitPrice: 5000,
-          },
-        ];
+        const form = cta.closest("form");
+        const selectedProducts = form.querySelectorAll(
+          'input[type="checkbox"]:checked'
+        );
+        const products = [];
+
+        selectedProducts.forEach((input) => {
+          const quantityInput = form.querySelector(
+            `[data-product="${input.id}"]`
+          );
+
+          products.push({
+            name: input.value,
+            quantity: quantityInput.value,
+            unitPrice: quantityInput.dataset.unitPrice,
+          });
+        });
 
         setOrderInformation(products, modal);
       }
@@ -215,13 +220,9 @@ function attachModalButtonEvents() {
     e.preventDefault();
 
     // TODO: for demo purposes only, remove when we have real endpoints and data
-    if (currentTransaction.type === "renewal") {
-      changingPaymentMethod = false;
-      sendGAEvent("submitted payment details");
-      createPaymentMethod();
-    } else if (currentTransaction.type === "purchase") {
-      showPayMode();
-    }
+    changingPaymentMethod = false;
+    sendGAEvent("submitted payment details");
+    createPaymentMethod();
   });
 
   processPaymentButton.addEventListener("click", (e) => {
@@ -427,7 +428,13 @@ function handleIncompleteRenewal(renewal) {
 
 function handlePaymentMethodResponse(data) {
   if (data.paymentMethod) {
-    attachCustomerInfoToStripeAccount(data.paymentMethod);
+    if (currentTransaction.type === "renewal") {
+      attachCustomerInfoToStripeAccount(data.paymentMethod);
+    } else if (currentTransaction.type === "purchase") {
+      // TODO: for demo purposes only,
+      // handle properly when we have real endpoints and data
+      setPaymentInformation(data.paymentMethod, modal);
+    }
   } else {
     const errorObject = parseForErrorObject(data.error);
 
