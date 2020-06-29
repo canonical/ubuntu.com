@@ -88,6 +88,10 @@ function setSummaryInfo(summaryObject, modal) {
     itemValues.forEach((item) => {
       infoContainer.innerHTML += buildInfoRow(item);
     });
+
+    if (summaryObject.items.length > 1) {
+      infoContainer.innerHTML += "<span class='u-sv2'></span>";
+    }
   });
 
   infoContainer.innerHTML += buildInfoRow({
