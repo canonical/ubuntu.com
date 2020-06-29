@@ -67,10 +67,11 @@ const elements = stripe.elements({
 
 const card = elements.create("card", { style });
 
-const activeRenewal = {
+const currentTransaction = {
   accountId: null,
   contractId: null,
   renewalId: null,
+  type: null,
 };
 
 let customerInfo = {
@@ -98,19 +99,20 @@ function attachCTAevents(selector) {
     cta.addEventListener("click", (e) => {
       e.preventDefault();
       let data = cta.dataset;
+      currentTransaction.type = data.transactionType;
 
       toggleModal();
       card.focus();
       sendGAEvent("opened payment modal");
 
-      if (data.transactionType === "renewal") {
-        activeRenewal.accountId = data.accountId;
-        activeRenewal.contractId = data.contractId;
-        activeRenewal.renewalId = data.renewalId;
+      if (currentTransaction.type === "renewal") {
+        currentTransaction.accountId = data.accountId;
+        currentTransaction.contractId = data.contractId;
+        currentTransaction.renewalId = data.renewalId;
 
         setRenewalInformation(data, modal);
-      } else if (data.transactionType === "purchase") {
-        // dummy data until we implement product selection
+      } else if (currentTransaction.type === "purchase") {
+        // TODO: for demo purposes only, remove when we have real endpoints and data and data
         const products = [
           {
             name: "UA Infra Advanced Server",
@@ -147,7 +149,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
 
   postCustomerInfoToStripeAccount(
     paymentMethod.id,
-    activeRenewal.accountId,
+    currentTransaction.accountId,
     stripeAddressObject,
     customerInfo.name,
     stripeTaxObject
@@ -211,15 +213,27 @@ function attachFormEvents() {
 function attachModalButtonEvents() {
   addPaymentMethodButton.addEventListener("click", (e) => {
     e.preventDefault();
-    changingPaymentMethod = false;
-    sendGAEvent("submitted payment details");
-    createPaymentMethod();
+
+    // TODO: for demo purposes only, remove when we have real endpoints and data
+    if (currentTransaction.type === "renewal") {
+      changingPaymentMethod = false;
+      sendGAEvent("submitted payment details");
+      createPaymentMethod();
+    } else if (currentTransaction.type === "purchase") {
+      showPayMode();
+    }
   });
 
   processPaymentButton.addEventListener("click", (e) => {
     e.preventDefault();
-    sendGAEvent("clicked 'Pay'");
-    processStripePayment();
+
+    // TODO: for demo purposes only, remove when we have real endpoints and data
+    if (currentTransaction.type === "renewal") {
+      sendGAEvent("clicked 'Pay'");
+      processStripePayment();
+    } else if (currentTransaction.type === "purchase") {
+      console.log("clicked pay");
+    }
   });
 
   changePaymentMethodButton.addEventListener("click", (e) => {
@@ -338,7 +352,7 @@ function enableProcessingState(mode) {
           // and highlight the in-progress renewal
           if (mode === "payment") {
             sendGAEvent("page reload: payment processing > 30s");
-            location.search = `subscription=${activeRenewal.contractId}`;
+            location.search = `subscription=${currentTransaction.contractId}`;
           }
 
           // there is potentially a problem with one of the APIs preventing
@@ -362,7 +376,7 @@ function handleIncompletePayment(invoice) {
     // capture a new payment method, then post the
     // renewal invoice number to trigger another
     // payment attempt
-    postInvoiceIDToRenewal(activeRenewal.renewalId, invoice.invoice_id)
+    postInvoiceIDToRenewal(currentTransaction.renewalId, invoice.invoice_id)
       .then((data) => {
         handlePaymentAttemptResponse(data);
       })
@@ -482,7 +496,7 @@ function handleSuccessfulPayment() {
     "Payment complete. One moment...";
   progressIndicator.classList.remove("u-hide");
 
-  location.search = `subscription=${activeRenewal.contractId}`;
+  location.search = `subscription=${currentTransaction.contractId}`;
 }
 
 function hideErrors() {
@@ -493,7 +507,7 @@ function hideErrors() {
 }
 
 function pollRenewalStatus() {
-  getRenewal(activeRenewal.renewalId)
+  getRenewal(currentTransaction.renewalId)
     .then((renewal) => {
       if (renewal.status !== "done") {
         handleIncompleteRenewal(renewal);
@@ -536,7 +550,7 @@ function presentError(errorObject) {
 function processStripePayment() {
   enableProcessingState("payment");
 
-  postRenewalIDToProcessPayment(activeRenewal.renewalId)
+  postRenewalIDToProcessPayment(currentTransaction.renewalId)
     .then((data) => {
       handlePaymentAttemptResponse(data);
     })
