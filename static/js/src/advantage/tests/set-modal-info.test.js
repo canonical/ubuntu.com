@@ -1,10 +1,12 @@
+import moment from "moment";
+
 import {
   getPaymentInformation,
   getRenewalInformation,
-  setRenewalInformation,
+  getOrderInformation,
 } from "../set-modal-info.js";
 
-import * as modalTemplates from "./fixtures/modal-templates.js";
+import * as orderData from "./fixtures/order-data.js";
 import * as paymentMethods from "./fixtures/payment-methods.js";
 import * as renewalData from "./fixtures/renewal-data.js";
 
@@ -38,11 +40,26 @@ describe("getRenewalInformation", () => {
   describe("given a renewal data object", () => {
     it("should return an object of appropriate values that can be added to the DOM", () => {
       expect(getRenewalInformation(renewalData.advancedDesktop)).toEqual({
-        endDate: "21 May 2021",
-        name: "Renew &ldquo;uai-testing&rdquo;",
-        products: "UA Infra Advanced Desktop",
-        quantity: "5 &#215; US$25/year",
-        startDate: "21 May 2020",
+        items: [
+          {
+            end: {
+              label: "Ends:",
+              value: "20 May 2021",
+            },
+            plan: {
+              label: "Plan type:",
+              value: "UA Infra Advanced Desktop",
+            },
+            quantity: {
+              label: "Machines:",
+              value: "5 &#215; US$25/year",
+            },
+            start: {
+              label: "Will continue from:",
+              value: "21 May 2020",
+            },
+          },
+        ],
         subtotal: "$125",
         total: "$125",
         vat: "$0",
@@ -51,17 +68,55 @@ describe("getRenewalInformation", () => {
   });
 });
 
-describe("setRenewalInformation", () => {
-  describe("given a renewal data object", () => {
-    it("should update the DOM with pre-purchase information about the current renewal", () => {
-      document.body.innerHTML = modalTemplates.emptySummary;
-      const modal = document.querySelector(".modal");
+describe("getOrderInformation", () => {
+  describe("given an order data object", () => {
+    it("should return an object of appropriate values that can be added to the DOM", () => {
+      const startDate = moment().format("DD MMMM YYYY");
+      const endDate = moment().add(12, "months").format("DD MMMM YYYY");
 
-      setRenewalInformation(renewalData.advancedDesktop, modal);
-
-      expect(modal.outerHTML).toMatch(
-        modalTemplates.advancedDesktopRenewalSummary
-      );
+      expect(getOrderInformation(orderData.appsInfraServer)).toEqual({
+        items: [
+          {
+            end: {
+              label: "Ends:",
+              value: endDate,
+            },
+            plan: {
+              label: "Plan 1:",
+              value: "UA Infra Advanced Server",
+            },
+            quantity: {
+              label: "Machines:",
+              value: "10 &#215; US$50/year",
+            },
+            start: {
+              label: "Starts:",
+              value: startDate,
+            },
+          },
+          {
+            end: {
+              label: "Ends:",
+              value: endDate,
+            },
+            plan: {
+              label: "Plan 2:",
+              value: "UA Apps Server",
+            },
+            quantity: {
+              label: "Machines:",
+              value: "10 &#215; US$50/year",
+            },
+            start: {
+              label: "Starts:",
+              value: startDate,
+            },
+          },
+        ],
+        subtotal: "$1,000",
+        total: "$1,000",
+        vat: "£0",
+      });
     });
   });
 });
