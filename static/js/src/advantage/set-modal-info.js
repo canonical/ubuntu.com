@@ -1,4 +1,4 @@
-import moment from "moment";
+import { add, format } from "date-fns";
 
 const CARD_BRAND_IMAGES = {
   visa: "832cf121-visa.png",
@@ -6,7 +6,7 @@ const CARD_BRAND_IMAGES = {
   amex: "91e62c4f-amex.png",
 };
 
-const DATE_FORMAT = "DD MMMM YYYY";
+const DATE_FORMAT = "dd MMMM yyyy";
 
 const PRODUCT_NAMES = {
   "uai-essential-desktop": "UA Infra Essential Desktop",
@@ -117,8 +117,8 @@ export function getOrderInformation(products) {
   const items = [];
   const currency = "USD";
   const vatCurrency = "GBP";
-  const startDate = moment();
-  const endDate = moment().add(12, "months");
+  const startDate = new Date();
+  const endDate = add(new Date(), { months: 12 });
   let subtotal = 0;
 
   products.forEach((product, i) => {
@@ -131,11 +131,11 @@ export function getOrderInformation(products) {
       },
       start: {
         label: "Starts:",
-        value: moment(startDate).format(DATE_FORMAT),
+        value: format(startDate, DATE_FORMAT),
       },
       end: {
         label: "Ends:",
-        value: moment(endDate).format(DATE_FORMAT),
+        value: format(endDate, DATE_FORMAT),
       },
       quantity: {
         label: "Machines:",
@@ -177,8 +177,10 @@ export function getPaymentInformation(paymentMethod) {
 }
 
 export function getRenewalInformation(data) {
-  const startDate = moment(data.contractEnd).add(1, "days");
-  const endDate = moment(data.contractEnd).add(parseInt(data.months), "months");
+  const startDate = add(new Date(data.contractEnd), { days: 1 });
+  const endDate = add(new Date(data.contractEnd), {
+    months: parseInt(data.months),
+  });
 
   return {
     items: [
@@ -189,11 +191,11 @@ export function getRenewalInformation(data) {
         },
         start: {
           label: "Will continue from:",
-          value: moment(startDate).format(DATE_FORMAT),
+          value: format(startDate, DATE_FORMAT),
         },
         end: {
           label: "Ends:",
-          value: moment(endDate).format(DATE_FORMAT),
+          value: format(endDate, DATE_FORMAT),
         },
         quantity: {
           label: "Machines:",
