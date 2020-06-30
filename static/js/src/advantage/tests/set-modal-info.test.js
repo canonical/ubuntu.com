@@ -1,4 +1,4 @@
-import moment from "moment";
+import { add, format } from "date-fns";
 
 import {
   getPaymentInformation,
@@ -71,8 +71,8 @@ describe("getRenewalInformation", () => {
 describe("getOrderInformation", () => {
   describe("given an order data object", () => {
     it("should return an object of appropriate values that can be added to the DOM", () => {
-      const startDate = moment().format("DD MMMM YYYY");
-      const endDate = moment().add(12, "months").format("DD MMMM YYYY");
+      const startDate = format(new Date(), "dd MMMM yyyy");
+      const endDate = format(add(new Date(), { months: 12 }), "dd MMMM yyyy");
 
       expect(getOrderInformation(orderData.appsInfraServer)).toEqual({
         items: [
