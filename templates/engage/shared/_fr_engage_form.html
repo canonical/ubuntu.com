@@ -51,8 +51,8 @@
     <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formVid" class="mktoField" value="{{ id }}" />
     <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
     <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
-    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{ returnURL }}" />
-    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="{{ returnURL }}" />
-    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="return_url" value="{{ returnURL }}" />
+    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{% if ".pdf" in returnURL %}http://ubuntu.com/engage/thank-you?resource_name={{ resouce_name | urlencode }}&resource_url={{ returnURL | urlencode }}{% else %}{{ returnURL }}{% endif %}" />
+    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="{% if ".pdf" in returnURL %}http://ubuntu.com/engage/thank-you?resource_name={{ resouce_name | urlencode }}&resource_url={{ returnURL | urlencode }}{% else %}{{ returnURL }}{% endif %}" />
+    <input type="hidden" aria-hidden="true" aria-label="hidden field" name="return_url" value="{% if ".pdf" in returnURL %}http://ubuntu.com/engage/thank-you?resource_name={{ resouce_name | urlencode }}&resource_url={{ returnURL | urlencode }}{% else %}{{ returnURL }}{% endif %}" />
   </fieldset>
 </form>

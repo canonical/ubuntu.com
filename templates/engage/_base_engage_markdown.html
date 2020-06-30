@@ -108,7 +108,7 @@
       {% if form_include %}
         {% set form = "engage/shared/_" + form_include + "_engage_form.html" %}
 
-        {% with id = form_id, returnURL = form_return_url %}
+        {% with id = form_id, returnURL = form_return_url, resouce_name = title %}
           {% include form %}
         {% endwith %}
       {% else %}

@@ -120,6 +120,8 @@ def context():
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),
+        "resource_name": flask.request.args.get("resource_name", ""),
+        "resource_url": flask.request.args.get("resource_url", ""),
         "user_info": user_info(flask.session),
         "utm_campaign": flask.request.args.get("utm_campaign", ""),
         "utm_medium": flask.request.args.get("utm_medium", ""),
