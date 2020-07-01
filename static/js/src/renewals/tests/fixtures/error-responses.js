@@ -62,6 +62,12 @@ export const contractsErrorObjects = {
       'unexpected error updating customer information: {"code":"card_declined","doc_url":"https://stripe.com/docs/error-codes/card-declined","status":402,"message":"Your card has insufficient funds.","request_id":"req_SYTeIg5nO6lWt1","type":"card_error"}',
     traceId: "8ebe2d2d-35ad-434a-bd24-d5aa14a7b390",
   },
+  invalidVat: {
+    code: "invalid customer information",
+    message:
+      '{"code":"tax_id_invalid","doc_url":"https://stripe.com/docs/error-codes/tax-id-invalid","status":400,"message":"Invalid value for eu_vat.","request_id":"req_7pf3OCHAAwYnLj","type":"invalid_request_error"}',
+    traceId: "296e07f4-bc89-4e17-9915-4642c407ca69",
+  },
   priceMismatch: {
     code: "renewal is blocked",
     message:
