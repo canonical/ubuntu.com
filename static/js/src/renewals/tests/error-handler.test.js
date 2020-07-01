@@ -112,4 +112,13 @@ describe("parseForErrorObject", () => {
       );
     });
   });
+
+  describe("given an invalid VAT number error", () => {
+    it("should return an appropriate error object", () => {
+      expect(parseForErrorObject(contractsErrorObjects.invalidVat)).toEqual({
+        message: "That VAT number is invalid. Check the number and try again.",
+        type: "notification",
+      });
+    });
+  });
 });

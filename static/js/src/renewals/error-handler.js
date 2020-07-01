@@ -44,9 +44,15 @@ const INCORRECT_NUMBER_CODES = [
   "incomplete_number",
 ];
 
+const INCORRECT_VAT_CODES = ["tax_id_invalid"];
+
 const INCORRECT_ZIP_CODES = ["incorrect_zip", "incomplete_zip"];
 
-const PAYMENT_ERRORS = ["invoice payment failed", "payment method error"];
+const PAYMENT_ERRORS = [
+  "invoice payment failed",
+  "payment method error",
+  "invalid customer information",
+];
 
 function customErrorResponse(errorData) {
   const code = errorData.code;
@@ -77,6 +83,10 @@ function customErrorResponse(errorData) {
     error.message =
       "That expiry date is incorrect. Check the date and try again.";
     error.type = "card";
+  } else if (INCORRECT_VAT_CODES.includes(code)) {
+    error.message =
+      "That VAT number is invalid. Check the number and try again.";
+    error.type = "notification";
   } else if (code === "card_not_supported") {
     error.message =
       "That card doesn’t allow this kind of payment. Please contact your card issuer, or try a different card.";
