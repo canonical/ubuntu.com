@@ -70,8 +70,9 @@
       <div id="windows" class="p-tabs__content" role="tabpanel" aria-labelledby="windows-tab">
         {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
         <ol class="p-stepped-list--detailed">
+          {% include 'appliance/shared/_steps_install_openssh_windows.html' %}
           {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
-          {% with command='type' %}{% include 'appliance/shared/_steps_sso.html' %}{% endwith %}
+          {% include 'appliance/shared/_steps_sso_windows.html' %}
           {% with os='windows' %}{% include 'appliance/shared/_steps_nuc_flash_usb.html' %}{% endwith %}
           {% include 'appliance/shared/_steps_nuc_install_appliance.html' %}
           {% include 'appliance/shared/_steps_nuc_first_boot.html' %}
@@ -83,7 +84,7 @@
         {% include "appliance/shared/_install_instructions_intel-nuc.html" %}
         <ol class="p-stepped-list--detailed">
           {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
-          {% with command='cat' %}{% include 'appliance/shared/_steps_sso.html' %}{% endwith %}
+          {% include 'appliance/shared/_steps_sso.html' %}
           {% with os='macos' %}{% include 'appliance/shared/_steps_nuc_flash_usb.html' %}{% endwith %}
           {% include 'appliance/shared/_steps_nuc_install_appliance.html' %}
           {% include 'appliance/shared/_steps_nuc_first_boot.html' %}
