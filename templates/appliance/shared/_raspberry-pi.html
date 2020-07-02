@@ -63,7 +63,7 @@
           {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
           {% include 'appliance/shared/_steps_ssh-keys_ubuntu.html' %}
           {% include 'appliance/shared/_steps_sso.html' %}
-          {% with command='cat' %}{% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}{% endwith %}
+          {% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}
           {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
           {% include 'appliance/shared/_steps_pi_thats-it.html' %}
         </ol>
@@ -75,9 +75,10 @@
         <ol class="p-stepped-list--detailed">
           {% include 'appliance/shared/_steps_pi_imager_windows.html' %}
           {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
+          {% include 'appliance/shared/_steps_install_openssh_windows.html' %}
           {% include 'appliance/shared/_steps_ssh-keys_windows.html' %}
-          {% include 'appliance/shared/_steps_sso.html' %}
-          {% with command='type' %}{% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}{% endwith %}
+          {% include 'appliance/shared/_steps_sso_windows.html' %}
+          {% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}
           {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
           {% include 'appliance/shared/_steps_pi_thats-it.html' %}
         </ol>
@@ -91,7 +92,7 @@
           {% include 'appliance/shared/_steps_pi_prep-sd-card.html' %}
           {% include 'appliance/shared/_steps_ssh-keys_macos.html' %}
           {% include 'appliance/shared/_steps_sso.html' %}
-          {% with command='cat' %}{% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}{% endwith %}
+          {% include 'appliance/shared/_steps_pi_boot-raspberry-pi.html' %}
           {% include 'appliance/shared/_steps_pi_ssh-in.html' %}
           {% include 'appliance/shared/_steps_pi_thats-it.html' %}
         </ol>
