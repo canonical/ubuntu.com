@@ -1,0 +1,1413 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: https://discourse.ubuntu.com/t/11322.json
+  response:
+    body:
+      string: "{\"post_stream\":{\"posts\":[{\"id\":31439,\"name\":\"Joshua Powers\"\
+        ,\"username\":\"powersj\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/powersj/{size}/10180_2.png\"\
+        ,\"created_at\":\"2019-06-19T20:48:28.264Z\",\"cooked\":\"\\u003ch1\\u003eUbuntu\
+        \ Server Guide\\u003c/h1\\u003e\\n\\u003ch2\\u003eChanges, errors and bugs\\\
+        u003c/h2\\u003e\\n\\u003cp\\u003e\\u003cem\\u003eThis is the current edition\
+        \ for Ubuntu 20.04 LTS, Focal Fossa. Ubuntu serverguides for previous LTS\
+        \ versions: \\u003ca href=\\\"https://help.ubuntu.com/18.04/serverguide/index.html\\\
+        \" rel=\\\"nofollow noopener\\\"\\u003e18.04\\u003c/a\\u003e (\\u003ca href=\\\
+        \"https://help.ubuntu.com/18.04/serverguide/serverguide.pdf\\\" rel=\\\"nofollow\
+        \ noopener\\\"\\u003ePDF\\u003c/a\\u003e), \\u003ca href=\\\"https://help.ubuntu.com/16.04/serverguide/index.html\\\
+        \" rel=\\\"nofollow noopener\\\"\\u003e16.04\\u003c/a\\u003e (\\u003ca href=\\\
+        \"https://help.ubuntu.com/16.04/serverguide/serverguide.pdf\\\" rel=\\\"nofollow\
+        \ noopener\\\"\\u003ePDF\\u003c/a\\u003e).\\u003c/em\\u003e\\u003c/p\\u003e\\\
+        n\\u003cp\\u003eIf you find any errors or have suggestions for improvements\
+        \ to pages, please use the link at the bottom of each topic titled: \u201C\
+        Help improve this document in the forum.\u201D This link will take you to\
+        \ the Server Discourse forum for the specific page you are viewing. There\
+        \ you can share your comments or let us know about bugs with each page.\\\
+        u003c/p\\u003e\\n\\u003ch2\\u003eOffline\\u003c/h2\\u003e\\n\\u003cp\\u003e\\\
+        u003ca href=\\\"https://assets.ubuntu.com/ubuntu-server-guide\\\" rel=\\\"\
+        nofollow noopener\\\"\\u003eDownload this guide as a PDF\\u003c/a\\u003e\\\
+        u003c/p\\u003e\\n\\u003ch2\\u003eSupport\\u003c/h2\\u003e\\n\\u003cp\\u003eThere\
+        \ are a couple of different ways that Ubuntu Server Edition is supported:\
+        \ commercial support and community support. The main commercial support (and\
+        \ development funding) is available from Canonical, Ltd. They supply reasonably-\
+        \ priced support contracts on a per desktop or per server basis. For more\
+        \ information see the \\u003ca href=\\\"http://www.ubuntu.com/advantage\\\"\
+        \ rel=\\\"nofollow noopener\\\"\\u003eUbuntu Advantage\\u003c/a\\u003e page.\\\
+        u003c/p\\u003e\\n\\u003cp\\u003eCommunity support is also provided by dedicated\
+        \ individuals and companies that wish to make Ubuntu the best distribution\
+        \ possible. Support is provided through multiple mailing lists, IRC channels,\
+        \ forums, blogs, wikis, etc. The large amount of information available can\
+        \ be overwhelming, but a good search engine query can usually provide an answer\
+        \ to your questions. See the \\u003ca href=\\\"https://ubuntu.com/support/community-support\\\
+        \" rel=\\\"nofollow noopener\\\"\\u003eUbuntu Support\\u003c/a\\u003e page\
+        \ for more information.\\u003c/p\\u003e\\n\\u003ch2\\u003eNavigation\\u003c/h2\\\
+        u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/introduction/11322\\\
+        \"\\u003eIntroduction\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\\
+        n\\u003ch3\\u003eGetting started\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\\
+        u003cli\\u003e\\u003ca href=\\\"/t/installation/11320\\\"\\u003eInstallation\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/package-management/11908\\\
+        \"\\u003ePackage Management\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/reporting-bugs/11508\\\"\\u003eReporting Bugs\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/kernel-crash-dump/11575\\\
+        \"\\u003eKernel Crash Dump\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/upgrade-introduction/11576\\\"\\u003eUpgrade - Introduction\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eInstallation\\\
+        u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/using-the-server-installer/16689\\\
+        \"\\u003eUsing the installer\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/using-the-server-installer-step-by-step/16690\\\
+        \"\\u003eStep by step\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/reporting-problems-with-the-installer/13431\\\
+        \"\\u003eReporting problems in the installer\\u003c/a\\u003e\\u003c/li\\u003e\\\
+        n\\u003cli\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/configuring-storage-in-the-server-installer/16691\\\
+        \"\\u003eConfiguring storage\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/netbooting-the-server-installer-on-amd64/16620\\\
+        \"\\u003eNetbooting the installer on amd64\\u003c/a\\u003e\\u003c/li\\u003e\\\
+        n\\u003cli\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/netbooting-the-live-server-installer-on-ibm-power-ppc64el-with-petitboot/15348\\\
+        \"\\u003eNetbooting the installer on ppc64el\\u003c/a\\u003e\\u003c/li\\u003e\\\
+        n\\u003cli\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/automated-server-installs/16612/3\\\
+        \"\\u003eAutomating server installs\\u003c/a\\u003e\\u003c/li\\u003e\\n\\\
+        u003cli\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/automated-server-install-quickstart/16614\\\
+        \"\\u003eautoinstall quickstart\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/automated-server-install-reference/16613\\\
+        \"\\u003eautoinstall reference\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/automated-server-install-schema/16615\\\
+        \"\\u003eautoinstall schema\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\\
+        u003e\\n\\u003ch3\\u003eStorage\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/device-mapper-multipathing-introduction/11316\\\
+        \"\\u003eMultipath - Introduction\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/device-mapper-multipathing-configuration/11569\\\
+        \"\\u003eMultipath - Configuration\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/device-mapper-multipathing-setup/11568\\\
+        \"\\u003eMultipath - Setup\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/device-mapper-multipathing-usage-debug/11317\\\
+        \"\\u003eMultipath - Usage \\u0026amp; Debug\\u003c/a\\u003e\\u003c/li\\u003e\\\
+        n\\u003c/ul\\u003e\\n\\u003ch3\\u003eNetwork\\u003c/h3\\u003e\\n\\u003cul\\\
+        u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/network-introduction/11875\\\"\
+        \\u003eIntroduction\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\\
+        u003ca href=\\\"/t/network-configuration/11876\\\"\\u003eConfiguration\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/network-dhcp/11877\\\
+        \"\\u003eDHCP\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/network-ntp/11878\\\"\\u003eNTP\\u003c/a\\u003e\\u003c/li\\\
+        u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/network-dpdk/11879\\\"\\u003eDPDK\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/openvswitch-dpdk/13085\\\
+        \"\\u003eOpenVswitch-DPDK\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\\
+        u003e\\n\\u003ch3\\u003eSecurity\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\\
+        u003cli\\u003e\\u003ca href=\\\"/t/security-introduction/11887\\\"\\u003eIntroduction\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/security-users/11881\\\
+        \"\\u003eUsers\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/security-apparmor/11884\\\"\\u003eAppArmor\\u003c/a\\u003e\\\
+        u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/security-firewall/11883\\\
+        \"\\u003eFirewall\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/security-certificates/11885\\\"\\u003eCertificates\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/security-console/11882\\\
+        \"\\u003eConsole\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\\
+        u003ch3\\u003eVirtualization\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/virtualization-introduction/11521\\\"\\u003eIntroduction\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/virtualization-qemu/11523\\\
+        \"\\u003eqemu\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/virtualization-libvirt/11522\\\"\\u003elibvirt\\u003c/a\\u003e\\\
+        u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/virtualization-multipass/11983\\\
+        \"\\u003emultipass\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/virtualization-uvt/11524\\\"\\u003euvt\\u003c/a\\u003e\\u003c/li\\\
+        u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/virtualization-virt-tools/13436\\\
+        \"\\u003evirt tools\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\\
+        n\\u003ch3\\u003eContainers\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/containers-lxd/11525\\\"\\u003elxd\\u003c/a\\u003e\\\
+        u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/containers-lxc/11526\\\
+        \"\\u003elxc\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\\
+        u003eServices\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/databases-introduction/11315\\\"\\u003eDatabases - Introduction\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/databases-mysql/11515\\\
+        \"\\u003eDatabases - Mysql\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/databases-postgresql/11516\\\"\\u003eDatabases -\
+        \ PostgreSQL\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\
+        \"/t/samba-introduction/11888\\\"\\u003eSamba - Introduction\\u003c/a\\u003e\\\
+        u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/samba-active-directory/11893\\\
+        \"\\u003eSamba - Active Directory\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/samba-domain-controller/11892\\\"\\u003eSamba -\
+        \ Domain Controller\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\\
+        u003ca href=\\\"/t/samba-file-server/11889\\\"\\u003eSamba - File Server\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/samba-print-server/11890\\\
+        \"\\u003eSamba - Print Server\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/samba-securing/11891\\\"\\u003eSamba - Securing\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/samba-openldap-backend/15698\\\
+        \"\\u003eSamba - OpenLDAP Backend\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/service-cups/11573\\\"\\u003eService - CUPS\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/service-domain-name-service-dns/11318\\\
+        \"\\u003eService - Domain Name Service (DNS)\\u003c/a\\u003e\\u003c/li\\u003e\\\
+        n\\u003cli\\u003e\\u003ca href=\\\"/t/service-ftp/11319\\\"\\u003eService\
+        \ - FTP\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\
+        \"/t/service-iscsi/11572\\\"\\u003eService - iSCSI\\u003c/a\\u003e\\u003c/li\\\
+        u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/service-kerberos/11331\\\"\\\
+        u003eService - Kerberos\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\\
+        u003ca href=\\\"/t/service-kerberos-with-openldap-backend/15356\\\"\\u003eService\
+        \ - Kerberos with OpenLDAP backend\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/service-ldap/11329\\\"\\u003eService - LDAP\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/service-ldap-access-control/15583\\\
+        \"\\u003eService - LDAP Access Control\\u003c/a\\u003e\\u003c/li\\u003e\\\
+        n\\u003cli\\u003e\\u003ca href=\\\"/t/service-ldap-replication/15508\\\"\\\
+        u003eService - LDAP Replication\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/service-ldap-usage/11330\\\"\\u003eService - LDAP\
+        \ Usage\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\
+        \"/t/service-ldap-with-tls/11578\\\"\\u003eService - LDAP with TLS\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/service-nfs/11571\\\
+        \"\\u003eService - NFS\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\\
+        u003ca href=\\\"/t/service-openssh/11896\\\"\\u003eService - OpenSSH\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/service-openvpn/11894\\\
+        \"\\u003eService - OpenVPN\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/service-gitolite/11900\\\"\\u003eService - gitolite\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/vpn-clients/11895\\\
+        \"\\u003eVPN Clients\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\\
+        u003ca href=\\\"/t/service-sssd/11579\\\"\\u003eService - SSSD\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/mail-introduction/11324\\\
+        \"\\u003eMail - Introduction\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/mail-dovecot/11880\\\"\\u003eMail - Dovecot\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/mail-exim4/11530\\\
+        \"\\u003eMail - Exim4\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\\
+        u003ca href=\\\"/t/mail-postfix/11325\\\"\\u003eMail - Postfix\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/proxy-servers-squid/11511\\\
+        \"\\u003eProxy Servers - Squid\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003e\\u003ca href=\\\"/t/web-servers-introduction/11509\\\"\\u003eWeb Servers\
+        \ - Introduction\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/web-servers-apache/11510\\\"\\u003eWeb Servers - Apache\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eUbuntu High Availability\\\
+        u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/ubuntu-ha-introduction/15813\\\
+        \"\\u003eHA - Introduction\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\\
+        u003eHA - Corosync\\u003c/li\\u003e\\n\\u003cli\\u003eHA - Pacemaker\\u003c/li\\\
+        u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/ubuntu-ha-pacemaker-resource-agents-supportability/15729\\\
+        \"\\u003eHA - Pacemaker - Resource Agents \\u003c/a\\u003e\\u003c/li\\u003e\\\
+        n\\u003cli\\u003e\\u003ca href=\\\"/t/ubuntu-ha-pacemaker-fence-agents-supportability/15768\\\
+        \"\\u003eHA - Pacemaker - Fence Agents \\u003c/a\\u003e\\u003c/li\\u003e\\\
+        n\\u003cli\\u003e\\u003ca href=\\\"/t/ubuntu-ha-drbd/11314\\\"\\u003eHA -\
+        \ DRBD\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\\
+        u003eTools\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/tools-logwatch/15590\\\"\\u003elogwatch\\u003c/a\\u003e\\u003c/li\\\
+        u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/tools-byobu/11907\\\"\\u003ebyobu\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/tools-etckeeper/11906\\\
+        \"\\u003eetckeeper\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/tools-munin/11904\\\"\\u003emunin\\u003c/a\\u003e\\u003c/li\\\
+        u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/tools-nagios/11903\\\"\\u003enagios\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/tools-pam-motd/11905\\\
+        \"\\u003epam_motd\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/tools-puppet/11897\\\"\\u003ePuppet\\u003c/a\\u003e\\u003c/li\\\
+        u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/monitoring-introduction/11326\\\
+        \"\\u003eMonitoring\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\\
+        u003ca href=\\\"/t/tools-rsnapshot/15236\\\"\\u003ersnapshot\\u003c/a\\u003e\\\
+        u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eProgramming\\u003c/h3\\\
+        u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/programming-php/11514\\\
+        \"\\u003ePHP\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\
+        \"/t/programming-ruby-on-rails/11513\\\"\\u003eRuby on Rails\\u003c/a\\u003e\\\
+        u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eBackups\\u003c/h3\\\
+        u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/backups-introduction/11312\\\
+        \"\\u003eIntroduction\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\\
+        u003ca href=\\\"/t/backups-archive-rotation/11519\\\"\\u003eArchive Rotation\\\
+        u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/backups-bacula/11520\\\
+        \"\\u003eBacula\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca\
+        \ href=\\\"/t/backups-shell-scripts/11518\\\"\\u003eShell Scripts\\u003c/a\\\
+        u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eLAMP\\u003c/h3\\\
+        u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca href=\\\"/t/lamp-applications/11902\\\
+        \"\\u003eLAMP Applications\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\\
+        u003e\\n\\u003ch2\\u003eURLs\\u003c/h2\\u003e\\n\\u003cdetails\\u003e\\n\\\
+        u003csummary\\u003e\\nMapping table\\u003c/summary\\u003e\\n\\u003cdiv class=\\\
+        \"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\\
+        u003e\\n\\u003cth\\u003eTopic\\u003c/th\\u003e\\n\\u003cth\\u003ePath\\u003c/th\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\\
+        u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/installation/11322\\\
+        \" class=\\\"inline-onebox\\\"\\u003eIntroduction\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/introduction\\u003c/td\\u003e\\n\\u003c/tr\\\
+        u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/installation/11320\\\
+        \" class=\\\"inline-onebox\\\"\\u003eInstallation\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/installation\\u003c/td\\u003e\\n\\u003c/tr\\\
+        u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/installation-advanced/11577\\\
+        \" class=\\\"inline-onebox\\\"\\u003eInstallation - Advanced\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/installation-advanced\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/installation-iscsi/11321\\\" class=\\\"inline-onebox\\\
+        \"\\u003eInstallation - iSCSI\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\\
+        u003e/server/docs/installation-iscsi\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\\
+        n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/package-management/11908\\\
+        \" class=\\\"inline-onebox\\\"\\u003ePackage Management\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/package-management\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/kernel-crash-dump/11575\\\" class=\\\"inline-onebox\\\
+        \"\\u003eKernel Crash Dump\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\\
+        u003e/server/docs/kernel-crash-dump\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\\
+        n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/reporting-bugs/11508\\\
+        \" class=\\\"inline-onebox\\\"\\u003eReporting Bugs\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/reporting-bugs\\u003c/td\\u003e\\n\\\
+        u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/upgrade-introduction/11576\\\
+        \" class=\\\"inline-onebox\\\"\\u003eUpgrade - Introduction\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/upgrade-introduction\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/device-mapper-multipathing-introduction/11316\\\
+        \" class=\\\"inline-onebox\\\"\\u003eDevice Mapper Multipathing - Introduction\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/device-mapper-multipathing-introduction\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/device-mapper-multipathing-configuration/11569\\\
+        \" class=\\\"inline-onebox\\\"\\u003eDevice Mapper Multipathing - Configuration\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/device-mapper-multipathing-configuration\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/device-mapper-multipathing-setup/11568\\\
+        \" class=\\\"inline-onebox\\\"\\u003eDevice Mapper Multipathing - Setup\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/device-mapper-multipathing-setup\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/device-mapper-multipathing-usage-debug/11317\\\
+        \" class=\\\"inline-onebox\\\"\\u003eDevice Mapper Multipathing - Usage \\\
+        u0026amp; Debug\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/device-mapper-multipathing-usage-debug\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/network-introduction/11875\\\
+        \" class=\\\"inline-onebox\\\"\\u003eNetwork - Introduction\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/network-introduction\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/network-configuration/11876\\\" class=\\\"\
+        inline-onebox\\\"\\u003eNetwork - Configuration\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/network-configuration\\u003c/td\\u003e\\\
+        n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"\
+        https://discourse.ubuntu.com/t/network-dhcp/11877\\\" class=\\\"inline-onebox\\\
+        \"\\u003eNetwork - DHCP\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/network-dhcp\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/network-ntp/11878\\\" class=\\\
+        \"inline-onebox\\\"\\u003eNetwork - NTP\\u003c/a\\u003e\\u003c/td\\u003e\\\
+        n\\u003ctd\\u003e/server/docs/network-ntp\\u003c/td\\u003e\\n\\u003c/tr\\\
+        u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/network-dpdk/11879\\\
+        \" class=\\\"inline-onebox\\\"\\u003eNetwork - DPDK\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/network-dpdk\\u003c/td\\u003e\\n\\u003c/tr\\\
+        u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/openvswitch-dpdk/13085\\\
+        \" class=\\\"inline-onebox\\\"\\u003eOpenVswitch-DPDK\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/openvswitch-dpdk\\u003c/td\\u003e\\n\\\
+        u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/security-introduction/11887\\\
+        \" class=\\\"inline-onebox\\\"\\u003eSecurity - Introduction\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/security-introduction\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/security-users/11881\\\" class=\\\"inline-onebox\\\
+        \"\\u003eSecurity - Users\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/security-users\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/security-apparmor/11884\\\"\
+        \ class=\\\"inline-onebox\\\"\\u003eSecurity - AppArmor\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/security-apparmor\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/security-firewall/11883\\\" class=\\\"inline-onebox\\\
+        \"\\u003eSecurity - Firewall\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\\
+        u003e/server/docs/security-firewall\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\\
+        n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/security-certificates/11885\\\
+        \" class=\\\"inline-onebox\\\"\\u003eSecurity - Certificates\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/security-certificates\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/security-console/11882\\\" class=\\\"inline-onebox\\\
+        \"\\u003eSecurity - Console\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\\
+        u003e/server/docs/security-console\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\\
+        n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/security-ecryptfs/11886\\\
+        \" class=\\\"inline-onebox\\\"\\u003eSecurity - eCryptfs\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/security-ecryptfs\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/virtualization-introduction/11521\\\" class=\\\
+        \"inline-onebox\\\"\\u003eVirtualization - Introduction\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/virtualization-introduction\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/virtualization-multipass/11983\\\
+        \" class=\\\"inline-onebox\\\"\\u003eVirtualization - multipass\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/virtualization-multipass\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/virtualization-qemu/11523\\\
+        \" class=\\\"inline-onebox\\\"\\u003eVirtualization - qemu\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/virtualization-qemu\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/virtualization-libvirt/11522\\\" class=\\\
+        \"inline-onebox\\\"\\u003eVirtualization - libvirt\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/virtualization-libvirt\\u003c/td\\u003e\\\
+        n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"\
+        https://discourse.ubuntu.com/t/virtualization-uvt/11524\\\" class=\\\"inline-onebox\\\
+        \"\\u003eVirtualization - uvt\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\\
+        u003e/server/docs/virtualization-uvt\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\\
+        n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/virtualization-virt-tools/13436\\\
+        \" class=\\\"inline-onebox\\\"\\u003eVirt Tools\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/virtualization-virt-tools\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/containers-lxd/11525\\\" class=\\\"inline-onebox\\\
+        \"\\u003eContainers - lxd\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/containers-lxd\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/containers-lxc/11526\\\" class=\\\
+        \"inline-onebox\\\"\\u003eContainers - lxc\\u003c/a\\u003e\\u003c/td\\u003e\\\
+        n\\u003ctd\\u003e/server/docs/containers-lxc\\u003c/td\\u003e\\n\\u003c/tr\\\
+        u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/databases-introduction/11315\\\
+        \" class=\\\"inline-onebox\\\"\\u003eDatabases - Introduction\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/databases-introduction\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/databases-mysql/11515\\\" class=\\\"inline-onebox\\\
+        \"\\u003eDatabases - Mysql\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\\
+        u003e/server/docs/databases-mysql\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\\
+        u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/databases-postgresql/11516\\\
+        \" class=\\\"inline-onebox\\\"\\u003eDatabases - PostgreSQL\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/databases-postgresql\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/samba-active-directory/11893\\\" class=\\\
+        \"inline-onebox\\\"\\u003eSamba - Active Directory\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/samba-active-directory\\u003c/td\\u003e\\\
+        n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"\
+        https://discourse.ubuntu.com/t/samba-domain-controller/11892\\\" class=\\\"\
+        inline-onebox\\\"\\u003eSamba - Domain Controller\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/samba-domain-controller\\u003c/td\\u003e\\\
+        n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"\
+        https://discourse.ubuntu.com/t/samba-file-server/11889\\\" class=\\\"inline-onebox\\\
+        \"\\u003eSamba - File Server\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\\
+        u003e/server/docs/samba-file-server\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\\
+        n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/samba-introduction/11888\\\
+        \" class=\\\"inline-onebox\\\"\\u003eSamba - Introduction\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/samba-introduction\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/samba-print-server/11890\\\" class=\\\"inline-onebox\\\
+        \"\\u003eSamba - Print Server\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\\
+        u003e/server/docs/samba-print-server\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\\
+        n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/samba-securing/11891\\\
+        \" class=\\\"inline-onebox\\\"\\u003eSamba - Securing\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/samba-securing\\u003c/td\\u003e\\n\\\
+        u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/samba-openldap-backend/15698\\\
+        \" class=\\\"inline-onebox\\\"\\u003eSamba - OpenLDAP Backend\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/samba-openldap-backend\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/service-cups/11573\\\" class=\\\"inline-onebox\\\
+        \"\\u003eService - CUPS\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-cups\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-domain-name-service-dns/11318\\\
+        \" class=\\\"inline-onebox\\\"\\u003eService - Domain Name Service (DNS)\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-domain-name-service-dns\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-ftp/11319\\\" class=\\\
+        \"inline-onebox\\\"\\u003eService - FTP\\u003c/a\\u003e\\u003c/td\\u003e\\\
+        n\\u003ctd\\u003e/server/docs/service-ftp\\u003c/td\\u003e\\n\\u003c/tr\\\
+        u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/service-introduction/11570\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/service-introduction/11570\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-introduction\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-iscsi/11572\\\" class=\\\
+        \"inline-onebox\\\"\\u003eService - iSCSI\\u003c/a\\u003e\\u003c/td\\u003e\\\
+        n\\u003ctd\\u003e/server/docs/service-iscsi\\u003c/td\\u003e\\n\\u003c/tr\\\
+        u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"https://discourse.ubuntu.com/t/service-kerberos/11331\\\
+        \" class=\\\"inline-onebox\\\"\\u003eService - Kerberos\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-kerberos\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/service-kerberos/15356\\\" class=\\\"inline-onebox\\\
+        \"\\u003eService - Kerberos with OpenLDAP backend\\u003c/a\\u003e\\u003c/td\\\
+        u003e\\n\\u003ctd\\u003e/server/docs/service-kerberos-with-openldap-backend\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-ldap/11329\\\"\\u003ehttps://discourse.ubuntu.com/t/service-ldap/11329\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-ldap\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-ldap-access-control/15583\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/service-ldap-access-control/15583\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-ldap-access-control\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-ldap-replication/15508\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/service-ldap-replication/15508\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-ldap-replication\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-ldap-usage/11330\\\"\
+        \\u003ehttps://discourse.ubuntu.com/t/service-ldap-usage/11330\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-ldap-usage\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-ldap-with-tls/11578\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/service-ldap-with-tls/11578\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-ldap-with-tls\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-nfs/11571\\\"\\u003ehttps://discourse.ubuntu.com/t/service-nfs/11571\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-nfs\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-openssh/11896\\\"\\\
+        u003ehttps://discourse.ubuntu.com/t/service-openssh/11896\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-openssh\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/service-openvpn/11894\\\"\\u003ehttps://discourse.ubuntu.com/t/service-openvpn/11894\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-openvpn\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-gitolite/11900\\\"\\\
+        u003ehttps://discourse.ubuntu.com/t/service-gitolite/11900\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-gitolite\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/vpn-clients/11895\\\"\\u003ehttps://discourse.ubuntu.com/t/vpn-clients/11895\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/vpn-clients\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/service-sssd/11579\\\"\\u003ehttps://discourse.ubuntu.com/t/service-sssd/11579\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/service-sssd\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/chat-irc-server/11566\\\"\\\
+        u003ehttps://discourse.ubuntu.com/t/chat-irc-server/11566\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/chat-irc-server\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/mail-dovecot/11880\\\"\\u003ehttps://discourse.ubuntu.com/t/mail-dovecot/11880\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/mail-dovecot\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/mail-exim4/11530\\\"\\u003ehttps://discourse.ubuntu.com/t/mail-exim4/11530\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/mail-exim4\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/mail-introduction/11324\\\"\
+        \\u003ehttps://discourse.ubuntu.com/t/mail-introduction/11324\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/mail-introduction\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/mail-mailman/11531\\\"\\u003ehttps://discourse.ubuntu.com/t/mail-mailman/11531\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/mail-mailman\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/mail-postfix/11325\\\"\\u003ehttps://discourse.ubuntu.com/t/mail-postfix/11325\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/mail-postfix\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/proxy-servers-squid/11511\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/proxy-servers-squid/11511\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/proxy-servers-squid\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/web-servers-apache/11510\\\"\
+        \\u003ehttps://discourse.ubuntu.com/t/web-servers-apache/11510\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/web-servers-apache\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/web-servers-apache-tomcat/11512\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/web-servers-apache-tomcat/11512\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/web-servers-apache-tomcat\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/web-servers-introduction/11509\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/web-servers-introduction/11509\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/web-servers-introduction\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/ubuntu-ha-introduction/15813\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/ubuntu-ha-introduction/15813\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/ubuntu-ha-introduction\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/ubuntu-ha-pacemaker-resource-agents-supportability/15729\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/ubuntu-ha-pacemaker-resource-agents-supportability/15729\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/ubuntu-ha-pacemaker-resource-agents-supportability\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/ubuntu-ha-pacemaker-fence-agents-supportability/15768\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/ubuntu-ha-pacemaker-fence-agents-supportability/15768\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/ubuntu-ha-pacemaker-fence-agents-supportability\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/ubuntu-ha-drbd/11314\\\"\\\
+        u003ehttps://discourse.ubuntu.com/t/ubuntu-ha-drbd/11314\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/ubuntu-ha-drbd\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/tools-byobu/11907\\\"\\u003ehttps://discourse.ubuntu.com/t/tools-byobu/11907\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/tools-byobu\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/tools-etckeeper/11906\\\"\\\
+        u003ehttps://discourse.ubuntu.com/t/tools-etckeeper/11906\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/tools-etckeeper\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/tools-munin/11904\\\"\\u003ehttps://discourse.ubuntu.com/t/tools-munin/11904\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/tools-munin\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/tools-nagios/11903\\\"\\u003ehttps://discourse.ubuntu.com/t/tools-nagios/11903\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/tools-nagios\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/tools-pam-motd/11905\\\"\\\
+        u003ehttps://discourse.ubuntu.com/t/tools-pam-motd/11905\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/pam-motd\\u003c/td\\u003e\\\
+        n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\"\
+        https://discourse.ubuntu.com/t/tools-puppet/11897\\\"\\u003ehttps://discourse.ubuntu.com/t/tools-puppet/11897\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/tools-puppet\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/tools-zentyal/11898\\\"\\u003ehttps://discourse.ubuntu.com/t/tools-zentyal/11898\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/tools-zentyal\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/monitoring-introduction/11326\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/monitoring-introduction/11326\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/monitoring-introduction\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/tools-rsnapshot/15236\\\"\\\
+        u003ehttps://discourse.ubuntu.com/t/tools-rsnapshot/15236\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/tools-rsnapshot\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/programming-php/11514\\\"\\u003ehttps://discourse.ubuntu.com/t/programming-php/11514\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/programming-php\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/programming-ruby-on-rails/11513\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/programming-ruby-on-rails/11513\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/programming-ruby-on-rails\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/backups-introduction/11312\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/backups-introduction/11312\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/backups-introduction\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/backups-archive-rotation/11519\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/backups-archive-rotation/11519\\u003c/a\\\
+        u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/backups-archive-rotation\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/backups-bacula/11520\\\"\\\
+        u003ehttps://discourse.ubuntu.com/t/backups-bacula/11520\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/backups-bacula\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/backups-shell-scripts/11518\\\"\\u003ehttps://discourse.ubuntu.com/t/backups-shell-scripts/11518\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/backups-shell-scripts\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/workload-lamp/11323\\\"\\u003ehttps://discourse.ubuntu.com/t/workload-lamp/11323\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/workload-lamp\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/lamp-applications/11902\\\"\
+        \\u003ehttps://discourse.ubuntu.com/t/lamp-applications/11902\\u003c/a\\u003e\\\
+        u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/lamp-applications\\u003c/td\\\
+        u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\u003ca href=\\\
+        \"https://discourse.ubuntu.com/t/using-the-server-installer/16689\\\"\\u003ehttps://discourse.ubuntu.com/t/using-the-server-installer/16689\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/general\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/using-the-server-installer-step-by-step/16690\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/using-the-server-installer-step-by-step/16690\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/step-by-step\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/configuring-storage-in-the-server-installer/16691\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/configuring-storage-in-the-server-installer/16691\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/storage\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/automated-server-installs/16612\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/automated-server-installs/16612\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/autoinstall\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/automated-server-install-quickstart/16614\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/automated-server-install-quickstart/16614\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/autoinstall-quickstart\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/automated-server-install-schema/16615\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/automated-server-install-schema/16615\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/autoinstall-schema\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/automated-server-install-reference/16613\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/automated-server-install-reference/16613\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/autoinstall-reference\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/netbooting-the-server-installer-on-amd64/16620\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/netbooting-the-server-installer-on-amd64/16620\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/netboot-amd64\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/netbooting-the-live-server-installer-on-ibm-power-ppc64el-with-petitboot/15348\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/netbooting-the-live-server-installer-on-ibm-power-ppc64el-with-petitboot/15348\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/netboot-ppc64el\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/automated-server-install-quickstart-s390x/16616\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/automated-server-install-quickstart-s390x/16616\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/autoinstall-quickstart-s390x\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/reporting-problems-with-the-installer/13431\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/reporting-problems-with-the-installer/13431\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/reporting-problems\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/using-a-virtual-cdrom-and-petitboot-to-start-a-live-server-installation-on-ibm-power-ppc64el/16694\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/using-a-virtual-cdrom-and-petitboot-to-start-a-live-server-installation-on-ibm-power-ppc64el/16694\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/ppc64el\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/interactive-live-server-installation-on-ibm-z-vm-s390x/16604\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/interactive-live-server-installation-on-ibm-z-vm-s390x/16604\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/s390x-zvm\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e\\\
+        u003ca href=\\\"https://discourse.ubuntu.com/t/interactive-live-server-installation-on-ibm-z-lpar-s390x/16601\\\
+        \"\\u003ehttps://discourse.ubuntu.com/t/interactive-live-server-installation-on-ibm-z-lpar-s390x/16601\\\
+        u003c/a\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e/server/docs/install/s390x-lpar\\\
+        u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\\
+        u003e\\n\\u003c/div\\u003e\\u003c/details\\u003e\\n\\u003ch2\\u003eRedirects\\\
+        u003c/h2\\u003e\\n\\u003cdetails\\u003e\\n\\u003csummary\\u003e\\nMapping\
+        \ table\\u003c/summary\\u003e\\n\\u003cdiv class=\\\"md-table\\\"\\u003e\\\
+        n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\\
+        u003ePath\\u003c/th\\u003e\\n\\u003cth\\u003eLocation\\u003c/th\\u003e\\n\\\
+        u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\u003c/tbody\\\
+        u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003c/details\\u003e\"\
+        ,\"post_number\":1,\"post_type\":1,\"updated_at\":\"2020-07-02T09:22:54.645Z\"\
+        ,\"reply_count\":0,\"reply_to_post_number\":null,\"quote_count\":0,\"incoming_link_count\"\
+        :2967,\"reads\":109,\"score\":14882.6,\"yours\":false,\"topic_id\":11322,\"\
+        topic_slug\":\"introduction\",\"display_username\":\"Joshua Powers\",\"primary_group_name\"\
+        :\"Canonical\",\"primary_group_flair_url\":\"https://launchpadlibrarian.net/68730579/64.png\"\
+        ,\"primary_group_flair_bg_color\":\"\",\"primary_group_flair_color\":\"\"\
+        ,\"version\":42,\"can_edit\":false,\"can_delete\":false,\"can_recover\":false,\"\
+        can_wiki\":false,\"link_counts\":[{\"url\":\"https://assets.ubuntu.com/ubuntu-server-guide\"\
+        ,\"internal\":false,\"reflection\":false,\"clicks\":152},{\"url\":\"https://discourse.ubuntu.com/t/installation/11320\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Installation\",\"clicks\"\
+        :137},{\"url\":\"https://discourse.ubuntu.com/t/installation-advanced/11577\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Installation - Advanced\"\
+        ,\"clicks\":38},{\"url\":\"https://discourse.ubuntu.com/t/package-management/11908\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Package Management\",\"\
+        clicks\":29},{\"url\":\"http://www.ubuntu.com/advantage\",\"internal\":false,\"\
+        reflection\":false,\"title\":\"Ubuntu Advantage for Infrastructure | Ubuntu\"\
+        ,\"clicks\":24},{\"url\":\"https://discourse.ubuntu.com/t/network-introduction/11875\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Network - Introduction\"\
+        ,\"clicks\":23},{\"url\":\"https://discourse.ubuntu.com/t/network-configuration/11876\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Network - Configuration\"\
+        ,\"clicks\":21},{\"url\":\"https://discourse.ubuntu.com/t/databases-introduction/11315\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Databases - Introduction\"\
+        ,\"clicks\":12},{\"url\":\"https://discourse.ubuntu.com/t/upgrade-introduction/11576\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Upgrade - Introduction\"\
+        ,\"clicks\":12},{\"url\":\"https://discourse.ubuntu.com/t/security-introduction/11887\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Security - Introduction\"\
+        ,\"clicks\":11},{\"url\":\"https://discourse.ubuntu.com/t/databases-mysql/11515\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Databases - Mysql\",\"\
+        clicks\":11},{\"url\":\"https://discourse.ubuntu.com/t/programming-php/11514\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Programming - PHP\",\"\
+        clicks\":11},{\"url\":\"https://discourse.ubuntu.com/t/kernel-crash-dump/11575\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Kernel Crash Dump\",\"\
+        clicks\":10},{\"url\":\"https://discourse.ubuntu.com/t/device-mapper-multipathing-introduction/11316\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Device Mapper Multipathing\
+        \ - Introduction\",\"clicks\":10},{\"url\":\"https://discourse.ubuntu.com/t/virtualization-introduction/11521\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Virtualization - Introduction\"\
+        ,\"clicks\":10},{\"url\":\"https://discourse.ubuntu.com/t/installation-iscsi/11321\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Installation - iSCSI\"\
+        ,\"clicks\":10},{\"url\":\"https://discourse.ubuntu.com/t/containers-lxd/11525\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Containers - lxd\",\"\
+        clicks\":10},{\"url\":\"https://discourse.ubuntu.com/t/network-dhcp/11877\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Network - DHCP\",\"clicks\"\
+        :9},{\"url\":\"https://discourse.ubuntu.com/t/security-firewall/11883\",\"\
+        internal\":true,\"reflection\":false,\"title\":\"Security - Firewall\",\"\
+        clicks\":9},{\"url\":\"https://help.ubuntu.com/18.04/serverguide/index.html\"\
+        ,\"internal\":false,\"reflection\":false,\"title\":\"Ubuntu Server Guide\"\
+        ,\"clicks\":8},{\"url\":\"https://discourse.ubuntu.com/t/security-users/11881\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Security - Users\",\"\
+        clicks\":8},{\"url\":\"https://discourse.ubuntu.com/t/samba-active-directory/11893\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Samba - Active Directory\"\
+        ,\"clicks\":6},{\"url\":\"https://discourse.ubuntu.com/t/security-console/11882\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Security - Console\",\"\
+        clicks\":6},{\"url\":\"https://discourse.ubuntu.com/t/reporting-bugs/11508\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Reporting Bugs\",\"clicks\"\
+        :6},{\"url\":\"https://discourse.ubuntu.com/t/web-servers-apache/11510\",\"\
+        internal\":true,\"reflection\":false,\"title\":\"Web Servers - Apache\",\"\
+        clicks\":6},{\"url\":\"https://discourse.ubuntu.com/t/service-openssh/11896\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - OpenSSH\",\"\
+        clicks\":6},{\"url\":\"https://discourse.ubuntu.com/t/samba-file-server/11889\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Samba - File Server\"\
+        ,\"clicks\":6},{\"url\":\"https://discourse.ubuntu.com/t/device-mapper-multipathing-setup/11568\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Device Mapper Multipathing\
+        \ - Setup\",\"clicks\":6},{\"url\":\"https://discourse.ubuntu.com/t/virtualization-multipass/11983\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Virtualization - multipass\"\
+        ,\"clicks\":6},{\"url\":\"https://discourse.ubuntu.com/t/service-ftp/11319\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - FTP\",\"clicks\"\
+        :5},{\"url\":\"https://discourse.ubuntu.com/t/programming-ruby-on-rails/11513\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Programming - Ruby on\
+        \ Rails\",\"clicks\":5},{\"url\":\"https://discourse.ubuntu.com/t/monitoring-introduction/11326\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Monitoring - Introduction\"\
+        ,\"clicks\":5},{\"url\":\"https://discourse.ubuntu.com/t/network-dpdk/11879\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Network - DPDK\",\"clicks\"\
+        :5},{\"url\":\"https://discourse.ubuntu.com/t/virtualization-libvirt/11522\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Virtualization - libvirt\"\
+        ,\"clicks\":5},{\"url\":\"https://help.ubuntu.com/16.04/serverguide/index.html\"\
+        ,\"internal\":false,\"reflection\":false,\"title\":\"Ubuntu Server Guide\"\
+        ,\"clicks\":5},{\"url\":\"https://discourse.ubuntu.com/t/databases-postgresql/11516\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Databases - PostgreSQL\"\
+        ,\"clicks\":5},{\"url\":\"https://ubuntu.com/support/community-support\",\"\
+        internal\":false,\"reflection\":false,\"title\":\"Community support | Ubuntu\"\
+        ,\"clicks\":5},{\"url\":\"https://discourse.ubuntu.com/t/lamp-applications/11902\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"LAMP Applications\",\"\
+        clicks\":5},{\"url\":\"https://discourse.ubuntu.com/t/samba-introduction/11888\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Samba - Introduction\"\
+        ,\"clicks\":5},{\"url\":\"https://discourse.ubuntu.com/t/using-the-server-installer/16689\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Using the server installer\"\
+        ,\"clicks\":4},{\"url\":\"https://discourse.ubuntu.com/t/tools-logwatch/15590\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Tools - Logwatch\",\"\
+        clicks\":4},{\"url\":\"https://help.ubuntu.com/16.04/serverguide/serverguide.pdf\"\
+        ,\"internal\":false,\"reflection\":false,\"title\":\"Ubuntu Server Guide\"\
+        ,\"clicks\":4},{\"url\":\"https://discourse.ubuntu.com/t/virtualization-qemu/11523\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Virtualization - qemu\"\
+        ,\"clicks\":4},{\"url\":\"https://discourse.ubuntu.com/t/backups-introduction/11312\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Backups - Introduction\"\
+        ,\"clicks\":4},{\"url\":\"https://discourse.ubuntu.com/t/service-sssd/11579\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - SSSD\",\"clicks\"\
+        :4},{\"url\":\"https://discourse.ubuntu.com/t/service-openvpn/11894\",\"internal\"\
+        :true,\"reflection\":false,\"title\":\"Service - OpenVPN\",\"clicks\":4},{\"\
+        url\":\"https://discourse.ubuntu.com/t/service-domain-name-service-dns/11318\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - Domain Name\
+        \ Service (DNS)\",\"clicks\":4},{\"url\":\"https://discourse.ubuntu.com/t/security-apparmor/11884\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Security - AppArmor\"\
+        ,\"clicks\":4},{\"url\":\"https://discourse.ubuntu.com/t/device-mapper-multipathing-configuration/11569\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Device Mapper Multipathing\
+        \ - Configuration\",\"clicks\":4},{\"url\":\"https://discourse.ubuntu.com/t/openvswitch-dpdk/13085\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"OpenVswitch-DPDK\",\"\
+        clicks\":3},{\"url\":\"https://help.ubuntu.com/18.04/serverguide/serverguide.pdf\"\
+        ,\"internal\":false,\"reflection\":false,\"title\":\"Ubuntu Server Guide\"\
+        ,\"clicks\":3},{\"url\":\"https://discourse.ubuntu.com/t/ubuntu-ha-introduction/15813\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Ubuntu HA - Introduction\"\
+        ,\"clicks\":3},{\"url\":\"https://discourse.ubuntu.com/t/web-servers-introduction/11509\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Web Servers - Introduction\"\
+        ,\"clicks\":3},{\"url\":\"https://discourse.ubuntu.com/t/security-certificates/11885\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Security - Certificates\"\
+        ,\"clicks\":3},{\"url\":\"https://discourse.ubuntu.com/t/service-ldap-usage/11330\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - LDAP Usage\"\
+        ,\"clicks\":3},{\"url\":\"https://discourse.ubuntu.com/t/service-ldap/11329\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - LDAP\",\"clicks\"\
+        :3},{\"url\":\"https://discourse.ubuntu.com/t/network-ntp/11878\",\"internal\"\
+        :true,\"reflection\":false,\"title\":\"Network - NTP\",\"clicks\":3},{\"url\"\
+        :\"https://discourse.ubuntu.com/t/using-the-server-installer-step-by-step/16690\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Using the server installer\
+        \ step by step\",\"clicks\":3},{\"url\":\"https://discourse.ubuntu.com/t/backups-shell-scripts/11518\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Backups - Shell Scripts\"\
+        ,\"clicks\":3},{\"url\":\"https://discourse.ubuntu.com/t/tools-etckeeper/11906\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Tools - etckeeper\",\"\
+        clicks\":3},{\"url\":\"https://discourse.ubuntu.com/t/service-nfs/11571\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - NFS\",\"clicks\"\
+        :2},{\"url\":\"https://discourse.ubuntu.com/t/configuring-storage-in-the-server-installer/16691\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Configuring storage in\
+        \ the server installer\",\"clicks\":2},{\"url\":\"https://discourse.ubuntu.com/t/mail-exim4/11530\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Mail - exim4\",\"clicks\"\
+        :2},{\"url\":\"https://discourse.ubuntu.com/t/mail-dovecot/11880\",\"internal\"\
+        :true,\"reflection\":false,\"title\":\"Mail - dovecot\",\"clicks\":2},{\"\
+        url\":\"https://discourse.ubuntu.com/t/service-kerberos/11331\",\"internal\"\
+        :true,\"reflection\":false,\"title\":\"Service - Kerberos\",\"clicks\":2},{\"\
+        url\":\"https://discourse.ubuntu.com/t/service-iscsi/11572\",\"internal\"\
+        :true,\"reflection\":false,\"title\":\"Service - iSCSI\",\"clicks\":2},{\"\
+        url\":\"https://discourse.ubuntu.com/t/containers-lxc/11526\",\"internal\"\
+        :true,\"reflection\":false,\"title\":\"Containers - lxc\",\"clicks\":2},{\"\
+        url\":\"https://discourse.ubuntu.com/t/vpn-clients/11895\",\"internal\":true,\"\
+        reflection\":false,\"title\":\"VPN Clients\",\"clicks\":2},{\"url\":\"https://discourse.ubuntu.com/t/tools-nagios/11903\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Tools - nagios\",\"clicks\"\
+        :2},{\"url\":\"https://discourse.ubuntu.com/t/tools-puppet/11897\",\"internal\"\
+        :true,\"reflection\":false,\"title\":\"Tools - Puppet\",\"clicks\":2},{\"\
+        url\":\"https://discourse.ubuntu.com/t/device-mapper-multipathing-usage-debug/11317\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Device Mapper Multipathing\
+        \ - Usage \\u0026 Debug\",\"clicks\":2},{\"url\":\"https://discourse.ubuntu.com/t/backups-bacula/11520\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Backups - Bacula\",\"\
+        clicks\":2},{\"url\":\"https://discourse.ubuntu.com/t/samba-print-server/11890\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Samba - Print Server\"\
+        ,\"clicks\":2},{\"url\":\"https://discourse.ubuntu.com/t/ubuntu-ha-pacemaker-fence-agents-supportability/15768\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Ubuntu HA - Pacemaker\
+        \ Fence Agents Supportability\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/mail-postfix/11325\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Mail - postfix\",\"clicks\"\
+        :1},{\"url\":\"https://discourse.ubuntu.com/t/mail-introduction/11324\",\"\
+        internal\":true,\"reflection\":false,\"title\":\"Mail - Introduction\",\"\
+        clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/service-cups/11573\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - CUPS\",\"clicks\"\
+        :1},{\"url\":\"https://discourse.ubuntu.com/t/proxy-servers-squid/11511\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Proxy Servers - Squid\"\
+        ,\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/samba-domain-controller/11892\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Samba - Domain Controller\"\
+        ,\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/service-ldap-replication/15508\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - LDAP Replication\"\
+        ,\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/virt-tools/13436\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Virt Tools\",\"clicks\"\
+        :1},{\"url\":\"https://discourse.ubuntu.com/t/virtualization-uvt/11524\",\"\
+        internal\":true,\"reflection\":false,\"title\":\"Virtualization - uvt\",\"\
+        clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/service-ldap-access-control/15583\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - LDAP Access\
+        \ Control\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/ubuntu-ha-pacemaker-resource-agents-supportability/15729\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Ubuntu HA - Pacemaker\
+        \ Resource Agents Supportability\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/netbooting-the-server-installer-on-amd64/16620\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Netbooting the server\
+        \ installer on amd64\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/automated-server-installs/16612/3\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Automated Server Installs\"\
+        ,\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/tools-byobu/11907\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Tools - byobu\",\"clicks\"\
+        :1},{\"url\":\"https://discourse.ubuntu.com/t/samba-openldap-backend/15698\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Samba - OpenLDAP Backend\"\
+        ,\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/tools-rsnapshot/15236\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Tools - rsnapshot\",\"\
+        clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/samba-securing/11891\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Samba - Securing\",\"\
+        clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/service-ldap-with-tls/11578\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - LDAP with TLS\"\
+        ,\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/automated-server-installs/16612\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Automated Server Installs\"\
+        ,\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/backups-archive-rotation/11519\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Backups - Archive Rotation\"\
+        ,\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/automated-server-install-quickstart/16614\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Automated Server Install\
+        \ Quickstart\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/netbooting-the-live-server-installer-on-ibm-power-ppc64el-with-petitboot/15348\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Netbooting the live server\
+        \ installer on IBM Power (ppc64el) with Petitboot\",\"clicks\":0},{\"url\"\
+        :\"https://discourse.ubuntu.com/t/automated-server-install-schema/16615\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Automated server install\
+        \ -- schema\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/automated-server-install-reference/16613\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Automated server install\
+        \ reference\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/tools-munin/11904\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Tools - munin\",\"clicks\"\
+        :0},{\"url\":\"https://discourse.ubuntu.com/t/automated-server-install-quickstart-s390x/16616\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Automated server install\
+        \ -- Quickstart s390x\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/reporting-problems-with-the-installer/13431\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Reporting problems with\
+        \ the installer\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/interactive-live-server-installation-on-ibm-z-lpar-s390x/16601\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Interactive live server\
+        \ installation on IBM Z LPAR (s390x)\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/using-a-virtual-cdrom-and-petitboot-to-start-a-live-server-installation-on-ibm-power-ppc64el/16694\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Using a virtual CDROM\
+        \ and Petitboot to start a live server installation on IBM Power (ppc64el)\"\
+        ,\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/service-kerberos-with-openldap-backend/15356\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Service - Kerberos with\
+        \ OpenLDAP backend\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/interactive-live-server-installation-on-ibm-z-vm-s390x/16604\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Interactive live server\
+        \ installation on IBM z/VM (s390x)\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/tools-pam-motd/11905\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Tools - pam_motd\",\"\
+        clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/services-gitolite/11900\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Services - gitolite\"\
+        ,\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/security-ecryptfs/11886\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Security - eCryptfs\"\
+        ,\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/ubuntu-ha-drbd/11314\"\
+        ,\"internal\":true,\"reflection\":false,\"title\":\"Ubuntu HA - DRBD\",\"\
+        clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/ubuntu-server-guide/12504\"\
+        ,\"internal\":true,\"reflection\":true,\"title\":\"Ubuntu Server Guide\",\"\
+        clicks\":0}],\"read\":true,\"user_title\":\"\",\"actions_summary\":[{\"id\"\
+        :2,\"count\":6}],\"moderator\":true,\"admin\":false,\"staff\":true,\"user_id\"\
+        :37,\"hidden\":false,\"trust_level\":4,\"deleted_at\":null,\"user_deleted\"\
+        :false,\"edit_reason\":null,\"can_view_edit_history\":true,\"wiki\":true,\"\
+        last_wiki_edit\":\"2020-07-02T09:22:54.764Z\",\"can_accept_answer\":false,\"\
+        can_unaccept_answer\":false,\"accepted_answer\":false},{\"id\":33218,\"name\"\
+        :\"Joshua Powers\",\"username\":\"powersj\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/powersj/{size}/10180_2.png\"\
+        ,\"created_at\":\"2019-07-17T22:51:25.397Z\",\"cooked\":\"\",\"post_number\"\
+        :2,\"post_type\":3,\"updated_at\":\"2019-07-17T22:51:25.397Z\",\"reply_count\"\
+        :0,\"reply_to_post_number\":null,\"quote_count\":0,\"incoming_link_count\"\
+        :2,\"reads\":71,\"score\":24.2,\"yours\":false,\"topic_id\":11322,\"topic_slug\"\
+        :\"introduction\",\"display_username\":\"Joshua Powers\",\"primary_group_name\"\
+        :\"Canonical\",\"primary_group_flair_url\":\"https://launchpadlibrarian.net/68730579/64.png\"\
+        ,\"primary_group_flair_bg_color\":\"\",\"primary_group_flair_color\":\"\"\
+        ,\"version\":1,\"can_edit\":false,\"can_delete\":false,\"can_recover\":false,\"\
+        can_wiki\":false,\"read\":true,\"user_title\":\"\",\"actions_summary\":[],\"\
+        moderator\":true,\"admin\":false,\"staff\":true,\"user_id\":37,\"hidden\"\
+        :false,\"trust_level\":4,\"deleted_at\":null,\"user_deleted\":false,\"edit_reason\"\
+        :null,\"can_view_edit_history\":true,\"wiki\":false,\"action_code\":\"pinned.enabled\"\
+        ,\"can_accept_answer\":false,\"can_unaccept_answer\":false,\"accepted_answer\"\
+        :false},{\"id\":37819,\"name\":\"Doug Smythies\",\"username\":\"dsmythies\"\
+        ,\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/dsmythies/{size}/6700_2.png\"\
+        ,\"created_at\":\"2019-11-21T00:00:40.146Z\",\"cooked\":\"\\u003cp\\u003eNow\
+        \ that is is being published, suggest to add a large font note at the very\
+        \ top saying \u201CPreliminary and in development for 20.04, contents may\
+        \ have errors and omitions.\u201D This is similar to what we have always done\
+        \ at the old location when we published the preliminary before the release\
+        \ date. The note gets removed on release day.\\u003c/p\\u003e\",\"post_number\"\
+        :3,\"post_type\":1,\"updated_at\":\"2019-11-21T00:00:40.146Z\",\"reply_count\"\
+        :1,\"reply_to_post_number\":null,\"quote_count\":0,\"incoming_link_count\"\
+        :1,\"reads\":55,\"score\":21.0,\"yours\":false,\"topic_id\":11322,\"topic_slug\"\
+        :\"introduction\",\"display_username\":\"Doug Smythies\",\"primary_group_name\"\
+        :null,\"primary_group_flair_url\":null,\"primary_group_flair_bg_color\":null,\"\
+        primary_group_flair_color\":null,\"version\":1,\"can_edit\":false,\"can_delete\"\
+        :false,\"can_recover\":false,\"can_wiki\":false,\"read\":true,\"user_title\"\
+        :null,\"actions_summary\":[],\"moderator\":false,\"admin\":false,\"staff\"\
+        :false,\"user_id\":8605,\"hidden\":false,\"trust_level\":1,\"deleted_at\"\
+        :null,\"user_deleted\":false,\"edit_reason\":null,\"can_view_edit_history\"\
+        :true,\"wiki\":false,\"can_accept_answer\":false,\"can_unaccept_answer\":false,\"\
+        accepted_answer\":false},{\"id\":37841,\"name\":\"Joshua Powers\",\"username\"\
+        :\"powersj\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/powersj/{size}/10180_2.png\"\
+        ,\"created_at\":\"2019-11-21T16:19:45.499Z\",\"cooked\":\"\\u003cp\\u003eDone!\
+        \ Thanks for the suggestion\\u003c/p\\u003e\",\"post_number\":4,\"post_type\"\
+        :1,\"updated_at\":\"2019-11-21T16:19:45.499Z\",\"reply_count\":0,\"reply_to_post_number\"\
+        :3,\"quote_count\":0,\"incoming_link_count\":1,\"reads\":49,\"score\":14.8,\"\
+        yours\":false,\"topic_id\":11322,\"topic_slug\":\"introduction\",\"display_username\"\
+        :\"Joshua Powers\",\"primary_group_name\":\"Canonical\",\"primary_group_flair_url\"\
+        :\"https://launchpadlibrarian.net/68730579/64.png\",\"primary_group_flair_bg_color\"\
+        :\"\",\"primary_group_flair_color\":\"\",\"version\":1,\"can_edit\":false,\"\
+        can_delete\":false,\"can_recover\":false,\"can_wiki\":false,\"read\":true,\"\
+        user_title\":\"\",\"reply_to_user\":{\"username\":\"dsmythies\",\"avatar_template\"\
+        :\"/user_avatar/discourse.ubuntu.com/dsmythies/{size}/6700_2.png\"},\"actions_summary\"\
+        :[],\"moderator\":true,\"admin\":false,\"staff\":true,\"user_id\":37,\"hidden\"\
+        :false,\"trust_level\":4,\"deleted_at\":null,\"user_deleted\":false,\"edit_reason\"\
+        :null,\"can_view_edit_history\":true,\"wiki\":false,\"can_accept_answer\"\
+        :false,\"can_unaccept_answer\":false,\"accepted_answer\":false},{\"id\":37941,\"\
+        name\":\"Anthony Dillon\",\"username\":\"ya-bo-ng\",\"avatar_template\":\"\
+        /user_avatar/discourse.ubuntu.com/ya-bo-ng/{size}/8800_2.png\",\"created_at\"\
+        :\"2019-11-25T07:35:20.592Z\",\"cooked\":\"\\u003cp\\u003eWe have added a\
+        \ PDF download link to the introduction section of this document. This PDF\
+        \ is refreshed on a daily basis. If anyone would like to snapshot the guide\
+        \ at any stage, please download and rename the PDF for your own use.\\u003c/p\\\
+        u003e\",\"post_number\":5,\"post_type\":1,\"updated_at\":\"2019-11-25T07:35:20.592Z\"\
+        ,\"reply_count\":1,\"reply_to_post_number\":null,\"quote_count\":0,\"incoming_link_count\"\
+        :6,\"reads\":40,\"score\":43.0,\"yours\":false,\"topic_id\":11322,\"topic_slug\"\
+        :\"introduction\",\"display_username\":\"Anthony Dillon\",\"primary_group_name\"\
+        :\"web-and-design-team\",\"primary_group_flair_url\":null,\"primary_group_flair_bg_color\"\
+        :null,\"primary_group_flair_color\":null,\"version\":1,\"can_edit\":false,\"\
+        can_delete\":false,\"can_recover\":false,\"can_wiki\":false,\"read\":true,\"\
+        user_title\":null,\"actions_summary\":[],\"moderator\":false,\"admin\":true,\"\
+        staff\":true,\"user_id\":4,\"hidden\":false,\"trust_level\":2,\"deleted_at\"\
+        :null,\"user_deleted\":false,\"edit_reason\":null,\"can_view_edit_history\"\
+        :true,\"wiki\":false,\"can_accept_answer\":false,\"can_unaccept_answer\":false,\"\
+        accepted_answer\":false},{\"id\":43746,\"name\":\"Doug Smythies\",\"username\"\
+        :\"dsmythies\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/dsmythies/{size}/6700_2.png\"\
+        ,\"created_at\":\"2020-04-22T01:07:25.237Z\",\"cooked\":\"\\u003cp\\u003eThe\
+        \ PDF version of the serverguide has not updated. It has been well over 24\
+        \ hours since I made and edit. I want to determine is the file name for the\
+        \ PDF will change, because it is odd and looks machine generated. Currently\
+        \ it is linked from the \\u003ca href=\\\"http://help.ubunutu.com\\\" rel=\\\
+        \"nofollow noopener\\\"\\u003ehelp.ubunutu.com\\u003c/a\\u003e base page where\
+        \ 20.04 preliminary has been added (but for some reason it didn\u2019t publish\
+        \ last night, maybe tonight), but we won\u2019t be able to do that if it changes.\\\
+        u003c/p\\u003e\\n\\u003cp\\u003eI\u2019ll add redirects to \\u003ca href=\\\
+        \"http://help.ubuntu.com\\\" rel=\\\"nofollow noopener\\\"\\u003ehelp.ubuntu.com\\\
+        u003c/a\\u003e for lts and stable serverguides to the new spots tomorrow,\
+        \ which should publish sometime Thursday.\\u003c/p\\u003e\\n\\u003cp\\u003eEDIT:\
+        \ O.K. I\u2019ll make the PDF link at \\u003ca href=\\\"http://help.ubuntu.com\\\
+        \" rel=\\\"nofollow noopener\\\"\\u003ehelp.ubuntu.com\\u003c/a\\u003e file\
+        \ name independent by using the same address as herein, instead of what it\
+        \ ends up as (duh).\\u003c/p\\u003e\",\"post_number\":6,\"post_type\":1,\"\
+        updated_at\":\"2020-04-22T14:27:39.345Z\",\"reply_count\":1,\"reply_to_post_number\"\
+        :5,\"quote_count\":0,\"incoming_link_count\":2,\"reads\":27,\"score\":20.4,\"\
+        yours\":false,\"topic_id\":11322,\"topic_slug\":\"introduction\",\"display_username\"\
+        :\"Doug Smythies\",\"primary_group_name\":null,\"primary_group_flair_url\"\
+        :null,\"primary_group_flair_bg_color\":null,\"primary_group_flair_color\"\
+        :null,\"version\":2,\"can_edit\":false,\"can_delete\":false,\"can_recover\"\
+        :false,\"can_wiki\":false,\"link_counts\":[{\"url\":\"http://help.ubuntu.com\"\
+        ,\"internal\":false,\"reflection\":false,\"clicks\":1},{\"url\":\"http://help.ubunutu.com\"\
+        ,\"internal\":false,\"reflection\":false,\"clicks\":0}],\"read\":true,\"user_title\"\
+        :null,\"reply_to_user\":{\"username\":\"ya-bo-ng\",\"avatar_template\":\"\
+        /user_avatar/discourse.ubuntu.com/ya-bo-ng/{size}/8800_2.png\"},\"actions_summary\"\
+        :[],\"moderator\":false,\"admin\":false,\"staff\":false,\"user_id\":8605,\"\
+        hidden\":false,\"trust_level\":1,\"deleted_at\":null,\"user_deleted\":false,\"\
+        edit_reason\":null,\"can_view_edit_history\":true,\"wiki\":false,\"can_accept_answer\"\
+        :false,\"can_unaccept_answer\":false,\"accepted_answer\":false},{\"id\":43753,\"\
+        name\":\"Doug Smythies\",\"username\":\"dsmythies\",\"avatar_template\":\"\
+        /user_avatar/discourse.ubuntu.com/dsmythies/{size}/6700_2.png\",\"created_at\"\
+        :\"2020-04-22T04:33:51.474Z\",\"cooked\":\"\\u003cp\\u003efixed two more url\
+        \ mapping table entries.\\u003cbr\\u003e\\nI think I have tried every navigation\
+        \ link now, but am not certain.\\u003c/p\\u003e\\n\\u003cp\\u003eWill add\
+        \ a navigation link back to this page, if I can figure it out.\\u003c/p\\\
+        u003e\",\"post_number\":7,\"post_type\":1,\"updated_at\":\"2020-04-22T04:36:03.197Z\"\
+        ,\"reply_count\":0,\"reply_to_post_number\":6,\"quote_count\":0,\"incoming_link_count\"\
+        :4,\"reads\":27,\"score\":25.4,\"yours\":false,\"topic_id\":11322,\"topic_slug\"\
+        :\"introduction\",\"display_username\":\"Doug Smythies\",\"primary_group_name\"\
+        :null,\"primary_group_flair_url\":null,\"primary_group_flair_bg_color\":null,\"\
+        primary_group_flair_color\":null,\"version\":1,\"can_edit\":false,\"can_delete\"\
+        :false,\"can_recover\":false,\"can_wiki\":false,\"read\":true,\"user_title\"\
+        :null,\"reply_to_user\":{\"username\":\"dsmythies\",\"avatar_template\":\"\
+        /user_avatar/discourse.ubuntu.com/dsmythies/{size}/6700_2.png\"},\"actions_summary\"\
+        :[],\"moderator\":false,\"admin\":false,\"staff\":false,\"user_id\":8605,\"\
+        hidden\":false,\"trust_level\":1,\"deleted_at\":null,\"user_deleted\":false,\"\
+        edit_reason\":null,\"can_view_edit_history\":true,\"wiki\":false,\"can_accept_answer\"\
+        :false,\"can_unaccept_answer\":false,\"accepted_answer\":false},{\"id\":43838,\"\
+        name\":\"Christian Ehrhardt\",\"username\":\"paelzer\",\"avatar_template\"\
+        :\"/user_avatar/discourse.ubuntu.com/paelzer/{size}/8804_2.png\",\"created_at\"\
+        :\"2020-04-23T09:58:13.239Z\",\"cooked\":\"\\u003cp\\u003eDeleted the \u201C\
+        Service - Introduction\u201D topic as it was a filler page, \u201CDNS TBD\u201D\
+        \ was on there but that has an extra page now anyway. I also removed the link\
+        \ from the introduction to not fail on the removed page.\\u003c/p\\u003e\"\
+        ,\"post_number\":8,\"post_type\":1,\"updated_at\":\"2020-04-23T09:58:13.239Z\"\
+        ,\"reply_count\":1,\"reply_to_post_number\":null,\"quote_count\":0,\"incoming_link_count\"\
+        :1,\"reads\":26,\"score\":15.2,\"yours\":false,\"topic_id\":11322,\"topic_slug\"\
+        :\"introduction\",\"display_username\":\"Christian Ehrhardt\",\"primary_group_name\"\
+        :\"Canonical\",\"primary_group_flair_url\":\"https://launchpadlibrarian.net/68730579/64.png\"\
+        ,\"primary_group_flair_bg_color\":\"\",\"primary_group_flair_color\":\"\"\
+        ,\"version\":1,\"can_edit\":false,\"can_delete\":false,\"can_recover\":false,\"\
+        can_wiki\":false,\"read\":true,\"user_title\":null,\"actions_summary\":[],\"\
+        moderator\":true,\"admin\":false,\"staff\":true,\"user_id\":3783,\"hidden\"\
+        :false,\"trust_level\":4,\"deleted_at\":null,\"user_deleted\":false,\"edit_reason\"\
+        :null,\"can_view_edit_history\":true,\"wiki\":false,\"can_accept_answer\"\
+        :false,\"can_unaccept_answer\":false,\"accepted_answer\":false},{\"id\":43842,\"\
+        name\":\"Christian Ehrhardt\",\"username\":\"paelzer\",\"avatar_template\"\
+        :\"/user_avatar/discourse.ubuntu.com/paelzer/{size}/8804_2.png\",\"created_at\"\
+        :\"2020-04-23T10:16:00.689Z\",\"cooked\":\"\\u003cp\\u003eSome more cleanup\
+        \ of no more supported items around IRC and Mailman. Removed the pages and\
+        \ dropped the links from here. For Mailman I re-added links to the upstream\
+        \ setup guide with exim4/postfix on these pages.\\u003c/p\\u003e\\n\\u003cp\\\
+        u003eNext I\u2019ll re-order the index to keep introdcutions before the content.\
+        \ It doesn\u2019t make sense otherwise and especially in the single-PDF that\
+        \ is generated it is awkward to read it in any other order.\\u003c/p\\u003e\"\
+        ,\"post_number\":9,\"post_type\":1,\"updated_at\":\"2020-04-23T10:16:00.689Z\"\
+        ,\"reply_count\":1,\"reply_to_post_number\":8,\"quote_count\":0,\"incoming_link_count\"\
+        :4,\"reads\":24,\"score\":29.8,\"yours\":false,\"topic_id\":11322,\"topic_slug\"\
+        :\"introduction\",\"display_username\":\"Christian Ehrhardt\",\"primary_group_name\"\
+        :\"Canonical\",\"primary_group_flair_url\":\"https://launchpadlibrarian.net/68730579/64.png\"\
+        ,\"primary_group_flair_bg_color\":\"\",\"primary_group_flair_color\":\"\"\
+        ,\"version\":1,\"can_edit\":false,\"can_delete\":false,\"can_recover\":false,\"\
+        can_wiki\":false,\"read\":true,\"user_title\":null,\"reply_to_user\":{\"username\"\
+        :\"paelzer\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/paelzer/{size}/8804_2.png\"\
+        },\"actions_summary\":[],\"moderator\":true,\"admin\":false,\"staff\":true,\"\
+        user_id\":3783,\"hidden\":false,\"trust_level\":4,\"deleted_at\":null,\"user_deleted\"\
+        :false,\"edit_reason\":null,\"can_view_edit_history\":true,\"wiki\":false,\"\
+        can_accept_answer\":false,\"can_unaccept_answer\":false,\"accepted_answer\"\
+        :false},{\"id\":44004,\"name\":\"Doug Smythies\",\"username\":\"dsmythies\"\
+        ,\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/dsmythies/{size}/6700_2.png\"\
+        ,\"created_at\":\"2020-04-24T16:21:22.188Z\",\"cooked\":\"\\u003cp\\u003eFixed\
+        \ another missing url entry in the mapping table.\\u003cbr\\u003e\\nThis time\
+        \ I looked at the source code of a \\u003ca href=\\\"https://ubuntu.com/server/docs/virtualization-introduction\\\
+        \" rel=\\\"nofollow noopener\\\"\\u003epage\\u003c/a\\u003e (not that the\
+        \ actual page used matters) and searched for \\u003ccode\\u003ediscourse\\\
+        u003c/code\\u003e, only finding the one expected reference. I also looked\
+        \ at the code manually.\\u003c/p\\u003e\",\"post_number\":10,\"post_type\"\
+        :1,\"updated_at\":\"2020-04-24T16:21:22.188Z\",\"reply_count\":1,\"reply_to_post_number\"\
+        :9,\"quote_count\":0,\"incoming_link_count\":0,\"reads\":21,\"score\":9.2,\"\
+        yours\":false,\"topic_id\":11322,\"topic_slug\":\"introduction\",\"display_username\"\
+        :\"Doug Smythies\",\"primary_group_name\":null,\"primary_group_flair_url\"\
+        :null,\"primary_group_flair_bg_color\":null,\"primary_group_flair_color\"\
+        :null,\"version\":1,\"can_edit\":false,\"can_delete\":false,\"can_recover\"\
+        :false,\"can_wiki\":false,\"link_counts\":[{\"url\":\"https://ubuntu.com/server/docs/virtualization-introduction\"\
+        ,\"internal\":false,\"reflection\":false,\"title\":\"Virtualization - Introduction\
+        \ | Server documentation | Ubuntu\",\"clicks\":2}],\"read\":true,\"user_title\"\
+        :null,\"reply_to_user\":{\"username\":\"paelzer\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/paelzer/{size}/8804_2.png\"\
+        },\"actions_summary\":[],\"moderator\":false,\"admin\":false,\"staff\":false,\"\
+        user_id\":8605,\"hidden\":false,\"trust_level\":1,\"deleted_at\":null,\"user_deleted\"\
+        :false,\"edit_reason\":null,\"can_view_edit_history\":true,\"wiki\":false,\"\
+        can_accept_answer\":false,\"can_unaccept_answer\":false,\"accepted_answer\"\
+        :false},{\"id\":44047,\"name\":\"Andreas Hasenack\",\"username\":\"ahasenack\"\
+        ,\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/ahasenack/{size}/8757_2.png\"\
+        ,\"created_at\":\"2020-04-24T20:19:51.168Z\",\"cooked\":\"\\u003cp\\u003eI\
+        \ just added another page: \\u003ca href=\\\"https://discourse.ubuntu.com/t/service-ldap-access-control/15583\\\
+        \" class=\\\"inline-onebox\\\"\\u003eService - LDAP Access Control\\u003c/a\\\
+        u003e\\u003c/p\\u003e\\n\\u003cp\\u003eI hope I did it correctly this time\\\
+        u003c/p\\u003e\",\"post_number\":11,\"post_type\":1,\"updated_at\":\"2020-04-24T20:19:51.168Z\"\
+        ,\"reply_count\":0,\"reply_to_post_number\":10,\"quote_count\":0,\"incoming_link_count\"\
+        :6,\"reads\":18,\"score\":33.6,\"yours\":false,\"topic_id\":11322,\"topic_slug\"\
+        :\"introduction\",\"display_username\":\"Andreas Hasenack\",\"primary_group_name\"\
+        :null,\"primary_group_flair_url\":null,\"primary_group_flair_bg_color\":null,\"\
+        primary_group_flair_color\":null,\"version\":1,\"can_edit\":false,\"can_delete\"\
+        :false,\"can_recover\":false,\"can_wiki\":false,\"link_counts\":[{\"url\"\
+        :\"https://discourse.ubuntu.com/t/service-ldap-access-control/15583\",\"internal\"\
+        :true,\"reflection\":false,\"title\":\"Service - LDAP Access Control\",\"\
+        clicks\":4}],\"read\":true,\"user_title\":null,\"reply_to_user\":{\"username\"\
+        :\"dsmythies\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/dsmythies/{size}/6700_2.png\"\
+        },\"actions_summary\":[],\"moderator\":false,\"admin\":false,\"staff\":false,\"\
+        user_id\":507,\"hidden\":false,\"trust_level\":4,\"deleted_at\":null,\"user_deleted\"\
+        :false,\"edit_reason\":null,\"can_view_edit_history\":true,\"wiki\":false,\"\
+        can_accept_answer\":false,\"can_unaccept_answer\":false,\"accepted_answer\"\
+        :false}],\"stream\":[31439,33218,37819,37841,37941,43746,43753,43838,43842,44004,44047]},\"\
+        timeline_lookup\":[[1,379],[2,350],[3,224],[5,220],[6,71],[8,70],[10,69]],\"\
+        suggested_topics\":[{\"id\":11876,\"title\":\"Network - Configuration\",\"\
+        fancy_title\":\"Network - Configuration\",\"slug\":\"network-configuration\"\
+        ,\"posts_count\":4,\"reply_count\":1,\"highest_post_number\":4,\"image_url\"\
+        :null,\"created_at\":\"2019-07-17T21:49:00.140Z\",\"last_posted_at\":\"2019-11-19T17:37:10.639Z\"\
+        ,\"bumped\":true,\"bumped_at\":\"2019-11-19T17:37:10.639Z\",\"unseen\":false,\"\
+        pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\"\
+        :false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"archetype\":\"regular\"\
+        ,\"like_count\":1,\"views\":5476,\"category_id\":26,\"featured_link\":null,\"\
+        has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest\",\"description\"\
+        :\"Original Poster, Most Recent Poster\",\"user\":{\"id\":37,\"username\"\
+        :\"powersj\",\"name\":\"Joshua Powers\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/powersj/{size}/10180_2.png\"\
+        }},{\"extras\":null,\"description\":\"Frequent Poster\",\"user\":{\"id\":9198,\"\
+        username\":\"mcapehart\",\"name\":\"Martin Capehart\",\"avatar_template\"\
+        :\"/letter_avatar/mcapehart/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"\
+        }}]},{\"id\":11892,\"title\":\"Samba - Domain Controller\",\"fancy_title\"\
+        :\"Samba - Domain Controller\",\"slug\":\"samba-domain-controller\",\"posts_count\"\
+        :3,\"reply_count\":1,\"highest_post_number\":3,\"image_url\":null,\"created_at\"\
+        :\"2019-07-17T22:04:33.737Z\",\"last_posted_at\":\"2020-03-06T22:31:42.663Z\"\
+        ,\"bumped\":true,\"bumped_at\":\"2020-03-06T22:31:42.663Z\",\"unseen\":false,\"\
+        pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\"\
+        :false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"archetype\":\"regular\"\
+        ,\"like_count\":2,\"views\":3314,\"category_id\":26,\"featured_link\":null,\"\
+        has_accepted_answer\":false,\"posters\":[{\"extras\":null,\"description\"\
+        :\"Original Poster\",\"user\":{\"id\":37,\"username\":\"powersj\",\"name\"\
+        :\"Joshua Powers\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/powersj/{size}/10180_2.png\"\
+        }},{\"extras\":null,\"description\":\"Frequent Poster\",\"user\":{\"id\":10009,\"\
+        username\":\"intavbrian\",\"name\":\"Intavbrian\",\"avatar_template\":\"/letter_avatar/intavbrian/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"\
+        }},{\"extras\":\"latest\",\"description\":\"Most Recent Poster\",\"user\"\
+        :{\"id\":707,\"username\":\"caldav\",\"name\":\"David Call\xE9\",\"avatar_template\"\
+        :\"/user_avatar/discourse.ubuntu.com/caldav/{size}/9261_2.png\"}}]},{\"id\"\
+        :11902,\"title\":\"LAMP Applications\",\"fancy_title\":\"LAMP Applications\"\
+        ,\"slug\":\"lamp-applications\",\"posts_count\":1,\"reply_count\":0,\"highest_post_number\"\
+        :1,\"image_url\":null,\"created_at\":\"2019-07-17T22:14:36.338Z\",\"last_posted_at\"\
+        :\"2019-07-17T22:14:36.687Z\",\"bumped\":true,\"bumped_at\":\"2020-04-02T21:39:35.203Z\"\
+        ,\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\"\
+        :false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"\
+        archetype\":\"regular\",\"like_count\":0,\"views\":3541,\"category_id\":26,\"\
+        featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\"\
+        :\"latest single\",\"description\":\"Original Poster, Most Recent Poster\"\
+        ,\"user\":{\"id\":37,\"username\":\"powersj\",\"name\":\"Joshua Powers\",\"\
+        avatar_template\":\"/user_avatar/discourse.ubuntu.com/powersj/{size}/10180_2.png\"\
+        }}]},{\"id\":11903,\"title\":\"Tools - nagios\",\"fancy_title\":\"Tools -\
+        \ nagios\",\"slug\":\"tools-nagios\",\"posts_count\":1,\"reply_count\":0,\"\
+        highest_post_number\":1,\"image_url\":null,\"created_at\":\"2019-07-17T22:17:46.260Z\"\
+        ,\"last_posted_at\":\"2019-07-17T22:17:46.543Z\",\"bumped\":true,\"bumped_at\"\
+        :\"2020-04-07T03:53:34.130Z\",\"unseen\":false,\"pinned\":false,\"unpinned\"\
+        :null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\"\
+        :null,\"liked\":null,\"tags\":[],\"archetype\":\"regular\",\"like_count\"\
+        :1,\"views\":2588,\"category_id\":26,\"featured_link\":null,\"has_accepted_answer\"\
+        :false,\"posters\":[{\"extras\":\"latest single\",\"description\":\"Original\
+        \ Poster, Most Recent Poster\",\"user\":{\"id\":37,\"username\":\"powersj\"\
+        ,\"name\":\"Joshua Powers\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/powersj/{size}/10180_2.png\"\
+        }}]},{\"id\":15768,\"title\":\"Ubuntu HA - Pacemaker Fence Agents Supportability\"\
+        ,\"fancy_title\":\"Ubuntu HA - Pacemaker Fence Agents Supportability\",\"\
+        slug\":\"ubuntu-ha-pacemaker-fence-agents-supportability\",\"posts_count\"\
+        :6,\"reply_count\":2,\"highest_post_number\":6,\"image_url\":null,\"created_at\"\
+        :\"2020-04-30T03:11:54.641Z\",\"last_posted_at\":\"2020-05-06T01:18:33.996Z\"\
+        ,\"bumped\":true,\"bumped_at\":\"2020-05-06T01:18:33.996Z\",\"unseen\":false,\"\
+        pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\"\
+        :false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"archetype\":\"regular\"\
+        ,\"like_count\":0,\"views\":604,\"category_id\":26,\"featured_link\":null,\"\
+        has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest\",\"description\"\
+        :\"Original Poster, Most Recent Poster\",\"user\":{\"id\":7668,\"username\"\
+        :\"rafaeldtinoco\",\"name\":\"Rafael David Tinoco\",\"avatar_template\":\"\
+        /user_avatar/discourse.ubuntu.com/rafaeldtinoco/{size}/8851_2.png\"}},{\"\
+        extras\":null,\"description\":\"Frequent Poster\",\"user\":{\"id\":3783,\"\
+        username\":\"paelzer\",\"name\":\"Christian Ehrhardt\",\"avatar_template\"\
+        :\"/user_avatar/discourse.ubuntu.com/paelzer/{size}/8804_2.png\"}}]}],\"tags\"\
+        :[],\"id\":11322,\"title\":\"Introduction\",\"fancy_title\":\"Introduction\"\
+        ,\"posts_count\":11,\"created_at\":\"2019-06-19T20:48:28.000Z\",\"views\"\
+        :12085,\"reply_count\":6,\"like_count\":6,\"last_posted_at\":\"2020-04-24T20:19:51.168Z\"\
+        ,\"visible\":true,\"closed\":false,\"archived\":false,\"has_summary\":false,\"\
+        archetype\":\"regular\",\"slug\":\"introduction\",\"category_id\":26,\"word_count\"\
+        :2921,\"deleted_at\":null,\"user_id\":37,\"featured_link\":null,\"pinned_globally\"\
+        :false,\"pinned_at\":\"2019-07-17T22:51:25.363Z\",\"pinned_until\":\"2050-01-01T00:00:00.000Z\"\
+        ,\"draft\":null,\"draft_key\":\"topic_11322\",\"draft_sequence\":null,\"unpinned\"\
+        :null,\"pinned\":true,\"current_post_number\":1,\"highest_post_number\":11,\"\
+        deleted_by\":null,\"actions_summary\":[{\"id\":4,\"count\":0,\"hidden\":false,\"\
+        can_act\":false},{\"id\":8,\"count\":0,\"hidden\":false,\"can_act\":false},{\"\
+        id\":7,\"count\":0,\"hidden\":false,\"can_act\":false}],\"chunk_size\":20,\"\
+        bookmarked\":null,\"topic_timer\":null,\"message_bus_last_id\":10,\"participant_count\"\
+        :5,\"details\":{\"notification_level\":1,\"participants\":[{\"id\":8605,\"\
+        username\":\"dsmythies\",\"name\":\"Doug Smythies\",\"avatar_template\":\"\
+        /user_avatar/discourse.ubuntu.com/dsmythies/{size}/6700_2.png\",\"post_count\"\
+        :4,\"primary_group_name\":null,\"primary_group_flair_url\":null,\"primary_group_flair_color\"\
+        :null,\"primary_group_flair_bg_color\":null},{\"id\":37,\"username\":\"powersj\"\
+        ,\"name\":\"Joshua Powers\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/powersj/{size}/10180_2.png\"\
+        ,\"post_count\":3,\"primary_group_name\":\"Canonical\",\"primary_group_flair_url\"\
+        :\"https://launchpadlibrarian.net/68730579/64.png\",\"primary_group_flair_color\"\
+        :\"\",\"primary_group_flair_bg_color\":\"\"},{\"id\":3783,\"username\":\"\
+        paelzer\",\"name\":\"Christian Ehrhardt\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/paelzer/{size}/8804_2.png\"\
+        ,\"post_count\":2,\"primary_group_name\":\"Canonical\",\"primary_group_flair_url\"\
+        :\"https://launchpadlibrarian.net/68730579/64.png\",\"primary_group_flair_color\"\
+        :\"\",\"primary_group_flair_bg_color\":\"\"},{\"id\":4,\"username\":\"ya-bo-ng\"\
+        ,\"name\":\"Anthony Dillon\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/ya-bo-ng/{size}/8800_2.png\"\
+        ,\"post_count\":1,\"primary_group_name\":\"web-and-design-team\",\"primary_group_flair_url\"\
+        :null,\"primary_group_flair_color\":null,\"primary_group_flair_bg_color\"\
+        :null},{\"id\":507,\"username\":\"ahasenack\",\"name\":\"Andreas Hasenack\"\
+        ,\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/ahasenack/{size}/8757_2.png\"\
+        ,\"post_count\":1,\"primary_group_name\":null,\"primary_group_flair_url\"\
+        :null,\"primary_group_flair_color\":null,\"primary_group_flair_bg_color\"\
+        :null}],\"created_by\":{\"id\":37,\"username\":\"powersj\",\"name\":\"Joshua\
+        \ Powers\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/powersj/{size}/10180_2.png\"\
+        },\"last_poster\":{\"id\":507,\"username\":\"ahasenack\",\"name\":\"Andreas\
+        \ Hasenack\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/ahasenack/{size}/8757_2.png\"\
+        },\"links\":[{\"url\":\"https://assets.ubuntu.com/ubuntu-server-guide\",\"\
+        title\":null,\"internal\":false,\"attachment\":false,\"reflection\":false,\"\
+        clicks\":152,\"user_id\":37,\"domain\":\"assets.ubuntu.com\",\"root_domain\"\
+        :\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/installation/11320\"\
+        ,\"title\":\"Installation\",\"internal\":true,\"attachment\":false,\"reflection\"\
+        :false,\"clicks\":137,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\",\"\
+        root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/installation-advanced/11577\"\
+        ,\"title\":\"Installation - Advanced\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":38,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/package-management/11908\"\
+        ,\"title\":\"Package Management\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":29,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"http://www.ubuntu.com/advantage\"\
+        ,\"title\":\"Ubuntu Advantage for Infrastructure | Ubuntu\",\"internal\":false,\"\
+        attachment\":false,\"reflection\":false,\"clicks\":24,\"user_id\":37,\"domain\"\
+        :\"www.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/network-introduction/11875\"\
+        ,\"title\":\"Network - Introduction\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":23,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/network-configuration/11876\"\
+        ,\"title\":\"Network - Configuration\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":21,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/databases-introduction/11315\"\
+        ,\"title\":\"Databases - Introduction\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":12,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/upgrade-introduction/11576\"\
+        ,\"title\":\"Upgrade - Introduction\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":12,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/security-introduction/11887\"\
+        ,\"title\":\"Security - Introduction\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":11,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/programming-php/11514\"\
+        ,\"title\":\"Programming - PHP\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":11,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/databases-mysql/11515\"\
+        ,\"title\":\"Databases - Mysql\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":11,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/containers-lxd/11525\"\
+        ,\"title\":\"Containers - lxd\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":10,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/device-mapper-multipathing-introduction/11316\"\
+        ,\"title\":\"Device Mapper Multipathing - Introduction\",\"internal\":true,\"\
+        attachment\":false,\"reflection\":false,\"clicks\":10,\"user_id\":37,\"domain\"\
+        :\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/installation-iscsi/11321\"\
+        ,\"title\":\"Installation - iSCSI\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":10,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/virtualization-introduction/11521\"\
+        ,\"title\":\"Virtualization - Introduction\",\"internal\":true,\"attachment\"\
+        :false,\"reflection\":false,\"clicks\":10,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/kernel-crash-dump/11575\"\
+        ,\"title\":\"Kernel Crash Dump\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":10,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/security-firewall/11883\"\
+        ,\"title\":\"Security - Firewall\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":9,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/network-dhcp/11877\"\
+        ,\"title\":\"Network - DHCP\",\"internal\":true,\"attachment\":false,\"reflection\"\
+        :false,\"clicks\":9,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\",\"\
+        root_domain\":\"ubuntu.com\"},{\"url\":\"https://help.ubuntu.com/18.04/serverguide/index.html\"\
+        ,\"title\":\"Ubuntu Server Guide\",\"internal\":false,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":8,\"user_id\":37,\"domain\":\"help.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/security-users/11881\"\
+        ,\"title\":\"Security - Users\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":8,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/samba-active-directory/11893\"\
+        ,\"title\":\"Samba - Active Directory\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":6,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/samba-file-server/11889\"\
+        ,\"title\":\"Samba - File Server\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":6,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/web-servers-apache/11510\"\
+        ,\"title\":\"Web Servers - Apache\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":6,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/virtualization-multipass/11983\"\
+        ,\"title\":\"Virtualization - multipass\",\"internal\":true,\"attachment\"\
+        :false,\"reflection\":false,\"clicks\":6,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/device-mapper-multipathing-setup/11568\"\
+        ,\"title\":\"Device Mapper Multipathing - Setup\",\"internal\":true,\"attachment\"\
+        :false,\"reflection\":false,\"clicks\":6,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/service-openssh/11896\"\
+        ,\"title\":\"Service - OpenSSH\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":6,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/reporting-bugs/11508\"\
+        ,\"title\":\"Reporting Bugs\",\"internal\":true,\"attachment\":false,\"reflection\"\
+        :false,\"clicks\":6,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\",\"\
+        root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/security-console/11882\"\
+        ,\"title\":\"Security - Console\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":6,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/service-ldap-access-control/15583\"\
+        ,\"title\":\"Service - LDAP Access Control\",\"internal\":true,\"attachment\"\
+        :false,\"reflection\":false,\"clicks\":5,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/network-dpdk/11879\"\
+        ,\"title\":\"Network - DPDK\",\"internal\":true,\"attachment\":false,\"reflection\"\
+        :false,\"clicks\":5,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\",\"\
+        root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/lamp-applications/11902\"\
+        ,\"title\":\"LAMP Applications\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":5,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/virtualization-libvirt/11522\"\
+        ,\"title\":\"Virtualization - libvirt\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":5,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/databases-postgresql/11516\"\
+        ,\"title\":\"Databases - PostgreSQL\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":5,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://help.ubuntu.com/16.04/serverguide/index.html\"\
+        ,\"title\":\"Ubuntu Server Guide\",\"internal\":false,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":5,\"user_id\":37,\"domain\":\"help.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://ubuntu.com/support/community-support\"\
+        ,\"title\":\"Community support | Ubuntu\",\"internal\":false,\"attachment\"\
+        :false,\"reflection\":false,\"clicks\":5,\"user_id\":37,\"domain\":\"ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/programming-ruby-on-rails/11513\"\
+        ,\"title\":\"Programming - Ruby on Rails\",\"internal\":true,\"attachment\"\
+        :false,\"reflection\":false,\"clicks\":5,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/samba-introduction/11888\"\
+        ,\"title\":\"Samba - Introduction\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":5,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/service-ftp/11319\"\
+        ,\"title\":\"Service - FTP\",\"internal\":true,\"attachment\":false,\"reflection\"\
+        :false,\"clicks\":5,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\",\"\
+        root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/monitoring-introduction/11326\"\
+        ,\"title\":\"Monitoring - Introduction\",\"internal\":true,\"attachment\"\
+        :false,\"reflection\":false,\"clicks\":5,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/security-apparmor/11884\"\
+        ,\"title\":\"Security - AppArmor\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":4,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/backups-introduction/11312\"\
+        ,\"title\":\"Backups - Introduction\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":4,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/device-mapper-multipathing-configuration/11569\"\
+        ,\"title\":\"Device Mapper Multipathing - Configuration\",\"internal\":true,\"\
+        attachment\":false,\"reflection\":false,\"clicks\":4,\"user_id\":37,\"domain\"\
+        :\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/service-domain-name-service-dns/11318\"\
+        ,\"title\":\"Service - Domain Name Service (DNS)\",\"internal\":true,\"attachment\"\
+        :false,\"reflection\":false,\"clicks\":4,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/service-openvpn/11894\"\
+        ,\"title\":\"Service - OpenVPN\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":4,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/service-sssd/11579\"\
+        ,\"title\":\"Service - SSSD\",\"internal\":true,\"attachment\":false,\"reflection\"\
+        :false,\"clicks\":4,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\",\"\
+        root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/tools-logwatch/15590\"\
+        ,\"title\":\"Tools - Logwatch\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":4,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/using-the-server-installer/16689\"\
+        ,\"title\":\"Using the server installer\",\"internal\":true,\"attachment\"\
+        :false,\"reflection\":false,\"clicks\":4,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/virtualization-qemu/11523\"\
+        ,\"title\":\"Virtualization - qemu\",\"internal\":true,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":4,\"user_id\":37,\"domain\":\"discourse.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://help.ubuntu.com/16.04/serverguide/serverguide.pdf\"\
+        ,\"title\":\"Ubuntu Server Guide\",\"internal\":false,\"attachment\":false,\"\
+        reflection\":false,\"clicks\":4,\"user_id\":37,\"domain\":\"help.ubuntu.com\"\
+        ,\"root_domain\":\"ubuntu.com\"}]}}"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Content-Type, Cache-Control, X-Requested-With, X-CSRF-Token, Discourse-Visible,
+        User-Api-Key, User-Api-Client-Id
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - https://didrocks.fr
+      Cache-Control:
+      - no-cache, no-store
+      Connection:
+      - Keep-Alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 02 Jul 2020 21:29:57 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - Apache/2.4.18 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Discourse-Cached:
+      - 'true'
+      X-Discourse-Route:
+      - topics/show
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Request-Id:
+      - 664d5930-f231-4b7b-9b3d-a26169223882
+      X-Runtime:
+      - '0.002585'
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: https://discourse.ubuntu.com/c/26.json?page=0
+  response:
+    body:
+      string: '{"errors":["The requested URL or resource could not be found."],"error_type":"not_found"}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Content-Type, Cache-Control, X-Requested-With, X-CSRF-Token, Discourse-Visible,
+        User-Api-Key, User-Api-Client-Id
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - https://didrocks.fr
+      Connection:
+      - Keep-Alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 02 Jul 2020 21:29:58 GMT
+      Keep-Alive:
+      - timeout=5, max=99
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - Apache/2.4.18 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Discourse-Route:
+      - list/category_default
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Request-Id:
+      - 2ca6012f-3fb9-4463-bacb-7f6c67c1ce8a
+      X-Runtime:
+      - '0.023783'
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 404
+      message: Not Found
+version: 1
