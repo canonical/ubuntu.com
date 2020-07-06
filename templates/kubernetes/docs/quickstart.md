@@ -154,7 +154,6 @@ Google. You can see which ones are ready to use by running this command:
 <!-- LINKS -->
 
 [jujucharms-com]: https://jujucharms.com
-[conjure-up-io]: https://conjure-up.io
 [install]: /kubernetes/docs/install-manual
 [overview]: /kubernetes/docs/overview
 [snapd-docs]: https://docs.snapcraft.io/core/install
@@ -165,14 +164,14 @@ Google. You can see which ones are ready to use by running this command:
 [cloud-rackspace]: https://www.rackspace.com/cloud/
 [cloud-azure]: https://azure.microsoft.com/
 [cloud-joyent]: https://www.joyent.com/
-[storage]: /kubernetes/docs/storage
+
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/quickstart.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/quickstart.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

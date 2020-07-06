@@ -21,7 +21,7 @@ Using `juju status` can give you some insight as to what's happening in a cluste
 
 ```no-highlight
 Model                         Controller          Cloud/Region   Version  SLA          Timestamp
-conjure-canonical-kubern-ade  conjure-up-aws-91c  aws/eu-west-1  2.4.5    unsupported  08:38:09+01:00
+charmed-kubernetes            aws-91c             aws/eu-west-1  2.4.5    unsupported  08:38:09+01:00
 
 App                    Version  Status  Scale  Charm                  Store       Rev  OS      Notes
 aws-integrator         1.15.71  active      1  aws-integrator         jujucharms    5  ubuntu  
@@ -111,7 +111,7 @@ sudo snap install juju-crashdump --classic --channel edge
 juju-crashdump -a debug-layer -a config
 ```
 
-Running the `juju-crashdump` script will generate a tarball of debug information that includes systemd unit status and logs, Juju logs, charm unit data, and Kubernetes cluster information. It is recommended that you include this tarball when [filing a bug](https://bugs.launchpad.net/charmed-kubernetes). 
+Running the `juju-crashdump` script will generate a tarball of debug information that includes systemd unit status and logs, Juju logs, charm unit data, and Kubernetes cluster information. It is recommended that you include this tarball when [filing a bug](https://bugs.launchpad.net/charmed-kubernetes).
 
 ## Common Problems
 
@@ -161,7 +161,7 @@ This is caused by the API load balancer not forwarding ports in the context of t
 
     ```no-highlight
     Model                         Controller          Cloud/Region   Version  SLA          Timestamp
-    conjure-canonical-kubern-ade  conjure-up-aws-91c  aws/eu-west-1  2.4.5    unsupported  08:39:23+01:00
+    charmed-kubernetes            aws-91c  aws/eu-west-1  2.4.5    unsupported  08:39:23+01:00
 
     App                Version  Status  Scale  Charm              Store       Rev  OS      Notes
     flannel            0.10.0   active      2  flannel            jujucharms  146  ubuntu  
@@ -407,9 +407,9 @@ juju run --unit kubernetes-master/0 -- journalctl -u snap.kube-apiserver.daemon.
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/troubleshooting.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/troubleshooting.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>
