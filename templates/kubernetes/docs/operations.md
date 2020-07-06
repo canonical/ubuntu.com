@@ -23,8 +23,7 @@ for more useful guides on operating Kubernetes.
 ## Install and configure kubectl
 
 You will need **kubectl** to be able to use your Kubernetes cluster. If it is not already
-installed (it is automatically installed if you used conjure-up to deploy **Charmed Kubernetes**), it is easy
-to add via a snap package:
+installed, it is easy to add via a snap package:
 
 ```bash
 sudo snap install kubectl --classic
@@ -86,7 +85,7 @@ The recommended way to do this is to use the built-in proxy service, run with th
 kubectl proxy
 ```
 
-The URL for the dashboard will then be [http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/) 
+The URL for the dashboard will then be [http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/)
 
 For versions prior to 1.16, the dashboard URL will be [http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/).
 
