@@ -1,15 +1,16 @@
 import { StateManager } from "../state.js";
-import { it } from "date-fns/locale";
 
 describe("StateManager", () => {
   let state;
   let stateKeys;
   let callback;
+  let consoleSpy;
 
   beforeEach(() => {
     stateKeys = ["one", "two", "three"];
     callback = jest.fn();
     state = new StateManager(stateKeys, callback);
+    consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
   });
 
   describe("new", () => {
@@ -42,10 +43,7 @@ describe("StateManager", () => {
     });
 
     it("should not allow invalid values to be set", () => {
-      const consoleSpy = jest
-        .spyOn(console, "error")
-        .mockImplementation(() => {});
-
+      state.set(key, null);
       expect(consoleSpy).toHaveBeenCalled();
     });
   });
@@ -53,19 +51,59 @@ describe("StateManager", () => {
   describe("get()", () => {
     it("should not invoke the callback function", () => {
       state.get("one");
-
       expect(callback).not.toHaveBeenCalled();
     });
 
     it("should return values that have previously been set", () => {
       const expectedValue = "bar";
-      state.set("one", [expectedValue]);
 
+      state.set("one", [expectedValue]);
       expect(state.get("one")).toContain(expectedValue);
     });
 
     it("should return undefined when getting keys that have not been set", () => {
       expect(state.get("nonexistent")).toBeUndefined();
+    });
+  });
+
+  describe("push()", () => {
+    it("should add a given item to a given key's array of values", () => {
+      const expectedValue = "bar";
+
+      state.push("one", expectedValue);
+      expect(state.get("one")).toEqual([expectedValue]);
+    });
+  });
+
+  describe("remove()", () => {
+    const items = ["foo", "bar"];
+    const key = "four";
+
+    it("should remove a given item from a given key's array of values", () => {
+      state.set(key, items);
+      state.remove(key, "foo");
+      expect(state.get(key)).toEqual(["bar"]);
+    });
+
+    it("should return an error if no value is passed", () => {
+      state.set(key, items);
+      state.remove(key, undefined);
+      expect(consoleSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe("reset()", () => {
+    it("should remove all values from a given key", () => {
+      state.push("one", "foo");
+      expect(state.get("one")).toEqual(["foo"]);
+
+      state.reset("one");
+      expect(state.get("one")).toEqual([]);
+    });
+
+    it("should return an error if no value is passed", () => {
+      state.reset(undefined);
+      expect(consoleSpy).toHaveBeenCalled();
     });
   });
 });
