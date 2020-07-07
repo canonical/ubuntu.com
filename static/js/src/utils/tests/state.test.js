@@ -1,4 +1,5 @@
 import { StateManager } from "../state.js";
+import { it } from "date-fns/locale";
 
 describe("StateManager", () => {
   let state;
@@ -17,9 +18,9 @@ describe("StateManager", () => {
       expect(state).toEqual(
         expect.objectContaining({
           state: {
-            one: expect.any(Array),
-            two: expect.any(Array),
-            three: expect.any(Array),
+            one: [],
+            two: [],
+            three: [],
           },
         })
       );
@@ -27,10 +28,25 @@ describe("StateManager", () => {
   });
 
   describe("set()", () => {
-    it("should invoke the callback function ", () => {
-      state.set("four", ["foo"]);
+    const items = ["foo", "bar"];
+    const key = "four";
 
+    it("should invoke the callback function ", () => {
+      state.set(key, items);
       expect(callback).toHaveBeenCalled();
+    });
+
+    it("should successfully set given values", () => {
+      state.set(key, items);
+      expect(state.get(key)).toEqual(items);
+    });
+
+    it("should not allow invalid values to be set", () => {
+      const consoleSpy = jest
+        .spyOn(console, "error")
+        .mockImplementation(() => {});
+
+      expect(consoleSpy).toHaveBeenCalled();
     });
   });
 
@@ -46,6 +62,10 @@ describe("StateManager", () => {
       state.set("one", [expectedValue]);
 
       expect(state.get("one")).toContain(expectedValue);
+    });
+
+    it("should return undefined when getting keys that have not been set", () => {
+      expect(state.get("nonexistent")).toBeUndefined();
     });
   });
 });
