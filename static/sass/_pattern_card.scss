@@ -1,6 +1,7 @@
 @mixin ubuntu-p-cards {
   @include ubuntu-card;
   @include ubuntu-card-layout;
+  @include ubuntu-card-radio;
 }
 
 @mixin ubuntu-card {
@@ -57,6 +58,36 @@
 
     .p-card__footer {
       margin-top: auto;
+    }
+  }
+}
+
+@mixin ubuntu-card-radio {
+  .p-card--radio {
+    @extend %vf-card;
+    @extend %vf-is-bordered;
+    @extend %vf-has-round-corners;
+
+    padding: 0;
+
+    label {
+      height: 100%;
+      margin-bottom: 0;
+      padding-bottom: calc(#{$spv-inner--large} - 1px);
+      padding-left: calc(#{$spv-inner--large + 2} - 1px);
+      padding-right: calc(#{$spv-inner--large} - 1px);
+      padding-top: calc(#{$spv-inner--large} - 1px);
+      width: 100%;
+
+      &::after {
+        left: 1.54rem;
+        top: 1.54rem !important;
+      }
+
+      &::before {
+        left: 1.2rem;
+        top: 1.2rem !important;
+      }
     }
   }
 }
