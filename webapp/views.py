@@ -572,8 +572,34 @@ def advantage_shop_view():
         "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
     )
 
+    advantage = AdvantageContracts(
+        session, None, api_url=flask.current_app.config["CONTRACTS_API_URL"],
+    )
+
+    listings_response = advantage.get_marketplace_product_listings(
+        "canonical-ua"
+    )
+    products = listings_response["products"]
+
+    listings = []
+    for listing in listings_response["productListings"]:
+        if "price" not in listing:
+            continue
+
+        product = [
+            product
+            for product in products
+            if product["id"] == listing["productID"]
+        ][0]
+
+        listing.pop("productID")
+        listing["product"] = product
+
+        listings.append(listing)
+
     return flask.render_template(
         "advantage/subscribe.html",
+        product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
     )
 

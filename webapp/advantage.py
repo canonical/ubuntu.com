@@ -18,11 +18,16 @@ class AdvantageContracts:
         self.api_url = api_url.rstrip("/")
 
     def _request(self, method, path, json=None):
+        headers = {}
+
+        if self.authentication_token:
+            headers["Authorization"] = f"Macaroon {self.authentication_token}"
+
         response = self.session.request(
             method=method,
             url=f"{self.api_url}/{path}",
             json=json,
-            headers={"Authorization": f"Macaroon {self.authentication_token}"},
+            headers=headers,
         )
         response.raise_for_status()
 
@@ -105,3 +110,18 @@ class AdvantageContracts:
                 raise http_error
 
         return {}
+
+    def get_marketplace_product_listings(self, marketplace: str) -> dict:
+        try:
+            response = self._request(
+                method="get",
+                path=f"v1/marketplace/{marketplace}/product-listings",
+            )
+        except HTTPError as http_error:
+            print(http_error)
+            if http_error.code == 500:
+                return response.json()
+            else:
+                raise http_error
+
+        return response.json()
