@@ -16,7 +16,7 @@ context:
   header_class: p-engage-banner--grad
   form_include: en
   form_id: 3585
-  form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/Over-the-air%20software_12.05.20.pdf"
+  form_return_url: "https://pages.ubuntu.com/IntrotoAnboxCloud_TY.html"
 ---
 
 Hardware limitations have long been a roadblock for developers of Android applications. Given the immense variety of Android device specifications, it is often impossible to deliver the most modern application experiences without alienating a large number of potential users who do not own high-end devices.
