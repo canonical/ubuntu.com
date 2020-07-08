@@ -28,6 +28,115 @@
             <input type="number" data-product="{{listing.product.id}}" name="quantity_{{listing.product.id}}" value="10" data-unit-price="{{listing.price.value}}"/>
           {% endfor %}
         </form>
+  <form class="js-shop-form">
+    <section class="p-strip is-shallow js-shop-step--type">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="p-heading--three">What kind of machines do you want support for?</h2>
+          <p>If it's a combination, add one kind at a time.</p>
+        </div>
+
+        <div class="col-4 p-card--radio">
+          <input type="radio" id="type_one" name="type" value="1" data-unit-price="50000">
+          <label for="type_one">
+            Desktop<br />
+            <small class="u-text-light">Physical</small>
+          </label>
+        </div>
+
+        <div class="col-4 p-card--radio">
+          <input type="radio" id="type_two" name="type" value="2" data-unit-price="100000">
+          <label for="type_two">
+            Server<br />
+            <small class="u-text-light">Physical</small>
+          </label>
+        </div>
+
+        <div class="col-4 p-card--radio">
+          <input type="radio" id="type_three" name="type" value="3" data-unit-price="150000">
+          <label for="type_three">
+            Virtual Machine<br />
+            <small class="u-text-light">Private cloud</small>
+          </label>
+        </div>
+
+        <div class="col-4 p-card--radio">
+          <input type="radio" id="type_four" name="type" value="4">
+          <label for="type_four">
+            Amazon Web Services<br />
+            <small class="u-text-light">Public cloud</small>
+          </label>
+        </div>
+
+        <div class="col-4 p-card--radio">
+          <input type="radio" id="type_five" name="type" value="5">
+          <label for="type_five">
+            Microsoft Azure<br />
+            <small class="u-text-light">Public cloud</small>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip is-shallow js-shop-step--quantity">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="p-heading--three">How many <span class="js-type-name"></span>?</h2>
+        </div>
+        
+        <div class="col-2">
+          <input type="number" name="quantity" value="0" step="1" />
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip is-shallow js-shop-step--version">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="p-heading--three">What version of Ubuntu are they running?</h2>
+          <select name="version">
+            <option value="1404">14.04 LTS</option>
+            <option value="1604">16.04 LTS</option>
+            <option value="1804">18.04 LTS</option>
+            <option value="2004">20.04 LTS</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip is-shallow js-shop-step--support">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="p-heading--three">Do you need tech support?</h2>
+          <p><a href="/legal/ubuntu-advantage-service-description">Get details on our tech support response times&nbsp;&rsaquo;</a></p>
+        </div>
+
+        <div class="col-4 p-card--radio">
+          <input type="radio" id="support_one" name="support" value="none">
+          <label for="support_one">
+            No, thanks<br />
+            <small class="u-text-light">Software only</small>
+          </label>
+        </div>
+
+        <div class="col-4 p-card--radio">
+          <input type="radio" id="support_two" name="support" value="twenty_four_five">
+          <label for="support_two">
+            24 hours, 5 days a week<br />
+            <small class="u-text-light">Phone and ticket support</small>
+          </label>
+        </div>
+
+        <div class="col-4 p-card--radio">
+          <input type="radio" id="support_three" name="support" value="twenty_four_seven">
+          <label for="support_three">
+            24 hours, 7 days a week<br />
+            <small class="u-text-light">Phone and ticket support</small>
+          </label>
+        </div>
+      </div>
+    </section>
         
         <form class="js-shop-form">
           <div class="js-shop-step--type row">
