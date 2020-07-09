@@ -9,6 +9,12 @@
   {% include "advantage/_ubuntu_version_select.html" %}
   {% include "advantage/_cart.html" %}
 
+  <div class="u-hide">
+    {% for listing in product_listings %}
+      {{ listing }}
+    {% endfor %}
+  </div>
+
   <section class="p-strip--suru-topped u-no-padding--bottom">
     <div class="row">
       <div class="col-12">
@@ -17,17 +23,6 @@
     </div>
   </section>
 
-  <section class="p-strip is-shallow">
-    <div class="row">
-      <div class="col-12 u-align--center">
-        <form>
-          {% for listing in product_listings %}
-            <input type="checkbox" id="{{listing.product.id}}" name="{{listing.product.id}}" value="{{listing.product.name}}">
-            <label for="product_one">{{listing.product.name}}</label>
-            <label for="quantity_one">Quantity:</label>
-            <input type="number" data-product="{{listing.product.id}}" name="quantity_{{listing.product.id}}" value="10" data-unit-price="{{listing.price.value}}"/>
-          {% endfor %}
-        </form>
   <form class="js-shop-form">
     <section class="p-strip is-shallow js-shop-step--type">
       <div class="row">
@@ -36,39 +31,43 @@
           <p>If it's a combination, add one kind at a time.</p>
         </div>
 
-        <div class="col-4 p-card--radio">
+        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/8b6b3321-desktop_brand-dark-grey.svg');">
           <input type="radio" id="type_one" name="type" value="1" data-unit-price="50000">
           <label for="type_one">
             Desktop<br />
             <small class="u-text-light">Physical</small>
           </label>
+          
         </div>
 
-        <div class="col-4 p-card--radio">
+        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/38697bf3-server_brand-dark-grey.svg');">
           <input type="radio" id="type_two" name="type" value="2" data-unit-price="100000">
           <label for="type_two">
             Server<br />
             <small class="u-text-light">Physical</small>
           </label>
+          
         </div>
 
-        <div class="col-4 p-card--radio">
+        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/93f75ece-cloud_brand-dark-grey.svg');">
           <input type="radio" id="type_three" name="type" value="3" data-unit-price="150000">
           <label for="type_three">
             Virtual Machine<br />
             <small class="u-text-light">Private cloud</small>
           </label>
+          
         </div>
 
-        <div class="col-4 p-card--radio">
+        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/a82add58-profile-aws.svg');">
           <input type="radio" id="type_four" name="type" value="4">
           <label for="type_four">
             Amazon Web Services<br />
             <small class="u-text-light">Public cloud</small>
           </label>
+          
         </div>
 
-        <div class="col-4 p-card--radio">
+        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png');">
           <input type="radio" id="type_five" name="type" value="5">
           <label for="type_five">
             Microsoft Azure<br />
@@ -137,45 +136,10 @@
         </div>
       </div>
     </section>
-        
-        <form class="js-shop-form">
-          <div class="js-shop-step--type row">
-            <div class="col-4 p-card">
-              <input type="radio" id="type_one" name="type" value="1" data-unit-price="50000">
-              <label for="type_one">Desktop</label>
-            </div>
 
-            <div class="col-4 p-card">
-              <input type="radio" id="type_two" name="type" value="2" data-unit-price="100000">
-              <label for="type_two">Server</label>
-            </div>
-
-            <div class="col-4 p-card">
-              <input type="radio" id="type_three" name="type" value="3" data-unit-price="150000">
-              <label for="type_three">Virtual Machine</label>
-            </div>
-
-            <div class="col-4 p-card">
-              <input type="radio" id="type_four" name="type" value="4" data-unit-price="150000">
-              <label for="type_four">Amazon Web Services</label>
-            </div>
-
-            <div class="col-4 p-card">
-              <input type="radio" id="type_three" name="type" value="5" data-unit-price="150000">
-              <label for="type_five">Microsoft Azure</label>
-            </div>
-          </div>
-
-          <div class="js-shop-step--quantity" />
-            <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity" value="10" />
-          </div>
-
-          <div class="js-shop-step--version" />
-            <label for="version">Version:</label>
-            <input type="number" name="version" value="1" />
-          </div>
-          
+    <section class="p-strip--light is-shallow">
+      <div class="row">
+        <div class="col-12">
           <a
             href="#ua-payment-modal"
             id="showModal"
