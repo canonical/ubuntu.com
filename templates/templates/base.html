@@ -12,8 +12,6 @@
   {% block content_experiment %}{% endblock %}
   <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js" defer></script>
 
-  <!-- Temporary fix for IE11 (see: https://github.com/canonical-web-and-design/ubuntu.com/issues/6660) -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=URLSearchParams%2CArray.from%2CNodeList.prototype.forEach%2Cfetch%2CString.prototype.startsWith%2CElement.prototype.closest"></script>
   <script src="https://assets.ubuntu.com/v1/4176b39e-serialize.js"></script>
   <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer></script>
   <script src="{{ versioned_static('js/dist/main.js') }}" defer></script>

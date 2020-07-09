@@ -8,6 +8,8 @@ module.exports = {
   forms: "./static/js/src/forms.js",
   "image-download": "./static/js/src/image-download.js",
   main: [
+    "url-polyfill",
+    "url-search-params-polyfill",
     "./static/js/src/polyfills.js",
     "./static/js/src/contextual-menu.js",
     "./static/js/src/dynamic-contact-form.js",
