@@ -3,8 +3,10 @@
  * to disable the normal submit, and instead use backgroundSubmit
  */
 
-const backgroundSubmitHandlerClosure = function() {
-  return function(submitEvent) {
+import serialize from "../third-party/serialize";
+
+const backgroundSubmitHandlerClosure = function () {
+  return function (submitEvent) {
     // Prevent normal submit
     submitEvent.preventDefault
       ? submitEvent.preventDefault()
@@ -22,7 +24,7 @@ const backgroundSubmitHandlerClosure = function() {
   };
 };
 
-const backgroundSubmit = function(marketoForm, submitCallback) {
+const backgroundSubmit = function (marketoForm, submitCallback) {
   var request = new XMLHttpRequest();
   var submitUrl = marketoForm.getAttribute("action");
   let formData = serialize(marketoForm);
@@ -34,7 +36,7 @@ const backgroundSubmit = function(marketoForm, submitCallback) {
 
   // When request has finished, call the callback function
   if (submitCallback) {
-    request.addEventListener("readystatechange", function() {
+    request.addEventListener("readystatechange", function () {
       if (this.readyState == 4) {
         // Pass context and arguments on to submitCallback
         submitCallback.apply(this, arguments);
@@ -124,7 +126,7 @@ const backgroundSubmit = function(marketoForm, submitCallback) {
  * start download and send the user to the instructions page
  */
 
-const afterSubmit = function(
+const afterSubmit = function (
   download_asset_url,
   return_url,
   isModal,
@@ -143,7 +145,7 @@ const afterSubmit = function(
 
   // And redirect to the instructions page
   if (return_url) {
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       window.location.href = return_url;
     }, 1000);
   }
@@ -200,7 +202,7 @@ const afterSubmit = function(
 
 // attach handler to all forms
 let marketoForm = document.querySelectorAll("form[id^=mktoForm]");
-marketoForm.forEach(function(form) {
+marketoForm.forEach(function (form) {
   form.addEventListener("submit", backgroundSubmitHandlerClosure());
 });
 
@@ -235,7 +237,7 @@ function revealContent() {
       ".u-obfuscate p",
       ".u-obfuscate li"
     );
-    content.forEach(function(contentItem) {
+    content.forEach(function (contentItem) {
       contentItem.innerHTML = reverseContent(contentItem.innerText);
     });
     hiddenContent = false;
@@ -243,7 +245,7 @@ function revealContent() {
 
   // Remove the obfuscating styling
   var obfuscateItems = document.querySelectorAll(".u-obfuscate");
-  obfuscateItems.forEach(function(obfuscateItem) {
+  obfuscateItems.forEach(function (obfuscateItem) {
     obfuscateItem.classList.remove("u-obfuscate");
   });
 
@@ -256,14 +258,14 @@ function revealContent() {
 
 function fetchContent(url, container) {
   fetch(url)
-    .then(function(response) {
+    .then(function (response) {
       return response.text();
     })
-    .then(function(text) {
+    .then(function (text) {
       container.innerHTML = text;
       container.classList.add("u-reveal");
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log("Request failed", error);
     });
 }
@@ -296,12 +298,12 @@ function hideContent() {
   hiddenContent = true;
   // Baffle to obfucast the text
   var content = document.querySelectorAll(".u-obfuscate p", ".u-obfuscate li");
-  content.forEach(function(contentItem) {
+  content.forEach(function (contentItem) {
     contentItem.innerText = reverseContent(contentItem.innerHTML);
   });
 }
 
-window.onload = function() {
+window.onload = function () {
   if (getCookie(getCookieName())) {
     revealContent();
   } else {
