@@ -94,6 +94,28 @@ jobs:
       - name: Lint python
         run: yarn lint-python
 
+  validate-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install konf
+        run: |
+          sudo snap install konf
+          sudo chown root:root /
+
+      - name: Install Kubeval
+        run: |
+          wget https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
+          tar xf kubeval-linux-amd64.tar.gz
+          sudo cp kubeval /usr/local/bin
+
+      - name: Validate all sites
+        run: |
+          konf staging deploy/site.yaml | kubeval -f -
+          konf production deploy/site.yaml | kubeval -f -
+
   test-python:
     runs-on: ubuntu-latest
 
