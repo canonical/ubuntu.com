@@ -1,7 +1,7 @@
 
 {% if article.tags and 1572 in article.tags %}
 <div class="p-card" id="rtp-bootstack">
-<img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/00633f99-ubuntu-cloud-2.svg" alt="header image">
+<img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/00633f99-ubuntu-cloud-2.svg" alt="ubuntu for clouds logo">
 <hr class="u-sv1">
   <h3>
     <a href="/openstack/managed">
@@ -12,6 +12,19 @@
     Designed with economics in mind, Canonical's Managed OpenStack is the most cost-efficient path to a fully managed private cloud.
   </p>
   <p><a href="/openstack/managed">Learn more about Managed OpenStack &rsaquo;</a></p>
+</div>
+{% elif article.tags and 1833 in article.tags %}
+<div class="p-card" id="rtp-k8s">
+<img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg" alt="kubernetes logo">
+<hr class="u-sv1">
+  <h3>
+    <a href="/kubernetes/what-is-kubernetes">
+     What is Kubernetes?
+
+    </a>
+  </h3>
+  <p>Kubernetes, or K8s for short, is an open source platform pioneered by Google, which started as a simple container orchestration tool but has grown into a platform for deploying, monitoring and managing apps and services across clouds.</p>
+  <p><a href="/kubernetes/what-is-kubernetes">Learn more about Kubernetes &rsaquo;</a></p>
 </div>
 {% elif article.group and article.group.slug == "kubernetes" %}
 <div class="p-card" id="rtp-k8s">
