@@ -68,12 +68,13 @@
     @extend %vf-is-bordered;
     @extend %vf-has-round-corners;
 
-    background-position: right $spv-inner--large center;
-    background-repeat: no-repeat;
-    background-size: auto 40px;
     padding: 0;
 
     label {
+      background-color: transparent;
+      background-position: right $spv-inner--large center;
+      background-repeat: no-repeat;
+      background-size: auto 40px;
       height: 100%;
       margin-bottom: 0;
       padding-bottom: calc(#{$spv-inner--large} - 1px);
@@ -91,6 +92,11 @@
         left: 1.2rem;
         top: 1.2rem !important;
       }
+    }
+
+    label:hover,
+    input:checked + label {
+      background-color: $color-light;
     }
   }
 }
