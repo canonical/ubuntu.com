@@ -6,14 +6,7 @@
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block content %}
-  {% include "advantage/_ubuntu_version_select.html" %}
   {% include "advantage/_cart.html" %}
-
-  <div class="u-hide">
-    {% for listing in product_listings %}
-      {{ listing }}
-    {% endfor %}
-  </div>
 
   <section class="p-strip--suru-topped u-no-padding--bottom">
     <div class="row">
@@ -31,45 +24,45 @@
           <p>If it's a combination, add one kind at a time.</p>
         </div>
 
-        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/8b6b3321-desktop_brand-dark-grey.svg');">
+        <div class="col-4 p-card--radio">
           <input type="radio" id="type_one" name="type" value="1" data-unit-price="50000">
-          <label for="type_one">
+          <label for="type_one" style="background-image: url('https://assets.ubuntu.com/v1/8b6b3321-desktop_brand-dark-grey.svg');">
             Desktop<br />
             <small class="u-text-light">Physical</small>
           </label>
           
         </div>
 
-        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/38697bf3-server_brand-dark-grey.svg');">
+        <div class="col-4 p-card--radio">
           <input type="radio" id="type_two" name="type" value="2" data-unit-price="100000">
-          <label for="type_two">
+          <label for="type_two" style="background-image: url('https://assets.ubuntu.com/v1/38697bf3-server_brand-dark-grey.svg');">
             Server<br />
             <small class="u-text-light">Physical</small>
           </label>
           
         </div>
 
-        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/93f75ece-cloud_brand-dark-grey.svg');">
+        <div class="col-4 p-card--radio">
           <input type="radio" id="type_three" name="type" value="3" data-unit-price="150000">
-          <label for="type_three">
+          <label for="type_three" style="background-image: url('https://assets.ubuntu.com/v1/93f75ece-cloud_brand-dark-grey.svg');">
             Virtual Machine<br />
             <small class="u-text-light">Private cloud</small>
           </label>
           
         </div>
 
-        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/a82add58-profile-aws.svg');">
+        <div class="col-4 p-card--radio">
           <input type="radio" id="type_four" name="type" value="4">
-          <label for="type_four">
+          <label for="type_four" style="background-image: url('https://assets.ubuntu.com/v1/a82add58-profile-aws.svg');">
             Amazon Web Services<br />
             <small class="u-text-light">Public cloud</small>
           </label>
           
         </div>
 
-        <div class="col-4 p-card--radio" style="background-image: url('https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png');">
+        <div class="col-4 p-card--radio">
           <input type="radio" id="type_five" name="type" value="5">
-          <label for="type_five">
+          <label for="type_five" style="background-image: url('https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png');">
             Microsoft Azure<br />
             <small class="u-text-light">Public cloud</small>
           </label>
@@ -89,20 +82,7 @@
       </div>
     </section>
 
-    <section class="p-strip is-shallow js-shop-step--version">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="p-heading--three">What version of Ubuntu are they running?</h2>
-          <select name="version">
-            <option value="1404">14.04 LTS</option>
-            <option value="1604">16.04 LTS</option>
-            <option value="1804">18.04 LTS</option>
-            <option value="2004">20.04 LTS</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-      </div>
-    </section>
+    {% include "advantage/_ubuntu_version_select.html" %}
 
     <section class="p-strip is-shallow js-shop-step--support">
       <div class="row">
@@ -152,5 +132,5 @@
   </form>
   {% include 'advantage/_stripe-modal.html' %}
 
-  <script src="{{ versioned_static('js/src/ua-product-selector.js') }}" type="module" defer></script>
+  <!-- <script src="{{ versioned_static('js/src/ua-product-selector.js') }}" type="module" defer></script> -->
 {% endblock %}
