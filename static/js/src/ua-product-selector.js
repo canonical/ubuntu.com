@@ -11,9 +11,6 @@ function productSelection() {
 
   function attachEvents() {
     const productInputs = form.querySelectorAll(".js-product-input");
-    const supplementalInputs = form.querySelectorAll(
-      ".js-shop-supplemental-input"
-    );
 
     productInputs.forEach((input) => {
       input.addEventListener("input", (e) => {
@@ -55,6 +52,9 @@ function productSelection() {
       } else {
         productState.reset("quantity");
       }
+    } else if (step === "support") {
+      updateProductState(inputElement);
+      updateCartLineItem();
     } else {
       updateProductState(inputElement);
     }
@@ -85,6 +85,17 @@ function productSelection() {
     if (stepsToDisable) {
       disableSteps(stepsToDisable);
     }
+  }
+
+  function updateCartLineItem() {
+    const cartName = form.querySelector(".js-shop-product-id");
+    const quantity = productState.get("quantity")[0];
+    const support = productState.get("support")[0];
+    const type = productState.get("type")[0];
+
+    const productString = `uai-${support}-${type} x ${quantity}`;
+
+    cartName.innerHTML = `Your selected product id is ${productString}`;
   }
 
   function updateProductState(inputElement) {
