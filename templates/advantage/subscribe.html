@@ -7,7 +7,7 @@
 
 {% block content %}
   {% include "advantage/_cart.html" %}
-
+  
   <section class="p-strip--suru-topped u-no-padding--bottom">
     <div class="row">
       <div class="col-12">
@@ -25,7 +25,7 @@
         </div>
 
         <div class="col-4 p-card--radio">
-          <input autocomplete="off" class="js-product-input" type="radio" id="type_one" name="type" value="1" data-unit-price="50000" data-product-name="desktop">
+          <input autocomplete="off" class="js-product-input" type="radio" id="type_one" name="type" value="desktop" data-unit-price="50000">
           <label for="type_one" style="background-image: url('https://assets.ubuntu.com/v1/8b6b3321-desktop_brand-dark-grey.svg');">
             Desktop<br />
             <small class="u-text-light">Physical</small>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="col-4 p-card--radio">
-          <input autocomplete="off" class="js-product-input" type="radio" id="type_two" name="type" value="2" data-unit-price="100000" data-product-name="server">
+          <input autocomplete="off" class="js-product-input" type="radio" id="type_two" name="type" value="physical" data-unit-price="100000" data-product-name="server">
           <label for="type_two" style="background-image: url('https://assets.ubuntu.com/v1/38697bf3-server_brand-dark-grey.svg');">
             Server<br />
             <small class="u-text-light">Physical</small>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="col-4 p-card--radio">
-          <input autocomplete="off" class="js-product-input" type="radio" id="type_three" name="type" value="3" data-unit-price="150000" data-product-name="virtual machine">
+          <input autocomplete="off" class="js-product-input" type="radio" id="type_three" name="type" value="virtual" data-unit-price="150000" data-product-name="virtual machine">
           <label for="type_three" style="background-image: url('https://assets.ubuntu.com/v1/93f75ece-cloud_brand-dark-grey.svg');">
             Virtual Machine<br />
             <small class="u-text-light">Private cloud</small>
@@ -93,7 +93,7 @@
           </div>
 
           <div class="col-4 p-card--radio">
-            <input autocomplete="off" class="js-product-input" type="radio" id="support_one" name="support" value="none">
+            <input autocomplete="off" class="js-product-input" type="radio" id="support_one" name="support" value="essential">
             <label for="support_one">
               No, thanks<br />
               <small class="u-text-light">Software only</small>
@@ -101,7 +101,7 @@
           </div>
 
           <div class="col-4 p-card--radio">
-            <input autocomplete="off" class="js-product-input" type="radio" id="support_two" name="support" value="twenty_four_five">
+            <input autocomplete="off" class="js-product-input" type="radio" id="support_two" name="support" value="standard">
             <label for="support_two">
               24 hours, 5 days a week<br />
               <small class="u-text-light">Phone and ticket support</small>
@@ -109,7 +109,7 @@
           </div>
 
           <div class="col-4 p-card--radio">
-            <input autocomplete="off" class="js-product-input" type="radio" id="support_three" name="support" value="twenty_four_seven">
+            <input autocomplete="off" class="js-product-input" type="radio" id="support_three" name="support" value="advanced">
             <label for="support_three">
               24 hours, 7 days a week<br />
               <small class="u-text-light">Phone and ticket support</small>
@@ -122,12 +122,13 @@
     <section class="p-strip--light is-shallow js-shop-step--add">
       <div class="row">
         <div class="col-12">
-          <a
+          <!-- <a
             href="#ua-payment-modal"
             id="showModal"
             class="js-ua-payment-cta p-button--positive u-no-margin--bottom"
             data-transaction-type="purchase"
-          >Add</a>
+          >Add</a> -->
+          <p class="js-shop-product-id"></p>
         </div>
       </div>
     </section>
