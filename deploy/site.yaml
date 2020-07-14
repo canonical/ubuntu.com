@@ -135,6 +135,11 @@ production:
     }
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
+  nginxServerSnippet: |
+    location /wp-content/uploads/ {
+      proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
+    }
+
 # Overrides for staging
 staging:
   replicas: 3
@@ -201,3 +206,8 @@ staging:
     }
     more_set_headers "X-Robots-Tag: noindex";
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
+
+  nginxServerSnippet: |
+    location /wp-content/uploads/ {
+      proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
+    }
