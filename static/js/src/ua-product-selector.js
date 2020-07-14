@@ -2,7 +2,7 @@ import { StateManager } from "./utils/state.js";
 
 function productSelection() {
   const form = document.querySelector(".js-shop-form");
-  const steps = ["type", "quantity", "support"];
+  const steps = ["type", "quantity", "support", "add"];
   const stepClassPrefix = "js-shop-step--";
   let productState = new StateManager(steps, render);
 
@@ -49,7 +49,13 @@ function productSelection() {
       quantityInput.value = 0;
       quantityTypeEl.innerHTML = `${inputElement.dataset.productName}s`;
       updateProductState(inputElement);
-    } else if (validQuantity || step !== "quantity") {
+    } else if (step === "quantity") {
+      if (validQuantity) {
+        updateProductState(inputElement);
+      } else {
+        productState.reset("quantity");
+      }
+    } else {
       updateProductState(inputElement);
     }
   }
