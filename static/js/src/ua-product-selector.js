@@ -23,7 +23,7 @@ function productSelection() {
     steps.forEach((step) => {
       const wrapper = form.querySelector(`.${stepClassPrefix}${step}`);
 
-      wrapper.classList.add("u-disable");
+      wrapper.classList.add("u-hide");
     });
   }
 
@@ -31,7 +31,7 @@ function productSelection() {
     steps.forEach((step) => {
       const wrapper = form.querySelector(`.${stepClassPrefix}${step}`);
 
-      wrapper.classList.remove("u-disable");
+      wrapper.classList.remove("u-hide");
     });
   }
 
