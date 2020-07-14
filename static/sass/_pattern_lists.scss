@@ -7,14 +7,15 @@
   @include ubuntu-p-ordered-legal-list;
   @include ubuntu-p-inline-list-middot;
   @include ubuntu-p-list-small;
+  @include ubuntu-p-form-list-ticked;
 }
 
 @mixin ubuntu-p-inline-list-icons {
-  $color-twitter:   #1da1f2;
-  $color-google:    #dc4e41;
-  $color-linkedin:  #0274b3;
-  $color-facebook:  #3b5898;
-  $color-rss:       #ea781a;
+  $color-twitter: #1da1f2;
+  $color-google: #dc4e41;
+  $color-linkedin: #0274b3;
+  $color-facebook: #3b5898;
+  $color-rss: #ea781a;
 
   %list-link {
     display: block;
@@ -76,18 +77,17 @@
 }
 
 @mixin ubuntu-p-is-trisected {
-  [class*='p-list'] {
+  [class*="p-list"] {
     &.is-trisected {
-
       @media (min-width: $breakpoint-medium) {
         display: flex;
         flex-wrap: wrap;
 
         .p-list__item {
           margin-right: $sp-medium;
-          width: calc(33.33% - .75rem);
+          width: calc(33.33% - 0.75rem);
 
-          &:nth-child(3n+3) {
+          &:nth-child(3n + 3) {
             margin-right: 0;
           }
 
@@ -166,7 +166,8 @@
   // https://github.com/canonical-web-and-design/vanilla-framework/issues/2489
   // https://github.com/canonical-web-and-design/vanilla-framework/issues/2518
   h3.p-stepped-list__title, //sass-lint:disable-line no-qualifying-elements
-  p.p-stepped-list__title { //sass-lint:disable-line no-qualifying-elements
+  p.p-stepped-list__title {
+    //sass-lint:disable-line no-qualifying-elements
     display: inline-block;
     padding-left: 2rem;
     position: relative;
@@ -178,11 +179,13 @@
     }
   }
 
-  h3.p-stepped-list__title { //sass-lint:disable-line no-qualifying-elements
+  h3.p-stepped-list__title {
+    //sass-lint:disable-line no-qualifying-elements
     padding-left: 3.5rem;
   }
 
-  p.p-stepped-list__title { //sass-lint:disable-line no-qualifying-elements
+  p.p-stepped-list__title {
+    //sass-lint:disable-line no-qualifying-elements
     padding-left: 2rem;
 
     &::before {
@@ -257,8 +260,8 @@
       // sass-lint:disable-block nesting-depth
       .p-inline-list__item {
         &::after {
-          bottom: .5rem;
-          right: -.75rem;
+          bottom: 0.5rem;
+          right: -0.75rem;
           top: 1rem;
         }
       }
@@ -270,7 +273,7 @@
         height: 0;
         margin-bottom: auto;
         margin-top: auto;
-        right: -.65em;
+        right: -0.65em;
         top: 0;
       }
     }
@@ -285,7 +288,7 @@
     padding-left: 0;
 
     .p-p--small + & {
-      margin-top: - $sp-unit * 1;
+      margin-top: -$sp-unit * 1;
     }
 
     &.is-dense {
@@ -303,20 +306,28 @@
       display: block;
 
       & .p-list__item {
-        margin-bottom: .25rem;
+        margin-bottom: 0.25rem;
 
         &:not(:last-child) {
-          padding-bottom: .25rem;
+          padding-bottom: 0.25rem;
         }
 
         &:not(:last-child) {
           @extend %vf-pseudo-border--bottom;
 
           &::after {
-            background-color: transparentize($color-mid-light, .5);
+            background-color: transparentize($color-mid-light, 0.5);
           }
         }
       }
+    }
+  }
+}
+
+@mixin ubuntu-p-form-list-ticked {
+  form {
+    .p-list__item.is-ticked {
+      background-position-y: 0.43rem;
     }
   }
 }
