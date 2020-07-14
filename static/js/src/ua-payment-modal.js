@@ -114,24 +114,17 @@ function attachCTAevents(selector) {
       } else if (currentTransaction.type === "purchase") {
         // TODO: for demo purposes only, remove when we have real endpoints and data and data
         const form = cta.closest("form");
-        const selectedProducts = form.querySelectorAll(
-          'input[type="checkbox"]:checked'
+        const selectedProduct = form.querySelector(
+          'input[type="radio"]:checked'
         );
-        const products = [];
+        const quantityInput = form.querySelector(`[name="quantity"]`);
+        const product = {
+          name: selectedProduct.value,
+          quantity: quantityInput.value,
+          unitPrice: selectedProduct.dataset.unitPrice,
+        };
 
-        selectedProducts.forEach((input) => {
-          const quantityInput = form.querySelector(
-            `[data-product="${input.id}"]`
-          );
-
-          products.push({
-            name: input.value,
-            quantity: quantityInput.value,
-            unitPrice: quantityInput.dataset.unitPrice,
-          });
-        });
-
-        setOrderInformation(products, modal);
+        setOrderInformation([product], modal);
       }
     });
   });
