@@ -112,16 +112,9 @@ class AdvantageContracts:
         return {}
 
     def get_marketplace_product_listings(self, marketplace: str) -> dict:
-        try:
-            response = self._request(
-                method="get",
-                path=f"v1/marketplace/{marketplace}/product-listings",
-            )
-        except HTTPError as http_error:
-            print(http_error)
-            if http_error.code == 500:
-                return response.json()
-            else:
-                raise http_error
+        response = self._request(
+            method="get",
+            path=f"v1/marketplace/{marketplace}/product-listings",
+        )
 
         return response.json()
