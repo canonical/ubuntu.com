@@ -380,6 +380,8 @@ def cve_index():
         query=query,
         package=package,
         component=component,
+        versions=flask.request.args.getlist("version"),
+        statuses=flask.request.args.getlist("status"),
     )
 
 
