@@ -23,7 +23,7 @@ function productSelection() {
     steps.forEach((step) => {
       const wrapper = form.querySelector(`.${stepClassPrefix}${step}`);
 
-      wrapper.classList.add("u-hide");
+      wrapper.classList.add("u-disable");
     });
   }
 
@@ -31,32 +31,29 @@ function productSelection() {
     steps.forEach((step) => {
       const wrapper = form.querySelector(`.${stepClassPrefix}${step}`);
 
-      wrapper.classList.remove("u-hide");
+      wrapper.classList.remove("u-disable");
     });
   }
 
   function handleStepSpecificAction(inputElement) {
     const step = inputElement.name;
     const validQuantity = step === "quantity" && inputElement.value > 0;
+    const quantityTypeEl = document.querySelector(".js-type-name");
 
-    if (step === "type") {
-      const quantityTypeEl = document.querySelector(".js-type-name");
-      const quantityInput = document.querySelector("input[name='quantity']");
-
-      quantityInput.value = 0;
-      quantityTypeEl.innerHTML = `${inputElement.dataset.productName}s`;
-      updateProductState(inputElement);
-    } else if (step === "quantity") {
-      if (validQuantity) {
+    switch (step) {
+      case "type":
+        quantityTypeEl.innerHTML = `${inputElement.dataset.productName}s`;
         updateProductState(inputElement);
-      } else {
-        productState.reset("quantity");
-      }
-    } else if (step === "support") {
-      updateProductState(inputElement);
-      updateCartLineItem();
-    } else {
-      updateProductState(inputElement);
+        break;
+      case "quantity":
+        if (validQuantity) {
+          updateProductState(inputElement);
+        } else {
+          productState.reset("quantity");
+        }
+        break;
+      default:
+        updateProductState(inputElement);
     }
   }
 
@@ -99,15 +96,10 @@ function productSelection() {
   }
 
   function updateProductState(inputElement) {
-    const stepIndex = steps.indexOf(inputElement.name);
-    const subsequentSteps = steps.slice(stepIndex + 1);
-
     productState.set(inputElement.name, [inputElement.value]);
 
-    if (subsequentSteps) {
-      subsequentSteps.forEach((step) => {
-        productState.reset(step);
-      });
+    if (productState.get("support")[0]) {
+      updateCartLineItem();
     }
   }
 }
