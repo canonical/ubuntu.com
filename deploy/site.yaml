@@ -23,6 +23,12 @@ env:
       key: secret
       name: launchpad-imagebuild
 
+  - name: CONTRACTS_API_URL
+    configMapKeyRef:
+      key: url
+      name: contracts-api
+      optional: true
+
   - name: SENTRY_DSN
     value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
