@@ -279,6 +279,17 @@ app.add_url_rule(
 )
 tutorials_docs.init_app(app)
 
+# Ceph docs
+ceph_docs = DiscourseDocs(
+    parser=DocParser(
+        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs",
+    ),
+    document_template="/ceph/document.html",
+    url_prefix="/ceph/docs",
+    blueprint_name="ceph",
+)
+ceph_docs.init_app(app)
+
 
 @app.after_request
 def cache_headers(response):

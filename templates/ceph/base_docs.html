@@ -1,0 +1,40 @@
+{% extends "templates/base.html" %}
+
+{% block outer_content %}
+<div class="l-documentation">
+  <div class="l-documentation__sidebar">
+    <aside class="p-sidebar" id="navigation">
+      <div class="p-sidebar__banner u-hide--medium u-hide--large">
+        <i class="p-sidebar__toggle p-icon--menu"></i>
+      </div>
+      <div class="p-sidebar__content u-hide--small">
+        <nav class="p-sidebar-nav">
+          {{ navigation | safe }}
+        </nav>
+      </div>
+    </aside>
+  </div>
+
+  <div class="l-documentation__content p-content">
+    {% block content_docs %}{% endblock %}
+  </div>
+</div>
+
+<script>
+  const path = window.location.pathname;
+  const active = document.querySelector(`.p-sidebar a[href="${path}"]`);
+  if (active) {
+    active.classList.add("is-active");
+  }
+
+  const toggleSidebar = document.querySelector(".p-sidebar__toggle");
+  const sidebar = document.querySelector(".p-sidebar__content");
+  if (toggleSidebar) {
+    toggleSidebar.addEventListener("click", function(e) {
+      sidebar.classList.toggle("u-hide--small");
+      toggleSidebar.classList.toggle("p-icon--close");
+      toggleSidebar.classList.toggle("p-icon--menu");
+    });
+  }
+</script>
+{% endblock %}
