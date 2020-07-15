@@ -14,17 +14,11 @@ function initTabs() {
 
   tabLinks.forEach((link) => {
     link.addEventListener("click", function (event) {
-      if (link.dataset.noscroll) {
-        // prevent the page jumping around when switching tabs,
-        // whilst still using :target
-        // https://gist.github.com/pimterry/260841c2104f27cadc954a29b9873b96#file-disable-link-jump-with-workaround-js
-        event.preventDefault();
-        history.pushState({}, "", link.href);
+      if (link.dataset.nohash) {
+        const target = link.getAttribute("aria-controls");
 
-        // Update the URL again with the same hash, then go back
-        history.pushState({}, "", link.href);
-        history.back();
-        setActiveTab(false);
+        event.preventDefault();
+        setActiveTab(false, `#${target}`);
       } else {
         setActiveTab(true);
       }
@@ -36,20 +30,20 @@ function initTabs() {
   window.addEventListener(
     "hashchange",
     function () {
-      setActiveTab();
+      setActiveTab(true);
     },
     false
   );
 
-  function setActiveTab(scroll) {
-    var urlHash = window.location.hash;
+  function setActiveTab(scroll, target) {
+    const hash = target || window.location.hash;
 
     tabLinks.forEach((link) => {
-      if (urlHash) {
+      if (hash) {
         const id = link.getAttribute("aria-controls");
         const tabContent = document.getElementById(id);
 
-        if (`#${id}` === urlHash) {
+        if (`#${id}` === hash) {
           link.setAttribute("aria-selected", true);
           tabContent.classList.remove("u-hide");
 
