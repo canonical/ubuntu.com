@@ -2,7 +2,7 @@ import { StateManager } from "./utils/state.js";
 
 function productSelection() {
   const form = document.querySelector(".js-shop-form");
-  const steps = ["type", "quantity", "support", "add"];
+  const steps = ["type", "quantity", "version", "support", "add"];
   const stepClassPrefix = "js-shop-step--";
   let productState = new StateManager(steps, render);
 
@@ -11,10 +11,27 @@ function productSelection() {
 
   function attachEvents() {
     const productInputs = form.querySelectorAll(".js-product-input");
+    const versionTabs = form.querySelectorAll(
+      ".js-shop-step--version .p-tabs__link"
+    );
 
     productInputs.forEach((input) => {
       input.addEventListener("input", (e) => {
         handleStepSpecificAction(e.target);
+      });
+    });
+
+    versionTabs.forEach((tab) => {
+      tab.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (e.target.id === "other-tab") {
+          disableSteps(["support", "add"]);
+        } else if (productState.get("support")[0]) {
+          enableSteps(["support", "add"]);
+        } else {
+          enableSteps(["support"]);
+        }
       });
     });
   }
@@ -47,6 +64,7 @@ function productSelection() {
         break;
       case "quantity":
         if (validQuantity) {
+          productState.set("version", ["N/A"]);
           updateProductState(inputElement);
         } else {
           productState.reset("quantity");
