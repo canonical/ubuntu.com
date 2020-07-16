@@ -1,0 +1,14 @@
+
+{% extends "ceph/base_docs.html" %}
+
+{% block title %} {{ document.title }} | Server documentation{% endblock %}
+
+{% block content_docs %}
+<div class="p-strip is-shallow">
+    <div class="p-content__row">
+        {{ document.body_html | safe }}
+    </div>
+</div>
+
+{% endblock %}
+

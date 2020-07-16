@@ -115,6 +115,22 @@ class TestRoutes(VCRTestCase):
 
         self.assertEqual(self.client.get("/advantage").status_code, 200)
 
+    def test_ceph(self):
+        """
+        When given the ceph docs URL,
+        we should return a 200 status code
+        """
+
+        self.assertEqual(self.client.get("/ceph").status_code, 200)
+
+    def test_ceph_docs(self):
+        """
+        When given the ceph docs URL,
+        we should return a 200 status code
+        """
+
+        self.assertEqual(self.client.get("/ceph/docs").status_code, 200)
+
     def test_not_found(self):
         """
         When given a non-existent URL,
