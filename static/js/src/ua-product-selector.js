@@ -3,7 +3,7 @@ import { StateManager } from "./utils/state.js";
 function productSelection() {
   const form = document.querySelector(".js-shop-form");
   const steps = ["type", "quantity", "version", "support", "add"];
-  const stepClassPrefix = "js-shop-step--";
+  const stepClassPrefix = ".js-shop-step--";
   let productState = new StateManager(steps, render);
 
   attachEvents();
@@ -24,21 +24,28 @@ function productSelection() {
     versionTabs.forEach((tab) => {
       tab.addEventListener("click", (e) => {
         e.preventDefault();
-
-        if (e.target.id === "other-tab") {
-          disableSteps(["support", "add"]);
-        } else if (productState.get("support")[0]) {
-          enableSteps(["support", "add"]);
-        } else {
-          enableSteps(["support"]);
-        }
+        checkVersion(e.target.getAttribute("href"));
       });
     });
   }
 
+  function checkVersion(value) {
+    let valueToSet = value || "#";
+
+    productState.set("version", [valueToSet]);
+
+    if (!value) {
+      enableSteps(["support"]);
+    } else if (value === "#other") {
+      disableSteps(["support", "add"]);
+    } else {
+      enableSteps(["support", "add"]);
+    }
+  }
+
   function disableSteps(steps) {
     steps.forEach((step) => {
-      const wrapper = form.querySelector(`.${stepClassPrefix}${step}`);
+      const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
 
       wrapper.classList.add("u-disable");
     });
@@ -46,7 +53,7 @@ function productSelection() {
 
   function enableSteps(steps) {
     steps.forEach((step) => {
-      const wrapper = form.querySelector(`.${stepClassPrefix}${step}`);
+      const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
 
       wrapper.classList.remove("u-disable");
     });
@@ -55,6 +62,7 @@ function productSelection() {
   function handleStepSpecificAction(inputElement) {
     const step = inputElement.name;
     const validQuantity = step === "quantity" && inputElement.value > 0;
+    const version = productState.get("version")[0];
     const quantityTypeEl = document.querySelector(".js-type-name");
 
     switch (step) {
@@ -64,11 +72,12 @@ function productSelection() {
         break;
       case "quantity":
         if (validQuantity) {
-          productState.set("version", ["N/A"]);
           updateProductState(inputElement);
         } else {
           productState.reset("quantity");
         }
+
+        checkVersion(version);
         break;
       default:
         updateProductState(inputElement);
@@ -104,6 +113,7 @@ function productSelection() {
 
   function updateCartLineItem() {
     const cartName = form.querySelector(".js-shop-product-id");
+    const cartStep = form.querySelector(`${stepClassPrefix}add`);
     const quantity = productState.get("quantity")[0];
     const support = productState.get("support")[0];
     const type = productState.get("type")[0];
@@ -111,14 +121,18 @@ function productSelection() {
     const productString = `uai-${support}-${type} x ${quantity}`;
 
     cartName.innerHTML = `Your selected product id is ${productString}`;
+
+    if (type && quantity && support) {
+      cartStep.classList.remove("u-hide");
+    } else {
+      cartStep.classList.add("u-hide");
+    }
   }
 
   function updateProductState(inputElement) {
     productState.set(inputElement.name, [inputElement.value]);
 
-    if (productState.get("support")[0]) {
-      updateCartLineItem();
-    }
+    updateCartLineItem();
   }
 }
 
