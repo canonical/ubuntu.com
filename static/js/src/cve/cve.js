@@ -5,6 +5,7 @@ const searchInput = document.querySelector("#q");
 function handleCveIdInput(value) {
   const packageInput = document.querySelector("#package");
   const priorityInput = document.querySelector("#priority");
+  const componentInput = document.querySelector("#component");
   const searchButtonText = document.querySelector(".cve-search-text");
   const searchButtonValidCveText = document.querySelector(
     ".cve-search-valid-cve-text"
@@ -16,9 +17,11 @@ function handleCveIdInput(value) {
 
     disableField(packageInput);
     disableField(priorityInput);
+    disableField(componentInput);
   } else {
     enableField(packageInput);
     enableField(priorityInput);
+    enableField(componentInput);
 
     searchButtonText.classList.remove("u-hide");
     searchButtonValidCveText.classList.add("u-hide");
