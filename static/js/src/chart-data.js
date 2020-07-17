@@ -1303,8 +1303,8 @@ export var openStackStatus = {
   TECH_PREVIEW: "chart__bar--orange-light",
   LTS: "chart__bar--orange",
   MATCHING_OPENSTACK_RELEASE_SUPPORT: "chart__bar--grey",
-  EXTENDED_SUPPORT_FOR_CUSTOMERS: "chart__bar--aubergine",
-  EXTENDED_SUPPORT_MAINTENANCE: "chart__bar--green",
+  EXTENDED_SUPPORT_MAINTENANCE: "chart__bar--aubergine",
+  EXTENDED_SUPPORT_FOR_CUSTOMERS: "chart__bar--green",
 };
 
 export var kubernetesStatus = {
