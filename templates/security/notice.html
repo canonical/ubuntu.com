@@ -3,19 +3,12 @@
 {% block title %}{{ notice.id }}: {{ notice.title }} | Ubuntu security notices{% endblock %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
+<section class="p-strip--suru-topped">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
 	    <h1>{{ notice.id }}: {{ notice.title }}</h1>
       <p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
       <p>{{ notice.summary | safe }}</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-12">
       <h2>Releases</h2>
       <ul class="p-inline-list u-no-margin--bottom">
         {% for release in notice.releases %}
