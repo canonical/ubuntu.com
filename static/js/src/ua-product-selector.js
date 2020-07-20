@@ -11,6 +11,7 @@ function productSelection() {
 
   function attachEvents() {
     const productInputs = form.querySelectorAll(".js-product-input");
+    const publicCloudInputs = form.querySelectorAll(".js-public-cloud-input");
     const versionTabs = form.querySelectorAll(
       ".js-shop-step--version .p-tabs__link"
     );
@@ -18,6 +19,12 @@ function productSelection() {
     productInputs.forEach((input) => {
       input.addEventListener("input", (e) => {
         handleStepSpecificAction(e.target);
+      });
+    });
+
+    publicCloudInputs.forEach((input) => {
+      input.addEventListener("input", (e) => {
+        disableSteps(["quantity", "version", "support", "add"]);
       });
     });
 
