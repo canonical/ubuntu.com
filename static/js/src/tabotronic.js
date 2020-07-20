@@ -1,4 +1,4 @@
-function initTabs() {
+(function () {
   const tabLinks = document.querySelectorAll(".p-tabs__link");
   const tabContent = document.querySelectorAll(".p-tabs__content");
 
@@ -6,47 +6,45 @@ function initTabs() {
     const link = document.querySelector(
       `#${tab.getAttribute("aria-labelledby")}`
     );
-
     if (link && link.getAttribute("aria-selected") !== "true") {
       tab.classList.add("u-hide");
     }
   });
 
   tabLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      setActiveTab();
+    link.addEventListener("click", function (e) {
+      const panelToOpen = e.target.getAttribute("aria-controls");
+      if (panelToOpen) {
+        tabClickHandler(e.target, panelToOpen);
+      }
     });
   });
 
-  document.addEventListener("DOMContentLoaded", setActiveTab());
-
-  window.addEventListener(
-    "hashchange",
-    () => {
-      setActiveTab();
-    },
-    false
-  );
-
-  function setActiveTab() {
-    const hash = window.location.hash;
-
+  function tabClickHandler(tabElement, panelToOpen) {
+    const container = tabElement.closest(".js-tab-container");
+    const tabLinks = container.querySelectorAll(".p-tabs__link");
+    const panels = container.querySelectorAll(".p-tabs__content");
+    const panelElement = container.querySelector(`#${panelToOpen}`);
     tabLinks.forEach((link) => {
-      if (hash) {
-        const id = link.getAttribute("aria-controls");
-        const tabContent = document.getElementById(id);
-
-        if (`#${id}` === hash) {
-          link.setAttribute("aria-selected", true);
-          tabContent.classList.remove("u-hide");
-          tabContent.scrollIntoView();
-        } else {
-          link.setAttribute("aria-selected", false);
-          tabContent.classList.add("u-hide");
-        }
-      }
+      link.setAttribute("aria-selected", false);
     });
+    tabElement.setAttribute("aria-selected", true);
+    panels.forEach((panel) => {
+      panel.classList.add("u-hide");
+    });
+    panelElement.classList.remove("u-hide");
+    panelElement.scrollIntoView();
   }
-}
 
-initTabs();
+  function hashChange() {
+    const id = window.location.hash.replace("#", "");
+    const tab = document.querySelector(`[aria-controls="${id}"]`);
+    if (tab) {
+      tabClickHandler(tab, id);
+    }
+  }
+
+  window.addEventListener("hashchange", function () {
+    hashChange();
+  });
+})();
