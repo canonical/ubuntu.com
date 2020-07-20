@@ -6,10 +6,10 @@ function productSelection() {
   const stepClassPrefix = ".js-shop-step--";
   let productState = new StateManager(steps, render);
 
-  attachEvents();
-  setActiveSteps();
+  init();
+  render();
 
-  function attachEvents() {
+  function init() {
     const productInputs = form.querySelectorAll(".js-product-input");
     const publicCloudInputs = form.querySelectorAll(".js-public-cloud-input");
     const versionTabs = form.querySelectorAll(
@@ -23,7 +23,7 @@ function productSelection() {
     });
 
     publicCloudInputs.forEach((input) => {
-      input.addEventListener("input", (e) => {
+      input.addEventListener("input", () => {
         disableSteps(["quantity", "version", "support", "add"]);
       });
     });
@@ -31,23 +31,9 @@ function productSelection() {
     versionTabs.forEach((tab) => {
       tab.addEventListener("click", (e) => {
         e.preventDefault();
-        checkVersion(e.target.getAttribute("href"));
+        productState.set("version", [tab.getAttribute("href")]);
       });
     });
-  }
-
-  function checkVersion(value) {
-    let valueToSet = value || "#";
-
-    productState.set("version", [valueToSet]);
-
-    if (!value) {
-      enableSteps(["support"]);
-    } else if (value === "#other") {
-      disableSteps(["support", "add"]);
-    } else {
-      enableSteps(["support", "add"]);
-    }
   }
 
   function disableSteps(steps) {
@@ -69,7 +55,6 @@ function productSelection() {
   function handleStepSpecificAction(inputElement) {
     const step = inputElement.name;
     const validQuantity = step === "quantity" && inputElement.value > 0;
-    const version = productState.get("version")[0];
     const quantityTypeEl = document.querySelector(".js-type-name");
 
     switch (step) {
@@ -83,8 +68,6 @@ function productSelection() {
         } else {
           productState.reset("quantity");
         }
-
-        checkVersion(version);
         break;
       default:
         updateProductState(inputElement);
@@ -93,6 +76,7 @@ function productSelection() {
 
   function render() {
     setActiveSteps();
+    setVersionTabs();
   }
 
   function setActiveSteps() {
@@ -101,11 +85,13 @@ function productSelection() {
     let i = 0;
 
     steps.forEach((step) => {
-      if (!productState.get(step)[0]) {
-        stepsToEnable = steps.slice(0, i + 1);
-        stepsToDisable = steps.slice(i + 1);
-      } else if (i < steps.length) {
-        i++;
+      if (stepsToEnable === undefined) {
+        if (!productState.get(step)[0]) {
+          stepsToEnable = steps.slice(0, i + 1);
+          stepsToDisable = steps.slice(i + 1);
+        } else if (i < steps.length) {
+          i++;
+        }
       }
     });
 
@@ -116,6 +102,39 @@ function productSelection() {
     if (stepsToDisable) {
       disableSteps(stepsToDisable);
     }
+  }
+
+  function setVersionTabs() {
+    const versionTabs = form.querySelectorAll(
+      ".js-shop-step--version .p-tabs__link"
+    );
+    const version = productState.get("version")[0];
+    const quantity = productState.get("quantity")[0];
+
+    if (version === "#other") {
+      // disable the rest of the form
+      disableSteps(["support", "add"]);
+    } else if (quantity) {
+      // user has completed the form up to this
+      // point, enable the rest of the form
+      enableSteps(["support", "add"]);
+    }
+
+    versionTabs.forEach((tab) => {
+      const tabContentID = tab.getAttribute("href");
+      const target = form.querySelector(tabContentID);
+
+      if (!version && tab.getAttribute("aria-selected") === "true") {
+        // set initial state on load
+        productState.set("version", [tab.getAttribute("href")]);
+      } else if (tabContentID === version) {
+        tab.setAttribute("aria-selected", true);
+        target.classList.remove("u-hide");
+      } else {
+        tab.setAttribute("aria-selected", false);
+        target.classList.add("u-hide");
+      }
+    });
   }
 
   function updateCartLineItem() {
