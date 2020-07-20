@@ -33,4 +33,4 @@ This whitepaper:
 
 Also, watch the ‘From VMware to Charmed OpenStack’ <a href="#webinar">webinar</a> for a demonstration showing how to migrate an IT workload from VMware to Charmed OpenStack using the Cloud Migration as a Service tool from Cloudbase Solutions - Coriolis®.
 
-Coriolis is the simplest way to migrate Windows or Linux virtual machines alongside their associated storage and networking configurations across multiple cloud platforms. Among the advantages of Coriolis are it’s scalable architecture, agentless design, integrated scheduler and REST API allowing automated operations.
+Coriolis is the simplest way to migrate Windows or Linux virtual machines alongside their associated storage and networking configurations across multiple cloud platforms. Among the advantages of Coriolis are its scalable architecture, agentless design, integrated scheduler and REST API allowing automated operations.

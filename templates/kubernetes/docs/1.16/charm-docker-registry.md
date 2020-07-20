@@ -249,7 +249,7 @@ juju run-action --wait docker-registry/0 start
 | <a id="table-tls-cert-blob"> </a> tls-cert-blob | string |  | Base64 encoded TLS certificate (overwrites tls-cert-path file).  |
 | <a id="table-tls-cert-path"> </a> tls-cert-path | string | [See notes](#tls-cert-path-default) | Path to the TLS certificate.  |
 | <a id="table-tls-key-blob"> </a> tls-key-blob | string |  | Base64 encoded TLS certificate private key (overwrites tls-key-path file).  |
-| <a id="table-tls-key-path"> </a> tls-key-path | string | [See notes](#tls-key-path-default) | Path the the TLS certificate private key.  |
+| <a id="table-tls-key-path"> </a> tls-key-path | string | [See notes](#tls-key-path-default) | Path to the TLS certificate private key.  |
 
 ---
 
