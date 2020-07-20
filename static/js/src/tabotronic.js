@@ -13,15 +13,8 @@ function initTabs() {
   });
 
   tabLinks.forEach((link) => {
-    link.addEventListener("click", function (event) {
-      if (link.dataset.nohash) {
-        const target = link.getAttribute("aria-controls");
-
-        event.preventDefault();
-        setActiveTab(false, `#${target}`);
-      } else {
-        setActiveTab(true);
-      }
+    link.addEventListener("click", () => {
+      setActiveTab();
     });
   });
 
@@ -29,14 +22,14 @@ function initTabs() {
 
   window.addEventListener(
     "hashchange",
-    function () {
-      setActiveTab(true);
+    () => {
+      setActiveTab();
     },
     false
   );
 
-  function setActiveTab(scroll, target) {
-    const hash = target || window.location.hash;
+  function setActiveTab() {
+    const hash = window.location.hash;
 
     tabLinks.forEach((link) => {
       if (hash) {
@@ -46,10 +39,7 @@ function initTabs() {
         if (`#${id}` === hash) {
           link.setAttribute("aria-selected", true);
           tabContent.classList.remove("u-hide");
-
-          if (scroll) {
-            tabContent.scrollIntoView();
-          }
+          tabContent.scrollIntoView();
         } else {
           link.setAttribute("aria-selected", false);
           tabContent.classList.add("u-hide");
