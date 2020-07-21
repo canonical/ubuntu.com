@@ -67,11 +67,17 @@ describe("StateManager", () => {
   });
 
   describe("push()", () => {
-    it("should add a given item to a given key's array of values", () => {
-      const expectedValue = "bar";
+    const key = "one";
+    const item = "bar";
 
-      state.push("one", expectedValue);
-      expect(state.get("one")).toEqual([expectedValue]);
+    it("should add a given item to a given key's array of values", () => {
+      state.push(key, item);
+      expect(state.get("one")).toEqual([item]);
+    });
+
+    it("should invoke the callback function ", () => {
+      state.push(key, item);
+      expect(callback).toHaveBeenCalled();
     });
   });
 
@@ -90,6 +96,12 @@ describe("StateManager", () => {
       state.remove(key, undefined);
       expect(consoleSpy).toHaveBeenCalled();
     });
+
+    it("should invoke the callback function ", () => {
+      state.set(key, items);
+      state.remove(key, "foo");
+      expect(callback).toHaveBeenCalled();
+    });
   });
 
   describe("reset()", () => {
@@ -104,6 +116,12 @@ describe("StateManager", () => {
     it("should return an error if no value is passed", () => {
       state.reset(undefined);
       expect(consoleSpy).toHaveBeenCalled();
+    });
+
+    it("should invoke the callback function ", () => {
+      state.push("one", "foo");
+      state.reset("one");
+      expect(callback).toHaveBeenCalled();
     });
   });
 });
