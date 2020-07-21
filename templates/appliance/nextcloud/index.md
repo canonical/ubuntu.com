@@ -1,13 +1,13 @@
 ---
 wrapper_template: "appliance/shared/_base_appliance_index.html"
 context:
-  name: "NextCloud"
+  name: "Nextcloud"
   short_name: "nextcloud"
-  appliance_name: "NextCloud"
-  company_name: "NextCloud"
+  appliance_name: "Nextcloud"
+  company_name: "Nextcloud"
   logo: "https://dashboard.snapcraft.io/site_media/appmedia/2016/06/icon.svg_1.png"
   category: "Collaboration"
-  meta_description: "Take control of your data with NextCloud, a completely integrated on-premises platform for online content collaboration and data storage out of the box."
+  meta_description: "Take control of your data with Nextcloud, a completely integrated on-premises platform for online content collaboration and data storage out of the box."
   downloads:
     raspberrypi: True
     pc: True
@@ -17,10 +17,10 @@ context:
     2: https://dashboard.snapcraft.io/site_media/appmedia/2018/10/Screenshot_from_2018-10-26_09-48-50.png
   links:
     1:
-      title: "NextCloud privacy policies"
+      title: "Nextcloud privacy policies"
       url: "https://nextcloud.com/privacy/"
     2:
-      title: "NextCloud website"
+      title: "Nextcloud website"
       url: "https://nextcloud.com/"
     3:
       title: "Nextcloud Enterprise FAQ"
@@ -34,10 +34,10 @@ context:
   certification_note: "Not guaranteed to work on the Raspberry Pi 3A+"
   snaps:
     1:
-      name: "NextCloud"
+      name: "Nextcloud"
       icon: "https://dashboard.snapcraft.io/site_media/appmedia/2016/06/icon.svg_1.png"
       link: "https://snapcraft.io/nextcloud"
-      publisher: "NextCloud"
+      publisher: "Nextcloud"
       channel: "latest/stable"
       version: "18.0.4"
       published_date: "22 May 2020"
