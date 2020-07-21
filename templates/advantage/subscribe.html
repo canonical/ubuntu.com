@@ -52,7 +52,7 @@
         </div>
 
         <div class="col-4 p-card--radio">
-          <input autocomplete="off" class="js-public-cloud-input" type="radio" id="type_four" name="type" value="4">
+          <input autocomplete="off" class="js-product-input" type="radio" id="type_four" name="type" value="aws">
           <label for="type_four" style="background-image: url('https://assets.ubuntu.com/v1/a82add58-profile-aws.svg');">
             Amazon Web Services<br />
             <small class="u-text-light">Public cloud</small>
@@ -61,11 +61,39 @@
         </div>
 
         <div class="col-4 p-card--radio">
-          <input autocomplete="off" class="js-public-cloud-input" type="radio" id="type_five" name="type" value="5">
+          <input autocomplete="off" class="js-product-input" type="radio" id="type_five" name="type" value="azure">
           <label for="type_five" style="background-image: url('https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png');">
             Microsoft Azure<br />
             <small class="u-text-light">Public cloud</small>
           </label>
+        </div>
+
+        <div id="aws" class="col-12 u-hide js-public-cloud-info" style="background-color: #f7f7f7; padding: 1.5rem;">
+          <p class="u-no-padding--top">We recommend buying for an hourly rate on the <b>AWS Marketplace:</b></p>
+  
+          <ul class="p-list u-no-margin--bottom">
+            <li class="p-list__item is-ticked">
+              <a href="https://aws.amazon.com/marketplace/search/results?filters=VendorId&VendorId=565feec9-3d43-413e-9760-c651546613f2&searchTerms=ubuntu+advantage" class="p-link--external">Ubuntu Advantage</a>
+            </li>
+            
+            <li class="p-list__item is-ticked">
+              <a href="https://aws.amazon.com/marketplace/search/results?filters=VendorId&VendorId=565feec9-3d43-413e-9760-c651546613f2&searchTerms=ubuntu+advantage" class="p-link--external">Ubuntu Pro</a> with all UA Essential features included
+            </li>
+          </ul>
+        </div>
+  
+        <div id="azure" class="col-12 u-hide js-public-cloud-info" style="background-color: #f7f7f7; padding: 1.5rem;">
+          <p class="u-no-padding--top">We recommend buying for an hourly rate on the <b>Azure Marketplace:</b></p>
+  
+          <ul class="p-list u-no-margin--bottom">
+            <li class="p-list__item is-ticked">
+              <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuAdvantageSupport" class="p-link--external">Ubuntu Advantage</a>
+            </li>
+            
+            <li class="p-list__item is-ticked">
+              <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuAdvantageSupport" class="p-link--external">Ubuntu Pro</a> with all UA Essential features included
+            </li>
+          </ul>
         </div>
       </div>
     </section>

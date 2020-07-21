@@ -6,7 +6,8 @@ function productSelection() {
 
   const cartName = form.querySelector(".js-shop-product-id");
   const cartStep = form.querySelector(`${stepClassPrefix}add`);
-  const quantityTypeEl = document.querySelector(".js-type-name");
+  const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
+  const quantityTypeEl = form.querySelector(".js-type-name");
   const steps = ["type", "quantity", "version", "support", "add"];
 
   let productState = new StateManager(steps, render);
@@ -16,7 +17,6 @@ function productSelection() {
 
   function init() {
     const productInputs = form.querySelectorAll(".js-product-input");
-    const publicCloudInputs = form.querySelectorAll(".js-public-cloud-input");
     const versionTabs = form.querySelectorAll(
       ".js-shop-step--version .p-tabs__link"
     );
@@ -24,12 +24,6 @@ function productSelection() {
     productInputs.forEach((input) => {
       input.addEventListener("input", (e) => {
         handleStepSpecificAction(e.target);
-      });
-    });
-
-    publicCloudInputs.forEach((input) => {
-      input.addEventListener("input", () => {
-        disableSteps(["quantity", "version", "support", "add"]);
       });
     });
 
@@ -59,21 +53,37 @@ function productSelection() {
 
   function handleStepSpecificAction(inputElement) {
     const step = inputElement.name;
+    const publicCloudTypes = ["aws", "azure"];
 
     switch (step) {
       case "type":
-        quantityTypeEl.innerHTML = `${inputElement.dataset.productName}s`;
-        updateProductState(inputElement);
+        publicCloudElements.forEach((el) => {
+          el.classList.add("u-hide");
+        });
+
+        if (publicCloudTypes.includes(inputElement.value)) {
+          const infoElement = document.querySelector(
+            `#${inputElement.value}.js-public-cloud-info`
+          );
+
+          infoElement.classList.remove("u-hide");
+          productState.set(inputElement.name, [inputElement.value]);
+          disableSteps(["quantity", "version", "support", "add"]);
+        } else {
+          quantityTypeEl.innerHTML = `${inputElement.dataset.productName}s`;
+          productState.set(inputElement.name, [inputElement.value]);
+        }
+
         break;
       case "quantity":
         if (inputElement.value > 0) {
-          updateProductState(inputElement);
+          productState.set(inputElement.name, [inputElement.value]);
         } else {
           productState.reset("quantity");
         }
         break;
       default:
-        updateProductState(inputElement);
+        productState.set(inputElement.name, [inputElement.value]);
     }
   }
 
@@ -153,10 +163,6 @@ function productSelection() {
     } else {
       cartStep.classList.add("u-hide");
     }
-  }
-
-  function updateProductState(inputElement) {
-    productState.set(inputElement.name, [inputElement.value]);
   }
 }
 
