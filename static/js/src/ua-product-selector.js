@@ -2,8 +2,13 @@ import { StateManager } from "./utils/state.js";
 
 function productSelection() {
   const form = document.querySelector(".js-shop-form");
-  const steps = ["type", "quantity", "version", "support", "add"];
   const stepClassPrefix = ".js-shop-step--";
+
+  const cartName = form.querySelector(".js-shop-product-id");
+  const cartStep = form.querySelector(`${stepClassPrefix}add`);
+  const quantityTypeEl = document.querySelector(".js-type-name");
+  const steps = ["type", "quantity", "version", "support", "add"];
+
   let productState = new StateManager(steps, render);
 
   init();
@@ -54,8 +59,6 @@ function productSelection() {
 
   function handleStepSpecificAction(inputElement) {
     const step = inputElement.name;
-    const validQuantity = step === "quantity" && inputElement.value > 0;
-    const quantityTypeEl = document.querySelector(".js-type-name");
 
     switch (step) {
       case "type":
@@ -63,7 +66,7 @@ function productSelection() {
         updateProductState(inputElement);
         break;
       case "quantity":
-        if (validQuantity) {
+        if (inputElement.value > 0) {
           updateProductState(inputElement);
         } else {
           productState.reset("quantity");
@@ -77,6 +80,7 @@ function productSelection() {
   function render() {
     setActiveSteps();
     setVersionTabs();
+    updateCartLineItem();
   }
 
   function setActiveSteps() {
@@ -138,17 +142,13 @@ function productSelection() {
   }
 
   function updateCartLineItem() {
-    const cartName = form.querySelector(".js-shop-product-id");
-    const cartStep = form.querySelector(`${stepClassPrefix}add`);
     const quantity = productState.get("quantity")[0];
     const support = productState.get("support")[0];
     const type = productState.get("type")[0];
-
     const productString = `uai-${support}-${type} x ${quantity}`;
 
-    cartName.innerHTML = `Your selected product id is ${productString}`;
-
     if (type && quantity && support) {
+      cartName.innerHTML = `Your selected product id is ${productString}`;
       cartStep.classList.remove("u-hide");
     } else {
       cartStep.classList.add("u-hide");
@@ -157,8 +157,6 @@ function productSelection() {
 
   function updateProductState(inputElement) {
     productState.set(inputElement.name, [inputElement.value]);
-
-    updateCartLineItem();
   }
 }
 
