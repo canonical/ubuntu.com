@@ -228,6 +228,15 @@
           </li>
         </ul>
         {% endif %}
+
+        {% if cve.bugs %}
+        <h2>Bugs</h2>
+        <ul>
+          {% for bug in cve.bugs %}
+          <li><a href="{{ bug }}">{{ bug }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </div>
     </div>
   </section>
