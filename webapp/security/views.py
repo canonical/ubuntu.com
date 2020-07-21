@@ -322,6 +322,7 @@ def cve_index():
     package = flask.request.args.get("package")
     limit = flask.request.args.get("limit", default=20, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
+    component = flask.request.args.get("component")
 
     is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
 
@@ -378,6 +379,7 @@ def cve_index():
         priority=priority,
         query=query,
         package=package,
+        component=component,
     )
 
 
