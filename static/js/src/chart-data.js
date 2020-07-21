@@ -1066,7 +1066,7 @@ export var openStackReleases = [
     startDate: new Date("2027-04-01T00:00:00"),
     endDate: new Date("2032-04-01T00:00:00"),
     taskName: "OpenStack Y LTS",
-    status: "EXTENDED_SUPPORT_MAINTENANCE",
+    status: "ESM",
   },
   {
     startDate: new Date("2022-04-01T00:00:00"),
@@ -1078,7 +1078,7 @@ export var openStackReleases = [
     startDate: new Date("2027-04-01T00:00:00"),
     endDate: new Date("2032-04-01T00:00:00"),
     taskName: "Ubuntu 22.04 LTS",
-    status: "EXTENDED_SUPPORT_MAINTENANCE",
+    status: "ESM",
   },
   {
     startDate: new Date("2022-04-01T00:00:00"),
@@ -1126,7 +1126,7 @@ export var openStackReleases = [
     startDate: new Date("2025-04-01T00:00:00"),
     endDate: new Date("2030-04-01T00:00:00"),
     taskName: "OpenStack Ussuri LTS",
-    status: "EXTENDED_SUPPORT_MAINTENANCE",
+    status: "ESM",
   },
   {
     startDate: new Date("2020-04-01T00:00:00"),
@@ -1138,7 +1138,7 @@ export var openStackReleases = [
     startDate: new Date("2025-04-01T00:00:00"),
     endDate: new Date("2030-04-01T00:00:00"),
     taskName: "Ubuntu 20.04 LTS",
-    status: "EXTENDED_SUPPORT_MAINTENANCE",
+    status: "ESM",
   },
   {
     startDate: new Date("2020-04-01T00:00:00"),
@@ -1186,7 +1186,7 @@ export var openStackReleases = [
     startDate: new Date("2023-04-20T00:00:00"),
     endDate: new Date("2028-04-01T00:00:00"),
     taskName: "OpenStack Queens LTS",
-    status: "EXTENDED_SUPPORT_MAINTENANCE",
+    status: "ESM",
   },
   {
     startDate: new Date("2018-04-20T00:00:00"),
@@ -1198,7 +1198,7 @@ export var openStackReleases = [
     startDate: new Date("2023-04-20T00:00:00"),
     endDate: new Date("2028-04-01T00:00:00"),
     taskName: "Ubuntu 18.04 LTS",
-    status: "EXTENDED_SUPPORT_MAINTENANCE",
+    status: "ESM",
   },
   {
     startDate: new Date("2018-02-01T00:00:00"),
@@ -1216,7 +1216,7 @@ export var openStackReleases = [
     startDate: new Date("2021-04-01T00:00:00"),
     endDate: new Date("2024-04-01T00:00:00"),
     taskName: "OpenStack Mitaka LTS",
-    status: "EXTENDED_SUPPORT_MAINTENANCE",
+    status: "ESM",
   },
   {
     startDate: new Date("2016-04-01T00:00:00"),
@@ -1228,7 +1228,7 @@ export var openStackReleases = [
     startDate: new Date("2021-04-01T00:00:00"),
     endDate: new Date("2024-04-01T00:00:00"),
     taskName: "Ubuntu 16.04 LTS",
-    status: "EXTENDED_SUPPORT_MAINTENANCE",
+    status: "ESM",
   },
 ];
 
@@ -1303,7 +1303,7 @@ export var openStackStatus = {
   TECH_PREVIEW: "chart__bar--orange-light",
   LTS: "chart__bar--orange",
   MATCHING_OPENSTACK_RELEASE_SUPPORT: "chart__bar--grey",
-  EXTENDED_SUPPORT_MAINTENANCE: "chart__bar--aubergine",
+  ESM: "chart__bar--aubergine",
   EXTENDED_SUPPORT_FOR_CUSTOMERS: "chart__bar--green",
 };
 
