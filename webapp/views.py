@@ -465,12 +465,15 @@ def advantage_view():
 
                         if effective_to < time_now:
                             contract["contractInfo"]["status"] = "expired"
-                        else:
-                            date_difference = effective_to - time_now
-                            contract["expiring"] = date_difference.days <= 30
                             contract["contractInfo"][
-                                "daysTillExpiry"
-                            ] = date_difference.days
+                                "expired_restart_date"
+                            ] = time_now - timedelta(days=1)
+
+                        date_difference = effective_to - time_now
+                        contract["expiring"] = date_difference.days <= 30
+                        contract["contractInfo"][
+                            "daysTillExpiry"
+                        ] = date_difference.days
 
                     contract["renewal"] = make_renewal(
                         advantage, contract["contractInfo"]

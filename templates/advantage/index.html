@@ -79,7 +79,8 @@
               </thead>
               <tbody>
                 {% for contract in enterprise_contracts[account] %}
-                  {% if contract["contractInfo"]["status"] != 'expired' %}
+                  {% if contract["contractInfo"]["status"] != 'expired' or contract["renewal"]["renewable"] %}
+                    {% set expired_renewable = contract['renewal'] and contract['contractInfo']['daysTillExpiry'] < 0 %}
                     {% if not open_subscription and (loop.index == 1 and outer_loop.index == 1) %}
                       {% set default_open_cell = true %}
                     {% else %}
@@ -92,8 +93,10 @@
                           {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
                           {% if contract["renewal"] %}
                             {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
-                              <div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--warning"></i>&nbsp;&nbsp;
-                                {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
+                              <div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}warning{% endif %}"></i>&nbsp;&nbsp;
+                                {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
+                                  Expired
+                                {% elif contract["contractInfo"]["daysTillExpiry"] == 0 %}
                                   Ends today
                                 {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
                                   Ends in 1 day
@@ -115,7 +118,7 @@
                       <td class="u-align--center">
                         {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
                         <button class="u-toggle" aria-controls="#expanded-row-esm-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          <span class="u-truncate"><i class="p-icon--success"></i> {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--contextual-menu">Open</i></span>
+                          <span class="u-truncate"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--contextual-menu">Open</i></span>
                         </button>
                         {% else %}
                         <span style="padding-top: 0.35rem;">N/A</span>
@@ -124,7 +127,8 @@
                       <td class="u-align--center">
                         {% if contract['entitlements']['livepatch'] == True %}
                         <button class="u-toggle" aria-controls="#expanded-row-livepatch-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          <span class="u-truncate"><i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
+                          <span class="u-truncate">
+                            <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
                         </button>
                         {% else %}
                         <span style="padding-top: 0.35rem;">N/A</span>
@@ -133,7 +137,7 @@
                       <td class="u-align--center">
                         {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
                         <button class="u-toggle" aria-controls="#expanded-row-certifications-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          <span class="u-truncate"><i class="p-icon--success"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
+                          <span class="u-truncate"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
                         </button>
                         {% else %}
                         <span style="padding-top: 0.35rem;">N/A</span>
@@ -152,15 +156,23 @@
                                   {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
                                     <tr style="border-top: 0;">
                                       <td class="u-align--right">
-                                        <i class="p-icon--warning" style="margin-top: 0.3rem;"></i>&nbsp;&nbsp;Ends:
-                                      </td>
-                                      <td class="u-align--left"><strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>&nbsp;&mdash;&nbsp;
-                                        {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
-                                          today
-                                        {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
-                                          in 1 day
+                                        {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
+                                          <i class="p-icon--error u-disable"></i>&nbsp;&nbsp;Expired:
                                         {% else %}
-                                          in {{ contract["contractInfo"]["daysTillExpiry"] }} days
+                                          <i class="p-icon--warning"></i>&nbsp;&nbsp;Ends:
+                                        {% endif %}
+                                      </td>
+                                      <td class="u-align--left">
+                                        <strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>
+                                        {% if contract["contractInfo"]["daysTillExpiry"] >= 0 %}
+                                          &nbsp;&mdash;&nbsp;
+                                          {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
+                                            today
+                                          {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
+                                            in 1 day
+                                          {% else %}
+                                            in {{ contract["contractInfo"]["daysTillExpiry"] }} days
+                                          {% endif %}
                                         {% endif %}
                                       </td>
                                     </tr>
@@ -190,7 +202,11 @@
                                         data-name="{{ contract['contractInfo']['name']}}"
                                         data-quantity="{{ contract['renewal']['renewalItems'][0]['allowance']['value'] }}"
                                         data-renewal-id="{{ contract['renewal']['id']}}"
-                                        data-contract-end="{{ contract['contractInfo']['effectiveTo'] }}"
+                                        {% if expired_renewable %}
+                                          data-contract-end="{{ contract['contractInfo']['expired_restart_date']}}"
+                                        {% else %}
+                                          data-contract-end="contract['contractInfo']['effectiveTo'] }}"
+                                        {% endif %}
                                         data-products="{{ contract['contractInfo']['products'] }}"
                                         data-months="{{ contract['renewal']['renewalItems'][0]['priceTotal']['months'] }}"
                                         data-unit-price="{{ contract['renewal']['renewalItems'][0]['pricePerUnit']['value'] }}"
