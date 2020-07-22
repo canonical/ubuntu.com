@@ -46,6 +46,7 @@ function productSelector() {
   }
 
   function buildCartHTML(lineItems) {
+    const subtotal = calculateSubtotal(lineItems);
     let lineItemsHTML = "";
 
     lineItems.forEach((lineItem) => {
@@ -60,12 +61,21 @@ function productSelector() {
       <div class="col-12">
         <h2>Your subscription so far:</h2>
       </div>
+    </div>
       ${lineItemsHTML}
+    <div>
+    <div class="row">
+      <div class="col-12">
+        <h3>Subtotal: ${subtotal}</h3>
+      </div>
+    </div>
     `;
   }
 
   function buildLineItemHTML(productId, quantity, action) {
     const product = products[productId];
+    const rawTotal = (product.price.value / 100) * quantity;
+    const cost = parseCurrencyAmount(rawTotal, product.price.currency);
 
     return `
       <div class="row u-vertically-center" style="padding-top: 20px; padding-bottom: 20px;">
@@ -78,7 +88,7 @@ function productSelector() {
           <input class="u-no-margin--bottom" type="text" value="${quantity}" />
         </div>
         <div class="col-2">
-          <span>$${product.price.value / 100}</span>
+          <span>${cost} per year</span>
         </div>
         <div class="col-2 u-align--right">
           <button class="p-button${
@@ -87,6 +97,17 @@ function productSelector() {
         </div>
       </div>
     `;
+  }
+
+  function calculateSubtotal(lineItems) {
+    let subtotal = 0;
+
+    lineItems.forEach((lineItem) => {
+      const productCost = products[lineItem.productId].price.value;
+      subtotal += parseInt(productCost / 100) * lineItem.quantity;
+    });
+
+    return parseCurrencyAmount(subtotal, "USD");
   }
 
   function disableSteps(steps) {
@@ -160,6 +181,16 @@ function productSelector() {
       default:
         state.set(inputElement.name, [inputElement.value]);
     }
+  }
+
+  function parseCurrencyAmount(total, currency) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currency,
+      currencyDisplay: "symbol",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(parseFloat(total));
   }
 
   function render() {
