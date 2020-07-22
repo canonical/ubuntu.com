@@ -1,0 +1,71 @@
+<!-- MARKETO FORM -->
+<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" class="marketo-form" id="mktoForm_{{ id }}">
+  <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
+    <ul class="p-list">
+      <li class="mktFormReq mktField p-list__item">
+        <label for="FirstName" class="mktoLabel">Primeiro Nome:</label>
+        <input required id="FirstName" name="FirstName" maxlength="255" class="mktoField   mktoRequired" type="text"
+          aria-label="First Name">
+      </li>
+      <li class="mktFormReq mktField">
+        <label for="LastName" class="mktoLabel ">Último Nome:</label>
+        <input required id="LastName" name="LastName" maxlength="255" class="mktoField   mktoRequired" type="text"
+          aria-label="Last Name">
+      </li>
+      <li class="mktFormReq mktField">
+        <label for="Email" class="mktoLabel ">Email do trabalho:</label>
+        <input required id="Email" name="Email" maxlength="255" class="mktoField mktoEmailField  mktoRequired" type="email"
+          aria-label="Email">
+      </li>
+      <li class="mktFormReq mktField">
+        <label for="Company" class="mktoLabel ">Nome da Empresa:</label>
+        <input required id="Company" name="Company" maxlength="255" class="mktoField   mktoRequired" type="text"
+          aria-label="Company Name">
+      </li>
+      <li class="mktFormReq mktField">
+        <label for="Title" class="mktoLabel ">Titulo do trabalho:</label>
+        <input required id="Title" name="Title" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="Job Title">
+      </li>
+      <li class="mktFormReq mktField">
+        <label for="Phone" class="mktoLabel ">Telemóvel:</label>
+        <input required id="Phone" name="Phone" maxlength="255" class="mktoField mktoTelField  mktoRequired" type="tel"
+          aria-label="Phone Number">
+      </li>
+      <li class="mktField">
+        <input name="utm_campaign" aria-label="utm_campaign" class="mktoField  mktoFormCol" value="{{utm_campaign}}"
+          type="hidden">
+      </li>
+      <li class="mktField">
+        <input name="utm_medium" aria-label="utm_medium" class="mktoField  mktoFormCol" value="{{utm_medium}}" type="hidden">
+      </li>
+      <li class="mktField">
+        <input name="utm_source" aria-label="utm_source" class="mktoField  mktoFormCol" value="{{utm_source}}" type="hidden">
+      </li>
+      <li class="mktField">
+        <input name="canonicalUpdatesOptIn" aria-label="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes"
+          class="mktoField" type="checkbox"><label for="canonicalUpdatesOptIn" class="mktoLabel ">Concordo em receber informações sobre os produtos e serviços da Canonical.</label>
+      </li>
+      <li class="mktField">
+        <p>Ao submeter este formulário, confirmo que li e concordo com o <a href="/legal/data-privacy/contact">Aviso de privacidade</a> e a <a href="/legal/data-privacy">Política de privacidade da Canonical</a>.
+          <input name="RichText" aria-label="RichText" type="hidden">
+        </p>
+      </li>
+      <li class="mktField">
+        <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+      </li>
+      <li class="mktField">
+        <input name="Consent_to_Processing__c" aria-label="Consent" class="mktoField  mktoFormCol" value="Yes" type="hidden">
+      </li>
+      <li class="mktField">
+        <button type="submit" class="mktoButton u-no-margin--bottom">{% if cta %}{{ cta }}{% else %}Descarregue o documento{% endif %}</button>
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
+        <input name="formid" aria-label="formid" class="mktoField" value="{{ id }}" type="hidden">
+        <input name="formVid" aria-label="formid" class="mktoField" value="{{ id }}" type="hidden">
+        <input type="hidden" name="returnURL" aria-label="returnURL" value="{{ returnURL }}" />
+        <input type="hidden" name="retURL" aria-label="retURL" value="{{ returnURL }}" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="return_url" value="{{returnURL}}" />
+      </li>
+    </ul>
+  </fieldset>
+</form>
+<!-- /MARKETO FORM -->
