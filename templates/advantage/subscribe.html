@@ -16,6 +16,29 @@
     </div>
   </section>
 
+  <section class="p-strip--suru-topped js-cart u-hide">
+    <div class="row">
+      <h1 class="p-heading--4">Your subscriptions so far:</h1>    
+    </div>
+
+    <div class="js-cart-lines">
+    </div>
+
+    <div class="row"><hr class="u-no-margin--bottom" /></div>
+
+    <div class="row" style="padding-bottom: 20px; padding-top: 20px;">
+      <div class="col-8">
+        <h2 class="p-heading--5">Subtotal:</h2>
+      </div>
+      <div class="col-2">
+        <h2 class="p-heading--5" class="js-subtotal">$0</h2>
+      </div>
+      <div class="col-2 u-align--right">
+        <a class="p-button--positive" href="#">Buy now</a>
+      </div>
+    </div>
+  </section>
+
   <form class="js-shop-form">
     <section class="p-strip is-shallow js-shop-step--type">
       <div class="row">
@@ -148,12 +171,12 @@
     <section class="p-strip--light is-shallow js-shop-step--add">
       <div class="row">
         <div class="col-12">
-          <!-- <a
+          <a
             href="#ua-payment-modal"
             id="showModal"
-            class="js-ua-payment-cta p-button--positive u-no-margin--bottom"
+            class="js-product-add p-button--positive u-no-margin--bottom"
             data-transaction-type="purchase"
-          >Add</a> -->
+          >Add</a>
           <p class="js-shop-product-id"></p>
         </div>
       </div>
@@ -161,5 +184,17 @@
   </form>
   {% include 'advantage/_stripe-modal.html' %}
 
-  <script src="{{ versioned_static('js/src/ua-product-selector.js') }}" type="module" defer></script>
+  <script src="{{ versioned_static('js/dist/ua-product-selector.js') }}" type="module" defer></script>
+  <script defer>
+    var productList = {
+      {% for listing in product_listings %}
+      "{{ listing.product.id }}": { 
+        name: "{{ listing.product.name }}", 
+        price: {{ listing.price|tojson }},
+        listingID: "{{ listing.id}}"
+      },
+      {% endfor %}
+    };
+  </script>
+  
 {% endblock %}
