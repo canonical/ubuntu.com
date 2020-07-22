@@ -1,16 +1,17 @@
 import { StateManager } from "./utils/state.js";
 
-function productSelection() {
+function productSelector() {
   const form = document.querySelector(".js-shop-form");
   const stepClassPrefix = ".js-shop-step--";
+  const products = window.productList;
 
-  const cartName = form.querySelector(".js-shop-product-id");
-  const cartStep = form.querySelector(`${stepClassPrefix}add`);
+  const addStep = form.querySelector(`${stepClassPrefix}add`);
   const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
   const quantityTypeEl = form.querySelector(".js-type-name");
-  const steps = ["type", "quantity", "version", "support", "add"];
+  const steps = ["type", "quantity", "version", "support", "add", "cart"];
 
-  let productState = new StateManager(steps, render);
+  // let cartState = new StateManager(["products"], renderCart);
+  let state = new StateManager(steps, render);
 
   init();
   render();
@@ -30,16 +31,59 @@ function productSelection() {
     versionTabs.forEach((tab) => {
       tab.addEventListener("click", (e) => {
         e.preventDefault();
-        productState.set("version", [tab.getAttribute("href")]);
+        state.set("version", [tab.getAttribute("href")]);
       });
     });
+
+    document.addEventListener("click", (e) => {
+      if (e.target && e.target.classList.contains("js-add-product")) {
+        e.preventDefault();
+        const productId = e.target.dataset.productId;
+        const quantity = e.target.dataset.quantity;
+
+        state.push("cart", {
+          product: products[productId],
+          quantity: quantity,
+        });
+      }
+    });
+  }
+
+  function buildLineItemHTML(productId, quantity, action) {
+    const product = products[productId];
+
+    let button = `<button class="p-button--positive u-no-margin--bottom js-add-product" data-product-id="${productId}" data-quantity=${quantity}>Add</button>`;
+
+    if (action === "remove") {
+      button = `<button class="p-button u-no-margin--bottom" data-product="${productId}>Remove</button>`;
+    }
+    return `
+      <div class="row u-vertically-center" style="padding-top: 20px; padding-bottom: 20px;">
+        <div class="col-6">
+          <span style="font-size: 16px; font-weight: bold;">${
+            product.name
+          }</span>
+        </div>
+        <div class="col-2">
+          <input class="u-no-margin--bottom" type="text" value="${quantity}" />
+        </div>
+        <div class="col-2">
+          <span>$${product.price.value / 100}</span>
+        </div>
+        <div class="col-2 u-align--right">
+          ${button}
+        </div>
+      </div>
+    `;
   }
 
   function disableSteps(steps) {
     steps.forEach((step) => {
       const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
 
-      wrapper.classList.add("u-disable");
+      if (wrapper) {
+        wrapper.classList.add("u-disable");
+      }
     });
   }
 
@@ -47,7 +91,9 @@ function productSelection() {
     steps.forEach((step) => {
       const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
 
-      wrapper.classList.remove("u-disable");
+      if (wrapper) {
+        wrapper.classList.remove("u-disable");
+      }
     });
   }
 
@@ -67,23 +113,23 @@ function productSelection() {
           );
 
           infoElement.classList.remove("u-hide");
-          productState.set(inputElement.name, [inputElement.value]);
+          state.set(inputElement.name, [inputElement.value]);
           disableSteps(["quantity", "version", "support", "add"]);
         } else {
           quantityTypeEl.innerHTML = `${inputElement.dataset.productName}s`;
-          productState.set(inputElement.name, [inputElement.value]);
+          state.set(inputElement.name, [inputElement.value]);
         }
 
         break;
       case "quantity":
         if (inputElement.value > 0) {
-          productState.set(inputElement.name, [inputElement.value]);
+          state.set(inputElement.name, [inputElement.value]);
         } else {
-          productState.reset("quantity");
+          state.reset("quantity");
         }
         break;
       default:
-        productState.set(inputElement.name, [inputElement.value]);
+        state.set(inputElement.name, [inputElement.value]);
     }
   }
 
@@ -100,7 +146,7 @@ function productSelection() {
 
     steps.forEach((step) => {
       if (stepsToEnable === undefined) {
-        if (!productState.get(step)[0]) {
+        if (!state.get(step)[0]) {
           stepsToEnable = steps.slice(0, i + 1);
           stepsToDisable = steps.slice(i + 1);
         } else if (i < steps.length) {
@@ -122,8 +168,8 @@ function productSelection() {
     const versionTabs = form.querySelectorAll(
       ".js-shop-step--version .p-tabs__link"
     );
-    const version = productState.get("version")[0];
-    const quantity = productState.get("quantity")[0];
+    const version = state.get("version")[0];
+    const quantity = state.get("quantity")[0];
 
     if (version === "#other") {
       // disable the rest of the form
@@ -140,7 +186,7 @@ function productSelection() {
 
       if (!version && tab.getAttribute("aria-selected") === "true") {
         // set initial state on load
-        productState.set("version", [tab.getAttribute("href")]);
+        state.set("version", [tab.getAttribute("href")]);
       } else if (tabContentID === version) {
         tab.setAttribute("aria-selected", true);
         target.classList.remove("u-hide");
@@ -152,18 +198,19 @@ function productSelection() {
   }
 
   function updateCartLineItem() {
-    const quantity = productState.get("quantity")[0];
-    const support = productState.get("support")[0];
-    const type = productState.get("type")[0];
-    const productString = `uai-${support}-${type} x ${quantity}`;
+    const quantity = state.get("quantity")[0];
+    const support = state.get("support")[0];
+    const type = state.get("type")[0];
+    const productId = `uai-${support}-${type}`;
 
-    if (type && quantity && support) {
-      cartName.innerHTML = `Your selected product id is ${productString}`;
-      cartStep.classList.remove("u-hide");
+    if (type && quantity && support && products[productId]) {
+      const lineItemHTML = buildLineItemHTML(productId, quantity, "add");
+      addStep.innerHTML = lineItemHTML;
+      addStep.classList.remove("u-hide");
     } else {
-      cartStep.classList.add("u-hide");
+      addStep.classList.add("u-hide");
     }
   }
 }
 
-productSelection();
+productSelector();
