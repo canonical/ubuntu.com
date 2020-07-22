@@ -43,11 +43,7 @@ function productSelector() {
         const productId = e.target.dataset.productId;
         const quantity = e.target.dataset.quantity;
 
-        state.push("cart", {
-          product: productId,
-          quantity: quantity,
-        });
-
+        updateCartState(productId, quantity);
         resetForm();
       } else if (e.target && e.target.classList.contains("js-remove-product")) {
         e.preventDefault();
@@ -55,7 +51,7 @@ function productSelector() {
         const quantity = e.target.dataset.quantity;
 
         state.remove("cart", {
-          product: productId,
+          productId: productId,
           quantity: quantity,
         });
       }
@@ -67,7 +63,7 @@ function productSelector() {
 
     lineItems.forEach((lineItem) => {
       lineItemsHTML += buildLineItemHTML(
-        lineItem.product,
+        lineItem.productId,
         lineItem.quantity,
         "remove"
       );
@@ -175,6 +171,7 @@ function productSelector() {
     state.reset("version");
     state.reset("support");
     state.reset("add");
+    form.reset();
   }
 
   function setActiveSteps() {
@@ -241,7 +238,6 @@ function productSelector() {
     if (lineItems.length) {
       const cartHTML = buildCartHTML(lineItems);
 
-      console.log(cartHTML);
       cartStep.innerHTML = cartHTML;
       cartStep.classList.remove("u-hide");
       shopHeroElement.classList.add("u-hide");
@@ -249,6 +245,25 @@ function productSelector() {
       cartStep.classList.add("u-hide");
       shopHeroElement.classList.remove("u-hide");
     }
+  }
+
+  function updateCartState(productId, quantity) {
+    const cartLineItems = state.get("cart");
+
+    cartLineItems.forEach((lineItem) => {
+      // avoid multiple rows for the same product
+      if (lineItem.productId === productId) {
+        quantity = parseInt(quantity);
+        quantity += parseInt(lineItem.quantity);
+        cartLineItems.splice(lineItem, 1);
+        state.set("cart", cartLineItems);
+      }
+    });
+
+    state.push("cart", {
+      productId: productId,
+      quantity: quantity,
+    });
   }
 
   function updateSelectedProduct() {
