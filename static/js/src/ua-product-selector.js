@@ -6,6 +6,8 @@ function productSelector() {
   const products = window.productList;
 
   const addStep = form.querySelector(`${stepClassPrefix}add`);
+  const cartStep = document.querySelector(`${stepClassPrefix}cart`);
+  const shopHeroElement = document.querySelector(".js-shop-hero");
   const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
   const quantityTypeEl = form.querySelector(".js-type-name");
   const steps = ["type", "quantity", "version", "support", "add", "cart"];
@@ -42,21 +44,46 @@ function productSelector() {
         const quantity = e.target.dataset.quantity;
 
         state.push("cart", {
-          product: products[productId],
+          product: productId,
+          quantity: quantity,
+        });
+
+        resetForm();
+      } else if (e.target && e.target.classList.contains("js-remove-product")) {
+        e.preventDefault();
+        const productId = e.target.dataset.productId;
+        const quantity = e.target.dataset.quantity;
+
+        state.remove("cart", {
+          product: productId,
           quantity: quantity,
         });
       }
     });
   }
 
+  function buildCartHTML(lineItems) {
+    let lineItemsHTML = "";
+
+    lineItems.forEach((lineItem) => {
+      lineItemsHTML += buildLineItemHTML(
+        lineItem.product,
+        lineItem.quantity,
+        "remove"
+      );
+    });
+
+    return `<div class="row">
+      <div class="col-12">
+        <h2>Your subscription so far:</h2>
+      </div>
+      ${lineItemsHTML}
+    `;
+  }
+
   function buildLineItemHTML(productId, quantity, action) {
     const product = products[productId];
 
-    let button = `<button class="p-button--positive u-no-margin--bottom js-add-product" data-product-id="${productId}" data-quantity=${quantity}>Add</button>`;
-
-    if (action === "remove") {
-      button = `<button class="p-button u-no-margin--bottom" data-product="${productId}>Remove</button>`;
-    }
     return `
       <div class="row u-vertically-center" style="padding-top: 20px; padding-bottom: 20px;">
         <div class="col-6">
@@ -71,7 +98,9 @@ function productSelector() {
           <span>$${product.price.value / 100}</span>
         </div>
         <div class="col-2 u-align--right">
-          ${button}
+          <button class="p-button${
+            action === "add" ? "--positive" : ""
+          } u-no-margin--bottom js-${action}-product" data-product-id="${productId}" data-quantity=${quantity}>${action}</button>
         </div>
       </div>
     `;
@@ -136,7 +165,16 @@ function productSelector() {
   function render() {
     setActiveSteps();
     setVersionTabs();
-    updateCartLineItem();
+    updateSelectedProduct();
+    updateCart();
+  }
+
+  function resetForm() {
+    state.reset("type");
+    state.reset("quantity");
+    state.reset("version");
+    state.reset("support");
+    state.reset("add");
   }
 
   function setActiveSteps() {
@@ -197,7 +235,23 @@ function productSelector() {
     });
   }
 
-  function updateCartLineItem() {
+  function updateCart() {
+    const lineItems = state.get("cart");
+
+    if (lineItems.length) {
+      const cartHTML = buildCartHTML(lineItems);
+
+      console.log(cartHTML);
+      cartStep.innerHTML = cartHTML;
+      cartStep.classList.remove("u-hide");
+      shopHeroElement.classList.add("u-hide");
+    } else {
+      cartStep.classList.add("u-hide");
+      shopHeroElement.classList.remove("u-hide");
+    }
+  }
+
+  function updateSelectedProduct() {
     const quantity = state.get("quantity")[0];
     const support = state.get("support")[0];
     const type = state.get("type")[0];
