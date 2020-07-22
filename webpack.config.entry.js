@@ -27,4 +27,5 @@ module.exports = {
   imageBuilder: "./static/js/src/imageBuilder.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
+  "ua-product-selector": "./static/js/src/ua-product-selector.js",
 };
