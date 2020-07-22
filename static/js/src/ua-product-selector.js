@@ -38,22 +38,9 @@ function productSelector() {
     });
 
     document.addEventListener("click", (e) => {
-      if (e.target && e.target.classList.contains("js-add-product")) {
+      if (e.target && e.target.classList.contains("js-cart-action")) {
         e.preventDefault();
-        const productId = e.target.dataset.productId;
-        const quantity = e.target.dataset.quantity;
-
-        updateCartState(productId, quantity);
-        resetForm();
-      } else if (e.target && e.target.classList.contains("js-remove-product")) {
-        e.preventDefault();
-        const productId = e.target.dataset.productId;
-        const quantity = e.target.dataset.quantity;
-
-        state.remove("cart", {
-          productId: productId,
-          quantity: quantity,
-        });
+        handleCartAction(e.target.dataset);
       }
     });
   }
@@ -96,7 +83,7 @@ function productSelector() {
         <div class="col-2 u-align--right">
           <button class="p-button${
             action === "add" ? "--positive" : ""
-          } u-no-margin--bottom js-${action}-product" data-product-id="${productId}" data-quantity=${quantity}>${action}</button>
+          } u-no-margin--bottom js-cart-action" data-action="${action}" data-product-id="${productId}" data-quantity=${quantity}>${action}</button>
         </div>
       </div>
     `;
@@ -120,6 +107,23 @@ function productSelector() {
         wrapper.classList.remove("u-disable");
       }
     });
+  }
+
+  function handleCartAction(data) {
+    const action = data.action;
+    const productId = data.productId;
+    const quantity = data.quantity;
+
+    if (action === "add") {
+      updateCartState(productId, quantity);
+      cartStep.scrollIntoView();
+      resetForm();
+    } else if (action === "remove") {
+      state.remove("cart", {
+        productId: productId,
+        quantity: quantity,
+      });
+    }
   }
 
   function handleStepSpecificAction(inputElement) {
