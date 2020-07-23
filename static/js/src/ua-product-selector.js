@@ -1,4 +1,5 @@
 import { StateManager } from "./utils/state.js";
+import { debounce } from "./utils/debounce.js";
 
 function productSelector() {
   const form = document.querySelector(".js-shop-form");
@@ -30,6 +31,12 @@ function productSelector() {
       });
     });
 
+    document.addEventListener("input", (e) => {
+      if (e.target && e.target.classList.contains("js-product-input")) {
+        handleStepSpecificAction(e.target);
+      }
+    });
+
     versionTabs.forEach((tab) => {
       tab.addEventListener("click", (e) => {
         e.preventDefault();
@@ -51,8 +58,8 @@ function productSelector() {
 
     lineItems.forEach((lineItem) => {
       lineItemsHTML += buildLineItemHTML(
-        lineItem.productId,
-        lineItem.quantity,
+        lineItem.get("productId")[0],
+        lineItem.get("quantity")[0],
         "remove"
       );
     });
@@ -85,7 +92,9 @@ function productSelector() {
           }</span>
         </div>
         <div class="col-2">
-          <input class="u-no-margin--bottom" type="text" value="${quantity}" />
+          <input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity}" step="1" data-stage="${
+      action === "add" ? "selection" : "cart"
+    }" data-product-id="${productId}" />
         </div>
         <div class="col-2">
           <span>${cost} per year</span>
@@ -103,8 +112,8 @@ function productSelector() {
     let subtotal = 0;
 
     lineItems.forEach((lineItem) => {
-      const productCost = products[lineItem.productId].price.value;
-      subtotal += parseInt(productCost / 100) * lineItem.quantity;
+      const productCost = products[lineItem.get("productId")[0]].price.value;
+      subtotal += parseInt(productCost / 100) * lineItem.get("quantity")[0];
     });
 
     return parseCurrencyAmount(subtotal, "USD");
@@ -147,6 +156,33 @@ function productSelector() {
     }
   }
 
+  function handleQuantityInputs(input) {
+    const data = input.dataset;
+    const formStage = data.stage === "form";
+    const selectionStage = data.stage === "selection";
+    const formQuantity = form.querySelector(
+      'input[name="quantity"][data-stage="form"]'
+    );
+
+    if ((formStage && input.value > 0) || (selectionStage && input.value > 0)) {
+      // form and selected quantities should sync when either is updated
+      state.set(input.name, [input.value]);
+      formQuantity.value = state.get("quantity")[0];
+    } else if (formStage || selectionStage) {
+      state.reset("quantity");
+      formQuantity.value = 0;
+    } else if (data.stage === "cart") {
+      // cart quantity
+      const products = state.get("cart");
+
+      products.forEach((product) => {
+        if (product.get("productId")[0] === data.productId) {
+          product.set("quantity", [input.value]);
+        }
+      });
+    }
+  }
+
   function handleStepSpecificAction(inputElement) {
     const step = inputElement.name;
     const publicCloudTypes = ["aws", "azure"];
@@ -172,11 +208,9 @@ function productSelector() {
 
         break;
       case "quantity":
-        if (inputElement.value > 0) {
-          state.set(inputElement.name, [inputElement.value]);
-        } else {
-          state.reset("quantity");
-        }
+        debounce(function () {
+          handleQuantityInputs(inputElement);
+        }, 1000)();
         break;
       default:
         state.set(inputElement.name, [inputElement.value]);
@@ -196,8 +230,8 @@ function productSelector() {
   function render() {
     setActiveSteps();
     setVersionTabs();
-    updateSelectedProduct();
     updateCart();
+    updateSelectedProduct();
   }
 
   function resetForm() {
@@ -284,21 +318,24 @@ function productSelector() {
 
   function updateCartState(productId, quantity) {
     const cartLineItems = state.get("cart");
+    let newLineItem = true;
 
     cartLineItems.forEach((lineItem) => {
       // avoid multiple rows for the same product
-      if (lineItem.productId === productId) {
+      if (lineItem.get("productId")[0] === productId) {
         quantity = parseInt(quantity);
-        quantity += parseInt(lineItem.quantity);
-        cartLineItems.splice(lineItem, 1);
-        state.set("cart", cartLineItems);
+        quantity += parseInt(lineItem.get("quantity")[0]);
+        lineItem.set("quantity", [`${quantity}`]);
+        newLineItem = false;
       }
     });
 
-    state.push("cart", {
-      productId: productId,
-      quantity: quantity,
-    });
+    if (newLineItem) {
+      let product = new StateManager(["productId", "quantity"], render);
+      product.set("productId", [productId]);
+      product.set("quantity", [`${quantity}`]);
+      state.push("cart", product);
+    }
   }
 
   function updateSelectedProduct() {
