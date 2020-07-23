@@ -332,6 +332,7 @@ The [addons][] installed alongside Kubernetes make use of additional container
 images. These are the ones used by this release:
 
 <!-- GENERATED CONTAINER IMAGES -->
+
 -   addon-resizer-amd64:1.8.5
 -   addon-resizer-arm64:1.8.5
 -   addon-resizer-ppc64le:1.8.5
@@ -382,6 +383,7 @@ images. These are the ones used by this release:
 -   registry-amd64:2.6
 -   registry-arm64:2.6
 -   sonatype/nexus3:latest
+
 <!-- CONTAINER IMAGES END -->
 
 ## Snaps
