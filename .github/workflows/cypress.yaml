@@ -8,6 +8,7 @@ on:
 
 jobs:
   run-cypress:
+    if: github.repository == 'canonical-web-and-design/ubuntu.com'
     runs-on: ubuntu-latest
 
     steps:

@@ -6,6 +6,7 @@ on:
 
 jobs:
   check-links:
+    if: github.repository == 'canonical-web-and-design/ubuntu.com'
     runs-on: ubuntu-latest
 
     services:
