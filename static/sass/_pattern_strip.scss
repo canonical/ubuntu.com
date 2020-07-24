@@ -14,6 +14,7 @@
   @include ubuntu-p-strip-suru-light;
   @include ubuntu-p-strip-suru-square-darksuru;
   @include ubuntu-p-strip-suru-square-lightsuru;
+  @include ubuntu-p-strip-suru-square-suru;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -888,6 +889,37 @@
       background-position: top right, top left, left top;
       background-repeat: no-repeat;
       background-size: 86% 125%, 77% 57%, 100% 99.8%;
+    }
+  }
+}
+
+@mixin ubuntu-p-strip-suru-square-suru {
+  .p-strip--square-suru {
+    @extend %vf-strip;
+
+    background-color: #2c001e;
+    color: $color-x-light;
+
+    @media (min-width: $breakpoint-medium) {
+      background-blend-mode: multiply, multiply, normal;
+      background-image: linear-gradient(
+          to bottom left,
+          rgba(228, 228, 228, 0.54) 0%,
+          rgba(228, 228, 228, 0.54) 49.9%,
+          rgba(228, 228, 228, 0) 50%,
+          rgba(228, 228, 228, 0) 100%
+        ),
+        linear-gradient(
+          to bottom right,
+          rgba(228, 228, 228, 0.54) 0%,
+          rgba(228, 228, 228, 0.54) 49.9%,
+          rgba(228, 228, 228, 0) 50%,
+          rgba(228, 228, 228, 0) 100%
+        ),
+        linear-gradient(-89deg, #e95420 0%, #772953 38%, #2c001e 85%);
+      background-position: top right, top left, left top;
+      background-repeat: no-repeat;
+      background-size: 86% 105%, 67% 152%, 100% 99.8%;
     }
   }
 }
