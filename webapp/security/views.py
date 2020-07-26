@@ -338,7 +338,7 @@ def cve_index():
     # Apply search filters
     if package:
         cves_query = cves_query.filter(
-            CVE.statuses.any(Status.package_name.ilike(f"%{package}%"))
+            CVE.statuses.any(Status.package_name == package)
         )
 
     if priority:
