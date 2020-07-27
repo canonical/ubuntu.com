@@ -1,28 +1,28 @@
 <section class="p-strip is-shallow js-shop-step--version">
   <div class="js-tab-container">
-    <div class="row">
+    <div class="row u-sv3">
       <div class="col-12">
         <h2 class="p-heading--3">What Ubuntu version are you running?</h2>
       </div>
     </div>
 
-    <div class="row">
-      <nav class="p-tabs">
+    <div class="row p-tabs--vertical">
+      <nav class="col-2">
         <ul class="p-tabs__list u-no-margin--bottom" role="tablist">
           <li class="p-tabs__item" role="presentation">
-            <a id="trusty-tab" href="#trusty" class="p-tabs__link" role="tab" aria-controls="trusty">14.04 LTS</a>
+            <a id="focal-tab" href="#focal" class="p-tabs__link" role="tab" aria-controls="focal" aria-selected="true">20.04 LTS</a>
           </li>
-
-          <li class="p-tabs__item" role="presentation">
-            <a id="xenial-tab" href="#xenial" class="p-tabs__link" role="tab" aria-controls="xenial">16.04 LTS</a>
-          </li>
-
+          
           <li class="p-tabs__item" role="presentation">
             <a id="bionic-tab" href="#bionic" class="p-tabs__link" role="tab" aria-controls="bionic">18.04 LTS</a>
           </li>
 
           <li class="p-tabs__item" role="presentation">
-            <a id="focal-tab" href="#focal" class="p-tabs__link" role="tab" aria-controls="focal" aria-selected="true">20.04 LTS</a>
+            <a id="xenial-tab" href="#xenial" class="p-tabs__link" role="tab" aria-controls="xenial">16.04 LTS</a>
+          </li>
+          
+          <li class="p-tabs__item" role="presentation">
+            <a id="trusty-tab" href="#trusty" class="p-tabs__link" role="tab" aria-controls="trusty">14.04 LTS</a>
           </li>
 
           <li class="p-tabs__item" role="presentation">
@@ -30,108 +30,25 @@
           </li>
         </ul>
       </nav>
-    </div>
 
-    <div class="row">
-      <div class="col-12">
-        <div id="trusty" class="p-tabs__content" style="background-color: #f7f7f7; padding: 1.5rem;" role="tabpanel" aria-labelledby="trusty-tab">
+      <div class="col-10">
+        <div id="focal" class="p-tabs__content" role="tabpanel" aria-labelledby="focal-tab">
           <div class="row">
-            <div class="col-12">
-              <h3 class="p-heading--4">For Ubuntu 14.04 LTS, all UA plans include:</h3>
-            </div>
-          </div>
-
-          <div class="row u-equal-height">
-            <div class="col-6">
-              <ul class="p-list--ticked">
-                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
-                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
-                <li class="p-list__item is-ticked">CIS certified modules</li>
-              </ul>
-            </div>
-
-            <div class="col-6">
-              <ul class="p-list--ticked">
-                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
-                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12">
-        <div id="xenial" class="p-tabs__content" style="background-color: #f7f7f7; padding: 1.5rem;" role="tabpanel" aria-labelledby="xenial-tab">
-          <div class="row">
-            <div class="col-12">
-              <h3 class="p-heading--4">For Ubuntu 16.04 LTS, all UA plans include:</h3>
-            </div>
-          </div>
-
-          <div class="row u-equal-height">
-            <div class="col-6">
-              <ul class="p-list--ticked">
-                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
-                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
-                <li class="p-list__item is-ticked">CIS certified modules</li>
-              </ul>
-            </div>
-
-            <div class="col-6">
-              <ul class="p-list--ticked">
-                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
-                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12">
-        <div id="bionic" class="p-tabs__content" style="background-color: #f7f7f7; padding: 1.5rem;" role="tabpanel" aria-labelledby="bionic-tab">
-          <div class="row">
-            <div class="col-12">
-              <h3 class="p-heading--4">For Ubuntu 18.04 LTS, all UA plans include:</h3>
-            </div>
-          </div>
-
-          <div class="row u-equal-height">
-            <div class="col-6">
-              <ul class="p-list--ticked">
-                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
-                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
-                <li class="p-list__item is-ticked">CIS certified modules</li>
-              </ul>
-            </div>
-
-            <div class="col-6">
-              <ul class="p-list--ticked">
-                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
-                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12">
-        <div id="focal" class="p-tabs__content" style="background-color: #f7f7f7; padding: 1.5rem;" role="tabpanel" aria-labelledby="focal-tab">
-          <div class="row">
-            <div class="col-12">
+            <div class="col-10">
               <h3 class="p-heading--4">For Ubuntu 20.04 LTS, all UA plans include:</h3>
             </div>
           </div>
 
           <div class="row u-equal-height">
-            <div class="col-6">
-              <ul class="p-list--ticked">
+            <div class="col-5">
+              <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
                 <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
                 <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
                 <li class="p-list__item is-ticked">CIS certified modules</li>
               </ul>
             </div>
 
-            <div class="col-6">
+            <div class="col-5">
               <ul class="p-list--ticked">
                 <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
                 <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
@@ -139,19 +56,92 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12">
-        <div id="other" class="p-tabs__content" style="background-color: #f7f7f7; padding: 1.5rem;" role="tabpanel" aria-labelledby="other-tab">
+        <div id="bionic" class="p-tabs__content" role="tabpanel" aria-labelledby="bionic-tab">
           <div class="row">
-            <div class="col-12">
+            <div class="col-10">
+              <h3 class="p-heading--4">For Ubuntu 18.04 LTS, all UA plans include:</h3>
+            </div>
+          </div>
+
+          <div class="row u-equal-height">
+            <div class="col-5">
+              <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
+                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
+                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
+                <li class="p-list__item is-ticked">CIS certified modules</li>
+              </ul>
+            </div>
+
+            <div class="col-5">
+              <ul class="p-list--ticked">
+                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
+                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="xenial" class="p-tabs__content" role="tabpanel" aria-labelledby="xenial-tab">
+          <div class="row">
+            <div class="col-10">
+              <h3 class="p-heading--4">For Ubuntu 16.04 LTS, all UA plans include:</h3>
+            </div>
+          </div>
+
+          <div class="row u-equal-height">
+            <div class="col-5">
+              <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
+                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
+                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
+                <li class="p-list__item is-ticked">CIS certified modules</li>
+              </ul>
+            </div>
+
+            <div class="col-5">
+              <ul class="p-list--ticked">
+                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
+                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="trusty" class="p-tabs__content" role="tabpanel" aria-labelledby="trusty-tab">
+          <div class="row">
+            <div class="col-10">
+              <h3 class="p-heading--4">For Ubuntu 14.04 LTS, all UA plans include:</h3>
+            </div>
+          </div>
+
+          <div class="row u-equal-height">
+            <div class="col-5">
+              <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
+                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
+                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
+                <li class="p-list__item is-ticked">CIS certified modules</li>
+              </ul>
+            </div>
+
+            <div class="col-5">
+              <ul class="p-list--ticked">
+                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
+                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="other" class="p-tabs__content" role="tabpanel" aria-labelledby="other-tab">
+          <div class="row">
+            <div class="col-10">
               <p>Ubuntu Advantage is available only for Ubuntu 20.04 LTS, 18.04 LTS, 16.04 LTS, and 14.04 ESM. You can:</p>
             </div>
           </div>
 
           <div class="row u-equal-height">
-            <div class="col-6">
-              <ul class="p-list--ticked">
+            <div class="col-5">
+              <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
                 <li class="p-list__item is-ticked">
                   <a href="/tutorials/tutorial-upgrading-ubuntu-desktop#1-before-you-start">Upgrade to a supported version</a>
                 </li>
