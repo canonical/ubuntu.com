@@ -27,6 +27,10 @@ function productSelector() {
 
     productInputs.forEach((input) => {
       input.addEventListener("input", (e) => {
+        if (input.getAttribute("type") === "radio") {
+          setSelectedRadioClass(input);
+        }
+
         handleStepSpecificAction(e.target);
       });
     });
@@ -202,7 +206,7 @@ function productSelector() {
           state.set(inputElement.name, [inputElement.value]);
           disableSteps(["quantity", "version", "support", "add"]);
         } else {
-          quantityTypeEl.innerHTML = `${inputElement.dataset.productName}s`;
+          quantityTypeEl.innerHTML = `How many ${inputElement.dataset.productName}s?`;
           state.set(inputElement.name, [inputElement.value]);
         }
 
@@ -266,6 +270,19 @@ function productSelector() {
     if (stepsToDisable) {
       disableSteps(stepsToDisable);
     }
+  }
+
+  function setSelectedRadioClass(input) {
+    const inputName = input.getAttribute("name");
+    const relatedInputs = form.querySelectorAll(
+      `input[type="radio"][name="${inputName}"]`
+    );
+
+    relatedInputs.forEach((relatedInput) => {
+      relatedInput.closest(".p-card--radio").classList.remove("is-selected");
+    });
+
+    input.closest(".p-card--radio").classList.add("is-selected");
   }
 
   function setVersionTabs() {
