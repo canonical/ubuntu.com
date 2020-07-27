@@ -1,0 +1,46 @@
+@mixin ubuntu-p-tabs {
+  .p-tabs--vertical {
+    grid-gap: 0;
+
+    .p-tabs__list {
+      display: block;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .p-tabs__item {
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .p-tabs__link {
+      padding-bottom: 0.25rem;
+      padding-top: 0.25rem;
+
+      &::before {
+        display: none;
+      }
+
+      &[aria-selected="true"] {
+        background-color: $color-light;
+
+        &::before {
+          display: block;
+          height: 100%;
+          left: 0;
+          right: auto;
+          width: 0.1875rem;
+        }
+      }
+    }
+
+    .p-tabs__content {
+      background-color: $color-light;
+      min-height: 100%;
+      padding: 1.5rem;
+    }
+  }
+}
