@@ -61,11 +61,11 @@ function productSelector() {
     let lineItemsHTML = "";
 
     lineItems.forEach((lineItem) => {
-      lineItemsHTML += buildLineItemHTML(
+      lineItemsHTML += `<li class="p-list__item">${buildLineItemHTML(
         lineItem.get("productId")[0],
         lineItem.get("quantity")[0],
         "remove"
-      );
+      )}</li>`;
     });
 
     return `<div class="row">
@@ -73,11 +73,21 @@ function productSelector() {
         <h2>Your subscription so far:</h2>
       </div>
     </div>
-      ${lineItemsHTML}
-    <div>
     <div class="row">
       <div class="col-12">
-        <h3 class="p-heading--four">Subtotal: ${subtotal} /year</h3>
+        <ul class="p-list--divided">
+          ${lineItemsHTML}
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2 col-start-large-7">
+        <h3 class="p-heading--four">Subtotal:</h3>
+      </div>
+
+      <div class="col-4 u-align--right">
+        <span class="p-heading--four" style="margin-right: 2rem;">${subtotal} /year</span>
+        <button class="p-button--positive">Buy now</button>
       </div>
     </div>
     `;
@@ -89,21 +99,20 @@ function productSelector() {
     const cost = parseCurrencyAmount(rawTotal, product.price.currency);
 
     return `
-      <div class="row u-vertically-center" style="padding-top: 20px; padding-bottom: 20px;">
+      <div class="row u-vertically-center">
         <div class="col-6">
-          <span style="font-size: 16px; font-weight: bold;">${
-            product.name
-          }</span>
+          <strong>${product.name}</strong>
         </div>
         <div class="col-2">
-          <input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity}" step="1" data-stage="${
+          <input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity}" step="1" style="min-width: 0;" data-stage="${
       action === "add" ? "selection" : "cart"
     }" data-product-id="${productId}" />
         </div>
-        <div class="col-2">
-          <span>${cost} /year</span>
-        </div>
-        <div class="col-2 u-align--right">
+        <div class="col-4 u-align--right">
+          <span style="margin-right: 2rem;">
+            <strong>${cost} /year</strong>
+          </span>
+          
           <button class="p-button${
             action === "add" ? "--positive" : ""
           } u-no-margin--bottom js-cart-action" data-action="${action}" data-product-id="${productId}" data-quantity=${quantity}>${action}</button>
