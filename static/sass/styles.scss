@@ -414,7 +414,6 @@ summary {
   td {
     flex: 1 !important;
   }
-  /* stylelint-enable no-descending-specificity */
 }
 
 .p-table--advantage {
@@ -756,4 +755,20 @@ h4.p-stepped-list__title + .p-stepped-list__content {
 
 .p-icon--dark-tick {
   background-image: url("#{$assets-path}f1a7515d-tick-darkaubergine.svg");
+}
+
+// Prevent the page from jumping as the global nav loads
+body {
+  border-top: 32px solid #262626;
+
+  @media only screen and (min-width: $breakpoint-x-large) {
+    border-top-width: 36px;
+  }
+}
+
+.global-nav {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
