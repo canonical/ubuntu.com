@@ -65,8 +65,7 @@
 @mixin ubuntu-card-radio {
   .row--5-col {
     display: flex;
-    margin-left: -1rem;
-    margin-right: -1rem;
+    flex-wrap: wrap;
   }
 
   .p-card--radio {
@@ -78,15 +77,27 @@
     cursor: pointer;
     position: relative;
 
-    .row--5-col & {
-      flex: 1 1 20%;
-      margin-left: 1rem;
-      margin-right: 1rem;
-    }
-
     &:hover,
     &.is-selected {
       background-color: $color-light;
+    }
+
+    .row--5-col & {
+      flex: 1 1 18%;
+      margin-right: 2.5%;
+
+      @media only screen and (max-width: $breakpoint-medium - 1) {
+        flex: 0 0 49%;
+        margin-right: 2%;
+
+        &:nth-child(even) {
+          margin-right: 0;
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
 
     img {
