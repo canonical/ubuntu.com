@@ -1,0 +1,36 @@
+@mixin ubuntu-p-ua-shop-cart {
+  .p-shop-cart {
+    button {
+      min-width: 107px;
+      text-transform: capitalize;
+    }
+
+    .p-list--divided {
+      position: relative;
+
+      &::after,
+      &::before {
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        right: 0;
+      }
+
+      &::after {
+        border-bottom: 1px solid $color-mid-light;
+        top: 0;
+      }
+
+      &::before {
+        border-top: 1px solid $color-mid-light;
+        bottom: 0;
+      }
+    }
+
+    .p-list__item {
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+    }
+  }
+}
