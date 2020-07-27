@@ -10,7 +10,7 @@ context:
   header_image: "https://assets.ubuntu.com/v1/67b862a1-k8s+microk8s.svg"
   header_image_width: "419"
   header_image_height: "172"
-  header_url: "https://www.brighttalk.com/webcast/6793/421884?utm_source=Canonical&utm_medium=brighttalk&utm_campaign=421884"
+  header_url: "#register-section"
   header_cta: Register now
   header_cta_class: p-button--positive
   header_cta_all_sizes: true
