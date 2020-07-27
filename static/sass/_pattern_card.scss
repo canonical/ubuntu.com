@@ -63,40 +63,73 @@
 }
 
 @mixin ubuntu-card-radio {
+  .row--5-col {
+    display: flex;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
   .p-card--radio {
     @extend %vf-card;
     @extend %vf-is-bordered;
     @extend %vf-has-round-corners;
 
-    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
 
-    label {
-      background-color: transparent;
-      background-position: right $spv-inner--large center;
-      background-repeat: no-repeat;
-      background-size: auto 40px;
-      height: 100%;
-      margin-bottom: 0;
-      padding-bottom: calc(#{$spv-inner--large} - 1px);
-      padding-left: calc(#{$spv-inner--large + 2} - 1px);
-      padding-right: calc(#{$spv-inner--large} - 1px);
-      padding-top: calc(#{$spv-inner--large} - 1px);
-      width: 100%;
-
-      &::after {
-        left: 1.54rem;
-        top: 1.54rem !important;
-      }
-
-      &::before {
-        left: 1.2rem;
-        top: 1.2rem !important;
-      }
+    .row--5-col & {
+      flex: 1 1 20%;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
 
-    label:hover,
-    input:checked + label {
+    &:hover,
+    &.is-selected {
       background-color: $color-light;
+    }
+
+    img {
+      display: block;
+      margin: 1.2rem auto 2.4rem;
+      max-height: 40px;
+      max-width: 100%;
+      pointer-events: none;
+      width: auto;
+    }
+
+    [type="radio"] {
+      left: 0;
+
+      & + label {
+        background-color: transparent;
+        margin: 0.5rem auto;
+        padding: 0;
+        position: initial;
+        text-align: center;
+        width: 100%;
+      }
+
+      & + label::after {
+        display: none;
+      }
+
+      & + label::before {
+        background: none;
+        border: none;
+        border-radius: 0;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+      }
+
+      &:focus + label::before {
+        border: 0.1875rem solid #2e96ff;
+      }
     }
   }
 }
