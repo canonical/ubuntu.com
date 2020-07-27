@@ -77,7 +77,7 @@ function productSelector() {
     <div>
     <div class="row">
       <div class="col-12">
-        <h3>Subtotal: ${subtotal}</h3>
+        <h3 class="p-heading--four">Subtotal: ${subtotal} /year</h3>
       </div>
     </div>
     `;
@@ -101,7 +101,7 @@ function productSelector() {
     }" data-product-id="${productId}" />
         </div>
         <div class="col-2">
-          <span>${cost} per year</span>
+          <span>${cost} /year</span>
         </div>
         <div class="col-2 u-align--right">
           <button class="p-button${
@@ -214,7 +214,7 @@ function productSelector() {
       case "quantity":
         debounce(function () {
           handleQuantityInputs(inputElement);
-        }, 1000)();
+        }, 500)();
         break;
       default:
         state.set(inputElement.name, [inputElement.value]);
