@@ -248,6 +248,12 @@ function productSelector() {
   }
 
   function resetForm() {
+    const selectedInputs = form.querySelectorAll(".is-selected");
+
+    selectedInputs.forEach((input) => {
+      input.classList.remove("is-selected");
+    });
+
     state.reset("type");
     state.reset("quantity");
     state.reset("version");
