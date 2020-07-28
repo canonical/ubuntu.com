@@ -1526,7 +1526,7 @@
 <style>
 .js-chassis-animation {
   transform: translate(10%, -5%);
-  transition: 1s transform .4s;
+  transition: transform .85s  ease-in-out .35s;
 }
 
 .js-chassis-animation.is-playing {
@@ -1542,13 +1542,13 @@
 }
 
 .js-chassis-animation.is-playing .fade-out {
-  animation: .25s linear .25s forwards turnon;
+  animation: .25s linear .1s forwards turnon;
 }
 
 .js-chassis-animation.is-playing .connection {
   animation:
-    .25s linear .15s infinite connect,
-    .5s linear .25s forwards fadein;
+    .25s linear 0s infinite connect,
+    .5s linear .1s forwards fadein;
 }
 
 @keyframes connect {
@@ -1572,10 +1572,9 @@
 var element = document.querySelector('.js-chassis-animation');
 var elementHeight = element.clientHeight;
 
-document.addEventListener('scroll', debounce(animate, 100));
+document.addEventListener('scroll', debounce(animate, 50));
 
 function inView() {
-  console.log('calculating');
   var windowHeight = window.innerHeight;
   var scrollY = window.scrollY || window.pageYOffset;
 
