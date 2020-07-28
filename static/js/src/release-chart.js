@@ -1,4 +1,5 @@
 import { createChart } from "./chart";
+import { debounce } from "./utils/debounce.js";
 import {
   smallReleases,
   serverAndDesktopReleases,
@@ -30,22 +31,8 @@ import {
   kernelReleaseNamesLTS,
   kernelReleaseNamesALL,
   openStackReleaseNames,
-  kubernetesReleaseNames
+  kubernetesReleaseNames,
 } from "./chart-data";
-
-function debounce(func, wait, immediate) {
-  var timeout;
-  return function() {
-    var context = this,
-      args = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    }, wait);
-    if (immediate && !timeout) func.apply(context, args);
-  };
-}
 
 function buildCharts() {
   if (document.querySelector("#small-eol")) {
@@ -192,7 +179,7 @@ var mediumBreakpoint = 875;
 // This will need looking into but this fix will work for now
 if (window.innerWidth >= mediumBreakpoint) {
   buildCharts();
-  setTimeout(function() {
+  setTimeout(function () {
     clearCharts();
     buildCharts();
   }, 0);
@@ -200,7 +187,7 @@ if (window.innerWidth >= mediumBreakpoint) {
 
 window.addEventListener(
   "resize",
-  debounce(function() {
+  debounce(function () {
     if (window.innerWidth >= mediumBreakpoint) {
       clearCharts();
       buildCharts();
