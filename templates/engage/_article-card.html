@@ -1,5 +1,5 @@
 <article class="col-4 blog-p-card--post">
-  <header class="blog-p-card__header--{{group}}">
+  <header class="blog-p-card__header{% if 'whitepaper' in type %}--internet-of-things{% elif 'webinar' in type %}--desktop{% elif 'case study' in type %}--cloud-and-server{% endif %}">
     <h5 class="p-muted-heading u-no-margin--bottom">
       {{type}}
     </h5>
