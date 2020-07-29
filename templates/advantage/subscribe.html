@@ -194,10 +194,11 @@
   <script defer>
     var productList = {
       {% for listing in product_listings %}
-      "{{ listing.product.id }}": { 
+      "{{ listing.id }}": { 
         name: "{{ listing.product.name }}", 
         price: {{ listing.price|tojson }},
-        listingID: "{{ listing.id}}"
+        productID: "{{ listing.product.id}}",
+        private: "{{ listing.privateForAccount }}"
       },
       {% endfor %}
     };
