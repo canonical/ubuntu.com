@@ -40,6 +40,21 @@ class ReleaseCodename(String):
         return super()._deserialize(value, attr, data, **kwargs)
 
 
+class Component(String):
+    default_error_messages = {
+        "unrecognised_component": (
+            "Component must be one of "
+            "'main', 'universe', 'esm-infra' or 'esm-apps'"
+        )
+    }
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        if value not in ["main", "universe", "esm-infra", "esm-apps"]:
+            raise self.make_error("unrecognised_component", input=value)
+
+        return super()._deserialize(value, attr, data, **kwargs)
+
+
 # Schemas
 # ===
 
@@ -76,6 +91,7 @@ class Status(Schema):
     release_codename = ReleaseCodename(required=True)
     status = String(required=True)
     description = String(allow_none=True)
+    component = Component(required=False)
 
 
 class CvePackage(Schema):

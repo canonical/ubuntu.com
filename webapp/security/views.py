@@ -442,6 +442,9 @@ def update_statuses(cve, data, packages, releases):
             status.status = status_data["status"]
             status.description = status_data["description"]
 
+            if "component" in status_data:
+                status.component = status_data["component"]
+
             statuses[name][codename] = status
 
             updated_statuses.append(status)
