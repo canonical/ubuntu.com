@@ -374,10 +374,26 @@ function productSelector() {
     const quantity = state.get("quantity")[0];
     const support = state.get("support")[0];
     const type = state.get("type")[0];
+    const productsArray = Object.entries(products);
     const productId = `uai-${support}-${type}`;
+    let listingId;
+    let privateForAccount = false;
 
-    if (type && quantity && support && products[productId]) {
-      const lineItemHTML = buildLineItemHTML(productId, quantity, "add");
+    // check whether user has private offers
+    productsArray.forEach((product) => {
+      const listingProduct = product[1];
+      const isSelectedProduct = listingProduct["productID"] === productId;
+
+      if (listingProduct.private && isSelectedProduct) {
+        privateForAccount = true;
+        listingId = product[0];
+      } else if (!privateForAccount && isSelectedProduct) {
+        listingId = product[0];
+      }
+    });
+
+    if (type && quantity && support && listingId) {
+      const lineItemHTML = buildLineItemHTML(listingId, quantity, "add");
       addStep.innerHTML = lineItemHTML;
       addStep.classList.remove("u-hide");
     } else {
