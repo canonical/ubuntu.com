@@ -7,20 +7,14 @@
 
 {% block content %}
 
-<section class="p-strip--suru-topped is-bordered">
+<section class="p-strip--suru-topped">
   <div class="row u-equal-height">
-    <h1>Security Certifications</h1>
-    <div class="col-8">
-      <p>
-        Canonical has achieved FIPS 140-2 Level 1 certification for several cryptographic modules on Ubuntu 18.04 LTS and Ubuntu 16.04 LTS. Canonical has also achieved Common Criteria EAL2 certification for Ubuntu 16.04 LTS. In addition, the Defense Information System Agency (DISA) has published Ubuntu 16.04 LTS and Ubuntu 18.04 LTS Security Technical Implementation Guides (STIGs) which allow Ubuntu to be used by federal agencies. The Center for Internet Security (CIS) also publishes benchmarks for hardening the configuration of Ubuntu systems to make them more secure.
-      </p>
-      <p>
-        Canonical has made its security certification offerings available to all Ubuntu Advantage for Infrastructure customers.
-      </p>
-      <p><a class="p-button--neutral js-invoke-modal" href="/support/contact-us?product=support-overview">Contact us with your certification questions</a></p>
-      <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    <div class="col-8 u-vertically-center">
+      <h1>Security Certifications</h1>
+      <p>Canonical has achieved FIPS 140-2 Level 1 certification and Common Criteria EAL2. Defense Information System Agency (DISA) has also published Ubuntu Security Technical Implementation Guides (STIGs) which allow Ubuntu to be used by federal agencies. Further more, the Center for Internet Security (CIS) published benchmarks for hardening the configuration of Ubuntu systems.</p>
+      <p><a class="p-button--neutral js-invoke-modal" href="/support/contact-us?product=support-overview">Contact us with your security certification and compliance questions</a></p>
     </div>
-    <div class="col-4 u-hide--small">
+    <div class="col-4 u-hide--small u-align--center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/7953a068-security-1.svg",
@@ -30,6 +24,39 @@
           hi_def=True,
           loading="lazy",
           attrs={"class": "u-hide--small u-hide--medium"}
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip is-bordered u-no-padding--top">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <p>Canonical&rsquo;s security certification offerings are now available to all Ubuntu Advantage for Infrastructure and Ubuntu Pro customers on AWS and Microsoft Azure.</p>
+      <p>Launch Ubuntu Pro 18.04 LTS on <a class="p-link--external" href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic?tab=Overview">Azure</a> and <a class="p-link--external" href="https://aws.amazon.com/marketplace/pp/B0821T9RL2">AWS</a></p>
+      <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 u-hide--small u-align--center u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+          alt="",
+          height="51",
+          width="180",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": ""}
+        ) | safe
+      }}
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+          alt="",
+          height="60",
+          width="100",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": ""}
         ) | safe
       }}
     </div>
@@ -57,6 +84,8 @@
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3632">OpenSSH-Server validated level 1 March 2020 (#3632)</a></li>
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3622">OpenSSL validated level 1 Feb. 2020 (#3622)</a></li>
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3647">Kernel Crypto API validated level 1 April 2020 (#3647)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3683">Azure Kernel Crypto API validated level 1 July 2020 (#3683)</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3664">AWS Kernel Crypto API validated level 1 June 2020 (#3664)</a></li>
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/Projects/Cryptographic-Module-Validation-Program/Certificate/3648">Strongswan validated level 1 April 2020 (#3648)</a></li>
       </ul>
       <p>
@@ -70,8 +99,18 @@
         <li class="p-list__item"><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2978">Strongswan validated level 1 July 2017 (#2978)</a></li>
       </ul>
     </div>
-    <div class="col-4 u-hide--small">
-      <img src="https://assets.ubuntu.com/v1/6c2ebd36-fips-validated-140-2-logo.png" alt="" width="150">
+    <div class="col-4 u-hide--small u-align--center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/9f048bd7-NIST_logo.svg",
+          alt="",
+          height="58",
+          width="220",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": ""}
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -118,9 +157,8 @@
   <div class="row u-equal-height">
     <h2>CIS Benchmark</h2>
     <div class="col-8">
-      <p>
-        Center for Internet Security (CIS) is a non-profit organization that uses a consensus process to release benchmarks to safeguard organizations against cyber attacks. The benchmark contains configuration checklists to harden a system making it less vulnerable to malicious attacks. The consensus review process consists of subject matter experts who provide perspective on different backgrounds like audit and compliance, security research, consulting and software development. Each benchmark undergoes two phases of consensus review. In the first phase, a benchmark is drafted with the help of subject matter experts and an initial version of the benchmark is published. In the second phase, feedback from the wider internet community is reviewed and incorporated into the benchmark. Canonical has actively participated in the drafting of Ubuntu 16.04 and Ubuntu 18.04 benchmarks. CIS has also published benchmarks for Ubuntu 12.04 and 14.04 releases.
-      </p>
+      <p>Center for Internet Security (CIS) is a non-profit organization that uses a consensus process to release benchmarks to safeguard organizations against cyber attacks. The benchmark contains configuration checklists to harden a system making it less vulnerable to malicious attacks. The consensus review process consists of subject matter experts who provide perspective on different backgrounds like audit and compliance, security research, consulting and software development.</p>
+      <p>Each benchmark undergoes two phases of consensus review. In the first phase, a benchmark is drafted with the help of subject matter experts and an initial version of the benchmark is published. In the second phase, feedback from the wider internet community is reviewed and incorporated into the benchmark. Canonical has actively participated in the drafting benchmarks of Ubuntu 16.04, Ubuntu 18.04 and Ubuntu 20.04. CIS has also published benchmarks for Ubuntu 12.04 and 14.04 releases.</p>
       <p>
         <a class="p-link--external" href="https://www.cisecurity.org/partner/canonical/">Read CIS Benchmarks for Ubuntu</a>
       </p>
