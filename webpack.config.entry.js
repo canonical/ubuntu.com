@@ -25,5 +25,6 @@ module.exports = {
   "renewal-modal": "./static/js/src/renewal-modal.js",
   "sticky-nav": "./static/js/src/sticky-nav.js",
   imageBuilder: "./static/js/src/imageBuilder.js",
+  chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
 };
