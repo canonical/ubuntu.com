@@ -66,6 +66,7 @@ class AdvantageContracts:
                 method="put",
                 path=f"v1/accounts/{account_id}/customer-info/stripe",
                 json={
+                    "defaultPaymentMethod": {"Id": payment_method_id},
                     "paymentMethodID": payment_method_id,
                     "address": address,
                     "name": name,

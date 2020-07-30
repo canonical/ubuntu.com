@@ -205,7 +205,7 @@
                                         {% if expired_renewable %}
                                           data-contract-end="{{ contract['contractInfo']['expired_restart_date']}}"
                                         {% else %}
-                                          data-contract-end="contract['contractInfo']['effectiveTo'] }}"
+                                          data-contract-end="{{ contract['contractInfo']['effectiveTo'] }}"
                                         {% endif %}
                                         data-products="{{ contract['contractInfo']['products'] }}"
                                         data-months="{{ contract['renewal']['renewalItems'][0]['priceTotal']['months'] }}"
