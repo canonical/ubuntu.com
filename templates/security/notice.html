@@ -49,17 +49,29 @@
         <ul class="p-list">
           {% for package in notice.release_packages[version] %}
             <li class="p-list__item">
-              {% if package.source_link %}
-                <a href="{{package.source_link}}">{{ package.name }}</a>
-              {% else %}
-                {{ package.name }}
-              {% endif %}
-              -
-              {% if package.version_link %}
-                <a href="{{package.version_link}}">{{ package.version }}</a>
-              {% else%}
-                {{ package.version }}
-              {% endif %}
+              <div>
+                {% if package.source_link %}
+                  <a href="{{package.source_link}}">{{ package.name }}</a>
+                {% else %}
+                  {{ package.name }}
+                {% endif %}
+                -
+                {% if package.version_link %}
+                  <a href="{{package.version_link}}">{{ package.version }}</a>
+                {% else%}
+                  {{ package.version }}
+                {% endif %}
+              </div>
+              <div>
+                <small>
+                  {% if package.fix_requirement == "infra" %}
+                    Available with <a href="/advantage">UA Infra or UA Desktop</a>
+                  {% endif %}
+                  {% if package.fix_requirement == "apps" %}
+                    Available with <a href="/advantage">UA Apps or UA Desktop</a>
+                  {% endif %}
+                </small>
+              </div>
             </li>
           {% endfor %}
         </ul>
