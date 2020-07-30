@@ -145,10 +145,12 @@ class AdvantageContracts:
         return response.json()
 
 
-def build_purchase_item(product_listing_id: str, metric: str, quantity: int):
+def build_purchase_item(
+    product_listing_id: str, metric: str, metric_value: int
+):
     return {
         "productListingID": product_listing_id,
-        "allowance": {"metric": metric, "value": quantity},
+        "allowance": {"metric": metric, "value": metric_value},
     }
 
 
