@@ -16,6 +16,8 @@ from sqlalchemy import asc, desc, or_
 from sqlalchemy.exc import IntegrityError, DataError
 
 # Local
+from sqlalchemy.orm import contains_eager
+
 from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Package, Status, Release
 from webapp.security.schemas import CVESchema, NoticeSchema
@@ -333,13 +335,9 @@ def cve_index():
         db_session.query(CVE)
         .filter(CVE.statuses.any(Status.status.in_(Status.active_statuses)))
         .filter(CVE.status == "active")
+        .join(CVE.statuses)
+        .options(contains_eager(CVE.statuses))
     )
-
-    # Apply search filters
-    if package:
-        cves_query = cves_query.filter(
-            CVE.statuses.any(Status.package_name.ilike(f"%{package}%"))
-        )
 
     if priority:
         cves_query = cves_query.filter(CVE.priority == priority)
@@ -347,15 +345,16 @@ def cve_index():
     if query:
         cves_query = cves_query.filter(CVE.description.ilike(f"%{query}%"))
 
-    cves = (
-        cves_query.order_by(desc(CVE.published))
-        .offset(offset)
-        .limit(limit)
-        .all()
-    )
+    # Apply search filters
+    if package:
+        cves_query = cves_query.filter(Status.package_name == package)
+
+    cves = cves_query.order_by(desc(CVE.published)).all()
 
     # Pagination
-    total_results = cves_query.count()
+    total_results = len(cves)
+    last_item = offset + limit
+
     releases = (
         db_session.query(Release)
         .order_by(desc(Release.release_date))
@@ -371,7 +370,7 @@ def cve_index():
     return flask.render_template(
         "security/cve/index.html",
         releases=releases,
-        cves=cves,
+        cves=cves[offset:last_item],
         total_results=total_results,
         total_pages=ceil(total_results / limit),
         offset=offset,
