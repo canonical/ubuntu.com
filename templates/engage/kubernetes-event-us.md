@@ -23,7 +23,7 @@ context:
 
 **Date and time**
 31 July, 2020
-[2:30-4:30pm CT]
+[1:30-3:30pm CT]
 
 **What it is**: A live, interactive virtual workshop with Canonical’s Kubernetes experts. This will include a presentation from our speakers, panel discussion incorporating live comments and questions from the audience, and free Kubernetes resources and demos to help you achieve your technology goals.
 
@@ -63,7 +63,7 @@ wanting to learn more about how to overcome common Kubernetes challenges in a va
     ) | safe
   }}
   <div class="p-media-object__details">
-    <h3 class="u-no-margin--bottom">Tim van Steenberg</h3>
+    <h3 class="u-no-margin--bottom">Tim Van Steenburgh</h3>
     <p>Engineering Manager (Kubernetes)</p>
   </div>
 </div>
