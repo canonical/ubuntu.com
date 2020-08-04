@@ -13,7 +13,6 @@ function productSelector() {
   const quantityTypeEl = form.querySelector(".js-type-name");
   const steps = ["type", "quantity", "version", "support", "add", "cart"];
 
-  // let cartState = new StateManager(["products"], renderCart);
   let state = new StateManager(steps, render);
 
   init();
@@ -64,6 +63,7 @@ function productSelector() {
       lineItemsHTML += `<li class="p-list__item">${buildLineItemHTML(
         lineItem.get("productId")[0],
         lineItem.get("quantity")[0],
+        lineItem.get("imageURL")[0],
         "remove"
       )}</li>`;
     });
@@ -93,20 +93,26 @@ function productSelector() {
     `;
   }
 
-  function buildLineItemHTML(productId, quantity, action) {
+  function buildLineItemHTML(productId, quantity, imageURL, action) {
     const product = products[productId];
     const rawTotal = (product.price.value / 100) * quantity;
     const cost = parseCurrencyAmount(rawTotal, product.price.currency);
+    let quantityHTML = `x${quantity}`;
+
+    if (action === "remove") {
+      quantityHTML = `<input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity}" step="1" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
+    }
 
     return `
       <div class="row u-vertically-center">
-        <div class="col-6">
+        <div class="col-4">
           <strong>${product.name}</strong>
         </div>
+        <div class="col-2 u-vertically-center">
+          <img src="${imageURL}" style="height: 30px;" />
+        </div>
         <div class="col-2">
-          <input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity}" step="1" style="min-width: 0;" data-stage="${
-      action === "add" ? "selection" : "cart"
-    }" data-product-id="${productId}" />
+          ${quantityHTML}
         </div>
         <div class="col-4 u-align--right">
           <span style="margin-right: 2rem;">
@@ -115,7 +121,7 @@ function productSelector() {
           
           <button class="p-button${
             action === "add" ? "--positive" : ""
-          } u-no-margin--bottom js-cart-action" data-action="${action}" data-product-id="${productId}" data-quantity=${quantity}>${action}</button>
+          } u-no-margin--bottom js-cart-action" data-image-url="${imageURL}" data-action="${action}" data-product-id="${productId}" data-quantity=${quantity}>${action}</button>
         </div>
       </div>
     `;
@@ -155,16 +161,18 @@ function productSelector() {
   function handleCartAction(data) {
     const action = data.action;
     const productId = data.productId;
+    const imageURL = data.imageUrl;
     const quantity = data.quantity;
 
     if (action === "add") {
-      updateCartState(productId, quantity);
+      updateCartState(productId, quantity, imageURL);
       cartStep.scrollIntoView();
       resetForm();
     } else if (action === "remove") {
       state.remove("cart", {
         productId: productId,
         quantity: quantity,
+        imageURL: imageURL,
       });
     }
   }
@@ -348,7 +356,7 @@ function productSelector() {
     }
   }
 
-  function updateCartState(productId, quantity) {
+  function updateCartState(productId, quantity, imageURL) {
     const cartLineItems = state.get("cart");
     let newLineItem = true;
 
@@ -363,9 +371,13 @@ function productSelector() {
     });
 
     if (newLineItem) {
-      let product = new StateManager(["productId", "quantity"], render);
+      let product = new StateManager(
+        ["productId", "quantity", "imageURL"],
+        render
+      );
       product.set("productId", [productId]);
       product.set("quantity", [`${quantity}`]);
+      product.set("imageURL", [imageURL]);
       state.push("cart", product);
     }
   }
@@ -393,8 +405,18 @@ function productSelector() {
     });
 
     if (type && quantity && support && listingId) {
-      const lineItemHTML = buildLineItemHTML(listingId, quantity, "add");
-      addStep.innerHTML = lineItemHTML;
+      const imageURL = form
+        .querySelector(`.js-image-${type}`)
+        .getAttribute("src");
+      const lineItemHTML = buildLineItemHTML(
+        listingId,
+        quantity,
+        imageURL,
+        "add"
+      );
+      const headerHTML =
+        "<div class='row'><div class='col-12'><h3>Your chosen plan</h3></div></div>";
+      addStep.innerHTML = headerHTML + lineItemHTML;
       addStep.classList.remove("u-hide");
     } else {
       addStep.classList.add("u-hide");
