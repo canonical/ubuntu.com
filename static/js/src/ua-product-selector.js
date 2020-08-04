@@ -8,6 +8,7 @@ function productSelector() {
 
   const addStep = form.querySelector(`${stepClassPrefix}add`);
   const cartStep = document.querySelector(`${stepClassPrefix}cart`);
+  const formHeader = form.querySelector(".js-shop--form-heading");
   const shopHeroElement = document.querySelector(".js-shop-hero");
   const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
   const quantityTypeEl = form.querySelector(".js-type-name");
@@ -109,7 +110,7 @@ function productSelector() {
           <strong>${product.name}</strong>
         </div>
         <div class="col-2 u-vertically-center">
-          <img src="${imageURL}" style="height: 30px;" />
+          <img src="${imageURL}" style="height: 32px;" />
         </div>
         <div class="col-2">
           ${quantityHTML}
@@ -250,6 +251,7 @@ function productSelector() {
 
   function render() {
     setActiveSteps();
+    setFormHeader();
     setVersionTabs();
     updateCart();
     updateSelectedProduct();
@@ -292,6 +294,14 @@ function productSelector() {
 
     if (stepsToDisable) {
       disableSteps(stepsToDisable);
+    }
+  }
+
+  function setFormHeader() {
+    if (state.get("cart")[0]) {
+      formHeader.innerHTML = "Any more to add?";
+    } else {
+      formHeader.innerHTML = "What are you setting up?";
     }
   }
 
