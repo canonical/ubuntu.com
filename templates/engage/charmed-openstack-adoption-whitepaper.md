@@ -1,11 +1,11 @@
 ---
 wrapper_template: "engage/_base_engage_markdown.html"
 context:
-  title: "A guide to a successful OpenStack adoption and deployment"
+  title: "OpenStack deployment guide"
   meta_description: "A guide to a successful OpenStack adoption and deployment"
-  meta_image: "https://assets.ubuntu.com/v1/55aa7329-77673291-e44df500-6f81-11ea-81b1-ebae39ade688.png"
+  meta_image: "https://assets.ubuntu.com/v1/af8096ad-facebook_and_linkedin_banner.jpeg"
   meta_copydoc: "https://docs.google.com/document/d/1MDI2eg5DKHoytmUdXUCziQexEGiXRDml2TnqOwstBYQ/edit"
-  header_title: "A guide to a successful OpenStack adoption and deployment"
+  header_title: "OpenStack deployment guide"
   header_subtitle: "Discover Canonical’s proven OpenStack implementation process"
   header_url: "#register-section"
   header_cta: Download whitepaper
