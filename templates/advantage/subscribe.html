@@ -14,15 +14,7 @@
       <div class="col-12 u-sv3">
         <h1>Subscribe to Ubuntu Advantage</h1>
 
-        {% if user_info %}          
-          <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
-            'event' : 'GAEvent',
-            'eventCategory' : 'Advantage subscribe',
-            'eventAction' : 'Authentication',
-            'eventLabel' : 'Sign out',
-            'eventValue' : undefined
-          });">Sign out</a>
-        {% else %}
+        {% if not user_info %}          
           <p>If you have existing subscriptions or sales offers, <a href="/login" onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage subscribe',
@@ -177,13 +169,12 @@
       <div class="row">
         <div class="col-12">
           <h2 class="p-heading--three">Do you also want tech support?</h2>
-          <p><a href="/legal/ubuntu-advantage-service-description">Get details on our tech support response times&nbsp;&rsaquo;</a></p>
         </div>
 
         <div class="col-4 p-card--radio">
           <input autocomplete="off" class="js-product-input" type="radio" id="support_one" name="support" value="essential">
           <label for="support_one">
-            No, thanks<br />
+            No thanks<br />
             <small class="u-text-light">Software only</small>
           </label>
         </div>
@@ -203,10 +194,23 @@
             <small class="u-text-light">Phone and ticket support</small>
           </label>
         </div>
+
+        <div class="col-12">
+          <p><a href="/legal/ubuntu-advantage-service-description" target="_blank">Get details on our tech support response times&nbsp;&rsaquo;</a></p>
+        </div>
       </div>
     </section>
 
     <section class="p-strip--light is-shallow js-shop-step--add p-shop-cart">
+      <div class="row">
+        <div class="col-12">
+          <h3>Your chosen plan</h3>
+        </div>
+
+        <div class="col-12">
+          &mldr;
+        </div>
+      </div>
     </section>
   </form>
   {% include 'advantage/_stripe-modal.html' %}
