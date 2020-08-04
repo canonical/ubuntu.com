@@ -1,8 +1,8 @@
 <section class="p-strip is-shallow js-shop-step--version">
   <div class="js-tab-container">
-    <div class="row u-sv3">
+    <div class="row">
       <div class="col-12">
-        <h2 class="p-heading--3">What Ubuntu version are you running?</h2>
+        <h2 class="p-heading--3 u-no-margin--bottom u-sv2">What Ubuntu version are you running?</h2>
       </div>
     </div>
 
@@ -35,23 +35,27 @@
         <div id="focal" class="p-tabs__content" role="tabpanel" aria-labelledby="focal-tab">
           <div class="row">
             <div class="col-10">
-              <h3 class="p-heading--4">For Ubuntu 20.04 LTS, all UA plans include:</h3>
+              <h3 class="p-heading--4">All UA plans include:</h3>
             </div>
           </div>
 
           <div class="row u-equal-height">
             <div class="col-5">
               <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
-                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
-                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
-                <li class="p-list__item is-ticked">CIS certified modules</li>
+                <li class="p-list__item is-ticked" data-essential="true">Extended Security Maintenance (ESM) LTS</li>
+                <li class="p-list__item is-ticked" data-essential="true">Common Criteria EAL2</li>
+                <li class="p-list__item is-ticked" data-essential="true">Kernel Livepatch service to avoid reboots</li>
+                <li class="p-list__item is-ticked" data-essential="true">Landscape</li>
+                <li class="p-list__item is-ticked" data-essential="true">Knowledge base</li>
               </ul>
             </div>
 
             <div class="col-5">
               <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
-                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
-                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
+                <li class="p-list__item is-ticked" data-essential="true">Certified Windows drivers for KVM guests</li>
+                <li class="p-list__item is-ticked" data-essential="false">Ceph/Swift raw storage support</li>
+                <li class="p-list__item is-ticked" data-essential="false">Legal assurance program</li>
+                <li class="p-list__item is-ticked" data-essential="false">Support for Infra (24x5, 24x7)</li>
               </ul>
             </div>
           </div>
@@ -60,23 +64,30 @@
         <div id="bionic" class="p-tabs__content" role="tabpanel" aria-labelledby="bionic-tab">
           <div class="row">
             <div class="col-10">
-              <h3 class="p-heading--4">For Ubuntu 18.04 LTS, all UA plans include:</h3>
+              <h3 class="p-heading--4">All UA plans include:</h3>
             </div>
           </div>
 
           <div class="row u-equal-height">
             <div class="col-5">
+              
               <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
-                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
-                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
-                <li class="p-list__item is-ticked">CIS certified modules</li>
+                <li class="p-list__item is-ticked" data-essential="true">Extended Security Maintenance (ESM) LTS</li>
+                <li class="p-list__item is-ticked" data-essential="true">FIPS 140-2 Level 1 certified crypto modules</li>
+                <li class="p-list__item is-ticked" data-essential="true">CIS</li>
+                <li class="p-list__item is-ticked" data-essential="true">STIG</li>
+                <li class="p-list__item is-ticked" data-essential="true">Kernel Livepatch service to avoid reboots</li>
+                <li class="p-list__item is-ticked" data-essential="true">Landscape</li>
               </ul>
             </div>
 
             <div class="col-5">
               <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
-                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
-                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
+                <li class="p-list__item is-ticked" data-essential="true">Knowledge base</li>
+                <li class="p-list__item is-ticked" data-essential="true">Certified Windows drivers for KVM guests</li>
+                <li class="p-list__item is-ticked" data-essential="false">Ceph/Swift raw storage support</li>
+                <li class="p-list__item is-ticked" data-essential="false">Legal assurance program</li>
+                <li class="p-list__item is-ticked" data-essential="false">Support for Infra (24x5, 24x7)</li>
               </ul>
             </div>
           </div>
@@ -85,23 +96,31 @@
         <div id="xenial" class="p-tabs__content" role="tabpanel" aria-labelledby="xenial-tab">
           <div class="row">
             <div class="col-10">
-              <h3 class="p-heading--4">For Ubuntu 16.04 LTS, all UA plans include:</h3>
+              <h3 class="p-heading--4">All UA plans include:</h3>
             </div>
           </div>
 
           <div class="row u-equal-height">
             <div class="col-5">
+              
               <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
-                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
-                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
-                <li class="p-list__item is-ticked">CIS certified modules</li>
+                <li class="p-list__item is-ticked" data-essential="true">Extended Security Maintenance (ESM) LTS</li>
+                <li class="p-list__item is-ticked" data-essential="true">FIPS 140-2 Level 1 certified crypto modules</li>
+                <li class="p-list__item is-ticked" data-essential="true">Common Criteria EAL2</li>
+                <li class="p-list__item is-ticked" data-essential="true">CIS</li>
+                <li class="p-list__item is-ticked" data-essential="true">STIG</li>
+                <li class="p-list__item is-ticked" data-essential="true">Kernel Livepatch service to avoid reboots</li>
               </ul>
             </div>
 
             <div class="col-5">
               <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
-                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
-                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
+                <li class="p-list__item is-ticked" data-essential="true">Landscape</li>
+                <li class="p-list__item is-ticked" data-essential="true">Knowledge base</li>
+                <li class="p-list__item is-ticked" data-essential="true">Certified Windows drivers for KVM guests</li>
+                <li class="p-list__item is-ticked" data-essential="false">Ceph/Swift raw storage support</li>
+                <li class="p-list__item is-ticked" data-essential="false">Legal assurance program</li>
+                <li class="p-list__item is-ticked" data-essential="false">Support for Infra (24x5, 24x7)</li>
               </ul>
             </div>
           </div>
@@ -110,23 +129,27 @@
         <div id="trusty" class="p-tabs__content" role="tabpanel" aria-labelledby="trusty-tab">
           <div class="row">
             <div class="col-10">
-              <h3 class="p-heading--4">For Ubuntu 14.04 LTS, all UA plans include:</h3>
+              <h3 class="p-heading--4">All UA plans include:</h3>
             </div>
           </div>
 
           <div class="row u-equal-height">
             <div class="col-5">
               <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
-                <li class="p-list__item is-ticked">Livepatch updates to avoid restarts</li>
-                <li class="p-list__item is-ticked">Landscape Web-based remote admin</li>
-                <li class="p-list__item is-ticked">CIS certified modules</li>
+                <li class="p-list__item is-ticked" data-essential="true">Extended Security Maintenance (ESM) </li>
+                <li class="p-list__item is-ticked" data-essential="true">CIS</li>
+                <li class="p-list__item is-ticked" data-essential="true">Kernel Livepatch service to avoid reboots</li>
+                <li class="p-list__item is-ticked" data-essential="true">Landscape</li>
+                <li class="p-list__item is-ticked" data-essential="true">Knowledge base</li>
               </ul>
             </div>
 
             <div class="col-5">
               <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
-                <li class="p-list__item is-ticked">Access to Ubuntu knowledge base</li>
-                <li class="p-list__item is-ticked">Certified Windows drivers for KVM guests</li>
+                <li class="p-list__item is-ticked" data-essential="true">Certified Windows drivers for KVM guests</li>
+                <li class="p-list__item is-ticked" data-essential="false">Ceph/Swift raw storage support</li>
+                <li class="p-list__item is-ticked" data-essential="false">Legal assurance program</li>
+                <li class="p-list__item is-ticked" data-essential="false">Support for Infra (24x5, 24x7)</li>
               </ul>
             </div>
           </div>
