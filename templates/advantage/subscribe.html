@@ -11,8 +11,26 @@
   
   <section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
     <div class="row">
-      <div class="col-12">
-        <h1 class="u-sv3">Subscribe to Ubuntu Advantage</h1>
+      <div class="col-12 u-sv3">
+        <h1>Subscribe to Ubuntu Advantage</h1>
+
+        {% if user_info %}          
+          <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
+            'event' : 'GAEvent',
+            'eventCategory' : 'Advantage subscribe',
+            'eventAction' : 'Authentication',
+            'eventLabel' : 'Sign out',
+            'eventValue' : undefined
+          });">Sign out</a>
+        {% else %}
+          <p>If you have existing subscriptions or sales offers, <a href="/login" onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage subscribe',
+              'eventAction' : 'Authentication',
+              'eventLabel' : 'Sign in',
+              'eventValue' : undefined
+            });">sign in</a> to access them.</p>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -28,12 +46,13 @@
           <div class="p-card--radio">
             {{
               image(
-                url="https://assets.ubuntu.com/v1/38697bf3-server_brand-dark-grey.svg",
+                url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
                 alt="",
-                height="96",
-                width="89",
+                height="48",
+                width="40",
                 hi_def=True,
-                loading="auto"
+                loading="auto",
+                attrs={"class": "js-image-physical"}
               ) | safe
             }}
             <input autocomplete="off" class="js-product-input" type="radio" id="type_server" name="type" value="physical" data-unit-price="100000" data-product-name="server">
@@ -80,12 +99,13 @@
           <div class="p-card--radio">
             {{
               image(
-                url="https://assets.ubuntu.com/v1/93f75ece-cloud_brand-dark-grey.svg",
+                url="https://assets.ubuntu.com/v1/9ed50294-Virtual+machine.svg",
                 alt="",
-                height="96",
-                width="147",
+                height="48",
+                width="59",
                 hi_def=True,
                 loading="auto",
+                attrs={"class": "js-image-virtual"}
               ) | safe
             }}
             <input autocomplete="off" class="js-product-input" type="radio" id="type_other" name="type" value="virtual" data-unit-price="150000" data-product-name="virtual machine">
@@ -97,17 +117,18 @@
           <div class="p-card--radio">
             {{
               image(
-                url="https://assets.ubuntu.com/v1/8b6b3321-desktop_brand-dark-grey.svg",
+                url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
                 alt="",
-                height="96",
-                width="174",
+                height="48",
+                width="83",
                 hi_def=True,
                 loading="auto",
+                attrs={"class": "js-image-desktop"}
               ) | safe
             }}
             <input autocomplete="off" class="js-product-input" type="radio" id="type_desktop" name="type" value="desktop" data-unit-price="50000" data-product-name="desktop">
             <label for="type_desktop">
-              Desktop
+              Desktops
             </label>
           </div>
         </div>
