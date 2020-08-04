@@ -27,186 +27,1055 @@
     {% block notices_content %}
     {% endblock notices_content %}
 
-    <noscript>
-      <section class="p-strip is-bordered">
-        <div class="u-fixed-width">
-          <h3><a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a></h3>
-        </div>
-      </section>
-    </noscript>
-    <section class="p-strip is-deep is-bordered u-hide" data-js="latest-news">
-      <div class="row p-divider">
-        <div class="col-9">
-          <h3>Latest news from our blog</h3>
-          <div id="latest-articles" class="row">
-            <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
-          </div>
-        </div>
-
-        <div id="spotlight" class="col-3 p-divider__block">
-        </div>
-      </div>
-
-      <template style="display:none" id="articles-template">
-        <div class="col-3">
-          <h4><a class="article-link article-title"></a></h4>
-          <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
-        </div>
-      </template>
-
-      <template style="display:none" id="spotlight-template">
-        <h3>Spotlight</h3>
-        <div>
-          <h4><a class="article-link article-title"></a></h4>
-          <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
-        </div>
-      </template>
-
-      <div class="u-sv3"></div>
-
+    <section class="p-strip">
       <div class="u-fixed-width">
-        <a href="/blog" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
-          View more from our blog
-        </a>
-      </div>
-
-      <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-      <script>
-        canonicalLatestNews.fetchLatestNews(
-          {
-            articlesContainerSelector: "#latest-articles",
-            articleTemplateSelector: "#articles-template",
-            spotlightContainerSelector: "#spotlight",
-            spotlightTemplateSelector: "#spotlight-template",
-            gtmEventLabel: "ubuntu.com homepage"
-          }
-        )
-      </script>
-    </section>
-
-    <section class="p-strip--light is-bordered">
-      <div class="u-fixed-width u-align--center u-clearfix">
-        <h2 class="p-heading--three u-no-max-width" style="margin-bottom: 1.5rem;">
-          Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things
-        </h2>
-        <ul class="p-ubuntu-intro__icons">
-          <li class="u-align--center">
-            <a href="/cloud">
-              <i class="p-ubuntu-intro__icon--cloud"></i>
-              Cloud
-            </a>
+        <h2>Modern enterprise open source</h2>
+        <p>Publisher of Ubuntu. Security. Support. Managed Services.</p>
+        <a class="p-button--positive" href="/contact-us">Contact Canonical</a>
+        <ul class="inline-images">
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
           </li>
-          <li class="u-align--center">
-            <a href="/server">
-              <i class="p-ubuntu-intro__icon--server"></i>
-              Server
-            </a>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
           </li>
-          <li class="u-align--center">
-            <a href="/containers">
-              <i class="p-ubuntu-intro__icon--containers"></i>
-              Containers
-            </a>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
           </li>
-          <li class="u-align--center">
-            <a href="/desktop">
-              <i class="p-ubuntu-intro__icon--desktop"></i>
-              Desktop
-            </a>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
           </li>
-          <li class="u-align--center">
-            <a href="/internet-of-things">
-              <i class="p-ubuntu-intro__icon--iot"></i>
-              IoT
-            </a>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
           </li>
         </ul>
       </div>
     </section>
 
-    {# strip cloud #}
-    <section class="p-strip is-deep u-image-position is-bordered">
+    <section class="p-strip--light">
       <div class="row">
-        <div class="col-7">
+        <div class="col-8">
+          <h2>Energise your engineers</h2>
+          <h5>Better security. More packages. Newer tools. All your open source, from cloud to edge.</h5>
+          <p>66% of experienced developers prefer Ubuntu.</p>
+          <p>That’s why Ubuntu supports the fastest, biggest and most successful digital operations.</p>
+          <a href="#get-in-touch">Let’s talk open source ></a>
+        </div>
+        <div class="col-4 u-vertically-center u-align--center">
           {{
             image(
-              url="https://assets.ubuntu.com/v1/450d7c2f-openstack-hero.svg",
+              url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
               alt="",
-              width="534",
-              height="319",
+              width="64",
+              height="64",
               hi_def=True,
             ) | safe
           }}
-        </div>
-        <div class="col-5">
-          <h3><a href="/openstack/managed">The world’s most popular operating system across public clouds and OpenStack clouds&nbsp;&rsaquo;</a></h3>
-          <p>Find out more about Ubuntu’s cloud building software, tools and service packages.</p>
+          <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020 HackerEarth Developer Survey</a>
         </div>
       </div>
     </section>
 
-    {# strip iot #}
-    <section class="p-strip--light is-deep is-bordered">
-      <div class="row u-equal-height u-vertically-center">
-        <div class="col-4">
-          <h3><a href="/internet-of-things">The fastest way to go from development to production in IoT&nbsp;&rsaquo;</a></h3>
-          <p>Learn about how Ubuntu Core and snaps can help you build your connected devices.</p>
-        </div>
-        <div class="col-7 col-start-large-6 u-align--center">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/808a4e5b-iot.png",
-              alt="",
-              height="280",
-              width="667",
-              hi_def=True,
-              attrs={"class": "u-hide--small"},
-            ) | safe
-          }}
-        </div>
+    <section class="p-strip">
+      <div class="u-fixed-width">
+        <h2>Open source security</h2>
+        <h5>More than Linux. Security and compliance for the full stack.</h5>
+        <p>Secure your open source apps. Patch the full stack, from kernel to library and applications, for CVE compliance. Governments and auditors certify Ubuntu for FedRAMP, FISMA and HITECH.</p>
+        <ul class="p-list is-split">
+          <li class="is-ticked">10 year security maintenance and CVE Patching</li>
+          <li class="is-ticked">Kernel Livepatch for 24/7 patching with no downtime</li>
+          <li class="is-ticked">Extended security for infrastructure and applications </li>
+          <li class="is-ticked">FIPS 140-2 cryptographic modules certified by NIST</li>
+          <li class="is-ticked">Common Criteria EAL2: ISO/IEC IS 15408 validated by CSEC</li>
+          <li class="is-ticked">DISA/STIG hardening for DoD compliance</li>
+          <li class="is-ticked">CIS profiles for cyber defence and malware prevention</li>
+        </ul>
+        <a href="/security">Secure all your open source with us ></a>
+        <ul class="inline-images">
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+        </ul>
       </div>
     </section>
 
-    {# strip containers #}
-    <section class="p-strip is-deep is-bordered">
-      <div class="row u-equal-height u-vertically-center">
-        <div class="col-7">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/72dcc529-containers-illustration_AW.svg",
-              alt="",
-              height="374",
-              width="667",
-              hi_def=True,
-              attrs={"class": "u-hide--small"},
-            ) | safe
-          }}
-        </div>
-        <div class="col-4">
-          <h3><a href="/containers">The number one platform for containers&nbsp;&rsaquo;</a></h3>
-          <p>From LXD to Kubernetes to Docker, Ubuntu can run your containers at scale.</p>
-        </div>
+    <section class="p-strip--light">
+      <div class="u-fixed-width">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+            alt="",
+            width="64",
+            height="64",
+            hi_def=True,
+          ) | safe
+        }}
+        <h2>Significant enterprise savings</h2>
+        <h5>Sustainable open source at the lowest cost, everywhere</h5>
+        <p>Rethink what’s possible with Linux and open source.<br/>Companies engage Canonical to drive down open source operating costs. Automate everything: multi-cloud operations, bare metal provisioning, edge clusters and IoT.</p>
+        <ul class="p-list is-split">
+          <li class="is-ticked">No mandatory subscriptions for Ubuntu</li>
+          <li class="is-ticked">Security, support and fully managed offerings</li>
+          <li class="is-ticked">Public cloud, data centre, edge cluster & appliances</li>
+          <li class="is-ticked">Long term maintenance commitment</li>
+          <li class="is-ticked">Transparent pricing for enterprise and ISV</li>
+          <li class="is-ticked"><a href="/engage/vmware-to-charmed-openstack">Switch from VMware to OpenStack</a></li>
+          <li class="is-ticked"><a href="/tco-calculator">TCO analysis of Open Infra</a></li>
+          <li class="is-ticked"><a href="/engage/cloud-economics">451 study on private/public cloud costs</a></li>
+        </ul>
+        <a href="#get-in-touch">Let’s talk open source ></a>
       </div>
     </section>
 
-    {# strip desktop #}
-    <section class="p-strip--light is-deep is-bordered">
-      <div class="row u-equal-height u-vertically-center">
-        <div class="col-4">
-          <h3><a href="/desktop">Fast, secure and simple, Ubuntu powers millions of PCs worldwide&nbsp;&rsaquo;</a></h3>
-          <p>Download the latest version of Ubuntu, for desktop PCs and laptops.</p>
+    <section class="p-strip">
+      <div class="u-fixed-width">
+        <h2>Public cloud optimisation</h2>
+        <h5>Most public cloud instances are Ubuntu, for performance and security</h5>
+        <ul class="p-list is-split">
+          <li class="is-ticked">Optimised kernels for AWS, Azure, Google, Oracle, IBM</li>
+          <li class="is-ticked">FIPS, CIS hardening and CVE fixes with Ubuntu Pro</li>
+          <li class="is-ticked">Minimise rolling reboots with Kernel Livepatch</li>
+          <li class="is-ticked">Network & storage performance optimisation</li>
+          <li class="is-ticked">GPU enablement for machines and containers</li>
+          <li class="is-ticked">Pay-as-you-go billing, no more licenses</li>
+          <li class="is-ticked">Enterprise support and Extended Security Maintenance</li>
+          <li class="is-ticked">Cloud workload migration service</li>
+          <li class="is-ticked">Containerisation and cloud-native migration service</li>
+          <li class="is-ticked">Fully managed application service</li>
+        </ul>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="/public-cloud">Learn more ></a></li>
+          <li class="p-inline-list__item"><a href="/public-cloud#get-in-touch">Contact us ></a></li>
+        </ul>
+        <ul class="inline-images">
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="p-strip--light">
+      <div class="u-fixed-width">
+        <h2>Carrier-grade private cloud</h2>
+        <h5>Operate <a href="/openstack">private cloud the smart way</a> - supported or <a href="/openstack/managed">fully managed</a></h5>
+        <ul class="p-list is-split">
+          <li class="is-ticked">10 year security maintenance and support</li>
+          <li class="is-ticked">Hyperconverged or segregated architecture</li>
+          <li class="is-ticked">Encryption at rest for GDPR, HIPAA, FedRAMP</li>
+          <li class="is-ticked">Wide choice of SDN and storage</li>
+          <li class="is-ticked">Upgrades and day-2 operations, automated</li>
+          <li class="is-ticked">Integrated logging, monitoring and alerting</li>
+          <li class="is-ticked">Platform and infrastructure hardening</li>
+          <li class="is-ticked">High availability</li>
+          <li class="is-ticked">Carrier-grade NFVI</li>
+        </ul>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="/openstack">Learn more ></a></li>
+          <li class="p-inline-list__item"><a href="/openstack#get-in-touch">Contact us ></a></li>
+        </ul>
+        <ul class="inline-images">
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="p-strip">
+      <div class="u-fixed-width">
+        <h2>Multi-cloud Kubernetes and containers</h2>
+        <h5>AKS. EKS. GKE. Kubeadm. MicroK8s. Charmed Kubernetes. All on Ubuntu.</h5>
+        <ul class="p-list is-split">
+          <li class="is-ticked">Support for all public cloud Kubernetes</li>
+          <li class="is-ticked">On-prem MicroK8s, Charmed K8s, kubeadm</li>
+          <li class="is-ticked"><a href="/kubernetes/managed">Fully-managed Kubernetes</a> on-prem or public cloud</li>
+          <li class="is-ticked">Model-driven Kubernetes Operators</li>
+          <li class="is-ticked">Full stack support for apps, Kubernetes, and OS</li>
+          <li class="is-ticked">K8s architecture and deployment consulting</li>
+          <li class="is-ticked">Cloud-native workload migration services</li>
+          <li class="is-ticked">GPU enablement for AI/ML workloads</li>
+          <li class="is-ticked">Bare metal, OpenStack and VMware</li>
+          <li class="is-ticked">Pluggable CNIs, CSIs, CRIs and third-party tools</li>
+        </ul>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="/kubernetes">Learn more ></a></li>
+          <li class="p-inline-list__item"><a href="/kubernetes/#get-in-touch">Contact us ></a></li>
+        </ul>
+        <ul class="inline-images">
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="p-strip--light">
+      <div class="u-fixed-width">
+        <h2>Ultra secure things</h2>
+        <h5><a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a></h5>
+        <ul class="p-list is-split">
+          <li class="is-ticked">OTA compressed updates for apps, kernel and OS</li>
+          <li class="is-ticked">Automatic rollback and data snapshots</li>
+          <li class="is-ticked">Managed private app stores for secure fleet management</li>
+          <li class="is-ticked">DevSecOps pipeline for edge app delivery</li>
+          <li class="is-ticked">Built-in device recovery and remote disk repair</li>
+          <li class="is-ticked">10 year security maintenance for every device</li>
+          <li class="is-ticked">Provable system and software integrity</li>
+          <li class="is-ticked">Secure boot backed by root of trust</li>
+          <li class="is-ticked">Full disk encryption with hardware keys</li>
+          <li class="is-ticked">FIPS certifiable embedded Linux</li>
+        </ul>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="/core">Learn more ></a></li>
+          <li class="p-inline-list__item"><a href="/core#get-in-touch">Contact us ></a></li>
+        </ul>
+        <ul class="inline-images">
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="p-strip">
+      <div class="u-fixed-width">
+        <h2>Workstations and desktops</h2>
+        <h5>Optimised AI/ML and cloud devops. The professional developer’s preference.</h5>
+        <ul class="p-list is-split">
+          <li class="is-ticked">Active Directory and LDAP integration</li>
+          <li class="is-ticked">Full disk encryption</li>
+          <li class="is-ticked">Security updates for the full open source stack</li>
+          <li class="is-ticked">Estate monitoring and management</li>
+          <li class="is-ticked">Configuration lockdown</li>
+          <li class="is-ticked">Local Kubernetes for offline development</li>
+          <li class="is-ticked">Instant Ubuntu on Windows or macOS with WSL and Multipass</li>
+          <li class="is-ticked">Optimised images and certified workstations</li>
+        </ul>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="/desktop">Learn more ></a></li>
+          <li class="p-inline-list__item"><a href="/desktop/organisations#get-in-touch">Contact us ></a></li>
+        </ul>
+        <ul class="inline-images">
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="p-strip--light">
+      <div class="u-fixed-width">
+        <h2>Data centre automation</h2>
+        <h5>Turn a rack into a bare metal cloud. <a href="https://maas.io/">Metal-as-a-Service provisioning</a> of Windows, ESX, Linux.</h5>
+        <ul class="p-list is-split">
+          <li class="is-ticked">Bare metal cloud with on-demand servers</li>
+          <li class="is-ticked">Remote edge cluster operations</li>
+          <li class="is-ticked">Infrastructure monitoring and discovery</li>
+          <li class="is-ticked">Ansible, Chef, Puppet, SALT, Juju integration</li>
+          <li class="is-ticked">Super fast install from scratch</li>
+          <li class="is-ticked">VMWare ESX, Windows, CentOS, RHEL, Ubuntu</li>
+          <li class="is-ticked">Custom images with pre-installed apps</li>
+          <li class="is-ticked">Disk and network configuration</li>
+          <li class="is-ticked">API-driven DHCP, DNS, PXE, IPAM, provisioning</li>
+          <li class="is-ticked">LDAP authentication and RBAC</li>
+        </ul>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="https://maas.io/">Learn more ></a></li>
+          <li class="p-inline-list__item"><a href="https://maas.io#get-in-touch">Contact us ></a></li>
+        </ul>
+        <ul class="inline-images">
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="p-strip">
+      <div class="u-fixed-width">
+        <h2>Smart robots of all shapes and sizes</h2>
+        <h5>From turtles to trucks, <a href="/robotics">Ubuntu drives the robot revolution</a></h5>
+        <ul class="p-list is-split">
+          <li class="is-ticked">Full support for ROS and ROS2</li>
+          <li class="is-ticked">Security patches for long term ROS</li>
+          <li class="is-ticked">Fault tolerant over-the-air updates</li>
+          <li class="is-ticked">CIS certification for ROS and ROS2</li>
+          <li class="is-ticked">Trim time-to-market with SMART START consulting</li>
+          <li class="is-ticked">Leading Robot-as-a-Platform ecosystem</li>
+          <li class="is-ticked">Curated app stores</li>
+        </ul>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="/robotics">Learn more ></a></li>
+          <li class="p-inline-list__item"><a href="/robotics#get-in-touch">Contact us ></a></li>
+        </ul>
+        <ul class="inline-images">
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+          <li class="p-inline-images__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                alt="",
+                width="64",
+                height="64",
+                hi_def=True,
+                attrs={"class": "p-inline-images__logo"},
+              ) | safe
+            }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="p-strip--light">
+      <div class="row">
+        <div class="col-8">
+          <h2>Multi-cloud applications - beyond PAAS</h2>
+          <h5>Universal model-driven operators for classic and Kubernetes estate</h5>
+          <ul class="p-list">
+            <li class="is-ticked">Operate smoothly across public and private cloud</li>
+            <li class="is-ticked">Reusable integration code as open source packages</li>
+            <li class="is-ticked">Python Operator Framework for rapid development</li>
+            <li class="is-ticked">Bring the K8s operator pattern to classic workloads</li>
+            <li class="is-ticked">Lifecycle management and Day 2 operations</li>
+            <li class="is-ticked">Open collection of community-driven operators</li>
+          </ul>
+          <a href="https://juju.is/">Learn more ></a>
         </div>
-        <div class="col-7 col-start-large-6 u-align--center">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/c6504e94-Dell_XPS_Laptop_Front-Desktop.png",
-              alt="",
-              height="350",
-              width="694",
-              hi_def=True,
-              attrs={"class": "u-hide--small"},
-            ) | safe
-          }}
+        <div class="col-4 u-vertically-center">
+          <ul class="inline-images">
+            <li class="p-inline-images__item">
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                  alt="",
+                  width="64",
+                  height="64",
+                  hi_def=True,
+                  attrs={"class": "p-inline-images__logo"},
+                ) | safe
+              }}
+            </li>
+            <li class="p-inline-images__item">
+              {{
+                image(
+                  url="https://assets.ubuntu.com/v1/fca94c45-snap+icon.png",
+                  alt="",
+                  width="64",
+                  height="64",
+                  hi_def=True,
+                  attrs={"class": "p-inline-images__logo"},
+                ) | safe
+              }}
+            </li>
+          </ul>
         </div>
       </div>
     </section>
