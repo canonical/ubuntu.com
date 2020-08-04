@@ -388,6 +388,8 @@ function productSelector() {
     const type = state.get("type")[0];
     const productsArray = Object.entries(products);
     const productId = `uai-${support}-${type}`;
+    const headerHTML =
+      "<div class='row'><div class='col-12'><h3>Your chosen plan</h3></div></div>";
     let listingId;
     let privateForAccount = false;
 
@@ -395,7 +397,6 @@ function productSelector() {
     productsArray.forEach((product) => {
       const listingProduct = product[1];
       const isSelectedProduct = listingProduct["productID"] === productId;
-
       if (listingProduct.private && isSelectedProduct) {
         privateForAccount = true;
         listingId = product[0];
@@ -414,12 +415,12 @@ function productSelector() {
         imageURL,
         "add"
       );
-      const headerHTML =
-        "<div class='row'><div class='col-12'><h3>Your chosen plan</h3></div></div>";
       addStep.innerHTML = headerHTML + lineItemHTML;
-      addStep.classList.remove("u-hide");
+      addStep.classList.remove("u-disable");
     } else {
-      addStep.classList.add("u-hide");
+      addStep.innerHTML =
+        headerHTML + "<div class='row'><div class='col-12'>&mldr;</div></div>";
+      addStep.classList.add("u-disable");
     }
   }
 }
