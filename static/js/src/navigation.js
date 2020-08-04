@@ -161,34 +161,13 @@ function addGAImpressionEvents(target) {
 addUTMToForms();
 
 function addUTMToForms() {
+  var params = new URLSearchParams(window.location.search);
   const utm_names = ["campaign", "source", "medium"];
   for (let i = 0; i < utm_names.length; i++) {
     var utm_fields = document.getElementsByName("utm_" + utm_names[i]);
     for (let j = 0; j < utm_fields.length; j++) {
-      if (utm_fields[j] && localStorage.getItem("utm_" + utm_names[i])) {
-        utm_fields[j].value = localStorage.getItem("utm_" + utm_names[i]);
-      }
-    }
-  }
-}
-
-addUTMToLocalStorage();
-
-function addUTMToLocalStorage() {
-  if (window.localStorage && window.sessionStorage) {
-    var params = new URLSearchParams(window.location.search);
-    var utm_campaign = params.get("utm_campaign");
-    var utm_source = params.get("utm_source");
-    var utm_medium = params.get("utm_medium");
-    if (utm_source != "Takeover" && utm_source != "takeover") {
-      if (utm_source) {
-        localStorage.setItem("utm_source", utm_source);
-      }
-      if (utm_campaign) {
-        localStorage.setItem("utm_campaign", utm_campaign);
-      }
-      if (utm_medium) {
-        localStorage.setItem("utm_medium", utm_medium);
+      if (utm_fields[j]) {
+        utm_fields[j].value = params.get("utm_" + utm_names[i]);
       }
     }
   }
