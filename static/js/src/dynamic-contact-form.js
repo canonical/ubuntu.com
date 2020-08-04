@@ -106,17 +106,18 @@
     }
 
     function setUTMs() {
+      var params = new URLSearchParams(window.location.search);
       var utm_campaign = document.getElementById("utm_campaign");
       if (utm_campaign) {
-        utm_campaign.value = localStorage.getItem("utm_campaign");
+        utm_campaign.value = params.get("utm_campaign");
       }
       var utm_source = document.getElementById("utm_source");
       if (utm_source) {
-        utm_source.value = localStorage.getItem("utm_source");
+        utm_source.value = params.get("utm_source");
       }
       var utm_medium = document.getElementById("utm_medium");
       if (utm_medium) {
-        utm_medium.value = localStorage.getItem("utm_medium");
+        utm_medium.value = params.get("utm_medium");
       }
     }
 
