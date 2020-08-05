@@ -4,12 +4,12 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1ScuTtdrm3-iAvizTDxksVTAerV6QkCUN8Sg60uUlJsk/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
+<section class="p-strip--suru-topped">
   <div class="u-fixed-width">
     <h1>Download Ubuntu Desktop</h1>
   </div>
 </section>
-<section class="p-strip--light is-bordered">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
     <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
@@ -17,12 +17,12 @@
         <p class="u-no-padding--top">Download the latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years, until {{ releases.lts.eol }}, of free security and maintenance updates, guaranteed.</p>
         <p><a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.lts.short_version }} LTS release notes</a></p>
         <p>Recommended system requirements:</p>
-        <ul class="p-list">
+        <ul class="p-list is-split">
           <li class="p-list__item is-ticked">2 GHz dual core processor or better</li>
           <li class="p-list__item is-ticked">4 GB system memory</li>
           <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
-          <li class="p-list__item is-ticked">Either a DVD drive or a USB port for the installer media</li>
           <li class="p-list__item is-ticked">Internet access is helpful</li>
+          <li class="p-list__item is-ticked">Either a DVD drive or a USB port for the installer media</li>
         </ul>
       </div>
       <div class="col-4">
@@ -63,7 +63,9 @@
   {% endif %}
 </section>
 
-<section class="p-strip is-bordered">
+{% include 'download/shared/_everywhere.html' %}
+
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Easy ways to switch to Ubuntu</h2>
   </div>
@@ -143,7 +145,6 @@
   </div>
 </section>
 
-{% include 'download/shared/_everywhere.html' %}
 
 {% with first_item="_download_desktop_installation",
   first_item_class="",

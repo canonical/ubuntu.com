@@ -5,12 +5,13 @@
 
 {% block content %}
 
-<section class="p-strip--suru-topped is-bordered">
+<section class="p-strip--suru-topped">
   <div class="u-fixed-width">
     <h1 class="u-no-margin--bottom">Download Ubuntu Server</h1>
   </div>
 </section>
-<section class="p-strip--light is-bordered">
+
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Ubuntu Server {{ releases.lts.full_version }} LTS</h2>
   </div>
@@ -62,7 +63,7 @@
   {% endif %}
 </section>
 
-{% include 'download/shared/_multipass-install.html' %}
+{% include 'download/shared/_everywhere.html' %}
 
 <section class="p-strip--light is-shallow">
   <div class="row">
