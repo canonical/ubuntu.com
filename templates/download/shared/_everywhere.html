@@ -7,7 +7,7 @@
   <div class="row p-divider">
 
     {# Multipass #}
-    <div class="p-divider__block col-4 windows macos linux u-hide">
+    <div class="col-4 js-everywhere js-windows js-macos js-linux">
       <h4>
         <a href="https://multipass.run" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'Multipass', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
           {{
@@ -33,7 +33,7 @@
         </div>
 
         {# MircoK8s #}
-        <div class="p-divider__block col-4 macos linux u-hide">
+        <div class="col-4 js-everywhere js-macos js-linux">
           <h4>
             <a href="https://microk8s.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'MicroK8s', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
               {{
@@ -61,7 +61,7 @@
         </div>
 
         {# WSL #}
-        <div class="p-divider__block col-4 windows u-hide">
+        <div class="col-4 js-everywhere js-windows">
           <h4>
             <a href="/wsl" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'WSL', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
               {{
@@ -89,7 +89,7 @@
         </div>
 
         {# Appliances #}
-        <div class="p-divider__block col-4 windows macos linux u-hide">
+        <div class="col-4 js-everywhere js-windows js-macos js-linux">
           <h4>
             <a href="/appliance" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'appliance', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
               {{
@@ -119,9 +119,15 @@
     </section>
 
     <script>
-      var linux = document.querySelectorAll('.linux');
-      var macos = document.querySelectorAll('.macos');
-      var windows = document.querySelectorAll('.windows');
+      var all = document.querySelectorAll('.js-everywhere');
+      var linux = document.querySelectorAll('.js-linux');
+      var macos = document.querySelectorAll('.js-macos');
+      var windows = document.querySelectorAll('.js-windows');
+
+      all.forEach((item, i) => {
+        item.classList.toggle('p-divider__block');
+        item.classList.toggle('u-hide');
+      });
 
       if (navigator.appVersion.indexOf('Win') != -1) {
         windows.forEach((item, i) => {
@@ -138,5 +144,4 @@
           item.classList.toggle('u-hide');
         });
       }
-
     </script>
