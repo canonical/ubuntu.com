@@ -5,6 +5,18 @@
       text-transform: capitalize;
     }
 
+    &__icon {
+      @media only screen and (max-width: $breakpoint-medium - 1) {
+        justify-content: flex-end;
+      }
+    }
+
+    &__block {
+      @media only screen and (max-width: $breakpoint-medium - 1) {
+        margin-bottom: 1rem;
+      }
+    }
+
     .p-list--divided {
       position: relative;
 

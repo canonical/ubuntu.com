@@ -80,14 +80,20 @@ function productSelector() {
           ${lineItemsHTML}
         </ul>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-2 col-start-large-7">
-        <h3 class="p-heading--four">Subtotal:</h3>
+
+      <div class="col-10">
+        <div class="row u-vertically-center">
+          <div class="col-2 col-small-2 col-start-large-7">
+            <h3 class="p-heading--four">Subtotal:</h3>
+          </div>
+
+          <div class="col-2 col-small-2 u-align--right">
+            <h3 class="p-heading--four">${subtotal} /year</h3>
+          </div>
+        </div>
       </div>
 
-      <div class="col-4 u-align--right">
-        <span class="p-heading--four" style="margin-right: 2rem;">${subtotal} /year</span>
+      <div class="col-2 u-align--right">
         <button class="p-button--positive">Buy now</button>
       </div>
     </div>
@@ -106,20 +112,39 @@ function productSelector() {
 
     return `
       <div class="row u-vertically-center">
-        <div class="col-4">
-          <strong>${product.name}</strong>
+        <div class="col-6">
+          <div class="row u-vertically-center p-shop-cart__block">
+            <div class="col-4 col-small-3">
+              <strong>${product.name}</strong>
+            </div>
+
+            <div class="col-2 col-small-1 u-vertically-center p-shop-cart__icon">
+              <img src="${imageURL}" style="height: 32px;" />
+            </div>
+          </div>
         </div>
-        <div class="col-2 u-vertically-center">
-          <img src="${imageURL}" style="height: 32px;" />
+
+        <div class="col-4 ${
+          action === "add" ? "p-shop-cart__block" : "col-small-2"
+        }">
+          <div class="row u-vertically-center">
+            <div class="col-2 col-small-2">
+              ${quantityHTML}
+            </div>
+            
+            <div class="col-2 u-align--right ${
+              action === "add" ? "col-small-2" : "u-hide--small"
+            }">
+              <span>
+                <strong>${cost} /year</strong>
+              </span>
+            </div>
+          </div>
         </div>
-        <div class="col-2">
-          ${quantityHTML}
-        </div>
-        <div class="col-4 u-align--right">
-          <span style="margin-right: 2rem;">
-            <strong>${cost} /year</strong>
-          </span>
-          
+    
+        <div class="col-2 u-align--right ${
+          action === "add" ? "p-shop-cart__block" : "col-small-2"
+        }">
           <button class="p-button${
             action === "add" ? "--positive" : ""
           } u-no-margin--bottom js-cart-action" data-image-url="${imageURL}" data-action="${action}" data-product-id="${productId}" data-quantity=${quantity}>${action}</button>
