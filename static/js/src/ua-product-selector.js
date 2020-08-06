@@ -71,7 +71,7 @@ function productSelector() {
 
     return `<div class="row">
       <div class="col-12">
-        <h2>Your subscription so far:</h2>
+        <h2>Your subscription so far</h2>
       </div>
     </div>
     <div class="row">
@@ -102,12 +102,12 @@ function productSelector() {
     `;
   }
 
-  function buildLineItemHTML(productId, quantity, imageURL, action) {
+  function buildLineItemHTML(productId, quantity = "0", imageURL, action) {
     let product;
     let rawTotal;
-    let cost = "$0";
+    let cost = "";
     let productString = "&mldr;";
-    let quantityHTML = `x${quantity}`;
+    let quantityHTML = `× ${quantity.replace(/^0+/, "")}`;
     let imageHTML = "";
 
     if (productId) {
@@ -122,7 +122,10 @@ function productSelector() {
     }
 
     if (action === "remove") {
-      quantityHTML = `<input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity}" step="1" min="0" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
+      quantityHTML = `<input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity.replace(
+        /^0+/,
+        ""
+      )}" step="1" min="0" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
     }
 
     return `
