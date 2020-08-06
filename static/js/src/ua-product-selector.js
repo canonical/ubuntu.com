@@ -94,7 +94,9 @@ function productSelector() {
       </div>
 
       <div class="col-2 u-align--right">
-        <button class="p-button--positive">Buy now</button>
+        <button class="p-button--positive  ${
+          subtotal === 0 ? "u-disable" : ""
+        }">Buy now</button>
       </div>
     </div>
     `;
@@ -120,7 +122,7 @@ function productSelector() {
     }
 
     if (action === "remove") {
-      quantityHTML = `<input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity}" step="1" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
+      quantityHTML = `<input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity}" step="1" min="0" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
     }
 
     return `
@@ -174,7 +176,11 @@ function productSelector() {
       subtotal += parseInt(productCost / 100) * lineItem.get("quantity")[0];
     });
 
-    return parseCurrencyAmount(subtotal, "USD");
+    if (subtotal > 0) {
+      return parseCurrencyAmount(subtotal, "USD");
+    } else {
+      return subtotal;
+    }
   }
 
   function disableSteps(steps) {
@@ -237,7 +243,11 @@ function productSelector() {
 
       products.forEach((product) => {
         if (product.get("productId")[0] === data.productId) {
-          product.set("quantity", [input.value]);
+          if (input.value < 0) {
+            product.set("quantity", ["0"]);
+          } else {
+            product.set("quantity", [input.value]);
+          }
         }
       });
     }
