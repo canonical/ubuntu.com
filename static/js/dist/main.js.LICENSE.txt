@@ -1,0 +1,24 @@
+/**
+ *
+ *
+ * @author Jerry Bendy <jerry@icewingcc.com>
+ * @licence MIT
+ *
+ */
+
+/**
+ * From: https://gist.github.com/brettz9/7147458
+ * (via http://stackoverflow.com/questions/11661187/form-serialize-javascript-no-framework)
+ *
+ * Adapted from {@link http://www.bulgaria-web-developers.com/projects/javascript/serialize/}
+ * Changes:
+ *     Ensures proper URL encoding of name as well as value
+ *     Preserves element order
+ *     XHTML and JSLint-friendly
+ *     Disallows disabled form elements and reset buttons as per HTML4 [successful controls]{@link http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2}
+ *         (as used in jQuery). Note: This does not serialize <object>
+ *         elements (even those without a declare attribute) or
+ *         <input type="file" />, as per jQuery, though it does serialize
+ *         the <button>'s (which are potential HTML4 successful controls) unlike jQuery
+ * @license MIT/GPL
+ */

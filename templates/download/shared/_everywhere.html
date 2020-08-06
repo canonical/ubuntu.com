@@ -1,0 +1,147 @@
+<section class="p-strip">
+  <div class="row">
+    <h2>
+      More ways to use Ubuntu everywhere
+    </h2>
+  </div>
+  <div class="row p-divider">
+
+    {# Multipass #}
+    <div class="col-4 js-everywhere js-windows js-macos js-linux">
+      <h4>
+        <a href="https://multipass.run" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'Multipass', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
+            alt="Multipass",
+            width="48",
+            height="48",
+            hi_def=True,
+            loading="lazy",
+            attrs={ "class": "p-matrix__img", "style": "float: left;" },
+            ) | safe
+          }}
+          Instant Ubuntu VMs</a></h4>
+          <p>
+            On-demand VMs for cloud devs on Windows, Mac and Linux desktops with Multipass.
+          </p>
+          <p class="u-align--right">
+            <a class="p-button p-link--external" href="https://multipass.run"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'Multipass', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+              Get Multipass
+            </a>
+          </p>
+        </div>
+
+        {# MircoK8s #}
+        <div class="col-4 js-everywhere js-macos js-linux">
+          <h4>
+            <a href="https://microk8s.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'MicroK8s', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/9309d097-MicroK8s_SnapStore_icon.svg",
+                alt="MicroK8s",
+                width="48",
+                height="48",
+                hi_def=True,
+                loading="lazy",
+                attrs={ "class": "p-matrix__img", "style": "float: left;"  },
+                ) | safe
+              }}
+              Lightweight upstream K8s
+            </a>
+          </h4>
+          <p>
+            The smallest, simplest, pure production K8s. For clusters, laptops, IoT and Edge.
+          </p>
+          <p class="u-align--right">
+            <a class="p-button p-link--external" href="https://microk8s.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'MicroK8s', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+              Get MicroK8s
+            </a>
+          </p>
+        </div>
+
+        {# WSL #}
+        <div class="col-4 js-everywhere js-windows">
+          <h4>
+            <a href="/wsl" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'WSL', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg",
+                alt="Ubuntu on WSL",
+                width="48",
+                height="48",
+                hi_def=True,
+                loading="lazy",
+                attrs={ "class": "p-matrix__img", "style": "float: left;"  },
+                ) | safe
+              }}
+              Run Ubuntu on Windows
+            </a>
+          </h4>
+          <p>
+            Install a Ubuntu terminal environment with Windows Subsystem for Linux (WSL).
+          </p>
+          <p class="u-align--right">
+            <a class="p-button" href="/wsl" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'WSL', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+              Get started with WSL
+            </a>
+          </p>
+        </div>
+
+        {# Appliances #}
+        <div class="col-4 js-everywhere js-windows js-macos js-linux">
+          <h4>
+            <a href="/appliance" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'appliance', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/88733b21-appliance.svg",
+                alt="Ubuntu appliances",
+                width="102",
+                height="81",
+                hi_def=True,
+                loading="lazy",
+                attrs={ "class": "p-matrix__img", "style": "float: left;"  },
+                ) | safe
+              }}
+              Make something great today
+            </a>
+          </h4>
+          <p>
+            Download a free appliance image for your PC, Raspberry Pi or a virtual machine.
+          </p>
+          <p class="u-align--right">
+            <a class="p-button" href="/appliance" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'appliance', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+              Try an instant appliance now
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      var all = document.querySelectorAll('.js-everywhere');
+      var linux = document.querySelectorAll('.js-linux');
+      var macos = document.querySelectorAll('.js-macos');
+      var windows = document.querySelectorAll('.js-windows');
+
+      all.forEach((item, i) => {
+        item.classList.toggle('p-divider__block');
+        item.classList.toggle('u-hide');
+      });
+
+      if (navigator.appVersion.indexOf('Win') != -1) {
+        windows.forEach((item, i) => {
+          item.classList.toggle('u-hide');
+        });
+      }
+      else if (navigator.appVersion.indexOf('MacOS') != -1 || navigator.appVersion.indexOf('Mac OS') != -1) {
+        macos.forEach((item, i) => {
+          item.classList.toggle('u-hide');
+        });
+      }
+      else {
+        linux.forEach((item, i) => {
+          item.classList.toggle('u-hide');
+        });
+      }
+    </script>
