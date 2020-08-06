@@ -3,15 +3,15 @@ wrapper_template: "engage/_base_engage_markdown.html"
 context:
      title: "Optimised authentication methods for Ubuntu Desktop"
      meta_description: "Securing enterprise desktops with modern authentication options"
-     meta_image: 
+     meta_image: https://assets.ubuntu.com/v1/187e8242-facebook_and_linkedin_banner+%281%29.jpeg
      meta_copydoc: "https://docs.google.com/document/d/1V7rE4urAmP_AWEOPMGut27kaJOeip3kfkEqJHZf7wQg/edit?usp=sharing"
      header_title: "Optimised authentication methods for Ubuntu Desktop"
      header_subtitle: "Securing enterprise desktops with modern authentication options"
-     header_image: 
-     header_image_width:
-     header_image_height:
+     header_image: https://assets.ubuntu.com/v1/32c95287-desktop-security-white.svg
+     header_image_width: 250
+     header_image_height: 138
      header_url: "#register-section"
-     header_cta: "Download the whitepaper"
+     header_cta: "Download whitepaper"
      header_class: p-engage-banner--grad
      header_lang: en
      form_include: en
