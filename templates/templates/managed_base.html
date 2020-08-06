@@ -1,0 +1,98 @@
+<!doctype html>
+
+<html prefix="og: http://ogp.me/ns#" class="{% block extra_html_class %}{% endblock %}" lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}{% endblock %} | Multi-Cloud and On-Premise</title>
+
+  <link rel="preconnect" href="https://res.cloudinary.com">
+
+  {% block content_experiment %}{% endblock %}
+  <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js" defer></script>
+
+  <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer></script>
+  <script src="{{ versioned_static('js/dist/main.js') }}" defer></script>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static('css/styles.css') }}">
+  <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static('css/print.css') }}">
+  <script>performance.mark("Stylesheets finished")</script>
+
+  <link rel="canonical" href="{% block canonical_url %}{{ request.url }}{% endblock %}">
+
+  <link rel="shortcut icon" href="https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://assets.ubuntu.com/v1/17b68252-apple-touch-icon-180x180-precomposed-ubuntu.png">
+
+  <link type="text/plain" rel="author" href="{{ versioned_static('files/humans.txt') }}">
+
+  {% block head_extra %}{% endblock %}
+
+  <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/46ed6870-Ubuntu-L-subset.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/3baab91b-Ubuntu-Th-subset.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/6113b69a-Ubuntu-LI-subset.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="https://assets.ubuntu.com/v1/0c7b8dc0-Ubuntu-R-subset.woff2" crossorigin>
+
+  <meta name="description" content="{% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}">
+
+  <meta name="theme-color" content="#E95420">
+  <meta name="twitter:account_id" content="4503599627481511">
+  <meta name="twitter:site" content="@ubuntu">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.url }}">
+  <meta property="og:site_name" content="Ubuntu">
+  <meta name="copydoc" content="{% block meta_copydoc %}https://drive.google.com/drive/folders/0B4s80tIYQW4BMjNiMGFmNzQtNDkxZC00YmQ0LWJiZWUtNTk2YThlY2MzZmJh{% endblock %}">
+  <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M">
+
+  {% if self.title() %}
+  <meta name="twitter:title" content="{{ self.title() }} | Ubuntu">
+  <meta property="og:title" content="{{ self.title() }} | Ubuntu">
+  {% endif %}
+  {% if self.meta_description() %}
+  <meta name="twitter:description" content="{{ self.meta_description() }}">
+  <meta property="og:description" content="{{ self.meta_description() }}">
+  {% endif %}
+
+  {# Define the required meta_image block #}
+  <!-- Meta image: {% block meta_image %}{% endblock %} -->
+  {% if self.meta_image() %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
+  <meta property="og:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
+  {% endif %}
+
+  {% include "templates/_tag_manager.html" %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+  <!-- google tag manager -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K92JCQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- end google tag manager -->
+
+  {% if not(hide_nav == True) %}
+    {% include "templates/_navigation.html" %}
+  {% endif %}
+
+  <div class="wrapper u-no-margin--top">
+    <div id="main-content" class="inner-wrapper">
+      {% block content_head %}{% endblock %}
+      {% block content_container %}
+      {% block outer_content %}
+      {% endblock outer_content %}
+      {% endblock content_container %}
+    </div><!-- /.inner-wrapper -->
+  </div><!-- /.wrapper -->
+
+  <!-- footer content goes here -->
+  {% if small_footer %}
+    {% include "templates/small-footer.html" %}
+  {% else %}
+    {% include "templates/footer.html" %}
+    {% if "/whitepapers" not in request.path  %}
+    {% endif %}
+    {% block footer_extra %}{% endblock %}
+  {% endif %}
+</body>
+</html>
