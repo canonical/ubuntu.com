@@ -1,5 +1,5 @@
 <!-- MARKETO FORM -->
-<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" class="marketo-form" id="mktoForm_{{ id }}">
+<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" class="marketo-form" id="mktoForm_{{ id }}" onSubmit="fbq('trackCustom', 'Download');">
   <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
     <ul class="p-list">
       <li class="mktFormReq mktField p-list__item">
@@ -58,7 +58,7 @@
         <input name="Consent_to_Processing__c" aria-label="Consent" class="mktoField  mktoFormCol" value="Yes" type="hidden">
       </li>
       <li class="mktField">
-        <button type="submit" class="mktoButton u-no-margin--bottom">{% if cta %}{{ cta }}{% else %}Download the whitepaper{% endif %}</button>
+        <button type="submit" class="mktoButton u-no-margin--bottom" >{% if cta %}{{ cta }}{% else %}Download the whitepaper{% endif %}</button>
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
         <input name="formid" aria-label="formid" class="mktoField" value="{{ id }}" type="hidden">
         <input name="formVid" aria-label="formid" class="mktoField" value="{{ id }}" type="hidden">
