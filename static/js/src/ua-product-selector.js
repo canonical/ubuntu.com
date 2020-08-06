@@ -101,10 +101,23 @@ function productSelector() {
   }
 
   function buildLineItemHTML(productId, quantity, imageURL, action) {
-    const product = products[productId];
-    const rawTotal = (product.price.value / 100) * quantity;
-    const cost = parseCurrencyAmount(rawTotal, product.price.currency);
+    let product;
+    let rawTotal;
+    let cost = "$0";
+    let productString = "&mldr;";
     let quantityHTML = `x${quantity}`;
+    let imageHTML = "";
+
+    if (productId) {
+      product = products[productId];
+      productString = product.name;
+      rawTotal = (product.price.value / 100) * quantity;
+      cost = parseCurrencyAmount(rawTotal, product.price.currency);
+    }
+
+    if (imageURL) {
+      imageHTML = `<img src="${imageURL}" style="height: 32px;" />`;
+    }
 
     if (action === "remove") {
       quantityHTML = `<input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity}" step="1" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
@@ -115,11 +128,11 @@ function productSelector() {
         <div class="col-6">
           <div class="row u-vertically-center p-shop-cart__block">
             <div class="col-4 col-small-3">
-              <strong>${product.name}</strong>
+              <strong>${productString}</strong>
             </div>
 
             <div class="col-2 col-small-1 u-vertically-center p-shop-cart__icon">
-              <img src="${imageURL}" style="height: 32px;" />
+              ${imageHTML}
             </div>
           </div>
         </div>
@@ -129,7 +142,7 @@ function productSelector() {
         }">
           <div class="row u-vertically-center">
             <div class="col-2 col-small-2">
-              ${quantityHTML}
+              ${quantity ? quantityHTML : ""}
             </div>
             
             <div class="col-2 u-align--right ${
@@ -421,10 +434,14 @@ function productSelector() {
     const quantity = state.get("quantity")[0];
     const support = state.get("support")[0];
     const type = state.get("type")[0];
+    const validVersion = state.get("version")[0] !== "#other";
     const productsArray = Object.entries(products);
     const productId = `uai-${support}-${type}`;
+    const completedForm = type && quantity && support && validVersion;
     const headerHTML =
       "<div class='row'><div class='col-12'><h3>Your chosen plan</h3></div></div>";
+
+    let lineItemHTML;
     let listingId;
     let privateForAccount = false;
 
@@ -440,23 +457,21 @@ function productSelector() {
       }
     });
 
-    if (type && quantity && support && listingId) {
+    if (completedForm && listingId) {
       const imageURL = form
         .querySelector(`.js-image-${type}`)
         .getAttribute("src");
-      const lineItemHTML = buildLineItemHTML(
-        listingId,
-        quantity,
-        imageURL,
-        "add"
-      );
-      addStep.innerHTML = headerHTML + lineItemHTML;
+
+      lineItemHTML = buildLineItemHTML(listingId, quantity, imageURL, "add");
+
       addStep.classList.remove("u-disable");
     } else {
-      addStep.innerHTML =
-        headerHTML + "<div class='row'><div class='col-12'>&mldr;</div></div>";
+      lineItemHTML = buildLineItemHTML(null, quantity, null, "add");
+
       addStep.classList.add("u-disable");
     }
+
+    addStep.innerHTML = headerHTML + lineItemHTML;
   }
 }
 
