@@ -425,6 +425,10 @@ function productSelector() {
         quantity += parseInt(lineItem.get("quantity")[0]);
         lineItem.set("quantity", [`${quantity}`]);
         newLineItem = false;
+      } else if (lineItem.get("quantity")[0] === "0") {
+        // user has set a cart item to zero, remove it if they
+        // add another
+        state.remove("cart", lineItem);
       }
     });
 
