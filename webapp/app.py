@@ -320,6 +320,22 @@ ceph_docs = Docs(
 )
 ceph_docs.init_app(app)
 
+# Engage pages from Discourse
+engage_path = "/engage"
+engage_docs = DiscourseDocs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=17229,
+        url_prefix=engage_path,
+    ),
+    document_template="/engage-pages/base.html",
+    url_prefix=engage_path,
+    blueprint_name="engage-pages",
+)
+# app.add_url_rule(
+#     engage_path, view_func=build_engage_index(engage_docs)
+# )
+engage_docs.init_app(app)
 
 # Smart Start
 smart_start = Docs(
