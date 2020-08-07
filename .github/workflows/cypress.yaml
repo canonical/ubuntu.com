@@ -5,7 +5,9 @@ env:
   PORT: 8001
   CONTRACTS_API_URL: contracts.staging.canonical.com
 
-on: [push]
+on:
+  schedule:
+    - cron: "0 7 * * *"
 
 jobs:
   run-cypress:
