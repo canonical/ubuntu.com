@@ -21,12 +21,12 @@ context("Marketo form", () => {
     ).as("captureLead");
   });
 
-  afterEach(() => {
-    cy.wait("@captureLead").should((xhr) => {
-      expect(xhr.method).to.equal("POST");
-      expect(xhr.status).to.equal(200);
-    });
-  });
+  // afterEach(() => {
+  //   cy.wait("@captureLead").should((xhr) => {
+  //     expect(xhr.method).to.equal("POST");
+  //     expect(xhr.status).to.equal(200);
+  //   });
+  // });
 
   it("/download/server/thank-you", () => {
     cy.visit("/download/server/thank-you");
