@@ -14,9 +14,10 @@ from mistune import Markdown
 from sortedcontainers import SortedDict
 from sqlalchemy import asc, desc, or_
 from sqlalchemy.exc import IntegrityError, DataError
+from sqlalchemy.orm import contains_eager
+from sqlalchemy.sql.expression import nullslast
 
 # Local
-from sqlalchemy.orm import contains_eager
 
 from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Package, Status, Release
@@ -352,7 +353,7 @@ def cve_index():
     total_results = cves_query.count()
 
     cves_query = (
-        cves_query.order_by(desc(CVE.published))
+        cves_query.order_by(nullslast(desc(CVE.published)))
         .limit(limit)
         .offset(offset)
         .from_self()
