@@ -92,41 +92,31 @@ let progressTimer2;
 let progressTimer3;
 let progressTimer4;
 
-function attachCTAevents(selector) {
-  const CTAs = document.querySelectorAll(selector);
+function attachCTAevents() {
+  document.addEventListener("click", (e) => {
+    const isRenewalCTA = e.target.classList.contains("js-ua-renewal-cta");
+    const isShopCTA = e.target.classList.contains("js-ua-shop-cta");
+    const data = e.target.dataset;
 
-  CTAs.forEach((cta) => {
-    cta.addEventListener("click", (e) => {
+    if (isRenewalCTA || isShopCTA) {
       e.preventDefault();
-      let data = cta.dataset;
-      currentTransaction.type = data.transactionType;
 
       toggleModal();
       card.focus();
       sendGAEvent("opened payment modal");
+    }
 
-      if (currentTransaction.type === "renewal") {
-        currentTransaction.accountId = data.accountId;
-        currentTransaction.contractId = data.contractId;
-        currentTransaction.renewalId = data.renewalId;
+    if (isRenewalCTA) {
+      currentTransaction.type = data.transactionType;
+      currentTransaction.accountId = data.accountId;
+      currentTransaction.contractId = data.contractId;
+      currentTransaction.renewalId = data.renewalId;
 
-        setRenewalInformation(data, modal);
-      } else if (currentTransaction.type === "purchase") {
-        // TODO: for demo purposes only, remove when we have real endpoints and data and data
-        const form = cta.closest("form");
-        const selectedProduct = form.querySelector(
-          'input[type="radio"]:checked'
-        );
-        const quantityInput = form.querySelector(`[name="quantity"]`);
-        const product = {
-          name: selectedProduct.value,
-          quantity: quantityInput.value,
-          unitPrice: selectedProduct.dataset.unitPrice,
-        };
-
-        setOrderInformation([product], modal);
-      }
-    });
+      setRenewalInformation(data, modal);
+    } else if (isShopCTA) {
+      console.log(data);
+      setOrderInformation(data.cart, modal);
+    }
   });
 }
 
@@ -708,7 +698,7 @@ function validateFormInput(input, highlightError) {
   return valid;
 }
 
-attachCTAevents(".js-ua-payment-cta");
+attachCTAevents();
 attachFormEvents();
 attachModalButtonEvents();
 setupCardElements();
