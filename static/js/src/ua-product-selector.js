@@ -59,14 +59,19 @@ function productSelector() {
   function buildCartHTML(lineItems) {
     const subtotal = calculateSubtotal(lineItems);
     let lineItemsHTML = "";
+    let cartData = [];
 
     lineItems.forEach((lineItem) => {
+      const id = lineItem.get("productId")[0];
+      const quantity = lineItem.get("quantity")[0];
       lineItemsHTML += `<li class="p-list__item">${buildLineItemHTML(
-        lineItem.get("productId")[0],
-        lineItem.get("quantity")[0],
+        id,
+        quantity,
         lineItem.get("imageURL")[0],
         "remove"
       )}</li>`;
+
+      cartData.push({ product: products[id], quantity: quantity });
     });
 
     return `<div class="row">
@@ -96,7 +101,7 @@ function productSelector() {
       <div class="col-2 u-align--right">
         <button class="p-button--positive  ${
           subtotal === 0 ? "u-disable" : ""
-        }">Buy now</button>
+        }" data-cart="${JSON.stringify(cartData)}">Buy now</button>
       </div>
     </div>
     `;
