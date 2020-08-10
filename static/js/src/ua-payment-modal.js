@@ -100,6 +100,7 @@ function attachCTAevents() {
 
     if (isRenewalCTA || isShopCTA) {
       e.preventDefault();
+      currentTransaction.type = data.transactionType;
 
       toggleModal();
       card.focus();
@@ -107,15 +108,36 @@ function attachCTAevents() {
     }
 
     if (isRenewalCTA) {
-      currentTransaction.type = data.transactionType;
       currentTransaction.accountId = data.accountId;
       currentTransaction.contractId = data.contractId;
       currentTransaction.renewalId = data.renewalId;
 
       setRenewalInformation(data, modal);
     } else if (isShopCTA) {
-      console.log(data);
-      setOrderInformation(data.cart, modal);
+      const cartItems = [
+        {
+          listingID: "lABZRtXMnWiYOnT-hjbk4HMamlODyoig7ts-sElYrt7o",
+          product: {
+            name: "UA Infrastructure - Essential (Physical)",
+            price: { currency: "USD", value: 22500 },
+            productID: "uai-essential-physical",
+            private: "",
+          },
+          quantity: "4",
+        },
+        {
+          listingID: "lAHy82CcfQyWfP8NrpIzWHuK_FU9a5Y8tJeWnks9GgF4",
+          product: {
+            name: "UA Infrastructure - Essential (Desktop)",
+            price: { currency: "USD", value: 2500 },
+            productID: "uai-essential-desktop",
+            private: "",
+          },
+          quantity: "8",
+        },
+      ];
+
+      setOrderInformation(cartItems, modal);
     }
   });
 }
