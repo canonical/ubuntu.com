@@ -24,7 +24,11 @@ from requests.exceptions import HTTPError
 
 # Local
 from webapp.login import empty_session, user_info
-from webapp.advantage import AdvantageContracts
+from webapp.advantage import (
+    AdvantageContracts,
+    build_purchase_item,
+    build_purchase_request,
+)
 
 
 ip_reader = geolite2.reader()
@@ -550,21 +554,51 @@ class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
 
 
 def post_advantage_subscriptions():
-    # 500 if 'error' arg is provided
-    if flask.request.args.get("error"):
-        return flask.jsonify({}), 500
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
 
     payload = flask.request.json
     if not payload:
         return flask.jsonify({}), 400
 
-    customer_id = payload.get("customer_id")
-    products = payload.get("products")
+    account_id = payload.get("account_id")
+    purchase_items = []
+    for product in payload.get("products"):
+        product_listing_id = product["product_listing_id"]
+        metric_value = product["quantity"]
 
-    if not customer_id or not products:
-        return flask.jsonify({}), 400
+        purchase_items.append(
+            build_purchase_item(
+                product_listing_id=product_listing_id,
+                metrict="active-machines",
+                metric_value=metric_value,
+            )
+        )
 
-    return flask.jsonify({}), 200
+    purchase_request = build_purchase_request(
+        account_id=account_id, purchase_items=purchase_items
+    )
+
+    try:
+        purchase = advantage.purchase_from_marketplace(
+            marketplace="canonical-ua", purchase_request=purchase_request
+        )
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"purchase_request": purchase_request}
+        )
+        return (
+            flask.jsonify({"error": "could not complete this purchase"}),
+            500,
+        )
+
+    return flask.jsonify(purchase), 200
 
 
 def advantage_shop_view():
