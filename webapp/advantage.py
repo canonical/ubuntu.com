@@ -118,3 +118,41 @@ class AdvantageContracts:
         )
 
         return response.json()
+
+    def get_account_purchases(self, account_id: str) -> dict:
+        response = self._request(
+            method="get", path=f"v1/accounts/{account_id}/purchases",
+        )
+
+        return response.json()
+
+    def get_purchase(self, purchase_id: str) -> dict:
+        response = self._request(
+            method="get", path=f"v1/purchase/{purchase_id}",
+        )
+
+        return response.json()
+
+    def purchase_from_marketplace(
+        self, marketplace: str, purchase_request: dict
+    ) -> dict:
+        response = self._request(
+            method="post",
+            path=f"v1/marketplace/{marketplace}/purchase",
+            json=purchase_request,
+        )
+
+        return response.json()
+
+
+def build_purchase_item(
+    product_listing_id: str, metric: str, metric_value: int
+):
+    return {
+        "productListingID": product_listing_id,
+        "allowance": {"metric": metric, "value": metric_value},
+    }
+
+
+def build_purchase_request(account_id: str, purchase_items: list):
+    return {"accountID": account_id, "purchaseItems": purchase_items}
