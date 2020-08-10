@@ -113,7 +113,7 @@ function setSummaryInfo(summaryObject, modal) {
   totalsContainer.classList.remove("u-hide");
 }
 
-export function getOrderInformation(products) {
+export function getOrderInformation(listings) {
   const items = [];
   const currency = "USD";
   const vatCurrency = "GBP";
@@ -121,13 +121,13 @@ export function getOrderInformation(products) {
   const endDate = add(new Date(), { months: 12 });
   let subtotal = 0;
 
-  products.forEach((product, i) => {
-    subtotal = subtotal + product.quantity * product.unitPrice;
+  listings.forEach((listing, i) => {
+    subtotal = subtotal + listing.quantity * listing.product.price.value;
 
     items.push({
       plan: {
         label: `Plan ${i + 1}:`,
-        value: product.name,
+        value: listing.product.name,
       },
       start: {
         label: "Starts:",
@@ -140,8 +140,8 @@ export function getOrderInformation(products) {
       quantity: {
         label: "Machines:",
         value: buildQuantityString(
-          product.quantity,
-          product.unitPrice,
+          listing.quantity,
+          listing.product.price.value,
           currency
         ),
       },
@@ -213,8 +213,8 @@ export function getRenewalInformation(data) {
   };
 }
 
-export function setOrderInformation(products, modal) {
-  const orderSummary = getOrderInformation(products);
+export function setOrderInformation(listings, modal) {
+  const orderSummary = getOrderInformation(listings);
 
   setModalTitle("Complete purchase", modal);
   setSummaryInfo(orderSummary, modal);
