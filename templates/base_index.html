@@ -32,7 +32,7 @@
         <h2>Modern enterprise open source</h2>
         <h5>Publisher of Ubuntu. Security. Support. Managed Services.</h5>
         <a class="p-button--positive" href="/contact-us">Contact Canonical</a>
-        <ul class="p-inline-images" style="filter: grayscale(100%);">
+        <ul class="p-inline-images u-align--left u-hide--small" style="filter: grayscale(100%);">
           <li class="p-inline-images__item">
             {{
               image(
@@ -167,16 +167,18 @@
           <a href="#get-in-touch">Let’s talk open source ></a>
         </div>
         <div class="col-4 u-vertically-center u-align--center">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/934a0626-Hackerearth_logo.svg",
-              alt="HackerEarth logo",
-              width="200",
-              height="40",
-              hi_def=True,
-            ) | safe
-          }}
-          <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020 HackerEarth Developer Survey</a>
+          <div>
+            <p><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" class="p-link--external">The 2020 HackerEarth Developer Survey ></a></p>
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/934a0626-Hackerearth_logo.svg",
+                alt="HackerEarth logo",
+                width="200",
+                height="40",
+                hi_def=True,
+              ) | safe
+            }}
+          </div>
         </div>
       </div>
     </section>
@@ -196,7 +198,7 @@
           <li class="is-ticked">CIS profiles for cyber defence and malware prevention</li>
         </ul>
         <p><a href="/security">Secure all your open source with us ></a></p>
-        <ul class="p-inline-images u-align--left">
+        <ul class="p-inline-images u-align--left u-hide--small">
           <li class="p-inline-images__item">
             {{
               image(
@@ -334,7 +336,7 @@
           <li class="p-inline-list__item"><a href="/public-cloud">Learn more ></a></li>
           <li class="p-inline-list__item"><a href="/public-cloud#get-in-touch">Contact us ></a></li>
         </ul>
-        <ul class="p-inline-images">
+        <ul class="p-inline-images u-align--left u-hide--small">
           <li class="p-inline-images__item">
             {{
               image(
@@ -406,7 +408,7 @@
           <li class="p-inline-list__item"><a href="/openstack">Learn more ></a></li>
           <li class="p-inline-list__item"><a href="/openstack#get-in-touch">Contact us ></a></li>
         </ul>
-        <ul class="p-inline-images">
+        <ul class="p-inline-images u-align--left u-hide--small">
           <li class="p-inline-images__item">
             {{
               image(
@@ -515,7 +517,7 @@
           <li class="p-inline-list__item"><a href="/kubernetes">Learn more ></a></li>
           <li class="p-inline-list__item"><a href="/kubernetes/#get-in-touch">Contact us ></a></li>
         </ul>
-        <ul class="p-inline-images">
+        <ul class="p-inline-images u-align--left u-hide--small">
           <li class="p-inline-images__item">
             {{
               image(
@@ -612,7 +614,7 @@
           <li class="p-inline-list__item"><a href="/core">Learn more ></a></li>
           <li class="p-inline-list__item"><a href="/core#get-in-touch">Contact us ></a></li>
         </ul>
-        <ul class="p-inline-images">
+        <ul class="p-inline-images u-align--left u-hide--small">
           <li class="p-inline-images__item">
             {{
               image(
@@ -695,7 +697,7 @@
           <li class="p-inline-list__item"><a href="/desktop">Learn more ></a></li>
           <li class="p-inline-list__item"><a href="/desktop/organisations#get-in-touch">Contact us ></a></li>
         </ul>
-        <ul class="p-inline-images">
+        <ul class="p-inline-images u-align--left u-hide--small">
           <li class="p-inline-images__item">
             {{
               image(
@@ -763,7 +765,7 @@
     <section class="p-strip--light">
       <div class="u-fixed-width">
         <h2>Data centre automation</h2>
-        <h5>Turn a rack into a bare metal cloud. <a href="https://maas.io/">Metal-as-a-Service provisioning</a> of Windows, ESX, Linux.</h5>
+        <h5>Turn a rack into a bare metal cloud. <a href="https://maas.io/" class="p-link--external">Metal-as-a-Service provisioning</a> of Windows, ESX, Linux.</h5>
         <ul class="p-list is-split">
           <li class="is-ticked">Bare metal cloud with on-demand servers</li>
           <li class="is-ticked">Remote edge cluster operations</li>
@@ -777,10 +779,10 @@
           <li class="is-ticked">LDAP authentication and RBAC</li>
         </ul>
         <ul class="p-inline-list">
-          <li class="p-inline-list__item"><a href="https://maas.io/">Learn more ></a></li>
-          <li class="p-inline-list__item"><a href="https://maas.io#get-in-touch">Contact us ></a></li>
+          <li class="p-inline-list__item"><a href="https://maas.io/" class="p-link--external">Learn more ></a></li>
+          <li class="p-inline-list__item"><a href="https://maas.io#get-in-touch" class="p-link--external">Contact us ></a></li>
         </ul>
-        <ul class="p-inline-images">
+        <ul class="p-inline-images u-align--left u-hide--small">
           <li class="p-inline-images__item">
             {{
               image(
@@ -886,7 +888,7 @@
           <li class="p-inline-list__item"><a href="/robotics">Learn more ></a></li>
           <li class="p-inline-list__item"><a href="/robotics#get-in-touch">Contact us ></a></li>
         </ul>
-        <ul class="p-inline-images">
+        <ul class="p-inline-images u-align--left u-hide--small">
           <li class="p-inline-images__item">
             {{
               image(
@@ -1003,8 +1005,8 @@
           <a href="https://juju.is/">Learn more ></a>
         </div>
         <div class="col-4 u-vertically-center">
-          <ul class="p-inline-images">
-            <li class="p-inline-images__item">
+          <ul class="p-inline-list--stretch">
+            <li class="p-inline-list__item">
               {{
                 image(
                   url="https://assets.ubuntu.com/v1/1f395c09-Panasonic-Logo.svg",
@@ -1012,11 +1014,10 @@
                   width="130",
                   height="21",
                   hi_def=True,
-                  attrs={"class": "p-inline-images__logo"},
                 ) | safe
               }}
             </li>
-            <li class="p-inline-images__item">
+            <li class="p-inline-list__item">
               {{
                 image(
                   url="https://assets.ubuntu.com/v1/7bbfb1d0-Scania_logo.svg",
@@ -1024,13 +1025,69 @@
                   width="130",
                   height="34",
                   hi_def=True,
-                  attrs={"class": "p-inline-images__logo"},
                 ) | safe
               }}
             </li>
           </ul>
         </div>
       </div>
+    </section>
+
+    <noscript>
+      <section class="p-strip is-bordered">
+        <div class="u-fixed-width">
+          <h3><a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a></h3>
+        </div>
+      </section>
+    </noscript>
+    <section class="p-strip is-deep is-bordered u-hide" data-js="latest-news">
+      <div class="row p-divider">
+        <div class="col-9">
+          <h3>Latest news from our blog</h3>
+          <div id="latest-articles" class="row">
+            <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
+          </div>
+        </div>
+
+        <div id="spotlight" class="col-3 p-divider__block">
+        </div>
+      </div>
+
+      <template style="display:none" id="articles-template">
+        <div class="col-3">
+          <h4><a class="article-link article-title"></a></h4>
+          <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
+        </div>
+      </template>
+
+      <template style="display:none" id="spotlight-template">
+        <h3>Spotlight</h3>
+        <div>
+          <h4><a class="article-link article-title"></a></h4>
+          <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
+        </div>
+      </template>
+
+      <div class="u-sv3"></div>
+
+      <div class="u-fixed-width">
+        <a href="/blog" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
+          View more from our blog
+        </a>
+      </div>
+
+      <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+      <script>
+        canonicalLatestNews.fetchLatestNews(
+          {
+            articlesContainerSelector: "#latest-articles",
+            articleTemplateSelector: "#articles-template",
+            spotlightContainerSelector: "#spotlight",
+            spotlightTemplateSelector: "#spotlight-template",
+            gtmEventLabel: "ubuntu.com homepage"
+          }
+        )
+      </script>
     </section>
 
     {% block footer_content %}
