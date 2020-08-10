@@ -71,7 +71,13 @@ function productSelector() {
         "remove"
       )}</li>`;
 
-      cartData.push({ product: products[id], quantity: quantity });
+      if (quantity > 0) {
+        cartData.push({
+          listingID: id,
+          product: products[id],
+          quantity: quantity,
+        });
+      }
     });
 
     return `<div class="row">
@@ -99,9 +105,11 @@ function productSelector() {
       </div>
 
       <div class="col-2 u-align--right">
-        <button class="p-button--positive  ${
+        <button class="p-button--positive js-ua-shop-cta ${
           subtotal === 0 ? "u-disable" : ""
-        }" data-cart="${JSON.stringify(cartData)}">Buy now</button>
+        }" data-cart='${JSON.stringify(
+      cartData
+    )}' data-transaction-type="purchase">Buy now</button>
       </div>
     </div>
     `;
