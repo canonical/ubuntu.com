@@ -1,0 +1,321 @@
+
+
+
+<div class="p-modal" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
+      <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Accelerate your NFV transformation</h2>
+    </header>
+    <div class="js-pagination js-pagination--1">
+      <p id="modal-description" class="u-no-max-width u-no-margin--bottom"></p>
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">At which stage of NFV transformation are you?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="stage-of-transformation-i-want-to-learn-more-about-nfv">
+            <label for="stage-of-transformation-i-want-to-learn-more-about-nfv">I want to learn more about NFV</label>
+            <input type="checkbox" id="stage-of-transformation-i-am-evaluating-the-need-to-transition-to-nfv">
+            <label for="stage-of-transformation-i-am-evaluating-the-need-to-transition-to-nfv">I am evaluating the need to transition to NFV</label>
+            <input type="checkbox" id="stage-of-transformation-i-am-planning-to-transition-to-nfv-in-the-next-12-months">
+            <label for="stage-of-transformation-i-am-planning-to-transition-to-nfv-in-the-next-12-months">I am planning to transition to NFV in the next 12 months</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="stage-of-transformation-i-have-already-started-the-transition-process,-but-haven’t-implemented-anything-yet">
+            <label for="stage-of-transformation-i-have-already-started-the-transition-process,-but-haven’t-implemented-anything-yet">I have already started the transition process, but haven’t implemented anything yet</label>
+            <input type="checkbox" id="stage-of-transformation-i-have-already-started-the-transition-process,-tried-various-platforms-and-failed">
+            <label for="stage-of-transformation-i-have-already-started-the-transition-process,-tried-various-platforms-and-failed">I have already started the transition process, tried various platforms and failed</label>
+            <input type="checkbox" id="stage-of-transformation-i-am-in-the-process-of-implementing-nfv">
+            <label for="stage-of-transformation-i-am-in-the-process-of-implementing-nfv">I am in the process of implementing NFV</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-4g-network">
+            <label for="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-4g-network">I have successfully implemented NFV for my 4G network</label>
+            <input type="checkbox" id="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-5g-network">
+            <label for="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-5g-network">I have successfully implemented NFV for my 5G network</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">In which NFV areas are you interested the most?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="areas-of-interest-nfvi">
+            <label for="areas-of-interest-nfvi">NFVI</label>
+            <input type="checkbox" id="areas-of-interest-mano">
+            <label for="areas-of-interest-mano">MANO</label>
+            <input type="checkbox" id="areas-of-interest-multi-cloud">
+            <label for="areas-of-interest-multi-cloud">Multi-cloud</label>
+            <input type="checkbox" id="areas-of-interest-distributed-cloud">
+            <label for="areas-of-interest-distributed-cloud">Distributed cloud</label>
+            <input type="checkbox" id="areas-of-interest-edge-cloud">
+            <label for="areas-of-interest-edge-cloud">Edge cloud</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="areas-of-interest-bare-metal-cloud">
+            <label for="areas-of-interest-bare-metal-cloud">Bare metal cloud</label>
+            <input type="checkbox" id="areas-of-interest-iot">
+            <label for="areas-of-interest-iot">IoT</label>
+            <input type="checkbox" id="areas-of-interest-virtualisation">
+            <label for="areas-of-interest-virtualisation">Virtualisation</label>
+            <input type="checkbox" id="areas-of-interest-containers">
+            <label for="areas-of-interest-containers">Containers</label>
+            <input type="checkbox" id="areas-of-interest-openstack">
+            <label for="areas-of-interest-openstack">OpenStack</label>
+            <input type="checkbox" id="areas-of-interest-kubernetes">
+            <label for="areas-of-interest-kubernetes">Kubernetes</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="areas-of-interest-cloud-native">
+            <label for="areas-of-interest-cloud-native">Cloud-native</label>
+            <input type="checkbox" id="areas-of-interest-osm">
+            <label for="areas-of-interest-osm">OSM</label>
+            <input type="checkbox" id="areas-of-interest-onap">
+            <label for="areas-of-interest-onap">ONAP</label>
+            <input type="checkbox" id="areas-of-interest-vnfs">
+            <label for="areas-of-interest-vnfs">VNFs</label>
+            <input type="checkbox" id="areas-of-interest-sdn">
+            <label for="areas-of-interest-sdn">SDN</label>
+
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="areas-of-interest--other">
+              <label for="areas-of-interest--other">Other</label>
+              <input type="text" id="areas-of-interest--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a class="p-button--positive pagination__link--next" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--2 u-hide">
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">What are your platform preferences?</h3>
+        <div class="row u-no-padding">
+          <div class="col-3 u-sv3">
+            <h4>Architecture</h4>
+            <input type="checkbox" id="patform-preferences-intel">
+            <label for="patform-preferences-intel">Intel</label>
+            <input type="checkbox" id="patform-preferences-arm">
+            <label for="patform-preferences-arm">ARM</label>
+            <input type="checkbox" id="patform-preferences-power">
+            <label for="patform-preferences-power">POWER</label>
+            <input type="checkbox" id="patform-preferences-z">
+            <label for="patform-preferences-z">Z</label>
+            <input type="checkbox" id="patform-preferences-dell">
+          </div>
+          <div class="col-3 u-sv3">
+            <h4>Servers</h4>
+            <label for="patform-preferences-dell">Dell</label>
+            <input type="checkbox" id="patform-preferences-hp">
+            <label for="patform-preferences-hp">HP</label>
+            <input type="checkbox" id="patform-preferences-lenovo">
+            <label for="patform-preferences-lenovo">Lenovo</label>
+            <input type="checkbox" id="patform-preferences-supermicro">
+            <label for="patform-preferences-supermicro">Supermicro</label>
+            <input type="checkbox" id="patform-preferences-intel-select">
+            <label for="patform-preferences-intel-select">Intel Select</label>
+            <input type="checkbox" id="patform-preferences-cisco">
+            <label for="patform-preferences-cisco">Cisco</label>
+
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="patform-preferences-servers--other">
+              <label for="patform-preferences-servers--other">Other</label>
+              <input type="text" id="patform-preferences-servers--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
+            </div>
+
+          </div>
+          <div class="col-3 u-sv3">
+            <h4>Networking</h4>
+            <input type="checkbox" id="patform-preferences-cisco">
+            <label for="patform-preferences-cisco">Cisco</label>
+            <input type="checkbox" id="patform-preferences-juniper">
+            <label for="patform-preferences-juniper">Juniper</label>
+            <input type="checkbox" id="patform-preferences-arista">
+            <label for="patform-preferences-arista">Arista</label>
+            <input type="checkbox" id="patform-preferences-dell">
+            <label for="patform-preferences-dell">Dell</label>
+            <input type="checkbox" id="patform-preferences-mellanox">
+            <label for="patform-preferences-mellanox">Mellanox</label>
+            <input type="checkbox" id="patform-preferences-whitebox">
+            <label for="patform-preferences-whitebox">Whitebox</label>
+
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="patform-preferences-networking--other">
+              <label for="patform-preferences-networking--other">Other</label>
+              <input type="text" id="patform-preferences-networking--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
+            </div>
+
+          </div>
+          <div class="col-3">
+            <h4>Storage</h4>
+            <input type="checkbox" id="patform-preferences-commodity">
+            <label for="patform-preferences-commodity">Commodity</label>
+            <input type="checkbox" id="patform-preferences-netapp">
+            <label for="patform-preferences-netapp">NetApp</label>
+            <input type="checkbox" id="patform-preferences-emc">
+            <label for="patform-preferences-emc">EMC</label>
+            <input type="checkbox" id="patform-preferences-purestorage">
+            <label for="patform-preferences-purestorage">PureStorage</label>
+
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="patform-preferences-storage--other">
+              <label for="patform-preferences-storage--other">Other</label>
+              <input type="text" id="patform-preferences-storage--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Which of these technologies matter to you the most?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="tech-that-matters-most-kvm">
+            <label for="tech-that-matters-most-kvm">KVM</label>
+            <input type="checkbox" id="tech-that-matters-most-docker">
+            <label for="tech-that-matters-most-docker">Docker</label>
+            <input type="checkbox" id="tech-that-matters-most-lxd">
+            <label for="tech-that-matters-most-lxd">LXD</label>
+            <input type="checkbox" id="tech-that-matters-most-ceph">
+            <label for="tech-that-matters-most-ceph">Ceph</label>
+            <input type="checkbox" id="tech-that-matters-most-san">
+            <label for="tech-that-matters-most-san">SAN</label>
+            <input type="checkbox" id="tech-that-matters-most-ovs">
+            <label for="tech-that-matters-most-ovs">OVS</label>
+            <input type="checkbox" id="tech-that-matters-most-ovn">
+            <label for="tech-that-matters-most-ovn">OVN</label>
+            <input type="checkbox" id="tech-that-matters-most-contrail">
+            <label for="tech-that-matters-most-contrail">Contrail</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="tech-that-matters-most-aci">
+            <label for="tech-that-matters-most-aci">ACI</label>
+            <input type="checkbox" id="tech-that-matters-most-nuage">
+            <label for="tech-that-matters-most-nuage">Nuage</label>
+            <input type="checkbox" id="tech-that-matters-most-sr-iov">
+            <label for="tech-that-matters-most-sr-iov">SR-IOV</label>
+            <input type="checkbox" id="tech-that-matters-most-dpdk">
+            <label for="tech-that-matters-most-dpdk">DPDK</label>
+            <input type="checkbox" id="tech-that-matters-most-cpu-pinning">
+            <label for="tech-that-matters-most-cpu-pinning">CPU pinning</label>
+            <input type="checkbox" id="tech-that-matters-most-numa">
+            <label for="tech-that-matters-most-numa">NUMA</label>
+            <input type="checkbox" id="tech-that-matters-most-hugepages">
+            <label for="tech-that-matters-most-hugepages">Hugepages</label>
+            <input type="checkbox" id="tech-that-matters-most-fpga">
+            <label for="tech-that-matters-most-fpga">FPGA</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="tech-that-matters-most-smartnics">
+            <label for="tech-that-matters-most-smartnics">SmartNICs</label>
+            <input type="checkbox" id="tech-that-matters-most-security">
+            <label for="tech-that-matters-most-security">Security</label>
+            <input type="checkbox" id="tech-that-matters-most-hardening">
+            <label for="tech-that-matters-most-hardening">Hardening</label>
+            <input type="checkbox" id="tech-that-matters-most-automation">
+            <label for="tech-that-matters-most-automation">Automation</label>
+            <input type="checkbox" id="tech-that-matters-most-orchestration">
+            <label for="tech-that-matters-most-orchestration">Orchestration</label>
+            <input type="checkbox" id="tech-that-matters-most-performance">
+            <label for="tech-that-matters-most-performance">Performance</label>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+        <a class="pagination__link--next p-button--positive" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--3 u-hide">
+
+      <h3 class="p-heading--five">How should we get in touch?</h3>
+      <div class="row u-no-padding">
+        <div class="col-6">
+          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
+            <ul class="p-list">
+              <li class="mktFormReq mktField p-list__item">
+                <label for="FirstName" class="mktoLabel">First name:</label>
+                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="LastName" class="mktoLabel">Last name:</label>
+                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="MEmail" class="mktoLabel">Work email:</label>
+                <input required id="MEmail" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+              </li>
+              <li class="mktField p-list__item">
+                <input class="mktoField" value="yes" id="McanonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                <label class="mktoLabel mktoHasWidth" for="McanonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+              </li>
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+              <li class="p-list__item">
+                <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
+              </li>
+            </ul>
+
+            <div class="u-hide">
+              <h3>Your comments</h3>
+              <ul class="p-list">
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
+                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField" maxlength="2000"></textarea>
+                </li>
+              </ul>
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="%% formid %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formVid" class="mktoField" value="%% formid %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="%% lpId %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="%% lpurl %%?cr={creative}&kw={keyword}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" class="mktoField" id="utm_campaign" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" class="mktoField" id="utm_medium" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" class="mktoField" id="utm_source" value="" />
+            </div>
+
+            <div class="pagination">
+              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+              <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--4 u-hide">
+      <div class="row u-no-padding">
+        <div class="u-equal-height">
+          <div class="col-7">
+            <h3 class="p-heading--two">Thank you for getting in touch</h3>
+            <p class="p-heading--four">We will get back to you with one working day.</p>
+          </div>
+          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+            <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200" loading="auto">
+          </div>
+        </div>
+      </div>
+      <a class="js-close p-button--neutral" href="">Close</a>
+    </div>
+  </div>
+</div>
