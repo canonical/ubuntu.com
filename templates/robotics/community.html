@@ -37,6 +37,67 @@
   </div>
 </section>
 
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-7">
+      <h2>
+        Keep up on the State of Robotics
+      </h2>
+      <p>
+        Every week the Ubuntu robotics team contributes to the future of security in robotics. And every week there are countless new projects started and improved by the community that go under the radar. The State of Robotics is a monthly blog series produced by the Canonical team to highlight the work and advancements happening in the robotics ecosystem. Why not have a read or get in touch to talk about your project?
+      </p>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/0f33d832-The-State-of-Robotics.jpg",
+        alt="",
+        width="300",
+        height="169",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light u-no-padding--top">
+  <div class="row p-divider">
+    <div class="col-12">
+      <h4>Recent news</h4>
+      <div id="robot-articles" class="row p-divider">
+        <div><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
+      </div>
+      <p>
+        <a href="/blog/topics/robotics">Read more articles&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+
+  <template style="display:none" id="robot-template">
+    <div class="col-3 p-divider__block">
+      <div class="article-image u-hide--small"></div>
+      <p><strong><a class="article-link article-title"></a></strong></p>
+      <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
+    </div>
+  </template>
+
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script>
+    canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#robot-articles",
+      articleTemplateSelector: "#robot-template",
+      gtmEventLabel: "ubuntu.com robotics community page",
+      limit: "4",
+      tagId: "1721",
+    }
+    )
+  </script>
+</section>
+
+
 <section class="p-strip--light u-no-margin--bottom u-no-padding--bottom" style="overflow: hidden;">
   <div class="row">
     <div class="col-7">
@@ -211,66 +272,6 @@
       }}
     </div>
   </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-7">
-      <h2>
-        Keep up on the State of Robotics
-      </h2>
-      <p>
-        Every week the Ubuntu robotics team contributes to the future of security in robotics. And every week there are countless new projects started and improved by the community that go under the radar. The State of Robotics is a monthly blog series produced by the Canonical team to highlight the work and advancements happening in the robotics ecosystem. Why not have a read or get in touch to talk about your project?
-      </p>
-    </div>
-    <div class="col-5 u-vertically-center u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/0f33d832-The-State-of-Robotics.jpg",
-        alt="",
-        width="300",
-        height="169",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light u-no-padding--top">
-  <div class="row p-divider">
-    <div class="col-12">
-      <h4>Recent news</h4>
-      <div id="robot-articles" class="row p-divider">
-        <div><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
-      </div>
-      <p>
-        <a href="/blog/topics/robotics">Read more articles&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-  </div>
-
-  <template style="display:none" id="robot-template">
-    <div class="col-3 p-divider__block">
-      <div class="article-image u-hide--small"></div>
-      <p><strong><a class="article-link article-title"></a></strong></p>
-      <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
-    </div>
-  </template>
-
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
-    canonicalLatestNews.fetchLatestNews(
-    {
-      articlesContainerSelector: "#robot-articles",
-      articleTemplateSelector: "#robot-template",
-      gtmEventLabel: "ubuntu.com robotics community page",
-      limit: "4",
-      tagId: "1721",
-    }
-    )
-  </script>
 </section>
 
 <section class="p-strip">
