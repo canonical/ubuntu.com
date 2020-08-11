@@ -18,7 +18,7 @@
         ROS exists because of contributions from tens of thousands of developers. It started in Stanford, went on to be used in Universities around the world and is now a global community of roboticists who talk, code and meet-up every year.
       </p>
       <p>
-        <a class="p-button--positive is-inline" href="https://discourse.ros.org/"><span class="p-link--external">ROS Discourse</span></a>
+        <a class="p-button--positive" href="https://discourse.ros.org/"><span class="p-link--external">ROS Discourse</span></a>
         <a class="p-button--positive is-inline" href="https://discourse.ubuntu.com/"><span class="p-link--external">Ubuntu Discourse</span></a>
       </p>
     </div>
@@ -37,7 +37,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-7">
       <h2>
@@ -62,7 +62,7 @@
   </div>
 </section>
 
-<section class="p-strip--light u-no-padding--top">
+<section class="p-strip u-no-padding--top">
   <div class="row p-divider">
     <div class="col-12">
       <h4>Recent news</h4>
@@ -85,15 +85,13 @@
 
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   <script>
-    canonicalLatestNews.fetchLatestNews(
-    {
+    canonicalLatestNews.fetchLatestNews({
       articlesContainerSelector: "#robot-articles",
       articleTemplateSelector: "#robot-template",
       gtmEventLabel: "ubuntu.com robotics community page",
       limit: "4",
       tagId: "1721",
-    }
-    )
+    })
   </script>
 </section>
 
@@ -101,6 +99,9 @@
 <section class="p-strip--light u-no-margin--bottom u-no-padding--bottom" style="overflow: hidden;">
   <div class="row">
     <div class="col-7">
+      <h2>
+        Where to start with ROS?
+      </h2>
       <p>
         The best place to start is in the <a class="p-link--external" href="https://discourse.ros.org/">ROS Discourse</a> where thousands of roboticists go to talk. If you have specific questions there’s the <a class="p-link--external" href="https://answers.ros.org/questions/">ROS Answers</a> forum with over 13,000 questions to date. And for more context, you can read the <a class="p-link--external" href="http://wiki.ros.org/">ROS Wiki</a> or the ROS 2 docs that have been worked on by almost 3,500 people.
       </p>
