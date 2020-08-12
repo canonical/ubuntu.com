@@ -44,6 +44,7 @@ from webapp.views import (
     releasenotes_redirect,
     search_snaps,
     notify_build,
+    build_engage_index
 )
 from webapp.login import login_handler, logout, user_info
 from webapp.security.database import db_session
@@ -325,6 +326,7 @@ engage_path = "/engage"
 engage_docs = DiscourseDocs(
     parser=DocParser(
         api=discourse_api,
+        category_id=51,
         index_topic_id=17229,
         url_prefix=engage_path,
     ),
@@ -332,9 +334,9 @@ engage_docs = DiscourseDocs(
     url_prefix=engage_path,
     blueprint_name="engage-pages",
 )
-# app.add_url_rule(
-#     engage_path, view_func=build_engage_index(engage_docs)
-# )
+app.add_url_rule(
+    engage_path, view_func=build_engage_index(engage_docs)
+)
 engage_docs.init_app(app)
 
 # Smart Start
