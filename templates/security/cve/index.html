@@ -54,55 +54,17 @@
         </select>
       </div>
     </div>
-    <div class="row">
-      <div class="col-3">
-        <label for="version">Ubuntu version</label>
-        <select name="version" id="version" class="js-ubuntu-version-input">
-          <option value="">Any</option>
-          {% with versions=versions, releases=releases, index=0 %}
-          {% include "security/cve/_version-fields.html" %}
-          {% endwith %}
-        </select>
-      </div>
-      <div class="col-3">
-        <label for="status">Status</label>
-        <select name="status" id="status" class="js-status-input">
-          {% with statuses=statuses, index=0 %}
-          {% include "security/cve/_status-fields.html" %}
-          {% endwith %}
-        </select>
-      </div>
-      <div class="col-3">
-        <label>&nbsp;</label> <!-- for layout purposes -->
-        <button class="js-remove-row" disabled>&minus;</button>
-        <button class="js-add-row">&plus;</button>
-      </div>
-    </div>
-    {% for status in statuses %}
-      {% if loop.index > 1 %}
-        <div class="row js-version-field-row">
-          <div class="col-3">
-            <select name="version" class="js-ubuntu-version-input">
-              <option value="">Any</option>
-              {% with versions=versions, releases=releases, index=loop.index - 1 %}
-              {% include "security/cve/_version-fields.html" %}
-              {% endwith %}
-            </select>
-          </div>
-          <div class="col-3">
-            <select name="status" class="js-status-input">
-              {% with statuses=statuses, index=loop.index - 1 %}
-              {% include "security/cve/_status-fields.html" %}
-              {% endwith %}
-            </select>
-          </div>
-          <div class="col-3">
-            <button class="js-remove-row" disabled>&minus;</button>
-            <button class="js-add-row">&plus;</button>
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+    {% if statuses | length > 0 %}
+      {% for status in statuses %}
+        {% with versions=versions, statuses=statuses, releases=releases, index=loop.index - 1 %}
+        {% include "security/cve/_version-and-status-row.html" %}
+        {% endwith %}
+      {% endfor %}
+    {% else %}
+      {% with versions=versions, statuses=statuses, releases=releases, index=0 %}
+      {% include "security/cve/_version-and-status-row.html" %}
+      {% endwith %}
+    {% endif %}
     <div id="new-row-container"></div>
     <div class="u-fixed-width">
       <button type="submit" class="p-button--positive" id="cve-search-button">
@@ -148,34 +110,9 @@
 </section>
 
 <template id="version-field-row-template">
-  <div class="row js-version-field-row">
-    <div class="col-3">
-      <select name="version" class="js-ubuntu-version-input">
-        <option value="">Any</option>
-        <option value="current">Any current release</option>
-        {% for release in releases %}
-          <option value="{{ release.version }}">{{ release.name }} {{ release.version }} {{ release.support_tag }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <div class="col-3">
-      <select name="status" class="js-status-input">
-        <option value="">Any</option>
-        <option value="DNE">Does not exist</option>
-        <option value="needs-triage">Needs triage</option>
-        <option value="not-vulnerable">Not vulnerable</option>
-        <option value="needed">Needed</option>
-        <option value="deferred">Deferred</option>
-        <option value="ignored">Ignored</option>
-        <option value="pending">Pending</option>
-        <option value="released">Released</option>
-      </select>
-    </div>
-    <div class="col-3">
-      <button class="js-remove-row">&minus;</button>
-      <button class="js-add-row">&plus;</button>
-    </div>
-  </div>
+  {% with versions=versions, statuses=statuses, releases=releases %}
+  {% include "security/cve/_version-and-status-row.html" %}
+  {% endwith %}
 </template>
 
 <script src="{{ versioned_static('js/dist/cve.js') }}" defer></script>

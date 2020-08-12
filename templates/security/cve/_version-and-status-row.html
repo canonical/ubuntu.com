@@ -1,0 +1,34 @@
+{% if index == 0 %}
+{% set show_labels = true %}
+{% endif %}
+
+<div class="row js-version-field-row">
+  <div class="col-3">
+    {% if show_labels %}
+      <label for="version">Ubuntu version</label>
+    {% endif %}
+    <select name="version" class="js-ubuntu-version-input" {% if show_labels %}id="version"{% endif %}>
+      <option value="">Any</option>
+      {% with versions=versions, releases=releases, index=index %}
+      {% include "security/cve/_version-fields.html" %}
+      {% endwith %}
+    </select>
+  </div>
+  <div class="col-3">
+    {% if show_labels %}
+      <label for="version">Status</label>
+    {% endif %}
+    <select name="status" class="js-status-input" {% if show_labels %}id="status"{% endif %}>
+      {% with statuses=statuses, index=index %}
+      {% include "security/cve/_status-fields.html" %}
+      {% endwith %}
+    </select>
+  </div>
+  <div class="col-3">
+    {% if show_labels %}
+      <label>&nbsp;</label>
+    {% endif %}
+    <button class="js-remove-row" {% if index == 0 %}disabled{% endif %}>&minus;</button>
+    <button class="js-add-row" disabled>&plus;</button>
+  </div>
+</div>
