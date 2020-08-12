@@ -35,6 +35,25 @@ export async function postRenewalIDToProcessPayment(renewalID) {
   return data;
 }
 
+export async function postPurchaseData(accountID, products) {
+  let response = await fetch(`/advantage/subscribe`, {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      account_id: accountID,
+      products: products,
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}
+
 export async function postCustomerInfoToStripeAccount(
   paymentMethodID,
   accountID,
