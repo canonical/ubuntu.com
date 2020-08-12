@@ -14,7 +14,7 @@ context:
   header_cta: "Download whitepaper"
   header_class: p-engage-banner--dark
   form_id: 3606
-  form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/Comparing%20OpenStack_24.07.20.pdf"
+  form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/Comparing%20OpenStack_12.08.20.pdf"
 ---
 
 OpenStack is an essential component of every modern organisation which uses private cloud infrastructure for better economics, improved security and a higher level of flexibility. Red Hat and Canonical each offer their own production-grade OpenStack distribution, however, this has been achieved using a completely different approach towards OpenStack deployments, operations and support.
