@@ -14,7 +14,7 @@ context:
   header_lang: en
   form_include: en
   form_id: 3540
-  form_return_url: "https://pages.ubuntu.com/AdoptionGuide_TY.html"
+  form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/Canonical_OpenStack_adoption_deployment.pdf"
 ---
 
 OpenStack is one of the most active open source projects in the world. It is an essential component of private cloud infrastructure for countless businesses, and over the last few years, it has evolved to become the de-facto standard for implementing cloud computing platforms. Yet despite its popularity, many organisations still struggle with their OpenStack implementations.
