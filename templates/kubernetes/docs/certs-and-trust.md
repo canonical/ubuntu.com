@@ -133,7 +133,6 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [vault]: https://www.vaultproject.io
 [easyrsa-charm]: https://jujucharms.com/u/containers/easyrsa/
 [easy-rsa]: https://github.com/OpenVPN/easy-rsa
-[leadership]: https://docs.jujucharms.com/stable/en/authors-charm-leadership
 [install_ca_cert]: https://charm-helpers.readthedocs.io/en/latest/api/charmhelpers.core.host.html#charmhelpers.core.host.install_ca_cert
 [Comodo]: https://en.wikipedia.org/wiki/Comodo_Group
 [DigiCert]: https://en.wikipedia.org/wiki/DigiCert
@@ -143,15 +142,10 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [CN]: https://knowledge.digicert.com/solution/SO7239.html
 [SANs]: https://en.wikipedia.org/wiki/Subject_Alternative_Name
 [network primitives]: https://docs.jujucharms.com/stable/en/developer-network-primitives
-[kubernetes-master]: https://jujucharms.com/u/containers/kubernetes-master/
-[`extra_sans`]: https://jujucharms.com/u/containers/kubernetes-master/#charm-config-extra_sans
+[kubernetes-master]: /docs/kubernetes/charm-kubernetes-master
+[`extra_sans`]:  /docs/kubernetes/charm-kubernetes-master#extra_sans
 [provides-tls]: https://jujucharms.com/q/?provides=tls-certificates
 [HA]: https://en.wikipedia.org/wiki/High_availability
-[vault-guide-csr]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
-[csr]: https://en.wikipedia.org/wiki/Certificate_signing_request
-[expose]: https://docs.jujucharms.com/stable/en/charms-exposing
-[hacluster]: https://jujucharms.com/stable/en/hacluster
-[vault-bug-ttl]: https://bugs.launchpad.net/vault-charm/+bug/1788945
 [vault-cdk]: /kubernetes/docs/using-vault
 
 <!-- FEEDBACK -->

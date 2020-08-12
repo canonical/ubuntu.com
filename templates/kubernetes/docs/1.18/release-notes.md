@@ -13,6 +13,55 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.18+ck1 Bugfix release
+
+### June 11, 2020 - [charmed-kubernetes-464](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-464/archive/bundle.yaml)
+
+Before upgrading from 1.17 or earlier, please read the
+[upgrade notes](/kubernetes/docs/upgrade-notes).
+
+## What's new
+
+- New options for custom TLS data in container runtime charms
+
+All container runtime subordinate charms now support a `custom-registry-ca`
+option that can be used to specify a `base64` encoded Certificate Authority
+(CA) certificate. The value set here will be installed as a system-wide
+trusted CA. See the
+[related issue](https://bugs.launchpad.net/layer-container-runtime-common/+bug/1831153)
+for more details.
+
+For users that require custom TLS configuration per registry, the `containerd`
+subordinate charm has expanded the `custom_registries` config option to
+support `ca_file`, `cert_file`, and `cert_key`. These can be set for each
+custom registry to enable TLS without altering the system-wide trusted CAs.
+See the
+[related issue](https://bugs.launchpad.net/charm-containerd/+bug/1879347)
+for more details.
+
+Both of the above options allow the container runtime located on
+`kubernetes-worker` units to pull containers from a registry that utilizes
+custom TLS certificates.
+
+- New memory constraint for `kubeapi-load-balancer`
+
+Deploying Charmed Kubernetes now requires a minimum of 4GB of RAM for the
+`kubeapi-load-balancer`. This addresses OOM errors reported in the
+[related issue](https://bugs.launchpad.net/charmed-kubernetes-bundles/+bug/1873044).
+
+- Updated profile when deploying to LXD
+
+An updated LXD profile has been included in `kubernetes-master` and
+`kubernetes-worker` charms. This resolves an
+[issue](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/1876618)
+where containers would fail to start in a LXD environment.
+
+## Fixes
+
+Bug fixes included in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck1).
+
+
 # 1.18
 
 ### April 13th, 2020 - [charmed-kubernetes-430](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-430/archive/bundle.yaml)
