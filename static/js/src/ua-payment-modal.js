@@ -3,6 +3,7 @@ import {
   postInvoiceIDToRenewal,
   postCustomerInfoToStripeAccount,
   postRenewalIDToProcessPayment,
+  postPurchaseData,
 } from "./advantage/contracts-api.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
@@ -30,7 +31,7 @@ const cancelModalButton = modal.querySelector(".js-cancel-modal");
 const closeModalButton = modal.querySelector(".js-close-modal");
 
 const cardErrorElement = document.getElementById("card-errors");
-const renewalErrorElement = document.getElementById("renewal-errors");
+const paymentErrorElement = document.getElementById("payment-errors");
 
 // initialise Stripe
 const stripe = window.Stripe(window.stripePublishableKey);
@@ -71,6 +72,7 @@ const currentTransaction = {
   accountId: null,
   contractId: null,
   renewalId: null,
+  products: [],
   type: null,
 };
 
@@ -100,7 +102,7 @@ function attachCTAevents() {
 
     if (isRenewalCTA || isShopCTA) {
       e.preventDefault();
-      currentTransaction.type = data.transactionType;
+      currentTransaction.accountId = data.accountId;
 
       toggleModal();
       card.focus();
@@ -108,12 +110,14 @@ function attachCTAevents() {
     }
 
     if (isRenewalCTA) {
-      currentTransaction.accountId = data.accountId;
+      currentTransaction.type = "renewal";
       currentTransaction.contractId = data.contractId;
       currentTransaction.renewalId = data.renewalId;
 
       setRenewalInformation(data, modal);
     } else if (isShopCTA) {
+      currentTransaction.type = "purchase";
+
       const cartItems = [
         {
           listingID: "lABZRtXMnWiYOnT-hjbk4HMamlODyoig7ts-sElYrt7o",
@@ -136,6 +140,13 @@ function attachCTAevents() {
           quantity: "8",
         },
       ];
+
+      cartItems.forEach((item) => {
+        currentTransaction.products.push({
+          product_listing_id: item.listingID,
+          quantity: item.quantity,
+        });
+      });
 
       setOrderInformation(cartItems, modal);
     }
@@ -233,13 +244,8 @@ function attachModalButtonEvents() {
   processPaymentButton.addEventListener("click", (e) => {
     e.preventDefault();
 
-    // TODO: for demo purposes only, remove when we have real endpoints and data
-    if (currentTransaction.type === "renewal") {
-      sendGAEvent("clicked 'Pay'");
-      processStripePayment();
-    } else if (currentTransaction.type === "purchase") {
-      console.log("clicked pay");
-    }
+    sendGAEvent("clicked 'Pay'");
+    processStripePayment();
   });
 
   changePaymentMethodButton.addEventListener("click", (e) => {
@@ -433,14 +439,7 @@ function handleIncompleteRenewal(renewal) {
 
 function handlePaymentMethodResponse(data) {
   if (data.paymentMethod) {
-    if (currentTransaction.type === "renewal") {
-      attachCustomerInfoToStripeAccount(data.paymentMethod);
-    } else if (currentTransaction.type === "purchase") {
-      // TODO: for demo purposes only,
-      // handle properly when we have real endpoints and data
-      setPaymentInformation(data.paymentMethod, modal);
-      showPayMode();
-    }
+    attachCustomerInfoToStripeAccount(data.paymentMethod);
   } else {
     const errorObject = parseForErrorObject(data.error);
 
@@ -468,6 +467,7 @@ function handle3DSresponse(data) {
 }
 
 function handleCustomerInfoResponse(paymentMethod, data) {
+  console.log(data);
   if (data.message) {
     // ua-contracts returned an error with information for us to parse
     const errorObject = parseForErrorObject(data);
@@ -515,8 +515,8 @@ function handleSuccessfulPayment() {
 function hideErrors() {
   cardErrorElement.innerHTML = "";
   cardErrorElement.classList.add("u-hide");
-  renewalErrorElement.querySelector(".p-notification__message").innerHTML = "";
-  renewalErrorElement.classList.add("u-hide");
+  paymentErrorElement.querySelector(".p-notification__message").innerHTML = "";
+  paymentErrorElement.classList.add("u-hide");
 }
 
 function pollRenewalStatus() {
@@ -548,9 +548,9 @@ function presentError(errorObject) {
     cardErrorElement.classList.remove("u-hide");
     showDetailsMode();
   } else if (errorObject.type === "notification") {
-    renewalErrorElement.querySelector(".p-notification__message").innerHTML =
+    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
       errorObject.message;
-    renewalErrorElement.classList.remove("u-hide");
+    paymentErrorElement.classList.remove("u-hide");
     showDetailsMode();
   } else if (errorObject.type === "dialog") {
     errorDialog.innerHTML = errorObject.message;
@@ -563,15 +563,27 @@ function presentError(errorObject) {
 function processStripePayment() {
   enableProcessingState("payment");
 
-  postRenewalIDToProcessPayment(currentTransaction.renewalId)
-    .then((data) => {
-      handlePaymentAttemptResponse(data);
-    })
-    .catch((error) => {
-      console.error(error);
-      sendGAEvent("payment failed");
-      presentError();
-    });
+  if (currentTransaction.type === "renewal") {
+    postRenewalIDToProcessPayment(currentTransaction.renewalId)
+      .then((data) => {
+        handlePaymentAttemptResponse(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        sendGAEvent("payment failed");
+        presentError();
+      });
+  } else if (currentTransaction.type === "purchase") {
+    postPurchaseData(currentTransaction.accountId, currentTransaction.products)
+      .then((data) => {
+        handlePaymentAttemptResponse(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        sendGAEvent("payment failed");
+        presentError();
+      });
+  }
 }
 
 function requiresAuthentication(invoice) {
