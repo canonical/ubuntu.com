@@ -251,17 +251,12 @@
   </div>
 </section>
 
-
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
-    <div class="col-8">
+    <div class="col-6">
       <h2>
-        Win an exclusive Ubuntu 20.04 Focal Fossa tee-shirt
+        Win an exclusive Ubuntu 20.04 Focal Fossa t-shirt
       </h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6 u-hide--small">
       {{
         image(
         url="https://assets.ubuntu.com/v1/4c6176c2-FocalFossa--t-shirt-black-removebg-preview.png",
@@ -269,12 +264,86 @@
         width="312",
         height="350",
         hi_def=True,
-        loading="auto|lazy",
+        loading="lazy",
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
     </div>
     <div class="col-6">
-      form
+
+      <!-- MARKETO FORM -->
+      <script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
+      <script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+      <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
+
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3675" class="marketo-form">
+        <fieldset>
+          <label for="FirstName" id="LblFirstName" class="mktoLabel " >First Name</label>
+          <input id="FirstName" name="FirstName" maxlength="255" aria-describedby="ValidMsgFirstName" aria-labelledby="LblFirstName InstructFirstName" type="text" class="mktoField  " >
+
+          <label for="LastName" id="LblLastName" class="mktoLabel " >Last Name</label>
+          <input id="LastName" name="LastName" maxlength="255" aria-describedby="ValidMsgLastName" aria-labelledby="LblLastName InstructLastName" type="text" class="mktoField  " >
+
+          <label for="Email" id="LblEmail" class="mktoLabel " >Email Address</label>
+          <input id="Email" name="Email" maxlength="255" aria-describedby="ValidMsgEmail" aria-labelledby="LblEmail InstructEmail" type="email" class="mktoField mktoEmailField " >
+
+          <label for="Title" id="LblTitle" class="mktoLabel " >Job Title</label>
+          <input id="Title" name="Title" maxlength="255" aria-describedby="ValidMsgTitle" aria-labelledby="LblTitle InstructTitle" type="text" class="mktoField   mktoValid"  aria-invalid="false">
+
+          <label for="Company" id="LblCompany" class="mktoLabel " >Company Name</label>
+          <input id="Company" name="Company" maxlength="255" aria-describedby="ValidMsgCompany" aria-labelledby="LblCompany InstructCompany" type="text" class="mktoField  " >
+
+          <label for="Phone" id="LblPhone" class="mktoLabel " >Phone Number</label>
+          <input id="Phone" name="Phone" maxlength="255" aria-describedby="ValidMsgPhone" aria-labelledby="LblPhone InstructPhone" type="tel" class="mktoField mktoTelField " >
+
+          <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+          <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+
+          <p>
+            In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+          </p>
+
+          <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+
+          <button type="submit" class="mktoButton">Submit</button>
+          <input type="hidden" aria-hidden="true" name="formid" class="mktoField " value="3675">
+          <input type="hidden" aria-hidden="true" name="formVid" class="mktoField" value="3675" />
+          <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
+          <input type="hidden" aria-hidden="true" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" aria-hidden="true" name="thankyoumessage" value="Thank you for entering the t-shirt draw" />
+        </fieldset>
+      </form>
+      <div class="js-feedback-notification"></div>
+
+      <script>
+        $("#mktoForm_3675").validate({
+          errorElement: "span",
+          errorClass: "mktFormMsg mktError",
+          onkeyup: false,
+          onclick: false,
+          onblur: false
+        });
+
+
+        $(function(){$("#comments").hide()});
+
+        $('#Ubuntu_User__c').on('change',function(){
+
+          var selection = $(this).val();
+          if(selection == 'Commercially only') {
+            $('#comments').show();
+          } else {
+            $('#comments').hide();
+          }
+        });
+
+      </script>
+      <script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+
+      <!-- /MARKETO FORM -->
+
+
+
     </div>
   </div>
 </section>
