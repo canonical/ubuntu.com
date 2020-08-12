@@ -38,6 +38,7 @@ from webapp.views import (
     BlogPressCentre,
     build,
     build_tutorials_index,
+    download_harness,
     download_thank_you,
     appliance_install,
     get_renewal,
@@ -75,6 +76,8 @@ app = FlaskBase(
     __name__,
     "ubuntu.com",
     template_folder="../templates",
+    template_404="404.html",
+    template_500="500.html",
     static_folder="../static",
 )
 
@@ -99,16 +102,14 @@ authenticated_discourse_api = DiscourseAPI(
 )
 
 # Error pages
+@app.errorhandler(400)
+def bad_request_error(error):
+    return flask.render_template("400.html"), 400
 
 
-@app.errorhandler(404)
-def not_found_error(error):
-    return flask.render_template("404.html"), 404
-
-
-@app.errorhandler(500)
-def internal_error(error):
-    return flask.render_template("500.html"), 500
+@app.errorhandler(410)
+def deleted_error(error):
+    return flask.render_template("410.html"), 410
 
 
 # Template context
@@ -131,6 +132,7 @@ def context():
         "utm_medium": flask.request.args.get("utm_medium", ""),
         "utm_source": flask.request.args.get("utm_source", ""),
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
+        "http_host": flask.request.host,
     }
 
 
@@ -162,13 +164,16 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    (
-        "/download"
-        "/<regex('server|desktop|cloud|raspberry-pi'):category>"
-        "/thank-you"
-    ),
+    "/download/<regex('cloud|raspberry-pi'):category>/thank-you",
     view_func=download_thank_you,
 )
+
+app.add_url_rule(
+    "/download/<regex('desktop|server'):category>",
+    methods=["GET", "POST"],
+    view_func=download_harness,
+)
+
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
     "/search", "search", build_search_view(template_path="search.html")

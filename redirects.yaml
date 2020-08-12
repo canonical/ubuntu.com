@@ -845,3 +845,6 @@ build: /core/build
 # Redirect navigation templates
 templates/_(?P<path>.*)/?: /templates/{path}
 shared/forms/interactive/_(?P<path>.*)/?: /shared/forms/interactive/{path}
+
+# Download harness
+download/(?P<category>desktop|server)/thank-you: /download/{category}

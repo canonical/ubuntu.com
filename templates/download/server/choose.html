@@ -28,7 +28,12 @@
     </div>
     <div class="col-4">
       <p>
-        <a href="/download/server/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Server', 'eventLabel' : '{{ releases.lts.short_version }} LTS', 'eventValue' : undefined });">Download</a>
+        <form action="/download/server" method="post">
+          <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
+          <input type="hidden" name="architecture" value="amd64">
+          <input type="hidden" name="next-step" value="download">
+          <button type="submit">Download</button>
+        </form>
       </p>
       <p>
         <small>For other versions of Ubuntu including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small>

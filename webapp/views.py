@@ -5,7 +5,6 @@ import hmac
 import json
 import math
 import os
-import re
 from datetime import datetime, timedelta, timezone
 
 # Packages
@@ -36,53 +35,79 @@ store_api = SnapStore(session=talisker.requests.get_session())
 ALLOWANCE_METRIC_ACTIVE_MACHINES = "active-machines"
 
 
-def download_thank_you(category):
-    context = {"http_host": flask.request.host}
-
-    version = flask.request.args.get("version", "")
-    architecture = flask.request.args.get("architecture", "")
-
-    # Sanitise for paths
-    # (https://bugs.launchpad.net/ubuntu-website-content/+bug/1586361)
-    version_pattern = re.compile(r"(\d+(?:\.\d+)+).*")
-    architecture = architecture.replace("..", "")
-    architecture = architecture.replace("/", "+").replace(" ", "+")
-
-    if architecture and version_pattern.match(version):
-        context["start_download"] = version and architecture
-        context["version"] = version
-        context["architecture"] = architecture
-
-    # Add mirrors
-    mirrors_path = os.path.join(os.getcwd(), "etc/ubuntu-mirrors-rss.xml")
+def _build_mirror_list():
+    # Build mirror list
+    mirrors = []
+    mirror_list = []
 
     try:
-        with open(mirrors_path) as rss:
+        with open(f"{os.getcwd()}etc/ubuntu-mirrors-rss.xml") as rss:
             mirrors = feedparser.parse(rss.read()).entries
     except IOError:
-        mirrors = []
+        pass
 
-    # Check country code
     country_code = "NO_COUNTRY_CODE"
     ip_location = ip_reader.get(
         flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
     )
-    mirror_list = []
 
     if ip_location and "country" in ip_location:
         country_code = ip_location["country"]["iso_code"]
 
-        mirror_list = [
-            {"link": mirror["link"], "bandwidth": mirror["mirror_bandwidth"]}
-            for mirror in mirrors
-            if mirror["mirror_countrycode"] == country_code
-            and mirror["link"].startswith("https")
-        ]
-    context["mirror_list"] = json.dumps(mirror_list)
+        for mirror in mirrors:
+            if mirror["mirror_countrycode"] == country_code and mirror[
+                "link"
+            ].startswith("https"):
+                mirror_list.append(
+                    {
+                        "link": mirror["link"],
+                        "bandwidth": mirror["mirror_bandwidth"],
+                    }
+                )
+
+    return mirror_list
+
+
+def download_harness(category):
+    templates = {
+        "step1": f"download/{category}/step1.html",
+        "step2": f"download/{category}/step2.html",
+        "choose": f"download/{category}/choose.html",
+        "download": f"download/{category}/download.html",
+    }
+    context = {}
+    step = "step1"
+
+    if flask.request.method == "POST":
+        if step not in templates:
+            flask.abort(400)
+
+        step = flask.request.form.get("next-step")
+
+        if step == "download":
+            version = flask.request.form.get("version")
+
+            if not version:
+                flask.abort(400)
+
+            context = {"version": version, "mirror_list": _build_mirror_list()}
+
+    return flask.render_template(templates[step], **context)
+
+
+def download_thank_you(category):
+    version = flask.request.args.get("version")
+    architecture = flask.request.args.get("architecture").replace(" ", "+")
+
+    if not (version and architecture):
+        flask.abort(400)
 
     return (
         flask.render_template(
-            f"download/{category}/thank-you.html", **context
+            f"download/{category}/thank-you.html",
+            version=version,
+            architecture=architecture,
+            mirror_list=_build_mirror_list(),
         ),
         {"Cache-Control": "no-cache"},
     )
