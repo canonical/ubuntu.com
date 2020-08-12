@@ -390,7 +390,7 @@ def advantage_view():
     entitlements = {}
     open_subscription = flask.request.args.get("subscription", None)
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
     )
 
     if user_info(flask.session):
@@ -576,7 +576,7 @@ def post_advantage_subscriptions():
         purchase_items.append(
             build_purchase_item(
                 product_listing_id=product_listing_id,
-                metrict="active-machines",
+                metric="active-machines",
                 metric_value=metric_value,
             )
         )
@@ -589,6 +589,7 @@ def post_advantage_subscriptions():
         purchase = advantage.purchase_from_marketplace(
             marketplace="canonical-ua", purchase_request=purchase_request
         )
+        print(purchase)
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException(
             extra={"purchase_request": purchase_request}
@@ -602,13 +603,55 @@ def post_advantage_subscriptions():
 
 
 def advantage_shop_view():
+    account = None
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
     )
 
-    advantage = AdvantageContracts(
-        session, None, api_url=flask.current_app.config["CONTRACTS_API_URL"],
-    )
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+
+        try:
+            # TODO: this is placeholder, the CS team are working
+            # on returning more information in this request, such
+            # as whether the user is an admin on a given account.
+            # Until then, for demo purposes, we assume the first
+            # account in the returned array will suffice.
+            accounts = advantage.get_accounts()
+            account = accounts[0]
+        except HTTPError as http_error:
+            if http_error.response.status_code == 401:
+                # We got an unauthorized request, so we likely
+                # need to re-login to refresh the macaroon
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "session_keys": flask.session.keys(),
+                        "request_url": http_error.request.url,
+                        "request_headers": http_error.request.headers,
+                        "response_headers": http_error.response.headers,
+                        "response_body": http_error.response.json(),
+                        "response_code": http_error.response.json()["code"],
+                        "response_message": http_error.response.json()[
+                            "message"
+                        ],
+                    }
+                )
+
+                empty_session(flask.session)
+
+                return flask.render_template("advantage/subscribe.html")
+
+            raise http_error
+    else:
+        advantage = AdvantageContracts(
+            session,
+            None,
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
 
     listings_response = advantage.get_marketplace_product_listings(
         "canonical-ua"
@@ -635,6 +678,7 @@ def advantage_shop_view():
         "advantage/subscribe.html",
         product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
+        account=account,
     )
 
 

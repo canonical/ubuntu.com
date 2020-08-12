@@ -144,6 +144,8 @@ class AdvantageContracts:
             json=purchase_request,
         )
 
+        print(response.json())
+
         return response.json()
 
 
