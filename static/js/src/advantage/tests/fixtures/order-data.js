@@ -1,12 +1,20 @@
 export const appsInfraServer = [
   {
-    name: "UA Infra Advanced Server",
     quantity: 10,
-    unitPrice: 5000,
+    product: {
+      name: "UA Infra Advanced Server",
+      price: {
+        value: 5000,
+      },
+    },
   },
   {
-    name: "UA Apps Server",
     quantity: 10,
-    unitPrice: 5000,
+    product: {
+      name: "UA Apps Server",
+      price: {
+        value: 5000,
+      },
+    },
   },
 ];
