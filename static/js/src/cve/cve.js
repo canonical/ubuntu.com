@@ -4,6 +4,7 @@ import {
   enableField,
   attachEvents,
   handleButtons,
+  disableSelectedVersions,
 } from "./cve-search.js";
 
 const searchInput = document.querySelector("#q");
@@ -68,5 +69,5 @@ function handleSearchInput(event) {
 searchInput.addEventListener("keyup", handleSearchInput);
 
 attachEvents();
-
 handleButtons();
+disableSelectedVersions();
