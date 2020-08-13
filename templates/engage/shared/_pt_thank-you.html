@@ -1,0 +1,75 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Download {{ resource_name }} {% endblock %}
+
+{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block content %}
+<style>
+  .global-nav .global-nav__header-logo-anchor {
+    padding-left: 0 !important;
+  }
+</style>
+<section class="p-strip p-engage-banner--grad">
+  <div class="u-fixed-width navigation-logo-engage">
+    <a href="/">
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
+            alt="Ubuntu",
+            width="143",
+            height="32",
+            hi_def=True,
+            loading="auto",
+        ) | safe
+      }}
+    </a>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h1>
+        Obrigado
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      {% if 'pages.ubuntu.com' in resource_url %}
+      <p>
+        {{ resource_name }} est&acute; pronto para download.
+      </p>
+      <p>
+        <a class="p-button--positive" href="{{ resource_url }}">Download</a>
+      </p>
+      {% else %}
+        <p>
+          Desculpe, não reconhecemos esta solicitação de download. Informe-nos por <a class="p-link--external" href="https://github.com/canonical-websites/www.ubuntu.com/issues/new?body=Bad+resource+download+link+from {{ request.url | urlencode }}">arquivamento e problema no GitHub </a>. E diga-nos o que você deseja baixar.
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% if related | length > 0% }
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--three">Você também pode estar interessado em &hellip;</h2>
+    </div>
+  </div>
+  <div class="row p-divider">
+    {% for page in related[0:3] %}
+    <div class="col-4 p-divider__block">
+      <!-- THREE ADDITIONAL CTAs -->
+      <h4>{{page["topic_name"]}}</h4>
+      <p>{{page["subtitle"]}}</p>
+      <p><a href="{{page['path']}}">Ver mais &nbsp;&rsaquo;</a></p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock content %}
