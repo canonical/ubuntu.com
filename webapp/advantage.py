@@ -144,8 +144,6 @@ class AdvantageContracts:
             json=purchase_request,
         )
 
-        print(response.json())
-
         return response.json()
 
 
@@ -154,7 +152,8 @@ def build_purchase_item(
 ):
     return {
         "productListingID": product_listing_id,
-        "allowance": {"metric": metric, "value": metric_value},
+        "metric": metric,
+        "value": metric_value,
     }
 
 

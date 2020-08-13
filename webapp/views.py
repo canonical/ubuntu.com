@@ -589,7 +589,6 @@ def post_advantage_subscriptions():
         purchase = advantage.purchase_from_marketplace(
             marketplace="canonical-ua", purchase_request=purchase_request
         )
-        print(purchase)
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException(
             extra={"purchase_request": purchase_request}

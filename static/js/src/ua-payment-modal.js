@@ -127,7 +127,7 @@ function attachCTAevents() {
             productID: "uai-essential-physical",
             private: "",
           },
-          quantity: "4",
+          quantity: 4,
         },
         {
           listingID: "lAHy82CcfQyWfP8NrpIzWHuK_FU9a5Y8tJeWnks9GgF4",
@@ -137,7 +137,7 @@ function attachCTAevents() {
             productID: "uai-essential-desktop",
             private: "",
           },
-          quantity: "8",
+          quantity: 8,
         },
       ];
 
@@ -467,7 +467,6 @@ function handle3DSresponse(data) {
 }
 
 function handleCustomerInfoResponse(paymentMethod, data) {
-  console.log(data);
   if (data.message) {
     // ua-contracts returned an error with information for us to parse
     const errorObject = parseForErrorObject(data);
