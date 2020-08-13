@@ -117,34 +117,12 @@ function attachCTAevents() {
       setRenewalInformation(data, modal);
     } else if (isShopCTA) {
       currentTransaction.type = "purchase";
-
-      const cartItems = [
-        {
-          listingID: "lABZRtXMnWiYOnT-hjbk4HMamlODyoig7ts-sElYrt7o",
-          product: {
-            name: "UA Infrastructure - Essential (Physical)",
-            price: { currency: "USD", value: 22500 },
-            productID: "uai-essential-physical",
-            private: "",
-          },
-          quantity: 4,
-        },
-        {
-          listingID: "lAHy82CcfQyWfP8NrpIzWHuK_FU9a5Y8tJeWnks9GgF4",
-          product: {
-            name: "UA Infrastructure - Essential (Desktop)",
-            price: { currency: "USD", value: 2500 },
-            productID: "uai-essential-desktop",
-            private: "",
-          },
-          quantity: 8,
-        },
-      ];
+      const cartItems = JSON.parse(data.cart);
 
       cartItems.forEach((item) => {
         currentTransaction.products.push({
           product_listing_id: item.listingID,
-          quantity: item.quantity,
+          quantity: parseInt(item.quantity),
         });
       });
 
