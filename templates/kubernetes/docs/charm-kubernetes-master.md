@@ -619,6 +619,32 @@ for example, to add the `PodSecurityPolicy` admission controller:
 Note that prior to Kubernetes 1.16 (kubernetes-master revision 778), the config
 setting was `admission-control`, rather than `enable-admission-plugins`.
 
+<a id="extra_sans"> </a>
+## Adding SANs and certificate regeneration
+
+As explained in the [Certificates and trust overview][certs-and-trust], the
+[`extra_sans`](#table-extra_sans) configuration settings can be used to add
+SANs and regenerate x509 certificate(s) for the API server running on the
+Kubernetes master node(s), and for the load balancer. When this configuration is
+changed, the master node(s) will regenerate its certificate and restart the API
+server to update the certificate used for communication. Note: This is
+disruptive and restarts the API server.
+
+The process is the same for both the `kubernetes-master` and the
+`kubeapi-load-balancer`. The configuration option takes a space-separated list
+of extra entries:
+
+```bash
+juju config kubernetes-master extra_sans="master.mydomain.com lb.mydomain.com"
+juju config kubeapi-load-balancer extra_sans="master.mydomain.com lb.mydomain.com"
+```
+To clear the entries out of the certificate, use an empty string:
+
+```bash
+juju config kubernetes-master extra_sans=""
+juju config kubeapi-load-balancer extra_sans=""
+```
+
 ## DNS for the cluster
 
 The DNS add-on allows pods to have DNS names in addition to IP addresses.
@@ -655,3 +681,5 @@ This action restarts the master processes `kube-apiserver`,
 [IPVS deep dive]: https://kubernetes.io/blog/2018/07/09/ipvs-based-in-cluster-load-balancing-deep-dive/
 [blog-admission]: https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/
 [Addons page]: /kubernetes/docs/cdk-addons
+[certs-and-trust]: /kubernetes/docs/certs-and-trust
+

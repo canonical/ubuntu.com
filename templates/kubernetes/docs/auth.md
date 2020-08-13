@@ -79,7 +79,7 @@ juju config kubernetes-master authorization-mode="Node"
 It is possible to set more than one mode using a comma-separated list:
 
 ```bash
-juju config kubernetes-master authorization-mode="RBAC, Node"
+juju config kubernetes-master authorization-mode="RBAC,Node"
 ```
 
 <div class="p-notification--positive"><p markdown="1" class="p-notification__response">
