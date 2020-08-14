@@ -271,7 +271,7 @@
         // First, select takeovers that don't specify a timezone, a language and don't exclude the users language
         var takeoverSelectors = [".js-takeover:not([data-timezone]).js-takeover:not([lang]).js-takeover:not([lang-skip*=" + language + "])"]
 
-        // Add selectors to find takeovers for any of the user's languages and timezone if available
+        // Add selectors to find takeovers for any of the user's languages, excluding timezones settings
         takeoverSelectors.push(".js-takeover:not([data-timezone]).js-takeover[lang=" + language + "]");
         takeoverSelectors.push(".js-takeover:not([data-timezone]).js-takeover[data-lang-extra*=" + language + "]");
         
