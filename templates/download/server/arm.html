@@ -37,13 +37,13 @@
           This is the iso image of the Ubuntu Server installer.
         </p>
         <p>
-          <a href="http://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64.iso" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+          <a href="https://cdimage.ubuntu.com/releases/{{ releases.lts.short_version }}/release/ubuntu-{{ releases.lts.full_version }}-live-server-arm64.iso" class="p-button--positive is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
             Download Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>
           </a>
         </p>
         {% if releases.latest.short_version > releases.lts.short_version %}
         <p>
-          <a href="http://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+          <a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
             Download Ubuntu {{ releases.latest.full_version }}
           </a>
         </p>

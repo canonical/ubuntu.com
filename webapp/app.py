@@ -10,7 +10,7 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
-from canonicalwebteam.blog import build_blueprint, BlogViews, Wordpress
+from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
 from canonicalwebteam.discourse_docs import (
     DiscourseAPI,
     DiscourseDocs,
@@ -174,7 +174,7 @@ app.add_url_rule(
 # blog section
 
 blog_views = BlogViews(
-    api=Wordpress(session=session),
+    api=BlogAPI(session=session),
     excluded_tags=[3184, 3265, 3408],
     per_page=11,
 )

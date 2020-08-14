@@ -148,8 +148,6 @@ openstack:
       path: /tco-calculator
     - title: Install
       path: /openstack/install
-    - title: Apps
-      path: /managed
     - title: Thank you
       path: /openstack/newsletter-thank-you
       hidden: True
@@ -932,12 +930,13 @@ download:
       path: /download/flavours
 
 contact-us:
-  title: Contact Canonical
+  title: Contact us
   path: /contact-us
 
   children:
     - title: Contact us
       path: /contact-us
+      hidden: True
 
     - title: Contact us
       path: /contact-us/form
@@ -1124,6 +1123,8 @@ security:
     - title: Notices
       path: /security/notices
       persist: True
+    - title: OVAL
+      path: /security/oval
     # Hidden for soft launch
     # - title: CVEs
     # path: /security/cve

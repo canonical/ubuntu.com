@@ -332,10 +332,25 @@ def load_releases():
             esm_expires=datetime.strptime("2030-04-30", "%Y-%m-%d"),
             support_expires=datetime.strptime("2025-04-30", "%Y-%m-%d"),
         ),
+        Release(
+            codename="groovy",
+            version="20.10",
+            name="Groovy Gorilla",
+            development=True,
+            lts=False,
+            release_date=datetime.strptime("2020-10-20", "%Y-%m-%d"),
+            esm_expires=datetime.strptime("2021-07-31", "%Y-%m-%d"),
+            support_expires=datetime.strptime("2021-07-31", "%Y-%m-%d"),
+        ),
         Release(codename="upstream", name="Upstream"),
     ]
 
-    db_session.bulk_save_objects(releases)
+    for release in releases:
+        exists = db_session.query(Release).get(release.codename)
+
+        if not exists:
+            db_session.add(release)
+
     db_session.commit()
 
 

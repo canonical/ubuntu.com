@@ -179,9 +179,41 @@ You may need to start a new shell (or logout and login) for this to take effect:
 newgrp lxd
 ```
 
+### Services fail to start with errors related to missing files in the /proc filesystem
+
+For example, `systemctl status snap.kube-proxy.daemon` may report the following:
+
+```bash
+Error: open /proc/sys/net/netfilter/nf_conntrack_max: no such file or directory
+```
+
+This is most commonly caused when [lxd-profile.yaml][lxd-profile] is not applied.
+Verify the profile in use by the `kubernetes-worker` charm:
+
+```bash
+lxc profile list
+lxc profile show juju-[model]-kubernetes-worker-[revision]
+```
+
+Identify any missing fields from the above `lxd-profile.yaml` file and add them
+as needed with:
+
+```bash
+lxc profile edit juju-[model]-kubernetes-worker-[revision]
+```
+
+You may need to remove and re-add the affected unit for the changes to take
+effect:
+
+```bash
+juju remove-unit kubernetes-worker/[n]
+juju add-unit kubernetes-worker
+```
+
 <!-- LINKS -->
 
 [lxd-home]: https://linuxcontainers.org/
+[lxd-profile]: https://github.com/charmed-kubernetes/charm-kubernetes-worker/blob/master/lxd-profile.yaml
 [Juju]: https://jaas.ai
 [snap]: https://snapcraft.io/docs/installing-snapd
 [install]: /kubernetes/docs/install-manual

@@ -5,7 +5,7 @@
     {% if article.image and article.image.source_url %}
     <div class="u-crop--16-9">
       <a href="/blog/{{ article.slug }}" aria-hidden="true" tabindex="-1">
-        <img src="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }}" srcset="https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_460/{{ article.image.source_url }} 460w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_620/{{ article.image.source_url }} 620w, https://res.cloudinary.com/canonical/image/fetch/q_auto,f_auto,w_875/{{ article.image.source_url }} 875w" sizes="(min-width: 1031px) 460px, (max-width: 1030px) and (min-width: 876px) 460px, (max-width: 875px) and (min-width: 621px) 875px, (max-width: 620px) and (min-width: 461px) 620px, (max-width: 460px) 460px" alt="" loading="lazy" />
+        {{ article.image.rendered|safe }}
       </a>
     </div>
     {% endif %}

@@ -2,7 +2,9 @@ import {
   isValidCveId,
   disableField,
   enableField,
-  attachRowEvents,
+  attachEvents,
+  handleButtons,
+  disableSelectedVersions,
 } from "./cve-search.js";
 
 const searchInput = document.querySelector("#q");
@@ -47,7 +49,6 @@ function handleCveIdInput(value) {
     ubuntuVersionInputs.forEach((ubuntuVersionInput) =>
       enableField(ubuntuVersionInput)
     );
-    addRowButtons.forEach((addRowButton) => enableField(addRowButton));
     removeRowButtons.forEach((removeRowButton, index) => {
       if (index > 0) {
         enableField(removeRowButton);
@@ -67,4 +68,6 @@ function handleSearchInput(event) {
 
 searchInput.addEventListener("keyup", handleSearchInput);
 
-attachRowEvents();
+attachEvents();
+handleButtons();
+disableSelectedVersions();
