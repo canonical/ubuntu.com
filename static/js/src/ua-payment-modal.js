@@ -116,8 +116,8 @@ function attachCTAevents() {
 
       setRenewalInformation(data, modal);
     } else if (isShopCTA) {
-      currentTransaction.type = "purchase";
       const cartItems = JSON.parse(data.cart);
+      currentTransaction.type = "purchase";
 
       cartItems.forEach((item) => {
         currentTransaction.products.push({
@@ -468,10 +468,18 @@ function handlePaymentAttemptResponse(data) {
       sendGAEvent("payment failed");
       presentError(errorObject);
     } else {
-      pollRenewalStatus();
+      if (currentTransaction.type === "renewal") {
+        pollRenewalStatus();
+      } else if (currentTransaction.type === "purchase") {
+        pollPurchaseStatus();
+      }
     }
   } else {
-    pollRenewalStatus();
+    if (currentTransaction.type === "renewal") {
+      pollRenewalStatus();
+    } else if (currentTransaction.type === "purchase") {
+      pollPurchaseStatus(data);
+    }
   }
 }
 
@@ -494,6 +502,22 @@ function hideErrors() {
   cardErrorElement.classList.add("u-hide");
   paymentErrorElement.querySelector(".p-notification__message").innerHTML = "";
   paymentErrorElement.classList.add("u-hide");
+}
+
+function pollPurchaseStatus(data) {
+  console.log(data);
+  // getPurchase()
+  //   .then((renewal) => {
+  //     if (renewal.status !== "done") {
+  //       handleIncompleteRenewal(renewal);
+  //     } else {
+  //       handleSuccessfulPayment();
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //     presentError();
+  //   });
 }
 
 function pollRenewalStatus() {
