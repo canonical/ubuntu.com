@@ -119,11 +119,11 @@
             <p>
               Use OpenSCAP to evaluate the OVAL and generate an html report:
             </p>
-            <pre><code>oscap oval eval --report report.htm com.ubuntu.$(lsb_release -cs).cve.oval.xml</code></pre>
+            <pre><code>oscap oval eval --report report.html com.ubuntu.$(lsb_release -cs).cve.oval.xml</code></pre>
             <p>
-              The output is generated in the file report.htm, open it using your browser:
+              The output is generated in the file report.html, open it using your browser:
             </p>
-            <pre><code>xdg-open report.htm</code></pre>
+            <pre><code>xdg-open report.html</code></pre>
             <p>
               File naming convention:
             </p>
@@ -137,10 +137,10 @@ com.ubuntu.releaseName.usn.oval.xml.bz2</code></pre>
             </h3>
             <div class="p-stepped-list__content">
               <p>
-                To scan an Ubuntu Official Cloud Image for known vulnerabilities, the manifest file and xml data can be used together. Unlike above where we were able to use the <code>lsb_release</code> command, you will need to manually enter the URL for the OVAL data.
+                To scan an <a class="p-link--external" href="https://cloud-images.ubuntu.com">Ubuntu Official Cloud Image</a> for known vulnerabilities, the manifest file and xml data can be used together. Unlike above where we were able to use the <code>lsb_release</code> command, you will need to manually enter the URL for the OVAL data.
               </p>
               <p>
-                In the example below we are using focal/20.04, you would replace 'focal' with the version you are inspecting.
+                <i class="p-icon--information">Note:</i> In the example below we are using focal/20.04, you would replace 'focal' with the version you are inspecting.
               </p>
               <pre><code>wget https://security-metadata.canonical.com/oval/oci.com.ubuntu.focal.cve.oval.xml.bz2
 bunzip2 oci.com.ubuntu.focal.cve.oval.xml.bz2</code></pre>
@@ -151,11 +151,11 @@ bunzip2 oci.com.ubuntu.focal.cve.oval.xml.bz2</code></pre>
                 <p>
                   Use OpenSCAP to evaluate the OVAL and generate an html report
                 </p>
-                <pre><code>oscap oval eval --report report.htm oci.com.ubuntu.focal.cve.oval.xml</code></pre>
+                <pre><code>oscap oval eval --report report.html oci.com.ubuntu.focal.cve.oval.xml</code></pre>
                 <p>
-                  The output is generated in the file <code>report.htm</code>, open it using your browser
+                  The output is generated in the file <code>report.html</code>, open it using your browser
                 </p>
-                <pre><code>xdg-open report.htm</code></pre>
+                <pre><code>xdg-open report.html</code></pre>
                 <p>
                   File naming convention:
                 </p>
@@ -282,7 +282,7 @@ bunzip2 oci.com.ubuntu.focal.cve.oval.xml.bz2</code></pre>
           </table>
           <p>
             <small>
-              Note: The above parameters are included in the OVAL xml file, but not all are shown in the resulting generated OpenSCAP report.
+              <i class="p-icon--information">Note:</i> The above parameters are included in the OVAL xml file, but not all are shown in the resulting generated OpenSCAP report.
             </small>
           </p>
         </div>
