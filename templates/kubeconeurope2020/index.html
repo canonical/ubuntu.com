@@ -1,8 +1,8 @@
 {% extends "templates/one-column.html" %}
 
-{% block title %}Kubecon Europe 2020 - Kubernetes from cloud to edge{% endblock %}
+{% block title %}KubeCon Europe 2020 - Kubernetes from cloud to edge{% endblock %}
 
-{% block meta_description %}Experience the virtual Canonical booth at Kubecon with t-shirts, 121 talk with experts and live demos: Multi-cloud management, Edge HA, Kubeflow, K8s for telcos...{% endblock %}
+{% block meta_description %}Experience the virtual Canonical booth at KubeCon with t-shirts, 121 talk with experts and live demos: Multi-cloud management, Edge HA, Kubeflow, K8s for telcos...{% endblock %}
 
 {% block meta_image %}https://assets.ubuntu.com/v1/bf760b8a-kubeconeu2020-social.png{% endblock meta_image %}
 
@@ -13,7 +13,7 @@
   <div class="row">
     <div class="col-12">
       <h1>
-        Ubuntu at Kubecon Europe 2020
+        Ubuntu at KubeCon Europe 2020
       </h1>
     </div>
   </div>
@@ -24,8 +24,11 @@
       <h5 class="p-muted-heading u-align--center">
         Watch the live demo stream
       </h5>
-      <div>
-        <iframe width="1000" height="563" src="https://www.youtube.com/embed/live_stream?channel=UCJ65UG_WgFa_O_odbiBWZoA" frameborder="0" allowfullscreen></iframe>
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" src="https://www.youtube.com/embed/live_stream?channel=UCJ65UG_WgFa_O_odbiBWZoA" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="u-embedded-media u-hide">
+        <iframe class="u-embedded-media__element" src="https://www.youtube.com/live_chat?v=bm8-P3OFkoI&embed_domain=ubuntu.com" frameborder="0"></iframe>
       </div>
       <h4>
         Want to talk Kubernetes with our field engineering team?
@@ -33,7 +36,7 @@
       <p class="p-button--positive p-button--inline" onclick="LC_API.open_chat_window();return false">
         Private Livechat
       </p>
-      <p class="p-button p-button--inline" href="/kubernetes/contact-us">
+      <p class="p-button p-button--inline js-invoke-modal" href="/kubernetes/contact-us">
         Contact us
       </p>
     </div>
@@ -253,11 +256,11 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section id="contest" class="p-strip--light">
   <div class="row">
     <div class="col-6">
       <h2>
-        Win an exclusive Ubuntu 20.04 Focal Fossa t-shirt
+        Win an exclusive Ubuntu 20.04 LTS Focal Fossa t-shirt or an Ubuntu backpack
       </h2>
       {{
         image(
@@ -265,6 +268,17 @@
         alt="t-shirt image",
         width="312",
         height="350",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "u-hide--small"},
+        ) | safe
+      }}
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/715cc190-ubuntu-backpack-removebg-preview.png",
+        alt="t-shirt image",
+        width="312",
+        height="312",
         hi_def=True,
         loading="lazy",
         attrs={"class": "u-hide--small"},
@@ -302,7 +316,7 @@
           <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
 
           <p>
-            In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+            In submitting this form, I agree that my participation in this competition is subject to my adherence to, and acceptance of the <a href="https://assets.ubuntu.com/v1/ded2d77b-KubeCon+EU+Raffle+2020+-+Terms+and+Conditions+.pdf">Terms and Conditions</a>, <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
           </p>
 
           <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
