@@ -35,7 +35,11 @@ export async function postRenewalIDToProcessPayment(renewalID) {
   return data;
 }
 
-export async function postPurchaseData(accountID, products) {
+export async function postPurchaseData(
+  accountID,
+  products,
+  previousPurchaseId
+) {
   let response = await fetch(`/advantage/subscribe`, {
     method: "POST",
     cache: "no-store",
@@ -47,6 +51,7 @@ export async function postPurchaseData(accountID, products) {
     body: JSON.stringify({
       account_id: accountID,
       products: products,
+      previous_purchase_id: previousPurchaseId,
     }),
   });
 
