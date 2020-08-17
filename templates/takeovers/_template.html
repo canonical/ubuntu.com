@@ -1,4 +1,4 @@
-<section {% if lang %}lang="{{ lang }}"{% endif %} data-lang="{% if locale %}{{ locale }}{% else %}en_GB{% endif %}" class="{% if class %}{{ class }}{% else %}p-takeover--grad{% endif %} js-takeover">
+<section {% if timezone %}data-timezone="{{ timezone }}"{% endif %} {% if lang %}lang="{{ lang }}"{% endif %} data-lang="{% if locale %}{{ locale }}{% else %}en_GB{% endif %}" class="{% if class %}{{ class }}{% else %}p-takeover--grad{% endif %} js-takeover">
   <div class="row u-equal-height">
     <div class="{% if equal_cols %}col-6{% else %}col-7{% endif %} u-vertically-center">
       <div>

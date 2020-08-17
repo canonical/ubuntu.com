@@ -263,17 +263,30 @@
 
         var baseTakeover = document.getElementById('takeover');  // The base takeover element
         var takeovers = document.getElementById('takeovers');  // The list of current takeovers to choose from
+        var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;  // Get the timezone name (eg.Europe/Paris)
 
         // For browsers that support <template> (all but IE), grab the template's ".content"
         takeovers = 'content' in takeovers ? takeovers.content: takeovers;
 
-        // First, select takeovers that don't specify a language and don't exclude the users language
-        var takeoverSelectors = [".js-takeover:not([lang]).js-takeover:not([lang-skip*=" + language + "])"]
+        // First, select takeovers that don't specify a timezone, a language and don't exclude the users language
+        var takeoverSelectors = [".js-takeover:not([data-timezone]).js-takeover:not([lang]).js-takeover:not([lang-skip*=" + language + "])"]
 
-        // Add selectors to find takeovers for any of the user's languages
-        takeoverSelectors.push(".js-takeover[lang=" + language + "]");
-        takeoverSelectors.push(".js-takeover[data-lang-extra*=" + language + "]");
-
+        // Add selectors to find takeovers for any of the user's languages, excluding timezones settings
+        takeoverSelectors.push(".js-takeover:not([data-timezone]).js-takeover[lang=" + language + "]");
+        takeoverSelectors.push(".js-takeover:not([data-timezone]).js-takeover[data-lang-extra*=" + language + "]");
+        
+        // Refine results, mapping user timezone area and location parameters against takeover timezone
+        if (timezone.split("/")[0]) {
+          takeoverSelectors.push(".js-takeover[data-timezone*=" + timezone.split("/")[0] + "]");
+        }
+        if (timezone.split("/")[1]) {
+          takeoverSelectors.push(".js-takeover[data-timezone*=" + timezone.split("/")[1] + "]");
+        }
+        if (timezone.split("/")[2]) {
+          takeoverSelectors.push(".js-takeover[data-timezone*=" + timezone.split("/")[2] + "]");
+        }
+        
+        
         // Get the selected takeovers
         var selectedTakeovers = (takeovers.querySelectorAll(takeoverSelectors.join(',')));
 
