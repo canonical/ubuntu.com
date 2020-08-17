@@ -118,6 +118,7 @@ function attachCTAevents() {
     } else if (isShopCTA) {
       const cartItems = JSON.parse(data.cart);
       currentTransaction.type = "purchase";
+      currentTransaction.previousPurchaseId = data.previousPurchaseId;
 
       cartItems.forEach((item) => {
         currentTransaction.products.push({
@@ -575,7 +576,11 @@ function processStripePayment() {
         presentError();
       });
   } else if (currentTransaction.type === "purchase") {
-    postPurchaseData(currentTransaction.accountId, currentTransaction.products)
+    postPurchaseData(
+      currentTransaction.accountId,
+      currentTransaction.products,
+      currentTransaction.previousPurchaseId
+    )
       .then((data) => {
         handlePaymentAttemptResponse(data);
       })
