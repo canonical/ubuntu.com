@@ -109,7 +109,7 @@ function productSelector() {
           subtotal === 0 ? "u-disable" : ""
         }" data-cart='${JSON.stringify(cartData)}' data-account-id="${
       window.accountId
-    }">Buy now</button>
+    }" data-previous-purchase-id="${window.previousPurchaseId}">Buy now</button>
       </div>
     </div>
     `;
