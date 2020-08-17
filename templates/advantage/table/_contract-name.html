@@ -1,0 +1,20 @@
+<td class="u-no-padding{% if open_subscription == contract['contractInfo']['id'] %} p-table--open{% endif %}">
+  <button class="u-toggle u-toggle--full-width u-align--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
+    {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
+    {% if contract["renewal"] %}
+      {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
+        <div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}warning{% endif %}"></i>&nbsp;&nbsp;
+          {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
+            Expired
+          {% elif contract["contractInfo"]["daysTillExpiry"] == 0 %}
+            Ends today
+          {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
+            Ends in 1 day
+          {% else %}
+            Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} days
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </button>
+</td>
