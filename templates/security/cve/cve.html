@@ -133,7 +133,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for package_name, statuses in cve.status_tree.items() %}
+            {% for package_name, statuses in cve.packages.items() %}
               {% for release in releases %}
                 <tr>
                   {% if release.codename in statuses %}

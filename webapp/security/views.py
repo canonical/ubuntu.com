@@ -432,21 +432,21 @@ def cve_index():
 
     cves = []
     for raw_cve in raw_cves:
-        status_tree = raw_cve.status_tree
+        packages = raw_cve.packages
 
         # filter by package name
         if package:
-            status_tree = {
+            packages = {
                 package_name: package_statuses
-                for package_name, package_statuses in status_tree.items()
+                for package_name, package_statuses in packages.items()
                 if package_name == package
             }
 
         # filter by component
         if component:
-            status_tree = {
+            packages = {
                 package_name: package_statuses
-                for package_name, package_statuses in status_tree.items()
+                for package_name, package_statuses in packages.items()
                 if any(
                     status.component == component
                     for status in package_statuses.values()
@@ -454,9 +454,9 @@ def cve_index():
             }
 
         if should_filter_by_version_and_status:
-            status_tree = {
+            packages = {
                 package_name: package_statuses
-                for package_name, package_statuses in status_tree.items()
+                for package_name, package_statuses in packages.items()
                 if all(
                     any(
                         package_status.release_codename in version
@@ -468,13 +468,13 @@ def cve_index():
             }
 
         # do not return cve if it has no packages left
-        if not status_tree:
+        if not packages:
             continue
 
         cve = {
             "id": raw_cve.id,
             "priority": raw_cve.priority,
-            "packages": status_tree,
+            "packages": packages,
         }
 
         cves.append(cve)
