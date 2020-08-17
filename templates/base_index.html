@@ -275,7 +275,7 @@
         takeoverSelectors.push(".js-takeover:not([data-timezone]).js-takeover[lang=" + language + "]");
         takeoverSelectors.push(".js-takeover:not([data-timezone]).js-takeover[data-lang-extra*=" + language + "]");
         
-        // Refine results using timezone format: (continent or country)/region/city, can also be (continent or country)/city
+        // Refine results, mapping user timezone area and location parameters against takeover timezone
         if (timezone.split("/")[0]) {
           takeoverSelectors.push(".js-takeover[data-timezone*=" + timezone.split("/")[0] + "]");
         }
