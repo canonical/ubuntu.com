@@ -180,6 +180,15 @@
                     {% if statuses[release.codename].description %}
                       ({{ statuses[release.codename].description }})
                     {% endif %}
+                    <br>
+                    <small>
+                      {% if statuses[release.codename].component == "esm-infra" %}
+                      Requires <a href="/advantage" target="_blank">UA Infra, UA Desktop</a>
+                      {% endif %}
+                      {% if statuses[release.codename].component == "esm-apps" %}
+                      Requires <a href="/advantage" target="_blank">UA Apps, UA Desktop</a>
+                      {% endif %}
+                    </small>
                     </td>
                   {% endif %}
                 </tr>
