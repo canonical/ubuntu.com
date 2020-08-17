@@ -88,26 +88,7 @@
                     {% endif %}
 
                     <tr class="p-table__row">
-                      <td class="u-no-padding{% if open_subscription == contract['contractInfo']['id'] %} p-table--open"{% endif %}">
-                        <button class="u-toggle u-toggle--full-width u-align--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
-                          {% if contract["renewal"] %}
-                            {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
-                              <div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}warning{% endif %}"></i>&nbsp;&nbsp;
-                                {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
-                                  Expired
-                                {% elif contract["contractInfo"]["daysTillExpiry"] == 0 %}
-                                  Ends today
-                                {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
-                                  Ends in 1 day
-                                {% else %}
-                                  Ends in {{ contract["contractInfo"]["daysTillExpiry"] }} days
-                                {% endif %}
-                              </div>
-                            {% endif %}
-                          {% endif %}
-                        </button>
-                      </td>
+                      {% include "advantage/table/_contract-name.html" %}
                       <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
                       <td class="u-align--center {% if default_open_cell %}p-table--open{% endif %}">
                         <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if default_cell_open %}true{% else %}false{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
@@ -151,124 +132,15 @@
                                 <td class="u-align--right">Created on:</td>
                                 <td class="u-align--left"><strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></td>
                               </tr>
+
                               {% if contract['contractInfo']['effectiveTo'] %}
                                 {% if contract["renewal"] %}
-                                  {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
-                                    <tr style="border-top: 0;">
-                                      <td class="u-align--right">
-                                        {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
-                                          <i class="p-icon--error u-disable"></i>&nbsp;&nbsp;Expired:
-                                        {% else %}
-                                          <i class="p-icon--warning"></i>&nbsp;&nbsp;Ends:
-                                        {% endif %}
-                                      </td>
-                                      <td class="u-align--left">
-                                        <strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>
-                                        {% if contract["contractInfo"]["daysTillExpiry"] >= 0 %}
-                                          &nbsp;&mdash;&nbsp;
-                                          {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
-                                            today
-                                          {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
-                                            in 1 day
-                                          {% else %}
-                                            in {{ contract["contractInfo"]["daysTillExpiry"] }} days
-                                          {% endif %}
-                                        {% endif %}
-                                      </td>
-                                    </tr>
-                                  {% else %}
-                                    <tr style="border-top: 0;">
-                                      <td class="u-align--right">Ends:</td>
-                                      <td class="u-align--left">
-                                        <strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>
-                                        {% if contract["renewal"]["recently_renewed"] %}
-                                        <div class="p-label--updated">Renewed</div>
-                                        {% endif %}
-                                      </td>
-                                    </tr>
-                                  {% endif %}
+                                  {% include "advantage/table/_expiry-date.html" %}
                                 {% endif %}
                               {% endif %}
-                              {% if contract["renewal"] %}
-                                {% if contract["renewal"]["renewable"] %}
-                                  <tr style="border-top: 0;">
-                                    <td></td>
-                                    <td>
-                                      <a
-                                        id="showModal"
-                                        href="#ua-payment-modal"
-                                        class="js-ua-renewal-cta p-button--positive u-no-margin--bottom"
-                                        data-contract-id="{{ contract['contractInfo']['id'] }}"
-                                        data-account-id="{{ enterprise_contracts[account][0].accountInfo.id }}"
-                                        data-name="{{ contract['contractInfo']['name']}}"
-                                        data-quantity="{{ contract['renewal']['renewalItems'][0]['allowance']['value'] }}"
-                                        data-renewal-id="{{ contract['renewal']['id']}}"
-                                        {% if expired_renewable %}
-                                          data-contract-end="{{ contract['contractInfo']['expired_restart_date']}}"
-                                        {% else %}
-                                          data-contract-end="{{ contract['contractInfo']['effectiveTo'] }}"
-                                        {% endif %}
-                                        data-products="{{ contract['contractInfo']['products'] }}"
-                                        data-months="{{ contract['renewal']['renewalItems'][0]['priceTotal']['months'] }}"
-                                        data-unit-price="{{ contract['renewal']['renewalItems'][0]['pricePerUnit']['value'] }}"
-                                        data-total="{{ contract['renewal']['renewalItems'][0]['priceTotal']['value'] }}"
-                                        data-currency="{{ contract['renewal']['renewalItems'][0]['priceTotal']['currency'] }}">Renew...</a>
-                                    </td>
-                                  </tr>
-                                {% elif contract["renewal"]["status"] == "processing" %}
-                                  <tr style="border-top: 0;">
-                                    <td></td>
-                                    <td>
-                                      <button disabled class="p-button--positive u-no-margin--bottom">Renew</button>
-                                      <span>Renewal in progress...</span>
-                                    </td>
-                                  </tr>
-                                {% elif contract["renewal"]["actionable"] == false %}
-                                  </table>
-                                  
-                                  <div class="row">
-                                    <div class="p-notification--information col-8 col-start-large-3" style="margin-top: 1rem;">
-                                      <p class="p-notification__response">
-                                        Sorry, this subscription can't be renewed online. Please call us.
-                                      </p>
-                                    </div>
-                                  </div>
-                                    
-                                  <table class="p-table--advantage-contact row">
-                                    <thead class="col-8 col-start-large-3">
-                                      <tr>
-                                        <th>Country</th>
-                                        <th>Phone number</th>
-                                      </tr>
-                                    </thead>
 
-                                    <tbody class="col-8 col-start-large-3">
-                                      <tr>
-                                        <td>United States:</td>
-                                        <td><a href="tel:+1 737 2040291">+1 737 2040291</a></td>
-                                      </tr>
-                                      <tr>
-                                        <td>United Kingdom:</td>
-                                        <td><a href="tel:+44 203 656 5291">+44 203 656 5291</a></td>
-                                      </tr>
-                                      <tr>
-                                        <td>Germany:</td>
-                                        <td><a href="tel:+49 61512746816">+49 61512746816</a></td>
-                                      </tr>
-                                      <tr>
-                                        <td>Spain:</td>
-                                        <td><a href="tel:+34 932201131">+34 932201131</a></td>
-                                      </tr>
-                                      <tr>
-                                        <td>France:</td>
-                                        <td><a href="tel:+33 184889319">+33 184889319</a></td>
-                                      </tr>
-                                      <tr>
-                                        <td>Japan:</td>
-                                        <td><a href="tel:+81-3 6205 3075">+81-3 6205 3075</a></td>
-                                      </tr>
-                                    </tbody>
-                                {% endif %}
+                              {% if contract["renewal"] %}
+                                {% include "advantage/table/_renewal-actions.html" %}
                               {% endif %}
                             </table>
                           </div>
