@@ -157,5 +157,11 @@ def build_purchase_item(
     }
 
 
-def build_purchase_request(account_id: str, purchase_items: list):
-    return {"accountID": account_id, "purchaseItems": purchase_items}
+def build_purchase_request(
+    account_id: str, purchase_items: list, previous_purchase_id: str
+):
+    return {
+        "accountID": account_id,
+        "purchaseItems": purchase_items,
+        "previousPurchaseID": previous_purchase_id,
+    }
