@@ -1,0 +1,34 @@
+{% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
+  <tr style="border-top: 0;">
+    <td class="u-align--right">
+      {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
+        <i class="p-icon--error u-disable"></i>&nbsp;&nbsp;Expired:
+      {% else %}
+        <i class="p-icon--warning"></i>&nbsp;&nbsp;Ends:
+      {% endif %}
+    </td>
+    <td class="u-align--left">
+      <strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>
+      {% if contract["contractInfo"]["daysTillExpiry"] >= 0 %}
+        &nbsp;&mdash;&nbsp;
+        {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
+          today
+        {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
+          in 1 day
+        {% else %}
+          in {{ contract["contractInfo"]["daysTillExpiry"] }} days
+        {% endif %}
+      {% endif %}
+    </td>
+  </tr>
+{% else %}
+  <tr style="border-top: 0;">
+    <td class="u-align--right">Ends:</td>
+    <td class="u-align--left">
+      <strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>
+      {% if contract["renewal"]["recently_renewed"] %}
+      <div class="p-label--updated">Renewed</div>
+      {% endif %}
+    </td>
+  </tr>
+{% endif %}
