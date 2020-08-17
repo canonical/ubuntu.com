@@ -14,8 +14,6 @@ from mistune import Markdown
 from sortedcontainers import SortedDict
 from sqlalchemy import asc, desc, or_
 from sqlalchemy.exc import IntegrityError, DataError
-from sqlalchemy.orm import contains_eager
-from sqlalchemy.sql.expression import nullslast
 
 # Local
 
@@ -349,23 +347,54 @@ def cve_index():
             CVE.statuses.any(Status.package_name == package)
         )
 
+    if component:
+        cves_query = cves_query.filter(
+            CVE.statuses.any(Status.component == component)
+        )
+
     # Pagination
     total_results = cves_query.count()
 
     cves_query = (
-        cves_query.order_by(nullslast(desc(CVE.published)))
-        .limit(limit)
-        .offset(offset)
-        .from_self()
-        .join(CVE.statuses)
-        .options(contains_eager(CVE.statuses))
+        cves_query.order_by(desc(CVE.published)).limit(limit).offset(offset)
     )
 
-    # Apply status filters
-    if package:
-        cves_query = cves_query.filter(Status.package_name == package)
+    raw_cves = cves_query.all()
 
-    cves = cves_query.all()
+    cves = []
+    for raw_cve in raw_cves:
+        status_tree = raw_cve.status_tree
+
+        # filter by package name
+        if package:
+            status_tree = {
+                package_name: statuses
+                for package_name, statuses in status_tree.items()
+                if package_name == package
+            }
+
+        # filter by component
+        if component:
+            status_tree = {
+                package_name: statuses
+                for package_name, statuses in status_tree.items()
+                if any(
+                    status.component == component
+                    for status in statuses.values()
+                )
+            }
+
+        # do not return cve if it has no packages left
+        if not status_tree:
+            continue
+
+        cve = {
+            "id": raw_cve.id,
+            "priority": raw_cve.priority,
+            "packages": status_tree,
+        }
+
+        cves.append(cve)
 
     releases = (
         db_session.query(Release)
