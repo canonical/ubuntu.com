@@ -579,6 +579,7 @@ def post_advantage_subscriptions():
         return flask.jsonify({}), 400
 
     account_id = payload.get("account_id")
+    previous_purchase_id = payload.get("previous_purchase_id")
     purchase_items = []
     for product in payload.get("products"):
         product_listing_id = product["product_listing_id"]
@@ -593,14 +594,17 @@ def post_advantage_subscriptions():
         )
 
     purchase_request = build_purchase_request(
-        account_id=account_id, purchase_items=purchase_items
+        account_id=account_id,
+        purchase_items=purchase_items,
+        previous_purchase_id=previous_purchase_id,
     )
 
     try:
         purchase = advantage.purchase_from_marketplace(
             marketplace="canonical-ua", purchase_request=purchase_request
         )
-    except HTTPError:
+    except HTTPError as http_error:
+        print(http_error.response.content)
         flask.current_app.extensions["sentry"].captureException(
             extra={"purchase_request": purchase_request}
         )
@@ -614,6 +618,7 @@ def post_advantage_subscriptions():
 
 def advantage_shop_view():
     account = None
+    previous_purchase_id = None
     stripe_publishable_key = os.getenv(
         "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
     )
@@ -633,6 +638,13 @@ def advantage_shop_view():
             # account in the returned array will suffice.
             accounts = advantage.get_accounts()
             account = accounts[0]
+            account_purchases = advantage.get_account_purchases(account["id"])
+
+            if account_purchases["purchases"]:
+                previous_purchase = account_purchases["purchases"][
+                    "purchases"
+                ][0]
+                previous_purchase_id = previous_purchase["id"]
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
                 # We got an unauthorized request, so we likely
@@ -689,6 +701,7 @@ def advantage_shop_view():
         product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
         account=account,
+        previous_purchase_id=previous_purchase_id,
     )
 
 
@@ -704,6 +717,8 @@ def make_renewal(advantage, contract_info):
     )
 
     renewal = sorted_renewals[0]
+
+    print(renewal)
 
     # If the renewal is processing, we need to find out
     # whether payment failed and requires user action,
