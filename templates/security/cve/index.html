@@ -1,18 +1,32 @@
 {% extends "security/cve/base_cve.html" %}
 
-{% block title %}CVEs{% endblock %}
+{% block title %}
+  {% if query or package or component or priority or versions or statuses %}
+    CVE search results
+  {% else %}
+    CVEs
+  {% endif %}
+{% endblock %}
 
 {% block content %}
 
 <section class="p-strip--suru-topped u-no-padding--bottom">
   <div class="u-fixed-width">
-    <h1>CVE reports</h1>
+    {% if query or package or component or priority or versions or statuses %}
+      <h1>CVE search results</h1>
+    {% else %}
+      <h1>CVE reports</h1>
+    {% endif %}
   </div>
 </section>
 
 <section class="p-strip is-shallow">
   <div class="u-fixed-width">
-    <h2>Search</h2>
+    {% if query or package or component or priority or versions or statuses %}
+      <!-- has to be this way because query string can exist with empty values -->
+    {% else %}
+      <h2>Search</h2>
+    {% endif %}
   </div>
   <form>
     <div class="row">
