@@ -46,7 +46,6 @@
   - [Private Docker Registry](/kubernetes/docs/docker-registry)
   - [Using GPU workers](/kubernetes/docs/gpu-workers)
   - [Audit Logging](/kubernetes/docs/audit-logging)
-  - [Using Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)
   - [Troubleshooting](/kubernetes/docs/troubleshooting)
 - **High Availability**
   - [Overview](/kubernetes/docs/high-availability)
