@@ -18,7 +18,8 @@ This Privacy Notice tells you about the information collected from you when you 
 We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to <a href="mailto:dataprotection@canonical.com">dataprotection@canonical.com</a> for the attention of “Legal”.
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
-What personal data do we collect?
+
+## What personal data do we collect?
 
 When you enter into an online competition, we may ask you for your name, address, contact telephone number and email address. If you are entering on behalf of a company, in accordance with the terms and conditions of the online competition, we may ask you for your company name, your job title, your work email and additional information about your company. We will retain your details in order to carry out the online competition, to contact you about the prize and/or notify you about the final winner. For the purposes of administering the online competition, the collection, use and processing of personal data may be completed by Canonical, its group companies or other third parties.
 
@@ -44,7 +45,7 @@ We may contact you from time to time with information about products and service
 
 ### Your consent
 
-If you enter into an online  competition, you will have the option to provide your consent to us sending you information about the products and services that we offer (see <a href="/legal/data-privacy/partner-portal#mkt-comms">Email Marketing Communications</a>). You can withdraw your consent at any time.
+If you enter into an online competition, you will have the option to provide your consent to us sending you information about the products and services that we offer (see <a href="/legal/data-privacy/partner-portal#mkt-comms">Email Marketing Communications</a>). You can withdraw your consent at any time.
 
 ## How long do we keep your information for?
 
