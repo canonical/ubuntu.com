@@ -384,6 +384,8 @@ def advantage_view():
     personal_account = None
     enterprise_contracts = {}
     entitlements = {}
+    new_subscription_start_date = None
+    new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
     stripe_publishable_key = os.getenv(
         "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
@@ -477,6 +479,20 @@ def advantage_view():
                     ] = created_at.strftime("%d %B %Y")
                     contract["contractInfo"]["status"] = "active"
 
+                    time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+
+                    if contract["machineCount"] == 0:
+                        if not new_subscription_start_date:
+                            new_subscription_start_date = created_at
+                            new_subscription_id = contract["contractInfo"][
+                                "id"
+                            ]
+                        elif created_at > new_subscription_start_date:
+                            new_subscription_start_date = created_at
+                            new_subscription_id = contract["contractInfo"][
+                                "id"
+                            ]
+
                     if "effectiveTo" in contract["contractInfo"]:
                         effective_to = dateutil.parser.parse(
                             contract["contractInfo"]["effectiveTo"]
@@ -484,8 +500,6 @@ def advantage_view():
                         contract["contractInfo"][
                             "effectiveToFormatted"
                         ] = effective_to.strftime("%d %B %Y")
-
-                        time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
 
                         if effective_to < time_now:
                             contract["contractInfo"]["status"] = "expired"
@@ -510,6 +524,8 @@ def advantage_view():
                     # matches add it to the start of the list
                     if contract["contractInfo"]["id"] == open_subscription:
                         enterprise_contract.insert(0, contract)
+                    elif contract["contractInfo"]["id"] == new_subscription_id:
+                        enterprise_contract.insert(0, contract)
                     else:
                         enterprise_contract.append(contract)
 
@@ -519,6 +535,7 @@ def advantage_view():
         enterprise_contracts=enterprise_contracts,
         personal_account=personal_account,
         open_subscription=open_subscription,
+        new_subscription_id=new_subscription_id,
         stripe_publishable_key=stripe_publishable_key,
     )
 
