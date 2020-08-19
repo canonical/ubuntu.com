@@ -1,0 +1,7 @@
+<td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if new_subscription_id == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
+  <div class="row">
+    <div class="col-12 u-align--center">
+      To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code>
+    </div>
+  </div>
+</td>
