@@ -316,6 +316,7 @@ function enableProcessingState(mode) {
           // the renewal payment is taking time to process, reload the page
           // and highlight the in-progress renewal
           if (mode === "payment") {
+            sendGAEvent("page reload: payment processing > 30s");
             location.search = `subscription=${activeRenewal.contractId}`;
           }
 
