@@ -81,7 +81,7 @@
                 {% for contract in enterprise_contracts[account] %}
                   {% if contract["contractInfo"]["status"] != 'expired' or contract["renewal"]["renewable"] %}
                     {% set expired_renewable = contract['renewal'] and contract['contractInfo']['daysTillExpiry'] < 0 %}
-                    {% if not open_subscription and (loop.index == 1 and outer_loop.index == 1) %}
+                    {% if not open_subscription and not new_subscription_id and (loop.index == 1 and outer_loop.index == 1) %}
                       {% set default_open_cell = true %}
                     {% else %}
                       {% set default_open_cell = false %}
@@ -90,8 +90,9 @@
                     <tr class="p-table__row">
                       {% include "advantage/table/_contract-name.html" %}
                       <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
-                      <td class="u-align--center {% if default_open_cell %}p-table--open{% endif %}">
-                        <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if default_cell_open %}true{% else %}false{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
+                      <td class="u-align--center {% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}">
+                        <span class="u-hide">{{ contract }}</span>
+                        <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
                           {{ contract['machineCount'] }} &nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
                         </button>
                       </td>
@@ -147,13 +148,8 @@
                         </div>
                       </td>
 
-                      <td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if loop.index == 1 and outer_loop.index == 1 %}false{% else %}true{% endif %}">
-                        <div class="row">
-                          <div class="col-12 u-align--center">
-                            To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code>
-                          </div>
-                        </div>
-                      </td>
+                      {% include "advantage/table/_attached-machines.html" %}
+                      
                       <td id="expanded-row-esm-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
                         <div class="row">
                           {% if contract['entitlements']['esm-infra'] == True %}
