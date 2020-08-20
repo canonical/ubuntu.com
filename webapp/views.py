@@ -24,11 +24,7 @@ from requests.exceptions import HTTPError
 
 # Local
 from webapp.login import empty_session, user_info
-from webapp.advantage import (
-    AdvantageContracts,
-    build_purchase_item,
-    build_purchase_request,
-)
+from webapp.advantage import AdvantageContracts
 
 
 ip_reader = geolite2.reader()
@@ -569,31 +565,63 @@ def post_advantage_subscriptions():
 
     account_id = payload.get("account_id")
     previous_purchase_id = payload.get("previous_purchase_id")
+
+    # Get the latests active subscription for the account that is making the
+    # purchase, there might be a better endpoint for this in the future.
+    try:
+        subscriptions = advantage.get_account_subscriptions_for_marketplace(
+            account_id=account_id, marketplace="canonical-ua"
+        )
+        last_subscription = subscriptions["subscriptions"][0]
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"payload": payload}
+        )
+        return (
+            flask.jsonify(
+                {"error": "could not retrieve account subscriptions"}
+            ),
+            500,
+        )
+    except KeyError:
+        last_subscription = None
+
+    # If there is a subscription we get the current metric
+    # value for each product listing so we can generate a
+    # purchase request with updated quantities later.
+    subscribed_quantities = {}
+    if last_subscription:
+
+        for item in last_subscription["purchasedProductListings"]:
+            product_listing_id = item["productListing"]["id"]
+            subscribed_quantities[product_listing_id] = item["value"]
+
     purchase_items = []
     for product in payload.get("products"):
         product_listing_id = product["product_listing_id"]
-        metric_value = product["quantity"]
-
-        purchase_items.append(
-            build_purchase_item(
-                product_listing_id=product_listing_id,
-                metric="active-machines",
-                metric_value=metric_value,
-            )
+        metric_value = product["quantity"] + subscribed_quantities.get(
+            product_listing_id, 0
         )
 
-    purchase_request = build_purchase_request(
-        account_id=account_id,
-        purchase_items=purchase_items,
-        previous_purchase_id=previous_purchase_id,
-    )
+        purchase_items.append(
+            {
+                "productListingID": product_listing_id,
+                "metric": "active-machines",
+                "value": metric_value,
+            }
+        )
+
+    purchase_request = {
+        "accountID": account_id,
+        "purchaseItems": purchase_items,
+        "previousPurchaseID": previous_purchase_id,
+    }
 
     try:
         purchase = advantage.purchase_from_marketplace(
             marketplace="canonical-ua", purchase_request=purchase_request
         )
-    except HTTPError as http_error:
-        print(http_error.response.content)
+    except HTTPError:
         flask.current_app.extensions["sentry"].captureException(
             extra={"purchase_request": purchase_request}
         )
@@ -632,7 +660,7 @@ def advantage_shop_view():
             if account_purchases["purchases"]:
                 previous_purchase = account_purchases["purchases"][
                     "purchases"
-                ][0]
+                ][-1]
                 previous_purchase_id = previous_purchase["id"]
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
@@ -706,8 +734,6 @@ def make_renewal(advantage, contract_info):
     )
 
     renewal = sorted_renewals[0]
-
-    print(renewal)
 
     # If the renewal is processing, we need to find out
     # whether payment failed and requires user action,
