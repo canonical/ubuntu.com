@@ -1,7 +1,25 @@
-<td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if new_subscription_id == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
+{% if new_subscription_id == contract['contractInfo']['id'] %}
+<td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="false">
+  <div class="row">
+    <div class="col-12">
+      <h4>Welcome to your new subscription.</h4>
+      <p>To get started, first attach each machine:</p>
+      <p>To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code></p>
+      <p>To detach a machine: <code>sudo ua detach</code></p>
+      <p>
+        Once a machine is attached, you can configure its services.&nbsp;&nbsp;
+        <button class="p-button u-no-margin--bottom js-entitlements-callout" data-entitlements='{{ contract["entitlements"]|tojson }}'>Where?</button>
+      </p>
+    </div>
+  </div>
+  <script src="{{ versioned_static('js/dist/ua-entitlements-callout.js') }}" defer></script>
+</td>
+{% else %}
+<td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
   <div class="row">
     <div class="col-12 u-align--center">
       To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code>
     </div>
   </div>
 </td>
+{% endif %}
