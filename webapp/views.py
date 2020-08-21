@@ -124,11 +124,25 @@ def build():
     Show build page
     """
 
+    print(json.dumps(Launchpad.board_architectures))
+
     return flask.render_template(
         "core/build/index.html",
         board_architectures=json.dumps(Launchpad.board_architectures),
     )
 
+def debug_build():
+    board = flask.request.values.get("board")
+    system = flask.request.values.get("system")
+    snaps = flask.request.values.get("snaps", "").split(",")
+    arch = flask.request.values.get("arch")
+    print("board: " + board)
+    print("system: " + system)
+    print("arch: " + arch)
+    print("snaps: ")
+    for snap in snaps:
+        print("\t" + snap)
+    return flask.render_template("core/build/index.html")
 
 def post_build():
     """
