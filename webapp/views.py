@@ -131,18 +131,6 @@ def build():
         board_architectures=json.dumps(Launchpad.board_architectures),
     )
 
-def debug_build():
-    board = flask.request.values.get("board")
-    system = flask.request.values.get("system")
-    snaps = flask.request.values.get("snaps", "").split(",")
-    arch = flask.request.values.get("arch")
-    print("board: " + board)
-    print("system: " + system)
-    print("arch: " + arch)
-    print("snaps: ")
-    for snap in snaps:
-        print("\t" + snap)
-    return flask.render_template("core/build/index.html")
 
 def post_build():
     """
@@ -157,6 +145,7 @@ def post_build():
     board = flask.request.values.get("board")
     system = flask.request.values.get("system")
     snaps = flask.request.values.get("snaps", "").split(",")
+    arch = flask.request.values.get("arch")
 
     if not user_info(flask.session):
         flask.abort(401)
@@ -203,6 +192,7 @@ def post_build():
             snaps=snaps,
             author_info={"name": full_name, "email": email, "board": board},
             gpg_passphrase=flask.current_app.config["SECRET_KEY"],
+            arch=arch
         )
         context["build_info"] = launchpad.session.get(
             response.headers["Location"]

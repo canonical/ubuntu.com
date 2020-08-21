@@ -10,8 +10,7 @@ from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
-from canonicalwebteam.blog import build_blueprint, BlogViews, Wordpress
-# !!! CHANGE WORDPRESS BACK TO BlogAPI BEFORE PUSHING !!!
+from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
 from canonicalwebteam.discourse_docs import (
     DiscourseAPI,
     DiscourseDocs,
@@ -48,7 +47,6 @@ from webapp.views import (
     releasenotes_redirect,
     search_snaps,
     notify_build,
-    debug_build
 )
 from webapp.login import login_handler, logout, user_info
 from webapp.security.database import db_session
@@ -176,7 +174,7 @@ app.add_url_rule(
 # blog section
 
 blog_views = BlogViews(
-    api=Wordpress(session=session),
+    api=BlogAPI(session=session),
     excluded_tags=[3184, 3265, 3408],
     per_page=11,
 )
@@ -235,7 +233,7 @@ template_finder_view = TemplateFinder.as_view("template_finder")
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/snaps", view_func=search_snaps)
 app.add_url_rule("/core/build", view_func=build)
-app.add_url_rule("/core/build", view_func=debug_build, methods=["POST"])
+app.add_url_rule("/core/build", view_func=post_build, methods=["POST"])
 app.add_url_rule(
     "/core/build/notify", view_func=notify_build, methods=["POST"]
 )
