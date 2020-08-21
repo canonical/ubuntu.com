@@ -124,8 +124,6 @@ def build():
     Show build page
     """
 
-    print(json.dumps(Launchpad.board_architectures))
-
     return flask.render_template(
         "core/build/index.html",
         board_architectures=json.dumps(Launchpad.board_architectures),
