@@ -19,7 +19,7 @@
     &::before,
     &::after {
       background: transparent;
-      border: 1px solid #666;
+      border: 2px solid #666;
       border-radius: 100%;
       bottom: 0;
       content: "";
@@ -34,11 +34,11 @@
     }
 
     &::before {
-      animation: scaleUp 1.4s infinite ease-in-out;
+      animation: scaleUp 0.7s infinite ease-in-out;
     }
 
     &::after {
-      animation: scaleUp 1.4s 0.7s infinite ease-in-out;
+      animation: scaleUp 0.7s 0.35s infinite ease-in-out;
     }
 
     @keyframes scaleUp {
