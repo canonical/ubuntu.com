@@ -28,4 +28,6 @@ module.exports = {
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
   "ua-product-selector": "./static/js/src/ua-product-selector.js",
+  "ua-entitlements-callout":
+    "./static/js/src/advantage/entitlements-callout.js",
 };
