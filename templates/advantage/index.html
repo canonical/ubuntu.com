@@ -99,8 +99,12 @@
 
                       <td class="u-align--center">
                         {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
-                        <button class="u-toggle" aria-controls="#expanded-row-esm-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          <span class="u-truncate"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--contextual-menu">Open</i></span>
+                        <button class="u-toggle" style="position: relative;" aria-controls="#expanded-row-esm-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
+                          <span class="u-truncate" style="position: relative;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--contextual-menu">Open</i>
+                          </span>
+                          {% if new_subscription_id == contract['contractInfo']['id'] %}
+                            <i class="p-icon--attention u-hide" data-entitlement="esm-infra" style="position: absolute; right: 11px; top: 4px;"></i>
+                          {% endif %}
                         </button>
                         {% else %}
                         <span style="padding-top: 0.35rem;">N/A</span>
@@ -108,9 +112,13 @@
                       </td>
                       <td class="u-align--center">
                         {% if contract['entitlements']['livepatch'] == True %}
-                        <button class="u-toggle" aria-controls="#expanded-row-livepatch-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          <span class="u-truncate">
-                            <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
+                        <button class="u-toggle" style="position: relative;" aria-controls="#expanded-row-livepatch-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
+                          <span class="u-truncate" style="position: relative;">
+                            <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                          </span>
+                          {% if new_subscription_id == contract['contractInfo']['id'] %}
+                            <i class="p-icon--attention u-hide" data-entitlement="livepatch" style="position: absolute; right: 11px; top: 4px;"></i>
+                          {% endif %}
                         </button>
                         {% else %}
                         <span style="padding-top: 0.35rem;">N/A</span>
@@ -118,8 +126,12 @@
                       </td>
                       <td class="u-align--center">
                         {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
-                        <button class="u-toggle" aria-controls="#expanded-row-certifications-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          <span class="u-truncate"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
+                        <button class="u-toggle" style="position: relative;" aria-controls="#expanded-row-certifications-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
+                          <span class="u-truncate" style="position: relative;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                          </span>
+                          {% if new_subscription_id == contract['contractInfo']['id'] %}
+                            <i class="p-icon--attention u-hide" data-entitlement="fips" style="position: absolute; right: 11px; top: 4px;"></i>
+                          {% endif %}
                         </button>
                         {% else %}
                         <span style="padding-top: 0.35rem;">N/A</span>
