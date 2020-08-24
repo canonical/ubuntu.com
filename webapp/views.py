@@ -395,17 +395,15 @@ def advantage_view():
 
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
+            subscriptions = advantage.get_subscriptions(
+                account["id"], "canonical-ua"
+            )
 
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
-
-                machines = advantage.get_contract_machines(contract).get(
-                    "machines"
+                contract["machineCount"] = get_machine_usage(
+                    advantage, contract, subscriptions
                 )
-                contract["machineCount"] = 0
-
-                if machines:
-                    contract["machineCount"] = len(machines)
 
                 if contract["contractInfo"].get("origin", "") == "free":
                     personal_account = account
@@ -455,7 +453,7 @@ def advantage_view():
 
                     time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
 
-                    if contract["machineCount"] == 0:
+                    if "0/" in contract["machineCount"]:
                         if not new_subscription_start_date:
                             new_subscription_start_date = created_at
                             new_subscription_id = contract["contractInfo"][
@@ -512,6 +510,36 @@ def advantage_view():
         new_subscription_id=new_subscription_id,
         stripe_publishable_key=stripe_publishable_key,
     )
+
+
+def get_machine_usage(advantage, contract, subscriptions):
+    attachedMachines = advantage.get_contract_machines(contract).get(
+        "machines"
+    )
+    attachedMachineCount = 0
+    availableMachineCount = 0
+    contractProductId = contract["contractInfo"]["products"][0]
+
+    if attachedMachines:
+        attachedMachineCount = len(attachedMachines)
+
+    if "subscriptions" in subscriptions:
+        for subscription in subscriptions["subscriptions"]:
+            if "purchasedProductListings" in subscription:
+                for product in subscription["purchasedProductListings"]:
+                    if (
+                        product["productListing"]["productID"]
+                        == contractProductId
+                    ):
+                        availableMachineCount = product["value"]
+
+    # not 100% certain that pre-UA shop purchases will
+    # always have machine allowance info, in which case
+    # fall back to only showing how many machines are attached
+    if attachedMachineCount > availableMachineCount:
+        return attachedMachineCount
+    else:
+        return f"{attachedMachineCount}/{availableMachineCount}"
 
 
 def post_advantage_subscriptions():
