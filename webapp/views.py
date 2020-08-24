@@ -655,13 +655,13 @@ def advantage_shop_view():
             # account in the returned array will suffice.
             accounts = advantage.get_accounts()
             account = accounts[0]
-            account_purchases = advantage.get_account_purchases(account["id"])
+            subs = advantage.get_account_subscriptions_for_marketplace(
+                account["id"], "canonical-ua"
+            )
 
-            if account_purchases["purchases"]:
-                previous_purchase = account_purchases["purchases"][
-                    "purchases"
-                ][-1]
-                previous_purchase_id = previous_purchase["id"]
+            if "subscriptions" in subs:
+                subscription = subs["subscriptions"][0]
+                previous_purchase_id = subscription["lastPurchaseID"]
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
                 # We got an unauthorized request, so we likely
@@ -829,6 +829,19 @@ def post_stripe_invoice_id(renewal_id, invoice_id):
         )
 
         return advantage.post_stripe_invoice_id(invoice_id, renewal_id)
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
+def get_purchase(purchase_id):
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+
+        return advantage.get_purchase(purchase_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 

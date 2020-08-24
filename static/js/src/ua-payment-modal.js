@@ -1,4 +1,5 @@
 import {
+  getPurchase,
   getRenewal,
   postInvoiceIDToRenewal,
   postCustomerInfoToStripeAccount,
@@ -214,7 +215,6 @@ function attachModalButtonEvents() {
   addPaymentMethodButton.addEventListener("click", (e) => {
     e.preventDefault();
 
-    // TODO: for demo purposes only, remove when we have real endpoints and data
     changingPaymentMethod = false;
     sendGAEvent("submitted payment details");
     createPaymentMethod();
@@ -343,7 +343,7 @@ function enableProcessingState(mode) {
           // and highlight the in-progress renewal
           if (mode === "payment") {
             sendGAEvent("page reload: payment processing > 30s");
-            location.search = `subscription=${currentTransaction.contractId}`;
+            reloadPage();
           }
 
           // there is potentially a problem with one of the APIs preventing
@@ -385,6 +385,18 @@ function handleIncompletePayment(invoice) {
     });
   } else {
     presentError();
+  }
+}
+
+function handleIncompletePurchase(data) {
+  let purchase = data;
+
+  if (purchase.status === "processing") {
+    clearTimeout(pollingTimer);
+
+    pollingTimer = setTimeout(() => {
+      pollPurchaseStatus(purchase);
+    }, 3000);
   }
 }
 
@@ -472,7 +484,7 @@ function handlePaymentAttemptResponse(data) {
       if (currentTransaction.type === "renewal") {
         pollRenewalStatus();
       } else if (currentTransaction.type === "purchase") {
-        pollPurchaseStatus();
+        pollPurchaseStatus(data);
       }
     }
   } else {
@@ -495,7 +507,7 @@ function handleSuccessfulPayment() {
     "Payment complete. One moment...";
   progressIndicator.classList.remove("u-hide");
 
-  location.search = `subscription=${currentTransaction.contractId}`;
+  reloadPage();
 }
 
 function hideErrors() {
@@ -505,24 +517,23 @@ function hideErrors() {
   paymentErrorElement.classList.add("u-hide");
 }
 
-function pollPurchaseStatus(data) {
-  console.log(data);
-  // getPurchase()
-  //   .then((renewal) => {
-  //     if (renewal.status !== "done") {
-  //       handleIncompleteRenewal(renewal);
-  //     } else {
-  //       handleSuccessfulPayment();
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //     presentError();
-  //   });
+function pollPurchaseStatus(purchaseData) {
+  getPurchase(purchaseData.id)
+    .then((purchase) => {
+      if (purchase.status !== "done") {
+        handleIncompletePurchase(purchase);
+      } else {
+        handleSuccessfulPayment();
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      presentError();
+    });
 }
 
 function pollRenewalStatus() {
-  getRenewal(currentTransaction.renewalId)
+  getRenewal()
     .then((renewal) => {
       if (renewal.status !== "done") {
         handleIncompleteRenewal(renewal);
@@ -566,7 +577,7 @@ function processStripePayment() {
   enableProcessingState("payment");
 
   if (currentTransaction.type === "renewal") {
-    postRenewalIDToProcessPayment(currentTransaction.renewalId)
+    postRenewalIDToProcessPayment(f)
       .then((data) => {
         handlePaymentAttemptResponse(data);
       })
@@ -589,6 +600,14 @@ function processStripePayment() {
         sendGAEvent("payment failed");
         presentError();
       });
+  }
+}
+
+function reloadPage() {
+  if (currentTransaction.type === "renewal") {
+    location.search = `?subscription=${currentTransaction.contractId}`;
+  } else if (currentTransaction.type === "purchase") {
+    location.pathname = "/advantage";
   }
 }
 

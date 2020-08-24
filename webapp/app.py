@@ -38,6 +38,7 @@ from webapp.views import (
     download_harness,
     download_thank_you,
     appliance_install,
+    get_purchase,
     get_renewal,
     post_advantage_subscriptions,
     post_customer_info,
@@ -160,6 +161,11 @@ app.add_url_rule(
     "/advantage/renewals/<renewal_id>/invoices/<invoice_id>",
     view_func=post_stripe_invoice_id,
     methods=["POST"],
+)
+app.add_url_rule(
+    "/advantage/purchases/<purchase_id>",
+    view_func=get_purchase,
+    methods=["GET"],
 )
 app.add_url_rule(
     "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
