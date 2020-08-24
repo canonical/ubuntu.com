@@ -426,6 +426,9 @@ def advantage_view():
 
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
+            subscriptions = advantage.get_subscriptions(
+                account["id"], "canonical-ua"
+            )
 
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
@@ -481,7 +484,7 @@ def advantage_view():
 
                     time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
 
-                    if contract["machineCount"] == 0:
+                    if "0/" in contract["machineCount"]:
                         if not new_subscription_start_date:
                             new_subscription_start_date = created_at
                             new_subscription_id = contract["contractInfo"][
