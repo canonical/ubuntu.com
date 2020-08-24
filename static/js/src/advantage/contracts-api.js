@@ -1,3 +1,12 @@
+export async function getPurchase(purchaseID) {
+  let response = await fetch(`/advantage/purchases/${purchaseID}`, {
+    cache: "no-store",
+  });
+
+  let data = await response.json();
+  return data;
+}
+
 export async function getRenewal(renewalID) {
   let response = await fetch(`/advantage/renewals/${renewalID}`, {
     cache: "no-store",
