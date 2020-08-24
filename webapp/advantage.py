@@ -46,6 +46,17 @@ class AdvantageContracts:
 
         return response.json().get("contracts", [])
 
+    def get_subscriptions(self, account, marketplace):
+        response = self._request(
+            method="get",
+            path=(
+                f"v1/accounts/{account}/marketplace/"
+                f"{marketplace}/subscriptions"
+            ),
+        )
+
+        return response.json()
+
     def get_contract_token(self, contract):
         contract_id = contract["contractInfo"]["id"]
         response = self._request(
