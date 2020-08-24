@@ -22,23 +22,19 @@
   <div class="row u-vertically-center" style="position: relative; top: -2rem;" >
     <div class="col-12">
       <h5 class="p-muted-heading u-align--center">
-        Watch the live demo stream
+        Watch Ubuntu’s original KubeCon demos on multi-cloud Kubernetes
       </h5>
       <div class="u-embedded-media">
-        <iframe class="u-embedded-media__element" src="https://www.youtube.com/embed/live_stream?channel=UCJ65UG_WgFa_O_odbiBWZoA" frameborder="0" allowfullscreen></iframe>
+        <iframe class="u-embedded-media__element" src="https://www.youtube.com/embed/videoseries?list=PLwFSk464RMxn0sHgaX59Q82fIplLSnrdH" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <div class="u-embedded-media">
-        <iframe class="u-embedded-media__element" src="https://www.youtube.com/live_chat?v=JPQG0_j2zOo&embed_domain=ubuntu.com" frameborder="0"></iframe>
+      <div style="padding-top: 2rem;">
+        <p class="p-button--positive p-button--inline" onclick="LC_API.open_chat_window();return false">
+          Private Livechat
+        </p>
+        <p class="p-button p-button--inline js-invoke-modal" href="/kubernetes/contact-us">
+          Contact us
+        </p>
       </div>
-      <h4>
-        Want to talk Kubernetes with our field engineering team?
-      </h4>
-      <p class="p-button--positive p-button--inline" onclick="LC_API.open_chat_window();return false">
-        Private Livechat
-      </p>
-      <p class="p-button p-button--inline js-invoke-modal" href="/kubernetes/contact-us">
-        Contact us
-      </p>
     </div>
   </div>
 </section>
@@ -252,114 +248,6 @@
           Kubernetes on Ubuntu&nbsp;&rsaquo;
         </a>
       </p>
-    </div>
-  </div>
-</section>
-
-<section id="contest" class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
-      <h2>
-        Win an exclusive Ubuntu 20.04 LTS Focal Fossa t-shirt or an Ubuntu backpack
-      </h2>
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/4c6176c2-FocalFossa--t-shirt-black-removebg-preview.png",
-        alt="t-shirt image",
-        width="312",
-        height="350",
-        hi_def=True,
-        loading="lazy",
-        attrs={"class": "u-hide--small"},
-        ) | safe
-      }}
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/715cc190-ubuntu-backpack-removebg-preview.png",
-        alt="t-shirt image",
-        width="312",
-        height="312",
-        hi_def=True,
-        loading="lazy",
-        attrs={"class": "u-hide--small"},
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-
-      <!-- MARKETO FORM -->
-      <script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
-      <script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
-      <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
-
-      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3675" class="marketo-form">
-        <fieldset>
-          <label for="FirstName" id="LblFirstName" class="mktoLabel " >First name</label>
-          <input id="FirstName" name="FirstName" maxlength="255" aria-describedby="ValidMsgFirstName" aria-labelledby="LblFirstName InstructFirstName" type="text" class="mktoField  " >
-
-          <label for="LastName" id="LblLastName" class="mktoLabel " >Last name</label>
-          <input id="LastName" name="LastName" maxlength="255" aria-describedby="ValidMsgLastName" aria-labelledby="LblLastName InstructLastName" type="text" class="mktoField  " >
-
-          <label for="Email" id="LblEmail" class="mktoLabel " >Work email</label>
-          <input id="Email" name="Email" maxlength="255" aria-describedby="ValidMsgEmail" aria-labelledby="LblEmail InstructEmail" type="email" class="mktoField mktoEmailField " >
-
-          <label for="Title" id="LblTitle" class="mktoLabel " >Job title</label>
-          <input id="Title" name="Title" maxlength="255" aria-describedby="ValidMsgTitle" aria-labelledby="LblTitle InstructTitle" type="text" class="mktoField   mktoValid"  aria-invalid="false">
-
-          <label for="Company" id="LblCompany" class="mktoLabel " >Company name</label>
-          <input id="Company" name="Company" maxlength="255" aria-describedby="ValidMsgCompany" aria-labelledby="LblCompany InstructCompany" type="text" class="mktoField  " >
-
-          <label for="Phone" id="LblPhone" class="mktoLabel " >Mobile/cell phone number</label>
-          <input id="Phone" name="Phone" maxlength="255" aria-describedby="ValidMsgPhone" aria-labelledby="LblPhone InstructPhone" type="tel" class="mktoField mktoTelField " >
-
-          <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-          <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
-
-          <p>
-            In submitting this form, I agree that my participation in this competition is subject to my adherence to, and acceptance of the <a href="https://assets.ubuntu.com/v1/ded2d77b-KubeCon+EU+Raffle+2020+-+Terms+and+Conditions+.pdf">Terms and Conditions</a>, <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
-          </p>
-
-          <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
-
-          <button type="submit" class="mktoButton">Submit</button>
-          <input type="hidden" aria-hidden="true" name="formid" class="mktoField " value="3675">
-          <input type="hidden" aria-hidden="true" name="formVid" class="mktoField" value="3675" />
-          <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
-          <input type="hidden" aria-hidden="true" name="Consent_to_Processing__c" value="yes" />
-          <input type="hidden" aria-hidden="true" name="thankyoumessage" value="Thank you for entering the t-shirt draw" />
-        </fieldset>
-      </form>
-      <div class="js-feedback-notification"></div>
-
-      <script>
-        $("#mktoForm_3675").validate({
-          errorElement: "span",
-          errorClass: "mktFormMsg mktError",
-          onkeyup: false,
-          onclick: false,
-          onblur: false
-        });
-
-
-        $(function(){$("#comments").hide()});
-
-        $('#Ubuntu_User__c').on('change',function(){
-
-          var selection = $(this).val();
-          if(selection == 'Commercially only') {
-            $('#comments').show();
-          } else {
-            $('#comments').hide();
-          }
-        });
-
-      </script>
-      <script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
-
-      <!-- /MARKETO FORM -->
-
-
-
     </div>
   </div>
 </section>
