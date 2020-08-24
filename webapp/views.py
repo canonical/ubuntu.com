@@ -430,6 +430,9 @@ def advantage_view():
 
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
+            subscriptions = advantage.get_subscriptions(
+                account["id"], "canonical-ua"
+            )
 
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
