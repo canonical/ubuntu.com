@@ -42,14 +42,11 @@ class ReleaseCodename(String):
 
 class Component(String):
     default_error_messages = {
-        "unrecognised_component": (
-            "Component must be one of "
-            "'main', 'universe', 'esm-infra' or 'esm-apps'"
-        )
+        "unrecognised_component": ("Component must be 'main' or 'universe'")
     }
 
     def _deserialize(self, value, attr, data, **kwargs):
-        if value not in ["main", "universe", "esm-infra", "esm-apps"]:
+        if value not in ["main", "universe"]:
             raise self.make_error("unrecognised_component", input=value)
 
         return super()._deserialize(value, attr, data, **kwargs)
