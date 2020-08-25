@@ -89,7 +89,7 @@ class AdvantageContracts:
         response = self._request(
             method="post",
             path=(
-                f"v1/{transaction_type}/{transaction_id}/",
+                f"v1/{transaction_type}/{transaction_id}/"
                 f"payment/stripe/{invoice_id}",
             ),
         )
@@ -130,7 +130,7 @@ class AdvantageContracts:
         response = self._request(
             method="get",
             path=(
-                f"/v1/accounts/{account_id}"
+                f"v1/accounts/{account_id}"
                 f"/marketplace/{marketplace}/subscriptions"
             ),
         )
