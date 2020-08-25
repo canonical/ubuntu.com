@@ -52,6 +52,21 @@ class Component(String):
         return super()._deserialize(value, attr, data, **kwargs)
 
 
+class Pocket(String):
+    default_error_messages = {
+        "unrecognised_component": (
+            "Pocket must be one of "
+            "'security', 'updates', 'esm-infra', 'esm-apps'"
+        )
+    }
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        if value not in ["security", "updates", "esm-infra", "esm-apps"]:
+            raise self.make_error("unrecognised_pocket", input=value)
+
+        return super()._deserialize(value, attr, data, **kwargs)
+
+
 # Schemas
 # ===
 
@@ -89,6 +104,7 @@ class Status(Schema):
     status = String(required=True)
     description = String(allow_none=True)
     component = Component(required=False)
+    pocket = Pocket(required=False)
 
 
 class CvePackage(Schema):

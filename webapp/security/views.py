@@ -484,6 +484,8 @@ def update_statuses(cve, data, packages, releases):
 
             if "component" in status_data:
                 status.component = status_data["component"]
+            if "pocket" in status_data:
+                status.pocket = status_data["pocket"]
 
             statuses[name][codename] = status
 
