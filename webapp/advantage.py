@@ -83,10 +83,15 @@ class AdvantageContracts:
 
         return response.json()
 
-    def post_stripe_invoice_id(self, invoice_id, renewal_id):
+    def post_stripe_invoice_id(
+        self, transaction_type, transaction_id, invoice_id
+    ):
         response = self._request(
             method="post",
-            path=f"v1/renewals/{renewal_id}/payment/stripe/{invoice_id}",
+            path=(
+                f"v1/{transaction_type}/{transaction_id}/",
+                f"payment/stripe/{invoice_id}",
+            ),
         )
 
         return response.json()

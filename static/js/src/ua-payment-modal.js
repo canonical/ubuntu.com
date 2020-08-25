@@ -1,7 +1,7 @@
 import {
   getPurchase,
   getRenewal,
-  postInvoiceIDToRenewal,
+  postInvoiceID,
   postCustomerInfoToStripeAccount,
   postRenewalIDToProcessPayment,
   postPurchaseData,
@@ -71,8 +71,8 @@ const card = elements.create("card", { style });
 
 const currentTransaction = {
   accountId: null,
+  transactionId: null,
   contractId: null,
-  renewalId: null,
   products: [],
   type: null,
 };
@@ -113,7 +113,7 @@ function attachCTAevents() {
     if (isRenewalCTA) {
       currentTransaction.type = "renewal";
       currentTransaction.contractId = data.contractId;
-      currentTransaction.renewalId = data.renewalId;
+      currentTransaction.transactionId = data.renewalId;
 
       setRenewalInformation(data, modal);
     } else if (isShopCTA) {
@@ -367,13 +367,22 @@ function handleIncompletePayment(invoice) {
     // capture a new payment method, then post the
     // renewal invoice number to trigger another
     // payment attempt
-    postInvoiceIDToRenewal(currentTransaction.renewalId, invoice.invoice_id)
+
+    let type = "renewals";
+    let transactionId = currentTransaction.transactionId;
+
+    if (currentTransaction.type === "purchase") {
+      type = "purchase";
+      transactionId = null;
+    }
+
+    postInvoiceID(type, transactionId, invoice.invoice_id)
       .then((data) => {
         handlePaymentAttemptResponse(data);
       })
       .catch((error) => {
         console.error(error);
-        pollRenewalStatus();
+        pollTransactionStatus();
       });
   } else if (requiresAuthentication(invoice)) {
     // 3DS has been requested by Stripe
@@ -391,11 +400,13 @@ function handleIncompletePayment(invoice) {
 function handleIncompletePurchase(data) {
   let purchase = data;
 
+  console.log(data);
+
   if (purchase.status === "processing") {
     clearTimeout(pollingTimer);
 
     pollingTimer = setTimeout(() => {
-      pollPurchaseStatus(purchase);
+      pollTransactionStatus();
     }, 3000);
   }
 }
@@ -421,7 +432,7 @@ function handleIncompleteRenewal(renewal) {
     clearTimeout(pollingTimer);
 
     pollingTimer = setTimeout(() => {
-      pollRenewalStatus();
+      pollTransactionStatus();
     }, 3000);
   } else if (subscriptionStatus !== "active") {
     handleIncompletePayment(invoice);
@@ -453,7 +464,7 @@ function handle3DSresponse(data) {
     submitted3DS = false;
   } else {
     enableProcessingState("payment");
-    pollRenewalStatus();
+    pollTransactionStatus();
   }
 }
 
@@ -481,18 +492,10 @@ function handlePaymentAttemptResponse(data) {
       sendGAEvent("payment failed");
       presentError(errorObject);
     } else {
-      if (currentTransaction.type === "renewal") {
-        pollRenewalStatus();
-      } else if (currentTransaction.type === "purchase") {
-        pollPurchaseStatus(data);
-      }
+      pollTransactionStatus();
     }
   } else {
-    if (currentTransaction.type === "renewal") {
-      pollRenewalStatus();
-    } else if (currentTransaction.type === "purchase") {
-      pollPurchaseStatus(data);
-    }
+    pollTransactionStatus();
   }
 }
 
@@ -517,26 +520,19 @@ function hideErrors() {
   paymentErrorElement.classList.add("u-hide");
 }
 
-function pollPurchaseStatus(purchaseData) {
-  getPurchase(purchaseData.id)
-    .then((purchase) => {
-      if (purchase.status !== "done") {
-        handleIncompletePurchase(purchase);
-      } else {
-        handleSuccessfulPayment();
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      presentError();
-    });
-}
+function pollTransactionStatus() {
+  let getCall = getRenewal;
+  let incompleteHandler = handleIncompleteRenewal;
 
-function pollRenewalStatus() {
-  getRenewal()
-    .then((renewal) => {
-      if (renewal.status !== "done") {
-        handleIncompleteRenewal(renewal);
+  if (currentTransaction.type === "purchase") {
+    getCall = getPurchase;
+    incompleteHandler = handleIncompletePurchase;
+  }
+
+  getCall(currentTransaction.transactionId)
+    .then((transaction) => {
+      if (transaction.status !== "done") {
+        incompleteHandler(transaction);
       } else {
         handleSuccessfulPayment();
       }
@@ -577,7 +573,7 @@ function processStripePayment() {
   enableProcessingState("payment");
 
   if (currentTransaction.type === "renewal") {
-    postRenewalIDToProcessPayment(f)
+    postRenewalIDToProcessPayment(currentTransaction.transactionId)
       .then((data) => {
         handlePaymentAttemptResponse(data);
       })
@@ -593,6 +589,9 @@ function processStripePayment() {
       currentTransaction.previousPurchaseId
     )
       .then((data) => {
+        if (data.id) {
+          currentTransaction.transactionId = data.id;
+        }
         handlePaymentAttemptResponse(data);
       })
       .catch((error) => {
