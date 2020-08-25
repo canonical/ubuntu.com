@@ -34,19 +34,11 @@
         <label for="q">CVE ID or description contains:</label>
         <input type="text" name="q" id="q" value="{{ query or '' }}">
       </div>
-      <div class="col-2">
+      <div class="col-3">
         <label for="package">Package:</label>
         <input type="text" name="package" id="package" value="{{ package or '' }}" placeholder="Any">
       </div>
-      <div class="col-2">
-        <label for="component">Component:</label>
-        <select name="component" id="component">
-          <option value="">Any</option>
-          <option value="main" {% if component == 'main' %}selected{% endif %}>Main</option>
-          <option value="universe" {% if component == 'universe' %}selected{% endif %}>Universe</option>
-        </select>
-      </div>
-      <div class="col-2">
+      <div class="col-3">
         <label for="priority">Priority:</label>
         <select name="priority" id="priority">
           <option value="">Any</option>
