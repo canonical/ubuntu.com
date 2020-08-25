@@ -370,13 +370,14 @@ function handleIncompletePayment(invoice) {
 
     let type = "renewals";
     let transactionId = currentTransaction.transactionId;
+    let invoiceID = invoice.invoice_id;
 
     if (currentTransaction.type === "purchase") {
       type = "purchase";
-      transactionId = null;
+      invoiceID = invoice.id;
     }
 
-    postInvoiceID(type, transactionId, invoice.invoice_id)
+    postInvoiceID(type, transactionId, invoiceID)
       .then((data) => {
         handlePaymentAttemptResponse(data);
       })
@@ -397,17 +398,27 @@ function handleIncompletePayment(invoice) {
   }
 }
 
-function handleIncompletePurchase(data) {
-  let purchase = data;
+function handleIncompletePurchase(purchase) {
+  let invoice;
+  let paymentIntentStatus;
+  let subscriptionStatus;
 
-  console.log(data);
+  if (purchase.stripeInvoices) {
+    invoice = purchase.stripeInvoices[purchase.stripeInvoices.length - 1];
+    paymentIntentStatus = invoice.pi_status;
+    subscriptionStatus = invoice.subscription_status;
+  }
 
-  if (purchase.status === "processing") {
+  let processing = !subscriptionStatus || !paymentIntentStatus || submitted3DS;
+
+  if (processing) {
     clearTimeout(pollingTimer);
 
     pollingTimer = setTimeout(() => {
       pollTransactionStatus();
     }, 3000);
+  } else if (subscriptionStatus !== "active") {
+    handleIncompletePayment(invoice);
   }
 }
 
@@ -603,11 +614,11 @@ function processStripePayment() {
 }
 
 function reloadPage() {
-  if (currentTransaction.type === "renewal") {
-    location.search = `?subscription=${currentTransaction.contractId}`;
-  } else if (currentTransaction.type === "purchase") {
-    location.pathname = "/advantage";
-  }
+  // if (currentTransaction.type === "renewal") {
+  //   location.search = `?subscription=${currentTransaction.contractId}`;
+  // } else if (currentTransaction.type === "purchase") {
+  //   location.pathname = "/advantage";
+  // }
 }
 
 function requiresAuthentication(invoice) {
