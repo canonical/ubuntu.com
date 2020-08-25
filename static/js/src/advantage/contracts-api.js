@@ -16,9 +16,9 @@ export async function getRenewal(renewalID) {
   return data;
 }
 
-export async function postInvoiceIDToRenewal(renewalID, invoiceID) {
+export async function postInvoiceID(transactionType, transactionID, invoiceID) {
   let response = await fetch(
-    `/advantage/renewals/${renewalID}/invoices/${invoiceID}`,
+    `/advantage/${transactionType}/${transactionID}/invoices/${invoiceID}`,
     {
       cache: "no-store",
       credentials: "include",
