@@ -563,6 +563,8 @@ def bulk_upsert_cve():
         cve.notes = data.get("notes")
         cve.references = data.get("references")
         cve.bugs = data.get("bugs")
+        cve.patches = data.get("patches")
+        cve.tags = data.get("tags")
 
         statuses = update_statuses(
             cve, data, packages, releases=db_session.query(Release)

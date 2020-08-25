@@ -119,3 +119,9 @@ class CVESchema(Schema):
     packages = List(Nested(CvePackage))
     references = List(String())
     bugs = List(String())
+    patches = Dict(
+        keys=String(), values=List(String(), required=False), allow_none=True,
+    )
+    tags = Dict(
+        keys=String(), values=List(String(), required=False), allow_none=True,
+    )

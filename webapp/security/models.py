@@ -55,6 +55,8 @@ class CVE(Base):
     )
     cvss3 = Column(Float)
     references = Column(JSON)
+    patches = Column(JSON)
+    tags = Column(JSON)
     bugs = Column(JSON)
     status = Column(
         Enum("not-in-ubuntu", "active", "rejected", name="cve_statuses")
