@@ -169,6 +169,9 @@ class Status(Base):
     )
     description = Column(String)
     component = Column(Enum("main", "universe", name="components"),)
+    pocket = Column(
+        Enum("security", "updates", "esm-infra", "esm-apps", name="pockets"),
+    )
 
     cve = relationship("CVE", back_populates="statuses")
     package = relationship("Package", back_populates="statuses")
