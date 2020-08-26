@@ -540,18 +540,23 @@ function pollTransactionStatus() {
     incompleteHandler = handleIncompletePurchase;
   }
 
-  getCall(currentTransaction.transactionId)
-    .then((transaction) => {
-      if (transaction.status !== "done") {
-        incompleteHandler(transaction);
-      } else {
-        handleSuccessfulPayment();
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      presentError();
-    });
+  if (currentTransaction.transactionId) {
+    getCall(currentTransaction.transactionId)
+      .then((transaction) => {
+        if (transaction.status !== "done") {
+          incompleteHandler(transaction);
+        } else {
+          handleSuccessfulPayment();
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        presentError();
+      });
+  } else {
+    console.error("missing transaction ID");
+    presentError();
+  }
 }
 
 function presentError(errorObject) {
