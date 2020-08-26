@@ -619,11 +619,11 @@ function processStripePayment() {
 }
 
 function reloadPage() {
-  // if (currentTransaction.type === "renewal") {
-  //   location.search = `?subscription=${currentTransaction.contractId}`;
-  // } else if (currentTransaction.type === "purchase") {
-  //   location.pathname = "/advantage";
-  // }
+  if (currentTransaction.type === "renewal") {
+    location.search = `?subscription=${currentTransaction.contractId}`;
+  } else if (currentTransaction.type === "purchase") {
+    location.pathname = "/advantage";
+  }
 }
 
 function requiresAuthentication(invoice) {
