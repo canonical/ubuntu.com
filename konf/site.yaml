@@ -13,14 +13,24 @@ env:
       key: google-custom-search-key
       name: google-api
 
-  - name: LAUNCHPAD_TOKEN
+  - name: LAUNCHPAD_IMAGE_BUILD_USER
+    secretKeyRef:
+      key: user
+      name: launchpad-imagebuild
+
+  - name: LAUNCHPAD_IMAGE_BUILD_TOKEN
     secretKeyRef:
       key: token
       name: launchpad-imagebuild
 
-  - name: LAUNCHPAD_SECRET
+  - name: LAUNCHPAD_IMAGE_BUILD_SECRET
     secretKeyRef:
       key: secret
+      name: launchpad-imagebuild
+
+  - name: LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER
+    secretKeyRef:
+      key: auth-consumer
       name: launchpad-imagebuild
 
   - name: SENTRY_DSN
