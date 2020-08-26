@@ -168,10 +168,7 @@ class Status(Base):
         )
     )
     description = Column(String)
-    component = Column(
-        Enum("main", "universe", "esm-infra", "esm-apps", name="components"),
-        server_default="main",
-    )
+    component = Column(Enum("main", "universe", name="components"),)
 
     cve = relationship("CVE", back_populates="statuses")
     package = relationship("Package", back_populates="statuses")
