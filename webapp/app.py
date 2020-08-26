@@ -158,7 +158,7 @@ app.add_url_rule(
     "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
 )
 app.add_url_rule(
-    "/advantage/<transaction_type>/<transaction_id>/invoices/<invoice_id>",
+    "/advantage/<tx_type>/<tx_id>/invoices/<invoice_id>",
     view_func=post_stripe_invoice_id,
     methods=["POST"],
 )
