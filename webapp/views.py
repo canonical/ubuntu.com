@@ -763,7 +763,7 @@ def post_customer_info():
         return flask.jsonify({"error": "authentication required"}), 401
 
 
-def post_stripe_invoice_id(transaction_type, invoice_id, transaction_id):
+def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
@@ -772,7 +772,7 @@ def post_stripe_invoice_id(transaction_type, invoice_id, transaction_id):
         )
 
         return advantage.post_stripe_invoice_id(
-            transaction_type, transaction_id, invoice_id
+            tx_type, tx_id, invoice_id
         )
     else:
         return flask.jsonify({"error": "authentication required"}), 401
