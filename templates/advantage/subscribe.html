@@ -217,7 +217,7 @@
     };
 
     var accountId = "{{ account.id }}";
-    var previousPurchaseId = "{{ previous_purchase_id }}"
+    var previousPurchaseId = "{% if previous_purchase_id%}{{ previous_purchase_id }}{% endif %}"
   </script>
   
 {% endblock %}
