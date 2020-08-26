@@ -83,16 +83,14 @@ class AdvantageContracts:
 
         return response.json()
 
-    def post_stripe_invoice_id(
-        self, transaction_type, transaction_id, invoice_id
-    ):
-        response = self._request(
-            method="post",
-            path=(
-                f"v1/{transaction_type}/{transaction_id}/"
-                f"payment/stripe/{invoice_id}",
-            ),
-        )
+    def post_stripe_invoice_id(self, tx_type, tx_id, invoice_id):
+        try:
+            response = self._request(
+                method="post",
+                path=f"v1/{tx_type}/{tx_id}/payment/stripe/{invoice_id}",
+            )
+        except HTTPError as http_error:
+            return http_error.response.json()
 
         return response.json()
 
