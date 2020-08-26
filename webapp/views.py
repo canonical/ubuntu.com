@@ -590,8 +590,7 @@ def post_advantage_subscriptions():
     # value for each product listing so we can generate a
     # purchase request with updated quantities later.
     subscribed_quantities = {}
-    if last_subscription:
-
+    if "purchasedProductListings" in last_subscription:
         for item in last_subscription["purchasedProductListings"]:
             product_listing_id = item["productListing"]["id"]
             subscribed_quantities[product_listing_id] = item["value"]
@@ -661,7 +660,8 @@ def advantage_shop_view():
 
             if "subscriptions" in subs:
                 subscription = subs["subscriptions"][0]
-                previous_purchase_id = subscription["lastPurchaseID"]
+                if "lastPurchaseID" in subscription:
+                    previous_purchase_id = subscription["lastPurchaseID"]
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
                 # We got an unauthorized request, so we likely
