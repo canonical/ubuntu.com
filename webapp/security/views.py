@@ -351,7 +351,7 @@ def cve_index():
                 Release.support_expires > datetime.now(),
                 Release.esm_expires > datetime.now(),
             )
-        )
+        ).filter(Release.codename != "upstream")
 
     releases = releases_query.all()
 
@@ -402,13 +402,22 @@ def cve_index():
     if should_filter_by_version_and_status:
         conditions = []
         for key, version in enumerate(clean_versions):
+            sub_conditions = [
+                Status.release_codename.in_(version),
+                Status.status.in_(clean_statuses[key]),
+                CVE.id == Status.cve_id,
+            ]
+
+            if package:
+                sub_conditions.append(Status.package_name == package)
+
+            if component:
+                sub_conditions.append(Status.component == component)
+
             condition = Package.statuses.any(
-                and_(
-                    Status.release_codename.in_(version),
-                    Status.status.in_(clean_statuses[key]),
-                    CVE.id == Status.cve_id,
-                )
+                and_(*[sc for sc in sub_conditions])
             )
+
             conditions.append(condition)
 
         cves_query = cves_query.filter(
