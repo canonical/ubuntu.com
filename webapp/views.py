@@ -584,7 +584,7 @@ def post_advantage_subscriptions():
             500,
         )
     except KeyError:
-        last_subscription = None
+        last_subscription = {}
 
     # If there is a subscription we get the current metric
     # value for each product listing so we can generate a
