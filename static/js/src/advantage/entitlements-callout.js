@@ -31,12 +31,9 @@ function parseEntitlements(entitlementsString) {
     "fips",
     "cc-eal",
   ];
-  let entitlementKeys = [];
 
-  possibleEntitlements.forEach((entitlement) => {
-    if (entitlement in actualEntitlements) {
-      entitlementKeys.push(entitlement);
-    }
+  const entitlementKeys = possibleEntitlements.filter((entitlement) => {
+    return entitlement in actualEntitlements;
   });
 
   return entitlementKeys;
