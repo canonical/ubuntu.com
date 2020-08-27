@@ -80,6 +80,7 @@ class NoticePackage(Schema):
     is_source = Boolean(required=True)
     source_link = String(allow_none=True)
     version_link = String(allow_none=True)
+    pocket = Pocket(required=False)
 
 
 class NoticeSchema(Schema):

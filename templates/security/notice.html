@@ -60,6 +60,16 @@
               {% else%}
                 {{ package.version }}
               {% endif %}
+              <div>
+                <small>
+                  {% if package.pocket == "esm-infra" %}
+                    Available with <a href="/advantage">UA Infra or UA Desktop</a>
+                  {% endif %}
+                  {% if package.pocket == "esm-apps" %}
+                    Available with <a href="/advantage">UA Apps or UA Desktop</a>
+                  {% endif %}
+                </small>
+              </div>
             </li>
           {% endfor %}
         </ul>
