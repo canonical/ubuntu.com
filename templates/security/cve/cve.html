@@ -193,6 +193,62 @@
                   {% endif %}
                 </tr>
               {% endfor %}
+              {% if cve.patches[package_name]|length > 0  %}
+                <tr>
+                  <td style="border-top: 0px"></td>
+                  <td colspan="2" style="border-top: 5px double #cdcdcd">
+                    Patches: <br>
+                    <small>
+                      {% for patch in cve.formatted_patches[package_name] %}
+                        {% if patch.type == "text" %}
+                          {{ patch.content }}
+                        {% elif patch.type == "break-fix" %}
+                          Introduced by
+                          <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}" target="_blank">{{ patch.content.introduced }}</a>
+                          Fixed by
+                          <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}" target="_blank">{{ patch.content.fixed }}</a>
+                        {% elif patch.type == "link" %}
+                          {{ patch.content.prefix }}: <a href="{{ patch.content.suffix }}" target="_blank">{{ patch.content.suffix }}</a>
+                        {% endif %}
+                        <br>
+                      {% endfor %}
+                    </small>
+                  </td>
+                </tr>
+              {% endif %}
+              {% if cve.tags[package_name]|length > 0  %}
+                <tr>
+                  <td style="border-top: 0px"></td>
+                  <td colspan="2" style="border-top: 5px double #cdcdcd">
+                    Tags: <br>
+                    <small>
+                      {% for tag in cve.tags[package_name] %}
+                        {% if tag == "not-ue" %}
+                          This package is not directly supported by the Ubuntu Security Team
+                        {% elif tag == "universe-binary" %}
+                          Binaries built from this source package are in universe and so are supported by the community. For more details see https://wiki.ubuntu.com/SecurityTeam/FAQ#Official_Support
+                        {% elif tag == "apparmor" %}
+                          This vulnerability is mitigated in part by an AppArmor profile. For more details see https://wiki.ubuntu.com/Security/Features#apparmor
+                        {% elif tag == "stack-protector" %}
+                          This vulnerability is mitigated in part by the use of gcc\'s stack protector in Ubuntu. For more details see https://wiki.ubuntu.com/Security/Features#stack-protector
+                        {% elif tag == "fortify-source" %}
+                          This vulnerability is mitigated in part by the use of -D_FORTIFY_SOURCE=2 in Ubuntu. For more details see https://wiki.ubuntu.com/Security/Features#fortify-source
+                        {% elif tag == "symlink-restriction" %}
+                          This vulnerability is mitigated in part by the use of symlink restrictions in Ubuntu. For more details see https://wiki.ubuntu.com/Security/Features#symlink
+                        {% elif tag == "hardlink-restriction" %}
+                          This vulnerability is mitigated in part by the use of hardlink restrictions in Ubuntu. For more details see https://wiki.ubuntu.com/Security/Features#hardlink
+                        {% elif tag == "heap-protector" %}
+                          This vulnerability is mitigated in part by the use of GNU C Library heap protector in Ubuntu. For more details see https://wiki.ubuntu.com/Security/Features#heap-protector
+                        {% elif tag == "pie" %}
+                          This vulnerability is mitigated in part by the use of Position Independent Executables in Ubuntu. For more details see https://wiki.ubuntu.com/Security/Features#pie
+                        {% else %}
+                          {{ tag }}
+                        {% endif %}
+                      {% endfor %}
+                    </small>
+                  </td>
+                </tr>
+              {% endif %}
             {% endfor %}
           </tbody>
         </table>
