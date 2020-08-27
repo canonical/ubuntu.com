@@ -395,14 +395,14 @@ def advantage_view():
 
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
-            subscriptions = advantage.get_subscriptions(
+            subs = advantage.get_account_subscriptions_for_marketplace(
                 account["id"], "canonical-ua"
             )
 
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
                 contract["machineCount"] = get_machine_usage(
-                    advantage, contract, subscriptions
+                    advantage, contract, subs
                 )
 
                 if contract["contractInfo"].get("origin", "") == "free":
