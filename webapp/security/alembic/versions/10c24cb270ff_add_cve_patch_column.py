@@ -18,10 +18,12 @@ depends_on = None
 
 def upgrade():
     op.add_column(
-        "cve", sa.Column("patches", sa.JSON(), nullable=True),
+        "cve",
+        sa.Column("patches", sa.JSON(), nullable=True),
     )
     op.add_column(
-        "cve", sa.Column("tags", sa.JSON(), nullable=True),
+        "cve",
+        sa.Column("tags", sa.JSON(), nullable=True),
     )
 
 
