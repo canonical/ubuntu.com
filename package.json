@@ -13,6 +13,7 @@
     "build-css": "node-sass --include-path node_modules static/sass --source-map true --output-style compressed --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
     "build-js": "webpack && yarn run copy-global-nav && yarn run copy-latest-news",
     "build": "yarn run build-css && yarn run build-js && yarn copy-global-nav",
+    "watch": "yarn run watch-css && yarn run watch-js",
     "watch-css": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/**/*.scss' -c 'yarn run build-css'",
     "watch-js": "watch -p 'static/js/src/**/*.js' -p 'static/js/data/**/*.js' -p 'static/js/third-party/**/*.js' -c 'yarn run build-js'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle static/js/dist etc/",

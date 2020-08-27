@@ -1,4 +1,4 @@
-<div{% extends "templates/base.html" %}
+{% extends "templates/base.html" %}
 
 {% block title %}The leading operating system for PCs, IoT devices, servers and the cloud{% endblock %}
 {% block extra_body_class %}homepage {% block takeover_body_class %}{% endblock takeover_body_class %}{% endblock extra_body_class %}
@@ -16,9 +16,9 @@
 <section data-lang="all" id="takeover" class="p-strip--image is-dark is-deep" style="background-color: #5E2750; background-image: linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%)">
   <div class="row">
     <div class="col-8">
-      <h1 style="font-weight: 100;">Ubuntu {{ releases.lts.short_version }} LTS is here</h1>
+      <h1>Ubuntu {{ releases.lts.short_version }} LTS is here</h1>
       <p>The latest version of the world’s most widely used Linux platform for Kubernetes, multi-cloud and machine learning.</p>
-      <p class="u-no-margin--bottom"><a href="/download" class="p-button--neutral u-no-margin--bottom">Download Ubuntu {{ releases.lts.short_version }} LTS now</a></p>
+      <p><a href="/download" class="p-button--neutral">Download Ubuntu {{ releases.lts.short_version }} LTS now</a></p>
     </div>
   </div>
 </section>
@@ -27,23 +27,21 @@
 {% endblock notices_content %}
 
 <section class="p-strip is-shallow">
-  <div class="u-fixed-width">
-  </div>
   <div class="row u-equal-height">
-    <div class="col-8">
-      <h2 class="p-heading--one">
-        Modern enterprise open source
-      </h2>
-      <p class="p-heading--four">
-        Publisher of Ubuntu. Security. Support. Managed Services.
-      </p>
-      <a class="p-button--positive js-invoke-modal" href="/contact-us">
-        Contact Canonical
-      </a>
+    <div class="col-7 u-vertically-center">
+      <div>
+        <h2 class="p-heading--one">Modern enterprise open&nbsp;source</h2>
+        <p class="p-heading--four">Publisher of Ubuntu. Security. Support. Managed Services.</p>
+        <p>
+          <a class="p-button--positive js-invoke-modal" href="/contact-us">
+            Contact Canonical
+          </a>
+        </p>
+      </div>
     </div>
-    <div class="col-4" style="filter: grayscale(100%)  brightness(50%) contrast(50%) saturate(50%);">
-      <div class="row u-sv3" style="margin-top: 2rem;">
-        <div class="col-2 col-small-2 col-medium-2 u-align--center">
+    <div class="col-5" style="filter: grayscale(100%)  brightness(50%) contrast(50%) saturate(50%);">
+      <ul class="p-inline-images u-align--center">
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
@@ -51,11 +49,11 @@
             width="84",
             height="50",
             hi_def=True,
-            attrs={"style":"max-width:66%"},
+            attrs={"class":"p-inline-images__logo"},
             ) | safe
           }}
-        </div>
-        <div class="col-2 col-small-2 col-medium-2 u-align--center">
+        </li>
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/22fd6473-MicrosoftAzure_logo.svg",
@@ -63,13 +61,11 @@
             width="130",
             height="38",
             hi_def=True,
-            attrs={"style":"max-width:66%"},
+            attrs={"class":"p-inline-images__logo is-wide"},
             ) | safe
           }}
-        </div>
-      </div>
-      <div class="row u-sv3">
-        <div class="col-2 col-small-2 col-medium-2 u-align--center">
+        </li>
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/ae0456eb-Netflix_logo.svg",
@@ -77,11 +73,11 @@
             width="130",
             height="36",
             hi_def=True,
-            attrs={"style":"max-width:66%"},
+            attrs={"class":"p-inline-images__logo"},
             ) | safe
           }}
-        </div>
-        <div class="col-2 col-small-2 col-medium-2 u-align--center">
+        </li>
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/e795fc84-Google_Cloud_Logo.svg",
@@ -89,13 +85,11 @@
             width="259",
             height="40",
             hi_def=True,
-            attrs={"style":"max-width:90%"},
+            attrs={"class":"p-inline-images__logo is-wide"},
             ) | safe
           }}
-        </div>
-      </div>
-      <div class="row u-sv3">
-        <div class="col-2 col-small-2 col-medium-2 u-align--center">
+        </li>
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/b76ad53c-AT%26T_logo.svg",
@@ -103,20 +97,23 @@
             width="130",
             height="54",
             hi_def=True,
-            attrs={"style":"max-width:66%"},
+            attrs={"class":"p-inline-images__logo"},
             ) | safe
           }}
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="row u-hide--small">
-    <div class="col-8">
-      <h5 class="p-muted-heading">
+</section>
+
+<section class="p-strip--dark is-shallow">
+  <div class="row">
+    <div class="col-12">
+      <h5 class="p-muted-heading u-align--center">
         Featured in
       </h5>
-      <ul class="p-inline-images u-align--left" style="filter: grayscale(100%)  brightness(50%) contrast(50%) saturate(50%);">
-        <li class="p-inline-images__item" style="margin: 1rem .25rem;">
+      <ul class="p-inline-images u-align--center u-no-margin--bottom" style="filter: grayscale(100%)  brightness(100%) contrast(0%) saturate(100%);">
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/f41aefb1-Forbes_logo.svg",
@@ -124,11 +121,11 @@
             width="130",
             height="35",
             hi_def=True,
-            attrs={"class": "p-inline-images__logo", "style":"max-width:66%"},
+            attrs={"class": "p-inline-images__logo"},
             ) | safe
           }}
         </li>
-        <li class="p-inline-images__item" style="margin: 1rem .25rem;">
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/f156e2cb-TechCrunch_logo.svg",
@@ -136,11 +133,11 @@
             width="130",
             height="19",
             hi_def=True,
-            attrs={"class": "p-inline-images__logo", "style":"width:90%"},
+            attrs={"class": "p-inline-images__logo"},
             ) | safe
           }}
         </li>
-        <li class="p-inline-images__item" style="margin: 1rem .25rem;">
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/2f97697f-BusinessInsider_logo.svg",
@@ -148,11 +145,11 @@
             width="130",
             height="53",
             hi_def=True,
-            attrs={"class": "p-inline-images__logo", "style":"max-width:66%"},
+            attrs={"class": "p-inline-images__logo"},
             ) | safe
           }}
         </li>
-        <li class="p-inline-images__item" style="margin: 1rem .25rem;">
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/437cfb7e-WSJ_logo.svg",
@@ -160,11 +157,11 @@
             width="92",
             height="51",
             hi_def=True,
-            attrs={"class": "p-inline-images__logo", "style":"max-width:66%"},
+            attrs={"class": "p-inline-images__logo"},
             ) | safe
           }}
         </li>
-        <li class="p-inline-images__item" style="margin: 1rem .25rem;">
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/2fd48fb2-BBC_logo.svg",
@@ -172,7 +169,7 @@
             width="130",
             height="37",
             hi_def=True,
-            attrs={"class": "p-inline-images__logo", "style":"max-width:66%"},
+            attrs={"class": "p-inline-images__logo"},
             ) | safe
           }}
         </li>
