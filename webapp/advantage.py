@@ -161,3 +161,14 @@ class AdvantageContracts:
         )
 
         return response.json()
+
+    def preview_purchase_from_marketplace(
+        self, marketplace: str, purchase_request: dict
+    ) -> dict:
+        response = self._request(
+            method="post",
+            path=f"v1/marketplace/{marketplace}/purchase/preview",
+            json=purchase_request,
+        )
+
+        return response.json()
