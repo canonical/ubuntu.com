@@ -6,7 +6,7 @@ class AdvantageContracts:
         self,
         session,
         authentication_token,
-        api_url="https://contracts.staging.canonical.com",
+        api_url="https://contracts.develop.canonical.com",
     ):
         """
         Expects a Talisker session in most circumstances,
