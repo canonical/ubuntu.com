@@ -137,14 +137,16 @@ class AdvantageContracts:
 
     def get_account_purchases(self, account_id: str) -> dict:
         response = self._request(
-            method="get", path=f"v1/accounts/{account_id}/purchases",
+            method="get",
+            path=f"v1/accounts/{account_id}/purchases",
         )
 
         return response.json()
 
     def get_purchase(self, purchase_id: str) -> dict:
         response = self._request(
-            method="get", path=f"v1/purchase/{purchase_id}",
+            method="get",
+            path=f"v1/purchase/{purchase_id}",
         )
 
         return response.json()
