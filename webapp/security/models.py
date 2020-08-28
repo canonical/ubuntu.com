@@ -89,6 +89,37 @@ class CVE(Base):
 
         return active_package_statuses
 
+    @hybrid_property
+    def formatted_patches(self):
+        return {
+            package_name: [self._format_patch(p) for p in patches]
+            for (package_name, patches) in self.patches.items()
+        }
+
+    def _format_patch(self, patch):
+        if ":" not in patch:
+            return {"type": "text", "content": patch}
+
+        prefix, suffix = patch.split(":", 1)
+        suffix = suffix.strip()
+        if prefix == "break-fix" and " " in suffix:
+            introduced, fixed = suffix.split(" ", 1)
+            if introduced == "-":
+                # First commit to Linux git tree
+                introduced = "1da177e4c3f41524e886b7f1b8a0c1fc7321cac2"
+
+            return {
+                "type": "break-fix",
+                "content": {"introduced": introduced, "fixed": fixed},
+            }
+        if "ftp://" in suffix or "http://" in suffix or "https://" in suffix:
+            return {
+                "type": "link",
+                "content": {"prefix": prefix.capitalize(), "suffix": suffix},
+            }
+
+        return {"type": "text", "content": patch}
+
 
 class Notice(Base):
     __tablename__ = "notice"
