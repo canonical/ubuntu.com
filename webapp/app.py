@@ -319,9 +319,7 @@ tutorials_docs.init_app(app)
 # Ceph docs
 ceph_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
-        index_topic_id=17250,
-        url_prefix="/ceph/docs",
+        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs",
     ),
     document_template="/ceph/document.html",
     url_prefix="/ceph/docs",
