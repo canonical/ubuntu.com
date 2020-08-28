@@ -1,11 +1,12 @@
 # Standard library
+from collections import namedtuple
+from datetime import datetime, timedelta, timezone
 import hashlib
 import hmac
 import json
 import math
 import os
 import re
-from datetime import datetime, timedelta, timezone
 
 # Packages
 import dateutil.parser
@@ -25,6 +26,10 @@ from requests.exceptions import HTTPError
 # Local
 from webapp.login import empty_session, user_info
 from webapp.advantage import AdvantageContracts
+
+
+# Define the metric name for the number of active machines.
+ALLOWANCE_METRIC_ACTIVE_MACHINES = "active-machines"
 
 
 ip_reader = geolite2.reader()
@@ -395,14 +400,11 @@ def advantage_view():
 
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
-            subs = advantage.get_account_subscriptions_for_marketplace(
-                account["id"], "canonical-ua"
-            )
 
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
                 contract["machineCount"] = get_machine_usage(
-                    advantage, contract, subs
+                    advantage, contract
                 )
 
                 if contract["contractInfo"].get("origin", "") == "free":
@@ -453,7 +455,10 @@ def advantage_view():
 
                     time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
 
-                    if "0/" in contract["machineCount"]:
+                    # TODO(frankban): what is the logic below about?
+                    # Why do we do the same thing in both branches of the
+                    # condition?
+                    if not contract["machineCount"].attached:
                         if not new_subscription_start_date:
                             new_subscription_start_date = created_at
                             new_subscription_id = contract["contractInfo"][
@@ -512,34 +517,30 @@ def advantage_view():
     )
 
 
-def get_machine_usage(advantage, contract, subscriptions):
-    attachedMachines = advantage.get_contract_machines(contract).get(
+def get_machine_usage(advantage, contract):
+    """Return machine usage for the given contract as a MachineUsage object."""
+    allowances = contract.get("contractInfo", {}).get("allowances", [])
+    allowed = sum(
+        a["value"]
+        for a in allowances
+        if a["metric"] == ALLOWANCE_METRIC_ACTIVE_MACHINES
+    )
+    attached_machines = advantage.get_contract_machines(contract).get(
         "machines"
     )
-    attachedMachineCount = 0
-    availableMachineCount = 0
-    contractProductId = contract["contractInfo"]["products"][0]
+    attached = 0 if attached_machines is None else len(attached_machines)
+    return MachineUsage(attached=attached, allowed=allowed)
 
-    if attachedMachines:
-        attachedMachineCount = len(attachedMachines)
 
-    if "subscriptions" in subscriptions:
-        for subscription in subscriptions["subscriptions"]:
-            if "purchasedProductListings" in subscription:
-                for product in subscription["purchasedProductListings"]:
-                    if (
-                        product["productListing"]["productID"]
-                        == contractProductId
-                    ):
-                        availableMachineCount = product["value"]
+class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
+    """Store attached and allowed machine count in a tuple."""
 
-    # not 100% certain that pre-UA shop purchases will
-    # always have machine allowance info, in which case
-    # fall back to only showing how many machines are attached
-    if attachedMachineCount > availableMachineCount:
-        return attachedMachineCount
-    else:
-        return f"{attachedMachineCount}/{availableMachineCount}"
+    __slots__ = ()
+
+    def __str__(self):
+        if self.allowed:
+            return f"{self.attached}/{self.allowed}"
+        return str(self.attached)
 
 
 def post_advantage_subscriptions():
