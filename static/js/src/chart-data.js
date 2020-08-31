@@ -1253,19 +1253,19 @@ export var kubernetesReleases = [
   },
   {
     startDate: new Date("2020-01-07T00:00:00"),
-    endDate: new Date("2020-10-07T00:00:00"),
+    endDate: new Date("2020-12-07T00:00:00"),
     taskName: "Kubernetes 1.17",
     status: "CHARMED_KUBERNETES_SUPPORT",
   },
   {
     startDate: new Date("2020-03-24T00:00:00"),
-    endDate: new Date("2020-12-23T00:00:00"),
+    endDate: new Date("2021-02-23T00:00:00"),
     taskName: "Kubernetes 1.18",
     status: "CHARMED_KUBERNETES_SUPPORT",
   },
   {
-    startDate: new Date("2020-06-16T00:00:00"),
-    endDate: new Date("2021-04-16T00:00:00"),
+    startDate: new Date("2020-08-16T00:00:00"),
+    endDate: new Date("2021-06-16T00:00:00"),
     taskName: "Kubernetes 1.19",
     status: "CHARMED_KUBERNETES_SUPPORT",
   },
