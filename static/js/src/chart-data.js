@@ -1243,13 +1243,13 @@ export var kubernetesReleases = [
     startDate: new Date("2019-06-14T00:00:00"),
     endDate: new Date("2020-03-02T00:00:00"),
     taskName: "Kubernetes 1.15",
-    status: "CHARMED_KUBERNETES_SUPPORT",
+    status: "CHARMED_KUBERNETES_EXPIRED_SUPPORT",
   },
   {
     startDate: new Date("2019-10-22T00:00:00"),
     endDate: new Date("2020-07-22T00:00:00"),
     taskName: "Kubernetes 1.16",
-    status: "CHARMED_KUBERNETES_SUPPORT",
+    status: "CHARMED_KUBERNETES_EXPIRED_SUPPORT",
   },
   {
     startDate: new Date("2020-01-07T00:00:00"),
