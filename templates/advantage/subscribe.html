@@ -14,14 +14,16 @@
       <div class="col-12 u-sv3">
         <h1>Subscribe to Ubuntu Advantage</h1>
 
-        {% if not user_info %}          
-          <p>If you have existing subscriptions or sales offers, <a href="/login" onclick="dataLayer.push({
+        {% if not user_info and not account %}          
+          <p>Sign in to begin.</p> 
+          
+          <a class="p-button" href="/login" onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage subscribe',
               'eventAction' : 'Authentication',
               'eventLabel' : 'Sign in',
               'eventValue' : undefined
-            });">sign in</a> to access them.</p>
+            });">Sign in</a></p>
         {% endif %}
       </div>
     </div>
