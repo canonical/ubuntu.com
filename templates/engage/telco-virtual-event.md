@@ -20,7 +20,7 @@ context:
 
 **Date and time**
 24 September, 2020
-[5:30-7:30pm BST]
+[13:00-15:00pm BST]
 
 ## About the event
 
@@ -59,24 +59,6 @@ The speakers will also delve into notable use cases they have come across throug
   <div class="p-media-object__details">
     <h3 class="u-no-margin--bottom">Arno Van Huyssteen</h3>
     <p>Director, Field Engineering Telco EMEA-APAC</p>
-  </div>
-</div>
-
-<div class="p-media-object--large">
-  {{
-    image(
-      url="https://assets.ubuntu.com/v1/c8944793-greg.jpeg",
-      alt="",
-      height="100",
-      width="100",
-      hi_def=True,
-      attrs={"class": "p-media-object__image"},
-      loading="lazy",
-    ) | safe
-  }}
-  <div class="p-media-object__details">
-    <h3 class="u-no-margin--bottom">Greg Elkinbard</h3>
-    <p>Director, Field Engineering Americas</p>
   </div>
 </div>
 
