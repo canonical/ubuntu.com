@@ -1,6 +1,7 @@
 {% extends "templates/base.html" %}
 
-{% block title %}The leading operating system for PCs, IoT devices, servers and the cloud{% endblock %}
+{% block title %}Enterprise Open Source and Linux{% endblock %}
+{% block meta_description %}Ubuntu is modern open source and Linux for the enterprise server, desktop, cloud, and IoT.{% endblock meta_description %}
 {% block extra_body_class %}homepage {% block takeover_body_class %}{% endblock takeover_body_class %}{% endblock extra_body_class %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1ySJxQbqVdeH4Tra0zwBm2Tn0s56kFGnEF7d8xDRTxwU/edit{% endblock %}
@@ -26,94 +27,118 @@
 {% block notices_content %}
 {% endblock notices_content %}
 
-<section class="p-strip is-shallow">
-  <div class="row u-equal-height">
-    <div class="col-7 u-vertically-center">
-      <div>
-        <h2 class="p-heading--one">Modern enterprise open&nbsp;source</h2>
-        <p class="p-heading--four">Publisher of Ubuntu. Security. Support. Managed Services.</p>
-        <p>
-          <a class="p-button--positive js-invoke-modal" href="/contact-us">
-            Contact Canonical
-          </a>
-        </p>
+<noscript>
+  <section class="p-strip is-bordered">
+    <div class="row">
+      <h3 class="p-heading--four"><a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a></h3>
+    </div>
+  </section>
+</noscript>
+<section class="p-strip is-bordered u-hide" data-js="latest-news">
+  <div class="row">
+    <h1 class="p-heading--four">
+        Latest news from our blog
+    </h1>
+  </div>
+  <div class="row p-divider">
+    <div class="col-9">
+      <div id="latest-articles" class="row">
+        <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
       </div>
     </div>
-    <div class="col-5" style="filter: grayscale(100%)  brightness(50%) contrast(50%) saturate(50%);">
-      <ul class="p-inline-images u-align--center">
-        <li class="p-inline-images__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
-            alt="Amazon Web Services logo",
-            width="84",
-            height="50",
-            hi_def=True,
-            attrs={"class":"p-inline-images__logo"},
-            ) | safe
-          }}
+
+    <div id="spotlight" class="col-3 p-divider__block">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <a href="/blog" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
+        View more from our blog
+      </a>
+    </div>
+  </div>
+
+  <template style="display:none" id="articles-template">
+    <div class="col-3">
+      <p class="u-no-margin--bottom p-muted-heading">
+        <time datetime="" class="article-time"></time>
+      </p>
+      <h2 class="p-heading--five">
+        <strong>
+          <a class="article-link article-title"></a>
+        </strong>
+      </h2>
+    </div>
+  </template>
+
+  <template style="display:none" id="spotlight-template">
+    <div>
+      <p class="u-no-margin--bottom p-muted-heading">
+        Spotlight
+      </p>
+      <p>
+        <strong>
+          <a class="article-link article-title"></a>
+        </strong>
+      </p>
+    </div>
+  </template>
+
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script>
+    canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#latest-articles",
+      articleTemplateSelector: "#articles-template",
+      spotlightContainerSelector: "#spotlight",
+      spotlightTemplateSelector: "#spotlight-template",
+      gtmEventLabel: "ubuntu.com homepage"
+    }
+    )
+  </script>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Modern enterprise open&nbsp;source</h2>
+      <p class="p-heading--four">Publisher of Ubuntu.<br /> Security. Support. Managed Services.</p>
+      <p>
+        <a class="p-button--positive js-invoke-modal" href="/contact-us">
+          Contact Canonical
+        </a>
+      </p>
+    </div>
+    <div class="col-6">
+      <ul class="row">
+        <li class="col-2 col-medium-2 col-small-1">
+          <img src="https://assets.ubuntu.com/v1/7c601cb9-azurehp-strip-customers.png" alt="Microsoft Azure logo">
         </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/22fd6473-MicrosoftAzure_logo.svg",
-            alt="Microsoft Azure logo",
-            width="130",
-            height="38",
-            hi_def=True,
-            attrs={"class":"p-inline-images__logo is-wide"},
-            ) | safe
-          }}
+        <li class="col-2 col-medium-2 col-small-1">
+          <img src="https://assets.ubuntu.com/v1/83ff4203-awshp-strip-customers.png" alt="Amazon Web Services logo">
         </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/ae0456eb-Netflix_logo.svg",
-            alt="Netflix logo",
-            width="130",
-            height="36",
-            hi_def=True,
-            attrs={"class":"p-inline-images__logo"},
-            ) | safe
-          }}
+        <li class="col-2 col-medium-2 col-small-1">
+          <img src="https://assets.ubuntu.com/v1/5ba04ee8-atthp-strip-customers.png" alt="AT&T logo">
         </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/e795fc84-Google_Cloud_Logo.svg",
-            alt="Google Cloud logo",
-            width="259",
-            height="40",
-            hi_def=True,
-            attrs={"class":"p-inline-images__logo is-wide"},
-            ) | safe
-          }}
+        <li class="col-2 col-medium-2 col-small-1 col-start-large-2">
+          <img src="https://assets.ubuntu.com/v1/3faca6ca-netflixhp-strip-customers.png" alt="Netflix logo">
         </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/b76ad53c-AT%26T_logo.svg",
-            alt="AT&T logo",
-            width="130",
-            height="54",
-            hi_def=True,
-            attrs={"class":"p-inline-images__logo"},
-            ) | safe
-          }}
+        <li class="col-2 col-medium-2 col-small-1">
+          <img src="https://assets.ubuntu.com/v1/fdb8126b-google+cloudhp-strip-customers.png" alt="Google Cloud logo">
         </li>
       </ul>
     </div>
   </div>
 </section>
 
-<section class="p-strip--dark is-shallow">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-12">
       <h5 class="p-muted-heading u-align--center">
         Featured in
       </h5>
-      <ul class="p-inline-images u-align--center u-no-margin--bottom" style="filter: grayscale(100%)  brightness(100%) contrast(0%) saturate(100%);">
-        <li class="p-inline-images__item">
+      <ul class="p-inline-images u-align--center u-no-margin--bottom">
+        <li class="p-inline-images__item is-muted">
           {{
             image(
             url="https://assets.ubuntu.com/v1/f41aefb1-Forbes_logo.svg",
@@ -125,7 +150,7 @@
             ) | safe
           }}
         </li>
-        <li class="p-inline-images__item">
+        <li class="p-inline-images__item is-muted">
           {{
             image(
             url="https://assets.ubuntu.com/v1/f156e2cb-TechCrunch_logo.svg",
@@ -137,7 +162,7 @@
             ) | safe
           }}
         </li>
-        <li class="p-inline-images__item">
+        <li class="p-inline-images__item is-muted">
           {{
             image(
             url="https://assets.ubuntu.com/v1/2f97697f-BusinessInsider_logo.svg",
@@ -149,7 +174,7 @@
             ) | safe
           }}
         </li>
-        <li class="p-inline-images__item">
+        <li class="p-inline-images__item is-muted">
           {{
             image(
             url="https://assets.ubuntu.com/v1/437cfb7e-WSJ_logo.svg",
@@ -161,7 +186,7 @@
             ) | safe
           }}
         </li>
-        <li class="p-inline-images__item">
+        <li class="p-inline-images__item is-muted">
           {{
             image(
             url="https://assets.ubuntu.com/v1/2fd48fb2-BBC_logo.svg",
@@ -179,10 +204,10 @@
 </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2 class="p-heading--one">
+      <h2>
         Energise your engineers
       </h2>
       <p class="p-heading--four">
@@ -229,9 +254,9 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--one">
+<section class="p-strip--light">
+  <div class="row">
+    <h2>
       Open source security
     </h2>
     <p class="p-heading--four">
@@ -240,35 +265,43 @@
     <p>
       Secure your open source apps. Patch the full stack, from kernel to library and applications, for CVE compliance. Governments and auditors certify Ubuntu for FedRAMP, FISMA and HITECH.
     </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        10 year security maintenance and CVE Patching
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/livepatch">Kernel Livepatch</a> for 24/7 patching with no downtime
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/esm">Extended security</a> for infrastructure and applications
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/security/certifications#fips">FIPS 140-2</a> cryptographic modules certified by NIST
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/security/certifications#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/security/certifications#stig">DISA/STIG</a> hardening for <abbr title="Department of Defence, USA">DoD</abbr> compliance
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/security/certifications#cis">CIS profiles</a> for cyber defence and malware prevention
-      </li>
-    </ul>
-    <p>
-      <a href="/security">
-        Secure all your open source with us&nbsp;&rsaquo;
-      </a>
-    </p>
-    <ul class="p-inline-images">
+  </div>
+
+  <div class="p-strip--light is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          10 year security maintenance and CVE Patching
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/livepatch">Kernel Livepatch</a> for 24/7 patching with no downtime
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/esm">Extended security</a> for infrastructure and applications
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/security/certifications#fips">FIPS 140-2</a> cryptographic modules certified by NIST
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/security/certifications#common-criteria">Common Criteria EAL2</a>: ISO/IEC IS 15408 validated by CSEC
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/security/certifications#stig">DISA/STIG</a> hardening for <abbr title="Department of Defence, USA">DoD</abbr> compliance
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/security/certifications#cis">CIS profiles</a> for cyber defence and malware prevention
+        </li>
+      </ul>
+      <p>
+        <a href="/security">
+          Secure all your open source with us&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="p-inline-images u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -338,10 +371,10 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-8">
-      <h2 class="p-heading--one">
+      <h2>
         Significant enterprise savings
       </h2>
       <p class="p-heading--four">
@@ -367,92 +400,101 @@
       }}
     </div>
   </div>
-  <div class="u-fixed-width">
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        No mandatory subscriptions for Ubuntu
-      </li>
-      <li class="p-list__item is-ticked">
-        Security, support and fully managed offerings
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/public-cloud">Public cloud</a>, <a href="/download/server">data centre</a>, <a class="p-link--external" href="https://microk8s.io">edge cluster</a> and <a href="/appliance">appliances</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Long term maintenance commitment
-      </li>
-      <li class="p-list__item is-ticked">
-        Transparent pricing for enterprise and ISV
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/engage/vmware-to-charmed-openstack">Switch from VMware to OpenStack</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/tco-calculator">TCO analysis of Open Infra</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/engage/cloud-economics">451 study on private/public cloud costs</a>
-      </li>
-    </ul>
-    <a href="/contact-us" class="js-invoke-modal">
-      Let’s talk open source&nbsp;&rsaquo;
-    </a>
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          No mandatory subscriptions for Ubuntu
+        </li>
+        <li class="p-list__item is-ticked">
+          Security, support and fully managed offerings
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/public-cloud">Public cloud</a>, <a href="/download/server">data centre</a>, <a class="p-link--external" href="https://microk8s.io">edge cluster</a> and <a href="/appliance">appliances</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Long term maintenance commitment
+        </li>
+        <li class="p-list__item is-ticked">
+          Transparent pricing for enterprise and ISV
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/engage/vmware-to-charmed-openstack">Switch from VMware to OpenStack</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/tco-calculator">TCO analysis of Open Infra</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/engage/cloud-economics">451 study on private/public cloud costs</a>
+        </li>
+      </ul>
+      <a href="/contact-us" class="js-invoke-modal">
+        Let’s talk open source&nbsp;&rsaquo;
+      </a>
+    </div>
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--one">
+<section class="p-strip--light">
+  <div class="row">
+    <h2>
       Public cloud optimisation
     </h2>
     <p class="p-heading--four">
       Most public cloud instances are Ubuntu, for performance and security.
     </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        Optimised kernels for AWS, Azure, Google, Oracle, IBM
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/security/certifications#fips">FIPS</a>, <a href="/security/certifications#cis">CIS hardening</a> and CVE fixes with Ubuntu Pro
-      </li>
-      <li class="p-list__item is-ticked">
-        Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Network &amp; storage performance optimisation
-      </li>
-      <li class="p-list__item is-ticked">
-        GPU enablement for machines and containers
-      </li>
-      <li class="p-list__item is-ticked">
-        Pay-as-you-go billing, no more licenses
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/support">Enterprise support</a> and <a href="/esm">Extended Security Maintenance</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Cloud workload migration service
-      </li>
-      <li class="p-list__item is-ticked">
-        Containerisation and cloud-native migration service
-      </li>
-      <li class="p-list__item is-ticked">
-        Fully managed application service
-      </li>
-    </ul>
-    <ul class="p-inline-list">
-      <li class="p-inline-list__item">
-        <a href="/public-cloud">
-          Learn more&nbsp;&rsaquo;
-        </a>
-      </li>
-      <li class="p-inline-list__item">
-        <a href="/contact-us">
-          Contact us&nbsp;&rsaquo;
-        </a>
-      </li>
-    </ul>
-    <ul class="p-inline-images">
+  </div>
+  <div class="p-strip--light is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          Optimised kernels for AWS, Azure, Google, Oracle, IBM
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/security/certifications#fips">FIPS</a>, <a href="/security/certifications#cis">CIS hardening</a> and CVE fixes with Ubuntu Pro
+        </li>
+        <li class="p-list__item is-ticked">
+          Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Network &amp; storage performance optimisation
+        </li>
+        <li class="p-list__item is-ticked">
+          GPU enablement for machines and containers
+        </li>
+        <li class="p-list__item is-ticked">
+          Pay-as-you-go billing, no more licenses
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/support">Enterprise support</a> and <a href="/esm">Extended Security Maintenance</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Cloud workload migration service
+        </li>
+        <li class="p-list__item is-ticked">
+          Containerisation and cloud-native migration service
+        </li>
+        <li class="p-list__item is-ticked">
+          Fully managed application service
+        </li>
+      </ul>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="/public-cloud">
+            Learn more&nbsp;&rsaquo;
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/contact-us">
+            Contact us&nbsp;&rsaquo;
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="p-inline-images u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -522,62 +564,72 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--one">
-      Carrier-grade private cloud
-    </h2>
-    <p class="p-heading--four">
-      Operate <a href="/openstack">private cloud the smart way</a>&nbsp;&ndash;&nbsp;supported or <a href="/openstack/managed">fully managed</a>.
-    </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        10 year <a href="/esm">security maintenance</a> and <a href="/support">support</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/openstack/features">Hyperconverged</a> or segregated architecture
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/security">
-          Encryption at rest for GDPR, HIPAA, FedRAMP
-        </a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Wide choice of SDN and storage
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/engage/charmed-openstack-adoption-whitepaper">
-          Upgrades and day-2 operations, automated
-        </a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Integrated logging, monitoring and alerting
-      </li>
-      <li class="p-list__item is-ticked">
-        Platform and infrastructure hardening
-      </li>
-      <li class="p-list__item is-ticked">
-        High availability
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/telco">
-          Carrier-grade NFVI
-        </a>
-      </li>
-    </ul>
-    <ul class="p-inline-list">
-      <li class="p-inline-list__item">
-        <a href="/openstack">
-          Learn more&nbsp;&rsaquo;
-        </a>
-      </li>
-      <li class="p-inline-list__item">
-        <a href="/openstack/contact-us">
-          Contact us&nbsp;&rsaquo;
-        </a>
-      </li>
-    </ul>
-    <ul class="p-inline-images">
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>
+        Carrier-grade private cloud
+      </h2>
+      <p class="p-heading--four">
+        Operate <a href="/openstack">private cloud the smart way</a>&nbsp;&ndash;&nbsp;supported or <a href="/openstack/managed">fully managed</a>.
+      </p>
+    </div>
+  </div>
+
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          10 year <a href="/esm">security maintenance</a> and <a href="/support">support</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/openstack/features">Hyperconverged</a> or segregated architecture
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/security">
+            Encryption at rest for GDPR, HIPAA, FedRAMP
+          </a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Wide choice of SDN and storage
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/engage/charmed-openstack-adoption-whitepaper">
+            Upgrades and day-2 operations, automated
+          </a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Integrated logging, monitoring and alerting
+        </li>
+        <li class="p-list__item is-ticked">
+          Platform and infrastructure hardening
+        </li>
+        <li class="p-list__item is-ticked">
+          High availability
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/telco">
+            Carrier-grade NFVI
+          </a>
+        </li>
+      </ul>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="/openstack">
+            Learn more&nbsp;&rsaquo;
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/openstack/contact-us">
+            Contact us&nbsp;&rsaquo;
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="p-inline-images u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -659,64 +711,71 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--one">
+<section class="p-strip--light">
+  <div class="row">
+    <h2>
       Multi-cloud Kubernetes and containers
     </h2>
     <p class="p-heading--four">
       <a title="external link - docs.microsoft.com/en-us/azure/aks/cluster-configuration" href="https://docs.microsoft.com/en-us/azure/aks/cluster-configuration">AKS.</a> <a title="external link - cloud-images.ubuntu.com/docs/aws/eks" href="https://cloud-images.ubuntu.com/docs/aws/eks">EKS.</a> <a title="external link - cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu" href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu">GKE.</a> Kubeadm. <a title="external link - microk8s.io" href="https://microk8s.io">MicroK8s.</a> <a href="/kubernetes/features">Charmed Kubernetes.</a> All on Ubuntu.
     </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        Support for all public cloud Kubernetes
-      </li>
-      <li class="p-list__item is-ticked">
-        On-prem MicroK8s, Charmed K8s, kubeadm
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/kubernetes/managed">Fully-managed Kubernetes</a> on-prem or public cloud
-      </li>
-      <li class="p-list__item is-ticked">
-        <a class="p-link--external" href="https://juju.is/docs/kubernetes">
-          Model-driven Kubernetes Operators
-        </a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Full stack support for apps, Kubernetes, and OS
-      </li>
-      <li class="p-list__item is-ticked">
-        <a class="p-link--external" href="https://jaas.ai/canonical-kubernetes">
-          K8s architecture and deployment consulting
-        </a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Cloud-native workload migration services
-      </li>
-      <li class="p-list__item is-ticked">
-        GPU enablement for <a href="/ai">AI/ML</a> workloads
-      </li>
-      <li class="p-list__item is-ticked">
-        Bare metal, OpenStack and VMware
-      </li>
-      <li class="p-list__item is-ticked">
-        Pluggable <a href="/kubernetes/features">CNIs, CSIs, CRIs and third-party tools</a>
-      </li>
-    </ul>
-    <ul class="p-inline-list">
-      <li class="p-inline-list__item">
-        <a href="/kubernetes">
-          Learn more&nbsp;&rsaquo;
-        </a>
-      </li>
-      <li class="p-inline-list__item">
-        <a href="/kubernetes/contact-us">
-          Contact us&nbsp;&rsaquo;
-        </a>
-      </li>
-    </ul>
-    <ul class="p-inline-images">
+  </div>
 
+  <div class="p-strip--light is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          Support for all public cloud Kubernetes
+        </li>
+        <li class="p-list__item is-ticked">
+          On-prem MicroK8s, Charmed K8s, kubeadm
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/kubernetes/managed">Fully-managed Kubernetes</a> on-prem or public cloud
+        </li>
+        <li class="p-list__item is-ticked">
+          <a class="p-link--external" href="https://juju.is/docs/kubernetes">
+            Model-driven Kubernetes Operators
+          </a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Full stack support for apps, Kubernetes, and OS
+        </li>
+        <li class="p-list__item is-ticked">
+          <a class="p-link--external" href="https://jaas.ai/canonical-kubernetes">
+            K8s architecture and deployment consulting
+          </a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Cloud-native workload migration services
+        </li>
+        <li class="p-list__item is-ticked">
+          GPU enablement for <a href="/ai">AI/ML</a> workloads
+        </li>
+        <li class="p-list__item is-ticked">
+          Bare metal, OpenStack and VMware
+        </li>
+        <li class="p-list__item is-ticked">
+          Pluggable <a href="/kubernetes/features">CNIs, CSIs, CRIs and third-party tools</a>
+        </li>
+      </ul>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="/kubernetes">
+            Learn more&nbsp;&rsaquo;
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/kubernetes/contact-us">
+            Contact us&nbsp;&rsaquo;
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="p-inline-images u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -786,60 +845,67 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--one">
+<section class="p-strip">
+  <div class="row">
+    <h2>
       Ultra secure things
     </h2>
     <p class="p-heading--four">
       <a href="/appliance">Ubuntu Core Appliances</a> with transactional updates <a href="/embedded">for a better embedded Linux</a>.
     </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        OTA compressed updates for apps, kernel and OS
-      </li>
-      <li class="p-list__item is-ticked">
-        Automatic rollback and data snapshots
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
-      </li>
-      <li class="p-list__item is-ticked">
-        DevSecOps pipeline for edge app delivery
-      </li>
-      <li class="p-list__item is-ticked">
-        Built-in device recovery and remote disk repair
-      </li>
-      <li class="p-list__item is-ticked">
-        10 year security maintenance for every device
-      </li>
-      <li class="p-list__item is-ticked">
-        Provable system and software integrity
-      </li>
-      <li class="p-list__item is-ticked">
-        Secure boot backed by root of trust
-      </li>
-      <li class="p-list__item is-ticked">
-        Full disk encryption with hardware keys
-      </li>
-      <li class="p-list__item is-ticked">
-        FIPS certifiable embedded Linux
-      </li>
-    </ul>
-    <ul class="p-inline-list">
-      <li class="p-inline-list__item">
-        <a href="/core">
-          Learn more&nbsp;&rsaquo;
-        </a>
-      </li>
-      <li class="p-inline-list__item">
-        <a href="/core/contact-us">
-          Contact us&nbsp;&rsaquo;
-        </a>
-      </li>
-    </ul>
-    <ul class="p-inline-images">
+  </div>
 
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          OTA compressed updates for apps, kernel and OS
+        </li>
+        <li class="p-list__item is-ticked">
+          Automatic rollback and data snapshots
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/internet-of-things/appstore">Managed private app stores</a> for secure fleet management
+        </li>
+        <li class="p-list__item is-ticked">
+          DevSecOps pipeline for edge app delivery
+        </li>
+        <li class="p-list__item is-ticked">
+          Built-in device recovery and remote disk repair
+        </li>
+        <li class="p-list__item is-ticked">
+          10 year security maintenance for every device
+        </li>
+        <li class="p-list__item is-ticked">
+          Provable system and software integrity
+        </li>
+        <li class="p-list__item is-ticked">
+          Secure boot backed by root of trust
+        </li>
+        <li class="p-list__item is-ticked">
+          Full disk encryption with hardware keys
+        </li>
+        <li class="p-list__item is-ticked">
+          FIPS certifiable embedded Linux
+        </li>
+      </ul>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="/core">
+            Learn more&nbsp;&rsaquo;
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/core/contact-us">
+            Contact us&nbsp;&rsaquo;
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="p-inline-images u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -909,55 +975,62 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--one">
+<section class="p-strip--light">
+  <div class="row">
+    <h2>
       Workstations and desktops
     </h2>
     <p class="p-heading--four">
       <a href="/ai">Optimised AI/ML</a> and cloud devops. The professional developer’s preference.
     </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        <a href="/engage/linux-enterprise-whitepaper">
-          Active Directory and LDAP integration
-        </a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Full disk encryption
-      </li>
-      <li class="p-list__item is-ticked">
-        Security updates for the <a href="/esm">full open source stack</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Estate <a class="p-link--external" href="https://landscape.canonical.com/landscape-features">monitoring and management</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Configuration lockdown
-      </li>
-      <li class="p-list__item is-ticked">
-        Local Kubernetes for offline development
-      </li>
-      <li class="p-list__item is-ticked">
-        Instant Ubuntu on Windows and macOS with <a href="/wsl">WSL</a> and <a class="p-link--external" href="https://multipass.run">Multipass</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Optimised images and <a href="/blog/why-you-should-buy-a-pre-installed-ubuntu-workstation">certified workstations</a>
-      </li>
-    </ul>
-    <ul class="p-inline-list">
-      <li class="p-inline-list__item">
-        <a href="/desktop">
-          Learn more&nbsp;&rsaquo;
-        </a>
-      </li>
-      <li class="p-inline-list__item">
-        <a href="/desktop/contact-us">
-          Contact us&nbsp;&rsaquo;
-        </a>
-      </li>
-    </ul>
-    <ul class="p-inline-images">
+  </div>
+  <div class="p-strip--light is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          <a href="/engage/linux-enterprise-whitepaper">
+            Active Directory and LDAP integration
+          </a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Full disk encryption
+        </li>
+        <li class="p-list__item is-ticked">
+          Security updates for the <a href="/esm">full open source stack</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Estate <a class="p-link--external" href="https://landscape.canonical.com/landscape-features">monitoring and management</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Configuration lockdown
+        </li>
+        <li class="p-list__item is-ticked">
+          Local Kubernetes for offline development
+        </li>
+        <li class="p-list__item is-ticked">
+          Instant Ubuntu on Windows and macOS with <a href="/wsl">WSL</a> and <a class="p-link--external" href="https://multipass.run">Multipass</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Optimised images and <a href="/blog/why-you-should-buy-a-pre-installed-ubuntu-workstation">certified workstations</a>
+        </li>
+      </ul>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="/desktop">
+            Learn more&nbsp;&rsaquo;
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/desktop/contact-us">
+            Contact us&nbsp;&rsaquo;
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="p-inline-images u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -1040,59 +1113,66 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--one">
+<section class="p-strip">
+  <div class="row">
+    <h2>
       Data centre automation
     </h2>
     <p class="p-heading--four">
       Turn a rack into a bare metal cloud. <a title="external link - maas.io" href="https://maas.io">Metal-as-a-Service provisions</a>  Windows, ESX and Linux.
     </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        <a class="p-link--external" href="https://maas.io/how-it-works">Bare metal cloud</a> with on-demand servers
-      </li>
-      <li class="p-list__item is-ticked">
-        Remote edge cluster operations
-      </li>
-      <li class="p-list__item is-ticked">
-        Infrastructure <a class="p-link--external" href="https://maas.io/docs/prometheus-metrics">monitoring</a> and discovery
-      </li>
-      <li class="p-list__item is-ticked">
-        Ansible, Chef, Puppet, SALT, <a class="p-link--external" href="https://juju.is">Juju</a> integration
-      </li>
-      <li class="p-list__item is-ticked">
-        <a class="p-link--external" href="https://maas.io/docs/install-from-a-snap">Super fast install</a> from scratch
-      </li>
-      <li class="p-list__item is-ticked">
-        VMWare ESX, Windows, CentOS, RHEL, Ubuntu
-      </li>
-      <li class="p-list__item is-ticked">
-        Custom images with pre-installed apps
-      </li>
-      <li class="p-list__item is-ticked">
-        <a class="p-link--external" href="https://maas.io/docs/storage">Disk</a> and <a class="p-link--external" href="https://maas.io/docs/networking">network</a> configuration
-      </li>
-      <li class="p-list__item is-ticked">
-        API-driven DHCP, DNS, PXE, IPAM, provisioning
-      </li>
-      <li class="p-list__item is-ticked">
-        LDAP authentication and RBAC
-      </li>
-    </ul>
-    <ul class="p-inline-list">
-      <li class="p-inline-list__item">
-        <a class="p-link--external" href="https://maas.io">
-          Learn more
-        </a>
-      </li>
-      <li class="p-inline-list__item">
-        <a class="p-link--external" href="https://maas.io/contact-us">
-          Contact us&nbsp;&rsaquo;
-        </a>
-      </li>
-    </ul>
-    <ul class="p-inline-images">
+  </div>
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          <a class="p-link--external" href="https://maas.io/how-it-works">Bare metal cloud</a> with on-demand servers
+        </li>
+        <li class="p-list__item is-ticked">
+          Remote edge cluster operations
+        </li>
+        <li class="p-list__item is-ticked">
+          Infrastructure <a class="p-link--external" href="https://maas.io/docs/prometheus-metrics">monitoring</a> and discovery
+        </li>
+        <li class="p-list__item is-ticked">
+          Ansible, Chef, Puppet, SALT, <a class="p-link--external" href="https://juju.is">Juju</a> integration
+        </li>
+        <li class="p-list__item is-ticked">
+          <a class="p-link--external" href="https://maas.io/docs/install-from-a-snap">Super fast install</a> from scratch
+        </li>
+        <li class="p-list__item is-ticked">
+          VMWare ESX, Windows, CentOS, RHEL, Ubuntu
+        </li>
+        <li class="p-list__item is-ticked">
+          Custom images with pre-installed apps
+        </li>
+        <li class="p-list__item is-ticked">
+          <a class="p-link--external" href="https://maas.io/docs/storage">Disk</a> and <a class="p-link--external" href="https://maas.io/docs/networking">network</a> configuration
+        </li>
+        <li class="p-list__item is-ticked">
+          API-driven DHCP, DNS, PXE, IPAM, provisioning
+        </li>
+        <li class="p-list__item is-ticked">
+          LDAP authentication and RBAC
+        </li>
+      </ul>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a class="p-link--external" href="https://maas.io">
+            Learn more
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a class="p-link--external" href="https://maas.io/contact-us">
+            Contact us&nbsp;&rsaquo;
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="p-inline-images u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -1175,50 +1255,58 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--one">
+<section class="p-strip--light">
+  <div class="row">
+    <h2>
       Smart robots of all shapes and sizes
     </h2>
     <p class="p-heading--four">
       From turtles to trucks, <a href="/robotics">Ubuntu drives the robot revolution</a>.
     </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        Full support for <a href="/robotics/what-is-ros">ROS and ROS2</a>
-      </li>
-      <li class="p-list__item is-ticked">
-        Security patches for long term ROS
-      </li>
-      <li class="p-list__item is-ticked">
-        Fault tolerant over-the-air updates
-      </li>
-      <li class="p-list__item is-ticked">
-        <a href="/security/certifications#cis">CIS certification</a> for ROS and ROS2
-      </li>
-      <li class="p-list__item is-ticked">
-        Trim time-to-market with SMART START consulting
-      </li>
-      <li class="p-list__item is-ticked">
-        Leading Robot-as-a-Platform ecosystem
-      </li>
-      <li class="p-list__item is-ticked">
-        Curated app stores
-      </li>
-    </ul>
-    <ul class="p-inline-list">
-      <li class="p-inline-list__item">
-        <a href="/robotics">
-          Learn more&nbsp;&rsaquo;
-        </a>
-      </li>
-      <li class="p-inline-list__item">
-        <a href="/contact-us" class="js-invoke-modal">
-          Contact us&nbsp;&rsaquo;
-        </a>
-      </li>
-    </ul>
-    <ul class="p-inline-images">
+  </div>
+
+  <div class="p-strip--light is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          Full support for <a href="/robotics/what-is-ros">ROS and ROS2</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Security patches for long-term ROS
+        </li>
+        <li class="p-list__item is-ticked">
+          Fault tolerant over-the-air updates
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/security/certifications#cis">CIS certification</a> for ROS and ROS2
+        </li>
+        <li class="p-list__item is-ticked">
+          Trim time-to-market with SMART START consulting
+        </li>
+        <li class="p-list__item is-ticked">
+          Leading Robot-as-a-Platform ecosystem
+        </li>
+        <li class="p-list__item is-ticked">
+          Curated app stores
+        </li>
+      </ul>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="/robotics">
+            Learn more&nbsp;&rsaquo;
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/contact-us" class="js-invoke-modal">
+            Contact us&nbsp;&rsaquo;
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="p-inline-images u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -1301,162 +1389,103 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--one">
+<section class="p-strip">
+  <div class="row">
+    <h2>
       Multi-cloud applications&nbsp;&ndash;&nbsp;beyond PAAS
     </h2>
     <p class="p-heading--four">
-      Universal model-driven operators for classic and Kubernetes estate.
+      <a href="https://juju.is/" class="p-link--external">Universal model-driven operators for classic</a> and <a href="https://jaas.ai/kubernetes" class="p-link--external">Kubernetes estate</a>.
     </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">
-        Operate smoothly across public and private cloud
-      </li>
-      <li class="p-list__item is-ticked">
-        Reusable integration code as open source packages
-      </li>
-      <li class="p-list__item is-ticked">
-        Python Operator Framework for rapid development
-      </li>
-      <li class="p-list__item is-ticked">
-        Bring the K8s operator pattern to classic workloads
-      </li>
-      <li class="p-list__item is-ticked">
-        Lifecycle management and Day 2 operations
-      </li>
-      <li class="p-list__item is-ticked">
-        Open collection of community-driven operators
-      </li>
-    </ul>
-    <p>
-      <a class="p-link--external" href="https://juju.is">
-        Learn more about universal operators
-      </a>
-    </p>
-    <ul class="p-inline-images">
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/1f395c09-Panasonic-Logo.svg",
-          alt="Panasonic logo",
-          width="130",
-          height="21",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/7bbfb1d0-Scania_logo.svg",
-          alt="Scania logo",
-          width="153",
-          height="40",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/b41ec3f5-SBI-Bits_logo.png",
-          alt="SBI Bits logo",
-          width="132",
-          height="40",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/890ffa71-Swissquote_logo.svg",
-          alt="Swissquote logo",
-          width="210",
-          height="40",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-    </ul>
-  </div>
-</section>
-
-<noscript>
-  <section class="p-strip is-bordered">
-    <div class="u-fixed-width">
-      <h3 class="p-heading--four"><a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a></h3>
-    </div>
-  </section>
-</noscript>
-<section class="p-strip is-deep is-bordered u-hide" data-js="latest-news">
-  <div class="u-fixed-width">
-    <h3 class="p-heading--four">
-      <a href="/blog" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">
-        Latest news from our blog&nbsp;&rsaquo;
-      </a>
-    </h3>
-  </div>
-  <div class="row p-divider">
-    <div class="col-9">
-      <div id="latest-articles" class="row">
-        <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
-      </div>
-    </div>
-
-    <div id="spotlight" class="col-3 p-divider__block">
-    </div>
   </div>
 
-  <template style="display:none" id="articles-template">
-    <div class="col-3">
-      <p class="u-no-margin--bottom p-muted-heading">
-        <time datetime="" class="article-time"></time>
-      </p>
+  <div class="p-strip is-shallow">
+    <div class="row">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">
+          Operate smoothly across public and private cloud
+        </li>
+        <li class="p-list__item is-ticked">
+          Reusable integration code as open source packages
+        </li>
+        <li class="p-list__item is-ticked">
+          Python Operator Framework for rapid development
+        </li>
+        <li class="p-list__item is-ticked">
+          Bring the K8s operator pattern to classic workloads
+        </li>
+        <li class="p-list__item is-ticked">
+          Lifecycle management and Day 2 operations
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="https://jaas.ai/store" class="p-link--external">Open collection</a> of community-driven operators
+        </li>
+      </ul>
       <p>
-        <strong>
-          <a class="article-link article-title"></a>
-        </strong>
+        <a class="p-link--external" href="https://juju.is">
+          Learn more about universal operators
+        </a>
       </p>
     </div>
-  </template>
+  </div>
 
-  <template style="display:none" id="spotlight-template">
-    <div>
-      <p class="u-no-margin--bottom p-muted-heading">
-        Spotlight
-      </p>
-      <p>
-        <strong>
-          <a class="article-link article-title"></a>
-        </strong>
-      </p>
+    <div clas="row">
+      <ul class="p-inline-images u-no-margin--bottom">
+        <li class="p-inline-images__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/1f395c09-Panasonic-Logo.svg",
+            alt="Panasonic logo",
+            width="130",
+            height="21",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/7bbfb1d0-Scania_logo.svg",
+            alt="Scania logo",
+            width="153",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/b41ec3f5-SBI-Bits_logo.png",
+            alt="SBI Bits logo",
+            width="132",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/890ffa71-Swissquote_logo.svg",
+            alt="Swissquote logo",
+            width="210",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </li>
+      </ul>
     </div>
-  </template>
-
-  <div class="u-sv3"></div>
-
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
-    canonicalLatestNews.fetchLatestNews(
-    {
-      articlesContainerSelector: "#latest-articles",
-      articleTemplateSelector: "#articles-template",
-      spotlightContainerSelector: "#spotlight",
-      spotlightTemplateSelector: "#spotlight-template",
-      gtmEventLabel: "ubuntu.com homepage"
-    }
-    )
-  </script>
+  </div>
 </section>
 
 {% block footer_content %}
