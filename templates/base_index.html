@@ -1,7 +1,7 @@
 {% extends "templates/base.html" %}
 
 {% block title %}Enterprise Open Source and Linux{% endblock %}
-{% block meta_description %}Ubuntu is modern open source and Linux for the enterprise server, desktop, cloud, and IoT.{% endblock meta_description %}
+{% block meta_description %}Ubuntu is the modern, open source operating system on Linux for the enterprise server, desktop, cloud, and IoT.{% endblock meta_description %}
 {% block extra_body_class %}homepage {% block takeover_body_class %}{% endblock takeover_body_class %}{% endblock extra_body_class %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1ySJxQbqVdeH4Tra0zwBm2Tn0s56kFGnEF7d8xDRTxwU/edit{% endblock %}
@@ -917,7 +917,7 @@
         {{
           image(
           url="https://assets.ubuntu.com/v1/156ddbf8-rexroth_logo.svg",
-          alt="rexroth logo",
+          alt="Rexroth logo",
           width="131",
           height="53",
           hi_def=True,
@@ -930,7 +930,7 @@
         {{
           image(
           url="https://assets.ubuntu.com/v1/0e4d0d27-arm_logo.svg",
-          alt="arm logo",
+          alt="ARM logo",
           width="120",
           height="36",
           hi_def=True,
@@ -1318,7 +1318,7 @@
         {{
           image(
           url="https://assets.ubuntu.com/v1/f5dc1d41-pal-logo.svg",
-          alt="pal logo",
+          alt="PAL logo",
           width="130",
           height="51",
           hi_def=True,
@@ -1504,10 +1504,10 @@
   };
 
   // get the users language and remove any extra detail suffix (e.g. -gb)
-  var language = getPrimaryParentLanguage();
+  var primaryParentLanguage = getPrimaryParentLanguage();
 
   // get notices matching the user language
-  var notices = document.querySelectorAll(".notice[lang=" + language + "]");
+  var notices = document.querySelectorAll(".notice[lang=" + primaryParentLanguage + "]");
 
   // display only one matching notice
   if (notices.length > 0) {
@@ -1531,11 +1531,11 @@
     takeovers = 'content' in takeovers ? takeovers.content: takeovers;
 
     // First, select takeovers that don't specify a language and don't exclude the users language
-    var takeoverSelectors = [".js-takeover:not([lang]).js-takeover:not([lang-skip*=" + language + "])"]
+    var takeoverSelectors = [".js-takeover:not([lang]).js-takeover:not([lang-skip*=" + primaryParentLanguage + "])"]
 
     // Add selectors to find takeovers for any of the user's languages
-    takeoverSelectors.push(".js-takeover[lang=" + language + "]");
-    takeoverSelectors.push(".js-takeover[data-lang-extra*=" + language + "]");
+    takeoverSelectors.push(".js-takeover[lang=" + primaryParentLanguage + "]");
+    takeoverSelectors.push(".js-takeover[data-lang-extra*=" + primaryParentLanguage + "]");
 
     // Get the selected takeovers
     var selectedTakeovers = (takeovers.querySelectorAll(takeoverSelectors.join(',')));
