@@ -42,6 +42,7 @@ snaps directly. The details here are provided for information only.
 
 
 | Snap | Type | Store page |
+|------|------|------------|
 | kube-apiserver | strict | <https://snapcraft.io/kube-apiserver> |
 | kube-controller-manager | strict  | <https://snapcraft.io/kube-controller-manager>  |
 | kube-proxy | classic | <https://snapcraft.io/kube-proxy> |
@@ -59,7 +60,7 @@ Install with `snap install`:
 sudo snap install kube-apiserver
 ```
 
-This creates a systemd service named `snap.kube-apiserver.daemon`. Initially,
+This creates a `systemd` service named `snap.kube-apiserver.daemon`. Initially,
 it will be in an error state because it's missing important configuration:
 
 Running:
@@ -123,6 +124,7 @@ see how they work.
 
 The configure hook creates an args file at `/var/snap/<snap-name>/current/args`.
 This contains the actual arguments that get passed to the service by the snap:
+
 ```
 --cert-dir "/root/certs"
 --etcd-cafile "/root/certs/ca.crt"
@@ -144,11 +146,17 @@ This contains the actual arguments that get passed to the service by the snap:
 The source code for the snaps can be found here:
 
 <https://launchpad.net/snap-kubectl>
+
 <https://launchpad.net/snap-kubeadm>
+
 <https://launchpad.net/snap-kube-apiserver>
+
 <https://launchpad.net/snap-kube-controller-manager>
+
 <https://launchpad.net/snap-kube-scheduler>
+
 <https://launchpad.net/snap-kubelet>
+
 <https://launchpad.net/snap-kube-proxy>
 
 
