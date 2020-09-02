@@ -10,9 +10,11 @@ context:
   header_image: "https://assets.ubuntu.com/v1/11d594e7-K8s+logo+white+outline.svg"
   header_image_width: "240"
   header_image_height: "234"
-  header_url: "#register-section"
-  header_cta: "Download whitepaper"
+  header_url:
+  header_cta:
   header_class: p-engage-banner--dark
+  header_supplemental: '<br /><p><a href="#register-section" class="p-button--positive">Download the whitepaper</a> <a href="#webinar" class="p-button--neutral">Watch the webinar</a></p>'
+  webinar_code: '<div id="webinar" class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 435999, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>'
   form_id: 3648
   form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/five-kubernetes-strategies-enterprise.pdf"
 ---
