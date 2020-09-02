@@ -137,7 +137,19 @@
       <h5 class="p-muted-heading u-align--center">
         Featured in
       </h5>
-      <ul class="p-inline-images u-align--center u-no-margin--bottom">
+      <ul class="p-inline-images--x-small u-align--center u-no-margin--bottom">
+        <li class="p-inline-images__item is-muted">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/2f97697f-BusinessInsider_logo.svg",
+            alt="Business Insider logo",
+            width="130",
+            height="53",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </li>
         <li class="p-inline-images__item is-muted">
           {{
             image(
@@ -158,19 +170,7 @@
             width="130",
             height="19",
             hi_def=True,
-            attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item is-muted">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/2f97697f-BusinessInsider_logo.svg",
-            alt="Business Insider logo",
-            width="130",
-            height="53",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logo"},
+            attrs={"class": "p-inline-images__logo is-wide"},
             ) | safe
           }}
         </li>
@@ -301,7 +301,7 @@
   </div>
 
   <div class="row">
-    <ul class="p-inline-images u-no-margin--bottom">
+    <ul class="p-inline-images--small u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -485,7 +485,7 @@
           </a>
         </li>
         <li class="p-inline-list__item">
-          <a href="/contact-us">
+          <a href="/contact-us" class="js-invoke-modal">
             Contact us&nbsp;&rsaquo;
           </a>
         </li>
@@ -494,7 +494,7 @@
   </div>
 
   <div class="row">
-    <ul class="p-inline-images u-no-margin--bottom">
+    <ul class="p-inline-images--small u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -543,7 +543,7 @@
           height="32",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
+          attrs={"class": "p-inline-images__logo is-wide"},
           ) | safe
         }}
       </li>
@@ -556,7 +556,7 @@
           height="50",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
+          attrs={"class": "p-inline-images__logo is-wide"},
           ) | safe
         }}
       </li>
@@ -620,7 +620,7 @@
           </a>
         </li>
         <li class="p-inline-list__item">
-          <a href="/openstack/contact-us">
+          <a href="/openstack/contact-us" class="js-invoke-modal">
             Contact us&nbsp;&rsaquo;
           </a>
         </li>
@@ -629,7 +629,7 @@
   </div>
 
   <div class="row">
-    <ul class="p-inline-images u-no-margin--bottom">
+    <ul class="p-inline-images--small u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -652,7 +652,7 @@
           height="30",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
+          attrs={"class": "p-inline-images__logo is-wide"},
           ) | safe
         }}
       </li>
@@ -691,7 +691,7 @@
           height="26",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
+          attrs={"class": "p-inline-images__logo is-wide"},
           ) | safe
         }}
       </li>
@@ -766,7 +766,7 @@
           </a>
         </li>
         <li class="p-inline-list__item">
-          <a href="/kubernetes/contact-us">
+          <a href="/kubernetes/contact-us" class="js-invoke-modal">
             Contact us&nbsp;&rsaquo;
           </a>
         </li>
@@ -775,7 +775,7 @@
   </div>
 
   <div class="row">
-    <ul class="p-inline-images u-no-margin--bottom">
+    <ul class="p-inline-images--small u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -811,7 +811,7 @@
           height="40",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
+          attrs={"class": "p-inline-images__logo is-wide"},
           ) | safe
         }}
       </li>
@@ -896,7 +896,7 @@
           </a>
         </li>
         <li class="p-inline-list__item">
-          <a href="/core/contact-us">
+          <a href="/core/contact-us" class="js-invoke-modal">
             Contact us&nbsp;&rsaquo;
           </a>
         </li>
@@ -905,7 +905,7 @@
   </div>
 
   <div class="row">
-    <ul class="p-inline-images u-no-margin--bottom">
+    <ul class="p-inline-images--small u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -967,7 +967,7 @@
           height="51",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
+          attrs={"class": "p-inline-images__logo is-wide"},
           ) | safe
         }}
       </li>
@@ -1021,7 +1021,7 @@
           </a>
         </li>
         <li class="p-inline-list__item">
-          <a href="/desktop/contact-us">
+          <a href="/desktop/contact-us" class="js-invoke-modal">
             Contact us&nbsp;&rsaquo;
           </a>
         </li>
@@ -1030,7 +1030,7 @@
   </div>
 
   <div class="row">
-    <ul class="p-inline-images u-no-margin--bottom">
+    <ul class="p-inline-images--small u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -1053,7 +1053,7 @@
           height="27",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
+          attrs={"class": "p-inline-images__logo is-wide"},
           ) | safe
         }}
       </li>
@@ -1079,7 +1079,7 @@
           height="29",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
+          attrs={"class": "p-inline-images__logo is-wide"},
           ) | safe
         }}
       </li>
@@ -1172,8 +1172,8 @@
   </div>
 
   <div class="row">
-    <ul class="p-inline-images u-no-margin--bottom">
-      <li class="p-inline-images__item">
+    <ul class="p-inline-images--small u-no-margin--bottom">
+      <li class="p-inline-images__item" style="margin: 1.5rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/f92b472c-Verizon_logo.svg",
@@ -1186,7 +1186,7 @@
           ) | safe
         }}
       </li>
-      <li class="p-inline-images__item">
+      <li class="p-inline-images__item" style="margin: 1.5rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/17a1b35b-telefonica_logo.svg",
@@ -1199,7 +1199,7 @@
           ) | safe
         }}
       </li>
-      <li class="p-inline-images__item">
+      <li class="p-inline-images__item" style="margin: 1.5rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/18ea2f90-Tele2_logo.svg",
@@ -1212,7 +1212,7 @@
           ) | safe
         }}
       </li>
-      <li class="p-inline-images__item">
+      <li class="p-inline-images__item" style="margin: 1.5rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/8f264340-telecom-italia_logo.svg",
@@ -1225,7 +1225,7 @@
           ) | safe
         }}
       </li>
-      <li class="p-inline-images__item">
+      <li class="p-inline-images__item" style="margin: 1.5rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/e854cf72-nec_logo.svg",
@@ -1238,7 +1238,7 @@
           ) | safe
         }}
       </li>
-      <li class="p-inline-images__item">
+      <li class="p-inline-images__item" style="margin: 1.5rem;">
         {{
           image(
           url="https://assets.ubuntu.com/v1/af1a572f-barclays_logo.svg",
@@ -1306,7 +1306,7 @@
   </div>
 
   <div class="row">
-    <ul class="p-inline-images u-no-margin--bottom">
+    <ul class="p-inline-images--small u-no-margin--bottom">
       <li class="p-inline-images__item">
         {{
           image(
@@ -1430,7 +1430,7 @@
   </div>
 
     <div clas="row">
-      <ul class="p-inline-images u-no-margin--bottom">
+      <ul class="p-inline-images--small u-no-margin--bottom">
         <li class="p-inline-images__item">
           {{
             image(
@@ -1440,7 +1440,7 @@
             height="21",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-inline-images__logo"},
+            attrs={"class": "p-inline-images__logo is-wide"},
             ) | safe
           }}
         </li>
@@ -1453,7 +1453,7 @@
             height="40",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-inline-images__logo"},
+            attrs={"class": "p-inline-images__logo is-wide"},
             ) | safe
           }}
         </li>
@@ -1479,7 +1479,7 @@
             height="40",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-inline-images__logo"},
+            attrs={"class": "p-inline-images__logo is-wide"},
             ) | safe
           }}
         </li>
