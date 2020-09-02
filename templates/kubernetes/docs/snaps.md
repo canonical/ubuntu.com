@@ -134,10 +134,10 @@ This contains the actual arguments that get passed to the service by the snap:
 
 <div class="p-notification--information">
   <p class="p-notification__response">
-  Note: While you can technically bypass `snap set` and edit the args file
+  Note: While you can technically bypass <code>snap set</code> and edit the args file
   directly, it's best not to do so. The next time the configure hook runs, it
   will obliterate your changes. This can occur not only from a call to
-  snap set` but also during a background refresh of the snap.
+  <code>snap set</code> but also during a background refresh of the snap.
   </p>
 </div>
 
