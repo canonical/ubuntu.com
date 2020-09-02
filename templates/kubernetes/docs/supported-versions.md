@@ -20,9 +20,68 @@ Current Release: **1.18**
 
 Supported releases: **1.18.x, 1.17.x, 1.16.x**
 
+## Charmed Kubernetes bundle versions
+
+The **Juju Charm Store** hosts the **Charmed Kubernetes** bundles as well as
+individual charms. To deploy the latest, stable bundle, run the command:
+
+```bash
+juju deploy charmed-kubernetes
+```
+
+It is also possible to deploy a specific version of the bundle by including the
+revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.14
+release, you could run:
+
+```bash
+juju deploy cs:~containers/charmed-kubernetes-124
+```
+
+<div class="p-notification--positive">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Older Versions:</span>
+Previous versions of <strong>Charmed Kubernetes</strong> used the name
+<code>canonical-kubernetes</code>. These versions are still available under that name
+and links in the charm store. Versions from 1.14 onwards will use
+<code>charmed-kubernetes</code>.
+  </p>
+</div>
+
+
+The revision numbers for bundles are generated automatically when the bundle is
+updated, including for testing and beta versions, so it isn't always the case
+that a higher revision number is 'better'. The revision numbers for the release
+versions of the **Charmed Kubernetes** bundle are shown in the table below:
+
+<a  id="table"></a>
+
+| Kubernetes version | Charmed Kubernetes bundle |
+| --- | --- |
+| 1.18.x         | [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml) |
+| 1.17.x         | [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml) |
+| 1.16.x         | [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-316/archive/bundle.yaml) |
+| 1.15.x         | [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml) |
+| 1.14.x         | [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml) |
+| 1.13.x         | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
+| 1.12.x         | [canonical-kubernetes-357](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-357/archive/bundle.yaml?channel=stable) |
+| 1.11.x         | [canonical-kubernetes-254](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-254/archive/bundle.yaml?channel=stable) |
+| 1.10.x         | [canonical-kubernetes-211](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-211/archive/bundle.yaml?channel=stable)  |
+| 1.9.x        | [canonical-kubernetes-179](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-179/archive/bundle.yaml?channel=stable) |
+| 1.8.x | [canonical-kubernetes-132](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-132/archive/bundle.yaml?channel=stable) |
+| 1.7.x | [canonical-kubernetes-101](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-101/archive/bundle.yaml?channel=stable) |
+| 1.6.x | [canonical-kubernetes-38](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-38/archive/bundle.yaml?channel=stable) |
+
+<div class="p-notification--caution">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+Only the latest three versions of Charmed Kubernetes are supported at any time.
+  </p>
+</div>
+
+
 ## Finding version info
 
-To check which versions are available, use the `snap info` command:
+To check which versions of Kubernetes are available, use the `snap info` command:
 
 ```bash
 snap info kube-apiserver

@@ -60,4 +60,5 @@
   - [Certificates and trust](/kubernetes/docs/certs-and-trust)
   - [CIS compliance](/kubernetes/docs/cis-compliance)
   - [Snap refresh settings](/kubernetes/docs/snap-refresh)
+  - [Kubernetes Snaps](/kubernetes/docs/snaps)
   - [Get in touch](/kubernetes/docs/get-in-touch)
