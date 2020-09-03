@@ -16,7 +16,7 @@ context:
      header_lang: it
      form_include: it
      form_id: 3682
-     form_return_url: "https://pages.ubuntu.com/CY20_DC_OpenStack_IT_Whitepaper_VMwaretoOpenstack_LPWhitepaperVMwaretoOpenStackES-TYvanilla.html"
+     form_return_url: "https://pages.ubuntu.com/CY20_DC_OpenStack_IT_Whitepaper_VMwaretoOpenstack_DA-VMware-a-OpenStack.html"
 ---
 
 A causa dei costi associati alle licenze, all'assistenza e ai servizi professionali VMware, molti non sono in grado di raggiungere il loro obiettivo primario: ridurre significativamente il TCO. Alla ricerca di soluzioni alternative, le organizzazioni hanno recentemente iniziato a esplorare altre piattaforme open-source come OpenStack.
