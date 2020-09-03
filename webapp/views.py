@@ -676,21 +676,25 @@ def advantage_shop_view():
         )
 
         try:
-            # TODO: this is placeholder, the CS team are working
-            # on returning more information in this request, such
-            # as whether the user is an admin on a given account.
-            # Until then, for demo purposes, we assume the first
-            # account in the returned array will suffice.
             accounts = advantage.get_accounts()
-            account = accounts[0]
-            subs = advantage.get_account_subscriptions_for_marketplace(
-                account["id"], "canonical-ua"
-            )
+            # At the moment, a user should only ever be admin on
+            # one account, but there's a desire to allow users
+            # to make purchases on multiple accounts
+            admin_accounts = get_admin_accounts(accounts)
+            account = None
 
-            if "subscriptions" in subs:
-                subscription = subs["subscriptions"][0]
-                if "lastPurchaseID" in subscription:
-                    previous_purchase_id = subscription["lastPurchaseID"]
+            if admin_accounts:
+                account = admin_accounts[0]
+
+            if account:
+                subs = advantage.get_account_subscriptions_for_marketplace(
+                    account["id"], "canonical-ua"
+                )
+
+                if "subscriptions" in subs:
+                    subscription = subs["subscriptions"][0]
+                    if "lastPurchaseID" in subscription:
+                        previous_purchase_id = subscription["lastPurchaseID"]
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
                 # We got an unauthorized request, so we likely
@@ -749,6 +753,18 @@ def advantage_shop_view():
         account=account,
         previous_purchase_id=previous_purchase_id,
     )
+
+
+def get_admin_accounts(accounts):
+    admin_accounts = []
+
+    for account in accounts:
+        if "externalAccountIDs" in account:
+            for ext_account_id in account["externalAccountIDs"]:
+                if ext_account_id["origin"] == "Salesforce":
+                    admin_accounts.append(account)
+
+    return admin_accounts
 
 
 def make_renewal(advantage, contract_info):
