@@ -91,6 +91,7 @@ addGANavEvents(".p-navigation--secondary", "www.ubuntu.com-nav-2");
 addGANavEvents(".p-contextual-footer", "www.ubuntu.com-footer-contextual");
 addGANavEvents(".p-footer__nav", "www.ubuntu.com-nav-footer-0");
 addGANavEvents(".p-footer--secondary", "www.ubuntu.com-nav-footer-1");
+addGANavEvents(".js-product-card", "www.ubuntu.com-product-card");
 
 function addGANavEvents(target, category) {
   var t = document.querySelector(target);
@@ -138,9 +139,10 @@ function addGAContentEvents(target) {
   }
 }
 
-addGAImpressionEvents(".js-takeover");
+addGAImpressionEvents(".js-takeover", "takeover");
+addGAImpressionEvents(".js-product-card", "product-card");
 
-function addGAImpressionEvents(target) {
+function addGAImpressionEvents(target, category) {
   var t = [].slice.call(document.querySelectorAll(target));
   if (t) {
     t.forEach(function (section) {
@@ -148,7 +150,7 @@ function addGAImpressionEvents(target) {
         var a = section.querySelector("a");
         dataLayer.push({
           event: "NonInteractiveGAEvent",
-          eventCategory: "www.ubuntu.com-impression",
+          eventCategory: "www.ubuntu.com-impression-" + category,
           eventAction: "from:" + origin + " to:" + a.href,
           eventLabel: a.text,
           eventValue: undefined,
