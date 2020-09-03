@@ -9,13 +9,15 @@
 {% block outer_content %}
 {% block content %}
 
+
+
 <section class="p-strip--suru-bottomed is-dark">
   <div class="row u-vertically-center">
     <div class="col-6">
       <h1 class="u-sv3">EdgeX &ndash; Unifying the IoT edge</h1>
       <p>
         <a href="https://snapcraft.io/edgexfoundry" class="p-link--external p-button--positive">Download</a>
-        <a href="" class="p-button--neutral">Sign up for latest news</a>
+        <a href="#subscribe" class="p-button--neutral">Sign up for latest news</a>
       </p>
     </div>
 
@@ -73,15 +75,62 @@
           <button class="p-code-copyable__action">Copy to clipboard</button>
         </div>
       </div>
+      <p><a href="https://snapcraft.io/edgexfoundry" class="p-link--external">Find out more</a></p>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-8">
-      <h4>Find out more</h4>
-      <iframe src="https://snapcraft.io/edgexfoundry/embedded?button=black&summary=true" frameborder="0" width="100%" height="320px" style="border: 1px solid #CCC; border-radius: 2px;"></iframe>      </div>
+    <div class="col-start-large-8 col-5">
+      <div class="p-card--highlighted">
+        <div class="p-message" id="subscribed">
+          <div class="p-notification--positive u-no-margin--bottom">
+            <p class="p-notification__response"><span class="p-notification__status">Success:</span> Thank you for
+              subscribing.<br>You will begin receiving emails as new content is posted. You may unsubscribe any time by
+              clicking the link in the email.</p>
+          </div>
+          <hr />
+        </div>
+
+        <style>
+          .p-message {
+            display: none;
+          }
+
+          :target {
+            display: block;
+          }
+        </style>
+        <p class="p-heading--four" id="subscribe">Subscribe to our weekly newsletter</p>
+        <form action="https://pages.canonical.com/index.php/leadCapture/save" method="post" id="mktoForm_3415" class="p-form--stacked">
+          <div class="p-form__group">
+            <label for="Email">Email:*</label>
+            <input class="u-no-margin--bottom" id="Email" placeholder="Email" name="Email" maxlength="255" type="email" required="">
+          </div>
+          <div class="p-form__group">
+            <label for="Company">Company:</label>
+            <input class="u-no-margin--bottom" id="Company" placeholder="Company (optional)" name="Company" maxlength="255" type="text">
+          </div>
+
+          <p>
+            <small>In submitting this form, I confirm that I have read and agree to <a href="https://ubuntu.com/legal/data-privacy/newsletter">Canonical’s Privacy Notice</a> and <a href="https://ubuntu.com/legal/data-privacy">Privacy Policy</a>.</small>
+          </p>
+          <p class="u-no-margin--bottom">
+            <input type="hidden" name="Consent_to_Processing__c" value="Yes">
+            <button class="p-button" type="submit">Subscribe now</button>
+          </p>
+
+          <input type="hidden" name="formid" value="3690">
+          <input type="hidden" name="edgeXblogsubscription" value="yes">
+          <input type="hidden" name="lpId" value="">
+          <input type="hidden" name="munchkinId" value="066-EOV-335">
+          <input type="hidden" name="lpurl" value="">
+          <input type="hidden" name="ret" value="https://ubuntu.com/edgex#subscribed">
+          <input type="hidden" name="cr" value="">
+          <input type="hidden" name="kw" value="">
+          <input type="hidden" name="q" value="">
+        </form>
+      </div>
+
+
     </div>
-  </div>
 </section>
 
 <section class="p-strip">
@@ -106,7 +155,7 @@
 
   <div class="row">
     <div class="col-12 u-align--center">
-      <a href="">Sign up for latest news&nbsp;&rsaquo;</a>
+      <a href="#subscribe">Sign up for latest news&nbsp;&rsaquo;</a>
     </div>
   </div>
 </section>
