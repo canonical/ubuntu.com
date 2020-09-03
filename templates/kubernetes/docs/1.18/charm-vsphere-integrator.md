@@ -1,21 +1,24 @@
 ---
-wrapper_template: kubernetes/docs/base_docs.html
+bundle_release: '1.18'
+charm_name: vsphere-integrator
+charm_revision: '39'
+context:
+  description: 'Proxy charm to enable VMware vSphere integrations via Juju relations.
+
+    '
+  title: 'Vsphere-integrator charm '
+keywords: component, charms, versions, release
+layout:
+- base
+- ubuntu-com
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-context:
-  title: 'Vsphere-integrator charm '
-  description: "Proxy charm to enable VMware vSphere integrations via Juju relations.\n"
-keywords: component, charms, versions, release
-tags:
-    - reference
-sidebar: k8smain-sidebar
 permalink: 1.18/charm-vsphere-integrator.html
-layout:
-    - base
-    - ubuntu-com
+sidebar: k8smain-sidebar
+tags:
+- reference
 toc: false
-charm_revision: '32'
-bundle_release: '1.18'
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 This charm acts as a proxy to VMware vSphere and provides an [interface][] to
@@ -223,6 +226,11 @@ spec:
         claimName: testclaim
 EOY
 ```
+
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
+
 
 [interface]: https://github.com/juju-solutions/interface-vsphere-integration
 [Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes

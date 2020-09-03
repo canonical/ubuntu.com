@@ -22,6 +22,7 @@ toc: False
 Bug fixes included in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck2).
 
+
 # 1.18+ck1 Bugfix release
 
 ### June 11, 2020 - [charmed-kubernetes-464](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-464/archive/bundle.yaml)
