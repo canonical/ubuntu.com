@@ -392,7 +392,7 @@ def advantage_view():
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
     )
 
     if user_info(flask.session):
@@ -665,7 +665,7 @@ def advantage_shop_view():
     account = None
     previous_purchase_id = None
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
     )
 
     if user_info(flask.session):
