@@ -664,13 +664,15 @@ function resetProgressIndicator() {
 }
 
 function sendGAEvent(label) {
-  dataLayer.push({
-    event: "GAEvent",
-    eventCategory: "advantage",
-    eventAction: "renewal",
-    eventLabel: label,
-    eventValue: undefined,
-  });
+  if (window.stripePublishableKey.includes("pk_live_")) {
+    dataLayer.push({
+      event: "GAEvent",
+      eventCategory: "advantage",
+      eventAction: "renewal",
+      eventLabel: label,
+      eventValue: undefined,
+    });
+  }
 }
 
 function setupCardElements() {
