@@ -12,11 +12,12 @@ from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from sqlalchemy import asc, desc, or_, and_
+from sqlalchemy import asc, desc, or_, and_, func
 from sqlalchemy.exc import IntegrityError, DataError
+from sqlalchemy.orm import contains_eager
+
 
 # Local
-
 from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Package, Status, Release
 from webapp.security.schemas import CVESchema, NoticeSchema
@@ -316,7 +317,6 @@ def cve_index():
     - limit - default 20
     - offset - default 0
     """
-
     # Query parameters
     query = flask.request.args.get("q", "").strip()
     priority = flask.request.args.get("priority")
@@ -381,7 +381,9 @@ def cve_index():
         ]
 
     # query cves by filters
-    cves_query = db_session.query(CVE).filter(CVE.status == "active")
+    cves_query = db_session.query(
+        CVE, func.count("*").over().label("total")
+    ).filter(CVE.status == "active")
 
     if priority:
         cves_query = cves_query.filter(CVE.priority == priority)
@@ -389,15 +391,12 @@ def cve_index():
     if query:
         cves_query = cves_query.filter(CVE.description.ilike(f"%{query}%"))
 
+    parameters = []
     if package:
-        cves_query = cves_query.filter(
-            CVE.statuses.any(Status.package_name == package)
-        )
+        parameters.append(Status.package_name == package)
 
     if component:
-        cves_query = cves_query.filter(
-            CVE.statuses.any(Status.component == component)
-        )
+        parameters.append(Status.component == component)
 
     if should_filter_by_version_and_status:
         conditions = []
@@ -420,28 +419,33 @@ def cve_index():
 
             conditions.append(condition)
 
-        cves_query = cves_query.filter(
-            CVE.statuses.any(
-                Status.package.has(and_(*[c for c in conditions]))
-            )
-        )
+        parameters.append(Status.package.has(and_(*[c for c in conditions])))
     else:
-        cves_query = cves_query.filter(
-            CVE.statuses.any(Status.status.in_(Status.active_statuses))
-        )
+        parameters.append(Status.status.in_(Status.active_statuses))
 
-    # Pagination
-    total_results = cves_query.count()
+    if len(parameters) > 0:
+        cves_query = cves_query.filter(
+            CVE.statuses.any(and_(*[p for p in parameters]))
+        )
 
     cves_query = (
-        cves_query.order_by(desc(CVE.published)).limit(limit).offset(offset)
+        cves_query.group_by(CVE.id)
+        .order_by(desc(CVE.published))
+        .limit(limit)
+        .offset(offset)
+        .from_self()
+        .join(CVE.statuses)
+        .options(contains_eager(CVE.statuses))
     )
 
     raw_cves = cves_query.all()
 
+    # Pagination
+    total_results = raw_cves[0][1] if raw_cves else 0
+
     cves = []
     for raw_cve in raw_cves:
-        packages = raw_cve.packages
+        packages = raw_cve[0].packages
 
         # filter by package name
         if package:
@@ -481,8 +485,8 @@ def cve_index():
             continue
 
         cve = {
-            "id": raw_cve.id,
-            "priority": raw_cve.priority,
+            "id": raw_cve[0].id,
+            "priority": raw_cve[0].priority,
             "packages": packages,
         }
 
