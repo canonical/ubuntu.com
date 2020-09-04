@@ -13,6 +13,22 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+<!-- UPGRADE VERSIONS -->
+
+<div class="p-notification--warning">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+This page describes the general upgrade process. It is important to follow the specific upgrade pages for each release, as these may include additional steps and workarounds for safely upgrading. <br><br>
+<a class='p-button--brand' href='/kubernetes/docs/1.19/upgrading'>Upgrade to 1.19 </a>
+<a class='p-button--brand' href='/kubernetes/docs/1.18/upgrading'>Upgrade to 1.18 </a>
+<a class='p-button--brand' href='/kubernetes/docs/1.17/upgrading'>Upgrade to 1.17 </a>
+  </p>
+</div>
+
+<!-- END OF UPGRADE VERSIONS-->
+
+
+
 It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Kubernetes**. Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
 
 New minor versions of **Kubernetes** are set to release once per quarter. You can check the latest release version on the [Kubernetes release page on GitHub][k8s-release]. **Charmed Kubernetes** is kept in close sync with upstream Kubernetes: updated versions will be released within a week of a new upstream version of **Kubernetes**.
