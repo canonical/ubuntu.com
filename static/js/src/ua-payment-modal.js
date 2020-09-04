@@ -668,7 +668,7 @@ function sendGAEvent(label) {
     dataLayer.push({
       event: "GAEvent",
       eventCategory: "advantage",
-      eventAction: "renewal",
+      eventAction: currentTransaction.type,
       eventLabel: label,
       eventValue: undefined,
     });
