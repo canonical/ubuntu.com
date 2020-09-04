@@ -543,7 +543,7 @@ class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
         return str(self.attached)
 
 
-def post_advantage_subscriptions():
+def post_advantage_subscriptions(preview):
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
@@ -611,9 +611,14 @@ def post_advantage_subscriptions():
     }
 
     try:
-        purchase = advantage.purchase_from_marketplace(
-            marketplace="canonical-ua", purchase_request=purchase_request
-        )
+        if not preview:
+            purchase = advantage.purchase_from_marketplace(
+                marketplace="canonical-ua", purchase_request=purchase_request
+            )
+        else:
+            purchase = advantage.preview_purchase_from_marketplace(
+                marketplace="canonical-ua", purchase_request=purchase_request
+            )
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException(
             extra={"purchase_request": purchase_request}
