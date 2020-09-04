@@ -13,35 +13,45 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+## Authorisation
+
 **Charmed Kubernetes** implements access
 control based on the Kubernetes model. A complete overview of the Kubernetes
 authorisation  system is given in the [Kubernetes Documentation][upstream-auth].
 This page provides summary information on the available modes and how to configure
 **Charmed Kubernetes** to use them.
 
- The following modes are supported:
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+The default authorisation mode in <strong>Charmed Kubernetes</strong> 1.19 has changed from
+"AlwaysAllow" to "Node,RBAC".
+  </p>
+</div>
 
- -  **AlwaysAllow**: This is the default mode. All calls to the API server are allowed.
- - **Node**: Grants permissions to kubelets based on the pods they are scheduled to run.
+The following modes are supported:
+
+ - **Node** (default): Grants permissions to kubelets based on the pods they are scheduled to run.
     When using this mode, **Charmed Kubernetes** will enable `NodeRestriction` and will issue (and
     decommission) tokens for kubernetes-workers as you scale your infrastructure.
     More detailed information can be found in the [Kubernetes documentation][node].
+ - **RBAC** (default):  Using role-based access control, access is granted to users based on the
+   roles assigned to them. This mode expects respective roles and bindings to be available
+   for any running services. **Charmed Kubernetes** already has roles and bindings ready for use
+   ([see below][roles]).
+ - **AlwaysAllow**: All calls to the API server are allowed.
+ - **AlwaysDeny**: This mode denies all API requests - it is only really useful for testing.
  - **ABAC**: Using attribute-based access control, access rights are granted to users
     through the use of policies which combine attributes together. The policies can use any
     type of attributes (user attributes, resource attributes, object attributes, environment
     attributes, etc). For more information on ABAC mode, see the
     [Kubernetes ABAC documentation][abac].
- - **RBAC**:  Using role-based access control, access is granted to users based on the
-   roles assigned to them. This mode expects respective roles and bindings to be available
-   for any running services. **Charmed Kubernetes** already has roles and bindings ready for use
-   ([see below][roles]).
  - **Webhook**:  With this mode set, Kubernetes will query an outside REST service
    when determining user privileges. This mode requires additional configuration to
    specify the service being queried. A full explanation of this can be found in the
    [Kubernetes Webhook mode documentation][webhook].
- -  **AlwaysDeny**: This mode denies all API requests - it is only really useful for testing.
 
-## Determining the current configuration
+### Determining the current configuration
 
 Juju can be used to query the current configuration setting:
 
@@ -51,7 +61,7 @@ juju config kubernetes-master authorization-mode
 
 The default value is:
 ```bash
-AlwaysAllow
+Node,RBAC
 ```
 
 For further verification, the runtime arguments for the `kube-apiserver` can be determined:
@@ -60,14 +70,13 @@ For further verification, the runtime arguments for the `kube-apiserver` can be 
 juju run --unit kubernetes-master/0 "ps -ef | grep apiserver"
 ```
 
-... from which we can see the `--authorization-mode=AlwaysAllow` argument:
+... from which we can see the `--authorization-mode=Node,RBAC` argument:
 
 ```
-root      2013     1  2 11:18 ?        00:01:25 /snap/kube-apiserver/917/kube-apiserver --advertise-address=10.153.234.96 --min-request-timeout=300 --etcd-cafile=/root/cdk/etcd/client-ca.pem --etcd-certfile=/root/cdk/etcd/client-cert.pem --etcd-keyfile=/root/cdk/etcd/client-key.pem --etcd-servers=https://10.154.124.144:2379,https://10.165.213.59:2379,https://10.167.80.201:2379 --storage-backend=etcd3 --tls-cert-file=/root/cdk/server.crt --tls-private-key-file=/root/cdk/server.key --insecure-bind-address=127.0.0.1 --insecure-port=8080 --audit-log-maxbackup=9 --audit-log-maxsize=100 --audit-log-path=/root/cdk/audit/audit.log --audit-policy-file=/root/cdk/audit/audit-policy.yaml --basic-auth-file=/root/cdk/basic_auth.csv --client-ca-file=/root/cdk/ca.crt --requestheader-allowed-names=system:kube-apiserver --requestheader-client-ca-file=/root/cdk/ca.crt --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group --requestheader-username-headers=X-Remote-User --service-account-key-file=/root/cdk/serviceaccount.key --token-auth-file=/root/cdk/known_tokens.csv --authorization-mode=AlwaysAllow --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,PersistentVolumeLabel,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota --allow-privileged=false --enable-aggregator-routing --kubelet-certificate-authority=/root/cdk/ca.crt --kubelet-client-certificate=/root/cdk/client.crt --kubelet-client-key=/root/cdk/client.key --kubelet-preferred-address-types=[InternalIP,Hostname,InternalDNS,ExternalDNS,ExternalIP] --proxy-client-cert-file=/root/cdk/client.crt --proxy-client-key-file=/root/cdk/client.key --service-cluster-ip-range=10.152.183.0/24 --logtostderr --v=4
-root     18966 18964  0 12:11 ?        00:00:00 grep apiserver
+root      6244     1 22 17:10 ?        00:00:12 /snap/kube-apiserver/1720/kube-apiserver --allow-privileged=false --service-cluster-ip-range=10.152.183.0/24 --min-request-timeout=300 --v=4 --tls-cert-file=/root/cdk/server.crt --tls-private-key-file=/root/cdk/server.key --kubelet-certificate-authority=/root/cdk/ca.crt --kubelet-client-certificate=/root/cdk/client.crt --kubelet-client-key=/root/cdk/client.key --kubelet-https=true --logtostderr=true --storage-backend=etcd3 --insecure-port=0 --profiling=false --anonymous-auth=false --authentication-token-webhook-cache-ttl=1m0s --authentication-token-webhook-config-file=/root/cdk/auth-webhook/auth-webhook-conf.yaml --service-account-key-file=/root/cdk/serviceaccount.key --kubelet-preferred-address-types=InternalIP,Hostname,InternalDNS,ExternalDNS,ExternalIP --encryption-provider-config=/var/snap/kube-apiserver/common/encryption/encryption_config.yaml --advertise-address=172.31.17.53 --etcd-cafile=/root/cdk/etcd/client-ca.pem --etcd-keyfile=/root/cdk/etcd/client-key.pem --etcd-certfile=/root/cdk/etcd/client-cert.pem --etcd-servers=https://172.31.13.233:2379,https://172.31.30.137:2379,https://172.31.9.235:2379 --authorization-mode=Node,RBAC --enable-admission-plugins=PersistentVolumeLabel,PodSecurityPolicy,NodeRestriction --requestheader-client-ca-file=/root/cdk/ca.crt --requestheader-allowed-names=system:kube-apiserver,client --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group --requestheader-username-headers=X-Remote-User --proxy-client-cert-file=/root/cdk/client.crt --proxy-client-key-file=/root/cdk/client.key --enable-aggregator-routing=true --client-ca-file=/root/cdk/ca.crt --audit-log-path=/root/cdk/audit/audit.log --audit-log-maxage=30 --audit-log-maxsize=100 --audit-log-maxbackup=10 --audit-policy-file=/root/cdk/audit/audit-policy.yaml
 ```
 
-## Setting a configuration
+### Setting a configuration
 
 The authorisation mode can be set using the same **Juju** command as above, but this
 time specifying a value:
@@ -79,12 +88,12 @@ juju config kubernetes-master authorization-mode="Node"
 It is possible to set more than one mode using a comma-separated list:
 
 ```bash
-juju config kubernetes-master authorization-mode="RBAC,Node"
+juju config kubernetes-master authorization-mode="Node,RBAC"
 ```
 
 <div class="p-notification--positive"><p markdown="1" class="p-notification__response">
 <span class="p-notification__status">Note:</span>
-Using "RBAC,Node" for authorisation is the recommended configuration.
+Using "Node,RBAC" for authorisation is the recommended configuration.
 </p></div>
 
 The order matters. Kubernetes will process each API request with each module in
@@ -95,73 +104,168 @@ the next module in the list. If no decision has been returned by the last
 module in the list, then the request is denied.
 
 
-
 <a id='rbac'> </a>
 
-## Further information on RBAC
+### Further information on RBAC
 
-Many of the defined roles (those prefixed by 'system:' ) for RBAC are really intended for
-managing access to Kubernetes componenets themselves.
+Many of the defined roles (those prefixed by `system:`) for RBAC are really intended for
+managing access to Kubernetes components themselves.
 
-The main  cluster roles for additional users are:`admin`, `cluster-admin`, `edit` and `view` .
+The main cluster roles for additional users are: `admin`, `cluster-admin`, `edit` and `view`.
 
-You can view the available roles,  cluster roles and bindings with the following commands:
+You can view the available roles, cluster roles and bindings with the following commands:
 
 ```bash
 kubectl get roles --all-namespaces
 kubectl get clusterroles --all-namespaces
 kubectl get rolebindings --all-namespaces
-kubectl get clusterrolebindings  --all-namespaces
+kubectl get clusterrolebindings --all-namespaces
 ```
 
-### Adding or removing users and editing roles
-
-The recommended method for managing Kubernetes users is through an external
-authentication service such as LDAP (see the documentation on
-[using LDAP with CDK][docs-ldap]). You can read more about the Kubernetes
-approach to authentication in this page of the
-[Kubernetes documentation][upstream-authentication].
-
-For simple systems, and for the purposes of testing, it can be useful to use the basic
-file-based system. The instructions below demonstrate how to edit the `basic_auth.csv`
-files on the `kubernetes-master` nodes.
-
-#### Using `basic_auth` files
-
-To add a user you will need to edit the /root/cdk/basic_auth.csv. Note that the
-format for this file is password,user,uid,"group1,group2,group3".
-
-First establish an SSH connection to the main kubernetes-master:
-
-```bash
-juju ssh kubernetes-master/0
-```
-
-Then edit the file:
-
-```bash
-sudo nano /root/cdk/basic_auth.csv
-exit
-```
-...adding the appropriate details. You can then restart the master for the changes to take
-effect:
-
-```bash
-juju run-action kubernetes-master/0 restart
-```
-
-For more detail on the roles and bindings, please see the
+For more detail on roles and bindings, please see the
 [Kubernetes RBAC documentation][rbac].
 
-### Using AWS IAM with RBAC
 
-AWS IAM credentials can be used for authentication and authorisation on your Charmed Kubernetes cluster, even if the cluster is not hosted on AWS. For further details see the documentation on [AWS IAM auth][aws-iam].
+<a id='authn'> </a>
+
+## Authentication
+
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+The default authentication mechanism in <strong>Charmed Kubernetes</strong> 1.19 has changed
+from file-based authentication to a webhook token service.
+  </p>
+</div>
+
+**Charmed Kubernetes** manages a webhook authentication service that compares API
+requests to Kubernetes secrets. If needed, any existing entries in previous
+authentication files (`basic_auth.csv` and `known_tokens.csv`) are migrated to secrets
+during the `kubernetes-master` charm upgrade.
+
+Read about the Kubernetes approach to authentication in this page of the
+[Kubernetes documentation][upstream-authentication].
+
+### Managing users with charm actions
+
+The recommended method for managing Kubernetes users is with `kubernetes-master`
+charm actions.
+
+#### user-create
+
+Creates a Kubernetes secret with username and optional group information. This
+action also creates a kubeconfig file that can be retrieved and used to
+authenticate with the cluster. For example:
+
+```bash
+juju run-action --wait kubernetes-master/0 user-create name='alice'
+```
+
+Example output:
+```bash
+unit-kubernetes-master-0:
+  UnitId: kubernetes-master/0
+  id: "2"
+  results:
+    kubeconfig: juju scp kubernetes-master/0:/home/ubuntu/alice-kubeconfig .
+    msg: User "alice" created.
+    users: admin, system:kube-controller-manager, system:kube-proxy, system:node:ip-172-31-0-215,
+      system:node:ip-172-31-6-184, system:node:ip-172-31-23-177, system:kube-scheduler,
+      system:monitoring, alice
+  status: completed
+```
+
+If specified, the `groups` parameter should be a comma-separated list of the
+`Role` or `ClusterRole` that this user should belong to. For example:
+
+```bash
+juju run-action --wait kubernetes-master/0 user-create name='bob' groups='system:masters,devs'
+```
+
+Example output:
+```bash
+unit-kubernetes-master-0:
+  UnitId: kubernetes-master/0
+  id: "3"
+  results:
+    kubeconfig: juju scp kubernetes-master/0:/home/ubuntu/bob-kubeconfig .
+    msg: User "bob" created.
+    users: admin, alice, system:kube-controller-manager, system:kube-proxy, system:node:ip-172-31-0-215,
+      system:node:ip-172-31-6-184, system:node:ip-172-31-23-177, system:kube-scheduler,
+      system:monitoring, bob
+  status: completed
+```
+
+#### user-list
+
+Lists usernames from all secrets created by **Charmed Kubernetes**. For example:
+
+```bash
+juju run-action --wait kubernetes-master/0 user-list
+```
+
+Example output:
+```bash
+unit-kubernetes-master-0:
+  UnitId: kubernetes-master/0
+  id: "4"
+  results:
+    users: admin, alice, bob, system:kube-controller-manager, system:kube-proxy, system:node:ip-172-31-0-215,
+      system:node:ip-172-31-6-184, system:node:ip-172-31-23-177, system:kube-scheduler,
+      system:monitoring
+  status: completed
+```
+
+#### user-delete
+
+Deletes the secret associated with an existing user. For example:
+
+```bash
+juju run-action --wait kubernetes-master/0 user-delete name=bob
+```
+
+Example output:
+```bash
+unit-kubernetes-master-0:
+  UnitId: kubernetes-master/0
+  id: "5"
+  results:
+    msg: User "bob" deleted.
+    users: admin, alice, system:kube-controller-manager, system:kube-proxy, system:node:ip-172-31-0-215,
+      system:node:ip-172-31-6-184, system:node:ip-172-31-23-177, system:kube-scheduler,
+      system:monitoring
+  status: completed
+```
+
+### Managing users with an external service
+
+**Charmed Kubernetes** also supports external services for user authentication:
+
+- **AWS IAM**: IAM credentials can be used for authentication and authorisation
+on your Charmed Kubernetes cluster, even if the cluster is not hosted on AWS.
+For further details, see the documentation on
+[AWS IAM with Charmed Kubernetes][aws-iam].
+- **LDAP**: See the documentation on using
+[LDAP and Keystone with Charmed Kubernetes][docs-ldap].
+
+Additionally, a custom endpoint can be configured to authenticate requests. This
+must be an https url accessible by the `kubernetes-master` units. When a
+JSON-serialized TokenReview object is POSTed to this endpoint, it must respond with
+appropriate authentication details. Set this option as follows:
+
+```bash
+juju config kubernetes-master authn-webhook-endpoint='https://your.server:8443/authenticate'
+```
+
+More information about webhook authentication service requirements can be found
+in the [upstream documentation][upstream-webhook].
+
 
  <!-- LINKS -->
 
-
 [upstream-auth]: https://kubernetes.io/docs/reference/access-authn-authz/authorization/
 [upstream-authentication]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/
+[upstream-webhook]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#webhook-token-authentication
 [node]: https://kubernetes.io/docs/reference/access-authn-authz/node/
 [abac]: https://kubernetes.io/docs/reference/access-authn-authz/abac/
 [rbac]: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
