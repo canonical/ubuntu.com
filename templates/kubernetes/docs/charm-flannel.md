@@ -1,16 +1,21 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
-markdown_includes:
-  nav: "kubernetes/docs/shared/_side-navigation.md"
+charm_name: flannel
+charm_revision: '0'
 context:
-  title: "Flannel charm"
   description: Kubernetes-master Charm reference
+  title: Flannel charm
 keywords: kubernetes-master, charm, config
-tags: [reference]
-sidebar: k8smain-sidebar
+layout:
+- base
+- ubuntu-com
+markdown_includes:
+  nav: kubernetes/docs/shared/_side-navigation.md
 permalink: charm-flannel.html
-layout: [base, ubuntu-com]
-toc: False
+sidebar: k8smain-sidebar
+tags:
+- reference
+toc: false
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 Flannel is a virtual network that gives a subnet to each host for use with

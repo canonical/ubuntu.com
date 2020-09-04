@@ -1,16 +1,21 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
-markdown_includes:
-  nav: "kubernetes/docs/shared/_side-navigation.md"
+charm_name: docker-registry
+charm_revision: '0'
 context:
-  title: "Docker registry charm"
   description: Kubernetes-master Charm reference
+  title: Docker registry charm
 keywords: kubernetes-master, charm, config
-tags: [reference]
-sidebar: k8smain-sidebar
+layout:
+- base
+- ubuntu-com
+markdown_includes:
+  nav: kubernetes/docs/shared/_side-navigation.md
 permalink: charm-docker-registry.html
-layout: [base, ubuntu-com]
-toc: False
+sidebar: k8smain-sidebar
+tags:
+- reference
+toc: false
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 This charm provides a registry for storage and distribution of docker images.
@@ -244,7 +249,7 @@ juju run-action --wait docker-registry/0 start
 | <a id="table-tls-cert-blob"> </a> tls-cert-blob | string |  | Base64 encoded TLS certificate (overwrites tls-cert-path file).  |
 | <a id="table-tls-cert-path"> </a> tls-cert-path | string | [See notes](#tls-cert-path-default) | Path to the TLS certificate.  |
 | <a id="table-tls-key-blob"> </a> tls-key-blob | string |  | Base64 encoded TLS certificate private key (overwrites tls-key-path file).  |
-| <a id="table-tls-key-path"> </a> tls-key-path | string | [See notes](#tls-key-path-default) | Path to the TLS certificate private key.  |
+| <a id="table-tls-key-path"> </a> tls-key-path | string | [See notes](#tls-key-path-default) | Path the the TLS certificate private key.  |
 
 ---
 

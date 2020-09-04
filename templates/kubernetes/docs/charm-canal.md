@@ -1,17 +1,21 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
-markdown_includes:
-  nav: "kubernetes/docs/shared/_side-navigation.md"
+charm_name: canal
+charm_revision: '0'
 context:
-  title: "Canal charm"
   description: Kubernetes-master Charm reference
+  title: Canal charm
 keywords: kubernetes-master, charm, config
-tags: [reference]
-sidebar: k8smain-sidebar
+layout:
+- base
+- ubuntu-com
+markdown_includes:
+  nav: kubernetes/docs/shared/_side-navigation.md
 permalink: charm-canal.html
-layout: [base, ubuntu-com]
-charm-version: 690
-toc: False
+sidebar: k8smain-sidebar
+tags:
+- reference
+toc: false
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 Canal is a community-driven initiative that aims to allow users to easily
@@ -119,6 +123,10 @@ require this support please file a bug.
 
 This subordinate also leverages juju-resources, so it is currently only
 available on juju 2.0+ controllers.
+
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
 
 
 ## Further information

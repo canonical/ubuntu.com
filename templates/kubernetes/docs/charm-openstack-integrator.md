@@ -1,16 +1,21 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
-markdown_includes:
-  nav: "kubernetes/docs/shared/_side-navigation.md"
+charm_name: openstack-integrator
+charm_revision: '0'
 context:
-  title: "OpenStack integrator charm"
   description: Kubernetes-master Charm reference
+  title: OpenStack integrator charm
 keywords: kubernetes-master, charm, config
-tags: [reference]
-sidebar: k8smain-sidebar
+layout:
+- base
+- ubuntu-com
+markdown_includes:
+  nav: kubernetes/docs/shared/_side-navigation.md
 permalink: charm-openstack-integrator.html
-layout: [base, ubuntu-com]
-toc: False
+sidebar: k8smain-sidebar
+tags:
+- reference
+toc: false
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 This charm acts as a proxy to OpenStack and provides an [interface][] to provide
@@ -324,6 +329,9 @@ recommended approach.  If not set, will use the upstream default.
 
 <!-- CONFIG ENDS -->
 
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
 
 [interface]: https://github.com/juju-solutions/interface-openstack-integration
 [Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes

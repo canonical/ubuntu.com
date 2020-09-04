@@ -1,18 +1,22 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
-markdown_includes:
-  nav: "kubernetes/docs/shared/_side-navigation.md"
+charm_name: docker
+charm_revision: '0'
 context:
-  title: "Docker charm"
   description: Kubernetes-master Charm reference
+  title: Docker charm
 keywords: kubernetes-master, charm, config
-tags: [reference]
-sidebar: k8smain-sidebar
+layout:
+- base
+- ubuntu-com
+markdown_includes:
+  nav: kubernetes/docs/shared/_side-navigation.md
 permalink: charm-docker.html
-layout: [base, ubuntu-com]
-toc: False
+sidebar: k8smain-sidebar
+tags:
+- reference
+toc: false
+wrapper_template: kubernetes/docs/base_docs.html
 ---
-
 
 This subordinate charm deploys the [Docker](http://docker.com) engine within
 a running Juju charm application. Docker is an open platform for developers

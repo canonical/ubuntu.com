@@ -1,16 +1,21 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
-markdown_includes:
-  nav: "kubernetes/docs/shared/_side-navigation.md"
+charm_name: vsphere-integrator
+charm_revision: '0'
 context:
-  title: "vSphere integrator charm"
   description: Kubernetes-master Charm reference
+  title: vSphere integrator charm
 keywords: kubernetes-master, charm, config
-tags: [reference]
-sidebar: k8smain-sidebar
+layout:
+- base
+- ubuntu-com
+markdown_includes:
+  nav: kubernetes/docs/shared/_side-navigation.md
 permalink: charm-vsphere-integrator.html
-layout: [base, ubuntu-com]
-toc: False
+sidebar: k8smain-sidebar
+tags:
+- reference
+toc: false
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 This charm acts as a proxy to VMware vSphere and provides an [interface][] to
@@ -218,6 +223,11 @@ spec:
         claimName: testclaim
 EOY
 ```
+
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
+
 
 [interface]: https://github.com/juju-solutions/interface-vsphere-integration
 [Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes

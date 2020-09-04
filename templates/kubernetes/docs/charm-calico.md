@@ -1,16 +1,21 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
-markdown_includes:
-  nav: "kubernetes/docs/shared/_side-navigation.md"
+charm_name: calico
+charm_revision: '0'
 context:
-  title: "Calico charm"
   description: Kubernetes-master Charm reference
+  title: Calico charm
 keywords: kubernetes-master, charm, config
-tags: [reference]
-sidebar: k8smain-sidebar
+layout:
+- base
+- ubuntu-com
+markdown_includes:
+  nav: kubernetes/docs/shared/_side-navigation.md
 permalink: charm-calico.html
-layout: [base, ubuntu-com]
-toc: False
+sidebar: k8smain-sidebar
+tags:
+- reference
+toc: false
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 Calico is a new approach to virtual networking and network security for containers,
@@ -163,6 +168,10 @@ Example value: "{0: [{address: 10.0.0.1, as-number: 65000}, {address: 10.0.0.2, 
 
 
 <!-- CONFIG ENDS -->
+
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
 
 
 ## Further information
