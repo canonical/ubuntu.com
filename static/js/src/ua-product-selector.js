@@ -178,7 +178,9 @@ function productSelector() {
         }">
           <button class="p-button${
             action === "add" ? "--positive" : ""
-          } u-no-margin--bottom js-cart-action" data-image-url="${imageURL}" data-action="${action}" data-product-id="${productId}" data-quantity=${quantity}>${action}</button>
+          } u-no-margin--bottom js-cart-action" data-image-url="${imageURL}" data-action="${action}" data-product-id="${productId}" data-quantity=${quantity} tabindex="${
+      productId ? "" : "-1"
+    }">${action}</button>
         </div>
       </div>
     `;
@@ -204,7 +206,14 @@ function productSelector() {
       const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
 
       if (wrapper) {
+        const tabbableItems = wrapper.querySelectorAll(
+          "input, .p-tabs__link, button, a"
+        );
+
         wrapper.classList.add("u-disable");
+        tabbableItems.forEach((item) => {
+          item.setAttribute("tabindex", "-1");
+        });
       }
     });
   }
@@ -214,7 +223,14 @@ function productSelector() {
       const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
 
       if (wrapper) {
+        const tabbableItems = wrapper.querySelectorAll(
+          "input, .p-tabs__link, button, a"
+        );
+
         wrapper.classList.remove("u-disable");
+        tabbableItems.forEach((item) => {
+          item.removeAttribute("tabindex");
+        });
       }
     });
   }
@@ -267,6 +283,10 @@ function productSelector() {
         }
       });
     }
+
+    if (formStage && input.value > 0) {
+      scrollToStep("version");
+    }
   }
 
   function handleStepSpecificAction(inputElement) {
@@ -290,6 +310,7 @@ function productSelector() {
         } else {
           quantityTypeEl.innerHTML = `How many ${inputElement.dataset.productName}s?`;
           state.set(inputElement.name, [inputElement.value]);
+          scrollToStep("quantity");
         }
 
         break;
@@ -297,6 +318,14 @@ function productSelector() {
         debounce(function () {
           handleQuantityInputs(inputElement);
         }, 500)();
+        break;
+      case "support":
+        state.set(inputElement.name, [inputElement.value]);
+        scrollToStep("add");
+        break;
+      case "add":
+        state.set(inputElement.name, [inputElement.value]);
+        scrollToStep("cart");
         break;
       default:
         state.set(inputElement.name, [inputElement.value]);
@@ -336,21 +365,34 @@ function productSelector() {
     form.reset();
   }
 
+  function scrollToStep(step) {
+    const stepWrapper = document.querySelector(`${stepClassPrefix}${step}`);
+
+    window.scrollTo({
+      top: stepWrapper.offsetTop,
+      behavior: "smooth",
+    });
+  }
+
   function setActiveSteps() {
     let stepsToEnable;
     let stepsToDisable;
     let i = 0;
 
-    steps.forEach((step) => {
-      if (stepsToEnable === undefined) {
-        if (!state.get(step)[0]) {
-          stepsToEnable = steps.slice(0, i + 1);
-          stepsToDisable = steps.slice(i + 1);
-        } else if (i < steps.length) {
-          i++;
+    if (window.accountId) {
+      steps.forEach((step) => {
+        if (stepsToEnable === undefined) {
+          if (!state.get(step)[0]) {
+            stepsToEnable = steps.slice(0, i + 1);
+            stepsToDisable = steps.slice(i + 1);
+          } else if (i < steps.length) {
+            i++;
+          }
         }
-      }
-    });
+      });
+    } else {
+      stepsToDisable = steps;
+    }
 
     if (stepsToEnable) {
       enableSteps(stepsToEnable);
