@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-### August XXth, 2020 - [charmed-kubernetes-475](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-475/archive/bundle.yaml)
+### September 10th, 2020 - [charmed-kubernetes-509](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-509/archive/bundle.yaml)
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -89,7 +89,7 @@ For a full list of the changes introduced in Kubernetes 1.19, please see the
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
-[https://launchpad.net/charmed-kubernetes/+milestone/1.19](https://launchpad.net/charmed-kubernetes/+milestone/1.18).
+[https://launchpad.net/charmed-kubernetes/+milestone/1.19](https://launchpad.net/charmed-kubernetes/+milestone/1.19).
 
 ## Notes / Known Issues
 
