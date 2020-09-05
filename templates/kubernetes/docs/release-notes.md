@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-### August XXth, 2020 - [charmed-kubernetes-475](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-475/archive/bundle.yaml)
+### September 10th, 2020 - [charmed-kubernetes-509](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-509/archive/bundle.yaml)
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -216,7 +216,7 @@ running this action on Charmed Kubernetes components.
 
 - Containerd version hold
 
-The version of [containerd](https://containerd.io/) will now be held. This means 
+The version of [containerd](https://containerd.io/) will now be held. This means
 that the version of [containerd](https://containerd.io/) will not be upgraded along
 with the charm. To update containerd to the latest stable, currently 1.3.3, you can
 call the `upgrade-containerd` action:
@@ -486,9 +486,9 @@ Please see [this page][historic] for release notes of earlier versions.
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/release-notes.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/release-notes.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

@@ -143,6 +143,20 @@ requests to Kubernetes secrets. If needed, any existing entries in previous
 authentication files (`basic_auth.csv` and `known_tokens.csv`) are migrated to secrets
 during the `kubernetes-master` charm upgrade.
 
+The webhook authenticator is distributed with the `kubernetes-master` charm and runs
+on port `5000` of each master unit. Source code for the [application][auth-webhook-app]
+as well as the associated [systemd service][auth-webhook-svc] can be found in the
+`kubernetes-master` source repository.
+
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+Only one webhook authenticator can be configured on the Kubernetes apiserver. To use
+a custom webhook, see the <strong>Managing users with an external service</strong>
+section below.
+  </p>
+</div>
+
 Read about the Kubernetes approach to authentication in this page of the
 [Kubernetes documentation][upstream-authentication].
 
@@ -175,8 +189,8 @@ unit-kubernetes-master-0:
   status: completed
 ```
 
-If specified, the `groups` parameter should be a comma-separated list of the
-`Role` or `ClusterRole` that this user should belong to. For example:
+If specified, the `groups` parameter should be a comma-separated list of Kubernetes
+`Groups` that this user should belong to. For example:
 
 ```bash
 juju run-action --wait kubernetes-master/0 user-create name='bob' groups='system:masters,devs'
@@ -239,7 +253,9 @@ unit-kubernetes-master-0:
 
 ### Managing users with an external service
 
-**Charmed Kubernetes** also supports external services for user authentication:
+The **Charmed Kubernetes** webhook authenticator will first check local tokens followed
+by Kubernetes secrets to authenticate a request. When present, the following external
+services may also be used to process requests:
 
 - **AWS IAM**: IAM credentials can be used for authentication and authorisation
 on your Charmed Kubernetes cluster, even if the cluster is not hosted on AWS.
@@ -273,6 +289,8 @@ in the [upstream documentation][upstream-webhook].
 [docs-ldap]: /kubernetes/docs/ldap
 [roles]: #rbac
 [aws-iam]: /kubernetes/docs/aws-iam-auth
+[auth-webhook-app]: https://github.com/charmed-kubernetes/charm-kubernetes-master/blob/master/templates/cdk.master.auth-webhook.py
+[auth-webhook-svc]: https://github.com/charmed-kubernetes/charm-kubernetes-master/blob/master/templates/cdk.master.auth-webhook.service
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
