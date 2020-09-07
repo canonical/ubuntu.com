@@ -5,6 +5,7 @@ import {
   postCustomerInfoToStripeAccount,
   postRenewalIDToProcessPayment,
   postPurchaseData,
+  postPurchasePreviewData,
 } from "./advantage/contracts-api.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
@@ -12,6 +13,7 @@ import { vatCountries } from "./advantage/vat-countries.js";
 
 import {
   setOrderInformation,
+  setOrderTotal,
   setPaymentInformation,
   setRenewalInformation,
 } from "./advantage/set-modal-info.js";
@@ -166,7 +168,6 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
 
 function attachFormEvents() {
   const countryDropdown = modal.querySelector("select");
-  const vatContainer = modal.querySelector(".js-vat-container");
 
   for (let i = 0; i < form.elements.length; i++) {
     const input = form.elements[i];
@@ -188,18 +189,10 @@ function attachFormEvents() {
     }
   });
 
-  if (vatCountries.includes(countryDropdown.value)) {
-    vatContainer.classList.remove("u-hide");
-  } else {
-    vatContainer.classList.add("u-hide");
-  }
+  checkVAT(countryDropdown.value);
 
   countryDropdown.addEventListener("change", (e) => {
-    if (vatCountries.includes(e.target.value)) {
-      vatContainer.classList.remove("u-hide");
-    } else {
-      vatContainer.classList.add("u-hide");
-    }
+    checkVAT(e.target.value);
   });
 
   termsCheckbox.addEventListener("change", () => {
@@ -263,6 +256,35 @@ function attachModalButtonEvents() {
       closeModal("pressed escape key");
     }
   });
+}
+
+function checkVAT(value) {
+  const vatContainer = modal.querySelector(".js-vat-container");
+
+  if (vatCountries.includes(value)) {
+    vatContainer.classList.remove("u-hide");
+  } else {
+    vatContainer.classList.add("u-hide");
+  }
+}
+
+function applyTotals() {
+  let tax = 0;
+  let total = 0;
+
+  if (currentTransaction.type === "purchase") {
+    postPurchasePreviewData(
+      currentTransaction.accountId,
+      currentTransaction.products,
+      currentTransaction.previousPurchaseId
+    ).then((data) => {
+      tax = data.taxAmount || 0;
+      total = data.total;
+      setOrderTotal(tax, total, modal);
+    });
+  } else {
+    setOrderTotal(tax, total, modal);
+  }
 }
 
 function clearProgressTimers() {
@@ -716,6 +738,7 @@ function showDialogMode() {
 
 function showPayMode() {
   hideErrors();
+  applyTotals();
   disableProcessingState();
   modal.classList.remove("is-details-mode", "is-dialog-mode");
   modal.classList.add("is-pay-mode");
