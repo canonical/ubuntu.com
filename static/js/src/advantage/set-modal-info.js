@@ -99,24 +99,12 @@ function setSummaryInfo(summaryObject, modal) {
     value: summaryObject.subtotal,
   });
 
-  totalsContainer.innerHTML += buildInfoRow({
-    label: "VAT: ",
-    value: summaryObject.vat,
-  });
-
-  totalsContainer.innerHTML += buildInfoRow({
-    label: "Total: ",
-    value: summaryObject.total,
-  });
-
   infoContainer.classList.remove("u-hide");
-  totalsContainer.classList.remove("u-hide");
 }
 
 export function getOrderInformation(listings) {
   const items = [];
   const currency = "USD";
-  const vatCurrency = "GBP";
   const startDate = new Date();
   const endDate = add(new Date(), { months: 12 });
   let subtotal = 0;
@@ -151,9 +139,6 @@ export function getOrderInformation(listings) {
   return {
     items: items,
     subtotal: formattedCurrency(subtotal, currency, "en-US"),
-    total: formattedCurrency(subtotal, currency, "en-US"),
-    // TODO: handle actual VAT
-    vat: formattedCurrency(0, vatCurrency, "en-US"),
   };
 }
 
@@ -218,6 +203,27 @@ export function setOrderInformation(listings, modal) {
 
   setModalTitle("Complete purchase", modal);
   setSummaryInfo(orderSummary, modal);
+}
+
+export function setOrderTotal(taxAmount, totalAmount, modal) {
+  const currency = "USD";
+  const totalsContainer = modal.querySelector("#order-totals");
+  // TODO: get VAT in local currency
+  const vatCurrency = "USD";
+
+  totalsContainer.innerHTML = "";
+
+  totalsContainer.innerHTML += buildInfoRow({
+    label: "VAT: ",
+    value: formattedCurrency(taxAmount, vatCurrency, "en-US"),
+  });
+
+  totalsContainer.innerHTML += buildInfoRow({
+    label: "Total: ",
+    value: formattedCurrency(totalAmount, currency, "en-US"),
+  });
+
+  totalsContainer.classList.remove("u-hide");
 }
 
 export function setPaymentInformation(paymentMethod, modal) {

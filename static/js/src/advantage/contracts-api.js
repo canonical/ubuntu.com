@@ -68,6 +68,30 @@ export async function postPurchaseData(
   return data;
 }
 
+export async function postPurchasePreviewData(
+  accountID,
+  products,
+  previousPurchaseId
+) {
+  let response = await fetch(`/advantage/subscribe/preview`, {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      account_id: accountID,
+      products: products,
+      previous_purchase_id: previousPurchaseId,
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}
+
 export async function postCustomerInfoToStripeAccount(
   paymentMethodID,
   accountID,
