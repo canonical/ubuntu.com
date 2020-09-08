@@ -168,8 +168,32 @@
 
 <section class="p-strip is-shallow js-step-3">
   <div class="row">
+    <div class="col-8 u-sv3">
+      <h2><span class="u-number-circle">3</span> What architecture do you want?</h2>
+    </div>
+  </div>
+  <div class="js-arch">
+    <div class="row  js-selection-container">
+      <div class="col-3">
+        <button class="p-button is-wide js-selection">
+          <span class="js-name" data-value="amd64">amd64</span>
+        </button>
+      </div>
+    </div>
+    <div class="row  js-selection-container">
+      <div class="col-3">
+        <button class="p-button is-wide js-selection">
+          <span class="js-name" data-value="armhf">armhf</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow js-step-4">
+  <div class="row">
     <div class="col-10 u-sv3">
-      <h2><span class="u-number-circle">3</span> What packages do you want preinstalled?</h2>
+      <h2><span class="u-number-circle">4</span> What packages do you want preinstalled?</h2>
       <p>Select the applications that will be preinstalled on the device.</p>
     </div>
   </div>
@@ -188,15 +212,6 @@
       <h4>Your chosen snaps:</h4>
       <div class="p-card has-limited-height--large">
         <div class="js-preinstalled-snaps-list"></div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <div class="p-notification--information js-architecture u-hide">
-        <p class="p-notification__response">
-          Only showing snaps compatible with your system's architecture (<strong class="js-architecture-detail"></strong>). If a snap you expected to see is missing, it may not be compatible with your system.
-        </p>
       </div>
     </div>
   </div>
@@ -223,6 +238,7 @@
         <input type="hidden" name="board" value="" />
         <input type="hidden" name="system" value="" />
         <input type="hidden" name="snaps" value="" />
+        <input type="hidden" name="arch" value="" />
         <input type="hidden" name="FullName" value="{{ user_info.fullname }}" />
         <input type="hidden" name="Email" value="{{ user_info.email }}" />
         <p><button class="p-button--positive js-build-button">Build image</button></p>

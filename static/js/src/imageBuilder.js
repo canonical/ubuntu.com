@@ -31,6 +31,7 @@ window.renderImageBuilder = function () {
       this.states = {
         board: new StateArray(),
         os: new StateArray(),
+        arch: new StateArray(),
         snaps: new StateArray(),
       };
     }
@@ -50,23 +51,26 @@ window.renderImageBuilder = function () {
   // Cached document queries
   const boardSelection = document.querySelectorAll(".js-boards .js-selection");
   const osSelection = document.querySelectorAll(".js-os .js-selection");
+  const archSelection = document.querySelectorAll(".js-arch .js-selection");
   const snapSearch = document.querySelector(".js-snap-search");
   const snapResults = document.querySelector(".js-snap-results");
-  const archOutput = document.querySelector(".js-architecture");
   const preinstallResults = document.querySelector(
     ".js-preinstalled-snaps-list"
   );
   const buildButton = document.querySelector(".js-build-button");
   const step2 = document.querySelector(".js-step-2");
   const step3 = document.querySelector(".js-step-3");
+  const step4 = document.querySelector(".js-step-4");
   const form = document.getElementById("build-form");
 
   let snapSearchResults;
   selectionListeners(boardSelection, "board");
   selectionListeners(osSelection, "os");
+  selectionListeners(archSelection, "arch");
   searchHandler();
   step2.classList.add("u-disable");
   step3.classList.add("u-disable");
+  step4.classList.add("u-disable");
 
   function searchHandler() {
     if (snapSearch) {
@@ -88,14 +92,12 @@ window.renderImageBuilder = function () {
   }
 
   let triggerSearch = debounce(function () {
-    const board = state.get("board")[0];
-    const os = state.get("os")[0];
     snapResults.innerHTML =
       '<p><i class="p-icon--spinner u-animation--spin"></i></p>';
     const searchInput = snapSearch.querySelector(".p-search-box__input");
     if (searchInput) {
       const searchValue = encodeURI(searchInput.value);
-      fetch(`/snaps?q=${searchValue}&size=12&board=${board}&system=${os}`)
+      fetch(`/snaps?q=${searchValue}&size=12`)
         .then((response) => {
           return response.json();
         })
@@ -103,9 +105,6 @@ window.renderImageBuilder = function () {
           snapSearchResults = json["results"];
           renderSnapList(snapSearchResults, snapResults, "Add");
           addSnapHandler();
-          archOutput.querySelector(".js-architecture-detail").innerText =
-            json["architecture"];
-          archOutput.classList.remove("u-hide");
         });
     }
   }, 250);
@@ -291,7 +290,9 @@ window.renderImageBuilder = function () {
       state.get("board") &&
       state.get("board")[0] &&
       state.get("os") &&
-      state.get("os")[0]
+      state.get("os")[0] &&
+      state.get("arch") &&
+      state.get("arch")[0]
     ) {
       buildButton.setAttribute("aria-disabled", "false");
       buildButton.disabled = false;
@@ -305,11 +306,15 @@ window.renderImageBuilder = function () {
     const boardInput = form.querySelector('[name="board"]');
     const systemInput = form.querySelector('[name="system"]');
     const snapsInput = form.querySelector('[name="snaps"]');
+    const archInput = form.querySelector('[name="arch"]');
     if (state.get("board").length >= 1) {
       boardInput.value = state.get("board")[0];
     }
     if (state.get("os").length >= 1) {
       systemInput.value = state.get("os")[0];
+    }
+    if (state.get("arch").length >= 1) {
+      archInput.value = state.get("arch")[0];
     }
     let snapsString = "";
     let comma = "";
@@ -323,19 +328,15 @@ window.renderImageBuilder = function () {
   function checkDisabled() {
     step2.classList.add("u-disable");
     step3.classList.add("u-disable");
-    archOutput.classList.add("u-hide");
+    step4.classList.add("u-disable");
     if (state.get("board") && state.get("board")[0]) {
       step2.classList.remove("u-disable");
     }
     if (state.get("os") && state.get("os")[0]) {
       step3.classList.remove("u-disable");
-
-      if (
-        snapResults.hasChildNodes() &&
-        archOutput.querySelector(".js-architecture-detail").innerHTML.trim()
-      ) {
-        archOutput.classList.remove("u-hide");
-      }
+    }
+    if (state.get("arch") && state.get("arch")[0]) {
+      step4.classList.remove("u-disable");
     }
 
     // If snaps is disabled clear all selections and values
