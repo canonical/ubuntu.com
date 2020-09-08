@@ -92,9 +92,6 @@ window.renderImageBuilder = function () {
   }
 
   let triggerSearch = debounce(function () {
-    //const board = state.get("board")[0];
-    //const os = state.get("os")[0];
-    //const arch = state.get("arch")[0];
     snapResults.innerHTML =
       '<p><i class="p-icon--spinner u-animation--spin"></i></p>';
     const searchInput = snapSearch.querySelector(".p-search-box__input");
@@ -341,7 +338,6 @@ window.renderImageBuilder = function () {
     if (state.get("arch") && state.get("arch")[0]) {
       step4.classList.remove("u-disable");
     }
-    
 
     // If snaps is disabled clear all selections and values
     if (!state.get("os")[0]) {
