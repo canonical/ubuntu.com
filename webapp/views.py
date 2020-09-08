@@ -190,7 +190,7 @@ def post_build():
             snaps=snaps,
             author_info={"name": full_name, "email": email, "board": board},
             gpg_passphrase=flask.current_app.config["SECRET_KEY"],
-            arch=arch
+            arch=arch,
         )
         context["build_info"] = launchpad.session.get(
             response.headers["Location"]
