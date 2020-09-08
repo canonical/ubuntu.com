@@ -126,6 +126,10 @@
           <p>
             <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
           </p>
+          <div class="u-sv3">
+            <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
+          </div>
+
           <p class="u-no-margin--bottom">
             <input type="hidden" name="Consent_to_Processing__c" value="Yes">
             <button class="p-button" type="submit">Subscribe now</button>
@@ -137,6 +141,7 @@
           <input type="hidden" name="munchkinId" value="066-EOV-335">
           <input type="hidden" name="lpurl" value="">
           <input type="hidden" name="ret" value="https://ubuntu.com/internet-of-things/edgex#subscribed">
+          <input type="hidden" name="return_url" value="https://ubuntu.com/internet-of-things/edgex#subscribed">
           <input type="hidden" name="cr" value="">
           <input type="hidden" name="kw" value="">
           <input type="hidden" name="q" value="">
