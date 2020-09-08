@@ -42,15 +42,27 @@ class ReleaseCodename(String):
 
 class Component(String):
     default_error_messages = {
+        "unrecognised_component": ("Component must be 'main' or 'universe'")
+    }
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        if value not in ["main", "universe"]:
+            raise self.make_error("unrecognised_component", input=value)
+
+        return super()._deserialize(value, attr, data, **kwargs)
+
+
+class Pocket(String):
+    default_error_messages = {
         "unrecognised_component": (
-            "Component must be one of "
-            "'main', 'universe', 'esm-infra' or 'esm-apps'"
+            "Pocket must be one of "
+            "'security', 'updates', 'esm-infra', 'esm-apps'"
         )
     }
 
     def _deserialize(self, value, attr, data, **kwargs):
-        if value not in ["main", "universe", "esm-infra", "esm-apps"]:
-            raise self.make_error("unrecognised_component", input=value)
+        if value not in ["security", "updates", "esm-infra", "esm-apps"]:
+            raise self.make_error("unrecognised_pocket", input=value)
 
         return super()._deserialize(value, attr, data, **kwargs)
 
@@ -68,6 +80,7 @@ class NoticePackage(Schema):
     is_source = Boolean(required=True)
     source_link = String(allow_none=True)
     version_link = String(allow_none=True)
+    pocket = Pocket(required=False)
 
 
 class NoticeSchema(Schema):
@@ -92,6 +105,7 @@ class Status(Schema):
     status = String(required=True)
     description = String(allow_none=True)
     component = Component(required=False)
+    pocket = Pocket(required=False)
 
 
 class CvePackage(Schema):
@@ -119,3 +133,13 @@ class CVESchema(Schema):
     packages = List(Nested(CvePackage))
     references = List(String())
     bugs = List(String())
+    patches = Dict(
+        keys=String(),
+        values=List(String(), required=False),
+        allow_none=True,
+    )
+    tags = Dict(
+        keys=String(),
+        values=List(String(), required=False),
+        allow_none=True,
+    )

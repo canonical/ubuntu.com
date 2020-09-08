@@ -55,6 +55,8 @@ class CVE(Base):
     )
     cvss3 = Column(Float)
     references = Column(JSON)
+    patches = Column(JSON)
+    tags = Column(JSON)
     bugs = Column(JSON)
     status = Column(
         Enum("not-in-ubuntu", "active", "rejected", name="cve_statuses")
@@ -65,18 +67,18 @@ class CVE(Base):
     )
 
     @hybrid_property
-    def status_tree(self):
-        status_tree = defaultdict(dict)
+    def packages(self):
+        packages = defaultdict(dict)
         for status in self.statuses:
-            status_tree[status.package_name][status.release_codename] = status
+            packages[status.package_name][status.release_codename] = status
 
-        return status_tree
+        return packages
 
     @hybrid_property
     def active_status_tree(self):
         active_package_statuses = {}
 
-        for package_name, release_statuses in self.status_tree.items():
+        for package_name, release_statuses in self.packages.items():
             for status in release_statuses.values():
                 if (
                     status.status in Status.active_statuses
@@ -86,6 +88,37 @@ class CVE(Base):
                     active_package_statuses[package_name] = release_statuses
 
         return active_package_statuses
+
+    @hybrid_property
+    def formatted_patches(self):
+        return {
+            package_name: [self._format_patch(p) for p in patches]
+            for (package_name, patches) in self.patches.items()
+        }
+
+    def _format_patch(self, patch):
+        if ":" not in patch:
+            return {"type": "text", "content": patch}
+
+        prefix, suffix = patch.split(":", 1)
+        suffix = suffix.strip()
+        if prefix == "break-fix" and " " in suffix:
+            introduced, fixed = suffix.split(" ", 1)
+            if introduced == "-":
+                # First commit to Linux git tree
+                introduced = "1da177e4c3f41524e886b7f1b8a0c1fc7321cac2"
+
+            return {
+                "type": "break-fix",
+                "content": {"introduced": introduced, "fixed": fixed},
+            }
+        if "ftp://" in suffix or "http://" in suffix or "https://" in suffix:
+            return {
+                "type": "link",
+                "content": {"prefix": prefix.capitalize(), "suffix": suffix},
+            }
+
+        return {"type": "text", "content": patch}
 
 
 class Notice(Base):
@@ -167,8 +200,10 @@ class Status(Base):
     )
     description = Column(String)
     component = Column(
-        Enum("main", "universe", "esm-infra", "esm-apps", name="components"),
-        server_default="main",
+        Enum("main", "universe", name="components"),
+    )
+    pocket = Column(
+        Enum("security", "updates", "esm-infra", "esm-apps", name="pockets"),
     )
 
     cve = relationship("CVE", back_populates="statuses")

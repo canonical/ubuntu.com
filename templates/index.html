@@ -29,11 +29,9 @@
 {% block takeover_content %}
   {# ALL #}
   {% include "takeovers/_intro-to-anbox-cloud-whitepaper.html" %}
-  {% include "takeovers/_2004-migration-takeover.html" %}
   {% include "takeovers/_gsi-webinar-series-takeover.html" %}
   {% include "takeovers/_redhat-openstack.html" %}
-  {% include "takeovers/_data-lake_2_server_webinar.html" %}
-
+  {% include "takeovers/_kubernetes-enterprise-whitepaper-takeover.html" %}
 
   {# FRENCH #}
   {% include "takeovers/fr/_cio-guide-to-multipass.html" %}
@@ -41,6 +39,9 @@
 
   {# PORTUGUESE #}
   {% include "takeovers/pt/_vmware-para-o-openstack.html" %}
+
+  {# ITALIAN #}
+  {% include "takeovers/it/_da-vmware-a-openstack.html" %}
 {% endblock takeover_content %}
 
 {#
@@ -65,10 +66,6 @@
     {% include "shared/_notice_default.html" %}
   {% endwith %}
   {% with lang="zh", text="嗨！你知道我们有中文站吗？立即带我去！", url="https://cn.ubuntu.com", icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
-    {% include "shared/_notice_default.html" %}
-  {% endwith %}
-  {% with lang="en", text="
-Update: Canonical managed services and Ubuntu support during COVID-19 outbreak", url="/blog/canonical-managed-services-ubuntu-support-covid-19", icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
     {% include "shared/_notice_default.html" %}
   {% endwith %}
 {% endblock notices_content %}

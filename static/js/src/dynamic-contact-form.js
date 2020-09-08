@@ -142,7 +142,7 @@
       };
 
       if (submitButton) {
-        closeModal.addEventListener("click", function () {
+        submitButton.addEventListener("click", function () {
           ga(
             "send",
             "event",

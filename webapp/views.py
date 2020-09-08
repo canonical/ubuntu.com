@@ -149,11 +149,11 @@ def post_build():
         flask.abort(401)
 
     launchpad = Launchpad(
-        username="imagebuild",
-        token=os.environ["LAUNCHPAD_TOKEN"],
-        secret=os.environ["LAUNCHPAD_SECRET"],
+        username=os.environ["LAUNCHPAD_IMAGE_BUILD_USER"],
+        token=os.environ["LAUNCHPAD_IMAGE_BUILD_TOKEN"],
+        secret=os.environ["LAUNCHPAD_IMAGE_BUILD_SECRET"],
         session=session,
-        auth_consumer="image.build",
+        auth_consumer=os.environ["LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER"],
     )
 
     context = {}
@@ -255,11 +255,11 @@ def notify_build():
     )
 
     launchpad = Launchpad(
-        username="imagebuild",
-        token=os.environ["LAUNCHPAD_TOKEN"],
-        secret=os.environ["LAUNCHPAD_SECRET"],
+        username=os.environ["LAUNCHPAD_IMAGE_BUILD_USER"],
+        token=os.environ["LAUNCHPAD_IMAGE_BUILD_TOKEN"],
+        secret=os.environ["LAUNCHPAD_IMAGE_BUILD_SECRET"],
         session=session,
-        auth_consumer="image.build",
+        auth_consumer=os.environ["LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER"],
     )
 
     build = launchpad.request(build_url).json()

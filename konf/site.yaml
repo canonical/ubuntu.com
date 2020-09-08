@@ -13,14 +13,24 @@ env:
       key: google-custom-search-key
       name: google-api
 
-  - name: LAUNCHPAD_TOKEN
+  - name: LAUNCHPAD_IMAGE_BUILD_USER
+    secretKeyRef:
+      key: user
+      name: launchpad-imagebuild
+
+  - name: LAUNCHPAD_IMAGE_BUILD_TOKEN
     secretKeyRef:
       key: token
       name: launchpad-imagebuild
 
-  - name: LAUNCHPAD_SECRET
+  - name: LAUNCHPAD_IMAGE_BUILD_SECRET
     secretKeyRef:
       key: secret
+      name: launchpad-imagebuild
+
+  - name: LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER
+    secretKeyRef:
+      key: auth-consumer
       name: launchpad-imagebuild
 
   - name: SENTRY_DSN
@@ -136,6 +146,9 @@ production:
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
+    location /blog/wp-json/wp/v2/ {
+      proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
+    }
     location /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
@@ -208,6 +221,9 @@ staging:
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
+    location /blog/wp-json/wp/v2/ {
+      proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
+    }
     location /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }

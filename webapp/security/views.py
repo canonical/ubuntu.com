@@ -12,11 +12,12 @@ from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from sqlalchemy import asc, desc, or_
+from sqlalchemy import asc, desc, or_, and_, func
 from sqlalchemy.exc import IntegrityError, DataError
+from sqlalchemy.orm import contains_eager
+
 
 # Local
-
 from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Package, Status, Release
 from webapp.security.schemas import CVESchema, NoticeSchema
@@ -316,7 +317,6 @@ def cve_index():
     - limit - default 20
     - offset - default 0
     """
-
     # Query parameters
     query = flask.request.args.get("q", "").strip()
     priority = flask.request.args.get("priority")
@@ -324,17 +324,66 @@ def cve_index():
     limit = flask.request.args.get("limit", default=20, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
     component = flask.request.args.get("component")
+    versions = flask.request.args.getlist("version")
+    statuses = flask.request.args.getlist("status")
 
     is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
 
     if is_cve_id and db_session.query(CVE).get(query.upper()):
         return flask.redirect(f"/security/{query.lower()}")
 
-    cves_query = (
-        db_session.query(CVE)
-        .filter(CVE.statuses.any(Status.status.in_(Status.active_statuses)))
-        .filter(CVE.status == "active")
+    all_releases = (
+        db_session.query(Release)
+        .order_by(desc(Release.release_date))
+        .filter(Release.codename != "upstream")
+        .all()
     )
+
+    releases_query = db_session.query(Release).order_by(
+        desc(Release.release_date)
+    )
+
+    if versions and not any(a in ["", "current"] for a in versions):
+        releases_query = releases_query.filter(Release.codename.in_(versions))
+    else:
+        releases_query = releases_query.filter(
+            or_(
+                Release.support_expires > datetime.now(),
+                Release.esm_expires > datetime.now(),
+            )
+        ).filter(Release.codename != "upstream")
+
+    releases = releases_query.all()
+
+    should_filter_by_version_and_status = (
+        versions and statuses and len(versions) == len(statuses)
+    )
+
+    clean_versions = []
+    clean_statuses = []
+    if should_filter_by_version_and_status:
+        raw_all_statuses = db_session.execute(
+            "SELECT unnest(enum_range(NULL::statuses));"
+        ).fetchall()
+        all_statuses = ["".join(s) for s in raw_all_statuses]
+
+        clean_versions = [
+            (
+                [version]
+                if version not in ["", "current"]
+                else [r.codename for r in releases]
+            )
+            for version in versions
+        ]
+
+        clean_statuses = [
+            ([status] if status != "" else all_statuses) for status in statuses
+        ]
+
+    # query cves by filters
+    cves_query = db_session.query(
+        CVE, func.count("*").over().label("total")
+    ).filter(CVE.status == "active")
 
     if priority:
         cves_query = cves_query.filter(CVE.priority == priority)
@@ -342,75 +391,111 @@ def cve_index():
     if query:
         cves_query = cves_query.filter(CVE.description.ilike(f"%{query}%"))
 
+    parameters = []
     if package:
-        cves_query = cves_query.filter(
-            CVE.statuses.any(Status.package_name == package)
-        )
+        parameters.append(Status.package_name == package)
 
     if component:
+        parameters.append(Status.component == component)
+
+    if should_filter_by_version_and_status:
+        conditions = []
+        for key, version in enumerate(clean_versions):
+            sub_conditions = [
+                Status.release_codename.in_(version),
+                Status.status.in_(clean_statuses[key]),
+                CVE.id == Status.cve_id,
+            ]
+
+            if package:
+                sub_conditions.append(Status.package_name == package)
+
+            if component:
+                sub_conditions.append(Status.component == component)
+
+            condition = Package.statuses.any(
+                and_(*[sc for sc in sub_conditions])
+            )
+
+            conditions.append(condition)
+
+        parameters.append(Status.package.has(and_(*[c for c in conditions])))
+    else:
+        parameters.append(Status.status.in_(Status.active_statuses))
+
+    if len(parameters) > 0:
         cves_query = cves_query.filter(
-            CVE.statuses.any(Status.component == component)
+            CVE.statuses.any(and_(*[p for p in parameters]))
         )
 
-    # Pagination
-    total_results = cves_query.count()
-
     cves_query = (
-        cves_query.order_by(desc(CVE.published)).limit(limit).offset(offset)
+        cves_query.group_by(CVE.id)
+        .order_by(desc(CVE.published))
+        .limit(limit)
+        .offset(offset)
+        .from_self()
+        .join(CVE.statuses)
+        .options(contains_eager(CVE.statuses))
     )
 
     raw_cves = cves_query.all()
 
+    # Pagination
+    total_results = raw_cves[0][1] if raw_cves else 0
+
     cves = []
     for raw_cve in raw_cves:
-        status_tree = raw_cve.status_tree
+        packages = raw_cve[0].packages
 
         # filter by package name
         if package:
-            status_tree = {
-                package_name: statuses
-                for package_name, statuses in status_tree.items()
+            packages = {
+                package_name: package_statuses
+                for package_name, package_statuses in packages.items()
                 if package_name == package
             }
 
         # filter by component
         if component:
-            status_tree = {
-                package_name: statuses
-                for package_name, statuses in status_tree.items()
+            packages = {
+                package_name: package_statuses
+                for package_name, package_statuses in packages.items()
                 if any(
                     status.component == component
-                    for status in statuses.values()
+                    for status in package_statuses.values()
+                )
+            }
+
+        if should_filter_by_version_and_status:
+            packages = {
+                package_name: package_statuses
+                for package_name, package_statuses in packages.items()
+                if all(
+                    any(
+                        package_status.release_codename in version
+                        and package_status.status in clean_statuses[key]
+                        for package_status in package_statuses.values()
+                    )
+                    for key, version in enumerate(clean_versions)
                 )
             }
 
         # do not return cve if it has no packages left
-        if not status_tree:
+        if not packages:
             continue
 
         cve = {
-            "id": raw_cve.id,
-            "priority": raw_cve.priority,
-            "packages": status_tree,
+            "id": raw_cve[0].id,
+            "priority": raw_cve[0].priority,
+            "packages": packages,
         }
 
         cves.append(cve)
 
-    releases = (
-        db_session.query(Release)
-        .order_by(desc(Release.release_date))
-        .filter(
-            or_(
-                Release.support_expires > datetime.now(),
-                Release.esm_expires > datetime.now(),
-            )
-        )
-        .all()
-    )
-
     return flask.render_template(
         "security/cve/index.html",
         releases=releases,
+        all_releases=all_releases,
         cves=cves,
         total_results=total_results,
         total_pages=ceil(total_results / limit),
@@ -420,8 +505,8 @@ def cve_index():
         query=query,
         package=package,
         component=component,
-        versions=flask.request.args.getlist("version"),
-        statuses=flask.request.args.getlist("status"),
+        versions=versions,
+        statuses=statuses,
     )
 
 
@@ -484,6 +569,8 @@ def update_statuses(cve, data, packages, releases):
 
             if "component" in status_data:
                 status.component = status_data["component"]
+            if "pocket" in status_data:
+                status.pocket = status_data["pocket"]
 
             statuses[name][codename] = status
 
@@ -563,6 +650,8 @@ def bulk_upsert_cve():
         cve.notes = data.get("notes")
         cve.references = data.get("references")
         cve.bugs = data.get("bugs")
+        cve.patches = data.get("patches")
+        cve.tags = data.get("tags")
 
         statuses = update_statuses(
             cve, data, packages, releases=db_session.query(Release)
