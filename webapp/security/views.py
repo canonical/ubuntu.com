@@ -59,6 +59,14 @@ def notice(notice_id):
             # Order packages for release by the name key
             release_packages[release_version].sort(key=lambda pkg: pkg["name"])
 
+    notice_cve_ids = [cve.id for cve in notice.cves]
+    related_notices = (
+        db_session.query(Notice)
+        .filter(Notice.cves.any(CVE.id.in_(notice_cve_ids)))
+        .filter(Notice.id != notice.id)
+        .all()
+    )
+
     notice = {
         "id": notice.id,
         "title": notice.title,
@@ -71,6 +79,13 @@ def notice(notice_id):
         "releases": notice.releases,
         "cves": notice.cves,
         "references": notice.references,
+        "related_notices": [
+            {
+                "id": related_notice.id,
+                "package_list": ", ".join(related_notice.package_list),
+            }
+            for related_notice in related_notices
+        ],
     }
 
     return flask.render_template("security/notice.html", notice=notice)
