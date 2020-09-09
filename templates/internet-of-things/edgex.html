@@ -1,0 +1,346 @@
+{% extends "internet-of-things/base_things.html" %}
+
+{% block title %}EdgeX - Unifying the IoT edge{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/17tvfJBC5VncEVWkEsbyW_slAFFSoWV3jQUN7sa8nkOs/edit#{% endblock meta_copydoc %}
+
+{% block meta_description %}EdgeX lets you run apps at the edge, and reduces the burden, latency and cost associated with cloud-to-IoT workloads. Find out how you can get started with EdgeX today.{% endblock %}
+
+{% block outer_content %}
+{% block content %}
+
+<section class="p-strip--suru-bottomed is-dark">
+  <div class="row u-vertically-center">
+    <div class="col-5">
+      <h1 class="u-sv3">EdgeX &ndash; Unifying the IoT edge</h1>
+      <p>
+        <a href="https://snapcraft.io/edgexfoundry" class="p-link--external p-button--positive">Download</a>
+        <a href="#subscribe" class="p-button--neutral">Sign up for latest news</a>
+      </p>
+    </div>
+
+    <div class="col-7 col-start-large-8 u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/b6856fe7-edgex.png",
+        alt="",
+        height="1303",
+        width="1440",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h2>What is EdgeX?</h2>
+      <p>EdgeX is a set of microservices that enable developers to build apps that run at the edge.</p>
+      <p>It provides the components to develop data collection, analytics, and command-control apps. It’s designed to run on thousands of devices and sensors.</p>
+      <p><a href="/blog/whats-the-deal-with-edge-computing">Learn more &mdash; “What’s the deal with edge computing”&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 u-align--center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/a46ea917-3+-+Leverage+snaps+to+build+a+lean+custom+production+image.svg",
+        alt="",
+        width="391",
+        height="253",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row">
+    <div class="col-4 u-align--center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
+        alt="",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2>Why do developers love EdgeX?</h2>
+      <p>EdgeX provides C and Go SDKs that allows developers to build cloud-to-edge applications, whether that is to a public, hybrid, multi or on-prem cloud.</p>
+      <p>It also includes an ecosystem of device services that provide connectivity using protocols such as  Bacnet, BLE, Modbus, and MQTT.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep">
+  <div class="row">
+    <div class="col-6">
+      <h2 class="u-sv1">Get started with EdgeX?</h2>
+      <div class="p-code-copyable">
+        <input class="p-code-copyable__input" value="sudo snap install edgexfoundry" readonly="readonly">
+        <button class="p-code-copyable__action">Copy to clipboard</button>
+      </div>
+      <p><a href="https://snapcraft.io/edgexfoundry" class="p-link--external">Find out more</a></p>
+    </div>
+
+    <div class="col-start-large-8 col-5">
+      <div class="p-card--highlighted">
+        <div class="p-message" id="subscribed">
+          <div class="p-notification--positive u-no-margin--bottom">
+            <p class="p-notification__response"><span class="p-notification__status">Success:</span> Thank you for
+              subscribing.<br>You will begin receiving emails as new content is posted. You may unsubscribe any time by
+              clicking the link in the email.</p>
+          </div>
+          <hr />
+        </div>
+
+        <style>
+          .p-message {
+            display: none;
+          }
+
+          :target {
+            display: block;
+          }
+        </style>
+        <p class="p-heading--four" id="subscribe">Subscribe to our weekly newsletter</p>
+        <form action="https://pages.canonical.com/index.php/leadCapture/save" method="post" id="mktoForm_3415" class="p-form--stacked">
+          <div class="p-form__group">
+            <label for="Email">Email:*</label>
+            <input class="u-no-margin--bottom" id="Email" placeholder="Email" name="Email" maxlength="255" type="email" required="">
+          </div>
+          <div class="p-form__group">
+            <label for="Company">Company:</label>
+            <input class="u-no-margin--bottom" id="Company" placeholder="Company (optional)" name="Company" maxlength="255" type="text">
+          </div>
+
+          <p>
+            <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
+          </p>
+          <div class="u-sv3">
+            <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
+          </div>
+
+          <p class="u-no-margin--bottom">
+            <input type="hidden" name="Consent_to_Processing__c" value="Yes">
+            <button class="p-button" type="submit">Subscribe now</button>
+          </p>
+
+          <input type="hidden" name="formid" value="3690">
+          <input type="hidden" name="edgeXblogsubscription" value="yes">
+          <input type="hidden" name="lpId" value="">
+          <input type="hidden" name="munchkinId" value="066-EOV-335">
+          <input type="hidden" name="lpurl" value="">
+          <input type="hidden" name="ret" value="https://ubuntu.com/internet-of-things/edgex#subscribed">
+          <input type="hidden" name="return_url" value="https://ubuntu.com/internet-of-things/edgex#subscribed">
+          <input type="hidden" name="cr" value="">
+          <input type="hidden" name="kw" value="">
+          <input type="hidden" name="q" value="">
+        </form>
+      </div>
+
+
+    </div>
+</section>
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12 u-align--center">
+      <h4 class="p-muted-heading u-no-max-width">Proven in the field</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-inline-images u-no-margin--bottom">
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/093c43ef-intel_logo.svg" alt="Intel">
+        </li>
+        <li class="p-inline-images__item">
+          <img class="p-inline-images__logo" src="https://assets.ubuntu.com/v1/c0ee6182-dell_logo.svg" alt="Dell">
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 u-align--center">
+      <a href="#subscribe">Sign up for latest news&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="u-sv3">Security, intelligence and blistering speed</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/58e11dd2-delta+updates.svg",
+        alt="",
+        width="350",
+        height="200",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "max-height: 120px; width: auto;", "class": "u-sv3"},
+        ) | safe
+      }}
+      <h3 class="p-heading--four">Furiously fast</h3>
+      <ul class="p-list u-sv3">
+        <li class="p-list__item is-ticked">Build a smarter edge. Save your cloud for later.</p>
+        <li class="p-list__item is-ticked">Lower latency by moving cloud workloads to the edge.</p>
+        <li class="p-list__item is-ticked">Run complex workloads like AI/ML with more data.</p>
+      </ul>
+    </div>
+    <div class="col-6">
+
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
+        alt="",
+        width="350",
+        height="200",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "max-height: 120px; width: auto;", "class": "u-sv3"},
+        ) | safe
+      }}
+      <h3 class="p-heading--four">Patently private</h3>
+      <ul class="p-list u-sv3">
+        <li class="p-list__item is-ticked">Smarter edge apps mean secure workloads can stay at the edge.</p>
+        <li class="p-list__item is-ticked">Keep data on the device and process information locally.</p>
+        <li class="p-list__item is-ticked">Minimize exposure of sensitive data to networks.</p>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/7370594b-2+-+Build+your+own+stack+and+prototype+your+application.svg",
+        alt="",
+        width="337",
+        height="178",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "max-height: 120px; width: auto;", "class": "u-sv3"},
+        ) | safe
+      }}
+      <h3 class="p-heading--four">Built like cloud-native</h3>
+      <ul class="p-list u-sv3">
+        <li class="p-list__item is-ticked">A modern and curated IoT platform with one API for seamless out-of-the box operations.</p>
+        <li class="p-list__item is-ticked">Modular and containerised microservices.</p>
+        <li class="p-list__item is-ticked">An ecosystem of developers and vendors.</p>
+      </ul>
+    </div>
+    <div class="col-6">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/47ced1e2-right+size.svg",
+        alt="",
+        width="350",
+        height="200",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "max-height: 120px; width: auto;", "class": "u-sv3"},
+        ) | safe
+      }}
+      <h3 class="p-heading--four">You can’t go wrong. Literally</h3>
+      <ul class="p-list u-sv3">
+        <li class="p-list__item is-ticked">Silicon and software. OS and cloud. Language and protocol.</p>
+        <li class="p-list__item is-ticked">EdgeX remains agnostic to them all, so you can accelerate to market.</p>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--suru-half-and-half">
+  <div class="row">
+    <div class="col-6">
+      <h2>Cut costs. Improve security.<br />Trim time to market.</h2>
+      <p>Working on a project with EdgeX? Need help?</p>
+      <p>Get in touch with one of our engineers.</p>
+      <p class="u-no-margin--bottom"><a href="/internet-of-things/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+/**
+  Copies text given as a parameter to clipboard.
+  @param {String} str The text value to copy.
+*/
+function copyToClipboard(str) {
+  // Crate an offscreen textarea to handle copying.
+  var copyEl = document.createElement('textarea');
+  copyEl.value = str;
+  copyEl.setAttribute('readonly', '');
+  copyEl.style.position = 'absolute';
+  copyEl.style.left = '-9999px';
+  document.body.appendChild(copyEl);
+
+  // Check for any existing selection range.
+  var selectedRange =
+    document.getSelection().rangeCount > 0
+      ? document.getSelection().getRangeAt(0)
+      : false;
+
+  // Select and copy textarea contents.
+  // Copy command only works as a result of a user action (e.g. click events).
+  copyEl.select();
+  document.execCommand('copy');
+
+  document.body.removeChild(copyEl);
+
+  // Restore any previous selection
+  if (selectedRange) {
+    document.getSelection().removeAllRanges();
+    document.getSelection().addRange(selectedRange);
+  }
+}
+
+/**
+  Attaches event listener to the copy button
+  @param {HTMLElement} codeCopyable The code copyable container element.
+*/
+function setupCodeCopyable(codeCopyable) {
+  var copyButton = codeCopyable.querySelector('.p-code-copyable__action');
+
+  copyButton.addEventListener('click', function() {
+    var clipboardValue = this.previousSibling.previousSibling.value;
+    copyToClipboard(clipboardValue);
+  });
+}
+
+// Setup all code copyable blocks on the page.
+var codeCopyables = document.querySelectorAll('.p-code-copyable');
+
+for (var i = 0, l = codeCopyables.length; i < l; i++) {
+  setupCodeCopyable(codeCopyables[i]);
+}
+</script>
+
+
+{% with first_item="_iot_developers", second_item="_iot_newsletter_signup", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/embedded" data-form-id="1266" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=iot" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock content %}
+{% endblock outer_content %}
