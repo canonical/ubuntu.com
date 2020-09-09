@@ -3,6 +3,7 @@ import {
   getRenewal,
   postInvoiceID,
   postCustomerInfoToStripeAccount,
+  postCustomerInfoForPurchasePreview,
   postRenewalIDToProcessPayment,
   postPurchaseData,
   postPurchasePreviewData,
@@ -24,6 +25,7 @@ const form = document.getElementById("details-form");
 const errorDialog = document.getElementById("payment-error-dialog");
 const progressIndicator = document.getElementById("js-progress-indicator");
 
+const countryDropdown = modal.querySelector("select");
 const termsCheckbox = modal.querySelector(".js-terms");
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
 const processPaymentButton = modal.querySelector(".js-process-payment");
@@ -90,6 +92,7 @@ let customerInfo = {
 let cardValid = false;
 let changingPaymentMethod = false;
 let submitted3DS = false;
+let totalsApplied = false;
 
 let pollingTimer;
 let progressTimer;
@@ -116,13 +119,11 @@ function attachCTAevents() {
       currentTransaction.type = "renewal";
       currentTransaction.contractId = data.contractId;
       currentTransaction.transactionId = data.renewalId;
-
       setRenewalInformation(data, modal);
     } else if (isShopCTA) {
       const cartItems = JSON.parse(data.cart);
       currentTransaction.type = "purchase";
       currentTransaction.previousPurchaseId = data.previousPurchaseId;
-
       cartItems.forEach((item) => {
         currentTransaction.products.push({
           product_listing_id: item.listingID,
@@ -130,6 +131,7 @@ function attachCTAevents() {
         });
       });
 
+      checkVAT();
       setOrderInformation(cartItems, modal);
     }
   });
@@ -167,7 +169,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
 }
 
 function attachFormEvents() {
-  const countryDropdown = modal.querySelector("select");
+  const vatInput = modal.querySelector('input[name="tax"]');
 
   for (let i = 0; i < form.elements.length; i++) {
     const input = form.elements[i];
@@ -189,10 +191,12 @@ function attachFormEvents() {
     }
   });
 
-  checkVAT(countryDropdown.value);
+  vatInput.addEventListener("keyup", () => {
+    checkVAT();
+  });
 
   countryDropdown.addEventListener("change", (e) => {
-    checkVAT(e.target.value);
+    checkVAT();
   });
 
   termsCheckbox.addEventListener("change", () => {
@@ -258,10 +262,12 @@ function attachModalButtonEvents() {
   });
 }
 
-function checkVAT(value) {
+function checkVAT() {
   const vatContainer = modal.querySelector(".js-vat-container");
 
-  if (vatCountries.includes(value)) {
+  applyTotals();
+
+  if (vatCountries.includes(countryDropdown.value)) {
     vatContainer.classList.remove("u-hide");
   } else {
     vatContainer.classList.add("u-hide");
@@ -269,21 +275,49 @@ function checkVAT(value) {
 }
 
 function applyTotals() {
+  let formData = new FormData(form);
+  let country = formData.get("Country");
+  let taxObject = null;
   let tax = 0;
   let total = 0;
 
-  if (currentTransaction.type === "purchase") {
-    postPurchasePreviewData(
+  if (currentTransaction.type === "purchase" && country) {
+    totalsApplied = false;
+
+    const address = {
+      country: country,
+    };
+
+    if (formData.get("tax")) {
+      taxObject = {
+        value: formData.get("tax"),
+        type: "eu_vat",
+      };
+    }
+
+    postCustomerInfoForPurchasePreview(
       currentTransaction.accountId,
-      currentTransaction.products,
-      currentTransaction.previousPurchaseId
-    ).then((data) => {
-      tax = data.taxAmount || 0;
-      total = data.total;
-      setOrderTotal(tax, total, modal);
-    });
+      address,
+      taxObject
+    )
+      .then(() => {
+        postPurchasePreviewData(
+          currentTransaction.accountId,
+          currentTransaction.products,
+          currentTransaction.previousPurchaseId
+        ).then((data) => {
+          tax = data.taxAmount || 0;
+          total = data.total;
+          setOrderTotal(tax, total, modal);
+          totalsApplied = true;
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   } else {
     setOrderTotal(tax, total, modal);
+    totalsApplied = true;
   }
 }
 
@@ -738,7 +772,6 @@ function showDialogMode() {
 
 function showPayMode() {
   hideErrors();
-  applyTotals();
   disableProcessingState();
   modal.classList.remove("is-details-mode", "is-dialog-mode");
   modal.classList.add("is-pay-mode");
@@ -763,7 +796,7 @@ function validateForm() {
     inputsValidity.push(isValid);
   }
 
-  if (inputsValidity.includes(false)) {
+  if (inputsValidity.includes(false) || !totalsApplied) {
     addPaymentMethodButton.disabled = true;
   } else {
     addPaymentMethodButton.disabled = false;
