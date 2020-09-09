@@ -835,6 +835,34 @@ def make_renewal(advantage, contract_info):
     return renewal
 
 
+def post_anonymised_customer_info():
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+
+        if not flask.request.is_json:
+            return flask.jsonify({"error": "JSON required"}), 400
+
+        account_id = flask.request.json.get("account_id")
+        if not account_id:
+            return flask.jsonify({"error": "account_id required"}), 400
+
+        address = flask.request.json.get("address")
+        if not address:
+            return flask.jsonify({"error": "address required"}), 400
+
+        tax_id = flask.request.json.get("tax_id")
+
+        return advantage.put_anonymous_customer_info(
+            account_id, address, tax_id
+        )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
 def post_customer_info():
     if user_info(flask.session):
         advantage = AdvantageContracts(

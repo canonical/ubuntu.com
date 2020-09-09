@@ -41,6 +41,7 @@ from webapp.views import (
     get_purchase,
     get_renewal,
     post_advantage_subscriptions,
+    post_anonymised_customer_info,
     post_customer_info,
     post_stripe_invoice_id,
     post_build,
@@ -167,6 +168,11 @@ app.add_url_rule(
 )
 app.add_url_rule(
     "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
+)
+app.add_url_rule(
+    "/advantage/customer-info-anon",
+    view_func=post_anonymised_customer_info,
+    methods=["POST"],
 )
 app.add_url_rule(
     "/advantage/<tx_type>/<tx_id>/invoices/<invoice_id>",

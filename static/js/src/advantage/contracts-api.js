@@ -119,3 +119,27 @@ export async function postCustomerInfoToStripeAccount(
   let data = await response.json();
   return data;
 }
+
+export async function postCustomerInfoForPurchasePreview(
+  accountID,
+  address,
+  taxID
+) {
+  let response = await fetch("/advantage/customer-info-anon", {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      account_id: accountID,
+      address: address,
+      tax_id: taxID,
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}

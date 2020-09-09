@@ -94,6 +94,21 @@ class AdvantageContracts:
 
         return response.json()
 
+    def put_anonymous_customer_info(self, account_id, address, tax_id):
+        try:
+            response = self._request(
+                method="put",
+                path=f"v1/accounts/{account_id}/customer-info/stripe",
+                json={
+                    "address": address,
+                    "taxID": tax_id,
+                },
+            )
+        except HTTPError as http_error:
+            return http_error.response.json()
+
+        return response.json()
+
     def post_stripe_invoice_id(self, tx_type, tx_id, invoice_id):
         try:
             response = self._request(
