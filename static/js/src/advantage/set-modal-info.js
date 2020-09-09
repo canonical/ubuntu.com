@@ -213,10 +213,12 @@ export function setOrderTotal(taxAmount, totalAmount, modal) {
 
   totalsContainer.innerHTML = "";
 
-  totalsContainer.innerHTML += buildInfoRow({
-    label: "VAT: ",
-    value: formattedCurrency(taxAmount, vatCurrency, "en-US"),
-  });
+  if (taxAmount > 0) {
+    totalsContainer.innerHTML += buildInfoRow({
+      label: "VAT: ",
+      value: formattedCurrency(taxAmount, vatCurrency, "en-US"),
+    });
+  }
 
   totalsContainer.innerHTML += buildInfoRow({
     label: "Total: ",
