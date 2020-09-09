@@ -114,8 +114,6 @@ describe("getOrderInformation", () => {
           },
         ],
         subtotal: "$1,000",
-        total: "$1,000",
-        vat: "£0",
       });
     });
   });
