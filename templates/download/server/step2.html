@@ -1,6 +1,56 @@
-You really want MAAS
+{% extends "download/_base_download.html" %}
 
-<form action="/download/server" method="post">
-  <input type="hidden" name="next-step" value="choose" />
-  <button type="submit">Next</button>
-</form>
+{% block title %}Try multipass | Download{% endblock %}
+{% block meta_description %}Ubuntu for POWER brings the Ubuntu Server and Ubuntu ecosystem to POWER.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1e-vav_b54KlKsi92w3rDu9J14O0gpp8yAanEAIImlE8/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-12 u-align--center">
+      <div class="p-inline-list">
+        <form action="/download/server" method="post" class="p-inline-list__item">
+          <input type="hidden" name="next-step" value="step1">
+          <button type="submit">
+            <span class="p-muted-heading">
+              <i class="p-icon--contextual-menu" style="transform: rotate(90deg);">Previous</i> Option 1
+            </span>
+          </button>
+        </form>
+        <form action="/download/server" method="post" class="p-inline-list__item">
+          <input type="hidden" name="next-step" value="choose">
+          <button type="submit">
+            <span class="p-muted-heading">
+              Option 3 <i class="p-icon--contextual-menu" style="transform: rotate(-90deg);">Next</i>
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <p class="p-muted-heading">Get Ubuntu server</p>
+      <h1>Option 2: Provision physical machines with Ubuntu Server</h1>
+      <p>Turn your data centre into a bare metal cloud with Metal-as-a-Service (MAAS) and provision machines with Ubuntu Server in a fully automated way.</p>
+      <p><a href="https://maas.io" class="p-button--positive p-link--external">Learn more about MAAS</a></p>
+    </div>
+    <div class="col-4 u-hide--small u-align--center u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/038514e8-MAAS_black-orange_rgb.svg",
+          alt="",
+          height="130",
+          width="494",
+          hi_def=True,
+          loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+{% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+{% endblock content %}
