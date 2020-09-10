@@ -6,6 +6,7 @@
 import serialize from "../third-party/serialize";
 
 const backgroundSubmitHandlerClosure = function () {
+  console.log("backgroundSubmitHandlerClosure");
   return function (submitEvent) {
     // Prevent normal submit
     submitEvent.preventDefault
@@ -25,6 +26,7 @@ const backgroundSubmitHandlerClosure = function () {
 };
 
 const backgroundSubmit = function (marketoForm, submitCallback) {
+  console.log("backgroundSubmit");
   var request = new XMLHttpRequest();
   var submitUrl = marketoForm.getAttribute("action");
   let formData = serialize(marketoForm);
@@ -203,6 +205,8 @@ const afterSubmit = function (
 // attach handler to all forms
 let marketoForm = document.querySelectorAll("form[id^=mktoForm]");
 marketoForm.forEach(function (form) {
+  console.log("Found form");
+
   form.addEventListener("submit", backgroundSubmitHandlerClosure());
 });
 

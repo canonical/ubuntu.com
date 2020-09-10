@@ -1,83 +1,59 @@
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-12">
-      <h3>Get Ubuntu Server weekly news</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-7">
-      <p>Subscribe to the Ubuntu Server weekly brief to receive:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Security briefs</li>
-        <li class="p-list__item is-ticked">Release announcements</li>
-        <li class="p-list__item is-ticked">General technology updates</li>
-        <li class="p-list__item is-ticked">Tips and tutorials</li>
-      </ul>
-      <h4>Need a command-line refresher?</h4>
-      <p>By subscribing, you also get the "Ubuntu Server CLI pro tips 2020" cheat sheet: learn how to use efficiently the command-line and get started with DevOps &mdash; from basic file management to deploying Kubernetes and OpenStack.</p>
-      <div class="p-card--highlighted" style="display: inline-block;">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/39a8dac8-Ubuntu_Server_CLI_pro_tips_2020-04.jpg",
-              alt="",
-              width="440",
-              height="331",
-              hi_def=True,
-              loading="lazy",
-          ) | safe
-        }}
+<div class="p-modal u-hide" id="modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="modal-title">Get Ubuntu Server pro tips</h2>
+      <button class="p-modal__close" aria-label="Close active modal" aria-controls="modal">Close</button>
+    </header>
+    <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3485" class="marketo-form">
+      <div class="row u-no-padding">
+        <div class="col-6">
+          <label for="firstName" class="mktoLabel">First name:</label>
+          <input required  id="firstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" >
+          <label for="lastName" class="mktoLabel">Last name:</label>
+          <input required  id="lastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
+          <label for="company" class="mktoLabel">Company name:</label>
+          <input required  id="company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired">
+        </div>
+        <div class="col-6">
+          <label for="title" class="mktoLabel">Job title:</label>
+          <input required  id="title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired">
+          <label for="email" class="mktoLabel ">Work email:</label>
+          <input required  id="email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
+          <label for="Phone" class="mktoLabel ">Mobile/cell phone number:</label>
+          <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" required="required" />
+        </div>
       </div>
-    </div>
-
-    <div class="col-4 col-start-large-9">
-      <!-- MARKETO FORM -->
-      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3485" class="marketo-form">
-        <fieldset style="border: 0; margin: 0; padding: 0;">
-          <ul class="p-list">
-            <li class="mktFormReq mktField p-list__item">
-              <label for="firstName" class="mktoLabel">First name:</label>
-              <input required  id="firstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" >
-            </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="lastName" class="mktoLabel">Last name:</label>
-              <input required  id="lastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired">
-            </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="company" class="mktoLabel">Company name:</label>
-              <input required  id="company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired">
-            </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="title" class="mktoLabel">Job title:</label>
-              <input required  id="title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired">
-            </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="email" class="mktoLabel ">Work email:</label>
-              <input required  id="email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
-            </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="Phone" class="mktoLabel ">Mobile/cell phone number:</label>
-              <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" required="required" />
-            </li>
-            <li class="mktField p-list__item u-sv2">
-              <input class="mktoField" value="yes" id="CanonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
-              <label class="mktoLabel mktoHasWidth" for="CanonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
-            </li>
-            <li><small>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</small></li>
-            <li class="p-list__item">
-                <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
-            </li>
-            <li class="mktField p-list__item">
-              <button type="submit" class="mktoButton p-button--positive">Subscribe and download</button>
-              <input type="hidden" name="formid" class="mktoField" value="3485">
-              <input type="hidden" name="formVid" class="mktoField" value="3485">
-              <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
-              <input type="hidden" name="Consent_to_Processing__c" value="yes" />
-              <input type="hidden" name="thankyoumessage" value="Thank you for subscribing!<br><a href='https://assets.ubuntu.com/v1/f401c3f4-Ubuntu_Server_CLI_pro_tips_2020-04.pdf' target='_blank' >Here is your CLI cheat sheet.</a>" aria-lable="">
-            </li>
-          </ul>
-      </fieldset>
-      </form>
-      <div class="js-feedback-notification"></div>
-    </div>
+      <input class="mktoField" value="yes" id="CanonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+      <label class="mktoLabel mktoHasWidth" for="CanonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
+      <p><small>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</small></p>
+      <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+      <button type="submit" class="mktoButton p-button--positive">Download the cheat sheet</button>
+      <input type="hidden" name="formid" class="mktoField" value="3485">
+      <input type="hidden" name="formVid" class="mktoField" value="3485">
+      <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
+      <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+      <input type="hidden" name="returnURL" value="https://assets.ubuntu.com/v1/f401c3f4-Ubuntu_Server_CLI_pro_tips_2020-04.pdf" />
+    </form>
   </div>
-</section>
+</div>
+
+<script>
+  /**
+    Toggles visibility of modal dialog.
+    @param {HTMLElement} modal Modal dialog to show or hide.
+  */
+  function toggleModal(modal) {
+    if (modal && modal.classList.contains('p-modal')) {
+      modal.classList.toggle('u-hide');
+    }
+  }
+
+  // Add click handler for clicks on elements with aria-controls
+  document.addEventListener('click', function (event) {
+    event.preventDefault();
+    var targetControls = event.target.getAttribute('aria-controls');
+    if (targetControls) {
+      toggleModal(document.getElementById(targetControls));
+    }
+  });
+</script>
