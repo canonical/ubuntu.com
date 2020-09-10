@@ -505,7 +505,12 @@ def make_renewal(advantage, contract_info):
     if not renewals:
         return None
 
-    renewal = renewals[0]
+    sorted_renewals = sorted(
+        renewals,
+        key=lambda renewal: dateutil.parser.parse(renewal["start"]),
+    )
+
+    renewal = sorted_renewals[0]
 
     # If the renewal is processing, we need to find out
     # whether payment failed and requires user action,
