@@ -5,15 +5,13 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1e-vav_b54KlKsi92w3rDu9J14O0gpp8yAanEAIImlE8/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
-  <div class="row">
+<section class="p-strip--suru-topped">
+  <div class="row u-lower">
     <div class="col-12 u-align--center">
       <form action="/download/server" method="post">
         <input type="hidden" name="next-step" value="step2">
-        <button type="submit">
-          <span class="p-muted-heading">
-            Option 2 <i class="p-icon--contextual-menu" style="transform: rotate(-90deg);">Next</i>
-          </span>
+        <button type="submit" class="p-link">
+          Option 2&nbsp;&rsaquo;
         </button>
       </form>
     </div>
@@ -23,7 +21,7 @@
       <p class="p-muted-heading">Get Ubuntu server</p>
       <h1>Option 1: Launch Ubuntu Server VMs on workstations</h1>
       <p>On your Windows, Mac or Linux workstation, Multipass provides instant Ubuntu VMs with cloud-init metadata for rapid cloud development and testing.</p>
-      <p><a href="https://multipass.run" class="p-button--positive p-link--external">Learn more about Multipass</a></p>
+      <p><a href="https://multipass.run" class="p-link--external">Learn more about Multipass</a></p>
     </div>
     <div class="col-4 u-hide--small u-align--center u-vertically-center">
       <div class=" u-hide--small u-align--center">
