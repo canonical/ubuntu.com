@@ -416,6 +416,17 @@ def cve_index():
     if should_filter_by_version_and_status:
         conditions = []
         for key, version in enumerate(clean_versions):
+            conditions.append(
+                and_(
+                    Status.release_codename.in_(version),
+                    Status.status.in_(clean_statuses[key]),
+                )
+            )
+
+        parameters.append(or_(*[c for c in conditions]))
+
+        conditions = []
+        for key, version in enumerate(clean_versions):
             sub_conditions = [
                 Status.release_codename.in_(version),
                 Status.status.in_(clean_statuses[key]),
