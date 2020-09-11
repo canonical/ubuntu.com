@@ -226,7 +226,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         }
 
         a {
-          border-left: 1px solid rgba(247, 247, 247, 0.3); // sass-lint:disable-line no-color-literals
+          border-left: 1px solid rgba(247, 247, 247, 0.3);
           color: $color-light !important;
           padding-left: $sp-small;
 
@@ -260,7 +260,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
       .breadcrumbs {
         &--secondary {
-          @extend .p-inline-list; // sass-lint:disable-line placeholder-in-extend
+          @extend .p-inline-list;
           display: flex;
           flex-wrap: wrap;
           margin-bottom: 0;
@@ -377,12 +377,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   }
 
   .dropdown-window-overlay {
-    background-color: rgba(
-      17,
-      17,
-      17,
-      0.4
-    ); // sass-lint:disable-line no-color-literals
+    background-color: rgba(17, 17, 17, 0.4);
     height: 100%;
     opacity: 1;
     position: fixed;
@@ -476,7 +471,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   flex-direction: column;
   margin-bottom: $spv-outer--small-scaleable;
   padding: calc(#{$spv-inner--scaleable} - 1px);
-  transition: all 0.2s; // sass-lint:disable-line no-transition-all
+  transition: all 0.2s;
 }
 
 .u-hide--nav-threshold-down {

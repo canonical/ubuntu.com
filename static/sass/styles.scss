@@ -11,8 +11,6 @@
 @import "@canonical/cookie-policy/build/css/cookie-policy";
 
 // Font display Vanilla override
-//sass-lint:disable no-url-protocols
-//sass-lint:disable no-url-domains
 @font-face {
   font-display: optional;
   font-family: "UbtuOverride";
@@ -180,14 +178,14 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 // XXX Karl: 19.10.17
 // VF 1.6.0 is missing this
 .p-link--external::after {
-  -webkit-mask-size: cover; // sass-lint:disable-line no-vendor-prefixes
+  -webkit-mask-size: cover;
   mask-size: cover;
 }
 
 // XXX Caleb: 15.01.18 Autoprefixer issue
 select {
-  -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
-  -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
+  -moz-appearance: none;
+  -webkit-appearance: none;
   background-position: right $sp-x-small center;
   background-size: $sp-medium;
   padding-right: $sp-xxx-large;
@@ -262,7 +260,6 @@ fieldset:last-child {
   }
 }
 
-// sass-lint:disable no-qualifying-elements
 h1.u-align--center,
 h2.u-align--center,
 h3.u-align--center,
@@ -272,7 +269,6 @@ h6.u-align--center,
 p.u-align--center {
   max-width: none;
 }
-// sass-lint:enable no-qualifying-elements
 
 /// XXX Caleb: abbr hotfix - to be fixed in Vanilla
 // https://github.com/vanilla-framework/vanilla-framework/issues/1962

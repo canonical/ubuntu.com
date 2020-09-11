@@ -34,7 +34,7 @@
   @media (min-width: 768px) {
     .p-takeover--stats {
       background-image: url("https://assets.ubuntu.com/v1/d3edfcd5-left.png"),
-        url("https://assets.ubuntu.com/v1/17508275-right.png"); // sass-lint:disable-line no-url-protocols, no-url-domains
+        url("https://assets.ubuntu.com/v1/17508275-right.png");
       background-position: bottom left, bottom right;
       background-repeat: no-repeat;
       background-size: contain;
@@ -84,7 +84,7 @@
   .p-progress-chart {
     background: $color-x-light;
     border: 1px solid $color-mid-light;
-    box-shadow: 0 1px 5px 1px rgba(17, 17, 17, 0.2); //sass-lint:disable-line no-color-literals
+    box-shadow: 0 1px 5px 1px rgba(17, 17, 17, 0.2);
 
     .p-progress-chart__bar {
       opacity: 1;
@@ -159,7 +159,6 @@
   }
 
   #where-are-users {
-    // sass-lint:disable-line no-ids
     @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
       transform: scale(0.7);
     }

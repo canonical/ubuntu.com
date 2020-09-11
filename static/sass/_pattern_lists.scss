@@ -23,7 +23,6 @@
     width: $sp-x-large;
   }
 
-  // sass-lint:disable-block nesting-depth
   .p-inline-list-icons {
     .p-inline-list__item {
       display: inline-block;
@@ -164,9 +163,8 @@
   // This block can be removed when the following issues are resolved:
   // https://github.com/canonical-web-and-design/vanilla-framework/issues/2489
   // https://github.com/canonical-web-and-design/vanilla-framework/issues/2518
-  h3.p-stepped-list__title, //sass-lint:disable-line no-qualifying-elements
+  h3.p-stepped-list__title,
   p.p-stepped-list__title {
-    //sass-lint:disable-line no-qualifying-elements
     display: inline-block;
     padding-left: 2rem;
     position: relative;
@@ -179,12 +177,10 @@
   }
 
   h3.p-stepped-list__title {
-    //sass-lint:disable-line no-qualifying-elements
     padding-left: 3.5rem;
   }
 
   p.p-stepped-list__title {
-    //sass-lint:disable-line no-qualifying-elements
     padding-left: 2rem;
 
     &::before {
@@ -256,7 +252,6 @@
     &.is-x-dense {
       margin-bottom: $sp-unit - $nudge--small;
 
-      // sass-lint:disable-block nesting-depth
       .p-inline-list__item {
         &::after {
           bottom: 0.5rem;
