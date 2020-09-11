@@ -50,9 +50,9 @@
 
   // Add click handler for clicks on elements with aria-controls
   document.addEventListener('click', function (event) {
-    event.preventDefault();
     var targetControls = event.target.getAttribute('aria-controls');
     if (targetControls) {
+      event.preventDefault();
       toggleModal(document.getElementById(targetControls));
     }
   });
