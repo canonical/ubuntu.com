@@ -7,14 +7,15 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/15c89-PyMc-QnSHglG1hf_Tub5lMkEcVYALL0rm5-LvA/{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-bordered">
+<section class="p-strip--suru is-dark">
   <div class="row u-vertically-center">
     <div class="col-7">
       <h1>
         Managed Apache Kafka
       </h1>
-      <p class="p-heading--five">Now running Kafka 2.5</p>
-      <p>Unlimited data streaming with fully managed Kafka anywhere, on-prem and multi-cloud environments.</p>
+      <p><i>Now running Kafka 2.5</i></p>
+      <p class="p-heading--four">Unlimited data streaming with fully managed Kafka anywhere, on-prem and multi-cloud environments.</p>
+      <p>Deploy Kafka easily and with agility, and conserve your teams’ resources from ongoing deployments and operations.</p>
       <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
     </div>
     <div class="col-5 u-hide--small u-align--center">
@@ -33,12 +34,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-7">
-      <p>Deploy Kafka easily and with agility, and conserve your teams’ resources from ongoing deployments and operations.</p>
-    </div>
-  </div>
+<section class="p-strip is-deep">
   <div class="row u-equal-height">
     <div class="col-12">
       <h2 class="p-muted-heading u-align--center">Managed on:</h2>
@@ -82,6 +78,18 @@
         <li class="p-inline-images__item">
           {{
             image(
+              url="https://assets.ubuntu.com/v1/e7a3c4d8-MicrosoftAzure.svg",
+              alt="Microsoft Azure",
+              width="174",
+              height="50",
+              hi_def=True,
+              attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{
+            image(
               url="https://assets.ubuntu.com/v1/3409bb95-OpenStack-Logo-Vertical-white.svg",
               alt="Microsoft Azure",
               width="469",
@@ -105,226 +113,509 @@
         </li>
       </ul>
     </div>
-    <div class="col-6 p-card">
-      <h4 class="p-card__title">Secure by default</h4>
-      <hr class="u-sv1">
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Data is encrypted at-rest and in-transit</li>
-        <li class="p-list__item is-ticked">Data-plane authorisation with Kafka ACLS</li>
-        <li class="p-list__item is-ticked">Encrypted client-broker transfer with Transport Layer Security (TLS)</li>
-        <li class="p-list__item is-ticked">Data security assurance with SOC2 and ISO27001/2 certification</li>
-      </ul>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-5 u-align--center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
+          alt="VMWare",
+          width="200",
+          height="200",
+          hi_def=True,
+        ) | safe
+      }}
     </div>
-    <div class="col-6 p-card">
-      <h4 class="p-card__title">Integrate with your infrastructure</h4>
-      <hr class="u-sv1">
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Transparent hostname and IP addresses to connect with other services</li>
-        <li class="p-list__item is-ticked">Access and support for open source Kafka Connector</li>
-        <li class="p-list__item is-ticked">Kafka REST Proxy exposed, to access the cluster with HTTP calls</li>
-      </ul>
-    </div>
-    <div class="col-6 p-card">
-      <h4 class="p-card__title">Reliable, mission-critical clouds</h4>
-      <hr class="u-sv1">
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Load balancing and data replication allow failure without downtime</li>
-        <li class="p-list__item is-ticked">High availability and throughput through Kafka&rsquo;s distributed cluster architecture</li>
-        <li class="p-list__item is-ticked">Support in deploying your organisation&rsquo;s Schema Registry</li>
-      </ul>
-    </div>
-    <div class="col-6 p-card">
-      <h4 class="p-card__title">Tailored to your specific needs</h4>
-      <hr class="u-sv1">
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Control the version of Kafka your cloud runs</li>
-        <li class="p-list__item is-ticked">Schedule updates to downtime windows</li>
-        <li class="p-list__item is-ticked">Understand key metrics with an integrated  web-based dashboard and logging, monitoring and alerting (Graylog-Prometheus-Grafana) stack</li>
-      </ul>
+    <div class="col-7 u-vertically-center">
+      <div>
+        <h3>
+          Upstream Kafka on-rails, fully automated and integrated into your infrastructure.
+        </h3>
+        <p><a href="/managed/contact-us" class="js-invoke-modal">Get started with a free architecture assessment&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="row">
-    <div class="col-7">
-      <h2>
-        Kafka management, architecture and operation
-      </h2>
-      <p>Canonical offers a <a href="/managed">fully managed service</a> for open source software and applications, including support for Apache Kafka, anywhere you can run Ubuntu.</p>
-      <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+    <div class="col-8">
+      <h2>Key Features</h2>
+    </div>
+  </div>
+  <div class="row u-sv3">
+    <div class="col-6 u-sv3">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/c5b21ec2-Private+Cloud.svg",
+          alt="VMWare",
+          width="274",
+          height="200",
+          hi_def=True,
+          attrs={"style":"height: 80px; width: auto;"},
+        ) | safe
+      }}
+      <h4>Secure</h4>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Kafka ACLS data-plane authorisation</li>
+        <li class="p-list__item is-ticked">Encrypted client-broker transfer with TLS</li>
+        <li class="p-list__item is-ticked">Data security assurance &mdash; SOC2 and ISO27001/2</li>
+      </ul>
+    </div>
+    <div class="col-6 u-sv3">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/061edebb-developer.svg",
+          alt="VMWare",
+          width="100",
+          height="100",
+          hi_def=True,
+          attrs={"style":"height: 80px; width: auto;"},
+        ) | safe
+      }}
+      <h4>Integrated</h4>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Direct host access and IP visibility</li>
+        <li class="p-list__item is-ticked">Open source Kafka Connector</li>
+        <li class="p-list__item is-ticked">Access to Kafka REST Proxy</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/7e5a3ee1-scan.svg",
+          alt="VMWare",
+          width="100",
+          height="100",
+          hi_def=True,
+          attrs={"style":"height: 80px; width: auto;"},
+        ) | safe
+      }}
+      <h4>Reliable</h4>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">99.99% SLA, high availability by default</li>
+        <li class="p-list__item is-ticked">Load balancing and data replication</li>
+        <li class="p-list__item is-ticked">Support in deploying Schema Registry</li>
+      </ul>
+    </div>
+    <div class="col-6">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/0cfe6c2d-build.svg",
+          alt="VMWare",
+          width="152",
+          height="100",
+          hi_def=True,
+          attrs={"style":"height: 80px; width: auto;"},
+        ) | safe
+      }}
+      <h4>Optimised</h4>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Kafka experts provide 24/7 management</li>
+        <li class="p-list__item is-ticked">Schedule updates to downtime windows</li>
+        <li class="p-list__item is-ticked">Web-based dashboard of key health metrics</li>
+      </ul>
     </div>
   </div>
 </section>
-<section class="p-strip u-no-padding--top">
+
+<section class="p-strip--light">
   <div class="row">
-    <h3>App information</h3>
-    <table>
-      <tr>
-        <td><strong>Versions managed</strong></td>
-        <td colspan="2">
-          Kafka 2.3 by default<br/>
-          We can support your specific version &mdash; <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Zookeeper</strong></td>
-        <td colspan="2">Fully supported and managed</td>
-      </tr>
-    </table>
+    <div class="col-5">
+      <h3>Kafka can be challenging. Learn how we simplify it.</h3>
+      <p><a href="https://www.brighttalk.com/webcast/6793/410402" class="js-invoke-modal p-link--external">Watch the full webinar on demand now</a></p>
+    </div>
+    <div class="col-7 p-card--highlighted">
+      <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 410402, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
+    </div>
+  </div>
+</section>
 
-    <h3>Cloud architecture</h3>
-    <table>
-      <tr>
-        <td><strong>Kubernetes</strong></td>
-        <td colspan="2">Any conformant Kubernetes (Charmed Kubernetes, RKE, OpenShift, AKS, EKS, GKE and more)</td>
-      </tr>
-      <tr>
-        <td><strong>Public Clouds</strong></td>
-        <td colspan="2">AWS, Azure and GCP</td>
-      </tr>
-      <tr>
-        <td><strong>Data Center Regions</strong></td>
-        <td colspan="2">Single or multiple supported</td>
-      </tr>
-      <tr>
-        <td><strong>Data Centre Availability Zones</strong></td>
-        <td colspan="2">Single or multiple supported</td>
-      </tr>
-      <tr>
-        <td><strong>On-premise</strong></td>
-        <td colspan="2">Any OpenStack, bare metal and key third-party providers such as VMWare.<br />
-          We can support your specific cloud provider - <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.</td>
-        </tr>
-        <tr>
-          <td><strong>Hybrid-cloud</strong></td>
-          <td colspan="2">Persistent streaming between all cloud types and management across all</td>
-        </tr>
-        <tr>
-          <td><strong>Multi-cloud</strong></td>
-          <td colspan="2">Persistent streaming between all cloud types and management across all</td>
-        </tr>
-      </table>
-
-      <h3>Data</h3>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Kafka on any kubernetes, any cloud and at any scale</h2>
+      <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/455740b4-3+design_AW.svg",
+          alt="",
+          width="350",
+          height="200",
+          hi_def=True,
+        ) | safe
+      }}
+    </div>
+    <div class="col-9">
+      <h4>App information</h4>
       <table>
         <tr>
-          <td><strong>High Availability</strong></td>
-          <td colspan="2">Yes, minimum of 3 replications to ensure availability and consensus</td>
+          <td><strong>Versions managed</strong></td>
+          <td colspan="2">
+            Kafka 2.3 by default<br/>
+            We can support your specific version &mdash; <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.
+          </td>
         </tr>
         <tr>
-          <td><strong>Number of partitions</strong></td>
-          <td colspan="2">No limits &mdash; we will implement and manage the optimal number of partitions for your configuration</td>
-        </tr>
-        <tr>
-          <td><strong>Number of replications</strong></td>
-          <td colspan="2">No limits &mdash; we will implement and manage the optimal number of replications for your configuration</td>
-        </tr>
-        <tr>
-          <td><strong>Throughput</strong></td>
-          <td colspan="2">No limits &mdash; we will support any throughput your cloud can achieve</td>
-        </tr>
-        <tr>
-          <td><strong>Node size</strong></td>
-          <td colspan="2">No restrictions on the size of the node</td>
-        </tr>
-        <tr>
-          <td><strong>Latency</strong></td>
-          <td colspan="2">Managed Kafka will match the latency your cloud can achieve</td>
-        </tr>
-        <tr>
-          <td><strong>KSQL</strong></td>
-          <td colspan="2">KSQL can integrate with Managed Kafka</td>
+          <td><strong>Zookeeper</strong></td>
+          <td colspan="2">Fully supported and managed</td>
         </tr>
       </table>
+    </div>
+  </div>
 
-      <h3>App Operations</h3>
+  <div class="row">
+    <div class="col-3">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/5e8c836c-charmed-kubernetes-partners.svg",
+          alt="",
+          width="452",
+          height="182",
+          hi_def=True,
+        ) | safe
+      }}
+    </div>
+    <div class="col-9">
+      <h4>Cloud architecture</h4>
       <table>
         <tr>
-          <td><strong>Updates</strong></td>
-          <td colspan="2">All future updates included</td>
+          <td><strong>Kubernetes</strong></td>
+          <td colspan="2">Any conformant Kubernetes (Charmed Kubernetes, RKE, OpenShift, AKS, EKS, GKE and more)</td>
         </tr>
         <tr>
-          <td><strong>Managed updates</strong></td>
-          <td colspan="2">Schedule updates during specific time windows to minimize downtime</td>
+          <td><strong>Public Clouds</strong></td>
+          <td colspan="2">AWS, Azure and GCP</td>
         </tr>
         <tr>
-          <td><strong>New nodes</strong></td>
-          <td colspan="2">On-request</td>
+          <td><strong>Data Center Regions</strong></td>
+          <td colspan="2">Single or multiple supported</td>
         </tr>
         <tr>
-          <td><strong>Load balancing</strong></td>
-          <td colspan="2">Automatic load balancing by default</td>
+          <td><strong>Data Centre Availability Zones</strong></td>
+          <td colspan="2">Single or multiple supported</td>
         </tr>
         <tr>
-          <td><strong>Schema Registry deployment</strong></td>
-          <td colspan="2">Yes, support in deploying your organisation's Schema Registry</td>
-        </tr>
-        <tr>
-          <td><strong>Metrics and Visualisation</strong></td>
-          <td colspan="2">Yes, Managed Kafka includes Graylog, Prometheus and Grafana monitoring and dashboard tools, to ensure transparency and visibility on all vital metrics</td>
-        </tr>
-      </table>
-
-      <h3>Interoperability</h3>
-      <table>
-        <tr>
-          <td><strong>Connectors</strong></td>
-          <td colspan="2">Yes, open source Kafka Connectors for applications</td>
-        </tr>
-        <tr>
-          <td><strong>REST API</strong></td>
-          <td colspan="2">Yes, administrate Kafka without accessing the underlying Kafka client</td>
-        </tr>
-        <tr>
-          <td><strong>Direct</strong></td>
-          <td colspan="2">Hostname and IP visibility, to connect with your other cloud infrastructure</td>
-        </tr>
-      </table>
-
-      <h3>Security and reliability</h3>
-      <table>
-        <tr>
-          <td><strong>Security Patches</strong></td>
-          <td colspan="2">Yes. Canonical provides all security patches.</td>
-        </tr>
-        <tr>
-          <td><strong>Kernel</strong></td>
-          <td colspan="2">Kernel Livepatch</td>
-        </tr>
-        <tr>
-          <td><strong>24/7 Monitoring</strong></td>
-          <td colspan="2">Yes &mdash; Canonical&rsquo;s Kafka experts cover all geographic regions and time-zones</td>
-        </tr>
-        <tr>
-          <td><strong>Break/Fix response</strong></td>
-          <td colspan="2">Yes</td>
-        </tr>
-        <tr>
-          <td><strong>SLA</strong></td>
-          <td colspan="2">Yes, 99.9% up-time.<br />
-            We can support your specific requirements - <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.</td>
+          <td><strong>On-premise</strong></td>
+          <td colspan="2">Any OpenStack, bare metal and key third-party providers such as VMWare.<br />
+            We can support your specific cloud provider - <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.</td>
           </tr>
           <tr>
-            <td><strong>ISO270001/2 certified</strong></td>
-            <td colspan="2">Yes</td>
+            <td><strong>Hybrid-cloud</strong></td>
+            <td colspan="2">Persistent streaming between all cloud types and management across all</td>
           </tr>
           <tr>
-            <td><strong>SOC2 Type 2 certified</strong></td>
-            <td colspan="2">Yes</td>
-          </tr>
-          <tr>
-            <td><strong>GDPR Compliance tested</strong></td>
-            <td colspan="2">Yes</td>
+            <td><strong>Multi-cloud</strong></td>
+            <td colspan="2">Persistent streaming between all cloud types and management across all</td>
           </tr>
         </table>
+      </div>
+    </div>
 
-        <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+    <div class="row">
+      <div class="col-3">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/5e8c836c-charmed-kubernetes-partners.svg",
+            alt="",
+            width="452",
+            height="182",
+            hi_def=True,
+          ) | safe
+        }}
+      </div>
+      <div class="col-9">
+        <h4>Data</h4>
+        <table>
+          <tr>
+            <td><strong>High Availability</strong></td>
+            <td colspan="2">Yes, minimum of 3 replications to ensure availability and consensus</td>
+          </tr>
+          <tr>
+            <td><strong>Number of partitions</strong></td>
+            <td colspan="2">No limits &mdash; we will implement and manage the optimal number of partitions for your configuration</td>
+          </tr>
+          <tr>
+            <td><strong>Number of replications</strong></td>
+            <td colspan="2">No limits &mdash; we will implement and manage the optimal number of replications for your configuration</td>
+          </tr>
+          <tr>
+            <td><strong>Throughput</strong></td>
+            <td colspan="2">No limits &mdash; we will support any throughput your cloud can achieve</td>
+          </tr>
+          <tr>
+            <td><strong>Node size</strong></td>
+            <td colspan="2">No restrictions on the size of the node</td>
+          </tr>
+          <tr>
+            <td><strong>Latency</strong></td>
+            <td colspan="2">Managed Kafka will match the latency your cloud can achieve</td>
+          </tr>
+          <tr>
+            <td><strong>KSQL</strong></td>
+            <td colspan="2">KSQL can integrate with Managed Kafka</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/5e8c836c-charmed-kubernetes-partners.svg",
+            alt="",
+            width="452",
+            height="182",
+            hi_def=True,
+          ) | safe
+        }}
+      </div>
+      <div class="col-9">
+        <h4>App Operations</h4>
+        <table>
+          <tr>
+            <td><strong>Updates</strong></td>
+            <td colspan="2">All future updates included</td>
+          </tr>
+          <tr>
+            <td><strong>Managed updates</strong></td>
+            <td colspan="2">Schedule updates during specific time windows to minimize downtime</td>
+          </tr>
+          <tr>
+            <td><strong>New nodes</strong></td>
+            <td colspan="2">On-request</td>
+          </tr>
+          <tr>
+            <td><strong>Load balancing</strong></td>
+            <td colspan="2">Automatic load balancing by default</td>
+          </tr>
+          <tr>
+            <td><strong>Schema Registry deployment</strong></td>
+            <td colspan="2">Yes, support in deploying your organisation's Schema Registry</td>
+          </tr>
+          <tr>
+            <td><strong>Metrics and Visualisation</strong></td>
+            <td colspan="2">Yes, Managed Kafka includes Graylog, Prometheus and Grafana monitoring and dashboard tools, to ensure transparency and visibility on all vital metrics</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/5e8c836c-charmed-kubernetes-partners.svg",
+            alt="",
+            width="452",
+            height="182",
+            hi_def=True,
+          ) | safe
+        }}
+      </div>
+      <div class="col-9">
+        <h4>Interoperability</h4>
+        <table>
+          <tr>
+            <td><strong>Connectors</strong></td>
+            <td colspan="2">Yes, open source Kafka Connectors for applications</td>
+          </tr>
+          <tr>
+            <td><strong>REST API</strong></td>
+            <td colspan="2">Yes, administrate Kafka without accessing the underlying Kafka client</td>
+          </tr>
+          <tr>
+            <td><strong>Direct</strong></td>
+            <td colspan="2">Hostname and IP visibility, to connect with your other cloud infrastructure</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/5e8c836c-charmed-kubernetes-partners.svg",
+            alt="",
+            width="452",
+            height="182",
+            hi_def=True,
+          ) | safe
+        }}
+      </div>
+      <div class="col-9">
+        <h4>Security and reliability</h4>
+        <table>
+          <tr>
+            <td><strong>Security Patches</strong></td>
+            <td colspan="2">Yes. Canonical provides all security patches.</td>
+          </tr>
+          <tr>
+            <td><strong>Kernel</strong></td>
+            <td colspan="2">Kernel Livepatch</td>
+          </tr>
+          <tr>
+            <td><strong>24/7 Monitoring</strong></td>
+            <td colspan="2">Yes &mdash; Canonical&rsquo;s Kafka experts cover all geographic regions and time-zones</td>
+          </tr>
+          <tr>
+            <td><strong>Break/Fix response</strong></td>
+            <td colspan="2">Yes</td>
+          </tr>
+          <tr>
+            <td><strong>SLA</strong></td>
+            <td colspan="2">Yes, 99.9% up-time.<br />
+              We can support your specific requirements - <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.</td>
+            </tr>
+            <tr>
+              <td><strong>ISO270001/2 certified</strong></td>
+              <td colspan="2">Yes</td>
+            </tr>
+            <tr>
+              <td><strong>SOC2 Type 2 certified</strong></td>
+              <td colspan="2">Yes</td>
+            </tr>
+            <tr>
+              <td><strong>GDPR Compliance tested</strong></td>
+              <td colspan="2">Yes</td>
+            </tr>
+          </table>
+          <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+        </div>
       </div>
     </section>
 
+    <section class="p-strip--light">
+      <div class="row">
+        <div class="col-8">
+          <h2>Optimise your open source</h2>
+        </div>
+      </div>
+      <div class="row p-divider">
+        <div class="col-3 p-divider__block">
+          <div class="p-heading-icon">
+            <div class="p-heading-icon__header is-stacked">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",
+                alt="",
+                width="100",
+                height="100",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+                ) | safe
+              }}
+              <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Regain focus</h4>
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">You drive  the business, we maintain the apps</li>
+              <li class="p-list__item is-ticked">Put DevOps on-rails with high quality foundation</li>
+              <li class="p-list__item is-ticked">Expand globally without needing a global team</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-3 p-divider__block">
+          <div class="p-heading-icon">
+            <div class="p-heading-icon__header is-stacked">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
+                alt="",
+                width="100",
+                height="100",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+                ) | safe
+              }}
+              <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Reliable and robust</h4>
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Reduce human-error</li>
+              <li class="p-list__item is-ticked">Automated response to common issues</li>
+              <li class="p-list__item is-ticked">Managed by app specific experts</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-3 p-divider__block">
+          <div class="p-heading-icon">
+            <div class="p-heading-icon__header is-stacked">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/c0e765e4-save-time-money-icon-lrg.svg",
+                alt="",
+                width="100",
+                height="100",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+                ) | safe
+              }}
+              <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Predictable pricing</h4>
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Per-machine price</li>
+              <li class="p-list__item is-ticked">Multiple portfolio apps, no extra cost</li>
+              <li class="p-list__item is-ticked">Unlimited usage</li>
+              <li class="p-list__item is-ticked">Transfer management back on request</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-3 p-divider__block">
+          <div class="p-heading-icon">
+            <div class="p-heading-icon__header is-stacked">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
+                alt="",
+                width="100",
+                height="100",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
+                ) | safe
+              }}
+              <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Open source, simplified</hh43>
+            </div>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Bring your own cloud</li>
+              <li class="p-list__item is-ticked">Use the latest open source without hiring delays</li>
+              <li class="p-list__item is-ticked">Offload the resource intensive stuff to our specialist team</li>
+              <li class="p-list__item is-ticked">Accelerate to market with our experienced support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <section class="p-strip p-engage-banner--grad">
+    <section class="p-strip">
+      <div class="row">
+        <div class="col-8">
+          <h2>
+            Managed Kafka - Pricing
+          </h2>
+          <p>
+            We manage applications at both the host and the guest level. All prices are dependent on current cloud architecture and requirements.
+          </p>
+          <p><a href="/managed/kafka#get-in-touch">Get started with a free quote and architecture assessment&nbsp;&rsaquo;</a></p>
+        </div>
+      </div>
+      {% include '/shared/pricing/_managed-pricing.html' %}
+    </section>
+
+    <section class="p-strip--light">
       <div class="row u-equal-height">
         <div class="col-7">
           <h2>
@@ -334,35 +625,43 @@
             Watch this webinar to understand the key design decisions in creating a resilient and secure Kafka streaming pipeline, and options to achieve operations at scale.
           </p>
           <p>
-            <a class="p-button--positive" href="/engage/kafka-in-production">Watch the webinar</a>
+            <a href="/engage/kafka-in-production">Watch the webinar&nbsp;&rsaquo;</a>
           </p>
         </div>
         <div class="col-5 u-hide--small u-vertically-center u-align--center">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/a70bfab2-Managed-apps_wht.svg",
-            alt="",
-            width="297",
-            height="150",
-            hi_def=True,
-            loading="auto",
-            ) | safe
-          }}
+          <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;"><script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : 6793, "language": "en-US", "commId" : 410402, "displayMode" : "standalone", "height" : "auto" }</script><script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script></div>
         </div>
       </div>
     </section>
 
     <section class="p-strip">
       <div class="row u-equal-height">
-        <div class="col-7">
-          <h2>Learn how Managed Apps help organisations maintain business focus</h2>
-          <p>Managed Apps frees DevOps teams to focus on the value their apps can deliver and away from time-consuming cloud-management tasks, at a predictable price.</p>
-          <p><a class="p-button--positive" href="https://www.brighttalk.com/webcast/6793/394568">Watch on-demand</a></p>
+        <div class="col-4 u-align--center u-hide--small u-vertically-center">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
+            alt="",
+            height="180",
+            width="180",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
         </div>
-        <div class="col-5 u-vertically-center">
-          <blockquote class="p-pull-quote">
-            <p class="p-pull-quote__quote">With Managed Apps, DevOps becomes a strategic edge, not just a requirement for others to perform their jobs.</p>
-          </blockquote>
+        <div class="col-8 u-vertically-center">
+          <h2>
+            Got questions? We’ve got the answers
+          </h2>
+          <p>
+            Get in touch with sales@canonical.com or ask a question in our chat.
+            <br />
+            Still have open questions?
+          </p>
+          <p>
+            <a class="js-invoke-modal" href="/managed/contact-us">
+              Contact us&nbsp;&rsaquo;
+            </a>
+          </p>
         </div>
       </div>
     </section>
