@@ -32,7 +32,7 @@
       <input type="hidden" name="formVid" class="mktoField" value="3485">
       <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
       <input type="hidden" name="Consent_to_Processing__c" value="yes" />
-      <input type="hidden" name="returnURL" value="https://assets.ubuntu.com/v1/f401c3f4-Ubuntu_Server_CLI_pro_tips_2020-04.pdf" />
+      <input type="hidden" name="return_url" value="https://assets.ubuntu.com/v1/f401c3f4-Ubuntu_Server_CLI_pro_tips_2020-04.pdf" />
     </form>
   </div>
 </div>
@@ -52,7 +52,6 @@
   document.addEventListener('click', function (event) {
     var targetControls = event.target.getAttribute('aria-controls');
     if (targetControls) {
-      event.preventDefault();
       toggleModal(document.getElementById(targetControls));
     }
   });
