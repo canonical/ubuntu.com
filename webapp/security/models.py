@@ -140,6 +140,18 @@ class Notice(Base):
         back_populates="notices",
     )
 
+    @hybrid_property
+    def package_list(self):
+        if not self.release_packages:
+            return []
+
+        package_list = []
+        for codename, packages in self.release_packages.items():
+            for package in packages:
+                package_list.append(package["name"])
+
+        return set(sorted(package_list))
+
 
 class Release(Base):
     __tablename__ = "release"

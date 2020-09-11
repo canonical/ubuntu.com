@@ -99,6 +99,21 @@
     </div>
   </div>
   {% endif %}
+  {% if notice.related_notices|length > 0 %}
+  <div class="row">
+    <div class="col-8">
+      <h2>Related notices</h2>
+      <ul class="p-list">
+        {% for notice in notice.related_notices %}
+          <li class="p-list__item">
+            <a href="/security/notices/{{ notice.id }}">{{ notice.id }}</a>: {{ notice.package_list }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+
 </section>
 
 {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
