@@ -3,12 +3,13 @@
 @charset "UTF-8";
 
 // import vanilla-framework
-@import 'vanilla-framework/scss/settings';
+@import "vanilla-framework/scss/settings";
 
 //settings
-@import 'settings_colors';
+@import "settings_colors";
 
-#main-content { // sass-lint:disable-line no-ids
+#main-content {
+  // sass-lint:disable-line no-ids
   float: none;
   margin: 0;
   width: 100%;
@@ -21,7 +22,8 @@
 body {
   background: $color-x-light !important;
   color: $color-x-dark;
-  font-family: "Ubuntu", "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Ubuntu", "Segoe UI", "Roboto", "Oxygen", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   line-height: 1.3;
 }
 
@@ -33,7 +35,6 @@ pre,
 [class*=" p-strip"] {
   page-break-inside: avoid;
 }
-
 
 th,
 td {
@@ -68,7 +69,7 @@ a {
   text-decoration: underline;
 }
 
-a[href^='http']::after {
+a[href^="http"]::after {
   content: " <" attr(href) "> ";
 }
 

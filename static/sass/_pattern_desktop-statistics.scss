@@ -33,7 +33,8 @@
 
   @media (min-width: 768px) {
     .p-takeover--stats {
-      background-image: url('https://assets.ubuntu.com/v1/d3edfcd5-left.png'), url('https://assets.ubuntu.com/v1/17508275-right.png'); // sass-lint:disable-line no-url-protocols, no-url-domains
+      background-image: url("https://assets.ubuntu.com/v1/d3edfcd5-left.png"),
+        url("https://assets.ubuntu.com/v1/17508275-right.png"); // sass-lint:disable-line no-url-protocols, no-url-domains
       background-position: bottom left, bottom right;
       background-repeat: no-repeat;
       background-size: contain;
@@ -45,11 +46,11 @@
       display: flex;
       flex-direction: column;
 
-      &>[class*="col-"]:first-child {
+      & > [class*="col-"]:first-child {
         order: 1;
       }
 
-      &>[class*="col-"]:nth-child(2) {
+      & > [class*="col-"]:nth-child(2) {
         order: 0;
       }
     }
@@ -64,7 +65,6 @@
 
     .p-bar-chart__bar {
       opacity: 1;
-
     }
 
     .label {
@@ -72,7 +72,7 @@
     }
 
     .tick text {
-      font-size: .625rem;
+      font-size: 0.625rem;
     }
 
     .left-axis {
@@ -84,7 +84,7 @@
   .p-progress-chart {
     background: $color-x-light;
     border: 1px solid $color-mid-light;
-    box-shadow: 0 1px 5px 1px rgba(17, 17, 17, .2); //sass-lint:disable-line no-color-literals
+    box-shadow: 0 1px 5px 1px rgba(17, 17, 17, 0.2); //sass-lint:disable-line no-color-literals
 
     .p-progress-chart__bar {
       opacity: 1;
@@ -119,11 +119,11 @@
 
   .p-strip--light {
     .p-strip__row {
-      >.p-strip__row--item {
+      > .p-strip__row--item {
         padding: $spv-inner--x-small;
       }
 
-      >.p-strip__row--item.col-6 {
+      > .p-strip__row--item.col-6 {
         background: $color-x-light;
       }
     }
@@ -158,9 +158,10 @@
     }
   }
 
-  #where-are-users { // sass-lint:disable-line no-ids
+  #where-are-users {
+    // sass-lint:disable-line no-ids
     @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-      transform: scale(.7);
+      transform: scale(0.7);
     }
   }
 

@@ -1,7 +1,7 @@
-@mixin  blog-p-card {
-
+@mixin blog-p-card {
   .blog-p-card__category {
-    background: url('#{$assets-path}ed42aefa-icon-resource-hub-icon-document.png') left center no-repeat;
+    background: url("#{$assets-path}ed42aefa-icon-resource-hub-icon-document.png")
+      left center no-repeat;
     color: $color-mid-dark;
     font-size: $sp-medium;
     line-height: 1.5;
@@ -33,7 +33,12 @@
     padding: 0;
 
     .p-strip--featured & {
-      background-color: rgba(255, 255, 255, .9); //sass-lint:disable-line no-color-literals
+      background-color: rgba(
+        255,
+        255,
+        255,
+        0.9
+      ); //sass-lint:disable-line no-color-literals
       position: relative;
       z-index: 1;
     }
@@ -56,7 +61,7 @@
 
     .blog-p-card__footer {
       border-top: 1px dotted $color-mid-light;
-      font-size: .875rem;
+      font-size: 0.875rem;
       margin: auto $sp-small 0;
       max-width: inherit;
       padding: $sp-medium $sp-small;
@@ -66,10 +71,10 @@
   .blog-p-card--muted {
     @extend .p-card; //sass-lint:disable-line placeholder-in-extend
     background-color: $color-light;
-    box-shadow: 0 1px 2px 0 transparentize($color-dark, .8);
+    box-shadow: 0 1px 2px 0 transparentize($color-dark, 0.8);
     padding: 0;
 
-    > .blog-p-card__header  {
+    > .blog-p-card__header {
       border-bottom: 0;
       border-top: 3px solid $color-light;
       margin-bottom: 0;

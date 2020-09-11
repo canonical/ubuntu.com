@@ -1,6 +1,6 @@
 // https://github.com/canonical-web-and-design/maas.io/blob/master/static/sass/_settings_colors.scss
-$color-modal-overlay:  rgba($color-x-dark, .85);
-$color-modal-controls: rgba($color-x-dark, .2);
+$color-modal-overlay: rgba($color-x-dark, 0.85);
+$color-modal-controls: rgba($color-x-dark, 0.2);
 
 // https://github.com/canonical-web-and-design/maas.io/blob/master/static/sass/_patterns_modal.scss
 @mixin ubuntu-p-lightbox {
@@ -19,14 +19,14 @@ $color-modal-controls: rgba($color-x-dark, .2);
       &::after {
         background: {
           color: $color-dark;
-          image: url('#{$assets-path}495995ef-fullscreen-white.svg');
+          image: url("#{$assets-path}495995ef-fullscreen-white.svg");
           position: center;
           repeat: no-repeat;
           size: 50%;
         }
         bottom: 15px;
         box-shadow: 0 5px 10px 0 $color-modal-controls;
-        content: '';
+        content: "";
         display: block;
         height: 1.25rem;
         position: absolute;
@@ -75,13 +75,17 @@ $color-modal-controls: rgba($color-x-dark, .2);
   }
 
   @keyframes playload {
-    from { background-position:    0; }
-    to { background-position: -576px; }
+    from {
+      background-position: 0;
+    }
+    to {
+      background-position: -576px;
+    }
   }
 
   // navigation
   .vbox-close {
-    background: url('#{$assets-path}345e40a0-close_16_white.svg') no-repeat;
+    background: url("#{$assets-path}345e40a0-close_16_white.svg") no-repeat;
     background-position: center;
     background-size: 1rem;
     color: $color-x-light;
@@ -107,7 +111,7 @@ $color-modal-controls: rgba($color-x-dark, .2);
       color: $color-x-light;
       position: center;
       repeat: no-repeat;
-      size: .25rem;
+      size: 0.25rem;
     }
     border-radius: 3rem;
     box-sizing: content-box;
@@ -128,12 +132,12 @@ $color-modal-controls: rgba($color-x-dark, .2);
   }
 
   .vbox-prev {
-    background-image: url('#{$assets-path}e8d2e45f-chevron-left.svg');
+    background-image: url("#{$assets-path}e8d2e45f-chevron-left.svg");
     left: 1rem;
   }
 
   .vbox-next {
-    background-image: url('#{$assets-path}9716bbab-chevron.svg');
+    background-image: url("#{$assets-path}9716bbab-chevron.svg");
     // Overrides a rule in vanilla that adds margin to the right of buttons
     margin-right: 0 !important;
     right: 1rem;
@@ -170,7 +174,7 @@ $color-modal-controls: rgba($color-x-dark, .2);
     left: 0;
     line-height: 28px;
     overflow: hidden;
-    padding: .375rem .625rem;
+    padding: 0.375rem 0.625rem;
     position: fixed;
     top: -1px;
   }
@@ -181,7 +185,7 @@ $color-modal-controls: rgba($color-x-dark, .2);
     height: 315px;
     margin: 0 auto;
     overflow: auto;
-    padding: .625rem;
+    padding: 0.625rem;
     text-align: left;
     width: 420px;
   }

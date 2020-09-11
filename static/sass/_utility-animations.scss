@@ -1,5 +1,5 @@
 @mixin fade-left {
-  animation-delay: .25s;
+  animation-delay: 0.25s;
   animation-duration: map-get($animation-duration, sleepy);
   animation-fill-mode: forwards;
   animation-name: fadeLeft;
@@ -9,7 +9,7 @@
 }
 
 @mixin fade-up {
-  animation-delay: .25s;
+  animation-delay: 0.25s;
   animation-duration: map-get($animation-duration, sleepy);
   animation-fill-mode: forwards;
   animation-name: fadeUp;
