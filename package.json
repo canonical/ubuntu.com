@@ -20,7 +20,8 @@
     "serve": "./entrypoint 0.0.0.0:${PORT}",
     "start": "yarn run build && concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js' 'yarn run serve'",
     "cypress:run": "cypress run --config-file tests/cypress/cypress.json --config baseUrl=http://$(hostname -I | awk '{print $1;}'):${PORT}",
-    "cypress:open": "cypress open --config-file tests/cypress/cypress.json --config baseUrl=http://$(hostname -I | awk '{print $1;}'):${PORT}"
+    "cypress:open": "cypress open --config-file tests/cypress/cypress.json --config baseUrl=http://$(hostname -I | awk '{print $1;}'):${PORT}",
+    "check-prettier": "prettier -c '**/*.{scss,js}'"
   },
   "husky": {
     "hooks": {
