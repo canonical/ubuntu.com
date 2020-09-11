@@ -6,78 +6,78 @@ function chooseEquivalentItem(totalAmount) {
     {
       imageFile: "86981cf1-skull.png?w=78",
       price: 0,
-      description: "Nothing. Use Ubuntu for free."
+      description: "Nothing. Use Ubuntu for free.",
     },
     {
       imageFile: "0617b159-ace-of-spades.png?w=78",
       price: 1,
-      description: "the Ace of Spades download"
+      description: "the Ace of Spades download",
     },
     {
       imageFile: "b52102d9-mocca.png?w=78",
       price: 2,
-      description: "grande extra shot mocha latta chino"
+      description: "grande extra shot mocha latta chino",
     },
     {
       imageFile: "0ca1e249-pint-of-ale.png?w=78",
       price: 5,
-      description: "pint of Micro-brew Nevada Pale Ale"
+      description: "pint of Micro-brew Nevada Pale Ale",
     },
     {
       imageFile: "bd982caa-happy-meal.png?w=78",
       price: 7,
-      description: "A Royale with Cheese "
+      description: "A Royale with Cheese ",
     },
     {
       imageFile: "e474c36d-cinema-ticket.png?w=78",
       price: 10,
-      description: "a night at the movies. By yourself."
+      description: "a night at the movies. By yourself.",
     },
     {
       imageFile: "274c40d3-king-kong.png?w=78",
       price: 15,
-      description: "King Kong versus Godzilla on DVD"
+      description: "King Kong versus Godzilla on DVD",
     },
     {
       imageFile: "b26d26e5-t-shirt.png?w=78",
       price: 20,
-      description: "Peace, Love and Linux t-shirt (shirt not included)"
+      description: "Peace, Love and Linux t-shirt (shirt not included)",
     },
     {
       imageFile: "86f3bcab-frying-pan.png?w=78",
       price: 30,
-      description: "stainless steel copper-bottom frying pan"
+      description: "stainless steel copper-bottom frying pan",
     },
     {
       imageFile: "733a3650-sega-controller.png?w=78",
       price: 50,
-      description: "vintage SNES game bundle"
+      description: "vintage SNES game bundle",
     },
     {
       imageFile: "d6d7d638-levi-501.png?w=78",
       price: 60,
-      description: "pair of vintage acid wash Levi 501s"
+      description: "pair of vintage acid wash Levi 501s",
     },
     {
       imageFile: "76f933b2-drum-kit.png?w=78",
       price: 100,
-      description: "pair of LP Matador bongo drums"
+      description: "pair of LP Matador bongo drums",
     },
     {
       imageFile: "ae1705f2-emu-chicks.png?w=78",
       price: 200,
-      description: "pair of sexed Emu chicks"
+      description: "pair of sexed Emu chicks",
     },
     {
       imageFile: "4cbbd365-ldn-nyc-flight.png?w=78",
       price: 500,
-      description: "flight from New York to London (one way)"
+      description: "flight from New York to London (one way)",
     },
     {
       imageFile: "7a47693f-camel.png?w=78",
       price: 1000,
-      description: "an eight year-old dromedary camel"
-    }
+      description: "an eight year-old dromedary camel",
+    },
   ];
   const lastItem = items[items.length - 1];
   let matchingItem = false;
@@ -123,7 +123,7 @@ function updateSummary() {
   const inputs = document.querySelectorAll(".p-slider__input");
   let total = 0;
 
-  inputs.forEach(valueElement => {
+  inputs.forEach((valueElement) => {
     total += parseInt(valueElement.value || 0);
   });
 
@@ -156,7 +156,7 @@ function sendContributionFormAnalytics() {
   let transactionProducts = [];
 
   // add the individual items
-  inputs.forEach(amountElement => {
+  inputs.forEach((amountElement) => {
     const name = amountElement.parentNode.parentNode.id;
     let value = amountElement.value || 0;
 
@@ -166,7 +166,7 @@ function sendContributionFormAnalytics() {
         name: name,
         category: "",
         price: value,
-        quantity: 1
+        quantity: 1,
       });
     }
   });
@@ -178,7 +178,7 @@ function sendContributionFormAnalytics() {
     transactionTax: 0,
     transactionShipping: 0,
     transactionProducts: transactionProducts,
-    event: "transactionComplete"
+    event: "transactionComplete",
   });
 }
 
@@ -231,8 +231,8 @@ function initContributionSummary(optionsArea) {
   /**
    * Reset fields back to 0, if missing values
    */
-  inputs.forEach(valueElement => {
-    valueElement.addEventListener("blur", function() {
+  inputs.forEach((valueElement) => {
+    valueElement.addEventListener("blur", function () {
       if (isNaN(parseInt(valueElement.value))) {
         valueElement.value = 0;
       }
@@ -249,7 +249,7 @@ function initSliders(sliders) {
   const progressColour = "#E95420";
   const emptyColour = "#fff";
 
-  sliders.forEach(slider => {
+  sliders.forEach((slider) => {
     let input = document.getElementById(slider.id + "-input");
     renderSlider(slider, progressColour, emptyColour, browser);
 

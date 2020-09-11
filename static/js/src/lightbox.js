@@ -28,7 +28,7 @@ const initLightboxEl = () => {
   lightboxEl.style.display = "0";
   lightboxEl.innerHTML = lightboxTpl;
 
-  const closeLightbox = event => {
+  const closeLightbox = (event) => {
     event.preventDefault();
     closeLightboxEl(lightboxEl);
   };
@@ -36,7 +36,7 @@ const initLightboxEl = () => {
   lightboxEl
     .querySelector(".vbox-close")
     .addEventListener("click", closeLightbox);
-  lightboxEl.addEventListener("click", event => {
+  lightboxEl.addEventListener("click", (event) => {
     const ignore = ["figlio", "vbox-next", "vbox-prev"];
     // This assumes a single class on each item
     if (ignore.indexOf(event.target.className) < 0) {
@@ -123,18 +123,18 @@ const loadLightboxImage = (lightboxEl, url, images) => {
 const openLightboxEl = (lightboxEl, url, images) => {
   // prepare navigating to next/prev images
   if (images && images.length) {
-    const handleNextPrevClick = event => {
+    const handleNextPrevClick = (event) => {
       event.preventDefault();
       if (event.target.dataset.url) {
         loadLightboxImage(lightboxEl, event.target.dataset.url, images);
       }
     };
 
-    const handleNextPrevKey = event => {
+    const handleNextPrevKey = (event) => {
       const KEYS = {
         ESC: 27,
         LEFT: 37,
-        RIGHT: 39
+        RIGHT: 39,
       };
       let image;
       switch (event.keyCode) {
@@ -175,7 +175,7 @@ const openLightboxEl = (lightboxEl, url, images) => {
   loadLightboxImage(lightboxEl, url, images);
 };
 
-const closeLightboxEl = lightboxEl => {
+const closeLightboxEl = (lightboxEl) => {
   lightboxEl.style.opacity = "0";
   lightboxEl.style.display = "none";
   if (lightboxEl.parentNode) {
@@ -185,7 +185,7 @@ const closeLightboxEl = lightboxEl => {
 };
 
 const lightbox = {
-  openLightbox
+  openLightbox,
 };
 
 export default lightbox;

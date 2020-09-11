@@ -3,9 +3,13 @@ module.exports = {
     node: true,
     browser: true,
     es6: true,
-    jest: true
+    jest: true,
   },
-  extends: ["eslint:recommended", "eslint-config-prettier", "plugin:cypress/recommended"],
+  extends: [
+    "eslint:recommended",
+    "eslint-config-prettier",
+    "plugin:cypress/recommended",
+  ],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
@@ -14,14 +18,14 @@ module.exports = {
     topojson: "readonly",
     ga: "readonly",
     grecaptcha: "readonly",
-    serialize: "readonly"
+    serialize: "readonly",
   },
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: "module",
   },
   rules: {
     semi: ["error", "always"],
-    "no-prototype-builtins": "off"
-  }
+    "no-prototype-builtins": "off",
+  },
 };

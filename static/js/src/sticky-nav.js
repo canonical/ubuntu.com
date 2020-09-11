@@ -10,7 +10,7 @@ function isTabActive(tab) {
 }
 
 function render() {
-  stickyTabs.forEach(function(tab) {
+  stickyTabs.forEach(function (tab) {
     if (isTabActive(tab)) {
       unsetActiveTabs();
       tab.classList.add("is-selected");
@@ -19,7 +19,7 @@ function render() {
 }
 
 function unsetActiveTabs() {
-  stickyTabs.forEach(function(tab) {
+  stickyTabs.forEach(function (tab) {
     tab.classList.remove("is-selected");
   });
 }
@@ -34,6 +34,6 @@ function tick() {
 
 requestAnimationFrame(tick);
 
-window.addEventListener("scroll", function() {
+window.addEventListener("scroll", function () {
   didScroll = true;
 });
