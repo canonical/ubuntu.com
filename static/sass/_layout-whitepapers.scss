@@ -1,5 +1,5 @@
 @mixin layout-whitepapers {
-  $color-shadow: rgba(0, 0, 0, .5);
+  $color-shadow: rgba(0, 0, 0, 0.5);
 
   .l-whitepapers {
     .p-strip--hero {
@@ -40,7 +40,7 @@
 
     .signup-form {
       background: $color-x-light;
-      box-shadow: 0 -30px 30px 0 rgba(255, 255, 255, .95); //sass-lint:disable-line no-color-literals
+      box-shadow: 0 -30px 30px 0 rgba(255, 255, 255, 0.95);
       margin-top: -40px;
       padding-top: 40px;
       position: relative;
@@ -89,7 +89,7 @@
       .p-pull-quote p::before,
       .p-pull-quote p::after {
         color: $color-mid-light;
-        opacity: .5;
+        opacity: 0.5;
       }
 
       img {

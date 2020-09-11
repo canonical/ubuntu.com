@@ -79,6 +79,18 @@ jobs:
       - name: Lint scss
         run: yarn lint-scss
 
+  check-prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Check Prettier
+        run: yarn check-prettier
+
   lint-python:
     runs-on: ubuntu-latest
 

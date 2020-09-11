@@ -5,11 +5,11 @@
  * Sorts tasks by date
  */
 function sortTasks(tasks) {
-  tasks.sort(function(a, b) {
+  tasks.sort(function (a, b) {
     return a.endDate - b.endDate;
   });
 
-  tasks.sort(function(a, b) {
+  tasks.sort(function (a, b) {
     return a.startDate - b.startDate;
   });
 
@@ -29,25 +29,25 @@ function sortTasks(tasks) {
 function addBarsToChart(svg, tasks, taskStatus, x, y) {
   svg
     .selectAll(".chart")
-    .data(tasks, function(d) {
+    .data(tasks, function (d) {
       return d.startDate + d.taskName + d.endDate;
     })
     .enter()
     .append("rect")
-    .attr("class", function(d) {
+    .attr("class", function (d) {
       if (taskStatus[d.status] == null) {
         return "bar";
       }
       return taskStatus[d.status];
     })
     .attr("y", 0)
-    .attr("transform", function(d) {
+    .attr("transform", function (d) {
       return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
     })
-    .attr("height", function() {
+    .attr("height", function () {
       return y.bandwidth();
     })
-    .attr("width", function(d) {
+    .attr("width", function (d) {
       return x(d.endDate) - x(d.startDate);
     });
 }
@@ -81,11 +81,7 @@ function addXAxis(svg, height, margin, xAxis) {
  * Add y axis to chart
  */
 function addYAxis(svg, yAxis) {
-  svg
-    .append("g")
-    .attr("class", "y axis")
-    .transition()
-    .call(yAxis);
+  svg.append("g").attr("class", "y axis").transition().call(yAxis);
 }
 
 /**
@@ -105,7 +101,7 @@ function cleanUpChart(svg) {
  
  */
 function emboldenLTSLabels(svg) {
-  svg.selectAll(".tick text").select(function() {
+  svg.selectAll(".tick text").select(function () {
     var text = this.textContent;
 
     if (text.includes("LTS")) {
@@ -142,7 +138,7 @@ function buildChartKey(chartSelector, taskStatus) {
     .attr("width", "400")
     .attr("height", 24 * taskStatusKeys.length);
 
-  taskStatusKeys.forEach(function(key, i) {
+  taskStatusKeys.forEach(function (key, i) {
     var keyRow = chartKey
       .append("g")
       .attr("class", "chart-key__row")
@@ -208,7 +204,7 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
     top: 0,
     right: 40,
     bottom: 20,
-    left: 150
+    left: 150,
   };
   var rowHeight = 32;
   var timeDomainStart = d3.timeYear.offset(tasks[0].startDate, -1);
@@ -236,10 +232,7 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
 
   var xAxis = d3.axisBottom(x);
 
-  var yAxis = d3
-    .axisRight(y)
-    .tickPadding(-margin.left)
-    .tickSize(0);
+  var yAxis = d3.axisRight(y).tickPadding(-margin.left).tickSize(0);
 
   sortTasks(tasks);
 
@@ -263,7 +256,7 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   cleanUpChart(svg);
   buildChartKey(chartSelector, taskStatus);
 
-  setTimeout(function() {
+  setTimeout(function () {
     emboldenLTSLabels(svg);
   }, 500);
 }

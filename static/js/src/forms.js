@@ -4,7 +4,7 @@ if (typeof forms !== "undefined") {
 
 var forms = {};
 
-forms.stateFormField = function() {
+forms.stateFormField = function () {
   var countrySelect = document.getElementById("Country");
   var formStateContainer = document.querySelector(".mktoPlaceholderState");
 
@@ -13,7 +13,7 @@ forms.stateFormField = function() {
     return;
   }
 
-  countrySelect.addEventListener("change", function(e) {
+  countrySelect.addEventListener("change", function (e) {
     var val = e.target.value;
     var optionGroup = document.querySelector(
       ".mktoPlaceholderState__group--" + val

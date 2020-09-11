@@ -1,4 +1,3 @@
-// sass-lint:disable no-color-literals hex-notation
 @mixin ubuntu-p-strip {
   @include ubuntu-p-strip-slanted;
   @include ubuntu-p-strip-suru;
@@ -194,7 +193,6 @@
     @extend %vf-strip;
 
     background-blend-mode: multiply, multiply, normal, normal;
-    // sass-lint:disable-block no-color-literals
     background-image: linear-gradient(
         to bottom left,
         rgba(228, 228, 228, 0.5) 0%,
@@ -274,7 +272,7 @@
     @extend %vf-strip;
 
     background-blend-mode: multiply, multiply, normal, normal;
-    // sass-lint:disable-block no-color-literals
+
     background-image: linear-gradient(
         to bottom left,
         rgba(228, 228, 228, 0.5) 0%,
@@ -341,7 +339,7 @@
 
     @media only screen and (max-width: $breakpoint-small) {
       background-blend-mode: normal;
-      // sass-lint:disable-block no-color-literals
+
       background-image: linear-gradient(
         -89deg,
         rgba(233, 84, 32, 1) 0%,
@@ -369,7 +367,7 @@
     @extend %vf-strip;
 
     background-blend-mode: multiply, normal, normal, normal;
-    // sass-lint:disable-block no-color-literals
+
     background-image: linear-gradient(
         25deg,
         rgba(119, 41, 83, 0.16) 0%,
@@ -761,7 +759,6 @@
     position: relative;
   }
 }
-// sass-lint:enable no-color-literals hex-notation
 
 @mixin ubuntu-p-strip-slanted {
   .is-slanted {

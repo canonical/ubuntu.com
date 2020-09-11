@@ -10,7 +10,7 @@
 }
 
 @mixin ubuntu-p-footer {
-  $color-shadow: rgba(0, 0, 0, .3);
+  $color-shadow: rgba(0, 0, 0, 0.3);
 
   .p-footer {
     border: 0;
@@ -78,7 +78,7 @@
         margin-top: 0;
       }
 
-      +.p-footer__item {
+      + .p-footer__item {
         @media only screen and (min-width: $breakpoint-medium) {
           margin-top: $sp-large;
         }
@@ -93,7 +93,7 @@
       background-size: 13px 13px;
       border-top: 1px solid $color-mid-light;
       color: $color-dark;
-      font-size: .8125rem;
+      font-size: 0.8125rem;
       margin-top: 0;
       max-width: inherit;
       padding: $sp-medium 0;
@@ -105,7 +105,7 @@
       }
 
       @media only screen and (min-width: $breakpoint-large) {
-        font-size: .8125rem;
+        font-size: 0.8125rem;
       }
 
       a:link,
@@ -120,10 +120,10 @@
       }
 
       a::after {
-        content: ''; // hide the default > */
+        content: ""; // hide the default > */
       } /// open and close the primary/secondary navs
 
-      +.second-level-nav {
+      + .second-level-nav {
         display: none;
 
         @media only screen and (min-width: $breakpoint-medium) {
@@ -138,7 +138,7 @@
           background: none;
         }
 
-        +.second-level-nav {
+        + .second-level-nav {
           display: block;
         }
       }
@@ -204,7 +204,7 @@
 
       &.second-level-nav-small {
         @media only screen and (max-width: $breakpoint-small) {
-          margin-left: -.7rem;
+          margin-left: -0.7rem;
 
           li {
             a {
@@ -225,7 +225,7 @@
           border-top: 1px solid $color-mid-light;
           color: $color-dark;
           display: block;
-          font-size: .8125rem;
+          font-size: 0.8125rem;
           padding: $sp-medium $sp-small $sp-medium;
 
           @media only screen and (min-width: $breakpoint-medium) {

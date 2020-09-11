@@ -8,7 +8,7 @@ function toggleMenu(element, show) {
 }
 
 function attachClickEvent(toggle) {
-  toggle.addEventListener("click", e => {
+  toggle.addEventListener("click", (e) => {
     const menuAlreadyOpen = e.target.getAttribute("aria-expanded") === "true";
 
     e.preventDefault();
@@ -20,7 +20,7 @@ function attachHoverEvent(toggle) {
   const dropdown = document.querySelector(toggle.getAttribute("aria-controls"));
   let timer = null;
 
-  toggle.addEventListener("click", e => {
+  toggle.addEventListener("click", (e) => {
     e.preventDefault();
   });
 
@@ -47,7 +47,7 @@ function attachHoverEvent(toggle) {
     }, 50);
   });
 
-  document.onkeydown = e => {
+  document.onkeydown = (e) => {
     e = e || window.event;
 
     if (e.keyCode === 27) {
@@ -59,7 +59,7 @@ function attachHoverEvent(toggle) {
 function setupContextualMenuListeners(contextualMenuToggleSelector) {
   const toggles = document.querySelectorAll(contextualMenuToggleSelector);
 
-  toggles.forEach(toggle => {
+  toggles.forEach((toggle) => {
     if (toggle.getAttribute("data-trigger") === "click") {
       attachClickEvent(toggle);
     } else if (toggle.getAttribute("data-trigger") === "hover") {
@@ -67,8 +67,8 @@ function setupContextualMenuListeners(contextualMenuToggleSelector) {
     }
   });
 
-  document.addEventListener("click", e => {
-    toggles.forEach(toggle => {
+  document.addEventListener("click", (e) => {
+    toggles.forEach((toggle) => {
       const contextualMenu = document.querySelector(
         toggle.getAttribute("aria-controls")
       );
@@ -83,11 +83,11 @@ function setupContextualMenuListeners(contextualMenuToggleSelector) {
     });
   });
 
-  document.onkeydown = e => {
+  document.onkeydown = (e) => {
     e = e || window.event;
 
     if (e.keyCode === 27) {
-      toggles.forEach(toggle => {
+      toggles.forEach((toggle) => {
         toggleMenu(toggle, false);
       });
     }

@@ -4,21 +4,21 @@ const DEPLOYMENT_TYPE_COSTS = {
   kubernetes_reference: 45000,
   openstack_custom: 150000,
   openstack_existing: 0,
-  openstack_reference: 75000
+  openstack_reference: 75000,
 };
 
 const MANAGED_SERVICE_COSTS = {
   maas: 300,
   openstack: 4275,
   kubernetes: 3250,
-  openstack_and_kubernetes: 6465
+  openstack_and_kubernetes: 6465,
 };
 
 const SERVICE_LEVEL_COST_PER_HOST = {
   none: 0,
   essential: 225,
   standard: 750,
-  advanced: 1500
+  advanced: 1500,
 };
 
 const STORAGE_COSTS = {
@@ -28,7 +28,7 @@ const STORAGE_COSTS = {
     tier_three: { base: 19375, multiplier: 6.67 },
     tier_four: { base: 29375, multiplier: 3.33 },
     tier_five: { base: 69375, multiplier: 1.67 },
-    tier_six: { base: 94375, multiplier: 0 }
+    tier_six: { base: 94375, multiplier: 0 },
   },
   advanced: {
     tier_one: { base: 0, multiplier: 33.33 },
@@ -36,8 +36,8 @@ const STORAGE_COSTS = {
     tier_three: { base: 38750, multiplier: 13.33 },
     tier_four: { base: 58750, multiplier: 6.67 },
     tier_five: { base: 138750, multiplier: 3.33 },
-    tier_six: { base: 188750, multiplier: 0 }
-  }
+    tier_six: { base: 188750, multiplier: 0 },
+  },
 };
 
 function initTCOCalculator() {
@@ -54,28 +54,28 @@ function attachInputEvents() {
   );
   const radioInputs = document.querySelectorAll(".js-tco-calculator__radio");
 
-  rangeContainers.forEach(container => {
+  rangeContainers.forEach((container) => {
     let input = container.querySelector("input[type='number']");
     let range = container.querySelector("input[type='range']");
 
-    input.addEventListener("input", e => {
+    input.addEventListener("input", (e) => {
       range.value = e.target.value;
       updateTotals();
     });
 
-    range.addEventListener("input", e => {
+    range.addEventListener("input", (e) => {
       input.value = e.target.value;
       updateTotals();
     });
   });
 
-  checkboxInputs.forEach(checkbox => {
+  checkboxInputs.forEach((checkbox) => {
     checkbox.addEventListener("input", () => {
       updateTotals();
     });
   });
 
-  radioInputs.forEach(radio => {
+  radioInputs.forEach((radio) => {
     radio.addEventListener("input", () => {
       updateTotals();
     });
@@ -138,7 +138,7 @@ function updateTotals() {
   const deploymentType = document.querySelector(
     "[name='deployment-type']:checked"
   ).value;
-  const hosts = parseInt(document.querySelector("#hosts__input").value)-3;
+  const hosts = parseInt(document.querySelector("#hosts__input").value) - 3;
   const kubernetes = document.querySelector("#ct-k8s");
   const kubernetesDeploymentCost =
     DEPLOYMENT_TYPE_COSTS[`kubernetes_${deploymentType}`];

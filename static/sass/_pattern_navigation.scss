@@ -24,7 +24,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     flex-direction: column;
     z-index: 40;
 
-    &::after { // disable rule under nav
+    &::after {
+      // disable rule under nav
       background-color: none;
       height: 0;
     }
@@ -37,7 +38,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       position: relative;
 
       .p-navigation__link-anchor {
-        padding: .75rem 1rem;
+        padding: 0.75rem 1rem;
       }
     }
 
@@ -48,14 +49,14 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
         background-position: top 52% right 50%;
         background-repeat: no-repeat;
-        background-size: .75rem;
+        background-size: 0.75rem;
         content: "";
         height: 100%;
         pointer-events: none;
         position: absolute;
         right: 0;
         top: 0;
-        transition: transform .1s;
+        transition: transform 0.1s;
         width: 2rem;
       }
 
@@ -128,7 +129,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       display: block;
 
       @media (max-width: $breakpoint-navigation-threshold) {
-        padding: $spv-inner--medium $grid-margin-width $spv-inner--medium $grid-margin-width;
+        padding: $spv-inner--medium $grid-margin-width $spv-inner--medium
+          $grid-margin-width;
       }
 
       @media (min-width: $breakpoint-navigation-threshold + 1) {
@@ -174,7 +176,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         }
 
         &__button {
-          padding: 0 .5rem;
+          padding: 0 0.5rem;
           width: 2rem;
         }
 
@@ -224,7 +226,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         }
 
         a {
-          border-left: 1px solid rgba(247, 247, 247, .3); // sass-lint:disable-line no-color-literals
+          border-left: 1px solid rgba(247, 247, 247, 0.3);
           color: $color-light !important;
           padding-left: $sp-small;
 
@@ -243,7 +245,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
             background-color: $color-light;
             display: block;
             left: $sph-inner;
-            opacity: .3;
+            opacity: 0.3;
             right: $sph-inner - $circle-of-friends-compensation;
           }
         }
@@ -251,13 +253,14 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         @media only screen and (min-width: $breakpoint-navigation-threshold) {
           padding-left: $sph-inner;
           padding-right: $sph-inner - $circle-of-friends-compensation;
-          width: $ubuntu-logo-svg-width + 2 * $sph-inner - $circle-of-friends-compensation;
+          width: $ubuntu-logo-svg-width + 2 * $sph-inner -
+            $circle-of-friends-compensation;
         }
       }
 
       .breadcrumbs {
         &--secondary {
-          @extend .p-inline-list; // sass-lint:disable-line placeholder-in-extend
+          @extend .p-inline-list;
           display: flex;
           flex-wrap: wrap;
           margin-bottom: 0;
@@ -271,8 +274,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         }
 
         &__chevron {
-          font-size: .875rem;
-          padding: .55rem 0 .2rem 0;
+          font-size: 0.875rem;
+          padding: 0.55rem 0 0.2rem 0;
         }
 
         &__space {
@@ -296,7 +299,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
           }
 
           @media (min-width: $breakpoint-x-small) and (max-width: $breakpoint-medium - 1) {
-            padding-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
+            padding-bottom: map-get($sp-after, small) + $p-small-lh-diff -
+              $nudge--small;
           }
 
           &:first-child {
@@ -317,7 +321,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     &__toggle--open,
     &__toggle--close {
       color: $color-light !important;
-      font-size: .875rem;
+      font-size: 0.875rem;
 
       @media (max-width: $breakpoint-x-small - 1) {
         margin-right: $grid-margin-width / 1.5 !important;
@@ -326,7 +330,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
     &__links {
       @media (max-width: $breakpoint-x-small - 1) {
-        font-size: .875rem;
+        font-size: 0.875rem;
       }
 
       @media (max-width: $breakpoint-navigation-threshold) {
@@ -373,12 +377,12 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   }
 
   .dropdown-window-overlay {
-    background-color: rgba(17, 17, 17, .4); // sass-lint:disable-line no-color-literals
+    background-color: rgba(17, 17, 17, 0.4);
     height: 100%;
     opacity: 1;
     position: fixed;
     top: 0;
-    transition: opacity .5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     width: 100%;
     z-index: 38;
   }
@@ -386,7 +390,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   .dropdown-window {
     @include vf-animation(all, brisk, in);
     background-color: $color-x-light;
-    box-shadow: 0 1px 32px 1px transparentize($color-dark, .8);
+    box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
     flex-direction: column;
     position: absolute;
     width: 100%;
@@ -412,7 +416,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
       @media (max-width: $breakpoint-x-small - 1) {
         .p-inline-list--middot.is-x-dense {
-          margin-bottom: .3rem;
+          margin-bottom: 0.3rem;
         }
       }
     }
@@ -431,7 +435,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     &__summary {
       @extend %small-text-fixed;
       @include p-max-width--long;
-      margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff - $nudge--small;
+      margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff -
+        $nudge--small;
     }
   }
 
@@ -466,7 +471,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   flex-direction: column;
   margin-bottom: $spv-outer--small-scaleable;
   padding: calc(#{$spv-inner--scaleable} - 1px);
-  transition: all .2s;  // sass-lint:disable-line no-transition-all
+  transition: all 0.2s;
 }
 
 .u-hide--nav-threshold-down {
@@ -488,10 +493,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   max-height: 4 * $sp-unit;
   max-width: 4 * $sp-unit;
   position: relative;
-  top: .1rem;
+  top: 0.1rem;
 }
 
 .p-button--small {
   @extend %small-text;
-  padding-top: $sp-unit * .5 + map-get($nudges, nudge--small);
+  padding-top: $sp-unit * 0.5 + map-get($nudges, nudge--small);
 }

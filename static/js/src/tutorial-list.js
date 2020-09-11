@@ -11,7 +11,7 @@ function handleFilter(key, el, url) {
     el.value = url.searchParams.get(key);
   }
 
-  el.addEventListener("change", e => {
+  el.addEventListener("change", (e) => {
     const value = e.target.value;
 
     if (url.searchParams.has("page")) {

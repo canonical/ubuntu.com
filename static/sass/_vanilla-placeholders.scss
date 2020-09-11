@@ -1,13 +1,13 @@
 // placeholders that need to be moved to vanilla
 
-$nudge--small: .55rem;
-$p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, small);
+$nudge--small: 0.55rem;
+$p-small-lh-diff: map-get($line-heights, default-text) -
+  map-get($line-heights, small);
 
 %small-text-base {
   font-size: 1rem / pow($ms-ratio, 1);
   line-height: map-get($line-heights, small);
   padding-top: $nudge--small;
-
 }
 
 %small-text-fixed {
@@ -23,8 +23,8 @@ $p-small-lh-diff: map-get($line-heights, default-text) - map-get($line-heights, 
   //Smallest text, used for smaller mutrd headinggs that sit next to .p-p--small
   font-size: 1rem / pow($ms-ratio, 2);
   line-height: 1rem;
-  margin-bottom: .25rem;
-  padding-top: .5rem;
+  margin-bottom: 0.25rem;
+  padding-top: 0.5rem;
 }
 
 h4,
@@ -58,7 +58,7 @@ h4,
   }
 
   .p-text-list--small + & {
-    margin-top: - map-get($line-heights, small);
+    margin-top: -map-get($line-heights, small);
   }
 }
 
@@ -74,7 +74,6 @@ h4,
   }
 }
 
-
 %bg--light {
   background-color: $color-light;
   color: $color-dark;
@@ -85,9 +84,9 @@ h4,
 }
 
 .p-hr--subtle {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .p-hr--dense {
-  margin-bottom: - 1px;
+  margin-bottom: -1px;
 }

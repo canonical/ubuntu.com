@@ -7,7 +7,7 @@ function toggleTutorialNavigation() {
 }
 
 function setActiveLink(navigationItems, hash) {
-  navigationItems.forEach(item => {
+  navigationItems.forEach((item) => {
     const link = item.querySelector(".l-tutorial__nav-link");
     if (link.getAttribute("href") === hash) {
       item.classList.add("is-active");
@@ -26,12 +26,12 @@ if (toggleButton) {
 
 setActiveLink(navigationItems, window.location.hash);
 
-navigationItems.forEach(item => {
+navigationItems.forEach((item) => {
   const link = item.querySelector(".l-tutorial__nav-link");
   link.addEventListener("click", toggleTutorialNavigation);
 });
 
-window.addEventListener("hashchange", e => {
+window.addEventListener("hashchange", (e) => {
   e.preventDefault();
   setActiveLink(navigationItems, window.location.hash);
 });
@@ -41,7 +41,7 @@ const sectionIds = [];
 const tutorialSections = document.querySelectorAll(
   ".l-tutorial__content section"
 );
-tutorialSections.forEach(section => {
+tutorialSections.forEach((section) => {
   sectionIds.push(section.id);
 });
 
@@ -74,15 +74,15 @@ const tutorialFeedbackResult = document.querySelector(
   ".l-tutorial__feedback-result"
 );
 
-tutorialFeedbackIcons.forEach(icon => {
-  icon.addEventListener("click", function(e) {
+tutorialFeedbackIcons.forEach((icon) => {
+  icon.addEventListener("click", function (e) {
     const feedbackValue = e.target.getAttribute("data-feedback-value");
     dataLayer.push({
       event: "GAEvent",
       eventCategory: "feedback",
       eventAction: feedbackValue,
       eventLabel: feedbackValue,
-      eventValue: undefined
+      eventValue: undefined,
     });
 
     tutorialFeedbackOptions.classList.add("u-hide");
@@ -92,12 +92,12 @@ tutorialFeedbackIcons.forEach(icon => {
 
 const polls = document.querySelectorAll(".poll");
 
-polls.forEach(poll => {
+polls.forEach((poll) => {
   const answers = poll.querySelectorAll('[type="radio"]');
   const pollId = poll.getAttribute("data-poll-name");
 
-  answers.forEach(answer => {
-    answer.addEventListener("change", e => {
+  answers.forEach((answer) => {
+    answer.addEventListener("change", (e) => {
       const answerLabel = document.querySelector(
         'label[for="' + e.target.id + '"]'
       );
@@ -109,7 +109,7 @@ polls.forEach(poll => {
         eventCategory: "survey",
         eventAction: eventAction,
         eventLabel: eventLabel,
-        eventValue: undefined
+        eventValue: undefined,
       });
     });
   });
