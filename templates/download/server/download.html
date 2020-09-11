@@ -19,12 +19,12 @@
   <section class="p-strip u-no-padding--top u-no-padding--bottom" style="overflow: visible;">
     <div class="p-strip--suru-topped">
       <div class="row">
-        <div class="col-5">
+        <div class="col-6">
           <h1>Thank you!</h1>
           <p>Your download of Ubuntu Server {{ version }} should start in the background.</p>
           <p>
-            If your download doesn&rsquo;t start automatically,<br />
-            <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso">download now</a>.
+            If your download doesn&rsquo;t start automatically,
+            <a href="https://releases.ubuntu.com/{{ version }}/ubuntu-{{ version }}-live-server-amd64.iso">download&nbsp;now</a>.
           </p>
           {% with version=version, system="live-server", architecture="amd64" %}
             {% include "download/shared/_verify-checksums.html" %}
@@ -42,7 +42,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-6 col-start-large-7">
+        <div class="col-6">
           <div class="p-card">
             <div class="row">
               <div class="col-3">
