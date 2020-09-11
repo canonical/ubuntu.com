@@ -12,7 +12,7 @@ from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from sqlalchemy import asc, desc, or_, and_, func
+from sqlalchemy import asc, desc, or_, and_, func, case
 from sqlalchemy.exc import IntegrityError, DataError
 from sqlalchemy.orm import contains_eager
 
@@ -456,7 +456,13 @@ def cve_index():
 
     cves_query = (
         cves_query.group_by(CVE.id)
-        .order_by(desc(CVE.published))
+        .order_by(
+            case(
+                [(CVE.published.is_(None), 1)],
+                else_=0,
+            ),
+            desc(CVE.published),
+        )
         .limit(limit)
         .offset(offset)
         .from_self()
