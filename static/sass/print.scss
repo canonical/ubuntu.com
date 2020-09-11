@@ -28,11 +28,14 @@ body {
 
 a,
 blockquote,
-table,
 pre,
 [class^="p-strip"],
 [class*=" p-strip"] {
   page-break-inside: avoid;
+}
+
+table {
+  margin: 1.5em 0;
 }
 
 th,
@@ -91,7 +94,8 @@ footer,
 .global-nav__header-list,
 .dropdown-window,
 .dropdown-window-overlay,
-.p-navigation--secondary {
+.p-navigation--secondary,
+.p-table-of-contents {
   display: none;
 }
 
