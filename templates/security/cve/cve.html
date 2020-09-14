@@ -138,7 +138,14 @@
                 <tr>
                   {% if release.codename in statuses %}
                     {% if loop.index == 1 %}
-                      <td rowspan="{{ releases | length }}">{{ package_name }}</td>
+                      <td rowspan="{{ releases | length }}">
+                        <a href="/security/cve?q=&package={{ package_name }}" target="_blank">{{ package_name }}</a><br>
+                        <small>
+                        <a href="https://launchpad.net/distros/ubuntu/+source/{{ package_name }}" target="_blank">Launchpad</a>,
+                        <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package_name }}" target="_blank">Ubuntu</a>,
+                        <a href="https://tracker.debian.org/{{ package_name }}" target="_blank">Debian</a>
+                        </small>
+                      </td>
                     {% endif %}
                     <td>
                       {% if release.name == "Upstream" %}
