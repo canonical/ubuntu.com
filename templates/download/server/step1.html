@@ -10,7 +10,7 @@
     <div class="col-12 u-align--center">
       <form action="/download/server" method="post">
         <input type="hidden" name="next-step" value="step2">
-        <button type="submit" class="p-link">
+        <button type="submit" class="p-link" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
           Option 2&nbsp;&rsaquo;
         </button>
       </form>
@@ -26,7 +26,7 @@
         <li class="p-list__item is-ticked">Use cloud-init metadata for rapid cloud development and testing.</li>
         <li class="p-list__item is-ticked">On Windows. On Mac. And on Linux.</li>
       </ul>
-      <p><a href="https://multipass.run" class="p-button--positive p-link--external">Get Multipass</a></p>
+      <p><a href="https://multipass.run" class="p-button--positive p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">Get Multipass</a></p>
     </div>
     <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center">
       <div class=" u-hide--small u-align--center">
