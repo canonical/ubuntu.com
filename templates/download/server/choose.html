@@ -28,7 +28,7 @@
           <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
           <input type="hidden" name="architecture" value="amd64">
           <input type="hidden" name="next-step" value="download">
-          <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu {{ releases.lts.short_version }} LTS</button>
+          <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu {{ releases.lts.full_version }} LTS</button>
         </form>
       </p>
       <p>
