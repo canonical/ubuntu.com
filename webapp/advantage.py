@@ -140,6 +140,13 @@ class AdvantageContracts:
 
         return {}
 
+    def post_renewal_preview(self, renewal_id):
+        response = self._request(
+            method="post", path=f"v1/renewals/{renewal_id}/purchase/preview"
+        )
+
+        return response.json()
+
     def get_marketplace_product_listings(self, marketplace: str) -> dict:
         response = self._request(
             method="get",
