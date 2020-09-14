@@ -44,6 +44,7 @@ from webapp.views import (
     post_anonymised_customer_info,
     post_customer_info,
     post_stripe_invoice_id,
+    post_renewal_preview,
     post_build,
     releasenotes_redirect,
     search_snaps,
@@ -194,7 +195,16 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/download/<regex('cloud|raspberry-pi|desktop'):category>/thank-you",
+    "/advantage/renewals/<renewal_id>/preview",
+    view_func=post_renewal_preview,
+    methods=["POST"],
+)
+app.add_url_rule(
+    (
+        "/download"
+        "/<regex('server|desktop|cloud|raspberry-pi'):category>"
+        "/thank-you"
+    ),
     view_func=download_thank_you,
 )
 

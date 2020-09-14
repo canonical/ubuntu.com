@@ -653,7 +653,6 @@ def post_advantage_subscriptions(preview):
                 marketplace="canonical-ua", purchase_request=purchase_request
             )
     except HTTPError as http_error:
-        print(http_error.response.content)
         flask.current_app.extensions["sentry"].captureException(
             extra={"purchase_request": purchase_request}
         )
@@ -663,6 +662,25 @@ def post_advantage_subscriptions(preview):
         )
 
     return flask.jsonify(purchase), 200
+
+
+def post_renewal_preview(renewal_id):
+    advantage = AdvantageContracts(
+        session,
+        flask.session["authentication_token"],
+        api_url=flask.current_app.config["CONTRACTS_API_URL"],
+    )
+
+    try:
+        preview = advantage.post_renewal_preview(renewal_id=renewal_id)
+    except HTTPError as http_error:
+        flask.current_app.extensions["sentry"].captureException()
+        return (
+            http_error.response.content,
+            500,
+        )
+
+    return flask.jsonify(preview), 200
 
 
 def advantage_shop_view():
