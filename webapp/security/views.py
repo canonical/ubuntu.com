@@ -685,6 +685,8 @@ def bulk_upsert_cve():
         cve.patches = data.get("patches")
         cve.tags = data.get("tags")
 
+        cve.statuses.clear()
+
         statuses = update_statuses(cve, data, packages, releases)
 
         db_session.add(cve)
