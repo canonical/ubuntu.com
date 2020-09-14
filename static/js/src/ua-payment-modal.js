@@ -7,6 +7,7 @@ import {
   postRenewalIDToProcessPayment,
   postPurchaseData,
   postPurchasePreviewData,
+  postRenewalPreviewData,
 } from "./advantage/contracts-api.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
@@ -14,12 +15,13 @@ import { vatCountries } from "./advantage/vat-countries.js";
 
 import {
   setOrderInformation,
-  setOrderTotal,
+  setOrderTotals,
   setPaymentInformation,
   setRenewalInformation,
 } from "./advantage/set-modal-info.js";
 
 const modal = document.getElementById("ua-payment-modal");
+const modalBody = modal.querySelector(".p-modal__body");
 
 const form = document.getElementById("details-form");
 const errorDialog = document.getElementById("payment-error-dialog");
@@ -109,17 +111,15 @@ function attachCTAevents() {
     if (isRenewalCTA || isShopCTA) {
       e.preventDefault();
       currentTransaction.accountId = data.accountId;
-
-      toggleModal();
-      card.focus();
-      sendGAEvent("opened payment modal");
     }
 
     if (isRenewalCTA) {
       currentTransaction.type = "renewal";
       currentTransaction.contractId = data.contractId;
       currentTransaction.transactionId = data.renewalId;
+
       setRenewalInformation(data, modal);
+      checkVAT();
     } else if (isShopCTA) {
       const cartItems = JSON.parse(data.cart);
       currentTransaction.type = "purchase";
@@ -131,8 +131,14 @@ function attachCTAevents() {
         });
       });
 
-      checkVAT();
       setOrderInformation(cartItems, modal);
+      checkVAT();
+    }
+
+    if (isRenewalCTA || isShopCTA) {
+      toggleModal();
+      card.focus();
+      sendGAEvent("opened payment modal");
     }
   });
 }
@@ -265,6 +271,9 @@ function attachModalButtonEvents() {
 function checkVAT() {
   const vatContainer = modal.querySelector(".js-vat-container");
 
+  totalsApplied = false;
+  modalBody.classList.add("u-disable");
+  setOrderTotals(null, 0, 0, modal);
   applyTotals();
 
   if (vatCountries.includes(countryDropdown.value)) {
@@ -277,30 +286,29 @@ function checkVAT() {
 function applyTotals() {
   let formData = new FormData(form);
   let country = formData.get("Country");
+  let addressObject = null;
   let taxObject = null;
   let tax = 0;
   let total = 0;
 
-  if (currentTransaction.type === "purchase" && country) {
-    totalsApplied = false;
-
-    const address = {
-      country: country,
+  if (formData.get("tax")) {
+    taxObject = {
+      value: formData.get("tax"),
+      type: "eu_vat",
     };
+  }
 
-    if (formData.get("tax")) {
-      taxObject = {
-        value: formData.get("tax"),
-        type: "eu_vat",
-      };
-    }
+  addressObject = {
+    country: country,
+  };
 
-    postCustomerInfoForPurchasePreview(
-      currentTransaction.accountId,
-      address,
-      taxObject
-    )
-      .then(() => {
+  postCustomerInfoForPurchasePreview(
+    currentTransaction.accountId,
+    addressObject,
+    taxObject
+  )
+    .then(() => {
+      if (currentTransaction.type === "purchase") {
         postPurchasePreviewData(
           currentTransaction.accountId,
           currentTransaction.products,
@@ -308,17 +316,25 @@ function applyTotals() {
         ).then((data) => {
           tax = data.taxAmount || 0;
           total = data.total;
-          setOrderTotal(tax, total, modal);
+          setOrderTotals(country, tax, total, modal);
+          modalBody.classList.remove("u-disable");
           totalsApplied = true;
         });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  } else {
-    setOrderTotal(tax, total, modal);
-    totalsApplied = true;
-  }
+      } else if (currentTransaction.type === "renewal") {
+        postRenewalPreviewData(currentTransaction.transactionId).then(
+          (data) => {
+            tax = data.taxAmount || 0;
+            total = data.total;
+            setOrderTotals(country, tax, total, modal);
+            modalBody.classList.remove("u-disable");
+            totalsApplied = true;
+          }
+        );
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function clearProgressTimers() {
