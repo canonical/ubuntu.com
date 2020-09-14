@@ -16,7 +16,6 @@ from sqlalchemy import asc, desc, or_, and_, func, case
 from sqlalchemy.exc import IntegrityError, DataError
 from sqlalchemy.orm import contains_eager
 
-
 # Local
 from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Package, Status, Release
@@ -583,14 +582,11 @@ def update_statuses(cve, data, packages, releases):
         package.debian = package_data["debian"]
         packages[name] = package
 
-        statuses = defaultdict(dict)
-
-        for status in cve.statuses:
-            statuses[status.package_name][status.release_codename] = status
+        statuses = cve.packages
 
         for status_data in package_data["statuses"]:
             codename = status_data["release_codename"]
-            release = releases.get(codename)
+            release = releases[codename]
 
             status = statuses[name].get(codename) or Status(
                 cve=cve, package=package, release=release
@@ -670,6 +666,10 @@ def bulk_upsert_cve():
     for package in db_session.query(Package).all():
         packages[package.name] = package
 
+    releases = {}
+    for release in db_session.query(Release).all():
+        releases[release.codename] = release
+
     for data in cves_data:
         cve = db_session.query(CVE).get(data["id"]) or CVE(id=data["id"])
 
@@ -685,9 +685,9 @@ def bulk_upsert_cve():
         cve.patches = data.get("patches")
         cve.tags = data.get("tags")
 
-        statuses = update_statuses(
-            cve, data, packages, releases=db_session.query(Release)
-        )
+        cve.statuses.clear()
+
+        statuses = update_statuses(cve, data, packages, releases)
 
         db_session.add(cve)
         db_session.add_all(statuses)
