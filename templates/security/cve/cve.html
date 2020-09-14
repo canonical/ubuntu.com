@@ -189,10 +189,10 @@
                     {% endif %}
                     <br>
                     <small>
-                      {% if statuses[release.codename].component == "esm-infra" %}
+                      {% if statuses[release.codename].pocket == "esm-infra" %}
                       Requires <a href="/advantage" target="_blank">UA Infra, UA Desktop</a>
                       {% endif %}
-                      {% if statuses[release.codename].component == "esm-apps" %}
+                      {% if statuses[release.codename].pocket == "esm-apps" %}
                       Requires <a href="/advantage" target="_blank">UA Apps, UA Desktop</a>
                       {% endif %}
                     </small>
