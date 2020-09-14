@@ -67,10 +67,29 @@
   </div>
 </section>
 
-{% include 'download/shared/_everywhere.html' %}
-
-<section class="p-strip--light is-bordered">
-  {% with head="Make something great today", subhead="Download appliance images for your PC, Raspberry Pi or a virtual machine" %}{% include "/appliance/shared/_appliance-advert-strip.html" %}{% endwith %}
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-10">
+      <h2>Alternative downloads</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height p-divider">
+    <div class="col-4 p-divider__block">
+      <h3">Ubuntu Server for ARM</h3>
+      <p>The next version of Ubuntu Server, to be officially released in October 2020.</p>
+      <p><a href="http://cdimage.ubuntu.com/ubuntu-server/daily-live/current/" class="p-link--external">Get Ubuntu Server 20.10</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3">Ubuntu Server 18.04 LTS</h3>
+      <p>Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER.</p>
+      <p><a href="http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/" class="p-link--external">Get Ubuntu Server 18.04 LTS</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3">Other versions</h3>
+      <p>Other versions of Ubuntu Server including torrents, the network installer, a list of local mirrors and past releases.</p>
+      <p><a href="/download/alternative-downloads">See alternative downloads&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 </section>
 
 <section class="p-strip">
@@ -92,7 +111,7 @@
     <div class="col-4 p-card">
       <h3 class="p-card__title">Ubuntu for POWER</h3>
       <p>
-        Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER.
+        Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu ecosystem to IBM POWER.
       </p>
       <p>
         <a href="/download/server/power">Get Ubuntu for POWER&nbsp;&rsaquo;</a>
