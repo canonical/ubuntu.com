@@ -21,9 +21,9 @@ const PRODUCT_NAMES = {
 };
 
 function buildInfoRow(item) {
-  return `<div class="row u-no-padding u-sv1">
+  return `<div class="row u-no-padding u-sv1 ${item.extraClasses || ""}">
     <div class="col-3 u-text-light">${item.label}</div>
-    <div class="col-9">${item.value}</div>
+    <div class="col-9 js-info-value">${item.value}</div>
   </div>`;
 }
 
@@ -96,7 +96,18 @@ function setSummaryInfo(summaryObject, modal) {
 
   infoContainer.innerHTML += buildInfoRow({
     label: "Subtotal: ",
-    value: summaryObject.subtotal,
+    value: "...",
+    extraClasses: "js-subtotal",
+  });
+
+  totalsContainer.innerHTML += buildInfoRow({
+    label: "VAT:",
+    value: "...",
+  });
+
+  totalsContainer.innerHTML += buildInfoRow({
+    label: "Total:",
+    value: "...",
   });
 
   infoContainer.classList.remove("u-hide");
@@ -205,24 +216,39 @@ export function setOrderInformation(listings, modal) {
   setSummaryInfo(orderSummary, modal);
 }
 
-export function setOrderTotal(taxAmount, totalAmount, modal) {
+export function setOrderTotals(country, taxAmount, totalAmount, modal) {
   const currency = "USD";
   const totalsContainer = modal.querySelector("#order-totals");
-  // TODO: get VAT in local currency
-  const vatCurrency = "USD";
+  const subtotalElement = modal.querySelector(".js-subtotal .js-info-value");
+  let subtotalValue = "...";
+  let taxValue = "...";
+  let totalValue = "...";
+
+  if (totalAmount > 0) {
+    subtotalValue = formattedCurrency(
+      totalAmount - taxAmount,
+      currency,
+      "en-US"
+    );
+  }
+
+  if (country && totalAmount > 0) {
+    taxValue = formattedCurrency(taxAmount, currency, "en-US");
+    totalValue = formattedCurrency(totalAmount, currency, "en-US");
+  }
 
   totalsContainer.innerHTML = "";
 
-  if (taxAmount > 0) {
-    totalsContainer.innerHTML += buildInfoRow({
-      label: "VAT: ",
-      value: formattedCurrency(taxAmount, vatCurrency, "en-US"),
-    });
-  }
+  subtotalElement.innerHTML = subtotalValue;
+
+  totalsContainer.innerHTML += buildInfoRow({
+    label: "VAT: ",
+    value: taxValue,
+  });
 
   totalsContainer.innerHTML += buildInfoRow({
     label: "Total: ",
-    value: formattedCurrency(totalAmount, currency, "en-US"),
+    value: totalValue,
   });
 
   totalsContainer.classList.remove("u-hide");
