@@ -132,14 +132,6 @@ export function getOrderInformation(listings) {
         label: planLabel,
         value: listing.product.name,
       },
-      start: {
-        label: "Starts:",
-        value: format(startDate, DATE_FORMAT),
-      },
-      end: {
-        label: "Ends:",
-        value: format(endDate, DATE_FORMAT),
-      },
       quantity: {
         label: "Machines:",
         value: buildQuantityString(
@@ -147,6 +139,14 @@ export function getOrderInformation(listings) {
           listing.product.price.value,
           currency
         ),
+      },
+      start: {
+        label: "Starts:",
+        value: format(startDate, DATE_FORMAT),
+      },
+      end: {
+        label: "Ends:",
+        value: format(endDate, DATE_FORMAT),
       },
     });
   });
@@ -189,14 +189,6 @@ export function getRenewalInformation(data) {
           label: "Plan type:",
           value: getProductsString(data.products),
         },
-        start: {
-          label: "Will continue from:",
-          value: format(startDate, DATE_FORMAT),
-        },
-        end: {
-          label: "Ends:",
-          value: format(endDate, DATE_FORMAT),
-        },
         quantity: {
           label: "Machines:",
           value: buildQuantityString(
@@ -204,6 +196,14 @@ export function getRenewalInformation(data) {
             data.unitPrice,
             data.currency
           ),
+        },
+        start: {
+          label: "Continues from:",
+          value: format(startDate, DATE_FORMAT),
+        },
+        end: {
+          label: "Ends:",
+          value: format(endDate, DATE_FORMAT),
         },
       },
     ],
