@@ -216,7 +216,13 @@ export function setOrderInformation(listings, modal) {
   setSummaryInfo(orderSummary, modal);
 }
 
-export function setOrderTotals(country, taxAmount, totalAmount, modal) {
+export function setOrderTotals(
+  country,
+  vatApplicable,
+  taxAmount,
+  totalAmount,
+  modal
+) {
   const currency = "USD";
   const totalsContainer = modal.querySelector("#order-totals");
   const subtotalElement = modal.querySelector(".js-subtotal .js-info-value");
@@ -230,21 +236,27 @@ export function setOrderTotals(country, taxAmount, totalAmount, modal) {
       currency,
       "en-US"
     );
-  }
 
-  if (country && totalAmount > 0) {
-    taxValue = formattedCurrency(taxAmount, currency, "en-US");
-    totalValue = formattedCurrency(totalAmount, currency, "en-US");
+    if (!vatApplicable) {
+      totalValue = subtotalValue;
+    }
+
+    if (vatApplicable && country !== "") {
+      taxValue = formattedCurrency(taxAmount, currency, "en-US");
+      totalValue = formattedCurrency(totalAmount, currency, "en-US");
+    }
   }
 
   totalsContainer.innerHTML = "";
 
   subtotalElement.innerHTML = subtotalValue;
 
-  totalsContainer.innerHTML += buildInfoRow({
-    label: "VAT: ",
-    value: taxValue,
-  });
+  if (vatApplicable) {
+    totalsContainer.innerHTML += buildInfoRow({
+      label: "VAT: ",
+      value: taxValue,
+    });
+  }
 
   totalsContainer.innerHTML += buildInfoRow({
     label: "Total: ",
