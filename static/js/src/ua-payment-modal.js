@@ -1,3 +1,5 @@
+import { debounce } from "./utils/debounce.js";
+
 import {
   getPurchase,
   getRenewal,
@@ -95,6 +97,7 @@ let cardValid = false;
 let changingPaymentMethod = false;
 let submitted3DS = false;
 let totalsApplied = false;
+let vatApplicable = false;
 
 let pollingTimer;
 let progressTimer;
@@ -198,7 +201,7 @@ function attachFormEvents() {
   });
 
   vatInput.addEventListener("keyup", () => {
-    checkVAT();
+    checkVATdebounce();
   });
 
   countryDropdown.addEventListener("change", (e) => {
@@ -273,15 +276,21 @@ function checkVAT() {
 
   totalsApplied = false;
   modalBody.classList.add("u-disable");
-  setOrderTotals(null, 0, 0, modal);
-  applyTotals();
 
   if (vatCountries.includes(countryDropdown.value)) {
+    vatApplicable = true;
     vatContainer.classList.remove("u-hide");
   } else {
+    vatApplicable = false;
     vatContainer.classList.add("u-hide");
   }
+
+  applyTotals();
 }
+
+const checkVATdebounce = debounce(() => {
+  checkVAT();
+}, 500);
 
 function applyTotals() {
   let formData = new FormData(form);
@@ -290,6 +299,8 @@ function applyTotals() {
   let taxObject = null;
   let tax = 0;
   let total = 0;
+
+  setOrderTotals(country, vatApplicable, 0, 0, modal);
 
   if (formData.get("tax")) {
     taxObject = {
@@ -316,7 +327,7 @@ function applyTotals() {
         ).then((data) => {
           tax = data.taxAmount || 0;
           total = data.total;
-          setOrderTotals(country, tax, total, modal);
+          setOrderTotals(country, vatApplicable, tax, total, modal);
           modalBody.classList.remove("u-disable");
           totalsApplied = true;
         });
@@ -325,7 +336,7 @@ function applyTotals() {
           (data) => {
             tax = data.taxAmount || 0;
             total = data.total;
-            setOrderTotals(country, tax, total, modal);
+            setOrderTotals(country, vatApplicable, tax, total, modal);
             modalBody.classList.remove("u-disable");
             totalsApplied = true;
           }
