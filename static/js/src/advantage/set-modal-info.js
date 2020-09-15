@@ -119,13 +119,17 @@ export function getOrderInformation(listings) {
   const startDate = new Date();
   const endDate = add(new Date(), { months: 12 });
   let subtotal = 0;
+  let planLabel = "Plan type:";
 
   listings.forEach((listing, i) => {
     subtotal = subtotal + listing.quantity * listing.product.price.value;
+    if (listings.length > 1) {
+      planLabel = `Plan ${i + 1}:`;
+    }
 
     items.push({
       plan: {
-        label: `Plan ${i + 1}:`,
+        label: planLabel,
         value: listing.product.name,
       },
       start: {
