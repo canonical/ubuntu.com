@@ -1,4 +1,5 @@
 # Standard library
+from collections import namedtuple
 import hashlib
 import hmac
 import json
@@ -30,6 +31,9 @@ from webapp.advantage import AdvantageContracts
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
 store_api = SnapStore(session=talisker.requests.get_session())
+
+# Define the metric name for the number of active machines.
+ALLOWANCE_METRIC_ACTIVE_MACHINES = "active-machines"
 
 
 def download_thank_you(category):
@@ -398,14 +402,9 @@ def advantage_view():
 
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
-
-                machines = advantage.get_contract_machines(contract).get(
-                    "machines"
+                contract["machineCount"] = get_machine_usage(
+                    advantage, contract
                 )
-                contract["machineCount"] = 0
-
-                if machines:
-                    contract["machineCount"] = len(machines)
 
                 if contract["contractInfo"].get("origin", "") == "free":
                     personal_account = account
@@ -497,6 +496,32 @@ def advantage_view():
         open_subscription=open_subscription,
         stripe_publishable_key=stripe_publishable_key,
     )
+
+
+def get_machine_usage(advantage, contract):
+    """Return machine usage for the given contract as a MachineUsage object."""
+    allowances = contract.get("contractInfo", {}).get("allowances", [])
+    allowed = sum(
+        a["value"]
+        for a in allowances
+        if a["metric"] == ALLOWANCE_METRIC_ACTIVE_MACHINES
+    )
+    attached_machines = advantage.get_contract_machines(contract).get(
+        "machines", []
+    )
+    attached = len(attached_machines)
+    return MachineUsage(attached=attached, allowed=allowed)
+
+
+class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
+    """Store attached and allowed machine count in a tuple."""
+
+    __slots__ = ()
+
+    def __str__(self):
+        if self.allowed:
+            return f"{self.attached}/{self.allowed}"
+        return str(self.attached)
 
 
 def make_renewal(advantage, contract_info):
