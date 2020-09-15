@@ -571,40 +571,62 @@ def cve(cve_id):
 
 # CVE API
 # ===
-def update_statuses(cve, data, packages, releases):
-    updated_statuses = []
+def update_statuses(cve, data, packages):
+    statuses = cve.packages
+
+    statuses_query = db_session.query(Status).filter(Status.cve_id == cve.id)
+    statuses_to_delete = {
+        f"{v.package_name}||{v.release_codename}": v
+        for v in statuses_query.all()
+    }
 
     for package_data in data.get("packages", []):
         name = package_data["name"]
-        package = packages.get(name) or Package(name=name)
-        package.source = package_data["source"]
-        package.ubuntu = package_data["ubuntu"]
-        package.debian = package_data["debian"]
-        packages[name] = package
 
-        statuses = cve.packages
+        if packages.get(name) is None:
+            package = Package(name=name)
+            package.source = package_data["source"]
+            package.ubuntu = package_data["ubuntu"]
+            package.debian = package_data["debian"]
+            packages[name] = package
+
+            db_session.add(package)
 
         for status_data in package_data["statuses"]:
+            update_status = False
             codename = status_data["release_codename"]
-            release = releases[codename]
 
-            status = statuses[name].get(codename) or Status(
-                cve=cve, package=package, release=release
-            )
+            status = statuses[name].get(codename)
+            if status is None:
+                update_status = True
+                status = Status(
+                    cve_id=cve.id, package_name=name, release_codename=codename
+                )
+            else:
+                del statuses_to_delete[f"{name}||{codename}"]
 
-            status.status = status_data["status"]
-            status.description = status_data["description"]
+            if status.status != status_data["status"]:
+                update_status = True
+                status.status = status_data["status"]
 
-            if "component" in status_data:
-                status.component = status_data["component"]
-            if "pocket" in status_data:
-                status.pocket = status_data["pocket"]
+            if status.description != status_data["description"]:
+                update_status = True
+                status.description = status_data["description"]
 
-            statuses[name][codename] = status
+            if status.component != status_data.get("component"):
+                update_status = True
+                status.component = status_data.get("component")
 
-            updated_statuses.append(status)
+            if status.pocket != status_data.get("pocket"):
+                update_status = True
+                status.pocket = status_data.get("pocket")
 
-    return updated_statuses
+            if update_status:
+                statuses[name][codename] = status
+                db_session.add(status)
+
+    for key in statuses_to_delete:
+        db_session.delete(statuses_to_delete[key])
 
 
 @authorization_required
@@ -666,40 +688,78 @@ def bulk_upsert_cve():
     for package in db_session.query(Package).all():
         packages[package.name] = package
 
-    releases = {}
-    for release in db_session.query(Release).all():
-        releases[release.codename] = release
-
     for data in cves_data:
-        cve = db_session.query(CVE).get(data["id"]) or CVE(id=data["id"])
+        update_cve = False
+        cve = db_session.query(CVE).get(data["id"])
 
-        cve.status = data.get("status")
-        cve.published = data.get("published")
-        cve.priority = data.get("priority")
-        cve.cvss3 = data.get("cvss3")
-        cve.description = data.get("description")
-        cve.ubuntu_description = data.get("ubuntu_description")
-        cve.notes = data.get("notes")
-        cve.references = data.get("references")
-        cve.bugs = data.get("bugs")
-        cve.patches = data.get("patches")
-        cve.tags = data.get("tags")
+        if cve is None:
+            update_cve = True
+            cve = CVE(id=data["id"])
 
-        cve.statuses.clear()
+        if cve.status != data.get("status"):
+            update_cve = True
+            cve.status = data.get("status")
 
-        statuses = update_statuses(cve, data, packages, releases)
+        published_date = (
+            cve.published.strftime("%Y-%B-%d") if cve.published else None
+        )
+        if published_date != data.get("published").strftime("%Y-%B-%d"):
+            update_cve = True
+            cve.published = data.get("published")
 
-        db_session.add(cve)
-        db_session.add_all(statuses)
+        if cve.priority != data.get("priority"):
+            update_cve = True
+            cve.priority = data.get("priority")
+
+        if cve.cvss3 != data.get("cvss3"):
+            update_cve = True
+            cve.cvss3 = data.get("cvss3")
+
+        if cve.description != data.get("description"):
+            update_cve = True
+            cve.description = data.get("description")
+
+        if cve.ubuntu_description != data.get("ubuntu_description"):
+            update_cve = True
+            cve.ubuntu_description = data.get("ubuntu_description")
+
+        if cve.notes != data.get("notes"):
+            update_cve = True
+            cve.notes = data.get("notes")
+
+        if cve.references != data.get("references"):
+            update_cve = True
+            cve.references = data.get("references")
+
+        if cve.bugs != data.get("bugs"):
+            update_cve = True
+            cve.bugs = data.get("bugs")
+
+        if cve.patches != data.get("patches"):
+            update_cve = True
+            cve.patches = data.get("patches")
+
+        if cve.tags != data.get("tags"):
+            update_cve = True
+            cve.tags = data.get("tags")
+
+        if update_cve:
+            db_session.add(cve)
+
+        update_statuses(cve, data, packages)
 
     created = defaultdict(lambda: 0)
     updated = defaultdict(lambda: 0)
+    deleted = defaultdict(lambda: 0)
 
     for item in db_session.new:
         created[type(item).__name__] += 1
 
     for item in db_session.dirty:
         updated[type(item).__name__] += 1
+
+    for item in db_session.deleted:
+        deleted[type(item).__name__] += 1
 
     try:
         db_session.commit()
@@ -714,4 +774,13 @@ def bulk_upsert_cve():
             400,
         )
 
-    return (flask.jsonify({"created": created, "updated": updated}), 200)
+    return (
+        flask.jsonify(
+            {
+                "created": created,
+                "updated": updated,
+                "deleted": deleted,
+            }
+        ),
+        200,
+    )
