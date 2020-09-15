@@ -101,7 +101,9 @@ jobs:
         run: yarn install --immutable
 
       - name: Install python dependencies
-        run: sudo pip3 install flake8 black
+        run: | 
+          python3 -m pip install --upgrade pip
+          sudo pip3 install flake8 black
 
       - name: Lint python
         run: yarn lint-python
