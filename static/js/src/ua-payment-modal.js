@@ -23,7 +23,6 @@ import {
 } from "./advantage/set-modal-info.js";
 
 const modal = document.getElementById("ua-payment-modal");
-const modalBody = modal.querySelector(".p-modal__body");
 
 const form = document.getElementById("details-form");
 const errorDialog = document.getElementById("payment-error-dialog");
@@ -275,7 +274,6 @@ function checkVAT() {
   const vatContainer = modal.querySelector(".js-vat-container");
 
   totalsApplied = false;
-  modalBody.classList.add("u-disable");
 
   if (vatCountries.includes(countryDropdown.value)) {
     vatApplicable = true;
@@ -328,7 +326,6 @@ function applyTotals() {
           tax = data.taxAmount || 0;
           total = data.total;
           setOrderTotals(country, vatApplicable, tax, total, modal);
-          modalBody.classList.remove("u-disable");
           totalsApplied = true;
         });
       } else if (currentTransaction.type === "renewal") {
@@ -337,7 +334,6 @@ function applyTotals() {
             tax = data.taxAmount || 0;
             total = data.total;
             setOrderTotals(country, vatApplicable, tax, total, modal);
-            modalBody.classList.remove("u-disable");
             totalsApplied = true;
           }
         );
