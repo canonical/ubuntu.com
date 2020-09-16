@@ -835,11 +835,6 @@ support:
       path: /support/plans-and-pricing
     - title: Community support
       path: /support/community-support
-    - title: ESM
-      path: /esm
-    - title: Livepatch
-      path: /livepatch
-
     - title: Contact us
       path: /support/contact-us
       hidden: True
@@ -1121,18 +1116,25 @@ security:
   path: /security
 
   children:
-    - title: Overview
-      path: /security
+    - title: ESM
+      path: /security/esm
+    - title: Livepatch
+      path: /security/livepatch
+    - title: FIPS
+      path: /security/certifications#fips
+    - title: Hardening
+      path: /security/certifications#cis
     - title: Certifications
       path: /security/certifications
+    # Hidden for soft launch
+    # - title: CVEs
+    # path: /security/cve
     - title: Notices
       path: /security/notices
       persist: True
     - title: OVAL
       path: /security/oval
-    # Hidden for soft launch
-    # - title: CVEs
-    # path: /security/cve
+
 
 licensing:
   title: Licensing
