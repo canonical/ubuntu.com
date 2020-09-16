@@ -14,7 +14,7 @@ context:
   header_lang: es
   form_include: es
   form_id: 3684
-  form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/Canonical_OpenStack_adoption_deployment.pdf"
+  form_return_url: "https://pages.ubuntu.com/rs/066-EOV-335/images/OpenStack_deployment_Spanish.pdf"
 
 ---
 
