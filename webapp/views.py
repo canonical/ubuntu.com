@@ -392,7 +392,7 @@ def advantage_view():
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
     )
 
     if user_info(flask.session):
@@ -652,7 +652,8 @@ def post_advantage_subscriptions(preview):
             purchase = advantage.preview_purchase_from_marketplace(
                 marketplace="canonical-ua", purchase_request=purchase_request
             )
-    except HTTPError:
+    except HTTPError as http_error:
+        print(http_error.response.content)
         flask.current_app.extensions["sentry"].captureException(
             extra={"purchase_request": purchase_request}
         )
@@ -687,7 +688,7 @@ def advantage_shop_view():
     account = None
     previous_purchase_id = None
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
     )
 
     if user_info(flask.session):
