@@ -1121,8 +1121,6 @@ security:
   path: /security
 
   children:
-    - title: Overview
-      path: /security
     - title: Certifications
       path: /security/certifications
     - title: Notices
@@ -1130,6 +1128,15 @@ security:
       persist: True
     - title: OVAL
       path: /security/oval
+    - title: ESM
+      path: /security/esm
+    - title: Livepatch
+      path: /security/livepatch
+    # FIPS and Hardening pages still to be built - temporary redirect 
+    - title: FIPS
+      path: /security/certifications
+    - title: Hardening
+      path: /security/certifications
     # Hidden for soft launch
     # - title: CVEs
     # path: /security/cve
