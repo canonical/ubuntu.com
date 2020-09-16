@@ -124,6 +124,11 @@ function attachCTAevents() {
       checkVAT();
     } else if (isShopCTA) {
       const cartItems = JSON.parse(data.cart);
+
+      // make sure the product array is empty
+      // before we start adding to it
+      currentTransaction.products = [];
+
       currentTransaction.type = "purchase";
       currentTransaction.previousPurchaseId = data.previousPurchaseId;
       cartItems.forEach((item) => {
@@ -295,10 +300,9 @@ function applyTotals() {
   let country = formData.get("Country");
   let addressObject = null;
   let taxObject = null;
-  let tax = 0;
-  let total = 0;
+  let purchasePreview = null;
 
-  setOrderTotals(country, vatApplicable, 0, 0, modal);
+  setOrderTotals(country, vatApplicable, purchasePreview, modal);
 
   if (formData.get("tax")) {
     taxObject = {
@@ -323,17 +327,15 @@ function applyTotals() {
           currentTransaction.products,
           currentTransaction.previousPurchaseId
         ).then((data) => {
-          tax = data.taxAmount || 0;
-          total = data.total;
-          setOrderTotals(country, vatApplicable, tax, total, modal);
+          purchasePreview = data;
+          setOrderTotals(country, vatApplicable, purchasePreview, modal);
           totalsApplied = true;
         });
       } else if (currentTransaction.type === "renewal") {
         postRenewalPreviewData(currentTransaction.transactionId).then(
           (data) => {
-            tax = data.taxAmount || 0;
-            total = data.total;
-            setOrderTotals(country, vatApplicable, tax, total, modal);
+            purchasePreview = data;
+            setOrderTotals(country, vatApplicable, purchasePreview, modal);
             totalsApplied = true;
           }
         );
