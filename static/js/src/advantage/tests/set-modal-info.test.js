@@ -45,6 +45,7 @@ describe("getRenewalInformation", () => {
             end: {
               label: "Ends:",
               value: "20 May 2021",
+              extraClasses: "js-end-date",
             },
             plan: {
               label: "Plan type:",
@@ -55,7 +56,7 @@ describe("getRenewalInformation", () => {
               value: "5 &#215; US$25/year",
             },
             start: {
-              label: "Will continue from:",
+              label: "Continues from:",
               value: "21 May 2020",
             },
           },
@@ -80,6 +81,7 @@ describe("getOrderInformation", () => {
             end: {
               label: "Ends:",
               value: endDate,
+              extraClasses: "js-end-date",
             },
             plan: {
               label: "Plan 1:",
@@ -98,6 +100,7 @@ describe("getOrderInformation", () => {
             end: {
               label: "Ends:",
               value: endDate,
+              extraClasses: "js-end-date",
             },
             plan: {
               label: "Plan 2:",
