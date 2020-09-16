@@ -293,6 +293,20 @@ ceph_docs = DiscourseDocs(
 ceph_docs.init_app(app)
 
 
+# Smart Start
+smart_start = DiscourseDocs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=15433,
+        url_prefix="/smart-start",
+    ),
+    document_template="/smart-start/document.html",
+    url_prefix="/smart-start",
+    blueprint_name="smart-start",
+)
+smart_start.init_app(app)
+
+
 @app.after_request
 def cache_headers(response):
     """
