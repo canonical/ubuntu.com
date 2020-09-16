@@ -147,6 +147,7 @@ export function getOrderInformation(listings) {
       end: {
         label: "Ends:",
         value: format(endDate, DATE_FORMAT),
+        extraClasses: "js-end-date",
       },
     });
   });
@@ -204,6 +205,7 @@ export function getRenewalInformation(data) {
         end: {
           label: "Ends:",
           value: format(endDate, DATE_FORMAT),
+          extraClasses: "js-end-date",
         },
       },
     ],
@@ -220,40 +222,58 @@ export function setOrderInformation(listings, modal) {
   setSummaryInfo(orderSummary, modal);
 }
 
-export function setOrderTotals(
-  country,
-  vatApplicable,
-  taxAmount,
-  totalAmount,
-  modal
-) {
+export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
   const currency = "USD";
   const totalsContainer = modal.querySelector("#order-totals");
   const subtotalElement = modal.querySelector(".js-subtotal .js-info-value");
+  const endDateElements = modal.querySelectorAll(".js-end-date .js-info-value");
+  let proratedEndDate;
   let subtotalValue = "...";
   let taxValue = "...";
   let totalValue = "...";
 
-  if (totalAmount > 0) {
-    subtotalValue = formattedCurrency(
-      totalAmount - taxAmount,
-      currency,
-      "en-US"
-    );
+  if (purchasePreview) {
+    let taxAmount = purchasePreview.taxAmount || 0;
 
-    if (!vatApplicable) {
-      totalValue = subtotalValue;
+    if (purchasePreview.subscriptionEndOfCycle) {
+      proratedEndDate = new Date(purchasePreview.subscriptionEndOfCycle);
     }
 
-    if (vatApplicable && country !== "") {
-      taxValue = formattedCurrency(taxAmount, currency, "en-US");
-      totalValue = formattedCurrency(totalAmount, currency, "en-US");
+    if (purchasePreview.total > 0) {
+      // always show subtotal value if we have an amount
+      subtotalValue = formattedCurrency(
+        purchasePreview.total - taxAmount,
+        currency,
+        "en-US"
+      );
+
+      if (!vatApplicable) {
+        // if VAT doesn't apply, total and subtotal are the same
+        totalValue = subtotalValue;
+      }
+
+      if (vatApplicable && country !== "") {
+        // if VAT applies to selected country, set the VAT
+        // value, even if it's zero
+        taxValue = formattedCurrency(taxAmount, currency, "en-US");
+        totalValue = formattedCurrency(
+          purchasePreview.total,
+          currency,
+          "en-US"
+        );
+      }
     }
   }
 
   totalsContainer.innerHTML = "";
 
   subtotalElement.innerHTML = subtotalValue;
+
+  if (proratedEndDate) {
+    endDateElements.forEach((endDateEl) => {
+      endDateEl.innerHTML = format(proratedEndDate, DATE_FORMAT);
+    });
+  }
 
   if (vatApplicable) {
     totalsContainer.innerHTML += buildInfoRow({
