@@ -243,7 +243,10 @@ export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
     let taxAmount = purchasePreview.taxAmount || 0;
 
     if (purchasePreview.subscriptionEndOfCycle) {
-      proratedEndDate = new Date(purchasePreview.subscriptionEndOfCycle);
+      proratedEndDate = format(
+        new Date(purchasePreview.subscriptionEndOfCycle),
+        DATE_FORMAT
+      );
     }
 
     if (purchasePreview.total > 0) {
@@ -277,9 +280,17 @@ export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
   subtotalElement.innerHTML = subtotalValue;
 
   if (proratedEndDate) {
-    endDateElements.forEach((endDateEl) => {
-      endDateEl.innerHTML = format(proratedEndDate, DATE_FORMAT);
-    });
+    for (let i = 0; i < endDateElements.length; i++) {
+      let endDateEl = endDateElements[i];
+
+      if (i === 0 && endDateEl.innerHTML !== proratedEndDate) {
+        // if these are different, it means prorating
+        // is in effect, so inform the user
+        endDateEl.innerHTML = `${proratedEndDate}<br /><small>The same date as your existing annual subscription.</small>`;
+      } else {
+        endDateEl.innerHTML = proratedEndDate;
+      }
+    }
   }
 
   if (vatApplicable) {
