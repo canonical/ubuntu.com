@@ -232,6 +232,13 @@ export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
   let taxValue = "...";
   let totalValue = "...";
 
+  if (subtotalElement.innerHTML !== "...") {
+    // if this is true, it means subtotal was
+    // already filled in, and since it won't change,
+    // force it to persist
+    subtotalValue = subtotalElement.innerHTML;
+  }
+
   if (purchasePreview) {
     let taxAmount = purchasePreview.taxAmount || 0;
 
