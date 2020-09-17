@@ -102,7 +102,7 @@ production:
 
   nginxConfigurationSnippet: |
     if ($host = 'apps.ubuntu.com' ) {
-      rewrite ^ https://snapcraft.io/store permanent;
+      rewrite ^ https://snapcraft.io/ permanent;
     }
     if ($host = 'cloud.ubuntu.com' ) {
       rewrite ^ https://ubuntu.com/public-cloud$request_uri? permanent;
