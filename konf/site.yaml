@@ -36,6 +36,16 @@ env:
   - name: SENTRY_DSN
     value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
+  - name: DISCOURSE_API_KEY
+    secretKeyRef:
+      key: api-key
+      name: discourse-api
+
+  - name: DISCOURSE_API_USERNAME
+    secretKeyRef:
+      key:  api-username
+      name: discourse-api
+
 memoryLimit: 512Mi
 
 extraHosts:

@@ -11,9 +11,9 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
-from canonicalwebteam.discourse_docs import (
+from canonicalwebteam.discourse import (
     DiscourseAPI,
-    DiscourseDocs,
+    Docs,
     DocParser,
 )
 
@@ -91,6 +91,12 @@ discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/", session=session
 )
 
+authenticated_discourse_api = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/",
+    session=session,
+    api_key=os.getenv("DISCOURSE_API_KEY"),
+    api_username=os.getenv("DISCOURSE_API_USERNAME"),
+)
 
 # Error pages
 
@@ -240,7 +246,7 @@ app.add_url_rule(
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
 url_prefix = "/server/docs"
-server_docs = DiscourseDocs(
+server_docs = Docs(
     parser=DocParser(
         api=discourse_api,
         category_id=26,
@@ -263,7 +269,7 @@ app.add_url_rule(
 )
 
 tutorials_path = "/tutorials"
-tutorials_docs = DiscourseDocs(
+tutorials_docs = Docs(
     parser=DocParser(
         api=discourse_api,
         category_id=34,
@@ -280,7 +286,7 @@ app.add_url_rule(
 tutorials_docs.init_app(app)
 
 # Ceph docs
-ceph_docs = DiscourseDocs(
+ceph_docs = Docs(
     parser=DocParser(
         api=discourse_api,
         index_topic_id=17250,
@@ -294,9 +300,9 @@ ceph_docs.init_app(app)
 
 
 # Smart Start
-smart_start = DiscourseDocs(
+smart_start = Docs(
     parser=DocParser(
-        api=discourse_api,
+        api=authenticated_discourse_api,
         index_topic_id=15433,
         url_prefix="/smart-start",
     ),
