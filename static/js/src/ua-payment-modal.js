@@ -30,6 +30,7 @@ const progressIndicator = document.getElementById("js-progress-indicator");
 
 const countryDropdown = modal.querySelector("select");
 const termsCheckbox = modal.querySelector(".js-terms");
+const vatInput = modal.querySelector('input[name="tax"]');
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
 const processPaymentButton = modal.querySelector(".js-process-payment");
 const changePaymentMethodButton = modal.querySelector(
@@ -182,8 +183,6 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
 }
 
 function attachFormEvents() {
-  const vatInput = modal.querySelector('input[name="tax"]');
-
   for (let i = 0; i < form.elements.length; i++) {
     const input = form.elements[i];
 
@@ -204,7 +203,7 @@ function attachFormEvents() {
     }
   });
 
-  vatInput.addEventListener("keyup", () => {
+  vatInput.addEventListener("input", () => {
     checkVATdebounce();
   });
 
@@ -286,6 +285,7 @@ function checkVAT() {
   } else {
     vatApplicable = false;
     vatContainer.classList.add("u-hide");
+    vatInput.value = "";
   }
 
   applyTotals();
