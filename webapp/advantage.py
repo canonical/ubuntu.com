@@ -99,10 +99,7 @@ class AdvantageContracts:
             response = self._request(
                 method="put",
                 path=f"v1/accounts/{account_id}/customer-info/stripe",
-                json={
-                    "address": address,
-                    "taxID": tax_id,
-                },
+                json={"address": address, "taxID": tax_id},
             )
         except HTTPError as http_error:
             return http_error.response.json()
@@ -149,8 +146,7 @@ class AdvantageContracts:
 
     def get_marketplace_product_listings(self, marketplace: str) -> dict:
         response = self._request(
-            method="get",
-            path=f"v1/marketplace/{marketplace}/product-listings",
+            method="get", path=f"v1/marketplace/{marketplace}/product-listings"
         )
 
         return response.json()
@@ -170,14 +166,14 @@ class AdvantageContracts:
 
     def get_account_purchases(self, account_id: str) -> dict:
         response = self._request(
-            method="get", path=f"v1/accounts/{account_id}/purchases",
+            method="get", path=f"v1/accounts/{account_id}/purchases"
         )
 
         return response.json()
 
     def get_purchase(self, purchase_id: str) -> dict:
         response = self._request(
-            method="get", path=f"v1/purchase/{purchase_id}",
+            method="get", path=f"v1/purchase/{purchase_id}"
         )
 
         return response.json()

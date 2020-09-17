@@ -134,8 +134,8 @@ class CVESchema(Schema):
     references = List(String())
     bugs = List(String())
     patches = Dict(
-        keys=String(), values=List(String(), required=False), allow_none=True,
+        keys=String(), values=List(String(), required=False), allow_none=True
     )
     tags = Dict(
-        keys=String(), values=List(String(), required=False), allow_none=True,
+        keys=String(), values=List(String(), required=False), allow_none=True
     )
