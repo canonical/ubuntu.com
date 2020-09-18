@@ -95,7 +95,7 @@ function productSelector() {
       <div class="col-10">
         <div class="row u-vertically-center">
           <div class="col-2 col-small-2 col-start-large-7">
-            <h3 class="p-heading--four">Subtotal:</h3>
+            <h3 class="p-heading--four">Yearly cost:</h3>
           </div>
 
           <div class="col-2 col-small-2 u-align--right">
