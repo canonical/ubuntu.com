@@ -96,7 +96,6 @@ let customerInfo = {
 let cardValid = false;
 let changingPaymentMethod = false;
 let submitted3DS = false;
-let totalsApplied = false;
 let vatApplicable = false;
 
 let pollingTimer;
@@ -277,8 +276,6 @@ function attachModalButtonEvents() {
 function checkVAT() {
   const vatContainer = modal.querySelector(".js-vat-container");
 
-  totalsApplied = false;
-
   if (vatCountries.includes(countryDropdown.value)) {
     vatApplicable = true;
     vatContainer.classList.remove("u-hide");
@@ -303,7 +300,6 @@ function applyTotals() {
   let purchasePreview = null;
 
   setOrderTotals(country, vatApplicable, purchasePreview, modal);
-  addPaymentMethodButton.disabled = true;
 
   if (formData.get("tax")) {
     taxObject = {
@@ -330,16 +326,12 @@ function applyTotals() {
         ).then((data) => {
           purchasePreview = data;
           setOrderTotals(country, vatApplicable, purchasePreview, modal);
-          totalsApplied = true;
-          validateForm();
         });
       } else if (currentTransaction.type === "renewal") {
         postRenewalPreviewData(currentTransaction.transactionId).then(
           (data) => {
             purchasePreview = data;
             setOrderTotals(country, vatApplicable, purchasePreview, modal);
-            totalsApplied = true;
-            validateForm();
           }
         );
       }
@@ -824,7 +816,7 @@ function validateForm() {
     inputsValidity.push(isValid);
   }
 
-  if (inputsValidity.includes(false) || !totalsApplied) {
+  if (inputsValidity.includes(false)) {
     addPaymentMethodButton.disabled = true;
   } else {
     addPaymentMethodButton.disabled = false;
