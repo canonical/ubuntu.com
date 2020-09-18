@@ -303,6 +303,7 @@ function applyTotals() {
   let purchasePreview = null;
 
   setOrderTotals(country, vatApplicable, purchasePreview, modal);
+  addPaymentMethodButton.disabled = true;
 
   if (formData.get("tax")) {
     taxObject = {
@@ -330,6 +331,7 @@ function applyTotals() {
           purchasePreview = data;
           setOrderTotals(country, vatApplicable, purchasePreview, modal);
           totalsApplied = true;
+          validateForm();
         });
       } else if (currentTransaction.type === "renewal") {
         postRenewalPreviewData(currentTransaction.transactionId).then(
@@ -337,6 +339,7 @@ function applyTotals() {
             purchasePreview = data;
             setOrderTotals(country, vatApplicable, purchasePreview, modal);
             totalsApplied = true;
+            validateForm();
           }
         );
       }
