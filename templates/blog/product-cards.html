@@ -1,144 +1,129 @@
+<div id="product-card">
+  {# Kubeflow tag cards #}
+  {% if article.tags and 2609 in article.tags %}
+    {% include "blog/product-cards/_kubeflow_jaas-bundle.html" %}
+    {% include "blog/product-cards/_kubeflow_what-is-kubeflow.html" %}
+    {% include "blog/product-cards/_kubeflow_deploy-tutorial.html" %}
 
-{% if article.tags and 1572 in article.tags %}
-<div class="p-card" id="rtp-bootstack">
-<img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/00633f99-ubuntu-cloud-2.svg" alt="ubuntu for clouds logo">
-<hr class="u-sv1">
-  <h3>
-    <a href="/openstack/managed">
-      Looking for a fully managed private cloud?
-    </a>
-  </h3>
-  <p>
-    Designed with economics in mind, Canonical's Managed OpenStack is the most cost-efficient path to a fully managed private cloud.
-  </p>
-  <p><a href="/openstack/managed">Learn more about Managed OpenStack &rsaquo;</a></p>
-</div>
-{% elif article.tags and 1833 in article.tags %}
-<div class="p-card" id="rtp-k8s">
-<img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg" alt="kubernetes logo">
-<hr class="u-sv1">
-  <h3>
-    <a href="/kubernetes/what-is-kubernetes">
-     What is Kubernetes?
+  {# Bootstack tag cards #}
+  {% elif article.tags and 1572 in article.tags %}
+    {% include "blog/product-cards/_bootstack_managed-private-cloud.html" %}
 
-    </a>
-  </h3>
-  <p>Kubernetes, or K8s for short, is an open source platform pioneered by Google, which started as a simple container orchestration tool but has grown into a platform for deploying, monitoring and managing apps and services across clouds.</p>
-  <p><a href="/kubernetes/what-is-kubernetes">Learn more about Kubernetes &rsaquo;</a></p>
-</div>
-{% elif article.tags and 1780 in article.tags %}
-<div class="p-card" id="rtp-ceph">
-<img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg" alt="ceph logo">
-<hr class="u-sv1">
-  <h3>
-    <a href="/ceph/what-is-ceph">
-     What is Ceph storage?
+  {# Kubernetes tag cards #}
+  {% elif article.tags and 1833 in article.tags %}
+  {% include "blog/product-cards/_kubernetes_what-is-kubernetes.html" %}
 
-    </a>
-  </h3>
-  <p>Ceph is a software-defined storage (SDS) solution designed to address the object, block, and file storage needs of both small and large data centres<br/><br/>It's an optimised and easy-to-integrate solution for companies adopting open source as the new norm for high-growth block storage, object stores and data lakes.</p>
-  <p><a href="/ceph/what-is-ceph">Learn more about Ceph &rsaquo;</a></p>
+  {# Ceph tag cards #}
+  {% elif article.tags and 1780 in article.tags %}
+    {% include "blog/product-cards/_ceph_what-is-ceph.html" %}
+
+  {# Bosch tag cards #}
+  {% elif article.tags and 3680 in article.tags %}
+    {% include "blog/product-cards/_bosch_ubuntu-for-iot.html" %}
+  
+  {# Legacy fallback content #}
+  {% elif article.group and article.group.slug == "kubernetes" %}
+  <div class="p-card" id="rtp-k8s">
+    <h3>
+      <a href="/kubernetes">
+        Multi-cloud Kubernetes on Ubuntu
+      </a>
+    </h3>
+    <p>
+      Deploy, scale and upgrade Kubernetes clusters across multiple physical or virtual machines with Charmed Kubernetes, with full support available.
+    </p>
+    <p><a href="/kubernetes">Get started with Charmed K8s&nbsp;&rsaquo;</a></p>
+  </div>
+  {% elif article.group and article.group.slug == "openstack" %}
+  <div class="p-card" id="rtp-openstack">
+    <h3>
+      <a href="/openstack">
+        OpenStack deployment made easy
+      </a>
+    </h3>
+    <p>
+      Ready to move from expensive, proprietary virtualisation to OpenStack? Canonical designs, builds, operates and supports OpenStack private clouds.
+    </p>
+    <p><a href="/openstack">Move to OpenStack&nbsp;&rsaquo;</a></p>
+  </div>
+  {% elif article.group and article.group.slug == "support" %}
+  <div class="p-card" id="rtp-support">
+    <h3>
+      <a href="/support">
+        Open source enterprise support
+      </a>
+    </h3>
+    <p>
+      UA Infrastructure is a single subscription for open source software, security and IaaS support, with OpenStack and Kubernetes included.
+    </p>
+    <p><a href="/support">Solve open source security and compliance&nbsp;&rsaquo;</a></p>
+  </div>
+  {% elif article.group and article.group.slug == "cloud-and-server" %}
+  <div class="p-card" id="rtp-cloud">
+    <h3>
+      <a href="/cloud">
+        Ubuntu cloud
+      </a>
+    </h3>
+    <p>
+      Ubuntu offers all the training, software infrastructure, tools,
+      services and support you need for your public and private clouds.
+    </p>
+  </div>
+  {% elif article.group and article.group.slug == "internet-of-things" %}
+  <div class="p-card" id="rtp-iot">
+    <h3>
+      <a href="/internet-of-things">
+        Internet of Things
+      </a>
+    </h3>
+    <p>
+      From home control to drones, robots and industrial systems, Ubuntu Core and Snaps provide robust security, app stores and reliable updates for all your IoT devices.
+    </p>
+  </div>
+  {% elif article.group and article.group.slug == "desktop" %}
+  <div class="p-card" id="rtp-desktop">
+    <h3>
+      <a href="/desktop">
+        Ubuntu desktop
+      </a>
+    </h3>
+    <p>
+      Learn how the Ubuntu desktop operating system powers millions of PCs and laptops around the world.
+    </p>
+  </div>
+  {% elif article.group and article.group.slug == "server" %}
+  <div class="p-card" id="rtp-server">
+    <h3>
+      <a href="/server">
+        Ubuntu Server
+      </a>
+    </h3>
+    <p>
+      The leading platform for scale-out computing, Ubuntu Server delivers the best value scale-out performance available.
+    </p>
+  </div>
+  {% else %}
+  <div class="p-card" id="rtp-contact-us">
+    <h3>
+      <a href="/about/contact-us/form">
+        Talk to us today
+      </a>
+    </h3>
+    <p>
+      Interested in running Ubuntu in your organisation?
+    </p>
+  </div>
+  {% endif %}
 </div>
-{% elif article.tags and 3680 in article.tags %}
-<div class="p-card" id="rtp-bosch">
-<img alt="IoT infographic" src="https://assets.ubuntu.com/v1/53163a88-IOT_core_infographic.svg">
-<hr class="u-sv1">
-  <h3>
-    <a href="/internet-of-things">Ubuntu for the Internet of Things</a>
-  </h3>
-  <p>From smart homes to smart drones, robots, and industrial systems, Ubuntu is the new standard for embedded Linux. Get the world’s best security, a custom app store, a huge developer community and reliable updates.</p>
-  <p><a href="/internet-of-things">Learn more&nbsp;&rsaquo;</a></p>
-</div>
-{% elif article.group and article.group.slug == "kubernetes" %}
-<div class="p-card" id="rtp-k8s">
-  <h3>
-    <a href="/kubernetes">
-      Multi-cloud Kubernetes on Ubuntu
-    </a>
-  </h3>
-  <p>
-    Deploy, scale and upgrade Kubernetes clusters across multiple physical or virtual machines with Charmed Kubernetes, with full support available.
-  </p>
-  <p><a href="/kubernetes">Get started with Charmed K8s&nbsp;&rsaquo;</a></p>
-</div>
-{% elif article.group and article.group.slug == "openstack" %}
-<div class="p-card" id="rtp-openstack">
-  <h3>
-    <a href="/openstack">
-      OpenStack deployment made easy
-    </a>
-  </h3>
-  <p>
-    Ready to move from expensive, proprietary virtualisation to OpenStack? Canonical designs, builds, operates and supports OpenStack private clouds.
-  </p>
-  <p><a href="/openstack">Move to OpenStack&nbsp;&rsaquo;</a></p>
-</div>
-{% elif article.group and article.group.slug == "support" %}
-<div class="p-card" id="rtp-support">
-  <h3>
-    <a href="/support">
-      Open source enterprise support
-    </a>
-  </h3>
-  <p>
-    UA Infrastructure is a single subscription for open source software, security and IaaS support, with OpenStack and Kubernetes included.
-  </p>
-  <p><a href="/support">Solve open source security and compliance&nbsp;&rsaquo;</a></p>
-</div>
-{% elif article.group and article.group.slug == "cloud-and-server" %}
-<div class="p-card" id="rtp-cloud">
-  <h3>
-    <a href="/cloud">
-      Ubuntu cloud
-    </a>
-  </h3>
-  <p>
-    Ubuntu offers all the training, software infrastructure, tools,
-    services and support you need for your public and private clouds.
-  </p>
-</div>
-{% elif article.group and article.group.slug == "internet-of-things" %}
-<div class="p-card" id="rtp-iot">
-  <h3>
-    <a href="/internet-of-things">
-      Internet of Things
-    </a>
-  </h3>
-  <p>
-    From home control to drones, robots and industrial systems, Ubuntu Core and Snaps provide robust security, app stores and reliable updates for all your IoT devices.
-  </p>
-</div>
-{% elif article.group and article.group.slug == "desktop" %}
-<div class="p-card" id="rtp-desktop">
-  <h3>
-    <a href="/desktop">
-      Ubuntu desktop
-    </a>
-  </h3>
-  <p>
-    Learn how the Ubuntu desktop operating system powers millions of PCs and laptops around the world.
-  </p>
-</div>
-{% elif article.group and article.group.slug == "server" %}
-<div class="p-card" id="rtp-server">
-  <h3>
-    <a href="/server">
-      Ubuntu Server
-    </a>
-  </h3>
-  <p>
-    The leading platform for scale-out computing, Ubuntu Server delivers the best value scale-out performance available.
-  </p>
-</div>
-{% else %}
-<div class="p-card" id="rtp-contact-us">
-  <h3>
-    <a href="/about/contact-us/form">
-      Talk to us today
-    </a>
-  </h3>
-  <p>
-    Interested in running Ubuntu Desktop in your organisation?
-  </p>
-</div>
-{% endif %}
+
+<script>
+  // Get all loaded cards
+  var cards = document.getElementsByClassName('js-product-card');
+  if (cards) {
+    // Roll a dice
+    var selectedIndex = Math.floor(Math.random() * cards.length);
+    // Display card
+    cards[selectedIndex].classList.remove("u-hide")
+  }
+</script>
