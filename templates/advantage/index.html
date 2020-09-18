@@ -147,9 +147,7 @@
                               </tr>
 
                               {% if contract['contractInfo']['effectiveTo'] %}
-                                {% if contract["renewal"] %}
-                                  {% include "advantage/table/_expiry-date.html" %}
-                                {% endif %}
+                                {% include "advantage/table/_expiry-date.html" %}
                               {% endif %}
 
                               {% if contract["renewal"] %}
