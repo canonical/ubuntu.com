@@ -283,10 +283,6 @@ function productSelector() {
         }
       });
     }
-
-    if (formStage && input.value > 0) {
-      scrollToStep("version");
-    }
   }
 
   function handleStepSpecificAction(inputElement) {
@@ -310,7 +306,6 @@ function productSelector() {
         } else {
           quantityTypeEl.innerHTML = `How many ${inputElement.dataset.productName}s?`;
           state.set(inputElement.name, [inputElement.value]);
-          scrollToStep("quantity");
         }
 
         break;
@@ -321,11 +316,9 @@ function productSelector() {
         break;
       case "support":
         state.set(inputElement.name, [inputElement.value]);
-        scrollToStep("add");
         break;
       case "add":
         state.set(inputElement.name, [inputElement.value]);
-        scrollToStep("cart");
         break;
       default:
         state.set(inputElement.name, [inputElement.value]);
@@ -363,15 +356,6 @@ function productSelector() {
     state.reset("support");
     state.reset("add");
     form.reset();
-  }
-
-  function scrollToStep(step) {
-    const stepWrapper = document.querySelector(`${stepClassPrefix}${step}`);
-
-    window.scrollTo({
-      top: stepWrapper.offsetTop,
-      behavior: "smooth",
-    });
   }
 
   function setActiveSteps() {
