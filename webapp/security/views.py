@@ -602,7 +602,7 @@ def update_statuses(cve, data, packages):
                 status = Status(
                     cve_id=cve.id, package_name=name, release_codename=codename
                 )
-            else:
+            elif f"{name}||{codename}" in statuses_to_delete:
                 del statuses_to_delete[f"{name}||{codename}"]
 
             if status.status != status_data["status"]:
