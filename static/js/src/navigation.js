@@ -160,6 +160,25 @@ function addGAImpressionEvents(target, category) {
   }
 }
 
+addGADownloadImpressionEvents(".js-download-option", "download-option");
+
+function addGADownloadImpressionEvents(target, category) {
+  var t = [].slice.call(document.querySelectorAll(target));
+  if (t) {
+    t.forEach(function (section) {
+      if (!section.classList.contains("u-hide")) {
+        dataLayer.push({
+          event: "NonInteractiveGAEvent",
+          eventCategory: "www.ubuntu.com-impression-" + category,
+          eventAction: "Display option",
+          eventLabel: section.innerText,
+          eventValue: undefined,
+        });
+      }
+    });
+  }
+}
+
 addUTMToForms();
 
 function addUTMToForms() {
