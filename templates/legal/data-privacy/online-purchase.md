@@ -5,7 +5,7 @@ context:
   description: "This privacy notice tells you about the information we collect from you when you purchase one or more of our products via our website."
   copydoc: https://docs.google.com/document/d/1ZSNnMiLJl6SGSV0D_cr6MJAwpkf6xzbKYJdTL9MxLHc/edit
 ---
-<h4 class="p-muted-heading">Version - April 2018</h4>
+<h4 class="p-muted-heading">Version - September 2020</h4>
 <hr style="margin-bottom: 2rem;" />
 
 # Privacy notice - Online purchase
@@ -42,15 +42,15 @@ We also use a third-party supplier called Shopify Inc. to provision your order a
 
 ## Our legal basis to use your Personal information
 
-#### *Our legitimate business interests*
+### Our legitimate business interests
 Our legal basis for using your personal information is that it is necessary for our legitimate interest in providing the purchased product in accordance with the terms and conditions between us and the business you are associated with.
 
 When purchasing a product from us online, our legal basis for processing your personal information is that it is necessary for our legitimate interests in conducting our business and meeting the requirements of you, our current and prospective customers.
 
-We may contact you from time to time with information about products and services that we offer (see [Marketing Communications to Businesses](https://ubuntu.com/legal/data-privacy/partner-portal#mkt-comms)). Our legal basis for using your personal information to contact you is that it is necessary for our legitimate interest in keeping you informed of the products and services that we offer. You can opt out of marketing communications as set out below.
+We may contact you from time to time with information about products and services that we offer (see [Marketing Communications to Businesses](/legal/data-privacy/partner-portal#mkt-comms)). Our legal basis for using your personal information to contact you is that it is necessary for our legitimate interest in keeping you informed of the products and services that we offer. You can opt out of marketing communications as set out below.
 
-#### *Your consent*
-If you purchase a product from us online, you will have the option to provide your consent to us sending you information about the products and services that we offer (see [Email Marketing Communications](https://ubuntu.com/legal/data-privacy/partner-portal#mkt-comms)). You can withdraw your consent at any time.
+### Your consent
+If you purchase a product from us online, you will have the option to provide your consent to us sending you information about the products and services that we offer (see [Email Marketing Communications](/legal/data-privacy/partner-portal#mkt-comms)). You can withdraw your consent at any time.
 
 ## How long do we keep your information for?
 
