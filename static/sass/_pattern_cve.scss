@@ -12,6 +12,15 @@
     color: $color-x-light;
   }
 
+  .u-overflow-inherit {
+    overflow-x: inherit !important;
+  }
+
+  .cve-table {
+    font-size: 0.8rem;
+    line-height: 1rem;
+  }
+
   .cve-table thead tr {
     border-bottom: 0;
   }
@@ -29,6 +38,70 @@
     border-top: 0;
     overflow: visible;
     padding-left: 0.75rem;
+  }
+
+  .cve-table .icon-cve-info {
+    margin: 0 0 0 0.5rem;
+  }
+
+  .cve-table .icon-container__text {
+    width: calc(100% - 3rem);
+  }
+
+  .cve-table .p-icon--information {
+    opacity: 0.6;
+  }
+
+  .cve-table-cell .p-icon--information {
+    visibility: hidden;
+  }
+
+  .cve-table-cell:hover .p-icon--information {
+    visibility: visible;
+  }
+
+  .cve-table-cell .cve-tooltip {
+    display: none;
+  }
+
+  .cve-table-cell:hover .p-icon--information:hover + .cve-tooltip {
+    display: block;
+  }
+
+  .cve-table .icon-container__icon {
+    position: relative;
+  }
+
+  .cve-tooltip {
+    z-index: 1;
+    background: #fff;
+    position: absolute;
+    top: 30px;
+    transform: translateX(-125px);
+    width: 275px;
+    border: 1px solid #b0b0b0;
+    padding: 10px;
+    box-shadow: 0 0 3px #b0b0b0;
+    color: #111;
+  }
+
+  .cve-tooltip .arrow-up {
+    position: absolute;
+    left: calc(50% - 13px);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+
+  .cve-tooltip .arrow-up.front {
+    top: -9px;
+    border-bottom: 10px solid #fff;
+  }
+
+  .cve-tooltip .arrow-up.back {
+    top: -10px;
+    border-bottom: 10px solid #b0b0b0;
   }
 
   .cve-table-cell--muted {
