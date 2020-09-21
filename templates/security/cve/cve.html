@@ -130,6 +130,7 @@
               <th>Package</th>
               <th>Release</th>
               <th>Status</th>
+              <th>Component</th>
             </tr>
           </thead>
           <tbody>
@@ -161,27 +162,27 @@
                     {% endif %}
                     {% if statuses[release.codename].status == "DNE" %}
                       Does not exist
-                      <div class="cve-color-strip--dne"></div>
+                      <div class="cve-color-strip--dne" style="width:calc(100% - 1rem)"></div>
                     {% elif statuses[release.codename].status == "needs-triage" %}
                       Needs triage
-                      <div class="cve-color-strip--needs-triage"></div>
+                      <div class="cve-color-strip--needs-triage" style="width:calc(100% - 1rem)"></div>
                     {% elif statuses[release.codename].status == "not-affected" %}
                       Not vulnerable
-                      <div class="cve-color-strip--not-affected"></div>
+                      <div class="cve-color-strip--not-affected" style="width:calc(100% - 1rem)"></div>
                     {% elif statuses[release.codename].status == "needed" %}
                       Needed
-                      <div class="cve-color-strip--needed"></div>
+                      <div class="cve-color-strip--needed" style="width:calc(100% - 1rem)"></div>
                     {% elif statuses[release.codename].status == "deferred" %}
                       Deferred
-                      <div class="cve-color-strip--deferred"></div>
+                      <div class="cve-color-strip--deferred" style="width:calc(100% - 1rem)"></div>
                     {% elif statuses[release.codename].status == "ignored" %}
                       Ignored
-                      <div class="cve-color-strip--ignored"></div>
+                      <div class="cve-color-strip--ignored" style="width:calc(100% - 1rem)"></div>
                     {% elif statuses[release.codename].status == "pending" %}
                       Pending
-                      <div class="cve-color-strip--pending"></div>
+                      <div class="cve-color-strip--pending" style="width:calc(100% - 1rem)"></div>
                     {% elif statuses[release.codename].status == "released" %}
-                      <div class="cve-color-strip--released"></div>
+                      <div class="cve-color-strip--released" style="width:calc(100% - 1rem)"></div>
                       Released
                     {% endif %}
                     {% if statuses[release.codename].description %}
@@ -197,13 +198,22 @@
                       {% endif %}
                     </small>
                     </td>
+                    <td>
+                      {% if cve.component %}
+                        {{ cve.component }}
+                      {% else %}
+                        <div class="u-align--center">
+                          &mdash;
+                        </div>
+                      {% endif %}
+                    </td>
                   {% endif %}
                 </tr>
               {% endfor %}
               {% if cve.patches[package_name]|length > 0  %}
                 <tr>
                   <td style="border-top: 0px"></td>
-                  <td colspan="2" style="border-top: 5px double #cdcdcd">
+                  <td colspan="3" style="border-top: 5px double #cdcdcd">
                     Patches: <br>
                     <small>
                       {% for patch in cve.formatted_patches[package_name] %}
