@@ -85,17 +85,10 @@ class TestRoutes(VCRTestCase):
         desktop_response = self.client.get(
             "/download/desktop/thank-you?version=20.04&architecture=amd64"
         )
-        server_response = self.client.get(
-            "/download/server/thank-you?version=20.04&architecture=amd64"
-        )
 
         self.assertEqual(desktop_response.status_code, 200)
-        self.assertEqual(server_response.status_code, 200)
 
         self.assertIn(b"ubuntu-20.04-desktop-amd64.iso", desktop_response.data)
-        self.assertIn(
-            b"ubuntu-20.04-live-server-amd64.iso", server_response.data
-        )
 
     def test_advantage(self):
         """
