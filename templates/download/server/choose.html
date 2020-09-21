@@ -1,0 +1,123 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Download Ubuntu Server | Download{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1FFQQUtzFGH88hA30qnZm-3pwVqcVl9UYyrNT4qQWrSM/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <p class="p-muted-heading">Get Ubuntu server</p>
+      <h1>Option 3: Manual install</h1>
+      <p class="p-heading--four">Download and install Ubuntu Server {{ releases.lts.short_version }} LTS using a USB stick or a DVD burner</p>
+      <p>The long-term support version of Ubuntu Server, including the {{ releases.openstack_lts.slug }} release of OpenStack and support guaranteed until {{ releases.lts.eol }}.</p>
+      <p>
+        <form action="/download/server" method="post">
+          <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
+          <input type="hidden" name="architecture" value="amd64">
+          <input type="hidden" name="next-step" value="download">
+          <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu {{ releases.lts.full_version }} LTS</button>
+        </form>
+      </p>
+      <p>
+        <a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.lts.short_version }} LTS release notes</a>
+      </p>
+      <p>
+        <a href="https://www.brighttalk.com/webcast/6793/398353/ubuntu-20-04-lts-whats-new-in-server" class="p-link--external">Watch the webinar &ndash; "Ubuntu 20.04 LTS: What’s new in server?"</a>
+      </p>
+      <h4 class="p-muted-heading">Explore:</h4>
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <a href="https://multpass.run" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">
+            <img src="https://assets.ubuntu.com/v1/4e0ff71e-Multipass+logo_thin_rgb.svg" alt="" width="543" height="104" style="height: 26px; width: auto;" />
+        </li>
+        <li class="p-inline-list__item">
+          <a href="https://maas.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'MAAS', 'eventValue' : undefined });">
+            <img src="https://assets.ubuntu.com/v1/038514e8-MAAS_black-orange_rgb.svg" alt="" width="543" height="104" style="height: 26px; width: auto;" />
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center">
+      <div class="u-hide--small u-align--center">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/28e0ebb7-Focal-Fossa-gradient-outline.svg",
+            alt="",
+            height="1500",
+            width="1922",
+            hi_def=True,
+            loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light u-no-padding--bottom">
+  <div class="row">
+    <div class="col-10">
+      <h2>Alternative downloads</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4 p-card">
+      <h3 class="p-card__title">Ubuntu Server for ARM</h3>
+      <p>The next version of Ubuntu Server, to be officially released in October 2020.</p>
+      <p><a href="http://cdimage.ubuntu.com/ubuntu-server/daily-live/current/" class="p-link--external">Get Ubuntu Server 20.10</a></p>
+    </div>
+    <div class="col-4 p-card">
+      <h3 class="p-card__title">Ubuntu Server 18.04 LTS</h3>
+      <p>Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu and OpenStack ecosystem to IBM POWER.</p>
+      <p><a href="http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/" class="p-link--external">Get Ubuntu Server 18.04 LTS</a></p>
+    </div>
+    <div class="col-4 p-card">
+      <h3 class="p-card__title">Other versions</h3>
+      <p>Other versions of Ubuntu Server including torrents, the network installer, a list of local mirrors and past releases.</p>
+      <p><a href="/download/alternative-downloads">See alternative downloads&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-10">
+      <h2>Alternative architectures</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4 p-card">
+      <h3 class="p-card__title">Ubuntu Server for ARM</h3>
+      <p>
+        Optimised for hyperscale deployments and certified on ARM chipsets &mdash; Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.
+      </p>
+      <p>
+        <a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 p-card">
+      <h3 class="p-card__title">Ubuntu for POWER</h3>
+      <p>
+        Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu ecosystem to IBM POWER.
+      </p>
+      <p>
+        <a href="/download/server/power">Get Ubuntu for POWER&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 p-card">
+      <h3 class="p-card__title">Ubuntu for IBM Z</h3>
+      <p>
+        IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available, with Juju and Ubuntu OpenStack.
+      </p>
+      <p>
+        <a href="/download/server/s390x">Get Ubuntu for IBM Z&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+{% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+{% endblock content %}

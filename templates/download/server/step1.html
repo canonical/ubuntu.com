@@ -1,0 +1,50 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Download Ubuntu Server  | Download{% endblock %}
+{% block meta_description %}Ubuntu for POWER brings the Ubuntu Server and Ubuntu ecosystem to POWER.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1e-vav_b54KlKsi92w3rDu9J14O0gpp8yAanEAIImlE8/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row u-lower">
+    <div class="col-12 u-align--center">
+      <form action="/download/server" method="post">
+        <input type="hidden" name="next-step" value="step2">
+        <button type="submit" class="p-link" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+          Option 2&nbsp;&rsaquo;
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <p class="p-muted-heading">Get Ubuntu server</p>
+      <h1>Option 1: Multipass</h1>
+      <p class="p-heading--four">On-demand Ubuntu Server VMs for Mac, Windows and Linux</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Multipass provides instant Ubuntu VMs</li>
+        <li class="p-list__item is-ticked">Use cloud-init metadata for rapid cloud development and testing.</li>
+        <li class="p-list__item is-ticked">On Windows. On Mac. And on Linux.</li>
+      </ul>
+      <p><a href="https://multipass.run" class="p-button--positive p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">Get Multipass</a></p>
+    </div>
+    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center">
+      <div class=" u-hide--small u-align--center">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/0698ab2d-muiltipass-promo-header.png",
+            alt="",
+            height="392",
+            width="716",
+            hi_def=True,
+            loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+{% endblock content %}

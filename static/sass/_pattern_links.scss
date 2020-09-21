@@ -1,0 +1,12 @@
+@mixin ubuntu-p-links {
+  .p-link {
+    @extend a;
+
+    border: 0;
+    padding: 0;
+
+    &:hover {
+      background: none;
+    }
+  }
+}

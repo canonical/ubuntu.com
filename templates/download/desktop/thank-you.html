@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Thank you {{ "for downloading Ubuntu Desktop" if start_download else "for your contribution" }}{% endblock %}
+{% block title %}Thank you {{ "for downloading Ubuntu Desktop" if version else "for your contribution" }}{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/187Vg9I0Jjlp1_yAjYtHdoEwFCJeVOaz9Kzeb6kptMpA{% endblock meta_copydoc %}
 
@@ -15,7 +15,7 @@
 {% endblock %}
 {% block content %}
 
-{% if start_download %}
+{% if version %}
 {% if architecture == 'amd64+mac' %}
 <meta http-equiv="refresh" content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">
 {% else %}
@@ -29,7 +29,7 @@
   <div class="p-strip--suru-topped">
     <div class="row">
       <div class="col-8">
-        {% if start_download %}
+        {% if version %}
         <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
         <p>Your download should start automatically. If it doesn&rsquo;t,
           {% if architecture == 'amd64+mac' %}
@@ -278,7 +278,7 @@
   {% block footer_extra %}
   <script src="{{ versioned_static('js/src/contributions.js') }}"></script>
 
-  {% if start_download %}
+  {% if version %}
     <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
     <script defer>
       var architecture = '{{ architecture }}';
