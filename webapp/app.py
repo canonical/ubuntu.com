@@ -11,11 +11,7 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
-from canonicalwebteam.discourse import (
-    DiscourseAPI,
-    Docs,
-    DocParser,
-)
+from canonicalwebteam.discourse import DiscourseAPI, Docs, DocParser
 
 # Local
 from webapp.context import (
@@ -100,6 +96,7 @@ authenticated_discourse_api = DiscourseAPI(
     api_key=os.getenv("DISCOURSE_API_KEY"),
     api_username=os.getenv("DISCOURSE_API_USERNAME"),
 )
+
 
 # Error pages
 @app.errorhandler(400)
