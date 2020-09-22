@@ -96,10 +96,10 @@ def download_harness(category):
 
 
 def download_thank_you(category):
-    version = flask.request.args.get("version")
-    architecture = flask.request.args.get("architecture").replace(" ", "+")
+    version = flask.request.args.get("version", "")
+    architecture = flask.request.args.get("architecture", "").replace(" ", "+")
 
-    if not (version and architecture):
+    if version and not architecture:
         flask.abort(400)
 
     return (
@@ -556,7 +556,7 @@ def make_renewal(advantage, contract_info):
         return None
 
     sorted_renewals = sorted(
-        renewals, key=lambda renewal: dateutil.parser.parse(renewal["start"]),
+        renewals, key=lambda renewal: dateutil.parser.parse(renewal["start"])
     )
 
     renewal = sorted_renewals[0]
