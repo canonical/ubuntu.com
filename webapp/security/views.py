@@ -456,7 +456,11 @@ def cve_index():
     cves_query = (
         cves_query.group_by(CVE.id)
         .order_by(
-            case([(CVE.published.is_(None), 1)], else_=0), desc(CVE.published)
+            case(
+                [(CVE.published.is_(None), 1)],
+                else_=0,
+            ),
+            desc(CVE.published),
         )
         .limit(limit)
         .offset(offset)

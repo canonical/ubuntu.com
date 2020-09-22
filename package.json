@@ -29,10 +29,10 @@
     }
   },
   "lint-staged": {
-    "*.scss": "./run exec yarn run lint-scss",
-    "*.py": "./run exec yarn run lint-python",
+    "*.scss": "dotrun exec yarn run lint-scss",
+    "*.py": "dotrun exec yarn run lint-python",
     "*.js": [
-      "./run exec yarn run lint-js",
+      "dotrun exec yarn run lint-js",
       "prettier --write"
     ]
   },
