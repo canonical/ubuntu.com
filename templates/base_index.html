@@ -63,6 +63,7 @@
     <hr class="p-separator" />
   </div>
 
+  {# hide for now
   <div class="row">
     <div class="col-12">
       <h5 class="p-muted-heading u-align--center">
@@ -132,18 +133,19 @@
       </ul>
     </div>
   </div>
+  #}
 </section>
 
 <noscript>
-  <section class="p-strip">
+  <section class="p-strip u-no-padding--top">
     <div class="row">
-      <h3 class="p-heading--four"><a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a></h3>
+      <h3 class="p-heading--three"><a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a></h3>
     </div>
   </section>
 </noscript>
-<section class="p-strip u-hide" data-js="latest-news">
+<section class="p-strip u-no-padding--top u-hide" data-js="latest-news">
   <div class="row">
-    <h1 class="p-heading--four">
+    <h1 class="p-heading--three">
         Latest news from <a href="/blog" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">our blog&nbsp;&rsaquo;</a>
     </h1>
   </div>
@@ -164,9 +166,7 @@
         <time datetime="" class="article-time"></time>
       </p>
       <h2 class="p-heading--five">
-        <strong>
           <a class="article-link article-title"></a>
-        </strong>
       </h2>
     </div>
   </template>
@@ -176,11 +176,9 @@
       <p class="u-no-margin--bottom p-muted-heading">
         Spotlight
       </p>
-      <p>
-        <strong>
+      <h2 class="p-heading--five">
           <a class="article-link article-title"></a>
-        </strong>
-      </p>
+      </h2>
     </div>
   </template>
 
