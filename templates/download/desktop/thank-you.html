@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Thank you {{ "for downloading Ubuntu Desktop" if start_download else "for your contribution" }}{% endblock %}
+{% block title %}Thank you {{ "for downloading Ubuntu Desktop" if version else "for your contribution" }}{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/187Vg9I0Jjlp1_yAjYtHdoEwFCJeVOaz9Kzeb6kptMpA{% endblock meta_copydoc %}
 
@@ -15,7 +15,7 @@
 {% endblock %}
 {% block content %}
 
-{% if start_download %}
+{% if version %}
 {% if architecture == 'amd64+mac' %}
 <meta http-equiv="refresh" content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-desktop-amd64+mac.iso">
 {% else %}
@@ -29,7 +29,7 @@
   <div class="p-strip--suru-topped">
     <div class="row">
       <div class="col-8">
-        {% if start_download %}
+        {% if version %}
         <h1 style="font-weight: 100;">Thank you for downloading Ubuntu Desktop</h1>
         <p>Your download should start automatically. If it doesn&rsquo;t,
           {% if architecture == 'amd64+mac' %}
@@ -48,6 +48,7 @@
   </div>
 </section>
 
+{% if version %}
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-7">
@@ -230,68 +231,70 @@
               <input name="_mkt_trk" value="id:066-EOV-335&amp;token:_mch-ubuntu.com-1473266321199-95160" type="hidden">
               <input type="hidden" name="thankyoumessage" value="Thank you for subscribing!<br />You will begin receiving emails as new content is posted. You may unsubscribe any time by clicking the link in the email.">
             </div>
-          </form>
-        </div>
-        <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
-        <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
-        <script>
-          $("#mktoForm_1212").validate({
-            errorPlacement: function(error, element) {
-              error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
-              error.appendTo( element.addClass( "p-form-validation__input" ));
-            },
-            errorElement: "span",
-            errorClass: "p-form-validation__message"
-          });
-        </script>
+          </div>
+        </form>
       </div>
-    </div>
-  </section>
-
-  <div class="p-strip is-shallow">
-    <div class="row u-equal-height">
-      <div class="col-4 p-card--highlighted">
-        <h3>Learn how to try Ubuntu before you install</h3>
-        <p class="p-card__content">Run Ubuntu directly from either a USB stick or a DVD for a quick and easy way to experience how Ubuntu works.</p>
-        <p class="p-card__content"><a class="p-link--external"  href="/tutorials/try-ubuntu-before-you-install">Follow our simple guide</a></p>
-      </div>
-      <div class="col-4 p-card--highlighted">
-        <h3>Do you want to upgrade your OS?</h3>
-        <p class="p-card__content">If you are already running Ubuntu, you can upgrade with the Software Updater.</p>
-        <p class="p-card__content"><a href="/tutorials/tutorial-upgrading-ubuntu-desktop" class="p-link--external">How to upgrade</a></p>
-      </div>
-      <div class="col-4 p-card--highlighted">
-        <h3>Let’s connect</h3>
-        <p class="p-card__content">If you get stuck, help is always at hand.</p>
-        <p class="p-card__content"><a href="https://askubuntu.com" class="p-link--external">Ask Ubuntu</a></p>
-        <p class="p-card__content"><a href="https://ubuntuforums.org/" class="p-link--external">Ubuntu Forums</a></p>
-        <p class="p-card__content"><a href="https://wiki.ubuntu.com/IRC/ChannelList" class="p-link--external">IRC-based support</a></p>
-      </div>
+      <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
+      <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+      <script>
+        $("#mktoForm_1212").validate({
+          errorPlacement: function(error, element) {
+            error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
+            error.appendTo( element.addClass( "p-form-validation__input" ));
+          },
+          errorElement: "span",
+          errorClass: "p-form-validation__message"
+        });
+      </script>
     </div>
   </div>
+</section>
+{% endif %}
 
-  {% with first_item="_download_verify_your_download", second_item="_download_desktop_guide", third_item="_download_enterprise_support" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+<div class="p-strip is-shallow">
+  <div class="row u-equal-height">
+    <div class="col-4 p-card--highlighted">
+      <h3>Learn how to try Ubuntu before you install</h3>
+      <p class="p-card__content">Run Ubuntu directly from either a USB stick or a DVD for a quick and easy way to experience how Ubuntu works.</p>
+      <p class="p-card__content"><a class="p-link--external"  href="/tutorials/try-ubuntu-before-you-install">Follow our simple guide</a></p>
+    </div>
+    <div class="col-4 p-card--highlighted">
+      <h3>Do you want to upgrade your OS?</h3>
+      <p class="p-card__content">If you are already running Ubuntu, you can upgrade with the Software Updater.</p>
+      <p class="p-card__content"><a href="/tutorials/tutorial-upgrading-ubuntu-desktop" class="p-link--external">How to upgrade</a></p>
+    </div>
+    <div class="col-4 p-card--highlighted">
+      <h3>Let’s connect</h3>
+      <p class="p-card__content">If you get stuck, help is always at hand.</p>
+      <p class="p-card__content"><a href="https://askubuntu.com" class="p-link--external">Ask Ubuntu</a></p>
+      <p class="p-card__content"><a href="https://ubuntuforums.org/" class="p-link--external">Ubuntu Forums</a></p>
+      <p class="p-card__content"><a href="https://wiki.ubuntu.com/IRC/ChannelList" class="p-link--external">IRC-based support</a></p>
+    </div>
+  </div>
+</div>
+
+{% with first_item="_download_verify_your_download", second_item="_download_desktop_guide", third_item="_download_enterprise_support" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 
-  {% endblock content %}
+{% endblock content %}
 
-  {% block footer_extra %}
-  <script src="{{ versioned_static('js/src/contributions.js') }}"></script>
+{% block footer_extra %}
+<script src="{{ versioned_static('js/src/contributions.js') }}"></script>
 
-  {% if start_download %}
-    <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
-    <script defer>
-      var architecture = '{{ architecture }}';
-      var mirrors = {{ mirror_list | safe }};
-      var version = '{{ version }}';
+{% if version %}
+  <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
+  <script defer>
+    var architecture = '{{ architecture }}';
+    var mirrors = {{ mirror_list | safe }};
+    var version = '{{ version }}';
 
-      if (version && architecture && architecture != 'amd64+mac') {
-        var GAlabel = version + '-desktop-' + architecture;
-        var imagePath = version + '/ubuntu-' + version + '-desktop-' + architecture + '.iso';
+    if (version && architecture && architecture != 'amd64+mac') {
+      var GAlabel = version + '-desktop-' + architecture;
+      var imagePath = version + '/ubuntu-' + version + '-desktop-' + architecture + '.iso';
 
-        window.initImageDownload(mirrors, imagePath, GAlabel);
-      }
-    </script>
-  {% endif %}
+      window.initImageDownload(mirrors, imagePath, GAlabel);
+    }
+  </script>
+{% endif %}
 
-  {% endblock footer_extra %}
+{% endblock footer_extra %}

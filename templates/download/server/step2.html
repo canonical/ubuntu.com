@@ -1,0 +1,53 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Download Ubuntu Server  | Download{% endblock %}
+{% block meta_description %}Ubuntu for POWER brings the Ubuntu Server and Ubuntu ecosystem to POWER.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1e-vav_b54KlKsi92w3rDu9J14O0gpp8yAanEAIImlE8/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row u-lower">
+    <div class="col-12 u-align--center">
+      <div class="p-inline-list">
+        <form action="/download/server" method="post" class="p-inline-list__item">
+          <input type="hidden" name="next-step" value="choose">
+          <button type="submit" class="p-link" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
+            Option 3&nbsp;&rsaquo;
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <p class="p-muted-heading">Get Ubuntu server</p>
+      <h1 class="js-download-option">Option 2: MAAS</h1>
+      <p class="p-heading--four">Provision bare metal machines with Ubuntu Server in a fully automated way</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">MAAS turns your data centre into a bare metal cloud</li>
+        <li class="p-list__item is-ticked">On-demand physical machines with Ubuntu Server, Windows, CentOS and more</li>
+        <li class="p-list__item is-ticked">Infrastructure discovery and automation</li>
+      </ul>
+      <p>Turn your data centre into a bare metal cloud with Metal-as-a-Service (MAAS) and provision machines with Ubuntu Server in a fully automated way.</p>
+      <p><a href="https://maas.io" class="p-button--positive p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'MAAS', 'eventValue' : undefined });">Get MAAS</a></p>
+    </div>
+    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/1be3ba70-maas-images.png?w=504",
+          alt="",
+          height="310",
+          width="504",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-image--bordered"}
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+{% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+{% endblock content %}
