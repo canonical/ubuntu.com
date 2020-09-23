@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-### September 10th, 2020 - [charmed-kubernetes-509](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-509/archive/bundle.yaml)
+### September 24th, 2020 - [charmed-kubernetes-509](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-509/archive/bundle.yaml)
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -65,6 +65,15 @@ you can now set `ignore-loose-rpf=true` to ignore the check.
 - Ubuntu 20.04
 
 The default operating system for deployed machines is now Ubuntu 20.04 (Focal). Ubuntu 18.04 (Bionic) and 16.04 (Xenial) are still supported.
+
+- MetalLB Operator
+
+MetalLB offers a software network load balancing implementation that allows for
+LoadBalancing services in Kubernetes. This bundle has been made available
+in the Charm Store to be deployed along Charmed Kubernetes, MicroK8s, or any Kubernetes
+supported by Juju. This operator deploys upstream MetalLB in layer 2 mode. The BGP mode
+of upstream MetalLB is not supported yet. For more information about deploying and
+operating MetalLB, please see the [MetalLB documentation](https://ubuntu.com/kubernetes/docs/metallb).
 
 - SR-IOV CNI
 
