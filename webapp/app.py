@@ -51,6 +51,8 @@ from webapp.security.views import (
     create_notice,
     delete_notice,
     notice,
+    read_notice,
+    read_notices,
     notices,
     notices_feed,
     update_notice,
@@ -199,6 +201,14 @@ app.add_url_rule(
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
+app.add_url_rule(
+    "/security/api/notices/<notice_id>",
+    view_func=read_notice,
+)
+app.add_url_rule(
+    "/security/api/notices",
+    view_func=read_notices,
+)
 app.add_url_rule("/security/notices", view_func=notices)
 app.add_url_rule(
     "/security/notices", view_func=create_notice, methods=["POST"]

@@ -152,6 +152,19 @@ class Notice(Base):
 
         return set(sorted(package_list))
 
+    def as_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "published": self.published,
+            "summary": self.summary,
+            "details": self.details,
+            "instructions": self.instructions,
+            "references": self.references,
+            "release_packages": self.release_packages,
+            "cves": [c.id for c in self.cves],
+        }
+
 
 class Release(Base):
     __tablename__ = "release"
