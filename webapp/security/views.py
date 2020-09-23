@@ -703,7 +703,12 @@ def bulk_upsert_cve():
         published_date = (
             cve.published.strftime("%Y-%B-%d") if cve.published else None
         )
-        if published_date != data.get("published").strftime("%Y-%B-%d"):
+        data_published_date = (
+            data.get("published").strftime("%Y-%B-%d")
+            if data.get("published")
+            else None
+        )
+        if published_date != data_published_date:
             update_cve = True
             cve.published = data.get("published")
 
