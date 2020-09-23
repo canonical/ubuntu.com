@@ -19,7 +19,7 @@ from sqlalchemy.orm import contains_eager
 # Local
 from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Package, Status, Release
-from webapp.security.schemas import CVESchema, NoticeSchema
+from webapp.security.schemas import CVESchema, NoticeSchema, ReleaseSchema
 from webapp.security.auth import authorization_required
 
 
@@ -361,6 +361,88 @@ def delete_notice(notice_id):
     db_session.commit()
 
     return flask.jsonify({"message": f"Notice {notice_id} deleted"}), 200
+
+
+@authorization_required
+def create_release():
+    """
+    POST method to create a new release
+    """
+
+    release_schema = ReleaseSchema()
+
+    try:
+        release_data = release_schema.load(flask.request.json)
+    except ValidationError as error:
+        return (
+            flask.jsonify(
+                {"message": "Invalid payload", "errors": error.messages}
+            ),
+            400,
+        )
+
+    release = Release(
+        codename=release_data["codename"],
+        version=release_data["version"],
+        name=release_data["name"],
+        development=release_data["development"],
+        lts=release_data["lts"],
+        release_date=release_data["release_date"],
+        esm_expires=release_data["esm_expires"],
+        support_expires=release_data["support_expires"],
+    )
+
+    db_session.add(release)
+
+    try:
+        db_session.commit()
+    except IntegrityError:
+        return (
+            flask.jsonify(
+                {
+                    "message": (
+                        f"Release with [codename:'{release_data['codename']}']"
+                        f" or [version:'{release_data['version']}'] or "
+                        f"[name:'{release_data['name']}'] already exists"
+                    )
+                }
+            ),
+            400,
+        )
+
+    return flask.jsonify({"message": "Release created"}), 200
+
+
+@authorization_required
+def delete_release(codename):
+    """
+    DELETE method to delete a single release
+    """
+    release = db_session.query(Release).get(codename)
+
+    if not release:
+        return (
+            flask.jsonify({"message": f"Release {codename} doesn't exist"}),
+            404,
+        )
+
+    if len(release.statuses) > 0:
+        return (
+            flask.jsonify(
+                {
+                    "message": (
+                        f"Cannot delete '{codename}' release. "
+                        f"Release already in use"
+                    )
+                }
+            ),
+            400,
+        )
+
+    db_session.delete(release)
+    db_session.commit()
+
+    return flask.jsonify({"message": f"Release {codename} deleted"}), 200
 
 
 # CVE views
