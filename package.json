@@ -32,7 +32,6 @@
     "*.scss": "dotrun exec yarn run lint-scss",
     "*.py": "dotrun exec yarn run lint-python",
     "*.js": [
-      "dotrun exec yarn run lint-js",
       "prettier --write"
     ]
   },
@@ -74,7 +73,7 @@
     "webpack-cli": "3.3.12"
   },
   "dependencies": {
-    "@canonical/cookie-policy": "2.1.0",
+    "@canonical/cookie-policy": "3.0.0",
     "@canonical/global-nav": "2.4.3",
     "@canonical/latest-news": "1.0.3",
     "url-polyfill": "1.1.10",
