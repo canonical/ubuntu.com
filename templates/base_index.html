@@ -62,88 +62,18 @@
   <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
-
-  <div class="row">
-    <div class="col-12">
-      <h5 class="p-muted-heading u-align--center">
-        Featured in
-      </h5>
-      <ul class="p-inline-images--x-small u-align--center u-no-margin--bottom">
-        <li class="p-inline-images__item is-muted">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/2f97697f-BusinessInsider_logo.svg",
-            alt="Business Insider logo",
-            width="130",
-            height="53",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item is-muted">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/f41aefb1-Forbes_logo.svg",
-            alt="Forbes logo",
-            width="130",
-            height="35",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item is-muted">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/f156e2cb-TechCrunch_logo.svg",
-            alt="TechCrunch logo",
-            width="130",
-            height="19",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logo is-wide"},
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item is-muted">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/437cfb7e-WSJ_logo.svg",
-            alt="Wall Street Journal logo",
-            width="92",
-            height="51",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item is-muted">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/2fd48fb2-BBC_logo.svg",
-            alt="BBC logo",
-            width="130",
-            height="37",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-        </li>
-      </ul>
-    </div>
-  </div>
 </section>
 
 <noscript>
-  <section class="p-strip">
+  <section class="p-strip u-no-padding--top">
     <div class="row">
-      <h3 class="p-heading--four"><a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a></h3>
+      <h3 class="p-heading--three"><a href="/blog">Read the latest news on our blog&nbsp;&rsaquo;</a></h3>
     </div>
   </section>
 </noscript>
-<section class="p-strip u-hide" data-js="latest-news">
+<section class="p-strip u-no-padding--top u-hide" data-js="latest-news">
   <div class="row">
-    <h1 class="p-heading--four">
+    <h1 class="p-heading--three">
         Latest news from <a href="/blog" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com homepage', 'eventValue' : undefined });">our blog&nbsp;&rsaquo;</a>
     </h1>
   </div>
@@ -164,9 +94,7 @@
         <time datetime="" class="article-time"></time>
       </p>
       <h2 class="p-heading--five">
-        <strong>
           <a class="article-link article-title"></a>
-        </strong>
       </h2>
     </div>
   </template>
@@ -176,11 +104,9 @@
       <p class="u-no-margin--bottom p-muted-heading">
         Spotlight
       </p>
-      <p>
-        <strong>
+      <h2 class="p-heading--five">
           <a class="article-link article-title"></a>
-        </strong>
-      </p>
+      </h2>
     </div>
   </template>
 
