@@ -1,0 +1,449 @@
+{% extends "security-series/_base-security-series.html" %}
+
+{% block title %}Ubuntu Security:
+Security and compliance for the full stack{% endblock %}
+
+{% block meta_description %}Learn more about securing Ubuntu systems for reduced downtime, optimum CVE coverage, meeting compliance requirements and more across IoT devices, the public cloud, on-premises and container environments.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1A7JDBRZ_tuEvteE1pVA9_rV-oJUq1_DuT7GmO6zVCXM/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip p-engage-banner--grad">
+  <div class="u-fixed-width navigation-logo-engage">
+    <a href="/">
+            {{
+        image(
+          url="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_286,h_64/https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
+          alt="Ubuntu",
+          height="32",
+          width="143",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}
+    </a>
+  </div>
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-7">
+      <h1>Ubuntu Security:<br />Security and compliance for the full stack</h1>
+      <p>Ubuntu is more than just Linux, patching security vulnerabilities from kernel to applications and providing support and managed services for open source across multi-cloud environments.</p>
+      <p>Get the full Ubuntu security story through our security webinar series and see how our teams are securing all your open source, from cloud to edge.</p>
+    </div>
+    <div class="col-5 u-hide--small u-align--right">
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/1899df43-ubuntu-advantage-circular_white.svg",
+          alt="",
+          height="350",
+          width="325",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <p class ="p-heading--3">Select by team or topic which security series webinars you would like to explore.</p>
+      <br />
+    </div>
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="col-6" >
+      <p class ="p-heading--4">Team</p>
+      <hr />
+      <ul class="p-list">
+        <li class="p-list__item"><a href="#management-series">CISO|CTO &nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="#engineering-series">DevSecOps &nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="#management-series">IT Security Manager, Director &nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="#engineering-series">Security, Systems Engineer &nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv4"><a href="#management-series">VP Engineering, Ops &nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <p class ="p-heading--4">Topic</p>
+      <hr />
+      <ul class="p-list">
+        <li class="p-list__item"><a href="#iot-security">Compliance tech &nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="#iot-security">IoT & Device security &nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="#multi-cloud-security">Multi-cloud security &nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="#securing-public-cloud">Securing public cloud &nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="#security-patching">Security Patching &nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+  </div>
+
+<section class="p-strip--light is-deep" id="engineering-series">
+  <div class="row u-equal-height">
+    <div class="col-9">
+      <p class="p-heading--5">Team</p>
+      <h2>Engineering series</h2>
+      <p class="u-sv2">This webinar series is for DevSecOps, DevOps, Security, Systems and Cloud Engineers to dig into security best practices, tooling demos and more from the Ubuntu Security Team.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <p>
+      {{
+        image(
+         url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
+         alt="",
+         height="80",
+         width="130",
+         hi_def=True,
+         attrs={"class": ""},
+         loading="auto",
+       ) | safe
+        }}
+      </p>   
+      <p class="p-heading--4">FIPS certification and CIS compliance with Ubuntu</p>
+      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating environments under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered to ensure you and your team are, and remain, compliant.</p>
+      <a href="https://www.brighttalk.com/webcast/6793/432536">Resister</a>
+    </div>
+    <div class="col-4">
+      <p>
+      {{
+        image(
+         url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+         alt="",
+         height="80",
+         width="130",
+         hi_def=True,
+         attrs={"class": ""},
+         loading="auto",
+        ) | safe
+      }}
+      </p>
+      <p class="p-heading--4">Best practices for securing open source</p>
+      <p>In this webinar learn about the common security and compliance issues with open source, five best practices the Ubuntu Security Team implements and how you can ensure the security integrity of your Ubuntu systems.</p>
+      <a href="https://www.brighttalk.com/webcast/6793/440071">Resister</a>
+    </div>
+    <div class="col-4">
+      <p>
+        {{
+        image(
+         url="https://assets.ubuntu.com/v1/bf810a68-AppArmor_logo.svg",
+         alt="",
+         height="80",
+         width="90",
+         hi_def=True,
+         attrs={"class": ""},
+         loading="auto",
+        ) | safe
+      }}      
+      </p>
+      <p class="p-heading--4">Securing Linux Machines with AppArmor</p>
+      <p>AppArmor provides a crucial layer of security around applications. By providing the capability to whitelist an application’s permissible actions, AppArmor enables administrators to apply the principle of least privilege to applications.</p>
+      <a href="https://www.brighttalk.com/webcast/6793/440491">Resister</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep" id="management-series">
+  <div class="row u-equal-height">
+    <div class="col-9">
+      <p class="p-heading--5">Team</p>
+      <h2>Management ‘big-picture’ series</h2>
+      <p class="u-sv2">This webinar series is for CSO, CISO, VPs and Senior Security Engineers and management to find solutions to big picture infrastructure security and management problems.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/3b176ef1-managed-private-cloud.svg",
+          alt="",
+          height="80",
+          width="80",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>
+      <p class="p-heading--4">Securing open source across multi-cloud environments</p>
+      <p>Join this webinar to see how you can ensure performant open source in production environments and achieve maximum availability by reducing downtime and providing access to high and critical CVE fixes.</p>
+      <p>Furthermore, learn how Ubuntu helps organisations remain compliant with government and industry standards and regulations, including Common Criteria EAL2 with FIPS 140-2 Level 1 certified crypto modules.</p>
+      <a class="u-sv4" href="https://www.brighttalk.com/webcast/6793/440517">Resister</a>
+    </div>
+    <div class="col-6">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/3b176ef1-managed-private-cloud.svg",
+          alt="",
+          height="80",
+          width="80",
+          hi_def=True,
+          attrs={"class": "u-sv2"},
+          loading="auto",
+        ) | safe
+      }}      
+      </p> 
+      <p class="p-heading--4">How to manage risk with secure managed service providers</p>
+      <p>Many organisations utilise managed service providers for IT infrastructure and application performance and reliability at scale. With current economic times forcing companies to also rely on outsourcing to reduce costs with infrastructure and app operations, it is critical to ensure standards of excellence are met and exceeded.</p>
+      <p>Learn common issues companies face with MSPs and the standards and control objects that should be met with a certified MSP provider.</p>
+      <a class="u-sv3" href="https://www.brighttalk.com/webcast/6793/440499">Resister</a>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <p class="u-sv1">
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/97917ebe-IBM-Z-logo.png",
+          alt="",
+          height="65",
+          width="65",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>
+      <p class="p-heading--4">Security, Cloud Native & Confidential Computing on IBM Z & LinuxONE with 20.04</p>
+      <p>With constant threats of cyber attacks and data breaches, now more than ever there is a need for workload isolation, data encryption, trusted execution environments and other security practices and tools to protect systems and containers. </p>
+      <p>In this webinar, learn how Ubuntu enables Confidential Computing and IBM Z & LinuxONE capabilities to secure cloud service providers and public cloud consumers.</p>
+      <a class="u-sv3" href="https://www.brighttalk.com/webcast/6793/440529">Resister</a>
+    </div>
+    <div class="col-6">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
+          alt="",
+          height="80",
+          width="80",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>
+      <p class="p-heading--4">Ubuntu Core: A cybersecurity analysis</p>
+      <p>We provide substantial documentation and content to share and support the Ubuntu Core architecture and approach, but we don’t want anyone to have to take our word for it when choosing Ubuntu: We brought in Rule4 for an independent, third-party review of Ubuntu Core’s security architecture controls.</p>
+      <a class="u-sv3" href="https://www.brighttalk.com/webcast/6793/402503">Resister</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep" id="compliance-tooling">
+  <div class="row u-equal-height">
+    <div class="col-9">
+      <p class="p-heading--5">Topic</p>
+      <h2>Compliance tech & tooling</h2>
+      <p class="u-sv2">This webinar series is for those operating in heavily-regulated industries looking to meet FedRAMP, HIPAA, PCI and ISO compliance regimes. </p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
+          alt="",
+          height="80",
+          width="130",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>   
+      <p class="p-heading--4">FIPS certification and CIS compliance with Ubuntu</p>
+      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating environments under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered to ensure you and your team are, and remain, compliant.</p>
+      <a class="u-sv3" href="https://www.brighttalk.com/webcast/6793/432536">Resister</a>
+    </div>
+    <div class="col-6">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+          alt="",
+          height="80",
+          width="130",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>
+      <p class="p-heading--4">Securing open source across multi-cloud environments</p>
+      <p>Join this webinar to see how you can ensure performant open source in production environments and achieve maximum availability by reducing downtime and providing access to high and critical CVE fixes.</p>
+      <p>Furthermore, learn how Ubuntu helps organisations remain compliant with government and industry standards and regulations, including Common Criteria EAL2 with FIPS 140-2 Level 1 certified crypto modules.
+      </p>
+      <a class="u-sv3" href="https://www.brighttalk.com/webcast/6793/440517">Resister</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep" id="iot-security">
+  <div class="row u-equal-height">
+    <div class="col-9">
+      <p class="p-heading--5">Topic</p>
+      <h2>IoT & Device security</h2>
+      <p class="u-sv2">This webinar series is for those interested in ensuring the security of IoT devices. </p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/bf810a68-AppArmor_logo.svg",
+          alt="",
+          height="80",
+          width="90",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>   
+      <p class="p-heading--4">Securing Linux machines with AppArmor</p>
+      <p>AppArmor provides a crucial layer of security around applications. By providing the capability to whitelist an application’s permissible actions, AppArmor enables administrators to apply the principle of least privilege to applications.</p>
+      <a class="u-sv3" href="https://www.brighttalk.com/webcast/6793/440491">Resister</a>
+    </div>
+    <div class="col-6">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
+          alt="",
+          height="80",
+          width="80",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>
+      <p class="p-heading--4">Ubuntu Core: A cybersecurity analysis</p>
+      <p>We provide substantial documentation and content to share and support the Ubuntu Core architecture and approach, but we don’t want anyone to have to take our word for it when choosing Ubuntu: We brought in Rule4 for an independent, third-party review of Ubuntu Core’s security architecture controls.</p>
+      <a class="u-sv3" href="https://www.brighttalk.com/webcast/6793/402503">Resister</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip--light is-deep" id="multi-cloud-security">
+  <div class="row u-equal-height">
+    <div class="col-9">
+      <p class="p-heading--5">Topic</p>
+      <h2>Multi-cloud infrastructure security</h2>
+      <p class="u-sv2">This webinar series is for those interested in securing the full stack, from private and public cloud infrastructure to applications. </p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/bf810a68-AppArmor_logo.svg",
+          alt="",
+          height="80",
+          width="90",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>   
+      <p class="p-heading--4">Securing open source across multi-cloud environments</p>
+      <p>Join this webinar to see how you can ensure performant open source in production environments and achieve maximum availability by reducing downtime and providing access to high and critical CVE fixes. </p>
+      <p>Furthermore, learn how Ubuntu helps organisations remain compliant with government and industry standards and regulations, including Common Criteria EAL2 with FIPS 140-2 Level 1 certified crypto modules.</p>
+      <a href="https://www.brighttalk.com/webcast/6793/440517">Resister</a>
+    </div>
+    <div class="col-6">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
+          alt="",
+          height="80",
+          width="80",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>
+      <p class="p-heading--4">Security, Cloud Native & Confidential Computing on IBM Z & LinuxONE with 20.04</p>
+      <p>With constant threats of cyber attacks and data breaches, now more than ever there is a need for workload isolation, data encryption, trusted execution environments and other security practices and tools to protect systems and containers. </p>
+      <p>In this webinar, learn how Ubuntu enables Confidential Computing and IBM Z & LinuxONE capabilities to secure cloud service providers and public cloud consumers.</p>
+      <a class="u-sv3" href="https://www.brighttalk.com/webcast/6793/440529">Resister</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep" id="securing-public-cloud">
+  <div class="row u-equal-height">
+    <div class="col-9">
+      <p class="p-heading--5">Topic</p>
+      <h2>Securing public cloud</h2>
+      <p class="u-sv2">This webinar series is for those interested in compliance and security for their AWS and Azure public cloud instances.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-10">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/bf810a68-AppArmor_logo.svg",
+          alt="",
+          height="80",
+          width="90",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>   
+      <p class="p-heading--4">Securing open source across multi-cloud environments</p>
+      <p>Join this webinar to see how you can ensure performant open source in production environments and achieve maximum availability by reducing downtime and providing access to high and critical CVE fixes. </p>
+      <p>Furthermore, learn how Ubuntu helps organisations remain compliant with government and industry standards and regulations, including Common Criteria EAL2 with FIPS 140-2 Level 1 certified crypto modules.</p>
+      <a href="https://www.brighttalk.com/webcast/6793/440517">Resister</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep" id="security-patching">
+  <div class="row u-equal-height">
+    <div class="col-9">
+      <p class="p-heading--5">Topic</p>
+      <h2>Security patching</h2>
+      <p class="u-sv2">This webinar series is for those interested in ensuring open source systems are secure with patch management and tooling demos and best practices.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-10">
+      <p>
+        {{
+        image(
+          url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+          alt="",
+          height="80",
+          width="130",
+          hi_def=True,
+          attrs={"class": ""},
+          loading="auto",
+        ) | safe
+      }}      
+      </p>   
+      <p class="p-heading--4">Best practices for securing open source</p>
+      <p>In this webinar learn about the common security and compliance issues with open source, five best practices the Ubuntu Security Team implements and how you can ensure the security integrity of your Ubuntu systems.</p>
+      <a href="https://www.brighttalk.com/webcast/6793/440071">Resister</a>
+    </div>
+  </div>
+</section>
+
+</section>
+  {% endblock %}
