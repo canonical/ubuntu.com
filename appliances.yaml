@@ -81,3 +81,9 @@ appliances:
     checksum:
       raspberrypi: "ae32d6979cdc9546c0d2508986da057421be463cfbaa8a280487d310b1c5f211 *lxd-core18-pi.img.xz"
       pc: "ac7ab9051f18baf607d4810b23a55e6230e48e20467ef9e03fb89a2f6df29bb9 *lxd-core18-amd64.img.xz"
+    extra_requirements:
+      raspberrypi: "We recommend using a Pi 4 with 4GB of RAM or more"
+    pi:
+      2: False
+      3: False
+      4: True

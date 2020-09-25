@@ -6,32 +6,52 @@
           Start using your {{ appliance.name }} Ubuntu Appliance
         </h2>
         <p>
-          Now you can go ahead and set everything up.  It's usually best to wait 5-10 minutes here. Some snaps will need to refresh themselves and the appliance may need to automatically reboot. When you're ready go to:
-        </p>
-        <pre><code>http://&lt;IP-of-your-appliance&gt;:3000</code></pre>
-        <p>
-          in another computers browser. Where you will find the initial configuration wizard.
+          Now you can go ahead and set everything up.  It’s usually best to wait 5-10 minutes here. Some snaps will need to refresh themselves and the appliance may need to automatically reboot. 
         </p>
         <p>
-          Follow the instructions to start using your new Adguard Home Ubuntu Appliance.
+          When you’re ready ssh into your appliance as described in step 6 and run:
         </p>
+        <pre><code>sudo lxc set core.trust_password &lt;SOME PASSWORD&gt;</code></pre>
         <p>
-          On the AdGuard configuration screen, under DNS Server, it will have an error in red: <code>listen udp 0.0.0.0:53: bind: address already in use</code>.  Change the listen interface to <code>Eth0</code>.
+          Then, on your main system (not the appliance) install the LXD client:
         </p>
+        <ul>
+          <li>
+            <code>snap install lxd</code> on Linux
+          </li>
+         <li> 
+           <code>brew install lxc</code> on macOS
+          </li>
+          <li>
+            <code>choco install lxc</code> on Windows
+          </li>
+        </ul>
         <p>
-          Once you've finished the AdGuard configuration, you can connect to the admin panel by just going to <code>http://&lt;ip address&gt;</code> (no longer port 3000), and can configure other devices on your network to use that ip address for the DNS server.
+          And connect to the appliance with: 
         </p>
+        <pre>lxc remote add appliance IP-ADDRESS
+lxc list appliance:</pre>
         <p>
-          For more information or more documentation on what to do now, the <a class="p-link--external" href="https://adguard.com/">AdGuard website</a> is the best place to go next.
+          And you’re away. For more information or more documentation on what to do now, the <a class="p-link--external" href="https://linuxcontainers.org">LXD website</a> is the best place to go next.
         </p>
+        <div class="p-notification" id="notification">
+          <div class="p-notification__response">
+            <span class="p-notification__status">
+              Note:
+            </span>
+            <p>
+              If there is a core update, the appliance will automatically update, then reboot. Typically this isn’t an issue but some use cases should take note. 
+            </p>
+          </div>
+        </div>
     </div>
   </div>
   <div class="col-6 u-hide--small u-align--center u-vertically-center">
     {{  image(
-      url="https://assets.ubuntu.com/v1/636bd444-adguard-first-screen.png",
-      alt="AdGuard wizard screen",
-      width="600",
-      height="619",
+      url="https://assets.ubuntu.com/v1/d85ef015-image-lxd.svg",
+      alt="LXD illustration",
+      width="400",
+      height="368",
       hi_def=True,
       loading="lazy",
       ) | safe}}

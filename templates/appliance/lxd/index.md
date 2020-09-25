@@ -10,8 +10,12 @@ context:
   meta_description: "With LXD you can run hundreds of containers of a variety of Linux distributions, apply resource limits, pass in directories, USB devices or GPUs and setup any network and storage you want."
   downloads:
     raspberrypi: True
-    pc: True
+    pc: False
     intelnuc: True
+  pi:
+    2: False
+    3: False
+    4: True
   screenshots:
     1: https://dashboard.snapcraft.io/site_media/appmedia/2018/10/Screenshot_from_2018-10-26_12-57-24.png
     2: https://dashboard.snapcraft.io/site_media/appmedia/2018/10/Screenshot_from_2018-10-26_14-20-14.png

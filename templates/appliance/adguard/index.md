@@ -12,6 +12,10 @@ context:
     raspberrypi: True
     pc: True
     intelnuc: True
+  pi:
+    2: True
+    3: True
+    4: True
   screenshots:
     1: https://assets.ubuntu.com/v1/1febeddd-adguard-main-image.png
     2: https://assets.ubuntu.com/v1/21176b69-adguard-advert.png
