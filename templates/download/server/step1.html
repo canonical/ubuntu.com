@@ -16,21 +16,8 @@
         <li class="p-list__item is-ticked">Use cloud-init metadata for rapid cloud development and testing.</li>
         <li class="p-list__item is-ticked">On Windows. On Mac. And on Linux.</li>
       </ul>
-        <a href="https://multipass.run" class="p-button--positive p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">Get Multipass</a>
-        <form action="/download/server" method="post" style="display: inline">
-          <input type="hidden" name="next-step" value="step2">
-          <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
-            Option 2
-          </button>
-        </form>
-        <form action="/download/server" method="post" style="display: inline">
-          <input type="hidden" name="next-step" value="choose">
-          <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
-            Option 3
-          </button>
-        </form>
     </div>
-    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center">
+    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center" style="min-height: 328px">
       <div class=" u-hide--small u-align--center">
         {{
           image(
@@ -43,6 +30,23 @@
           ) | safe
         }}
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <a href="https://multipass.run" class="p-button--positive p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">Get Multipass</a>
+      <form action="/download/server" method="post" style="display: inline">
+        <input type="hidden" name="next-step" value="step2">
+        <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+          Option 2
+        </button>
+      </form>
+      <form action="/download/server" method="post" style="display: inline">
+        <input type="hidden" name="next-step" value="choose">
+        <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
+          Option 3
+        </button>
+      </form>
     </div>
   </div>
 </section>
