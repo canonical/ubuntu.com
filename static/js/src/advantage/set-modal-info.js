@@ -302,7 +302,7 @@ export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
 
   totalsContainer.innerHTML += buildInfoRow({
     label: "Total: ",
-    value: totalValue,
+    value: `<b>${totalValue}</b>`,
   });
 
   totalsContainer.classList.remove("u-hide");
