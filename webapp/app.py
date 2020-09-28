@@ -90,7 +90,7 @@ app.config["CONTRACTS_API_URL"] = os.getenv(
 ).rstrip("/")
 app.config["CANONICAL_LOGIN_URL"] = os.getenv(
     "CANONICAL_LOGIN_URL", "https://login.ubuntu.com"
-
+)
 session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/", session=session
