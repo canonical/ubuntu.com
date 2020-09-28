@@ -666,7 +666,8 @@ function presentError(errorObject) {
     vatContainer.classList.add("is-error");
     vatErrorElement.innerHTML = errorObject.message;
     vatErrorElement.classList.remove("u-hide");
-    showDetailsMode();
+    vatInput.focus();
+    disableProcessingState();
   } else {
     console.error(`invalid argument: ${errorObject}`);
   }
