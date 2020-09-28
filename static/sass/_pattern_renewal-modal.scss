@@ -155,8 +155,12 @@
     }
 
     &.is-processing {
-      .p-modal__body section {
-        visibility: hidden;
+      .p-modal__body {
+        overflow: hidden;
+
+        section {
+          visibility: hidden;
+        }
       }
 
       #order-processing {

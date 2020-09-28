@@ -34,6 +34,9 @@ const vatInput = modal.querySelector('input[name="tax"]');
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
 const processPaymentButton = modal.querySelector(".js-process-payment");
 const vatContainer = modal.querySelector(".js-vat-container");
+const vatErrorElement = vatContainer.querySelector(
+  ".p-form-validation__message"
+);
 const changePaymentMethodButton = modal.querySelector(
   ".js-change-payment-method"
 );
@@ -275,6 +278,8 @@ function attachModalButtonEvents() {
 }
 
 function checkVAT() {
+  vatContainer.classList.remove("is-error");
+
   if (vatCountries.includes(countryDropdown.value)) {
     vatApplicable = true;
     vatContainer.classList.remove("u-hide");
@@ -657,6 +662,11 @@ function presentError(errorObject) {
   } else if (errorObject.type === "dialog") {
     errorDialog.innerHTML = errorObject.message;
     showDialogMode();
+  } else if (errorObject.type === "vat") {
+    vatContainer.classList.add("is-error");
+    vatErrorElement.innerHTML = errorObject.message;
+    vatErrorElement.classList.remove("u-hide");
+    showDetailsMode();
   } else {
     console.error(`invalid argument: ${errorObject}`);
   }
