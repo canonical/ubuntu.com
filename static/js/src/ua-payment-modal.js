@@ -33,6 +33,7 @@ const termsCheckbox = modal.querySelector(".js-terms");
 const vatInput = modal.querySelector('input[name="tax"]');
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
 const processPaymentButton = modal.querySelector(".js-process-payment");
+const vatContainer = modal.querySelector(".js-vat-container");
 const changePaymentMethodButton = modal.querySelector(
   ".js-change-payment-method"
 );
@@ -112,6 +113,7 @@ function attachCTAevents() {
 
     if (isRenewalCTA || isShopCTA) {
       e.preventDefault();
+      modal.classList.add("is-processing");
       currentTransaction.accountId = data.accountId;
     }
 
@@ -121,7 +123,6 @@ function attachCTAevents() {
       currentTransaction.transactionId = data.renewalId;
 
       setRenewalInformation(data, modal);
-      checkVAT();
     } else if (isShopCTA) {
       const cartItems = JSON.parse(data.cart);
 
@@ -139,10 +140,10 @@ function attachCTAevents() {
       });
 
       setOrderInformation(cartItems, modal);
-      checkVAT();
     }
 
     if (isRenewalCTA || isShopCTA) {
+      checkVAT();
       toggleModal();
       card.focus();
       sendGAEvent("opened payment modal");
@@ -206,7 +207,7 @@ function attachFormEvents() {
     checkVATdebounce();
   });
 
-  countryDropdown.addEventListener("change", (e) => {
+  countryDropdown.addEventListener("change", () => {
     checkVAT();
   });
 
@@ -274,8 +275,6 @@ function attachModalButtonEvents() {
 }
 
 function checkVAT() {
-  const vatContainer = modal.querySelector(".js-vat-container");
-
   if (vatCountries.includes(countryDropdown.value)) {
     vatApplicable = true;
     vatContainer.classList.remove("u-hide");
@@ -325,12 +324,14 @@ function applyTotals() {
           currentTransaction.previousPurchaseId
         ).then((data) => {
           purchasePreview = data;
+          modal.classList.remove("is-processing");
           setOrderTotals(country, vatApplicable, purchasePreview, modal);
         });
       } else if (currentTransaction.type === "renewal") {
         postRenewalPreviewData(currentTransaction.transactionId).then(
           (data) => {
             purchasePreview = data;
+            modal.classList.remove("is-processing");
             setOrderTotals(country, vatApplicable, purchasePreview, modal);
           }
         );

@@ -62,6 +62,7 @@
     .p-modal__body {
       max-height: 70vh;
       overflow-y: scroll;
+      position: relative;
     }
 
     .p-modal__header {
@@ -80,6 +81,25 @@
 
       @media (min-width: $breakpoint-medium) {
         bottom: 1rem;
+      }
+    }
+
+    #order-processing {
+      bottom: 0;
+      display: none;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      .p-icon--spinner {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
       }
     }
 
@@ -134,6 +154,19 @@
       color: $color-negative;
     }
 
+    &.is-processing {
+      .p-modal__body section {
+        visibility: hidden;
+      }
+
+      #order-processing {
+        animation: 1s delayedShow;
+        animation-fill-mode: forwards;
+        display: block;
+        visibility: hidden;
+      }
+    }
+
     button,
     label {
       @media (min-width: $breakpoint-medium) {
@@ -156,5 +189,15 @@
         float: right;
       }
     }
+  }
+}
+
+@keyframes delayedShow {
+  99% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: visible;
   }
 }
