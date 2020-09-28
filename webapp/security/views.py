@@ -220,7 +220,7 @@ def _update_notice_object(notice, data):
     ]
 
     notice.cves.clear()
-    for cve_id in data["cves"]:
+    for cve_id in set(data["cves"]):
         notice.cves.append(db_session.query(CVE).get(cve_id) or CVE(id=cve_id))
 
     return notice
