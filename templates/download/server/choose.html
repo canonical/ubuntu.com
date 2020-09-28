@@ -13,6 +13,9 @@
       <h1 class="js-download-option">Option 3: Manual install</h1>
       <p class="p-heading--four">Download and install Ubuntu Server {{ releases.lts.short_version }} LTS using a USB stick or a DVD burner</p>
       <p>The long-term support version of Ubuntu Server, including the {{ releases.openstack_lts.slug }} release of OpenStack and support guaranteed until {{ releases.lts.eol }}.</p>
+      <p>
+        <a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.lts.short_version }} LTS release notes</a>
+      </p>
     </div>
     <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center" style="min-height: 328px">
       <div class="u-hide--small u-align--center">
@@ -49,9 +52,6 @@
         <input type="hidden" name="next-step" value="download">
         <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu {{ releases.lts.full_version }} LTS</button>
       </form>
-      <p>
-        <a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">Ubuntu {{ releases.lts.short_version }} LTS release notes</a>
-      </p>
       <p>
         <a href="https://www.brighttalk.com/webcast/6793/398353/ubuntu-20-04-lts-whats-new-in-server" class="p-link--external">Watch the webinar &ndash; "Ubuntu 20.04 LTS: What’s new in server?"</a>
       </p>
