@@ -9,7 +9,7 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>Optimised Ubuntu on&nbsp;public&nbsp;clouds</h1>
-      <p>Ubuntu builds optimised and certified server images for partners like Amazon AWS, Microsoft Azure, Google Cloud Platform, Oracle, Rackspace and IBM Cloud. In addition, Canonical offers Ubuntu Advantage, enterprise-grade commercial support, on these images.</p>
+      <p>Ubuntu builds optimised and certified server images for partners like Amazon AWS, Microsoft Azure, Google Cloud Platform, IBM Cloud, Rackspace and Oracle. In addition, Canonical offers Ubuntu Advantage, enterprise-grade commercial support, on these images.</p>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
       {{
@@ -17,7 +17,7 @@
           url="https://assets.ubuntu.com/v1/a9580e02-ubuntu-cloud-medium.svg",
           alt="",
           width="350",
-          height="296",
+          height="200",
           hi_def=True,
         ) | safe
       }}
@@ -25,7 +25,9 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+{% include "/shared/_ubuntu_pro_on_public_cloud.html" %}
+
+<section class="p-strip is-deep">
   <div class="row">
     <div class="col-10">
       <h2>Use Ubuntu in the cloud</h2>
@@ -36,37 +38,13 @@
     <div class="p-card col-4">
       <div class="p-card__content">
         <h4>
-          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free">
-            {{
-              image(
-                  url="https://assets.ubuntu.com/v1/79a533b8-google-cloud.png?w=211",
-                  alt="Google Cloud Platform",
-                  width="211",
-                  height="130",
-                  hi_def=True,
-                  loading="lazy",
-                  attrs={"style": "lign-self: center; max-height: 10rem;"},
-                ) | safe
-            }}
-          </a>
-        </h4>
-        <p>Google Cloud Platform lets you build and host applications and websites, store data, and analyze data on Google’s scalable infrastructure.</p>
-      </div>
-      <ul class="p-list">
-        <li class="p-list__item u-no-margin--top"><a href="https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu" class="p-link--external">Guide to using GCP</a></li>
-        <li class="p-list__item"><a href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free" class="p-link--external">Get started on GCP</a></li>
-      </ul>
-    </div>
-    <div class="p-card col-4">
-      <div class="p-card__content">
-        <h4>
           <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="http://cloud-images.ubuntu.com/locator/ec2/">
             {{
               image(
-                  url="https://assets.ubuntu.com/v1/39002345-AmazonWebservices_Logo.svg",
-                  alt="Amazon Web Services",
-                  width="160",
-                  height="60",
+                  url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+                  alt="Amazon Web Services logo",
+                  width="84",
+                  height="50",
                   hi_def=True,
                   loading="lazy",
                   attrs={"style": "align-self: center;max-height: 10rem; max-width:10rem;"},
@@ -79,6 +57,7 @@
       <ul class="p-list">
         <li class="p-list__item u-no-margin--top"><a href="https://help.ubuntu.com/community/EC2StartersGuide" class="p-link--external">Ubuntu's guide to using EC2</a></li>
         <li class="p-list__item"><a href="http://cloud-images.ubuntu.com/locator/ec2/" class="p-link--external">Amazon EC2 AMI Locator</a></li>
+        <li class="p-list__item"><a href="/aws/pro">Launch Ubuntu Pro for AWS&nbsp;&rsaquo;</a></li>
       </ul>
     </div>
     <div class="p-card col-4">
@@ -87,10 +66,10 @@
           <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuServer">
             {{
               image(
-                  url="https://assets.ubuntu.com/v1/208cd3a7-azure-logo-blue-on-white.svg",
-                  alt="Microsoft Azure",
-                  width="184",
-                  height="53",
+                  url="https://assets.ubuntu.com/v1/22fd6473-MicrosoftAzure_logo.svg",
+                  alt="Microsoft Azure logo",
+                  width="130",
+                  height="38",
                   hi_def=True,
                   loading="lazy",
                   attrs={"style": "align-self: center;max-height: 10rem; max-width:12rem;"},
@@ -102,7 +81,32 @@
       </div>
       <ul class="p-list">
         <li class="p-list__item u-no-margin--top"><a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/" class="p-link--external">Guide to using Microsoft Azure</a></li>
-        <li class="p-list__item"><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuServer" class="p-link--external">Launch Ubuntu on Azure</a></li>
+        <li class="p-list__item"><a href="/azure" >Launch Ubuntu on Azure&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item"><a href="/azure/pro">Launch Ubuntu Pro for Azure&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+    <div class="p-card col-4">
+      <div class="p-card__content">
+        <h4>
+          <a class="u-align--center u-vertically-center" style="min-height:10rem;display: flex;" href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free">
+            {{
+              image(
+                  url="https://assets.ubuntu.com/v1/e795fc84-Google_Cloud_Logo.svg",
+                  alt="Google Cloud Platform logo",
+                  width="259",
+                  height="40",
+                  hi_def=True,
+                  loading="lazy",
+                  attrs={"style": "align-self: center; max-height: 10rem;"},
+                ) | safe
+            }}
+          </a>
+        </h4>
+        <p>Google Cloud Platform lets you build and host applications and websites, store data, and analyze data on Google’s scalable infrastructure.</p>
+      </div>
+      <ul class="p-list">
+        <li class="p-list__item u-no-margin--top"><a href="https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu" class="p-link--external">Guide to using GCP</a></li>
+        <li class="p-list__item"><a href="https://console.cloud.google.com/launcher/browse?q=ubuntu&filter=category:os&filter=price:free" class="p-link--external">Get started on GCP</a></li>
       </ul>
     </div>
   </div>
