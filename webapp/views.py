@@ -728,22 +728,18 @@ def advantage_shop_view():
     listings_response = advantage.get_marketplace_product_listings(
         "canonical-ua"
     )
-    products = listings_response["products"]
+    product_listings = listings_response.get("productListings")
+    if not product_listings:
+        # For the time being, no product listings means the shop has not been
+        # activated, so fallback to shopify. This should become an error later.
+        return flask.redirect("https://buy.ubuntu.com/")
 
+    products = {pr["id"]: pr for pr in listings_response["products"]}
     listings = []
-    for listing in listings_response["productListings"]:
+    for listing in product_listings:
         if "price" not in listing:
             continue
-
-        product = [
-            product
-            for product in products
-            if product["id"] == listing["productID"]
-        ][0]
-
-        listing.pop("productID")
-        listing["product"] = product
-
+        listing["product"] = products[listing["productID"]]
         listings.append(listing)
 
     return flask.render_template(
