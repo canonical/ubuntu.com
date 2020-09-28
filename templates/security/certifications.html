@@ -64,6 +64,31 @@
 </section>
 
 <section class="p-strip--light" id="fips">
+    <div class="row u-equal-height">
+  <div class="p-card">
+    <div class="row u-equal-height">
+      <div class="col-4">
+      <br />
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
+          alt="",
+          height="140",
+          width="230",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": ""}
+        ) | safe
+      }}        
+      </div>
+      <div class="col-8">
+        <h3 class="p-card__title">FIPS certification and CIS compliance with Ubuntu</h3>
+        <p class="p-card__content u-sv3">Learn about Ubuntu CIS and FIPS certified components to enable operating under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered in our upcoming webinar to ensure you and your team are, and remain, compliant.</p>
+        <p><a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/432536">Register</a></p>
+      </div>
+    </div>
+    </div>
+  </div>
   <div class="row u-equal-height">
     <h2>FIPS 140-2</h2>
     <div class="col-8">
@@ -71,10 +96,10 @@
         FIPS 140-2 is a U.S. Government computer security standard. It defines security requirements related to the design and implementation of a cryptographic module. It is a requirement for U.S. Federal agencies to use FIPS 140-2 validated cryptography to protect sensitive information.
       </p>
       <p>
-        The standard puts stringent requirements on testing and ensuring that the cryptographic implementations meet the standards and work as expected. The testing and validation must be performed by a laboratory, which is accredited under the Cryptographic and Security Testing (CST) Laboratory Accreditation Program (LAP) and is part of NIST’s <a class="p-link--external" href="https://www.nist.gov/nvlap/">National Voluntary Laboratory Accreditation Program (NVLAP)</a>. The validation testing for Ubuntu 18.04 LTS and 16.04 LTS was performed by atsec Information Security, a U.S. Government and BSI accredited laboratory.
+        The standard puts stringent requirements on testing and ensuring that the cryptographic implementations meet the standards and work as expected. The testing and validation must be performed by a laboratory, which is accredited under the Cryptographic and Security Testing (CST) Laboratory Accreditation Program (LAP) and is part of NIST’s <a class="p-link--external" href="https://www.nist.gov/nvlap/">National Voluntary Laboratory Accreditation Program (NVLAP)</a> in the US and <a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program">CCCS’s Cryptographic Module Validation Program (CMVP)</a> in Canada. The validation testing for Ubuntu 18.04 LTS and 16.04 LTS was performed by atsec Information Security, a U.S. Government and BSI accredited laboratory.
       </p>
       <p>
-        Anyone deploying systems for U.S. Federal government use including the cloud services is required to use FIPS 140-2 compliant systems. FIPS 140-2 is also used commonly outside of U.S. Federal space. It has been adopted in regulated industries like finance, healthcare, legal and manufacturing and a few others where there are Federal regulations on data security.
+        Anyone deploying systems and cloud services for Federal government agency use, whether directly or through contractors and vendors, is required to use FIPS 140-2 compliant systems. FIPS 140-2 has also been adopted outside of the public sector in industries where data security is heavily regulated, such as financial services, healthcare, legal and manufacturing.
       </p>
       <p>
         Canonical has validated the following cryptographic modules for Ubuntu 18.04 LTS (the modules are certified on Intel x86_64 and IBM Z hardware platforms):
