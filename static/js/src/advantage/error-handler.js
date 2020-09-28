@@ -86,7 +86,7 @@ function customErrorResponse(errorData) {
   } else if (INCORRECT_VAT_CODES.includes(code)) {
     error.message =
       "That VAT number is invalid. Check the number and try again.";
-    error.type = "notification";
+    error.type = "vat";
   } else if (code === "card_not_supported") {
     error.message =
       "That card doesn’t allow this kind of payment. Please contact your card issuer, or try a different card.";
