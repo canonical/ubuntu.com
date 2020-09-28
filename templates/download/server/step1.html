@@ -16,15 +16,19 @@
         <li class="p-list__item is-ticked">Use cloud-init metadata for rapid cloud development and testing.</li>
         <li class="p-list__item is-ticked">On Windows. On Mac. And on Linux.</li>
       </ul>
-      <p>
-        <form action="/download/server" method="post">
-          <a href="https://multipass.run" class="p-button--positive p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">Get Multipass</a>
+        <a href="https://multipass.run" class="p-button--positive p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">Get Multipass</a>
+        <form action="/download/server" method="post" style="display: inline">
           <input type="hidden" name="next-step" value="step2">
-          <button type="submit" class="p-button--positive is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
-            No thanks, Option 2&nbsp;&rsaquo;
+          <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+            Option 2
           </button>
         </form>
-      </p>
+        <form action="/download/server" method="post" style="display: inline">
+          <input type="hidden" name="next-step" value="step3">
+          <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
+            Option 3
+          </button>
+        </form>
     </div>
     <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center">
       <div class=" u-hide--small u-align--center">

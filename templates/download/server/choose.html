@@ -14,7 +14,19 @@
       <p class="p-heading--four">Download and install Ubuntu Server {{ releases.lts.short_version }} LTS using a USB stick or a DVD burner</p>
       <p>The long-term support version of Ubuntu Server, including the {{ releases.openstack_lts.slug }} release of OpenStack and support guaranteed until {{ releases.lts.eol }}.</p>
       <p>
-        <form action="/download/server" method="post">
+        <form action="/download/server" method="post" class="p-inline-list__item" style="display: inline">
+          <input type="hidden" name="next-step" value="step1">
+          <button type="submit" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 1', 'eventValue' : undefined });">
+            Option 1
+          </button>
+        </form>
+        <form action="/download/server" method="post" class="p-inline-list__item" style="display: inline">
+          <input type="hidden" name="next-step" value="step2">
+          <button type="submit" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+            Option 2
+          </button>
+        </form>
+        <form action="/download/server" method="post" style="display: inline">
           <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
           <input type="hidden" name="architecture" value="amd64">
           <input type="hidden" name="next-step" value="download">
