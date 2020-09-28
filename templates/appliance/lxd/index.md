@@ -47,15 +47,15 @@ context:
       published_date: "18 September 2020"
 ---
 
-#### System container manager and API
+### System container manager and API
 
-LXD is a system container manager
+#### LXD is a system container manager
 
 With LXD you can run hundreds of containers of a variety of Linux distributions, apply resource limits, pass in directories, USB devices or GPUs and setup any network and storage you want.
 
 LXD containers are lightweight, secure by default and a great alternative to running Linux virtual machines.
 
-Run any Linux distribution you want
+#### Run any Linux distribution you want
 
 Pre-made images are available for Ubuntu, Alpine Linux, ArchLinux, CentOS, Debian, Fedora, Gentoo, OpenSUSE and more.
 
