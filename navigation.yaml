@@ -86,6 +86,14 @@ appliance:
           path: /appliance/nextcloud/intel-nuc
         - title: VM
           path: /appliance/nextcloud/vm
+    - title: LXD
+      path: /appliance/lxd
+      hidden: True
+      children:
+        - title: Raspberry Pi 4
+          path: /appliance/lxd/raspberry-pi
+        - title: Intel NUC
+          path: /appliance/lxd/intel-nuc
     - title: Mosquitto
       path: /appliance/mosquitto
       hidden: True
@@ -1136,7 +1144,6 @@ security:
       persist: True
     - title: OVAL
       path: /security/oval
-
 
 licensing:
   title: Licensing

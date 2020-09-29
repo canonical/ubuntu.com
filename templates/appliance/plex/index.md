@@ -12,6 +12,10 @@ context:
     raspberrypi: True
     pc: True
     intelnuc: True
+  pi:
+    2: True
+    3: True
+    4: True
   screenshots:
     1: https://www.youtube.com/embed/Ldq38kkeIZQ
     2: https://assets.ubuntu.com/v1/5295340e-plex-screen-1.png

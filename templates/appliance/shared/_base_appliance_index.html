@@ -30,7 +30,11 @@
         <div class="col-2">
           <a href="/appliance/{{ short_name }}/raspberry-pi">
             <h3 class="p-heading--five u-no-padding--top">
-              Raspberry Pi 3 &amp; 4
+              {% if pi.3 or pi.4 %}
+              Raspberry Pi {% if pi.3 %}3{% endif %}{% if pi.3 and pi.4%} &amp; {% endif %}{% if pi.4 %}4{% endif %}
+              {% else %}
+              Raspberry Pi 3 &amp; 4 {{ pi.4 }}
+              {% endif %}
             </h3>
             <hr>
             <div class="u-align--center">
@@ -173,25 +177,27 @@
 <section class="p-strip u-no-padding--top">
   <div class="row">
     <div class="col-6">
-      {% if downloads.pc %}
       <h3>Try it out!</h3>
       <p>
-        Grab a spare board, PC or NUC. We also have <a href="/appliance/{{ short_name }}/vm">instructions for virtual machine</a> testing of appliances.
+        Grab a spare board{% if downloads.pc %}, PC{% endif %} or NUC.
+        {% if downloads.pc %}
+        We also have <a href="/appliance/{{ short_name }}/vm">instructions for virtual machine</a> testing of appliances.
+        {% endif %}
       </p>
-      {% endif %}
     </div>
     {% if downloads.raspberrypi %}
     <div class="col-3">
-
         <div class="u-align--center">
           <img src="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png?h=100" alt="" style="width: 50%;">
+        {% if downloads.pi2 %}
       <p>
         <a href="/appliance/{{ short_name }}/raspberry-pi2">Install on a Raspberry Pi 2&nbsp;&rsaquo;
       </a>
       </p>
-          <p>
-             <a href="/appliance/{{ short_name }}/raspberry-pi">
-Install on a Raspberry 3 or 4&nbsp;Pi&nbsp;&rsaquo;
+      {% endif %}
+      <p>
+        <a href="/appliance/{{ short_name }}/raspberry-pi">
+           Install on a {% if pi.3 or pi.4 %}Raspberry {% if pi.3 %}3{% endif %}{% if pi.3 and pi.4%} &amp; {% endif %}{% if pi.4 %}4{% endif %}{% else %}Raspberry Pi 3 &amp; 4{{ pi.4 }}{% endif %}&nbsp;Pi&nbsp;&rsaquo;
 </a>
 </p>
 

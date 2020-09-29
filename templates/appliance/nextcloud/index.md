@@ -12,6 +12,10 @@ context:
     raspberrypi: True
     pc: True
     intelnuc: True
+  pi:
+    2: True
+    3: True
+    4: True
   screenshots:
     1: https://dashboard.snapcraft.io/site_media/appmedia/2018/10/Screenshot_from_2018-10-26_09-49-46.png
     2: https://dashboard.snapcraft.io/site_media/appmedia/2018/10/Screenshot_from_2018-10-26_09-48-50.png

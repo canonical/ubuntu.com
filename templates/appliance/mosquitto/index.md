@@ -12,6 +12,10 @@ context:
     raspberrypi: True
     pc: True
     intelnuc: True
+  pi:
+    2: True
+    3: True
+    4: True
   screenshots:
     1: https://dashboard.snapcraft.io/site_media/appmedia/2018/06/mosquitto_dbIlbAp.png
     2: https://dashboard.snapcraft.io/site_media/appmedia/2018/06/mosquitto_sub_d1aBoJH.png
@@ -41,6 +45,7 @@ context:
       version: "1.6.10"
       published_date: "26 May 2020"
 ---
+
 #### Eclipse Mosquitto MQTT broker
 
 This is a message broker that supports version 5.0, 3.1.1, and 3.1 of the MQTT protocol. MQTT provides a method of carrying out messaging using a publish/subscribe model. It is lightweight, both in terms of bandwidth usage and ease of implementation. This makes it particularly useful at the edge of the network where a sensor or other simple device may be implemented using an arduino for example.

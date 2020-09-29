@@ -69,3 +69,21 @@ appliances:
       raspberrypi: "2b07a6461f35707baa6d93dac60263e185d17757b83d313f9d8daa3ee03de4e6 *nextcloud-core18-pi.img.xz"
       pc: "59d4200b306b7ea2498e9e86296b67a3ad6bb8e7f16e13d4eefe9fb9dc8713f8 *nextcloud-core18-amd64.img.xz"
       pi2: "b76716844c48c60cee14f93015fbf5b2593c4a4cd485ac0f50c54c023f43fbbf *nextcloud-core18-pi-armhf.img.xz"
+  lxd:
+    name: "LXD"
+    appliance_name: "LXD"
+    url_name: "lxd"
+    alias: "lxd"
+    port: 80
+    iso_url:
+      raspberrypi: "https://cdimage.ubuntu.com/ubuntu-core/appliances/lxd-core18-pi.img.xz"
+      pc: "https://cdimage.ubuntu.com/ubuntu-core/appliances/lxd-core18-amd64.img.xz"
+    checksum:
+      raspberrypi: "ae32d6979cdc9546c0d2508986da057421be463cfbaa8a280487d310b1c5f211 *lxd-core18-pi.img.xz"
+      pc: "ac7ab9051f18baf607d4810b23a55e6230e48e20467ef9e03fb89a2f6df29bb9 *lxd-core18-amd64.img.xz"
+    extra_requirements:
+      raspberrypi: "We recommend using a Pi 4 with 4GB of RAM or more"
+    pi:
+      2: False
+      3: False
+      4: True

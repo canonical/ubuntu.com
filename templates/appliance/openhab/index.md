@@ -11,7 +11,11 @@ context:
   downloads:
     raspberrypi: True
     pc: True
-    intelnuc: True  
+    intelnuc: True
+  pi:
+    2: True
+    3: True
+    4: True
   screenshots:
     1: https://assets.ubuntu.com/v1/56268be0-openhab-screenshot-1.png
     2: https://assets.ubuntu.com/v1/07b4d31f-openhab-screenshot-2.png
@@ -44,6 +48,7 @@ context:
       version: "2.5.5"
       published_date: "19 May 2020"
 ---
+
 #### Empowering the smart home
 
 The open Home Automation Bus (openHAB, pronounced ˈəʊpənˈhæb) is an open source, technology agnostic home automation platform which runs as the center of your smart home!
