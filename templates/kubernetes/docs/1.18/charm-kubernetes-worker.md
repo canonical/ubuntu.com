@@ -1,21 +1,22 @@
 ---
-wrapper_template: kubernetes/docs/base_docs.html
+bundle_release: '1.18'
+charm_name: kubernetes-worker
+charm_revision: '692'
+context:
+  description: The workload bearing units of a kubernetes cluster
+  title: 'Kubernetes-worker charm '
+keywords: component, charms, versions, release
+layout:
+- base
+- ubuntu-com
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-context:
-  title: 'Kubernetes-worker charm '
-  description: The workload bearing units of a kubernetes cluster
-keywords: component, charms, versions, release
-tags:
-    - reference
-sidebar: k8smain-sidebar
 permalink: 1.18/charm-kubernetes-worker.html
-layout:
-    - base
-    - ubuntu-com
+sidebar: k8smain-sidebar
+tags:
+- reference
 toc: false
-charm_revision: '682'
-bundle_release: '1.18'
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 This charm deploys a container runtime and the Kubernetes
@@ -79,8 +80,11 @@ For more information, see the [snap documentation](/kubernetes/docs/snap-refresh
 
 ## Configuration
 
-This charm supports options to configure a Kubernetes cluster
-to work well in your environment. These are detailed in the section below.
+This charm supports some configuration options to set up a Kubernetes cluster
+that works in your environment, detailed in the section below.
+
+For some specific Kubernetes service configuration tasks, please also see the
+section on [configuring K8s services](#k8s-services).
 Please also see the [`kubernetes-master` charm configuration][charm-kubernetes-master]
 for other settings relating to Kubernetes services.
 
@@ -270,22 +274,329 @@ the setting of conntrack-max-per-core vs nf_conntrack_max.
 <!-- CONFIG ENDS -->
 
 
+<a id="k8s-services"> </a>
+## Configuring K8s services
+
+### IPVS (IP Virtual Server)
+
+This requires configuration of both the `kubernetes-master` and
+`kubernetes-worker` charms. Please see the configuration section on
+the [kubernetes-master page](../charm-kubernetes-master#config-ipvs).
+
+### Configuring kubelet
+
+Each worker runs the node agent, `kubelet` with a set of arguments and
+configuration set by this charm. In some cases it may be desirable to add
+options or arguments, for which the charm provides two mechanisms
+
+[kubelet-extra-args](#kubelet-extra-args-description) for command line options.
+[kubelet-extra-config](#kubelet-extra-config-description) for configuration.
+
+The definitive reference for `kubelet` is the [upstream documentation][kubelet-docs].
+
+### HugePages
+
+HugePages are a standard memory management feature of the Linux kernel to
+decrease overhead for processes which consume large amounts of memory.
+
+Kubernetes includes support for using HugePages with pods (see the
+[upstream documentation](https://kubernetes.io/docs/tasks/manage-hugepages/scheduling-hugepages/)).
+
+To use HugePages in your pods with **Charmed Kubernetes**, it is necessary to
+update the configuration for the workers:
+
+1.  Fetch the current 'sysctl' configuration from the worker:
+    ```bash
+    juju config kubernetes-worker sysctl
+    ```
+    This should return a string of config options, e.g.:
+    ```
+    { net.ipv4.conf.all.forwarding : 1, net.ipv4.neigh.default.gc_thresh1 : 128, net.ipv4.neigh.default.gc_thresh2 : 28672, net.ipv4.neigh.default.gc_thresh3 : 32768, net.ipv6.neigh.default.gc_thresh1 : 128, net.ipv6.neigh.default.gc_thresh2 : 28672, net.ipv6.neigh.default.gc_thresh3 : 32768, fs.inotify.max_user_instances : 8192, fs.inotify.max_user_watches: 1048576 }
+    ```
+2.  The config option for HugePages is `vm.nr_hugepages`. To add this
+    configuration, you should **append** it to the string and set the whole
+    configuration. For example, for 100 2Mi pages:
+    ```bash
+    juju config kubernetes-worker sysctl="{ net.ipv4.conf.all.forwarding : 1, net.ipv4.neigh.default.gc_thresh1 : 128, net.ipv4.neigh.default.gc_thresh2 : 28672, net.ipv4.neigh.default.gc_thresh3 : 32768, net.ipv6.neigh.default.gc_thresh1 : 128, net.ipv6.neigh.default.gc_thresh2 : 28672, net.ipv6.neigh.default.gc_thresh3 : 32768, fs.inotify.max_user_instances : 8192, fs.inotify.max_user_watches: 1048576, vm.nr_hugepages: 100}"
+    ```
+3.  HugePages can now be consumed via container level resource requirements
+    using the resource name <code>hugepages-&lt;size&gt;</code>.
+
+    For example:
+
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: hugepages-test
+    spec:
+      containers:
+      - image: ubuntu:latest
+        command:
+        - sleep
+        - inf
+        name: example
+        volumeMounts:
+        - mountPath: /hugepages
+          name: hugepage
+        resources:
+          limits:
+            hugepages-2Mi: 100Mi
+            memory: 100Mi
+          requests:
+            memory: 100Mi      
+      volumes:
+      - name: hugepage
+        emptyDir:
+          medium: HugePages  
+    ```
+    Huge page usage in a namespace can be managed with ResourceQuota,
+    similar to other compute resources.
+4.  To verify, you can exec into the pod and check the `/proc/meminfo`.
+    ```
+    kubectl exec hugepage-test cat /proc/meminfo | grep HugePages_
+    ```
+
 ## Actions
 
-The kubernetes-worker charm models a few one time operations called
-[Juju actions](https://jaas.ai/docs/working-with-actions) that can be run by
-Juju users.
+<!-- ACTIONS STARTS -->
+<!-- AUTOGENERATED TEXT - DO NOT EDIT -->
 
-### Pause
+You can run an action with the following
 
-Pausing the workload enables administrators to both drain and cordon
-a unit for maintenance.
+```bash
+juju run-action kubernetes-worker ACTION [parameters] [--wait]
+```
+<div class="row">
+  <div class="col-2">
+    <h5>
+      cis-benchmark
+    </h5>
+  </div>
+  <div class="col-7">
+    <p>
+      Run the CIS Kubernetes Benchmark against snap-based components.
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-7">
+    <p>
+      This action has the following parameters:
+    </p>
+    <hr>
+    <pre>apply</pre>
+    <p>
+      Apply remediations to address benchmark failures. The default, 'none', will not attempt to fix any reported failures. Set to 'conservative' to resolve simple failures. Set to 'dangerous' to attempt to resolve all failures. Note: Applying any remediation may result in an unusable cluster.
+    </p>
+    <p>
+      <strong>Default:</strong> none
+    </p><br>
+    <pre>config</pre>
+    <p>
+      Archive containing configuration files to use when running kube-bench. The default value is known to be compatible with snap components. When using a custom URL, append '#&lt;hash_type&gt;=&lt;checksum&gt;' to verify the archive integrity when downloaded.
+    </p>
+    <p>
+      <strong>Default:</strong> https://github.com/charmed-kubernetes/kube-bench-c onfig/archive/cis-1.5.zip#sha1=cb8e78712ee5bfeab87 d0ed7c139a83e88915530
+    </p><br>
+    <pre>release</pre>
+    <p>
+      Set the kube-bench release to run. If set to 'upstream', the action will compile and use a local kube-bench binary built from the master branch of the upstream repository: https://github.com/aquasecurity/kube-bench This value may also be set to an accessible archive containing a pre-built kube-bench binary, for example: https://github.com/aquasecurity/kube- bench/releases/download/v0.0.34/kube-bench_0.0.34_ linux_amd64.tar.gz#sha256=f96d1fcfb84b18324f1299db 074d41ef324a25be5b944e79619ad1a079fca077
+    </p>
+    <p>
+      <strong>Default:</strong> https://github.com/aquasecurity/kube- bench/releases/download/v0.2.3/kube-bench_0.2.3_li nux_amd64.tar.gz#sha256=429a1db271689aafec009434de d1dea07a6685fee85a1deea638097c8512d548
+    </p><br>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-2">
+    <h5>
+      debug
+    </h5>
+  </div>
+  <div class="col-7">
+    <p>
+      Collect debug data
+    </p>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-2">
+    <h5>
+      microbot
+    </h5>
+  </div>
+  <div class="col-7">
+    <p>
+      Launch microbot containers
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-7">
+    <p>
+      This action has the following parameters:
+    </p>
+    <hr>
+    <pre>delete</pre>
+    <p>
+      Remove a microbots deployment, service, and ingress if True.
+    </p>
+    <p>
+      <strong>Default:</strong> False
+    </p><br>
+    <pre>replicas</pre>
+    <p>
+      Number of microbots to launch in Kubernetes.
+    </p>
+    <p>
+      <strong>Default:</strong> 3
+    </p><br>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-2">
+    <h5>
+      pause
+    </h5>
+  </div>
+  <div class="col-7">
+    <p>
+      Mark the node as unschedulable to prevent new pods from arriving, and evict existing pods.
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-7">
+    <p>
+      This action has the following parameters:
+    </p>
+    <hr>
+    <pre>delete-local-data</pre>
+    <p>
+      Continue even if there are pods using emptyDir (local data that will be deleted when the node is drained).
+    </p>
+    <p>
+      <strong>Default:</strong> False
+    </p><br>
+    <pre>force</pre>
+    <p>
+      Continue even if there are pods not managed by a ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet.
+    </p>
+    <p>
+      <strong>Default:</strong> False
+    </p><br>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-2">
+    <h5>
+      registry
+    </h5>
+  </div>
+  <div class="col-7">
+    <p>
+      Create a private Docker registry. DEPRECATED: See https://ubuntu.com/kubernetes/docs/docker-registry
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-7">
+    <p>
+      This action has the following parameters:
+    </p>
+    <hr>
+    <pre>delete</pre>
+    <p>
+      Remove a registry replication controller, service, and ingress if True.
+    </p>
+    <p>
+      <strong>Default:</strong> False
+    </p><br>
+    <pre>domain</pre>
+    <p>
+      The domain name for the registry. Must match the Common Name of the certificate.
+    </p>
+    <p>
+      <strong>Default:</strong>
+    </p><br>
+    <pre>htpasswd</pre>
+    <p>
+      base64 encoded htpasswd file used for authentication.
+    </p>
+    <p>
+      <strong>Default:</strong>
+    </p><br>
+    <pre>htpasswd-plain</pre>
+    <p>
+      base64 encoded plaintext version of the htpasswd file, needed by docker daemons to authenticate to the registry.
+    </p>
+    <p>
+      <strong>Default:</strong>
+    </p><br>
+    <pre>ingress</pre>
+    <p>
+      Create an Ingress resource for the registry (or delete resource object if "delete" is True)
+    </p>
+    <p>
+      <strong>Default:</strong> False
+    </p><br>
+    <pre>tlscert</pre>
+    <p>
+      base64 encoded TLS certificate for the registry. Common Name must match the domain name of the registry.
+    </p>
+    <p>
+      <strong>Default:</strong>
+    </p><br>
+    <pre>tlskey</pre>
+    <p>
+      base64 encoded TLS key for the registry.
+    </p>
+    <p>
+      <strong>Default:</strong>
+    </p><br>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-2">
+    <h5>
+      resume
+    </h5>
+  </div>
+  <div class="col-7">
+    <p>
+      Mark node as schedulable.
+    </p>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-2">
+    <h5>
+      upgrade
+    </h5>
+  </div>
+  <div class="col-7">
+    <p>
+      Upgrade the kubernetes snaps
+    </p>
+  </div>
+</div>
+<hr>
 
-### Resume
+<!-- ACTIONS ENDS -->
 
-Resuming the workload will uncordon a paused unit. Workloads will automatically
-migrate unless otherwise directed via their application declaration.
 
 
 <!-- LINKS -->
 [charm-kubernetes-master]: /charm-kubernetes-master
+[kubelet-docs]: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/

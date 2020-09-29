@@ -1,21 +1,24 @@
 ---
-wrapper_template: kubernetes/docs/base_docs.html
+bundle_release: '1.18'
+charm_name: openstack-integrator
+charm_revision: '81'
+context:
+  description: 'Proxy charm to enable OpenStack integrations via Juju relations.
+
+    '
+  title: 'Openstack-integrator charm '
+keywords: component, charms, versions, release
+layout:
+- base
+- ubuntu-com
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-context:
-  title: 'Openstack-integrator charm '
-  description: "Proxy charm to enable OpenStack integrations via Juju relations.\n"
-keywords: component, charms, versions, release
-tags:
-    - reference
-sidebar: k8smain-sidebar
 permalink: 1.18/charm-openstack-integrator.html
-layout:
-    - base
-    - ubuntu-com
+sidebar: k8smain-sidebar
+tags:
+- reference
 toc: false
-charm_revision: '74'
-bundle_release: '1.18'
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 This charm acts as a proxy to OpenStack and provides an [interface][] to provide
@@ -329,6 +332,9 @@ recommended approach.  If not set, will use the upstream default.
 
 <!-- CONFIG ENDS -->
 
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
 
 [interface]: https://github.com/juju-solutions/interface-openstack-integration
 [Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes

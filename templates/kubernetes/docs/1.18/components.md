@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-bundle_revision: '464'
+bundle_revision: '485'
 bundle_release: '1.18'
 ---
 
@@ -64,7 +64,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> A charm that enables using AWS IAM to authenticate with Kubernetes </td>
   <td> <a href="/kubernetes/docs/1.18/charm-aws-iam">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/charm-aws-iam"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 43 </td>
+  <td> 50 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -72,7 +72,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Charm to enable AWS integrations via Juju relations. </td>
   <td> <a href="/kubernetes/docs/1.18/charm-aws-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-aws-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 50 </td>
+  <td> 58 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -80,7 +80,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Proxy charm to enable Azure integrations via Juju relations. </td>
   <td> <a href="/kubernetes/docs/1.18/charm-azure-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-azure-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 35 </td>
+  <td> 43 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -88,7 +88,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> A robust Software Defined Network from Project Calico </td>
   <td> <a href="/kubernetes/docs/1.18/charm-calico">docs</a> </td> <td> <a href="https://github.com/juju-solutions/layer-calico"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 732 </td>
+  <td> 741 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -96,7 +96,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> A Software Defined Network based on Flannel and Calico </td>
   <td> <a href="/kubernetes/docs/1.18/charm-canal">docs</a> </td> <td> <a href="https://github.com/juju-solutions/layer-canal"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 726 </td>
+  <td> 736 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -104,7 +104,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Containerd container runtime subordinate </td>
   <td> <a href="/kubernetes/docs/1.18/charm-containerd">docs</a> </td> <td> <a href=""> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 80 </td>
+  <td> 88 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -112,7 +112,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Docker container runtime subordinate </td>
   <td> <a href="/kubernetes/docs/1.18/charm-docker">docs</a> </td> <td> <a href=""> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 74 </td>
+  <td> 81 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -120,7 +120,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Registry for docker images </td>
   <td> <a href="/kubernetes/docs/1.18/charm-docker-registry">docs</a> </td> <td> <a href="https://github.com/CanonicalLtd/docker-registry-charm"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 155 </td>
+  <td> 163 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -128,7 +128,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Delivers EasyRSA to create a Certificate Authority (CA). </td>
   <td> <a href="/kubernetes/docs/1.18/charm-easyrsa">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/layer-easyrsa"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 318 </td>
+  <td> 325 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -136,7 +136,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Deploy a TLS terminated ETCD Cluster </td>
   <td> <a href="/kubernetes/docs/1.18/charm-etcd">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/layer-etcd"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 521 </td>
+  <td> 531 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -144,7 +144,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> A charm that provides a robust Software Defined Network </td>
   <td> <a href="/kubernetes/docs/1.18/charm-flannel">docs</a> </td> <td> <a href="https://github.com/coreos/flannel"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 492 </td>
+  <td> 501 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -152,7 +152,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Charm to enable GCP integrations via Juju relations. </td>
   <td> <a href="/kubernetes/docs/1.18/charm-gcp-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-gcp-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 43 </td>
+  <td> 50 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -160,7 +160,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Kata untrusted container runtime subordinate </td>
   <td> <a href="/kubernetes/docs/1.18/charm-kata">docs</a> </td> <td> <a href=""> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 48 </td>
+  <td> 55 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -176,7 +176,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Nginx Load Balancer </td>
   <td> <a href="/kubernetes/docs/1.18/charm-kubeapi-load-balancer">docs</a> </td> <td> <a href="https://nginx.org/en/"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 730 </td>
+  <td> 742 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -184,7 +184,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> The Kubernetes control plane. </td>
   <td> <a href="/kubernetes/docs/1.18/charm-kubernetes-master">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-master"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 850 </td>
+  <td> 865 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -192,7 +192,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> The workload bearing units of a kubernetes cluster </td>
   <td> <a href="/kubernetes/docs/1.18/charm-kubernetes-worker">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-worker"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 682 </td>
+  <td> 692 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -200,7 +200,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Proxy charm to enable OpenStack integrations via Juju relations. </td>
   <td> <a href="/kubernetes/docs/1.18/charm-openstack-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-openstack-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 74 </td>
+  <td> 81 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -208,7 +208,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Tigera Secure Enterprise Edition </td>
   <td> <a href="/kubernetes/docs/1.18/charm-tigera-secure-ee">docs</a> </td> <td> <a href=""> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 133 </td>
+  <td> 141 </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -216,7 +216,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Proxy charm to enable VMware vSphere integrations via Juju relations. </td>
   <td> <a href="/kubernetes/docs/1.18/charm-vsphere-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-vsphere-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> 32 </td>
+  <td> 39 </td>
   <td> -- </td>
 </tr>
 
@@ -328,61 +328,60 @@ These charms are frequently used with Charmed Kubernetes.
 
 ## Images
 
-The [addons][] installed alongside Kubernetes make use of additional container
-images. These are the ones used by this release:
+These are the container images used by this release:
 
 <!-- GENERATED CONTAINER IMAGES -->
 
--   addon-resizer-amd64:1.8.5
--   addon-resizer-arm64:1.8.5
--   addon-resizer-ppc64le:1.8.5
--   addon-resizer-s390x:1.8.5
--   cephcsi/cephfsplugin:v1.0.0
--   cephcsi/rbdplugin:v1.0.0
--   coredns/coredns:1.6.7
--   coreos/kube-state-metrics:v1.9.5
--   defaultbackend-amd64:1.5
--   defaultbackend-arm64:1.5
--   defaultbackend-s390x:1.4
--   external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
--   k8s-dns-dnsmasq-nanny:1.14.13
--   k8s-dns-kube-dns:1.14.13
--   k8s-dns-sidecar:1.14.13
--   k8scloudprovider/cinder-csi-plugin:v1.17.0
--   k8scloudprovider/k8s-keystone-auth:latest
--   k8scloudprovider/openstack-cloud-controller-manager:v1.17.0
--   k8scsi/csi-attacher:v1.0.1
--   k8scsi/csi-attacher:v2.0.0
--   k8scsi/csi-node-driver-registrar:v1.0.2
--   k8scsi/csi-node-driver-registrar:v1.1.0
--   k8scsi/csi-provisioner:v1.0.2
--   k8scsi/csi-provisioner:v1.4.0
--   k8scsi/csi-resizer:v0.3.0
--   k8scsi/csi-snapshotter:v1.0.2
--   k8scsi/csi-snapshotter:v1.2.2
--   kubernetes-ingress-controller/nginx-ingress-controller-amd64:0.30.0
--   kubernetes-ingress-controller/nginx-ingress-controller-arm64:0.30.0
--   kubernetes-ingress-controller/nginx-ingress-controller-s390x:0.20.0
--   kubernetesui/dashboard-amd64:v2.0.0-rc5
--   kubernetesui/dashboard-arm64:v2.0.0-rc5
--   kubernetesui/dashboard-ppc64le:v2.0.0-rc5
--   kubernetesui/dashboard-s390x:v2.0.0-rc5
--   kubernetesui/metrics-scraper:v1.0.3
--   metrics-server-amd64:v0.3.6
--   metrics-server-arm64:v0.3.6
--   metrics-server-ppc64le:v0.3.6
--   metrics-server-s390x:v0.3.6
--   microbot-amd64:latest
--   microbot-arm64:latest
--   nvidia/k8s-device-plugin:1.0.0-beta6
--   pause-amd64:3.2
--   pause-arm64:3.2
--   pause-ppc64le:3.2
--   pause-s390x:3.2
--   rancher/rancher:latest
--   registry-amd64:2.6
--   registry-arm64:2.6
--   sonatype/nexus3:latest
+- addon-resizer-amd64:1.8.5
+- addon-resizer-arm64:1.8.5
+- addon-resizer-ppc64le:1.8.5
+- addon-resizer-s390x:1.8.5
+- cephcsi/cephfsplugin:v1.0.0
+- cephcsi/rbdplugin:v1.0.0
+- coredns/coredns:1.6.7
+- coreos/kube-state-metrics:v1.9.5
+- defaultbackend-amd64:1.5
+- defaultbackend-arm64:1.5
+- defaultbackend-s390x:1.4
+- external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
+- k8s-dns-dnsmasq-nanny:1.14.13
+- k8s-dns-kube-dns:1.14.13
+- k8s-dns-sidecar:1.14.13
+- k8scloudprovider/cinder-csi-plugin:v1.17.0
+- k8scloudprovider/k8s-keystone-auth:latest
+- k8scloudprovider/openstack-cloud-controller-manager:v1.17.0
+- k8scsi/csi-attacher:v1.0.1
+- k8scsi/csi-attacher:v2.0.0
+- k8scsi/csi-node-driver-registrar:v1.0.2
+- k8scsi/csi-node-driver-registrar:v1.1.0
+- k8scsi/csi-provisioner:v1.0.2
+- k8scsi/csi-provisioner:v1.4.0
+- k8scsi/csi-resizer:v0.3.0
+- k8scsi/csi-snapshotter:v1.0.2
+- k8scsi/csi-snapshotter:v1.2.2
+- kubernetes-ingress-controller/nginx-ingress-controller-amd64:0.30.0
+- kubernetes-ingress-controller/nginx-ingress-controller-arm64:0.30.0
+- kubernetes-ingress-controller/nginx-ingress-controller-s390x:0.20.0
+- kubernetesui/dashboard-amd64:v2.0.0-rc5
+- kubernetesui/dashboard-arm64:v2.0.0-rc5
+- kubernetesui/dashboard-ppc64le:v2.0.0-rc5
+- kubernetesui/dashboard-s390x:v2.0.0-rc5
+- kubernetesui/metrics-scraper:v1.0.3
+- metrics-server-amd64:v0.3.6
+- metrics-server-arm64:v0.3.6
+- metrics-server-ppc64le:v0.3.6
+- metrics-server-s390x:v0.3.6
+- microbot-amd64:latest
+- microbot-arm64:latest
+- nvidia/k8s-device-plugin:v0.7.0-rc.7
+- pause-amd64:3.2
+- pause-arm64:3.2
+- pause-ppc64le:3.2
+- pause-s390x:3.2
+- rancher/rancher:latest
+- registry-amd64:2.6
+- registry-arm64:2.6
+- sonatype/nexus3:latest
 
 <!-- CONTAINER IMAGES END -->
 
@@ -411,8 +410,8 @@ The following snaps are used by this release of Charmed Kubernetes:
 
 
 
+
 <!-- LINKS -->
-[addons]: /kubernetes/docs/cdk-addons
 [documentation]: /kubernetes/docs/
 [release notes]: /kubernetes/docs/release-notes#1.18
 [upgrade notes]: /kubernetes/docs/

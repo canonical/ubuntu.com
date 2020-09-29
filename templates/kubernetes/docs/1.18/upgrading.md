@@ -3,7 +3,7 @@ wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "Upgrading"
+  title: "Upgrading to 1.18"
   description: How to upgrade your version of Charmed Kubernetes.
 keywords: juju, upgrading, track, version
 tags: [operating]
@@ -45,6 +45,18 @@ You should also make sure:
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
 
+<div class="p-notification--warning">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">CDK Addons:</span>
+    As stated in the release notes, from 1.18, the `cluster-monitoring` addons (Heapster, InfluxDB, and Grafana)
+    have been removed from the Kubernetes source tree and therefore removed from the `cdk-addons` snap as well.<br>
+    Customers relying on these addons should migrate to a `metrics-server` solution prior to upgrading.<br>
+    <strong>Note:</strong> these removals do not affect the Kubernetes Dashboard nor the methods described in
+    <a href="/kubernetes/docs/monitoring"> Monitoring Charmed Kubernetes</a>.
+  </p>
+</div>
+
+
 ## Infrastructure updates
 
 The applications which run alongside the core Kubernetes components can be upgraded at any time. These applications are widely used and may frequently receive upgrades outside of the cycle of new releases of Kubernetes.
@@ -57,8 +69,6 @@ This includes:
 - flannel, calico or other CNI
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
-
-
 
 <a id='upgrading-containerd'> </a>
 

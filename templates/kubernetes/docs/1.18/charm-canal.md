@@ -1,21 +1,22 @@
 ---
-wrapper_template: kubernetes/docs/base_docs.html
+bundle_release: '1.18'
+charm_name: canal
+charm_revision: '736'
+context:
+  description: A Software Defined Network based on Flannel and Calico
+  title: 'Canal charm '
+keywords: component, charms, versions, release
+layout:
+- base
+- ubuntu-com
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-context:
-  title: 'Canal charm '
-  description: A Software Defined Network based on Flannel and Calico
-keywords: component, charms, versions, release
-tags:
-    - reference
-sidebar: k8smain-sidebar
 permalink: 1.18/charm-canal.html
-layout:
-    - base
-    - ubuntu-com
+sidebar: k8smain-sidebar
+tags:
+- reference
 toc: false
-charm_revision: '726'
-bundle_release: '1.18'
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 Canal is a community-driven initiative that aims to allow users to easily
@@ -123,6 +124,10 @@ require this support please file a bug.
 
 This subordinate also leverages juju-resources, so it is currently only
 available on juju 2.0+ controllers.
+
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
 
 
 ## Further information

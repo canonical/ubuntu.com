@@ -1,21 +1,22 @@
 ---
-wrapper_template: kubernetes/docs/base_docs.html
+bundle_release: '1.18'
+charm_name: keepalived
+charm_revision: '28'
+context:
+  description: Failover and monitoring daemon for LVS clusters
+  title: 'Keepalived charm '
+keywords: component, charms, versions, release
+layout:
+- base
+- ubuntu-com
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-context:
-  title: 'Keepalived charm '
-  description: Failover and monitoring daemon for LVS clusters
-keywords: component, charms, versions, release
-tags:
-    - reference
-sidebar: k8smain-sidebar
 permalink: 1.18/charm-keepalived.html
-layout:
-    - base
-    - ubuntu-com
+sidebar: k8smain-sidebar
+tags:
+- reference
 toc: false
-charm_revision: '28'
-bundle_release: '1.18'
+wrapper_template: kubernetes/docs/base_docs.html
 ---
 
 [Keepalived](http://www.keepalived.org/) is software which provides high
@@ -105,3 +106,7 @@ juju add-relation haproxy keepalived
 
 
 <!-- CONFIG ENDS -->
+
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
