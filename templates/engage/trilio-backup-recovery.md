@@ -23,7 +23,7 @@ Join our webinar to learn:
 - How TrilioVault provides OpenStack users with a native backup and recovery solution
 - How TrilioVault can be easily deployed in a Charmed OpenStack environment
 
-### Speakers
+### Speakers:
 
 <div class="row u-equal-height">
   <div class="col-2">
