@@ -95,7 +95,7 @@ function productSelector() {
       <div class="col-10">
         <div class="row u-vertically-center">
           <div class="col-2 col-small-2 col-start-large-7">
-            <h3 class="p-heading--four">Subtotal:</h3>
+            <h3 class="p-heading--four">Yearly cost:</h3>
           </div>
 
           <div class="col-2 col-small-2 u-align--right">
@@ -283,10 +283,6 @@ function productSelector() {
         }
       });
     }
-
-    if (formStage && input.value > 0) {
-      scrollToStep("version");
-    }
   }
 
   function handleStepSpecificAction(inputElement) {
@@ -310,7 +306,6 @@ function productSelector() {
         } else {
           quantityTypeEl.innerHTML = `How many ${inputElement.dataset.productName}s?`;
           state.set(inputElement.name, [inputElement.value]);
-          scrollToStep("quantity");
         }
 
         break;
@@ -321,11 +316,9 @@ function productSelector() {
         break;
       case "support":
         state.set(inputElement.name, [inputElement.value]);
-        scrollToStep("add");
         break;
       case "add":
         state.set(inputElement.name, [inputElement.value]);
-        scrollToStep("cart");
         break;
       default:
         state.set(inputElement.name, [inputElement.value]);
@@ -363,15 +356,6 @@ function productSelector() {
     state.reset("support");
     state.reset("add");
     form.reset();
-  }
-
-  function scrollToStep(step) {
-    const stepWrapper = document.querySelector(`${stepClassPrefix}${step}`);
-
-    window.scrollTo({
-      top: stepWrapper.offsetTop,
-      behavior: "smooth",
-    });
   }
 
   function setActiveSteps() {

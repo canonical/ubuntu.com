@@ -392,7 +392,7 @@ def advantage_view():
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
     )
 
     if user_info(flask.session):
@@ -661,11 +661,30 @@ def post_advantage_subscriptions(preview):
     return flask.jsonify(purchase), 200
 
 
+def post_renewal_preview(renewal_id):
+    advantage = AdvantageContracts(
+        session,
+        flask.session["authentication_token"],
+        api_url=flask.current_app.config["CONTRACTS_API_URL"],
+    )
+
+    try:
+        preview = advantage.post_renewal_preview(renewal_id=renewal_id)
+    except HTTPError as http_error:
+        flask.current_app.extensions["sentry"].captureException()
+        return (
+            http_error.response.content,
+            500,
+        )
+
+    return flask.jsonify(preview), 200
+
+
 def advantage_shop_view():
     account = None
     previous_purchase_id = None
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_LbxZRQZdP7xsZenWT1TAhbkX00VioMBflp"
     )
 
     if user_info(flask.session):
@@ -829,6 +848,34 @@ def make_renewal(advantage, contract_info):
         ) and invoice["subscription_status"] == "incomplete"
 
     return renewal
+
+
+def post_anonymised_customer_info():
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+
+        if not flask.request.is_json:
+            return flask.jsonify({"error": "JSON required"}), 400
+
+        account_id = flask.request.json.get("account_id")
+        if not account_id:
+            return flask.jsonify({"error": "account_id required"}), 400
+
+        address = flask.request.json.get("address")
+        if not address:
+            return flask.jsonify({"error": "address required"}), 400
+
+        tax_id = flask.request.json.get("tax_id")
+
+        return advantage.put_anonymous_customer_info(
+            account_id, address, tax_id
+        )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
 
 
 def post_customer_info():

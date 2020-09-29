@@ -21,9 +21,9 @@ const PRODUCT_NAMES = {
 };
 
 function buildInfoRow(item) {
-  return `<div class="row u-no-padding u-sv1">
+  return `<div class="row u-no-padding u-sv1 ${item.extraClasses || ""}">
     <div class="col-3 u-text-light">${item.label}</div>
-    <div class="col-9">${item.value}</div>
+    <div class="col-9 js-info-value">${item.value}</div>
   </div>`;
 }
 
@@ -96,46 +96,41 @@ function setSummaryInfo(summaryObject, modal) {
 
   infoContainer.innerHTML += buildInfoRow({
     label: "Subtotal: ",
-    value: summaryObject.subtotal,
+    value: "...",
+    extraClasses: "js-subtotal",
   });
 
   totalsContainer.innerHTML += buildInfoRow({
-    label: "VAT: ",
-    value: summaryObject.vat,
+    label: "VAT:",
+    value: "...",
   });
 
   totalsContainer.innerHTML += buildInfoRow({
-    label: "Total: ",
-    value: summaryObject.total,
+    label: "Total:",
+    value: "...",
   });
 
   infoContainer.classList.remove("u-hide");
-  totalsContainer.classList.remove("u-hide");
 }
 
 export function getOrderInformation(listings) {
   const items = [];
   const currency = "USD";
-  const vatCurrency = "GBP";
   const startDate = new Date();
   const endDate = add(new Date(), { months: 12 });
   let subtotal = 0;
+  let planLabel = "Plan type:";
 
   listings.forEach((listing, i) => {
     subtotal = subtotal + listing.quantity * listing.product.price.value;
+    if (listings.length > 1) {
+      planLabel = `Plan ${i + 1}:`;
+    }
 
     items.push({
       plan: {
-        label: `Plan ${i + 1}:`,
+        label: planLabel,
         value: listing.product.name,
-      },
-      start: {
-        label: "Starts:",
-        value: format(startDate, DATE_FORMAT),
-      },
-      end: {
-        label: "Ends:",
-        value: format(endDate, DATE_FORMAT),
       },
       quantity: {
         label: "Machines:",
@@ -145,15 +140,21 @@ export function getOrderInformation(listings) {
           currency
         ),
       },
+      start: {
+        label: "Starts:",
+        value: format(startDate, DATE_FORMAT),
+      },
+      end: {
+        label: "Ends:",
+        value: format(endDate, DATE_FORMAT),
+        extraClasses: "js-end-date",
+      },
     });
   });
 
   return {
     items: items,
     subtotal: formattedCurrency(subtotal, currency, "en-US"),
-    total: formattedCurrency(subtotal, currency, "en-US"),
-    // TODO: handle actual VAT
-    vat: formattedCurrency(0, vatCurrency, "en-US"),
   };
 }
 
@@ -189,14 +190,6 @@ export function getRenewalInformation(data) {
           label: "Plan type:",
           value: getProductsString(data.products),
         },
-        start: {
-          label: "Will continue from:",
-          value: format(startDate, DATE_FORMAT),
-        },
-        end: {
-          label: "Ends:",
-          value: format(endDate, DATE_FORMAT),
-        },
         quantity: {
           label: "Machines:",
           value: buildQuantityString(
@@ -204,6 +197,15 @@ export function getRenewalInformation(data) {
             data.unitPrice,
             data.currency
           ),
+        },
+        start: {
+          label: "Continues from:",
+          value: format(startDate, DATE_FORMAT),
+        },
+        end: {
+          label: "Ends:",
+          value: format(endDate, DATE_FORMAT),
+          extraClasses: "js-end-date",
         },
       },
     ],
@@ -218,6 +220,92 @@ export function setOrderInformation(listings, modal) {
 
   setModalTitle("Complete purchase", modal);
   setSummaryInfo(orderSummary, modal);
+}
+
+export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
+  const currency = "USD";
+  const totalsContainer = modal.querySelector("#order-totals");
+  const subtotalElement = modal.querySelector(".js-subtotal .js-info-value");
+  const endDateElements = modal.querySelectorAll(".js-end-date .js-info-value");
+  let proratedEndDate;
+  let subtotalValue = "...";
+  let taxValue = "...";
+  let totalValue = "...";
+
+  if (subtotalElement.innerHTML !== "...") {
+    // if this is true, it means subtotal was
+    // already filled in, and since it won't change,
+    // force it to persist
+    subtotalValue = subtotalElement.innerHTML;
+  }
+
+  if (purchasePreview) {
+    let taxAmount = purchasePreview.taxAmount || 0;
+
+    if (purchasePreview.subscriptionEndOfCycle) {
+      proratedEndDate = format(
+        new Date(purchasePreview.subscriptionEndOfCycle),
+        DATE_FORMAT
+      );
+    }
+
+    if (purchasePreview.total > 0) {
+      // always show subtotal value if we have an amount
+      subtotalValue = formattedCurrency(
+        purchasePreview.total - taxAmount,
+        currency,
+        "en-US"
+      );
+
+      if (!vatApplicable) {
+        // if VAT doesn't apply, total and subtotal are the same
+        totalValue = subtotalValue;
+      }
+
+      if (vatApplicable && country !== "") {
+        // if VAT applies to selected country, set the VAT
+        // value, even if it's zero
+        taxValue = formattedCurrency(taxAmount, currency, "en-US");
+        totalValue = formattedCurrency(
+          purchasePreview.total,
+          currency,
+          "en-US"
+        );
+      }
+    }
+  }
+
+  totalsContainer.innerHTML = "";
+
+  subtotalElement.innerHTML = subtotalValue;
+
+  if (proratedEndDate) {
+    for (let i = 0; i < endDateElements.length; i++) {
+      let endDateEl = endDateElements[i];
+
+      if (i === 0 && endDateEl.innerHTML !== proratedEndDate) {
+        // if these are different, it means prorating
+        // is in effect, so inform the user
+        endDateEl.innerHTML = `${proratedEndDate}<br /><small>The same date as your existing annual subscription.</small>`;
+      } else {
+        endDateEl.innerHTML = proratedEndDate;
+      }
+    }
+  }
+
+  if (vatApplicable) {
+    totalsContainer.innerHTML += buildInfoRow({
+      label: "VAT: ",
+      value: taxValue,
+    });
+  }
+
+  totalsContainer.innerHTML += buildInfoRow({
+    label: "Total: ",
+    value: `<b>${totalValue}</b>`,
+  });
+
+  totalsContainer.classList.remove("u-hide");
 }
 
 export function setPaymentInformation(paymentMethod, modal) {

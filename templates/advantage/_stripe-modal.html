@@ -15,7 +15,7 @@
           </p>
         </div>
 
-        <form class="p-form p-form--stacked" id="details-form">
+        <form class="p-form p-form--stacked u-sv3" id="details-form">
           <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
             <div class="col-3">
               <label class="u-no-padding--top" for="email">Email my invoice to:</label>
@@ -88,13 +88,13 @@
             </div>
           </div>
 
-          <div class="p-form__group row u-no-padding u-vertically-center u-hide js-vat-container">
+          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center u-hide js-vat-container">
             <div class="col-3">
               <label class="u-no-padding--top" >VAT number:</label>
             </div>
 
             <div class="col-7">
-              <input name="tax" type="text" />
+              <input class="p-form-validation__input" name="tax" type="text" />
             </div>
 
             <div class="col-2">
@@ -102,14 +102,17 @@
             </div>
 
             <div class="col-9 col-start-large-4">
-              <small>e.g. GB101111, CY99999999L</small>
-            </div>
-            
-            <div class="col-9 col-start-large-4">
               <span class="p-form-validation__message u-hide"></span>
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <small>e.g. GB101111, CY99999999L</small>
             </div>
           </div>
         </form>
+
+        <div id="order-totals" class="u-hide u-sv1">
+        </div>
 
         <div id="order-summary">
           <div class="row u-no-padding">
@@ -154,9 +157,6 @@
         </div>
       </section>
 
-      <section id="order-totals" class="p-strip is-shallow u-hide">
-      </section>
-
       <section id="order-terms" class="p-strip is-shallow u-no-padding--top">
         <div class="row u-no-padding">
           <div class="col-12">
@@ -167,8 +167,12 @@
           </div>
         </div>
       </section>
-    </div>
 
+      <div id="order-processing" class="u-align--center">
+        <i class="p-icon--spinner u-animation--spin"></i>
+      </div>
+    </div>
+    
     <footer class="p-modal__footer u-align--right">
       <span id="js-progress-indicator" class="p-modal__progress u-hide">
         <i class="p-icon--success u-hide"></i>

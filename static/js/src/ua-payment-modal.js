@@ -1,10 +1,15 @@
+import { debounce } from "./utils/debounce.js";
+
 import {
   getPurchase,
   getRenewal,
   postInvoiceID,
   postCustomerInfoToStripeAccount,
+  postCustomerInfoForPurchasePreview,
   postRenewalIDToProcessPayment,
   postPurchaseData,
+  postPurchasePreviewData,
+  postRenewalPreviewData,
 } from "./advantage/contracts-api.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
@@ -12,6 +17,7 @@ import { vatCountries } from "./advantage/vat-countries.js";
 
 import {
   setOrderInformation,
+  setOrderTotals,
   setPaymentInformation,
   setRenewalInformation,
 } from "./advantage/set-modal-info.js";
@@ -22,9 +28,15 @@ const form = document.getElementById("details-form");
 const errorDialog = document.getElementById("payment-error-dialog");
 const progressIndicator = document.getElementById("js-progress-indicator");
 
+const countryDropdown = modal.querySelector("select");
 const termsCheckbox = modal.querySelector(".js-terms");
+const vatInput = modal.querySelector('input[name="tax"]');
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
 const processPaymentButton = modal.querySelector(".js-process-payment");
+const vatContainer = modal.querySelector(".js-vat-container");
+const vatErrorElement = vatContainer.querySelector(
+  ".p-form-validation__message"
+);
 const changePaymentMethodButton = modal.querySelector(
   ".js-change-payment-method"
 );
@@ -88,6 +100,7 @@ let customerInfo = {
 let cardValid = false;
 let changingPaymentMethod = false;
 let submitted3DS = false;
+let vatApplicable = false;
 
 let pollingTimer;
 let progressTimer;
@@ -103,11 +116,8 @@ function attachCTAevents() {
 
     if (isRenewalCTA || isShopCTA) {
       e.preventDefault();
+      modal.classList.add("is-processing");
       currentTransaction.accountId = data.accountId;
-
-      toggleModal();
-      card.focus();
-      sendGAEvent("opened payment modal");
     }
 
     if (isRenewalCTA) {
@@ -118,9 +128,13 @@ function attachCTAevents() {
       setRenewalInformation(data, modal);
     } else if (isShopCTA) {
       const cartItems = JSON.parse(data.cart);
+
+      // make sure the product array is empty
+      // before we start adding to it
+      currentTransaction.products = [];
+
       currentTransaction.type = "purchase";
       currentTransaction.previousPurchaseId = data.previousPurchaseId;
-
       cartItems.forEach((item) => {
         currentTransaction.products.push({
           product_listing_id: item.listingID,
@@ -129,6 +143,13 @@ function attachCTAevents() {
       });
 
       setOrderInformation(cartItems, modal);
+    }
+
+    if (isRenewalCTA || isShopCTA) {
+      checkVAT();
+      toggleModal();
+      card.focus();
+      sendGAEvent("opened payment modal");
     }
   });
 }
@@ -165,9 +186,6 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
 }
 
 function attachFormEvents() {
-  const countryDropdown = modal.querySelector("select");
-  const vatContainer = modal.querySelector(".js-vat-container");
-
   for (let i = 0; i < form.elements.length; i++) {
     const input = form.elements[i];
 
@@ -188,18 +206,12 @@ function attachFormEvents() {
     }
   });
 
-  if (vatCountries.includes(countryDropdown.value)) {
-    vatContainer.classList.remove("u-hide");
-  } else {
-    vatContainer.classList.add("u-hide");
-  }
+  vatInput.addEventListener("input", () => {
+    checkVATdebounce();
+  });
 
-  countryDropdown.addEventListener("change", (e) => {
-    if (vatCountries.includes(e.target.value)) {
-      vatContainer.classList.remove("u-hide");
-    } else {
-      vatContainer.classList.add("u-hide");
-    }
+  countryDropdown.addEventListener("change", () => {
+    checkVAT();
   });
 
   termsCheckbox.addEventListener("change", () => {
@@ -263,6 +275,76 @@ function attachModalButtonEvents() {
       closeModal("pressed escape key");
     }
   });
+}
+
+function checkVAT() {
+  vatContainer.classList.remove("is-error");
+
+  if (vatCountries.includes(countryDropdown.value)) {
+    vatApplicable = true;
+    vatContainer.classList.remove("u-hide");
+  } else {
+    vatApplicable = false;
+    vatContainer.classList.add("u-hide");
+    vatInput.value = "";
+  }
+
+  applyTotals();
+}
+
+const checkVATdebounce = debounce(() => {
+  checkVAT();
+}, 500);
+
+function applyTotals() {
+  let formData = new FormData(form);
+  let country = formData.get("Country");
+  let addressObject = null;
+  let taxObject = null;
+  let purchasePreview = null;
+
+  setOrderTotals(country, vatApplicable, purchasePreview, modal);
+
+  if (formData.get("tax")) {
+    taxObject = {
+      value: formData.get("tax"),
+      type: "eu_vat",
+    };
+  }
+
+  addressObject = {
+    country: country,
+  };
+
+  postCustomerInfoForPurchasePreview(
+    currentTransaction.accountId,
+    addressObject,
+    taxObject
+  )
+    .then(() => {
+      if (currentTransaction.type === "purchase") {
+        postPurchasePreviewData(
+          currentTransaction.accountId,
+          currentTransaction.products,
+          currentTransaction.previousPurchaseId
+        ).then((data) => {
+          purchasePreview = data;
+          modal.classList.remove("is-processing");
+          setOrderTotals(country, vatApplicable, purchasePreview, modal);
+        });
+      } else if (currentTransaction.type === "renewal") {
+        postRenewalPreviewData(currentTransaction.transactionId).then(
+          (data) => {
+            purchasePreview = data;
+            modal.classList.remove("is-processing");
+            setOrderTotals(country, vatApplicable, purchasePreview, modal);
+          }
+        );
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function clearProgressTimers() {
@@ -580,6 +662,12 @@ function presentError(errorObject) {
   } else if (errorObject.type === "dialog") {
     errorDialog.innerHTML = errorObject.message;
     showDialogMode();
+  } else if (errorObject.type === "vat") {
+    vatContainer.classList.add("is-error");
+    vatErrorElement.innerHTML = errorObject.message;
+    vatErrorElement.classList.remove("u-hide");
+    vatInput.focus();
+    disableProcessingState();
   } else {
     console.error(`invalid argument: ${errorObject}`);
   }
