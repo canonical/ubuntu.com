@@ -3,7 +3,7 @@ wrapper_template: "engage/_base_engage_markdown.html"
 context:
      title: "Extend your OpenStack cloud with native backup and recovery"
      meta_description: "Learn how TrilioVault can be easily deployed in a Charmed OpenStack environment"
-     meta_image: https://assets.ubuntu.com/v1/8a7c58ea-Meta+data+img.jpg
+     meta_image: https://assets.ubuntu.com/v1/886396df-meta+image+trilio.jpg
      meta_copydoc: https://docs.google.com/document/d/11iCopqnoLv_jBuOncrELAS7uo1DiKWggAEe-lCubbeM/edit?ts=5f55f52f
      header_title: "Extend your OpenStack cloud with native backup and recovery"
      header_subtitle: "Learn how TrilioVault can be easily deployed in a Charmed OpenStack environment"
