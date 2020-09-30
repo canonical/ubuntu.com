@@ -37,15 +37,16 @@ along with the following overlay file ([download it here][monitoring-pgt-overlay
 ```yaml
 applications:
   prometheus:
-    charm: cs:prometheus2
+    series: bionic
+    charm: cs:prometheus2-11
     constraints: "mem=4G root-disk=16G"
     num_units: 1
   grafana:
-    charm: cs:grafana
+    charm: cs:grafana-37
     expose: true
     num_units: 1
   telegraf:
-    charm: cs:telegraf
+    charm: cs:telegraf-36
 relations:
   - [prometheus:grafana-source, grafana:grafana-source]
   - [telegraf:prometheus-client, prometheus:target]
@@ -55,7 +56,7 @@ relations:
   - [kubernetes-master:grafana, grafana:dashboards]
 ```
 
-To use this overlay with the **Charmed Kubernetes** bundle, specify it 
+To use this overlay with the **Charmed Kubernetes** bundle, specify it
 during deploy like this:
 
 ```bash
@@ -205,9 +206,9 @@ See the [External Nagios][external-nagios] section of the NRPE charm readme for 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/monitoring.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/monitoring.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

@@ -14,13 +14,78 @@ toc: False
 ---
 
 The **Center for Internet Security (CIS)** maintains a
-[Kubernetes benchmark][cis-benchmark] that is helpful to ensure clusters are
+[Kubernetes benchmark][cis-benchmark] which helps ensure clusters are
 deployed in accordance with security best practices. **Charmed Kubernetes**
 includes support for the [kube-bench][] utility, which reports how well a
-cluster complies with this benchmark. This page details how to run these
-tests.
+cluster complies with this benchmark. This page highlights compliance
+requirements as well as details on running the benchmark and analysing test
+results.
 
-## Run kube-bench
+## Compliance Requirements
+
+**Charmed Kubernetes** 1.19 is compliant by default. Key configuration changes
+from previous releases include the following:
+
+### [kubernetes-master][k8s-master]
+
+#### Set `authorization.mode = Node,RBAC`
+
+`kube-apiserver` must not include `AlwaysAllow` as an authorization mode.
+This is set by the `authorization-mode` config option on the `kubernetes-master`
+charm (`Node,RBAC` by default).
+
+#### Set `encryption-provider-config`
+
+`kube-apiserver` must set `encryption-provider-config` to the path of a valid
+`EncryptionConfig` manifest
+(`/var/snap/kube-apiserver/common/encryption/encryption_config.yaml` by
+default).
+
+#### Disable `insecure-bind-address` and `insecure-port`
+
+`kube-apiserver` must not respond to requests over an insecure address.
+
+#### Enable `NodeRestriction` and `PodSecurityPolicy` plugins
+
+`kube-apiserver` must enable the `NodeRestriction` and `PodSecurityPolicy`
+admission control plugins.
+
+#### Disable `profiling`
+
+`kube-apiserver`, `kube-controller-manager`, and `kube-scheduler` must set
+`profiling=False`.
+
+#### Set `terminated-pod-gc-threshold`
+
+`kube-controller-manager` must set a value for `terminated-pod-gc-threshold`
+(12500 by default).
+
+#### Disable `token-auth-file`
+
+`kube-apiserver` must not use file-based authentication. **Charmed Kubernetes**
+now deploys a webhook authentication service that compares API requests to
+Kubernetes secrets. If needed, any existing entries in `known_tokens.csv` are
+migrated to secrets on charm upgrade.
+
+### [kubernetes-worker][k8s-worker]
+
+#### Set `authorization.mode = Webhook`
+
+`kubelet` must ask the API server whether a given request is authorized.
+
+#### Enable `protect-kernel-defaults`
+
+`kubelet` must not start if any of the kernel tunables are different from the
+[kubelet defaults][protect-kernel-defaults].
+
+#### Disable `read-only-port`
+
+`kubelet` must not serve data to an unauthenticated request. Typically, these
+requests come from a metrics collecting service. If needed, adjust any services
+that access the kubelet `read-only-port` (10255 by default) to instead use
+the secure `port` (10250 by default).
+
+## Run the benchmark
 
 The `kubernetes-master`, `kubernetes-worker`, and `etcd` charms used by
 **Charmed Kubernetes** include a `cis-benchmark` action that will install,
@@ -50,7 +115,7 @@ results:
 status: completed
 ```
 
-## Configure kube-bench
+## Configure the benchmark
 
 The following parameters can be adjusted to change the default action behavior.
 See the descriptions in the [actions.yaml][layer-cis-benchmark-config] file for
@@ -158,6 +223,9 @@ status: completed
 [cis-benchmark]: https://www.cisecurity.org/benchmark/kubernetes/
 [kube-bench]: https://github.com/aquasecurity/kube-bench
 [layer-cis-benchmark-config]: https://raw.githubusercontent.com/charmed-kubernetes/layer-cis-benchmark/master/actions.yaml
+[protect-kernel-defaults]: https://github.com/kubernetes/kubernetes/blob/release-1.19/pkg/util/sysctl/sysctl.go#L49-L56
+[k8s-master]: /kubernetes/docs/charm-kubernetes-master
+[k8s-worker]: /kubernetes/docs/charm-kubernetes-worker
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

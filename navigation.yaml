@@ -298,11 +298,17 @@ kubernetes:
         - title: Multus
           path: /kubernetes/docs/cni-multus
           hidden: True
+        - title: SRIOV
+          path: /kubernetes/docs/cni-sriov
+          hidden: True
         - title: Using Tigera Secure EE
           path: /kubernetes/docs/tigera-secure-ee
           hidden: True
         - title: Using multiple newtworks
           path: /kubernetes/docs/multiple-networks
+          hidden: True
+        - title: IPv6
+          path: /kubernetes/docs/ipv6
           hidden: True
         - title: Containerd and Docker
           path: /kubernetes/docs/container-runtime
@@ -486,13 +492,13 @@ kubernetes:
             - title: 1.16 Charm easyrsa
               path: /kubernetes/docs/1.16/charm-easyrsa/
               hidden: True
-            - title: 1.16 Charm e-notes
+            - title: 1.16 release-notes
               path: /kubernetes/docs/1.16/release-notes/
               hidden: True
             - title: 1.16 Charm gcp-integrator
               path: /kubernetes/docs/1.16/charm-gcp-integrator/
               hidden: True
-            - title: 1.16 Charm ing
+            - title: 1.16 Upgrading
               path: /kubernetes/docs/1.16/upgrading/
               hidden: True
             - title: 1.16 Charm docker
@@ -513,7 +519,7 @@ kubernetes:
             - title: 1.16 Charm kata
               path: /kubernetes/docs/1.16/charm-kata/
               hidden: True
-            - title: 1.16 Charm ents
+            - title: 1.16 Components
               path: /kubernetes/docs/1.16/components/
               hidden: True
             - title: 1.16 Charm containerd
@@ -555,13 +561,13 @@ kubernetes:
             - title: 1.17 Charm easyrsa
               path: /kubernetes/docs/1.17/charm-easyrsa/
               hidden: True
-            - title: 1.17 Charm e-notes
+            - title: 1.17 Release notes
               path: /kubernetes/docs/1.17/release-notes/
               hidden: True
             - title: 1.17 Charm gcp-integrator
               path: /kubernetes/docs/1.17/charm-gcp-integrator/
               hidden: True
-            - title: 1.17 Charm ing
+            - title: 1.17 Upgrading
               path: /kubernetes/docs/1.17/upgrading/
               hidden: True
             - title: 1.17 Charm docker
@@ -582,7 +588,7 @@ kubernetes:
             - title: 1.17 Charm kata
               path: /kubernetes/docs/1.17/charm-kata/
               hidden: True
-            - title: 1.17 Charm ents
+            - title: 1.17 Components
               path: /kubernetes/docs/1.17/components/
               hidden: True
             - title: 1.17 Charm containerd
@@ -624,13 +630,13 @@ kubernetes:
             - title: 1.18 Charm easyrsa
               path: /kubernetes/docs/1.18/charm-easyrsa/
               hidden: True
-            - title: 1.18 Charm e-notes
+            - title: 1.18 Release notes
               path: /kubernetes/docs/1.18/release-notes/
               hidden: True
             - title: 1.18 Charm gcp-integrator
               path: /kubernetes/docs/1.18/charm-gcp-integrator/
               hidden: True
-            - title: 1.18 Charm ing
+            - title: 1.18 upgrading
               path: /kubernetes/docs/1.18/upgrading/
               hidden: True
             - title: 1.18 Charm docker
@@ -651,7 +657,7 @@ kubernetes:
             - title: 1.18 Charm kata
               path: /kubernetes/docs/1.18/charm-kata/
               hidden: True
-            - title: 1.18 Charm ents
+            - title: 1.18 Components
               path: /kubernetes/docs/1.18/components/
               hidden: True
             - title: 1.18 Charm containerd
@@ -681,7 +687,76 @@ kubernetes:
             - title: 1.18 Charm aws-integrator
               path: /kubernetes/docs/1.18/charm-aws-integrator/
               hidden: True
-
+            - title: 1.19 AWS IAM
+              path: /kubernetes/docs/1.19/charm-aws-iam
+              hidden: True
+            - title: 1.19 Canal
+              path: /kubernetes/docs/1.18/charm-canal
+              hidden: True
+            - title: 1.19 EasyRSA
+              path: /kubernetes/docs/1.19/charm-easyrsa
+              hidden: True
+            - title: 1.19 Kata
+              path: /kubernetes/docs/1.19/charm-kata
+              hidden: True
+            - title: 1.19 kubernetes-worker
+              path: /kubernetes/docs/1.19/charm-kubernetes-worker
+              hidden: True
+            - title: 1.19 Components
+              path: /kubernetes/docs/1.19/components
+              hidden: True
+            - title: 1.19 AWS integrator
+              path: /kubernetes/docs/1.19/charm-aws-integrator
+              hidden: True
+            - title: 1.19 Containerd
+              path: /kubernetes/docs/1.19/charm-containerd
+              hidden: True
+            - title: 1.19 etcd
+              path: /kubernetes/docs/1.19/charm-etcd
+              hidden: True
+            - title: 1.19 keeplived
+              path: /kubernetes/docs/1.19/charm-keepalived
+              hidden: True
+            - title: 1.19 OpenStack integrator
+              path: /kubernetes/docs/1.19/charm-openstack-integrator
+              hidden: True
+            - title: 1.19 Release notes
+              path: /kubernetes/docs/1.19/release-notes
+              hidden: True
+            - title: 1.19 Azure integrator
+              path: /kubernetes/docs/1.19/charm-azure-integrator
+              hidden: True
+            - title: 1.19 Docker
+              path: /kubernetes/docs/1.19/charm-docker
+              hidden: True
+            - title: 1.19 Flannel
+              path: /kubernetes/docs/1.19/charm-flannel
+              hidden: True
+            - title: 1.19 kubeapi-load-balancer
+              path: /kubernetes/docs/1.19/charm-kubeapi-load-balancer
+              hidden: True
+            - title: 1.19 Tigera Secure EE
+              path: /kubernetes/docs/1.19/charm-tigera-secure-ee
+              hidden: True
+            - title: 1.19 Upgrading
+              path: /kubernetes/docs/1.19/upgrading
+              hidden: True
+            - title: 1.19 Calico
+              path: /kubernetes/docs/1.19/charm-calico
+              hidden: True
+            - title: 1.19 Docker registry
+              path: /kubernetes/docs/1.19/charm-docker-registry
+              hidden: True
+            - title: 1.19 GCP integrator
+              path: /kubernetes/docs/1.19/charm-gcp-integrator
+              hidden: True
+            - title: 1.19 Kubernetes-master
+              path: /kubernetes/docs/1.19/charm-kubernetes-master
+              hidden: True
+            - title: 1.19 vSphere integrator
+              path: /kubernetes/docs/1.19/charm-vsphere-integrator
+              hidden: True
+              
     - title: Contact us
       path: /kubernetes/contact-us
       hidden: True

@@ -1,21 +1,21 @@
 ---
-charm_name: tigera-secure-ee
-charm_revision: '0'
-context:
-  description: Kubernetes-master Charm reference
-  title: Tigera secure EE charm
-keywords: kubernetes-master, charm, config
-layout:
-- base
-- ubuntu-com
+wrapper_template: kubernetes/docs/base_docs.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-permalink: charm-tigera-secure-ee.html
-sidebar: k8smain-sidebar
+context:
+  title: 'Tigera-secure-ee charm '
+  description: Tigera Secure Enterprise Edition
+keywords: component, charms, versions, release
 tags:
-- reference
+    - reference
+sidebar: k8smain-sidebar
+permalink: 1.19/charm-tigera-secure-ee.html
+layout:
+    - base
+    - ubuntu-com
 toc: false
-wrapper_template: kubernetes/docs/base_docs.html
+charm_revision: '133'
+bundle_release: '1.19'
 ---
 
 This charm will deploy Tigera Secure Enterprise Edition (EE) as a background
@@ -97,9 +97,7 @@ production use.
 
 <!-- CONFIG ENDS -->
 
-<!-- ACTIONS STARTS -->
 
-<!-- ACTIONS ENDS -->
 
 ## Further information
 

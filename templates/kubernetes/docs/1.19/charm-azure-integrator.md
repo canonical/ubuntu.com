@@ -1,21 +1,21 @@
 ---
-charm_name: azure-integrator
-charm_revision: '0'
-context:
-  description: Azure Charm reference
-  title: Azure integrator charm
-keywords: kubernetes-master, charm, config
-layout:
-- base
-- ubuntu-com
+wrapper_template: kubernetes/docs/base_docs.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-permalink: charm-azure-integrator.html
-sidebar: k8smain-sidebar
+context:
+  title: 'Azure-integrator charm '
+  description: "Proxy charm to enable Azure integrations via Juju relations.\n"
+keywords: component, charms, versions, release
 tags:
-- reference
+    - reference
+sidebar: k8smain-sidebar
+permalink: 1.19/charm-azure-integrator.html
+layout:
+    - base
+    - ubuntu-com
 toc: false
-wrapper_template: kubernetes/docs/base_docs.html
+charm_revision: '35'
+bundle_release: '1.19'
 ---
 
 This charm acts as a proxy to Azure and provides an [interface][] to apply a

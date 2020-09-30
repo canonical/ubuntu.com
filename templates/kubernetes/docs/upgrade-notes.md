@@ -19,6 +19,18 @@ The notes are organised according to the upgrade path below, but also be aware t
 upgrade that spans more than one minor version may need to beware of notes in
 any of the intervening steps.
 
+<a  id="1.19"> </a>
+
+## Upgrading to 1.19
+
+New in 1.19, master units rely on Kubernetes secrets for authentication. Entries
+in the previously used "basic_auth.csv" and "known_tokens.csv" will be migrated to
+secrets and new kubeconfig files will be created during the upgrade. Administrators
+should update any existing kubeconfig files that are used outside of the cluster.
+
+Please follow the [upgrade instructions for 1.19](/kubernetes/docs/1.19/upgrading).
+
+
 <a  id="1.18"> </a>
 
 ## Upgrading to 1.18
@@ -26,9 +38,9 @@ any of the intervening steps.
 ### CDK Addons
 
 As stated in the release notes, from 1.18, the `cluster-monitoring` addons (Heapster, InfluxDB, and Grafana)
-have been removed from the Kubernetes source tree and therefore removed from the `cdk-addons` snap as well. 
+have been removed from the Kubernetes source tree and therefore removed from the `cdk-addons` snap as well.
 
-Customers relying on these addons should migrate to a `metrics-server` solution prior to upgrading. 
+Customers relying on these addons should migrate to a `metrics-server` solution prior to upgrading.
 
 **Note:** these removals do not affect the Kubernetes Dashboard nor the methods described in
 [Monitoring Charmed Kubernetes](/kubernetes/docs/monitoring).
@@ -40,11 +52,11 @@ Customers relying on these addons should migrate to a `metrics-server` solution 
 ### Docker Registry with Containerd
 
 Prior to 1.16, some fixes were required to support using the
-Docker Registry charm with Containerd. 
+Docker Registry charm with Containerd.
 
 This charm, if used, is now supported through standard relations. Before upgrading,
 remove any reference of the registry in the `custom_registries`
-[containerd charm configuration](/kubernetes/docs/container-runtime). 
+[containerd charm configuration](/kubernetes/docs/container-runtime).
 
 After upgrading, see the [docker registry](/kubernetes/docs/docker-registry)
 instructions for details of how to configure a registry.
@@ -322,9 +334,9 @@ You can now proceed with the rest of the upgrade.
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrade-notes.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrade-notes.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

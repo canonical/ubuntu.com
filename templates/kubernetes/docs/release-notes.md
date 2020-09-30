@@ -13,6 +13,137 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+### September 30th, 2020 - [charmed-kubernetes-519](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-519/archive/bundle.yaml)
+
+Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
+
+## What's new
+
+- IPv6 support
+
+This release of Charmed Kubernetes can now enable the alpha IPv6 dual-stack or
+beta IPv6-only support in Kubernetes by using IPv6 CIDRs in addition to or
+instead of IPv4 CIDRs in the Kubernetes Master charm's `service-cidr` and the
+Calico charm's `cidr` charm config.
+
+More information can be found in [Using IPv6 with Charmed Kubernetes][ipv6],
+including limitations and known issues.
+
+- CIS benchmark compliance
+
+Charmed Kubernetes is now compliant with the Center for Internet Security (CIS)
+benchmark for Kubernetes. Significant changes to the `kubernetes-master` and
+`kubernetes-worker` charms have been made to achieve this. Find more information
+about these changes, running the benchmark, and analyzing test results in the
+[CIS compliance for Charmed Kubernetes][cis-benchmark] documentation.
+
+- Authentication changes
+
+File-based authentication is not compliant with the CIS benchmark. Charmed Kubernetes
+now deploys a webhook authentication service that compares API requests to Kubernetes
+secrets. If needed, any existing entries in previous authentication files
+(`basic_auth.csv` and `known_tokens.csv`) are migrated to secrets during the
+`kubernetes-master` charm upgrade.
+
+More information about this new service can be found in the
+[Authorisation and Authentication][authn] documentation.
+
+- New Calico configuration options
+
+The new `veth-mtu` setting allows fine tuning of the MTU setting for optimum
+performance on the underlying network. See the
+[Calico documentation][veth-mtu] for more details and recommendations, and
+the [Calico charm docs][1.19-calico] for information on how to set this
+configuration.
+
+Calico and related charms (Canal, Tigera Secure EE) also have a new
+`ignore-loose-rpf` configuration option. By default, for security, these charms check
+that the kernel has strict reverse path forwarding set (`net.ipv4.conf.all.rp_filter`
+set to `0` or `1`). In some circumstances you may need to set this to 2, in which case
+you can now set `ignore-loose-rpf=true` to ignore the check.
+
+- Ubuntu 20.04
+
+The default operating system for deployed machines is now Ubuntu 20.04 (Focal). Ubuntu 18.04 (Bionic) and 16.04 (Xenial) are still supported.
+
+- MetalLB Operator
+
+MetalLB offers a software network load balancing implementation that allows for
+LoadBalancing services in Kubernetes. This bundle has been made available
+in the Charm Store to be deployed along Charmed Kubernetes, MicroK8s, or any Kubernetes
+supported by Juju. This operator deploys upstream MetalLB in layer 2 mode. The BGP mode
+of upstream MetalLB is not supported yet. For more information about deploying and
+operating MetalLB, please see the [MetalLB documentation](https://ubuntu.com/kubernetes/docs/metallb).
+
+- SR-IOV CNI
+
+A new SR-IOV CNI addon has been made available for Charmed Kubernetes. Using
+SR-IOV CNI, it is now possible to take network interfaces that are SR-IOV
+Virtual Functions and attach them directly to pods. For more information, see
+the new [SR-IOV CNI documentation][cni-sriov].
+
+For a full list of the changes introduced in Kubernetes 1.19, please see the
+[upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md)
+
+## Component upgrades
+
+- addon-resizer 1.8.9
+- ceph-csi 2.1.2
+- cloud-provider-openstack (TODO https://bugs.launchpad.net/cdk-addons/+bug/1889433)
+- coredns 1.6.7
+- kube-state-metrics 1.9.7
+- kubernetes-dashboard 2.0.1
+- nginx-ingress 0.31.1
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.19](https://launchpad.net/charmed-kubernetes/+milestone/1.19).
+
+## Notes / Known Issues
+
+- The `insecure-bind-address` and `insecure-port` options to `kube-apiserver` have
+been removed in this release. Using `juju run` with `kubectl` to interact with the
+cluster now requires an explicit `--kubeconfig <file>` option:
+
+    ```bash
+    juju run --unit kubernetes-master/0 'kubectl --kubeconfig /root/.kube/config get nodes'
+    NAME              STATUS   ROLES    AGE   VERSION
+    ip-172-31-10-19   Ready    <none>   71m   v1.19.0
+    ```
+
+- The webhook authentication service included in this release runs on port 5000 of each
+kubernetes-master unit. Ensure this port is available prior to upgrading.
+
+- Due to a bug in the pacemaker package on Ubuntu, Charmed Kubernetes does not
+work with HAcluster on Ubuntu 20.04 (Focal). If you intend to use HAcluster,
+we recommend deploying to Ubuntu 18.04 (Bionic) instead. Details
+about this bug can be found at
+[https://bugs.launchpad.net/ubuntu/+source/pacemaker/+bug/1881762](https://bugs.launchpad.net/ubuntu/+source/pacemaker/+bug/1881762).
+
+- Additional known issues scheduled for the first 1.19 bugfix release can be found at [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1)
+
+## Deprecations and API changes
+
+For details of deprecation notices and API changes for Kubernetes 1.19, please see the
+relevant sections of the [upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#deprecation)
+
+## Previous releases
+
+Please see [this page][historic] for release notes of earlier versions.
+
+<!--LINKS-->
+[upgrade-notes]: /kubernetes/docs/upgrade-notes
+[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
+[cis-benchmark]: /kubernetes/docs/cis-compliance
+[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
+[historic]: /kubernetes/docs/release-notes-historic
+[ipv6]: /kubernetes/docs/ipv6
+[cni-sriov]: /kubernetes/docs/cni-sriov
+[authn]: /kubernetes/docs/auth#authn
+[veth-mtu]: https://docs.projectcalico.org/networking/mtu
+[1.19-calico]: /kubernetes/docs/1.19/charm-calico
+
 # 1.18+ck2 Bugfix release
 
 ### August 12, 2020 - [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml)
@@ -21,6 +152,7 @@ toc: False
 
 Bug fixes included in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck2).
+
 
 # 1.18+ck1 Bugfix release
 
@@ -105,7 +237,7 @@ running this action on Charmed Kubernetes components.
 
 - Containerd version hold
 
-The version of [containerd](https://containerd.io/) will now be held. This means 
+The version of [containerd](https://containerd.io/) will now be held. This means
 that the version of [containerd](https://containerd.io/) will not be upgraded along
 with the charm. To update containerd to the latest stable, currently 1.3.3, you can
 call the `upgrade-containerd` action:
@@ -165,7 +297,6 @@ classes will need to be edited and the `provisioner` field changed to
 `cinder.csi.openstack.org`. Existing volumes will be unaffected, but new
 PVCs using those storage classes will hang until the storage class is updated.
 
-=======
 # 1.17+ck2 Bugfix release
 
 ### March 2, 2020 - [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml)
@@ -375,9 +506,9 @@ Please see [this page][historic] for release notes of earlier versions.
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/release-notes.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/release-notes.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

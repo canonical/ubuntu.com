@@ -27,7 +27,7 @@ The Multus charm requires Juju 2.8.0 or newer.
 ### CNI providers
 
 Multus is not a replacement for other CNI providers. Your **Charmed Kubernetes**
-deployment must include at least one of the other CNI providers documented in the
+deployment must include at least one of the base CNI providers documented in the
 [CNI overview][cni-overview] page.
 
 ### Persistent volume support

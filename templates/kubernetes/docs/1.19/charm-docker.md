@@ -1,21 +1,21 @@
 ---
-charm_name: docker
-charm_revision: '0'
-context:
-  description: Kubernetes-master Charm reference
-  title: Docker charm
-keywords: kubernetes-master, charm, config
-layout:
-- base
-- ubuntu-com
+wrapper_template: kubernetes/docs/base_docs.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-permalink: charm-docker.html
-sidebar: k8smain-sidebar
+context:
+  title: 'Docker charm '
+  description: Docker container runtime subordinate
+keywords: component, charms, versions, release
 tags:
-- reference
+    - reference
+sidebar: k8smain-sidebar
+permalink: 1.19/charm-docker.html
+layout:
+    - base
+    - ubuntu-com
 toc: false
-wrapper_template: kubernetes/docs/base_docs.html
+charm_revision: '74'
+bundle_release: '1.19'
 ---
 
 This subordinate charm deploys the [Docker](http://docker.com) engine within

@@ -3,31 +3,15 @@ wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "Upgrading"
+  title: "Upgrading to 1.19"
   description: How to upgrade your version of Charmed Kubernetes.
 keywords: juju, upgrading, track, version
 tags: [operating]
 sidebar: k8smain-sidebar
-permalink: upgrading.html
+permalink: 1.19/upgrading.html
 layout: [base, ubuntu-com]
 toc: False
 ---
-
-<!-- UPGRADE VERSIONS -->
-
-<div class="p-notification--warning">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-This page describes the general upgrade process. It is important to follow the specific upgrade pages for each release, as these may include additional steps and workarounds for safely upgrading. <br><br>
-<a class='p-button--brand' href='/kubernetes/docs/1.19/upgrading'>Upgrade to 1.19 </a>
-<a class='p-button--brand' href='/kubernetes/docs/1.18/upgrading'>Upgrade to 1.18 </a>
-<a class='p-button--brand' href='/kubernetes/docs/1.17/upgrading'>Upgrade to 1.17 </a>
-  </p>
-</div>
-
-<!-- END OF UPGRADE VERSIONS-->
-
-
 
 It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Kubernetes**. Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
 
@@ -60,6 +44,7 @@ You should also make sure:
 -   Your cluster is running normally
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.19 which may impact your workloads. 
 
 ## Infrastructure updates
 
@@ -241,13 +226,40 @@ is no need to set a specific channel or version for this charm.
 
 ### Upgrading the **kubernetes-master** units
 
-To start upgrading the Kubernetes master units, first upgrade the charm:
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+New in 1.19, master units rely on Kubernetes secrets for authentication. Entries
+in the previously used "basic_auth.csv" and "known_tokens.csv" will be migrated to
+secrets and new kubeconfig files will be created during the upgrade. Administrators
+should update any existing kubeconfig files that are used outside of the cluster.
+  </p>
+</div>
+
+To start upgrading the **Kubernetes** master units, first upgrade the charm:
 
 ```bash
 juju upgrade-charm kubernetes-master
 ```
 
-Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.10 version of **Kubernetes**, you would enter:
+Once the charm has been upgraded, you may fetch an updated admin kubeconfig file
+with the following:
+
+```bash
+juju scp kubernetes-master/0:config ~/.kube/config
+```
+
+Verify secrets have been created for expected users:
+
+```bash
+juju run --unit kubernetes-master/0 'kubectl --kubeconfig /root/.kube/config get secrets'
+```
+
+Minimally, secrets for the following users should be listed:
+
+- *admin*, *kube-controller-manager*, *kube-proxy*, *kubelet-n*, *system-kube-scheduler*, *system-monitoring*
+
+With secrets verified, the charm can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.10 version of **Kubernetes**, you would enter:
 
 ```bash
 juju config kubernetes-master channel=1.10/stable

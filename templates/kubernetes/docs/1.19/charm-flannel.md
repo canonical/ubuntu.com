@@ -1,21 +1,21 @@
 ---
-charm_name: flannel
-charm_revision: '0'
-context:
-  description: Kubernetes-master Charm reference
-  title: Flannel charm
-keywords: kubernetes-master, charm, config
-layout:
-- base
-- ubuntu-com
+wrapper_template: kubernetes/docs/base_docs.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-permalink: charm-flannel.html
-sidebar: k8smain-sidebar
+context:
+  title: 'Flannel charm '
+  description: A charm that provides a robust Software Defined Network
+keywords: component, charms, versions, release
 tags:
-- reference
+    - reference
+sidebar: k8smain-sidebar
+permalink: 1.19/charm-flannel.html
+layout:
+    - base
+    - ubuntu-com
 toc: false
-wrapper_template: kubernetes/docs/base_docs.html
+charm_revision: '495'
+bundle_release: '1.19'
 ---
 
 Flannel is a virtual network that gives a subnet to each host for use with
