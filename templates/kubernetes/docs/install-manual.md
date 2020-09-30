@@ -368,15 +368,17 @@ for example, where we might do the following through **Juju** to set some proxy
 values:
 
 ```bash
-juju config kubernetes-worker https_proxy=https://proxy.example.com
+juju config containerd https_proxy=https://proxy.example.com
 juju config kubernetes-worker snap_proxy:=https://snap-proxy.example.com
 ```
 ... we can instead use the following YAML fragment as an overlay:
 
 ```yaml
-kubernetes-worker:
+containerd:
   options:
     https_proxy: https://proxy.example.com
+kubernetes-worker:
+  options:
     snap_proxy: https://snap-proxy.example.com
 ```
 

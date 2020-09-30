@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-### September 10th, 2020 - [charmed-kubernetes-509](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-509/archive/bundle.yaml)
+### September 24th, 2020 - [charmed-kubernetes-509](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-509/archive/bundle.yaml)
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -66,6 +66,15 @@ you can now set `ignore-loose-rpf=true` to ignore the check.
 
 The default operating system for deployed machines is now Ubuntu 20.04 (Focal). Ubuntu 18.04 (Bionic) and 16.04 (Xenial) are still supported.
 
+- MetalLB Operator
+
+MetalLB offers a software network load balancing implementation that allows for
+LoadBalancing services in Kubernetes. This bundle has been made available
+in the Charm Store to be deployed along Charmed Kubernetes, MicroK8s, or any Kubernetes
+supported by Juju. This operator deploys upstream MetalLB in layer 2 mode. The BGP mode
+of upstream MetalLB is not supported yet. For more information about deploying and
+operating MetalLB, please see the [MetalLB documentation](https://ubuntu.com/kubernetes/docs/metallb).
+
 - SR-IOV CNI
 
 A new SR-IOV CNI addon has been made available for Charmed Kubernetes. Using
@@ -102,6 +111,18 @@ cluster now requires an explicit `--kubeconfig <file>` option:
     NAME              STATUS   ROLES    AGE   VERSION
     ip-172-31-10-19   Ready    <none>   71m   v1.19.0
     ```
+
+- The webhook authentication service included in this release runs on port 5000 of each 
+kubernetes-master unit. Ensure this port is available prior to upgrading.
+
+- Due to a bug in the pacemaker package on Ubuntu, Charmed Kubernetes does not
+work with HAcluster on Ubuntu 20.04 (Focal). If you intend to use HAcluster,
+we recommend deploying to Ubuntu 18.04 (Bionic) instead. Details
+about this bug can be found at
+[https://bugs.launchpad.net/ubuntu/+source/pacemaker/+bug/1881762](https://bugs.launchpad.net/ubuntu/+source/pacemaker/+bug/1881762).
+
+- Additional known issues scheduled for the first 1.19 bugfix release can be found at [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1)
+
 ## Deprecations and API changes
 
 For details of deprecation notices and API changes for Kubernetes 1.19, please see the
