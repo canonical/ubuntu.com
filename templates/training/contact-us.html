@@ -44,6 +44,16 @@
   {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
+{% elif product == 'kubeflow-training-onsite' %}
+
+{% with h1="Contact us about our Kubeflow training",
+intro_text="Fill in your details below and a member of our training team will be in touch.",
+formid="1448",
+lpId="2661",
+returnURL="https://www.ubuntu.com/training/thank-you?product=kubeflow-training-onsite" %}
+{% include "shared/_cloud-contact-us-form.html" %}
+{% endwith %}
+
 {% elif product == 'maas-training-onsite' %}
 
 {% with h1="Contact us about our MAAS Deployment and Operations training",
