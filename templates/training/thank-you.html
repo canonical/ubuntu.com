@@ -15,8 +15,11 @@
   {% with thanks_context="enquiring about our on-site training courses" %}{% include "shared/_thank_you.html" %}{% endwith %}
 {% elif product == 'openstack-training-server-admin' %}
   {% with thanks_context="enquiring about our server admin training courses" %}{% include "shared/_thank_you.html" %}{% endwith %}
+  {% elif product == 'kubeflow-training-onsite' %}
+  {% with thanks_context="enquiring about our Kubeflow training course" %}{% include "shared/_thank_you.html" %}
+  {% endwith %}
 {% elif product == 'maas-training-onsite' %}
-  {% with thanks_context="enquiring about our MAAS Deployment and Operations training course" %}{% include "shared/_thank_you.html" %}{% endwith %}
+  {% with thanks_context="enquiring about our MAAS Deployment and Operations training course" %}{% include "shared/_thank_you.html" %} {% endwith %}
 {% else %}
   {% with thanks_context="enquiring about training" %}{% include "shared/_thank_you.html" %}{% endwith %}
 {% endif %}
