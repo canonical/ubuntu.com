@@ -945,6 +945,36 @@ def get_purchase(purchase_id):
         return flask.jsonify({"error": "authentication required"}), 401
 
 
+def get_purchase_account():
+    auth_token = None
+
+    if user_info(flask.session):
+        auth_token = flask.session["authentication_token"]
+
+    advantage = AdvantageContracts(
+        session,
+        auth_token,
+        api_url=flask.current_app.config["CONTRACTS_API_URL"],
+    )
+
+    if not flask.request.is_json:
+        return flask.jsonify({"error": "JSON required"}), 400
+
+    email = flask.request.json.get("email")
+    payment_method_id = flask.request.json.get("payment_method_id")
+
+    try:
+        account = advantage.get_purchase_account(email, payment_method_id)
+    except HTTPError as http_error:
+        flask.current_app.extensions["sentry"].captureException()
+        return (
+            http_error.response.content,
+            500,
+        )
+
+    return flask.jsonify(account), 200
+
+
 def get_renewal(renewal_id):
     if user_info(flask.session):
         advantage = AdvantageContracts(

@@ -178,6 +178,18 @@ class AdvantageContracts:
 
         return response.json()
 
+    def get_purchase_account(self, email: str, payment_method_id: str) -> dict:
+        response = self._request(
+            method="post",
+            path="v1/purchase-account",
+            json={
+                "email": email,
+                "defaultPaymentMethod": {"Id": payment_method_id},
+            },
+        )
+
+        return response.json()
+
     def purchase_from_marketplace(
         self, marketplace: str, purchase_request: dict
     ) -> dict:
