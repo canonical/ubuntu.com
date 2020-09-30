@@ -2,6 +2,7 @@ import { debounce } from "./utils/debounce.js";
 
 import {
   getPurchase,
+  getPurchaseAccount,
   getRenewal,
   postInvoiceID,
   postCustomerInfoToStripeAccount,
@@ -316,35 +317,42 @@ function applyTotals() {
     country: country,
   };
 
-  postCustomerInfoForPurchasePreview(
-    currentTransaction.accountId,
-    addressObject,
-    taxObject
-  )
-    .then(() => {
-      if (currentTransaction.type === "purchase") {
-        postPurchasePreviewData(
-          currentTransaction.accountId,
-          currentTransaction.products,
-          currentTransaction.previousPurchaseId
-        ).then((data) => {
-          purchasePreview = data;
-          modal.classList.remove("is-processing");
-          setOrderTotals(country, vatApplicable, purchasePreview, modal);
-        });
-      } else if (currentTransaction.type === "renewal") {
-        postRenewalPreviewData(currentTransaction.transactionId).then(
-          (data) => {
+  if (currentTransaction.accountId) {
+    postCustomerInfoForPurchasePreview(
+      currentTransaction.accountId,
+      addressObject,
+      taxObject
+    )
+      .then(() => {
+        if (currentTransaction.type === "purchase") {
+          postPurchasePreviewData(
+            currentTransaction.accountId,
+            currentTransaction.products,
+            currentTransaction.previousPurchaseId
+          ).then((data) => {
             purchasePreview = data;
             modal.classList.remove("is-processing");
             setOrderTotals(country, vatApplicable, purchasePreview, modal);
-          }
-        );
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+          });
+        } else if (currentTransaction.type === "renewal") {
+          postRenewalPreviewData(currentTransaction.transactionId).then(
+            (data) => {
+              purchasePreview = data;
+              modal.classList.remove("is-processing");
+              setOrderTotals(country, vatApplicable, purchasePreview, modal);
+            }
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  } else {
+    modal.classList.remove("is-processing");
+    // TODO: subtotal will currently display as "..."
+    // for guest checkout, so need to show the subtotal
+    // the user has already seen in the cart
+  }
 }
 
 function clearProgressTimers() {
@@ -533,8 +541,18 @@ function handleIncompleteRenewal(renewal) {
 }
 
 function handlePaymentMethodResponse(data) {
-  if (data.paymentMethod) {
+  if (data.paymentMethod && currentTransaction.accountId) {
     attachCustomerInfoToStripeAccount(data.paymentMethod);
+  } else if (data.paymentMethod && !currentTransaction.accountId) {
+    // the user is a guest, get them a guest account to make
+    // purchases with and then continue
+    getPurchaseAccount(customerInfo.email, data.paymentMethod.id).then(
+      (data) => {
+        currentTransaction.accountId = data.accountID;
+        applyTotals();
+        attachCustomerInfoToStripeAccount(data.paymentMethod);
+      }
+    );
   } else {
     const errorObject = parseForErrorObject(data.error);
 
