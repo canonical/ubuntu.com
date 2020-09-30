@@ -111,7 +111,11 @@ def notices():
 
     if details:
         notices_query = notices_query.filter(
-            Notice.details.ilike(f"%{details}%")
+            or_(
+                Notice.id.like(f"%{details}%"),
+                Notice.details.like(f"%{details}%"),
+                Notice.cves.any(CVE.id.like(f"%{details}%")),
+            )
         )
 
     # Snapshot total results for search
