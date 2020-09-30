@@ -46,6 +46,7 @@ from webapp.views import (
     appliance_install,
     appliance_portfolio,
     get_purchase,
+    get_purchase_account,
     get_renewal,
     post_advantage_subscriptions,
     post_anonymised_customer_info,
@@ -193,6 +194,11 @@ app.add_url_rule(
     "/advantage/purchases/<purchase_id>",
     view_func=get_purchase,
     methods=["GET"],
+)
+app.add_url_rule(
+    "/advantage/purchase-account",
+    view_func=get_purchase_account,
+    methods=["POST"],
 )
 app.add_url_rule(
     "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
