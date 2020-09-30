@@ -7,6 +7,25 @@ export async function getPurchase(purchaseID) {
   return data;
 }
 
+export async function getPurchaseAccount(email, paymentMethodID) {
+  let response = await fetch(`/advantage/purchase-account`, {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      payment_method_id: paymentMethodID,
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}
+
 export async function getRenewal(renewalID) {
   let response = await fetch(`/advantage/renewals/${renewalID}`, {
     cache: "no-store",
