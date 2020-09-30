@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-### September 24th, 2020 - [charmed-kubernetes-509](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-509/archive/bundle.yaml)
+### September 30th, 2020 - [charmed-kubernetes-519](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-519/archive/bundle.yaml)
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -112,7 +112,7 @@ cluster now requires an explicit `--kubeconfig <file>` option:
     ip-172-31-10-19   Ready    <none>   71m   v1.19.0
     ```
 
-- The webhook authentication service included in this release runs on port 5000 of each 
+- The webhook authentication service included in this release runs on port 5000 of each
 kubernetes-master unit. Ensure this port is available prior to upgrading.
 
 - Due to a bug in the pacemaker package on Ubuntu, Charmed Kubernetes does not

@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-### September 24th, 2020 - [charmed-kubernetes-509](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-509/archive/bundle.yaml)
+### September 30th, 2020 - [charmed-kubernetes-519](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-519/archive/bundle.yaml)
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
