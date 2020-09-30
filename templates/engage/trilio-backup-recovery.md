@@ -29,7 +29,7 @@ Join our webinar to learn:
   <div class="col-2">
     <img src="https://assets.ubuntu.com/v1/f65ce9a7-speaker1.jpeg" alt="Speaker" style="width:150px;"/>
   </div>
-  <div class="col-4 u-align--center u-vertically-center">
+  <div class="col-4 u-vertically-center">
     <p>Tytus Kurek, Product Manager at Canonical</p>
   </div>
 </div>
@@ -38,7 +38,7 @@ Join our webinar to learn:
   <div class="col-2">
     <img src="https://assets.ubuntu.com/v1/8a4c0187-speaker2.png" alt="Speaker" style="width:150px;"/>
   </div>
-  <div class="col-4 u-align--center u-vertically-center">
+  <div class="col-4 u-vertically-center">
     <p>Robert Rother, Product Manager at Trilio</p>
   </div>
 </div>
