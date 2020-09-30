@@ -372,20 +372,16 @@ function productSelector() {
     let stepsToDisable;
     let i = 0;
 
-    if (window.accountId) {
-      steps.forEach((step) => {
-        if (stepsToEnable === undefined) {
-          if (!state.get(step)[0]) {
-            stepsToEnable = steps.slice(0, i + 1);
-            stepsToDisable = steps.slice(i + 1);
-          } else if (i < steps.length) {
-            i++;
-          }
+    steps.forEach((step) => {
+      if (stepsToEnable === undefined) {
+        if (!state.get(step)[0]) {
+          stepsToEnable = steps.slice(0, i + 1);
+          stepsToDisable = steps.slice(i + 1);
+        } else if (i < steps.length) {
+          i++;
         }
-      });
-    } else {
-      stepsToDisable = steps;
-    }
+      }
+    });
 
     if (stepsToEnable) {
       enableSteps(stepsToEnable);
