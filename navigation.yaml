@@ -106,6 +106,18 @@ appliance:
           path: /appliance/mosquitto/intel-nuc
         - title: VM
           path: /appliance/mosquitto/vm
+    - title: Gitea
+      path: /appliance/gitea
+      hidden: True
+      children:
+        - title: Raspberry Pi 2
+          path: /appliance/gitea/raspberry-pi2
+        - title: Raspberry Pi 3 & 4
+          path: /appliance/gitea/raspberry-pi
+        - title: Intel NUC
+          path: /appliance/gitea/intel-nuc
+        - title: VM
+          path: /appliance/gitea/vm
 aws:
   title: AWS
   path: /aws
@@ -756,7 +768,7 @@ kubernetes:
             - title: 1.19 vSphere integrator
               path: /kubernetes/docs/1.19/charm-vsphere-integrator
               hidden: True
-              
+
     - title: Contact us
       path: /kubernetes/contact-us
       hidden: True

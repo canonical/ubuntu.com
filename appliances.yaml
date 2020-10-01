@@ -87,3 +87,17 @@ appliances:
       2: False
       3: False
       4: True
+  gitea:
+    name: "Gitea"
+    appliance_name: "Gitea"
+    url_name: "gitea"
+    alias: "plexmedigiteaaserver"
+    port: 80
+    iso_url:
+      raspberrypi: "https://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-pi.img.xz"
+      pc: "https://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-amd64.img.xz"
+      pi2: "https://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-pi-armhf.img.xz"
+    checksum:
+      raspberrypi: "ed9995235ca3b01d0e81eda7f9d5e215372f2d81d41c612c14f9ca9fde4e2cad *plexmediaserver-core18-pi.img.xz"
+      pc: "876c78512afbb783f9511653e82d3ac57b3c8e9e20a4ad65ed15a2edc41a9758 *plexmediaserver-core18-amd64.img.xz"
+      pi2: "0b22901990ddefcb8777e3eae0bd86c9f1738313abaf1b33ecb9cbec9fbdee37 *plexmediaserver-core18-pi-armhf.img.xz"
