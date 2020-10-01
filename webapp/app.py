@@ -37,6 +37,7 @@ from webapp.views import (
     download_harness,
     download_thank_you,
     appliance_install,
+    appliance_portfolio,
     get_renewal,
     post_customer_info,
     post_stripe_invoice_id,
@@ -181,6 +182,9 @@ app.add_url_rule(
     "/appliance/<regex('.+'):app>/<regex('.+'):device>",
     view_func=appliance_install,
 )
+app.add_url_rule(
+    "/appliance/portfolio", view_func=appliance_portfolio,
+)
 # blog section
 
 blog_views = BlogViews(
@@ -204,12 +208,10 @@ app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
 app.add_url_rule(
-    "/security/api/notices/<notice_id>",
-    view_func=read_notice,
+    "/security/api/notices/<notice_id>", view_func=read_notice,
 )
 app.add_url_rule(
-    "/security/api/notices",
-    view_func=read_notices,
+    "/security/api/notices", view_func=read_notices,
 )
 app.add_url_rule("/security/notices", view_func=notices)
 app.add_url_rule(
@@ -300,9 +302,7 @@ tutorials_docs.init_app(app)
 # Ceph docs
 ceph_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
-        index_topic_id=17250,
-        url_prefix="/ceph/docs",
+        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs",
     ),
     document_template="/ceph/document.html",
     url_prefix="/ceph/docs",

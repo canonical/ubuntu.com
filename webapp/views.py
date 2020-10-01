@@ -124,6 +124,17 @@ def appliance_install(app, device):
     )
 
 
+def appliance_portfolio():
+    with open("appliances.yaml") as appliances:
+        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
+
+    return flask.render_template(
+        "appliance/portfolio.html",
+        http_host=flask.request.host,
+        appliances=appliances["appliances"],
+    )
+
+
 def releasenotes_redirect():
     """
     View to redirect to https://wiki.ubuntu.com/ URLs for release notes.
@@ -556,8 +567,7 @@ def make_renewal(advantage, contract_info):
         return None
 
     sorted_renewals = sorted(
-        renewals,
-        key=lambda renewal: dateutil.parser.parse(renewal["start"]),
+        renewals, key=lambda renewal: dateutil.parser.parse(renewal["start"]),
     )
 
     renewal = sorted_renewals[0]

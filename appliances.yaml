@@ -4,6 +4,7 @@ appliances:
     appliance_name: "Plex Media Server"
     url_name: "plex"
     alias: "plexmediaserver"
+    logo: "https://assets.ubuntu.com/v1/402069bd-plex-media-server.png"
     port: 32400
     iso_url:
       raspberrypi: "https://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-pi.img.xz"
@@ -18,6 +19,7 @@ appliances:
     appliance_name: "AdGuard"
     url_name: "adguard"
     alias: "adguard-home"
+    logo: "https://assets.ubuntu.com/v1/1ec45573-AdGuard.png"
     port: 3000
     iso_url:
       raspberrypi: "https://cdimage.ubuntu.com/ubuntu-core/appliances/adguard-home-core18-pi.img.xz"
@@ -32,6 +34,7 @@ appliances:
     appliance_name: "OpenHAB"
     url_name: "openhab"
     alias: "openhab"
+    logo: "https://assets.ubuntu.com/v1/f4632e06-openhab-logo.png"
     port: 8080
     iso_url:
       raspberrypi: "https://cdimage.ubuntu.com/ubuntu-core/appliances/openhab-core18-pi.img.xz"
@@ -46,6 +49,7 @@ appliances:
     appliance_name: "Mosquitto"
     url_name: "mosquitto"
     alias: "mosquitto"
+    logo: "https://dashboard.snapcraft.io/site_media/appmedia/2018/08/mosquitto-logo-only.svg.png"
     port: 1883
     iso_url:
       raspberrypi: "https://cdimage.ubuntu.com/ubuntu-core/appliances/mosquitto-core18-pi.img.xz"
@@ -60,6 +64,7 @@ appliances:
     appliance_name: "Nextcloud"
     url_name: "nextcloud"
     alias: "nextcloud"
+    logo: "https://dashboard.snapcraft.io/site_media/appmedia/2016/06/icon.svg_1.png"
     port: 80
     iso_url:
       raspberrypi: "https://cdimage.ubuntu.com/ubuntu-core/appliances/nextcloud-core18-pi.img.xz"
@@ -74,6 +79,7 @@ appliances:
     appliance_name: "LXD"
     url_name: "lxd"
     alias: "lxd"
+    logo: "https://assets.ubuntu.com/v1/3a24a2f9-lxd.png"
     port: 80
     iso_url:
       raspberrypi: "https://cdimage.ubuntu.com/ubuntu-core/appliances/lxd-core18-pi.img.xz"
@@ -87,3 +93,18 @@ appliances:
       2: False
       3: False
       4: True
+  rocket-chat:
+    name: "Rocket.Chat"
+    appliance_name: "Rocket.Chat Server"
+    url_name: "rocket-chat"
+    alias: "rocket-chat"
+    logo: "https://assets.ubuntu.com/v1/0abeb03e-rocket.chat.svg"
+    port: 3000
+    iso_url:
+      raspberrypi: "https://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-pi.img.xz"
+      pc: "https://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-amd64.img.xz"
+      pi2: "https://cdimage.ubuntu.com/ubuntu-core/appliances/plexmediaserver-core18-pi-armhf.img.xz"
+    checksum:
+      raspberrypi: "ed9995235ca3b01d0e81eda7f9d5e215372f2d81d41c612c14f9ca9fde4e2cad *plexmediaserver-core18-pi.img.xz"
+      pc: "876c78512afbb783f9511653e82d3ac57b3c8e9e20a4ad65ed15a2edc41a9758 *plexmediaserver-core18-amd64.img.xz"
+      pi2: "0b22901990ddefcb8777e3eae0bd86c9f1738313abaf1b33ecb9cbec9fbdee37 *plexmediaserver-core18-pi-armhf.img.xz"

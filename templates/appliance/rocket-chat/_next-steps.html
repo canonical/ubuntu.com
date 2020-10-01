@@ -1,0 +1,32 @@
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>
+        Start using your {{ appliance.name }} Ubuntu Appliance
+      </h2>
+      <p>
+        Now you can go ahead and set everything up.  It’s usually best to wait 5-10 minutes here. Some snaps will need to refresh themselves and the appliance may need to automatically reboot. When you’re ready go to:
+      </p>
+      <pre><code>http://&lt;IP-of-your-appliance&gt;:3000/web</code></pre>
+      <p>
+        in another computer’s browser. Where you will find the initial configuration wizard.
+      </p>
+      <p>
+        Follow the instructions to start using your new Rocket.chat appliance.
+      </p>
+      <p>
+        For more information or more documentation on what to do now, the <a class="p-link--external" href="https://docs.rocket.chat/">Rocket.Chat website</a> is the best place to go next.
+      </p>
+    </div>
+    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+      {{  image(
+        url="https://dashboard.snapcraft.io/site_media/appmedia/2016/08/Screen_Shot_2016-02-22_at_21.45.00.png",
+        alt="Rocket.chat welcome screen",
+        width="879",
+        height="549",
+        hi_def=True,
+        loading="lazy",
+        ) | safe}}
+      </div>
+    </div>
+  </section>
