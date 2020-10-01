@@ -40,14 +40,13 @@ context:
   maintenance_date: "2030-09"
   snaps:
     1:
-      name: "Rocket.chat server"
+      name: "Rocket.Chat Server"
       icon: "https://assets.ubuntu.com/v1/0abeb03e-rocket.chat.svg"
       link: "https://snapcraft.io/rocketchat-server"
       publisher: "Rocket.Chat (rocketchat)"
       channel: "latest/stable"
       version: "3.5.2"
       published_date: "13 August 2020"
-
 ---
 
 #### Group chat server for 100s, installed in seconds.
