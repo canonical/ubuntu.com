@@ -138,7 +138,7 @@ function productSelector() {
       quantityHTML = `<input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity.replace(
         /^0+/,
         ""
-      )}" step="1" min="0" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
+      )}" step="1" min="1" pattern="\\d+" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
     }
 
     return `
@@ -160,7 +160,7 @@ function productSelector() {
         }">
           <div class="row u-vertically-center">
             <div class="col-2 col-small-2">
-              ${quantity ? quantityHTML : ""}
+              ${quantity !== null ? quantityHTML : ""}
             </div>
             
             <div class="col-2 u-align--right ${
@@ -261,27 +261,36 @@ function productSelector() {
     const formQuantity = form.querySelector(
       'input[name="quantity"][data-stage="form"]'
     );
+    const validQuantity = input.reportValidity();
 
-    if ((formStage && input.value > 0) || (selectionStage && input.value > 0)) {
-      // form and selected quantities should sync when either is updated
-      state.set(input.name, [input.value]);
-      formQuantity.value = state.get("quantity")[0];
-    } else if (formStage || selectionStage) {
-      state.reset("quantity");
-      formQuantity.value = 0;
-    } else if (data.stage === "cart") {
-      // cart quantity
-      const products = state.get("cart");
+    if (validQuantity) {
+      if (
+        (formStage && input.value > 0) ||
+        (selectionStage && input.value > 0)
+      ) {
+        // form and selected quantities should sync when either is updated
+        state.set(input.name, [input.value]);
+        formQuantity.value = state.get("quantity")[0];
+      } else if (formStage || selectionStage) {
+        state.reset("quantity");
+        formQuantity.value = 0;
+      } else if (data.stage === "cart") {
+        // cart quantity
+        const products = state.get("cart");
 
-      products.forEach((product) => {
-        if (product.get("productId")[0] === data.productId) {
-          if (input.value < 0) {
-            product.set("quantity", ["0"]);
-          } else {
-            product.set("quantity", [input.value]);
+        products.forEach((product) => {
+          if (product.get("productId")[0] === data.productId) {
+            if (input.value < 0) {
+              product.set("quantity", ["0"]);
+            } else {
+              product.set("quantity", [input.value]);
+            }
           }
-        }
-      });
+        });
+      }
+    } else {
+      input.reportValidity();
+      state.reset("quantity");
     }
   }
 
