@@ -2,28 +2,34 @@
 
 {% block title %}Open source NFV platform for 5G{% endblock %}
 
-{% block meta_description %}Companies around the world rely on Ubuntu for secure open source solutions. We work with our customers to meet the highest security standards.{% endblock %}
+{% block meta_description %}Ubuntu is a leading platform in the telecommunications sector. Ubuntu powers telecommunications infrastructure of leading global service providers. Ubuntu is in the heart of the entire ETSI NFV stack, providing both NFVI and MANO, bringing operational costs down and ensuring the highest level of security. All of that at a competitive price.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/15FY_IaT39V81FQcoSoEJpmRRjBX80PJ7uxjgzHnDDws/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru is-dark is-deep">
+<section class="p-strip--suru is-dark">
   <div class="row u-equal-height">
     <div class="col-8 u-vertically-center">
       <h1>
-        Open source NFV platform for 5G
+        NFV and beyond
       </h1>
-      <p class="p-heading--four">
-        Innovative telcos use charms for 5G implementation
+      <p class="p-heading--three u-sv3">
+        Carrier-grade solutions for telcos
       </p>
       <p>
-        Reduce costs by migrating from legacy appliances to virtual network functions (VNFs). Get both NFVI and MANO up and running in days. Focus on your workloads rather than the platform and benefit from facilitated operations by using charms.
+      The entire NFV stack: NFVI/VIM, MANO, edge and IoT.
       </p>
       <p>
-        As an established leader in this area, Canonical has the experience to guide your 5G transformation.
+      Designed for both traditional VNFs and cloud-native CNFs.
+      </p>
+      <p class="u-sv3">
+      Cost-effective, secure, supported, fully-managed.
       </p>
       <p>
-        <a href="/openstack/contact-us" class="p-button--neutral js-invoke-modal">Contact us</a>
+        <a href="/openstack/contact-us" class="p-button--positive js-invoke-modal">Let's talk telco</a>
+      </p>
+      <p>
+        <a class="p-link--external p-link--inverted" href="https://www.brighttalk.com/webcast/6793/421898?utm_source=brighttalk-portal&utm_medium=web&utm_content=nfv,%20cloud-native&utm_campaign=webcasts-search-results-feed">Watch the webinar: “NFV, cloud-native networking and OSM: everything you need to know”</a>
       </p>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
@@ -32,39 +38,26 @@
         url="https://assets.ubuntu.com/v1/01a65abc-telecommunications-white.svg",
         alt="",
         height="341",
-        width="325",
+        width="330",
         hi_def=True,
-        loading="auto"
+        loading="lazy"
         ) | safe
       }}
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip">
   <div class="u-fixed-width">
-    <h2 class="p-muted-heading u-no-max-width">PROVEN IN THE FIELD - OUR TELCO CUSTOMERS</h2>
+    <h2 class="p-muted-heading u-no-max-width u-align--center">TRUSTED BY LEADING SERVICE PROVIDERS, GLOBALLY</h2>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
         {{
           image(
-          url="https://assets.ubuntu.com/v1/022f6f41-logo-bt.png",
-          alt="BT",
-          height="88",
-          width="88",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"}
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/25de1877-Tele2.svg",
-          alt="Tele2",
-          height="35",
-          width="90",
+          url="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg",
+          alt="AT&T",
+          height="120",
+          width="120",
           hi_def=True,
           loading="lazy",
           attrs={"class": "p-inline-images__logo"}
@@ -87,6 +80,19 @@
       <li class="p-inline-images__item">
         {{
           image(
+          url="https://assets.ubuntu.com/v1/5a9dfd45-Liberty-Global-Logo.png",
+          alt="Liberty Global",
+          height="160",
+          width="160",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
           url="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg",
           alt="Deutshe Telekom",
           height="29",
@@ -100,8 +106,47 @@
       <li class="p-inline-images__item">
         {{
           image(
-          url="https://assets.ubuntu.com/v1/b6e008be-Colt-Logo.svg",
-          alt="Colt",
+          url="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg",
+          alt="BT",
+          height="75",
+          width="75",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/88730cec-Telefonica.png",
+          alt="Telefonica",
+          height="75",
+          width="100",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/25de1877-Tele2.svg",
+          alt="Tele2",
+          height="35",
+          width="90",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/73135672-ntt-logo.svg",
+          alt="NTT",
           height="40",
           width="100",
           hi_def=True,
@@ -126,10 +171,10 @@
       <li class="p-inline-images__item">
         {{
           image(
-          url="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg",
-          alt="AT&T",
-          height="88",
-          width="88",
+          url="https://assets.ubuntu.com/v1/57eb4484-NTT_DoCoMo_logo.svg",
+          alt="Docomo",
+          height="32",
+          width="120",
           hi_def=True,
           loading="lazy",
           attrs={"class": "p-inline-images__logo"}
@@ -139,10 +184,10 @@
       <li class="p-inline-images__item">
         {{
           image(
-          url="https://assets.ubuntu.com/v1/9ca791fd-Sky_Logo_seit_Dezember_2015.png",
-          alt="Sky",
-          height="63",
-          width="90",
+          url="https://assets.ubuntu.com/v1/3218bf54-Verizon_2015_logo_-vector.svg",
+          alt="Verizon",
+          height="30",
+          width="100",
           hi_def=True,
           loading="lazy",
           attrs={"class": "p-inline-images__logo"}
@@ -151,11 +196,453 @@
       </li>
     </ul>
   </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator">
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2 class="u-sv3">Smart operations, reduced TCO</h2>
+      <p>
+        The biggest promise behind NFV transformation is TCO reduction. Canonical fulfils that promise.
+      </p>
+      <p>
+        Designed with economics in mind, Canonical’s solutions for telecommunications ensure ROI, providing first class quality at the same time.
+      </p>
+      <p>
+        Move from legacy hardware-based appliances to software-based network services and benefit from cost savings and increased flexibility.
+      </p>
+      <p class="u-sv2">
+        Save costs by operating your infrastructure and applications the smart way, ensuring full automation from day 0 to day N.
+      </p>
+      <p>
+        <a  href="/tco-calculator">Check the pricing of NFV infrastructure on Ubuntu&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/c0e765e4-save-time-money-icon-lrg.svg",
+        alt="",
+        height="260",
+        width="245",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
   </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/4e20332d-mission+critical+support.svg",
+        alt="",
+        height="220",
+        width="355",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h2 class="u-sv3">NFV solutions for 4G, 5G and beyond</h2>
+      <p>
+        Selected by leading global service providers as a vendor for their 5G infrastructure implementation, Canonical is constantly looking above and beyond.
+      </p>
+      <p>
+        As a proud member of ETSI, OSM, OPNFV and CNTT communities Canonical helps the entire telco market tackle new challenges by driving innovation in telecommunications.
+      </p>
+      <p class="u-sv2">
+        Being involved in the NFV wave since its very early beginning, Canonical helps telcos with their 4G and 5G implementation.
+      </p>
+      <p>
+        <a  href="/blog/bt-turns-to-canonical-ubuntu-to-enable-next-generation-5g-cloud-core">Read the blog - "BT turns to Canonical Ubuntu to enable next generation 5G Cloud Core"&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2 class="u-sv3">Optimised for edge workloads</h2>
+      <p>
+        Take off on the edge by using a bullet proof infrastructure stack designed for running workloads aligned with RAN and MEC technologies.
+      </p>
+      <p>
+        Benefit from full automation, maximum security and a reduced footprint optimised for the edge hardware.
+      </p>
+      <p class="u-sv2">
+        In response to increasing demands for high bandwidth and low latency, Canonical provides comprehensive solutions for both near and far edge. From micro clouds to devices.
+      </p>
+      <p>
+        <a  href="/engage/edge-month">Watch a series of webinars about Canonical's solutions for the edge&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/a84416b2-IoT-gateways-on-ubuntu.svg",
+        alt="",
+        height="400",
+        width="680",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-10">
+      <h2 class="u-sv3">The entire NFV stack</h2>
+      <p>
+        NFVI and MANO are based on established open source technologies, designed for hosting mission-critical VNFs and CNFs with the most demanding performance and security requirements.
+      </p>
+      <div class="u-align--center u-hide--small u-sv4">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/adca64ed-Untitled.png",
+        alt="",
+        height="450",
+        width="800",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <p>
+        <a href="/openstack/contact-us" class="p-button--positive">Download datasheet</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-9">
+      <h2 class="u-sv3">NFV infrastructure based on OpenStack and Kubernetes</h2>
+      <p>
+        Fully automated deployments and operations. Competitive pricing. 100% open source. This is what makes Canonical’s <a href="/openstack">Charmed OpenStack</a> and <a href="/kubernetes">Charmed Kubernetes</a> the most economical NFVI/VIM platform on the market.
+      </p>
+      <p class="u-sv2">
+        Operate with confidence: <a href="/support">supported</a> or <a href="/openstack/managed">fully-managed</a>. Get HA everywhere, an integrated LMA stack, data protection, choices of SDN and storage, production-grade SLAs and more.
+      </p>
+      <p>
+        <a href="/engage/charmed-openstack-adoption-whitepaper" class="p-link">Read the whitepaper - "A guide to a successful OpenStack adoption and deployment"&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-9">
+      <h2 class="u-sv3">Network functions management and orchestration with OSM</h2>
+      <p>
+        Supported by 15+ global service providers, the OSM project enables telcos with management and orchestration capabilities for their VNFs and CNFs.
+      </p>
+      <p class="u-sv2">
+        Designed for any type of workload: physical, virtual and containerised; open source and proprietary.
+      </p>
+      <p>
+        <a class="p-link--external" href="/engage/charmed-openstack-adoption-whitepaper" class="p-link">Learn more about OSM&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row u-sv3">
+    <h2 class="p-muted-heading u-no-max-width u-align--center">SEE WHAT OUR CUSTOMERS SAY ABOUT US:</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <blockquote class="p-pull-quote  has-image">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/0143bd92-AT%26T_logo_2016.svg",
+          alt="AT&amp;T",
+          height="32",
+          width="78",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-pull-quote__image"}
+          ) | safe
+        }}
+        <p class="p-pull-quote__quote">
+          We&rsquo;re reinventing how we scale by becoming simpler and modular, similar to how applications have evolved in cloud data centers. Open source and OpenStack innovations represent a unique opportunity to meet these requirements and Canonical&rsquo;s cloud and open source expertise make them a good choice for AT&amp;T.
+        </p>
+        <cite class="p-pull-quote__citation">
+          Toby Ford, Assistant Vice President of Cloud Technology, Strategy and Planning at AT&amp;T
+        </cite>
+      </blockquote>
+    </div>
+    <div class="col-6 p-divider__block">
+      <blockquote class="p-pull-quote  has-image">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/c2b1de52-BT_logo.svg",
+          alt="BT",
+          height="32",
+          width="66",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-pull-quote__image"}
+          ) | safe
+        }}
+        <p class="p-pull-quote__quote">
+          Canonical is providing us with the ‘cloud-native’ foundation that enables us to create a smart and fully converged network. Utilising open source and best-of-breed technologies will ensure we can deliver on our convergence vision, and enable a world-leading 5G and FTTP experience for our customers.
+        </p>
+        <cite class="p-pull-quote__citation">
+          Neil J. McRae, BT Group Chief Architect
+        </cite>
+        <p>
+        <a href="/blog/bt-turns-to-canonical-ubuntu-to-enable-next-generation-5g-cloud-core" class="p-link">Read the announcement&nbsp;&rsaquo;</a>
+        </p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2 class="u-sv3">Near edge: micro clouds</h2>
+      <p>
+        On the near edge, where it is not possible to run full NFVI with OpenStack due to limited resources, Canonical helps telcos to get most out of their hardware. In such environments a micro cloud is the way to go.
+      </p>
+      <p>
+        Run and remotely manage physical, virtualised and containerised workloads in a fully automated way with a minimal footprint.
+      </p>
+      <p>
+        <a class="p-link--external" href="https://maas.io">MAAS</a>, <a class="p-link--external" href="https://linuxcontainers.org">LXD</a>, <a class="p-link" href="/ceph">Ceph</a> and <a class="p-link--external" href="https://microk8s.io">MicroK8s</a>. Proper tools for serious workloads.
+      </p>
+      <p>
+        <a></a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/76174475-pasted+image+0.png",
+        alt="",
+        height="230",
+        width="360",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/d40fc8b9-Internet+of+Things_digital-gateways.svg",
+        alt="",
+        height="280",
+        width="320",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h2 class="u-sv3">Far edge: gateways, networking, digital signage and more</h2>
+      <p>
+        Avoid device lock and benefit from fully automated updates and operations by using an embedded version of the Ubuntu operating system - <a href="/core">Ubuntu Core</a>. 
+      </p>
+      <p>
+        Gateways, network devices and digital signage. Designed for devices with limited hardware resources, Ubuntu Core is both lightweight and robust.
+      </p>
+      <p class="u-sv2">
+        Fully hardened OS. Automated remote updates. Both virtualised and containerised workloads supported.
+      </p>
+      <p>
+        <a  href="/engage/ubuntu-core-security-audit">Read the whitepaper: "Ubuntu Core: a cybersecurity analysis"&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2 class="u-sv3">VNF onboarding: virtualised or cloud-native</h2>
+      <p>
+        Dedicated to supporting the entire NFV stack, Canonical partners with leading telecommunications vendors to onboard their VNFs and CNFs on OpenStack/Kubernetes.
+      </p>
+      <p>
+        Virtualised or cloud-native. Performance-optimised and secure. Real telco workloads are our business.
+      </p>
+      <p class="u-sv2">
+        5G core, vEPC, vIMS, vCPE, vPE and more.
+      </p>
+      <p>
+        <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/421898?utm_source=brighttalk-portal&utm_medium=web&utm_content=nfv,%20cloud-native&utm_campaign=webcasts-search-results-feed">Watch the webinar: “NFV, cloud-native networking and OSM: everything you need to know”</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/25c42877-simplified-software-management-2.svg",
+        alt="",
+        height="300",
+        width="300",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/634e6b0b-5A-Delta+updates.svg",
+        alt="",
+        height="250",
+        width="380",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h2 class="u-sv3">Best NFV performance</h2>
+      <p>
+        Driven by the requirements of the industry, Canonical’s <a href="/openstack">Charmed OpenStack</a> and <a href="/kubernetes">Charmed Kubernetes</a> support all necessary performance extensions to run software-based network services for telco workloads:
+      </p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">100 Gbps networking</li>
+        <li class="p-list__item is-ticked">OVS hardware offloading</li>
+        <li class="p-list__item is-ticked">SR-IOV</li>
+        <li class="p-list__item is-ticked">DPDK</li>
+        <li class="p-list__item is-ticked">CPU pinning</li>
+        <li class="p-list__item is-ticked">NUMA topology</li>
+        <li class="p-list__item is-ticked">Hugepages</li>
+        <li class="p-list__item is-ticked">PCI passthrough</li>
+        <li class="p-list__item is-ticked">GPU passthrough</li>
+      </ul>
+      <p>
+        <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/408805?utm_source=brighttalk-portal&utm_medium=web&utm_content=openstack%20ussuri&utm_campaign=webcasts-search-results-feed">Learn about the latest performance improvements in OpenStack Ussuri</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2 class="u-sv3">The highest level of security</h2>
+      <p>
+        Ubuntu is the most secure enterprise Linux distribution, providing security out of the box with up to 10 years of security updates.
+      </p>
+      <p class="u-sv2">
+        Run your NFV infrastructure and applications with confidence. Benefit from the highest level of security provided by data encryption on the fly and at rest, infrastructure stack hardening, containerised control plane, Kernel Livepatch service, and more.
+      </p>
+      <p>
+        <a href="/engage/kata-containers-webinar">Watch the webinar - "Ensuring security and isolation in Kubernetes with Kata Containers"&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/c53664cd-Security_updates.svg",
+        alt="",
+        height="205",
+        width="360",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
+        alt="",
+        height="270",
+        width="270",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h2 class="u-sv3">Full telco stack support</h2>
+      <p>
+        One subscription to support all parts of the infrastructure: from operating system to containers.
+      </p>
+      <p>
+      Predictable and competitive pricing.
+      </p>
+      <p>
+      True telco-grade support:
+      </p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Aggressive SLAs</li>
+        <li class="p-list__item is-ticked">24/7 phone and ticket support</li>
+        <li class="p-list__item is-ticked">Landscape on-prem management system</li>
+        <li class="p-list__item is-ticked">Knowledgebase access</li>
+        <li class="p-list__item is-ticked">Fully-managed service option</li>
+      </ul>
+      <p>
+        <a href="/support">Get commercial support for Ubuntu&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h2 class="u-sv3">Straightforward compliance</h2>
+      <p>
+        Confidently integrate open source components into your proprietary solutions. Source identification for all software components, all the time.
+      </p>
+      <p class="u-sv2">
+        Simplify compliance. Streamline certification. Protect innovation. CIS and DISA/STIG benchmarks. Common Criteria and GDPR certified.
+      </p>
+      <p>
+        <a href="/engage/ubuntu-compliance">Watch the webinar - "Securing the enterprise: how Ubuntu is at the forefront of security & compliance"&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/c7274075-compliance.svg",
+        alt="",
+        height="205",
+        width="360",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered is-deep">
   <div class="u-fixed-width">
-    <h2 class="p-muted-heading u-no-max-width">OPEN SOURCE COMES THROUGH CONTRIBUTION - PROGRAMS WE ARE PROUD TO BE PART OF</h2>
+    <h2 class="p-muted-heading u-no-max-width u-align--center">OPEN SOURCE COMES THROUGH CONTRIBUTION - PROGRAMS WE ARE PROUD TO BE PART OF</h2>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
         {{
@@ -164,19 +651,6 @@
           alt="ETSI",
           height="88",
           width="88",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"}
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/4a8b06e9-onap_logo.png",
-          alt="ONAP",
-          height="88",
-          width="144",
           hi_def=True,
           loading="lazy",
           attrs={"class": "p-inline-images__logo"}
@@ -212,62 +686,10 @@
       <li class="p-inline-images__item">
         {{
           image(
-          url="https://assets.ubuntu.com/v1/5ac9bab5-logo_cord-1.png",
-          alt="CORD",
-          height="88",
-          width="144",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"}
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/9e564bf9-open-baton.png",
-          alt="Open Baton",
-          height="30",
-          width="120",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"}
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/9635c8f7-opencompute-logo-green.png",
-          alt="Open Compute",
-          height="58",
-          width="144",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"}
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/eeae998a-telecominfraproject-logo.svg",
-          alt="Telecom Infra Project",
-          height="23",
-          width="144",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"}
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/061ffe4a-onf-logo.jpg",
-          alt="ONF",
-          height="85",
-          width="144",
+          url="https://assets.ubuntu.com/v1/3409bb95-OpenStack-Logo-Vertical-white.svg",
+          alt="Open Source MANO",
+          height="78",
+          width="185",
           hi_def=True,
           loading="lazy",
           attrs={"class": "p-inline-images__logo"}
@@ -278,451 +700,212 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>
-        Why NFV?
-      </h2>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Reduce CAPEX and OPEX costs by using virtualisation and containerisation technologies.</li>
-        <li class="p-list__item is-ticked">Benefit from automation and reduce the time required to deploy your infrastructure from months to days.</li>
-        <li class="p-list__item is-ticked">Use a DevOps approach to operate your infrastructure.</li>
-        <li class="p-list__item is-ticked"> Benefit from simplified operations. Stay ahead of your competition by operating at the technology edge.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>
-        NFV done right
-      </h2>
-      <p>
-        Follow these 4 basic steps to roll-out your NFV stack:
-      </p>
-    </div>
-  </div>
+<section class="p-strip is-deep">
   <div class="u-fixed-width">
-    <ol class="p-stepped-list">
-      <li class="p-stepped-list__item">
-        <div class="row u-equal-height">
-          <div class="col-8">
-            <h3 class="p-stepped-list__title">
-              Design
-            </h3>
-            <p>Talk to an expert from Canonical. Designing NFV requires deep technical knowledge. Benefit from the cloud-native framework developed by Canonical and used by leading telecommunications companies.</p>
-          </div>
-          <div class="col-4 u-align--center u-vertically-center u-hide--small">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/f5d56df2-OpenStack-consulting+design.svg",
-              alt="",
-              height="96",
-              width="134",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <div class="row u-equal-height">
-          <div class="col-8">
-            <h3 class="p-stepped-list__title">
-              Model
-            </h3>
-            <p>Use Juju to model your platform. Declare what to build. Juju can be used for both NFVI and MANO implementation.</p>
-          </div>
-          <div class="col-4 u-align--center u-vertically-center u-hide--small">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
-              alt="",
-              height="96",
-              width="134",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <div class="row u-equal-height">
-          <div class="col-8">
-            <h3 class="p-stepped-list__title">
-              Build
-            </h3>
-            <p>Let Juju build the platform for you. Forget the "How to build?" question. Benefit from the intelligence provided by charms and the declarative DevOps approach.</p>
-          </div>
-          <div class="col-4 u-align--center u-vertically-center u-hide--small">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/0cfe6c2d-build.svg",
-              alt="",
-              height="96",
-              width="134",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <div class="row">
-          <div class="col-8">
-            <h3 class="p-stepped-list__title">
-              Operate
-            </h3>
-            <p>Use Juju to orchestrate your workloads and operate the platform. Build fully-functional lifecycle management framework around Juju and charms.</p>
-          </div>
-          <div class="col-4 u-align--center u-vertically-center u-hide--small">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/ada1d5b5-operate.svg",
-              alt="",
-              height="96",
-              width="134",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-        </div>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>
-        The simplicity comes from the charms
-      </h2>
-      <p>
-        Implementing NFV is never again going to be a nightmare. By using smart software components called charms, telecommunications companies can reduce the time required to deploy NFVI and MANO from months to days. Charms can also significantly simplify daily operational tasks such as upgrades or backups. Implement your service orchestration and lifecycle management framework based on charms and benefit from full automation and extreme agility.
-      </p>
-      <p>
-        <a href="/blog/declarative-vs-imperative-devops-done-right">Read more about the benefits of using charms&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-8 u-sv4">
-      <h2>
-        Build ETSI compliant NFVI and MANO with charms
-      </h2>
-      <p>
-        By supporting a variety of charmed applications, Juju can be successfully used for the implementation of the network core (vEPC or 5G Core). While Charmed OpenStack and Charmed Kubernetes are designed for NFVI / VIM, OSM implements MANO - VNFs onboarding and orchestration.
-      </p>
-    </div>
-  </div>
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      <h3>
-        Charmed OpenStack
-      </h3>
-      <p>
-        <a class="p-link--external" href="https://www.openstack.org/">OpenStack</a> is a core component of an open source NFVI. It provides the IaaS (Infrastructure-as-a-Service) functionality which allows you to launch virtual machines from the self-service portal. It is a cloud operating system which allows organisations to manage large pools of distributed compute, network and storage resources in a data center. With the help of charms you can get OpenStack up and running with all necessary performance extensions (SR-IOV, DPDK, CPU pinning and more) in minutes.
-      </p>
-      <p>
-        <a class="p-button" href="https://jaas.ai/openstack">
-          <span class="p-link--external">
-            Learn more about Charmed OpenStack
-          </span>
-        </a>
-      </p>
-      <p>
-        <a href="/engage/charmed-openstack-adoption-whitepaper">Read the whitepaper - “A guide to a successful OpenStack adoption and deployment”&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-4 u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/95212c08-OpenStack_Logo_2016.svg",
-        alt="",
-        height="106",
-        width="220",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-  <div class="row u-vertically-center">
-    <div class="col-4 u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/767f38a4-kubernetes-stacked-color.svg",
-        alt="",
-        height="156",
-        width="200",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-8">
-      <h3>
-        Charmed Kubernetes
-      </h3>
-      <p>
-        While OpenStack allows you to launch virtual machines, <a class="p-link--external" href="https://kubernetes.io/">Kubernetes</a> allows you to launch containers. With the increasing adoption of microservice-based cloud-native Container Network Functions (CNFs), the importance of Kubernetes is constantly growing. Kubernetes is usually deployed on top of OpenStack, but you can deploy it on bare metal too. Together with OpenStack, Kubernetes is a key component of the <a class="p-link--external" href="https://www.opnfv.org/">OPNFV</a> architecture. Like OpenStack, you can get Kubernetes up and running with the charms.
-      </p>
-      <p>
-        <a class="p-button" href="https://jaas.ai/kubernetes">
-          <span class="p-link--external">
-            Get Charmed Kubernetes
-          </span>
-        </a>
-      </p>
-      <p>
-        <a href="/engage/kata-containers-webinar">
-          Watch the webinar - “Ensuring security and isolation in Kubernetes with Kata Containers”&nbsp;&rsaquo;
-        </a>
-      </p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      <h3>
-        Charmed OSM
-      </h3>
-      <p>
-        <a class="p-link--external" href="https://osm.etsi.org/
-        ">OSM</a> is an open-source implementation of the ETSI NFV MANO (MANagement and Orchestration) stack. It was founded by ETSI and is fully aligned with ETSI NFV Information Models. OSM allows Telecommunications Service Providers (TSPs) to move from traditional, legacy networking services to cloud-native network functions and accelerates their NFV transformation. OSM assists with network functions onboarding and orchestration in physical, virtual, containerised and hybrid environments, as required in modern telco networks.
-      </p>
-      <p>
-        <a class="p-button" href="https://charmed-osm.com">
-          <span class="p-link--external">
-            Explore Charmed OSM
-          </span>
-        </a>
-      </p>
-      <p>
-        <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/379298">
-          Watch the webinar - "How using Charmed OSM helps telcos to accelerate their NFV transformation"
-        </a>
-      </p>
-    </div>
-    <div class="col-4 u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/176a11dd-opensource-MANO.svg",
-        alt="",
-        height="90",
-        width="250",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-8 u-sv4">
-      <h2>
-        Opportunities at the edge
-      </h2>
-      <p>
-        From vCPE to IoT devices, Canonical offers solutions required for the implementation of the network edge.
-      </p>
-    </div>
+    <h2>Learn more</h2>
+    <p class="p-heading--four u-sv3">
+      Explore how Canonical’s solutions accelerate the NFV transformation.
+    </p>
   </div>
 
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      <h3>
-        MicroK8s
-      </h3>
-      <p>
-        Designed for edge appliances with limited hardware resources, MicroK8s provides the "Kubernetes at the edge" possibility. With MicroK8s you can get the smallest, fastest Kubernetes cluster up and running in seconds! By using Charmed Kubernetes in the network core and MicroK8s at the edge, you can rely on the same upstream platform for running your VNF workloads.
-      </p>
-      <p>
-        <a class="p-button" href="https://microk8s.io/">
-          <span class="p-link--external">
-            Learn more about MicroK8s
-          </span>
-        </a>
-      </p>
-      <p>
-        <a  class="p-link--external" href="https://www.brighttalk.com/webcast/6793/362200/using-kubernetes-at-the-edge-architecture-tools-for-edge-clouds-and-devices">Watch the webinar - “Using Kubernetes at the edge”</a>
-      </p>
-    </div>
-    <div class="col-4 u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/9309d097-MicroK8s_SnapStore_icon.svg",
-        alt="",
-        height="150",
-        width="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-  <div class="row u-vertically-center">
-    <div class="col-4 u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/77c24034-maas-logo.svg",
-        alt="",
-        height="65",
-        width="200",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-8">
-      <h3>
-        MAAS
-      </h3>
-      <p>
-        Your edge appliances will never have to be provisioned with an on-site assistance again. Although designed for data centers, MAAS (Metal-As-A-Service) is an alluring opportunity for the network edge. Deploy it once and benefit from remote devices provisioning all over the time.
-      </p>
-      <p>
-        <a class="p-button" href="https://maas.io/">
-          <span class="p-link--external">
-            Learn more about MAAS
-          </span>
-        </a>
-      </p>
-      <p>
-        <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/362201/maas-at-the-edge-the-importance-of-bare-metal-provisioning-in-edge-computing">Watch the webinar - “MAAS at the edge”</a>
-      </p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-  <div class="row u-vertically-center">
-    <div class="col-8">
-      <h3>
-        Ubuntu Core
-      </h3>
-      <p>
-        Avoid device lock-in by using the secure embedded operating system for IoT - Ubuntu Core. Designed for appliances with limited hardware resources, Ubuntu Core is lightweight and robust.
-      </p>
-      <p>
-        <a class="p-button" href="/core">
-          Learn more about Ubuntu Core
-        </a>
-      </p>
-      <p>
-        <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/339167?utm_source=Takeover&utm_medium=Takeover&utm_campaign=FY19_IOT_UbuntuCore_WBN_Core%2018">Watch the webinar - “An Introduction to Ubuntu Core 18”</a>
-      </p>
-    </div>
-    <div class="col-4 u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/805f2b3a-core_black-orange_st_hex.svg",
-        alt="",
-        height="135",
-        width="100",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>
-        Ready for 5G transformation?
-      </h2>
-      <p>
-        Get your NFV platform up and running today.
-      </p>
-      <p>
-        <a href="/openstack/contact-us" class="p-button--positive js-invoke-modal">Talk to an expert</a>
-      </p>
-    </div>
-    <div class="col-4 u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-        alt="",
-        height="178",
-        width="250",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
   <div class="row p-divider">
-    <div class="col-6 p-divider__block">
-      <blockquote class="p-pull-quote  has-image">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/c2b1de52-BT_logo.svg",
-          alt="BT",
-          height="32",
-          width="66",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-pull-quote__image"}
-          ) | safe
-        }}
-        <p class="p-pull-quote__quote">
-          Canonical is providing us with the ‘cloud-native’ foundation that enables us to create a smart and fully converged network. Utilising open source and best-of-breed technologies will ensure we can deliver on our convergence vision, and enable a world-leading 5G and FTTP experience for our customers.
-        </p>
-        <cite class="p-pull-quote__citation">
-          Neil J. McRae, BT Group Chief Architect
-        </cite>
-      </blockquote>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Webinar</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/421898?utm_source=brighttalk-portal&utm_medium=web&utm_content=nfv,%20cloud-native&utm_campaign=webcasts-search-results-feed">NFV, cloud-native networking and OSM: everything you need to know</a></h3>
     </div>
-    <div class="col-6 p-divider__block">
-      <blockquote class="p-pull-quote  has-image">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/0143bd92-AT%26T_logo_2016.svg",
-          alt="AT&amp;T",
-          height="32",
-          width="78",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-pull-quote__image"}
-          ) | safe
-        }}
-        <p class="p-pull-quote__quote">
-          We&rsquo;re reinventing how we scale by becoming simpler and modular, similar to how applications have evolved in cloud data centers. Open source and OpenStack innovations represent a unique opportunity to meet these requirements and Canonical&rsquo;s cloud and open source expertise make them a good choice for AT&amp;T.
-        </p>
-        <cite class="p-pull-quote__citation">
-          Toby Ford, Assistant Vice President of Cloud Technology, Strategy and Planning at AT&amp;T
-        </cite>
-      </blockquote>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/f6d6f78b-Case+study.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Blog</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a href="/blog/5g-core-implementation-challenges-in-the-field">5G Core implementation: Challenges in the field&nbsp;&rsaquo;</a></h3>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Whitepaper</h4>
+        </div>
+      </div>
+      <h3 class="p-heading--four"><a href="/engage/charmed-openstack-adoption-whitepaper">A guide to a successful OpenStack adoption and deployment&nbsp;&rsaquo;</a></h3>
     </div>
   </div>
 </section>
+
+<section class="p-strip--light is-deep">
+  <div class="u-fixed-width">
+    <h2>Innovate in telecommunications with Canonical</h2>
+    <p class="p-heading--four u-sv3">
+      The experts in open source operations, from cloud to devices are waiting to help you on your journey.
+    </p>
+  </div>
+
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+        <div class="u-align--center">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/f22f6ded-get-in-touch_chat.svg",
+            alt="",
+            width="75",
+            height="73",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": ""},
+            ) | safe
+          }}
+      </div>
+      <br />
+      <h3 class="p-heading--four u-align--center">Get an immediate answer to your questions through LiveChat</h3>
+    </div>
+    <div class="col-4 p-divider__block">
+        <div class="u-align--center">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
+            alt="",
+            width="120",
+            height="87",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": ""},
+            ) | safe
+          }}
+      </div>
+      <br />
+      <h3 class="p-heading--four u-align--center"><a href="/telecommunications#get-in-touch">Tell us your story&nbsp;&rsaquo;</a></h3>
+    </div>
+    <div class="col-4 p-divider__block">
+        <div class="u-align--center">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/e9d3cf66-We+support+your+operations.svg",
+            alt="",
+            width="85",
+            height="80",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": ""},
+            ) | safe
+          }}
+      </div>
+      <br />
+      <h3 class="p-heading--four u-align--center"><a href="/telecommunications#get-in-touch">Schedule a call with a telco expert&nbsp;&rsaquo;</a></h3>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep is-bordered">
+  <div class="u-fixed-width">
+    <h2>Engage your favourite GSI partner</h2>
+    <p>Canonical partners with leading global system integrators to deliver best-in-class solutions for the telecommunications industry.</p>
+    <ul class="p-inline-images">
+      <li class="p-inline-images__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/118404f2-partner-logo-hp.svg",
+          alt="Hewlett Packard",
+          height="110",
+          width="200",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/68f6eff5-atos+logo.jpg",
+          alt="Atos",
+          height="48",
+          width="100",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/5a9dfd45-Liberty-Global-Logo.png",
+          alt="Liberty Global",
+          height="160",
+          width="160",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg",
+          alt="Deutshe Telekom",
+          height="29",
+          width="130",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg",
+          alt="BT",
+          height="75",
+          width="75",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logo"}
+          ) | safe
+        }}
+      </li>
+    </ul>
+  </div>
+</section>
+
 
 {% with first_item="_cloud_nfv", second_item="_cloud_newsletter", third_item="_telco_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
