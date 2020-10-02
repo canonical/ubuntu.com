@@ -98,7 +98,7 @@ For a full list of the changes introduced in Kubernetes 1.19, please see the
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
-[https://launchpad.net/charmed-kubernetes/+milestone/1.19](https://launchpad.net/charmed-kubernetes/+milestone/1.18).
+[https://launchpad.net/charmed-kubernetes/+milestone/1.19](https://launchpad.net/charmed-kubernetes/+milestone/1.19).
 
 ## Notes / Known Issues
 
