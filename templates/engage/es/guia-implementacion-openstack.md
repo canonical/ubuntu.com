@@ -3,7 +3,7 @@ wrapper_template: "engage/_base_engage_markdown.html"
 context:
   title: "Guía para la implementación de OpenStack"
   meta_description: "Aprende cómo las empresas pueden superar los desafíos de implementación de OpenStack siguiendo un proceso de adopción probado."
-  meta_image: "https://assets.ubuntu.com/v1/af8096ad-facebook_and_linkedin_banner.jpeg"
+  meta_image: "https://assets.ubuntu.com/v1/60814879-facebook_and_linkedin_banner+%285%29.jpeg"
   meta_copydoc: "https://docs.google.com/document/d/1nyF_VA2b5K-Un_Ty9LJBo3Ph4taMlUxv7RdoN4W6ngk/edit"
   header_title: "Guía para la implementación de OpenStack"
   header_subtitle: "Descubre el probado proceso de implementación de OpenStack de Canonical"
