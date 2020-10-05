@@ -546,13 +546,13 @@ function handlePaymentMethodResponse(data) {
   } else if (data.paymentMethod && !currentTransaction.accountId) {
     // the user is a guest, get them a guest account to make
     // purchases with and then continue
-    getPurchaseAccount(customerInfo.email, data.paymentMethod.id).then(
-      (data) => {
-        currentTransaction.accountId = data.accountID;
-        applyTotals();
-        attachCustomerInfoToStripeAccount(data.paymentMethod);
-      }
-    );
+    const paymentMethod = data.paymentMethod;
+
+    getPurchaseAccount(customerInfo.email, paymentMethod.id).then((data) => {
+      currentTransaction.accountId = data.accountID;
+      applyTotals();
+      attachCustomerInfoToStripeAccount(paymentMethod);
+    });
   } else {
     const errorObject = parseForErrorObject(data.error);
 
