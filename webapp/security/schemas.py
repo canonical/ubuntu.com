@@ -98,6 +98,19 @@ class NoticeSchema(Schema):
     )
 
 
+# Release
+# --
+class ReleaseSchema(Schema):
+    name = String(required=True)
+    version = String(required=True)
+    codename = String(required=True)
+    lts = Boolean(required=True)
+    development = Boolean(required=True)
+    release_date = ParsedDateTime(required=True)
+    esm_expires = ParsedDateTime(required=True)
+    support_expires = ParsedDateTime(required=True)
+
+
 # CVEs
 # --
 class Status(Schema):
