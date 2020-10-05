@@ -9,18 +9,24 @@
 <section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="p-strip--suru-topped">
     <div class="row u-equal-height">
-      <div class="col-7">
-        <h1>What is Kubeflow?</h1>
-        <p>Kubeflow is an open source artificial intelligence/machine learning (AI/ML) tool that helps improve deployment, portability and management of AI/ML models. Kubeflow allows users to quickly create, train and tune neural networks within Kubernetes for dynamic resource provisioning.</p>
-        <p>Kubeflow works well with TensorFlow and other modern AI/ML frameworks such as PyTorch, MXNet and Chainer allowing users to enhance their existing code and setup.</p>
+      <div class="col-6">
+        <h1 class="u-sv2">What is Kubeflow?</h1>
+        <p class="p-heading--4">Kubeflow is the open source machine learning toolkit on top of Kubernetes. </p>
+        <p class="u-sv3">Kubernetes is the industry standard for software delivery at scale and Kubeflow provides the cloud-native interface between K8s and data science tools - libraries, frameworks, pipelines, notebooks - bringing the Ops to ML.</p>
+        <p>
+          <a class="p-button--positive" href="/kubeflow/install">
+          Try Kubeflow
+          </a>
+          <a class="p-link--external" href="https://jaas.ai/kubeflow">Kubeflow operators</a>
+        </p>
       </div>
-      <div class="col-4 col-start-large-9 u-vertically-center u-align--center u-hide--small">
+      <div class="col-4 col-start-large-8 u-vertically-center u-align--center u-hide--small">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/b1f04506-Kubeflow-Logo-RGB.svg",
+            url="https://assets.ubuntu.com/v1/da5a7c9e-Kubeflow-Logo.svg",
             alt="",
-            height="70",
-            width="300",
+            height="230",
+            width="230",
             hi_def=True,
             loading="auto",
           ) | safe
@@ -30,88 +36,43 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Community and governance</h2>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <p>Governed by the Kubeflow community and originated by Google, the project has over 2,000 community members,  more than 180 direct code contributors and over 28,000 contributors. Canonical is an active member of the Kubeflow community and strongly believes in its role in democratising AI/ML by making model training and deployment as frictionless as possible.</p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <figure class="u-no-margin">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/aa8145e8-what+is+kubeflow+-+outlined.svg",
-          alt="",
-          height="274",
-          width="800",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-      <figcaption>
-        Effort scale of the different areas required to train, deploy and manage AI/ML projects. Boxes in blue are improved by Kubeflow.
-      </figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2>Software-defined Machine Learning Operations (MLOps)</h2>
-  </div>
-  <div class="row">
-    <div class="col-7">
-      <p>For a business, the ability to define machine learning environments through code and APIs enables fast-paced automation and minimisation of MLOps costs. Kubeflow includes the ability to manage and reuse machine learning pipelines, hyper-parameter optimisations and Kubernetes serving configurations. Kubeflow’s servicing systems have been designed to be multi-framework compatible in order to allow for interoperability with TensorFlow, <a href="https://xgboost.ai/">XGBoost</a>, <a href="https://scikit-learn.org/">scikit-learn</a>, <a href="https://developer.nvidia.com/tensorrt">NVIDIA TensorRT Inference Server</a>, <a href="https://onnx.ai/">ONNX</a> and <a href="https://pytorch.org/">PyTorch</a>.  Similarly, Kubeflow allows execution graph manipulation, analytics and auto- scaling.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-5 u-align--center u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-          alt="",
-          height="200",
-          width="281",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-7 u-vertically-center">
-      <div>
-        <h2>Is Kubeflow the right AI/ML tool for your business?</h2>
-        <p class="u-no-margin--bottom"><a href="/support/contact-us" class="js-invoke-modal p-button--positive">Ask the experts</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-7">
-      <h2>Companies involved in Kubeflow</h2>
-      <p>Kubeflow was originally released in March 2018 by Google as an open source initiative to develop machine learning applications using TensorFlow on top of Kubernetes to minimise MLOps effort.</p>
-      <p>Today, dozens of companies contribute to Kubeflow with many more playing a part in the broader community. Canonical is focused on making it as friction-less as possible to get setup with Kubeflow and run daily operations with it.</p>
-    </div>
-  </div>
-</section>
-<section class="p-strip is-shallow">
-  <div class="u-fixed-width">
+<section class="p-strip--light u-no-padding--bottom">
+  <div>
     <h2 class="p-muted-heading u-align--center">Contributors to Kubeflow</h2>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/bc4d28f8-Google_2015_logo.svg",
+            url="https://assets.ubuntu.com/v1/403148e0-2018-logo-canonical.svg",
+            alt="Canonical",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+      </li> 
+      <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/7cc3bee4-IBM_logo.svg",
+            alt="IBM",
+            height="90",
+            width="90",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+      </li>   
+      <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/2d54fa27-logo-google--snapcraft-homepage.svg",
             alt="Google",
-            height="34",
-            width="100",
+            height="130",
+            width="130",
             hi_def=True,
             attrs={"class": "p-inline-images__logos"},
             loading="lazy",
@@ -121,9 +82,22 @@
       <li class="p-inline-images__item">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/5d6da5c4-logo-canonical-aubergine.svg",
-            alt="Canonical",
-            height="15",
+            url="https://assets.ubuntu.com/v1/d8293409-intel_logo.svg",
+            alt="Intel",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/8a4d26de-2018-logo-cisco.svg",
+            alt="Cisco",
+            height="110",
             width="110",
             hi_def=True,
             attrs={"class": "p-inline-images__logos"},
@@ -134,49 +108,10 @@
       <li class="p-inline-images__item">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/683950fd-logo-ibm.svg",
-            alt="IBM",
-            height="32",
-            width="80",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logos"},
-            loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
-            alt="Nvidia",
-            height="19",
-            width="100",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logos"},
-            loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg",
-            alt="Intel",
-            height="53",
-            width="80",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logos"},
-            loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/67a4ca88-redhat.svg",
-            alt="RedHat",
-            height="32",
-            width="100",
+            url="https://assets.ubuntu.com/v1/c15698ab-logo-microsoft.svg",
+            alt="Microsoft",
+            height="110",
+            width="110",
             hi_def=True,
             attrs={"class": "p-inline-images__logos"},
             loading="lazy",
@@ -187,80 +122,290 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
+<section class="p-strip">
+  <div class="row">
     <div class="col-7">
-      <h2>What makes up Kubeflow?</h2>
-      <p>At its most basic, Kubeflow is comprised of Jupyter notebooks, hyper- parameter tuning, pipelines, serving, model training and more.</p>
+      <div class="u-fixed-width u-sv4">
+        <h2>What's inside Kubeflow?</h2>
+      </div>
+      <p class="p-heading--4">Kubeflow dashboard</p>
+      <p><a class="p-link--external" href="https://www.kubeflow.org/docs/components/central-dash/overview/">Multi-user dashboard</a> with role-based access control (RBAC) allows data scientists to focus on creating great models, while the ops team takes care of the backend.</p>
+
+      <p class="p-heading--4">Jupyter notebooks</p>
+      <p>The <a class="p-link--external" href="https://www.nature.com/articles/d41586-018-07196-1">notebook of choice</a> for data scientists. <a class="p-link--external" href="https://www.kubeflow.org/docs/notebooks/setup/">Quickly spin-up Jupyter notebook servers</a> from the Kubeflow dashboard, with allocated GPUs and storage.</p>
+
+      <p class="p-heading--4">Kubeflow pipelines</p>
+      <p>Pipelines map dependencies between components in the ML workflow where each component is a containerized piece of ML code.for data scientists. <a href="/blog/data-science-workflows-on-kubernetes-with-kubeflow-pipelines-part-1">Learn more&nbsp;&rsaquo;</a></p>
+
+      <p class="p-heading--4">TensorFlow</p>
+      <p>Kubeflow started as part of TensorFlow Extended (TFX) and naturally, it includes <a class="p-link--external" href="https://www.kubeflow.org/docs/components/training/tftraining/">TensorFlow training</a>, <a class="p-link--external" href="https://www.kubeflow.org/docs/components/serving/tfserving_new/">TensorFlow serving</a> and even <a class="p-link--external" href="https://www.tensorflow.org/tensorboard">TensorBoard</a>.</p>
+
+      <p class="p-heading--4">ML libraries & frameworks</p>
+      <p>For training - <a class="p-link--external" href="https://www.kubeflow.org/docs/components/training/pytorch/">PyTorch Training</a>, 
+      <a class="p-link--external" href="https://www.kubeflow.org/docs/components/training/mxnet/">MXNet</a>
+      <a class="p-link--external" href="https://github.com/kubeflow/xgboost-operator">XGBoost</a>
+      <a class="p-link--external" href="https://medium.com/kubeflow/introduction-to-kubeflow-mpi-operator-and-industry-adoption-296d5f2e6edc">MPI for distributed training</a> and <a class="p-link--external" href="https://scikit-learn.org/stable/">scikit-learn</a> For model serving - <a class="p-link--external" href="https://www.seldon.io/">Seldon Core</a>, <a class="p-link--external" href="https://www.kubeflow.org/docs/components/serving/kfserving/">KFserving</a> and <a class="p-link--external" href="https://www.kubeflow.org/docs/components/serving/">more</a>.</p>
+
+      <p class="p-heading--4">Experiment tracking</p>
+      <p>Every time you <a class="p-link--external" href="https://www.kubeflow.org/docs/pipelines/pipelines-quickstart/#run-an-ml-pipeline">run a Kubeflow pipeline</a> with specific parameters the results of this run are stored so they can be easily compared and replicated.</p>
+
+      <p class="p-heading--4">Hyperparameter tuning</p>
+      <p>Kubeflow includes <a class="p-link--external" href="https://www.kubeflow.org/docs/components/hyperparameter-tuning/overview/">Katib for hyperparameter tuning</a>. Katib runs pipelines with different hyperparameters (e.g. learning rate, # of hidden layers) optimizing for the best ML model.</p>
+
+      <p class="p-heading--4">More...</p>
+      <p>Save, compare and  share generated artifacts - models, images, plots - through the <a class="p-link--external" href="https://www.kubeflow.org/docs/components/feature-store/overview/">feature store</a>. Connect with <a class="p-link--external" href="https://www.kubeflow.org/docs/gke/monitoring/">Prometheus for monitoring and alerting</a>. <a class="p-link--external" href="https://www.pachyderm.com/blog/pachyderm-1-10-s3-gateway-expansion-brings-support-for-kubeflow/">Integrate with Pachyderm</a> for data versioning.</p>
+
+    </div>
+    <div class="col-5 u-hide--small u-hide--medium">
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/9ea16fa1-jupiter_logo.svg",
+            alt="Jupiter",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}        
+        </li>
+        <li class="p-inline-images__item ">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/57dd2115-TensorFlow-logo.svg",
+            alt="TensorFlow",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}        
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/86dc5036-Seldon_logo.svg",
+            alt="Seldon",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/9b1d457f-PyTorch_logo.svg",
+            alt="PyTorch",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/338c2b34-Istio_logo.svg",
+            alt="Istio",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/2e52a8c6-mxnet_logo.svg",
+            alt="MXNet",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/d89128ff-Katib_logo.svg",
+            alt="Katib",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/6ee7c707-Prometheus_logo.svg",
+            alt="Prometheus",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/afd47009-Ambassador_logo.svg",
+            alt="Ambassador",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/ec6a2cfa-ONNX_logo.svg",
+            alt="ONNX",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/aa7f0e45-XGBoost-logo.svg",
+            alt="XGBoost",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/0428a1ce-scikit-learn_logo.svg",
+            alt="Scikit",
+            height="120",
+            width="120",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+        <li class="p-inline-images__item ">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/614f1f45-Pachyderm_logo.svg",
+            alt="Pachyderm",
+            height="120",
+            width="130",
+            hi_def=True,
+            attrs={"class": "p-inline-images__logos"},
+            loading="lazy",
+          ) | safe
+        }}
+        </li>
+      </ul>     
     </div>
   </div>
+</section>
+
+<section class="p-strip--square-darksuru is-dark">
   <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <h3 class="p-card__thumbnail">Jupyter notebooks</h3>
-      <hr>
-      <div class="p-card__description">
-        <p>Kubeflow comes with support for managing Jupyter notebooks, an open-source application that allows users to blend code, equation-style notation, free text and dynamic visualisations to give data scientists a single point of access to their experimental setup and notes.</p>
+    <div class="col-7 u-vertically-center">
+      <div>
+        <h2>Kubeflow, well packaged</h2>
+        <p>Charmed Kubeflow integrates the <a href="https://jaas.ai/u/kubeflow-charmers#charms" class="p-link--external p-link--inverted">30+ apps</a> that make up Kubeflow with ops code to provide the best Kubeflow experience, from deployment to day-2 operations.</p>
+        <br />
+          <a class="p-link--external p-link--inverted" href="https://jaas.ai/kubeflow">Visit Charmed-Kubeflow</a>
       </div>
     </div>
-    <div class="col-6 p-card">
-      <h3 class="p-card__thumbnail">Katib - hyper-parameter tuning</h3>
-      <hr>
-      <div class="p-card__description">
-        <p>Hyperparameters are set before the machine learning process takes place. These parameters (e.g. topology or number of layers in a neural network) can be tuned with Katib. Katib supports various ML tools such as TensorFlow, PyTorch and MXNet making it easy to reuse previous experiments results with Katib and Kubeflow.</p>
-      </div>
-    </div>
-    <div class="col-6 p-card">
-      <h3 class="p-card__thumbnail">Pipelines</h3>
-      <hr>
-      <div class="p-card__description">
-        <p>Kubeflow pipelines facilitate end-to-end orchestration of ML workflows, management of multiple experiments and approaches as well as easier re-use of previously successful solutions into a new workflow. This helps developers and data scientists save time and effort. </p>
-      </div>
-    </div>
-    <div class="col-6 p-card">
-      <h3 class="p-card__thumbnail">Serving</h3>
-      <hr>
-      <div class="p-card__description">
-        <p>Kubeflow makes two service systems available, KFServing and Seldon Core. These allow multi-framework model serving and the choice should be made based on the needs of each project.</p>
-      </div>
-    </div>
-    <div class="col-6 p-card">
-      <h3 class="p-card__thumbnail">Training</h3>
-      <hr>
-      <div class="p-card__description">
-        <p>Model training is possible with various frameworks, in particular TensorFlow, Chainer, MPI, MXNet and PyTorch. These cover the most popular frameworks in the data science and AI/ML space ensuring that developers are able to use Kubeflow’s MLOps features with their favourite tools.</p>
-      </div>
-    </div>
-    <div class="col-6 p-card">
-      <h3 class="p-card__thumbnail">&hellip; and more</h3>
-      <hr>
-      <div class="p-card__description">
-        <p>Kubeflow is continuously expanding, notable additions are the tracking and managing of metadata of the machine learning workflows as well as Nuclio functions, a high-performance serverless solution for data processing, analytics and ML workloads.</p>
+    <div class="col-5 u-align--center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/2b8bb6e7-Kubeflow-packaged-transparent.svg",
+          alt="",
+          width="195",
+          height="180",
+          hi_def=True,
+          attrs={"class": "u-hide--small"},
+          loading="lazy",
+        ) | safe
+      }}
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width u-sv1">
+    <h2>Why MLOps?</h2>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <p>Bringing AI solutions to market can involve many steps: data pre-processing, training, model deployment or inference serving at scale... The list of tasks is complex and keeping them in a set of notebooks or scripts is hard to maintain, share and collaborate on, leading to inefficient processes.</p>
+      <p>
+      In the study, <a class="p-link--external" href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">Hidden Technical Debt in Machine Learning Systems</a>, Google describes that only about 20% of the effort and code required to bring AI systems to production is the development of ML code, while the remaining is operations. Standardizing ops in your ML workflows can hence greatly decrease time-to-market and costs for your AI solutions.
+      </p>
+      <div class="u-fixed-width u-hide--small">
+        <figure class="u-no-margin">
+          {{
+            image(
+             url="https://assets.ubuntu.com/v1/aa8145e8-what+is+kubeflow+-+outlined.svg",
+             alt="",
+             height="274",
+             width="800",
+             hi_def=True,
+             loading="lazy",
+           ) | safe
+          }}
+         <figcaption>
+         Area = effort & code
+         </figcaption>
+       </figure>
       </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2>Who uses Kubeflow?</h2>
-  </div>
-  <div class="row u-equal-height ">
+<section class="p-strip--light">
+
+  <div class="row">
     <div class="col-6">
-      <p>There are thousands of individual users of KubeFlow across a broad range of industries with roles varying from data scientist to DevOps engineers. Kubeflow is particularly favoured for its ease of use, software-defined MLOps and native execution on Kubernetes.</p>
-      <p>In addition to <a href="https://home.cern/">CERN</a> and numerous universities around the world, Kubeflow has become a popular choice for transport and logistics companies such as Uber, Lyft and GoJek.</p>
-      <p>Use cases are also growing in the media industry with Spotify having already adopted Kubeflow.</p>
-      <p>Financial and e-commerce services have been keen adopters, with PayPal and Shopify just some of those that are developing on Kubeflow.</p>
-      <p>Further adoption has been seen in healthcare with Babylon Health and travel with Amadeus IT Group.</p>
+      <h2 class="u-fixed-width u-sv1">Who uses Kubeflow?</h2>
+      <p>Thousands of companies have chosen Kubeflow for their AI/ML stack.</p>
+      <p>From research institutions like CERN, to transport and logistics companies - Uber, Lyft, GoJek - to financial and media industries with Spotify, Bloomberg, Shopify and PayPal.</p>
+      <p>Forward-looking enterprises are using Kubeflow to empower their data scientists.</p>
     </div>
-    <div class="col-6 u-vertically-center">
+ <div class="col-6 u-vertically-center">
       <ul class="p-inline-images">
         <li class="p-inline-images__item">
           {{
             image(
-              url="https://assets.ubuntu.com/v1/547ef405-uber.svg",
-              alt="Uber",
-              height="31",
-              width="90",
+              url="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg",
+              alt="PayPal",
+              height="22",
+              width="85",
               hi_def=True,
               attrs={"class": "p-inline-images__logos"},
               loading="lazy",
@@ -272,8 +417,34 @@
             image(
               url="https://assets.ubuntu.com/v1/4a1c3691-lyft.svg",
               alt="Lyft",
-              height="53",
-              width="75",
+              height="30",
+              width="45",
+              hi_def=True,
+              attrs={"class": "p-inline-images__logos"},
+              loading="lazy",
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/9131d1b3-CERN_logo.svg",
+              alt="CERN",
+              height="50",
+              width="50",
+              hi_def=True,
+              attrs={"class": "p-inline-images__logos"},
+              loading="lazy",
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/547ef405-uber.svg",
+              alt="Uber",
+              height="20",
+              width="60",
               hi_def=True,
               attrs={"class": "p-inline-images__logos"},
               loading="lazy",
@@ -285,8 +456,8 @@
             image(
               url="https://assets.ubuntu.com/v1/2400d5a7-Spotify_logo_with_text.svg",
               alt="Spotify",
-              height="35",
-              width="115",
+              height="30",
+              width="95",
               hi_def=True,
               attrs={"class": "p-inline-images__logos"},
               loading="lazy",
@@ -296,10 +467,23 @@
         <li class="p-inline-images__item">
           {{
             image(
-              url="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg",
-              alt="PayPal",
-              height="29",
-              width="115",
+              url="https://assets.ubuntu.com/v1/015ae0cc-Bloomberg.svg",
+              alt="Bloomberg",
+              height="110",
+              width="110",
+              hi_def=True,
+              attrs={"class": "p-inline-images__logos"},
+              loading="lazy",
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/4f597a36-Shopify.svg",
+              alt="Shopify",
+              height="110",
+              width="110",
               hi_def=True,
               attrs={"class": "p-inline-images__logos"},
               loading="lazy",
@@ -307,19 +491,37 @@
           }}
         </li>
       </ul>
-    </div>
+    </div> 
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-7">
-      <h2>How to install Kubeflow</h2>
-      <p>Kubeflow can easily be setup by installing MicroK8s, a zero-ops Kubernetes provided by Canonical. Kubeflow comes ready to be enabled as part of MicroK8s, making kicking the tyres even easier than before.</p>
-      <p><a class="p-button--positive" href="/kubeflow/install">Install Kubeflow in a few easy steps</a></p>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-4">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/a1317807-Install+Kubeflow.svg",
+          alt="Uber",
+          height="175",
+          width="250",
+          hi_def=True,
+          attrs={"class": "u-hide--small"},
+          loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2 class="u-fixed-width u-sv1">Get started today</h2>
+      <p class="u-sv2">Try-out Kubeflow on MicroK8s - Zero-ops Kubernetes with high availability. Single-command deploy locally on your desktop, public cloud VM or on-prem server.</p>
+      <a class="p-button--positive" href="/kubeflow/install">
+      Try Kubeflow
+      </a>
     </div>
   </div>
+
+
 </section>
+
 
 {% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
