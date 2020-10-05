@@ -901,10 +901,14 @@ def post_anonymised_customer_info():
 
 
 def post_customer_info():
-    if user_info(flask.session):
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
-            flask.session["authentication_token"],
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
@@ -944,10 +948,14 @@ def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
 
 
 def get_purchase(purchase_id):
-    if user_info(flask.session):
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
-            flask.session["authentication_token"],
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
