@@ -19,7 +19,6 @@ Security and compliance for the full stack{% endblock %}
           height="32",
           width="143",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
       }}
@@ -30,6 +29,10 @@ Security and compliance for the full stack{% endblock %}
       <h1>Ubuntu Security:<br />Security and compliance for the full stack</h1>
       <p>Ubuntu is more than just Linux, patching security vulnerabilities from kernel to applications and providing support and managed services for open source across multi-cloud environments.</p>
       <p>Get the full Ubuntu security story through our security webinar series and see how our teams are securing all your open source, from cloud to edge.</p>
+      <p class="u-hide">
+        <a class="p-button is-inline u-no-margin--left" href="#team">View by team</a>
+        <a class="p-button is-inline" href="#topic">View by topic</a>
+      </p>
     </div>
     <div class="col-5 u-hide--small u-align--right">
         {{
@@ -39,7 +42,6 @@ Security and compliance for the full stack{% endblock %}
           height="350",
           width="325",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
       }}
@@ -47,8 +49,8 @@ Security and compliance for the full stack{% endblock %}
   </div>
 </section>
 
-<section class="p-strip is-deep">
-  <div class="row">
+<section class="p-strip">
+  <div class="row u-hide">
     <div class="col-12">
       <p class ="p-heading--3">Select by team or topic which security series webinars you would like to explore.</p>
       <br />
@@ -57,30 +59,30 @@ Security and compliance for the full stack{% endblock %}
 
   <div class="row u-equal-height">
     <div class="col-6" >
-      <p class ="p-heading--4">Team</p>
+      <p class ="p-heading--4"><a href="#team">Team based webinars</a></p>
       <hr />
-      <ul class="p-list">
-        <li class="p-list__item"><a href="#management-series">CISO|CTO &nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#engineering-series">DevSecOps &nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#management-series">IT Security Manager, Director &nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#engineering-series">Security, Systems Engineer &nbsp;&rsaquo;</a></li>
-        <li class="p-list__item u-sv4"><a href="#management-series">VP Engineering, Ops &nbsp;&rsaquo;</a></li>
+      <ul class="p-inline-list--middot">
+        <li class="p-inline-list__item"><a href="#management-series">CISO|CTO</a></li>
+        <li class="p-inline-list__item"><a href="#engineering-series">DevSecOps</a></li>
+        <li class="p-inline-list__item"><a href="#management-series">IT Security Manager, Director</a></li>
+        <li class="p-inline-list__item"><a href="#engineering-series">Security, Systems Engineer</a></li>
+        <li class="p-inline-list__item u-sv4"><a href="#management-series">VP Engineering, Ops</a></li>
       </ul>
     </div>
     <div class="col-6">
-      <p class ="p-heading--4">Topic</p>
+      <p class ="p-heading--4"><a href="#topic">Topic based webinars</a></p>
       <hr />
-      <ul class="p-list">
-        <li class="p-list__item"><a href="#iot-security">Compliance tech &nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#iot-security">IoT & Device security &nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#multi-cloud-security">Multi-cloud security &nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#securing-public-cloud">Securing public cloud &nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#security-patching">Security Patching &nbsp;&rsaquo;</a></li>
+      <ul class="p-inline-list--middot">
+        <li class="p-inline-list__item"><a href="#iot-security">Compliance tech</a></li>
+        <li class="p-inline-list__item"><a href="#iot-security">IoT & Device security</a></li>
+        <li class="p-inline-list__item"><a href="#multi-cloud-security">Multi-cloud security</a></li>
+        <li class="p-inline-list__item"><a href="#securing-public-cloud">Securing public cloud</a></li>
+        <li class="p-inline-list__item"><a href="#security-patching">Security Patching</a></li>
       </ul>
     </div>
   </div>
 </section>
-<section class="p-strip--light is-deep" id="engineering-series">
+<section id="team" class="p-strip--light is-deep" id="engineering-series">
   <div class="row u-equal-height">
     <div class="col-9">
       <p class="p-heading--5">Team</p>
@@ -98,13 +100,12 @@ Security and compliance for the full stack{% endblock %}
          height="80",
          width="130",
          hi_def=True,
-         attrs={"class": ""},
-         loading="auto",
+          loading="auto",
        ) | safe
         }}
-      </p>   
+      </p>
       <p class="p-heading--4">FIPS certification and CIS compliance with Ubuntu</p>
-      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating environments under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered to ensure you and your team are, and remain, compliant.</p>
+      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating  under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered to ensure you and your team are, and remain, compliant.</p>
       <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/432536">Register for the webinar</a>
     </div>
     <div class="col-4">
@@ -116,8 +117,7 @@ Security and compliance for the full stack{% endblock %}
          height="80",
          width="140",
          hi_def=True,
-         attrs={"class": ""},
-         loading="auto",
+          loading="auto",
         ) | safe
       }}
       </p>
@@ -134,10 +134,9 @@ Security and compliance for the full stack{% endblock %}
          height="80",
          width="90",
          hi_def=True,
-         attrs={"class": ""},
-         loading="auto",
+          loading="auto",
         ) | safe
-      }}      
+      }}
       </p>
       <p class="p-heading--4">Securing Linux Machines with AppArmor</p>
       <p>AppArmor provides a crucial layer of security around applications. By providing the capability to whitelist an application’s permissible actions, AppArmor enables administrators to apply the principle of least privilege to applications.</p>
@@ -164,10 +163,9 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="140",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
+      }}
       </p>
       <p class="p-heading--4">Securing open source across multi-cloud environments</p>
       <p>Join this webinar to see how you can ensure performant open source in production environments and achieve maximum availability by reducing downtime and providing access to high and critical CVE fixes.</p>
@@ -186,8 +184,8 @@ Security and compliance for the full stack{% endblock %}
           attrs={"class": "u-sv2"},
           loading="auto",
         ) | safe
-      }}      
-      </p> 
+      }}
+      </p>
       <p class="p-heading--4">How to manage risk with secure managed service providers</p>
       <p>Many organisations utilise managed service providers for IT infrastructure and application performance and reliability at scale. With current economic times forcing companies to also rely on outsourcing to reduce costs with infrastructure and app operations, it is critical to ensure standards of excellence are met and exceeded.</p>
       <p>Learn common issues companies face with MSPs and the standards and control objects that should be met with a certified MSP provider.</p>
@@ -204,10 +202,9 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="65",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
+      }}
       </p>
       <p class="p-heading--4">Security, Cloud Native & Confidential Computing on IBM Z & LinuxONE with 20.04</p>
       <p>With constant threats of cyber attacks and data breaches, now more than ever there is a need for workload isolation, data encryption, trusted execution environments and other security practices and tools to protect systems and containers. </p>
@@ -223,10 +220,9 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="70",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
+      }}
       </p>
       <p class="p-heading--4">Ubuntu Core: A cybersecurity analysis</p>
       <p>We provide substantial documentation and content to share and support the Ubuntu Core architecture and approach, but we don’t want anyone to have to take our word for it when choosing Ubuntu: We brought in Rule4 for an independent, third-party review of Ubuntu Core’s security architecture controls.</p>
@@ -235,7 +231,7 @@ Security and compliance for the full stack{% endblock %}
   </div>
 </section>
 
-<section class="p-strip--light is-deep" id="compliance-tooling">
+<section id="topic" class="p-strip--light is-deep" id="compliance-tooling">
   <div class="row u-equal-height">
     <div class="col-9">
       <p class="p-heading--5">Topic</p>
@@ -253,13 +249,12 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="135",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
-      </p>   
+      }}
+      </p>
       <p class="p-heading--4">FIPS certification and CIS compliance with Ubuntu</p>
-      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating environments under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered to ensure you and your team are, and remain, compliant.</p>
+      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating  under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered to ensure you and your team are, and remain, compliant.</p>
       <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/432536">Register for the webinar</a>
     </div>
     <div class="col-6">
@@ -271,10 +266,9 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="140",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
+      }}
       </p>
       <p class="p-heading--4">Securing open source across multi-cloud environments</p>
       <p>Join this webinar to see how you can ensure performant open source in production environments and achieve maximum availability by reducing downtime and providing access to high and critical CVE fixes.</p>
@@ -303,11 +297,10 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="90",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
-      </p>   
+      }}
+      </p>
       <p class="p-heading--4">Securing Linux machines with AppArmor</p>
       <p>AppArmor provides a crucial layer of security around applications. By providing the capability to whitelist an application’s permissible actions, AppArmor enables administrators to apply the principle of least privilege to applications.</p>
       <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/440491">Register for the webinar</a>
@@ -321,10 +314,9 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="70",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
+      }}
       </p>
       <p class="p-heading--4">Ubuntu Core: A cybersecurity analysis</p>
       <p>We provide substantial documentation and content to share and support the Ubuntu Core architecture and approach, but we don’t want anyone to have to take our word for it when choosing Ubuntu: We brought in Rule4 for an independent, third-party review of Ubuntu Core’s security architecture controls.</p>
@@ -352,11 +344,10 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="90",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
-      </p>   
+      }}
+      </p>
       <p class="p-heading--4">Securing open source across multi-cloud environments</p>
       <p>Join this webinar to see how you can ensure performant open source in production environments and achieve maximum availability by reducing downtime and providing access to high and critical CVE fixes. </p>
       <p>Furthermore, learn how Ubuntu helps organisations remain compliant with government and industry standards and regulations, including Common Criteria EAL2 with FIPS 140-2 Level 1 certified crypto modules.</p>
@@ -371,10 +362,9 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="65",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
+      }}
       </p>
       <p class="p-heading--4">Security, Cloud Native & Confidential Computing on IBM Z & LinuxONE with 20.04</p>
       <p>With constant threats of cyber attacks and data breaches, now more than ever there is a need for workload isolation, data encryption, trusted execution environments and other security practices and tools to protect systems and containers. </p>
@@ -402,11 +392,10 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="140",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
-      </p>   
+      }}
+      </p>
       <p class="p-heading--4">Securing open source across multi-cloud environments</p>
       <p>Join this webinar to see how you can ensure performant open source in production environments and achieve maximum availability by reducing downtime and providing access to high and critical CVE fixes. </p>
       <p>Furthermore, learn how Ubuntu helps organisations remain compliant with government and industry standards and regulations, including Common Criteria EAL2 with FIPS 140-2 Level 1 certified crypto modules.</p>
@@ -433,11 +422,10 @@ Security and compliance for the full stack{% endblock %}
           height="80",
           width="140",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
-      }}      
-      </p>   
+      }}
+      </p>
       <p class="p-heading--4">Best practices for securing open source</p>
       <p>In this webinar learn about the common security and compliance issues with open source, five best practices the Ubuntu Security Team implements and how you can ensure the security integrity of your Ubuntu systems.</p>
       <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/440071">Register for the webinar</a>
