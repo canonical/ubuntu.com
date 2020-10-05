@@ -585,10 +585,14 @@ class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
 
 
 def post_advantage_subscriptions(preview):
-    if user_info(flask.session):
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
-            flask.session["authentication_token"],
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
     else:
@@ -601,24 +605,27 @@ def post_advantage_subscriptions(preview):
     account_id = payload.get("account_id")
     previous_purchase_id = payload.get("previous_purchase_id")
 
-    # Get the latests active subscription for the account that is making the
-    # purchase, there might be a better endpoint for this in the future.
-    try:
-        subscriptions = advantage.get_account_subscriptions_for_marketplace(
-            account_id=account_id, marketplace="canonical-ua"
-        )
-        last_subscription = subscriptions["subscriptions"][0]
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={"payload": payload}
-        )
-        return (
-            flask.jsonify(
-                {"error": "could not retrieve account subscriptions"}
-            ),
-            500,
-        )
-    except KeyError:
+    if not guest_token:
+        try:
+            subscriptions = (
+                advantage.get_account_subscriptions_for_marketplace(
+                    account_id=account_id, marketplace="canonical-ua"
+                )
+            )
+            last_subscription = subscriptions["subscriptions"][0]
+        except HTTPError:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={"payload": payload}
+            )
+            return (
+                flask.jsonify(
+                    {"error": "could not retrieve account subscriptions"}
+                ),
+                500,
+            )
+        except KeyError:
+            last_subscription = {}
+    else:
         last_subscription = {}
 
     # If there is a subscription we get the current metric
@@ -862,10 +869,14 @@ def make_renewal(advantage, contract_info):
 
 
 def post_anonymised_customer_info():
-    if user_info(flask.session):
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
-            flask.session["authentication_token"],
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
@@ -965,6 +976,8 @@ def get_purchase_account():
 
     try:
         account = advantage.get_purchase_account(email, payment_method_id)
+
+        flask.session["guest_authentication_token"] = account["token"]
     except HTTPError as http_error:
         flask.current_app.extensions["sentry"].captureException()
         return (

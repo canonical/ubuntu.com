@@ -6,6 +6,7 @@ class AdvantageContracts:
         self,
         session,
         authentication_token,
+        token_type="Macaroon",
         api_url="https://contracts.staging.canonical.com",
     ):
         """
@@ -15,13 +16,15 @@ class AdvantageContracts:
 
         self.session = session
         self.authentication_token = authentication_token
+        self.token_type = token_type
         self.api_url = api_url.rstrip("/")
 
     def _request(self, method, path, json=None):
         headers = {}
 
-        if self.authentication_token:
-            headers["Authorization"] = f"Macaroon {self.authentication_token}"
+        headers["Authorization"] = (
+            f"{self.token_type} " f"{self.authentication_token}"
+        )
 
         response = self.session.request(
             method=method,
