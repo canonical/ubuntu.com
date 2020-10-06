@@ -699,7 +699,7 @@ def post_renewal_preview(renewal_id):
 
 
 def advantage_shop_view():
-    account = None
+    purchase_account = None
     previous_purchase_id = None
     stripe_publishable_key = os.getenv(
         "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
@@ -713,19 +713,11 @@ def advantage_shop_view():
         )
 
         try:
-            accounts = advantage.get_accounts()
-            # At the moment, a user should only ever be admin on
-            # one account, but there's a desire to allow users
-            # to make purchases on multiple accounts
-            admin_accounts = get_admin_accounts(accounts)
-            account = None
+            purchase_account = advantage.get_purchase_account("", "")
 
-            if admin_accounts:
-                account = admin_accounts[0]
-
-            if account:
+            if purchase_account:
                 subs = advantage.get_account_subscriptions_for_marketplace(
-                    account["id"], "canonical-ua"
+                    purchase_account["accountID"], "canonical-ua"
                 )
 
                 if "subscriptions" in subs:
@@ -783,21 +775,9 @@ def advantage_shop_view():
         "advantage/subscribe.html",
         product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
-        account=account,
+        purchase_account_id=purchase_account["accountID"],
         previous_purchase_id=previous_purchase_id,
     )
-
-
-def get_admin_accounts(accounts):
-    admin_accounts = []
-
-    for account in accounts:
-        if "externalAccountIDs" in account:
-            for ext_account_id in account["externalAccountIDs"]:
-                if ext_account_id["origin"] == "Salesforce":
-                    admin_accounts.append(account)
-
-    return admin_accounts
 
 
 def make_renewal(advantage, contract_info):
