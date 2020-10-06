@@ -699,7 +699,7 @@ def post_renewal_preview(renewal_id):
 
 
 def advantage_shop_view():
-    purchase_account = None
+    purchase_account_id = None
     previous_purchase_id = None
     stripe_publishable_key = os.getenv(
         "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
@@ -716,8 +716,10 @@ def advantage_shop_view():
             purchase_account = advantage.get_purchase_account("", "")
 
             if purchase_account:
+                purchase_account_id = purchase_account["accountID"]
+
                 subs = advantage.get_account_subscriptions_for_marketplace(
-                    purchase_account["accountID"], "canonical-ua"
+                    purchase_account_id, "canonical-ua"
                 )
 
                 if "subscriptions" in subs:
@@ -775,7 +777,7 @@ def advantage_shop_view():
         "advantage/subscribe/index.html",
         product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
-        purchase_account_id=purchase_account["accountID"],
+        purchase_account_id=purchase_account_id,
         previous_purchase_id=previous_purchase_id,
     )
 
