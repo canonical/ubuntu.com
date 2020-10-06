@@ -772,7 +772,7 @@ def advantage_shop_view():
         listings.append(listing)
 
     return flask.render_template(
-        "advantage/subscribe.html",
+        "advantage/subscribe/index.html",
         product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
         purchase_account_id=purchase_account["accountID"],
