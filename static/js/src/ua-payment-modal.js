@@ -129,12 +129,17 @@ function attachCTAevents() {
       setRenewalInformation(data, modal);
     } else if (isShopCTA) {
       const cartItems = JSON.parse(data.cart);
+      currentTransaction.type = "purchase";
 
       // make sure the product array is empty
       // before we start adding to it
       currentTransaction.products = [];
 
-      currentTransaction.type = "purchase";
+      // for guest checkout, we'll show the annual
+      // subtotal until they've added a payment method
+      // and VAT can be shown
+      currentTransaction.subtotal = data.subtotal;
+
       currentTransaction.previousPurchaseId = data.previousPurchaseId;
       cartItems.forEach((item) => {
         currentTransaction.products.push({
@@ -348,10 +353,16 @@ function applyTotals() {
         console.error(error);
       });
   } else {
+    const guestPurchase = {
+      total: currentTransaction.subtotal,
+    };
     modal.classList.remove("is-processing");
-    // TODO: subtotal will currently display as "..."
-    // for guest checkout, so need to show the subtotal
-    // the user has already seen in the cart
+
+    // set the "Country" and vatApplicable parameters
+    // to null. Since we don't have an account ID,
+    // we can't yet make a simulated purchase to
+    // get back a VAT amount
+    setOrderTotals(null, false, guestPurchase, modal);
   }
 }
 
