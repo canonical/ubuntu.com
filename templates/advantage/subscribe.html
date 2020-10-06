@@ -12,18 +12,11 @@
   <section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
     <div class="row">
       <div class="col-12 u-sv3">
-        <h1>Subscribe to Ubuntu Advantage</h1>
-
-        {% if not user_info and not account %}          
-          <p>Sign in to begin.</p> 
-          
-          <a class="p-button" href="/login" onclick="dataLayer.push({
-              'event' : 'GAEvent',
-              'eventCategory' : 'Advantage subscribe',
-              'eventAction' : 'Authentication',
-              'eventLabel' : 'Sign in',
-              'eventValue' : undefined
-            });">Sign in</a></p>
+        {% if not user_info and not account %}  
+          <h1>Subscribe to Ubuntu Advantage</h1>        
+          <p>If you have existing subscriptions or sales offers, <a href="/login" onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });">sign in</a> to see them.
+        {% else %}
+          <h1>Add machines to your subscription</h1>
         {% endif %}
       </div>
     </div>
