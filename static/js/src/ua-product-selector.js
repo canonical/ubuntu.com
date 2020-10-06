@@ -57,7 +57,9 @@ function productSelector() {
   }
 
   function buildCartHTML(lineItems) {
-    const subtotal = calculateSubtotal(lineItems);
+    const subtotalRaw = calculateSubtotal(lineItems);
+    const subtotalUnits = subtotalRaw * 100;
+    const subtotal = parseCurrencyAmount(subtotalRaw, "USD");
     let lineItemsHTML = "";
     let cartData = [];
 
@@ -109,7 +111,9 @@ function productSelector() {
           subtotal === 0 ? "u-disable" : ""
         }" data-cart='${JSON.stringify(cartData)}' data-account-id="${
       window.accountId
-    }" data-previous-purchase-id="${window.previousPurchaseId}">Buy now</button>
+    }" data-subtotal='${subtotalUnits}' data-previous-purchase-id="${
+      window.previousPurchaseId
+    }">Buy now</button>
       </div>
     </div>
     `;
@@ -194,11 +198,7 @@ function productSelector() {
       subtotal += parseInt(productCost / 100) * lineItem.get("quantity")[0];
     });
 
-    if (subtotal > 0) {
-      return parseCurrencyAmount(subtotal, "USD");
-    } else {
-      return subtotal;
-    }
+    return subtotal;
   }
 
   function disableSteps(steps) {
