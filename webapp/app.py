@@ -11,7 +11,13 @@ from canonicalwebteam.templatefinder import TemplateFinder
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
-from canonicalwebteam.discourse import DiscourseAPI, Docs, DocParser
+from canonicalwebteam.discourse import (
+    DiscourseAPI,
+    Docs,
+    DocParser,
+    EngageParser,
+    EngagePages,
+)
 
 # Local
 from webapp.context import (
@@ -44,6 +50,8 @@ from webapp.views import (
     releasenotes_redirect,
     search_snaps,
     notify_build,
+    build_engage_index,
+    engage_thank_you,
 )
 from webapp.login import login_handler, logout, user_info
 from webapp.security.database import db_session
@@ -68,6 +76,8 @@ from webapp.security.views import (
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
 )
+DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
+DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
 # Set up application
 # ===
@@ -319,6 +329,38 @@ ceph_docs = Docs(
     blueprint_name="ceph",
 )
 ceph_docs.init_app(app)
+
+# Engage pages from Discourse
+engage_path = "/engage"
+engage_pages = EngagePages(
+    parser=EngageParser(
+        api=DiscourseAPI(
+            base_url="https://discourse.ubuntu.com/",
+            session=session,
+            api_key=DISCOURSE_API_KEY,
+            api_username=DISCOURSE_API_USERNAME,
+        ),
+        index_topic_id=17229,
+        url_prefix=engage_path,
+    ),
+    document_template="/engage/base.html",
+    url_prefix=engage_path,
+    blueprint_name="engage-pages",
+)
+app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
+
+
+app.add_url_rule(
+    "/engage/<page>/thank-you",
+    defaults={"language": None},
+    view_func=engage_thank_you(engage_pages),
+)
+app.add_url_rule(
+    "/engage/<language>/<page>/thank-you",
+    endpoint="alternative_thank-you",
+    view_func=engage_thank_you(engage_pages),
+)
+engage_pages.init_app(app)
 
 
 # Smart Start
