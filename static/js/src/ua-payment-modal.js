@@ -100,6 +100,7 @@ let customerInfo = {
 
 let cardValid = false;
 let changingPaymentMethod = false;
+let guestPurchase = false;
 let submitted3DS = false;
 let vatApplicable = false;
 
@@ -353,16 +354,17 @@ function applyTotals() {
         console.error(error);
       });
   } else {
-    const guestPurchase = {
+    const purchaseTotals = {
       total: currentTransaction.subtotal,
     };
+    guestPurchase = true;
     modal.classList.remove("is-processing");
 
     // set the "Country" and vatApplicable parameters
     // to null. Since we don't have an account ID,
     // we can't yet make a simulated purchase to
     // get back a VAT amount
-    setOrderTotals(null, false, guestPurchase, modal);
+    setOrderTotals(null, false, purchaseTotals, modal);
   }
 }
 
@@ -738,8 +740,10 @@ function processStripePayment() {
 function reloadPage() {
   if (currentTransaction.type === "renewal") {
     location.search = `?subscription=${currentTransaction.contractId}`;
-  } else if (currentTransaction.type === "purchase") {
+  } else if (currentTransaction.type === "purchase" && !guestPurchase) {
     location.pathname = "/advantage";
+  } else if (currentTransaction.type === "purchase" && guestPurchase) {
+    location.href = `/advantage/subscribe/thanks?email=${customerInfo.email}`;
   }
 }
 
