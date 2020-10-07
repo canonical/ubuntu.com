@@ -782,6 +782,15 @@ def advantage_shop_view():
     )
 
 
+def advantage_thanks_view():
+    email = flask.request.args.get("email")
+
+    return flask.render_template(
+        "advantage/subscribe/thanks.html",
+        email=email,
+    )
+
+
 def make_renewal(advantage, contract_info):
     """Return the renewal as present in the given info, or None."""
     renewals = contract_info.get("renewals")
@@ -941,7 +950,16 @@ def get_purchase(purchase_id):
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
-        return advantage.get_purchase(purchase_id)
+        try:
+            purchase = advantage.get_purchase(purchase_id)
+        except HTTPError as http_error:
+            if http_error.response.status_code == 401:
+                return (
+                    {"status": "done"},
+                    200,
+                )
+
+        return purchase
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 
