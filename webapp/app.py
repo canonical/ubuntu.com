@@ -59,8 +59,6 @@ from webapp.security.database import db_session
 from webapp.security.views import (
     create_notice,
     delete_notice,
-    create_release,
-    delete_release,
     notice,
     read_notice,
     read_notices,
@@ -247,14 +245,6 @@ app.add_url_rule(
 
 app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
 
-app.add_url_rule(
-    "/security/releases", view_func=create_release, methods=["POST"]
-)
-app.add_url_rule(
-    "/security/releases/<codename>",
-    view_func=delete_release,
-    methods=["DELETE"],
-)
 
 # cve section
 app.add_url_rule("/security/cve", view_func=cve_index)
@@ -272,6 +262,64 @@ app.add_url_rule(
 # Login
 app.add_url_rule("/login", methods=["GET", "POST"], view_func=login_handler)
 app.add_url_rule("/logout", view_func=logout)
+
+# Engage pages and takeovers from Discourse
+# This section needs to provide takeover data for /
+
+engage_path = "/engage"
+engage_pages = EngagePages(
+    parser=EngageParser(
+        api=DiscourseAPI(
+            base_url="https://discourse.ubuntu.com/",
+            session=session,
+            api_key=DISCOURSE_API_KEY,
+            api_username=DISCOURSE_API_USERNAME,
+        ),
+        index_topic_id=17229,
+        url_prefix=engage_path,
+    ),
+    document_template="/engage/base.html",
+    url_prefix=engage_path,
+    blueprint_name="engage-pages",
+)
+
+app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
+
+
+def build_takeovers(engage_pages):
+    engage_pages.parser.parse()
+
+    def index_page():
+        # Show only active
+        active_takeovers = [
+            takeover
+            for takeover in engage_pages.parser.takeovers
+            if takeover["active"] == "true"
+        ]
+        return flask.render_template("index.html", takeovers=active_takeovers)
+
+    return index_page
+
+
+def build_takeovers_index(engage_pages):
+    engage_pages.parser.parse()
+
+    def takeover_index():
+        sorted_takeovers = sorted(
+            engage_pages.parser.takeovers,
+            key=lambda takeover: takeover["publish_date"],
+            reverse=True,
+        )
+        return flask.render_template(
+            "takeovers/index.html", takeovers=sorted_takeovers
+        )
+
+    return takeover_index
+
+
+app.add_url_rule("/", view_func=build_takeovers(engage_pages))
+app.add_url_rule("/takeovers", view_func=build_takeovers_index(engage_pages))
+engage_pages.init_app(app)
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
@@ -337,26 +385,6 @@ ceph_docs = Docs(
 )
 ceph_docs.init_app(app)
 
-# Engage pages from Discourse
-engage_path = "/engage"
-engage_pages = EngagePages(
-    parser=EngageParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.ubuntu.com/",
-            session=session,
-            api_key=DISCOURSE_API_KEY,
-            api_username=DISCOURSE_API_USERNAME,
-        ),
-        index_topic_id=17229,
-        url_prefix=engage_path,
-    ),
-    document_template="/engage/base.html",
-    url_prefix=engage_path,
-    blueprint_name="engage-pages",
-)
-app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
-
-
 app.add_url_rule(
     "/engage/<page>/thank-you",
     defaults={"language": None},
@@ -367,7 +395,6 @@ app.add_url_rule(
     endpoint="alternative_thank-you",
     view_func=engage_thank_you(engage_pages),
 )
-engage_pages.init_app(app)
 
 
 @app.after_request

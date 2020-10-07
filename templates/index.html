@@ -27,10 +27,25 @@
 #}
 
 {% block takeover_content %}
-  {# ALL #}
-  {% include "takeovers/_2010-takeover.html" %}
-  {% include "takeovers/_security-cloud-computing.html" %}
-  {% include "takeovers/_manage-risk-service-providers.html" %}
+{% for takeover in takeovers %}
+    {% with
+      title=takeover['title'],
+      subtitle=takeover['subtitle'],
+      class="p-takeover--" + takeover['class'],
+      header_image=takeover['image'],
+      image_style="width: " + takeover['image_width'] + "px; height: " + takeover['image_height'] + "px; ",
+      image_hide_small="true",
+      primary_url=takeover['primary_url'],
+      primary_cta=takeover['primary_cta'],
+      primary_cta_class="",
+      secondary_cta=takeover['secondary_cta'],
+      secondary_url=takeover['secondary_url'],
+      lang=takeover['language'],
+      lang_skip=takeover['lang_skip']
+    %}
+    {% include "takeovers/_template.html" %}
+    {% endwith %}
+  {% endfor %}  
 {% endblock takeover_content %}
 
 {#
