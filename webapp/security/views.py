@@ -483,9 +483,7 @@ def cve_index():
         .all()
     )
 
-    releases_query = db_session.query(Release).order_by(
-        desc(Release.release_date)
-    )
+    releases_query = db_session.query(Release).order_by(Release.release_date)
 
     if versions and not any(a in ["", "current"] for a in versions):
         releases_query = releases_query.filter(Release.codename.in_(versions))
