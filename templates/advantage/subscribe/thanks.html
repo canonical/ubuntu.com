@@ -8,13 +8,16 @@
 {% block content %}
   <section class="p-strip--suru-topped">
     <div class="row">
-      <div class="col-7 u-sv3">
-        <h1>Thanks for your purchase</h1>        
-        <p class="p-heading--four">We've sent your invoice and purchase code to<br />
-        example@example.com</p>
+      <div class="col-12 u-sv3">
+        <h1>Thanks for your purchase</h1>  
 
-        <h2>Getting started</h2>
-        <p class="p-heading--four">To start using Ubuntu Advantage, you need to set up an Ubuntu One account.</p>
+        {% if email %}
+          <p class="p-heading--four">We've sent your invoice to {{ email }}</p>
+
+          <h2>Getting started</h2>
+        {% endif %}
+
+        <p class="p-heading--four">To start using Ubuntu Advantage, you need to set up an Ubuntu One account{% if email %} with that address{% endif %}.</p>
         <a href="https://login.ubuntu.com" class="p-button--positive">Register/Sign in...</a>
       </div>
     </div>
