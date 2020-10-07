@@ -37,7 +37,7 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      {% if 'pages.ubuntu.com' in resource_url %}
+      {% if 'pages.ubuntu.com' or 'assets.ubuntu.com' in resource_url %}
       <p>
         The {{ resource_name }} is now ready to download.
       </p>
