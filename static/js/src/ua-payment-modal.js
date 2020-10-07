@@ -743,7 +743,9 @@ function reloadPage() {
   } else if (currentTransaction.type === "purchase" && !guestPurchase) {
     location.pathname = "/advantage";
   } else if (currentTransaction.type === "purchase" && guestPurchase) {
-    location.href = `/advantage/subscribe/thanks?email=${customerInfo.email}`;
+    location.href = `/advantage/subscribe/thanks?email=${encodeURIComponent(
+      customerInfo.email
+    )}`;
   }
 }
 

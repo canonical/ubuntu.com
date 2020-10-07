@@ -950,16 +950,7 @@ def get_purchase(purchase_id):
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
-        try:
-            purchase = advantage.get_purchase(purchase_id)
-        except HTTPError as http_error:
-            if http_error.response.status_code == 401:
-                return (
-                    {"status": "done"},
-                    200,
-                )
-
-        return purchase
+        return advantage.get_purchase(purchase_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 
