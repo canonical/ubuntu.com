@@ -100,13 +100,14 @@ app.config["CANONICAL_LOGIN_URL"] = os.getenv(
 ).rstrip("/")
 
 session = talisker.requests.get_session()
+authenticated_session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/", session=session
 )
 
 authenticated_discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
-    session=session,
+    session=authenticated_session,
     api_key=os.getenv("DISCOURSE_API_KEY"),
     api_username=os.getenv("DISCOURSE_API_USERNAME"),
 )
