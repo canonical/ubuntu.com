@@ -712,6 +712,9 @@ def advantage_shop_view():
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
+        if flask.session.get("guest_authentication_token"):
+            flask.session.pop("guest_authentication_token")
+
         try:
             purchase_account = advantage.get_purchase_account("", "")
 
