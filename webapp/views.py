@@ -604,6 +604,7 @@ def post_advantage_subscriptions(preview):
 
     account_id = payload.get("account_id")
     previous_purchase_id = payload.get("previous_purchase_id")
+    last_subscription = {}
 
     if not guest_token:
         try:
@@ -612,7 +613,6 @@ def post_advantage_subscriptions(preview):
                     account_id=account_id, marketplace="canonical-ua"
                 )
             )
-            last_subscription = subscriptions["subscriptions"][0]
         except HTTPError:
             flask.current_app.extensions["sentry"].captureException(
                 extra={"payload": payload}
@@ -623,10 +623,9 @@ def post_advantage_subscriptions(preview):
                 ),
                 500,
             )
-        except KeyError:
-            last_subscription = {}
-    else:
-        last_subscription = {}
+
+        if subscriptions:
+            last_subscription = subscriptions["subscriptions"][0]
 
     # If there is a subscription we get the current metric
     # value for each product listing so we can generate a
@@ -929,10 +928,14 @@ def post_customer_info():
 
 
 def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
-    if user_info(flask.session):
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
-            flask.session["authentication_token"],
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
@@ -959,6 +962,16 @@ def get_purchase(purchase_id):
 
 
 def get_purchase_account():
+    """
+    Returns an object with the ID of an account a user can make
+    purchases on. If the user is not logged in, the object also
+    contains an auth token required for subsequent calls to the
+    contract API.
+    """
+
+    if not flask.request.is_json:
+        return flask.jsonify({"error": "JSON required"}), 400
+
     auth_token = None
 
     if user_info(flask.session):
@@ -970,16 +983,14 @@ def get_purchase_account():
         api_url=flask.current_app.config["CONTRACTS_API_URL"],
     )
 
-    if not flask.request.is_json:
-        return flask.jsonify({"error": "JSON required"}), 400
-
     email = flask.request.json.get("email")
     payment_method_id = flask.request.json.get("payment_method_id")
 
     try:
         account = advantage.get_purchase_account(email, payment_method_id)
 
-        flask.session["guest_authentication_token"] = account["token"]
+        if "token" in account:
+            flask.session["guest_authentication_token"] = account["token"]
     except HTTPError as http_error:
         flask.current_app.extensions["sentry"].captureException()
         return (

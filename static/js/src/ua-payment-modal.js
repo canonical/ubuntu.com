@@ -304,13 +304,22 @@ const checkVATdebounce = debounce(() => {
 }, 500);
 
 function applyTotals() {
+  // Clear any existing totals
+  setOrderTotals(null, vatApplicable, null, modal);
+
+  if (currentTransaction.accountId) {
+    applyLoggedInPurchaseTotals();
+  } else {
+    applyGuestPurchaseTotals();
+  }
+}
+
+function applyLoggedInPurchaseTotals() {
   let formData = new FormData(form);
   let country = formData.get("Country");
   let addressObject = null;
   let taxObject = null;
   let purchasePreview = null;
-
-  setOrderTotals(country, vatApplicable, purchasePreview, modal);
 
   if (formData.get("tax")) {
     taxObject = {
@@ -323,49 +332,49 @@ function applyTotals() {
     country: country,
   };
 
-  if (currentTransaction.accountId) {
-    postCustomerInfoForPurchasePreview(
-      currentTransaction.accountId,
-      addressObject,
-      taxObject
-    )
-      .then(() => {
-        if (currentTransaction.type === "purchase") {
-          postPurchasePreviewData(
-            currentTransaction.accountId,
-            currentTransaction.products,
-            currentTransaction.previousPurchaseId
-          ).then((data) => {
+  postCustomerInfoForPurchasePreview(
+    currentTransaction.accountId,
+    addressObject,
+    taxObject
+  )
+    .then(() => {
+      if (currentTransaction.type === "purchase") {
+        postPurchasePreviewData(
+          currentTransaction.accountId,
+          currentTransaction.products,
+          currentTransaction.previousPurchaseId
+        ).then((data) => {
+          purchasePreview = data;
+          modal.classList.remove("is-processing");
+          setOrderTotals(country, vatApplicable, purchasePreview, modal);
+        });
+      } else if (currentTransaction.type === "renewal") {
+        postRenewalPreviewData(currentTransaction.transactionId).then(
+          (data) => {
             purchasePreview = data;
             modal.classList.remove("is-processing");
             setOrderTotals(country, vatApplicable, purchasePreview, modal);
-          });
-        } else if (currentTransaction.type === "renewal") {
-          postRenewalPreviewData(currentTransaction.transactionId).then(
-            (data) => {
-              purchasePreview = data;
-              modal.classList.remove("is-processing");
-              setOrderTotals(country, vatApplicable, purchasePreview, modal);
-            }
-          );
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  } else {
-    const purchaseTotals = {
-      total: currentTransaction.subtotal,
-    };
-    guestPurchase = true;
-    modal.classList.remove("is-processing");
+          }
+        );
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
-    // set the "Country" and vatApplicable parameters
-    // to null. Since we don't have an account ID,
-    // we can't yet make a simulated purchase to
-    // get back a VAT amount
-    setOrderTotals(null, false, purchaseTotals, modal);
-  }
+function applyGuestPurchaseTotals() {
+  const purchaseTotals = {
+    total: currentTransaction.subtotal,
+  };
+  guestPurchase = true;
+  modal.classList.remove("is-processing");
+
+  // set the "Country" and vatApplicable parameters
+  // to null. Since we don't have an account ID,
+  // we can't yet make a simulated purchase to
+  // get back a VAT amount
+  setOrderTotals(null, false, purchaseTotals, modal);
 }
 
 function clearProgressTimers() {
@@ -520,7 +529,7 @@ function handleIncompletePurchase(purchase) {
     pollingTimer = setTimeout(() => {
       pollTransactionStatus();
     }, 3000);
-  } else if (subscriptionStatus !== "active") {
+  } else {
     handleIncompletePayment(invoice);
   }
 }
