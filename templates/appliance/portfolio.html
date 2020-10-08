@@ -14,9 +14,27 @@
   </div>
 </section>
 
+{% if appliances %}
 <section class="p-strip--light is-bordered">
-  {% with heading="Featured today" %}{% include "/appliance/shared/_featured_appliances.html" %}{% endwith %}
+  <div class="row">
+  {% for app in appliances|sort %}
+  {%- if loop.index == 7 %}
+  </div>
+  <div class="row">
+  {% endif %}
+  <div class="col-2 u-sv3">
+    <a href="/appliance/{{ appliances[app].url_name}}" class="p-link--soft">
+      <h3 class="p-heading--five u-no-padding--top">{{ appliances[app].name }}</h3>
+      <hr />
+      <div class="u-align--center">
+        <img src="{{ appliances[app].logo }}?h=72" alt="{{ appliances[app].name }} logo" style="max-height:72px;">
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+  </div>
 </section>
+{% endif %}
 
 <section class="p-strip is-deep">
   <div class="row u-equal-height">
