@@ -80,6 +80,27 @@
       </div>
     </a>
   </div>
+  {% if request.path == "/appliance/vm" %}
+  <div class="col-2">
+    <a href="/appliance/mosquitto" class="p-link--soft">
+      <h3 class="p-heading--five u-no-padding--top">Mosquitto</h3>
+      <hr />
+      <div class="u-align--center">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/c2c39a7a-mosquitto-logo.png",
+            alt="",
+            height="72",
+            width="72",
+            hi_def=True,
+            loading="lazy",
+            attrs={"style": "margin-top: 1rem;"}
+          ) | safe
+        }}
+      </div>
+    </a>
+  </div>
+  {% else %}
   <div class="col-2">
     <a href="/appliance/lxd" class="p-link--soft">
       <h3 class="p-heading--five u-no-padding--top">LXD</h3>
@@ -99,4 +120,5 @@
       </div>
     </a>
   </div>
+  {% endif %}
 </div>
