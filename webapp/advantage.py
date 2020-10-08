@@ -171,14 +171,22 @@ class AdvantageContracts:
         return response.json()
 
     def get_purchase_account(self, email: str, payment_method_id: str) -> dict:
-        response = self._request(
-            method="post",
-            path="v1/purchase-account",
-            json={
-                "email": email,
-                "defaultPaymentMethod": {"Id": payment_method_id},
-            },
-        )
+        try:
+            response = self._request(
+                method="post",
+                path="v1/purchase-account",
+                json={
+                    "email": email,
+                    "defaultPaymentMethod": {"Id": payment_method_id},
+                },
+            )
+        except HTTPError as http_error:
+            guest = email and payment_method_id
+
+            if guest and http_error.response.status_code == 401:
+                return http_error.response.json()
+            else:
+                raise http_error
 
         return response.json()
 

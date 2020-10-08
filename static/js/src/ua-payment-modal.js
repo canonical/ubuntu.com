@@ -566,15 +566,7 @@ function handlePaymentMethodResponse(data) {
   if (data.paymentMethod && currentTransaction.accountId) {
     attachCustomerInfoToStripeAccount(data.paymentMethod);
   } else if (data.paymentMethod && !currentTransaction.accountId) {
-    // the user is a guest, get them a guest account to make
-    // purchases with and then continue
-    const paymentMethod = data.paymentMethod;
-
-    getPurchaseAccount(customerInfo.email, paymentMethod.id).then((data) => {
-      currentTransaction.accountId = data.accountID;
-      applyTotals();
-      attachCustomerInfoToStripeAccount(paymentMethod);
-    });
+    handleGuestPaymentMethodResponse(data);
   } else {
     const errorObject = parseForErrorObject(data.error);
 
@@ -584,6 +576,27 @@ function handlePaymentMethodResponse(data) {
       presentError(errorObject);
     }
   }
+}
+
+function handleGuestPaymentMethodResponse(data) {
+  // the user is a guest, get them a guest account to make
+  // purchases with and then continue
+  const paymentMethod = data.paymentMethod;
+
+  getPurchaseAccount(customerInfo.email, paymentMethod.id).then((data) => {
+    if (data.code) {
+      // an error was returned, most likely cause
+      // is that the user is trying to make a purchase
+      // with an email address belonging to an
+      // existing SSO account
+      const errorObject = parseForErrorObject(data);
+      presentError(errorObject);
+    } else {
+      currentTransaction.accountId = data.accountID;
+      applyTotals();
+      attachCustomerInfoToStripeAccount(paymentMethod);
+    }
+  });
 }
 
 function handle3DSresponse(data) {
@@ -709,7 +722,7 @@ function presentError(errorObject) {
     vatInput.focus();
     disableProcessingState();
   } else {
-    console.error(`invalid argument: ${errorObject}`);
+    console.error(`invalid argument: ${JSON.stringify(errorObject)}`);
   }
 }
 

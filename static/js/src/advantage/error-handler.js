@@ -162,6 +162,14 @@ export function parseForErrorObject(data) {
         "Our Sales team will be in touch shortly to finalise this renewal. Your card has not been charged.",
       type: "dialog",
     };
+  } else if (
+    data.code === "unauthorized" &&
+    data.message.includes("please login")
+  ) {
+    errorObject = {
+      message: `An account with this email address exists, please <a href='/login'>login</a> to your Ubuntu One account to purchase.`,
+      type: "notification",
+    };
   } else {
     // there was a problem with the ua-contracts service
     errorObject = null;
