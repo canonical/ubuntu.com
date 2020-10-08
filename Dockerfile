@@ -3,6 +3,7 @@
 # Build stage: Install python dependencies
 # ===
 FROM ubuntu:focal AS python-dependencies
+ENV LANG C.UTF-8
 RUN apt-get update && apt-get install --no-install-recommends --yes python3-pip python3-setuptools python3-wheel build-essential
 ADD requirements.txt /tmp/requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement /tmp/requirements.txt
