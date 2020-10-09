@@ -370,9 +370,8 @@ function productSelector() {
   function setActiveSteps() {
     let stepsToEnable;
     let stepsToDisable;
-    let i = 0;
 
-    steps.forEach((step) => {
+    steps.forEach((step, i) => {
       if (stepsToEnable === undefined) {
         if (!state.get(step)[0]) {
           stepsToEnable = steps.slice(0, i + 1);
