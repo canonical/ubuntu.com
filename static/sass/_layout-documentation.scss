@@ -3,6 +3,7 @@
 
   .l-documentation {
     @extend .row;
+
     display: flex;
 
     .p-notification,
@@ -23,6 +24,13 @@
 
     img {
       margin: 2rem 0 2rem 0;
+    }
+
+    a[href^="http://"]:not([href*="ubuntu.com"]),
+    a[href^="https://"]:not([href*="ubuntu.com"]),
+    a[href^="//"]:not([href*="ubuntu.com"])
+    {
+      @extend .p-link--external;
     }
 
     h2,
