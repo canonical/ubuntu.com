@@ -89,7 +89,7 @@ For a full list of the changes introduced in Kubernetes 1.19, please see the
 
 - addon-resizer 1.8.9
 - ceph-csi 2.1.2
-- cloud-provider-openstack (TODO https://bugs.launchpad.net/cdk-addons/+bug/1889433)
+- cloud-provider-openstack
 - coredns 1.6.7
 - kube-state-metrics 1.9.7
 - kubernetes-dashboard 2.0.1
