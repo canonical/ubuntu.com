@@ -533,7 +533,12 @@ def cve_index():
         cves_query = cves_query.filter(CVE.priority == priority)
 
     if query:
-        cves_query = cves_query.filter(CVE.description.ilike(f"%{query}%"))
+        cves_query = cves_query.filter(
+            or_(
+                CVE.description.ilike(f"%{query}%"),
+                CVE.ubuntu_description.ilike(f"%{query}%"),
+            )
+        )
 
     parameters = []
     if package:
