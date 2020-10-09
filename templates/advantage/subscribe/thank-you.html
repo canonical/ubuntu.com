@@ -12,12 +12,12 @@
         <h1>Thanks for your purchase</h1>  
 
         {% if email %}
-          <p class="p-heading--four">We've sent your invoice to {{ email }}</p>
+          <p>We've sent your invoice to {{ email }}</p>
 
           <h2>Getting started</h2>
         {% endif %}
 
-        <p class="p-heading--four">To start using Ubuntu Advantage, you need to set up an Ubuntu One account{% if email %} with that address{% endif %}.</p>
+        <p>To start using Ubuntu Advantage, you need to set up an Ubuntu One account{% if email %} with that address{% endif %}.</p>
         <a href="https://login.ubuntu.com?return_to={{ request.host_url }}advantage" class="p-button--positive">Register/Sign in...</a>
       </div>
     </div>
