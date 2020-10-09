@@ -9,27 +9,35 @@
 {% block outer_content %}
 {% block content %}
 
-<section class="p-strip--suru-topped is-deep is-bordered">
-  <div class="row u-equal-height">
+<section class="p-strip--suru-bottomed u-image-position">
+  <div class="row">
     <h1>Train with Ubuntu</h1>
   </div>
   <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center">
+    <div class="col-7">
       <div>
         <p>Train your sysadmins and devops engineers to become Ubuntu OpenStack or Charmed Kubernetes experts. Canonical runs training programmes to suit all environments and all levels of experience. Explore, prototype and design with cloud technologies so you can get the most out of your environment. All classes and materials are provided in English.</p>
       </div>
     </div>
-    <div class="col-6 u-align--center u-hide--small">
+    <div class="col-5 u-hide--small">
       {{
         image(
         url="https://assets.ubuntu.com/v1/652d2f5f-ubuntu-openstack-k8s-medals.svg",
         alt="",
-        width="210",
-        height="125",
+        width="400",
+        height="237",
         hi_def=True,
         loading="auto",
+        attrs={"class": "u-image-position--top"}
         ) | safe
       }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="p-notification--caution col-6" style="position: relative;">
+      <p class="p-notification__response" role="status">
+        <span class="p-notification__status">PLEASE NOTE:</span> Due to current circumstances linked to the COVID-19 pandemic, all training programmes mentioned in this page are performed remotely. All training content and labs will remain the same. We aim to return to an on-site delivery model as soon as the circumstances permit.
+      </p>
     </div>
   </div>
 </section>
