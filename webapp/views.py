@@ -794,8 +794,13 @@ def engage_thank_you(engage_pages):
             request_url = flask.request.referrer
             resource_name = index_topic_data["type"]
             resource_url = engage_page_data["metadata"]["resource_url"]
-            related = engage_page_data["related"]
             language = index_topic_data["language"]
+            # Filter related engage pages by language
+            related = [
+                item
+                for item in engage_page_data["related"]
+                if item["language"] == language
+            ]
             template_language = "engage/thank-you.html"
             if language != "en":
                 template_language = f"engage/shared/_{language}_thank-you.html"

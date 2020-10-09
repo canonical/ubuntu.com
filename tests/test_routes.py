@@ -145,6 +145,16 @@ class TestRoutes(VCRTestCase):
 
         self.assertEqual(self.client.get("/not-found-url").status_code, 404)
 
+    def test_engage_index(self):
+        """
+        When given a /engage URL,
+        we should return a 200 status code
+        This also tests that discourse module
+        for engage pages work
+        """
+
+        self.assertEqual(self.client.get("/engage").status_code, 200)
+
 
 if __name__ == "__main__":
     unittest.main()
