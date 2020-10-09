@@ -715,6 +715,8 @@ def advantage_shop_view():
             flask.session.pop("guest_authentication_token")
 
         try:
+            advantage.get_accounts()
+
             purchase_account = advantage.get_purchase_account("", "")
 
             if purchase_account:
