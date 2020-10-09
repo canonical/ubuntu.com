@@ -788,7 +788,7 @@ def advantage_thanks_view():
     email = flask.request.args.get("email")
 
     return flask.render_template(
-        "advantage/subscribe/thanks.html",
+        "advantage/subscribe/thank-you.html",
         email=email,
     )
 

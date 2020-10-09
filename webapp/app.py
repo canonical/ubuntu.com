@@ -167,7 +167,7 @@ def utility_processor():
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule(
-    "/advantage/subscribe/thanks", view_func=advantage_thanks_view
+    "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
 )
 app.add_url_rule(
     "/advantage/subscribe",
