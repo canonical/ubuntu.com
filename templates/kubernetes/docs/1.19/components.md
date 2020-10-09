@@ -330,6 +330,7 @@ These charms are frequently used with Charmed Kubernetes.
 These are the container images used by this release:
 
 <!-- GENERATED CONTAINER IMAGES -->
+
 -   cdk/addon-resizer-amd64:1.8.9
 -   cdk/addon-resizer-arm64:1.8.9
 -   cdk/addon-resizer-ppc64le:1.8.9
