@@ -750,7 +750,7 @@ def advantage_shop_view():
 
                 empty_session(flask.session)
 
-                return flask.render_template("advantage/subscribe.html")
+                return flask.render_template("advantage/subscribe/index.html")
 
             raise http_error
     else:
@@ -789,10 +789,13 @@ def advantage_shop_view():
 def advantage_thanks_view():
     email = flask.request.args.get("email")
 
-    return flask.render_template(
-        "advantage/subscribe/thank-you.html",
-        email=email,
-    )
+    if user_info(flask.session):
+        return flask.redirect("/advantage")
+    else:
+        return flask.render_template(
+            "advantage/subscribe/thank-you.html",
+            email=email,
+        )
 
 
 def make_renewal(advantage, contract_info):
