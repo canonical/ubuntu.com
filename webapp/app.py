@@ -370,20 +370,6 @@ app.add_url_rule(
 engage_pages.init_app(app)
 
 
-# Smart Start
-smart_start = Docs(
-    parser=DocParser(
-        api=authenticated_discourse_api,
-        index_topic_id=15433,
-        url_prefix="/smart-start/guide",
-    ),
-    document_template="/smart-start/guide/document.html",
-    url_prefix="/smart-start/guide",
-    blueprint_name="smart-start",
-)
-smart_start.init_app(app)
-
-
 @app.after_request
 def cache_headers(response):
     """

@@ -1,0 +1,19 @@
+- **About**
+  - [What is SMART START?](/smart-start/guide)
+- **Select hardware**
+  - [Hardware setup](/smart-start/guide/hardware-setup)
+- **Embed your apps**
+  - [Snap application packaging](/smart-start/guide/snap-application-packaging)
+  - [Snap publishing](/smart-start/guide/snap-publishing)
+- **Build your app store**
+  - [App store commissioning](/smart-start/guide/app-store-commissioning)
+  - [Custom image creation](/smart-start/guide/custom-image-creation)
+  - [Secure device onboarding](/smart-start/guide/secure-device-onboarding)
+- **Manage your devices**
+  - [Operating an app store](/smart-start/guide/operating-an-app-store)
+  - [Technical support](/smart-start/guide/technical-support)
+- **More services**
+  - [Training workshops](/smart-start/guide/training-workshops)
+  - [Advanced options](/smart-start/guide/advanced-options)
+  - [Device enablement](/smart-start/guide/device-enablement)
+  - [Certification and validation](/smart-start/guide/certification-and-validation)
