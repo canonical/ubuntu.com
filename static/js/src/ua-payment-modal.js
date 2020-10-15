@@ -119,7 +119,10 @@ function attachCTAevents() {
     if (isRenewalCTA || isShopCTA) {
       e.preventDefault();
       modal.classList.add("is-processing");
-      currentTransaction.accountId = data.accountId;
+
+      if (currentTransaction.accountId === "") {
+        currentTransaction.accountId = data.accountId;
+      }
     }
 
     if (isRenewalCTA) {
@@ -197,6 +200,12 @@ function attachFormEvents() {
     const input = form.elements[i];
 
     input.addEventListener("input", (e) => {
+      if (guestPurchase && input.type === "email") {
+        console.log(guestPurchase);
+        guestPurchase = false;
+        currentTransaction.accountId = "";
+      }
+
       validateFormInput(e.target, false);
     });
 
