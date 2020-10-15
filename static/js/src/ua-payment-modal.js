@@ -786,17 +786,8 @@ function requiresAuthentication(invoice) {
 }
 
 function resetModal() {
-  form.reset();
   card.clear();
   showDetailsMode();
-
-  customerInfo = {
-    name: null,
-    email: null,
-    country: null,
-    address: null,
-    tax: null,
-  };
 }
 
 function resetProgressIndicator() {
