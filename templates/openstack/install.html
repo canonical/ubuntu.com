@@ -155,7 +155,7 @@
         <div class="p-stepped-list__content">
           <p>Before using your OpenStack installation, it has to be initialised, so that networks and databases get configured. In order to do so, run:</p>
 
-<pre><code>$ sudo microstack.init --auto
+<pre><code>$ sudo microstack init --auto --control
 ...
 2019-12-16 12:38:33,223 - microstack_init - INFO - Complete.
 Marked microstack as initialized!
@@ -170,10 +170,8 @@ Marked microstack as initialized!
         <div class="p-stepped-list__content">
           <p>You can interact with your OpenStack either via the web GUI or the CLI.</p>
           <p><strong>Web GUI:</strong></p>
-          <p>To interact with your OpenStack via the web GUI visit http://10.20.20.1/ and log in with the following credentials:</p>
-
-<pre><code>username: admin
-password: keystone</code></pre>
+          <p>To interact with your OpenStack via the web GUI visit http://localhost if you installed MicroStack locally (or http://<control-node-ip> if installed on a remote machine) and log in with "admin" as a user name and the output of the following command as a password:</p>
+<pre><code>$ sudo snap get microstack config.credentials.keystone-password</code></pre>
 
           <p>Type the credentials and press the ‘Sign In’ button:</p>
 
@@ -268,7 +266,7 @@ password: keystone</code></pre>
           <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
 
           <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack.launch cirros --name test" readonly="readonly">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack launch cirros --name test" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
 
@@ -381,42 +379,48 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/</code></pre>
             <li class="p-stepped-list__item">
               <h4 class="p-stepped-list__title">Initialise MicroStack on the control machine</h4>
               <div class="p-stepped-list__content">
-                <p>Run the following command on the machine you want to act as a controller. Answer the questions accordingly and set up a cluster password:</p>
+                <p>Run the following command on the machine that you want to act as a node hosting the OpenStack control plane. Answer the questions accordingly to get it configured:</p>
 
-<pre><code>$ sudo microstack.init
-Do you want to setup clustering? (yes/no) [default=no] > <strong>yes</strong>
-2019-12-16 14:02:05,876 - microstack_init - INFO - Configuring clustering ...
-What is this machines' role? (control/compute) > <strong>control</strong>
-Please enter a cluster password >
-Please re-enter password >
+<pre><code>$ sudo microstack init
+Would you like to configure clustering? (yes/no) [default=no] > yes
+2020-10-15 12:25:46,289 - microstack_init - INFO - Configuring clustering ...
+Which role would you like to use for this node: "control" or "compute"? > <strong>control</strong>
 Please enter the ip address of the control node [default=172.31.31.254] > <strong>172.31.31.254</strong>
-2019-12-16 14:02:29,825 - microstack_init - INFO - I am a control node.
+2020-10-15 12:25:50,507 - microstack_init - INFO - Setting up as a control node.
+2020-10-15 12:25:55,064 - microstack_init - INFO - Configuring networking ...
 ...
-2019-12-16 14:06:54,973 - microstack_init - INFO - Complete. Marked microstack as initialized!
+2020-10-15 12:35:10,840 - microstack_init - INFO - Complete. Marked microstack as initialized!
+Would you like to setup extra services? (yes/no) [default=no] >
+
 </code></pre>
 
                 <p>Your OpenStack control machine is now running and is ready for adding compute machines.</p>
+                <p>Run the following command at the initial control node to get a connection string to be used at a compute node for joining the cluster:</p>
+<pre><code>$ sudo microstack add-compute
+Use the following connection string to add a new compute node to the cluster (valid for 20 minutes from this moment):
+hKhob3N0bmFtZa0xMC4yNDYuMTE0LjE2q2ZpbmdlcnByaW50xCBBPUef45aO9Vwvy8TI/KoQEGivdRpZSswMBwW1pxeNZKJpZNkgMjMxNDIxZTFlNGZhNGQ2ODhkZDgwNDIwZGM3YjA1MGOmc2VjcmV02SBwLU9QeFdzYktQVTBRbkhVYTNPWVF0VHpSNllvcmRFRw==
+</code></pre>
+              <p>In order to get a password for the admin user in Keystone use the following command:</p>
+<pre><code>$ sudo snap get microstack config.credentials.keystone-password</code></pre>
               </div>
             </li>
 
             <li class="p-stepped-list__item">
               <h4 class="p-stepped-list__title">Initialise MicroStack on compute machines</h4>
               <div class="p-stepped-list__content">
-                <p>Run the following command on all machines you want to act as compute nodes. Answer the questions accordingly and use the cluster password which you set in the previous step:</p>
+                <p>Run the following command a machine that you want to act as a compute node. You can specify the connection string in the command or provide it while answering the configuration questions:</p>
 
-<pre><code>$ sudo microstack.init
-Do you want to setup clustering? (yes/no) [default=no] > <strong>yes</strong>
-2019-12-16 14:14:17,919 - microstack_init - INFO - Configuring clustering ...
-What is this machines' role? (control/compute) > <strong>compute</strong>
-Please enter a cluster password >
-Please re-enter password >
-Please enter the ip address of the control node [default=10.20.20.1] > <strong>172.31.31.254</strong>
-Please enter the ip address of this node [default=172.31.24.59] > <strong>172.31.24.59</strong>
-2019-12-16 14:14:46,382 - microstack_init - INFO - I am a compute node.
+<pre><code>$ sudo microstack init --compute --join hKhob3N0bmFtZa0xMC4yNDYuMTE0LjE2q2ZpbmdlcnByaW50xCBBPUef45aO9Vwvy8TI/KoQEGivdRpZSswMBwW1pxeNZKJpZNkgMjMxNDIxZTFlNGZhNGQ2ODhkZDgwNDIwZGM3YjA1MGOmc2VjcmV02SBwLU9QeFdzYktQVTBRbkhVYTNPWVF0VHpSNllvcmRFRw==
+
+2020-10-15 13:45:35,113 - microstack_init - INFO - Configuring clustering ...
+Please enter the ip address of this node [default=192.0.2.45] > <strong>172.31.24.59</strong>
+2020-10-15 13:45:54,373 - microstack_init - INFO - Setting up as a compute node.
+2020-10-15 13:45:59,562 - microstack_init - INFO - Configuring networking ...
 ...
-2019-12-16 14:15:03,594 - microstack_init - INFO - Complete. Marked microstack as initialized!
-</code></pre>
+2020-10-15 13:48:12,474 - microstack_init - INFO - Complete. Marked microstack as initialized!
+Would you like to setup extra services? (yes/no) [default=no] >
 
+</code></pre>
               <p>Your OpenStack cloud is now running and is ready for use!</p>
             </div>
           </li>
@@ -426,10 +430,7 @@ Please enter the ip address of this node [default=172.31.24.59] > <strong>172.31
             <div class="p-stepped-list__content">
               <p>You can interact with your OpenStack either via the web GUI or the CLI.</p>
               <p><strong>Web GUI:</strong></p>
-              <p>To interact with your OpenStack via the web GUI visit http://10.20.20.1/ and log in with the following credentials:</p>
-
-<pre><code>username: admin
-password: keystone</code></pre>
+	      <p>To interact with your OpenStack via the web GUI visit http://localhost if you installed MicroStack locally (or http://<control-node-ip> if installed on a remote machine) and log in using the "admin" user name and the password retrieved as described above.</p>
 
               <p>Type the credentials and press the ‘Sign In’ button:</p>
 
@@ -523,12 +524,12 @@ password: keystone</code></pre>
             <div class="p-stepped-list__content">
               <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
 
-<pre><code>$ microstack.launch cirros --name test --availability-zone
+<pre><code>$ microstack launch cirros --name test --availability-zone
 nova:&lt;compute nodehostname&gt;</code></pre>
 
               <p>For example:</p>
 
-<pre><code>$ microstack.launch cirros --name test --availability-zone
+<pre><code>$ microstack launch cirros --name test --availability-zone
 nova:ip-172-31-24-59</code></pre>
 
               <p>This should result in a lot of output from which the most important are the last two lines:</p>
