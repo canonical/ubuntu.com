@@ -131,15 +131,15 @@
           <p>You can install MicroStack right away by running the following command from the terminal:</p>
 
           <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install microstack --edge --devmode" readonly="readonly">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install microstack --beta --devmode" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
 
           <p>Once installed, you should see the following message on the terminal:</p>
 
-          <pre><code>microstack (edge) stein from Canonical✓ installed</code></pre>
+          <pre><code>microstack (beta) ussuri from Canonical✓ installed</code></pre>
 
-          <p>The version displayed (here, Stein) matches the most recent stable OpenStack release available with MicroStack.</p>
+          <p>The version displayed (here, Ussuri) matches the most recent stable OpenStack release available with MicroStack.</p>
 
           <div class="p-notification">
             <p class="p-notification__response">
@@ -155,10 +155,9 @@
         <div class="p-stepped-list__content">
           <p>Before using your OpenStack installation, it has to be initialised, so that networks and databases get configured. In order to do so, run:</p>
 
-<pre><code>$ sudo microstack.init --auto
+<pre><code>$ sudo microstack init --auto --control
 ...
-2019-12-16 12:38:33,223 - microstack_init - INFO - Complete.
-Marked microstack as initialized!
+2019-12-16 12:38:33,223 - microstack_init - INFO - Complete. Marked microstack as initialized!
 </code></pre>
 
           <p>Your local OpenStack cloud is now running and is ready for use!</p>
@@ -170,11 +169,11 @@ Marked microstack as initialized!
         <div class="p-stepped-list__content">
           <p>You can interact with your OpenStack either via the web GUI or the CLI.</p>
           <p><strong>Web GUI:</strong></p>
-          <p>To interact with your OpenStack via the web GUI visit http://10.20.20.1/ and log in with the following credentials:</p>
-
-<pre><code>username: admin
-password: keystone</code></pre>
-
+          <p>To interact with your OpenStack via the web GUI visit http://10.20.20.1/ and log in with the 'admin' user. The password is obtained in this way:</p>
+          <div class="p-code-copyable">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap get microstack config.credentials.keystone-password" readonly="readonly">
+            <button class="p-code-copyable__action">Copy to clipboard</button>
+          </div>
           <p>Type the credentials and press the ‘Sign In’ button:</p>
 
           <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
@@ -268,19 +267,18 @@ password: keystone</code></pre>
           <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
 
           <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack.launch cirros --name test" readonly="readonly">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack launch cirros --name test" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
 
-          <p>This should result in a lot of output from which the most important are the last two lines:</p>
+          <p>The resulting output provides the information you need to SSH to the instance:</p>
 
-<pre><code>Access it with `ssh -i $HOME/.ssh/id_microstack` &lt;username&gt;@10.20.20.3
-You can also visit the openstack dashboard at 'http://10.20.20.1/</code></pre>
+<pre><code>Access it with `ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123`</code></pre>
 
           <p>Note that the IP address of the instance may be different in your environment. In order to connect to the instance run the ‘ssh’ command from the output:</p>
 
           <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="ssh -i /home/ubuntu/.ssh/id_microstack cirros@10.20.20.3" readonly="readonly">
+            <input aria-label="code snippet" class="p-code-copyable__input" value="ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
 
@@ -357,15 +355,15 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/</code></pre>
                 <p>You can install MicroStack right away by running the following command from the terminal:</p>
 
                 <div class="p-code-copyable">
-                  <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install microstack --edge --devmode" readonly="readonly">
+                  <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install microstack --beta --devmode" readonly="readonly">
                   <button class="p-code-copyable__action">Copy to clipboard</button>
                 </div>
 
                 <p>Once installed, you should see the following message on the terminal:</p>
 
-                <pre><code>microstack (edge) stein from Canonical✓ installed</code></pre>
+                <pre><code>microstack (beta) ussuri from Canonical✓ installed</code></pre>
 
-                <p>The version displayed (here, Stein) matches the most recent stable OpenStack release available with MicroStack.</p>
+                <p>The version displayed (here, Ussuri) matches the most recent stable OpenStack release available with MicroStack.</p>
 
                 <p>Install MicroStack on all machines which will be used for OpenStack clustering purposes.</p>
 
@@ -381,42 +379,35 @@ You can also visit the openstack dashboard at 'http://10.20.20.1/</code></pre>
             <li class="p-stepped-list__item">
               <h4 class="p-stepped-list__title">Initialise MicroStack on the control machine</h4>
               <div class="p-stepped-list__content">
-                <p>Run the following command on the machine you want to act as a controller. Answer the questions accordingly and set up a cluster password:</p>
-
-<pre><code>$ sudo microstack.init
-Do you want to setup clustering? (yes/no) [default=no] > <strong>yes</strong>
-2019-12-16 14:02:05,876 - microstack_init - INFO - Configuring clustering ...
-What is this machines' role? (control/compute) > <strong>control</strong>
-Please enter a cluster password >
-Please re-enter password >
-Please enter the ip address of the control node [default=172.31.31.254] > <strong>172.31.31.254</strong>
-2019-12-16 14:02:29,825 - microstack_init - INFO - I am a control node.
-...
-2019-12-16 14:06:54,973 - microstack_init - INFO - Complete. Marked microstack as initialized!
-</code></pre>
-
+                <p>Run the following command on the machine you want to act as a controller.</p>
+                <div class="p-code-copyable">
+                  <input aria-label="code snippet" class="p-code-copyable__input" value="sudo microstack init --auto --control" readonly="readonly">
+                  <button class="p-code-copyable__action">Copy to clipboard</button>
+                </div>
                 <p>Your OpenStack control machine is now running and is ready for adding compute machines.</p>
               </div>
             </li>
 
             <li class="p-stepped-list__item">
+              <h4 class="p-stepped-list__title">Generate a compute node connection string</h4>
+              <div class="p-stepped-list__content">
+                <p>Run the following command on the control node. It will generate an encoded string that will be needed when adding a compute node in the next step:</p>
+                <div class="p-code-copyable">
+                  <input aria-label="code snippet" class="p-code-copyable__input" value="sudo microstack add-compute" readonly="readonly">
+                  <button class="p-code-copyable__action">Copy to clipboard</button>
+                </div>
+              </div>
+            </li>
+
+
+            <li class="p-stepped-list__item">
               <h4 class="p-stepped-list__title">Initialise MicroStack on compute machines</h4>
               <div class="p-stepped-list__content">
-                <p>Run the following command on all machines you want to act as compute nodes. Answer the questions accordingly and use the cluster password which you set in the previous step:</p>
-
-<pre><code>$ sudo microstack.init
-Do you want to setup clustering? (yes/no) [default=no] > <strong>yes</strong>
-2019-12-16 14:14:17,919 - microstack_init - INFO - Configuring clustering ...
-What is this machines' role? (control/compute) > <strong>compute</strong>
-Please enter a cluster password >
-Please re-enter password >
-Please enter the ip address of the control node [default=10.20.20.1] > <strong>172.31.31.254</strong>
-Please enter the ip address of this node [default=172.31.24.59] > <strong>172.31.24.59</strong>
-2019-12-16 14:14:46,382 - microstack_init - INFO - I am a compute node.
-...
-2019-12-16 14:15:03,594 - microstack_init - INFO - Complete. Marked microstack as initialized!
-</code></pre>
-
+                <p>Run the following command on all machines you want to act as compute nodes. Each will require a unique connection string from the control node:</p>
+                <div class="p-code-copyable">
+                  <input aria-label="code snippet" class="p-code-copyable__input" value="sudo microstack init --auto --compute --join &lt;connection-string&gt;" readonly="readonly">
+                  <button class="p-code-copyable__action">Copy to clipboard</button>
+                </div>
               <p>Your OpenStack cloud is now running and is ready for use!</p>
             </div>
           </li>
@@ -426,11 +417,11 @@ Please enter the ip address of this node [default=172.31.24.59] > <strong>172.31
             <div class="p-stepped-list__content">
               <p>You can interact with your OpenStack either via the web GUI or the CLI.</p>
               <p><strong>Web GUI:</strong></p>
-              <p>To interact with your OpenStack via the web GUI visit http://10.20.20.1/ and log in with the following credentials:</p>
-
-<pre><code>username: admin
-password: keystone</code></pre>
-
+              <p>To interact with your OpenStack via the web GUI visit http://10.20.20.1/ and log in with the'admin' user. The password is obtained in this way:</p>
+              <div class="p-code-copyable">
+                <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap get microstack config.credentials.keystone-password" readonly="readonly">
+                <button class="p-code-copyable__action">Copy to clipboard</button>
+              </div>
               <p>Type the credentials and press the ‘Sign In’ button:</p>
 
               <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
@@ -523,23 +514,22 @@ password: keystone</code></pre>
             <div class="p-stepped-list__content">
               <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
 
-<pre><code>$ microstack.launch cirros --name test --availability-zone
+<pre><code>$ microstack launch cirros --name test --availability-zone
 nova:&lt;compute nodehostname&gt;</code></pre>
 
               <p>For example:</p>
 
-<pre><code>$ microstack.launch cirros --name test --availability-zone
+<pre><code>$ microstack launch cirros --name test --availability-zone
 nova:ip-172-31-24-59</code></pre>
 
-              <p>This should result in a lot of output from which the most important are the last two lines:</p>
+              <p>The resulting output provides the information you need to SSH to the instance:</p>
 
-<pre><code>Access it with `ssh -i $HOME/.ssh/id_microstack` &lt;username&gt;@10.20.20.3
-You can also visit the openstack dashboard at 'http://10.20.20.1/</code></pre>
+<pre><code>Access it with `ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123`</code></pre>
 
               <p>Note that the IP address of the instance may be different in your environment. In order to connect to the instance run the ‘ssh’ command from the output:</p>
 
               <div class="p-code-copyable">
-                <input aria-label="code snippet" class="p-code-copyable__input" value="ssh -i /home/ubuntu/.ssh/id_microstack cirros@10.20.20.3" readonly="readonly">
+                <input aria-label="code snippet" class="p-code-copyable__input" value="ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123" readonly="readonly">
                 <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
 
