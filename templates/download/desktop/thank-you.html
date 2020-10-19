@@ -40,7 +40,7 @@
         </p>
         {% with version=version, system="desktop", architecture=architecture %}{% include "download/shared/_verify-checksums.html" %}{% endwith %}
         {% else %}
-        <h1>Thank you for your contribution</h1>
+        <h1>Thank you for your contributing</h1>
         <p>It will help further the open source development of Ubuntu.</p>
         {% endif %}
       </div>
@@ -48,7 +48,6 @@
   </div>
 </section>
 
-{% if version %}
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-7">
@@ -249,8 +248,8 @@
     </div>
   </div>
 </section>
-{% endif %}
 
+{% if version %}
 <div class="p-strip is-shallow">
   <div class="row u-equal-height">
     <div class="col-4 p-card--highlighted">
@@ -272,9 +271,8 @@
     </div>
   </div>
 </div>
-
 {% with first_item="_download_verify_your_download", second_item="_download_desktop_guide", third_item="_download_enterprise_support" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
+{% endif %}
 
 {% endblock content %}
 
