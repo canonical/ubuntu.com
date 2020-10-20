@@ -95,7 +95,7 @@ function setSummaryInfo(summaryObject, modal) {
   });
 
   infoContainer.innerHTML += buildInfoRow({
-    label: "Subtotal: ",
+    label: "For this period: ",
     value: "...",
     extraClasses: "js-subtotal",
   });
