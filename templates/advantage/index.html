@@ -81,10 +81,8 @@
               <p>To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code></p>
               <p>To detach a machine: <code>sudo ua detach</code></p>
               <p>
-                Once a machine is attached, you can configure its services.&nbsp;&nbsp;
-                <button class="p-button is-dense u-no-margin--bottom js-entitlements-callout" data-entitlements='{{ contract["entitlements"]|tojson }}'>Where?</button>
+                Once a machine is attached, you can configure its services. Visit the <a href="http://manpages.ubuntu.com/manpages/focal/en/man1/ua.1.html" class="p-link--external">UA manpages</a> for details.
               </p>
-              <script src="{{ versioned_static('js/dist/ua-entitlements-callout.js') }}" defer></script>
               {% else %}
               <div class="col-12 u-align--center u-sv3">
                 To attach a machine: <br /><code>sudo ua attach {{ contract['token'] }}</code>
