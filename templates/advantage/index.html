@@ -23,7 +23,7 @@
         <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
 
         <p>You are signed in as {{ user_info.fullname }} ({{ user_info.email }})</p>
-         
+
         <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
@@ -58,7 +58,145 @@
     </section>
 
     <section class="p-strip u-no-padding--top is-shallow">
-      <div class="row">
+      <div class="row u-hide--medium u-hide--large">
+        <div class="col-12">
+          {% for account in enterprise_contracts %}
+          <h4>{{ account }}</h4>
+          {% for contract in enterprise_contracts[account] %}
+          {% set expired_renewable = contract['renewal'] and contract['contractInfo']['daysTillExpiry'] < 0 %}
+          <div class="p-card">
+            <h5 class="p-card__title u-sv1 u-no-margin--bottom">
+              {% if contract["contractInfo"]["id"] == new_subscription_id %}
+                {% if "daysTillExpiry" in contract["contractInfo"] and contract["contractInfo"]["daysTillExpiry"] > 0 %}
+                  <div class="p-label--new">New</div>
+                {% endif %}
+              {% endif %}
+              {{ contract['contractInfo']['name'] }}
+            </h5>
+            <hr class="u-sv1">
+            <div class="row p-card__content">
+              {% if new_subscription_id == contract['contractInfo']['id'] %}
+              <h4>Welcome to your new subscription.</h4>
+              <p>To get started, first attach each machine:</p>
+              <p>To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code></p>
+              <p>To detach a machine: <code>sudo ua detach</code></p>
+              <p>
+                Once a machine is attached, you can configure its services.&nbsp;&nbsp;
+                <button class="p-button is-dense u-no-margin--bottom js-entitlements-callout" data-entitlements='{{ contract["entitlements"]|tojson }}'>Where?</button>
+              </p>
+              <script src="{{ versioned_static('js/dist/ua-entitlements-callout.js') }}" defer></script>
+              {% else %}
+              <div class="col-12 u-align--center u-sv3">
+                To attach a machine: <br /><code>sudo ua attach {{ contract['token'] }}</code>
+              </div>
+              {% endif %}
+            </div>
+            <div class="row p-card__content">
+              <div class="col-small-2 u-align--right p-muted-text">Created on:</div>
+              <div class="col-small-2 u-align--left">{{ contract['contractInfo']['createdAtFormatted'] }}</div>
+            </div>
+            {% if contract['contractInfo']['effectiveTo'] %}
+            <div class="row p-card__content">
+              {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
+              <div class="col-small-2 u-align--right p-muted-text">
+                {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
+                  <i class="p-icon--error u-disable"></i>&nbsp;&nbsp;Expired:
+                {% else %}
+                  <i class="p-icon--warning"></i>&nbsp;&nbsp;Ends:
+                {% endif %}
+              </div>
+              <div class="col-small-2 u-align--left">
+                {{ contract['contractInfo']['effectiveToFormatted'] }}
+                {% if contract["contractInfo"]["daysTillExpiry"] >= 0 %}
+                  &nbsp;&mdash;&nbsp;
+                  {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
+                    today
+                  {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
+                    in 1 day
+                  {% else %}
+                    in {{ contract["contractInfo"]["daysTillExpiry"] }} days
+                  {% endif %}
+                {% endif %}
+              </div>
+              {% else %}
+              <div class="col-small-2 u-align--right p-muted-text">Ends:</div>
+              <div class="col-small-2 u-align--left">
+                {{ contract['contractInfo']['effectiveToFormatted'] }}
+                {% if contract["renewal"]["recently_renewed"] %}
+                <div class="p-label--updated">Renewed</div>
+                {% endif %}
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+
+            {% if contract["renewal"] %}
+            <table>
+              {% include "advantage/table/_renewal-actions.html" %}
+            </table>
+            {% endif %}
+
+            <div class="row p-card__content">
+              <div class="col-small-2 u-align--right p-muted-text">UA plan</div>
+              <div class="col-small-2 u-align--left" style="text-transform: capitalize;">{{ contract['supportLevel'] }}</div>
+            </div>
+            <div class="row p-card__content">
+              <div class="col-small-2 u-align--right p-muted-text">Attached</div>
+              <div class="col-small-2 u-align--left">{{ contract['machineCount'] }}</div>
+            </div>
+            <div class="row p-card__content">
+              <div class="col-small-2 u-align--right p-muted-text">ESM</div>
+              <div class="col-small-2 u-align--left">
+                {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
+                <span>
+                  <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
+                  {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %}
+                </span>
+                {% if new_subscription_id == contract['contractInfo']['id'] %}
+                  <i class="p-icon--attention u-hide" data-entitlement="esm-infra"></i>
+                {% endif %}
+                </button>
+                {% else %}
+                <span>N/A</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="row p-card__content">
+              <div class="col-small-2 u-align--right p-muted-text">Livepatch</div>
+              <div class="col-small-2 u-align--left">
+                {% if contract['entitlements']['livepatch'] == True %}
+                <span>
+                  <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
+                </span>
+                {% if new_subscription_id == contract['contractInfo']['id'] %}
+                  <i class="p-icon--attention u-hide" data-entitlement="livepatch"></i>
+                {% endif %}
+                {% else %}
+                <span>N/A</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="row p-card__content">
+              <div class="col-small-2 u-align--right p-muted-text">Certifications</div>
+              <div class="col-small-2 u-align--left">
+                {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
+                <span>
+                  <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
+                </span>
+                {% if new_subscription_id == contract['contractInfo']['id'] %}
+                  <i class="p-icon--attention u-hide" data-entitlement="fips" style="position: absolute; right: 11px; top: 4px;"></i>
+                {% endif %}
+                {% else %}
+                <span>N/A</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="row u-hide--small">
         <div class="col-12">
           {% for account in enterprise_contracts %}
             {% set outer_loop = loop %}
@@ -159,7 +297,7 @@
                       </td>
 
                       {% include "advantage/table/_attached-machines.html" %}
-                      
+
                       <td id="expanded-row-esm-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
                         <div class="row">
                           {% if contract['entitlements']['esm-infra'] == True %}
@@ -198,16 +336,16 @@
                             <div  style="display: inline-block; text-align: left;">
                             <strong>FIPS 140-2</strong> Level 1 certified packages use older software versions.<br />
                             Use them only if your organisation requires it.<br /><br />
-                            
+
                             Available on: Ubuntu 16.04 LTS, 18.04 LTS<br />
                             To activate FIPS: <a class="p-link--external" href="https://docs.ubuntu.com/security-certs/en/fips">FIPS setup instructions</a><br /><br />
-                            
+
                             <strong>CC-EAL2</strong> certified packages use older software versions<br />
                             Use them only if your organisation requires it.<br /><br />
-                            
+
                             Available on: Ubuntu 16.04 LTS<br />
                             To activate CC-EAL2: <a class="p-link--external" href="https://docs.ubuntu.com/security-certs/en/cc-16/">CC-EAL2 setup instructions</a><br /><br />
-                            
+
                             <strong>CIS tools</strong> test compliance with the CIS security benchmark.<br /><br />
 
                             Available on: Ubuntu 16.04 LTS, 18.04 LTS<br />
