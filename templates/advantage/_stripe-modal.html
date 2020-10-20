@@ -183,26 +183,32 @@
       </div>
     </div>
 
+<<<<<<< HEAD
     <footer class="p-modal__footer u-align--right">
+=======
+    <footer class="p-modal__footer">
+>>>>>>> Unstack the purchase button on small screens
       <span id="js-progress-indicator" class="p-modal__progress u-hide">
         <i class="p-icon--success u-hide"></i>
         <i class="p-icon--spinner u-animation--spin"></i>&nbsp;&nbsp;
         <span></span>
       </span>
 
-      <button class="js-cancel-modal" style="min-width: 5.5rem;">
-        Cancel
-      </button>
+      <div class="row u-no-padding">
+        <button class="js-cancel-modal col-small-2 col-medium-3 col-3" style="text-align: center;">
+          Cancel
+        </button>
 
-      <button class="js-payment-method p-button--positive u-no-margin--right" disabled type="submit" style="min-width: 5.5rem;">
-        Continue
-      </button>
+        <button class="js-payment-method col-small-2 col-medium-3 col-3 p-button--positive u-no-margin--right" style="text-align: center;" disabled type="submit">
+          Continue
+        </button>
 
-      <button class="js-process-payment p-button--positive u-no-margin--right" disabled type="submit" style="min-width: 5.5rem;">
-        Pay
-      </button>
+        <button class="js-process-payment col-small-2 col-medium-3 col-3 p-button--positive u-no-margin--right" style="text-align: center;" disabled type="submit">
+          Pay
+        </button>
 
-      <button class="js-close-modal p-button">OK</button>
+        <button class="js-close-modal col-small-2 col-medium-3 col-3 p-button" style="text-align: center;">OK</button>
+      </div>
     </footer>
   </div>
 </div>
