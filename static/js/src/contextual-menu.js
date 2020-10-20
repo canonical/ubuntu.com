@@ -83,15 +83,13 @@ function setupContextualMenuListeners(contextualMenuToggleSelector) {
     });
   });
 
-  document.onkeydown = (e) => {
-    e = e || window.event;
-
-    if (e.keyCode === 27) {
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
       toggles.forEach((toggle) => {
         toggleMenu(toggle, false);
       });
     }
-  };
+  });
 }
 
 setupContextualMenuListeners(".p-contextual-menu__toggle");
