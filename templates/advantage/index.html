@@ -90,20 +90,20 @@
               {% endif %}
             </div>
             <div class="row p-card__content">
-              <div class="col-small-2 u-align--right p-muted-text">Created on:</div>
-              <div class="col-small-2 u-align--left">{{ contract['contractInfo']['createdAtFormatted'] }}</div>
+              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Created on:</div>
+              <div class="col-small-2 col-medium-3 u-align--left">{{ contract['contractInfo']['createdAtFormatted'] }}</div>
             </div>
             {% if contract['contractInfo']['effectiveTo'] %}
             <div class="row p-card__content">
               {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
-              <div class="col-small-2 u-align--right p-muted-text">
+              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">
                 {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
                   <i class="p-icon--error u-disable"></i>&nbsp;&nbsp;Expired:
                 {% else %}
                   <i class="p-icon--warning"></i>&nbsp;&nbsp;Ends:
                 {% endif %}
               </div>
-              <div class="col-small-2 u-align--left">
+              <div class="col-small-2 col-medium-3 u-align--left">
                 {{ contract['contractInfo']['effectiveToFormatted'] }}
                 {% if contract["contractInfo"]["daysTillExpiry"] >= 0 %}
                   &nbsp;&mdash;&nbsp;
@@ -117,8 +117,8 @@
                 {% endif %}
               </div>
               {% else %}
-              <div class="col-small-2 u-align--right p-muted-text">Ends:</div>
-              <div class="col-small-2 u-align--left">
+              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Ends:</div>
+              <div class="col-small-2 col-medium-3 u-align--left">
                 {{ contract['contractInfo']['effectiveToFormatted'] }}
                 {% if contract["renewal"]["recently_renewed"] %}
                 <div class="p-label--updated">Renewed</div>
@@ -135,16 +135,16 @@
             {% endif %}
 
             <div class="row p-card__content">
-              <div class="col-small-2 u-align--right p-muted-text">UA plan</div>
-              <div class="col-small-2 u-align--left" style="text-transform: capitalize;">{{ contract['supportLevel'] }}</div>
+              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">UA plan</div>
+              <div class="col-small-2 col-medium-3 u-align--left" style="text-transform: capitalize;">{{ contract['supportLevel'] }}</div>
             </div>
             <div class="row p-card__content">
-              <div class="col-small-2 u-align--right p-muted-text">Attached</div>
-              <div class="col-small-2 u-align--left">{{ contract['machineCount'] }}</div>
+              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Attached</div>
+              <div class="col-small-2 col-medium-3 u-align--left">{{ contract['machineCount'] }}</div>
             </div>
             <div class="row p-card__content">
-              <div class="col-small-2 u-align--right p-muted-text">ESM</div>
-              <div class="col-small-2 u-align--left">
+              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">ESM</div>
+              <div class="col-small-2 col-medium-3 u-align--left">
                 {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
                 <span>
                   <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
@@ -160,8 +160,8 @@
               </div>
             </div>
             <div class="row p-card__content">
-              <div class="col-small-2 u-align--right p-muted-text">Livepatch</div>
-              <div class="col-small-2 u-align--left">
+              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Livepatch</div>
+              <div class="col-small-2 col-medium-3 u-align--left">
                 {% if contract['entitlements']['livepatch'] == True %}
                 <span>
                   <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
@@ -175,8 +175,8 @@
               </div>
             </div>
             <div class="row p-card__content">
-              <div class="col-small-2 u-align--right p-muted-text">Certifications</div>
-              <div class="col-small-2 u-align--left">
+              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Certifications</div>
+              <div class="col-small-2 col-medium-3 u-align--left">
                 {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
                 <span>
                   <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
