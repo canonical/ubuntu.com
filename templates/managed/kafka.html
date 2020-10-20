@@ -2,7 +2,7 @@
 
 {% block title %}Canonical's Managed Kafka | Multi-Cloud and On-Premise{% endblock %}
 
-{% block meta_description %}Our app and cloud experience lets you maintain business focus in a complex tech landscape. Rely on our expert engineers to set-up and operate your apps, with full lifecycle coverage.{% endblock meta_description %}
+{% block meta_description %}OCanonical and Ubuntu provide fully managed Apache Kafka on Ubuntu hosted on any cloud architecture, including Kubernetes, public cloud, on-premise or bare-metal. {% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/15c89-PyMc-QnSHglG1hf_Tub5lMkEcVYALL0rm5-LvA/{% endblock meta_copydoc %}
 
@@ -13,9 +13,9 @@
       <h1>
         Managed Apache Kafka
       </h1>
-      <p><i>Now running Kafka 2.5</i></p>
-      <p class="p-heading--four">Unlimited data streaming with fully managed Kafka anywhere, on-prem and multi-cloud environments.</p>
-      <p>Deploy Kafka easily and with agility, and conserve your teams’ resources from ongoing deployments and operations.</p>
+      <p><i>Now running Kafka 2.6</i></p>
+      <p class="p-heading--four">Fully managed Apache Kafka anywhere, on-prem and multi-cloud environments.</p>
+      <p>Spend less time managing infrastructure, more time building applications. Highly available, secure and fully managed Apache Kafka for frictionless innovation.</p>
       <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
     </div>
     <div class="col-5 u-hide--small u-align--center">
@@ -56,8 +56,8 @@
             image(
               url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
               alt="Google Cloud",
-              width="120",
-              height="99",
+              width="150",
+              height="125",
               hi_def=True,
               attrs={"class": "p-inline-images__logo"},
             ) | safe
@@ -78,10 +78,10 @@
         <li class="p-inline-images__item">
           {{
             image(
-              url="https://assets.ubuntu.com/v1/e7a3c4d8-MicrosoftAzure.svg",
+              url="https://assets.ubuntu.com/v1/01cfe6d9-profile-azure.svg",
               alt="Microsoft Azure",
-              width="174",
-              height="50",
+              width="125",
+              height="100",
               hi_def=True,
               attrs={"class": "p-inline-images__logo is-wide"},
             ) | safe
@@ -90,10 +90,10 @@
         <li class="p-inline-images__item">
           {{
             image(
-              url="https://assets.ubuntu.com/v1/3409bb95-OpenStack-Logo-Vertical-white.svg",
-              alt="Microsoft Azure",
-              width="469",
-              height="226",
+              url="https://assets.ubuntu.com/v1/623e36f9-OpenStack_Logo_Mark+%281%29.svg",
+              alt="OpenStack",
+              width="60",
+              height="50",
               hi_def=True,
               attrs={"class": "p-inline-images__logo"},
             ) | safe
@@ -251,7 +251,7 @@
 <section class="p-strip is-deep">
   <div class="row u-sv3">
     <div class="col-8">
-      <h2>Kafka on any kubernetes, <br />any cloud and at any scale</h2>
+      <h2>Kafka on any Kubernetes, <br />any cloud and at any scale</h2>
       <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
     </div>
   </div>
@@ -273,13 +273,13 @@
         <tr>
           <td><strong>Versions managed</strong></td>
           <td colspan="2">
-            Kafka 2.3 by default<br/>
+            Kafka 2.6 by default<br/>
             We can support your specific version &mdash; <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.
           </td>
         </tr>
         <tr>
           <td><strong>Zookeeper</strong></td>
-          <td colspan="2">Fully supported and managed</td>
+          <td colspan="2">Fully managed</td>
         </tr>
       </table>
     </div>
@@ -302,7 +302,7 @@
       <table>
         <tr>
           <td><strong>Kubernetes</strong></td>
-          <td colspan="2">Any conformant Kubernetes (Charmed Kubernetes, RKE, OpenShift, AKS, EKS, GKE and more)</td>
+          <td colspan="2">Yes - any conformant Kubernetes (incl. AKS, EKS, GKE and more)</td>
         </tr>
         <tr>
           <td><strong>Public Clouds</strong></td>
@@ -310,24 +310,24 @@
         </tr>
         <tr>
           <td><strong>Data Center Regions</strong></td>
-          <td colspan="2">Single or multiple supported</td>
+          <td colspan="2">Single or multiple</td>
         </tr>
         <tr>
           <td><strong>Data Centre Availability Zones</strong></td>
-          <td colspan="2">Single or multiple supported</td>
+          <td colspan="2">Single or multiple</td>
         </tr>
         <tr>
           <td><strong>On-premise</strong></td>
           <td colspan="2">Any OpenStack, bare metal and key third-party providers such as VMWare.<br />
-            We can support your specific cloud provider - <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.</td>
+           <a href="/managed/contact-us" class="js-invoke-modal">Contact us</a> for managed kafka on other clouds</td>
           </tr>
           <tr>
             <td><strong>Hybrid-cloud</strong></td>
-            <td colspan="2">Persistent streaming between all cloud types and management across all</td>
+            <td colspan="2">Yes, with persistent streaming managed</td>
           </tr>
           <tr>
             <td><strong>Multi-cloud</strong></td>
-            <td colspan="2">Persistent streaming between all cloud types and management across all</td>
+            <td colspan="2">Yes, with persistent streaming managed</td>
           </tr>
         </table>
       </div>
@@ -350,23 +350,23 @@
         <table>
           <tr>
             <td><strong>High Availability</strong></td>
-            <td colspan="2">Yes, minimum of 3 replications to ensure availability and consensus</td>
+            <td colspan="2">Yes</td>
           </tr>
           <tr>
             <td><strong>Number of partitions</strong></td>
-            <td colspan="2">No limits &mdash; we will implement and manage the optimal number of partitions for your configuration</td>
+            <td colspan="2">No limits</td>
           </tr>
           <tr>
             <td><strong>Number of replications</strong></td>
-            <td colspan="2">No limits &mdash; we will implement and manage the optimal number of replications for your configuration</td>
+            <td colspan="2">No limits</td>
           </tr>
           <tr>
             <td><strong>Throughput</strong></td>
-            <td colspan="2">No limits &mdash; we will support any throughput your cloud can achieve</td>
+            <td colspan="2">No limits</td>
           </tr>
           <tr>
             <td><strong>Node size</strong></td>
-            <td colspan="2">No restrictions on the size of the node</td>
+            <td colspan="2">No limits</td>
           </tr>
           <tr>
             <td><strong>Latency</strong></td>
@@ -374,7 +374,7 @@
           </tr>
           <tr>
             <td><strong>KSQL</strong></td>
-            <td colspan="2">KSQL can integrate with Managed Kafka</td>
+            <td colspan="2">Full integration</td>
           </tr>
         </table>
       </div>
@@ -397,11 +397,11 @@
         <table>
           <tr>
             <td><strong>Updates</strong></td>
-            <td colspan="2">All future updates included</td>
+            <td colspan="2">Yes</td>
           </tr>
           <tr>
             <td><strong>Managed updates</strong></td>
-            <td colspan="2">Schedule updates during specific time windows to minimize downtime</td>
+            <td colspan="2">Scheduled and downtime windows</td>
           </tr>
           <tr>
             <td><strong>New nodes</strong></td>
@@ -417,7 +417,7 @@
           </tr>
           <tr>
             <td><strong>Metrics and Visualisation</strong></td>
-            <td colspan="2">Yes, Managed Kafka includes Graylog, Prometheus and Grafana monitoring and dashboard tools, to ensure transparency and visibility on all vital metrics</td>
+            <td colspan="2">Yes, web-based dashboard</td>
           </tr>
         </table>
       </div>
@@ -440,15 +440,15 @@
         <table>
           <tr>
             <td><strong>Connectors</strong></td>
-            <td colspan="2">Yes, open source Kafka Connectors for applications</td>
+            <td colspan="2">Yes, all open source Kafka Connectors</td>
           </tr>
           <tr>
             <td><strong>REST API</strong></td>
-            <td colspan="2">Yes, administrate Kafka without accessing the underlying Kafka client</td>
+            <td colspan="2">Yes</td>
           </tr>
           <tr>
             <td><strong>Direct</strong></td>
-            <td colspan="2">Hostname and IP visibility, to connect with your other cloud infrastructure</td>
+            <td colspan="2">Hostname and IP visibility</td>
           </tr>
         </table>
       </div>
@@ -471,7 +471,7 @@
         <table>
           <tr>
             <td><strong>Security Patches</strong></td>
-            <td colspan="2">Yes. Canonical provides all security patches.</td>
+            <td colspan="2">Yes</td>
           </tr>
           <tr>
             <td><strong>Kernel</strong></td>
@@ -479,16 +479,15 @@
           </tr>
           <tr>
             <td><strong>24/7 Monitoring</strong></td>
-            <td colspan="2">Yes &mdash; Canonical&rsquo;s Kafka experts cover all geographic regions and time-zones</td>
+            <td colspan="2">Yes &mdash; all geographic regions and time-zones</td>
           </tr>
           <tr>
             <td><strong>Break/Fix response</strong></td>
-            <td colspan="2">Yes</td>
+            <td colspan="2">Yes, 24/7</td>
           </tr>
           <tr>
             <td><strong>SLA</strong></td>
-            <td colspan="2">Yes, 99.9% up-time.<br />
-              We can support your specific requirements - <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.</td>
+            <td colspan="2">Yes, 99.9% up-time</td>
             </tr>
             <tr>
               <td><strong>ISO270001/2 certified</strong></td>
@@ -599,13 +598,12 @@
                 attrs={"class": "p-heading-icon__img"},
                 ) | safe
               }}
-              <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Open source, simplified</hh43>
+              <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Accelerate to market</hh43>
             </div>
             <ul class="p-list">
               <li class="p-list__item is-ticked">Bring your own cloud</li>
-              <li class="p-list__item is-ticked">Use the latest open source without hiring delays</li>
-              <li class="p-list__item is-ticked">Offload the resource intensive stuff to our specialist team</li>
-              <li class="p-list__item is-ticked">Accelerate to market with our experienced support</li>
+              <li class="p-list__item is-ticked">Use apps without hiring delays</li>
+              <li class="p-list__item is-ticked">Offload background apps to our specialist team</li>
             </ul>
           </div>
         </div>
@@ -674,14 +672,15 @@
             Got questions? We’ve got the answers
           </h2>
           <p>
-            Get in touch with sales@canonical.com or ask a question in our chat.
-            <br />
             Still have open questions?
           </p>
           <p>
             <a class="p-button--positive js-invoke-modal" href="/managed/contact-us">
               Contact us
             </a>
+          </p>
+          <p>
+            Or get in touch with sales@canonical.com or ask a question in our chat.
           </p>
         </div>
       </div>
