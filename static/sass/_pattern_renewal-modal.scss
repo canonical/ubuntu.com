@@ -46,6 +46,8 @@
     }
 
     .p-modal__dialog {
+      display: flex;
+      flex-direction: column;
       max-width: 50rem;
       overflow: auto;
       padding: 0;
@@ -60,9 +62,7 @@
     }
 
     .p-modal__body {
-      max-height: 70vh;
       overflow-y: scroll;
-      position: relative;
     }
 
     .p-modal__header {
@@ -71,7 +71,6 @@
 
     .p-modal__footer {
       box-shadow: 0 -1px 1px rgba($color-dark, 0.2);
-      position: relative;
     }
 
     .p-modal__progress {
