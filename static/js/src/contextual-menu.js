@@ -1,4 +1,5 @@
 function toggleMenu(element, show) {
+  console.log(element);
   const dropdown = document.querySelector(
     element.getAttribute("aria-controls")
   );
@@ -12,7 +13,7 @@ function attachClickEvent(toggle) {
     const menuAlreadyOpen = e.target.getAttribute("aria-expanded") === "true";
 
     e.preventDefault();
-    toggleMenu(e.target, !menuAlreadyOpen);
+    toggleMenu(toggle, !menuAlreadyOpen);
   });
 }
 
