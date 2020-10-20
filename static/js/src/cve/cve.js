@@ -99,7 +99,7 @@ const tooltipIconList = document.querySelectorAll(".cve-tooltip-icon");
 tooltipIconList.forEach(function (tooltipIcon) {
   tooltipIcon.addEventListener(
     "mouseover",
-    function (event) {
+    function () {
       if (tooltipIcon.parentElement.querySelector(".cve-tooltip") == null) {
         const priority = this.dataset.priority;
         const status = this.dataset.status;
@@ -129,7 +129,7 @@ tooltipIconList.forEach(function (tooltipIcon) {
   );
   tooltipIcon.addEventListener(
     "mouseout",
-    function (event) {
+    function () {
       const tooltip = tooltipIcon.parentElement.querySelector(".cve-tooltip");
 
       if (tooltip != null) {
