@@ -12,13 +12,13 @@ from macaroonbakery import httpbakery
 
 
 def guess_binary_links(binary, version, sources):
-    '''Guess links to the source package based on binary package and version.
+    """Guess links to the source package based on binary package and version.
 
     Keyword Arguments:
     binary -- the name of the binary
     version -- the version of the binary
     sources -- a dictionary of source package names to source package versions
-    '''
+    """
     match_first = False
     source_match = None
     version_match = None
@@ -40,19 +40,19 @@ def guess_binary_links(binary, version, sources):
         return (None, None)
 
     for source in sources:
-        source_version = sources[source].get('version')
+        source_version = sources[source].get("version")
         if match_first or version == source_version:
             source_match = source
             version_match = source_version
             break
 
     if source_match:
-        source_link = 'https://launchpad.net/ubuntu/+source/' + source_match
+        source_link = "https://launchpad.net/ubuntu/+source/" + source_match
         if version_match:
             # Be certain to use the source package version rather than the
             # binary package version here or the link will be broken for
             # certain packages
-            version_link = source_link + '/' + version_match
+            version_link = source_link + "/" + version_match
 
     return (source_link, version_link)
 
@@ -94,7 +94,7 @@ with open(args.file_path) as usn_json:
                         "name": name,
                         "version": info["version"],
                         "description": info["description"],
-                        "is_source": "true"
+                        "is_source": "true",
                     }
                 )
 
