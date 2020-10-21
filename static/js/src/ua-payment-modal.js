@@ -1,8 +1,8 @@
 import { debounce } from "./utils/debounce.js";
 
 import {
+  ensurePurchaseAccount,
   getPurchase,
-  getPurchaseAccount,
   getRenewal,
   postInvoiceID,
   postCustomerInfoToStripeAccount,
@@ -120,7 +120,7 @@ function attachCTAevents() {
       e.preventDefault();
       modal.classList.add("is-processing");
 
-      if (currentTransaction.accountId === "") {
+      if (currentTransaction.accountId === "" || currentTransaction.accountId === null) {
         currentTransaction.accountId = data.accountId;
       }
     }
@@ -201,7 +201,6 @@ function attachFormEvents() {
 
     input.addEventListener("input", (e) => {
       if (guestPurchase && input.type === "email") {
-        console.log(guestPurchase);
         guestPurchase = false;
         currentTransaction.accountId = "";
       }
@@ -572,19 +571,16 @@ function handleIncompleteRenewal(renewal) {
 }
 
 function handlePaymentMethodResponse(data) {
-  if (data.paymentMethod && currentTransaction.accountId) {
-    attachCustomerInfoToStripeAccount(data.paymentMethod);
-  } else if (data.paymentMethod && !currentTransaction.accountId) {
-    handleGuestPaymentMethodResponse(data);
-  } else {
+  if (!data.paymentMethod) {
     const errorObject = parseForErrorObject(data.error);
-
-    if (data.error.type === "validation_error") {
-      presentError(errorObject);
-    } else {
-      presentError(errorObject);
-    }
+    presentError(errorObject);
+    return;
   }
+  if (currentTransaction.accountId) {
+    attachCustomerInfoToStripeAccount(data.paymentMethod);
+    return;
+  }
+  handleGuestPaymentMethodResponse(data);
 }
 
 function handleGuestPaymentMethodResponse(data) {
@@ -592,7 +588,7 @@ function handleGuestPaymentMethodResponse(data) {
   // purchases with and then continue
   const paymentMethod = data.paymentMethod;
 
-  getPurchaseAccount(customerInfo.email, paymentMethod.id).then((data) => {
+  ensurePurchaseAccount(customerInfo.email, customerInfo.name, paymentMethod.id).then((data) => {
     if (data.code) {
       // an error was returned, most likely cause
       // is that the user is trying to make a purchase

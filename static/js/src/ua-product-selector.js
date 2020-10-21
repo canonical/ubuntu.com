@@ -110,10 +110,10 @@ function productSelector() {
         <button class="p-button--positive js-ua-shop-cta ${
           subtotal === 0 ? "u-disable" : ""
         }" data-cart='${JSON.stringify(cartData)}' data-account-id="${
-      window.accountId
-    }" data-subtotal='${subtotalUnits}' data-previous-purchase-id="${
-      window.previousPurchaseId
-    }">Buy now</button>
+          window.accountId
+        }" data-subtotal='${subtotalUnits}' data-previous-purchase-id="${
+          window.previousPurchaseId
+        }">Buy now</button>
       </div>
     </div>
     `;
@@ -166,7 +166,7 @@ function productSelector() {
             <div class="col-2 col-small-2">
               ${quantity !== null ? quantityHTML : ""}
             </div>
-            
+
             <div class="col-2 u-align--right ${
               action === "add" ? "col-small-2" : "u-hide--small"
             }">
@@ -176,7 +176,7 @@ function productSelector() {
             </div>
           </div>
         </div>
-    
+
         <div class="col-2 u-align--right ${
           action === "add" ? "p-shop-cart__block" : "col-small-2"
         }">
