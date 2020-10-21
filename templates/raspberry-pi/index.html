@@ -44,7 +44,19 @@
 
 <section class="p-strip is-deep">
   <div class="row u-equal-height">
-    <div class="col-5"></div>
+    <div class="col-5 u-align--center u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/ac0294f7-Ubuntu-Screens-for-Raspberry-Pi.png",
+          alt="Ubuntu screens for Raspberry Pi",
+          height="168",
+          width="300",
+          hi_def=True,
+          loading="auto",
+          attrs={"class": "u-hide--small"},
+        ) | safe
+      }} 
+    </div>
     <div class="col-7">
       <h2>Full Desktop Experience</h2>
       <p class="p-heading--four">
@@ -146,34 +158,6 @@
           attrs={"class": "u-hide--small"},
         ) | safe
       }}    
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-deep">
-  <div class="row u-equal-height">
-    <div class="col-4 u-vertically-center u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-          alt="Download and install Ubuntu Server",
-          height="150",
-          width="200",
-          hi_def=True,
-          loading="auto",
-          attrs={"class": "u-hide--small"},
-        ) | safe
-      }}    
-    </div>
-    <div class="col-8">
-      <h2>Need help?</h2>
-      <p>
-        Get in touch with one of our engineers.
-      </p>
-      <p>
-        <a class="p-button--positive" href="tutorials/how-to-kubernetes-cluster-on-raspberry-pi#1-overview">Contact us</a>
-      </p>
-      </p>
     </div>
   </div>
 </section>
