@@ -46,7 +46,7 @@
       <p class="u-no-padding--top p-heading--four">
         {{document['metadata']['subtitle']}}
       </p>
-      {% if document["metadata"]["webinar_code"] != "" %}
+      {% if document["metadata"]["primary_cta"] != "" %}
       <p class="{% if 'secondary_cta' not in document['metadata'] %}u-hide--large{% endif %}">
         {% if "primary_cta" in document["metadata"] %}
           <a href="{{ document['metadata']['primary_link'] }}" class="p-button--positive">
@@ -127,6 +127,15 @@
       <script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : {{channel_id}}, "language": "en-US", "commId" : {{ document["metadata"]["webinar_code"] }}, "displayMode" : "standalone", "height" : "auto" }</script>
       <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
     </div>
+  </div>
+</section>
+{% endif %}
+
+{% if "youtube_id" in document["metadata"] %}
+<!-- Youtube webinars -->
+<section class="p-strip is-shallow" id="youtube-section">
+  <div class="row" id="webinar">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/i-RofTKJXRc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </section>
 {% endif %}
