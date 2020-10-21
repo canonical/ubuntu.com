@@ -41,7 +41,7 @@ def _build_mirror_list():
     mirror_list = []
 
     try:
-        with open(f"{os.getcwd()}etc/ubuntu-mirrors-rss.xml") as rss:
+        with open(f"{os.getcwd()}/etc/ubuntu-mirrors-rss.xml") as rss:
             mirrors = feedparser.parse(rss.read()).entries
     except IOError:
         pass
