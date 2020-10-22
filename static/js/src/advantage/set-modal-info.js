@@ -225,6 +225,7 @@ export function setOrderInformation(listings, modal) {
 export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
   const currency = "USD";
   const totalsContainer = modal.querySelector("#order-totals");
+  const subtotalLabel = modal.querySelector(".js-subtotal u-text-light");
   const subtotalElement = modal.querySelector(".js-subtotal .js-info-value");
   const endDateElements = modal.querySelectorAll(".js-end-date .js-info-value");
   let proratedEndDate;
@@ -286,6 +287,7 @@ export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
       if (i === 0 && endDateEl.innerHTML !== proratedEndDate) {
         // if these are different, it means prorating
         // is in effect, so inform the user
+        subtotalLabel.innerHTML = "For this period:"
         endDateEl.innerHTML = `${proratedEndDate}<br /><small>The same date as your existing annual subscription.</small>`;
       } else {
         endDateEl.innerHTML = proratedEndDate;
