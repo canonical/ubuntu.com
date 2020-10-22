@@ -1,6 +1,9 @@
 <div id="product-card">
   {# Kubeflow tag cards #}
-  {% if article.tags and 2609 in article.tags %}
+  {% if article.tags and 1672 in article.tags %}
+    {% include "blog/product-cards/_raspberry-pi_2010-livestream.html" %}
+  {# Kubeflow tag cards #}
+  {% elif article.tags and 2609 in article.tags %}
     {% include "blog/product-cards/_kubeflow_jaas-bundle.html" %}
     {% include "blog/product-cards/_kubeflow_what-is-kubeflow.html" %}
     {% include "blog/product-cards/_kubeflow_deploy-tutorial.html" %}
