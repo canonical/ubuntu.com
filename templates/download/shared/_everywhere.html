@@ -33,7 +33,7 @@
         </div>
 
         {# MircoK8s #}
-        <div class="col-4 js-everywhere js-macos js-linux">
+        <div class="col-4 u-hide">
           <h4>
             <a href="https://microk8s.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'MicroK8s', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
               {{
@@ -56,6 +56,34 @@
           <p class="u-align--right">
             <a class="p-button p-link--external" href="https://microk8s.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'MicroK8s', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
               Get MicroK8s
+            </a>
+          </p>
+        </div>
+
+        {# Raspberry pi #}
+        <div class="col-4 js-everywhere js-macos js-linux">
+          <h4>
+            <a href="/raspberry-pi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'Raspberry pi', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+              {{
+                image(
+                url="https://assets.ubuntu.com/v1/a8a6238c-RGB+RPi.svg",
+                alt="Raspberry pi",
+                width="41",
+                height="50",
+                hi_def=True,
+                loading="lazy",
+                attrs={ "class": "p-matrix__img", "style": "float: left;"  },
+                ) | safe
+              }}
+              Ubuntu on Raspberry Pi
+            </a>
+          </h4>
+          <p>
+            Running Ubuntu Desktop or Server on your Raspberry Pi is easy.
+          </p>
+          <p class="u-align--right">
+            <a class="p-button" href="/raspberry-pi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download everywhere', 'eventAction' : 'Raspberry pi', 'eventLabel' : '{{ request.path }}', 'eventValue' : undefined });">
+              Get Ubuntu on your Raspberry Pi
             </a>
           </p>
         </div>
