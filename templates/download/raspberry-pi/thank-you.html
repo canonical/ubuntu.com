@@ -21,116 +21,112 @@
     <div class="col-7">
       {% if version %}
       <h1>Thank you for downloading<br />
-        Ubuntu Server {{ version }}<br />
+        Ubuntu {{ version }}<br />
         for Raspberry Pi</h1>
-      <p>Your download should start automatically. If it doesn&rsquo;t, <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">download now</a>.</p>
+        <p>Your download should start automatically. If it doesn&rsquo;t, <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">download now</a>.</p>
         {% with version=version, system=architecture, architecture=architecture %}
-          {% include "download/shared/_verify-checksums.html" %}
+        {% include "download/shared/_verify-checksums.html" %}
         {% endwith %}
-      {% else %}
-      <h1>Thank you</h1>
-      <h4>However, you have not selected an image to download.</h4>
-      <p>Go to the <a href="/download/raspberry-pi">download page</a> to select an image.</p>
-      {% endif %}
-    </div>
-    <div class="col-5 u-hide--small u-align--center">
-      {{
-        image(
+        {% else %}
+        <h1>Thank you</h1>
+        <h4>However, you have not selected an image to download.</h4>
+        <p>Go to the <a href="/download/raspberry-pi">download page</a> to select an image.</p>
+        {% endif %}
+      </div>
+      <div class="col-5 u-hide--small u-align--center">
+        {{
+          image(
           url="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg",
           alt="",
           height="227",
           width="350",
           hi_def=True,
           loading="auto"
-        ) | safe
-      }}
+          ) | safe
+        }}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-8">
-      <h2>Installation instructions</h2>
-      <p>We will walk you through the steps of flashing Ubuntu Server on to your Raspberry Pi and getting logged in.</p>
-      <ol class="p-stepped-list">
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">What you&rsquo;ll need</h3>
-          <div class="p-stepped-list__content">
-            <ul>
-              <li class="p-list__item">A Raspberry Pi 2, 3, or 4</li>
-              <li class="p-list__item">A micro-USB power cable for the Pi 2 &amp; 3, or a USB-C power cable for the Pi 4</li>
-              <li class="p-list__item">A microSD card with the Ubuntu Server image</li>
-              <li class="p-list__item">A monitor with an HDMI interface</li>
-              <li class="p-list__item">An HDMI cable for the Pi 2 &amp; 3 and a MicroHDMI cable for the Pi 4</li>
-              <li class="p-list__item">A USB keyboard</li>
-            </ul>
-          </div>
-        </li>
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Flash Ubuntu onto your microSD card</h3>
-          <div class="p-stepped-list__content">
-            <p>The first thing you need to do is take a minute to copy the Ubuntu image on to a microSD card by following our tutorials, we have one for <a href="/tutorials/create-an-ubuntu-image-for-a-raspberry-pi-on-ubuntu">Ubuntu machines</a>, <a href="/tutorials/create-an-ubuntu-image-for-a-raspberry-pi-on-windows">Windows machines</a> and <a href="/tutorials/create-an-ubuntu-image-for-a-raspberry-pi-on-macos">Macs</a>.</p>
-          </div>
-        </li>
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Boot Ubuntu Server</h3>
-          <div class="p-stepped-list__content">
-            <ol>
-              <li>You need to attach a monitor and keyboard to the board. You can alternatively use a serial cable.</li>
-              <li>Now insert the microSD card</li>
-              <li>Plug the power adaptor into the board</li>
-            </ol>
-          </div>
-        </li>
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">Login to your Pi</h3>
-          <div class="p-stepped-list__content">
-            <p>When prompted to log in, use &ldquo;<code>ubuntu</code>&rdquo; for the username and the password. You will be asked to change this default password after you log in.</p>
-            <p>You are now running the Ubuntu Server on your Raspberry Pi.</p>
-          </div>
-        </li>
-      </ol>
+  <section class="p-strip--light">
+    <div class="row">
+      <div class="col-8">
+        <h2>Installation instructions</h2>
+        <p>Follow one of the following tutorials to help you install Ubuntu on your Raspberry pi.</p>
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      <h2>Things to try next</h2>
-      <p>Here are a few things you can do now that you have your Raspberry Pi running Ubuntu.</p>
+    <div class="row p-divider">
+      <div class="col-4 blog-p-card--post">
+        <header class="blog-p-card__header--tutorial">
+          <h5 class="p-muted-heading u-no-margin--bottom">
+            iot, desktop
+          </h5>
+        </header>
+        <div class="blog-p-card__content">
+          <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
+            <a class="p-link--soft" href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a>
+          </h3>
+          <p class="u-sv3">A complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (4GB or 8GB).</p>
+        </div>
+        <footer class="blog-p-card__footer">
+          Difficulty: <span class="l-tutorials-meter l-tutorials-meter--1">1 out of 5</span>
+        </footer>
+      </div>
+      <div class="col-4 blog-p-card--post p-divider__block">
+        <header class="blog-p-card__header--tutorial">
+          <h5 class="p-muted-heading u-no-margin--bottom">
+            iot, server
+          </h5>
+        </header>
+        <div class="blog-p-card__content">
+          <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
+            <a class="p-link--soft" href="/tutorials/how-to-install-ubuntu-on-your-raspberry-pi">How to install Ubuntu Server on your Raspberry Pi</a>
+          </h3>
+          <p class="u-sv3">A complete guide to installing Ubuntu Server on your Raspberry Pi 4, 3 or 2 in a couple minutes. In an headless setup or with a screen and with a Wi-Fi or ethernet connection.</p>
+        </div>
+        <footer class="blog-p-card__footer">
+          Difficulty: <span class="l-tutorials-meter l-tutorials-meter--2">2 out of 5</span>
+        </footer>
+      </div>
+      <div class="col-4 p-divider__block">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/39a8dac8-Ubuntu_Server_CLI_pro_tips_2020-04.jpg",
+          alt="",
+          width="440",
+          height="331",
+          hi_def=True,
+          loading="eager",
+          ) | safe
+        }}
+        <h2 class="p-heading--three">Get Ubuntu Server pro tips</h2>
+        <p>Get the “Ubuntu Server CLI pro tips 2020” and learn how to use the command line efficiently and get started with everything from basic file management to deploying complex applications.</p>
+        <p><a href="#" class="p-button--positive" aria-controls="modal">Download the pro tips</a></p>
+      </div>
+      {% include "download/shared/_server_weekly_news.html" %}
     </div>
-    <div class="col-5 u-align--center u-hide--small">
-      {{
-        image(
+  </section>
+  <section class="p-strip">
+    <div class="row">
+      <div class="col-7">
+        <h2>Get started with snaps</h2>
+        <p>Your {{ board or "board" }} is now ready to have snaps installed, it&rsquo;s time to use the snap command to install your first snap.</p>
+        <p>The <a href="https://snapcraft.io/store" class="p-link--external">Snap Store</a> is where you can find the best Linux apps packaged as snaps to install on your Ubuntu device and get started with your secure IoT journey.</p>
+      </div>
+      <div class="col-5 u-align--center u-hide--small">
+        {{
+          image(
           url="https://assets.ubuntu.com/v1/a46ea917-3+-+Leverage+snaps+to+build+a+lean+custom+production+image.svg",
           alt="",
           height="227",
           width="350",
           hi_def=True,
           loading="lazy"
-        ) | safe
-      }}
+          ) | safe
+        }}
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-7">
-      <h3>Install a desktop</h3>
-      <p>You can install a desktop if you like, here are some popular ones:</p>
-      <pre><code>sudo apt-get install xubuntu-desktop</code></pre>
-      <pre><code>sudo apt-get install lubuntu-desktop</code></pre>
-      <pre><code>sudo apt-get install kubuntu-desktop</code></pre>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-7">
-      <h3>Get started with snaps</h3>
-      <p>Your {{ board or "board" }} is now ready to have snaps installed, it&rsquo;s time to use the snap command to install your first snap.</p>
-      <p>The <a href="https://snapcraft.io/store" class="p-link--external">Snap Store</a> is where you can find the best Linux apps packaged as snaps to install on your Ubuntu device and get started with your secure IoT journey.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
 
-{% endblock %}
+  {% endblock %}
