@@ -1,5 +1,4 @@
 function toggleMenu(element, show) {
-  console.log(element);
   const dropdown = document.querySelector(
     element.getAttribute("aria-controls")
   );
@@ -48,13 +47,11 @@ function attachHoverEvent(toggle) {
     }, 50);
   });
 
-  document.onkeydown = (e) => {
-    e = e || window.event;
-
-    if (e.keyCode === 27) {
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
       toggleMenu(toggle, false);
     }
-  };
+  });
 }
 
 function setupContextualMenuListeners(contextualMenuToggleSelector) {
