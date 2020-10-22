@@ -9,7 +9,7 @@ function toggleMenu(element, show) {
 
 function attachClickEvent(toggle) {
   toggle.addEventListener("click", (e) => {
-    const menuAlreadyOpen = e.target.getAttribute("aria-expanded") === "true";
+    const menuAlreadyOpen = toggle.getAttribute("aria-expanded") === "true";
 
     e.preventDefault();
     toggleMenu(toggle, !menuAlreadyOpen);
