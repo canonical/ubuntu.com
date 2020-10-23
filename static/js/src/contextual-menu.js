@@ -9,10 +9,10 @@ function toggleMenu(element, show) {
 
 function attachClickEvent(toggle) {
   toggle.addEventListener("click", (e) => {
-    const menuAlreadyOpen = e.target.getAttribute("aria-expanded") === "true";
+    const menuAlreadyOpen = toggle.getAttribute("aria-expanded") === "true";
 
     e.preventDefault();
-    toggleMenu(e.target, !menuAlreadyOpen);
+    toggleMenu(toggle, !menuAlreadyOpen);
   });
 }
 
@@ -47,13 +47,11 @@ function attachHoverEvent(toggle) {
     }, 50);
   });
 
-  document.onkeydown = (e) => {
-    e = e || window.event;
-
-    if (e.keyCode === 27) {
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
       toggleMenu(toggle, false);
     }
-  };
+  });
 }
 
 function setupContextualMenuListeners(contextualMenuToggleSelector) {
@@ -83,15 +81,13 @@ function setupContextualMenuListeners(contextualMenuToggleSelector) {
     });
   });
 
-  document.onkeydown = (e) => {
-    e = e || window.event;
-
-    if (e.keyCode === 27) {
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
       toggles.forEach((toggle) => {
         toggleMenu(toggle, false);
       });
     }
-  };
+  });
 }
 
 setupContextualMenuListeners(".p-contextual-menu__toggle");
