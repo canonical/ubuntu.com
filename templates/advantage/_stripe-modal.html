@@ -48,7 +48,7 @@
           {% if account is defined %}
             <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
               <div class="col-3">
-                <label class="u-no-padding--top" for="name">Account name:</label>
+                <label class="u-no-padding--top" for="name">{% if account %}Account name{% else %}Choose account name{% endif %}:</label>
               </div>
 
               <div class="col-9">
@@ -57,7 +57,7 @@
 
               {% if not account %}
                 <div class="col-9 col-start-large-4">
-                  <small>For example, your organization ot team name</small>
+                  <small>Your name, or the name of your organisation.</small>
                 </div>
               {% endif %}
 
