@@ -287,7 +287,7 @@ export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
       if (i === 0 && endDateEl.innerHTML !== proratedEndDate) {
         // if these are different, it means prorating
         // is in effect, so inform the user
-        subtotalLabel.innerHTML = "For this period:"
+        subtotalLabel.innerHTML = "For this period:";
         endDateEl.innerHTML = `${proratedEndDate}<br /><small>The same date as your existing annual subscription.</small>`;
       } else {
         endDateEl.innerHTML = proratedEndDate;
