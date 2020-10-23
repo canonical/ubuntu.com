@@ -2,7 +2,7 @@
 wrapper_template: "legal/ubuntu-advantage-service-description/_base_legal_markdown.html"
 context:
      title: "Ubuntu Advantage service description"
-     description: How to get Ceph deployed and related to Kubernetes in order to have a default storage class. This allows for easy storage allocation.
+     description: "Detailed description and explanation of the benefits and services you receive as an Ubuntu Advantage customer."
 markdown_includes:
      pricing_table: "shared/pricing/_ua-for-infrastructure.html"
 ---
