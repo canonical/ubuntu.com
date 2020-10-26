@@ -345,7 +345,16 @@ function applyLoggedInPurchaseTotals() {
     addressObject,
     taxObject
   )
-    .then(() => {
+    .then((data) => {
+      if (data.code) {
+        // an error was returned, most likely
+        // regarding an invalid VAT number.
+        // We don't need it to block posting the
+        // preview data
+        const errorObject = parseForErrorObject(data);
+        presentError(errorObject);
+      }
+
       if (currentTransaction.type === "purchase") {
         postPurchasePreviewData(
           currentTransaction.accountId,
