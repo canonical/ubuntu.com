@@ -29,7 +29,7 @@ When an Ubuntu Advantage subscription is attached to a physical host running a [
 1. Self-service customer care portal and knowledge base. Knowledge base access will be widely granted to all necessary personnel. A specific number of designated personnel will also be entitled to raise support issues.
 2. Landscape Management. Landscape SAAS systems management is included with all support offerings, unless otherwise noted. RBAC for designated personnel will be under your control.
 3. Kernel Livepatch Service
-  1. The Kernel Livepatch Service includes a licence to use Canonical’s kernel livepatch daemon, access to available kernel livepatches, and support for the service.
+  1. The Kernel Livepatch Service includes a licence to use Canonical's kernel livepatch daemon, access to available kernel livepatches, and support for the service.
   2. The Kernel Livepatch Service provides security livepatches for selected High and Critical kernel CVEs. Some CVEs may be ineligible for livepatching due to technical limitations within the livepatching system or for other reasons.
   3. The Kernel Livepatch Service may provide kernel non-security bug fixes as kernel livepatches.
   4. Specific kernel versions are not guaranteed to receive livepatches indefinitely.  
@@ -40,7 +40,7 @@ When an Ubuntu Advantage subscription is attached to a physical host running a [
   3. Extended Security Maintenance does not provide:
     1. Bug fixes, unless a bug was created by an Extended Security Maintenance security update
     2. Security fixes for packages not found in the Maintained Packages list.
-    3. Security fixes for CVE’s that are not High or Critical
+    3. Security fixes for CVE's that are not High or Critical
   4. Extended Security Maintenance does not guarantee secure software or fixes to all High or Critical CVEs.
 5. FIPS-certified cryptographic modules
   1. Access to packages (when available) sufficient for compliance with the FIPS 140-2 Level 1 standard when used with Ubuntu on certain Intel x86\_64, IBM POWER8 and IBM Z hardware.
@@ -60,9 +60,9 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
 
 1. 24x5 (Standard) or 24x7 (Advanced) phone and ticket support.
   1. Releases. Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle, including any applicable Extended Security Maintenance term. The life cycle for each version of Ubuntu is specified here: [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle).
-  2. Hardware. Ubuntu Certified hardware has passed Canonical’s extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification/](http://www.ubuntu.com/certification/) The services apply only with respect to customer’s hardware which has been certified. In the event a customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.
+  2. Hardware. Ubuntu Certified hardware has passed Canonical's extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification/](http://www.ubuntu.com/certification/) The services apply only with respect to customer's hardware which has been certified. In the event a customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.
   3. Packages. The service applies to:
-    1. Packages found in the Ubuntu Main Repository, including the “proposed” and “backports” repository pockets
+    1. Packages found in the Ubuntu Main Repository, including the "proposed" and "backports" repository pockets
     2. Packages in the Ubuntu Cloud Archive
     3. Canonical maintained packages in the Universe Repository
     4. Canonical maintained Snap packages and [Charms](#term-charms)
@@ -112,14 +112,14 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
         1. The software packages and Charms necessary for running Charmed Kubernetes.
         2. Kubernetes clusters deployed using kubeadm utilising the software packages available from apt.kubernetes.io.
         3. Bug-fix support in the supplied software artefacts by Canonical.
-3. Ubuntu Legal Assurance programme. The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at Canonical’s Ubuntu Assurance page:[ http://www.ubuntu.com/legal/ubuntu-advantage/assurance](http://www.ubuntu.com/legal/ubuntu-advantage/assurance)
+3. Ubuntu Legal Assurance programme. The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at Canonical's Ubuntu Assurance page:[ http://www.ubuntu.com/legal/ubuntu-advantage/assurance](http://www.ubuntu.com/legal/ubuntu-advantage/assurance)
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
 <h2 id="uasd-managed-services">Managed Services</h2>
 
-1. Overview. Managed Services are an add-on to Ubuntu Advantage for Infrastructure Advanced. When added on, Canonical will manage the [Environment](#term-environment) as described below, and Guests running in the environment receive the Ubuntu Advantage for Infrastructure subscriptions and support. When the Environment is a [Cloud](#term-cloud), the Managed Services are referred to as “BootStack”.
-2. Service initiation. Following Canonical’s building and initialising of the Environment (subject to separate service engagement), the Managed Service will re-deploy the Environment to reset credentials and validate the deployment process. The Managed Service will also provide documentation providing further detail on the working relationship with Canonical.
+1. Overview. Managed Services are an add-on to Ubuntu Advantage for Infrastructure Advanced. When added on, Canonical will manage the [Environment](#term-environment) as described below, and Guests running in the environment receive the Ubuntu Advantage for Infrastructure subscriptions and support. When the Environment is a [Cloud](#term-cloud), the Managed Services are referred to as "BootStack".
+2. Service initiation. Following Canonical's building and initialising of the Environment (subject to separate service engagement), the Managed Service will re-deploy the Environment to reset credentials and validate the deployment process. The Managed Service will also provide documentation providing further detail on the working relationship with Canonical.
 3. Operate. The Managed Service will remotely operate, monitor, and manage the Environment. Examples include: (i) backing up and restoring of the management infrastructure suite, (ii) hardware and software failure monitoring and alerting, and (iii) capacity and performance reporting.
   1. Patching and updates. The Managed Service will install applicable (e.g. security) patches and updates from the Ubuntu Cloud Archive to:
     1. The Ubuntu operating system.
@@ -132,7 +132,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     3. Monitoring and logging system (restricted to read only access).
     4. Only Canonical will have login access to Environment Nodes.
   3. Environment size. The Managed Service will add or remove Nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the [Minimum Size Requirement](#term-min-size). All Environment Nodes must be covered under the service, so additional fees may apply.
-  4. Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer’s Environment remains on a supported version of Ubuntu and OpenStack and/or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer.
+  4. Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer's Environment remains on a supported version of Ubuntu and OpenStack and/or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer.
   5. Project work. The Managed Service will provide planned upgrades and maintenance Monday to Friday during Canonical working days.
 4. Out of scope. The Managed Service does not provide:
   1. Relating to [Guest Instances](#term-guest-instance) or Container Instances:
@@ -143,7 +143,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
   2. Architectural changes to the Environment.
   3. Alternative scheduling of updates or upgrades.
   4. Installation of packages or software other than those in the applicable Ubuntu Main Repository or updates to those packages delivered in the Ubuntu Cloud Archive.
-  5. Supported version of Ubuntu, OpenStack or Kubernetes must be within the 5 year ‘general’ release window.
+  5. Supported version of Ubuntu, OpenStack or Kubernetes must be within the 5 year 'general' release window.
   6. Installation of additional components (e.g. LBaaS, VPNaaS, SDN or SDS) beyond the software installed as part of the building of the Environment.
 5. Service conclusion. At the end of the service term, the Managed Service will initiate an operational transfer. Operational transfer includes:
   1. hand over of all credentials of the hosts and management software to the customer.
@@ -171,7 +171,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
 <h2 id="uasd-virtual-machines">Virtual Machines and Cloud Instances</h2>
 
 1. The Ubuntu Advantage for Infrastructure, Virtual services match those of the applicable Ubuntu Advantage for Infrastructure offering, subject to the exceptions listed below.
-2. The Ubuntu Advantage Infrastructure, Virtual services are provided for Ubuntu Server when installed and running as a guest in a virtualised environment either (1) in an Ubuntu Certified Public Cloud partner’s environment, or (2) on a physical host, provided the guest is running on a [Covered Hypervisor](#term-hypervisor).<br /><br />
+2. The Ubuntu Advantage Infrastructure, Virtual services are provided for Ubuntu Server when installed and running as a guest in a virtualised environment either (1) in an Ubuntu Certified Public Cloud partner's environment, or (2) on a physical host, provided the guest is running on a [Covered Hypervisor](#term-hypervisor).<br /><br />
 Note: Only underlying technology is listed. These can be provided via a cloud like OpenStack. If hypervisor vendor provides a specific list of supported Ubuntu versions only those will be eligible for Ubuntu Advantage for Infrastructure, Virtual service.<br /><br />
 4. Certified Public Cloud partners can be found in the Ubuntu partner listing: [https://www.ubuntu.com/public-cloud](https://www.ubuntu.com/public-cloud)
 5. Kubernetes support is included as per definitions in the application section of Ubuntu Advantage for Infrastructure above.
@@ -209,7 +209,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
     2. Support for, or answering questions about, third party add-ons to Trilio.
     3. Installation of Trilio.
 2. Storage Support
-  1. Ubuntu Advantage for Infrastructure includes an allowance for usable storage on a per-Node basis. See the “OpenStack & Kubernetes Support” section.
+  1. Ubuntu Advantage for Infrastructure includes an allowance for usable storage on a per-Node basis. See the "OpenStack & Kubernetes Support" section.
   2. If the Node allowance is exceeded, additional Storage Support needs to be acquired.
   3. Storage Support is provided at the corresponding response times.
   4. Storage Support is measured by the total amount of data stored across all storage pools, measured in gigabytes. This excludes free space and all replication and erasure coding overhead.
@@ -244,9 +244,9 @@ Add-Ons constitute additional support services available separately on a per-Nod
     1. Licence to download and install a single instance of Landscape on Premises.
     2. Ability to use Landscape on-premises management and monitoring services for machines (whether physical or virtual) for which the customer has purchased Ubuntu Advantage services.
     3. [Deployment](#term-deployment) methods:
-        1. When installed using the “Quickstart” install method, support is included for the machine on which Landscape on Premises is installed.
+        1. When installed using the "Quickstart" install method, support is included for the machine on which Landscape on Premises is installed.
         2. When installed using a manual install method, support is included for up to two servers on which Landscape on Premises is installed.
-        3. When deployed using Juju, the “dense deployment” method will be supported.
+        3. When deployed using Juju, the "dense deployment" method will be supported.
 2. [Livepatch on Premises](#term-livepatch-on-premises)
   1. Livepatch on Premises support is included in Ubuntu Advantage for Infrastructure.
   2. The service provides a licence to download and install a single instance of Livepatch on Premises.
@@ -261,8 +261,8 @@ Add-Ons constitute additional support services available separately on a per-Nod
     2. Participate in review calls every other week at mutually agreed times addressing the customer's operational issues.
     3. Organise multi-vendor issue coordination through TSANet or Canonical's direct partnerships where applicable. When the root cause is identified, the TAM will work with the vendor for that sub-system, working to resolve the case through their normal support process.
   2. Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement.
-  3. The TAM will visit the customer’s site annually for on-site technical review.
-  4. The TAM is available to respond to support cases during the TAM’s working hours. Outside of such hours, support will be provided per the Ubuntu Advantage Support Process.
+  3. The TAM will visit the customer's site annually for on-site technical review.
+  4. The TAM is available to respond to support cases during the TAM's working hours. Outside of such hours, support will be provided per the Ubuntu Advantage Support Process.
 2. Dedicated Technical Account Manager ([DTAM](#term-dtam))
   1. Canonical will enhance its support offering by providing a DTAM, who will perform the following services during local Business Hours for up to 40 hours per week (subject to Canonical leave policies) during the term of service:
     1. Provide support and best-practice advice on platform and configurations covered by the applicable Ubuntu Advantage services.
@@ -272,12 +272,12 @@ Add-Ons constitute additional support services available separately on a per-Nod
     5. Organise multi-vendor issue coordination through TSANet or Canonical's direct partnerships where applicable. When the root cause is identified, the DTAM will work with the vendor for that sub-system, working to resolve the case through their normal support process.
     6. Attend applicable Canonical internal training and development activities (in-person and remote).
   2. Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement.
-  3. The DTAM is available to respond to support cases during the DTAM’s working hours. Outside of Business Hours, support will be provided per the Ubuntu Advantage Support Process.
+  3. The DTAM is available to respond to support cases during the DTAM's working hours. Outside of Business Hours, support will be provided per the Ubuntu Advantage Support Process.
   4. If a DTAM is on leave for longer than five consecutive business days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DTAM leave.
 3. Dedicated Support Engineer ([DSE](#term-dse))
   1. Canonical will enhance its support offering by providing a DSE, who will perform the following services during local Business Hours for up to 40 hours per week (subject to Canonical leave policies) during the term of service:
-    1. Be available onsite as required to meet the customer’s requirements.
-    2. Understand the products utilised in the customer’s environment that need to be integrated with Canonical’s offerings and assist with those products, to the extent reasonable based on the DSE’s expertise, to ensure the successful usage of offerings from Canonical.
+    1. Be available onsite as required to meet the customer's requirements.
+    2. Understand the products utilised in the customer's environment that need to be integrated with Canonical's offerings and assist with those products, to the extent reasonable based on the DSE's expertise, to ensure the successful usage of offerings from Canonical.
     3. Provide support and best-practice advice on platform and configurations covered by the applicable Ubuntu Advantage services.
     4. Act as the primary point of contact for all support requests originating from the customer department for which the DSE is responsible.
     5. Manage support escalations and prioritization in accordance with Canonical's standard support response definitions and customer needs.
@@ -285,7 +285,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
     7. Organise multi-vendor issue coordination through TSANet or Canonical's direct partnerships where applicable. When the root cause is identified, the DSE will work with the vendor for that sub-system, working to resolve the case through their normal support process.
     8. Attend applicable Canonical internal training and development activities (in-person and remote).
   2. Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement.
-  3. The DSE is available to respond to support cases during the DSE’s working hours. Outside of Business Hours, support will be provided per the Ubuntu Advantage Support Process.
+  3. The DSE is available to respond to support cases during the DSE's working hours. Outside of Business Hours, support will be provided per the Ubuntu Advantage Support Process.
   4. If a DSE is on leave for longer than five consecutive business days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DSE leave.
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
@@ -332,17 +332,17 @@ Add-Ons constitute additional support services available separately on a per-Nod
 | **Severity Level 3** | 12 Business Hours                        | 6 hours  |
 | **Severity Level 4** | 24 Business Hours                        | 12 hours |
   2. Resolution. Canonical will use reasonable efforts to resolve support cases, but Canonical does not guarantee a work-around, resolution or resolution time.
-5. Hotfixes. To temporarily resolve critical support cases, Canonical may provide a version of the affected software (e.g. package) that applies a patch. Such versions are referred to as “hotfixes”. Hotfixes provided by Canonical are supported for 90 days after the corresponding patch has been incorporated into a release of the software in the Ubuntu Archives. However, if a patch is rejected by the applicable upstream project, the hotfix will no longer be supported and the case will remain open.
+5. Hotfixes. To temporarily resolve critical support cases, Canonical may provide a version of the affected software (e.g. package) that applies a patch. Such versions are referred to as "hotfixes". Hotfixes provided by Canonical are supported for 90 days after the corresponding patch has been incorporated into a release of the software in the Ubuntu Archives. However, if a patch is rejected by the applicable upstream project, the hotfix will no longer be supported and the case will remain open.
 6. Languages. Canonical will provide support in English. Other languages may be available at certain times.
-7. Remote sessions. Canonical may offer to access the customer’s supported system using a remote access service. In such case, Canonical will determine which remote access service to use.
+7. Remote sessions. Canonical may offer to access the customer's supported system using a remote access service. In such case, Canonical will determine which remote access service to use.
 8. Ubuntu Advantage Management Escalation. In the event of an unsatisfactory service of any kind, there are several ways to escalate this situation to Canonical management.
-9. Feedback at end of case. When a case is closed, a survey will be emailed to the case owner concerning overall experience with Canonical’s support. All surveys are reviewed by management.
+9. Feedback at end of case. When a case is closed, a survey will be emailed to the case owner concerning overall experience with Canonical's support. All surveys are reviewed by management.
 10. Ask for a Peer Review. As a normal business practice, Canonical performs peer reviews on a percentage of all cases. Customers can specifically request a peer review on a case within the case comments or by calling the phone number listed in the support portal. An impartial engineer will be assigned to review the case and provide feedback.
 11. Management escalation. The customer may escalate support issues following the escalation process:
   1. Non-urgent needs. Request a management escalation within the case itself. A manager will be contacted to review the case and post a response within 1 business day.
   2. Urgent needs.
-      1. Escalate to Canonical’s Support & Technical Services Manager by emailing [support-manager@canonical.com](mailto:support-manager@canonical.com).
-      2. If you require further escalation, email Canonical’s Support & Technical Services Director at [operations-director@canonical.com](mailto:operations-director@canonical.com).
+      1. Escalate to Canonical's Support & Technical Services Manager by emailing [support-manager@canonical.com](mailto:support-manager@canonical.com).
+      2. If you require further escalation, email Canonical's Support & Technical Services Director at [operations-director@canonical.com](mailto:operations-director@canonical.com).
 
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
@@ -350,7 +350,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 <h2 id="uasd-definitions">Definitions</h2>
 
 - <strong id="term-bug-fix-support">Bug-fix Support</strong> means support for valid code bugs in Supported Packages only. This does not include troubleshooting of issues to determine if a bug is present.
-- <strong>Business hours</strong> means 08:00 - 18:00 Monday - Friday local to the customer’s headquarters unless another location is agreed. All times exclude public holidays.
+- <strong>Business hours</strong> means 08:00 - 18:00 Monday - Friday local to the customer's headquarters unless another location is agreed. All times exclude public holidays.
 - <strong id="term-ceph-cluster">Ceph Cluster</strong> means a single Ceph installation in a single physical data centre and specified by a unique identifier.
 - <strong id="term-charms">Charm</strong> means a set of scripts compatible with Juju application modelling for the purpose of deploying and configuring relationships between software packages .
 - <strong id="term-cdk">Charmed Distribution of Kubernetes</strong> means Kubernetes deployed using Juju and the official Canonical-Kubernetes bundle on bare metal, cloud guests, or virtual machines.
@@ -359,21 +359,21 @@ Add-Ons constitute additional support services available separately on a per-Nod
 - <strong id="term-cluster">Cluster</strong> means the deployment of the Kubernetes computing environment to be managed by Canonical.
 - <strong id="term-container-instance">Container Instance</strong> means a container instance running in the Cluster.
 - <strong id="term-hypervisor">Covered Hypervisor</strong> means any of: KVM | Qemu | Bochs, VMWare ESXi, LXD | LXC, Xen, Hyper-V, VirtualBox, z/VM, Docker.
-- <strong id="term-deployment">Deployment</strong> means the process of deploying Charmed Kubernetes or Kubernetes using kubeadm. A deployment is considered successful once Juju reports all applications in a “started” state.
-- <strong id="term-dse">DSE</strong> means a Canonical dedicated support engineer dedicated to work full-time for a single customer acting as an extension of the customer’s support organization with a primary focus on integrating and supporting Canonicals offerings within the customer’s environment.
+- <strong id="term-deployment">Deployment</strong> means the process of deploying Charmed Kubernetes or Kubernetes using kubeadm. A deployment is considered successful once Juju reports all applications in a "started" state.
+- <strong id="term-dse">DSE</strong> means a Canonical dedicated support engineer dedicated to work full-time for a single customer acting as an extension of the customer's support organization with a primary focus on integrating and supporting Canonicals offerings within the customer's environment.
 - <strong id="term-dtam">DTAM</strong> means a Canonical support engineer dedicated to work full-time remotely for a single customer.
 - <strong id="term-environment">Environment</strong> means a Cloud or Cluster, as applicable to the particular service offering.
 - <strong id="term-full-stack-support">Full Stack Support</strong> means addressing problems pertaining to user and operations-level OpenStack functionality, performance and availability.
 - <strong id="term-guest-instance">Guest Instance</strong> means a virtual machine instance running in the Cloud.
 - <strong>Infrastructure Services</strong> refers to the services used by Canonical to deploy, manage, monitor and maintain the Environment.  It includes MAAS, Landscape and LMA Services.
-- <strong id="term-kubernetes">Kubernetes</strong> means the container orchestration software known as “Kubernetes” as distributed by Canonical.
-- <strong id="term-landscape-on-premises">Landscape on Premises</strong> means Canonical’s Landscape system management software installed on the customer's hardware.
-- <strong id="term-livepatch-on-premises">Livepatch on Premises</strong> means Canonical’s livepatch repository software installed on the customer's hardware.
+- <strong id="term-kubernetes">Kubernetes</strong> means the container orchestration software known as "Kubernetes" as distributed by Canonical.
+- <strong id="term-landscape-on-premises">Landscape on Premises</strong> means Canonical's Landscape system management software installed on the customer's hardware.
+- <strong id="term-livepatch-on-premises">Livepatch on Premises</strong> means Canonical's livepatch repository software installed on the customer's hardware.
 - <strong>LMA Services</strong> means Logging, Monitoring and Aggregation services and currently includes: Nagios, Prometheus, Alertmanager,  Grafana, Graylog and Elasticsearch.
 - <strong>Managed Node</strong> means any Node which either runs Infrastructure Services or is managed by the Juju controller run by Canonical and considered alive by Juju.
 - <strong id="term-min-size">Minimum Size Requirement</strong> means at least 12 host Nodes continuously available for the Cloud or 10 host Nodes continuously available for the Cluster or such other size requirement as agreed with Canonical in writing.
 - <strong id="term-node">Node</strong> means a Physical Node or Virtual Machine provided to Canonical (or paid for) by the Customer for the purposes of running the Environment.  Any further machines (whether virtual or container) created on top of a Node are not themselves considered to be Nodes.
-- <strong id="term-openstack">OpenStack</strong> means the cloud computing software known as “OpenStack” as distributed by Canonical with Ubuntu.
+- <strong id="term-openstack">OpenStack</strong> means the cloud computing software known as "OpenStack" as distributed by Canonical with Ubuntu.
 - <strong id="term-openstack-packages">OpenStack Packages</strong> means packages relevant to OpenStack present in the Ubuntu Main repository of the Ubuntu Archive, including updates to those packages delivered in the Ubuntu Cloud Archive.
 This includes Charms listed at [https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms).
 - <strong>Physical Node</strong> means a single named/managed unit of physical compute infrastructure, essentially the shelf or rack unit. May contain multiple CPU sockets, cores, NICs, Storage controllers/devices.
@@ -383,9 +383,9 @@ This includes Charms listed at [https://wiki.ubuntu.com/OpenStack/OpenStackCharm
 - <strong>Supported Kubernetes Packages</strong> means packages containing the binary form of Kubernetes as distributed by Canonical or the CNCF via a suitable package repository.
 - <strong id="term-supported-packages">Supported Packages</strong> means the combination of OpenStack Packages above and Kubernetes Packages.
 - <strong id="term-swift-cluster">Swift Cluster</strong> means a single Swift installation in a single physical data centre and specified by a unique identifier.
-- <strong id="term-tam">TAM</strong> means a Canonical support engineer who works remotely to personally collaborate with the customer’s staff and management.
+- <strong id="term-tam">TAM</strong> means a Canonical support engineer who works remotely to personally collaborate with the customer's staff and management.
 - <strong id="term-trilio">Trilio</strong> means the software known as Trilio as published by Trilio Data, Inc.
-- <strong id="term-upgrade">Upgrade</strong> means the process of upgrading Kubernetes between versions. An upgrade is considered successful once Juju reports all applications in a “started” state. Canonical will provide support for valid bugs encountered during the Upgrade process.
+- <strong id="term-upgrade">Upgrade</strong> means the process of upgrading Kubernetes between versions. An upgrade is considered successful once Juju reports all applications in a "started" state. Canonical will provide support for valid bugs encountered during the Upgrade process.
 - <strong id="term-valid-customisations">Valid Customisations</strong> means configurations made through Horizon or the OpenStack API of the OpenStack Packages. For the avoidance of doubt, valid customizations do not include architectural changes that are not expressly executed or authorized by Canonical. Configuration options set during Private Cloud Build should be considered critical to the health of the Cloud. Any changes to these may render the cloud unsupported. Request for changes should be validated by Canonical to ensure continued support.
 - <strong id="term-virtual-machine">Virtual Machine</strong> means a virtualized compute instance instantiated on a recognised hypervisor technology (KVM, VMWare ESXi, Openstack or Public Cloud).
 

@@ -11,7 +11,7 @@
     <div class="col-7">
       <h1>Install OpenStack yourself</h1>
       <p>Test OpenStack on your workstation, set up an edge cloud or deploy a production-grade cloud across hundreds of physical servers in a data centre. You will use <a href="https://microstack.run/" class="p-link--external">MicroStack</a> or <a href="https://jaas.ai/openstack" class="p-link--external">Charmed OpenStack</a> depending on the requirements.</p>
-      <p>If you run into issues, or if you want support, training or architecture design consulting, please contact Canonical &mdash; we help the world&rsquo;s largest OpenStack users keep their clouds running smoothly.</p>
+      <p>If you run into issues, or if you want support, training or architecture design consulting, please contact Canonical &mdash; we help the world's largest OpenStack users keep their clouds running smoothly.</p>
       <p>
         <a class="p-button--positive js-invoke-modal" href="/openstack/contact-us">
           Contact Canonical
@@ -19,7 +19,7 @@
       </p>
       <p>
         <a href="/engage/charmed-openstack-adoption-whitepaper">
-          Read the whitepaper - “A guide to a successful OpenStack adoption and&nbsp;deployment”&nbsp;&rsaquo;
+          Read the whitepaper - "A guide to a successful OpenStack adoption and&nbsp;deployment"&nbsp;&rsaquo;
         </a>
       </p>
     </div>
@@ -174,7 +174,7 @@
             <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap get microstack config.credentials.keystone-password" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <p>Type the credentials and press the ‘Sign In’ button:</p>
+          <p>Type the credentials and press the 'Sign In' button:</p>
 
           <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
             {{
@@ -275,7 +275,7 @@
 
 <pre><code>Access it with `ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123`</code></pre>
 
-          <p>Note that the IP address of the instance may be different in your environment. In order to connect to the instance run the ‘ssh’ command from the output:</p>
+          <p>Note that the IP address of the instance may be different in your environment. In order to connect to the instance run the 'ssh' command from the output:</p>
 
           <div class="p-code-copyable">
             <input aria-label="code snippet" class="p-code-copyable__input" value="ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123" readonly="readonly">
@@ -422,7 +422,7 @@
                 <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap get microstack config.credentials.keystone-password" readonly="readonly">
                 <button class="p-code-copyable__action">Copy to clipboard</button>
               </div>
-              <p>Type the credentials and press the ‘Sign In’ button:</p>
+              <p>Type the credentials and press the 'Sign In' button:</p>
 
               <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
                 {{
@@ -526,7 +526,7 @@ nova:ip-172-31-24-59</code></pre>
 
 <pre><code>Access it with `ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123`</code></pre>
 
-              <p>Note that the IP address of the instance may be different in your environment. In order to connect to the instance run the ‘ssh’ command from the output:</p>
+              <p>Note that the IP address of the instance may be different in your environment. In order to connect to the instance run the 'ssh' command from the output:</p>
 
               <div class="p-code-copyable">
                 <input aria-label="code snippet" class="p-code-copyable__input" value="ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123" readonly="readonly">
@@ -730,7 +730,7 @@ $ echo "export PATH=$PATH:/snap/bin" >> .bashrc
                 }}
               </a>
             </p>
-            <p>Then navigate to the &lsquo;Subnets&rdquo; tab in the top menu and press on the &ldquo;untagged&rdquo;  VLAN next to the &ldquo;172.16.7.0/24&rdquo; subnet (the <code>provisioning</code> subnet):</p>
+            <p>Then navigate to the 'Subnets&rdquo; tab in the top menu and press on the &ldquo;untagged&rdquo;  VLAN next to the &ldquo;172.16.7.0/24&rdquo; subnet (the <code>provisioning</code> subnet):</p>
             <p>
               <a href="https://assets.ubuntu.com/v1/cb64996c-maas+subnets.png">
                 {{
@@ -1071,7 +1071,7 @@ $ echo "export PATH=$PATH:/snap/bin" >> .bashrc
 <li class="p-stepped-list__item">
   <h4 class="p-stepped-list__title">Interact with OpenStack</h4>
   <div class="p-stepped-list__content">
-    <p>Set the admin user&rsquo;s password for your OpenStack cluster by executing the following command:</p>
+    <p>Set the admin user's password for your OpenStack cluster by executing the following command:</p>
     <div class="p-code-copyable">
       <input class="p-code-copyable__input"
       value="juju config keystone admin-password=<password>" readonly="readonly">
@@ -1140,7 +1140,7 @@ $ echo "export PATH=$PATH:/snap/bin" >> .bashrc
         value="source admin-openrc.sh" readonly="readonly">
         <button class="p-code-copyable__action">Copy to clipboard</button>
       </div>
-      <p>And enter the admin user’s password when asked:</p>
+      <p>And enter the admin user's password when asked:</p>
       <pre><code>Please enter your OpenStack Password for project admin as user admin:</code></pre>
       <p>At this point you can interact with your OpenStack cluster using standard commands, for example:</p>
 

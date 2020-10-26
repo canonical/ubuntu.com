@@ -36,10 +36,10 @@ master nodes with  `juju add-unit kubernetes-master`:
 
 ![multi-master worker image][img-multi-master]
 
-While this will add more machines, it doesn’t work as may be expected. What
+While this will add more machines, it doesn't work as may be expected. What
 happens is that the workers will randomly pick a master to communicate with and
 always use that master unit. This means if that master fails in a way that
-doesn’t remove it from **Juju**, those workers are simply unable to communicate
+doesn't remove it from **Juju**, those workers are simply unable to communicate
 with the control plane. If workers arbitrarily pick the same master, they can
 also overload the master with traffic, making the additional units redundant.
 
@@ -51,7 +51,7 @@ The workers now all use the load balancer to talk to the control plane. This
 will balance the load to the master units, but we have just moved the single
 point of failure to the load balancer. Floating a virtual IP address in front
 of the master units works in a similar manner but without any load balancing.
-If your cluster won’t generate enough traffic to saturate a single master, but
+If your cluster won't generate enough traffic to saturate a single master, but
 you want high availability on the control plane, multiple masters floating a
 virtual IP address is a solid choice.
 
@@ -59,7 +59,7 @@ The next thought is to add multiple load balancers to add resiliency there:
 
 ![multi-load balancer image][img-multi-load-balancer]
 
-We’re now back to the problem where the workers are talking to a random load
+We're now back to the problem where the workers are talking to a random load
 balancer and if that balancer fails they will fail. We can float a virtual IP
 address in front of these load balancers to solve that.
 
@@ -75,7 +75,7 @@ Kubernetes worker charms.
 ## Worker units
 
 Worker ingress is a very similar problem to the control plane, with the
-exception that the random selection of IP for the API server isn’t relevant to
+exception that the random selection of IP for the API server isn't relevant to
 worker ingress. There are a few ways to get traffic into Kubernetes. Two common
 ways are to forward incoming traffic to the service IP and route that to any
 worker. It will get routed by kube-proxy to a pod that will service it. The

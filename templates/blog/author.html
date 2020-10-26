@@ -2,7 +2,7 @@
 
 {% block title %}{{ author.name }}{% endblock %}
 
-{% block description %}{% if author.id == 217 %}Canonical produces Ubuntu, provides commercial services for Ubuntu’s users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.{% else %}{{ author.description|safe }}{% endif %}{% endblock %}
+{% block description %}{% if author.id == 217 %}Canonical produces Ubuntu, provides commercial services for Ubuntu's users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.{% else %}{{ author.description|safe }}{% endif %}{% endblock %}
 
 {% block content %}
 <div class="p-strip">
@@ -20,7 +20,7 @@
           {% endif %}
 
           {% if author.id == 217 %}
-            <p class="p-media-object__content" style="margin-top: 1rem;">Canonical produces Ubuntu, provides commercial services for Ubuntu’s users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.</p>
+            <p class="p-media-object__content" style="margin-top: 1rem;">Canonical produces Ubuntu, provides commercial services for Ubuntu's users, and works with hardware manufacturers, software vendors and cloud partners to certify Ubuntu.</p>
           {% elif author.description %}
             <p class="p-media-object__content" style="margin-top: 1rem;">{{ author.description | safe }}</p>
           {% endif %}

@@ -111,7 +111,7 @@ For information on configuring the Docker charm, see the [Docker configuration p
 
 ### To migrate to containerd
 
-If you intend to switch to containerd, it’s recommended that you first add some
+If you intend to switch to containerd, it's recommended that you first add some
 temporary extra worker units. While not strictly necessary, skipping this step will result
 in some cluster down time. Adding temporary additional workers provides a place for keeping pods running while new workers are brought online. The temporary workers can then be removed as the pods are migrated to the new workers. The rest of these instructions assume that you have deployed temporary workers.
 
@@ -135,7 +135,7 @@ juju upgrade-charm kubernetes-worker
 ```
 
 The kubernetes-worker units will enter a blocked state, with status message
-“Connect a container runtime.”
+"Connect a container runtime."
 
 #### Deploy and relate the new Docker charm
 
@@ -210,7 +210,7 @@ juju status | grep ^kubernetes-worker/ | awk '{print $1}' | tr -d '*' | xargs -n
 #### Cleanup
 
 You can now pause the temporary workers to force all pods to migrate back
-to your “real” workers, then remove the temporary workers.
+to your "real" workers, then remove the temporary workers.
 
 ```bash
 juju status | grep ^kubernetes-worker-temp/ | awk '{print $1}' | tr -d '*' | xargs -n1 -I '{}' juju run-action {} pause --wait

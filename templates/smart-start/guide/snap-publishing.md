@@ -10,9 +10,9 @@ context:
 
 The [Snap store](http://snapcraft.io/store) is a global application repository hosted and managed by Canonical. It is accessible to any developer who wants to leverage snaps to distribute software across any Linux distribution.
 
-This section describes how to publish a snap in the global repository (snap store) or your own private repository (IoT app store). Applications published benefit from Canonical’s content delivery network (CDN) for global software delivery.
+This section describes how to publish a snap in the global repository (snap store) or your own private repository (IoT app store). Applications published benefit from Canonical's content delivery network (CDN) for global software delivery.
 
-IoT app stores are private application repositories hosted and managed by Canonical. Access to IoT app stores is restricted to the repository owner’s team, customers, users and business partners.
+IoT app stores are private application repositories hosted and managed by Canonical. Access to IoT app stores is restricted to the repository owner's team, customers, users and business partners.
 
 | | Snap store |  IoT app store |
 | -- | -- | -- |
