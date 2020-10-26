@@ -1,0 +1,23 @@
+<div class="row">
+  {% if contract['entitlements']['esm-infra'] == True %}
+  <div class="p-notification--information">
+    <p class="p-notification__response">
+      ESM is active by default on any newly-attached Ubuntu 14.04 LTS system.
+    </p>
+  </div>
+  <div class="col-12 u-align--center">
+    To deactivate: <code>sudo ua disable esm-infra</code><br/>
+    To reactivate: <code>sudo ua enable esm-infra</code>&nbsp;&nbsp;
+  </div>
+  {% else %}
+  <div class="p-notification--information">
+    <p class="p-notification__response">
+      ESM-apps is active by default on any newly-attached Ubuntu 14.04 LTS system.
+    </p>
+  </div>
+  <div class="col-12 u-align--center">
+    To deactivate: <code>sudo ua disable esm-apps</code><br/>
+    To reactivate: <code>sudo ua enable esm-apps</code>&nbsp;&nbsp;
+  </div>
+  {% endif %}
+</div>

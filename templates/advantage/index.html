@@ -61,6 +61,7 @@
       <div class="row u-hide--medium u-hide--large">
         <div class="col-12">
           {% for account in enterprise_contracts %}
+          {% set outer_loop = loop %}
           <h4>{{ account }}</h4>
           {% for contract in enterprise_contracts[account] %}
           {% set expired_renewable = contract['renewal'] and contract['contractInfo']['daysTillExpiry'] < 0 %}
@@ -142,52 +143,78 @@
               <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Attached</div>
               <div class="col-small-2 col-medium-3 u-align--left">{{ contract['machineCount'] }}</div>
             </div>
-            <div class="row p-card__content">
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">ESM</div>
-              <div class="col-small-2 col-medium-3 u-align--left">
-                {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
-                <span>
-                  <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
-                  {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %}
-                </span>
-                {% if new_subscription_id == contract['contractInfo']['id'] %}
-                  <i class="p-icon--attention u-hide" data-entitlement="esm-infra"></i>
-                {% endif %}
-                </button>
-                {% else %}
-                <span>N/A</span>
-                {% endif %}
-              </div>
+            <div class="p-accordion">
+              <ul class="p-accordion__list u-no-margin--bottom">
+                <li class="p-accordion__group">
+                  <button type="button" class="p-accordion__tab row" id="esm-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="esm-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
+                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">ESM</div>
+                    <div class="col-small-2 col-medium-3 u-align--left">
+                      {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
+                      <span>
+                        <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
+                        {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %}
+                      </span>
+                      {% if new_subscription_id == contract['contractInfo']['id'] %}
+                      <i class="p-icon--attention u-hide" data-entitlement="esm-infra"></i>
+                      {% endif %}
+                      {% else %}
+                      <span>N/A</span>
+                      {% endif %}
+                    </div>
+                  </button>
+                  <section class="p-accordion__panel u-no-padding--left u-sv3" style="overflow: visible;" id="esm-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-hidden="true" aria-labelledby="esm-tab-{{ outer_loop.index }}-{{ loop.index }}">
+                    {% include "advantage/shared/_esm-info.html" %}
+                  </section>
+                </li>
+              </ul>
             </div>
-            <div class="row p-card__content">
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Livepatch</div>
-              <div class="col-small-2 col-medium-3 u-align--left">
-                {% if contract['entitlements']['livepatch'] == True %}
-                <span>
-                  <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
-                </span>
-                {% if new_subscription_id == contract['contractInfo']['id'] %}
-                  <i class="p-icon--attention u-hide" data-entitlement="livepatch"></i>
-                {% endif %}
-                {% else %}
-                <span>N/A</span>
-                {% endif %}
-              </div>
+            <div class="p-accordion">
+              <ul class="p-accordion__list u-no-margin--bottom">
+                <li class="p-accordion__group">
+                  <button type="button" class="p-accordion__tab row" id="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
+                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Livepatch</div>
+                    <div class="col-small-2 col-medium-3 u-align--left">
+                      {% if contract['entitlements']['livepatch'] == True %}
+                      <span>
+                        <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
+                      </span>
+                      {% if new_subscription_id == contract['contractInfo']['id'] %}
+                      <i class="p-icon--attention u-hide" data-entitlement="livepatch"></i>
+                      {% endif %}
+                      {% else %}
+                      <span>N/A</span>
+                      {% endif %}
+                    </div>
+                  </button>
+                  <section class="p-accordion__panel u-no-padding--left u-sv3" style="overflow: visible;" id="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-hidden="true" aria-labelledby="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}">
+                    {% include "advantage/shared/_livepatch-info.html" %}
+                  </section>
+                </li>
+              </ul>
             </div>
-            <div class="row p-card__content">
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Certifications</div>
-              <div class="col-small-2 col-medium-3 u-align--left">
-                {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
-                <span>
-                  <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
-                </span>
-                {% if new_subscription_id == contract['contractInfo']['id'] %}
-                  <i class="p-icon--attention u-hide" data-entitlement="fips" style="position: absolute; right: 11px; top: 4px;"></i>
-                {% endif %}
-                {% else %}
-                <span>N/A</span>
-                {% endif %}
-              </div>
+            <div class="p-accordion">
+              <ul class="p-accordion__list u-no-margin--bottom">
+                <li class="p-accordion__group">
+                  <button type="button" class="p-accordion__tab row" id="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
+                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Certifications</div>
+                    <div class="col-small-2 col-medium-3 u-align--left">
+                      {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
+                      <span>
+                        <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
+                      </span>
+                      {% if new_subscription_id == contract['contractInfo']['id'] %}
+                      <i class="p-icon--attention u-hide" data-entitlement="fips" style="position: absolute; right: 11px; top: 4px;"></i>
+                      {% endif %}
+                      {% else %}
+                      <span>N/A</span>
+                      {% endif %}
+                    </div>
+                  </button>
+                  <section class="p-accordion__panel u-no-padding--left u-sv3" style="overflow: visible;" id="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-hidden="true" aria-labelledby="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}">
+                    {% include "advantage/shared/_certifications-info.html" %}
+                  </section>
+                </li>
+              </ul>
             </div>
           </div>
           {% endfor %}
@@ -297,60 +324,13 @@
                       {% include "advantage/table/_attached-machines.html" %}
 
                       <td id="expanded-row-esm-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
-                        <div class="row">
-                          {% if contract['entitlements']['esm-infra'] == True %}
-                          <div class="p-notification--information">
-                            <p class="p-notification__response">
-                              ESM is active by default on any newly-attached Ubuntu 14.04 LTS system.
-                            </p>
-                          </div>
-                          <div class="col-12 u-align--center">
-                            To deactivate: <code>sudo ua disable esm-infra</code><br/>
-                            To reactivate: <code>sudo ua enable esm-infra</code>&nbsp;&nbsp;
-                          </div>
-                          {% else %}
-                          <div class="p-notification--information">
-                            <p class="p-notification__response">
-                              ESM-apps is active by default on any newly-attached Ubuntu 14.04 LTS system.
-                            </p>
-                          </div>
-                          <div class="col-12 u-align--center">
-                            To deactivate: <code>sudo ua disable esm-apps</code><br/>
-                            To reactivate: <code>sudo ua enable esm-apps</code>&nbsp;&nbsp;
-                          </div>
-                          {% endif %}
-                        </div>
+                        {% include "advantage/shared/_esm-info.html" %}
                       </td>
                       <td id="expanded-row-livepatch-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
-                        <div class="row">
-                          <div class="col-12 u-align--center">
-                            To activate Livepatch: <code>sudo ua enable livepatch</code>
-                          </div>
-                        </div>
+                        {% include "advantage/shared/_livepatch-info.html" %}
                       </td>
                       <td id="expanded-row-certifications-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
-                        <div class="row" >
-                          <div class="col-12" style="text-align: center;">
-                            <div  style="display: inline-block; text-align: left;">
-                            <strong>FIPS 140-2</strong> Level 1 certified packages use older software versions.<br />
-                            Use them only if your organisation requires it.<br /><br />
-
-                            Available on: Ubuntu 16.04 LTS, 18.04 LTS<br />
-                            To activate FIPS: <a class="p-link--external" href="https://docs.ubuntu.com/security-certs/en/fips">FIPS setup instructions</a><br /><br />
-
-                            <strong>CC-EAL2</strong> certified packages use older software versions<br />
-                            Use them only if your organisation requires it.<br /><br />
-
-                            Available on: Ubuntu 16.04 LTS<br />
-                            To activate CC-EAL2: <a class="p-link--external" href="https://docs.ubuntu.com/security-certs/en/cc-16/">CC-EAL2 setup instructions</a><br /><br />
-
-                            <strong>CIS tools</strong> test compliance with the CIS security benchmark.<br /><br />
-
-                            Available on: Ubuntu 16.04 LTS, 18.04 LTS<br />
-                            To use the tools: <a class="p-link--external" href="https://docs.ubuntu.com/security-certs/en/cis-18-16.html">CIS setup instructions</a>
-                          </div>
-                          </div>
-                        </div>
+                        {% include "advantage/shared/_certifications-info.html" %}
                       </td>
                     </tr>
                   {% endif %}
@@ -540,6 +520,72 @@
   }
 </script>
 
+
+<script>
+  /**
+  Toggles the necessary aria- attributes' values on the accordion panels
+  and handles to show or hide them.
+  @param {HTMLElement} element The tab that acts as the handles.
+  @param {Boolean} show Whether to show or hide the accordion panel.
+  */
+  function toggleExpanded(element, show) {
+    var target = document.getElementById(element.getAttribute('aria-controls'));
+
+    if (target) {
+      element.setAttribute('aria-expanded', show);
+      target.setAttribute('aria-hidden', !show);
+    }
+  }
+
+  /**
+  Attaches event listeners for the accordion open and close click events.
+  @param {HTMLElement} accordionContainer The accordion container element.
+  */
+  function setupAccordion(accordionContainer) {
+    // Finds any open panels within the container and closes them.
+    function closeAllPanels() {
+      var openPanels = accordionContainer.querySelectorAll('[aria-expanded=true]');
+
+      for (var i = 0, l = openPanels.length; i < l; i++) {
+        toggleExpanded(openPanels[i], false);
+      }
+    }
+
+    // Set up an event listener on the container so that panels can be added
+    // and removed and events do not need to be managed separately.
+    accordionContainer.addEventListener('click', function (event) {
+      var target = event.target;
+
+      if (target.closest) {
+        target = target.closest('[class*="p-accordion__tab"]');
+      } else if (target.msMatchesSelector) {
+        // IE friendly `Element.closest` equivalent
+        // as in https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
+        do {
+          if (target.msMatchesSelector('[class*="p-accordion__tab"]')) {
+            break;
+          }
+          target = target.parentElement || target.parentNode;
+        } while (target !== null && target.nodeType === 1);
+      }
+
+      if (target) {
+        var isTargetOpen = target.getAttribute('aria-expanded') === 'true';
+        closeAllPanels();
+
+        // Toggle visibility of the target panel.
+        toggleExpanded(target, !isTargetOpen);
+      }
+    });
+  }
+
+  // Setup all accordions on the page.
+  var accordions = document.querySelectorAll('.p-accordion');
+
+  for (var i = 0, l = accordions.length; i < l; i++) {
+    setupAccordion(accordions[i]);
+  }
+</script>
 {% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock content %}
