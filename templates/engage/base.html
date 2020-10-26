@@ -37,7 +37,7 @@
           ) | safe
         }}
       {% endif %}
-      
+
     </a>
   </div>
   <div class="row">
@@ -111,7 +111,7 @@
     </div>
     {% endif %}
   </div>
-  
+
 </section>
 
 {% if document["metadata"]["webinar_code"] != "" %}
@@ -135,7 +135,7 @@
 <!-- Youtube webinars -->
 <section class="p-strip is-shallow" id="youtube-section">
   <div class="row" id="webinar">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/i-RofTKJXRc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ document["metadata"]["youtube_id"] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </section>
 {% endif %}
