@@ -225,7 +225,7 @@ export function setOrderInformation(listings, modal) {
 export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
   const currency = "USD";
   const totalsContainer = modal.querySelector("#order-totals");
-  const subtotalLabel = modal.querySelector(".js-subtotal u-text-light");
+  const subtotalLabel = modal.querySelector(".js-subtotal .u-text-light");
   const subtotalElement = modal.querySelector(".js-subtotal .js-info-value");
   const endDateElements = modal.querySelectorAll(".js-end-date .js-info-value");
   let proratedEndDate;
