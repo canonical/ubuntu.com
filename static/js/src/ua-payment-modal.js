@@ -120,7 +120,7 @@ function attachCTAevents() {
       e.preventDefault();
       modal.classList.add("is-processing");
 
-      if (currentTransaction.accountId === "") {
+      if (!currentTransaction.accountId) {
         currentTransaction.accountId = data.accountId;
       }
     }
@@ -201,7 +201,6 @@ function attachFormEvents() {
 
     input.addEventListener("input", (e) => {
       if (guestPurchase && input.type === "email") {
-        console.log(guestPurchase);
         guestPurchase = false;
         currentTransaction.accountId = "";
       }
