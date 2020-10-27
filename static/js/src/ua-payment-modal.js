@@ -209,7 +209,9 @@ function attachFormEvents() {
     });
 
     input.addEventListener("blur", (e) => {
-      validateFormInput(e.target, true);
+      if (input.name !== "tax") {
+        validateFormInput(e.target, true);
+      }
     });
   }
 
@@ -353,6 +355,8 @@ function applyLoggedInPurchaseTotals() {
         // preview data
         const errorObject = parseForErrorObject(data);
         presentError(errorObject);
+      } else {
+        validateFormInput(form.tax, true);
       }
 
       if (currentTransaction.type === "purchase") {
