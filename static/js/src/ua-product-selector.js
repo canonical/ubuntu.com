@@ -110,10 +110,10 @@ function productSelector() {
         <button class="p-button--positive js-ua-shop-cta ${
           subtotal === 0 ? "u-disable" : ""
         }" data-cart='${JSON.stringify(cartData)}' data-account-id="${
-          window.accountId
-        }" data-subtotal='${subtotalUnits}' data-previous-purchase-id="${
-          window.previousPurchaseId
-        }">Buy now</button>
+      window.accountId
+    }" data-subtotal='${subtotalUnits}' data-previous-purchase-id="${
+      window.previousPurchaseId
+    }">Buy now</button>
       </div>
     </div>
     `;
