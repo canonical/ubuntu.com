@@ -5,11 +5,11 @@ and handles to show or hide them.
 @param {Boolean} show Whether to show or hide the accordion panel.
 */
 function toggleExpanded(element, show) {
-  var target = document.getElementById(element.getAttribute('aria-controls'));
+  var target = document.getElementById(element.getAttribute("aria-controls"));
 
   if (target) {
-    element.setAttribute('aria-expanded', show);
-    target.setAttribute('aria-hidden', !show);
+    element.setAttribute("aria-expanded", show);
+    target.setAttribute("aria-hidden", !show);
   }
 }
 
@@ -20,7 +20,9 @@ Attaches event listeners for the accordion open and close click events.
 function setupAccordion(accordionContainer) {
   // Finds any open panels within the container and closes them.
   function closeAllPanels() {
-    var openPanels = accordionContainer.querySelectorAll('[aria-expanded=true]');
+    var openPanels = accordionContainer.querySelectorAll(
+      "[aria-expanded=true]"
+    );
 
     for (var i = 0, l = openPanels.length; i < l; i++) {
       toggleExpanded(openPanels[i], false);
@@ -29,7 +31,7 @@ function setupAccordion(accordionContainer) {
 
   // Set up an event listener on the container so that panels can be added
   // and removed and events do not need to be managed separately.
-  accordionContainer.addEventListener('click', function (event) {
+  accordionContainer.addEventListener("click", function (event) {
     var target = event.target;
 
     if (target.closest) {
@@ -46,7 +48,7 @@ function setupAccordion(accordionContainer) {
     }
 
     if (target) {
-      var isTargetOpen = target.getAttribute('aria-expanded') === 'true';
+      var isTargetOpen = target.getAttribute("aria-expanded") === "true";
       closeAllPanels();
 
       // Toggle visibility of the target panel.
@@ -56,7 +58,7 @@ function setupAccordion(accordionContainer) {
 }
 
 // Setup all accordions on the page.
-var accordions = document.querySelectorAll('.p-accordion');
+var accordions = document.querySelectorAll(".p-accordion");
 
 for (var i = 0, l = accordions.length; i < l; i++) {
   setupAccordion(accordions[i]);
