@@ -82,7 +82,7 @@
       {{ text | safe }}
       {% endfor %}
     </div>
-    {% if document["metadata"]["form_id"] != "" %}
+    {% if "form_id" in document["metadata"] and document["metadata"]["form_id"] != "" %}
     <div class="col-5" id="the-form">
       {% if document["metadata"]["language"] != '' %}
         {% set form = "engage/shared/_" + document["metadata"]["language"] + "_engage_form.html" %}
