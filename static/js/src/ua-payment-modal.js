@@ -588,7 +588,11 @@ function handleGuestPaymentMethodResponse(data) {
   // purchases with and then continue
   const paymentMethod = data.paymentMethod;
 
-  ensurePurchaseAccount(customerInfo.email, customerInfo.name, paymentMethod.id).then((data) => {
+  ensurePurchaseAccount(
+    customerInfo.email,
+    customerInfo.name,
+    paymentMethod.id
+  ).then((data) => {
     if (data.code) {
       // an error was returned, most likely cause
       // is that the user is trying to make a purchase
