@@ -196,7 +196,10 @@
       </div>
     </section>
   </form>
-  {% include 'advantage/_stripe-modal.html' %}
+
+  {% with type="purchase" %}
+    {% include 'advantage/_stripe-modal.html' %}
+  {% endwith %}
 
   <script src="{{ versioned_static('js/src/ua-product-selector.js') }}" type="module" defer></script>
   <script defer>
