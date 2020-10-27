@@ -276,7 +276,10 @@
     </section>
   {% endif %}
 
-  {% include 'advantage/_stripe-modal.html' %}
+  {% with type="renewal" %}
+    {% include 'advantage/_stripe-modal.html' %}
+  {% endwith %}
+  
 {% else %}
   <section class="p-strip--suru-topped is-shallow" style="padding-top: 6rem;"></section>
     <div class="row">
