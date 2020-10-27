@@ -82,7 +82,8 @@
               <p>To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code></p>
               <p>To detach a machine: <code>sudo ua detach</code></p>
               <p>
-                Once a machine is attached, you can configure its services. Visit the <a href="http://manpages.ubuntu.com/manpages/focal/en/man1/ua.1.html" class="p-link--external">UA manpages</a> for details.
+                Once a machine is attached, you can configure its services.&nbsp;&nbsp;
+                <button class="p-button is-dense u-no-margin--bottom js-entitlements-callout" data-entitlements='{{ contract["entitlements"]|tojson }}'>Where?</button>
               </p>
               {% else %}
               <div class="col-12 u-align--center u-sv3">
@@ -203,7 +204,7 @@
                         <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>
                       </span>
                       {% if new_subscription_id == contract['contractInfo']['id'] %}
-                      <i class="p-icon--attention u-hide" data-entitlement="fips" style="position: absolute; right: 11px; top: 4px;"></i>
+                      <i class="p-icon--attention u-hide" data-entitlement="fips"></i>
                       {% endif %}
                       {% else %}
                       <span>N/A</span>
