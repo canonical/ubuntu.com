@@ -120,7 +120,7 @@ function attachCTAevents() {
       e.preventDefault();
       modal.classList.add("is-processing");
 
-      if (currentTransaction.accountId === "" || currentTransaction.accountId === null) {
+      if (!currentTransaction.accountId) {
         currentTransaction.accountId = data.accountId;
       }
     }
