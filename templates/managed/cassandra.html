@@ -15,7 +15,10 @@
       </h1>
       <p><i>Now running Apache Cassandra 3.11</i></p>
       <p class="p-heading--four">Fully managed Cassandra for your mission-critical data needs</p>
-      <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+      <p>
+        <a href="/managed/contact-us" class="p-button--positive">Get in touch</a>
+        <a href="/managed/contact-us" class="p-button--neutral js-invoke-modal">Free deployment assessment</a>
+      </p>
     </div>
     <div class="col-5 u-hide--small u-align--center">
       {{
@@ -30,6 +33,9 @@
         ) | safe
       }}
     </div>
+  </div>
+  <div class="row">
+    <p>We automate the mundane tasks so you can focus on building your core apps with Cassandra. Managed Apache Cassandra database service deployable on the cloud of your choice or on-prem.</p>
   </div>
 </section>
 
@@ -277,7 +283,9 @@
         </tr>
         <tr>
           <td><strong>Public Clouds</strong></td>
-          <td colspan="2">AWS, GCP, Azure</td>
+          <td colspan="2">AWS, GCP, Azure<br />
+          <a href="/managed/contact-us" class="js-invoke-modal">Contact us</a> for managed Cassandra on other clouds
+          </td>
         </tr>
         <tr>
           <td><strong>Data Center Regions</strong></td>
@@ -289,8 +297,7 @@
         </tr>
         <tr>
           <td><strong>On-premise</strong></td>
-          <td colspan="2">Any OpenStack, bare metal and key third-party providers such as VMWare.<br />
-           <a href="/managed/contact-us" class="js-invoke-modal">Contact us</a> for managed Cassandra on other clouds</td>
+          <td colspan="2">Any OpenStack, bare metal and key third-party providers such as VMWare.</td>
           </tr>
           <tr>
             <td><strong>Multi-cloud</strong></td>
@@ -578,7 +585,7 @@
           <p>
             We manage applications at both the host and the guest level. All prices are dependent on current cloud architecture and requirements.
           </p>
-          <p><a href="/managed/kafka#get-in-touch">Get started with a free quote and architecture assessment&nbsp;&rsaquo;</a></p>
+          <p><a href="/managed/cassandra#get-in-touch">Get started with a free quote and architecture assessment&nbsp;&rsaquo;</a></p>
         </div>
       </div>
       {% include '/shared/pricing/_managed-pricing.html' %}
@@ -594,7 +601,7 @@
             Watch this webinar to understand the architecture, configuration and security recommendations for Cassandra deployments on private cloud, container and public cloud environments
           </p>
           <p>
-            <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/439718">Watch the webinar&nbsp;&rsaquo;</a>
+            <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/439718">Watch the webinar</a>
           </p>
         </div>
         <div class="col-5 u-hide--small u-vertically-center u-align--center">
@@ -647,6 +654,6 @@
 
     {% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
-    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/managed-kafka.html" data-form-id="3592" data-lp-id="3828" data-return-url="https://www.ubuntu.com/managed/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/managed-cassandra.html" data-form-id="3592" data-lp-id="3828" data-return-url="https://www.ubuntu.com/managed/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
     </div>
     {% endblock content %}
