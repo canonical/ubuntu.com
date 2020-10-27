@@ -43,6 +43,12 @@
             <div class="col-9 col-start-large-4">
               <span class="p-form-validation__message u-hide"></span>
             </div>
+            
+            {% if type == "purchase" %}
+            <div class="col-9 col-start-large-4">
+              <small>We’ll also send setup instructions to this address.</small>
+            </div>
+            {% endif %}
           </div>
 
           {% if account is defined %}
