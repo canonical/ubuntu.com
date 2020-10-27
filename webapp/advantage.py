@@ -122,7 +122,7 @@ class AdvantageContracts:
                 method="post", path=f"v1/renewals/{renewal_id}/acceptance"
             )
         except HTTPError as http_error:
-            if http_error.code == 500:
+            if http_error.response.status_code == 500:
                 return response.json()
             else:
                 raise http_error
