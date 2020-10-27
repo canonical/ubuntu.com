@@ -7,7 +7,7 @@ export async function getPurchase(purchaseID) {
   return data;
 }
 
-export async function getPurchaseAccount(email, paymentMethodID) {
+export async function ensurePurchaseAccount(email, name, paymentMethodID) {
   let response = await fetch(`/advantage/purchase-account`, {
     method: "POST",
     cache: "no-store",
@@ -18,6 +18,7 @@ export async function getPurchaseAccount(email, paymentMethodID) {
     },
     body: JSON.stringify({
       email: email,
+      name: name,
       payment_method_id: paymentMethodID,
     }),
   });

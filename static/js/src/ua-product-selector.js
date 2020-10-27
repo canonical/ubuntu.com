@@ -166,7 +166,7 @@ function productSelector() {
             <div class="col-2 col-small-2">
               ${quantity !== null ? quantityHTML : ""}
             </div>
-            
+
             <div class="col-2 u-align--right ${
               action === "add" ? "col-small-2" : "u-hide--small"
             }">
@@ -176,7 +176,7 @@ function productSelector() {
             </div>
           </div>
         </div>
-    
+
         <div class="col-2 u-align--right ${
           action === "add" ? "p-shop-cart__block" : "col-small-2"
         }">

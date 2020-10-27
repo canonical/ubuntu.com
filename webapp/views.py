@@ -24,7 +24,7 @@ from requests.exceptions import HTTPError
 
 # Local
 from webapp.login import empty_session, user_info
-from webapp.advantage import AdvantageContracts
+from webapp.advantage import AdvantageContracts, UnauthorizedError
 
 
 # Define the metric name for the number of active machines.
@@ -698,67 +698,56 @@ def post_renewal_preview(renewal_id):
 
 
 def advantage_shop_view():
-    purchase_account_id = None
-    previous_purchase_id = None
+    account = previous_purchase_id = None
     stripe_publishable_key = os.getenv(
         "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
     )
+    api_url = flask.current_app.config["CONTRACTS_API_URL"]
 
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
             flask.session["authentication_token"],
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
-
         if flask.session.get("guest_authentication_token"):
             flask.session.pop("guest_authentication_token")
 
         try:
-            advantage.get_accounts()
-
-            purchase_account = advantage.get_purchase_account("", "")
-
-            if purchase_account:
-                purchase_account_id = purchase_account["accountID"]
-
-                subs = advantage.get_account_subscriptions_for_marketplace(
-                    purchase_account_id, "canonical-ua"
-                )
-
-                if "subscriptions" in subs:
-                    subscription = subs["subscriptions"][0]
-                    if "lastPurchaseID" in subscription:
-                        previous_purchase_id = subscription["lastPurchaseID"]
-        except HTTPError as http_error:
-            if http_error.response.status_code == 401:
+            account = advantage.get_purchase_account()
+        except HTTPError as err:
+            code = err.response.status_code
+            if code == 401:
                 # We got an unauthorized request, so we likely
                 # need to re-login to refresh the macaroon
                 flask.current_app.extensions["sentry"].captureException(
                     extra={
                         "session_keys": flask.session.keys(),
-                        "request_url": http_error.request.url,
-                        "request_headers": http_error.request.headers,
-                        "response_headers": http_error.response.headers,
-                        "response_body": http_error.response.json(),
-                        "response_code": http_error.response.json()["code"],
-                        "response_message": http_error.response.json()[
-                            "message"
-                        ],
+                        "request_url": err.request.url,
+                        "request_headers": err.request.headers,
+                        "response_headers": err.response.headers,
+                        "response_body": err.response.json(),
+                        "response_code": err.response.json()["code"],
+                        "response_message": err.response.json()["message"],
                     }
                 )
-
                 empty_session(flask.session)
-
                 return flask.render_template("advantage/subscribe/index.html")
-
-            raise http_error
+            if code != 404:
+                raise
+            # There is no purchase account yet for this user.
+            # One will need to be created later, but this is an expected
+            # condition.
     else:
-        advantage = AdvantageContracts(
-            session,
-            None,
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        advantage = AdvantageContracts(session, None, api_url=api_url)
+
+    if account is not None:
+        resp = advantage.get_account_subscriptions_for_marketplace(
+            account["id"], "canonical-ua"
         )
+        subs = resp.get("subscriptions")
+        if subs:
+            previous_purchase_id = subs[0].get("lastPurchaseID")
 
     listings_response = advantage.get_marketplace_product_listings(
         "canonical-ua"
@@ -779,10 +768,10 @@ def advantage_shop_view():
 
     return flask.render_template(
         "advantage/subscribe/index.html",
+        account=account,
+        previous_purchase_id=previous_purchase_id,
         product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
-        purchase_account_id=purchase_account_id,
-        previous_purchase_id=previous_purchase_id,
     )
 
 
@@ -966,43 +955,44 @@ def get_purchase(purchase_id):
         return flask.jsonify({"error": "authentication required"}), 401
 
 
-def get_purchase_account():
+def ensure_purchase_account():
     """
     Returns an object with the ID of an account a user can make
     purchases on. If the user is not logged in, the object also
     contains an auth token required for subsequent calls to the
     contract API.
     """
-
     if not flask.request.is_json:
         return flask.jsonify({"error": "JSON required"}), 400
 
     auth_token = None
-
     if user_info(flask.session):
         auth_token = flask.session["authentication_token"]
-
     advantage = AdvantageContracts(
         session,
         auth_token,
         api_url=flask.current_app.config["CONTRACTS_API_URL"],
     )
 
-    email = flask.request.json.get("email")
-    payment_method_id = flask.request.json.get("payment_method_id")
-
+    request = flask.request.json
     try:
-        account = advantage.get_purchase_account(email, payment_method_id)
-
-        if "token" in account:
-            flask.session["guest_authentication_token"] = account["token"]
-    except HTTPError as http_error:
-        flask.current_app.extensions["sentry"].captureException()
-        return (
-            http_error.response.content,
-            500,
+        account = advantage.ensure_purchase_account(
+            email=request.get("email"),
+            name=request.get("name"),
+            payment_method_id=request.get("payment_method_id"),
         )
+    except UnauthorizedError as err:
+        # This kind of errors are handled js side.
+        return err.asdict(), 200
+    except HTTPError as err:
+        flask.current_app.extensions["sentry"].captureException()
+        return err.response.content, 500
 
+    # The guest authentication token is included in the response only when the
+    # user is not logged in.
+    token = account.get("token")
+    if token:
+        flask.session["guest_authentication_token"] = token
     return flask.jsonify(account), 200
 
 
