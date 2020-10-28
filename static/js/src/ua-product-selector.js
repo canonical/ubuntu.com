@@ -244,11 +244,18 @@ function productSelector() {
     const productId = data.productId;
     const imageURL = data.imageUrl;
     const quantity = data.quantity;
-    const productName = products[productId].name;
+    const product = products[productId];
+    const name = product.name;
+    const unitPrice = product.price.value / 100;
 
     if (action === "add") {
       updateCartState(productId, quantity, imageURL);
-      addToCartEvent({ id: productId, name: productName, quantity: quantity });
+      addToCartEvent({
+        id: productId,
+        name: name,
+        price: unitPrice,
+        quantity: quantity,
+      });
       cartStep.scrollIntoView();
       resetForm();
     } else if (action === "remove") {
@@ -260,7 +267,8 @@ function productSelector() {
 
       removeFromCartEvent({
         id: productId,
-        name: productName,
+        name: name,
+        price: unitPrice,
         quantity: quantity,
       });
     }

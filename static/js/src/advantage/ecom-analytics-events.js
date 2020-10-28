@@ -3,13 +3,7 @@ export function addToCartEvent(product) {
     event: "addToCart",
     ecommerce: {
       add: {
-        products: [
-          {
-            name: product.name,
-            id: product.id,
-            quantity: product.quantity,
-          },
-        ],
+        products: [product],
       },
     },
   });
@@ -20,13 +14,44 @@ export function removeFromCartEvent(product) {
     event: "removeFromCart",
     ecommerce: {
       remove: {
-        products: [
-          {
-            name: product.name,
-            id: product.id,
-            quantity: product.quantity,
-          },
-        ],
+        products: [product],
+      },
+    },
+  });
+}
+
+/**
+ *
+ * @param {Array} cartItems
+ * @param {String} step
+ *
+ * There are three steps to the checkout:
+ * proceededToCheckout, addedPaymentDetails and
+ * confirmedPurchase
+ */
+export function checkoutEvent(products, step) {
+  dataLayer.push({
+    event: "checkout",
+    ecommerce: {
+      checkout: {
+        actionField: { step: step },
+        products: products,
+      },
+    },
+  });
+}
+
+export function purchaseEvent(purchaseInfo, products) {
+  dataLayer.push({
+    ecommerce: {
+      purchase: {
+        actionField: {
+          id: purchaseInfo.id, // Transaction ID. Required for purchases and refunds.
+          affiliation: purchaseInfo.origin,
+          revenue: purchaseInfo.total, // Total transaction value (incl. tax and shipping)
+          tax: purchaseInfo.tax,
+        },
+        products: products,
       },
     },
   });
