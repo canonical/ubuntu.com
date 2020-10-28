@@ -1,5 +1,9 @@
 import { StateManager } from "./utils/state.js";
 import { debounce } from "./utils/debounce.js";
+import {
+  addToCartEvent,
+  removeFromCartEvent,
+} from "./advantage/ecom-analytics-events.js";
 
 function productSelector() {
   const form = document.querySelector(".js-shop-form");
@@ -240,9 +244,11 @@ function productSelector() {
     const productId = data.productId;
     const imageURL = data.imageUrl;
     const quantity = data.quantity;
+    const productName = products[productId].name;
 
     if (action === "add") {
       updateCartState(productId, quantity, imageURL);
+      addToCartEvent({ id: productId, name: productName, quantity: quantity });
       cartStep.scrollIntoView();
       resetForm();
     } else if (action === "remove") {
@@ -250,6 +256,12 @@ function productSelector() {
         productId: productId,
         quantity: quantity,
         imageURL: imageURL,
+      });
+
+      removeFromCartEvent({
+        id: productId,
+        name: productName,
+        quantity: quantity,
       });
     }
   }
