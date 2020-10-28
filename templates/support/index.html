@@ -1,6 +1,6 @@
 {% extends "support/base_support.html" %}
 
-{% block title %}Support and management{% endblock %}
+{% block title %}Enterprise Open Source Support{% endblock %}
 
 {% block meta_description %}Ubuntu Advantage offers a single, per-node packaging of the most comprehensive Linux and open source software, application, security and IaaS support in the industry, with OpenStack support and Kubernetes support included, as well as  for open source applications like Apache Kafka, Cassandra, Elasticsearch, Postgres and more.{% endblock %}
 
@@ -40,9 +40,9 @@
       <li class="p-inline-images__item">
         {{
           image(
-              url="https://assets.ubuntu.com/v1/1a062141-logo-bloomberg.svg",
+              url="https://assets.ubuntu.com/v1/7538babd-Bloomberg_logo.svg",
               alt="Bloomberg",
-              width="195",
+              width="190",
               height="35",
               hi_def=True,
               loading="lazy",
@@ -94,8 +94,8 @@
           image(
               url="https://assets.ubuntu.com/v1/e0f7037f-logo-ebay.svg",
               alt="Ebay",
-              width="140",
-              height="50",
+              width="110",
+              height="40",
               hi_def=True,
               loading="lazy",
               attrs={"class": "p-inline-images__logo", "id": ""},
@@ -131,9 +131,9 @@
       <li class="p-inline-images__item">
         {{
           image(
-              url="https://assets.ubuntu.com/v1/8393d534-logo-bestbuy.svg",
+              url="https://assets.ubuntu.com/v1/1d34393a-best-buy_logo.svg",
               alt="Best Buy",
-              width="92",
+              width="70",
               height="50",
               hi_def=True,
               loading="lazy",
@@ -177,7 +177,6 @@
         <li class="p-list__item is-ticked">Up to 10 years support* for Ubuntu LTS</li>
         <li class="p-list__item is-ticked">Technical support for open source database, LMA and cloud-native apps</li>
       </ul>
-      <p><a href="https://buy.ubuntu.com/">Supported applications&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-divider__block">
       <h4>Infrastructure</h4>
@@ -188,11 +187,20 @@
         <li class="p-list__item is-ticked">Up to 10 years support* for Ubuntu LTS</li>
         <li class="p-list__item is-ticked">Technical support for OpenStack, KVM, MAAS</li>
       </ul>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
       <p>
-        <a href="/advantage">Supported infrastructure&nbsp;&rsaquo;</a><br />
+        <a href="https://buy.ubuntu.com/">Supported applications&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <p>*Ubuntu 18.04 LTS onwards</p>
+    <div class="col-6">
+      <p>
+        <a href="/advantage">Supported infrastructure&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <p class="u-text--muted">*Ubuntu 18.04 LTS onwards</p>
   </div>
 </section>
 
@@ -256,7 +264,7 @@
               height="80",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
+              attrs={"class": "p-inline-images__logo", "title": "PostgreSQL"},
           ) | safe
         }}
       </li>
@@ -269,7 +277,7 @@
               height="70",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
+              attrs={"class": "p-inline-images__logo", "title": "MySQL"},
           ) | safe
         }}
       </li>
@@ -282,7 +290,7 @@
               height="35",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
+              attrs={"class": "p-inline-images__logo", "title": "OpenJDK"},
           ) | safe
         }}
       </li>
@@ -295,7 +303,7 @@
               height="100",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
+              attrs={"class": "p-inline-images__logo", "title": "Kafka"},
           ) | safe
         }}
       </li>
@@ -308,59 +316,337 @@
               height="50",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
+              attrs={"class": "p-inline-images__logo", "title": "Apache Zoopkeeper"},
           ) | safe
         }}
       </li>
       <li class="p-inline-images__item">
         {{
           image(
-              url="https://assets.ubuntu.com/v1/06c5609f-logo-cisco.svg",
-              alt="Cisco",
+              url="https://assets.ubuntu.com/v1/938ca3d7-rabbitmq_logo.png",
+              alt="RabbitMQ",
+              width="110",
+              height="37",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title":"RabbitMQ"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/234cdd88-memached-logo.png",
+              alt="Memached",
+              width="70",
+              height="50",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Memached"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/4d32cece-squid-apache-logo.png",
+              alt="Squid Apache",
+              width="80",
+              height="65",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Squid"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/84191887-Bind_9_ISC_Blue_320x320.png",
+              alt="Bind",
               width="100",
+              height="80",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Bind"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/56009a28-openldap-logo.png",
+              alt="OpenLDAP",
+              width="110",
+              height="45",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "OpenLDAP"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/5ebc8ebd-logo-nagios.png",
+              alt="Nagios",
+              width="100",
+              height="35",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Nagios"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/f46e72cf-apache-logo-2.png",
+              alt="Apache",
+              width="100",
+              height="35",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Apache"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/2d7a8a90-NGINX-logo-rgb-large.png",
+              alt="NGINX",
+              width="100",
+              height="35",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "NGINX"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        <p class="p-heading--four">
+          <strong>MongoDB</strong>
+        </p>
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/3f39d234-containerd-logo.png",
+              alt="Containerd",
+              width="35",
+              height="55",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Containerd"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/84d53087-nodejs-logo.png",
+              alt="NodeJS",
+              width="90",
+              height="55",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "NodeJS"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/dbcc771b-vault-logo.png",
+              alt="Vault",
+              width="60",
+              height="55",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Vault"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/54ac468e-grafana_logo_swirl-events.svg",
+              alt="Grafana",
+              width="55",
+              height="55",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Grafana"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/e4d268ab-1280px-Elasticsearch_logo.svg.png",
+              alt="ElasticSearch",
+              width="140",
+              height="35",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "ElasticSearch"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/cdadb173-file-beats-logo.png",
+              alt="Filebeat",
+              width="80",
+              height="35",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Filebeat"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/4a41375d-etcd-icon-color-logo.png",
+              alt="etcd",
+              width="60",
+              height="60",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "etcd"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/367ef522-telegraf-logo.png",
+              alt="Telegraf",
+              width="110",
+              height="27",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Telegraf"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
+              alt="Prometheus",
+              width="60",
+              height="60",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Prometheus"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/bd33839a-graylog.svg",
+              alt="Graylog",
+              width="90",
+              height="30",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Graylog"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/c530ca79-Cassandra_logo.svg",
+              alt="Cassandra",
+              width="80",
               height="50",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
+              attrs={"class": "p-inline-images__logo", "title": "Cassandra"},
           ) | safe
         }}
       </li>
       <li class="p-inline-images__item">
         {{
           image(
-              url="https://assets.ubuntu.com/v1/ddb0f9d6-logo-ntt.svg",
-              alt="NTT",
-              width="88",
-              height="66",
+              url="https://assets.ubuntu.com/v1/45a77d4e-Samba-logo.png",
+              alt="Samba",
+              width="80",
+              height="20",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
+              attrs={"class": "p-inline-images__logo", "title": "Samba"},
           ) | safe
         }}
       </li>
       <li class="p-inline-images__item">
         {{
           image(
-              url="https://assets.ubuntu.com/v1/8393d534-logo-bestbuy.svg",
-              alt="Best Buy",
-              width="92",
+              url="https://assets.ubuntu.com/v1/1ec1605a-kubeflow.svg",
+              alt="Kubeflow",
+              width="80",
+              height="80",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Kubeflow"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/a2e4b89f-opensource-MANO.svg",
+              alt="Open Source Mano (OSM)",
+              width="100",
+              height="40",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "Open Source Mano (OSM)"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/54482fc6-1031px-Anbox_logo.svg.png",
+              alt="Anbox",
+              width="50",
               height="50",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
+              attrs={"class": "p-inline-images__logo", "title": "Anbox"},
           ) | safe
         }}
       </li>
       <li class="p-inline-images__item">
         {{
           image(
-              url="https://assets.ubuntu.com/v1/0c18b0ae-paypal_logo.svg",
-              alt="Paypal",
-              width="166",
-              height="36",
+              url="https://assets.ubuntu.com/v1/7ff72a77-mailman-logo.png",
+              alt="Mailman",
+              width="90",
+              height="40",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
+              attrs={"class": "p-inline-images__logo", "title": "Mailman"},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/1d5c41e9-Mariadb-seal-browntext.svg+%281%29.png",
+              alt="MariaDB",
+              width="100",
+              height="40",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "title": "MariaDB"},
           ) | safe
         }}
       </li>
@@ -368,7 +654,7 @@
   </div>
   <div class="row">
     <p>
-      <a href="#">Contact us to get started</a>
+      <a href="/support/contact-us?product=support-overview" class="p-button--positive">Contact us to get started</a>
     </p>
   </div>
 </section>
@@ -503,7 +789,7 @@
           <td class="u-align--center">X</td>
         </tr>
         <tr>
-          <td>Ubuntu Universe</td>
+          <td>Applications</td>
           <td class="u-align--center">X</td>
           <td class="u-align--center">
             <div class="lazy-loaded">
@@ -667,8 +953,8 @@
       <thead>
         <tr>
           <th>&nbsp;</th>
-          <th class="u-align--center" colspan="2">UA Infra</th>
-          <th class="u-align--center" colspan="2">UA Apps</th>
+          <th class="u-align--center" colspan="2"><p class="p-heading--five">UA Infra</p></th>
+          <th class="u-align--center" colspan="2"><p class="p-heading--five">UA Apps</p></th>
         </tr>
         <tr>
           <th><em>Per year</em></th>
@@ -695,7 +981,7 @@
         </tr>
       </tbody>
     </table>
-    <p>Not sure which support level you need? If you have questions about which support level is right for you, please contact us.
+    <p>Not sure which support level you need? If you have questions about which support level is right for you, please <a href="/support/contact-us?product=support-overview">contact us</a>.
 </p>
   </div>
 </section>
@@ -708,7 +994,7 @@
       Rather than compromising security and rushing the upgrade from Ubuntu 14.04 LTS, Interana turned to Canonical and ESM to ensure their upgrade rollout was secured and controlled
     </p>
     <p>
-      <a href="/engage/interana-casestudy">Read the case study&nbsp;&rsaquo;</a>
+      <a class="p-button--neutral" href="/engage/interana-casestudy">Read the case study</a>
     </p>
     </div>
     <div class="col-4 u-hide--small u-vertically-center u-align--center">
