@@ -196,7 +196,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep" id="what-is-ua">
+<section class="p-strip is-deep is-bordered" id="what-is-ua">
   <div class="u-fixed-width">
     <h2>The most comprehensive Linux enterprise subscription</h2>
     <ul class="p-matrix is-trisected u-clearfix">
@@ -240,9 +240,9 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
-    <h2>Apps</h2>
+    <h2>Apps support</h2>
     <p>Full-stack support for open source apps with quick response time guaranteed through subscription SLAs. Quickly resolve technical support issues with your key applications wherever they are running.</p>
   </div>
   <div class="u-fixed-width u-align--center">
@@ -250,9 +250,35 @@
       <li class="p-inline-images__item">
         {{
           image(
-              url="https://assets.ubuntu.com/v1/1a062141-logo-bloomberg.svg",
-              alt="Bloomberg",
-              width="195",
+              url="https://assets.ubuntu.com/v1/a854c8a7-postgresql-circle.svg",
+              alt="PostgreSQL",
+              width="80",
+              height="80",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "id": ""},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/703b9461-apps_mysql.png",
+              alt="MySQL",
+              width="100",
+              height="70",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logo", "id": ""},
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/e25ddbfc-OpenJDK2.png",
+              alt="OpenJDK",
+              width="100",
               height="35",
               hi_def=True,
               loading="lazy",
@@ -263,10 +289,10 @@
       <li class="p-inline-images__item">
         {{
           image(
-              url="https://assets.ubuntu.com/v1/0143bd92-AT%26T_logo_2016.svg",
-              alt="AT&amp;T",
-              width="124",
-              height="50",
+              url="https://assets.ubuntu.com/v1/1ce25c5a-kafka.svg",
+              alt="Kafka",
+              width="100",
+              height="100",
               hi_def=True,
               loading="lazy",
               attrs={"class": "p-inline-images__logo", "id": ""},
@@ -276,35 +302,9 @@
       <li class="p-inline-images__item">
         {{
           image(
-              url="https://assets.ubuntu.com/v1/3161e6ba-logo-walmart.svg",
-              alt="Walmart",
-              width="250",
-              height="60",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg",
-              alt="Deutsche Telekom",
-              width="250",
-              height="50",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "id": ""},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/e0f7037f-logo-ebay.svg",
-              alt="Ebay",
-              width="140",
+              url="https://assets.ubuntu.com/v1/2c2d7270-Apache-zookeeper.png",
+              alt="Apache Zookeeper",
+              width="100",
               height="50",
               hi_def=True,
               loading="lazy",
@@ -373,7 +373,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep">
+<section class="p-strip--light is-deep">
   <div class="u-fixed-width">
     <table class="p-table">
       <thead>
@@ -570,7 +570,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep" id="get-ua">
+<section class="p-strip is-deep" id="get-ua">
   <div class="row">
     <div class="col-10">
       <h2>Support for Ubuntu Pro instances on AWS and Azure</h2>
@@ -600,7 +600,7 @@
               url="https://assets.ubuntu.com/v1/22fd6473-MicrosoftAzure_logo.svg",
               alt="Microsoft Azure",
               width="250",
-              height="80",
+              height="75",
               hi_def=True,
               loading="lazy",
               attrs={"class": "u-align--center", "id": ""},
@@ -623,7 +623,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep">
+<section class="p-strip--light is-deep">
   <div class="u-fixed-width">
     <h2 class="u-sv3">A choice of two support levels</h2>
     <p>Choose from two support level SLAs for 24-hour support for business days or 24x7 support coverage.<p>
@@ -700,7 +700,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep">
+<section class="p-strip is-deep">
   <div class= "row u-equal-height">
     <div class="col-8">
     <h3>ESM maintains Interana's system security while upgrading</h3>
@@ -726,7 +726,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep" id="stories">
+<section class="p-strip--light is-deep" id="stories">
   <div class="row u-equal-height">
     <div class="col-5 u-hide--small u-align--center u-vertically-center">
       {{
@@ -748,7 +748,7 @@
   </div>
 </section>
 
-<section id="community-support" class="p-strip--light is-deep">
+<section id="community-support" class="p-strip is-deep">
   <div class="row u-equal-height">
     <div class="col-8">
       <h2>Community support</h2>
