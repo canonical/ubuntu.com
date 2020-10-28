@@ -1,22 +1,24 @@
 {% extends "managed/_base_managed-apps.html" %}
 
-{% block title %}Canonical's Managed Kafka | Multi-Cloud and On-Premise{% endblock %}
+{% block title %}Canonical's Managed Apache Cassandra | Fully managed Cassandra for your mission-critical data needs{% endblock %}
 
-{% block meta_description %}OCanonical and Ubuntu provide fully managed Apache Kafka on Ubuntu hosted on any cloud architecture, including Kubernetes, public cloud, on-premise or bare-metal. {% endblock meta_description %}
+{% block meta_description %}Canonical and Ubuntu provide fully managed Apache Cassandra on Ubuntu hosted on any cloud architecture, including Kubernetes, public cloud, on-premise or bare-metal.{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/15c89-PyMc-QnSHglG1hf_Tub5lMkEcVYALL0rm5-LvA/{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1iYMH1ISY4uDtr3ZzH0f_hnEzvqaeufO43z__cMxs0vQ/edit?ts=5f71f2cb#{% endblock meta_copydoc %}
 
 {% block content %}
 <section class="p-strip--suru is-dark">
   <div class="row u-vertically-center">
     <div class="col-7">
       <h1>
-        Managed Apache Kafka
+        Managed Apache Cassandra
       </h1>
-      <p><i>Now running Kafka 2.6</i></p>
-      <p class="p-heading--four">Fully managed Apache Kafka anywhere, on-prem and multi-cloud environments.</p>
-      <p>Spend less time managing infrastructure, more time building applications. Highly available, secure and fully managed Apache Kafka for frictionless innovation.</p>
-      <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+      <p><i>Now running Apache Cassandra 3.11</i></p>
+      <p class="p-heading--four">Fully managed Cassandra for your mission-critical data needs</p>
+      <p>
+        <a href="/managed/contact-us" class="p-button--positive">Get in touch</a>
+        <a href="/managed/contact-us" class="p-button--neutral js-invoke-modal">Free deployment assessment</a>
+      </p>
     </div>
     <div class="col-5 u-hide--small u-align--center">
       {{
@@ -31,6 +33,9 @@
         ) | safe
       }}
     </div>
+  </div>
+  <div class="row">
+    <p>We automate the mundane tasks so you can focus on building your core apps with Cassandra. Managed Apache Cassandra database service deployable on the cloud of your choice or on-prem.</p>
   </div>
 </section>
 
@@ -132,9 +137,9 @@
     <div class="col-7 u-vertically-center">
       <div>
         <h3>
-          Upstream Kafka on-rails, fully automated and integrated into your infrastructure.
+          Upstream Cassandra on-rails, fully automated and integrated into your infrastructure. 
         </h3>
-        <p><a href="/managed/contact-us" class="js-invoke-modal">Get started with a free architecture assessment&nbsp;&rsaquo;</a></p>
+        <p><a href="https://ubuntu.com/managed#get-in-touch" class="js-invoke-modal">Get started with a free architecture assessment&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </div>
@@ -158,11 +163,11 @@
           attrs={"style":"height: 80px; width: auto;"},
         ) | safe
       }}
-      <h4>Secure</h4>
+      <h4>Performant</h4>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Kafka ACLS data-plane authorisation</li>
-        <li class="p-list__item is-ticked">Encrypted client-broker transfer with TLS</li>
-        <li class="p-list__item is-ticked">Data security assurance &mdash; SOC2 and ISO27001/2</li>
+        <li class="p-list__item is-ticked">Fault tolerant</li>
+        <li class="p-list__item is-ticked">Secure &mdash; TLS/SSL Encryption for client and inter-node communication</li>
+        <li class="p-list__item is-ticked">Data security assurance &mdash; SOC2 and ISO 27001/2</li>
       </ul>
     </div>
     <div class="col-6 u-sv3">
@@ -179,8 +184,8 @@
       <h4>Integrated</h4>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Direct host access and IP visibility</li>
-        <li class="p-list__item is-ticked">Open source Kafka Connector</li>
-        <li class="p-list__item is-ticked">Access to Kafka REST Proxy</li>
+        <li class="p-list__item is-ticked">Open source Cassandra  Connectors</li>
+        <li class="p-list__item is-ticked">Access to Cassandra CQL API</li>
       </ul>
     </div>
   </div>
@@ -196,11 +201,11 @@
           attrs={"style":"height: 80px; width: auto;"},
         ) | safe
       }}
-      <h4>Reliable</h4>
+      <h4>Scalable</h4>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">99.99% SLA, high availability by default</li>
+        <li class="p-list__item is-ticked">Dynamic scaling and  high availability by default</li>
         <li class="p-list__item is-ticked">Load balancing and data replication</li>
-        <li class="p-list__item is-ticked">Support in deploying Schema Registry</li>
+        <li class="p-list__item is-ticked">Zero downtime migrations</li>
       </ul>
     </div>
     <div class="col-6">
@@ -216,42 +221,18 @@
       }}
       <h4>Optimised</h4>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Kafka experts provide 24/7 management</li>
-        <li class="p-list__item is-ticked">Schedule updates to downtime windows</li>
+        <li class="p-list__item is-ticked">Tuned Cassandra configuration to integrate with your infrastructure</li>
+        <li class="p-list__item is-ticked">Simpler to install and operate</li>
         <li class="p-list__item is-ticked">Web-based dashboard of key health metrics</li>
       </ul>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-5 u-vertically-center">
-      <div>
-        <h3>Kafka can be challenging. Learn&nbsp;how we simplify it.</h3>
-        <p><a href="https://www.brighttalk.com/webcast/6793/410402" class="js-invoke-modal p-link--external">Watch the full webinar on demand now</a></p>
-      </div>
-    </div>
-    <div class="col-5 col-start-large-7">
-      <a href="https://www.brighttalk.com/webcast/6793/410402" aria-hidden="true" tabindex="-1">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/8b5358eb-Banner-Kafka-in-Prod-Webinar.png",
-            alt="",
-            width="1008",
-            height="528",
-            hi_def=True,
-          ) | safe
-      }}
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-deep">
+<section class="p-strip--light is-deep">
   <div class="row u-sv3">
     <div class="col-8">
-      <h2>Kafka on any Kubernetes, <br />any cloud and at any scale</h2>
+      <h2>Cassandra on any kubernetes,<br /> any cloud and at any scale</h2>
       <p><a href="/managed/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
     </div>
   </div>
@@ -273,13 +254,9 @@
         <tr>
           <td><strong>Versions managed</strong></td>
           <td colspan="2">
-            Kafka 2.6 by default<br/>
+            Apache Cassandra 3.11 by default<br/>
             We can support your specific version &mdash; <a href="/managed/contact-us" class="js-invoke-modal">contact us</a>.
           </td>
-        </tr>
-        <tr>
-          <td><strong>Zookeeper</strong></td>
-          <td colspan="2">Fully managed</td>
         </tr>
       </table>
     </div>
@@ -302,11 +279,13 @@
       <table>
         <tr>
           <td><strong>Kubernetes</strong></td>
-          <td colspan="2">Yes - any conformant Kubernetes (incl. AKS, EKS, GKE and more)</td>
+          <td colspan="2">Yes &mdash; any conformant Kubernetes (incl. AKS, EKS, GKE and more)</td>
         </tr>
         <tr>
           <td><strong>Public Clouds</strong></td>
-          <td colspan="2">AWS, Azure and GCP</td>
+          <td colspan="2">AWS, GCP, Azure<br />
+          <a href="/managed/contact-us" class="js-invoke-modal">Contact us</a> for managed Cassandra on other clouds
+          </td>
         </tr>
         <tr>
           <td><strong>Data Center Regions</strong></td>
@@ -318,16 +297,11 @@
         </tr>
         <tr>
           <td><strong>On-premise</strong></td>
-          <td colspan="2">Any OpenStack, bare metal and key third-party providers such as VMWare.<br />
-           <a href="/managed/contact-us" class="js-invoke-modal">Contact us</a> for managed kafka on other clouds</td>
-          </tr>
-          <tr>
-            <td><strong>Hybrid-cloud</strong></td>
-            <td colspan="2">Yes, with persistent streaming managed</td>
+          <td colspan="2">Any OpenStack, bare metal and key third-party providers such as VMWare.</td>
           </tr>
           <tr>
             <td><strong>Multi-cloud</strong></td>
-            <td colspan="2">Yes, with persistent streaming managed</td>
+            <td colspan="2">Yes</td>
           </tr>
         </table>
       </div>
@@ -362,7 +336,7 @@
           </tr>
           <tr>
             <td><strong>Throughput</strong></td>
-            <td colspan="2">No limits</td>
+            <td colspan="2">Optimized for your workload and environment</td>
           </tr>
           <tr>
             <td><strong>Node size</strong></td>
@@ -370,11 +344,7 @@
           </tr>
           <tr>
             <td><strong>Latency</strong></td>
-            <td colspan="2">Managed Kafka will match the latency your cloud can achieve</td>
-          </tr>
-          <tr>
-            <td><strong>KSQL</strong></td>
-            <td colspan="2">Full integration</td>
+            <td colspan="2">Optimized for your workload and environment</td>
           </tr>
         </table>
       </div>
@@ -412,10 +382,6 @@
             <td colspan="2">Automatic load balancing by default</td>
           </tr>
           <tr>
-            <td><strong>Schema Registry deployment</strong></td>
-            <td colspan="2">Yes, support in deploying your organisation's Schema Registry</td>
-          </tr>
-          <tr>
             <td><strong>Metrics and Visualisation</strong></td>
             <td colspan="2">Yes, web-based dashboard</td>
           </tr>
@@ -440,7 +406,7 @@
         <table>
           <tr>
             <td><strong>Connectors</strong></td>
-            <td colspan="2">Yes, all open source Kafka Connectors</td>
+            <td colspan="2">Yes, all open source Cassandra  Connectors</td>
           </tr>
           <tr>
             <td><strong>REST API</strong></td>
@@ -487,7 +453,7 @@
           </tr>
           <tr>
             <td><strong>SLA</strong></td>
-            <td colspan="2">Yes, 99.9% up-time</td>
+            <td colspan="2">Enterprise grade SLA</td>
             </tr>
             <tr>
               <td><strong>ISO270001/2 certified</strong></td>
@@ -507,7 +473,7 @@
       </div>
     </section>
 
-    <section class="p-strip--light">
+    <section class="p-strip is-deep">
       <div class="row">
         <div class="col-8">
           <h2>Optimise your open source</h2>
@@ -610,32 +576,32 @@
       </div>
     </section>
 
-    <section class="p-strip">
+    <section class="p-strip--light is-deep">
       <div class="row">
         <div class="col-8">
           <h2>
-            Managed Kafka - Pricing
+            Managed Cassandra - Pricing
           </h2>
           <p>
             We manage applications at both the host and the guest level. All prices are dependent on current cloud architecture and requirements.
           </p>
-          <p><a href="/managed/kafka#get-in-touch">Get started with a free quote and architecture assessment&nbsp;&rsaquo;</a></p>
+          <p><a href="/managed/cassandra#get-in-touch">Get started with a free quote and architecture assessment&nbsp;&rsaquo;</a></p>
         </div>
       </div>
       {% include '/shared/pricing/_managed-pricing.html' %}
     </section>
 
-    <section class="p-strip--light">
+    <section class="p-strip is-deep">
       <div class="row u-equal-height">
         <div class="col-7">
           <h2>
-            Plan and optimise your Kafka deployment
+            Plan and optimise your Cassandra deployment
           </h2>
           <p>
-            Watch this webinar to understand the key design decisions in creating a resilient and secure Kafka streaming pipeline, and options to achieve operations at scale.
+            Watch this webinar to understand the architecture, configuration and security recommendations for Cassandra deployments on private cloud, container and public cloud environments
           </p>
           <p>
-            <a href="/engage/kafka-in-production">Watch the webinar&nbsp;&rsaquo;</a>
+            <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/439718">Watch the webinar</a>
           </p>
         </div>
         <div class="col-5 u-hide--small u-vertically-center u-align--center">
@@ -653,7 +619,7 @@
       </div>
     </section>
 
-    <section class="p-strip">
+    <section class="p-strip--light is-deep">
       <div class="row u-equal-height">
         <div class="col-4 u-align--center u-hide--small u-vertically-center">
           {{
@@ -688,6 +654,6 @@
 
     {% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
-    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/managed-kafka.html" data-form-id="3592" data-lp-id="3828" data-return-url="https://www.ubuntu.com/managed/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/managed-cassandra.html" data-form-id="3592" data-lp-id="3828" data-return-url="https://www.ubuntu.com/managed/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
     </div>
     {% endblock content %}
