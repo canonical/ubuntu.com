@@ -59,6 +59,8 @@ from webapp.security.database import db_session
 from webapp.security.views import (
     create_notice,
     delete_notice,
+    create_release,
+    delete_release,
     notice,
     read_notice,
     read_notices,
@@ -245,6 +247,14 @@ app.add_url_rule(
 
 app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
 
+app.add_url_rule(
+    "/security/releases", view_func=create_release, methods=["POST"]
+)
+app.add_url_rule(
+    "/security/releases/<codename>",
+    view_func=delete_release,
+    methods=["DELETE"],
+)
 
 # cve section
 app.add_url_rule("/security/cve", view_func=cve_index)
@@ -287,9 +297,9 @@ app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 
 
 def build_takeovers(engage_pages):
-    engage_pages.parser.parse()
-
     def index_page():
+        engage_pages.parser.parse()
+
         # Show only active
         active_takeovers = [
             takeover
@@ -302,9 +312,8 @@ def build_takeovers(engage_pages):
 
 
 def build_takeovers_index(engage_pages):
-    engage_pages.parser.parse()
-
     def takeover_index():
+        engage_pages.parser.parse()
         sorted_takeovers = sorted(
             engage_pages.parser.takeovers,
             key=lambda takeover: takeover["publish_date"],
