@@ -788,3 +788,21 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+// Albert - 26 October 2020
+// This block can be removed when the following issue is resolved:
+// https://github.com/vanilla-framework/vanilla-framework/issues/3376
+.p-heading-icon--large {
+  margin-bottom: $sp-unit;
+
+  .p-heading-icon__img {
+    height: $sp-unit * 8;
+    width: $sp-unit * 8;
+
+    @media (min-width: $breakpoint-medium) {
+      height: $sp-unit * 8;
+      margin-top: 0;
+      width: $sp-unit * 8;
+    }
+  }
+}
