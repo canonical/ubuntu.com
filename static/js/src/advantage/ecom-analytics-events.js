@@ -1,23 +1,27 @@
 export function addToCartEvent(product) {
-  dataLayer.push({
-    event: "addToCart",
-    ecommerce: {
-      add: {
-        products: [product],
+  if (dataLayer) {
+    dataLayer.push({
+      event: "addToCart",
+      ecommerce: {
+        add: {
+          products: [product],
+        },
       },
-    },
-  });
+    });
+  }
 }
 
 export function removeFromCartEvent(product) {
-  dataLayer.push({
-    event: "removeFromCart",
-    ecommerce: {
-      remove: {
-        products: [product],
+  if (dataLayer) {
+    dataLayer.push({
+      event: "removeFromCart",
+      ecommerce: {
+        remove: {
+          products: [product],
+        },
       },
-    },
-  });
+    });
+  }
 }
 
 /**
@@ -30,29 +34,33 @@ export function removeFromCartEvent(product) {
  * confirmedPurchase
  */
 export function checkoutEvent(products, step) {
-  dataLayer.push({
-    event: "checkout",
-    ecommerce: {
-      checkout: {
-        actionField: { step: step },
-        products: products,
+  if (dataLayer) {
+    dataLayer.push({
+      event: "checkout",
+      ecommerce: {
+        checkout: {
+          actionField: { step: step },
+          products: products,
+        },
       },
-    },
-  });
+    });
+  }
 }
 
 export function purchaseEvent(purchaseInfo, products) {
-  dataLayer.push({
-    ecommerce: {
-      purchase: {
-        actionField: {
-          id: purchaseInfo.id, // Transaction ID. Required for purchases and refunds.
-          affiliation: purchaseInfo.origin,
-          revenue: purchaseInfo.total, // Total transaction value (incl. tax and shipping)
-          tax: purchaseInfo.tax,
+  if (dataLayer) {
+    dataLayer.push({
+      ecommerce: {
+        purchase: {
+          actionField: {
+            id: purchaseInfo.id, // Transaction ID. Required for purchases and refunds.
+            affiliation: purchaseInfo.origin,
+            revenue: purchaseInfo.total, // Total transaction value (incl. tax and shipping)
+            tax: purchaseInfo.tax,
+          },
+          products: products,
         },
-        products: products,
       },
-    },
-  });
+    });
+  }
 }
