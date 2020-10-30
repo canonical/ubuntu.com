@@ -1,7 +1,7 @@
 ---
-wrapper_template: "smart-start/guide/base.html"
+wrapper_template: "smartstart/guide/base.html"
 markdown_includes:
-  nav: "smart-start/shared/_side-navigation.md"
+  nav: "smartstart/shared/_side-navigation.md"
 context:
   title: "Hardware Setup"
   description: Board certification for Ubuntu is a prerequisite for commercialisation with SMART START. Canonical has certified a selection x86 and ARM-based off-the-shelf boards for Ubuntu.
@@ -32,11 +32,11 @@ Canonical also can port drivers and board support packages to Ubuntu. Once certi
 - [Technical support](/smart-start/guide/technical-support)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smart-start/guide">
+  <a class="p-article-pagination__link--previous" href="/smartstart/guide">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">What is SMART START?</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smart-start/guide/snap-application-packaging">
+  <a class="p-article-pagination__link--next" href="/smartstart/guide/snap-application-packaging">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Snap application packaging</span>
   </a>

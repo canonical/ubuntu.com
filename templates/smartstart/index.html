@@ -1,7 +1,7 @@
 {% extends "smartstart/base_smartstart.html" %}
 
 
-{% block title %}Smart things as a service{% endblock %}
+{% block title %}SMART START - Fast-track to market with Ubuntu Core{% endblock %}
 {% block meta_description %}SMART START is a comprehensive toolbox that allows enterprises to bootstrap commercial IoT products. With a 2 week delivery, SMART START reduces the risks and uncertainty involved in launching and scaling commercial IoT products while accelerating time to market.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1H8JymT13-pHvPh2KXeXYaAH4HoPYWiwAQXXUDqlGzLM/edit#{% endblock meta_copydoc %}
 
@@ -38,22 +38,22 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep">
+<section class="p-strip--light">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
-      <h2>Fast to market</h2>
+      <p class="p-heading--4">Fast to market</p>
       <p>
         Lead time to ship a smart product can be as short as 2 weeks. We have all the components ready for you to pick.
       </p>
     </div>
     <div class="col-4 p-divider__block">
-      <h2>Agile</h2>
+      <p class="p-heading--4">Agile</p>
       <p>
         Start small with up to 1000 devices. Invest a small budget. Move fast, get market insights early and take the next steps.
       </p>
     </div>
     <div class="col-4 p-divider__block">
-      <h2>Scalable</h2>
+      <p class="p-heading--4">Scalable</p>
       <p>
         Expand after your market introduction. More customers, more devices, new hardware, new apps.
       </p>
@@ -229,7 +229,7 @@
   <div class="row">
     <div class="col-8">
       <h2>Simple choices</h2>
-      <p>We’ve standardised and accelerated your journey to market</p>
+      <p>We’ve standardised and accelerated your journey to market.</p>
     </div>
   </div>
   <div class="row u-equal-height u-sv3">
@@ -355,21 +355,22 @@
     </div>
   </div>
   <div class="u-fixed-width u-align--center">
-    <div>
-      <p class="u-align--center"><i>“Ubuntu is pervasive in business and has a rich ecosystem of partners to accelerate time to market and time to value for organizations that choose to utilize SMART START.”</i></p>
-    </div>
-    <div>
+    <blockquote class="p-pull-quote">
+      <p class="p-pull-quote__quote">Ubuntu is pervasive in business and has a rich ecosystem of partners to accelerate time to market and time to value for organizations that choose to utilize SMART START.</p>
+      <cite class="p-pull-quote__citation">
       {{
         image(
           url="https://assets.ubuntu.com/v1/a6517959-451-research-vector-logo.svg",
           alt="451 Research",
-          width="240",
+          width="260",
           height="100",
           hi_def=True,
           attrs={"class": "u-hide--small", "style":"height: 45px; width: auto;"},
         ) | safe
       }} 
-    </div>
+      </cite>
+    </blockquote>
+    <div>
   </div>
 </section>
 

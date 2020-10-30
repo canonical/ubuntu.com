@@ -1,7 +1,7 @@
 ---
-wrapper_template: "smart-start/guide/base.html"
+wrapper_template: "smartstart/guide/base.html"
 markdown_includes:
-  nav: "smart-start/shared/_side-navigation.md"
+  nav: "smartstart/shared/_side-navigation.md"
 context:
   title: "Publishing snaps"
   description: The Snap store is a global application repository hosted and managed by Canonical. It is accessible to any developer who wants to leverage snaps to distribute software across any Linux distribution.
@@ -123,11 +123,11 @@ Snaps are published to a private IoT app store in 3 simple steps:
 - [Process for manually reviewing security-sensitive snaps](https://forum.snapcraft.io/t/process-for-reviewing-classic-confinement-snaps/1460)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smart-start/guide/snap-application-packaging">
+  <a class="p-article-pagination__link--previous" href="/smartstart/guide/snap-application-packaging">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Snap application packaging</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smart-start/guide/app-store-commissioning">
+  <a class="p-article-pagination__link--next" href="/smartstart/guide/app-store-commissioning">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">App Store commissioning</span>
   </a>
