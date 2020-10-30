@@ -147,7 +147,7 @@
             <div class="p-accordion">
               <ul class="p-accordion__list u-no-margin--bottom">
                 <li class="p-accordion__group">
-                  <button type="button" class="p-accordion__tab row" id="esm-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="esm-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
+                  <div tabindex="0" role="button" class="p-accordion__tab row" id="esm-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="esm-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
                     <div class="col-small-2 col-medium-3 u-align--right p-muted-text">ESM</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
@@ -162,7 +162,7 @@
                       <span>N/A</span>
                       {% endif %}
                     </div>
-                  </button>
+                  </div>
                   <section class="p-accordion__panel u-no-padding--left u-sv3" style="overflow: visible;" id="esm-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-hidden="true" aria-labelledby="esm-tab-{{ outer_loop.index }}-{{ loop.index }}">
                     {% include "advantage/shared/_esm-info.html" %}
                   </section>
@@ -172,7 +172,7 @@
             <div class="p-accordion">
               <ul class="p-accordion__list u-no-margin--bottom">
                 <li class="p-accordion__group">
-                  <button type="button" class="p-accordion__tab row" id="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
+                  <div tabindex="0" role="button" class="p-accordion__tab row" id="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
                     <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Livepatch</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['livepatch'] == True %}
@@ -186,7 +186,7 @@
                       <span>N/A</span>
                       {% endif %}
                     </div>
-                  </button>
+                  </div>
                   <section class="p-accordion__panel u-no-padding--left u-sv3" style="overflow: visible;" id="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-hidden="true" aria-labelledby="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}">
                     {% include "advantage/shared/_livepatch-info.html" %}
                   </section>
@@ -196,7 +196,7 @@
             <div class="p-accordion">
               <ul class="p-accordion__list u-no-margin--bottom">
                 <li class="p-accordion__group">
-                  <button type="button" class="p-accordion__tab row" id="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
+                  <div tabindex="0" role="button" class="p-accordion__tab row" id="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
                     <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Certifications</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
@@ -210,7 +210,7 @@
                       <span>N/A</span>
                       {% endif %}
                     </div>
-                  </button>
+                  </div>
                   <section class="p-accordion__panel u-no-padding--left u-sv3" style="overflow: visible;" id="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-hidden="true" aria-labelledby="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}">
                     {% include "advantage/shared/_certifications-info.html" %}
                   </section>
@@ -396,7 +396,7 @@
   {% with type="renewal" %}
     {% include 'advantage/_stripe-modal.html' %}
   {% endwith %}
-  
+
 {% else %}
   <section class="p-strip--suru-topped is-shallow" style="padding-top: 6rem;"></section>
     <div class="row">
