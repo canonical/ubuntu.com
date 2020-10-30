@@ -483,6 +483,30 @@
   </div>
 </section>
 
+<section class="p-strip is-deep">
+  <div class="row u-equal-height">
+    <div class="col-4 u-hide--small u-align--center u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/080c0e59-image-document-ubuntuterms.svg",
+          alt="",
+          height="178",
+          width="145",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2>Ubuntu security disclosure policy</h2>
+      <p>
+        Canonical and the Ubuntu Security Team participate in responsible disclosure and collaborate with the wider community on security issues. 
+        For more information on how to contact the Ubuntu Security Team and expectations, please refer to our <a href="/security/disclosure-policy">Ubuntu Security disclosure and embargo policy</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
 {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->

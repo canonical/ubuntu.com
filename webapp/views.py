@@ -531,9 +531,15 @@ def advantage_view():
                             "daysTillExpiry"
                         ] = date_difference.days
 
-                    contract["renewal"] = make_renewal(
-                        advantage, contract["contractInfo"]
-                    )
+                    try:
+                        contract["renewal"] = make_renewal(
+                            advantage, contract["contractInfo"]
+                        )
+                    except KeyError:
+                        flask.current_app.extensions[
+                            "sentry"
+                        ].captureException()
+                        contract["renewal"] = None
 
                     enterprise_contract = enterprise_contracts.setdefault(
                         contract["accountInfo"]["name"], []
