@@ -15,7 +15,7 @@
       <p>Future-proof the full stack, from the data centre to containers to the database, LMA, server and cloud-native applications with Canonical.</p>
       <p>Ubuntu Advantage is a single, per-node package of the most comprehensive enterprise security and support for open source infrastructure and applications, with managed service offerings available.</p>
       <p>
-        <a href="/support/contact-us?product=support-overview" class="p-button--positive">Contact us</a>
+        <a href="/support/contact-us?product=support-overview" class="p-button--positive js-invoke-modal">Contact us</a>
         <a href="https://buy.ubuntu.com/" class="p-button--neutral"><span class="p-link--external">Buy online</span></a>
       </p>
     </div>
@@ -194,7 +194,7 @@
   <div class="row u-equal-height">
     <div class="col-6">
       <p>
-        <a href="https://buy.ubuntu.com/">Supported applications&nbsp;&rsaquo;</a>
+        <a href="/support#apps-support">Supported applications&nbsp;&rsaquo;</a>
       </p>
     </div>
     <div class="col-6">
@@ -249,410 +249,585 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip" id="apps-support">
   <div class="row">
     <h2>Apps support</h2>
     <p>Full-stack support for open source apps with quick response time guaranteed through subscription SLAs. Quickly resolve technical support issues with your key applications wherever they are running.</p>
   </div>
-  <div class="u-fixed-width u-align--center">
-    <ul class="p-inline-images">
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/a854c8a7-postgresql-circle.svg",
-              alt="PostgreSQL",
-              width="80",
-              height="80",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "PostgreSQL"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/703b9461-apps_mysql.png",
-              alt="MySQL",
-              width="100",
-              height="70",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "MySQL"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/e25ddbfc-OpenJDK2.png",
-              alt="OpenJDK",
-              width="100",
-              height="35",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "OpenJDK"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/1ce25c5a-kafka.svg",
-              alt="Kafka",
-              width="100",
-              height="100",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Kafka"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/2c2d7270-Apache-zookeeper.png",
-              alt="Apache Zookeeper",
-              width="100",
-              height="50",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Apache Zoopkeeper"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/938ca3d7-rabbitmq_logo.png",
-              alt="RabbitMQ",
-              width="110",
-              height="37",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title":"RabbitMQ"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/234cdd88-memached-logo.png",
-              alt="Memached",
-              width="70",
-              height="50",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Memached"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/4d32cece-squid-apache-logo.png",
-              alt="Squid Apache",
-              width="80",
-              height="65",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Squid"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/84191887-Bind_9_ISC_Blue_320x320.png",
-              alt="Bind",
-              width="100",
-              height="80",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Bind"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/56009a28-openldap-logo.png",
-              alt="OpenLDAP",
-              width="110",
-              height="45",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "OpenLDAP"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/5ebc8ebd-logo-nagios.png",
-              alt="Nagios",
-              width="100",
-              height="35",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Nagios"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/f46e72cf-apache-logo-2.png",
-              alt="Apache",
-              width="100",
-              height="35",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Apache"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/2d7a8a90-NGINX-logo-rgb-large.png",
-              alt="NGINX",
-              width="100",
-              height="35",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "NGINX"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        <p class="p-heading--four">
-          <strong>MongoDB</strong>
-        </p>
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/3f39d234-containerd-logo.png",
-              alt="Containerd",
-              width="35",
-              height="55",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Containerd"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/84d53087-nodejs-logo.png",
-              alt="NodeJS",
-              width="90",
-              height="55",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "NodeJS"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/dbcc771b-vault-logo.png",
-              alt="Vault",
-              width="60",
-              height="55",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Vault"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/54ac468e-grafana_logo_swirl-events.svg",
-              alt="Grafana",
-              width="55",
-              height="55",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Grafana"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/e4d268ab-1280px-Elasticsearch_logo.svg.png",
-              alt="ElasticSearch",
-              width="140",
-              height="35",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "ElasticSearch"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/cdadb173-file-beats-logo.png",
-              alt="Filebeat",
-              width="80",
-              height="35",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Filebeat"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/4a41375d-etcd-icon-color-logo.png",
-              alt="etcd",
-              width="60",
-              height="60",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "etcd"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/367ef522-telegraf-logo.png",
-              alt="Telegraf",
-              width="110",
-              height="27",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Telegraf"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
-              alt="Prometheus",
-              width="60",
-              height="60",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Prometheus"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/bd33839a-graylog.svg",
-              alt="Graylog",
-              width="90",
-              height="30",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Graylog"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/c530ca79-Cassandra_logo.svg",
-              alt="Cassandra",
-              width="80",
-              height="50",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Cassandra"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/45a77d4e-Samba-logo.png",
-              alt="Samba",
-              width="80",
-              height="20",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Samba"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/1ec1605a-kubeflow.svg",
-              alt="Kubeflow",
-              width="80",
-              height="80",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Kubeflow"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/a2e4b89f-opensource-MANO.svg",
-              alt="Open Source Mano (OSM)",
-              width="100",
-              height="40",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Open Source Mano (OSM)"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/54482fc6-1031px-Anbox_logo.svg.png",
-              alt="Anbox",
-              width="50",
-              height="50",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Anbox"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/7ff72a77-mailman-logo.png",
-              alt="Mailman",
-              width="90",
-              height="40",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "Mailman"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/1d5c41e9-Mariadb-seal-browntext.svg+%281%29.png",
-              alt="MariaDB",
-              width="100",
-              height="40",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "title": "MariaDB"},
-          ) | safe
-        }}
-      </li>
-    </ul>
-  </div>
+  
+  <div class="row">
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/a854c8a7-postgresql-circle.svg",
+            alt="PostgreSQL",
+            width="80",
+            height="80",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "PostgreSQL"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">PostgreSQL</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/703b9461-apps_mysql.png",
+            alt="MySQL",
+            width="100",
+            height="70",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "MySQL"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">MySQL</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/e25ddbfc-OpenJDK2.png",
+            alt="OpenJDK",
+            width="100",
+            height="35",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "OpenJDK"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">OpenJDK</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/1ce25c5a-kafka.svg",
+            alt="Kafka",
+            width="100",
+            height="100",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Kafka"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Kafka</h4>
+        </span>
+      </div>
+    </div>
+    
+    <div class="row">    
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/74b37861-apache-zookeeper-app-icon.png",
+            alt="Apache Zookeeper",
+            width="40",
+            height="60",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Apache Zoopkeeper"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Apache Zookeeper</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/494006d5-rabbitmq-logo-png-transparent.png",
+            alt="RabbitMQ",
+            width="30",
+            height="30",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title":"RabbitMQ"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">RabbitMQ</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/234cdd88-memached-logo.png",
+            alt="Memached",
+            width="70",
+            height="50",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Memached"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Memached</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/4d32cece-squid-apache-logo.png",
+            alt="Squid Apache",
+            width="80",
+            height="65",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Squid"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Squid Apache</h4>
+        </span>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/87a673ed-bind-9-app-icon.png",
+            alt="Bind",
+            width="60",
+            height="60",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Bind"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Bind</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/180021a6-openLDAP-app-icon.png",
+            alt="OpenLDAP",
+            width="30",
+            height="60",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "OpenLDAP"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">OpenLDAP</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/eeef6a39-nagios-app-icon.png",
+            alt="Nagios",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Nagios"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Nagios</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/0c35e505-apache-app-icon.png",
+            alt="Apache",
+            width="30",
+            height="60",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Apache"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Apache</h4>
+        </span>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/6fb97b61-Nginx-logo-app.png",
+            alt="NGINX",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "NGINX"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">NGINX</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          <p>
+            <small><strong>MongoDB</strong></small>
+          </p>
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">MongoDB</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/3f39d234-containerd-logo.png",
+            alt="containerd",
+            width="35",
+            height="55",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Containerd"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">containerd</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/84d53087-nodejs-logo.png",
+            alt="NodeJS",
+            width="90",
+            height="55",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "NodeJS"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">NodeJS</h4>
+        </span>
+      </div>
+    </div>
+    
+    <div class="row">      
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/dbcc771b-vault-logo.png",
+            alt="Vault",
+            width="60",
+            height="55",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Vault"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Vault</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/54ac468e-grafana_logo_swirl-events.svg",
+            alt="Grafana",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Grafana"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Grafana</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/01becb3c-elastic-search-logo-color-64px.svg",
+            alt="ElasticSearch",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "ElasticSearch"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">ElasticSearch</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/cbc7da88-beats-logo-color-64px.svg",
+            alt="Filebeat",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Filebeat"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Filebeat</h4>
+        </span>
+      </div>
+    </div>
+    
+    <div class="row">      
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/4a41375d-etcd-icon-color-logo.png",
+            alt="etcd",
+            width="60",
+            height="60",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "etcd"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">etcd</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/14681911-telegraf-app-icon.png",
+            alt="Telegraf",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Telegraf"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Telegraf</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
+            alt="Prometheus",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Prometheus"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Prometheus</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/c1d16634-graylog-app-icon.png",
+            alt="Graylog",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Graylog"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Graylog</h4>
+        </span>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/776d44a1-cassandra-eye.svg",
+            alt="Cassandra",
+            width="80",
+            height="50",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Cassandra"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Cassandra</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/45a77d4e-Samba-logo.png",
+            alt="Samba",
+            width="80",
+            height="20",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Samba"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Samba</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/87354834-apple-icon-114x114.png",
+            alt="Kubeflow",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Kubeflow"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Kubeflow</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/40e0a653-osm-app-icon.jpg",
+            alt="Open Source Mano (OSM)",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Open Source Mano (OSM)"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Open Source Mano (OSM)</h4>
+        </span>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/54482fc6-1031px-Anbox_logo.svg.png",
+            alt="Anbox",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Anbox"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Anbox</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/7ff72a77-mailman-logo.png",
+            alt="Mailman",
+            width="130",
+            height="60",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "Mailman"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">Mailman</h4>
+        </span>
+      </div>
+      <div class="col-3 col-medium-3 p-media-object">
+        <span class="p-media-object__image">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/c3ab4a2d-mariadb-logo-app-icon.png",
+            alt="MariaDB",
+            width="40",
+            height="40",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-media-object__image", "title": "MariaDB"},
+            ) | safe
+          }}
+        </span>
+        <span class="p-media-object__details">
+          <h4 class="p-media-object__title p-heading--5 u-no-margin--bottom">MariaDB</h4>
+        </span>
+      </div>
+    </div>
   <div class="row">
     <p>
       <a href="/support/contact-us?product=support-overview" class="p-button--positive">Contact us to get started</a>
@@ -693,7 +868,7 @@
         </tr>
         <tr>
           <td>Ubuntu Universe</td>
-          <td class="u-align--center">X</td>
+          <td class="u-align--center">&ndash;</td>
           <td class="u-align--center">
             <div class="lazy-loaded">
               <img src="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_16,h_16/https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg">
@@ -746,7 +921,7 @@
               <img src="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_16,h_16/https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg">
             </div>
           </td>
-          <td class="u-align--center">X</td>
+          <td class="u-align--center">&ndash;</td>
         </tr>
         <tr>
           <td>Ceph/Swift</td>
@@ -755,7 +930,7 @@
               <img src="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_16,h_16/https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg">
             </div>
           </td>
-          <td class="u-align--center">X</td>
+          <td class="u-align--center">&ndash;</td>
         </tr>
         <tr>
           <td>MAAS</td>
@@ -764,7 +939,7 @@
               <img src="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_16,h_16/https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg">
             </div>
           </td>
-          <td class="u-align--center">X</td>
+          <td class="u-align--center">&ndash;</td>
         </tr>
         <tr>
           <td rowspan="3">24/7 support</td>
@@ -787,11 +962,11 @@
               <img src="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_16,h_16/https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg">
             </div>
           </td>
-          <td class="u-align--center">X</td>
+          <td class="u-align--center">&ndash;</td>
         </tr>
         <tr>
           <td>Applications</td>
-          <td class="u-align--center">X</td>
+          <td class="u-align--center">&ndash;</td>
           <td class="u-align--center">
             <div class="lazy-loaded">
               <img src="https://res.cloudinary.com/canonical/image/fetch/f_auto,q_auto,fl_sanitize,w_16,h_16/https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg">
