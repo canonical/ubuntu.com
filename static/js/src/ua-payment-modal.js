@@ -158,7 +158,7 @@ function attachCTAevents() {
         });
       });
 
-      checkoutEvent(analyticsFriendlyProducts(), "Proceeded to checkout");
+      checkoutEvent(analyticsFriendlyProducts(), 1);
 
       setOrderInformation(cartItems, modal);
     }
@@ -671,7 +671,7 @@ function handleCustomerInfoResponse(paymentMethod, data) {
     // ask user to click "Pay"
 
     if (currentTransaction.type == "purchase") {
-      checkoutEvent(analyticsFriendlyProducts(), "Added payment details");
+      checkoutEvent(analyticsFriendlyProducts(), 2);
     }
 
     setPaymentInformation(paymentMethod, modal);
@@ -705,7 +705,7 @@ function handleSuccessfulPayment(transaction) {
       id: transaction.id,
       origin: "UA Shop",
       total: currentTransaction.total / 100,
-      tax: currentTransaction.tax,
+      tax: currentTransaction.tax / 100,
     };
 
     const products = analyticsFriendlyProducts();
@@ -806,7 +806,7 @@ function processStripePayment() {
         presentError();
       });
   } else if (currentTransaction.type === "purchase") {
-    checkoutEvent(analyticsFriendlyProducts(), "Confirmed purchase");
+    checkoutEvent(analyticsFriendlyProducts(), 3);
 
     postPurchaseData(
       currentTransaction.accountId,

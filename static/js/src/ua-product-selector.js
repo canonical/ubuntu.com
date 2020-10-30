@@ -300,11 +300,20 @@ function productSelector() {
 
         products.forEach((product) => {
           if (product.get("productId")[0] === data.productId) {
+            const productId = product.get("productId")[0];
+            const originalQuantity = product.get("quantity")[0];
+            let updatedQuantity = input.value;
+
             if (input.value < 0) {
-              product.set("quantity", ["0"]);
-            } else {
-              product.set("quantity", [input.value]);
+              updatedQuantity = "0";
             }
+
+            updateEcomAnalyticsQuantity(
+              productId,
+              originalQuantity,
+              updatedQuantity
+            );
+            product.set("quantity", [updatedQuantity]);
           }
         });
       }
@@ -507,6 +516,37 @@ function productSelector() {
       product.set("quantity", [`${quantity}`]);
       product.set("imageURL", [imageURL]);
       state.push("cart", product);
+    }
+  }
+
+  function updateEcomAnalyticsQuantity(
+    productId,
+    originalQuantity,
+    updatedQuantity
+  ) {
+    const product = products[productId];
+    const name = product.name;
+    const unitPrice = product.price.value / 100;
+    let quantityDelta;
+
+    if (updatedQuantity > originalQuantity) {
+      quantityDelta = updatedQuantity - originalQuantity;
+
+      addToCartEvent({
+        id: productId,
+        name: name,
+        price: unitPrice,
+        quantity: quantityDelta,
+      });
+    } else if (updatedQuantity < originalQuantity) {
+      quantityDelta = originalQuantity - updatedQuantity;
+
+      removeFromCartEvent({
+        id: productId,
+        name: name,
+        price: unitPrice,
+        quantity: quantityDelta,
+      });
     }
   }
 
