@@ -12,6 +12,7 @@ module.exports = {
     "url-search-params-polyfill",
     "./static/js/src/polyfills.js",
     "./static/js/src/contextual-menu.js",
+    "./static/js/src/accordion.js",
     "./static/js/src/dynamic-contact-form.js",
     "./static/js/src/core.js",
     "./static/js/src/navigation.js",

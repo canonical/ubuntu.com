@@ -8,17 +8,21 @@ function init() {
 }
 
 function calloutEntitlement(entitlement, index) {
-  let target = document.querySelector(`[data-entitlement="${entitlement}"]`);
+  let targets = document.querySelectorAll(
+    `[data-entitlement="${entitlement}"]`
+  );
   let interval = 2000;
 
-  if (target) {
-    setTimeout(() => {
-      target.classList.remove("u-hide");
-
+  if (targets) {
+    targets.forEach((target) => {
       setTimeout(() => {
-        target.classList.add("u-hide");
-      }, interval);
-    }, index * interval);
+        target.classList.remove("u-hide");
+
+        setTimeout(() => {
+          target.classList.add("u-hide");
+        }, interval);
+      }, index * interval);
+    });
   }
 }
 
