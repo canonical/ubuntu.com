@@ -182,6 +182,24 @@ raspberrypi:
     - title: Server
       path: /raspberry-pi/server
 
+smartstart:
+  title: SMART START
+  path: /smartstart
+
+  children:
+    - title: Overview
+      path: /smartstart
+    - title: Guide
+      path: /smartstart/guide
+    - title: Contact us
+      path: /smartstart/contact-us
+      hidden: True
+
+      children:
+        - title: Thank you
+          path: /smartstart/thank-you
+          hidden: True
+
 ceph:
   title: Ceph
   path: /ceph
