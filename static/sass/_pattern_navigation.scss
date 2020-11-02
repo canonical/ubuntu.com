@@ -32,6 +32,11 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
     &__banner {
       background-color: $color-brand;
+      padding-left: 1rem;
+
+      @media (max-width: $breakpoint-navigation-threshold - 1) {
+        padding-left: 1.5rem;
+      }
     }
 
     .p-navigation__dropdown-link--noscript {
@@ -95,31 +100,12 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
     &__logo {
       background: $color-brand;
-      margin: 0;
-
-      @media (max-width: $breakpoint-x-small - 1) {
-        padding-left: $grid-margin-width / 1.5 !important;
-        padding-right: 0 !important;
-      }
-
-      @media only screen and (max-width: $breakpoint-navigation-threshold) {
-        padding-left: $grid-margin-width;
-        padding-right: $grid-margin-width - $circle-of-friends-compensation;
-      }
-
-      @media only screen and (min-width: $breakpoint-navigation-threshold) {
-        padding-left: $sph-inner;
-        padding-right: $sph-inner - $circle-of-friends-compensation;
-      }
-
-      .p-navigation__link {
-        position: relative;
-      }
     }
 
     & &__nav {
       border-bottom: 0;
       display: flex;
+      margin-right: 0;
       width: 100%;
     }
 
@@ -203,6 +189,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         background-color: $color-brand;
         float: left;
         font-weight: 300;
+
 
         &:hover {
           color: $color-x-light;
