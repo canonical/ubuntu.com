@@ -1,7 +1,7 @@
 ---
-wrapper_template: "smart-start/guide/base.html"
+wrapper_template: "smartstart/guide/base.html"
 markdown_includes:
-  nav: "smart-start/shared/_side-navigation.md"
+  nav: "smartstart/shared/_side-navigation.md"
 context:
   title: "Advanced options"
   description: The following advanced security, integrity and resilience options harden smart devices exposed to challenging environments. All are available as add-ons to SMART START.
@@ -57,11 +57,11 @@ With [Canonical MicroK8s](https://microk8s.io/) and [Charmed Kubernetes](/kubern
 * [Ubuntu IoT pricing](/pricing/devices)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smart-start/guide/training-workshops">
+  <a class="p-article-pagination__link--previous" href="/smartstart/guide/training-workshops">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Training workshops</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smart-start/guide/device-enablement">
+  <a class="p-article-pagination__link--next" href="/smartstart/guide/device-enablement">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Device enablement</span>
   </a>

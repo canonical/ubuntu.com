@@ -161,24 +161,22 @@ function sendContributionFormAnalytics() {
     let value = amountElement.value || 0;
 
     if (value > 0) {
-      transactionProducts.push({
-        sku: name,
-        name: name,
-        category: "",
-        price: value,
-        quantity: 1,
+      dataLayer.push({
+        event: "GAEvent",
+        eventCategory: "Contributions",
+        eventAction: "Item",
+        eventLabel: name,
+        eventValue: value,
       });
     }
   });
 
   dataLayer.push({
-    transactionId: orderId,
-    transactionAffiliation: "Ubuntu contributions",
-    transactionTotal: total,
-    transactionTax: 0,
-    transactionShipping: 0,
-    transactionProducts: transactionProducts,
-    event: "transactionComplete",
+    event: "GAEvent",
+    eventCategory: "Contributions",
+    eventAction: "Paid",
+    eventLabel: "Total",
+    eventValue: total,
   });
 }
 

@@ -1,7 +1,7 @@
 ---
-wrapper_template: "smart-start/guide/base.html"
+wrapper_template: "smartstart/guide/base.html"
 markdown_includes:
-  nav: "smart-start/shared/_side-navigation.md"
+  nav: "smartstart/shared/_side-navigation.md"
 context:
   title: "What is SMART START?"
   description: SMART START is a comprehensive toolbox that allows enterprises to bootstrap commercial IoT products.
@@ -39,7 +39,7 @@ SMART START brings agility to enterprise IoT projects. Through this bundle enter
 - [Ubuntu Core](/core)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--next" href="/smart-start/guide/hardware-setup">
+  <a class="p-article-pagination__link--next" href="/smartstart/guide/hardware-setup">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Hardware setup</span>
   </a>
