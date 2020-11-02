@@ -319,8 +319,18 @@ def build_takeovers_index(engage_pages):
             key=lambda takeover: takeover["publish_date"],
             reverse=True,
         )
+        active_takeovers = [
+            takeover
+            for takeover in engage_pages.parser.takeovers
+            if takeover["active"] == "true"
+        ]
+        active_count = len(active_takeovers)
+        hidden_count = len(sorted_takeovers) - active_count
         return flask.render_template(
-            "takeovers/index.html", takeovers=sorted_takeovers
+            "takeovers/index.html",
+            active_count=active_count,
+            hidden_count=hidden_count,
+            takeovers=sorted_takeovers,
         )
 
     return takeover_index
