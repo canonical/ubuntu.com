@@ -13,4 +13,26 @@
   table:empty {
     display: none;
   }
+
+  .p-table--key-value {
+    width: auto;
+
+    tr {
+      border-top: 0 !important;
+      display: table-row;
+
+      td {
+        display: table-cell;
+        padding-bottom: 0;
+        padding-top: 0;
+
+        &:first-child {
+          @media (min-width: $breakpoint-medium) {
+            text-align: right;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
 }
