@@ -50,6 +50,7 @@ export function checkoutEvent(products, step) {
 export function purchaseEvent(purchaseInfo, products) {
   if (dataLayer) {
     dataLayer.push({
+      event: "purchase",
       ecommerce: {
         purchase: {
           actionField: {
