@@ -22,6 +22,10 @@ import {
   setPaymentInformation,
   setRenewalInformation,
 } from "./advantage/set-modal-info.js";
+import {
+  checkoutEvent,
+  purchaseEvent,
+} from "./advantage/ecom-analytics-events.js";
 
 const modal = document.getElementById("ua-payment-modal");
 
@@ -147,10 +151,14 @@ function attachCTAevents() {
       currentTransaction.previousPurchaseId = data.previousPurchaseId;
       cartItems.forEach((item) => {
         currentTransaction.products.push({
+          name: item.product.name,
+          price: item.product.price.value,
           product_listing_id: item.listingID,
           quantity: parseInt(item.quantity),
         });
       });
+
+      checkoutEvent(analyticsFriendlyProducts(), 1);
 
       setOrderInformation(cartItems, modal);
     }
@@ -364,15 +372,15 @@ function applyLoggedInPurchaseTotals() {
           currentTransaction.accountId,
           currentTransaction.products,
           currentTransaction.previousPurchaseId
-        ).then((data) => {
-          purchasePreview = data;
+        ).then((purchasePreview) => {
+          currentTransaction.total = purchasePreview.total;
+          currentTransaction.tax = purchasePreview.taxAmount;
           modal.classList.remove("is-processing");
           setOrderTotals(country, vatApplicable, purchasePreview, modal);
         });
       } else if (currentTransaction.type === "renewal") {
         postRenewalPreviewData(currentTransaction.transactionId).then(
-          (data) => {
-            purchasePreview = data;
+          (purchasePreview) => {
             modal.classList.remove("is-processing");
             setOrderTotals(country, vatApplicable, purchasePreview, modal);
           }
@@ -494,6 +502,21 @@ function enableProcessingState(mode) {
   }, 2000);
 }
 
+function analyticsFriendlyProducts() {
+  let products = [];
+
+  currentTransaction.products.forEach((product) => {
+    products.push({
+      id: product.product_listing_id,
+      name: product.name,
+      price: product.price / 100,
+      quantity: product.quantity,
+    });
+  });
+
+  return products;
+}
+
 function handleIncompletePayment(invoice) {
   if (invoice.pi_status === "requires_payment_method") {
     // the user's original payment method failed,
@@ -589,10 +612,12 @@ function handlePaymentMethodResponse(data) {
     presentError(errorObject);
     return;
   }
+
   if (currentTransaction.accountId) {
     attachCustomerInfoToStripeAccount(data.paymentMethod);
     return;
   }
+
   handleGuestPaymentMethodResponse(data);
 }
 
@@ -644,6 +669,11 @@ function handleCustomerInfoResponse(paymentMethod, data) {
   } else if (data.createdAt) {
     // payment method was successfully attached,
     // ask user to click "Pay"
+
+    if (currentTransaction.type == "purchase") {
+      checkoutEvent(analyticsFriendlyProducts(), 2);
+    }
+
     setPaymentInformation(paymentMethod, modal);
     showPayMode();
   } else {
@@ -667,8 +697,22 @@ function handlePaymentAttemptResponse(data) {
   }
 }
 
-function handleSuccessfulPayment() {
+function handleSuccessfulPayment(transaction) {
   sendGAEvent("payment succeeded");
+
+  if (currentTransaction.type == "purchase") {
+    const purchaseInfo = {
+      id: transaction.id,
+      origin: "UA Shop",
+      total: currentTransaction.total / 100,
+      tax: currentTransaction.tax / 100,
+    };
+
+    const products = analyticsFriendlyProducts();
+
+    purchaseEvent(purchaseInfo, products);
+  }
+
   disableProcessingState();
   progressIndicator.querySelector(".p-icon--spinner").classList.add("u-hide");
   progressIndicator
@@ -703,7 +747,7 @@ function pollTransactionStatus() {
         if (transaction.status !== "done") {
           incompleteHandler(transaction);
         } else {
-          handleSuccessfulPayment();
+          handleSuccessfulPayment(transaction);
         }
       })
       .catch((error) => {
@@ -762,6 +806,8 @@ function processStripePayment() {
         presentError();
       });
   } else if (currentTransaction.type === "purchase") {
+    checkoutEvent(analyticsFriendlyProducts(), 3);
+
     postPurchaseData(
       currentTransaction.accountId,
       currentTransaction.products,
