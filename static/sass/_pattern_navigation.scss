@@ -52,6 +52,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
       &::after {
         @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
+
         background-position: top 52% right 50%;
         background-repeat: no-repeat;
         background-size: 0.75rem;
@@ -68,6 +69,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       &.is-selected {
         &::after {
           @include vf-icon-chevron(vf-url-friendly-color($color-dark));
+
           transform: rotate(-180deg);
         }
 
@@ -111,6 +113,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
     & &__link-anchor {
       @include vf-animation(all, brisk, in);
+
       color: $color-light;
       display: block;
 
@@ -189,7 +192,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         background-color: $color-brand;
         float: left;
         font-weight: 300;
-
 
         &:hover {
           color: $color-x-light;
