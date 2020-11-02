@@ -1,7 +1,7 @@
 ---
-wrapper_template: "smart-start/guide/base.html"
+wrapper_template: "smartstart/guide/base.html"
 markdown_includes:
-  nav: "smart-start/shared/_side-navigation.md"
+  nav: "smartstart/shared/_side-navigation.md"
 context:
   title: "App store commissioning"
   description: SMART START customers benefit from their own IoT app store. While app stores are hosted by Canonical, they are entirely operated by customers. This section describes the first steps a customer takes when commissioning their app store.
@@ -69,11 +69,11 @@ Store Administrators can create derivative IoT app stores hierarchically tied to
 - [IoT app stores](/internet-of-things/appstore)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smart-start/guide/snap-publishing">
+  <a class="p-article-pagination__link--previous" href="/smartstart/guide/snap-publishing">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Snap publishing</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smart-start/guide/custom-image-creation">
+  <a class="p-article-pagination__link--next" href="/smartstart/guide/custom-image-creation">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Custom image creation</span>
   </a>

@@ -1,7 +1,7 @@
 ---
-wrapper_template: "smart-start/guide/base.html"
+wrapper_template: "smartstart/guide/base.html"
 markdown_includes:
-  nav: "smart-start/shared/_side-navigation.md"
+  nav: "smartstart/shared/_side-navigation.md"
 context:
   title: "Technical support"
   description: Technical support is included in the SMART START bundle for the first year. Technical support enables access to Canonical Engineering and TechOps teams to troubleshoot and resolve issues.
@@ -45,11 +45,11 @@ Your involvement facilitates the delivery of technical support. The following co
 - [Smart Start - Device enablement](/smart-start/guide/device-enablement)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smart-start/guide/operating-an-app-store">
+  <a class="p-article-pagination__link--previous" href="/smartstart/guide/operating-an-app-store">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Operating an app store</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smart-start/guide/training-workshops">
+  <a class="p-article-pagination__link--next" href="/smartstart/guide/training-workshops">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Training workshops</span>
   </a>
