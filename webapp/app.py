@@ -77,8 +77,6 @@ from webapp.security.views import (
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
 )
-DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
-DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
 # Set up application
 # ===
@@ -104,13 +102,6 @@ session = talisker.requests.get_session()
 authenticated_session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/", session=session
-)
-
-authenticated_discourse_api = DiscourseAPI(
-    base_url="https://discourse.ubuntu.com/",
-    session=authenticated_session,
-    api_key=os.getenv("DISCOURSE_API_KEY"),
-    api_username=os.getenv("DISCOURSE_API_USERNAME"),
 )
 
 
@@ -276,59 +267,75 @@ app.add_url_rule("/logout", view_func=logout)
 # Engage pages and takeovers from Discourse
 # This section needs to provide takeover data for /
 
-engage_path = "/engage"
-engage_pages = EngagePages(
-    parser=EngageParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.ubuntu.com/",
-            session=session,
-            api_key=DISCOURSE_API_KEY,
-            api_username=DISCOURSE_API_USERNAME,
+if os.getenv("DISCOURSE_API_KEY") and os.getenv("DISCOURSE_API_USERNAME"):
+
+    authenticated_discourse_api = DiscourseAPI(
+        base_url="https://discourse.ubuntu.com/",
+        session=authenticated_session,
+        api_key=os.getenv("DISCOURSE_API_KEY"),
+        api_username=os.getenv("DISCOURSE_API_USERNAME"),
+    )
+
+    engage_path = "/engage"
+    engage_pages = EngagePages(
+        parser=EngageParser(
+            api=authenticated_discourse_api,
+            index_topic_id=17229,
+            url_prefix=engage_path,
         ),
-        index_topic_id=17229,
+        document_template="/engage/base.html",
         url_prefix=engage_path,
-    ),
-    document_template="/engage/base.html",
-    url_prefix=engage_path,
-    blueprint_name="engage-pages",
-)
+        blueprint_name="engage-pages",
+    )
 
-app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
+    app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 
+    def build_takeovers(engage_pages):
+        def index_page():
+            engage_pages.parser.parse()
 
-def build_takeovers(engage_pages):
-    def index_page():
-        engage_pages.parser.parse()
+            # Show only active
+            active_takeovers = [
+                takeover
+                for takeover in engage_pages.parser.takeovers
+                if takeover["active"] == "true"
+            ]
+            return flask.render_template(
+                "index.html", takeovers=active_takeovers
+            )
 
-        # Show only active
-        active_takeovers = [
-            takeover
-            for takeover in engage_pages.parser.takeovers
-            if takeover["active"] == "true"
-        ]
-        return flask.render_template("index.html", takeovers=active_takeovers)
+        return index_page
 
-    return index_page
+    def build_takeovers_index(engage_pages):
+        def takeover_index():
+            engage_pages.parser.parse()
+            sorted_takeovers = sorted(
+                engage_pages.parser.takeovers,
+                key=lambda takeover: takeover["publish_date"],
+                reverse=True,
+            )
+            return flask.render_template(
+                "takeovers/index.html", takeovers=sorted_takeovers
+            )
 
+        return takeover_index
 
-def build_takeovers_index(engage_pages):
-    def takeover_index():
-        engage_pages.parser.parse()
-        sorted_takeovers = sorted(
-            engage_pages.parser.takeovers,
-            key=lambda takeover: takeover["publish_date"],
-            reverse=True,
-        )
-        return flask.render_template(
-            "takeovers/index.html", takeovers=sorted_takeovers
-        )
+    app.add_url_rule("/", view_func=build_takeovers(engage_pages))
+    app.add_url_rule(
+        "/takeovers", view_func=build_takeovers_index(engage_pages)
+    )
+    engage_pages.init_app(app)
 
-    return takeover_index
-
-
-app.add_url_rule("/", view_func=build_takeovers(engage_pages))
-app.add_url_rule("/takeovers", view_func=build_takeovers_index(engage_pages))
-engage_pages.init_app(app)
+    app.add_url_rule(
+        "/engage/<page>/thank-you",
+        defaults={"language": None},
+        view_func=engage_thank_you(engage_pages),
+    )
+    app.add_url_rule(
+        "/engage/<language>/<page>/thank-you",
+        endpoint="alternative_thank-you",
+        view_func=engage_thank_you(engage_pages),
+    )
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
@@ -393,17 +400,6 @@ ceph_docs = Docs(
     blueprint_name="ceph",
 )
 ceph_docs.init_app(app)
-
-app.add_url_rule(
-    "/engage/<page>/thank-you",
-    defaults={"language": None},
-    view_func=engage_thank_you(engage_pages),
-)
-app.add_url_rule(
-    "/engage/<language>/<page>/thank-you",
-    endpoint="alternative_thank-you",
-    view_func=engage_thank_you(engage_pages),
-)
 
 
 @app.after_request
