@@ -16,7 +16,7 @@ Boards certified for Ubuntu span x86, ARM, 32bit and 64bit architectures. These 
 
 | amd64|i386|arm64|armhf|
 | --- | --- | --- | --- |
-| [Intel NUC7CJYH](https://certification.ubuntu.com/hardware/201805-26256)<br> [Intel NUC7PJYH](https://certification.ubuntu.com/hardware/201805-26252)<br> [Intel NUC7i3DNHE](https://certification.ubuntu.com/hardware/201802-26085)<br> [Intel NUC7i5DNHE](https://certification.ubuntu.com/hardware/201802-26086)<br> [Intel NUC7i5DNHE](https://certification.ubuntu.com/hardware/201802-26087)<br> [Intel TANK-870-Q170](https://certification.ubuntu.com/hardware/201808-26450) | Intel Edison | Qualcomm Dragonboard 410c<br> Raspberry Pi model 3<br> Raspberry Pi model 4 | Raspberry Pi model 2<br>Raspberry Pi model 3<br>Raspberry Pi model 4<br>Raspberry Pi CM3 |
+|[Intel NUC7CJYH](https://certification.ubuntu.com/hardware/201805-26256)<br> [Intel NUC7PJYH](https://certification.ubuntu.com/hardware/201805-26252)<br> [Intel NUC7i3DNHE](https://certification.ubuntu.com/hardware/201802-26085)<br> [Intel NUC7i5DNHE](https://certification.ubuntu.com/hardware/201802-26086)<br> [Intel NUC7i5DNHE](https://certification.ubuntu.com/hardware/201802-26087)<br> [Intel TANK-870-Q170](https://certification.ubuntu.com/hardware/201808-26450) | Intel Edison  | Qualcomm Dragonboard 410c<br> Raspberry Pi model 3<br> Raspberry Pi model 4| Raspberry Pi model 2<br>Raspberry Pi model 3<br>Raspberry Pi model 4<br>Raspberry Pi CM3|
 
 ## Device enablement
 
