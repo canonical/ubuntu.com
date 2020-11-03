@@ -124,11 +124,11 @@
 
     function setGclid() {
       if (localStorage.getItem("gclid")) {
-        var gclid_field = document.getElementById("gclid");
+        var gclidField = document.getElementById("gclid");
         var gclid = JSON.parse(localStorage.getItem("gclid"));
         var isGclidValid = new Date().getTime() < gclid.expiryDate;
-        if (gclid && isGclidValid && gclid_field) {
-          gclid_field.value = gclid.value;
+        if (gclid && isGclidValid && gclidField) {
+          gclidField.value = gclid.value;
         }
       }
     }
