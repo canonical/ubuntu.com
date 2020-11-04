@@ -27,8 +27,11 @@ jobs:
         run: DOCKER_BUILDKIT=1 docker build --tag ubuntu-com .
 
       - name: Run image
+        env:
+          DISCOURSE_API_KEY: ${{ secrets.DISCOURSE_API_KEY }}
+          DISCOURSE_API_USERNAME: ${{ secrets.DISCOURSE_API_USERNAME }}
         run: |
-          docker run --detach --env SECRET_KEY=insecure_secret_key --network host --env DATABASE_URL=postgres://postgres:pw@localhost:5432/postgres ubuntu-com
+          docker run --detach --env DISCOURSE_API_KEY="$DISCOURSE_API_KEY" --env DISCOURSE_API_USERNAME="$DISCOURSE_API_USERNAME" --env SECRET_KEY=insecure_secret_key --network host --env DATABASE_URL=postgres://postgres:pw@localhost:5432/postgres ubuntu-com
           sleep 1
           curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost
 
@@ -63,8 +66,11 @@ jobs:
         run: /snap/bin/dotrun build
 
       - name: Run dotrun
+        env:
+          DISCOURSE_API_KEY: ${{ secrets.DISCOURSE_API_KEY }}
+          DISCOURSE_API_USERNAME: ${{ secrets.DISCOURSE_API_USERNAME }}
         run: |
-          /snap/bin/dotrun &
+          /snap/bin/dotrun --env DISCOURSE_API_KEY="$DISCOURSE_API_KEY" --env DISCOURSE_API_USERNAME="$DISCOURSE_API_USERNAME" &
           curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost:8001
 
   lint-scss:
