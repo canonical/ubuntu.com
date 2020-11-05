@@ -367,7 +367,7 @@ function handleIncompleteRenewal(renewal) {
   let paymentIntentStatus;
   let subscriptionStatus;
 
-  if (renewal.stripeInvoices) {
+  if (renewal.stripeInvoices && renewal.stripeInvoices.length > 0) {
     invoice = renewal.stripeInvoices[0];
     paymentIntentStatus = invoice.pi_status;
     subscriptionStatus = invoice.subscription_status;
