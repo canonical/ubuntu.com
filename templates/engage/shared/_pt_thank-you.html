@@ -39,7 +39,7 @@
     <div class="col-8">
       {% if 'pages.ubuntu.com' in resource_url %}
       <p>
-        {{ resource_name }} est&acute; pronto para download.
+        {{ resource_name | capitalize }} est&aacute; pronto para download.
       </p>
       <p>
         <a class="p-button--positive" href="{{ resource_url }}">Download</a>
@@ -66,7 +66,7 @@
       <!-- THREE ADDITIONAL CTAs -->
       <h4>{{page["topic_name"]}}</h4>
       <p>{{page["subtitle"]}}</p>
-      <p><a href="{{page['path']}}">Ver mais &nbsp;&rsaquo;</a></p>
+      <p><a href="{{page['path']}}">Ver mais&nbsp;&rsaquo;</a></p>
     </div>
     {% endfor %}
   </div>

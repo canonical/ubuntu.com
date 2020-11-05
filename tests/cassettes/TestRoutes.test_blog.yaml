@@ -1216,9 +1216,9 @@ interactions:
         neon<\/a> extension, which makes the latest Qt5 and KDE Frameworks libraries
         available to KBlocks at runtime. The necessary code block [sic] is as follows:<\/p>\n\n\n\n<pre
         class=\"wp-block-preformatted\">\u2026<br>adopt-info: kblocks<br>apps:<br>&nbsp;&nbsp;&nbsp;
-        kblocks:<br>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; <strong>extensions:<\/strong><strong><br><\/strong><strong>&nbsp;
-        &nbsp; <\/strong><strong>&nbsp;&nbsp;&nbsp; <\/strong><strong>- kde-neon<\/strong><br>&nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; common-id: org.kde.kblocks.desktop<br>...<\/pre>\n\n\n\n<p>But
+        kblocks:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>extensions:<\/strong><strong><br><\/strong><strong>&nbsp;
+       &nbsp; <\/strong><strong>&nbsp;&nbsp;&nbsp; <\/strong><strong>- kde-neon<\/strong><br>&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; common-id: org.kde.kblocks.desktop<br>...<\/pre>\n\n\n\n<p>But
         we need to see what happens behind the scenes.<\/p>\n\n\n\n<p>You can expand
         an extension declaration in any snapcraft.yaml file by running:<\/p>\n\n\n\n<pre
         class=\"wp-block-preformatted\">snapcraft expand-extensions<\/pre>\n\n\n\n<p>This
@@ -1524,22 +1524,22 @@ interactions:
         the connected plugs for the home interface. Similarly, you can also see the
         list of all the interfaces that have at least one plug on your system.<\/p>\n\n\n\n<pre
         class=\"wp-block-preformatted\">snap interface<br>...<br>desktop-legacy&nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; allows privileged access to desktop legacy
-        methods<br>gsettings &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allows privileged access to desktop legacy
+        methods<br>gsettings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         allows access to any gsettings item of current user<br>hardware-observe&nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; allows reading information about system hardware<br>home&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; allows
+       &nbsp;&nbsp;&nbsp;&nbsp; allows reading information about system hardware<br>home&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allows
         access to non-hidden files in the home directory<br>kernel-module-control
-        &nbsp; allows insertion, removal and querying of kernel modules<br>log-observe
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; allows read access to system
-        logs<br>lxd-support &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; allows
-        operating as the LXD service<br>network &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; allows access to the network<br>network-bind&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; allows operating as a network service<br>network-control
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; allows configuring networking and network
-        namespaces<br>network-manager &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; allows operating
-        as the NetworkManager service<br>opengl&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; allows access to OpenGL stack<br>...<\/pre>\n\n\n\n<p>From
+       &nbsp; allows insertion, removal and querying of kernel modules<br>log-observe
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allows read access to system
+        logs<br>lxd-support&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allows
+        operating as the LXD service<br>network&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; allows access to the network<br>network-bind&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allows operating as a network service<br>network-control
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allows configuring networking and network
+        namespaces<br>network-manager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allows operating
+        as the NetworkManager service<br>opengl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allows access to OpenGL stack<br>...<\/pre>\n\n\n\n<p>From
         a security and\/or privacy perspective, you can quickly inspect your system
         and determine whether there are any potential gaps in your baseline, or whether
         there are applications that have the ability to utilise resources that you
@@ -1551,134 +1551,134 @@ interactions:
         you can obtain by running <em>snap connections<\/em>. This one-liner allows
         you to see all the connected snaps for each interface, or all the interfaces
         defined for each snap (whether they are connected or not).<\/p>\n\n\n\n<pre
-        class=\"wp-block-preformatted\">snap connections<br>Interface &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; Plug &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; Slot&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; Notes<br>audio-playback&nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp;&nbsp;&nbsp; cncra2yr:audio-playback&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; :audio-playback &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp;&nbsp;&nbsp; -<br>audio-playback&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        libreoffice:audio-playback &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        :audio-playback &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>audio-playback&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; obs-studio:audio-playback&nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; :audio-playback &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; -<br>audio-playback&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        vlc:audio-playback &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; :audio-playback &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        -<br>audio-record&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; obs-studio:audio-record&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; :audio-record
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>browser-support &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; obs-studio:browser-support &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; :browser-support&nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp;&nbsp;&nbsp; -<br>browser-support &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        spotify:browser-support&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp;&nbsp;&nbsp; :browser-support&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        -<br>camera&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        obs-studio:camera&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; :camera &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>content[gtk-3-themes] &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        cncra2yr:gtk-3-themes&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; gtk-common-themes:gtk-3-themes&nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>content[icon-themes]&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        cncra2yr:icon-themes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; gtk-common-themes:icon-themes &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>content[wine-3-stable]&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        cncra2yr:wine-3-stable &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp;&nbsp;&nbsp; wine-platform-3-stable:wine-3-stable&nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; -<br>content[wine-runtime] &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; cncra2yr:wine-runtime&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        wine-platform-runtime:wine-runtime&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        -<br>content[gtk-3-themes] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; cncra:gtk-3-themes &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; gtk-common-themes:gtk-3-themes&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>content[icon-themes]&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        cncra:icon-themes&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; gtk-common-themes:icon-themes &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>content[wine-3-stable]&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        cncra:wine-3-stable&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; wine-platform-3-stable:wine-3-stable&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>content[wine-runtime] &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        cncra:wine-runtime &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; wine-platform-runtime:wine-runtime&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>content[gnome-3-28-1804]&nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        gimp:gnome-3-28-1804 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; gnome-3-28-1804:gnome-3-28-1804 &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>content[gtk-3-themes] &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        gimp:gtk-3-themes&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; gtk-common-themes:gtk-3-themes&nbsp;<\/pre>\n\n\n\n<p>For
+        class=\"wp-block-preformatted\">snap connections<br>Interface&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Plug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; Slot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Notes<br>audio-playback&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp; cncra2yr:audio-playback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :audio-playback&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp; -<br>audio-playback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        libreoffice:audio-playback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        :audio-playback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>audio-playback&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; obs-studio:audio-playback&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :audio-playback&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; -<br>audio-playback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        vlc:audio-playback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :audio-playback&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        -<br>audio-record&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; obs-studio:audio-record&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :audio-record
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>browser-support&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; obs-studio:browser-support&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :browser-support&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp; -<br>browser-support&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        spotify:browser-support&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp; :browser-support&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        -<br>camera&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        obs-studio:camera&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :camera&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>content[gtk-3-themes]&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        cncra2yr:gtk-3-themes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; gtk-common-themes:gtk-3-themes&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>content[icon-themes]&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        cncra2yr:icon-themes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; gtk-common-themes:icon-themes&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>content[wine-3-stable]&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        cncra2yr:wine-3-stable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp; wine-platform-3-stable:wine-3-stable&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; -<br>content[wine-runtime]&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cncra2yr:wine-runtime&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        wine-platform-runtime:wine-runtime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        -<br>content[gtk-3-themes]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cncra:gtk-3-themes&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gtk-common-themes:gtk-3-themes&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>content[icon-themes]&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        cncra:icon-themes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gtk-common-themes:icon-themes&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>content[wine-3-stable]&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        cncra:wine-3-stable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wine-platform-3-stable:wine-3-stable&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>content[wine-runtime]&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        cncra:wine-runtime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wine-platform-runtime:wine-runtime&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>content[gnome-3-28-1804]&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        gimp:gnome-3-28-1804&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; gnome-3-28-1804:gnome-3-28-1804&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>content[gtk-3-themes]&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        gimp:gtk-3-themes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gtk-common-themes:gtk-3-themes&nbsp;<\/pre>\n\n\n\n<p>For
         instance, you may want to know what the kompoZer snaps requires:<\/p>\n\n\n\n<pre
-        class=\"wp-block-preformatted\">snap connections kompozer<br>Interface &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; Plug&nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; Slot&nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+        class=\"wp-block-preformatted\">snap connections kompozer<br>Interface&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Plug&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Slot&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Notes<br>content[gtk-2-engines]&nbsp; kompozer:gtk-2-engines&nbsp;&nbsp;&nbsp;
-        gtk2-common-themes:gtk-2-engines&nbsp; -<br>content[gtk-2-themes] &nbsp; kompozer:gtk-2-themes
-        &nbsp;&nbsp;&nbsp; gtk-common-themes:gtk-2-themes&nbsp;&nbsp;&nbsp; -<br>content[icon-themes]&nbsp;&nbsp;&nbsp;
-        kompozer:icon-themes&nbsp; &nbsp;&nbsp;&nbsp; gtk-common-themes:icon-themes
-        &nbsp;&nbsp;&nbsp; -<br>desktop &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp;&nbsp;&nbsp; kompozer:desktop&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        :desktop&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; -<br>desktop-legacy&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        kompozer:desktop-legacy &nbsp; :desktop-legacy &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>home&nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; kompozer:home &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; :home &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<br>removable-media
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; kompozer:removable-media&nbsp; - &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; -<br>unity7&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; kompozer:unity7 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
-        :unity7 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp;&nbsp;&nbsp; -<br>x11 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; kompozer:x11&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp;&nbsp;&nbsp; :x11&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; -<\/pre>\n\n\n\n<p>When
+        gtk2-common-themes:gtk-2-engines&nbsp; -<br>content[gtk-2-themes]&nbsp; kompozer:gtk-2-themes
+       &nbsp;&nbsp;&nbsp; gtk-common-themes:gtk-2-themes&nbsp;&nbsp;&nbsp; -<br>content[icon-themes]&nbsp;&nbsp;&nbsp;
+        kompozer:icon-themes&nbsp;&nbsp;&nbsp;&nbsp; gtk-common-themes:icon-themes
+       &nbsp;&nbsp;&nbsp; -<br>desktop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp; kompozer:desktop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        :desktop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; -<br>desktop-legacy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        kompozer:desktop-legacy&nbsp; :desktop-legacy&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>home&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kompozer:home&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<br>removable-media
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kompozer:removable-media&nbsp; -&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; -<br>unity7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; kompozer:unity7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        :unity7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp; -<br>x11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kompozer:x11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp; :x11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<\/pre>\n\n\n\n<p>When
         it comes to system configuration and inspection, the output provided by this
         command allows you to focus on specific snaps rather than specific resources.
         It can also help you troubleshoot any potential problems with snaps at runtime.<\/p>\n\n\n\n<p>A
@@ -6006,14 +6006,14 @@ interactions:
         patches.<\/p>\n\n\n\n<p>Then, occasionally, you may want to check which snaps
         will update on next refresh. This will give you an indication of the pending
         list of new snap revisions your system will receive:<\/p>\n\n\n\n<pre class=\"wp-block-preformatted\">snap
-        refresh --list<br>Name &nbsp; &nbsp;&nbsp;&nbsp; Version&nbsp; Rev&nbsp;&nbsp;&nbsp;
-        Publisher &nbsp; Notes<br>lxd&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; 4.3&nbsp; &nbsp;&nbsp;&nbsp;
+        refresh --list<br>Name&nbsp;&nbsp;&nbsp;&nbsp; Version&nbsp; Rev&nbsp;&nbsp;&nbsp;
+        Publisher&nbsp; Notes<br>lxd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.3&nbsp;&nbsp;&nbsp;&nbsp;
         16044&nbsp; canonical\u2713&nbsp; -<br>snapcraft&nbsp; 4.1.1&nbsp;&nbsp;&nbsp;
-        5143 &nbsp; canonical\u2713&nbsp; classic<\/pre>\n\n\n\n<p>Now, the full list
+        5143&nbsp; canonical\u2713&nbsp; classic<\/pre>\n\n\n\n<p>Now, the full list
         of installed snaps is longer. For example, the system currently has lxd version
         4.2 installed:<\/p>\n\n\n\n<pre class=\"wp-block-preformatted\">snap list
-        lxd<br>Name&nbsp; Version&nbsp; Rev&nbsp;&nbsp;&nbsp; Tracking &nbsp; &nbsp;&nbsp;&nbsp;
-        Publisher &nbsp; Notes<br>lxd &nbsp; 4.2&nbsp; &nbsp;&nbsp;&nbsp; 15878&nbsp;
+        lxd<br>Name&nbsp; Version&nbsp; Rev&nbsp;&nbsp;&nbsp; Tracking&nbsp;&nbsp;&nbsp;&nbsp;
+        Publisher&nbsp; Notes<br>lxd&nbsp; 4.2&nbsp;&nbsp;&nbsp;&nbsp; 15878&nbsp;
         latest\/stable&nbsp; canonical\u2713&nbsp; -<\/pre>\n\n\n\n<h1>Refresh awareness<\/h1>\n\n\n\n<p>This
         is <a href=\"https:\/\/snapcraft.io\/blog\/experimental-feature-snap-refresh-awareness-and-update-inhibition\">another
         feature<\/a> that you can use to control the updates. In some cases, you may
@@ -6251,7 +6251,7 @@ interactions:
         the environment<\/h3>\n\n\n\n<p>The following line sets the DISPLAY environment
         variable required by X. The display within the container is always mapped
         to &#8221;&#8217;:0&#8221;&#8217;.<br><\/p>\n\n\n\n<pre class=\"wp-block-preformatted\">
-        &nbsp;environment.DISPLAY: :0<br><\/pre>\n\n\n\n<p>Our linux containers will
+       &nbsp;environment.DISPLAY: :0<br><\/pre>\n\n\n\n<p>Our linux containers will
         run under the security context of the current user, but all work within the
         Ubuntu containers will be done under the default <code>ubuntu<\/code> user
         account. The <code>raw.imap<\/code> setting maps our workstation&#8217;s user
@@ -6277,8 +6277,8 @@ interactions:
         \/tmp\/.X11-unix\/X0\n    source: \/tmp\/.X11-unix\/<span style=\"background-color:yellow\">X0<\/span>\n    type:
         disk\n<\/code><\/pre>\n\n\n\n<p>If you have a separate graphics card with
         a discrete GPU, you may also find it necessary to add the GPU as a device:<\/p>\n\n\n\n<pre
-        class=\"wp-block-preformatted\"> &nbsp;mygpu:<br>&nbsp;&nbsp;&nbsp;&nbsp;type:
-        gpu<br> &nbsp;&nbsp;&nbsp;name: gui<br><\/pre>\n\n\n\n<p>To learn more about
+        class=\"wp-block-preformatted\">&nbsp;mygpu:<br>&nbsp;&nbsp;&nbsp;&nbsp;type:
+        gpu<br>&nbsp;&nbsp;&nbsp;name: gui<br><\/pre>\n\n\n\n<p>To learn more about
         running graphical apps in LXD containers, including some caveats when working
         with an NVidia GPU, take a look at <a rel=\"noreferrer noopener\" aria-label=\"
         (opens in a new tab)\" href=\"https:\/\/blog.simos.info\/running-x11-software-in-lxd-containers\/\"
@@ -6291,9 +6291,9 @@ interactions:
         forwarding) is required for either ROS 1 or ROS 2.<br><\/p>\n\n\n\n<p>The
         network interface (nic) device configured here uses macvlan to connect the
         parent network adapter <code>enx001a98a552d4<\/code> to the container&#8217;s
-        eth0 interface:<br><\/p>\n\n\n\n<pre class=\"wp-block-preformatted\"> &nbsp;eth0:<br>&nbsp;&nbsp;&nbsp;&nbsp;name:
+        eth0 interface:<br><\/p>\n\n\n\n<pre class=\"wp-block-preformatted\">&nbsp;eth0:<br>&nbsp;&nbsp;&nbsp;&nbsp;name:
         eth0<br>&nbsp;&nbsp;&nbsp;&nbsp;nictype: macvlan<br>&nbsp;&nbsp;&nbsp;&nbsp;parent:
-        <span style=\"background-color:yellow\">enx001a98a552d4<\/span><br> &nbsp;&nbsp;&nbsp;type:
+        <span style=\"background-color:yellow\">enx001a98a552d4<\/span><br>&nbsp;&nbsp;&nbsp;type:
         nic<br><\/pre>\n\n\n\n<p>Take a look at <a href=\"https:\/\/blog.simos.info\/how-to-make-your-lxd-container-get-ip-addresses-from-your-lan\/\">this
         post<\/a> if you need more information about LXD networking with macvlan.<\/p>\n\n\n\n<p>A
         disk image must be connected to the container. This disk device simply uses
@@ -7079,7 +7079,7 @@ interactions:
         the environment<\/h3>\n\n\n\n<p>The following line sets the DISPLAY environment
         variable required by X. The display within the container is always mapped
         to &#8221;&#8217;:0&#8221;&#8217;.<br><\/p>\n\n\n\n<pre class=\"wp-block-preformatted\">
-        &nbsp;environment.DISPLAY: :0<br><\/pre>\n\n\n\n<p>Our linux containers will
+       &nbsp;environment.DISPLAY: :0<br><\/pre>\n\n\n\n<p>Our linux containers will
         run under the security context of the current user, but all work within the
         Ubuntu containers will be done under the default <code>ubuntu<\/code> user
         account. The <code>raw.imap<\/code> setting maps our workstation&#8217;s user
@@ -7105,8 +7105,8 @@ interactions:
         \/tmp\/.X11-unix\/X0\n    source: \/tmp\/.X11-unix\/<span style=\"background-color:yellow\">X0<\/span>\n    type:
         disk\n<\/code><\/pre>\n\n\n\n<p>If you have a separate graphics card with
         a discrete GPU, you may also find it necessary to add the GPU as a device:<\/p>\n\n\n\n<pre
-        class=\"wp-block-preformatted\"> &nbsp;mygpu:<br>&nbsp;&nbsp;&nbsp;&nbsp;type:
-        gpu<br> &nbsp;&nbsp;&nbsp;name: gui<br><\/pre>\n\n\n\n<p>To learn more about
+        class=\"wp-block-preformatted\">&nbsp;mygpu:<br>&nbsp;&nbsp;&nbsp;&nbsp;type:
+        gpu<br>&nbsp;&nbsp;&nbsp;name: gui<br><\/pre>\n\n\n\n<p>To learn more about
         running graphical apps in LXD containers, including some caveats when working
         with an NVidia GPU, take a look at <a rel=\"noreferrer noopener\" aria-label=\"
         (opens in a new tab)\" href=\"https:\/\/blog.simos.info\/running-x11-software-in-lxd-containers\/\"
@@ -7119,9 +7119,9 @@ interactions:
         forwarding) is required for either ROS 1 or ROS 2.<br><\/p>\n\n\n\n<p>The
         network interface (nic) device configured here uses macvlan to connect the
         parent network adapter <code>enx001a98a552d4<\/code> to the container&#8217;s
-        eth0 interface:<br><\/p>\n\n\n\n<pre class=\"wp-block-preformatted\"> &nbsp;eth0:<br>&nbsp;&nbsp;&nbsp;&nbsp;name:
+        eth0 interface:<br><\/p>\n\n\n\n<pre class=\"wp-block-preformatted\">&nbsp;eth0:<br>&nbsp;&nbsp;&nbsp;&nbsp;name:
         eth0<br>&nbsp;&nbsp;&nbsp;&nbsp;nictype: macvlan<br>&nbsp;&nbsp;&nbsp;&nbsp;parent:
-        <span style=\"background-color:yellow\">enx001a98a552d4<\/span><br> &nbsp;&nbsp;&nbsp;type:
+        <span style=\"background-color:yellow\">enx001a98a552d4<\/span><br>&nbsp;&nbsp;&nbsp;type:
         nic<br><\/pre>\n\n\n\n<p>Take a look at <a href=\"https:\/\/blog.simos.info\/how-to-make-your-lxd-container-get-ip-addresses-from-your-lan\/\">this
         post<\/a> if you need more information about LXD networking with macvlan.<\/p>\n\n\n\n<p>A
         disk image must be connected to the container. This disk device simply uses

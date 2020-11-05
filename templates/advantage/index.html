@@ -90,7 +90,7 @@
                     <tr class="p-table__row">
                       <td class="u-no-padding{% if open_subscription == contract['contractInfo']['id'] %} p-table--open"{% endif %}">
                         <button class="u-toggle u-toggle--full-width u-align--left" aria-controls="#expanded-details-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          {{ contract['contractInfo']['name'] }} &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                          {{ contract['contractInfo']['name'] }}&nbsp;<i class="p-icon--contextual-menu">Open</i>
                           {% if contract["renewal"] %}
                             {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
                               <div class="u-toggle__supplemental" style="color: #666; font-size: 14px;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}warning{% endif %}"></i>&nbsp;&nbsp;
@@ -111,7 +111,7 @@
                       <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
                       <td class="u-align--center {% if default_open_cell %}p-table--open{% endif %}">
                         <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if default_cell_open %}true{% else %}false{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
-                          {{ contract['machineCount'] }} &nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
+                          {{ contract['machineCount'] }}&nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
                         </button>
                       </td>
 
@@ -128,7 +128,7 @@
                         {% if contract['entitlements']['livepatch'] == True %}
                         <button class="u-toggle" aria-controls="#expanded-row-livepatch-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                           <span class="u-truncate">
-                            <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
+                            <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>&nbsp;<i class="p-icon--contextual-menu">Open</i></span>
                         </button>
                         {% else %}
                         <span style="padding-top: 0.35rem;">N/A</span>
@@ -137,7 +137,7 @@
                       <td class="u-align--center">
                         {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
                         <button class="u-toggle" aria-controls="#expanded-row-certifications-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          <span class="u-truncate"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i></span>
+                          <span class="u-truncate"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>&nbsp;<i class="p-icon--contextual-menu">Open</i></span>
                         </button>
                         {% else %}
                         <span style="padding-top: 0.35rem;">N/A</span>
@@ -165,7 +165,7 @@
                                       <td class="u-align--left">
                                         <strong>{{ contract['contractInfo']['effectiveToFormatted'] }}</strong>
                                         {% if contract["contractInfo"]["daysTillExpiry"] >= 0 %}
-                                          &nbsp;&mdash;&nbsp;
+                                         &nbsp;&mdash;&nbsp;
                                           {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
                                             today
                                           {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
