@@ -5,6 +5,7 @@
 FROM ubuntu:focal AS python-dependencies
 RUN apt-get update && apt-get install --no-install-recommends --yes python3-pip python3-setuptools python3-wheel build-essential
 ADD requirements.txt /tmp/requirements.txt
+RUN if grep -q git+ /tmp/requirements.txt; then apt-get install --yes --no-install-recommends git; fi
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement /tmp/requirements.txt
 
 
