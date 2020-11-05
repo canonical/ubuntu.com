@@ -22,10 +22,7 @@ import {
   setPaymentInformation,
   setRenewalInformation,
 } from "./advantage/set-modal-info.js";
-import {
-  checkoutEvent,
-  purchaseEvent,
-} from "./advantage/ecom-analytics-events.js";
+import { checkoutEvent, purchaseEvent } from "./advantage/ecom-events.js";
 
 const modal = document.getElementById("ua-payment-modal");
 

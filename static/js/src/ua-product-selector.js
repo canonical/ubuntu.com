@@ -3,7 +3,7 @@ import { debounce } from "./utils/debounce.js";
 import {
   addToCartEvent,
   removeFromCartEvent,
-} from "./advantage/ecom-analytics-events.js";
+} from "./advantage/ecom-events.js";
 
 function productSelector() {
   const form = document.querySelector(".js-shop-form");
