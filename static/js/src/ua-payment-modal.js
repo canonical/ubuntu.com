@@ -556,8 +556,8 @@ function handleIncompletePurchase(purchase) {
   let paymentIntentStatus;
   let subscriptionStatus;
 
-  if (purchase.stripeInvoices) {
-    invoice = purchase.stripeInvoices[purchase.stripeInvoices.length - 1];
+  if (purchase.stripeInvoices && purchase.stripeInvoices.length > 0) {
+    invoice = purchase.stripeInvoices[0];
     paymentIntentStatus = invoice.pi_status;
     subscriptionStatus = invoice.subscription_status;
   }
