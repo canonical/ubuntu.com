@@ -11,10 +11,10 @@
           {% with section=nav_sections.openstack %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
-          {% with section=nav_sections.pricing %}
+          {% with section=nav_sections.ceph %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
-          {% with section=nav_sections.raspberrypi %}
+          {% with section=nav_sections.managedapps %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
         </ul>
@@ -31,26 +31,26 @@
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
-          {% with section=nav_sections.desktop %}
+          {% with section=nav_sections.iot %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
-          {% with section=nav_sections.iot %}
+          {% with section=nav_sections.raspberrypi %}
+          {% include 'templates/_footer_item.html' %}
+          {% endwith %}
+          {% with section=nav_sections.smartstart %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
         </ul>
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom">
         <ul class="p-footer__links">
+          {% with section=nav_sections.desktop %}
+          {% include 'templates/_footer_item.html' %}
+          {% endwith %}
           {% with section=nav_sections.server %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
-          {% with section=nav_sections.support %}
-          {% include 'templates/_footer_item.html' %}
-          {% endwith %}
           {% with section=nav_sections.security %}
-          {% include 'templates/_footer_item.html' %}
-          {% endwith %}
-          {% with section=nav_sections.managedapps %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
         </ul>
@@ -67,6 +67,12 @@
       </div>
       <div class="p-footer__nav-col col-2 u-no-margin--bottom last-col">
         <ul class="p-footer__links">
+          {% with section=nav_sections.support %}
+          {% include 'templates/_footer_item.html' %}
+          {% endwith %}
+          {% with section=nav_sections.pricing %}
+          {% include 'templates/_footer_item.html' %}
+          {% endwith %}
           <li class="p-footer__item p-footer__item--spaced">
             <h2 class="p-footer__title p-footer__title-text">
               <span>Sectors</span>
