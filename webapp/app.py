@@ -77,8 +77,6 @@ from webapp.security.views import (
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
 )
-DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
-DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
 # Set up application
 # ===
@@ -101,16 +99,8 @@ app.config["CANONICAL_LOGIN_URL"] = os.getenv(
 ).rstrip("/")
 
 session = talisker.requests.get_session()
-authenticated_session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/", session=session
-)
-
-authenticated_discourse_api = DiscourseAPI(
-    base_url="https://discourse.ubuntu.com/",
-    session=authenticated_session,
-    api_key=os.getenv("DISCOURSE_API_KEY"),
-    api_username=os.getenv("DISCOURSE_API_USERNAME"),
 )
 
 
@@ -282,8 +272,6 @@ engage_pages = EngagePages(
         api=DiscourseAPI(
             base_url="https://discourse.ubuntu.com/",
             session=session,
-            api_key=DISCOURSE_API_KEY,
-            api_username=DISCOURSE_API_USERNAME,
         ),
         index_topic_id=17229,
         url_prefix=engage_path,
