@@ -744,7 +744,7 @@ def advantage_shop_view():
                     "advantage/subscribe/index.html",
                     account=account,
                     previous_purchase_id=previous_purchase_id,
-                    product_listings=None,
+                    product_listings=[],
                     stripe_publishable_key=stripe_publishable_key,
                 )
             if code != 404:
