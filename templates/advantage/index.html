@@ -104,7 +104,7 @@
               <div class="col-small-2 col-medium-3 u-align--left">
                 {{ contract['contractInfo']['effectiveToFormatted'] }}
                 {% if contract["contractInfo"]["daysTillExpiry"] >= 0 %}
-                  &nbsp;&mdash;&nbsp;
+                &nbsp;&mdash;&nbsp;
                   {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
                     today
                   {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
@@ -245,7 +245,7 @@
                       <td class="u-align--center {% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}">
                         <span class="u-hide">{{ contract }}</span>
                         <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
-                          {{ contract['machineCount'] }} &nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
+                          {{ contract['machineCount'] }}&nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
                         </button>
                       </td>
 
@@ -266,7 +266,7 @@
                         {% if contract['entitlements']['livepatch'] == True %}
                         <button class="u-toggle" style="position: relative;" aria-controls="#expanded-row-livepatch-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                           <span class="u-truncate" style="position: relative;">
-                            <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                            <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>&nbsp;<i class="p-icon--contextual-menu">Open</i>
                           </span>
                           {% if new_subscription_id == contract['contractInfo']['id'] %}
                             <i class="p-icon--attention u-hide" data-entitlement="livepatch" style="position: absolute; right: 11px; top: 4px;"></i>
@@ -279,7 +279,7 @@
                       <td class="u-align--center">
                         {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
                         <button class="u-toggle" style="position: relative;" aria-controls="#expanded-row-certifications-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          <span class="u-truncate" style="position: relative;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> &nbsp;<i class="p-icon--contextual-menu">Open</i>
+                          <span class="u-truncate" style="position: relative;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>&nbsp;<i class="p-icon--contextual-menu">Open</i>
                           </span>
                           {% if new_subscription_id == contract['contractInfo']['id'] %}
                             <i class="p-icon--attention u-hide" data-entitlement="fips" style="position: absolute; right: 11px; top: 4px;"></i>
