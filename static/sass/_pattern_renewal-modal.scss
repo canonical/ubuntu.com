@@ -1,13 +1,17 @@
-@mixin ubuntu-p-renewal-modal {
+@mixin ubuntu-p-ua-payment-modal {
   .p-modal--active {
     height: 100vh;
     overflow: hidden;
   }
 
-  .p-modal--renewal {
+  .p-modal--ua-payment {
     overflow: hidden;
     position: fixed;
     z-index: 100;
+
+    &.u-hide:target {
+      display: flex !important;
+    }
 
     &.is-pay-mode {
       #details-form,
@@ -19,7 +23,8 @@
     }
 
     &.is-details-mode {
-      #renewal-summary,
+      #order-summary,
+      #order-terms,
       #payment-error-dialog,
       .js-process-payment,
       .js-close-modal {
@@ -28,8 +33,10 @@
     }
 
     &.is-dialog-mode {
-      #renewal-summary,
-      #renewal-info,
+      #order-info,
+      #order-summary,
+      #order-terms,
+      #order-totals,
       #details-form,
       .js-cancel-modal,
       .js-payment-method,
@@ -39,6 +46,8 @@
     }
 
     .p-modal__dialog {
+      display: flex;
+      flex-direction: column;
       max-width: 50rem;
       overflow: auto;
       padding: 0;
@@ -53,7 +62,6 @@
     }
 
     .p-modal__body {
-      max-height: 70vh;
       overflow-y: scroll;
     }
 
@@ -73,6 +81,25 @@
 
       @media (min-width: $breakpoint-medium) {
         bottom: 1rem;
+      }
+    }
+
+    #order-processing {
+      bottom: 0;
+      display: none;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      .p-icon--spinner {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
       }
     }
 
@@ -127,6 +154,23 @@
       color: $color-negative;
     }
 
+    &.is-processing {
+      .p-modal__body {
+        overflow: hidden;
+
+        section {
+          visibility: hidden;
+        }
+      }
+
+      #order-processing {
+        animation: 1s delayedShow;
+        animation-fill-mode: forwards;
+        display: block;
+        visibility: hidden;
+      }
+    }
+
     button,
     label {
       @media (min-width: $breakpoint-medium) {
@@ -149,5 +193,15 @@
         float: right;
       }
     }
+  }
+}
+
+@keyframes delayedShow {
+  99% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: visible;
   }
 }

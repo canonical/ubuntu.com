@@ -1,27 +1,44 @@
+import { debounce } from "./utils/debounce.js";
+
 import {
+  ensurePurchaseAccount,
+  getPurchase,
   getRenewal,
-  postInvoiceIDToRenewal,
+  postInvoiceID,
   postCustomerInfoToStripeAccount,
+  postCustomerInfoForPurchasePreview,
   postRenewalIDToProcessPayment,
-} from "./renewals/contracts-api.js";
+  postPurchaseData,
+  postPurchasePreviewData,
+  postRenewalPreviewData,
+} from "./advantage/contracts-api.js";
 
-import { parseForErrorObject } from "./renewals/error-handler.js";
-import { vatCountries } from "./renewals/vat-countries.js";
+import { parseForErrorObject } from "./advantage/error-handler.js";
+import { vatCountries } from "./advantage/vat-countries.js";
 
 import {
+  setOrderInformation,
+  setOrderTotals,
   setPaymentInformation,
   setRenewalInformation,
-} from "./renewals/set-modal-info.js";
+} from "./advantage/set-modal-info.js";
+import { checkoutEvent, purchaseEvent } from "./advantage/ecom-events.js";
 
-const modal = document.getElementById("renewal-modal");
+const modal = document.getElementById("ua-payment-modal");
 
 const form = document.getElementById("details-form");
 const errorDialog = document.getElementById("payment-error-dialog");
 const progressIndicator = document.getElementById("js-progress-indicator");
 
+const countryDropdown = modal.querySelector("select");
 const termsCheckbox = modal.querySelector(".js-terms");
+const vatInput = modal.querySelector('input[name="tax"]');
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
 const processPaymentButton = modal.querySelector(".js-process-payment");
+const vatContainer = modal.querySelector(".js-vat-container");
+const vatErrorElement = vatContainer.querySelector(
+  ".p-form-validation__message"
+);
 const changePaymentMethodButton = modal.querySelector(
   ".js-change-payment-method"
 );
@@ -29,7 +46,7 @@ const cancelModalButton = modal.querySelector(".js-cancel-modal");
 const closeModalButton = modal.querySelector(".js-close-modal");
 
 const cardErrorElement = document.getElementById("card-errors");
-const renewalErrorElement = document.getElementById("renewal-errors");
+const paymentErrorElement = document.getElementById("payment-errors");
 
 // initialise Stripe
 const stripe = window.Stripe(window.stripePublishableKey);
@@ -66,10 +83,12 @@ const elements = stripe.elements({
 
 const card = elements.create("card", { style });
 
-const activeRenewal = {
+const currentTransaction = {
   accountId: null,
+  transactionId: null,
   contractId: null,
-  renewalId: null,
+  products: [],
+  type: null,
 };
 
 let customerInfo = {
@@ -82,7 +101,9 @@ let customerInfo = {
 
 let cardValid = false;
 let changingPaymentMethod = false;
+let guestPurchase = false;
 let submitted3DS = false;
+let vatApplicable = false;
 
 let pollingTimer;
 let progressTimer;
@@ -90,22 +111,61 @@ let progressTimer2;
 let progressTimer3;
 let progressTimer4;
 
-function attachCTAevents(selector) {
-  const renewalCTAs = document.querySelectorAll(selector);
+function attachCTAevents() {
+  document.addEventListener("click", (e) => {
+    const isRenewalCTA = e.target.classList.contains("js-ua-renewal-cta");
+    const isShopCTA = e.target.classList.contains("js-ua-shop-cta");
+    const data = e.target.dataset;
 
-  renewalCTAs.forEach((cta) => {
-    cta.addEventListener("click", () => {
-      let renewalData = cta.dataset;
+    if (isRenewalCTA || isShopCTA) {
+      e.preventDefault();
+      modal.classList.add("is-processing");
 
+      if (!currentTransaction.accountId) {
+        currentTransaction.accountId = data.accountId;
+      }
+    }
+
+    if (isRenewalCTA) {
+      currentTransaction.type = "renewal";
+      currentTransaction.contractId = data.contractId;
+      currentTransaction.transactionId = data.renewalId;
+
+      setRenewalInformation(data, modal);
+    } else if (isShopCTA) {
+      const cartItems = JSON.parse(data.cart);
+      currentTransaction.type = "purchase";
+
+      // make sure the product array is empty
+      // before we start adding to it
+      currentTransaction.products = [];
+
+      // for guest checkout, we'll show the annual
+      // subtotal until they've added a payment method
+      // and VAT can be shown
+      currentTransaction.subtotal = data.subtotal;
+
+      currentTransaction.previousPurchaseId = data.previousPurchaseId;
+      cartItems.forEach((item) => {
+        currentTransaction.products.push({
+          name: item.product.name,
+          price: item.product.price.value,
+          product_listing_id: item.listingID,
+          quantity: parseInt(item.quantity),
+        });
+      });
+
+      checkoutEvent(analyticsFriendlyProducts(), 1);
+
+      setOrderInformation(cartItems, modal);
+    }
+
+    if (isRenewalCTA || isShopCTA) {
+      checkVAT();
       toggleModal();
       card.focus();
       sendGAEvent("opened payment modal");
-      activeRenewal.accountId = renewalData.accountId;
-      activeRenewal.contractId = renewalData.contractId;
-      activeRenewal.renewalId = renewalData.renewalId;
-
-      setRenewalInformation(renewalData, modal);
-    });
+    }
   });
 }
 
@@ -126,7 +186,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
 
   postCustomerInfoToStripeAccount(
     paymentMethod.id,
-    activeRenewal.accountId,
+    currentTransaction.accountId,
     stripeAddressObject,
     customerInfo.name,
     stripeTaxObject
@@ -141,18 +201,22 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
 }
 
 function attachFormEvents() {
-  const countryDropdown = modal.querySelector("select");
-  const vatContainer = modal.querySelector(".js-vat-container");
-
   for (let i = 0; i < form.elements.length; i++) {
     const input = form.elements[i];
 
     input.addEventListener("input", (e) => {
+      if (guestPurchase && input.type === "email") {
+        guestPurchase = false;
+        currentTransaction.accountId = "";
+      }
+
       validateFormInput(e.target, false);
     });
 
     input.addEventListener("blur", (e) => {
-      validateFormInput(e.target, true);
+      if (input.name !== "tax") {
+        validateFormInput(e.target, true);
+      }
     });
   }
 
@@ -164,18 +228,12 @@ function attachFormEvents() {
     }
   });
 
-  if (vatCountries.includes(countryDropdown.value)) {
-    vatContainer.classList.remove("u-hide");
-  } else {
-    vatContainer.classList.add("u-hide");
-  }
+  vatInput.addEventListener("input", () => {
+    checkVATdebounce();
+  });
 
-  countryDropdown.addEventListener("change", (e) => {
-    if (vatCountries.includes(e.target.value)) {
-      vatContainer.classList.remove("u-hide");
-    } else {
-      vatContainer.classList.add("u-hide");
-    }
+  countryDropdown.addEventListener("change", () => {
+    checkVAT();
   });
 
   termsCheckbox.addEventListener("change", () => {
@@ -190,6 +248,7 @@ function attachFormEvents() {
 function attachModalButtonEvents() {
   addPaymentMethodButton.addEventListener("click", (e) => {
     e.preventDefault();
+
     changingPaymentMethod = false;
     sendGAEvent("submitted payment details");
     createPaymentMethod();
@@ -197,6 +256,7 @@ function attachModalButtonEvents() {
 
   processPaymentButton.addEventListener("click", (e) => {
     e.preventDefault();
+
     sendGAEvent("clicked 'Pay'");
     processStripePayment();
   });
@@ -237,6 +297,110 @@ function attachModalButtonEvents() {
       closeModal("pressed escape key");
     }
   });
+}
+
+function checkVAT() {
+  vatContainer.classList.remove("is-error");
+
+  if (vatCountries.includes(countryDropdown.value)) {
+    vatApplicable = true;
+    vatContainer.classList.remove("u-hide");
+  } else {
+    vatApplicable = false;
+    vatContainer.classList.add("u-hide");
+    vatInput.value = "";
+  }
+
+  applyTotals();
+}
+
+const checkVATdebounce = debounce(() => {
+  checkVAT();
+}, 500);
+
+function applyTotals() {
+  // Clear any existing totals
+  setOrderTotals(null, vatApplicable, null, modal);
+
+  if (currentTransaction.accountId) {
+    applyLoggedInPurchaseTotals();
+  } else {
+    applyGuestPurchaseTotals();
+  }
+}
+
+function applyLoggedInPurchaseTotals() {
+  let formData = new FormData(form);
+  let country = formData.get("Country");
+  let addressObject = null;
+  let taxObject = null;
+  let purchasePreview = null;
+
+  if (formData.get("tax")) {
+    taxObject = {
+      value: formData.get("tax"),
+      type: "eu_vat",
+    };
+  }
+
+  addressObject = {
+    country: country,
+  };
+
+  postCustomerInfoForPurchasePreview(
+    currentTransaction.accountId,
+    addressObject,
+    taxObject
+  )
+    .then((data) => {
+      if (data.code) {
+        // an error was returned, most likely
+        // regarding an invalid VAT number.
+        // We don't need it to block posting the
+        // preview data
+        const errorObject = parseForErrorObject(data);
+        presentError(errorObject);
+      } else {
+        validateFormInput(form.tax, true);
+      }
+
+      if (currentTransaction.type === "purchase") {
+        postPurchasePreviewData(
+          currentTransaction.accountId,
+          currentTransaction.products,
+          currentTransaction.previousPurchaseId
+        ).then((purchasePreview) => {
+          currentTransaction.total = purchasePreview.total;
+          currentTransaction.tax = purchasePreview.taxAmount;
+          modal.classList.remove("is-processing");
+          setOrderTotals(country, vatApplicable, purchasePreview, modal);
+        });
+      } else if (currentTransaction.type === "renewal") {
+        postRenewalPreviewData(currentTransaction.transactionId).then(
+          (purchasePreview) => {
+            modal.classList.remove("is-processing");
+            setOrderTotals(country, vatApplicable, purchasePreview, modal);
+          }
+        );
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function applyGuestPurchaseTotals() {
+  const purchaseTotals = {
+    total: currentTransaction.subtotal,
+  };
+  guestPurchase = true;
+  modal.classList.remove("is-processing");
+
+  // set the "Country" and vatApplicable parameters
+  // to null. Since we don't have an account ID,
+  // we can't yet make a simulated purchase to
+  // get back a VAT amount
+  setOrderTotals(null, false, purchaseTotals, modal);
 }
 
 function clearProgressTimers() {
@@ -317,7 +481,7 @@ function enableProcessingState(mode) {
           // and highlight the in-progress renewal
           if (mode === "payment") {
             sendGAEvent("page reload: payment processing > 30s");
-            location.search = `subscription=${activeRenewal.contractId}`;
+            reloadPage();
           }
 
           // there is potentially a problem with one of the APIs preventing
@@ -335,19 +499,61 @@ function enableProcessingState(mode) {
   }, 2000);
 }
 
+function analyticsFriendlyProducts() {
+  let products = [];
+
+  currentTransaction.products.forEach((product) => {
+    products.push({
+      id: product.product_listing_id,
+      name: product.name,
+      price: product.price / 100,
+      quantity: product.quantity,
+    });
+  });
+
+  return products;
+}
+
+function getSessionData(key) {
+  const keyValue = localStorage.getItem(key);
+
+  if (keyValue) {
+    if (key === "gclid") {
+      const gclid = JSON.parse(keyValue);
+      const isGclidValid = new Date().getTime() < gclid.expiryDate;
+      if (gclid && isGclidValid) {
+        return gclid.value;
+      }
+    } else {
+      return keyValue;
+    }
+  }
+  return;
+}
+
 function handleIncompletePayment(invoice) {
   if (invoice.pi_status === "requires_payment_method") {
     // the user's original payment method failed,
     // capture a new payment method, then post the
     // renewal invoice number to trigger another
     // payment attempt
-    postInvoiceIDToRenewal(activeRenewal.renewalId, invoice.invoice_id)
+
+    let type = "renewals";
+    let transactionId = currentTransaction.transactionId;
+    let invoiceID = invoice.invoice_id;
+
+    if (currentTransaction.type === "purchase") {
+      type = "purchase";
+      invoiceID = invoice.id;
+    }
+
+    postInvoiceID(type, transactionId, invoiceID)
       .then((data) => {
         handlePaymentAttemptResponse(data);
       })
       .catch((error) => {
         console.error(error);
-        pollRenewalStatus();
+        pollTransactionStatus();
       });
   } else if (requiresAuthentication(invoice)) {
     // 3DS has been requested by Stripe
@@ -359,6 +565,30 @@ function handleIncompletePayment(invoice) {
     });
   } else {
     presentError();
+  }
+}
+
+function handleIncompletePurchase(purchase) {
+  let invoice;
+  let paymentIntentStatus;
+  let subscriptionStatus;
+
+  if (purchase.stripeInvoices && purchase.stripeInvoices.length > 0) {
+    invoice = purchase.stripeInvoices[0];
+    paymentIntentStatus = invoice.pi_status;
+    subscriptionStatus = invoice.subscription_status;
+  }
+
+  let processing = !subscriptionStatus || !paymentIntentStatus || submitted3DS;
+
+  if (processing) {
+    clearTimeout(pollingTimer);
+
+    pollingTimer = setTimeout(() => {
+      pollTransactionStatus();
+    }, 3000);
+  } else {
+    handleIncompletePayment(invoice);
   }
 }
 
@@ -383,7 +613,7 @@ function handleIncompleteRenewal(renewal) {
     clearTimeout(pollingTimer);
 
     pollingTimer = setTimeout(() => {
-      pollRenewalStatus();
+      pollTransactionStatus();
     }, 3000);
   } else if (subscriptionStatus !== "active") {
     handleIncompletePayment(invoice);
@@ -391,17 +621,43 @@ function handleIncompleteRenewal(renewal) {
 }
 
 function handlePaymentMethodResponse(data) {
-  if (data.paymentMethod) {
-    attachCustomerInfoToStripeAccount(data.paymentMethod);
-  } else {
+  if (!data.paymentMethod) {
     const errorObject = parseForErrorObject(data.error);
+    presentError(errorObject);
+    return;
+  }
 
-    if (data.error.type === "validation_error") {
+  if (currentTransaction.accountId) {
+    attachCustomerInfoToStripeAccount(data.paymentMethod);
+    return;
+  }
+
+  handleGuestPaymentMethodResponse(data);
+}
+
+function handleGuestPaymentMethodResponse(data) {
+  // the user is a guest, get them a guest account to make
+  // purchases with and then continue
+  const paymentMethod = data.paymentMethod;
+
+  ensurePurchaseAccount(
+    customerInfo.email,
+    customerInfo.name,
+    paymentMethod.id
+  ).then((data) => {
+    if (data.code) {
+      // an error was returned, most likely cause
+      // is that the user is trying to make a purchase
+      // with an email address belonging to an
+      // existing SSO account
+      const errorObject = parseForErrorObject(data);
       presentError(errorObject);
     } else {
-      presentError(errorObject);
+      currentTransaction.accountId = data.accountID;
+      applyTotals();
+      attachCustomerInfoToStripeAccount(paymentMethod);
     }
-  }
+  });
 }
 
 function handle3DSresponse(data) {
@@ -415,7 +671,7 @@ function handle3DSresponse(data) {
     submitted3DS = false;
   } else {
     enableProcessingState("payment");
-    pollRenewalStatus();
+    pollTransactionStatus();
   }
 }
 
@@ -427,6 +683,11 @@ function handleCustomerInfoResponse(paymentMethod, data) {
   } else if (data.createdAt) {
     // payment method was successfully attached,
     // ask user to click "Pay"
+
+    if (currentTransaction.type == "purchase") {
+      checkoutEvent(analyticsFriendlyProducts(), 2);
+    }
+
     setPaymentInformation(paymentMethod, modal);
     showPayMode();
   } else {
@@ -443,15 +704,29 @@ function handlePaymentAttemptResponse(data) {
       sendGAEvent("payment failed");
       presentError(errorObject);
     } else {
-      pollRenewalStatus();
+      pollTransactionStatus();
     }
   } else {
-    pollRenewalStatus();
+    pollTransactionStatus();
   }
 }
 
-function handleSuccessfulPayment() {
+function handleSuccessfulPayment(transaction) {
   sendGAEvent("payment succeeded");
+
+  if (currentTransaction.type == "purchase") {
+    const purchaseInfo = {
+      id: transaction.id,
+      origin: "UA Shop",
+      total: currentTransaction.total / 100,
+      tax: currentTransaction.tax / 100,
+    };
+
+    const products = analyticsFriendlyProducts();
+
+    purchaseEvent(purchaseInfo, products);
+  }
+
   disableProcessingState();
   progressIndicator.querySelector(".p-icon--spinner").classList.add("u-hide");
   progressIndicator
@@ -461,29 +736,42 @@ function handleSuccessfulPayment() {
     "Payment complete. One moment...";
   progressIndicator.classList.remove("u-hide");
 
-  location.search = `subscription=${activeRenewal.contractId}`;
+  submitMarketoForm();
 }
 
 function hideErrors() {
   cardErrorElement.innerHTML = "";
   cardErrorElement.classList.add("u-hide");
-  renewalErrorElement.querySelector(".p-notification__message").innerHTML = "";
-  renewalErrorElement.classList.add("u-hide");
+  paymentErrorElement.querySelector(".p-notification__message").innerHTML = "";
+  paymentErrorElement.classList.add("u-hide");
 }
 
-function pollRenewalStatus() {
-  getRenewal(activeRenewal.renewalId)
-    .then((renewal) => {
-      if (renewal.status !== "done") {
-        handleIncompleteRenewal(renewal);
-      } else {
-        handleSuccessfulPayment();
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      presentError();
-    });
+function pollTransactionStatus() {
+  let getCall = getRenewal;
+  let incompleteHandler = handleIncompleteRenewal;
+
+  if (currentTransaction.type === "purchase") {
+    getCall = getPurchase;
+    incompleteHandler = handleIncompletePurchase;
+  }
+
+  if (currentTransaction.transactionId) {
+    getCall(currentTransaction.transactionId)
+      .then((transaction) => {
+        if (transaction.status !== "done") {
+          incompleteHandler(transaction);
+        } else {
+          handleSuccessfulPayment(transaction);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        presentError();
+      });
+  } else {
+    console.error("missing transaction ID");
+    presentError();
+  }
 }
 
 function presentError(errorObject) {
@@ -500,30 +788,69 @@ function presentError(errorObject) {
     cardErrorElement.classList.remove("u-hide");
     showDetailsMode();
   } else if (errorObject.type === "notification") {
-    renewalErrorElement.querySelector(".p-notification__message").innerHTML =
+    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
       errorObject.message;
-    renewalErrorElement.classList.remove("u-hide");
+    paymentErrorElement.classList.remove("u-hide");
     showDetailsMode();
   } else if (errorObject.type === "dialog") {
     errorDialog.innerHTML = errorObject.message;
     showDialogMode();
+  } else if (errorObject.type === "vat") {
+    vatContainer.classList.add("is-error");
+    vatErrorElement.innerHTML = errorObject.message;
+    vatErrorElement.classList.remove("u-hide");
+    vatInput.focus();
+    disableProcessingState();
   } else {
-    console.error(`invalid argument: ${errorObject}`);
+    console.error(`invalid argument: ${JSON.stringify(errorObject)}`);
   }
 }
 
 function processStripePayment() {
   enableProcessingState("payment");
 
-  postRenewalIDToProcessPayment(activeRenewal.renewalId)
-    .then((data) => {
-      handlePaymentAttemptResponse(data);
-    })
-    .catch((error) => {
-      console.error(error);
-      sendGAEvent("payment failed");
-      presentError();
-    });
+  if (currentTransaction.type === "renewal") {
+    postRenewalIDToProcessPayment(currentTransaction.transactionId)
+      .then((data) => {
+        handlePaymentAttemptResponse(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        sendGAEvent("payment failed");
+        presentError();
+      });
+  } else if (currentTransaction.type === "purchase") {
+    checkoutEvent(analyticsFriendlyProducts(), 3);
+
+    postPurchaseData(
+      currentTransaction.accountId,
+      currentTransaction.products,
+      currentTransaction.previousPurchaseId
+    )
+      .then((data) => {
+        if (data.id) {
+          currentTransaction.transactionId = data.id;
+        }
+        handlePaymentAttemptResponse(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        sendGAEvent("payment failed");
+        presentError();
+      });
+  }
+}
+
+function reloadPage() {
+  if (currentTransaction.type === "renewal") {
+    location.search = `?subscription=${currentTransaction.contractId}`;
+  } else if (currentTransaction.type === "purchase" && !guestPurchase) {
+    location.pathname = "/advantage";
+  } else if (currentTransaction.type === "purchase" && guestPurchase) {
+    location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
+      customerInfo.email
+    )}`;
+  }
 }
 
 function requiresAuthentication(invoice) {
@@ -541,17 +868,8 @@ function requiresAuthentication(invoice) {
 }
 
 function resetModal() {
-  form.reset();
   card.clear();
   showDetailsMode();
-
-  customerInfo = {
-    name: null,
-    email: null,
-    country: null,
-    address: null,
-    tax: null,
-  };
 }
 
 function resetProgressIndicator() {
@@ -564,13 +882,15 @@ function resetProgressIndicator() {
 }
 
 function sendGAEvent(label) {
-  dataLayer.push({
-    event: "GAEvent",
-    eventCategory: "advantage",
-    eventAction: "renewal",
-    eventLabel: label,
-    eventValue: undefined,
-  });
+  if (window.stripePublishableKey.includes("pk_live_")) {
+    dataLayer.push({
+      event: "GAEvent",
+      eventCategory: "advantage",
+      eventAction: currentTransaction.type,
+      eventLabel: label,
+      eventValue: undefined,
+    });
+  }
 }
 
 function setupCardElements() {
@@ -620,6 +940,33 @@ function showPayMode() {
   addPaymentMethodButton.disabled = true;
   processPaymentButton.disabled = true;
   termsCheckbox.checked = false;
+}
+
+function submitMarketoForm() {
+  let request = new XMLHttpRequest();
+  let formData = new FormData();
+
+  formData.append("munchkinId", "066-EOV-335");
+  formData.append("formid", 3756);
+  formData.append("formVid", 3756);
+  formData.append("Email", customerInfo.email);
+  formData.append("Consent_to_Processing__c", "yes");
+  formData.append("GCLID__c", getSessionData("gclid"));
+  formData.append("utm_campaign", getSessionData("utm_campaign"));
+  formData.append("utm_source", getSessionData("utm_source"));
+  formData.append("utm_medium", getSessionData("utm_medium"));
+
+  request.open(
+    "POST",
+    "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+  );
+  request.send(formData);
+
+  request.onreadystatechange = () => {
+    if (request.readyState === 4) {
+      reloadPage();
+    }
+  };
 }
 
 function toggleModal() {
@@ -672,7 +1019,7 @@ function validateFormInput(input, highlightError) {
   return valid;
 }
 
-attachCTAevents(".js-renewal-cta");
+attachCTAevents();
 attachFormEvents();
 attachModalButtonEvents();
 setupCardElements();

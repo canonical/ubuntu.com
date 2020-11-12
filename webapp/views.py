@@ -1,11 +1,11 @@
 # Standard library
 from collections import namedtuple
+from datetime import datetime, timedelta, timezone
 import hashlib
 import hmac
 import json
 import math
 import os
-from datetime import datetime, timedelta, timezone
 
 # Packages
 import dateutil.parser
@@ -24,7 +24,12 @@ from requests.exceptions import HTTPError
 
 # Local
 from webapp.login import empty_session, user_info
-from webapp.advantage import AdvantageContracts
+from webapp.advantage import AdvantageContracts, UnauthorizedError
+from webapp.decorators import store_maintenance
+
+
+# Define the metric name for the number of active machines.
+ALLOWANCE_METRIC_ACTIVE_MACHINES = "active-machines"
 
 
 ip_reader = geolite2.reader()
@@ -390,11 +395,14 @@ def search_snaps():
     )
 
 
+@store_maintenance
 def advantage_view():
     accounts = None
     personal_account = None
     enterprise_contracts = {}
     entitlements = {}
+    new_subscription_start_date = None
+    new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
     stripe_publishable_key = os.getenv(
         "STRIPE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
@@ -488,6 +496,23 @@ def advantage_view():
                     ] = created_at.strftime("%d %B %Y")
                     contract["contractInfo"]["status"] = "active"
 
+                    time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+
+                    # TODO(frankban): what is the logic below about?
+                    # Why do we do the same thing in both branches of the
+                    # condition?
+                    if not contract["machineCount"].attached:
+                        if not new_subscription_start_date:
+                            new_subscription_start_date = created_at
+                            new_subscription_id = contract["contractInfo"][
+                                "id"
+                            ]
+                        elif created_at > new_subscription_start_date:
+                            new_subscription_start_date = created_at
+                            new_subscription_id = contract["contractInfo"][
+                                "id"
+                            ]
+
                     if "effectiveTo" in contract["contractInfo"]:
                         effective_to = dateutil.parser.parse(
                             contract["contractInfo"]["effectiveTo"]
@@ -495,8 +520,6 @@ def advantage_view():
                         contract["contractInfo"][
                             "effectiveToFormatted"
                         ] = effective_to.strftime("%d %B %Y")
-
-                        time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
 
                         if effective_to < time_now:
                             contract["contractInfo"]["status"] = "expired"
@@ -510,9 +533,15 @@ def advantage_view():
                             "daysTillExpiry"
                         ] = date_difference.days
 
-                    contract["renewal"] = make_renewal(
-                        advantage, contract["contractInfo"]
-                    )
+                    try:
+                        contract["renewal"] = make_renewal(
+                            advantage, contract["contractInfo"]
+                        )
+                    except KeyError:
+                        flask.current_app.extensions[
+                            "sentry"
+                        ].captureException()
+                        contract["renewal"] = None
 
                     enterprise_contract = enterprise_contracts.setdefault(
                         contract["accountInfo"]["name"], []
@@ -520,6 +549,8 @@ def advantage_view():
                     # If a subscription id is present and this contract
                     # matches add it to the start of the list
                     if contract["contractInfo"]["id"] == open_subscription:
+                        enterprise_contract.insert(0, contract)
+                    elif contract["contractInfo"]["id"] == new_subscription_id:
                         enterprise_contract.insert(0, contract)
                     else:
                         enterprise_contract.append(contract)
@@ -530,6 +561,7 @@ def advantage_view():
         enterprise_contracts=enterprise_contracts,
         personal_account=personal_account,
         open_subscription=open_subscription,
+        new_subscription_id=new_subscription_id,
         stripe_publishable_key=stripe_publishable_key,
     )
 
@@ -558,6 +590,219 @@ class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
         if self.allowed:
             return f"{self.attached}/{self.allowed}"
         return str(self.attached)
+
+
+def post_advantage_subscriptions(preview):
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
+        advantage = AdvantageContracts(
+            session,
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+    payload = flask.request.json
+    if not payload:
+        return flask.jsonify({}), 400
+
+    account_id = payload.get("account_id")
+    previous_purchase_id = payload.get("previous_purchase_id")
+    last_subscription = {}
+
+    if not guest_token:
+        try:
+            subscriptions = (
+                advantage.get_account_subscriptions_for_marketplace(
+                    account_id=account_id, marketplace="canonical-ua"
+                )
+            )
+        except HTTPError:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={"payload": payload}
+            )
+            return (
+                flask.jsonify(
+                    {"error": "could not retrieve account subscriptions"}
+                ),
+                500,
+            )
+
+        if subscriptions:
+            last_subscription = subscriptions["subscriptions"][0]
+
+    # If there is a subscription we get the current metric
+    # value for each product listing so we can generate a
+    # purchase request with updated quantities later.
+    subscribed_quantities = {}
+    if "purchasedProductListings" in last_subscription:
+        for item in last_subscription["purchasedProductListings"]:
+            product_listing_id = item["productListing"]["id"]
+            subscribed_quantities[product_listing_id] = item["value"]
+
+    purchase_items = []
+    for product in payload.get("products"):
+        product_listing_id = product["product_listing_id"]
+        metric_value = product["quantity"] + subscribed_quantities.get(
+            product_listing_id, 0
+        )
+
+        purchase_items.append(
+            {
+                "productListingID": product_listing_id,
+                "metric": "active-machines",
+                "value": metric_value,
+            }
+        )
+
+    purchase_request = {
+        "accountID": account_id,
+        "purchaseItems": purchase_items,
+        "previousPurchaseID": previous_purchase_id,
+    }
+
+    try:
+        if not preview:
+            purchase = advantage.purchase_from_marketplace(
+                marketplace="canonical-ua", purchase_request=purchase_request
+            )
+        else:
+            purchase = advantage.preview_purchase_from_marketplace(
+                marketplace="canonical-ua", purchase_request=purchase_request
+            )
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"purchase_request": purchase_request}
+        )
+        return (
+            flask.jsonify({"error": "could not complete this purchase"}),
+            500,
+        )
+
+    return flask.jsonify(purchase), 200
+
+
+def post_renewal_preview(renewal_id):
+    advantage = AdvantageContracts(
+        session,
+        flask.session["authentication_token"],
+        api_url=flask.current_app.config["CONTRACTS_API_URL"],
+    )
+
+    try:
+        preview = advantage.post_renewal_preview(renewal_id=renewal_id)
+    except HTTPError as http_error:
+        flask.current_app.extensions["sentry"].captureException()
+        return (
+            http_error.response.content,
+            500,
+        )
+
+    return flask.jsonify(preview), 200
+
+
+@store_maintenance
+def advantage_shop_view():
+    account = previous_purchase_id = None
+    stripe_publishable_key = os.getenv(
+        "STRIPE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+    )
+    api_url = flask.current_app.config["CONTRACTS_API_URL"]
+
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=api_url,
+        )
+        if flask.session.get("guest_authentication_token"):
+            flask.session.pop("guest_authentication_token")
+
+        try:
+            account = advantage.get_purchase_account()
+        except HTTPError as err:
+            code = err.response.status_code
+            if code == 401:
+                # We got an unauthorized request, so we likely
+                # need to re-login to refresh the macaroon
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "session_keys": flask.session.keys(),
+                        "request_url": err.request.url,
+                        "request_headers": err.request.headers,
+                        "response_headers": err.response.headers,
+                        "response_body": err.response.json(),
+                        "response_code": err.response.json()["code"],
+                        "response_message": err.response.json()["message"],
+                    }
+                )
+
+                empty_session(flask.session)
+
+                return flask.render_template(
+                    "advantage/subscribe/index.html",
+                    account=account,
+                    previous_purchase_id=previous_purchase_id,
+                    product_listings=[],
+                    stripe_publishable_key=stripe_publishable_key,
+                )
+            if code != 404:
+                raise
+            # There is no purchase account yet for this user.
+            # One will need to be created later, but this is an expected
+            # condition.
+    else:
+        advantage = AdvantageContracts(session, None, api_url=api_url)
+
+    if account is not None:
+        resp = advantage.get_account_subscriptions_for_marketplace(
+            account["id"], "canonical-ua"
+        )
+        subs = resp.get("subscriptions")
+        if subs:
+            previous_purchase_id = subs[0].get("lastPurchaseID")
+
+    listings_response = advantage.get_marketplace_product_listings(
+        "canonical-ua"
+    )
+    product_listings = listings_response.get("productListings")
+    if not product_listings:
+        # For the time being, no product listings means the shop has not been
+        # activated, so fallback to shopify. This should become an error later.
+        return flask.redirect("https://buy.ubuntu.com/")
+
+    products = {pr["id"]: pr for pr in listings_response["products"]}
+    listings = []
+    for listing in product_listings:
+        if "price" not in listing:
+            continue
+        listing["product"] = products[listing["productID"]]
+        listings.append(listing)
+
+    return flask.render_template(
+        "advantage/subscribe/index.html",
+        account=account,
+        previous_purchase_id=previous_purchase_id,
+        product_listings=listings,
+        stripe_publishable_key=stripe_publishable_key,
+    )
+
+
+@store_maintenance
+def advantage_thanks_view():
+    email = flask.request.args.get("email")
+
+    if user_info(flask.session):
+        return flask.redirect("/advantage")
+    else:
+        return flask.render_template(
+            "advantage/subscribe/thank-you.html",
+            email=email,
+        )
 
 
 def make_renewal(advantage, contract_info):
@@ -628,11 +873,47 @@ def make_renewal(advantage, contract_info):
     return renewal
 
 
-def post_customer_info():
-    if user_info(flask.session):
+def post_anonymised_customer_info():
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
-            flask.session["authentication_token"],
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+
+        if not flask.request.is_json:
+            return flask.jsonify({"error": "JSON required"}), 400
+
+        account_id = flask.request.json.get("account_id")
+        if not account_id:
+            return flask.jsonify({"error": "account_id required"}), 400
+
+        address = flask.request.json.get("address")
+        if not address:
+            return flask.jsonify({"error": "address required"}), 400
+
+        tax_id = flask.request.json.get("tax_id")
+
+        return advantage.put_anonymous_customer_info(
+            account_id, address, tax_id
+        )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
+def post_customer_info():
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
+        advantage = AdvantageContracts(
+            session,
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
@@ -658,17 +939,79 @@ def post_customer_info():
         return flask.jsonify({"error": "authentication required"}), 401
 
 
-def post_stripe_invoice_id(renewal_id, invoice_id):
-    if user_info(flask.session):
+def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
-            flask.session["authentication_token"],
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
             api_url=flask.current_app.config["CONTRACTS_API_URL"],
         )
 
-        return advantage.post_stripe_invoice_id(invoice_id, renewal_id)
+        return advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
+
+
+def get_purchase(purchase_id):
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+
+    if user_info(flask.session) or guest_token:
+        advantage = AdvantageContracts(
+            session,
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+
+        return advantage.get_purchase(purchase_id)
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
+def ensure_purchase_account():
+    """
+    Returns an object with the ID of an account a user can make
+    purchases on. If the user is not logged in, the object also
+    contains an auth token required for subsequent calls to the
+    contract API.
+    """
+    if not flask.request.is_json:
+        return flask.jsonify({"error": "JSON required"}), 400
+
+    auth_token = None
+    if user_info(flask.session):
+        auth_token = flask.session["authentication_token"]
+    advantage = AdvantageContracts(
+        session,
+        auth_token,
+        api_url=flask.current_app.config["CONTRACTS_API_URL"],
+    )
+
+    request = flask.request.json
+    try:
+        account = advantage.ensure_purchase_account(
+            email=request.get("email"),
+            name=request.get("name"),
+            payment_method_id=request.get("payment_method_id"),
+        )
+    except UnauthorizedError as err:
+        # This kind of errors are handled js side.
+        return err.asdict(), 200
+    except HTTPError as err:
+        flask.current_app.extensions["sentry"].captureException()
+        return err.response.content, 500
+
+    # The guest authentication token is included in the response only when the
+    # user is not logged in.
+    token = account.get("token")
+    if token:
+        flask.session["guest_authentication_token"] = token
+    return flask.jsonify(account), 200
 
 
 def get_renewal(renewal_id):

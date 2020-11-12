@@ -35,6 +35,8 @@ from webapp.context import (
 from webapp.views import (
     accept_renewal,
     advantage_view,
+    advantage_shop_view,
+    advantage_thanks_view,
     BlogCustomGroup,
     BlogCustomTopic,
     BlogPressCentre,
@@ -44,9 +46,14 @@ from webapp.views import (
     download_thank_you,
     appliance_install,
     appliance_portfolio,
+    ensure_purchase_account,
+    get_purchase,
     get_renewal,
+    post_advantage_subscriptions,
+    post_anonymised_customer_info,
     post_customer_info,
     post_stripe_invoice_id,
+    post_renewal_preview,
     post_build,
     releasenotes_redirect,
     search_snaps,
@@ -96,8 +103,7 @@ app.config["CONTRACTS_API_URL"] = os.getenv(
 ).rstrip("/")
 app.config["CANONICAL_LOGIN_URL"] = os.getenv(
     "CANONICAL_LOGIN_URL", "https://login.ubuntu.com"
-).rstrip("/")
-
+)
 session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/", session=session
@@ -149,12 +155,43 @@ def utility_processor():
 
 # Simple routes
 app.add_url_rule("/advantage", view_func=advantage_view)
+app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
+app.add_url_rule(
+    "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
+)
+app.add_url_rule(
+    "/advantage/subscribe",
+    view_func=post_advantage_subscriptions,
+    methods=["POST"],
+    defaults={"preview": False},
+)
+app.add_url_rule(
+    "/advantage/subscribe/preview",
+    view_func=post_advantage_subscriptions,
+    methods=["POST"],
+    defaults={"preview": True},
+)
 app.add_url_rule(
     "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
 )
 app.add_url_rule(
-    "/advantage/renewals/<renewal_id>/invoices/<invoice_id>",
+    "/advantage/customer-info-anon",
+    view_func=post_anonymised_customer_info,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/advantage/<tx_type>/<tx_id>/invoices/<invoice_id>",
     view_func=post_stripe_invoice_id,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/advantage/purchases/<purchase_id>",
+    view_func=get_purchase,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/advantage/purchase-account",
+    view_func=ensure_purchase_account,
     methods=["POST"],
 )
 app.add_url_rule(
@@ -167,7 +204,16 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/download/<regex('cloud|raspberry-pi|desktop'):category>/thank-you",
+    "/advantage/renewals/<renewal_id>/preview",
+    view_func=post_renewal_preview,
+    methods=["POST"],
+)
+app.add_url_rule(
+    (
+        "/download"
+        "/<regex('server|desktop|cloud|raspberry-pi'):category>"
+        "/thank-you"
+    ),
     view_func=download_thank_you,
 )
 
@@ -382,9 +428,7 @@ tutorials_docs.init_app(app)
 # Ceph docs
 ceph_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
-        index_topic_id=17250,
-        url_prefix="/ceph/docs",
+        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
     ),
     document_template="/ceph/document.html",
     url_prefix="/ceph/docs",

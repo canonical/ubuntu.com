@@ -110,6 +110,7 @@ class TestRoutes(VCRTestCase):
 
         When logged in, we should still get a 200 status code
         """
+
         self.assertEqual(self.client.get("/advantage").status_code, 200)
 
         with self.client.session_transaction() as s:

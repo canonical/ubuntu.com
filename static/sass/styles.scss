@@ -58,8 +58,10 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_pie_chart";
 @import "pattern_renewal-modal";
 @import "pattern_separator";
+@import "pattern_shop-cart";
 @import "pattern_strip";
 @import "pattern_strip-photos";
+@import "pattern_tabs";
 @import "pattern_takeunders";
 @import "pattern_takeovers";
 @import "pattern_table-of-contents";
@@ -92,13 +94,15 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-grid;
 @include ubuntu-p-heading-icon;
 @include ubuntu-inline-images;
+@include ubuntu-p-attention-icon;
 @include ubuntu-p-lightbox;
 @include ubuntu-p-lists;
 @include ubuntu-p-matrix;
 @include ubuntu-p-navigation;
 @include ubuntu-p-strip;
 @include ubuntu-p-pie-chart;
-@include ubuntu-p-renewal-modal;
+@include ubuntu-p-ua-payment-modal;
+@include ubuntu-p-ua-shop-cart;
 @include ubuntu-p-separator;
 @include ubuntu-p-strip-photos;
 @include ubuntu-p-table-of-contents;
@@ -107,6 +111,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-takeovers;
 @include ubuntu-p-engage-banner;
 @include ubuntu-p-ubuntu-intro;
+@include ubuntu-p-tabs;
 @include ubuntu-u-vertically-center;
 @include p-takeover-financial-services;
 @include u-animations;
@@ -358,6 +363,7 @@ summary {
   @extend %vf-has-round-corners;
 
   margin-bottom: 0;
+  padding: 1.5rem !important;
 }
 
 // Advantage section
@@ -452,6 +458,7 @@ summary {
   code {
     background-color: transparent;
     box-shadow: none;
+    margin: 0;
   }
 
   .p-table--open {

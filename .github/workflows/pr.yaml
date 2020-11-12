@@ -2,6 +2,7 @@ name: PR checks
 on: pull_request
 env:
   SECRET_KEY: insecure_test_key
+  DATABASE_URL: postgres://postgres:pw@localhost:5432/postgres
 
 jobs:
   run-image:
@@ -154,18 +155,23 @@ jobs:
           sudo apt-get update && sudo apt-get install --yes python3-setuptools
           sudo pip3 install -r requirements.txt
 
+      - name: Install dotrun
+        run: |
+          sudo snap install dotrun
+          sudo chown root:root /
+
       - name: Install dependencies
         run: sudo pip3 install coverage
 
       - name: Install node dependencies
-        run: yarn install --immutable
+        run: /snap/bin/dotrun install
 
       - name: Build resources
-        run: yarn build
+        run: /snap/bin/dotrun build
 
       - name: Run tests with coverage
         run: |
-          DATABASE_URL=postgres://postgres:pw@localhost:5432/postgres coverage run  --source=. -m unittest discover tests
+          /snap/bin/dotrun exec coverage run --source=. -m unittest discover tests
           bash <(curl -s https://codecov.io/bash) -cF python
 
   test-js:

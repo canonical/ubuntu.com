@@ -6,6 +6,7 @@ class AdvantageContracts:
         self,
         session,
         authentication_token,
+        token_type="Macaroon",
         api_url="https://contracts.canonical.com",
     ):
         """
@@ -15,14 +16,21 @@ class AdvantageContracts:
 
         self.session = session
         self.authentication_token = authentication_token
+        self.token_type = token_type
         self.api_url = api_url.rstrip("/")
 
     def _request(self, method, path, json=None):
+        headers = {}
+
+        headers["Authorization"] = (
+            f"{self.token_type} " f"{self.authentication_token}"
+        )
+
         response = self.session.request(
             method=method,
             url=f"{self.api_url}/{path}",
             json=json,
-            headers={"Authorization": f"Macaroon {self.authentication_token}"},
+            headers=headers,
         )
         response.raise_for_status()
 
@@ -78,11 +86,26 @@ class AdvantageContracts:
 
         return response.json()
 
-    def post_stripe_invoice_id(self, invoice_id, renewal_id):
-        response = self._request(
-            method="post",
-            path=f"v1/renewals/{renewal_id}/payment/stripe/{invoice_id}",
-        )
+    def put_anonymous_customer_info(self, account_id, address, tax_id):
+        try:
+            response = self._request(
+                method="put",
+                path=f"v1/accounts/{account_id}/customer-info/stripe",
+                json={"address": address, "taxID": tax_id},
+            )
+        except HTTPError as http_error:
+            return http_error.response.json()
+
+        return response.json()
+
+    def post_stripe_invoice_id(self, tx_type, tx_id, invoice_id):
+        try:
+            response = self._request(
+                method="post",
+                path=f"v1/{tx_type}/{tx_id}/payment/stripe/{invoice_id}",
+            )
+        except HTTPError as http_error:
+            return http_error.response.json()
 
         return response.json()
 
@@ -99,9 +122,114 @@ class AdvantageContracts:
                 method="post", path=f"v1/renewals/{renewal_id}/acceptance"
             )
         except HTTPError as http_error:
-            if http_error.code == 500:
+            if http_error.response.status_code == 500:
                 return response.json()
             else:
                 raise http_error
 
         return {}
+
+    def post_renewal_preview(self, renewal_id):
+        response = self._request(
+            method="post", path=f"v1/renewals/{renewal_id}/purchase/preview"
+        )
+
+        return response.json()
+
+    def get_marketplace_product_listings(self, marketplace: str) -> dict:
+        response = self._request(
+            method="get", path=f"v1/marketplace/{marketplace}/product-listings"
+        )
+
+        return response.json()
+
+    def get_account_subscriptions_for_marketplace(
+        self, account_id: str, marketplace: str
+    ) -> dict:
+        response = self._request(
+            method="get",
+            path=(
+                f"v1/accounts/{account_id}"
+                f"/marketplace/{marketplace}/subscriptions"
+            ),
+        )
+
+        return response.json()
+
+    def get_account_purchases(self, account_id: str) -> dict:
+        response = self._request(
+            method="get", path=f"v1/accounts/{account_id}/purchases"
+        )
+
+        return response.json()
+
+    def get_purchase(self, purchase_id: str) -> dict:
+        response = self._request(
+            method="get", path=f"v1/purchase/{purchase_id}"
+        )
+
+        return response.json()
+
+    def ensure_purchase_account(
+        self,
+        email: str = "",
+        name: str = "",
+        payment_method_id: str = "",
+    ) -> dict:
+        try:
+            response = self._request(
+                method="post",
+                path="v1/purchase-account",
+                json={
+                    "email": email,
+                    "name": name,
+                    "defaultPaymentMethod": {"Id": payment_method_id},
+                },
+            )
+        except HTTPError as err:
+            # Raise an UnauthorizedError in case of unauthorized response.
+            if email and payment_method_id and err.response.status_code == 401:
+                resp = err.response.json()
+                raise UnauthorizedError(resp["code"], resp["message"])
+            # Re-raise the same error otherwise.
+            raise
+        return response.json()
+
+    def get_purchase_account(self) -> dict:
+        response = self._request(method="get", path="v1/purchase-account")
+        return response.json()
+
+    def purchase_from_marketplace(
+        self, marketplace: str, purchase_request: dict
+    ) -> dict:
+        response = self._request(
+            method="post",
+            path=f"v1/marketplace/{marketplace}/purchase",
+            json=purchase_request,
+        )
+        return response.json()
+
+    def preview_purchase_from_marketplace(
+        self, marketplace: str, purchase_request: dict
+    ) -> dict:
+        response = self._request(
+            method="post",
+            path=f"v1/marketplace/{marketplace}/purchase/preview",
+            json=purchase_request,
+        )
+
+        return response.json()
+
+
+class UnauthorizedError(Exception):
+    """An error representing an unauthorized request."""
+
+    def __init__(self, code, message):
+        self.code = code
+        self.message = message
+
+    def __str__(self):
+        return f"unauthorized error: {self.code}: {self.message}"
+
+    def asdict(self):
+        return self.__dict__

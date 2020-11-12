@@ -12,6 +12,7 @@ module.exports = {
     "url-search-params-polyfill",
     "./static/js/src/polyfills.js",
     "./static/js/src/contextual-menu.js",
+    "./static/js/src/accordion.js",
     "./static/js/src/dynamic-contact-form.js",
     "./static/js/src/core.js",
     "./static/js/src/navigation.js",
@@ -22,9 +23,12 @@ module.exports = {
   tabotronic: "./static/js/src/tabotronic.js",
   appliance: "./static/js/src/appliance.js",
   "tco-calculator": "./static/js/src/tco-calculator.js",
-  "renewal-modal": "./static/js/src/renewal-modal.js",
+  "ua-payment-modal": "./static/js/src/ua-payment-modal.js",
   "sticky-nav": "./static/js/src/sticky-nav.js",
   imageBuilder: "./static/js/src/imageBuilder.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
+  "ua-product-selector": "./static/js/src/ua-product-selector.js",
+  "ua-entitlements-callout":
+    "./static/js/src/advantage/entitlements-callout.js",
 };
