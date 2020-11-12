@@ -24,19 +24,7 @@
     "cypress:open": "cypress open --config-file tests/cypress/cypress.json --config baseUrl=http://$(hostname -I | awk '{print $1;}'):${PORT}",
     "check-prettier": "prettier -c '**/*.{scss,js}'"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.scss": "dotrun exec yarn run lint-scss",
-    "*.py": "dotrun exec yarn run lint-python",
-    "*.js": [
-      "dotrun exec yarn run lint-js",
-      "prettier --write"
-    ]
-  },
+
   "keywords": [
     "website",
     "ubuntu"
