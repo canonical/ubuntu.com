@@ -622,6 +622,15 @@ summary {
   padding-left: 2rem;
 }
 
+// This is a custom style for a crossed list item
+// https://github.com/canonical-web-and-design/vanilla-framework/issues/3403
+// https://github.com/canonical-web-and-design/vanilla-framework/issues/3405
+.is-crossed {
+  @extend .is-ticked;
+
+  background-image: url("#{$assets-path}9cdb5b1e-cross-darkaubergine.svg");
+}
+
 .u-inline {
   display: inline;
 }
@@ -786,14 +795,14 @@ body {
 }
 
 .raspberry-pi-desktop-image-shadow {
-  box-shadow: 0px 0px 15px -5px #000;
+  box-shadow: 0 0 15px -5px #000;
 }
 
 .raspberry-pi-desktop-image-cover {
-  width: 50%;
-  height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
+  width: 50%;
 }
 
 // Albert - 26 October 2020
