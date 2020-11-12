@@ -30,12 +30,7 @@
     }
   },
   "lint-staged": {
-    "*.scss": "dotrun exec yarn run lint-scss",
-    "*.py": "dotrun exec yarn run lint-python",
-    "*.js": [
-      "dotrun exec yarn run lint-js",
-      "prettier --write"
-    ]
+    "*.{js,json,scss}": "prettier --write"
   },
   "keywords": [
     "website",
