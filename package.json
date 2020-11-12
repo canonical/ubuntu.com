@@ -24,15 +24,13 @@
     "cypress:open": "cypress open --config-file tests/cypress/cypress.json --config baseUrl=http://$(hostname -I | awk '{print $1;}'):${PORT}",
     "check-prettier": "prettier -c '**/*.{scss,js}'"
   },
-  "husky": {	
-    "hooks": {	
-      "pre-commit": "lint-staged"	
-    }	
-  },	
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "*.js": [	
-      "prettier --write"	
-    ]	
+    "*.{js,json,scss}": "prettier --write"
   },
   "keywords": [
     "website",
