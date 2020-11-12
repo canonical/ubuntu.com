@@ -3,6 +3,11 @@ domain: ubuntu.com
 image: prod-comms.docker-registry.canonical.com/ubuntu.com
 
 env:
+  - name: STORE_MAINTENANCE
+    configMapKeyRef:
+      key: maintenance
+      name: ubuntu-com
+
   - name: DATABASE_URL
     secretKeyRef:
       key: database_url
