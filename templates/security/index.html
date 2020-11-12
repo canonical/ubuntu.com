@@ -48,7 +48,35 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h2>
+        FIPS certification and CIS compliance with Ubuntu
+      </h2>
+      <p>
+        Learn about Ubuntu CIS and FIPS certified components to enable operating under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered in our upcoming webinar to ensure you and your team are, and remain, compliant.
+      </p>
+      <p>
+        <a class="p-button p-link--external" href="https://www.brighttalk.com/webcast/6793/432536">Watch the webinar</a>
+      </p>
+    </div>
+    <div class="col-5 u-hide--small u-align--center u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
+          alt="",
+          height="143",
+          width="250",
+          hi_def=True,
+          loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <h2>Find out more</h2>
   </div>
@@ -317,8 +345,8 @@
         image(
           url="https://assets.ubuntu.com/v1/7953a068-security-1.svg",
           alt="",
-          height="300",
-          width="250",
+          height="240",
+          width="200",
           hi_def=True,
           loading="lazy",
           attrs={"class": "u-hide--small u-hide--medium"}
@@ -456,7 +484,9 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+{% with strip="p-strip--light" %}{% include "shared/_education-discount.html" %}{% endwith %}
+
+<section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-8">
       <h2>Talk to a member of our team</h2>
@@ -483,7 +513,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep">
+<section class="p-strip--light is-deep">
   <div class="row u-equal-height">
     <div class="col-4 u-hide--small u-align--center u-vertically-center">
       {{
@@ -500,7 +530,7 @@
     <div class="col-8">
       <h2>Ubuntu security disclosure policy</h2>
       <p>
-        Canonical and the Ubuntu Security Team participate in responsible disclosure and collaborate with the wider community on security issues. 
+        Canonical and the Ubuntu Security Team participate in responsible disclosure and collaborate with the wider community on security issues.
         For more information on how to contact the Ubuntu Security Team and expectations, please refer to our <a href="/security/disclosure-policy">Ubuntu Security disclosure and embargo policy</a>.
       </p>
     </div>
