@@ -25,6 +25,7 @@ from requests.exceptions import HTTPError
 # Local
 from webapp.login import empty_session, user_info
 from webapp.advantage import AdvantageContracts, UnauthorizedError
+from webapp.decorators import store_maintenance
 
 
 # Define the metric name for the number of active machines.
@@ -394,6 +395,7 @@ def search_snaps():
     )
 
 
+@store_maintenance
 def advantage_view():
     accounts = None
     personal_account = None
@@ -703,6 +705,7 @@ def post_renewal_preview(renewal_id):
     return flask.jsonify(preview), 200
 
 
+@store_maintenance
 def advantage_shop_view():
     account = previous_purchase_id = None
     stripe_publishable_key = os.getenv(
@@ -789,6 +792,7 @@ def advantage_shop_view():
     )
 
 
+@store_maintenance
 def advantage_thanks_view():
     email = flask.request.args.get("email")
 
