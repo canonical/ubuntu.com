@@ -89,7 +89,7 @@ For a full list of the changes introduced in Kubernetes 1.19, please see the
 
 - addon-resizer 1.8.9
 - ceph-csi 2.1.2
-- cloud-provider-openstack
+- cloud-provider-openstack 1.18.0
 - coredns 1.6.7
 - kube-state-metrics 1.9.7
 - kubernetes-dashboard 2.0.1
@@ -114,12 +114,6 @@ cluster now requires an explicit `--kubeconfig <file>` option:
 
 - The webhook authentication service included in this release runs on port 5000 of each
 kubernetes-master unit. Ensure this port is available prior to upgrading.
-
-- Due to a bug in the pacemaker package on Ubuntu, Charmed Kubernetes does not
-work with HAcluster on Ubuntu 20.04 (Focal). If you intend to use HAcluster,
-we recommend deploying to Ubuntu 18.04 (Bionic) instead. Details
-about this bug can be found at
-[https://bugs.launchpad.net/ubuntu/+source/pacemaker/+bug/1881762](https://bugs.launchpad.net/ubuntu/+source/pacemaker/+bug/1881762).
 
 - Additional known issues scheduled for the first 1.19 bugfix release can be found at [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1)
 
