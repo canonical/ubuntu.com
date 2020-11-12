@@ -128,7 +128,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Delivers EasyRSA to create a Certificate Authority (CA). </td>
   <td> <a href="/kubernetes/docs/1.19/charm-easyrsa">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/layer-easyrsa"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/easyrsa/330">330</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/easyrsa/333">333</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -136,7 +136,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> Deploy a TLS terminated ETCD Cluster </td>
   <td> <a href="/kubernetes/docs/1.19/charm-etcd">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/layer-etcd"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/etcd/539">539</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/etcd/540">540</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -184,7 +184,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> The Kubernetes control plane. </td>
   <td> <a href="/kubernetes/docs/1.19/charm-kubernetes-master">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-master"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubernetes-master/886">886</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kubernetes-master/891">891</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -192,7 +192,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> The workload bearing units of a kubernetes cluster </td>
   <td> <a href="/kubernetes/docs/1.19/charm-kubernetes-worker">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-worker"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubernetes-worker/700">700</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kubernetes-worker/704">704</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -330,7 +330,6 @@ These charms are frequently used with Charmed Kubernetes.
 These are the container images used by this release:
 
 <!-- GENERATED CONTAINER IMAGES -->
-
 -   cdk/addon-resizer-amd64:1.8.9
 -   cdk/addon-resizer-arm64:1.8.9
 -   cdk/addon-resizer-ppc64le:1.8.9

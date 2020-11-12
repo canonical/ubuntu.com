@@ -54,6 +54,7 @@ extraHosts:
   - domain: webapps.ubuntu.com
   - domain: ubuntuserver.org
   - domain: developer.ubuntu.com
+  - domain: buy.ubuntu.com
 
 # Overrides for production
 production:
@@ -103,6 +104,9 @@ production:
   nginxConfigurationSnippet: |
     if ($host = 'apps.ubuntu.com' ) {
       rewrite ^ https://snapcraft.io/ permanent;
+    }
+    if ($host = 'buy.ubuntu.com' ) {
+      rewrite ^ https://ubuntu.com/advantage permanent;
     }
     if ($host = 'cloud.ubuntu.com' ) {
       rewrite ^ https://ubuntu.com/public-cloud$request_uri? permanent;
