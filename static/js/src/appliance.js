@@ -8,7 +8,6 @@ function initLightbox() {
   let images = lightboxElements.map(function (element) {
     return element.href;
   });
-  
 
   let lightboxClosure = function (event, currentElement, images) {
     event.preventDefault();
