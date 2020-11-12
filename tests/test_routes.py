@@ -1,5 +1,6 @@
 # Standard library
 import unittest
+from test import support
 
 # Packages
 from vcr_unittest import VCRTestCase
@@ -110,6 +111,9 @@ class TestRoutes(VCRTestCase):
 
         When logged in, we should still get a 200 status code
         """
+        with support.EnvironmentVarGuard() as env:
+            env['STORE_MAINTENANCE'] = "false"
+
         self.assertEqual(self.client.get("/advantage").status_code, 200)
 
         with self.client.session_transaction() as s:
