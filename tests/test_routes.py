@@ -112,7 +112,7 @@ class TestRoutes(VCRTestCase):
         When logged in, we should still get a 200 status code
         """
         with support.EnvironmentVarGuard() as env:
-            env['STORE_MAINTENANCE'] = "false"
+            env["STORE_MAINTENANCE"] = "false"
 
         self.assertEqual(self.client.get("/advantage").status_code, 200)
 
