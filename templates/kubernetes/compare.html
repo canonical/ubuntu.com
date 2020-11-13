@@ -1,0 +1,222 @@
+{% extends "kubernetes/base_kubernetes.html" %}
+
+{% block title %}Canonical Kubernetes vs Red Hat OpenShift vs Rancher{% endblock %}
+
+{% block meta_description %}Feature and price comparison of enterprise Kubernetes offerings from Canonical, Red Hat and Rancher.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1JngYmRhohPo62yU72V1xpzCCILI21SmHKKttBxHjPog/edit?ts=5faa80b7{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h1>Kubernetes distributions comparison</h1>
+      <p>The Kubernetes landscape is vast and saturated. If you are looking to compare different enterprise Kubernetes distributions, have a look at the table below. Kubernetes by Canonical focuses on multi-cloud operations, security and price-performance optimisation.</p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/91154a9f-Managed+Kubernetes.svg",
+        alt="Kubernetes Certified Service Provider",
+        width="280",
+        height="200",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">&nbsp;</th>
+          <th class="u-align--center">Canonical Kubernetes</th>
+          <th class="u-align--center">Red Hat Openshift</th>
+          <th class="u-align--center">Rancher</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="2">CNCF Conformant</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+        </tr>
+        <tr>
+          <td colspan="2">High availability</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+        </tr>
+        <tr>
+          <td colspan="2">Enterprise update control</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center">&ndash;</td>
+          <td class="u-align--center">&ndash;</td>
+        </tr>
+        <tr>
+          <td colspan="2">Automated upgrades between versions</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center">&ndash;</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+        </tr>
+        <tr>
+          <td colspan="2">Edge support</td>
+          <td class="u-align--center">5*<p>MicroK8s</p></td>
+          <td class="u-align--center">3*<p>Openshift</p></td>
+          <td class="u-align--center">5*<p>K3s</p></td>
+        </tr>
+        <tr>
+          <td colspan="2">Single-node edition</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center">&ndash;</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+        </tr>
+        <tr>
+          <td colspan="2">Managed Kubernetes offering</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center">&ndash;</td>
+        </tr>
+        <tr>
+          <td colspan="2">Container runtime and registries</td>
+          <td class="u-align--center">5*<p>ContainerD, Docker, Kata</p><p>Private registries, DockerHub, ROCKs, public cloud registries</p></td>
+          <td class="u-align--center">3*<p>CRI-O, Kata</p><p>DockerHub Private registries, public cloud registries</p></td>
+          <td class="u-align--center">3*<p>ContainerD, Docker</p><p>DockerHub, private registries, public cloud registries</p></td>
+        </tr>
+        <tr>
+          <td colspan="2">Networking</td>
+          <td class="u-align--center">5*<p>Flannel, Calico, Canal, TIgera EE, Multus,  SR-IOV, Juniper Contrail</p></td>
+          <td class="u-align--center">4*<p>OpenShift SDN, Flannel, Nuage, Kuryr, OvS, Multus, SR-IOV</p></td>
+          <td class="u-align--center">3*<p>Canal, Calico, Flannel, Weave</p></td>
+        </tr>
+        <tr>
+          <td colspan="2">Storage</td>
+          <td class="u-align--center">5*<p>Ceph, NFS, Cloud Storage, NetApp, vSphere, FlexVolume</p></td>
+          <td class="u-align--center">4*<p>Ceph/Rook, Gluster, NFS, Cinder, Flexvolume, vSphere</p></td>
+          <td class="u-align--center">4*<p>GlusterFS, NFS, GlusterFS, vSphere, Longhorn</p></td>
+        </tr>
+        <tr>
+          <td colspan="2">Monitoring and Operations Management</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+        </tr>
+        <tr>
+          <td colspan="2">Multi cloud deployments</td>
+          <td class="u-align--center">5*<p>Juju</p></td>
+          <td class="u-align--center">3*<p>Ansible</p></td>
+          <td class="u-align--center">4*<p>Helm</p></td>
+        </tr>
+        <tr>
+          <td colspan="2">Native AWS/GCP/Azure integration</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+        </tr>
+        <tr>
+          <td colspan="2">Native Openstack/VMware integration</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+        </tr>
+        <tr>
+          <td colspan="2">GPGPU support for accelerated workloads</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+        </tr>
+        <tr>
+          <td colspan="2">Bare metal deployment</td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+        </tr>
+        <tr>
+          <td colspan="2">Architectures supported</td>
+          <td class="u-align--center">X86, POWER, ARM, Z</td>
+          <td class="u-align--center">X86, POWER, Z</td>
+          <td class="u-align--center">X86</td>
+        </tr>
+        <tr>
+          <td colspan="2">Pricing</td>
+          <td class="u-align--center">$</td>
+          <td class="u-align--center">$$$$$</td>
+          <td class="u-align--center">$$$</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+   <div class="col-8">
+     <h2>Canonical Kubernetes pricing</h2>
+     <p class="p-heading--4">Predictable pricing model. No license fees. Enterprise support.</p>
+     <p>Canonical’s support services for Kubernetes follow a per host pricing model to bring you the best price-performance. Just count the number of physical or virtual machines you want support for and get coverage through <a href="/advantage">Ubuntu Advantage</a>, without any additional license or support fees.</p>
+   </div>
+   <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+        alt="Kubernetes Certified Service Provider",
+        width="280",
+        height="150",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}   
+   </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+        alt="Kubernetes Certified Service Provider",
+        width="280",
+        height="150",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}   
+    </div>
+    <div class="col-7">
+     <h2>Multi-cloud deployments & operations</h2>
+     <p class="p-heading--4">Model-driven Kubernetes Operators. Supported or fully managed from public cloud to on-prem. </p>
+     <p><a class="p-link--external" href="https://charmhub.io/">Universal operators</a> streamline your Kubernetes deployments and operations across all clouds. Get started with our K8s architecture design workshop and our cloud-native migration services. Get peace of mind with Managed Kubernetes from Canonical.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+   <div class="col-8">
+     <h2>Secure Kubernetes</h2>
+     <p class="p-heading--4">Hardened platform. Immutable containers. Security patching.</p>
+     <p>Canonical Kubernetes runs in immutable containers to provide for better security out of the box. Integration with K8s RBAC, Active Directory and LDAP, CIS hardening by default, encryption at rest and automatic security patching ensure you get the most secure Kbernetes in the market.</p>
+   </div>
+   <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+        alt="Kubernetes Certified Service Provider",
+        width="280",
+        height="150",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}   
+   </div>
+  </div>
+</section>
+{% endblock content %}
