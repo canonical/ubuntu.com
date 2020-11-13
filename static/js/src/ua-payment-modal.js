@@ -35,6 +35,8 @@ const termsCheckbox = modal.querySelector(".js-terms");
 const vatInput = modal.querySelector('input[name="tax"]');
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
 const processPaymentButton = modal.querySelector(".js-process-payment");
+const provincesContainer = modal.querySelector(".js-provinces-container");
+const statesContainer = modal.querySelector(".js-states-container");
 const vatContainer = modal.querySelector(".js-vat-container");
 const vatErrorElement = vatContainer.querySelector(
   ".p-form-validation__message"
@@ -161,6 +163,7 @@ function attachCTAevents() {
     }
 
     if (isRenewalCTA || isShopCTA) {
+      handleCountryInput();
       checkVAT();
       toggleModal();
       card.focus();
@@ -233,6 +236,7 @@ function attachFormEvents() {
   });
 
   countryDropdown.addEventListener("change", () => {
+    handleCountryInput();
     checkVAT();
   });
 
@@ -529,6 +533,32 @@ function getSessionData(key) {
     }
   }
   return;
+}
+
+function handleCountryInput() {
+  const stateSelect = statesContainer.querySelector("select");
+  const provinceSelect = provincesContainer.querySelector("select");
+
+  if (countryDropdown.value === "US") {
+    statesContainer.classList.remove("u-hide");
+    stateSelect.required = true;
+    provincesContainer.classList.add("u-hide");
+    provinceSelect.required = false;
+    provinceSelect.value = "";
+  } else if (countryDropdown.value === "CA") {
+    statesContainer.classList.add("u-hide");
+    stateSelect.required = false;
+    stateSelect.value = "";
+    provincesContainer.classList.remove("u-hide");
+    provinceSelect.required = true;
+  } else {
+    statesContainer.classList.add("u-hide");
+    stateSelect.required = false;
+    stateSelect.value = "";
+    provincesContainer.classList.add("u-hide");
+    provinceSelect.required = false;
+    provinceSelect.value = "";
+  }
 }
 
 function handleIncompletePayment(invoice) {
