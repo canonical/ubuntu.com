@@ -17,9 +17,9 @@
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
       {{
         image(
-        url="https://assets.ubuntu.com/v1/91154a9f-Managed+Kubernetes.svg",
+        url="https://assets.ubuntu.com/v1/198b738b-Compare_Kubernetes-Openshift-Rancher.svg",
         alt="Kubernetes Certified Service Provider",
-        width="280",
+        width="300",
         height="200",
         hi_def=True,
         loading="auto",
@@ -87,7 +87,7 @@
           <td colspan="2">Container runtime and registries</td>
           <td class="u-align--center">5*<p>ContainerD, Docker, Kata</p><p>Private registries, DockerHub, ROCKs, public cloud registries</p></td>
           <td class="u-align--center">3*<p>CRI-O, Kata</p><p>DockerHub Private registries, public cloud registries</p></td>
-          <td class="u-align--center">3*<p>ContainerD, Docker</p><p>DockerHub, private registries, public cloud registries</p></td>
+          <td class="u-align--center">3*<p>ContainerD, Docker</p><p>DockerHub, Private registries, public cloud registries</p></td>
         </tr>
         <tr>
           <td colspan="2">Networking</td>
@@ -161,13 +161,13 @@
      <p class="p-heading--4">Predictable pricing model. No license fees. Enterprise support.</p>
      <p>Canonical’s support services for Kubernetes follow a per host pricing model to bring you the best price-performance. Just count the number of physical or virtual machines you want support for and get coverage through <a href="/advantage">Ubuntu Advantage</a>, without any additional license or support fees.</p>
    </div>
-   <div class="col-4 u-align--center u-vertically-center u-hide--small">
+   <div class="col-4 u-vertically-center u-hide--small">
       {{
         image(
-        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
-        alt="Kubernetes Certified Service Provider",
-        width="280",
-        height="150",
+        url="https://assets.ubuntu.com/v1/d399db60-save-money.svg",
+        alt="Pricing",
+        width="220",
+        height="220",
         hi_def=True,
         loading="auto",
         ) | safe
@@ -181,10 +181,10 @@
     <div class="col-5 u-align--center u-vertically-center u-hide--small">
       {{
         image(
-        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
-        alt="Kubernetes Certified Service Provider",
-        width="280",
-        height="150",
+        url="https://assets.ubuntu.com/v1/990738e2-kubernetes-cloud.svg",
+        alt="Kubernetes cloud",
+        width="300",
+        height="170",
         hi_def=True,
         loading="auto",
         ) | safe
@@ -209,8 +209,8 @@
       {{
         image(
         url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
-        alt="Kubernetes Certified Service Provider",
-        width="280",
+        alt="Security shields",
+        width="255",
         height="150",
         hi_def=True,
         loading="auto",
@@ -219,4 +219,38 @@
    </div>
   </div>
 </section>
+
+<section class="p-strip--light is-shallow">
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
+        alt="Contact us",
+        width="180",
+        height="180",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}   
+    </div>
+    <div class="col-8">
+      <h2>Contact us</h2>
+      <p>Let our cloud team help with:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Project evaluation</li>
+        <li class="p-list__item is-ticked">Pricing and TCO assessment</li>
+      </ul>
+      <p>
+        <a href="/kubernetes/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+      <p>
+    </div>
+  </div>
+</section>
+
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubernetes" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-compare" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
 {% endblock content %}
