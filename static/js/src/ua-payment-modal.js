@@ -178,7 +178,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
     country: customerInfo.country,
     city: customerInfo.city,
     state: customerInfo.state,
-    postal_code: paymentMethod.billing_details.address.postal_code,
+    postal_code: customerInfo.postalCode,
   };
 
   let stripeTaxObject = null;
@@ -285,6 +285,7 @@ function attachModalButtonEvents() {
       form.elements["account_name"].value = customerInfo.accountName;
       form.elements["address"].value = customerInfo.address;
       form.elements["city"].value = customerInfo.city;
+      form.elements["postal_code"].value = customerInfo.postalCode;
       form.elements["Country"].value = customerInfo.country;
       form.elements["tax"].value = customerInfo.tax;
 
@@ -443,12 +444,6 @@ function createPaymentMethod() {
       billing_details: {
         name: customerInfo.name,
         email: customerInfo.email,
-        address: {
-          line1: customerInfo.address,
-          city: customerInfo.city,
-          country: customerInfo.country,
-          state: customerInfo.state,
-        },
       },
     })
     .then((result) => {
@@ -940,6 +935,7 @@ function setCustomerInfo() {
   customerInfo.accountName = formData.get("account_name");
   customerInfo.city = formData.get("city");
   customerInfo.tax = formData.get("tax");
+  customerInfo.postalCode = formData.get("postal_code");
 
   if (customerInfo.country === "US") {
     customerInfo.state = formData.get("us_state");
