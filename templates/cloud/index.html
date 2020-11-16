@@ -1,0 +1,251 @@
+{% extends "cloud/_base-cloud.html" %}
+
+{% block title %}Ubuntu on Clouds{% endblock %}
+{% block meta_description %}Ubuntu is the most popular Linux distribution across public and private clouds which makes it an ideal platform for hybrid cloud and multicloud implementation. It powers both infrastructure and applications, ensuring production-grade stability and best-in-class security. {% endblock meta_description %}
+
+{% block meta_image %}https://assets.ubuntu.com/v1/b0824086-twitter_wide_banner+%288%29.jpeg{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1DJZFADvRr_hrHzRWJrUTJxAM2ocZJ_ZWEnQVdKi6JBE/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped is-deep">
+  <div class="row">
+    <div class="col-8">
+        <h1>Private cloud vs hybrid cloud, multicloud and more</h1>
+      <p class="p-heading--4">Choose the cloud architecture that suits you best</p>
+      <p>There is no one size fits all cloud architecture. Developing the optimum cloud strategy requires evaluating your business needs and aligning them with the different solutions available.</p>
+      <p>Canonical fully supports public clouds and provides its own solutions for <a href="/openstack/consulting">private cloud implementation</a> and <a href="/openstack/managed">management</a>, as well as workload orchestration in hybrid cloud and multicloud environments.</p>
+      <p>
+        <a class="p-button--positive js-invoke-modal" href="/openstack/managed">Optimise your infrastructure costs</a>
+      </p>
+      <p>
+        <a href="/engage/multi-cloud-guide">For more information read the whitepaper&mdash;“Choosing a cost effective cloud architecture”&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 u-hide-small u-vertically-center u-align--center">
+      {{
+        image(
+         url="https://assets.ubuntu.com/v1/ab87e245-Private-v-Public-Mulit-Cloud.svg",
+         alt="Private vs public cloud",
+         width="350",
+         height="300",
+         hi_def=True,
+         loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>What is a private cloud?</h2>
+      <p>A private cloud, such as <a href="/openstack/what-is-openstack">OpenStack</a>, provides organisations with on-demand compute, storage and other resources that can be accessed over the network and that are reserved exclusively for them - either in their own data centre or via a 3rd party.</p>
+    </div>
+    <div class="col-4 u-hide-small u-vertically-center u-align--center">
+      {{
+        image(
+         url="https://assets.ubuntu.com/v1/f25ccac7-Private+Cloud.svg",
+         alt="Private cloud",
+         width="190",
+         height="130",
+         hi_def=True,
+         loading="auto",
+        ) | safe
+      }}  
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <p><b>Advantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Compared to public clouds, private clouds are often <a class="p-link--external" href="https://go.451research.com/Emerging-pricing-model-for-private-cloud">more cost-effective</a>&mdash;especially when used at scale and in the long-term.</li>
+        <li class="p-list__item is-ticked">An organisation with a private cloud does not share its hosting resources with other organisations meaning in general, private clouds provide better performance.</li>
+      </ul>
+    </div>
+    <div class="col-5">
+      <p><b>Disadvantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-crossed">The deployment and on-going management of a private cloud requires dedicated team resources and technical skill.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p><a href="/openstack">Canonical&rsquo;s Charmed OpenStack</a> solves this problem by simplifying OpenStack deployment and providing operational automation which significantly reduces the total cost of ownership (TCO) of a private cloud. 
+    </p>
+    <p>
+      <a href="/openstack">Get a carrier&ndash;grade private cloud, supported or fully&ndash;managed&nbsp;&rsaquo;</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>What is a public cloud?</h2>
+      <p>In a public cloud environment, compute, storage and other infrastructure resources are provided as a service by an external provider.</p>
+    </div>
+    <div class="col-4 u-hide-small u-vertically-center u-align--center">
+      {{
+        image(
+         url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+         alt="Public cloud",
+         width="190",
+         height="130",
+         hi_def=True,
+         loading="auto",
+        ) | safe
+      }}  
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <p><b>Advantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Immediate access to infrastructure as a service (IaaS) can significantly accelerate time to market for organisations.</li>
+        <li class="p-list__item is-ticked">Public clouds provide the ability to scale resource consumption virtually without limits.</li>
+      </ul>
+    </div>
+    <div class="col-5">
+      <p><b>Disadvantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-crossed">While the headline costs of the public cloud look attractive, hidden ancillary costs often make it an expensive choice of cloud architecture.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p>Major public cloud providers include Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform, Oracle and IBM Cloud.</p>
+    <p>
+      <a href="/public-cloud">Run your workloads in public clouds with confidence with Ubuntu&nbsp;&rsaquo;</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>What is a hybrid cloud?</h2>
+      <p>A hybrid cloud architecture is one that combines the usage of a private cloud and one or more public cloud services with a workload orchestration engine between the platforms.</p>
+    </div>
+    <div class="col-4 u-hide-small u-vertically-center u-align--center">
+      {{
+        image(
+         url="https://assets.ubuntu.com/v1/45120edb-Hybrid+Cloud.svg",
+         alt="Hybrid cloud",
+         width="190",
+         height="130",
+         hi_def=True,
+         loading="auto",
+        ) | safe
+      }}  
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <p><b>Advantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">A hybrid strategy provides maximum OpEx efficiency when executed in the right way.</li>
+        <li class="p-list__item is-ticked">Hybrid clouds are ideal for workloads with diverse requirements.</li>
+        <li class="p-list__item is-ticked">Prevents vendor-lock in as organisations are not tied to one cloud vendor.</li>
+      </ul>
+    </div>
+    <div class="col-5">
+      <p><b>Disadvantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-crossed">Workload orchestration across various cloud platforms can be challenging.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p>
+      <a class="p-link--external" href="https://juju.is">Orchestrate your workloads with Canonical’s cloud-agnostic operators</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>What is a multicloud?</h2>
+      <p>A multicloud architecture can be considered as a relative of the hybrid cloud. It is a combination of multiple private, public or hybrid clouds.</p>
+      <p>The multicloud architecture is quickly being seen as the de-facto cloud strategy for enterprises, with <a class="p-link--external" href="https://www.gartner.com/smarterwithgartner/why-organizations-choose-a-multicloud-strategy/">81% of businesses</a> working with more than one cloud provider.</p>
+    </div>
+    <div class="col-4 u-hide-small u-vertically-center u-align--center">
+      {{
+        image(
+         url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
+         alt="Multicloud",
+         width="220",
+         height="130",
+         hi_def=True,
+         loading="auto",
+        ) | safe
+      }}  
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <p><b>Advantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Prevents vendor-lock in as organisations are not tied to one cloud vendor. </li>
+        <li class="p-list__item is-ticked">Greater flexibility than other models when it comes to operating applications in their most optimal environment.</li>
+      </ul>
+    </div>
+    <div class="col-5">
+      <p><b>Disadvantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-crossed">May introduce an additional complexity to the organisation&nbsp;&rsaquo;s infrastructure unless proper tools are used to facilitate workloads operations in these kind of environments.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p>
+      <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/416900">Learn more with our webinar “Mastering Multicloud"</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>What is an edge cloud?</h2>
+      <p>An edge cloud is a micro cloud run outside of the data centre, which brings computation and data storage closer to the location it’s needed.</p>
+    </div>
+    <div class="col-4 u-hide-small u-vertically-center u-align--center">
+      {{
+        image(
+         url="https://assets.ubuntu.com/v1/f24913d5-Edge+Cloud.svg",
+         alt="Edge cloud",
+         width="210",
+         height="140",
+         hi_def=True,
+         loading="auto",
+        ) | safe
+      }}  
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <p><b>Advantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">With an edge cloud, enterprises benefit from increased network performance as a result of an increase in bandwidth and a reduction in latency.</li>
+      </ul>
+    </div>
+    <div class="col-5">
+      <p><b>Disadvantages:</b></p>
+      <ul class="p-list">
+        <li class="p-list__item is-crossed">The biggest challenges on the edge are increasing capital and operational costs, footprint minimisation, operations automation and security. </li>
+      </ul>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p>
+      <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/398029">Learn more with an introduction to edge computing for computer vision and robotics</a>
+    </p>
+  </div>
+</section>
+
+{% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_engage_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+{% endblock content %}
