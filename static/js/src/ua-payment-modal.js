@@ -198,6 +198,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
     stripeTaxObject
   )
     .then((data) => {
+      applyLoggedInPurchaseTotals();
       handleCustomerInfoResponse(paymentMethod, data);
     })
     .catch((data) => {
@@ -360,9 +361,19 @@ function applyLoggedInPurchaseTotals() {
     };
   }
 
-  addressObject = {
-    country: country,
-  };
+  if (customerInfo.address) {
+    addressObject = {
+      line1: customerInfo.address,
+      country: customerInfo.country,
+      city: customerInfo.city,
+      state: customerInfo.state,
+      postal_code: customerInfo.postalCode,
+    };
+  } else {
+    addressObject = {
+      country: country,
+    };
+  }
 
   postCustomerInfoForPurchasePreview(
     currentTransaction.accountId,
@@ -686,7 +697,6 @@ function handleGuestPaymentMethodResponse(data) {
       presentError(errorObject);
     } else {
       currentTransaction.accountId = data.accountID;
-      applyTotals();
       attachCustomerInfoToStripeAccount(paymentMethod);
     }
   });
