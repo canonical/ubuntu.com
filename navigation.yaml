@@ -184,6 +184,20 @@ raspberrypi:
     - title: Server
       path: /raspberry-pi/server
 
+financial-services:
+  title: Finance
+  path: /financial-services
+
+  children:
+    - title: Contact us
+      path: /financial-services/contact-us
+      hidden: True
+
+      children:
+        - title: Thank you
+          path: /financial-services/thank-you
+          hidden: True
+
 smartstart:
   title: SMART START
   path: /smartstart
