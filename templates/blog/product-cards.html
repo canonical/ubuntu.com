@@ -1,7 +1,21 @@
 <div id="product-card">
-  {# Kubeflow tag cards #}
-  {% if article.tags and 1672 in article.tags %}
+   {# Telco tag cards #}
+  {% if article.tags and 1377 in article.tags %}
+    {% include "blog/product-cards/_telco.html" %}
+
+   {# IoT tag cards #}
+  {% elif article.tags and 1665 in article.tags %}
+    {% include "blog/product-cards/_smartstart.html" %}
+    {% include "blog/product-cards/_IoT_appstore.html" %} 
+  
+  {# Finance tag cards #}
+  {% elif article.tags and 1419 in article.tags %}
+    {% include "blog/product-cards/_financialservices-awerness.html" %}
+
+  {# Rapsberry Pi tag cards #}
+  {% elif article.tags and 1672 in article.tags %}
     {% include "blog/product-cards/_raspberry-pi_2010-livestream.html" %}
+
   {# Kubeflow tag cards #}
   {% elif article.tags and 2609 in article.tags %}
     {% include "blog/product-cards/_kubeflow_jaas-bundle.html" %}
