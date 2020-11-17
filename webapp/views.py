@@ -812,9 +812,12 @@ def make_renewal(advantage, contract_info):
         return None
 
     sorted_renewals = sorted(
-        renewals,
+        (r for r in renewals if r["status"] != "closed"),
         key=lambda renewal: dateutil.parser.parse(renewal["start"]),
     )
+
+    if len(sorted_renewals) == 0:
+        return None
 
     renewal = sorted_renewals[0]
 
