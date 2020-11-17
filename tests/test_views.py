@@ -244,7 +244,7 @@ class TestMakeRenewal(unittest.TestCase):
         self.assertEqual(got, want)
 
     def test_closed(self):
-        """Closed renewals are not renewable."""
+        """Closed renewals are not returned to the view."""
         advantage = make_advantage()
         now = datetime.now(timezone.utc)
         start = (now - timedelta(days=1)).isoformat()
@@ -257,17 +257,24 @@ class TestMakeRenewal(unittest.TestCase):
                     "actionable": True,
                     "start": start,
                     "end": end,
-                }
+                },
+                {
+                    "id": "2",
+                    "status": "pending",
+                    "actionable": True,
+                    "start": start,
+                    "end": end,
+                },
             ],
         }
         got = views.make_renewal(advantage, contract_info)
         want = {
-            "id": "1",
-            "status": "closed",
+            "id": "2",
+            "status": "pending",
             "actionable": True,
+            "renewable": True,
             "start": start,
             "end": end,
-            "renewable": False,
         }
         self.assertEqual(got, want)
 
