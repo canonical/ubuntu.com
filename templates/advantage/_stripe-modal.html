@@ -50,19 +50,33 @@
             {% endif %}
           </div>
 
+          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
+            <div class="col-3">
+              <label class="u-no-padding--top" for="customer_name">Your name:</label>
+            </div>
+
+            <div class="col-9">
+              <input class="p-form-validation__input" name="name" type="text" required value="{{ user_info.fullname }}" />
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
           {% if account is defined %}
             <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
               <div class="col-3">
-                <label class="u-no-padding--top" for="name">{% if account %}Account name{% else %}Choose account name{% endif %}:</label>
+                <label class="u-no-padding--top" for="account_name">{% if account %}Account name{% else %}Choose account name{% endif %}:</label>
               </div>
 
               <div class="col-9">
-                <input class="p-form-validation__input" name="name" type="text" required value="{{ account.name }}"{% if account %}disabled{% endif %} />
+                <input class="p-form-validation__input" name="account_name" type="text" required value="{{ account.name }}" {% if account %}disabled{% endif %} />
               </div>
 
               {% if not account %}
                 <div class="col-9 col-start-large-4">
-                  <small>Your name, or the name of your organisation.</small>
+                  <small>This can be your organisation, or your name again.</small>
                 </div>
               {% endif %}
 
@@ -74,12 +88,25 @@
 
           <div class="p-form__group p-form-validation row u-no-padding">
             <div class="col-3">
-              <label for="address">Billing address:</label>
+              <label for="address">Address:</label>
             </div>
 
             <div class="col-9">
-              <textarea autocomplete="street-address" class="p-form-validation__input" name="address" rows="4"
-                required></textarea>
+              <input class="p-form-validation__input" name="address" type="text" autocomplete="address" required />
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding">
+            <div class="col-3">
+              <label for="city">City:</label>
+            </div>
+
+            <div class="col-9">
+              <input class="p-form-validation__input" type="text" name="city" autocomplete="city" required />
             </div>
 
             <div class="col-9 col-start-large-4">
@@ -95,6 +122,48 @@
             <div class="col-9">
               {% with raw="true" %} {% include "shared/forms/_country.html" %}
               {% endwith %}
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding">
+            <div class="col-3">
+              <label for="postal_code">Postal code:</label>
+            </div>
+
+            <div class="col-9">
+              <input class="p-form-validation__input" type="text" name="postal_code" autocomplete="postal_code" required />
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center u-hide js-states-container">
+            <div class="col-3">
+              <label class="u-no-padding--top" for="us_state">State:</label>
+            </div>
+
+            <div class="col-9">
+              {% include "shared/forms/_us_states.html" %}
+            </div>
+
+            <div class="col-9 col-start-large-4">
+              <span class="p-form-validation__message u-hide"></span>
+            </div>
+          </div>
+
+          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center u-hide js-provinces-container">
+            <div class="col-3">
+              <label class="u-no-padding--top" for="ca_province">Province:</label>
+            </div>
+
+            <div class="col-9">
+              {% include "shared/forms/_ca_provinces.html" %}
             </div>
 
             <div class="col-9 col-start-large-4">

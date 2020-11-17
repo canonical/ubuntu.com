@@ -35,6 +35,8 @@ const termsCheckbox = modal.querySelector(".js-terms");
 const vatInput = modal.querySelector('input[name="tax"]');
 const addPaymentMethodButton = modal.querySelector(".js-payment-method");
 const processPaymentButton = modal.querySelector(".js-process-payment");
+const provincesContainer = modal.querySelector(".js-provinces-container");
+const statesContainer = modal.querySelector(".js-states-container");
 const vatContainer = modal.querySelector(".js-vat-container");
 const vatErrorElement = vatContainer.querySelector(
   ".p-form-validation__message"
@@ -161,6 +163,7 @@ function attachCTAevents() {
     }
 
     if (isRenewalCTA || isShopCTA) {
+      handleCountryInput();
       checkVAT();
       toggleModal();
       card.focus();
@@ -173,6 +176,9 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
   const stripeAddressObject = {
     line1: customerInfo.address,
     country: customerInfo.country,
+    city: customerInfo.city,
+    state: customerInfo.state,
+    postal_code: customerInfo.postalCode,
   };
 
   let stripeTaxObject = null;
@@ -192,6 +198,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
     stripeTaxObject
   )
     .then((data) => {
+      applyLoggedInPurchaseTotals();
       handleCustomerInfoResponse(paymentMethod, data);
     })
     .catch((data) => {
@@ -233,6 +240,7 @@ function attachFormEvents() {
   });
 
   countryDropdown.addEventListener("change", () => {
+    handleCountryInput();
     checkVAT();
   });
 
@@ -273,11 +281,21 @@ function attachModalButtonEvents() {
 
     if (changingPaymentMethod) {
       changingPaymentMethod = false;
-      form.elements["address"].value = customerInfo.address;
-      form.elements["Country"].value = customerInfo.country;
       form.elements["email"].value = customerInfo.email;
       form.elements["name"].value = customerInfo.name;
+      form.elements["account_name"].value = customerInfo.accountName;
+      form.elements["address"].value = customerInfo.address;
+      form.elements["city"].value = customerInfo.city;
+      form.elements["postal_code"].value = customerInfo.postalCode;
+      form.elements["Country"].value = customerInfo.country;
       form.elements["tax"].value = customerInfo.tax;
+
+      if (customerInfo.country === "US") {
+        form.elements["us_state"].value = customerInfo.state;
+      } else if (customerInfo.country === "CA") {
+        form.elements["ca_province"] = customerInfo.state;
+      }
+
       showPayMode();
     } else {
       closeModal("clicked cancel");
@@ -343,9 +361,19 @@ function applyLoggedInPurchaseTotals() {
     };
   }
 
-  addressObject = {
-    country: country,
-  };
+  if (customerInfo.address) {
+    addressObject = {
+      line1: customerInfo.address,
+      country: customerInfo.country,
+      city: customerInfo.city,
+      state: customerInfo.state,
+      postal_code: customerInfo.postalCode,
+    };
+  } else {
+    addressObject = {
+      country: country,
+    };
+  }
 
   postCustomerInfoForPurchasePreview(
     currentTransaction.accountId,
@@ -417,15 +445,8 @@ function closeModal(label) {
 }
 
 function createPaymentMethod() {
-  let formData = new FormData(form);
-
-  customerInfo.address = formData.get("address");
-  customerInfo.email = formData.get("email");
-  customerInfo.country = formData.get("Country");
-  customerInfo.name = formData.get("name");
-  customerInfo.tax = formData.get("tax");
-
   enableProcessingState("payment_method");
+  setCustomerInfo();
 
   stripe
     .createPaymentMethod({
@@ -434,10 +455,6 @@ function createPaymentMethod() {
       billing_details: {
         name: customerInfo.name,
         email: customerInfo.email,
-        address: {
-          country: customerInfo.country,
-          line1: customerInfo.address,
-        },
       },
     })
     .then((result) => {
@@ -529,6 +546,32 @@ function getSessionData(key) {
     }
   }
   return;
+}
+
+function handleCountryInput() {
+  const stateSelect = statesContainer.querySelector("select");
+  const provinceSelect = provincesContainer.querySelector("select");
+
+  if (countryDropdown.value === "US") {
+    statesContainer.classList.remove("u-hide");
+    stateSelect.required = true;
+    provincesContainer.classList.add("u-hide");
+    provinceSelect.required = false;
+    provinceSelect.value = "";
+  } else if (countryDropdown.value === "CA") {
+    statesContainer.classList.add("u-hide");
+    stateSelect.required = false;
+    stateSelect.value = "";
+    provincesContainer.classList.remove("u-hide");
+    provinceSelect.required = true;
+  } else {
+    statesContainer.classList.add("u-hide");
+    stateSelect.required = false;
+    stateSelect.value = "";
+    provincesContainer.classList.add("u-hide");
+    provinceSelect.required = false;
+    provinceSelect.value = "";
+  }
 }
 
 function handleIncompletePayment(invoice) {
@@ -642,7 +685,7 @@ function handleGuestPaymentMethodResponse(data) {
 
   ensurePurchaseAccount(
     customerInfo.email,
-    customerInfo.name,
+    customerInfo.accountName,
     paymentMethod.id
   ).then((data) => {
     if (data.code) {
@@ -654,7 +697,6 @@ function handleGuestPaymentMethodResponse(data) {
       presentError(errorObject);
     } else {
       currentTransaction.accountId = data.accountID;
-      applyTotals();
       attachCustomerInfoToStripeAccount(paymentMethod);
     }
   });
@@ -890,6 +932,27 @@ function sendGAEvent(label) {
       eventLabel: label,
       eventValue: undefined,
     });
+  }
+}
+
+function setCustomerInfo() {
+  let formData = new FormData(form);
+
+  customerInfo.address = formData.get("address");
+  customerInfo.email = formData.get("email");
+  customerInfo.country = formData.get("Country");
+  customerInfo.name = formData.get("name");
+  customerInfo.accountName = formData.get("account_name");
+  customerInfo.city = formData.get("city");
+  customerInfo.tax = formData.get("tax");
+  customerInfo.postalCode = formData.get("postal_code");
+
+  if (customerInfo.country === "US") {
+    customerInfo.state = formData.get("us_state");
+  } else if (customerInfo.country === "CA") {
+    customerInfo.state = formData.get("ca_province");
+  } else {
+    customerInfo.state = null;
   }
 }
 
