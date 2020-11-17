@@ -7,7 +7,7 @@ class AdvantageContracts:
         session,
         authentication_token,
         token_type="Macaroon",
-        api_url="https://contracts.staging.canonical.com",
+        api_url="https://contracts.canonical.com",
     ):
         """
         Expects a Talisker session in most circumstances,
