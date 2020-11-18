@@ -28,16 +28,9 @@ from webapp.advantage import AdvantageContracts, UnauthorizedError
 from webapp.decorators import store_maintenance
 
 
-# Define the metric name for the number of active machines.
-ALLOWANCE_METRIC_ACTIVE_MACHINES = "active-machines"
-
-
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
 store_api = SnapStore(session=talisker.requests.get_session())
-
-# Define the metric name for the number of active machines.
-ALLOWANCE_METRIC_ACTIVE_MACHINES = "active-machines"
 
 
 def _build_mirror_list():
@@ -569,10 +562,7 @@ def advantage_view():
 def get_machine_usage(advantage, contract):
     """Return machine usage for the given contract as a MachineUsage object."""
     allowances = contract.get("contractInfo", {}).get("allowances", [])
-    allowed = sum(
-        a["value"]
-        for a in allowances
-    )
+    allowed = sum(a["value"] for a in allowances)
     attached_machines = advantage.get_contract_machines(contract).get(
         "machines", []
     )
