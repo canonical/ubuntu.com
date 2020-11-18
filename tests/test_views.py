@@ -355,13 +355,13 @@ class TestGetMachineUsage(unittest.TestCase):
         contract = {
             "contractInfo": {
                 "allowances": [
-                    {"metric": "discared-machines", "value": 42},
+                    {"metric": "discarded-machines", "value": 42},
                     {"metric": "joined-machines", "value": 47},
                 ]
             }
         }
         got = views.get_machine_usage(advantage, contract)
-        self.assertEqual(got, views.MachineUsage(attached=3, allowed=0))
+        self.assertEqual(got, views.MachineUsage(attached=3, allowed=89))
 
     def test_both_attached_and_allowed(self):
         """Both attached and allowed counts are returned."""
@@ -370,7 +370,7 @@ class TestGetMachineUsage(unittest.TestCase):
             "contractInfo": {
                 "allowances": [
                     {
-                        "metric": views.ALLOWANCE_METRIC_ACTIVE_MACHINES,
+                        "metric": "active-machines",
                         "value": 42,
                     },
                 ]
