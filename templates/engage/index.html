@@ -7,6 +7,12 @@
 
 {% block meta_copydoc %}https://docs.google.com/spreadsheets/d/1UdExqv3PMnejaCISed340IehIhUmpKL-0AK5kumFk2M/edit#gid=0{% endblock meta_copydoc %}
 
+{% block head_extra %}
+  {% if preview != None %}
+    <meta name="robots" content="noindex" />
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 
 <section class="p-strip u-no-padding--bottom">
@@ -22,7 +28,9 @@
       title=item.topic_name,
       title_link=item.path,
       description=item.subtitle,
-      type=item.type %}
+      type=item.type,
+      preview=preview,
+      active=item.active %}
       {% include "engage/_article-card.html" %}
       {% endwith %}
     {% endfor %}
