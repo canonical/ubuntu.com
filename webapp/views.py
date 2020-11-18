@@ -572,7 +572,6 @@ def get_machine_usage(advantage, contract):
     allowed = sum(
         a["value"]
         for a in allowances
-        if a["metric"] == ALLOWANCE_METRIC_ACTIVE_MACHINES
     )
     attached_machines = advantage.get_contract_machines(contract).get(
         "machines", []
