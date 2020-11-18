@@ -349,20 +349,6 @@ class TestGetMachineUsage(unittest.TestCase):
         got = views.get_machine_usage(advantage, contract)
         self.assertEqual(got, views.MachineUsage(attached=0, allowed=0))
 
-    def test_invalid_allowance_metric(self):
-        """Machines allowance is defined in a specific metric."""
-        advantage = make_advantage(machines={"machines": [1, 2, 3]})
-        contract = {
-            "contractInfo": {
-                "allowances": [
-                    {"metric": "discarded-machines", "value": 42},
-                    {"metric": "joined-machines", "value": 47},
-                ]
-            }
-        }
-        got = views.get_machine_usage(advantage, contract)
-        self.assertEqual(got, views.MachineUsage(attached=3, allowed=89))
-
     def test_both_attached_and_allowed(self):
         """Both attached and allowed counts are returned."""
         advantage = make_advantage(machines={"machines": range(47)})
