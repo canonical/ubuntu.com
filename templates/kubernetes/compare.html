@@ -33,11 +33,11 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <p>Each category is rated out of 5 for easy comparison</p>
-    <table>
+    <p><small>Some categories are rated out of 5 for easy comparison</small></p>
+    <table class="p-table--mobile-card">
       <thead>
         <tr>
-          <th colspan="2">&nbsp;</th>
+          <th>&nbsp;</th>
           <th class="u-align--center">Canonical Kubernetes</th>
           <th class="u-align--center">Red Hat Openshift</th>
           <th class="u-align--center">Rancher</th>
@@ -45,112 +45,253 @@
       </thead>
       <tbody>
         <tr>
-          <td colspan="2">CNCF Conformant</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Category">CNCF Conformant</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Rancher" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
         </tr>
         <tr>
-          <td colspan="2">High availability</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Category">High availability</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Rancher" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Enterprise update control</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center">&ndash;</td>
+          <td aria-label="Category">Enterprise update control</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">
+            <span>&ndash;</span>
+          </td>
+          <td aria-label="Rancher" class="u-align--center">
+            <span>&ndash;</span>
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Automated upgrades between versions</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Category">Automated upgrades between versions</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift"class="u-align--center" >
+            <span>&ndash;</span>
+          </td>
+          <td aria-label="Rancher" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Edge support</td>
-          <td class="u-align--center"><span class="p-rating p-rating--5"></span><p>MicroK8s</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--3"></span><p>Openshift</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--5"></span><p>K3s</p></td>
+          <td aria-label="Category">Edge support</td>
+          <td aria-label="Canonical Kubernetes">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--5"></span>
+              <p>MicroK8s</p>
+            </div>
+          </td>
+          <td aria-label="Red Hat Openshift">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--3"></span>
+              <p>Openshift</p>
+            </div>
+          </td>
+          <td aria-label="Rancher">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--5"></span>
+              <p>K3s</p>
+            </div>
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Single-node edition</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Category">Single-node edition</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">
+            <span>&ndash;</span>
+          </td>
+          <td aria-label="Rancher" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Managed Kubernetes offering</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center">&ndash;</td>
+          <td aria-label="Category">Managed Kubernetes offering</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center" >
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift" class="u-align--center" >
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Rancher" class="u-align--center" >
+          <span>&ndash;</span>
+        </td>
         </tr>
         <tr>
-          <td colspan="2">Container runtime and registries</td>
-          <td class="u-align--center"><span class="p-rating p-rating--5"></span><p>ContainerD, Docker, Kata</p><p>Private registries, DockerHub, ROCKs, public cloud registries</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--3"></span><p>CRI-O, Kata</p><p>DockerHub Private registries, public cloud registries</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--4"></span><p>ContainerD, Docker</p><p>DockerHub, Private registries, public cloud registries</p></td>
+          <td aria-label="Category">Container runtime and registries</td>
+          <td aria-label="Canonical Kubernetes">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--5"></span>
+              <p>ContainerD, Docker, Kata</p>
+              <p>Private registries, DockerHub, ROCKs, public cloud registries</p>
+            </div>
+          </td>
+          <td aria-label="Red Hat Openshift">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--3"></span>
+              <p>CRI-O, Kata</p>
+              <p>DockerHub Private registries, public cloud registries</p>
+            </div>
+          </td>
+          <td aria-label="Rancher">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--4"></span>
+              <p>ContainerD, Docker</p>
+              <p>DockerHub, Private registries, public cloud registries</p>
+            </div>
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Networking</td>
-          <td class="u-align--center"><span class="p-rating p-rating--5"></span><p>Flannel, Calico, Canal, TIgera EE, Multus,  SR-IOV, Juniper Contrail</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--4-half"></span><p>OpenShift SDN, Flannel, Nuage, Kuryr, OvS, Multus, SR-IOV</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--3"></span><p>Canal, Calico, Flannel, Weave</p></td>
+          <td aria-label="Category">Networking</td>
+          <td aria-label="Canonical Kubernetes">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--5"></span>
+              <p>Flannel, Calico, Canal, TIgera EE, Multus,  SR-IOV, Juniper Contrail</p>
+            </div>
+          </td>
+          <td aria-label="Red Hat Openshift">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--4-half"></span>
+              <p>OpenShift SDN, Flannel, Nuage, Kuryr, OvS, Multus, SR-IOV</p>
+            </div>
+          </td>
+          <td aria-label="Rancher">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--3"></span>
+              <p>Canal, Calico, Flannel, Weave</p>
+            </div>
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Storage</td>
-          <td class="u-align--center"><span class="p-rating p-rating--5"></span><p>Ceph, NFS, Cloud Storage, NetApp, vSphere, FlexVolume</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--4-half"></span><p>Ceph/Rook, Gluster, NFS, Cinder, Flexvolume, vSphere</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--4-half"></span><p>GlusterFS, NFS, GlusterFS, vSphere, Longhorn</p></td>
+          <td aria-label="Category">Storage</td>
+          <td aria-label="Canonical Kubernetes">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--5"></span>
+              <p>Ceph, NFS, Cloud Storage, NetApp, vSphere, FlexVolume</p>
+            </div>
+          </td>
+          <td aria-label="Red Hat Openshift">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--4-half"></span>
+              <p>Ceph/Rook, Gluster, NFS, Cinder, Flexvolume, vSphere</p>
+            </div>
+          </td>
+          <td aria-label="Rancher">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--4-half"></span>
+              <p>GlusterFS, NFS, GlusterFS, vSphere, Longhorn</p>
+            </div>
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Monitoring and Operations Management</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Category">Monitoring and Operations Management</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center" >
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift" class="u-align--center" >
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Rancher" class="u-align--center" >
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Multi cloud deployments</td>
-          <td class="u-align--center"><span class="p-rating p-rating--5"></span><p>Juju</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--3"></span><p>Ansible</p></td>
-          <td class="u-align--center"><span class="p-rating p-rating--4"></span><p>Helm</p></td>
+          <td aria-label="Category">Multi cloud deployments</td>
+          <td aria-label="Canonical Kubernetes">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--5"></span>
+              <p>Juju</p>
+            </div>
+          </td>
+          <td aria-label="Red Hat Openshift">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--3"></span>
+              <p>Ansible</p>
+            </div>
+          </td>
+          <td aria-label="Rancher">
+            <div class="u-align--center">
+              <span class="p-rating p-rating--4"></span>
+              <p>Helm</p>
+            </div>
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Native AWS/GCP/Azure integration</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Category">Native AWS/GCP/Azure integration</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Rancher" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Native Openstack/VMware integration</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Category">Native Openstack/VMware integration</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Rancher" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
         </tr>
         <tr>
-          <td colspan="2">GPGPU support for accelerated workloads</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Category">GPGPU support for accelerated workloads</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td aria-label="Rancher" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
         </tr>
         <tr>
-          <td colspan="2">Bare metal deployment</td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
-          <td class="u-align--center"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Category">Bare metal deployment</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
+          <td aria-label="Rancher" class="u-align--center">
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
         </tr>
         <tr>
-          <td colspan="2">Architectures supported</td>
-          <td class="u-align--center">X86, POWER, ARM, Z</td>
-          <td class="u-align--center">X86, POWER, Z</td>
-          <td class="u-align--center">X86</td>
+          <td aria-label="Category">Architectures supported</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">X86, POWER, ARM, Z</td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">X86, POWER, Z</td>
+          <td aria-label="Rancher" class="u-align--center">X86</td>
         </tr>
         <tr>
-          <td colspan="2">Pricing</td>
-          <td class="u-align--center">$</td>
-          <td class="u-align--center">$$$$$</td>
-          <td class="u-align--center">$$$</td>
+          <td aria-label="Category">Pricing</td>
+          <td aria-label="Canonical Kubernetes" class="u-align--center">$</td>
+          <td aria-label="Red Hat Openshift" class="u-align--center">$$$$$</td>
+          <td aria-label="Rancher" class="u-align--center">$$$</td>
         </tr>
       </tbody>
     </table>
