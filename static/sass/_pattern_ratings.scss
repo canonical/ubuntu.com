@@ -1,8 +1,26 @@
-.p-rating {
+@mixin p-rating {
   background-image: url("#{$assets-path}19c4273e-level+of+difficulty.svg");
-  background-position-x: -75px;
   background-position-y: center;
   background-repeat: no-repeat;
+}
+
+@mixin p-rating-before($positionX, $width) {
+  @include p-rating;
+
+  background-position-x: #{$positionX};
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: #{$width};
+}
+
+.p-rating {
+  @include p-rating;
+
+  background-position-x: -75px;
   display: inline-block;
   height: $sp-large;
   margin-left: $sp-xx-small;
@@ -10,86 +28,27 @@
   text-indent: -9999px;
   width: 74px;
 }
+
 .p-rating--1::before {
-  background-image: url("#{$assets-path}19c4273e-level+of+difficulty.svg");
-  background-position-x: -60px;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  bottom: 0;
-  content: "";
-  display: block;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 74px;
+  @include p-rating-before(-60px, 74px);
 }
 
 .p-rating--2::before {
-  background-image: url("#{$assets-path}19c4273e-level+of+difficulty.svg");
-  background-position-x: -45px;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  bottom: 0;
-  content: "";
-  display: block;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 74px;
+  @include p-rating-before(-45px, 74px);
 }
 
 .p-rating--3::before {
-  background-image: url("#{$assets-path}19c4273e-level+of+difficulty.svg");
-  background-position-x: -30px;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  bottom: 0;
-  content: "";
-  display: block;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 74px;
+  @include p-rating-before(-30px, 74px);
 }
 
 .p-rating--4::before {
-  background-image: url("#{$assets-path}19c4273e-level+of+difficulty.svg");
-  background-position-x: -15px;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  bottom: 0;
-  content: "";
-  display: block;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 74px;
+  @include p-rating-before(-15px, 74px);
 }
 
-.p-rating--4-half::before {
-  background-image: url("#{$assets-path}19c4273e-level+of+difficulty.svg");
-  background-position-x: 0;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  bottom: 0;
-  content: "";
-  display: block;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 66px;
+.p-rating--4.is-half::before {
+  @include p-rating-before(0, 66px);
 }
 
 .p-rating--5::before {
-  background-image: url("#{$assets-path}19c4273e-level+of+difficulty.svg");
-  background-position-x: 0;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  bottom: 0;
-  content: "";
-  display: block;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 74px;
+  @include p-rating-before(0, 74px);
 }
