@@ -29,7 +29,7 @@ or both authentication and authorisation.
    server running.
 * You will need to install the Keystone client. This can be done by running:
    ```bash
-   sudo snap install client-keystone-auth
+   sudo snap install client-keystone-auth --edge
    ```
 
 ## Install Keystone
