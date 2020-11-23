@@ -23,6 +23,7 @@ import {
   smallReleaseNames,
   desktopServerReleaseNames,
   kernelReleaseNames,
+  kernelVersionNames,
   kernelReleaseScheduleNames,
   kernelReleaseNames2004,
   kernelReleaseNames1804,
@@ -56,7 +57,8 @@ function buildCharts() {
       "#kernel-eol",
       kernelReleaseNames,
       kernelStatus,
-      kernelReleases
+      kernelReleases,
+      kernelVersionNames
     );
   }
   if (document.querySelector("#kernel2004")) {
