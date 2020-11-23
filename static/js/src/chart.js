@@ -267,11 +267,15 @@ export function createChart(
 
   var yAxis = d3.axisRight(y).tickPadding(-margin.left).tickSize(0);
 
+  var chartTranslateX = margin.left;
+
   if (taskVersions) {
     var versionAxis = d3
       .axisRight(version)
       .tickPadding(-margin.left * 1.6)
       .tickSize(0);
+
+    chartTranslateX = margin.left * 1.6;
   }
 
   sortTasks(tasks);
@@ -289,7 +293,7 @@ export function createChart(
     .attr("height", height + margin.top + margin.bottom)
     .attr(
       "transform",
-      "translate(" + margin.left * 1.6 + ", " + margin.top + ")"
+      "translate(" + chartTranslateX + ", " + margin.top + ")"
     );
 
   addBarsToChart(svg, tasks, taskStatus, x, y);
