@@ -272,25 +272,42 @@ export function createChart(
       .axisRight(version)
       .tickPadding(-margin.left * 1.6)
       .tickSize(0);
+
+    var svg = d3
+      .select(chartSelector)
+      .append("svg")
+      .attr("class", "chart")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("class", "gantt-chart")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .attr(
+        "transform",
+        "translate(" + margin.left * 1.6 + ", " + margin.top + ")"
+      );
+  } else {
+    // Build initial chart body
+    var svg = d3
+      .select(chartSelector)
+      .append("svg")
+      .attr("class", "chart")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("class", "gantt-chart")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .attr(
+        "transform",
+        "translate(" + margin.left + ", " + margin.top + ")"
+      );
   }
 
   sortTasks(tasks);
 
-  // Build initial chart body
-  var svg = d3
-    .select(chartSelector)
-    .append("svg")
-    .attr("class", "chart")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("class", "gantt-chart")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .attr(
-      "transform",
-      "translate(" + margin.left * 1.6 + ", " + margin.top + ")"
-    );
+
 
   addBarsToChart(svg, tasks, taskStatus, x, y);
   addXAxis(svg, height, margin, xAxis);
