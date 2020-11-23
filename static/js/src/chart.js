@@ -277,7 +277,7 @@ export function createChart(
 
     chartTranslateX = margin.left * 1.6;
   }
-  
+
   sortTasks(tasks);
 
   // Build initial chart body
