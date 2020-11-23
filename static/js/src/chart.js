@@ -87,6 +87,17 @@ function addYAxis(svg, yAxis) {
 /**
  *
  * @param {*} svg
+ * @param {*} versionAxis
+ *
+ * Add version axis to chart
+ */
+function addVersionAxis(svg, versionAxis) {
+  svg.append("g").attr("class", "version axis").call(versionAxis);
+}
+
+/**
+ *
+ * @param {*} svg
  *
  * Clean up unwanted elements on chart put in by d3.js
  */
@@ -98,7 +109,7 @@ function cleanUpChart(svg) {
  *
  * Embolden LTS labels on y axis**
  *
- 
+
  */
 function emboldenLTSLabels(svg) {
   svg.selectAll(".tick text").select(function () {
@@ -107,6 +118,16 @@ function emboldenLTSLabels(svg) {
     if (text.includes("LTS")) {
       this.classList.add("chart__label--bold");
     }
+  });
+}
+
+/**
+ *
+ * @param {*} svg
+ */
+function setVersionAxisLabels(svg, taskVersions) {
+  svg.selectAll(".version .tick text").select(function (tickLabel, index) {
+    this.textContent = taskVersions[index];
   });
 }
 
@@ -199,7 +220,13 @@ function formatKeyLabel(key) {
  *
  * Builds chart using supplied selector and data
  */
-export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
+export function createChart(
+  chartSelector,
+  taskTypes,
+  taskStatus,
+  tasks,
+  taskVersions
+) {
   var margin = {
     top: 0,
     right: 40,
@@ -212,9 +239,9 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
   var height = taskTypes.length * rowHeight;
   var containerWidth = document.querySelector(chartSelector).clientWidth;
   if (containerWidth <= 0) {
-    containerWidth = document
-      .querySelector(chartSelector)
-      .closest('[class*="col-"]').clientWidth;
+    containerWidth =
+      document.querySelector(chartSelector).closest('[class*="col-"]')
+        .clientWidth - margin.left;
   }
   var width = containerWidth - margin.right - margin.left;
 
@@ -230,9 +257,22 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
     .rangeRound([0, height - margin.top - margin.bottom])
     .padding(0.1);
 
+  var version = d3
+    .scaleBand()
+    .domain(taskTypes)
+    .rangeRound([0, height - margin.top - margin.bottom])
+    .padding(0.1);
+
   var xAxis = d3.axisBottom(x);
 
   var yAxis = d3.axisRight(y).tickPadding(-margin.left).tickSize(0);
+
+  if (taskVersions) {
+    var versionAxis = d3
+      .axisRight(version)
+      .tickPadding(-margin.left * 1.6)
+      .tickSize(0);
+  }
 
   sortTasks(tasks);
 
@@ -247,11 +287,20 @@ export function createChart(chartSelector, taskTypes, taskStatus, tasks) {
     .attr("class", "gantt-chart")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+    .attr(
+      "transform",
+      "translate(" + margin.left * 1.6 + ", " + margin.top + ")"
+    );
 
   addBarsToChart(svg, tasks, taskStatus, x, y);
   addXAxis(svg, height, margin, xAxis);
   addYAxis(svg, yAxis);
+
+  if (taskVersions) {
+    addVersionAxis(svg, versionAxis);
+    setVersionAxisLabels(svg, taskVersions);
+  }
+
   addXAxisVerticalLines(svg, height);
   cleanUpChart(svg);
   buildChartKey(chartSelector, taskStatus);
