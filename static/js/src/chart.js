@@ -220,13 +220,13 @@ function formatKeyLabel(key) {
  *
  * Builds chart using supplied selector and data
  */
- export function createChart(
-   chartSelector,
-   taskTypes,
-   taskStatus,
-   tasks,
-   taskVersions
- ) {
+export function createChart(
+  chartSelector,
+  taskTypes,
+  taskStatus,
+  tasks,
+  taskVersions
+) {
   var margin = {
     top: 0,
     right: 40,
@@ -239,7 +239,8 @@ function formatKeyLabel(key) {
   var height = taskTypes.length * rowHeight;
   var containerWidth = document.querySelector(chartSelector).clientWidth;
   if (containerWidth <= 0) {
-    containerWidth = document.querySelector(chartSelector).closest('[class*="col-"]')
+    containerWidth =
+      document.querySelector(chartSelector).closest('[class*="col-"]')
         .clientWidth - margin.left;
   }
   var width = containerWidth - margin.right - margin.left;
