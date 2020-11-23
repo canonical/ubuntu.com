@@ -1,6 +1,6 @@
 {% extends "templates/one-column.html" %}
 
-{% block title %}{% endblock %}
+{% block title %}LTS Docker Images{% endblock %}
 
 {% block meta_description %}The LTS Docker Image Portfolio on Docker Hub and public cloud container registries provides compliant, secure application images, with a long term maintenance commitment by Canonical.{% endblock meta_description %}
 
@@ -12,7 +12,7 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <span class="u-sv3"><h1>LTS Docker Images</h1></span>
-      <p>Hardened container images, with up to ten years guaranteed security maintenance.</p>
+      <p class="u-sv2">Hardened container images, with up to ten years guaranteed security maintenance.</p>
       <p>
         <a href="/contact-us/form" class="p-button--positive">Contact Us</a>
       </p>
@@ -34,22 +34,23 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2 class="u-sv3">Critical CVE fixes in 24 hours</h2>
+
   </div>
   <div class="row u-equal-height">
         <div class="col-4 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/25c42877-simplified-software-management-2.svg",
+          url="https://assets.ubuntu.com/v1/50dea393-fixes+in+24hrs.svg",
           alt="",
-          height="220",
-          width="220",
+          height="210",
+          width="210",
           hi_def=True,
           loading="auto",
         ) | safe
       }}
     </div>
-    <div class="col-8">
+    <div class="col-8 u-vertically-center">
+      <h2 class="u-sv3">Critical CVE fixes in 24 hours</h2>
       <p>Scanning container images for vulnerabilities is now widespread, but fixing them requires dedicated skills and infrastructure.</p>
       <p>The LTS Docker Image Portfolio provides ready-to-use application base images, free of high and critical CVEs. Images are built on the same secure infrastructure that builds Ubuntu, and updated automatically when apps or dependencies are fixed.</p>
     </div>
@@ -81,10 +82,10 @@
     <p>Both. Some LTS Docker Images have a free five year maintenance period, based on the underlying Ubuntu LTS free standard security maintenance period. All LTS Images receive Extended Security Maintenance from Canonical and during that period are available to existing Canonical customers only, through the Docker Hub Store. As with Ubuntu interim releases, ongoing development images are released regularly and receive free security updates while they are the current version.</p>
     <p class="p-heading--4"><strong>Where are the images?</strong></p>
     <p>On Docker Hub images are provided in three groups:</p>
-    <ul class="p-list">
-      <li class="p-list__item"><a href="https://hub.docker.com/u/ubuntu/">https://hub.docker.com/u/ubuntu/</a> has development releases with security updates</li>
-      <li class="p-list__item"><a href="https://hub.docker.com/publishers/lts/">https://hub.docker.com/publishers/lts/</a> has free LTS images with up to five years fixes</li>
-      <li class="p-list__item"><a href="https://hub.docker.com/store/lts/ ">https://hub.docker.com/store/lts/</a> has customer-only content with up to ten years fixes</li>
+    <ul>
+      <li><a href="https://hub.docker.com/u/ubuntu/">https://hub.docker.com/u/ubuntu/</a> has development releases with security updates</li>
+      <li><a href="https://hub.docker.com/publishers/lts/">https://hub.docker.com/publishers/lts/</a> has free LTS images with up to five years fixes</li>
+      <li><a href="https://hub.docker.com/store/lts/ ">https://hub.docker.com/store/lts/</a> has customer-only content with up to ten years fixes</li>
     </ul>
     <p class="p-heading--4"><strong>Is there a long-term commitment? How long?</strong></p>
     <p>LTS Images are security-maintained for the full ten year period of their underlying Ubuntu LTS release. Some applications will have versions on multiple Ubuntu LTS versions. In each case, the image is maintained for the full life of the underlying Ubuntu LTS.</p>
