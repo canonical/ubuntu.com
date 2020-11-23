@@ -267,47 +267,34 @@ export function createChart(
 
   var yAxis = d3.axisRight(y).tickPadding(-margin.left).tickSize(0);
 
+  var chartTranslateX = margin.left;
+
   if (taskVersions) {
     var versionAxis = d3
       .axisRight(version)
       .tickPadding(-margin.left * 1.6)
       .tickSize(0);
 
-    var svg = d3
-      .select(chartSelector)
-      .append("svg")
-      .attr("class", "chart")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("class", "gantt-chart")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .attr(
-        "transform",
-        "translate(" + margin.left * 1.6 + ", " + margin.top + ")"
-      );
-  } else {
-    // Build initial chart body
-    var svg = d3
-      .select(chartSelector)
-      .append("svg")
-      .attr("class", "chart")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("class", "gantt-chart")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .attr(
-        "transform",
-        "translate(" + margin.left + ", " + margin.top + ")"
-      );
+    chartTranslateX = margin.left * 1.6;
   }
-
+  
   sortTasks(tasks);
 
-
+  // Build initial chart body
+  var svg = d3
+    .select(chartSelector)
+    .append("svg")
+    .attr("class", "chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("class", "gantt-chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr(
+      "transform",
+      "translate(" + chartTranslateX + ", " + margin.top + ")"
+    );
 
   addBarsToChart(svg, tasks, taskStatus, x, y);
   addXAxis(svg, height, margin, xAxis);
