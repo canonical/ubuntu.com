@@ -42,6 +42,7 @@ from webapp.views import (
     BlogPressCentre,
     build,
     build_tutorials_index,
+    cube_home,
     download_harness,
     download_thank_you,
     appliance_install,
@@ -446,6 +447,9 @@ app.add_url_rule(
     endpoint="alternative_thank-you",
     view_func=engage_thank_you(engage_pages),
 )
+
+# Cube docs
+app.add_url_rule("/cube", view_func=cube_home)
 
 
 @app.after_request
