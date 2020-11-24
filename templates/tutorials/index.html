@@ -64,6 +64,39 @@ endblock %} {% block content %} {% if page == 1 %}
   </div>
 </section>
 
+{% if query and result_number == 0 %}
+
+<div class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h3>Why not try widening your search?</h3>
+      <p>You can do this by:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">
+          Adding alternative words or phrases
+        </li>
+        <li class="p-list__item is-ticked">
+          Using individual words instead of phrases
+        </li>
+        <li class="p-list__item is-ticked">Trying a different spelling</li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <h3>Still no luck?</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">
+          <a href="/">Visit the Ubuntu homepage</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/desktop/contact-us?product=search-page">Contact us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% else %}
+
 <section class="p-strip has-shadow">
   <div class="row u-equal-height">
     {% if query %}
@@ -94,6 +127,5 @@ endblock %} {% block content %} {% if page == 1 %}
     {% endif %} {% endfor %}
   </div>
 </section>
-
-{% with %} {% set total_pages = total_pages %} {% set current_page = page %} {%
-include "shared/_pagination.html" %} {% endwith %} {% endblock %}
+{% endif %} {% with %} {% set total_pages = total_pages %} {% set current_page =
+page %} {% include "shared/_pagination.html" %} {% endwith %} {% endblock %}
