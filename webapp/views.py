@@ -1242,3 +1242,10 @@ class BlogPressCentre(BlogView):
         )
 
         return flask.render_template("blog/press-centre.html", **context)
+
+
+# Cube
+# ===
+def cube_home():
+    data = {"user": "Beth", "badges": ["Badge1", "Badge2"]}
+    return flask.render_template("cube/index.html", **data)
