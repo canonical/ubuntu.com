@@ -2,13 +2,13 @@
   <div class="row p-divider">
     <div class="col-12">
       <h3>Latest {{ heading_topic }} news from our blog</h3>
-      <div id="vertical-latest-articles" class="row">
+      <div id="horizontal-latest-articles" class="row">
         <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
       </div>
     </div>
   </div>
 
-  <template style="display:none" id="vertical-articles-template">
+  <template style="display:none" id="horizontal-articles-template">
     <div class="col-3">
       <p><a class="article-link article-title"></a></p>
       <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
@@ -25,8 +25,8 @@
   <script>
     canonicalLatestNews.fetchLatestNews(
       {
-        articlesContainerSelector: "#vertical-latest-articles",
-        articleTemplateSelector: "#vertical-articles-template",
+        articlesContainerSelector: "#horizontal-latest-articles",
+        articleTemplateSelector: "#horizontal-articles-template",
         gtmEventLabel: "ubuntu.com/{{ tag_name }}",
         tagId: "{{ tag_id }}",
         limit: "{% if limit %}{{ limit }}{% else %}4{% endif %}",
