@@ -1,36 +1,62 @@
+<noscript>
+  <section class="{% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}">
+    <div class="row">
+      <h3><a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}">Read the latest {{ heading_topic }} news on our blog&nbsp;&rsaquo;</a></h3>
+    </div>
+  </section>
+</noscript>
+
 <section class="u-hide {% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}" data-js="latest-news">
+  <div class="row">
+    <h3>
+      Latest {{ heading_topic }} news from
+      <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">
+        our blog&nbsp;&rsaquo;
+      </a>
+    </h3>
+  </div>
   <div class="row p-divider">
-    <div class="col-12">
-      <h3>Latest {{ heading_topic }} news from our blog</h3>
+    <div class="{% if spotlight %}col-9{% else %}col-12{% endif %}">
       <div id="horizontal-latest-articles" class="row">
         <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
       </div>
+    </div>
+    <div id="spotlight" class="col-3 p-divider__block">
     </div>
   </div>
 
   <template style="display:none" id="horizontal-articles-template">
     <div class="col-3">
-      <p><a class="article-link article-title"></a></p>
-      <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
+      <p class="u-no-margin--bottom p-muted-heading"><time datetime="" class="article-time"></time></p>
+      <h2 class="p-heading--five"><a class="article-link article-title"></a></h2>
     </div>
   </template>
 
-  <div class="u-fixed-width">
-    <a href="/blog/tag/{{ tag_name }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com/{{ tag_name }}', 'eventValue' : undefined });">
-      View more from our blog&nbsp;&rsaquo;
-    </a>
-  </div>
+  {% if spotlight %}
+  <template style="display:none" id="spotlight-template">
+    <div>
+      <p class="u-no-margin--bottom p-muted-heading">
+        Spotlight
+      </p>
+      <h2 class="p-heading--five">
+        <a class="article-link article-title"></a>
+      </h2>
+    </div>
+  </template>
+  {% endif %}
 
   <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
   <script>
     canonicalLatestNews.fetchLatestNews(
-      {
-        articlesContainerSelector: "#horizontal-latest-articles",
-        articleTemplateSelector: "#horizontal-articles-template",
-        gtmEventLabel: "ubuntu.com/{{ tag_name }}",
-        tagId: "{{ tag_id }}",
-        limit: "{% if limit %}{{ limit }}{% else %}4{% endif %}",
-      }
+    {
+      articlesContainerSelector: "#horizontal-latest-articles",
+      articleTemplateSelector: "#horizontal-articles-template",
+      {% if spotlight %}spotlightContainerSelector: "#spotlight",
+      spotlightTemplateSelector: "#spotlight-template",{% endif %}
+      gtmEventLabel: "ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}",
+      {% if tag_name %}tagId: "{{ tag_id }}",{% endif %}
+      {% if limit %}limit: "{{ limit }}",{% endif %}
+    }
     )
   </script>
 </section>
