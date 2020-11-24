@@ -1250,6 +1250,8 @@ security:
   path: /security
 
   children:
+    - title: Overview
+      path: /security
     - title: ESM
       path: /security/esm
     - title: Livepatch
@@ -1270,14 +1272,12 @@ security:
       path: /security/oval
     - title: Docker Images
       path: /security/docker-images
-      
-      children:
-      - title: Contact us
-        path: /security/docker-images/contact-us
-        hidden: True
-      - title: Thank you
-        path: /security/docker-images/thank-you
-        hidden: True
+    - title: Contact us
+      path: /security/contact-us
+      hidden: True
+    - title: Thank you
+      path: /security/thank-you
+      hidden: True
 
 
 licensing:

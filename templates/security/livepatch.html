@@ -1,6 +1,6 @@
-{% extends "templates/one-column.html" %}
+{% extends "security/base_security.html" %}
 
-{% block title %}Canonical Livepatch Service{% endblock %}
+{% block title %}Canonical Livepatch Service | Security{% endblock %}
 
 {% block meta_description %}Automatic Linux kernel updates for Ubuntu 16.04, 18.04 and 20.04 LTS. Apply critical patches without rebooting and keep your systems secure and compliant.{% endblock %}
 
@@ -289,5 +289,9 @@
 </section>
 
 {% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
 
 {% endblock content %}
