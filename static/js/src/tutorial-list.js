@@ -1,5 +1,6 @@
 const topicsFilter = document.getElementById("tutorials-topic");
 const sortFilter = document.getElementById("tutorials-sort");
+const searchFilter = document.getElementById("tutorials-search");
 const urlObj = new URL(window.location);
 
 function handleFilter(key, el, url) {
@@ -34,5 +35,6 @@ function handleFilter(key, el, url) {
 
 handleFilter("topic", topicsFilter, urlObj);
 handleFilter("sort", sortFilter, urlObj);
+handleFilter("q", searchFilter, urlObj);
 
 export { handleFilter };
