@@ -1387,3 +1387,8 @@ def sitemap_index():
 
     response.headers["Content-Type"] = "application/xml"
     return response
+# Cube
+# ===
+def cube_home():
+    data = {"user": "Beth", "badges": ["Badge1", "Badge2"]}
+    return flask.render_template("cube/index.html", **data)

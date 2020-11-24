@@ -44,6 +44,7 @@ from webapp.views import (
     BlogSitemapPage,
     build,
     build_tutorials_index,
+    cube_home,
     download_server_steps,
     download_thank_you,
     appliance_install,
@@ -588,6 +589,8 @@ core_als_autils_docs = Docs(
     blueprint_name="alsa-utils",
 )
 core_als_autils_docs.init_app(app)
+# Cube docs
+app.add_url_rule("/cube", view_func=cube_home)
 
 
 @app.after_request
