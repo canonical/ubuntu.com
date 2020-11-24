@@ -1,0 +1,36 @@
+<section class="u-hide {% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}" data-js="latest-news">
+  <div class="row p-divider">
+    <div class="col-12">
+      <h3>Latest {{ heading_topic }} news from our blog</h3>
+      <div id="vertical-latest-articles" class="row">
+        <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
+      </div>
+    </div>
+  </div>
+
+  <template style="display:none" id="vertical-articles-template">
+    <div class="col-3">
+      <p><a class="article-link article-title"></a></p>
+      <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
+    </div>
+  </template>
+
+  <div class="u-fixed-width">
+    <a href="/blog/tag/{{ tag_name }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com/{{ tag_name }}', 'eventValue' : undefined });">
+      View more from our blog&nbsp;&rsaquo;
+    </a>
+  </div>
+
+  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
+  <script>
+    canonicalLatestNews.fetchLatestNews(
+      {
+        articlesContainerSelector: "#vertical-latest-articles",
+        articleTemplateSelector: "#vertical-articles-template",
+        gtmEventLabel: "ubuntu.com/{{ tag_name }}",
+        tagId: "{{ tag_id }}",
+        limit: "{% if limit %}{{ limit }}{% else %}4{% endif %}",
+      }
+    )
+  </script>
+</section>

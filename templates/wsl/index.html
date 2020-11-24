@@ -355,42 +355,9 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered u-hide" data-js="latest-news">
-  <div class="row p-divider">
-    <div class="col-12">
-      <h3>Latest WSL news from our blog</h3>
-      <div id="latest-articles" class="row">
-        <div style="min-height: 9.1rem"><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
-      </div>
-    </div>
-  </div>
-
-  <template style="display:none" id="articles-template">
-    <div class="col-3">
-      <p><a class="article-link article-title"></a></p>
-      <p class="u-no-padding--top"><em><time datetime="" class="article-time"></time></em></p>
-    </div>
-  </template>
-
-  <div class="u-fixed-width">
-    <a href="/blog/tag/wsl" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com/wsl', 'eventValue' : undefined });">
-      View more from our blog&nbsp;&rsaquo;
-    </a>
-  </div>
-
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}"></script>
-  <script>
-    canonicalLatestNews.fetchLatestNews(
-      {
-        articlesContainerSelector: "#latest-articles",
-        articleTemplateSelector: "#articles-template",
-        gtmEventLabel: "ubuntu.com/wsl",
-        tagId: "3328",
-        limit: "4"
-      }
-    )
-  </script>
-</section>
+{%with section_classes='p-strip is-deep is-bordered', heading_topic='WSL', tag_name='wsl', tag_id='3328', limit='4'  %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
 
 
 {% endblock content %}
