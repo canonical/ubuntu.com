@@ -29,6 +29,10 @@ from webapp.advantage import AdvantageContracts, UnauthorizedError
 from webapp.decorators import store_maintenance
 
 
+class NoAPIKeyError(Exception):
+    pass
+
+
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
 store_api = SnapStore(session=talisker.requests.get_session())
@@ -1054,14 +1058,13 @@ def build_tutorials_index(tutorials_docs):
         if not search_api_key:
             raise NoAPIKeyError("Unable to search: No API key provided")
 
-        params = flask.request.args
         results = None
 
         if query:
             results = get_search_results(
                 api_key=search_api_key,
                 search_engine_id=search_engine_id,
-                siteSearch='ubuntu.com/tutorials',
+                siteSearch="ubuntu.com/tutorials",
                 query=query,
             )
 
@@ -1077,16 +1080,15 @@ def build_tutorials_index(tutorials_docs):
 
         if query:
             temp_metadata = []
-            for result in results['entries']:
-                start = result['link'].find("tutorials/")
-                end = len(result['link'])
-                identifier = result['link'][start:end]
+            for result in results["entries"]:
+                start = result["link"].find("tutorials/")
+                end = len(result["link"])
+                identifier = result["link"][start:end]
                 if start != -1:
                     for doc in metadata:
                         if identifier in doc["topic"]:
                             temp_metadata.append(doc)
             metadata = temp_metadata
-
 
         if sort == "difficulty-desc":
             metadata = sorted(
@@ -1111,8 +1113,8 @@ def build_tutorials_index(tutorials_docs):
             sort=sort,
             query=query,
             posts_per_page=posts_per_page,
-            result_number=result_number,   
-            total_pages=total_pages,   
+            result_number=result_number,
+            total_pages=total_pages,
         )
 
     return tutorials_index
