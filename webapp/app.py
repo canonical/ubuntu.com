@@ -45,6 +45,7 @@ from webapp.views import (
     build,
     build_tutorials_index,
     cube_home,
+    cube_microcerts,
     download_server_steps,
     download_thank_you,
     appliance_install,
@@ -582,7 +583,7 @@ core_als_autils_docs = Docs(
 )
 core_als_autils_docs.init_app(app)
 # Cube docs
-app.add_url_rule("/cube", view_func=cube_home)
+app.add_url_rule("/cube", view_func=cube_microcerts)
 
 openstack_docs = Docs(
     parser=DocParser(
