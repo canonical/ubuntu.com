@@ -1,0 +1,70 @@
+{% extends "cube/base_cube.html" %}
+
+{% block title %}Microcerts | CUBE{% endblock %}
+
+{% block meta_description %}This is the CUBE Microcerts page{% endblock meta_description %}
+
+{% block content %}
+
+<section class="p-strip--suru is-dark is-deep">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h1>Your progress to CUBEdom</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</section>
+
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Microcertifications - {{user.name}}</h2>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <table class="p-table--mobile-card">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th colspan="2" class="u-align--center">Module</th>
+          <th colspan="3" class="u-align--center">Topics</th>
+          <th colspan="2" class="u-align--center">Status</th>
+          <th colspan="2" class="u-align--center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for module in modules %}
+        <tr>
+          <td aria-label="Badge">
+            <p>{{ module.badge }}</p>
+          </td>
+          <td colspan="2" aria-label="Module" class="u-align--center">
+            <div>
+              <p>{{ module.name }}</p>
+              <p><small>{{module.topics|length}}</small> Topics</p>
+            </div>
+          </td>
+          <td colspan="3" aria-label="Topics" class="u-align--center">
+            {% for topic in module.topics%}
+              <p>{{ topic }}</p>
+            {% endfor%}
+          </td>
+          <td colspan="2" aria-label="Status" class="u-align--center">
+            <p>{{ module.status }}</p>
+          </td>
+          <td colspan="2" aria-label="Action" class="u-align--center">
+            <p>
+              <a class="p-button--neutral" href={{module.trainingurl}}>Prepare</a>
+              <a class="p-button--positive" href={{module.testurl}}>{{ module.action }}</a>
+            </p>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock content %}
