@@ -1080,14 +1080,15 @@ def build_tutorials_index(tutorials_docs):
 
         if query:
             temp_metadata = []
-            for result in results["entries"]:
-                start = result["link"].find("tutorials/")
-                end = len(result["link"])
-                identifier = result["link"][start:end]
-                if start != -1:
-                    for doc in metadata:
-                        if identifier in doc["topic"]:
-                            temp_metadata.append(doc)
+            if results.get('entries'):
+                for result in results["entries"]:
+                    start = result["link"].find("tutorials/")
+                    end = len(result["link"])
+                    identifier = result["link"][start:end]
+                    if start != -1:
+                        for doc in metadata:
+                            if identifier in doc["topic"]:
+                                temp_metadata.append(doc)
             metadata = temp_metadata
 
         if sort == "difficulty-desc":
