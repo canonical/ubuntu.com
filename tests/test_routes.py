@@ -2,6 +2,7 @@
 import unittest
 
 # Packages
+from bs4 import BeautifulSoup
 from vcr_unittest import VCRTestCase
 
 # Local
@@ -147,14 +148,68 @@ class TestRoutes(VCRTestCase):
         self.assertEqual(self.client.get("/not-found-url").status_code, 404)
 
     def test_engage_index(self):
-        """
-        When given a /engage URL,
-        we should return a 200 status code
-        This also tests that discourse module
-        for engage pages work
-        """
+        response = self.client.get("/engage")
+        self.assertEqual(response.status_code, 200)
 
-        self.assertEqual(self.client.get("/engage").status_code, 200)
+    def test_engage_index_without_preview_flag_cannot_see_inactive_page(self):
+        response = self.client.get("/engage")
+        self.assertEqual(response.status_code, 200)
+
+        soup = BeautifulSoup(response.data, "html.parser")
+        self.assertIsNone(
+            soup.find("a", {"href": "/engage/it/deployment-azienda-manuale"})
+        )
+        self.assertIsNone(
+            soup.find("meta", {"name": "robots", "content": "noindex"})
+        )
+        self.assertIsNotNone(
+            soup.find(
+                "a", {"href": "/engage/it/redhat-openstack-confronto-manuale"}
+            )
+        )
+
+    def test_engage_index_with_preview_flag_sees_inactive_pages(self):
+        response = self.client.get("/engage?preview")
+        self.assertEqual(response.status_code, 200)
+
+        soup = BeautifulSoup(response.data, "html.parser")
+        self.assertIsNotNone(
+            soup.find(
+                "a", {"href": "/engage/it/deployment-azienda-manuale?preview"}
+            )
+        )
+        self.assertIsNotNone(
+            soup.find("meta", {"name": "robots", "content": "noindex"})
+        )
+
+    def test_active_page_returns_200(self):
+        response = self.client.get("/engage/micro-clouds")
+        self.assertEqual(response.status_code, 200)
+
+        soup = BeautifulSoup(response.data, "html.parser")
+        self.assertIsNone(soup.find("meta", {"name": "robots"}))
+
+    def test_active_page_returns_adds_no_meta_with_preview_flag(self):
+        response = self.client.get("/engage/micro-clouds?preview")
+        self.assertEqual(response.status_code, 200)
+
+        soup = BeautifulSoup(response.data, "html.parser")
+        self.assertIsNone(soup.find("meta", {"name": "robots"}))
+
+    def test_inactive_page_returns_302(self):
+        response = self.client.get("/engage/it/deployment-azienda-manuale")
+        self.assertEqual(response.status_code, 302)
+
+    def test_inactive_page_returns_page_with_preview_flag(self):
+        response = self.client.get(
+            "/engage/it/deployment-azienda-manuale?preview"
+        )
+        self.assertEqual(response.status_code, 200)
+
+        soup = BeautifulSoup(response.data, "html.parser")
+        self.assertIsNotNone(
+            soup.find("meta", {"name": "robots", "content": "nofollow"})
+        )
 
 
 if __name__ == "__main__":

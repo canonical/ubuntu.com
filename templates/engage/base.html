@@ -7,6 +7,12 @@
 {% block meta_description %}{{document['metadata']['subtitle']}}{% endblock %}
 {% block meta_image %}{{document['metadata']['meta_image']}}{% endblock %}
 
+{% block head_extra%}
+  {% if 'active' in document['metadata'] and document['metadata']['active'] == "false" %}
+    <meta name="robots" content="nofollow" />
+  {% endif %}
+{% endblock %}
+
 {% block meta_copydoc %}{{document["metadata"]["meta_copydoc"]}}{% endblock meta_copydoc %}
 
 {% block content %}

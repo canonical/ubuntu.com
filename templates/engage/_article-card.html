@@ -6,7 +6,7 @@
   </header>
   <div class="blog-p-card__content">
     <h4>
-      <a href="{{title_link}}" >{{title | safe}}</a>
+      <a href="{% if active == 'false' and preview != None %}{{title_link}}?preview{% else %}{{title_link}}{% endif %}">{{title | safe}}</a>
     </h4>
     <p class="u-no-padding--bottom u-hide--small">{{description | safe}}</p>
   </div>

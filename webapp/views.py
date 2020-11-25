@@ -1080,9 +1080,17 @@ def build_engage_index(engage_docs):
         page = flask.request.args.get("page", default=1, type=int)
         topic = flask.request.args.get("topic", default=None, type=str)
         sort = flask.request.args.get("sort", default=None, type=str)
+        preview = flask.request.args.get("preview")
         posts_per_page = 15
         engage_docs.parser.parse()
         metadata = engage_docs.parser.metadata
+
+        if preview is None:
+            metadata = [
+                item
+                for item in metadata
+                if "active" in item and item["active"] == "true"
+            ]
 
         total_pages = math.ceil(len(metadata) / posts_per_page)
 
@@ -1093,6 +1101,7 @@ def build_engage_index(engage_docs):
             page=page,
             topic=topic,
             sort=sort,
+            preview=preview,
             posts_per_page=posts_per_page,
             total_pages=total_pages,
         )
