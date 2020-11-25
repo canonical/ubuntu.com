@@ -1,8 +1,8 @@
 {% extends "tutorials/base_tutorials.html" %}
 
-{% block title %}Tutorials{% endblock %}	
+{% block title %}Tutorials{% endblock %}
 
-{% block content %}	
+{% block content %}
 
 {% if page == 1 %}
 <section class="p-strip--suru-blog-header is-dark">
@@ -115,12 +115,12 @@
     {% endif %} {% endfor %}
   </div>
 </section>
-{% endif %} 
+{% endif %}
 
 {% with %}
-  {% set total_pages = total_pages %}	
-  {% set current_page = page %}	
-  {% include "shared/_pagination.html" %}	
-{% endwith %}	
+  {% set total_pages = total_pages %}
+  {% set current_page = page %}
+  {% include "shared/_pagination.html" %}
+{% endwith %}
 
 {% endblock %}
