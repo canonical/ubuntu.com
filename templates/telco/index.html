@@ -43,6 +43,10 @@
   </div>
 </section>
 
+{% with section_classes='p-strip is-bordered', heading_topic='Telco', tag_name='telco', tag_id='1377', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
+
 <section class="p-strip">
   <div class="u-fixed-width">
     <h2 class="p-muted-heading u-no-max-width u-align--center ">TRUSTED BY LEADING SERVICE PROVIDERS, GLOBALLY</h2>
@@ -85,7 +89,6 @@
           attrs={"class": "p-inline-images__logo"}
           ) | safe
         }}
-      </li>
       </li>
       <li class="p-inline-images__item">
         {{
@@ -470,7 +473,7 @@
     <div class="col-7">
       <h2 class="u-sv3">Far edge: gateways, networking, digital signage and more</h2>
       <p>
-        Avoid device lock and benefit from fully automated updates and operations by using an embedded version of the Ubuntu operating system - <a href="/core">Ubuntu Core</a>. 
+        Avoid device lock and benefit from fully automated updates and operations by using an embedded version of the Ubuntu operating system - <a href="/core">Ubuntu Core</a>.
       </p>
       <p>
         Gateways, network devices and digital signage. Designed for devices with limited hardware resources, Ubuntu Core is both lightweight and robust.
