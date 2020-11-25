@@ -494,10 +494,10 @@ function enableProcessingState(mode) {
         progressIndicator.querySelector("span").innerHTML = "Still trying...";
 
         progressTimer4 = setTimeout(() => {
-          // the renewal payment is taking time to process, reload the page
+          // the payment is taking time to process, reload the page
           // and highlight the in-progress renewal
           if (mode === "payment") {
-            sendGAEvent("page reload: payment processing > 30s");
+            sendGAEvent("page reload: payment processing > 60s");
             reloadPage();
           }
 
@@ -510,7 +510,7 @@ function enableProcessingState(mode) {
               type: "dialog",
             });
           }
-        }, 15000);
+        }, 45000);
       }, 11000);
     }, 2000);
   }, 2000);
