@@ -21,16 +21,13 @@ from canonicalwebteam.launchpad import Launchpad
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
 from canonicalwebteam.search.models import get_search_results
+from canonicalwebteam.search.views import NoAPIKeyError
 
 
 # Local
 from webapp.login import empty_session, user_info
 from webapp.advantage import AdvantageContracts, UnauthorizedError
 from webapp.decorators import store_maintenance
-
-
-class NoAPIKeyError(Exception):
-    pass
 
 
 ip_reader = geolite2.reader()
