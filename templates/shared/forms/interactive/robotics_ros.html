@@ -1,0 +1,181 @@
+<div class="p-modal" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
+      <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Let’s get your robot rolling</h2>
+    </header>
+    <div class="js-pagination js-pagination--1">
+      <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Tell us about your project so we can bring the right team to the conversation.</p>
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">When do you need to ship? </h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="radio" id="when-do-you-need-to-ship-next-3-months" name="when-do-you-need-to-ship" value="Next 3 months">
+            <label for="when-do-you-need-to-ship-next-3-months">Next 3 months</label>
+            <input type="radio" id="when-do-you-need-to-ship-next-3---6-months" name="when-do-you-need-to-ship" value="Next 3 - 6 months">
+            <label for="when-do-you-need-to-ship-next-3---6-months">Next 3 - 6 months</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="radio" id="when-do-you-need-to-ship-next-6---12-months" name="when-do-you-need-to-ship" value="Next 6 - 12 months">
+            <label for="when-do-you-need-to-ship-next-6---12-months">Next 6 - 12 months</label>
+            <input type="radio" id="when-do-you-need-to-ship-12-months-+" name="when-do-you-need-to-ship" value="12 months +">
+            <label for="when-do-you-need-to-ship-12-months-+">12 months +</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="radio" id="when-do-you-need-to-ship-no-timeline---just-researching" name="when-do-you-need-to-ship" value="No timeline - just researching">
+            <label for="when-do-you-need-to-ship-no-timeline---just-researching">No timeline - just researching</label>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">How many devices will require ESM coverage yearly?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="radio" id="devices-needing-esm-1-10" name="devices-needing-esm" value="1-10">
+            <label for="devices-needing-esm-1-10">1-10</label>
+            <input type="radio" id="devices-needing-esm-10---100" name="devices-needing-esm" value="10 - 100">
+            <label for="devices-needing-esm-10---100">10 - 100</label>
+            <input type="radio" id="devices-needing-esm-100---1000" name="devices-needing-esm" value="100 - 1,000">
+            <label for="devices-needing-esm-100---1000">100 - 1,000</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="radio" id="devices-needing-esm-1000---10000" name="devices-needing-esm" value="1,000 - 10,000">
+            <label for="devices-needing-esm-1000---10000">1,000 - 10,000</label>
+            <input type="radio" id="devices-needing-esm-10000-+" name="devices-needing-esm" value="10,000 +">
+            <label for="devices-needing-esm-10000-+">10,000 +</label>
+            <input type="radio" id="devices-needing-esm-none" name="devices-needing-esm" value="None">
+            <label for="devices-needing-esm-none">None</label>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a class="p-button--positive pagination__link--next" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--2 u-hide">
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">How often will you update your robot yearly?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="radio" id="update-frequency-every-12-months" name="update-frequency" value="Every 12 months">
+            <label for="update-frequency-every-12-months">Every 12 months</label>
+            <input type="radio" id="update-frequency-every-6-months" name="update-frequency" value="Every 6 months">
+            <label for="update-frequency-every-6-months">Every 6 months</label>
+            <input type="radio" id="update-frequency-every-3-months" name="update-frequency" value="Every 3 months">
+            <label for="update-frequency-every-3-months">Every 3 months</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="radio" id="update-frequency-every-week" name="update-frequency" value="Every week">
+            <label for="update-frequency-every-week">Every week</label>
+            <input type="radio" id="update-frequency-every-day" name="update-frequency" value="Every day">
+            <label for="update-frequency-every-day">Every day</label>
+            <input type="radio" id="update-frequency-every-6-hours" name="update-frequency" value="Every 6 hours">
+            <label for="update-frequency-every-6-hours">Every 6 hours</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="radio" id="update-frequency-in-real-time" name="update-frequency" value="In real time">
+            <label for="update-frequency-in-real-time">In real time</label>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="u-sv3 js-formfield">
+        <h3 class="p-heading--five">Describe your ROS device</h3>
+        <textarea id="open-question" name="open-question" aria-label="Describe your ROS device" placeholder="What type of robotics project or product are you working on? Manufacturing? Industrial automation? " rows="3"></textarea>
+      </div>
+
+      <div class="pagination">
+        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+        <a class="pagination__link--next p-button--positive" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--3 u-hide">
+
+      <h3 class="p-heading--five">How should we get in touch?</h3>
+      <div class="row u-no-padding">
+        <div class="col-6">
+          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
+            <ul class="p-list">
+              <li class="mktFormReq mktField p-list__item">
+                <label for="FirstName" class="mktoLabel">First name:</label>
+                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="LastName" class="mktoLabel">Last name:</label>
+                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Email" class="mktoLabel">Work email:</label>
+                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+              </li>
+              <li class="mktField p-list__item">
+                <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+              </li>
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+              <li class="p-list__item">
+                <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
+              </li>
+            </ul>
+
+            <div class="u-hide">
+              <h3>Your comments</h3>
+              <ul class="p-list">
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
+                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField" maxlength="2000"></textarea>
+                </li>
+              </ul>
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
+              <input type="hidden" aria-hidden="true" name="formid" class="mktoField" value="%% formid %%" />
+              <input type="hidden" aria-hidden="true" name="formVid" class="mktoField" value="%% formid %%" />
+              <input type="hidden" aria-hidden="true" name="lpId" class="mktoField" value="%% lpId %%" />
+              <input type="hidden" aria-hidden="true" name="subId" class="mktoField" value="30" />
+              <input type="hidden" aria-hidden="true" name="munchkinId" class="mktoField" value="066-EOV-335" />
+              <input type="hidden" aria-hidden="true" name="lpurl" class="mktoField" value="%% lpurl %%?cr={creative}&kw={keyword}" />
+              <input type="hidden" aria-hidden="true" name="cr" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" name="kw" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" name="q" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" name="returnURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" name="retURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" name="Consent_to_Processing__c" value="yes" />
+              <input type="hidden" aria-hidden="true" name="productContext" id="product-context" value="{{ product }}" />
+              <input type="hidden" aria-hidden="true" name="utm_campaign" class="mktoField" id="utm_campaign" value="" />
+              <input type="hidden" aria-hidden="true" name="utm_medium" class="mktoField" id="utm_medium" value="" />
+              <input type="hidden" aria-hidden="true" name="utm_source" class="mktoField" id="utm_source" value="" />
+            </div>
+
+            <div class="pagination">
+              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+              <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--4 u-hide">
+      <div class="row u-no-padding">
+        <div class="u-equal-height">
+          <div class="col-7">
+            <h3 class="p-heading--two">Thank you for enquiring about robotics</h3>
+            <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
+          </div>
+          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+            <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200" loading="auto">
+          </div>
+        </div>
+      </div>
+      <a class="js-close p-button--neutral" href="">Close</a>
+    </div>
+  </div>
+</div>
