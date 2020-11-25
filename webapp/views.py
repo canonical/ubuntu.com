@@ -1077,7 +1077,7 @@ def build_tutorials_index(tutorials_docs):
 
         if query:
             temp_metadata = []
-            if results.get('entries'):
+            if results.get("entries"):
                 for result in results["entries"]:
                     start = result["link"].find("tutorials/")
                     end = len(result["link"])
