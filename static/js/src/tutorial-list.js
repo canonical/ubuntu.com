@@ -1,7 +1,36 @@
 const topicsFilter = document.getElementById("tutorials-topic");
 const sortFilter = document.getElementById("tutorials-sort");
 const searchFilter = document.getElementById("tutorials-search");
+const searchInput = document.getElementById("tutorials-search-input");
 const urlObj = new URL(window.location);
+
+if (urlObj.searchParams.has("q")) {
+  searchInput.value = urlObj.searchParams.get("q");
+} else {
+  searchInput.value = "";
+}
+
+searchFilter.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (urlObj.searchParams.has("page")) {
+    urlObj.searchParams.delete("page");
+  }
+  if (urlObj.searchParams.has("q")) {
+    urlObj.searchParams.delete("q");
+  }
+  urlObj.searchParams.append("q", searchInput.value);
+  window.location = urlObj;
+});
+
+searchFilter.addEventListener("reset", (e) => {
+  e.preventDefault();
+  if (urlObj.searchParams.has("page")) {
+    urlObj.searchParams.delete("page");
+  }
+  console.log("reset");
+  urlObj.searchParams.delete("q");
+  window.location = urlObj;
+});
 
 function handleFilter(key, el, url) {
   if (!el) {
@@ -35,6 +64,5 @@ function handleFilter(key, el, url) {
 
 handleFilter("topic", topicsFilter, urlObj);
 handleFilter("sort", sortFilter, urlObj);
-handleFilter("q", searchFilter, urlObj);
 
 export { handleFilter };
