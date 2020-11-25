@@ -4,34 +4,6 @@ const searchFilter = document.getElementById("tutorials-search");
 const searchInput = document.getElementById("tutorials-search-input");
 const urlObj = new URL(window.location);
 
-if (urlObj.searchParams.has("q")) {
-  searchInput.value = urlObj.searchParams.get("q");
-} else {
-  searchInput.value = "";
-}
-
-searchFilter.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (urlObj.searchParams.has("page")) {
-    urlObj.searchParams.delete("page");
-  }
-  if (urlObj.searchParams.has("q")) {
-    urlObj.searchParams.delete("q");
-  }
-  urlObj.searchParams.append("q", searchInput.value);
-  window.location = urlObj;
-});
-
-searchFilter.addEventListener("reset", (e) => {
-  e.preventDefault();
-  if (urlObj.searchParams.has("page")) {
-    urlObj.searchParams.delete("page");
-  }
-  console.log("reset");
-  urlObj.searchParams.delete("q");
-  window.location = urlObj;
-});
-
 function handleFilter(key, el, url) {
   if (!el) {
     return;
@@ -62,7 +34,41 @@ function handleFilter(key, el, url) {
   });
 }
 
+function setUpSearch(form, input, url) {
+  if (!form || !input) {
+    return;
+  }
+
+  if (url.searchParams.has("q")) {
+    input.value = url.searchParams.get("q");
+  } else {
+    input.value = "";
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (url.searchParams.has("page")) {
+      url.searchParams.delete("page");
+    }
+    if (url.searchParams.has("q")) {
+      url.searchParams.delete("q");
+    }
+    url.searchParams.append("q", input.value);
+    window.location = url;
+  });
+
+  form.addEventListener("reset", (e) => {
+    e.preventDefault();
+    if (url.searchParams.has("page")) {
+      url.searchParams.delete("page");
+    }
+    url.searchParams.delete("q");
+    window.location = url;
+  });
+}
+
 handleFilter("topic", topicsFilter, urlObj);
 handleFilter("sort", sortFilter, urlObj);
+setUpSearch(searchFilter, searchInput, urlObj);
 
-export { handleFilter };
+export { handleFilter, setUpSearch };
