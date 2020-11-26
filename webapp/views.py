@@ -990,7 +990,7 @@ def ensure_purchase_account():
     try:
         account = advantage.ensure_purchase_account(
             email=request.get("email"),
-            name=request.get("name"),
+            account_name=request.get("account_name"),
             payment_method_id=request.get("payment_method_id"),
         )
     except UnauthorizedError as err:

@@ -948,7 +948,7 @@ function setCustomerInfo() {
   customerInfo = {
     email: formData.get("email"),
     name: formData.get("name"),
-    accountName: formData.get("account_name"),
+    accountName: formData.get("account_name").trim() || formData.get("name"),
     address: {
       city: formData.get("city"),
       country: formData.get("Country"),

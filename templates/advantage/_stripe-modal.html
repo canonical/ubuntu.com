@@ -65,13 +65,13 @@
           </div>
 
           {% if account is defined %}
-            <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
+            <div class="p-form__group row u-no-padding u-vertically-center">
               <div class="col-3">
                 <label class="u-no-padding--top" for="account_name">{% if account %}Account name{% else %}Choose account name{% endif %}:</label>
               </div>
 
               <div class="col-9">
-                <input class="p-form-validation__input" name="account_name" type="text" required value="{{ account.name }}" {% if account %}disabled{% endif %} />
+                <input name="account_name" type="text" value="{{ account.name }}" {% if account %}disabled{% endif %} />
               </div>
 
               {% if not account %}
