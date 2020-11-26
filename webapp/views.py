@@ -1194,6 +1194,38 @@ class BlogPressCentre(BlogView):
 
 # Cube
 # ===
-def cube_home():
-    data = {"user": "Beth", "badges": ["Badge1", "Badge2"]}
-    return flask.render_template("cube/index.html", **data)
+def cube_microcerts():
+    data = {
+        "user": {"name": "Beth Collins"},
+        "modules": [
+            {
+                "badge": "badge1",
+                "name": "module1",
+                "topics": ["topic1", "topic2", "topic7", "topic8"],
+                "test_url": "http://module1.url",
+                "training_url": "http://module3.url",
+                "status": "open",
+                "action": "Test",
+            },
+            {
+                "badge": "badge2",
+                "name": "module2",
+                "topics": ["topic3", "topic4"],
+                "test_url": "http://module2.url",
+                "training_url": "http://module3.url",
+                "status": "Failed once",
+                "action": "Retest",
+            },
+            {
+                "badge": "badge3",
+                "name": "module3",
+                "topics": ["topic5", "topic6", "topic9"],
+                "test_url": "http://module3.url",
+                "training_url": "http://module3.url",
+                "status": "Passed",
+                "action": "Test",
+            },
+        ],
+    }
+
+    return flask.render_template("cube/microcerts.html", **data)
