@@ -1098,8 +1098,8 @@ def build_tutorials_index(tutorials_docs):
                 metadata, key=lambda k: k["difficulty"], reverse=False
             )
 
-        result_number = len(metadata)
-        total_pages = math.ceil(result_number / posts_per_page)
+        total_results = len(metadata)
+        total_pages = math.ceil(total_results / posts_per_page)
 
         return flask.render_template(
             "tutorials/index.html",
@@ -1111,7 +1111,7 @@ def build_tutorials_index(tutorials_docs):
             sort=sort,
             query=query,
             posts_per_page=posts_per_page,
-            result_number=result_number,
+            total_results=total_results,
             total_pages=total_pages,
         )
 
