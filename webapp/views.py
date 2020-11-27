@@ -1424,3 +1424,9 @@ def cube_microcerts():
     }
 
     return flask.render_template("cube/microcerts.html", **data)
+
+
+def cube_home():
+    data = {}
+
+    return flask.render_template("cube/index.html", **data)
