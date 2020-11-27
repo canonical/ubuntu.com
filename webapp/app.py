@@ -42,6 +42,7 @@ from webapp.views import (
     BlogPressCentre,
     build,
     build_tutorials_index,
+    cube_home,
     cube_microcerts,
     download_harness,
     download_thank_you,
@@ -449,7 +450,8 @@ app.add_url_rule(
 )
 
 # Cube docs
-app.add_url_rule("/cube", view_func=cube_microcerts)
+app.add_url_rule("/cube", view_func=cube_home)
+app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 
 
 @app.after_request
