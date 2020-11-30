@@ -20,6 +20,8 @@ from canonicalwebteam.store_api.stores.snapstore import SnapStore
 from canonicalwebteam.launchpad import Launchpad
 from geolite2 import geolite2
 from requests.exceptions import HTTPError
+from canonicalwebteam.search.models import get_search_results
+from canonicalwebteam.search.views import NoAPIKeyError
 
 
 # Local
@@ -1037,7 +1039,32 @@ def build_tutorials_index(tutorials_docs):
         page = flask.request.args.get("page", default=1, type=int)
         topic = flask.request.args.get("topic", default=None, type=str)
         sort = flask.request.args.get("sort", default=None, type=str)
+        query = flask.request.args.get("q", default=None, type=str)
         posts_per_page = 15
+
+        """
+        Get search results from Google Custom Search
+        """
+
+        # The webteam's default custom search ID
+        search_engine_id = "009048213575199080868:i3zoqdwqk8o"
+
+        # API key should always be provided as an environment variable
+        search_api_key = os.getenv("SEARCH_API_KEY")
+
+        if query and not search_api_key:
+            raise NoAPIKeyError("Unable to search: No API key provided")
+
+        results = None
+
+        if query:
+            results = get_search_results(
+                api_key=search_api_key,
+                search_engine_id=search_engine_id,
+                siteSearch="ubuntu.com/tutorials",
+                query=query,
+            )
+
         tutorials_docs.parser.parse()
         if not topic:
             metadata = tutorials_docs.parser.metadata
@@ -1047,6 +1074,19 @@ def build_tutorials_index(tutorials_docs):
                 for doc in tutorials_docs.parser.metadata
                 if topic in doc["categories"]
             ]
+
+        if query:
+            temp_metadata = []
+            if results.get("entries"):
+                for result in results["entries"]:
+                    start = result["link"].find("tutorials/")
+                    end = len(result["link"])
+                    identifier = result["link"][start:end]
+                    if start != -1:
+                        for doc in metadata:
+                            if identifier in doc["topic"]:
+                                temp_metadata.append(doc)
+            metadata = temp_metadata
 
         if sort == "difficulty-desc":
             metadata = sorted(
@@ -1058,7 +1098,8 @@ def build_tutorials_index(tutorials_docs):
                 metadata, key=lambda k: k["difficulty"], reverse=False
             )
 
-        total_pages = math.ceil(len(metadata) / posts_per_page)
+        total_results = len(metadata)
+        total_pages = math.ceil(total_results / posts_per_page)
 
         return flask.render_template(
             "tutorials/index.html",
@@ -1068,7 +1109,9 @@ def build_tutorials_index(tutorials_docs):
             page=page,
             topic=topic,
             sort=sort,
+            query=query,
             posts_per_page=posts_per_page,
+            total_results=total_results,
             total_pages=total_pages,
         )
 

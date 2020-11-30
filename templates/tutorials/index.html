@@ -18,12 +18,16 @@
 
 <section class="p-strip is-shallow l-tutorials__filters">
   <div class="row">
-    <!-- <div class="col-4">
+    <div class="col-4">
       <div class="p-form__group">
-        <label for="tutorials-search">Search tutorials containing:</label>
-        <input type="search" name="tutorials-search" id="tutorials-search">
+        <label for="tutorials-search-input">Search tutorials containing:</label>
+        <form class="p-search-box u-no-margin--bottom" id="tutorials-search" action="">
+          <input type="search" class="p-search-box__input" id="tutorials-search-input" name="search" placeholder="Search" required="" autocomplete="on">
+          <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+          <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+        </form>
       </div>
-    </div> -->
+    </div>
     <div class="col-4">
       <div class="p-form__group">
         <label for="tutorials-topic">Topic:</label>
@@ -52,30 +56,66 @@
   </div>
 </section>
 
+{% if query and total_results == 0 %}
+
+<div class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h3>Why not try widening your search?</h3>
+      <p>You can do this by:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">
+          Adding alternative words or phrases
+        </li>
+        <li class="p-list__item is-ticked">
+          Using individual words instead of phrases
+        </li>
+        <li class="p-list__item is-ticked">Trying a different spelling</li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <h3>Still no luck?</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">
+          <a href="/tutorials">View all Tutorials</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/desktop/contact-us?product=search-page">Contact us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% else %}
+
 <section class="p-strip has-shadow">
   <div class="row u-equal-height">
-    {% for item in metadata %}
-      {% if loop.index <= posts_per_page * page and loop.index >= posts_per_page * page - posts_per_page + 1 %}
-        <div class="col-4 blog-p-card--post">
-          <header class="blog-p-card__header--tutorial">
-            <h5 class="p-muted-heading u-no-margin--bottom">
-              {{ item.categories }}
-            </h5>
-          </header>
-          <div class="blog-p-card__content">
-            <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
-              {{ item.topic | replace("inline-onebox", "p-link--soft") | safe }}
-            </h3>
-            <p class="u-sv3">{{ item.summary | safe }}</p>
-          </div>
-          <footer class="blog-p-card__footer">
-            Difficulty: <span class="l-tutorials-meter l-tutorials-meter--{{ item.difficulty }}">{{ item.difficulty }} out of 5</span>
-          </footer>
-        </div>
-      {% endif %}
-    {% endfor %}
+    {% if query %}
+    <h4 class="col-12">
+      {{total_results}} search result{% if total_results > 1 %}s{% endif %}
+    </h4>
+    {% endif %} {% for item in metadata %} {% if loop.index <= posts_per_page * page and loop.index >= posts_per_page * page - posts_per_page + 1 %}
+    <div class="col-4 blog-p-card--post">
+      <header class="blog-p-card__header--tutorial">
+        <h5 class="p-muted-heading u-no-margin--bottom">
+          {{ item.categories }}
+        </h5>
+      </header>
+      <div class="blog-p-card__content">
+        <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
+          {{ item.topic | replace("inline-onebox", "p-link--soft") | safe }}
+        </h3>
+        <p class="u-sv3">{{ item.summary | safe }}</p>
+      </div>
+      <footer class="blog-p-card__footer">
+        Difficulty:<span class="l-tutorials-meter l-tutorials-meter--{{ item.difficulty }}">{{ item.difficulty }} out of 5</span>
+      </footer>
+    </div>
+    {% endif %} {% endfor %}
   </div>
 </section>
+{% endif %}
 
 {% with %}
   {% set total_pages = total_pages %}
