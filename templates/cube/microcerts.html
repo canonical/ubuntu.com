@@ -6,6 +6,7 @@
 
 {% block content %}
 
+{% if user %}
 <section class="p-strip--suru is-dark is-deep">
   <div class="row u-equal-height">
     <div class="col-8">
@@ -67,4 +68,26 @@
     </table>
   </div>
 </section>
+{% else %}
+  <section>
+    <section class="p-strip">
+      <div class="u-fixed-width">
+        <h2>Microcertifications</h2>
+        <p>Sign in to see your microcertifications</p>
+        <p>
+          <a href="/login" class="p-button--neutral"
+            onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Authentication',
+              'eventLabel' : 'Sign in',
+              'eventValue' : undefined
+            });">
+            Sign in
+          </a>
+        </p>
+      </div>
+    </section>
+  </section>
+{% endif %}
 {% endblock content %}
