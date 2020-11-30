@@ -51,6 +51,12 @@ const closeModalButton = modal.querySelector(".js-close-modal");
 const cardErrorElement = document.getElementById("card-errors");
 const paymentErrorElement = document.getElementById("payment-errors");
 
+const forMyselfRadio = document.getElementById("buying_for_myself");
+const forOrganisationRadio = document.getElementById(
+  "buying_for_an_organisation"
+);
+const accountNameField = document.getElementById("account_name");
+
 // initialise Stripe
 const stripe = window.Stripe(window.stripePublishableKey);
 
@@ -243,6 +249,11 @@ function attachFormEvents() {
     checkVAT();
   });
 
+  accountNameField.disabled = true;
+
+  forMyselfRadio.addEventListener("change", handleNameFieldRadio);
+  forOrganisationRadio.addEventListener("change", handleNameFieldRadio);
+
   termsCheckbox.addEventListener("change", () => {
     if (termsCheckbox.checked) {
       processPaymentButton.disabled = false;
@@ -250,6 +261,15 @@ function attachFormEvents() {
       processPaymentButton.disabled = true;
     }
   });
+}
+
+function handleNameFieldRadio() {
+  if (forMyselfRadio.checked) {
+    accountNameField.value = "";
+    accountNameField.disabled = true;
+  } else {
+    accountNameField.disabled = false;
+  }
 }
 
 function attachModalButtonEvents() {
