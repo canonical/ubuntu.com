@@ -1052,7 +1052,7 @@ def build_tutorials_index(tutorials_docs):
         # API key should always be provided as an environment variable
         search_api_key = os.getenv("SEARCH_API_KEY")
 
-        if not search_api_key:
+        if query and not search_api_key:
             raise NoAPIKeyError("Unable to search: No API key provided")
 
         results = None
