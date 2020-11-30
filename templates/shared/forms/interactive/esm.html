@@ -1,0 +1,168 @@
+<div class="p-modal" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
+      <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Extended Security Maintenance (ESM)</h2>
+    </header>
+    <div class="js-pagination js-pagination--1">
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Where are you running Ubuntu 16.04 or Ubuntu 14.04?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="workstations">
+            <label for="workstations">Workstations</label>
+            <input type="checkbox" id="physical-servers">
+            <label for="physical-servers">Physical servers</label>
+            <input type="checkbox" id="virtual-machines">
+            <label for="virtual-machines">Virtual machines</label>
+            <input type="checkbox" id="public-cloud">
+            <label for="public-cloud">Public cloud</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="storage">
+            <label for="storage">Storage</label>
+            <input type="checkbox" id="kubernetes">
+            <label for="kubernetes">Kubernetes</label>
+            <input type="checkbox" id="openstack">
+            <label for="openstack">OpenStack</label>
+            <input type="checkbox" id="private-cloud">
+            <label for="private-cloud">Private cloud</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="development-and-ci/cd">
+            <label for="development-and-ci/cd">Development and CI/CD</label>
+            <input type="checkbox" id="production">
+            <label for="production">Production</label>
+            <input type="checkbox" id="mission-critical">
+            <label for="mission-critical">Mission-critical</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Tell us more about your estate:</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <span class="p-active-reveal">
+            <input type="checkbox" id="less-5-machines" class="p-active-reveal__switch">
+            <label for="less-5-machines" >&lt;5 machines</label>
+	          <p class="p-form-help-text p-active-reveal__item" style="margin-top: 0">For a small amount of machines, <a href="/advantage">Ubuntu ESM is available for free</a>.</p>
+            <input type="checkbox" id="less-50-machines">
+            <label for="less-50-machines">&lt;50 machines</label>
+            <input type="checkbox" id="less-than-500-machines">
+            <label for="less-than-500-machines">&lt;500 machines</label>
+            <input type="checkbox" id="more-than-500-machines">
+            <label for="more-than-500-machines">&gt;500 machines</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="desktops">
+            <label for="desktops">Desktops</label>
+            <input type="checkbox" id="containers">
+            <label for="containers">Containers</label>
+            <input type="checkbox" id="aws-only">
+            <label for="aws-only">AWS only</label>
+            <input type="checkbox" id="azure-only">
+            <label for="azure-only">Azure only</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="multiple-public-cloud">
+            <label for="multiple-public-cloud">Multiple public cloud</label>
+            <input type="checkbox" id="private-or-edge-cloud">
+            <label for="private-or-edge-cloud">Private or edge cloud</label>
+            <input type="checkbox" id="openstack">
+            <label for="openstack">OpenStack</label>
+            <input type="checkbox" id="ceph">
+            <label for="ceph">Ceph</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a class="p-button--positive pagination__link--next" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--2 u-hide">
+      <h3 class="p-heading--five">How should we get in touch?</h3>
+      <div class="row u-no-padding">
+        <div class="col-6">
+          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
+            <ul class="p-list">
+              <li class="mktFormReq mktField p-list__item">
+                <label for="FirstName" class="mktoLabel">First name:</label>
+                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="LastName" class="mktoLabel">Last name:</label>
+                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Email" class="mktoLabel">Work email:</label>
+                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Phone" class="mktoLabel ">Mobile number:</label>
+                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" required="required" />
+              </li>
+              <li class="mktField p-list__item">
+                <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+              </li>
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+              <li class="p-list__item">
+                <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
+              </li>
+            </ul>
+
+            <div class="u-hide">
+              <h3>Your comments</h3>
+              <ul class="p-list">
+                <li class="mktFormReq mktField p-list__item">
+                  <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
+                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField" maxlength="2000"></textarea>
+                </li>
+              </ul>
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
+              <input type="hidden" aria-hidden="true" name="formid" class="mktoField" value="%% formid %%" />
+              <input type="hidden" aria-hidden="true" name="lpId" class="mktoField" value="%% lpId %%" />
+              <input type="hidden" aria-hidden="true" name="subId" class="mktoField" value="30" />
+              <input type="hidden" aria-hidden="true" name="munchkinId" class="mktoField" value="066-EOV-335" />
+              <input type="hidden" aria-hidden="true" name="lpurl" class="mktoField" value="%% lpurl %%?cr={creative}&kw={keyword}" />
+              <input type="hidden" aria-hidden="true" name="cr" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" name="kw" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" name="q" class="mktoField" value="" />
+              <input type="hidden" aria-hidden="true" name="returnURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" name="retURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" name="Consent_to_Processing__c" value="yes" />
+              <input type="hidden" aria-hidden="true" name="productContext" id="product-context" value="{{ product }}" />
+              <input type="hidden" aria-hidden="true" name="utm_campaign" class="mktoField" id="utm_campaign" value="" />
+              <input type="hidden" aria-hidden="true" name="utm_medium" class="mktoField" id="utm_medium" value="" />
+              <input type="hidden" aria-hidden="true" name="utm_source" class="mktoField" id="utm_source" value="" />
+            </div>
+
+            <div class="pagination">
+              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+              <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--3 u-hide">
+      <div class="row u-no-padding">
+        <div class="u-equal-height">
+          <div class="col-7">
+            <h3 class="p-heading--two">Thank you for enquiring about Extended Security Maintenance</h3>
+            <p class="p-heading--four">A member of staff will get back to you within one working day.</p>
+          </div>
+          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+            <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200" loading="auto">
+          </div>
+        </div>
+      </div>
+      <a class="js-close p-button--neutral" href="">Close</a>
+    </div>
+  </div>
+</div>
