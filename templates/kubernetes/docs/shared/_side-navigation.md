@@ -63,5 +63,5 @@
   - [Upgrade notes](/kubernetes/docs/upgrade-notes)
   - [Supported versions](/kubernetes/docs/supported-versions)
   - [Snap refresh settings](/kubernetes/docs/snap-refresh)
-  - [Kubernetes Snaps](/kubernetes/docs/snaps)
+  - [Kubernetes Packages](/kubernetes/docs/packages)
   - [Get in touch](/kubernetes/docs/get-in-touch)
