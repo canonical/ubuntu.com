@@ -14,7 +14,8 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '726'
+charm_revision: '746'
+charm_name: canal
 bundle_release: '1.19'
 ---
 
@@ -123,6 +124,10 @@ require this support please file a bug.
 
 This subordinate also leverages juju-resources, so it is currently only
 available on juju 2.0+ controllers.
+
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
 
 
 ## Further information

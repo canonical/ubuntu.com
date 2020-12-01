@@ -14,7 +14,8 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '732'
+charm_revision: '755'
+charm_name: calico
 bundle_release: '1.19'
 ---
 
@@ -168,6 +169,10 @@ Example value: "{0: [{address: 10.0.0.1, as-number: 65000}, {address: 10.0.0.2, 
 
 
 <!-- CONFIG ENDS -->
+
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
 
 
 ## Further information

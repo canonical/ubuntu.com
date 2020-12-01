@@ -14,7 +14,8 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '50'
+charm_revision: '69'
+charm_name: aws-integrator
 bundle_release: '1.19'
 ---
 
@@ -207,12 +208,11 @@ EOY
 
 The following script starts the hello-world pod behind an AWS Elastic Load Balancer.
 
-```sh
-#!/bin/bash
-
-kubectl run hello-world --replicas=5 --labels="run=load-balancer-example" --image=gcr.io/google-samples/node-hello:1.0  --port=8080
-kubectl expose deployment hello-world --type=LoadBalancer --name=hello
-watch kubectl get svc -o wide --selector=run=load-balancer-example
+```bash
+kubectl create deployment hello-world --image=gcr.io/google-samples/node-hello:1.0
+kubectl scale deployment hello-world --replicas=5
+kubectl expose deployment hello-world --type=LoadBalancer --name=hello --port=8080
+watch kubectl get svc hello -o wide
 ```
 
 ## Configuration
