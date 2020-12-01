@@ -161,10 +161,22 @@ information see the [storage documentation][storage].
 The following commands start the 'hello-world' pod behind an Azure-backed
 load-balancer.
 
+Here are the commands for Kubernetes 1.18+ and above as the kubectl run command was deprecated: 
+
 ```bash
+# Kubernetes 1.18+
+kubectl create deployment hello-world --image=gcr.io/google-samples/node-hello:1.0  --port=8080
+kubectl expose deployment hello-world --type=LoadBalancer --name=hello
+watch kubectl get svc -o wide --selector=app=hello-world
+```
+
+Here are the commands for Kubernetes 1.17 and below where the kubectl run command can be used: 
+
+```bash
+# Kubernetes 1.17 and below
 kubectl run hello-world --replicas=5 --labels="run=load-balancer-example" --image=gcr.io/google-samples/node-hello:1.0  --port=8080
 kubectl expose deployment hello-world --type=LoadBalancer --name=hello
-watch kubectl get svc -o wide --selector=run=load-balancer-example
+watch kubectl get svc hello -o wide
 ```
 
 You can then verify this works by loading the described IP address (on port
