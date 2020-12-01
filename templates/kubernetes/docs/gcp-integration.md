@@ -213,31 +213,32 @@ with the GCP console to make sure all the associated resources have also been re
 With the gcp-integrator charm in place, actions which invoke a loadbalancer in
 Kubernetes  will automatically generate a GCP [Target Pool][target-pool] and the
 relevant forwarding rules.  This can be demonstrated with a simple application. Here we
-will create an application running in five pods:
+will create a simple application and scale it to five pods:
 
 ```bash
-kubectl run hello-world --replicas=5 --labels="run=load-balancer-example" --image=gcr.io/google-samples/node-hello:1.0  --port=8080
+kubectl create deployment hello-world --image=gcr.io/google-samples/node-hello:1.0
+kubectl scale deployment hello-world --replicas=5
 ```
 
 You can verify that the application and replicas have been created with:
 
 ```bash
- kubectl get deployments hello-world
- ```
+kubectl get deployments hello-world
+```
 
- Which should return output similar to:
+Which should return output similar to:
 
- ```bash
- NAME              READY   UP-TO-DATE   AVAILABLE   AGE
- hello-world      5/5               5                            5             2m38s
+```bash
+NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+hello-world      5/5               5                            5             2m38s
 ```
 
 To create a target pool load balancer, the application should now be exposed as
 a service:
 
 ```bash
- kubectl expose deployment hello-world --type=LoadBalancer --name=hello
- ```
+kubectl expose deployment hello-world --type=LoadBalancer --name=hello --port 8080
+```
 
 To check that the service is running correctly:
 
@@ -323,9 +324,9 @@ juju debug-log --replay --include gcp-integrator/0
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/gcp-integration.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/gcp-integration.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

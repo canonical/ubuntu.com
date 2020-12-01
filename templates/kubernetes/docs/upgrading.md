@@ -36,7 +36,7 @@ New minor versions of **Kubernetes** are set to release once per quarter. You ca
 <div class="p-notification--information">
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Note:</span>
-<strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.10.7 to 1.10.8. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.9.x to 1.10.x.
+<strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.19.1 to 1.19.2. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.18.x to 1.19.x.
   </p>
 </div>
 
@@ -73,6 +73,8 @@ This includes:
 - flannel, calico or other CNI
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
+
+
 
 <a id='upgrading-containerd'> </a>
 
@@ -182,6 +184,7 @@ juju scp etcd/40:/home/ubuntu/etcd-snapshots/etcd-snapshot-2020-11-18-21.37.11.t
 Substitute in your own etcd unit number and filename, or copy and paste the command from the previous
 output. Remember to add the ` .` at the end to copy to your local directory! 
 
+
 #### 3. Upgrade
 
 You can now upgrade **etcd**:
@@ -258,13 +261,13 @@ To start upgrading the Kubernetes master units, first upgrade the charm:
 juju upgrade-charm kubernetes-master
 ```
 
-Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.10 version of **Kubernetes**, you would enter:
+Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.19 version of **Kubernetes**, you would enter:
 
 ```bash
-juju config kubernetes-master channel=1.10/stable
+juju config kubernetes-master channel=1.18/stable
 ```
 
-If you wanted to try a release candidate for 1.12, the channel would be `1.12/candidate`.
+If you wanted to try a release candidate for 1.20, the channel would be `1.20/candidate`.
 
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
@@ -319,7 +322,7 @@ juju upgrade-charm kubernetes-worker
 Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the master units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.12/stable
+juju config kubernetes-worker channel=1.19/stable
 ```
 
 Now add additional units of the kubernetes-worker. You should add as many units as you are replacing. For example, to add three additional units:
@@ -470,7 +473,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-<p class="p-notification__response">
+  <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrading.md" class="p-notification__action">edit this page</a>
     or

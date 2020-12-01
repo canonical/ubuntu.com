@@ -20,6 +20,18 @@ access to public registries.
 See [https://docs.docker.com/registry/][upstream-registry] for
 details.
 
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+    Currently, when using a custom private registry, Charmed Kubernetes 
+    requires <strong>ALL</strong> the required images to be served from
+    that registry. The list of images used by Charmed Kubernetes itself
+    can be found in the 
+    <a href="https://github.com/charmed-kubernetes/bundle/blob/master/container-images.txt">bundle repository </a>.
+  </p>
+</div>
+
+
 ## Deploy
 
 The registry is deployed as a stand-alone application. Many deployment
