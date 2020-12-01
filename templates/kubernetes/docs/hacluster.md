@@ -29,8 +29,9 @@ are mutually exclusive.
 
 In order to use HAcluster, the first decision is if a load balancer is desired.
 This depends on the size of the cluster and the expected control plane load.
-Note that HAcluster requires a minimum of 3 units for a quorum, so you will
-need 3 kubeapi-load-balancer or 3 kubernetes-master units to use HAcluster.
+Note that it is recommended to run HAcluster on a minimum of 3 units for a 
+reliable quorum, so you will need 3 kubeapi-load-balancer or 3 kubernetes-master
+units to use HAcluster.
 
 ### With Load Balancer
 
