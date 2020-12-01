@@ -14,7 +14,8 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '43'
+charm_revision: '60'
+charm_name: aws-iam
 bundle_release: '1.19'
 ---
 

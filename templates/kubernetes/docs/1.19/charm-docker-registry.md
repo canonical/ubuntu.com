@@ -14,7 +14,8 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '155'
+charm_revision: '172'
+charm_name: docker-registry
 bundle_release: '1.19'
 ---
 

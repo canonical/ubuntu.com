@@ -15,6 +15,7 @@ layout:
     - ubuntu-com
 toc: false
 charm_revision: '28'
+charm_name: keepalived
 bundle_release: '1.19'
 ---
 
@@ -105,3 +106,7 @@ juju add-relation haproxy keepalived
 
 
 <!-- CONFIG ENDS -->
+
+<!-- ACTIONS STARTS -->
+
+<!-- ACTIONS ENDS -->
