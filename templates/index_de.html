@@ -1,9 +1,0 @@
-{% extends "base_index.html" %}
-
-{% block head_extra %}
-{% endblock %}
-
-{% block takeover_content %}
-  {% with nojs_fallback=True %}{% include "takeovers/de/_de-vmware-to-os.html" %}{% endwith %}
-  {% include "takeovers/_financial-services.html" %}
-{% endblock takeover_content %}
