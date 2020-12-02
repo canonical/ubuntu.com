@@ -202,46 +202,29 @@ to the `options` section of `vault` in the overlay above:
 
 ## Using Vault with HA
 
-**Vault** also supports HA mode by adding a second unit and a relation to Etcd.
-To deploy with this configuration, you can use the following overlay
-([download][vault-pki-ha-yaml]) instead with the instructions from above to
-deploy, init, and unseal Vault:
+To enable HA for **Vault**, you will need to first bring up the deployment with
+**Vault** in non-HA mode using the instructions above, waiting for everything
+to settle, and then transitioning **Vault** to HA mode. This is necessary
+because **Vault** requires **etcd** to be running to enter HA mode, but
+**etcd** requires PKI certificates to get up and running, leading to a
+chicken-and-egg conflict.
 
-```yaml
-applications:
-  easyrsa: null
-  vault:
-    charm: cs:vault
-    num_units: 2
-    options:
-      auto-generate-root-ca-cert: true
-  percona-cluster:
-    charm: cs:percona-cluster
-    num_units: 1
-relations:
-- - kubernetes-master:certificates
-  - vault:certificates
-- - etcd:certificates
-  - vault:certificates
-- - kubernetes-worker:certificates
-  - vault:certificates
-- - vault:shared-db
-  - percona-cluster:shared-db
-- - vault:etcd
-  - etcd:db
+Once the deployment is up and settled according to the instructions above,
+with **Vault** unsealed and everything functioning, you can then transition
+**Vault** to HA mode with the following commands:
+
+```bash
+juju add-relation vault:etcd etcd
+juju add-unit vault
 ```
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    You will only need to perform the `vault init` step once, but you will
-    need to unseal each unit individually.
-  </p>
-</div>
+Once the second unit of **Vault** is up, you will also need to unseal it
+using the same instructions above with any three of the five unseal keys
+and the root token you generated previously.
 
 
 <!-- LINKS -->
 [vault-pki-yaml]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/vault-pki-overlay.yaml
-[vault-pki-ha-yaml]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/vault-pki-ha-overlay.yaml
 [certs-doc]: /kubernetes/docs/certs-and-trust
 [encryption-doc]: /kubernetes/docs/encryption-at-rest
 [vault]: https://www.vaultproject.io

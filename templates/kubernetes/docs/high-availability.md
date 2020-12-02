@@ -47,6 +47,12 @@ Load balancing the masters is the next logical step:
 
 ![single load balancer image][img-single-load-balancer]
 
+NB: The kube-api-loadbalancer is used here as a generic example. If you are
+running **Charmed Kubernetes** on a cloud such as OpenStack, AWS etc, it is
+usually more efficient to run a load balancer native to that cloud. See the 
+relevant "Cloud Integration" section of the documentation for more details
+on your specific cloud.
+
 The workers now all use the load balancer to talk to the control plane. This
 will balance the load to the master units, but we have just moved the single
 point of failure to the load balancer. Floating a virtual IP address in front
