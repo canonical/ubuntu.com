@@ -22,15 +22,16 @@
       <div class="col-12">
         <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
 
-        <p>You are signed in as {{ user_info.fullname }} ({{ user_info.email }})</p>
-
-        <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
-          'event' : 'GAEvent',
-          'eventCategory' : 'Advantage',
-          'eventAction' : 'Authentication',
-          'eventLabel' : 'Sign out',
-          'eventValue' : undefined
-        });">Sign out</a>
+        <p>You are signed in as {{ user_info.fullname }} ({{ user_info.email }})
+          <span class="u-hide--large u-hide--medium"><br/></br/></span>
+          <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral is-inline is-dense u-no-margin--bottom" onclick="dataLayer.push({
+            'event' : 'GAEvent',
+            'eventCategory' : 'Advantage',
+            'eventAction' : 'Authentication',
+            'eventLabel' : 'Sign out',
+            'eventValue' : undefined
+          });">Sign out</a>
+        </p>
       </div>
     </div>
   </section>
