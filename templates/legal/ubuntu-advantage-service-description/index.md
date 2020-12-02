@@ -9,9 +9,8 @@ markdown_includes:
 
 # Ubuntu Advantage service description
 
-**Valid since 15 April 2020**
+**Valid since 2 December 2020**
 
-*Capitalised terms shall have meanings as defined in the [Definitions section](#uasd-definitions).*
 
 <h2 id="uasd-ua-infrastructure">Ubuntu Advantage for Infrastructure (UA-I)</h2>
 
@@ -96,14 +95,14 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     6. [Charms](#term-charms):
         1. Each Charm version is supported for one year from the release date.
         2. Canonical will not provide support for any Charms that have been modified from the supported version found in the page at [https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms)
-    7. Canonical will provide support for 48TB of raw storage per Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. If the number of these Nodes exceeds the number of compute Nodes in the covered OpenStack cluster, the supported Ceph and Swift storage will be limited to 48TB per compute Node in the cluster.
+    7. Canonical will provide support for 72TB of raw storage per Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. If the number of these Nodes exceeds the number of compute Nodes in the covered OpenStack cluster, the supported Ceph and Swift storage will be limited to 48TB per compute Node in the cluster.
     8. Ubuntu Advantage OpenStack includes a licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.
     9. OpenStack support excludes:
         1. Support for workloads other than those required to run an OpenStack deployment.
         2. Support for guest instances other than [Cloud Guests](#term-cloud-guests).
   2. Support for Kubernetes
-    1. Full Stack support requirements:
-        1. [Deployment](#term-deployment) of [Charmed Kubernetes](#term-cdk) in at least the minimum deployment configuration, or a kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS.
+    1. Full Kubernetes Cluster support requirements:
+        1. [Deployment](#term-deployment) of [Charmed Kubernetes](#term-cdk) in at least the minimum deployment configuration, or a kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS validated by Canonical.
         2. Highly-Available control plane either deployed using Charms in the Charmed Kubernetes reference architecture or in a similar fashion using kubeadm.
         3. Support must be purchased for all nodes in the supported Kubernetes cluster.
         4. Supported versions of Kubernetes include the current stable minor release and the two most recent minor releases in the stable release channel. Additional information can be found at: [https://ubuntu.com/kubernetes/docs/supported-versions](https://ubuntu.com/kubernetes/docs/supported-versions)
@@ -132,7 +131,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     3. Monitoring and logging system (restricted to read only access).
     4. Only Canonical will have login access to Environment Nodes.
   3. Environment size. The Managed Service will add or remove Nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the [Minimum Size Requirement](#term-min-size). All Environment Nodes must be covered under the service, so additional fees may apply.
-  4. Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer’s Environment remains on a supported version of Ubuntu and OpenStack and/or Kubernetes. In most cases, Canonical will upgrade only to LTS releases where applicable, or to a specific release as agreed with the customer.
+  4. Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer’s Environment remains on a supported LTS version of Ubuntu and OpenStack and/or Kubernetes.
   5. Project work. The Managed Service will provide planned upgrades and maintenance Monday to Friday during Canonical working days.
 4. Out of scope. The Managed Service does not provide:
   1. Relating to [Guest Instances](#term-guest-instance) or Container Instances:
@@ -220,7 +219,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 
 <h2 id="uasd-maas-support">MAAS Support</h2>
 
-1. Support eligibility. In order to be eligible for MAAS support, all Ubuntu nodes connected to a MAAS region controller need to be covered under Ubuntu Advantage for Infrastructure and all non-Ubuntu nodes need to be covered under MAAS.
+1. Support eligibility. In order to be eligible for MAAS support, all nodes connected to a MAAS region controller need to be covered under a MAAS support agreement or an Ubuntu Advantage for Infrastructure agreement (Standard or Advanced).
   1. UA-I includes support for MAAS.
   2. MAAS needs to be purchased for all nodes not covered under UA-I to remain eligible for MAAS support.
 2. Included support. MAAS provides:
@@ -295,7 +294,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 1. Service initiation
   1. Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal, and the online knowledge base.
   2. The customer, through their initial technical representative, may select their chosen technical representatives to interface with Canonical based on the number of systems under support as represented in the table below. These technical representatives will hold credentials to the support portal and will act as primary points of contact for support requests.<br /><br />
-  |Number of machines under Ubuntu Advantage support|Technical representatives|
+  |Number of nodes under Ubuntu Advantage support|Technical representatives|
   |----:|----:|
   |1-20|2|
   |21-50|3|
@@ -316,13 +315,14 @@ Add-Ons constitute additional support services available separately on a per-Nod
 3. Support severity levels
   1. Once a support request is opened, a Canonical Support Engineer will validate the case information and determine the severity level, working with the customer to assess the urgency of the case.
   2. Response times will be as set forth in the Service Description for the applicable service offering.
-  3. When setting the severity level, Canonical's Support Team will use the definitions as stated below:
+  3. When setting the severity level, Canonical's Support Team will use the definitions as stated below.
+  4. Canonical will work during the applicable Business Hours to provide the customer with a work-around or permanent solution.
   | | |
   |--|--|
   |**Severity Level 1**<br />Core functionality critical impact/<br />Service down|Canonical will use continuous effort according to the service level purchased, through appropriate support engineer(s) and/or development engineer(s), to provide a work-around or permanent solution. As soon as core functionality is available, the severity level will be lowered to the new appropriate severity level. Continuous effort support is dependent on the customer being available at all times to assist Canonical, otherwise Canonical may need to reduce the severity level and its ability to respond.
-  |**Severity Level 2**<br />Core functionality severely degraded|Canonical will provide concerted efforts during the applicable Business Hours to provide the customer with a work-around or permanent solution. As soon as core functionality is no longer severely degraded, the severity level will be lowered to level 3.|
-  |**Severity Level 3**<br />Standard support request|Canonical will use reasonable efforts during the applicable Business Hours to provide the customer with a work-around or permanent solution as soon as possible, balanced against higher severity level cases. If a work-around is provided, Canonical's support engineers will continue to work on developing a permanent resolution to the case.|
-  |**Severity Level 4**<br />Non-urgent request|Level 4 requests include cosmetic issues, informational requests, feature requests, and similar matters. Canonical does not provide a timeline or guarantee for inclusion of any feature requests. Canonical will review each level 4 case and determine whether it is a product enhancement to be considered for a future release, an issue to be fixed in the current release or an issue to be fixed in a future release. Canonical will review and respond to information requests with a reasonable level of effort during coverage hours. Canonical may close cases representing level 4 issues after responding if Canonical believes it is appropriate to do so.|
+  |**Severity Level 2**<br />Core functionality severely degraded|As soon as core functionality is no longer severely degraded, the severity level will be lowered to level 3.|
+  |**Severity Level 3**<br />Standard support request|As soon as possible, balanced against higher severity level cases. If a work-around is provided, Canonical's support engineers will continue to work on developing a permanent resolution to the case.|
+  |**Severity Level 4**<br />Non-urgent request, including cosmetic issues, informational requests, feature requests and similar matters. |Canonical will review each level 4 case and determine whether it is a product enhancement to be considered for a future release, an issue to be fixed in the current release or an issue to be fixed in a future release. Canonical will review and respond to information requests with a reasonable level of effort during coverage hours. Canonical may close cases representing level 4 issues after responding if Canonical believes it is appropriate to do so. Canonical does not provide a timeline or guarantee for inclusion of any feature requests.|
 4. Response times. Canonical will use reasonable efforts to respond to support requests made by the customer within the initial response times set forth below, based on the applicable service and severity level.
   1. Table of initial response times
 |                      | Standard                                 | Advanced |
