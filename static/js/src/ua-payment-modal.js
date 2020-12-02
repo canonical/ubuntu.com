@@ -4,6 +4,7 @@ import {
   ensurePurchaseAccount,
   getPurchase,
   getRenewal,
+  getCustormerInfo,
   postInvoiceID,
   postCustomerInfoToStripeAccount,
   postCustomerInfoForPurchasePreview,
@@ -94,9 +95,9 @@ const currentTransaction = {
 };
 
 let customerInfo = {
-  name: null,
   email: null,
-  country: null,
+  name: null,
+  accountName: null,
   address: null,
   tax: null,
 };
@@ -113,6 +114,8 @@ let progressTimer2;
 let progressTimer3;
 let progressTimer4;
 
+let isCustomerInfoSet = false;
+
 function attachCTAevents() {
   document.addEventListener("click", (e) => {
     const isRenewalCTA = e.target.classList.contains("js-ua-renewal-cta");
@@ -126,6 +129,10 @@ function attachCTAevents() {
       if (!currentTransaction.accountId) {
         currentTransaction.accountId = data.accountId;
       }
+    }
+
+    if (currentTransaction.accountId && !isCustomerInfoSet) {
+      fetchCustomerInfo(currentTransaction.accountId);
     }
 
     if (isRenewalCTA) {
@@ -173,14 +180,6 @@ function attachCTAevents() {
 }
 
 function attachCustomerInfoToStripeAccount(paymentMethod) {
-  const stripeAddressObject = {
-    line1: customerInfo.address,
-    country: customerInfo.country,
-    city: customerInfo.city,
-    state: customerInfo.state,
-    postal_code: customerInfo.postalCode,
-  };
-
   let stripeTaxObject = null;
 
   if (customerInfo.tax) {
@@ -193,7 +192,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
   postCustomerInfoToStripeAccount(
     paymentMethod.id,
     currentTransaction.accountId,
-    stripeAddressObject,
+    customerInfo.address,
     customerInfo.name,
     stripeTaxObject
   )
@@ -280,22 +279,7 @@ function attachModalButtonEvents() {
     e.preventDefault();
 
     if (changingPaymentMethod) {
-      changingPaymentMethod = false;
-      form.elements["email"].value = customerInfo.email;
-      form.elements["name"].value = customerInfo.name;
-      form.elements["account_name"].value = customerInfo.accountName;
-      form.elements["address"].value = customerInfo.address;
-      form.elements["city"].value = customerInfo.city;
-      form.elements["postal_code"].value = customerInfo.postalCode;
-      form.elements["Country"].value = customerInfo.country;
-      form.elements["tax"].value = customerInfo.tax;
-
-      if (customerInfo.country === "US") {
-        form.elements["us_state"].value = customerInfo.state;
-      } else if (customerInfo.country === "CA") {
-        form.elements["ca_province"] = customerInfo.state;
-      }
-
+      setFormElements();
       showPayMode();
     } else {
       closeModal("clicked cancel");
@@ -348,36 +332,22 @@ function applyTotals() {
 }
 
 function applyLoggedInPurchaseTotals() {
-  let formData = new FormData(form);
-  let country = formData.get("Country");
-  let addressObject = null;
-  let taxObject = null;
-  let purchasePreview = null;
+  const formData = new FormData(form);
+  const country = formData.get("Country");
+  const taxObject = formData.get("tax")
+    ? {
+        value: formData.get("tax"),
+        type: "eu_vat",
+      }
+    : null;
 
-  if (formData.get("tax")) {
-    taxObject = {
-      value: formData.get("tax"),
-      type: "eu_vat",
-    };
-  }
-
-  if (customerInfo.address) {
-    addressObject = {
-      line1: customerInfo.address,
-      country: customerInfo.country,
-      city: customerInfo.city,
-      state: customerInfo.state,
-      postal_code: customerInfo.postalCode,
-    };
-  } else {
-    addressObject = {
-      country: country,
-    };
-  }
+  const address = customerInfo.address
+    ? customerInfo.address
+    : { country: country };
 
   postCustomerInfoForPurchasePreview(
     currentTransaction.accountId,
-    addressObject,
+    address,
     taxObject
   )
     .then((data) => {
@@ -429,6 +399,43 @@ function applyGuestPurchaseTotals() {
   // we can't yet make a simulated purchase to
   // get back a VAT amount
   setOrderTotals(null, false, purchaseTotals, modal);
+}
+
+function fetchCustomerInfo(accountId) {
+  getCustormerInfo(accountId)
+    .then((res) => {
+      const { name, address } = res.customerInfo;
+      customerInfo = { ...customerInfo, name, address };
+      setFormElements();
+      isCustomerInfoSet = true;
+    })
+    .catch((e) => console.error(e));
+}
+
+function setFormElements() {
+  const { email, name, accountName, address, tax } = customerInfo;
+
+  if (email) form.elements["email"].value = email;
+
+  if (name) form.elements["name"].value = name;
+
+  if (accountName) form.elements["account_name"].value = accountName;
+
+  if (tax) form.elements["tax"].value = tax;
+
+  if (address) {
+    form.elements["Country"].value = address.country;
+    handleCountryInput();
+    checkVAT();
+    form.elements["address"].value = address.line1;
+    form.elements["city"].value = address.city;
+    form.elements["postal_code"].value = address.postal_code;
+    if (address.country === "US") {
+      form.elements["us_state"].value = address.state;
+    } else if (address.country === "CA") {
+      form.elements["ca_province"].value = address.state;
+    }
+  }
 }
 
 function clearProgressTimers() {
@@ -938,22 +945,22 @@ function sendGAEvent(label) {
 function setCustomerInfo() {
   let formData = new FormData(form);
 
-  customerInfo.address = formData.get("address");
-  customerInfo.email = formData.get("email");
-  customerInfo.country = formData.get("Country");
-  customerInfo.name = formData.get("name");
-  customerInfo.accountName = formData.get("account_name");
-  customerInfo.city = formData.get("city");
-  customerInfo.tax = formData.get("tax");
-  customerInfo.postalCode = formData.get("postal_code");
-
-  if (customerInfo.country === "US") {
-    customerInfo.state = formData.get("us_state");
-  } else if (customerInfo.country === "CA") {
-    customerInfo.state = formData.get("ca_province");
-  } else {
-    customerInfo.state = null;
-  }
+  customerInfo = {
+    email: formData.get("email"),
+    name: formData.get("name"),
+    accountName: formData.get("account_name"),
+    address: {
+      city: formData.get("city"),
+      country: formData.get("Country"),
+      line1: formData.get("address"),
+      postal_code: formData.get("postal_code"),
+      state:
+        formData.get("Country") === "US"
+          ? formData.get("us_state")
+          : formData.get("ca_province"),
+    },
+    tax: formData.get("tax"),
+  };
 }
 
 function setupCardElements() {

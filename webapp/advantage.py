@@ -66,6 +66,13 @@ class AdvantageContracts:
 
         return response.json()
 
+    def get_customer_info(self, account_id):
+        response = self._request(
+            method="get", path=f"v1/accounts/{account_id}/customer-info/stripe"
+        )
+
+        return response.json()
+
     def put_customer_info(
         self, account_id, payment_method_id, address, name, tax_id
     ):

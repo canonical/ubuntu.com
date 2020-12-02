@@ -36,6 +36,15 @@ export async function getRenewal(renewalID) {
   return data;
 }
 
+export async function getCustormerInfo(accountId) {
+  let response = await fetch(`/advantage/customer-info/${accountId}`, {
+    cache: "no-store",
+  });
+
+  let data = await response.json();
+  return data;
+}
+
 export async function postInvoiceID(transactionType, transactionID, invoiceID) {
   let response = await fetch(
     `/advantage/${transactionType}/${transactionID}/invoices/${invoiceID}`,
