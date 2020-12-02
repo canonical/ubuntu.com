@@ -400,7 +400,7 @@ def advantage_view():
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
     )
 
     if user_info(flask.session):
@@ -700,7 +700,7 @@ def post_renewal_preview(renewal_id):
 def advantage_shop_view():
     account = previous_purchase_id = None
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+        "STRIPE_PUBLISHABLE_KEY", "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46"
     )
     api_url = flask.current_app.config["CONTRACTS_API_URL"]
 
@@ -1017,6 +1017,19 @@ def get_renewal(renewal_id):
         )
 
         return advantage.get_renewal(renewal_id)
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
+def get_customer_info(account_id):
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+
+        return advantage.get_customer_info(account_id)
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 
