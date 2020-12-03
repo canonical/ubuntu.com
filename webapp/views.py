@@ -1244,7 +1244,7 @@ class BlogPressCentre(BlogView):
         return flask.render_template("blog/press-centre.html", **context)
 
 
-def sitemap_idex():
+def sitemap_index():
     xml_sitemap = flask.render_template("sitemap_index.xml")
     response = flask.make_response(xml_sitemap)
 
