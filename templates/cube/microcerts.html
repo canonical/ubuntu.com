@@ -1,26 +1,189 @@
-{% extends "cube/base_cube.html" %}
-
-{% block title %}Microcerts | CUBE{% endblock %}
-
-{% block meta_description %}This is the CUBE Microcerts page{% endblock meta_description %}
-
-{% block content %}
-
-{% if user %}
+{% extends "cube/base_cube.html" %} {% block title %}Microcerts | CUBE{%
+endblock %} {% block meta_description %}This is the CUBE Microcerts page{%
+endblock meta_description %} {% block content %} {% if user %}
 <section class="p-strip--suru is-dark is-deep">
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>Your progress to CUBEdom</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor.
+      </p>
     </div>
     <div class="col-4"></div>
   </div>
 </section>
 
-
 <section class="p-strip">
   <div class="u-fixed-width">
-    <h2>Microcertifications - {{user.name}}</h2>
+    <h2>Microcertifications</h2>
+    <table class="p-table--mobile-card">
+      <thead>
+        <tr>
+          <th style="width: 5%" colspan="1">#</th>
+          <th colspan="3" class="large-column">Module</th>
+          <th colspan="4">Topics</th>
+          <th colspan="1" style="padding-left: 1rem">Status</th>
+          <th colspan="2" class="u-align--right">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td aria-label="#">1.</td>
+          <td aria-label="Module" colspan="3" class="large-column">
+            <div class="p-heading-icon is-reset">
+              <div class="p-heading-icon__header">
+                <img
+                  class="p-heading-icon__img"
+                  src="https://assets.ubuntu.com/v1/75f71a36-placeholder-badge-orange.svg"
+                  alt=""
+                />
+                <h5 class="p-heading-icon__title">
+                  <strong>Ubuntu system architecture</strong>
+                </h5>
+              </div>
+              <div class="large-column">
+                <p class="p-muted-text u-no-padding--top">
+                  <small>8 topics</small>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td aria-label="Topics" colspan="4">
+            <div>
+              <p>Disable a faulty device</p>
+              <p>Disable specific hardware</p>
+              <p>Adjust Kernel module parameters</p>
+              <p>Record the Ubuntu version information</p>
+              <p>Determine and record specific CPU capabilities</p>
+              <p>Create a stsyem information Tarball</p>
+              <p>Create a system information JSON</p>
+              <p>Identify the running Kernel and associated files</p>
+            </div>
+          </td>
+          <td class="small-column" aria-label="Status">
+            <div class="is-reset">
+              {{ image(
+              url="https://assets.ubuntu.com/v1/8b3432c9-status-succeeded.svg",
+              alt="", width="15", height="15", hi_def=True, loading="auto", ) |
+              safe }}
+              <span>Passed</span>
+              <div class="small-column">
+                <p class="p-muted-text">
+                  <small>Yesterday</small>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td colspan="2" aria-label="Action"></td>
+        </tr>
+        <tr>
+          <td aria-label="#">2.</td>
+          <td aria-label="module" colspan="3" class="large-column">
+            <div class="p-heading-icon is-reset">
+              <div class="p-heading-icon__header">
+                <img
+                  class="p-heading-icon__img"
+                  src="https://assets.ubuntu.com/v1/e3dd001a-placeholder-badge-white.svg"
+                  alt=""
+                />
+                <h5 class="p-heading-icon__title">
+                  <strong>Managing packages in Ubuntu</strong>
+                </h5>
+              </div>
+              <div class="large-column">
+                <p class="p-muted-text u-no-padding--top">
+                  <small>10 topics</small>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td aria-label="Topics" colspan="4">
+            <div>
+              <p>Install a sepcific Snap</p>
+              <p>Configuring Snap updates</p>
+              <p>Determine Snap confirnement level</p>
+              <p>Identify package dependencies</p>
+              <p>Find and install a pervious package verison</p>
+              <p>Control package upgrades</p>
+              <p>Install from a PPA respository</p>
+              <p>Reconfigure an installed package</p>
+              <p>Change the Binary used for a Utility</p>
+              <p>Configure automatic updates</p>
+            </div>
+          </td>
+          <td aria-label="Status" class="u-no-padding--right">
+            <div>
+              <span>Failed once</span>
+              <p class="p-muted-text"><small>Yesterday</small></p>
+            </div>
+          </td>
+          <td
+            colspan="2"
+            aria-label="Action"
+            class="u-align--right u-no-padding--right"
+          >
+            <p>
+              <a class="p-button--neutral u-no-margin--right" href="#"
+                >Prepare</a
+              >
+              <a class="p-button--positive u-no-margin--left" href="#"
+                >Retest</a
+              >
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>3.</td>
+          <td colspan="3" class="large-column">
+            <div class="p-heading-icon is-reset">
+              <div class="p-heading-icon__header">
+                <img
+                  class="p-heading-icon__img"
+                  src="https://assets.ubuntu.com/v1/e3dd001a-placeholder-badge-white.svg"
+                  alt=""
+                />
+                <h5 class="p-heading-icon__title">
+                  <strong>Using Command Line Tools</strong>
+                </h5>
+              </div>
+              <div class="large-column">
+                <p class="p-muted-text u-no-padding--top">
+                  <small>7 topics</small>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td colspan="4">
+            <div>
+              <p>Install a sepcific Snap</p>
+              <p>Configuring Snap updates</p>
+              <p>Determine Snap confirnement level</p>
+              <p>Identify package dependencies</p>
+              <p>Find and install a pervious package verison</p>
+              <p>Control package upgrades</p>
+              <p>Install from a PPA respository</p>
+            </div>
+          </td>
+          <td class="u-no-padding--left u-no-padding--right">
+            <p>Never tried</p>
+            <p class="p-muted-text"><small>Yesterday</small></p>
+          </td>
+          <td
+            colspan="2"
+            aria-label="Action"
+            class="u-align--right u-no-padding--right"
+          >
+            <p>
+              <a class="p-button--neutral u-no-margin--right" href="#"
+                >Prepare</a
+              >
+              <a class="p-button--positive u-no-margin--left" href="#">Test</a>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
@@ -50,7 +213,7 @@
           </td>
           <td colspan="3" aria-label="Topics" class="u-align--center">
             {% for topic in module.topics%}
-              <p>{{ topic }}</p>
+            <p>{{ topic }}</p>
             {% endfor%}
           </td>
           <td colspan="2" aria-label="Status" class="u-align--center">
@@ -58,8 +221,12 @@
           </td>
           <td colspan="2" aria-label="Action" class="u-align--center">
             <p>
-              <a class="p-button--neutral" href={{module.trainingurl}}>Prepare</a>
-              <a class="p-button--positive" href={{module.testurl}}>{{ module.action }}</a>
+              <a class="p-button--neutral" href="{{module.trainingurl}}"
+                >Prepare</a
+              >
+              <a class="p-button--positive" href="{{module.testurl}}"
+                >{{ module.action }}</a
+              >
             </p>
           </td>
         </tr>
@@ -69,25 +236,27 @@
   </div>
 </section>
 {% else %}
-  <section>
-    <section class="p-strip">
-      <div class="u-fixed-width">
-        <h2>Microcertifications</h2>
-        <p>Sign in to see your microcertifications</p>
-        <p>
-          <a href="/login" class="p-button--neutral"
-            onclick="dataLayer.push({
+<section>
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <h2>Microcertifications</h2>
+      <p>Sign in to see your microcertifications</p>
+      <p>
+        <a
+          href="/login"
+          class="p-button--neutral"
+          onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',
               'eventAction' : 'Authentication',
               'eventLabel' : 'Sign in',
               'eventValue' : undefined
-            });">
-            Sign in
-          </a>
-        </p>
-      </div>
-    </section>
+            });"
+        >
+          Sign in
+        </a>
+      </p>
+    </div>
   </section>
-{% endif %}
-{% endblock content %}
+</section>
+{% endif %} {% endblock content %}

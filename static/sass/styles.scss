@@ -70,7 +70,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_table";
 @import "pattern_ubuntu_intro";
 @import "takeovers/financial-services";
-@import "utility-animations";
+@import "utility_animations";
 @import "utility_crop";
 @import "utility_vertically-center";
 
@@ -115,18 +115,14 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-engage-banner;
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-tabs;
+@include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
 @include p-takeover-financial-services;
-@include u-animations;
 
 // Layouts:
 @import "layout-legal-pages";
 
 @include layout-legal-pages;
-
-@import "layout-whitepapers";
-
-@include layout-whitepapers;
 
 @import "layout-tutorials";
 
@@ -135,6 +131,10 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "layout-tutorial";
 
 @include layout-tutorial;
+
+@import "layout-whitepapers";
+
+@include layout-whitepapers;
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
