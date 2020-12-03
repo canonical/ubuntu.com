@@ -1021,6 +1021,19 @@ def get_renewal(renewal_id):
         return flask.jsonify({"error": "authentication required"}), 401
 
 
+def get_customer_info(account_id):
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        )
+
+        return advantage.get_customer_info(account_id)
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
 def accept_renewal(renewal_id):
     if user_info(flask.session):
         advantage = AdvantageContracts(
