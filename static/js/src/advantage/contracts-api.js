@@ -36,7 +36,7 @@ export async function getRenewal(renewalID) {
   return data;
 }
 
-export async function getCustormerInfo(accountId) {
+export async function getCustomerInfo(accountId) {
   let response = await fetch(`/advantage/customer-info/${accountId}`, {
     cache: "no-store",
   });

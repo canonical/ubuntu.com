@@ -4,7 +4,7 @@ import {
   ensurePurchaseAccount,
   getPurchase,
   getRenewal,
-  getCustormerInfo,
+  getCustomerInfo,
   postInvoiceID,
   postCustomerInfoToStripeAccount,
   postCustomerInfoForPurchasePreview,
@@ -402,7 +402,7 @@ function applyGuestPurchaseTotals() {
 }
 
 function fetchCustomerInfo(accountId) {
-  getCustormerInfo(accountId)
+  getCustomerInfo(accountId)
     .then((res) => {
       const { name, address } = res.customerInfo;
       customerInfo = { ...customerInfo, name, address };
