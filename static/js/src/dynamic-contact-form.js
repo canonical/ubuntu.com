@@ -48,12 +48,22 @@
           setProductContext(contactButton);
           setUTMs();
           setGclid();
+          loadCaptchaScript();
           initialiseForm();
           window.CaptchaCallback();
         })
         .catch(function (error) {
           console.log("Request failed", error);
         });
+    }
+
+    // Load the google recaptcha noscript
+    function loadCaptchaScript() {
+      var head = document.head;
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = "https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit";
+      head.appendChild(script);
     }
 
     // Open the contact us modal
