@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
+<section class="p-strip--suru-topped is-bordered">
   <div class="row u-equal-height">
     <div class="col-8">
       <span class="u-sv3"><h1>Extended Security Maintenance</h1></span>
@@ -32,21 +32,55 @@
   </div>
 </section>
 
-<section class="p-strip--suru-accent is-dark">
-  <div class="row">
-    <div class="col-3 u-hide--small u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/e7043d2c-TIM_Logo_white.png",
-          alt="",
-          height="127",
-          width="300",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
+<div class="p-strip is-shallow">
+  <div class="u-fixed-width">
+    <div class="p-heading-icon--small">
+      <div class="p-heading-icon__header">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/d7e4ac90-shield-ESM.svg",
+            alt="",
+            height="225",
+            width="195",
+            hi_def=True,
+            loading="auto",
+            attrs={"class": "p-heading-icon__img"},
+          ) | safe
+        }}
+        <h4 class="p-heading-icon__title u-no-max-width u-no-margin--bottom">Extended Security Maintenance for Ubuntu 16.04 LTS will be available April 2021 until 2024. <a href="https://ubuntu.com/blog/ubuntu-16-04-lts-esm-migration-path">Learn more&nbsp;&rsaquo;</a></h4>
+      </div>
     </div>
-    <div class="col-8 col-start-large-5">
+  </div>
+</div>
+
+<section class="p-strip--suru-accent is-dark">
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
+              alt="",
+              height="32",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img"},
+            ) | safe
+          }}
+          <p class="p-muted-heading u-sv3" style="color: #fff; line-height: 1.5rem;">WEBINAR</p>
+        </div>
+        <h4>
+          Ubuntu 16.04 LTS moving to Extended Security Maintenance period
+        </h4>
+        <p>
+          Ubuntu 16.04 LTS Xenial Xerus transitions to the extended security maintenance (ESM) period April 2021. Register for our webinar to learn about the ESM period and six key considerations when assessing and planning your migration path.
+        </p>
+        <p><a href="/engage/16-04-ESM-webinar" class="p-button--neutral">Register for the webinar</a></p>
+      </div>
+    </div>
+    <div class="col-6 p-divider__block">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
           {{
