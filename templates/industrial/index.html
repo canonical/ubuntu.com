@@ -45,7 +45,6 @@
     <div class="row">
       <div class="col-12">
         <ul class="p-inline-images--small u-no-margin--bottom u-align--left">
-          <!-- TODO Find how to justify items space between -->
           <li class="p-inline-images__item">
               {{
                 image(
@@ -117,7 +116,7 @@
   <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
-  <div class="row p-divider">
+  <div class="row">
     <div class="col-4">
       <div class="p-heading-icon--muted">
         <div class="p-heading-icon__header">
@@ -399,7 +398,7 @@
             ) | safe
           }}
         </li>
-        <li class="p-inline-images__item u-no-margin">
+        <li class="p-inline-images__item u-no-margin--left">
           {{
             image(
               url="https://assets.ubuntu.com/v1/1ac0e434-Nvidia_Logo_Horizontal.svg",
@@ -652,9 +651,8 @@
       }}
     </div>
   </div>
-  <!-- TODO find white separator -->
   <div class="u-fixed-width">
-    <hr class="p-separator" />
+    <hr class="p-separator" style="background-color: #fff3"/>
   </div>
 
     <div class="row u-equal-height">
@@ -665,7 +663,6 @@
         <cite class="p-pull-quote__citation">John Healey<br/>VP in the Internet of Things Group and GM of Platform Management and Customer Engineering.</cite>
       </blockquote>
     </div>
-    <!-- TODO fix those images -->
     <div class="col-4 u-vertically-center u-align--center u-hide--small p-card" >
       {{
         image(
@@ -690,9 +687,70 @@
   </div>
 </section>
 
-<!-- TODO Ready for next steps -->
-<!-- TODO Contact form -->
+<section class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <h2>Ready for the next steps?</h2>
+    </div>
+  </div>
+  <div class="p-strip">
+    <div class="row p-divider">
+      <div class="col-4 p-divider__block">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/f22f6ded-get-in-touch_chat.svg",
+            alt="",
+            height="50",
+            width="50",
+            hi_def=True,
+          ) | safe
+        }}
+        <p class="p-heading--four"><a href="">Get an immediate answer to your questions&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-4 p-divider__block">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/e9d3cf66-We+support+your+operations.svg",
+            alt="",
+            height="50",
+            width="50",
+            hi_def=True,
+          ) | safe
+        }}
+        <p class="p-heading--four"><a href="">Tell us what you have in mind&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-4 p-divider__block">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
+            alt="",
+            height="50",
+            width="70",
+            hi_def=True,
+          ) | safe
+        }}
+        <p class="p-heading--four"><a href="">Schedule a call with our industry 4.0 experts&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
 
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>Tell us your story</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <p>The Ubuntu platform enables industry 4.0 digital transformation. We would love to be part of your success.</p>
+        <p>Get in touch!</p>
+      </div>
+      <div class="col-6">
+        {% include "industrial/form.html" %}
+      </div>
+    </div>
+</section>
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/embedded" data-form-id="1266" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=iot" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
