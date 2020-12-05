@@ -393,7 +393,7 @@ server_docs = Docs(
         index_topic_id=11322,
         url_prefix=url_prefix,
     ),
-    document_template="/docs/document.html",
+    document_template="/templates/docs/discourse.html",
     url_prefix=url_prefix,
 )
 server_docs.init_app(app)
@@ -430,7 +430,7 @@ ceph_docs = Docs(
     parser=DocParser(
         api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
     ),
-    document_template="/ceph/document.html",
+    document_template="/templates/docs/discourse.html",
     url_prefix="/ceph/docs",
     blueprint_name="ceph",
 )

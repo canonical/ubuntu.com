@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -161,7 +161,7 @@ information see the [storage documentation][storage].
 The following commands start the 'hello-world' pod behind an Azure-backed
 load-balancer.
 
-Here are the commands for Kubernetes 1.18+ and above as the kubectl run command was deprecated: 
+Here are the commands for Kubernetes 1.18+ and above as the kubectl run command was deprecated:
 
 ```bash
 # Kubernetes 1.18+
@@ -170,7 +170,7 @@ kubectl expose deployment hello-world --type=LoadBalancer --name=hello
 watch kubectl get svc -o wide --selector=app=hello-world
 ```
 
-Here are the commands for Kubernetes 1.17 and below where the kubectl run command can be used: 
+Here are the commands for Kubernetes 1.17 and below where the kubectl run command can be used:
 
 ```bash
 # Kubernetes 1.17 and below

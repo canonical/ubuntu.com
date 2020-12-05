@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -23,10 +23,10 @@ details.
 <div class="p-notification--information">
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Note:</span>
-    Currently, when using a custom private registry, Charmed Kubernetes 
+    Currently, when using a custom private registry, Charmed Kubernetes
     requires <strong>ALL</strong> the required images to be served from
     that registry. The list of images used by Charmed Kubernetes itself
-    can be found in the 
+    can be found in the
     <a href="https://github.com/charmed-kubernetes/bundle/blob/master/container-images.txt">bundle repository </a>.
   </p>
 </div>
@@ -190,9 +190,9 @@ juju config kubernetes-master image-registry=$REGISTRY
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/docker-registry.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/docker-registry.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

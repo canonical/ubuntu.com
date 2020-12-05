@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -18,15 +18,15 @@ Google, Microsoft, and many other institutions run Kubernetes on Ubuntu because 
 
 <div class="p-strip is-shallow">
   <div class="row p-divider">
-    <div class="col-4 p-divider__block">
+    <div class="col-3 p-divider__block">
       <h3>Get started</h3>
       <p><a href="/kubernetes/docs/quickstart">Install Charmed Kubernetes&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 p-divider__block">
+    <div class="col-3 p-divider__block">
       <h3>What's new</h3>
       <p><a href="/kubernetes/docs/release-notes">Version 1.19 released&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 p-divider__block">
+    <div class="col-3 p-divider__block">
       <h3>Tutorials</h3>
       <p><a class="p-link--external" href="/tutorials/get-started-kubeflow#0">Get started with Kubeflow</a></p>
     </div>

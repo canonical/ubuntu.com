@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -49,7 +49,7 @@ Load balancing the masters is the next logical step:
 
 NB: The kube-api-loadbalancer is used here as a generic example. If you are
 running **Charmed Kubernetes** on a cloud such as OpenStack, AWS etc, it is
-usually more efficient to run a load balancer native to that cloud. See the 
+usually more efficient to run a load balancer native to that cloud. See the
 relevant "Cloud Integration" section of the documentation for more details
 on your specific cloud.
 
@@ -122,9 +122,9 @@ software to enable HA
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/high-availability.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/high-availability.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

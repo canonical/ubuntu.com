@@ -15,7 +15,7 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: kubernetes/docs/base_docs.html
+wrapper_template: "templates/docs/markdown.html"
 ---
 
 Canal is a community-driven initiative that aims to allow users to easily

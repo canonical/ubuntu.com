@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -24,12 +24,12 @@ Model                         Controller          Cloud/Region   Version  SLA   
 charmed-kubernetes            aws-91c             aws/eu-west-1  2.4.5    unsupported  08:38:09+01:00
 
 App                    Version  Status  Scale  Charm                  Store       Rev  OS      Notes
-aws-integrator         1.15.71  active      1  aws-integrator         jujucharms    5  ubuntu  
-easyrsa                3.0.1    active      1  easyrsa                jujucharms  117  ubuntu  
-etcd                   3.2.10   active      3  etcd                   jujucharms  209  ubuntu  
-flannel                0.10.0   active      5  flannel                jujucharms  146  ubuntu  
+aws-integrator         1.15.71  active      1  aws-integrator         jujucharms    5  ubuntu
+easyrsa                3.0.1    active      1  easyrsa                jujucharms  117  ubuntu
+etcd                   3.2.10   active      3  etcd                   jujucharms  209  ubuntu
+flannel                0.10.0   active      5  flannel                jujucharms  146  ubuntu
 kubeapi-load-balancer  1.14.0   active      1  kubeapi-load-balancer  jujucharms  162  ubuntu  exposed
-kubernetes-master      1.12.1   active      2  kubernetes-master      jujucharms  219  ubuntu  
+kubernetes-master      1.12.1   active      2  kubernetes-master      jujucharms  219  ubuntu
 kubernetes-worker      1.12.1   active      3  kubernetes-worker      jujucharms  239  ubuntu  exposed
 
 Unit                      Workload  Agent  Machine  Public address  Ports           Message
@@ -51,7 +51,7 @@ kubernetes-worker/2       active    idle   10       34.253.203.147  80/tcp,443/t
   flannel/2               active    idle            34.253.203.147                  Flannel subnet 10.1.95.1/24
 
 Entity  Meter status  Message
-model   amber         user verification pending  
+model   amber         user verification pending
 
 Machine  State    DNS             Inst id              Series  AZ          Message
 0        started  54.171.121.229  i-0f47fcfb452fa8fab  bionic  eu-west-1a  running
@@ -164,8 +164,8 @@ This is caused by the API load balancer not forwarding ports in the context of t
     charmed-kubernetes            aws-91c  aws/eu-west-1  2.4.5    unsupported  08:39:23+01:00
 
     App                Version  Status  Scale  Charm              Store       Rev  OS      Notes
-    flannel            0.10.0   active      2  flannel            jujucharms  146  ubuntu  
-    kubernetes-master  1.12.1   active      2  kubernetes-master  jujucharms  219  ubuntu  
+    flannel            0.10.0   active      2  flannel            jujucharms  146  ubuntu
+    kubernetes-master  1.12.1   active      2  kubernetes-master  jujucharms  219  ubuntu
 
     Unit                  Workload  Agent  Machine  Public address  Ports     Message
     kubernetes-master/0*  active    idle   6        34.254.175.71   6443/tcp  Kubernetes master running.
@@ -174,7 +174,7 @@ This is caused by the API load balancer not forwarding ports in the context of t
       flannel/3           active    idle            52.210.61.51              Flannel subnet 10.1.38.1/24
 
     Entity  Meter status  Message
-    model   amber         user verification pending  
+    model   amber         user verification pending
 
     Machine  State    DNS            Inst id              Series  AZ          Message
     6        started  34.254.175.71  i-0f18d3f7377ba406f  bionic  eu-west-1a  running
