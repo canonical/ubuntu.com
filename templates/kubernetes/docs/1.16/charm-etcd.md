@@ -1,5 +1,5 @@
 ---
-wrapper_template: kubernetes/docs/base_docs.html
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
@@ -325,7 +325,7 @@ individually. Best practice would be to migrate an individual unit at a time
 to ensure the cluster upgrades completely.
 
 ```
-juju run-action etcd/0 snap-upgrade  
+juju run-action etcd/0 snap-upgrade
 # Repeat this command for other etcd units in your cluster.
 ```
 

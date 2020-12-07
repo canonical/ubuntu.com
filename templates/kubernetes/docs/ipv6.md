@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -20,19 +20,19 @@ Calico is the only CNI which supports IPv6 at this time.
 
 As of Kubernetes 1.19, support for IPv6 is in beta and [dual-stack][](running clusters
 with both IPv4 and IPv6) is in alpha.
-Charmed Kubernetes supports both these features, though it is important to be 
-familiar with the [known issues](#known-issues) described below. 
+Charmed Kubernetes supports both these features, though it is important to be
+familiar with the [known issues](#known-issues) described below.
 
 <a id='enabling'> </a>
 ## Enabling IPv6 and dual-stack in Charmed Kubernetes
 
-These features can be used simply by changing the configuration for Calico and the 
+These features can be used simply by changing the configuration for Calico and the
 Kubernetes master to include the relevant CIDRs.
 
 For Calico, the `cidr` configuration can contain two comma-separated values, with the
 first CIDR in the list being the preferred family for pods.
 
-For the Kubernetes master, the `service-cidr` configuration can contain two 
+For the Kubernetes master, the `service-cidr` configuration can contain two
 comma-separated values, with the first being the default family for services.
 
 Note that Kubernetes supports [explicitly setting the `IPFamily`][ip-family] for a
