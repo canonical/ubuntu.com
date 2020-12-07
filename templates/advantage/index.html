@@ -394,7 +394,7 @@
         <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
         <p>Sign in to access your personal or paid subscriptions.</p>
         <p>
-          <a href="/login" class="p-button--neutral"
+          <a href="{% if is_staging %}/login?ua_staging=true{% else %}/login{% endif %}" class="p-button--neutral"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',

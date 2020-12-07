@@ -100,8 +100,11 @@ app = FlaskBase(
 )
 
 # Settings
-app.config["CONTRACTS_API_URL"] = os.getenv(
-    "CONTRACTS_API_URL", "https://contracts.canonical.com"
+app.config["CONTRACTS_LIVE_API_URL"] = os.getenv(
+    "CONTRACTS_LIVE_API_URL", "https://contracts.canonical.com"
+).rstrip("/")
+app.config["CONTRACTS_TEST_API_URL"] = os.getenv(
+    "CONTRACTS_TEST_API_URL", "https://contracts.staging.canonical.com"
 ).rstrip("/")
 app.config["CANONICAL_LOGIN_URL"] = os.getenv(
     "CANONICAL_LOGIN_URL", "https://login.ubuntu.com"

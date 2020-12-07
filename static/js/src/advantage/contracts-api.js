@@ -1,14 +1,21 @@
 export async function getPurchase(purchaseID) {
-  let response = await fetch(`/advantage/purchases/${purchaseID}`, {
-    cache: "no-store",
-  });
+  const queryString = window && window.location ? window.location.search : "";
+
+  let response = await fetch(
+    `/advantage/purchases/${purchaseID}${queryString}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   let data = await response.json();
   return data;
 }
 
 export async function ensurePurchaseAccount(email, name, paymentMethodID) {
-  let response = await fetch(`/advantage/purchase-account`, {
+  const queryString = window && window.location ? window.location.search : "";
+
+  let response = await fetch(`/advantage/purchase-account${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -28,7 +35,9 @@ export async function ensurePurchaseAccount(email, name, paymentMethodID) {
 }
 
 export async function getRenewal(renewalID) {
-  let response = await fetch(`/advantage/renewals/${renewalID}`, {
+  const queryString = window && window.location ? window.location.search : "";
+
+  let response = await fetch(`/advantage/renewals/${renewalID}${queryString}`, {
     cache: "no-store",
   });
 
@@ -37,17 +46,24 @@ export async function getRenewal(renewalID) {
 }
 
 export async function getCustomerInfo(accountId) {
-  let response = await fetch(`/advantage/customer-info/${accountId}`, {
-    cache: "no-store",
-  });
+  const queryString = window && window.location ? window.location.search : "";
+
+  let response = await fetch(
+    `/advantage/customer-info/${accountId}${queryString}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   let data = await response.json();
   return data;
 }
 
 export async function postInvoiceID(transactionType, transactionID, invoiceID) {
+  const queryString = window && window.location ? window.location.search : "";
+
   let response = await fetch(
-    `/advantage/${transactionType}/${transactionID}/invoices/${invoiceID}`,
+    `/advantage/${transactionType}/${transactionID}/invoices/${invoiceID}${queryString}`,
     {
       cache: "no-store",
       credentials: "include",
@@ -60,8 +76,10 @@ export async function postInvoiceID(transactionType, transactionID, invoiceID) {
 }
 
 export async function postRenewalIDToProcessPayment(renewalID) {
+  const queryString = window && window.location ? window.location.search : "";
+
   let response = await fetch(
-    `/advantage/renewals/${renewalID}/process-payment`,
+    `/advantage/renewals/${renewalID}/process-payment${queryString}`,
     {
       cache: "no-store",
       credentials: "include",
@@ -78,7 +96,9 @@ export async function postPurchaseData(
   products,
   previousPurchaseId
 ) {
-  let response = await fetch(`/advantage/subscribe`, {
+  const queryString = window && window.location ? window.location.search : "";
+
+  let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -98,15 +118,20 @@ export async function postPurchaseData(
 }
 
 export async function postRenewalPreviewData(renewalID) {
-  let response = await fetch(`/advantage/renewals/${renewalID}/preview`, {
-    method: "POST",
-    cache: "no-store",
-    credentials: "include",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
+  const queryString = window && window.location ? window.location.search : "";
+
+  let response = await fetch(
+    `/advantage/renewals/${renewalID}/preview${queryString}`,
+    {
+      method: "POST",
+      cache: "no-store",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   let data = await response.json();
   return data;
@@ -117,7 +142,9 @@ export async function postPurchasePreviewData(
   products,
   previousPurchaseId
 ) {
-  let response = await fetch(`/advantage/subscribe/preview`, {
+  const queryString = window && window.location ? window.location.search : "";
+
+  let response = await fetch(`/advantage/subscribe/preview${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -143,7 +170,9 @@ export async function postCustomerInfoToStripeAccount(
   name,
   taxID
 ) {
-  let response = await fetch("/advantage/customer-info", {
+  const queryString = window && window.location ? window.location.search : "";
+
+  let response = await fetch(`/advantage/customer-info${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -169,7 +198,9 @@ export async function postCustomerInfoForPurchasePreview(
   address,
   taxID
 ) {
-  let response = await fetch("/advantage/customer-info-anon", {
+  const queryString = window && window.location ? window.location.search : "";
+
+  let response = await fetch(`/advantage/customer-info-anon${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
