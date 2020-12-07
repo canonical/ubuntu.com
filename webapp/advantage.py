@@ -180,7 +180,7 @@ class AdvantageContracts:
     def ensure_purchase_account(
         self,
         email: str = "",
-        name: str = "",
+        account_name: str = "",
         payment_method_id: str = "",
     ) -> dict:
         try:
@@ -189,7 +189,7 @@ class AdvantageContracts:
                 path="v1/purchase-account",
                 json={
                     "email": email,
-                    "name": name,
+                    "name": account_name,
                     "defaultPaymentMethod": {"Id": payment_method_id},
                 },
             )
