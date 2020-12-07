@@ -14,6 +14,7 @@
   @include ubuntu-p-strip-suru-square-darksuru;
   @include ubuntu-p-strip-suru-square-lightsuru;
   @include ubuntu-p-strip-suru-square-suru;
+  @include ubuntu-p-strip-suru-cube;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -957,6 +958,19 @@
       background-position: top right, top left, left top;
       background-repeat: no-repeat;
       background-size: 86% 105%, 67% 152%, 100% 99.8%;
+    }
+  }
+}
+
+@mixin ubuntu-p-strip-suru-cube {
+  [class*="p-strip"].has-cube {
+    &::after {
+      background: url("https://assets.ubuntu.com/v1/ea4d2cfd-CUBE-pattern.svg");
+      content: "";
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
     }
   }
 }
