@@ -86,11 +86,11 @@
             </div>
             <div class="p-form__group row u-no-padding u-vertically-center">
               <div class="col-3">
-                <label class="u-no-padding--top" for="account_name">{% if account %}Account name{% else %}Choose account name{% endif %}:</label>
+                <label class="u-no-padding--top u-text--muted" for="account_name" id="account_name_label">{% if account %}Account name{% else %}Choose account name{% endif %}:</label>
               </div>
 
               <div class="col-9">
-                <input name="account_name" id="account_name" type="text" value="{{ account.name }}" {% if account %}disabled{% endif %} />
+                <input name="account_name" id="account_name" type="text" value="{{ account.name }}" disabled />
               </div>
 
               <div class="col-9 col-start-large-4">

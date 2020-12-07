@@ -56,6 +56,7 @@ const forOrganisationRadio = document.getElementById(
   "buying_for_an_organisation"
 );
 const accountNameField = document.getElementById("account_name");
+const accountNameLabel = document.getElementById("account_name_label");
 
 // initialise Stripe
 const stripe = window.Stripe(window.stripePublishableKey);
@@ -249,8 +250,6 @@ function attachFormEvents() {
     checkVAT();
   });
 
-  accountNameField.disabled = true;
-
   forMyselfRadio.addEventListener("change", handleNameFieldRadio);
   forOrganisationRadio.addEventListener("change", handleNameFieldRadio);
 
@@ -267,8 +266,10 @@ function handleNameFieldRadio() {
   if (forMyselfRadio.checked) {
     accountNameField.value = "";
     accountNameField.disabled = true;
+    accountNameLabel.classList.add("u-text--muted");
   } else {
     accountNameField.disabled = false;
+    accountNameLabel.classList.remove("u-text--muted");
   }
 }
 
