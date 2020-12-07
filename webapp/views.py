@@ -1387,31 +1387,74 @@ def cube_microcerts():
             "user": {"name": user["fullname"]},
             "modules": [
                 {
-                    "badge": "badge1",
-                    "name": "module1",
-                    "topics": ["topic1", "topic2", "topic7", "topic8"],
-                    "test_url": "http://module1.url",
-                    "training_url": "http://module3.url",
-                    "status": "open",
-                    "action": "Test",
+                    "badge": (
+                        "https://assets.ubuntu.com/v1/"
+                        "75f71a36-placeholder-badge-orange.svg"
+                    ),
+                    "name": "Ubuntu system architecture",
+                    "number": "1",
+                    "topics": [
+                        "Disable a faulty device",
+                        "Disable specific hardware",
+                        "Adjust Kernel module parameters",
+                        "Record the Ubuntu version information",
+                        "Determine and record specific CPU capabilities",
+                        "Create a system information Tarball",
+                        "Create a system information JSON",
+                        "Identify the running Kernel and associated files",
+                    ],
+                    "test_url": "",
+                    "training_url": "",
+                    "status": "Passed",
+                    "action": "",
+                    "date_attempted": "20-12-07",
                 },
                 {
-                    "badge": "badge2",
-                    "name": "module2",
-                    "topics": ["topic3", "topic4"],
+                    "badge": (
+                        "https://assets.ubuntu.com/v1/"
+                        "e3dd001a-placeholder-badge-white.svg"
+                    ),
+                    "name": "Managing packages in Ubuntu",
+                    "number": "2",
+                    "topics": [
+                        "Install a sepcific Snap",
+                        "Configuring Snap updates",
+                        "Determine Snap confirnement level",
+                        "Identify package dependencies",
+                        "Find and install a pervious package verison",
+                        "Control package upgrades",
+                        "Install from a PPA respository",
+                        "Reconfigure an installed package",
+                        "Change the Binary used for a Utility",
+                        "Configure automatic updates",
+                    ],
                     "test_url": "http://module2.url",
                     "training_url": "http://module3.url",
-                    "status": "Failed once",
+                    "status": "Failed",
                     "action": "Retest",
+                    "date_attempted": "20-12-07",
                 },
                 {
-                    "badge": "badge3",
-                    "name": "module3",
-                    "topics": ["topic5", "topic6", "topic9"],
+                    "badge": (
+                        "https://assets.ubuntu.com/v1/"
+                        "e3dd001a-placeholder-badge-white.svg"
+                    ),
+                    "name": "Using Command Line Tools",
+                    "number": "3",
+                    "topics": [
+                        "Install a sepcific Snap",
+                        "Configuring Snap updates",
+                        "Determine Snap confirnement level",
+                        "Identify package dependencies",
+                        "Find and install a pervious package verison",
+                        "Control package upgrades",
+                        "Install from a PPA respository",
+                    ],
                     "test_url": "http://module3.url",
                     "training_url": "http://module3.url",
-                    "status": "Passed",
+                    "status": "Never tried",
                     "action": "Test",
+                    "date_attempted": "",
                 },
             ],
         }
