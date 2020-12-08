@@ -29,6 +29,7 @@ from canonicalwebteam.search.views import NoAPIKeyError
 from webapp.login import empty_session, user_info
 from webapp.advantage import AdvantageContracts, UnauthorizedError
 from webapp.decorators import store_maintenance
+from webapp.api.cube import CubeAPI
 
 
 ip_reader = geolite2.reader()
@@ -1389,84 +1390,42 @@ def sitemap_index():
     return response
 # Cube
 # ===
+cube_api = CubeAPI(
+    "https://qa.cube.ubuntu.com",
+    os.getenv("CUBE_EDX_CLIENT_ID"),
+    os.getenv("CUBE_EDX_CLIENT_SECRET"),
+    talisker.requests.get_session(),
+)
+
+
 def cube_microcerts():
     user = user_info(flask.session)
 
     if user:
+        courses = cube_api.get_courses(organization="ubuntu")["results"]
+
+        modules = []
+        for course in courses:
+            course_uri = (
+                f"https://qa.cube.ubuntu.com/courses/{course['id']}/course"
+            )
+            modules.append(
+                {
+                    "number": 1,
+                    "badge": "Badge",
+                    "name": course["name"],
+                    "topics": [],
+                    "test_url": course_uri,
+                    "training_url": course_uri,
+                    "status": "Hardcoded",
+                    "action": "Test",
+                    "date_attempted": "20-12-07",
+                }
+            )
+
         data = {
             "user": {"name": user["fullname"]},
-            "modules": [
-                {
-                    "badge": (
-                        "https://assets.ubuntu.com/v1/"
-                        "75f71a36-placeholder-badge-orange.svg"
-                    ),
-                    "name": "Ubuntu system architecture",
-                    "number": "1",
-                    "topics": [
-                        "Disable a faulty device",
-                        "Disable specific hardware",
-                        "Adjust Kernel module parameters",
-                        "Record the Ubuntu version information",
-                        "Determine and record specific CPU capabilities",
-                        "Create a system information Tarball",
-                        "Create a system information JSON",
-                        "Identify the running Kernel and associated files",
-                    ],
-                    "test_url": "",
-                    "training_url": "",
-                    "status": "Passed",
-                    "action": "",
-                    "date_attempted": "20-12-07",
-                },
-                {
-                    "badge": (
-                        "https://assets.ubuntu.com/v1/"
-                        "e3dd001a-placeholder-badge-white.svg"
-                    ),
-                    "name": "Managing packages in Ubuntu",
-                    "number": "2",
-                    "topics": [
-                        "Install a sepcific Snap",
-                        "Configuring Snap updates",
-                        "Determine Snap confirnement level",
-                        "Identify package dependencies",
-                        "Find and install a pervious package verison",
-                        "Control package upgrades",
-                        "Install from a PPA respository",
-                        "Reconfigure an installed package",
-                        "Change the Binary used for a Utility",
-                        "Configure automatic updates",
-                    ],
-                    "test_url": "http://module2.url",
-                    "training_url": "http://module3.url",
-                    "status": "Failed",
-                    "action": "Retest",
-                    "date_attempted": "20-12-07",
-                },
-                {
-                    "badge": (
-                        "https://assets.ubuntu.com/v1/"
-                        "e3dd001a-placeholder-badge-white.svg"
-                    ),
-                    "name": "Using Command Line Tools",
-                    "number": "3",
-                    "topics": [
-                        "Install a sepcific Snap",
-                        "Configuring Snap updates",
-                        "Determine Snap confirnement level",
-                        "Identify package dependencies",
-                        "Find and install a pervious package verison",
-                        "Control package upgrades",
-                        "Install from a PPA respository",
-                    ],
-                    "test_url": "http://module3.url",
-                    "training_url": "http://module3.url",
-                    "status": "Never tried",
-                    "action": "Test",
-                    "date_attempted": "",
-                },
-            ],
+            "modules": modules,
         }
 
         response = flask.make_response(
