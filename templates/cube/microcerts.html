@@ -23,95 +23,67 @@
 <section class="p-strip">
   <div class="u-fixed-width">
     <h2>Microcertifications</h2>
-    <table class="p-table--mobile-card">
+    <table class="p-table--cube p-table--mobile-card">
       <thead>
         <tr>
-          <th style="width: 5%" colspan="1">#</th>
-          <th colspan="3" class="large-column">Module</th>
-          <th colspan="4">Topics</th>
-          <th colspan="1" class="small-column">Status</th>
-          <th colspan="2" class="u-align--right">Action</th>
+          <th>#</th>
+          <th></th>
+          <th>Module</th>
+          <th>Topics</th>
+          <th class="p-table__cell--icon-placeholder">Status</th>
+          <th class="u-align--right">Action</th>
         </tr>
       </thead>
       <tbody>
-        {% for module in modules %}
+      {% for module in modules %}
         <tr>
-          <td aria-label="#">{{ module.number }}.</td>
-          <td aria-label="Module" colspan="3" class="large-column">
-            <div class="p-heading-icon is-reset">
-              <div class="p-heading-icon__header">
-                <img
-                  class="p-heading-icon__img"
-                  src="{{ module.badge }}"
-                  alt="Badge for {{ module.name }}"
-                />
-                <h5 class="p-heading-icon__title">
-                  <strong>{{ module.name }}</strong>
-                </h5>
-              </div>
-              <div class="large-column">
-                <p class="p-muted-text u-no-padding--top">
-                  <small>{{ module.topics|length }} topics</small>
-                </p>
-              </div>
+          <td aria-label="Module number">{{ module.number }}.</td>
+          <td aria-label="Badge">
+            <img
+              class="p-heading-icon__img"
+              src="{{ module.badge }}"
+              alt="Badge for {{ module.name }}"
+            />
+          </td>
+          <td aria-label="Module">
+            <div>
+              <h5>
+                <strong>{{ module.name }}</strong>
+              </h5>
+              <p class="u-text--muted u-no-padding--top">
+                <small>{{ module.topics|length }} topics</small>
+              </p>
             </div>
           </td>
-          <td aria-label="Topics" colspan="4">
+          <td aria-label="Topics">
             <div>
               {% for topic in module.topics %}
               <p>{{ topic }}</p>
               {% endfor %}
             </div>
           </td>
-          <td class="small-column" aria-label="Status">
-            {% if module.status != "Never tried" %}
-            <div class="is-reset">
-              {% if module.status == "Passed" %}
-              {{ 
-                image(
-                url="https://assets.ubuntu.com/v1/8b3432c9-status-succeeded.svg",
-                alt="{{ module.status }}", 
-                width="15", 
-                height="15", 
-                hi_def=True, 
-                loading="auto",
-                ) |
-                safe }}
-                {% elif module.status == "Failed" %}
-              {{ 
-                image(
-                url="https://assets.ubuntu.com/v1/8bb9fc23-status-failed.svg",
-                alt="{{ module.status }}", 
-                width="15", 
-                height="15", 
-                hi_def=True, 
-                loading="auto",
-                ) |
-                safe }}
-                {% endif %}
-              <span>{{ module.status }}</span>
-              <div class="small-column">
-                <p class="p-muted-text">
-                  <small>{{ module.date_attempted }}</small>
-                </p>
-              </div>
-            </div>
+          <td class="p-table__cell--icon-placeholder" aria-label="Status">
+            {% if module.status == "Passed" %}
+            <i class="p-icon--success"></i>
+            <span>Passed</span>
+            {% elif module.status == "Failed" %}
+            <i class="p-icon--error"></i>
+            <span>Failed</span>
             {% else %}
-            <div class="is-reset">
-              <p>Never tried</p>
-            </div>
+            <p>Never tried</p>
             {% endif %}
+            <p class="u-text--muted"><small>{{ module.date_attempted }}</small></p>
           </td>
-          <td colspan="2" aria-label="Action">
+          <td aria-label="Action">
             {% if module.status != "Passed" %}
-            <p>
+            <p class="u-align--right">
               <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
               <a class="p-button--positive u-no-margin--left" href="{{ module.test_url }}">{{ module.action }}</a>
             </p>
             {% endif %}
           </td>
         </tr>
-        {% endfor %}
+      {% endfor %}
       </tbody>
     </table>
   </div>
