@@ -106,7 +106,7 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves.json, /security/cves/*.json, /security/notices.json, /security/notices/*.json, /security/spec.json, /security/docs]
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/spec\.json, /security/docs]
       service_name: ubuntu-com-security-api
 
   nginxConfigurationSnippet: |
@@ -209,6 +209,9 @@ staging:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/spec\.json, /security/docs]
+      service_name: ubuntu-com-security-api
 
   nginxConfigurationSnippet: |
     if ($host = 'staging.cloud.ubuntu.com' ) {
