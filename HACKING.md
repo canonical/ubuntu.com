@@ -117,3 +117,14 @@ For the most part this will happen automatically as long as the subpages (/ai/wh
 {% block content %}
 {% endblock %}
 ```
+
+### Working on CUBE
+
+If you want to work on CUBE you need to add some environment vars into your .env.local
+
+```
+CUBE_EDX_CLIENT_ID=<cube_client_id>
+CUBE_EDX_CLIENT_SECRET=<cube_client_secret>
+```
+
+Please requests them from one of the members of the webteam.
