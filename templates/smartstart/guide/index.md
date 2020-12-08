@@ -19,7 +19,7 @@ Bringing IoT products to market requires varied capabilities ranging from embedd
 
 SMART START brings agility to enterprise IoT projects. Through this bundle enterprises embrace a lean methodology for IoT product commercialisation. Innovative companies can leverage this offering to bring the first version of a product to market quickly. SMART START enables enterprises to carry out product discovery and gather initial customer feedback, without committing more resources to scaling their product.
 
-## What’s included?
+## What's included?
 
 |Pre-certified hardware|Baseline OS image on pre-certified ARM or x86 board|
 | --- | --- |

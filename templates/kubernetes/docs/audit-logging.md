@@ -144,7 +144,7 @@ current-context: example-context
 You can set the new audit webhook config with:
 
 ```bash
-juju config kubernetes-master audit-webhook-config=”$(cat audit-webhook-config.yaml)”
+juju config kubernetes-master audit-webhook-config="$(cat audit-webhook-config.yaml)"
 ```
 
 Additional options for the webhook backend can be set by using `api-extra-args`.

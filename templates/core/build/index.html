@@ -11,14 +11,14 @@
   <div class="row">
     <div class="col-8 u-sv3">
       <h1>Your Ubuntu image is building</h1>
-      <p>We’ll email you {% if user_info.email %}at {{ user_info.email }} {% endif %}when we’ve finished. A build usually takes less than 30 minutes.</p>
+      <p>We'll email you {% if user_info.email %}at {{ user_info.email }} {% endif %}when we've finished. A build usually takes less than 30 minutes.</p>
       <p><a href="{{ build_info.web_link }}" class="p-link--external">Build log</a></p>
     </div>
   </div>
   {% if 'raspi' in build_info["metadata_override"]["subarch"] %}
   <div class="row">
     <div class="col-8">
-      <p>Meanwhile, start getting ready the things you’ll need to set up your device:</p>
+      <p>Meanwhile, start getting ready the things you'll need to set up your device:</p>
       <p>If you're using a Raspberry Pi you can use the official <a href="https://www.raspberrypi.org/downloads/" class="p-link--external">Raspberry Pi Imager</a> to flash your image to your SDcard.</p>
       <p>If you are using one of the other Ubuntu certified boards you should use <a href="https://www.balena.io/etcher/" class="p-link--external">Etcher</a>.</p>
       <ul class="p-list">
@@ -37,7 +37,7 @@
   <div class="row">
     <div class="col-10">
       <h1>Build an Ubuntu IoT image</h1>
-      <p>Choose your board, Ubuntu version, and the apps you want installed, and in a few minutes we’ll build an Ubuntu image ready for your IoT development.</p>
+      <p>Choose your board, Ubuntu version, and the apps you want installed, and in a few minutes we'll build an Ubuntu image ready for your IoT development.</p>
       {% if user_info %}
       <p>You are signed in as {{ user_info.fullname }} ({{ user_info.email }})
         <a href="/logout?return_to={{ request.host_url }}build" class="p-button--neutral u-no-margin--bottom" onclick="dataLayer.push({
@@ -219,7 +219,7 @@
 <section class="p-strip is-shallow u-no-padding--top">
   <div class="row">
     <div class="col-8">
-      <p>Got an app that isn’t in the Snap Store? Learn how to <a href="https://snapcraft.io/">publish it as a snap</a>.</p>
+      <p>Got an app that isn't in the Snap Store? Learn how to <a href="https://snapcraft.io/">publish it as a snap</a>.</p>
     </div>
   </div>
 </section>
@@ -229,11 +229,11 @@
     <div class="col-8">
       <form method="POST" id="build-form">
         {% if user_info.email %}
-        <p>We’ll email you at {{ user_info.email }} once the build is ready.</p>
+        <p>We'll email you at {{ user_info.email }} once the build is ready.</p>
         {% endif %}
         <p>
           <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
-          <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">Also send me information about Canonical’s products and services.</label>
+          <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">Also send me information about Canonical's products and services.</label>
         </p>
         <input type="hidden" name="board" value="" />
         <input type="hidden" name="system" value="" />

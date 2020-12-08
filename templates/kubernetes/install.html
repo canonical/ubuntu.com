@@ -55,7 +55,7 @@
       <h3><a href="#multi-node">Multi node with Charmed Kubernetes</a></h3>
       <hr class="u-sv1" />
       <div class="p-card__content">
-        <p>Install Charmed Kubernetes, Ubuntu’s highly available, multi node Kubernetes cluster on your infrastructure of choice:</p>
+        <p>Install Charmed Kubernetes, Ubuntu's highly available, multi node Kubernetes cluster on your infrastructure of choice:</p>
         <ul class="p-list">
           <li class="p-list__item is-ticked"><strong>Bare metal:</strong> deploying Kubernetes on bare metal is easy using Charmed Kubernetes and MAAS (Metal-as-a-Service).</li>
           <li class="p-list__item is-ticked"><strong>Private clouds:</strong> take advantage of your on-premises clouds  to deploy one or more Kubernetes clusters (VMware vSphere, OpenStack, LXD)</li>
@@ -68,7 +68,7 @@
     <div class="col-8">
       <p>Other deployment options:</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked"><strong>Hosted Kubernetes:</strong> Use Ubuntu’s platform to run worker nodes on all public clouds ( AKS, EKS, and GKE)</li>
+        <li class="p-list__item is-ticked"><strong>Hosted Kubernetes:</strong> Use Ubuntu's platform to run worker nodes on all public clouds ( AKS, EKS, and GKE)</li>
         <li class="p-list__item is-ticked"><strong>Kubeadm install support:</strong>  let our experts set up your cluster using kubeadm, the install tool available with Kubernetes 1.4.0</li>
         <li class="p-list__item is-ticked"><strong>Managed Kubernetes:</strong> take advantage of our cost effective, fully supported kubernetes clusters</li>
       </ul>
@@ -84,7 +84,7 @@
       <h2 id="single-node">How to install Kubernetes on Ubuntu</h2>
       <h3>Single node cluster</h3>
       <h5>MicroK8s installs a single node, CNCF-certified Kubernetes cluster in seconds</h5>
-      <p>MicroK8s is built to run on any Linux. It’s lightweight and deploys all Kubernetes services natively on Ubuntu (i.e. no virtual machines required) while packing the entire set of libraries and binaries needed. It’s suited for laptops, workstations, CI pipelines, IoT devices, and small edge clouds because of its small footprint.</p>
+      <p>MicroK8s is built to run on any Linux. It's lightweight and deploys all Kubernetes services natively on Ubuntu (i.e. no virtual machines required) while packing the entire set of libraries and binaries needed. It's suited for laptops, workstations, CI pipelines, IoT devices, and small edge clouds because of its small footprint.</p>
     </div>
   </div>
 </section>
@@ -164,7 +164,7 @@
     <div class="col-8">
       <h3 id="multi-node">Multi node cluster</h3>
       <h5>A highly available, multi node Kubernetes cluster that runs wherever, whenever</h5>
-      <p>Charmed Kubernetes is Ubuntu’s fully automated, model-driven approach to installing and managing Kubernetes that coordinates logging, monitoring and alerting. <a href="/kubernetes/docs/overview">Charmed Kubernetes</a> runs on any infrastructure - deploy it on bare-metal, VMware, OpenStack and public clouds like AWS, GCP, Azure and IBM.</p>
+      <p>Charmed Kubernetes is Ubuntu's fully automated, model-driven approach to installing and managing Kubernetes that coordinates logging, monitoring and alerting. <a href="/kubernetes/docs/overview">Charmed Kubernetes</a> runs on any infrastructure - deploy it on bare-metal, VMware, OpenStack and public clouds like AWS, GCP, Azure and IBM.</p>
       <p>You can use a CLI tool or a GUI tool:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked"><strong>CLI Based Installer:</strong> ideal for scripting or manually interacting with your cluster from a shell prompt, or as part of your automation toolkit.</li>
@@ -184,7 +184,7 @@
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">Install Juju</h3>
         <div class="p-stepped-list__content">
-          <p>Juju simplifies how you configure, scale and operate today’s complex software. Juju deploys everywhere: to public or private clouds. It is packaged as a snap which requires snapd to be installed. The latest Ubuntu release comes with this already built in. For other Linux systems install snapd first:</p>
+          <p>Juju simplifies how you configure, scale and operate today's complex software. Juju deploys everywhere: to public or private clouds. It is packaged as a snap which requires snapd to be installed. The latest Ubuntu release comes with this already built in. For other Linux systems install snapd first:</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="sudo snap install juju --classic" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
@@ -195,7 +195,7 @@
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">Add your cloud - optional</h3>
         <div class="p-stepped-list__content">
-          <p>This interactive step allows you to register a cloud that isn’t known to Juju by default. In the summary instructions above, since AWS is used, this step isn’t necessary - AWS and other public clouds have well-known IP addresses. For private clouds you need to give some details to juju. An example is a MAAS cloud, which operates your bare metal infrastructure.</p>
+          <p>This interactive step allows you to register a cloud that isn't known to Juju by default. In the summary instructions above, since AWS is used, this step isn't necessary - AWS and other public clouds have well-known IP addresses. For private clouds you need to give some details to juju. An example is a MAAS cloud, which operates your bare metal infrastructure.</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="juju add-cloud" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
@@ -271,7 +271,7 @@
             <input class="p-code-copyable__input" value="watch -c juju status --color" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <p><strong>Observe log messages:</strong> To  view the last twenty log messages for the “k8s-test” model:</p>
+          <p><strong>Observe log messages:</strong> To  view the last twenty log messages for the "k8s-test" model:</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="juju debug-log -m k8s-test -n 20" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>

@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-Deliver ‘Containers as a Service’ across the enterprise with
+Deliver 'Containers as a Service' across the enterprise with
 **Charmed Kubernetes<sup>&reg;</sup>** , enabling each
 project to spin up a standardised K8s of arbitrary scale, on demand, with centralised
 operational control. **Charmed Kubernetes** provides a well integrated, turn-key
@@ -34,7 +34,7 @@ the cloud.
 of storage systems to:
 
 - Automatically create storage when required.
-- Make storage available to containers wherever they’re scheduled.
+- Make storage available to containers wherever they're scheduled.
 - Automatically delete the storage when no longer needed.
 
 ### Networking
