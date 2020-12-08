@@ -4,7 +4,7 @@
 
 {% block meta_image %}https://assets.ubuntu.com/v1/f60f86c4-Embedded+social+media+banner+.jpg{% endblock meta_image %}
 
-{% block meta_description %}Ubuntu is an open-source operating system for cross platform development, there’s no better place to get started than with Ubuntu on a Raspberry Pi.{% endblock meta_description %}
+{% block meta_description %}Ubuntu is an open-source operating system for cross platform development, there's no better place to get started than with Ubuntu on a Raspberry Pi.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1RXsLbMB-LJVwiG0gAi0HgVEJvZ9_GIU3ESLJ6KmBb54{% endblock meta_copydoc %}
 
@@ -23,7 +23,7 @@
       <h1>Thank you for downloading<br />
         Ubuntu {{ version }}<br />
         for Raspberry Pi</h1>
-        <p>Your download should start automatically. If it doesn&rsquo;t, <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">download now</a>.</p>
+        <p>Your download should start automatically. If it doesn't, <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">download now</a>.</p>
         {% with version=version, system=architecture, architecture=architecture %}
         {% include "download/shared/_verify-checksums.html" %}
         {% endwith %}
@@ -100,7 +100,7 @@
           ) | safe
         }}
         <h2 class="p-heading--three">Get Ubuntu Server pro tips</h2>
-        <p>Get the “Ubuntu Server CLI pro tips 2020” and learn how to use the command line efficiently and get started with everything from basic file management to deploying complex applications.</p>
+        <p>Get the "Ubuntu Server CLI pro tips 2020" and learn how to use the command line efficiently and get started with everything from basic file management to deploying complex applications.</p>
         <p><a href="#" class="p-button--positive" aria-controls="modal">Download the pro tips</a></p>
       </div>
       {% include "download/shared/_server_weekly_news.html" %}
@@ -110,7 +110,7 @@
     <div class="row">
       <div class="col-7">
         <h2>Get started with snaps</h2>
-        <p>Your {{ board or "board" }} is now ready to have snaps installed, it&rsquo;s time to use the snap command to install your first snap.</p>
+        <p>Your {{ board or "board" }} is now ready to have snaps installed, it's time to use the snap command to install your first snap.</p>
         <p>The <a href="https://snapcraft.io/store" class="p-link--external">Snap Store</a> is where you can find the best Linux apps packaged as snaps to install on your Ubuntu device and get started with your secure IoT journey.</p>
       </div>
       <div class="col-5 u-align--center u-hide--small">

@@ -134,7 +134,7 @@ United Kingdom
 
 Alternatively, you can use the relevant [contact us](/legal/data-privacy/enquiry) form.
 
-If you have a complaint about our use of your information, you can contact the Information Commissioner’s Office via their website at [ico.org.uk](https://ico.org.uk/make-a-complaint/) or write to them at:
+If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at [ico.org.uk](https://ico.org.uk/make-a-complaint/) or write to them at:
 
 <div style="margin:2rem;">
 Information Commissioner's Office<br />

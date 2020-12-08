@@ -15,23 +15,23 @@ This Privacy Notice tells you about the information collected from you when you 
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of “Legal”.
+We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
 ## What personal data do we collect?
 
-When you participate in an event, we ask you for your name, address, contact telephone number, email address and we may collect audio and video recordings from you. Such audio and video recordings are held on an anonymous basis. We may retain your contact details to follow up with you on the event, to provide you with information about Canonical’s products and services and to participate in future events.
+When you participate in an event, we ask you for your name, address, contact telephone number, email address and we may collect audio and video recordings from you. Such audio and video recordings are held on an anonymous basis. We may retain your contact details to follow up with you on the event, to provide you with information about Canonical's products and services and to participate in future events.
 
 ## Why do we collect this information?
 
-Your information may be used by us to follow up with you on the event, to provide you with information about Canonical’s products and services and to participate in future events.
+Your information may be used by us to follow up with you on the event, to provide you with information about Canonical's products and services and to participate in future events.
 
 ## What do we do with your information?
 
 Your information is stored in our database and may be processed outside of the European Economic Area. 
 
-Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of you personal information. If you would like further information please contact us (see “Your right to complain” below). 
+Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of you personal information. If you would like further information please contact us (see "Your right to complain" below). 
 
 Your data may be shared with third parties as reasonably required for Canonical to process and store your data in accordance with this privacy notice or respond to your request.
 
@@ -68,11 +68,11 @@ You have a number of important rights under data protection laws. In summary, th
 - otherwise restrict our processing of your personal information in certain circumstances;
 - claim compensation for damages caused by out breach of any data protection laws.
 
-For further information on each of those rights, including the circumstances in which they apply, see the Guidance from the UK Information Commissioner’s Office (ICO) on individuals rights.
+For further information on each of those rights, including the circumstances in which they apply, see the Guidance from the UK Information Commissioner's Office (ICO) on individuals rights.
 
 If you would like to exercise any of those rights, please:
 
-- email, call or write to us, please see “Your right to complain” section below;
+- email, call or write to us, please see "Your right to complain" section below;
 - let us have enough information to identify you;
 - let us have proof of your identity and address (a copy of your driving licence or passport and a recent utility or credit card bill); and
 - let us know the information to which your request relates.
@@ -89,7 +89,7 @@ To submit a request by email, post or telephone, please use the contact informat
 
 Canonical offers a free email newsletter subscription service to keep you informed of our products and services. You may receive these marketing communications from us. We incorporate a tracking system in our email marketing communications which allows us to monitor whether the email has been opened and which links are the most popular. This allows us to tailor and refine our service to ensure that the emails you receive are relevant to your interests.
 
-Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by (i) clicking the unsubscribe button at the end of the email, (ii) reply to the email with “STOP”,  (iii) sending an email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com), or (iv) navigating to your subscription centre page (you will need to login if you have not already done so) and click the 'unsubscribe' link at the foot of the page as appropriate.
+Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by (i) clicking the unsubscribe button at the end of the email, (ii) reply to the email with "STOP",  (iii) sending an email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com), or (iv) navigating to your subscription centre page (you will need to login if you have not already done so) and click the 'unsubscribe' link at the foot of the page as appropriate.
 
 ## Keeping your personal information secure
 
@@ -115,7 +115,7 @@ United Kingdom
 
 Alternatively, you can use the relevant contact us form.
 
-If you have a complaint about our use of your information, you can contact the Information Commissioner’s Office via their website at [ico.org.uk/make-a-complaint](https://ico.org.uk/make-a-complaint/) or write to them at:
+If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at [ico.org.uk/make-a-complaint](https://ico.org.uk/make-a-complaint/) or write to them at:
 
 <div style="margin:2rem;">
 Information Commissioner's Office<br />

@@ -19,7 +19,7 @@ Secure device onboarding is a four stage process that starts with a request for 
 
 ## Device initialisation
 
-The secure onboarding process starts at first boot. When turned on for the first time, an Ubuntu Core device extracts its private key, its serial number, and its owner’s ID from metadata stored in its model assertion. Based on this data, the device will send a request for a serial assertion to its vault, which is hosted either by Canonical or on premise. The vault service processes the request. Had the device’s public key been stored in the vault, a serial assertion is issued as response to the request. The serial assertion issued by the serial vault is then stored on the device.
+The secure onboarding process starts at first boot. When turned on for the first time, an Ubuntu Core device extracts its private key, its serial number, and its owner's ID from metadata stored in its model assertion. Based on this data, the device will send a request for a serial assertion to its vault, which is hosted either by Canonical or on premise. The vault service processes the request. Had the device's public key been stored in the vault, a serial assertion is issued as response to the request. The serial assertion issued by the serial vault is then stored on the device.
 
 ## Authentication and authorisation
 

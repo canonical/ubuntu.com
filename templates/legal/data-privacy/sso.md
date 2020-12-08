@@ -14,7 +14,7 @@ This privacy notice tells you about the information collected from you when you 
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of “Legal”.
+We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -42,7 +42,7 @@ You can also ask for it to be erased and you can ask for us to give you a copy o
 
 ## Your right to complain
 
-If you have a complaint about our use of your information, you can contact the Information Commissioner’s Office via their website at [ico.org.uk/concerns/](https://ico.org.uk/concerns/) or write to them at:
+If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at [ico.org.uk/concerns/](https://ico.org.uk/concerns/) or write to them at:
 
 <div style="margin:2rem;">
 Information Commissioner's Office<br />
