@@ -40,6 +40,8 @@ from webapp.views import (
     BlogCustomGroup,
     BlogCustomTopic,
     BlogPressCentre,
+    BlogSitemapIndex,
+    BlogSitemapPage,
     build,
     build_tutorials_index,
     download_harness,
@@ -263,6 +265,14 @@ app.add_url_rule(
 app.add_url_rule(
     "/blog/press-centre",
     view_func=BlogPressCentre.as_view("press_centre", blog_views=blog_views),
+)
+app.add_url_rule(
+    "/blog/sitemap.xml",
+    view_func=BlogSitemapIndex.as_view("sitemap", blog_views=blog_views),
+)
+app.add_url_rule(
+    "/blog/sitemap/<regex('.+'):slug>.xml",
+    view_func=BlogSitemapPage.as_view("sitemap_page", blog_views=blog_views),
 )
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
