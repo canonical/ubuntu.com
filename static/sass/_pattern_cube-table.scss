@@ -1,0 +1,39 @@
+.p-table--cube {
+  th,
+  td {
+    &:nth-child(1) {
+      width: 4%;
+    }
+
+    &:nth-child(2) {
+      width: 5%;
+    }
+
+    &:nth-child(3) {
+      width: 22%;
+    }
+
+    &:nth-child(4) {
+      width: 35%;
+    }
+
+    &:nth-child(5) {
+      width: 13%;
+    }
+
+    &:nth-child(6) {
+      width: 18%;
+    }
+  }
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    td {
+      &:nth-child(5) {
+        i,
+        small {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
