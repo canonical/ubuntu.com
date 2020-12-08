@@ -37,49 +37,58 @@
       <tbody>
       {% for module in modules %}
         <tr>
-          <td aria-label="Module number">{{ module.number }}.</td>
-          <td aria-label="Badge">
-            <img
-              class="p-heading-icon__img"
-              src="{{ module.badge }}"
-              alt="Badge for {{ module.name }}"
-            />
-          </td>
-          <td aria-label="Module">
-            <div>
-              <h5>
-                <strong>{{ module.name }}</strong>
-              </h5>
-              <p class="u-text--muted u-no-padding--top">
-                <small>{{ module.topics|length }} topics</small>
-              </p>
+          <td aria-label="Module number">
+            <div class="table-contents">
+              <p class="u-text--muted">{{ module.number }}</p>
             </div>
           </td>
+          <td aria-label="Badge">
+              <img
+                src="{{ module.badge }}"
+                alt="Badge for {{ module.name }}"
+              />
+          </td>
+          <td aria-label="Module">
+            <div class="table-contents">
+              <h5>{{ module.name }}</h5>
+            </div>
+            <p class="u-text--muted">
+              <small>{{ module.topics|length }} topics</small>
+            </p>
+          </td>
           <td aria-label="Topics">
-            <div>
-              {% for topic in module.topics %}
-              <p>{{ topic }}</p>
-              {% endfor %}
+            <div class="table-contents">
+              <ul class="p-list u-no-margin">
+                {% for topic in module.topics %}
+                <li class="p-list__item">{{ topic }}</li>
+                {% endfor %}
+              </ul>
             </div>
           </td>
           <td class="p-table__cell--icon-placeholder" aria-label="Status">
-            {% if module.status == "Passed" %}
-            <i class="p-icon--success"></i>
-            <span>Passed</span>
-            {% elif module.status == "Failed" %}
-            <i class="p-icon--error"></i>
-            <span>Failed</span>
-            {% else %}
-            <p>Never tried</p>
-            {% endif %}
+            <div class="table-contents">
+              {% if module.status == "Passed" %}
+              <p>
+                <i class="p-icon--success"></i>Passed
+              </p>
+              {% elif module.status == "Failed" %}
+              <p>
+                <i class="p-icon--error"></i>Failed
+              </p>
+              {% else %}
+              <p>Never tried</p>
+              {% endif %}
+            </div>
             <p class="u-text--muted"><small>{{ module.date_attempted }}</small></p>
           </td>
           <td aria-label="Action">
             {% if module.status != "Passed" %}
-            <p class="u-align--right">
-              <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
-              <a class="p-button--positive u-no-margin--left" href="{{ module.test_url }}">{{ module.action }}</a>
-            </p>
+            <div class="table-contents">
+              <p class="u-align--right">
+                <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
+                <a class="p-button--positive u-no-margin--left" href="{{ module.test_url }}">{{ module.action }}</a>
+              </p>
+            </div>
             {% endif %}
           </td>
         </tr>
@@ -90,28 +99,28 @@
 </section>
 
 {% else %}
-<section>
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2>Microcertifications</h2>
-      <p>Sign in to see your microcertifications</p>
-      <p>
-        <a
-          href="/login"
-          class="p-button--neutral"
-          onclick="dataLayer.push({
-              'event' : 'GAEvent',
-              'eventCategory' : 'Advantage',
-              'eventAction' : 'Authentication',
-              'eventLabel' : 'Sign in',
-              'eventValue' : undefined
-            });"
-        >
-          Sign in
-        </a>
-      </p>
-    </div>
-  </section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Microcertifications</h2>
+    <p>Sign in to see your microcertifications</p>
+    <p>
+      <a
+        href="/login"
+        class="p-button--neutral"
+        onclick="dataLayer.push({
+            'event' : 'GAEvent',
+            'eventCategory' : 'Advantage',
+            'eventAction' : 'Authentication',
+            'eventLabel' : 'Sign in',
+            'eventValue' : undefined
+          });"
+      >
+        Sign in
+      </a>
+    </p>
+  </div>
 </section>
+
 {% endif %}
 {% endblock content %}
