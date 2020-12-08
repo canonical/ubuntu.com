@@ -108,7 +108,7 @@ Ubuntu Advantage for Infrastructure StandardまたはUbuntu Advantage for Infras
 
 <h2 id="uasd-managed-services">マネージドサービス</h2>
 
-1. 概要：マネージドサービスは、Ubuntu Advantage for Infrastructure Advancedへのアドオンです。アドオンが行われると、Canonicalは以下の形でEnvironmentを管理し、この環境で運用しているゲストは、Ubuntu Advantage for Infrastructureのサブスクリプションとサポートを受け取ります。クラウド環境の場合、マネージドサービスは“BootStack”と言及されます。
+1. 概要：マネージドサービスは、Ubuntu Advantage for Infrastructure Advancedへのアドオンです。アドオンが行われると、Canonicalは以下の形でEnvironmentを管理し、この環境で運用しているゲストは、Ubuntu Advantage for Infrastructureのサブスクリプションとサポートを受け取ります。クラウド環境の場合、マネージドサービスは"BootStack"と言及されます。
 2. サービスの開始：Canonicalの構築とEnvironmentの初期化を受けて（独自のサービス取組みの対象）、マネージドサービスはEnvironmentを再デプロイして認証情報をリセットし、デプロイメントプロセスを承認します。マネージドサービスは文書も提供し、Canonicalとの作業関係に関する詳細情報を提供します。
 3. 運用：マネージドサービスはリモートでEnvironmentを運用、モニタリングおよび管理し、その例としては以下のものが含まれます: (i) 管理インフラスイートのバックアップおよび回復、(ii) ハードウェアおよびソフトウェアのエラーモニタリングと警告、そして (iii) 性能とパフォーマンスの報告
   1. パッチ提供と更新：マネージドサービスは、該当する（例えばセキュリティ）のパッチとUbuntuクラウドアーカイブからの更新を、以下のものにインストールします:

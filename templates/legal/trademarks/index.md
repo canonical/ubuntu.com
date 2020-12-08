@@ -2,7 +2,7 @@
 wrapper_template: "legal/_base_legal_markdown.html"
 context:
   title: "Trademarks"
-  description: "Canonical’s trademarks registered in word and logo form."
+  description: "Canonical's trademarks registered in word and logo form."
   copydoc: https://docs.google.com/document/d/1o4P7HEIop3o4oibUH8rbj6mxIBmHakt-djZlpcpTW-I/edit#
 ---
 
@@ -10,7 +10,7 @@ context:
 
 Please refer to Canonical's [Intellectual Property Rights Policy](/legal/intellectual-property-policy) and <a class="p-link--external" href="https://design.ubuntu.com/brand/">Brand Guidelines</a> for details on Canonical's intellectual property rights.
 
-Canonical’s trademarks (registered in word and logo form) include:
+Canonical's trademarks (registered in word and logo form) include:
 
 *   BAZAAR
 *   BOOTSTACK
@@ -31,7 +31,7 @@ Canonical’s trademarks (registered in word and logo form) include:
 
 The absence of a name or logo from the list above does not constitute a waiver by Canonical of a Canonical trademark or other intellectual property rights concerning that name or logo.
 
-Other trademarks displayed on Canonical’s websites are as set out below:
+Other trademarks displayed on Canonical's websites are as set out below:
 
 - ARCHLINUX, ARCH LINUX, "A simple, lightweight Linux distribution" and the stylized Arch Linux logo are recognised trademarks of Arch Linux, copyright © 2002-2017 Judd Vinet and Aaron Griffin
 - DEBIAN is a registered trademark owned by [Software in the Public Interest, Inc.](http://www.spi-inc.org/corporate/trademarks/) Debian trademark is a registered United States trademark of Software in the Public Interest, Inc., managed by the Debian project.

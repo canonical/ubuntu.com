@@ -12,7 +12,7 @@ Device certification keeps devices secure with security fixes and bug fixes over
 
 In the case regressions are found, Canonical is committed to fix the issues promptly. Ubuntu Certified devices are listed on our [certification website](http://certification.ubuntu.com/iot). Canonical assigns a dedicated engineer as the point of contact for each Ubuntu Certified device.
 
-In order to be granted Ubuntu certification, devices must first undergo rigorous testing by Canonical QA to ensure that Ubuntu running on the system meets Canonical’s standards. Once testing is complete Canonical issues a [certificate](http://certification.ubuntu.com), and the system will be placed into the certification lab to undergo continuous testing.
+In order to be granted Ubuntu certification, devices must first undergo rigorous testing by Canonical QA to ensure that Ubuntu running on the system meets Canonical's standards. Once testing is complete Canonical issues a [certificate](http://certification.ubuntu.com), and the system will be placed into the certification lab to undergo continuous testing.
 
 ## Device validation
 
