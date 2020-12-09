@@ -2,7 +2,7 @@ import urllib
 from requests import Session
 
 
-class CubeAPI:
+class CubeEdxAPI:
     def __init__(
         self,
         base_url: str,
