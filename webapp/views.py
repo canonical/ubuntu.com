@@ -28,7 +28,6 @@ from canonicalwebteam.search.views import NoAPIKeyError
 from webapp.login import empty_session, user_info
 from webapp.advantage import AdvantageContracts, UnauthorizedError
 from webapp.decorators import store_maintenance
-from webapp.api.cube import CubeAPI
 
 
 ip_reader = geolite2.reader()
@@ -1243,58 +1242,3 @@ class BlogPressCentre(BlogView):
         )
 
         return flask.render_template("blog/press-centre.html", **context)
-
-
-# Cube
-# ===
-cube_api = CubeAPI(
-    "https://qa.cube.ubuntu.com",
-    os.getenv("CUBE_EDX_CLIENT_ID"),
-    os.getenv("CUBE_EDX_CLIENT_SECRET"),
-    talisker.requests.get_session(),
-)
-
-
-def cube_microcerts():
-    user = user_info(flask.session)
-
-    if user:
-        courses = cube_api.get_courses(organization="ubuntu")["results"]
-
-        modules = []
-        for course in courses:
-            course_uri = (
-                f"https://qa.cube.ubuntu.com/courses/{course['id']}/course"
-            )
-            modules.append(
-                {
-                    "number": 1,
-                    "badge": "Badge",
-                    "name": course["name"],
-                    "topics": [],
-                    "test_url": course_uri,
-                    "training_url": course_uri,
-                    "status": "Hardcoded",
-                    "action": "Test",
-                    "date_attempted": "20-12-07",
-                }
-            )
-
-        data = {
-            "user": {"name": user["fullname"]},
-            "modules": modules,
-        }
-
-        response = flask.make_response(
-            flask.render_template("cube/microcerts.html", **data)
-        )
-        response.cache_control.private = True
-
-        return response
-
-    return flask.render_template("cube/microcerts.html")
-
-
-def cube_home():
-    data = {}
-    return flask.render_template("cube/index.html", **data)
