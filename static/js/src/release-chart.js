@@ -122,7 +122,9 @@ function buildCharts() {
       "#kubernetes-eol",
       kubernetesReleaseNames,
       kubernetesStatus,
-      kubernetesReleases
+      kubernetesReleases,
+      false,
+      true
     );
   }
   if (document.querySelector("#kernel-schedule")) {
