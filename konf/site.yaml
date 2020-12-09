@@ -38,6 +38,16 @@ env:
       key: auth-consumer
       name: launchpad-imagebuild
 
+  - name: CUBE_EDX_CLIENT_ID
+    secretKeyRef:
+      key: client-id
+      name: cube-edx
+
+  - name: CUBE_EDX_CLIENT_SECRET
+    secretKeyRef:
+      key: client-secret
+      name: cube-edx
+
   - name: SENTRY_DSN
     value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
