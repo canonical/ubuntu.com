@@ -1,6 +1,6 @@
 {% extends "cube/base_cube.html" %}
 
-{% block title %}Microcerts | CUBE{% endblock %}
+{% block title %} Microcerts | CUBE {% endblock %}
 
 {% block meta_description %}This is the CUBE Microcerts page{% endblock meta_description %}
 
@@ -11,83 +11,116 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>Your progress to CUBEdom</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor.
+      </p>
     </div>
     <div class="col-4"></div>
   </div>
 </section>
 
-
 <section class="p-strip">
   <div class="u-fixed-width">
-    <h2>Microcertifications - {{user.name}}</h2>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <table class="p-table--mobile-card">
+    <h2>Microcertifications</h2>
+    <table class="p-table--cube p-table--mobile-card">
       <thead>
         <tr>
-          <th>&nbsp;</th>
-          <th colspan="2" class="u-align--center">Module</th>
-          <th colspan="3" class="u-align--center">Topics</th>
-          <th colspan="2" class="u-align--center">Status</th>
-          <th colspan="2" class="u-align--center">Action</th>
+          <th>#</th>
+          <th></th>
+          <th>Module</th>
+          <th>Topics</th>
+          <th class="p-table__cell--icon-placeholder">Status</th>
+          <th class="u-align--right">Action</th>
         </tr>
       </thead>
       <tbody>
-        {% for module in modules %}
+      {% for module in modules %}
         <tr>
-          <td aria-label="Badge">
-            <p>{{ module.badge }}</p>
-          </td>
-          <td colspan="2" aria-label="Module" class="u-align--center">
-            <div>
-              <p>{{ module.name }}</p>
-              <p><small>{{module.topics|length}}</small> Topics</p>
+          <td aria-label="Module number">
+            <div class="table-contents">
+              <p class="u-text--muted">{{ module.number }}</p>
             </div>
           </td>
-          <td colspan="3" aria-label="Topics" class="u-align--center">
-            {% for topic in module.topics%}
-              <p>{{ topic }}</p>
-            {% endfor%}
+          <td aria-label="Badge">
+              <img
+                src="{{ module.badge }}"
+                alt="Badge for {{ module.name }}"
+              />
           </td>
-          <td colspan="2" aria-label="Status" class="u-align--center">
-            <p>{{ module.status }}</p>
-          </td>
-          <td colspan="2" aria-label="Action" class="u-align--center">
-            <p>
-              <a class="p-button--neutral" href={{module.trainingurl}}>Prepare</a>
-              <a class="p-button--positive" href={{module.testurl}}>{{ module.action }}</a>
+          <td aria-label="Module">
+            <div class="table-contents">
+              <h5>{{ module.name }}</h5>
+            </div>
+            <p class="u-text--muted u-hide--small">
+              <small>{{ module.topics|length }} topics</small>
             </p>
           </td>
+          <td aria-label="Topics">
+            <div class="table-contents">
+              <ul class="p-list u-no-margin">
+                {% for topic in module.topics %}
+                <li class="p-list__item">{{ topic }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </td>
+          <td class="p-table__cell--icon-placeholder" aria-label="Status">
+            <div class="table-contents">
+              {% if module.status == "Passed" %}
+              <p>
+                <i class="p-icon--success"></i>Passed
+              </p>
+              {% elif module.status == "Failed" %}
+              <p>
+                <i class="p-icon--error"></i>Failed
+              </p>
+              {% else %}
+              <p>Never tried</p>
+              {% endif %}
+            </div>
+            <p class="u-text--muted"><small>{{ module.date_attempted }}</small></p>
+          </td>
+          <td aria-label="Action">
+            {% if module.status != "Passed" %}
+            <div class="table-contents">
+              <p class="u-align--right">
+                <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
+                <a class="p-button--positive u-no-margin--left" href="{{ module.test_url }}">{{ module.action }}</a>
+              </p>
+            </div>
+            {% endif %}
+          </td>
         </tr>
-        {% endfor %}
+      {% endfor %}
       </tbody>
     </table>
   </div>
 </section>
+
 {% else %}
-  <section>
-    <section class="p-strip">
-      <div class="u-fixed-width">
-        <h2>Microcertifications</h2>
-        <p>Sign in to see your microcertifications</p>
-        <p>
-          <a href="/login" class="p-button--neutral"
-            onclick="dataLayer.push({
-              'event' : 'GAEvent',
-              'eventCategory' : 'Advantage',
-              'eventAction' : 'Authentication',
-              'eventLabel' : 'Sign in',
-              'eventValue' : undefined
-            });">
-            Sign in
-          </a>
-        </p>
-      </div>
-    </section>
-  </section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Microcertifications</h2>
+    <p>Sign in to see your microcertifications</p>
+    <p>
+      <a
+        href="/login"
+        class="p-button--neutral"
+        onclick="dataLayer.push({
+            'event' : 'GAEvent',
+            'eventCategory' : 'Advantage',
+            'eventAction' : 'Authentication',
+            'eventLabel' : 'Sign in',
+            'eventValue' : undefined
+          });"
+      >
+        Sign in
+      </a>
+    </p>
+  </div>
+</section>
+
 {% endif %}
 {% endblock content %}
