@@ -49,11 +49,11 @@ def empty_session(user_session):
 
 @open_id.loginhandler
 def login_handler():
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session):

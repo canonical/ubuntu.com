@@ -399,7 +399,7 @@ def advantage_view():
     new_subscription_start_date = None
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     stripe_publishable_key = os.getenv(
         "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
@@ -407,7 +407,7 @@ def advantage_view():
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         stripe_publishable_key = os.getenv(
             "STRIPE_TEST_PUBLISHABLE_KEY",
             "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
@@ -569,7 +569,7 @@ def advantage_view():
         open_subscription=open_subscription,
         new_subscription_id=new_subscription_id,
         stripe_publishable_key=stripe_publishable_key,
-        is_staging=is_staging,
+        is_test_backend=is_test_backend,
     )
 
 
@@ -596,11 +596,11 @@ class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
 
 
 def post_advantage_subscriptions(preview):
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     user_token = flask.session.get("authentication_token")
@@ -697,11 +697,11 @@ def post_advantage_subscriptions(preview):
 
 
 def post_renewal_preview(renewal_id):
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     advantage = AdvantageContracts(
@@ -725,14 +725,14 @@ def post_renewal_preview(renewal_id):
 @store_maintenance
 def advantage_shop_view():
     account = previous_purchase_id = None
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     stripe_publishable_key = os.getenv(
         "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
     )
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         stripe_publishable_key = os.getenv(
             "STRIPE_TEST_PUBLISHABLE_KEY",
             "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
@@ -775,7 +775,7 @@ def advantage_shop_view():
                     previous_purchase_id=previous_purchase_id,
                     product_listings=[],
                     stripe_publishable_key=stripe_publishable_key,
-                    is_staging=is_staging,
+                    is_test_backend=is_test_backend,
                 )
             if code != 404:
                 raise
@@ -816,7 +816,7 @@ def advantage_shop_view():
         previous_purchase_id=previous_purchase_id,
         product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
-        is_staging=is_staging,
+        is_test_backend=is_test_backend,
     )
 
 
@@ -907,11 +907,11 @@ def make_renewal(advantage, contract_info):
 def post_anonymised_customer_info():
     user_token = flask.session.get("authentication_token")
     guest_token = flask.session.get("guest_authentication_token")
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session) or guest_token:
@@ -945,11 +945,11 @@ def post_anonymised_customer_info():
 def post_customer_info():
     user_token = flask.session.get("authentication_token")
     guest_token = flask.session.get("guest_authentication_token")
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session) or guest_token:
@@ -985,11 +985,11 @@ def post_customer_info():
 def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
     user_token = flask.session.get("authentication_token")
     guest_token = flask.session.get("guest_authentication_token")
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session) or guest_token:
@@ -1008,11 +1008,11 @@ def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
 def get_purchase(purchase_id):
     user_token = flask.session.get("authentication_token")
     guest_token = flask.session.get("guest_authentication_token")
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session) or guest_token:
@@ -1035,11 +1035,11 @@ def ensure_purchase_account():
     contains an auth token required for subsequent calls to the
     contract API.
     """
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if not flask.request.is_json:
@@ -1077,11 +1077,11 @@ def ensure_purchase_account():
 
 
 def get_renewal(renewal_id):
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session):
@@ -1097,11 +1097,11 @@ def get_renewal(renewal_id):
 
 
 def get_customer_info(account_id):
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session):
@@ -1117,11 +1117,11 @@ def get_customer_info(account_id):
 
 
 def accept_renewal(renewal_id):
-    is_staging = flask.request.args.get("ua_staging", False)
+    is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_staging:
+    if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session):
