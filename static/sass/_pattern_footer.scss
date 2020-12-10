@@ -13,8 +13,8 @@
   $color-shadow: rgba(0, 0, 0, 0.3);
 
   .p-footer {
-    border: 0;
-    box-shadow: 0 4px 4px -4px $color-shadow inset;
+    @include vf-highlight-bar($color-brand);
+
     margin-bottom: 0;
     padding: 0 0 $sp-xx-large 0;
 
