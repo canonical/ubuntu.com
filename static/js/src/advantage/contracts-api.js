@@ -1,5 +1,5 @@
 export async function getPurchase(purchaseID) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(
     `/advantage/purchases/${purchaseID}${queryString}`,
@@ -13,7 +13,7 @@ export async function getPurchase(purchaseID) {
 }
 
 export async function ensurePurchaseAccount(email, name, paymentMethodID) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(`/advantage/purchase-account${queryString}`, {
     method: "POST",
@@ -35,7 +35,7 @@ export async function ensurePurchaseAccount(email, name, paymentMethodID) {
 }
 
 export async function getRenewal(renewalID) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(`/advantage/renewals/${renewalID}${queryString}`, {
     cache: "no-store",
@@ -46,7 +46,7 @@ export async function getRenewal(renewalID) {
 }
 
 export async function getCustomerInfo(accountId) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(
     `/advantage/customer-info/${accountId}${queryString}`,
@@ -60,7 +60,7 @@ export async function getCustomerInfo(accountId) {
 }
 
 export async function postInvoiceID(transactionType, transactionID, invoiceID) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(
     `/advantage/${transactionType}/${transactionID}/invoices/${invoiceID}${queryString}`,
@@ -76,7 +76,7 @@ export async function postInvoiceID(transactionType, transactionID, invoiceID) {
 }
 
 export async function postRenewalIDToProcessPayment(renewalID) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(
     `/advantage/renewals/${renewalID}/process-payment${queryString}`,
@@ -96,7 +96,7 @@ export async function postPurchaseData(
   products,
   previousPurchaseId
 ) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "POST",
@@ -118,7 +118,7 @@ export async function postPurchaseData(
 }
 
 export async function postRenewalPreviewData(renewalID) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(
     `/advantage/renewals/${renewalID}/preview${queryString}`,
@@ -142,7 +142,7 @@ export async function postPurchasePreviewData(
   products,
   previousPurchaseId
 ) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(`/advantage/subscribe/preview${queryString}`, {
     method: "POST",
@@ -170,7 +170,7 @@ export async function postCustomerInfoToStripeAccount(
   name,
   taxID
 ) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(`/advantage/customer-info${queryString}`, {
     method: "POST",
@@ -198,7 +198,7 @@ export async function postCustomerInfoForPurchasePreview(
   address,
   taxID
 ) {
-  const queryString = window && window.location ? window.location.search : "";
+  const queryString = window.location.search;
 
   let response = await fetch(`/advantage/customer-info-anon${queryString}`, {
     method: "POST",
