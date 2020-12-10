@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<section class="p-takeover--dark">
+<section class="p-takeover--grad has-cube is-deep">
   <div class="row u-equal-height">
     <div class="col-7">
       <h1>You&rsquo;re a professional.</br>Prove it with CUBE.</h1>
@@ -16,17 +16,13 @@
         <a href="/cube/microcerts" class="p-button--positive">View MicroCerts</a>
       </p>
     </div>
-    <div class="col-5 u-hide--small u-vertically-center u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/22f88d02-apps.svg",
-        alt="",
-        width="290",
-        height="170",
-        hi_def=True,
-        loading="auto",
-        ) | safe
-      }}
+    <div class="col-5 u-hide--small hero-animation">
+      <div class="cube cube-1"></div>
+      <div class="cube cube-2"></div>
+      <div class="cube cube-3"></div>
+      <div class="cube cube-4"></div>
+      <div class="cube cube-5"></div>
+      <div class="cube cube-6"></div>
     </div>
   </div>
 </section>
@@ -203,7 +199,7 @@
   </div>
 </section>
 
-<section class="p-strip--square-darksuru is-dark">
+<section class="p-strip--square-suru has-cube">
   <div class="row u-equal-height">
     <div class="col-6">
       <blockquote class="p-pull-quote">
@@ -220,5 +216,13 @@
   </div>
 </section>
 
-
+<script>
+window.addEventListener('load', (event) => {
+  const heroAnimation = document.querySelector(".hero-animation")
+  heroAnimation.classList.add("is-transformed")
+  setInterval(() => {
+    heroAnimation.classList.toggle("is-transformed")
+  }, 4000)
+});
+</script>
 {% endblock content%}
