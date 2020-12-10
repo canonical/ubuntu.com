@@ -1040,14 +1040,7 @@ def ensure_purchase_account():
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
     if is_staging:
-        print("Bah alors?????")
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    print("AAAAAAAAAAAAAAAAAAAAA")
-    print(flask.request.args.get("ua_staging", False))
-    print(is_staging)
-    print(flask.current_app.config["CONTRACTS_TEST_API_URL"])
-    print(api_url)
 
     if not flask.request.is_json:
         return flask.jsonify({"error": "JSON required"}), 400
