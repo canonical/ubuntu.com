@@ -3,8 +3,8 @@
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
       <h2 class="p-modal__title u-sv1" id="modal-title">Canonical - the "Ubuntu on AWS" experts</h2>
-      <p>Already running Ubuntu on AWS, or planning a migration to the public cloud? Canonical has expertise in the right areas to assist you in your project, whether it involves application architecture, optimization or streamlining operations at scale. Share with us some detail on your project and let's get started.</p>
     </header>
+    <p>Already running Ubuntu on AWS, or planning a migration to the public cloud? Canonical has the expertise to assist you in your project, whether it involves compliance, application architecture, optimisation or streamlining operations at scale. Share some details about your project with us and let&apos;s get started.</p>
     <div class="js-pagination js-pagination--1">
       <div class="js-formfield">
         <h3 class="p-heading--five">Tell us more about your cloud project:</h3>
@@ -16,10 +16,14 @@
             <label for="project-project-less-than-500-VMs">&lt; 500 VMs</label>
             <input type="checkbox" id="project-greater-than-500-VMs">
             <label for="project-greater-than-500-VMs">&gt; 500 VMs</label>
+            <input type="checkbox" id="project-containers">
+            <label for="project-containers">Containers</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="project-aws-only">
-            <label for="project-aws-only">AWS only</label>
+            <input type="checkbox" id="project-aws-vms">
+            <label for="project-aws-vms">AWS only VMs</label>
+            <input type="checkbox" id="project-aws-aks">
+            <label for="project-aws-aks">AWS only AKS</label>
             <input type="checkbox" id="project-multiple-public-clouds">
             <label for="project-multiple-public-clouds">Multiple public clouds</label>
             <input type="checkbox" id="project-private-or-edge-cloud">
@@ -32,6 +36,8 @@
             <label for="project-standard-production">Standard Production</label>
             <input type="checkbox" id="project-mission-critical-production">
             <label for="project-mission-critical-production">Mission-critical Production</label>
+            <input type="checkbox" id="project-mission-regulated-workloads">
+            <label for="project-mission-regulated-workloads">Regulated workloads</label>
           </div>
         </div>
       </div>
@@ -45,24 +51,24 @@
         <h3 class="p-heading--five">Which of the below topics are important to you?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
+            <input type="checkbox" id="important-Regulatory-compliance">
+            <label for="important-Regulatory-compliance">Regulatory compliance</label>
+            <input type="checkbox" id="important-FIPS">
+            <label for="important-FIPS">FIPS</label>
+            <input type="checkbox" id="important-CC-EAL">
+            <label for="important-CC-EAL">CC-EAL</label>
+            <input type="checkbox" id="important-Certification">
+            <label for="important-Certification">Certification</label>
             <input type="checkbox" id="important-Ubuntu-security-patching">
             <label for="important-Ubuntu-security-patching">Ubuntu security patching</label>
             <input type="checkbox" id="important-10-year-lifetime">
             <label for="important-10-year-lifetime">10-year lifetime</label>
-            <input type="checkbox" id="important-Regulatory-compliance">
-            <label for="important-Regulatory-compliance">Regulatory compliance</label>
-            <input type="checkbox" id="important-Certification">
-            <label for="important-Certification">Certification</label>
-            <input type="checkbox" id="important-CC-EAL">
-            <label for="important-CC-EAL">CC-EAL</label>
-            <input type="checkbox" id="important-FIPS">
-            <label for="important-FIPS">FIPS</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="important-Containers-ECS-EKS">
-            <label for="important-Containers-ECS-EKS">Containers (ECS, EKS)</label>
-            <input type="checkbox" id="important-Compute-AWS-EC2">
-            <label for="important-Compute-AWS-EC2">Compute (AWS EC2)</label>
+            <input type="checkbox" id="important-Containers-AKS">
+            <label for="important-Containers-AKS">Containers (AKS)</label>
+            <input type="checkbox" id="important-Compute-AWS-VM">
+            <label for="important-Compute-AWS-VM">Compute (AWS VM)</label>
             <input type="checkbox" id="important-Image-size">
             <label for="important-Image-size">Image size</label>
             <input type="checkbox" id="important-Kernel-livepatch">
