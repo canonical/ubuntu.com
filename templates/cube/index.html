@@ -7,7 +7,11 @@
 
 {% block content %}
 
+<<<<<<< HEAD
 <section class="p-strip--square-suru has-cube is-deep is-slanted--bottom-right">
+=======
+<section class="p-takeover--grad has-cube is-deep">
+>>>>>>> Add CUBE animation to watermark hero
   <div class="row u-equal-height">
     <div class="col-6">
       <h1>You&rsquo;re a professional.</br>Prove it with CUBE.</h1>
@@ -16,6 +20,7 @@
         <a href="/cube/microcerts" class="p-button--positive">View the microcerts</a>
       </p>
     </div>
+<<<<<<< HEAD
     <div class="col-5 col-start-large-8 u-hide--small p-cube-animation">
       <div class="p-cube-animation__cube--1"></div>
       <div class="p-cube-animation__cube--2"></div>
@@ -44,6 +49,15 @@
         loading="auto"
         ) | safe
       }}
+=======
+    <div class="col-5 u-hide--small hero-animation">
+      <div class="cube cube-1"></div>
+      <div class="cube cube-2"></div>
+      <div class="cube cube-3"></div>
+      <div class="cube cube-4"></div>
+      <div class="cube cube-5"></div>
+      <div class="cube cube-6"></div>
+>>>>>>> Add CUBE animation to watermark hero
     </div>
   </div>
 </section>
@@ -409,6 +423,7 @@
   </div>
 </section>
 
+<<<<<<< HEAD
 <section class="p-strip--square-suru has-cube is-slanted--top-right">
   <div class="u-fixed-width">
     <h2>Apply for beta access</h2>
@@ -424,6 +439,28 @@
 <script>
 window.addEventListener('load', (event) => {
   const heroAnimation = document.querySelector(".p-cube-animation")
+=======
+<section class="p-strip--square-suru has-cube">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <blockquote class="p-pull-quote">
+        <p class="p-pull-quote__quote">&nbsp;Quote from a real user about the experience.</p>
+        <cite class="p-pull-quote__citation">&mdash; Name Surname</cite>
+      </blockquote>
+    </div>
+    <div class="col-6">
+      <blockquote class="p-pull-quote">
+        <p class="p-pull-quote__quote">&nbsp;Quote from a real user about the experience.</p>
+        <cite class="p-pull-quote__citation">&mdash; Name Surname</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<script>
+window.addEventListener('load', (event) => {
+  const heroAnimation = document.querySelector(".hero-animation")
+>>>>>>> Add CUBE animation to watermark hero
   heroAnimation.classList.add("is-transformed")
   setInterval(() => {
     heroAnimation.classList.toggle("is-transformed")
