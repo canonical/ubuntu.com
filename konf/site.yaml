@@ -158,10 +158,10 @@ production:
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
-    location /blog/wp-json/wp/v2/ {
+    location /blog/wp\-json/wp/v2/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
     }
-    location /wp-content/uploads/ {
+    location /wp\-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
 
@@ -236,9 +236,9 @@ staging:
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
-    location /blog/wp-json/wp/v2/ {
+    location /blog/wp\-json/wp/v2/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
     }
-    location /wp-content/uploads/ {
+    location /wp\-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
