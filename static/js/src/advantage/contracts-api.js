@@ -18,8 +18,8 @@ export async function ensurePurchaseAccount(
   paymentMethodID
 ) {
   const queryString = window.location.search;
-  
-  let response = await fetch(`/advantage/purchase-account`, {
+
+  let response = await fetch(`/advantage/purchase-account${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
