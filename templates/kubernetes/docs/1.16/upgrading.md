@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -348,7 +348,7 @@ non-default admission control plugins is specified has changed. The old
 parameter was `--admission-control`; the new parameter is
 `--enable-admission-plugins`.
 
-For example, prior to 1.16, The ‘PodSecurityPolicy’ admission plugin could be
+For example, prior to 1.16, The 'PodSecurityPolicy' admission plugin could be
 applied like this:
 
 ```bash

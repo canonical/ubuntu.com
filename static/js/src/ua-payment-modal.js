@@ -51,6 +51,13 @@ const closeModalButton = modal.querySelector(".js-close-modal");
 const cardErrorElement = document.getElementById("card-errors");
 const paymentErrorElement = document.getElementById("payment-errors");
 
+const forMyselfRadio = document.getElementById("buying_for_myself");
+const forOrganisationRadio = document.getElementById(
+  "buying_for_an_organisation"
+);
+const accountNameField = document.getElementById("account_name");
+const accountNameLabel = document.getElementById("account_name_label");
+
 // initialise Stripe
 const stripe = window.Stripe(window.stripePublishableKey);
 
@@ -243,6 +250,9 @@ function attachFormEvents() {
     checkVAT();
   });
 
+  forMyselfRadio.addEventListener("change", handleNameFieldRadio);
+  forOrganisationRadio.addEventListener("change", handleNameFieldRadio);
+
   termsCheckbox.addEventListener("change", () => {
     if (termsCheckbox.checked) {
       processPaymentButton.disabled = false;
@@ -250,6 +260,17 @@ function attachFormEvents() {
       processPaymentButton.disabled = true;
     }
   });
+}
+
+function handleNameFieldRadio() {
+  if (forMyselfRadio.checked) {
+    accountNameField.value = "";
+    accountNameField.disabled = true;
+    accountNameLabel.classList.add("u-text--muted");
+  } else {
+    accountNameField.disabled = false;
+    accountNameLabel.classList.remove("u-text--muted");
+  }
 }
 
 function attachModalButtonEvents() {
@@ -948,7 +969,9 @@ function setCustomerInfo() {
   customerInfo = {
     email: formData.get("email"),
     name: formData.get("name"),
-    accountName: formData.get("account_name"),
+    accountName:
+      (formData.get("account_name") && formData.get("account_name").trim()) ||
+      formData.get("name"),
     address: {
       city: formData.get("city"),
       country: formData.get("Country"),

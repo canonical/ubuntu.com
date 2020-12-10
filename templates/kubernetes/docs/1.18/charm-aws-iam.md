@@ -16,7 +16,7 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: kubernetes/docs/base_docs.html
+wrapper_template: "templates/docs/markdown.html"
 ---
 
 The AWS IAM charm allows a Kubernetes cluster to be authenticated via the Amazon

@@ -14,7 +14,7 @@ This Privacy notice tells you about the information collected from you when you 
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of “Legal”.
+We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -30,7 +30,7 @@ We will use your information for internal user and product research purposes. We
 
 Your information is stored in our database and may be processed outside of the European Economic Area. It is shared with the third parties only as reasonably required for Canonical to process and store your data in accordance with this notice.
 
-Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection similar to those which apply to the United Kingdom and EEA, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of you personal information. If you would like further information please contact us (see “Your right to complain” below). We will not otherwise transfer your personal data outside of the EEA.
+Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection similar to those which apply to the United Kingdom and EEA, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of you personal information. If you would like further information please contact us (see "Your right to complain" below). We will not otherwise transfer your personal data outside of the EEA.
 How long do we keep your information for?
 
 We keep your information for as long as you continue to consent to participate in Snapcraft product research and thereafter for so long as reasonably required in accordance with our record retention policy.
@@ -50,16 +50,16 @@ You have a number of important rights under data protection laws. In summary, th
 - otherwise restrict our processing of your personal information in certain circumstances;
 - claim compensation for damages caused by out breach of any data protection laws.
 
-For further information on each of those rights, including the circumstances in which they apply, see the Guidance from the UK Information Commissioner’s Office (ICO) on individuals rights under the General Data Protection Regulation.
+For further information on each of those rights, including the circumstances in which they apply, see the Guidance from the UK Information Commissioner's Office (ICO) on individuals rights under the General Data Protection Regulation.
 
 If you would like to exercise any of those rights, please:
 
-- email, call or write to us, please see “Your right to complain” section below;
+- email, call or write to us, please see "Your right to complain" section below;
 - let us have enough information to identify you;
 - let us have proof of your identity and address (a copy of your driving licence or passport and a recent utility or credit card bill); and
 - let us know the information to which your request relates.
 
-If you would like to unsubscribe from any email you can also click on the “unsubscribe” button at the bottom of the email. Please note that this is not automatic, but will be implemented once confirmed.
+If you would like to unsubscribe from any email you can also click on the "unsubscribe" button at the bottom of the email. Please note that this is not automatic, but will be implemented once confirmed.
 
 ## Keeping your personal information secure
 
@@ -85,7 +85,7 @@ United Kingdom
 
 Alternatively, you can use the relevant contact us form.
 
-If you have a complaint about our use of your information, you can contact the Information Commissioner’s Office via their website at [ico.org.uk/make-a-complaint](https://ico.org.uk/make-a-complaint/) or write to them at:
+If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at [ico.org.uk/make-a-complaint](https://ico.org.uk/make-a-complaint/) or write to them at:
 
 <div style="margin:2rem;">
 Information Commissioner's Office<br />

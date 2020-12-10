@@ -1,5 +1,5 @@
 ---
-wrapper_template: "smartstart/guide/base.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "smartstart/shared/_side-navigation.md"
 context:
@@ -40,7 +40,7 @@ Your involvement facilitates the delivery of technical support. The following co
 
 ### Helpful resources
 
-- [Canonical’s support portal](http://support.canonical.com)
+- [Canonical's support portal](http://support.canonical.com)
 - [Smart Start - Hardware setup](/smart-start/guide/hardware-setup)
 - [Smart Start - Device enablement](/smart-start/guide/device-enablement)
 

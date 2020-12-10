@@ -16,7 +16,7 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: kubernetes/docs/base_docs.html
+wrapper_template: "templates/docs/markdown.html"
 ---
 
 This subordinate charm deploys the [Kata](https://katacontainers.io/)
@@ -68,7 +68,7 @@ juju run-action kata ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Collect debug data
     </p>

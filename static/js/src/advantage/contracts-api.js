@@ -12,10 +12,14 @@ export async function getPurchase(purchaseID) {
   return data;
 }
 
-export async function ensurePurchaseAccount(email, name, paymentMethodID) {
+export async function ensurePurchaseAccount(
+  email,
+  accountName,
+  paymentMethodID
+) {
   const queryString = window.location.search;
-
-  let response = await fetch(`/advantage/purchase-account${queryString}`, {
+  
+  let response = await fetch(`/advantage/purchase-account`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -25,7 +29,7 @@ export async function ensurePurchaseAccount(email, name, paymentMethodID) {
     },
     body: JSON.stringify({
       email: email,
-      name: name,
+      accountName: accountName,
       payment_method_id: paymentMethodID,
     }),
   });

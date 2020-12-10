@@ -6,6 +6,7 @@ import hmac
 import json
 import math
 import os
+import re
 
 # Packages
 import dateutil.parser
@@ -1058,7 +1059,7 @@ def ensure_purchase_account():
     try:
         account = advantage.ensure_purchase_account(
             email=request.get("email"),
-            name=request.get("name"),
+            account_name=request.get("account_name"),
             payment_method_id=request.get("payment_method_id"),
         )
     except UnauthorizedError as err:
@@ -1344,6 +1345,40 @@ class BlogPressCentre(BlogView):
         )
 
         return flask.render_template("blog/press-centre.html", **context)
+
+
+class BlogSitemapIndex(BlogView):
+    def dispatch_request(self):
+        response = session.get(
+            "https://admin.insights.ubuntu.com/sitemap_index.xml"
+        )
+
+        xml = response.text.replace(
+            "https://admin.insights.ubuntu.com/",
+            "https://ubuntu.com/blog/sitemap/",
+        )
+        xml = re.sub(r"<\?xml-stylesheet.*\?>", "", xml)
+
+        response = flask.make_response(xml)
+        response.headers["Content-Type"] = "application/xml"
+        return response
+
+
+class BlogSitemapPage(BlogView):
+    def dispatch_request(self, slug):
+        response = session.get(f"https://admin.insights.ubuntu.com/{slug}.xml")
+
+        if response.status_code == 404:
+            return flask.abort(404)
+
+        xml = response.text.replace(
+            "https://admin.insights.ubuntu.com/", "https://ubuntu.com/blog/"
+        )
+        xml = re.sub(r"<\?xml-stylesheet.*\?>", "", xml)
+
+        response = flask.make_response(xml)
+        response.headers["Content-Type"] = "application/xml"
+        return response
 
 
 def sitemap_index():

@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -202,7 +202,7 @@ This token can then be used to log in to the Kubernetes dashboard.
 
 Keystone has the ability to use LDAP for authentication.
 The Keystone charm is related to the Keystone-LDAP subordinate charm in order to
-support LDAP.  
+support LDAP.
 
 ```bash
 juju deploy keystone-ldap
@@ -296,9 +296,9 @@ configuring Keystone/LDAP.
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/ldap.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/ldap.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

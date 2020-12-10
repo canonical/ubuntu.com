@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -19,7 +19,7 @@ However, in some cases it may be useful to
 customise the install:
 
   - Adding additional components
-  - Configuring storage or networking  
+  - Configuring storage or networking
   - Copying an existing configuration
   - Testing a pre-release version
   - ...and many more
@@ -67,12 +67,12 @@ each category!
  <div class="col-2 ">
    <span>Calico</span>
  </div>
-  <div class="col-6 ">
+  <div class="col-4 ">
    <span>Calico provides out-of-the-box support for the
    NetworkPolicy feature of Kubernetes, along with different modes of
    network encapsulation. <a href="/kubernetes/docs/cni-calico"> Read more...</a></span>
   </div>
-  <div class="col-4 ">
+  <div class="col-3 ">
     <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/calico-overlay.yaml" class="p-button--positive">Download calico-overlay.yaml</a></span>
   </div>
 </div>
@@ -81,10 +81,10 @@ each category!
 <div class="col-2">
   <span>Canal</span>
 </div>
- <div class="col-6">
+ <div class="col-4">
   <span>Shorthand for "Calico and Flannel", this combination brings in Calico's support for the NetworkPolicy feature of Kubernetes, while utilizing Flannel's UDP-based network traffic.<a href="/kubernetes/docs/cni-canal"> Read more...</a></span>
  </div>
- <div class="col-4">
+ <div class="col-3">
    <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/canal-overlay.yaml" class="p-button--positive">Download canal-overlay.yaml</a></span>
  </div>
 </div>
@@ -93,12 +93,12 @@ each category!
 <div class="col-2">
   <span>Tigera Secure EE</span>
 </div>
- <div class="col-6">
+ <div class="col-4">
   <span>Tigera Secure EE is a commercial version of
   Calico with additional enterprise features. As well as deploying the software, you will need to configure
   it with the relevant licence. <a href="/kubernetes/docs/tigera-secure-ee"> Read more...</a></span>
  </div>
- <div class="col-4">
+ <div class="col-3">
    <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/tigera-overlay.yaml" class="p-button--positive">Download tigera-overlay.yaml</a></span>
  </div>
 </div>
@@ -121,10 +121,10 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
  <div class="col-2 ">
    <span>AWS integrator</span>
  </div>
-  <div class="col-6 ">
+  <div class="col-4 ">
    <span>Enables support for EBS storage and ELB load balancers. <a href="/kubernetes/docs/aws-integration"> Read more...</a></span>
   </div>
-  <div class="col-4 ">
+  <div class="col-3 ">
     <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/aws-overlay.yaml" class="p-button--positive">Download aws-overlay.yaml</a></span>
   </div>
 </div>
@@ -133,10 +133,10 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
 <div class="col-2 u-vertically-center">
   <span>Azure integrator</span>
 </div>
- <div class="col-6 u-vertically-center">
+ <div class="col-4 u-vertically-center">
   <span>Enables support for Azure's native Disk Storage and load balancers.</span>
  </div>
- <div class="col-4 u-vertically-center">
+ <div class="col-3 u-vertically-center">
    <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml" class="p-button--positive">Download azure-overlay.yaml</a></span>
  </div>
 </div>
@@ -145,10 +145,10 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
 <div class="col-2">
   <span>GCP integrator</span>
 </div>
- <div class="col-6">
+ <div class="col-4">
   <span>Integrates with GCP for storage and loadbalancing. <a href="/kubernetes/docs/gcp-integration"> Read more...</a></span>
  </div>
- <div class="col-4">
+ <div class="col-3">
    <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/gcp-overlay.yaml" class="p-button--positive">Download gcp-overlay.yaml</a></span>
  </div>
 </div>
@@ -157,10 +157,10 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
   <div class="col-2">
    <span>OpenStack integrator</span>
  </div>
-  <div class="col-6">
+  <div class="col-4">
    <span>Provides support for OpenStack native features such as Cinder volumes and LBaaS. <a href="/kubernetes/docs/openstack-integration"> Read more...</a></span>
   </div>
-  <div class="col-4">
+  <div class="col-3">
     <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-overlay.yaml" class="p-button--positive u-no-margin--right">Download openstack-overlay.yaml</a></span>
   </div>
 </div>
@@ -169,10 +169,10 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
   <div class="col-2">
    <span>vSphere integrator</span>
  </div>
-  <div class="col-6">
+  <div class="col-4">
    <span>Provides support for native storage in vSphere. </span>
   </div>
-  <div class="col-4">
+  <div class="col-3">
     <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/vsphere-overlay.yaml" class="p-button--positive u-no-margin--right u-no-margin--left">Download vsphere-overlay.yaml</a></span>
   </div>
 </div>

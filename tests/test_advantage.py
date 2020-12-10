@@ -49,7 +49,7 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
         client = make_client(session)
         resp = client.ensure_purchase_account(
             email="picard@enterprise",
-            name="jeanluc",
+            account_name="jeanluc",
             payment_method_id="pmid",
         )
         self.assertEqual(resp, {"ok": True})
@@ -102,7 +102,7 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
         with self.assertRaises(advantage.UnauthorizedError) as ctx:
             client.ensure_purchase_account(
                 email="picard@enterprise",
-                name="jeanluc",
+                account_name="jeanluc",
                 payment_method_id="pmid",
             )
         self.assertEqual(

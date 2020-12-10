@@ -14,7 +14,7 @@ This privacy notice tells you about the information collected from you when you 
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of “Legal”.
+We are Canonical Group Limited. Our address is 5th Floor Blue Fin Building, 110 Southwark Street, London, SE1 0SU. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -24,9 +24,9 @@ When you sign up to watch one of our webinars, BrightTALK may ask you for your n
 
 ## Why do we collect this information?
 
-Your information will be used by us to conduct existing and future research of Canonical’s products and services.
+Your information will be used by us to conduct existing and future research of Canonical's products and services.
 
-Where you have agreed on BrightTALK’s website, we will use your information to send you other news and product updates from Canonical. This may involve us calling you, where we have your phone number in order to do so.
+Where you have agreed on BrightTALK's website, we will use your information to send you other news and product updates from Canonical. This may involve us calling you, where we have your phone number in order to do so.
 
 Consent is requested to do this, and we will only send you or tell you about news and product updates for as long as you continue to consent.
 
@@ -48,7 +48,7 @@ You can also ask us to stop using your information for news or product updates �
 
 ## Your right to complain
 
-If you have a complaint about our use of your information, you can contact the Information Commissioner’s Office via their website at [ico.org.uk/concerns/](https://ico.org.uk/concerns/) or write to them at:
+If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at [ico.org.uk/concerns/](https://ico.org.uk/concerns/) or write to them at:
 
 <div style="margin:2rem;">
 Information Commissioner's Office<br />

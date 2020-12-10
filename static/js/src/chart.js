@@ -225,7 +225,8 @@ export function createChart(
   taskTypes,
   taskStatus,
   tasks,
-  taskVersions
+  taskVersions,
+  removePadding
 ) {
   var margin = {
     top: 0,
@@ -234,8 +235,15 @@ export function createChart(
     left: 150,
   };
   var rowHeight = 32;
-  var timeDomainStart = d3.timeYear.offset(tasks[0].startDate, -1);
-  var timeDomainEnd = d3.timeYear.offset(tasks[tasks.length - 1].endDate, +1);
+  var timeDomainStart;
+  var timeDomainEnd;
+  if (removePadding) {
+    timeDomainStart = tasks[0].startDate;
+    timeDomainEnd = tasks[tasks.length - 1].endDate;
+  } else {
+    timeDomainStart = d3.timeYear.offset(tasks[0].startDate, -1);
+    timeDomainEnd = d3.timeYear.offset(tasks[tasks.length - 1].endDate, +1);
+  }
   var height = taskTypes.length * rowHeight;
   var containerWidth = document.querySelector(chartSelector).clientWidth;
   if (containerWidth <= 0) {

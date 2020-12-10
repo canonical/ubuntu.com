@@ -1,5 +1,5 @@
 ---
-wrapper_template: kubernetes/docs/base_docs.html
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
@@ -328,9 +328,9 @@ These charms are frequently used with Charmed Kubernetes.
 
 These are the container images used by this release:
 
--   k8scsi/csi-node-driver-registrar:v1.0.2           
--   k8scsi/csi-provisioner:v1.0.2                      
--   k8scsi/csi-snapshotter:v1.0.2                      
+-   k8scsi/csi-node-driver-registrar:v1.0.2
+-   k8scsi/csi-provisioner:v1.0.2
+-   k8scsi/csi-snapshotter:v1.0.2
 -   coredns/coredns-arm64:1.6.2
 -   coredns/coredns-s390x:1.6.2
 -   kubernetesui/metrics-scraper:v1.0.1

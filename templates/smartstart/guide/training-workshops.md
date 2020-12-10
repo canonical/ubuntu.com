@@ -1,5 +1,5 @@
 ---
-wrapper_template: "smartstart/guide/base.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "smartstart/shared/_side-navigation.md"
 context:
@@ -22,7 +22,7 @@ A hands-on workshop to learn how to create, build, publish and maintain your own
 
 ## IoT app store operations
 
-Your own store, for your own ecosystem. What can you do and how is this managed? In this workshop, we present the functionalities built into the Snap Store and how it’s typically operated.
+Your own store, for your own ecosystem. What can you do and how is this managed? In this workshop, we present the functionalities built into the Snap Store and how it's typically operated.
 
 ## Project consulting
 
@@ -30,7 +30,7 @@ On-site or remote engagement with Canonical experts in board and SoC enablement,
 
 ## Smart device strategy &ndash; executive workshop
 
-What’s your IoT strategy? Whether you already ship Linux-based devices or are just thinking about entering the IoT market, we help you understand the challenges and opportunities for a successful go to market strategy. This executive workshop covers devices, edge clusters, cloud operations and strategy. Learn how to operate at high speed and precision for your all-digital business models.
+What's your IoT strategy? Whether you already ship Linux-based devices or are just thinking about entering the IoT market, we help you understand the challenges and opportunities for a successful go to market strategy. This executive workshop covers devices, edge clusters, cloud operations and strategy. Learn how to operate at high speed and precision for your all-digital business models.
 
 ### Helpful resources
 

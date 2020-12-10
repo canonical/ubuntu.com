@@ -192,6 +192,13 @@
       @media (min-width: $breakpoint-medium) {
         float: right;
       }
+
+      &.p-radio--inline {
+        float: none;
+        &:not(:first-child) {
+          margin-left: $sph-inner--large;
+        }
+      }
     }
   }
 }

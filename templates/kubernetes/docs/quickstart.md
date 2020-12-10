@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-Charmed Kubernetes<sup>&reg;</sup> delivers a ‘pure K8s’ experience, tested
+Charmed Kubernetes<sup>&reg;</sup> delivers a 'pure K8s' experience, tested
 across a wide range of clouds and integrated with modern metrics and monitoring.
 It works across all major public clouds and private infrastructure, enabling your
 teams to operate Kubernetes clusters on demand, anywhere.

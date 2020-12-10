@@ -45,14 +45,14 @@
             
             {% if type == "purchase" %}
             <div class="col-9 col-start-large-4">
-              <small>We’ll also send setup instructions to this address.</small>
+              <small>We'll also send setup instructions to this address.</small>
             </div>
             {% endif %}
           </div>
 
           <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
             <div class="col-3">
-              <label class="u-no-padding--top" for="customer_name">Your name:</label>
+              <label class="u-no-padding--top" for="customer_name">My name:</label>
             </div>
 
             <div class="col-9">
@@ -67,18 +67,31 @@
           {% if account is defined %}
             <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
               <div class="col-3">
-                <label class="u-no-padding--top" for="account_name">{% if account %}Account name{% else %}Choose account name{% endif %}:</label>
+                <label class="u-no-padding--top" for="customer_name">I'm buying for:</label>
+              </div>
+              <div class="col-9">
+                  <label class="p-radio--inline">
+                    <input type="radio" class="p-radio__input" name="buying_for" id="buying_for_myself" {% if not account %}checked=""{% endif %} aria-labelledby="Myself">
+                    <span class="p-radio__label" id="Myself">Myself</span>
+                  </label>
+
+                  <label class="p-radio--inline">
+                    <input type="radio" class="p-radio__input" name="buying_for" id="buying_for_an_organisation" {% if account %}checked=""{% endif %} aria-labelledby="organisation">
+                    <span class="p-radio__label" id="organisation">An organisation</span>
+                  </label>
+                  <div class="col-9 col-start-large-4">
+                    <span id="card-errors" class="p-form-validation__message u-hide"></span>
+                  </div>
+              </div>
+            </div>
+            <div class="p-form__group row u-no-padding u-vertically-center">
+              <div class="col-3">
+                <label class="u-no-padding--top u-text--muted" for="account_name" id="account_name_label">{% if account %}Account name{% else %}Choose account name{% endif %}:</label>
               </div>
 
               <div class="col-9">
-                <input class="p-form-validation__input" name="account_name" type="text" required value="{{ account.name }}" {% if account %}disabled{% endif %} />
+                <input name="account_name" id="account_name" type="text" value="{{ account.name }}" disabled />
               </div>
-
-              {% if not account %}
-                <div class="col-9 col-start-large-4">
-                  <small>This can be your organisation, or your name again.</small>
-                </div>
-              {% endif %}
 
               <div class="col-9 col-start-large-4">
                 <span class="p-form-validation__message u-hide"></span>

@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -100,7 +100,7 @@ license:   Apache-2.0
 description: |
   Kube-apiserver is the front-end for the Kubernetes control plane. It validates and configures data
   for the api objects which include pods, services, replicationcontrollers, and others. The API
-  Server services REST operations and provides the frontend to the cluster’s shared state through
+  Server services REST operations and provides the frontend to the cluster's shared state through
   which all other components interact.
 
   For more information, consult the [reference

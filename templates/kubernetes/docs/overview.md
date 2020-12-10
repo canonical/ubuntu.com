@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -13,7 +13,7 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-Deliver ‘Containers as a Service’ across the enterprise with
+Deliver 'Containers as a Service' across the enterprise with
 **Charmed Kubernetes<sup>&reg;</sup>** , enabling each
 project to spin up a standardised K8s of arbitrary scale, on demand, with centralised
 operational control. **Charmed Kubernetes** provides a well integrated, turn-key
@@ -34,7 +34,7 @@ the cloud.
 of storage systems to:
 
 - Automatically create storage when required.
-- Make storage available to containers wherever they’re scheduled.
+- Make storage available to containers wherever they're scheduled.
 - Automatically delete the storage when no longer needed.
 
 ### Networking
@@ -66,9 +66,9 @@ additional configuration or hassle.
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/overview.md" class="p-notification__action">edit this page</a> 
-    or 
+    We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/overview.md" class="p-notification__action">edit this page</a>
+    or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

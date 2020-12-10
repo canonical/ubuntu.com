@@ -1,5 +1,5 @@
 ---
-wrapper_template: "smartstart/guide/base.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "smartstart/shared/_side-navigation.md"
 context:
@@ -12,7 +12,7 @@ Canonical offers to package your IoT applications in snap containers within the 
 
 ## What is a snap?
 
-Snaps are a secure and scalable way to embed applications on Linux devices. Applications containerised in snaps are installed with all dependencies in a single command on any device running Linux. What’s more, with snaps, software updates are automatic and resilient. Applications run fully isolated in their own sandbox, thus minimising security risks.
+Snaps are a secure and scalable way to embed applications on Linux devices. Applications containerised in snaps are installed with all dependencies in a single command on any device running Linux. What's more, with snaps, software updates are automatic and resilient. Applications run fully isolated in their own sandbox, thus minimising security risks.
 
 Packaging IoT applications as snaps bring the flowing benefits:
 

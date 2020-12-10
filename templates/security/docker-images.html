@@ -14,12 +14,9 @@
       <span class="u-sv3"><h1>LTS Docker Images</h1></span>
       <p class="u-sv2">Hardened container images, with up to ten years guaranteed security maintenance.</p>
       <p>
-        <a href="/blog/canonical-publishes-lts-docker-image-portfolio-on-docker-hub">Read the announcement&nbsp;&rsaquo;</a>
-      </p>
-      <p>
         <a href="/security/contact-us?product=docker" class="p-button--positive js-invoke-modal">Contact Us</a>
-      </p>
-    </div>
+        <a href="/blog/canonical-publishes-lts-docker-image-portfolio-on-docker-hub">Read the announcement&nbsp;&rsaquo;</a>
+      </p>    </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
       {{
         image(
@@ -68,7 +65,7 @@
       <li class="p-list__item is-ticked">Fixes for high and critical Common Vulnerabilities and Exposures (CVEs)</li>
       <li class="p-list__item is-ticked">The Ubuntu distribution base image and application layers</li>
       <li class="p-list__item is-ticked">All major architectures</li>
-      <li class="p-list__item is-ticked">Designed for layering - “<code>FROM lts/nginx</code>”</li>
+      <li class="p-list__item is-ticked">Designed for layering - "<code>FROM lts/nginx</code>"</li>
     </ul>
     <p>
       <a href="/about/release-cycle">Learn more about the Ubuntu release cadence&nbsp;&rsaquo;</a>
@@ -84,12 +81,13 @@
     <p class="p-heading--4"><strong>Is the LTS Docker Image Portfolio a free or a commercial offering?</strong></p>
     <p>Both. Some LTS Docker Images have a free five year maintenance period, based on the underlying Ubuntu LTS free standard security maintenance period. All LTS Images receive Extended Security Maintenance from Canonical and during that period are available to existing Canonical customers only, through Docker Hub. As with Ubuntu interim releases, ongoing development images are released regularly and receive free security updates while they are the current version.</p>
     <p class="p-heading--4"><strong>Where are the images?</strong></p>
-    <p>On Docker Hub images are provided in three groups:</p>
+    <p>On Amazon ECR Public and Docker Hub, images are provided in three groups:</p>
     <ul>
-      <li><a href="https://hub.docker.com/u/ubuntu/">Ubuntu on Docker Hub</a> has development releases with security updates</li>
-      <li>Free LTS images with up to five years fixes</li>
-      <li>Customer-only content with up to ten years fixes</li>
+      <li><a class="p-link--external" href="https://hub.docker.com/u/ubuntu/">Ubuntu on Docker Hub</a> and <a class="p-link--external" href="https://gallery.ecr.aws/?searchTerm=LTS">ECR Public</a> have development releases with security updates</li>
+      <li>LTS ("Canonical") on <a class="p-link--external" href="https://gallery.ecr.aws/?searchTerm=LTS">ECR Public</a> has Free LTS images with up to five years fixes</li>
+      <li>Customer-only content with up to ten years of fixes</li>
     </ul>
+    <p>All of our Docker Hub repositories are exempted from per-user rate limits.</p>
     <p class="p-heading--4"><strong>Is there a long-term commitment? How long?</strong></p>
     <p>LTS Images are security-maintained for the full ten year period of their underlying Ubuntu LTS release. Some applications will have versions on multiple Ubuntu LTS versions. In each case, the image is maintained for the full life of the underlying Ubuntu LTS.</p>
     <p class="p-heading--4"><strong>Can I use these images to build other applications?</strong></p>

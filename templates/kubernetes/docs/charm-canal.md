@@ -15,12 +15,12 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: kubernetes/docs/base_docs.html
+wrapper_template: "templates/docs/markdown.html"
 ---
 
 Canal is a community-driven initiative that aims to allow users to easily
 deploy Calico and flannel networking together as a unified networking
-solution - combining Calico’s industry-leading network policy enforcement with
+solution - combining Calico's industry-leading network policy enforcement with
 the rich superset of Calico and flannel overlay and non-overlay network
 connectivity options.
 

@@ -1,5 +1,5 @@
 ---
-wrapper_template: "kubernetes/docs/base_docs.html"
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -162,7 +162,7 @@ this data before running an upgrade. This is covered in more detail in the
 ```bash
 juju run-action etcd/0 snapshot --wait
 ```
-You should see confirmation of the snapshot being created, and the command needed to download the snapshot  
+You should see confirmation of the snapshot being created, and the command needed to download the snapshot
 _from the **etcd** unit_. See the following truncated, example output:
 
 ```
@@ -182,7 +182,7 @@ juju scp etcd/40:/home/ubuntu/etcd-snapshots/etcd-snapshot-2020-11-18-21.37.11.t
 ```
 
 Substitute in your own etcd unit number and filename, or copy and paste the command from the previous
-output. Remember to add the ` .` at the end to copy to your local directory! 
+output. Remember to add the ` .` at the end to copy to your local directory!
 
 
 #### 3. Upgrade
