@@ -1,13 +1,15 @@
 import os
 import flask
 import talisker.requests
+import yaml
 
 from webapp.cube.api import CubeEdxAPI
 from webapp.login import user_info
 
 
-# Cube
-# ===
+with open("webapp/cube/mappings/courses.yaml", "r") as stream:
+    COURSE_DATA = yaml.load(stream.read(), Loader=yaml.Loader)
+
 cube_api = CubeEdxAPI(
     "https://qa.cube.ubuntu.com",
     os.getenv("CUBE_EDX_CLIENT_ID"),
@@ -24,15 +26,23 @@ def cube_microcerts():
 
         modules = []
         for course in courses:
+            course_id = course["id"]
+            if course_id not in COURSE_DATA:
+                continue
+
             course_uri = (
-                f"https://qa.cube.ubuntu.com/courses/{course['id']}/course"
+                f"https://qa.cube.ubuntu.com/courses/{course_id}/course"
             )
+
+            badge = COURSE_DATA[course_id].get("logo")
+            topics = COURSE_DATA[course_id].get("topics")
+
             modules.append(
                 {
-                    "number": 1,
-                    "badge": "Badge",
+                    "number": len(modules) + 1,
+                    "badge": badge,
                     "name": course["name"],
-                    "topics": [],
+                    "topics": topics,
                     "test_url": course_uri,
                     "training_url": course_uri,
                     "status": "Hardcoded",
