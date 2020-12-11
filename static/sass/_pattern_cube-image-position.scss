@@ -1,0 +1,36 @@
+@mixin ubuntu-p-cube-image {
+  html {
+    overflow-x: hidden !important;
+  }
+  .row {
+    max-width: 70rem;
+  }
+  .u-image-position.is-grid-pinned {
+    overflow: visible;
+
+    .row {
+      position: relative;
+    }
+
+    .u-image-position--left {
+      position: absolute;
+      transform: translateX(-100%);
+      z-index: 50;
+
+      &.with-overlap--top {
+        transform: translate(-100%, -50%);
+      }
+      &.with-overlap--bottom {
+        transform: translate(-100%, 50%);
+      }
+    }
+    .u-image-position--right {
+      position: absolute;
+      transform: translateX(100%);
+
+      &.with-overlap--top {
+        transform: translate(100%, -50%);
+      }
+    }
+  }
+}
