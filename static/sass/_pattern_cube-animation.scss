@@ -46,12 +46,15 @@
         $coords: map-get($positions, $to);
         $xPos: map-get($coords, "x") * 1px;
         $yPos: map-get($coords, "y") * 1px;
-        .cube-#{$index} {
+        .p-cube-animation__cube--#{$index} {
+          @extend %cube-animation-item;
+
           transform: translate(#{$xPos}, #{$yPos});
         }
       }
     }
-    &__cube {
+
+    %cube-animation-item {
       background: url(https://assets.ubuntu.com/v1/c3137d5a-CUBE-2.svg);
       background-size: map-get($size, "width") * 1px map-get($size, "height") *
         1px;
@@ -64,7 +67,9 @@
     @each $index, $position in $positions {
       $xPos: map-get($position, "x") * 1px;
       $yPos: map-get($position, "y") * 1px;
-      .cube-#{$index} {
+      .p-cube-animation__cube--#{$index} {
+        @extend %cube-animation-item;
+
         transform: translate(#{$xPos}, #{$yPos});
       }
     }
