@@ -16,13 +16,13 @@
         <a href="/cube/microcerts" class="p-button--positive">View MicroCerts</a>
       </p>
     </div>
-    <div class="col-5 col-start-large-8 u-hide--small hero-animation">
-      <div class="cube cube-1"></div>
-      <div class="cube cube-2"></div>
-      <div class="cube cube-3"></div>
-      <div class="cube cube-4"></div>
-      <div class="cube cube-5"></div>
-      <div class="cube cube-6"></div>
+    <div class="col-5 col-start-large-8 u-hide--small p-cube-animation">
+      <div class="p-cube-animation__cube cube-1"></div>
+      <div class="p-cube-animation__cube cube-2"></div>
+      <div class="p-cube-animation__cube cube-3"></div>
+      <div class="p-cube-animation__cube cube-4"></div>
+      <div class="p-cube-animation__cube cube-5"></div>
+      <div class="p-cube-animation__cube cube-6"></div>
     </div>
   </div>
 </section>
@@ -218,7 +218,7 @@
 
 <script>
 window.addEventListener('load', (event) => {
-  const heroAnimation = document.querySelector(".hero-animation")
+  const heroAnimation = document.querySelector(".p-cube-animation")
   heroAnimation.classList.add("is-transformed")
   setInterval(() => {
     heroAnimation.classList.toggle("is-transformed")
