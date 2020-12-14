@@ -1,7 +1,7 @@
 {% extends "advantage/base_advantage.html" %}
 
 {% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
-{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
+{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance for Infrastructure to address security and compliance concerns.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1AW8wQu1Uvq0xFtd_c2JwNdic075MPOTx7k2KHqFPPeo/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -145,7 +145,7 @@
               <ul class="p-accordion__list u-no-margin--bottom">
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="esm-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="esm-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">ESM</div>
+                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">ESM Infra</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
                       <span>
@@ -221,7 +221,7 @@
                   <th class="u-no-padding u-vertically-center"><span style="padding-left: 0.5rem;">{{ account }}</span></th>
                   <th>UA plan</th>
                   <th class="u-align--center">Attached</th>
-                  <th class="u-align--center">ESM</th>
+                  <th class="u-align--center">ESM Infra</th>
                   <th class="u-align--center">Livepatch</th>
                   <th class="u-align--center">Certifications</th>
                   <th class="u-hide">&nbsp;</th>

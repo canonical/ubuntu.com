@@ -204,7 +204,7 @@ function formatKeyLabel(key) {
   );
   formattedKey = formattedKey.replace(
     "Esm",
-    "Extended Security Maintenance (ESM)"
+    "Extended Security Maintenance for Infrastructure (ESM Infra)"
   );
   formattedKey = formattedKey.replace("Cve", "CVE/Critical fixes only");
   formattedKey = formattedKey.replace("Early", "Early preview");

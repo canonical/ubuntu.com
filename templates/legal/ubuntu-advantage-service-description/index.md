@@ -33,7 +33,7 @@ When an Ubuntu Advantage subscription is attached to a physical host running a [
   3. The Kernel Livepatch Service may provide kernel non-security bug fixes as kernel livepatches.
   4. Specific kernel versions are not guaranteed to receive livepatches indefinitely.  
   5. Only the default LTS kernel is available for livepatching. This includes  its backport as the last HWE kernel to the previous LTS release.
-4. Extended Security Maintenance
+4. Extended Security Maintenance // what to do with the legal text?
   1. Extended Security Maintenance provides available High and Critical CVE fixes for a number of server packages. A complete list of packages included in Extended Security Maintenance for a given release can be found at: [https://wiki.ubuntu.com/SecurityTeam/ESM/](https://wiki.ubuntu.com/SecurityTeam/ESM/)
   2. Extended Security Maintenance is only included for 64-bit x86 AMD/Intel installations.
   3. Extended Security Maintenance does not provide:
