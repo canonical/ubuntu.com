@@ -32,6 +32,8 @@ from webapp.context import (
     releases,
 )
 
+from webapp.cube.views import cube_home, cube_microcerts
+
 from webapp.views import (
     accept_renewal,
     advantage_view,
@@ -42,8 +44,6 @@ from webapp.views import (
     BlogPressCentre,
     build,
     build_tutorials_index,
-    cube_home,
-    cube_microcerts,
     download_harness,
     download_thank_you,
     appliance_install,
