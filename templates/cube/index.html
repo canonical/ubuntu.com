@@ -10,19 +10,18 @@
   <div class="row u-equal-height">
     <div class="col-6">
       <h1>You&rsquo;re a professional.</br>Prove it with CUBE.</h1>
-      <p>Certified Ubuntu Engineer (CUBE) designation is Canonical&rsquo;s professional endorsement indicating mastery of Ubuntu.</p>
-      <p>CUBE candidates must earn 15 microcertifications across relevant subject areas.</p>
+      <p class="p-heading--4">Certified Ubuntu Engineer (CUBE) designation is Canonical&rsquo;s professional endorsement indicating mastery of Ubuntu. CUBE candidates must earn 15 microcertifications across relevant subject areas.</p>
       <p>
         <a href="/cube/microcerts" class="p-button--positive">View MicroCerts</a>
       </p>
     </div>
-    <div class="col-5 col-start-large-8 u-hide--small hero-animation">
-      <div class="cube cube-1"></div>
-      <div class="cube cube-2"></div>
-      <div class="cube cube-3"></div>
-      <div class="cube cube-4"></div>
-      <div class="cube cube-5"></div>
-      <div class="cube cube-6"></div>
+    <div class="col-5 col-start-large-8 u-hide--small p-cube-animation">
+      <div class="p-cube-animation__cube--1"></div>
+      <div class="p-cube-animation__cube--2"></div>
+      <div class="p-cube-animation__cube--3"></div>
+      <div class="p-cube-animation__cube--4"></div>
+      <div class="p-cube-animation__cube--5"></div>
+      <div class="p-cube-animation__cube--6"></div>
     </div>
   </div>
 </section>
@@ -396,7 +395,7 @@
 
 <script>
 window.addEventListener('load', (event) => {
-  const heroAnimation = document.querySelector(".hero-animation")
+  const heroAnimation = document.querySelector(".p-cube-animation")
   heroAnimation.classList.add("is-transformed")
   setInterval(() => {
     heroAnimation.classList.toggle("is-transformed")
