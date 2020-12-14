@@ -1,5 +1,10 @@
 {% extends "templates/one-column.html" %}
 {% block title %}Ubuntu Blog{% endblock %}
+
+{% block extra_metatags %}
+  <link rel="alternate" type="application/rss+xml"  href="/blog/feed" title="Ubuntu.com's Blog RSS feed">
+{% endblock %}
+
 {% block content%}
 
 {% if current_page and current_page == 1 and featured_articles %}
