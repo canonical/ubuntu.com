@@ -487,6 +487,105 @@ app.add_url_rule(
     view_func=engage_thank_you(engage_pages),
 )
 
+# Core docs
+core_docs = Docs(
+    parser=DocParser(
+        api=discourse_api, index_topic_id=19764, url_prefix="/core/docs"
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs",
+    blueprint_name="core",
+)
+core_docs.init_app(app)
+# Core docs - Modem Manager
+core_modem_manager_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19901,
+        url_prefix="/core/docs/modem-manager",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/modem-manager",
+    blueprint_name="modem-manager",
+)
+core_modem_manager_docs.init_app(app)
+
+# Core docs - Bluetooth (bluez) docs
+core_bluetooth_docs = Docs(
+    parser=DocParser(
+        api=discourse_api, index_topic_id=19971, url_prefix="/core/docs/bluez"
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/bluez",
+    blueprint_name="bluez",
+)
+core_bluetooth_docs.init_app(app)
+
+# Core docs - NetworkManager
+core_network_manager_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19917,
+        url_prefix="/core/docs/networkmanager",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/networkmanager",
+    blueprint_name="networkmanager",
+)
+core_network_manager_docs.init_app(app)
+
+# Core docs - wp-supplicant
+core_wpa_supplicant_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19943,
+        url_prefix="/core/docs/wpa-supplicant",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/wpa-supplicant",
+    blueprint_name="wpa-supplicant",
+)
+core_wpa_supplicant_docs.init_app(app)
+
+# Core docs - easy-openvpn
+core_easy_openvpn_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19950,
+        url_prefix="/core/docs/easy-openvpn",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/easy-openvpn",
+    blueprint_name="easy-openvpn",
+)
+core_easy_openvpn_docs.init_app(app)
+
+# Core docs - wifi-ap
+core_wifi_ap_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19959,
+        url_prefix="/core/docs/wifi-ap",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/wifi-ap",
+    blueprint_name="wifi-ap",
+)
+core_wifi_ap_docs.init_app(app)
+
+# Core docs - alsa-utils
+core_als_autils_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19995,
+        url_prefix="/core/docs/alsa-utils",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/alsa-utils",
+    blueprint_name="alsa-utils",
+)
+core_als_autils_docs.init_app(app)
+
 
 @app.after_request
 def cache_headers(response):
