@@ -4,7 +4,7 @@ import { cookiePolicy } from "@canonical/cookie-policy";
 // Initalise the global navigation.
 createNav({
   showLogins: false,
-  hiring: 'https://canonical.com/careers/start',
+  hiring: "https://canonical.com/careers/start",
 });
 
 // Initalise the cookie policy notification.
