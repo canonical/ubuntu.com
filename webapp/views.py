@@ -23,7 +23,7 @@ from geolite2 import geolite2
 from requests.exceptions import HTTPError
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
-from googleapiclient.discovery import build
+from googleapiclient import discovery
 from google.oauth2 import service_account
 
 
@@ -1394,13 +1394,13 @@ def sitemap_index():
 def stats_view():
     try:
         creds = service_account.Credentials.from_service_account_info(
-            json.loads(os.getenv("CLIENT_JSON")),
+            json.loads(os.getenv("GOOGE_SERVICE_ACCOUNT_ANALYTICS")),
             scopes=[
                 "https://www.googleapis.com/auth/analytics",
                 "https://www.googleapis.com/auth/analytics.readonly",
             ],
         )
-        service = build(
+        service = discovery.build(
             "analytics", "v3", credentials=creds, cache_discovery=False
         )
         response = (
