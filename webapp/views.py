@@ -400,15 +400,26 @@ def advantage_view():
     new_subscription_start_date = None
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
+    is_test_backend = flask.request.args.get("test_backend", False)
+
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
     )
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        stripe_publishable_key = os.getenv(
+            "STRIPE_TEST_PUBLISHABLE_KEY",
+            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
+        )
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
             flask.session["authentication_token"],
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
 
         try:
@@ -559,6 +570,7 @@ def advantage_view():
         open_subscription=open_subscription,
         new_subscription_id=new_subscription_id,
         stripe_publishable_key=stripe_publishable_key,
+        is_test_backend=is_test_backend,
     )
 
 
@@ -585,6 +597,13 @@ class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
 
 
 def post_advantage_subscriptions(preview):
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
     user_token = flask.session.get("authentication_token")
     guest_token = flask.session.get("guest_authentication_token")
 
@@ -593,7 +612,7 @@ def post_advantage_subscriptions(preview):
             session,
             user_token or guest_token,
             token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
     else:
         return flask.jsonify({"error": "authentication required"}), 401
@@ -679,10 +698,17 @@ def post_advantage_subscriptions(preview):
 
 
 def post_renewal_preview(renewal_id):
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
     advantage = AdvantageContracts(
         session,
         flask.session["authentication_token"],
-        api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        api_url=api_url,
     )
 
     try:
@@ -700,10 +726,19 @@ def post_renewal_preview(renewal_id):
 @store_maintenance
 def advantage_shop_view():
     account = previous_purchase_id = None
+    is_test_backend = flask.request.args.get("test_backend", False)
+
     stripe_publishable_key = os.getenv(
-        "STRIPE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
     )
-    api_url = flask.current_app.config["CONTRACTS_API_URL"]
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        stripe_publishable_key = os.getenv(
+            "STRIPE_TEST_PUBLISHABLE_KEY",
+            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
+        )
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session):
         advantage = AdvantageContracts(
@@ -741,6 +776,7 @@ def advantage_shop_view():
                     previous_purchase_id=previous_purchase_id,
                     product_listings=[],
                     stripe_publishable_key=stripe_publishable_key,
+                    is_test_backend=is_test_backend,
                 )
             if code != 404:
                 raise
@@ -781,6 +817,7 @@ def advantage_shop_view():
         previous_purchase_id=previous_purchase_id,
         product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
+        is_test_backend=is_test_backend,
     )
 
 
@@ -871,13 +908,19 @@ def make_renewal(advantage, contract_info):
 def post_anonymised_customer_info():
     user_token = flask.session.get("authentication_token")
     guest_token = flask.session.get("guest_authentication_token")
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
             user_token or guest_token,
             token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
 
         if not flask.request.is_json:
@@ -903,13 +946,19 @@ def post_anonymised_customer_info():
 def post_customer_info():
     user_token = flask.session.get("authentication_token")
     guest_token = flask.session.get("guest_authentication_token")
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
             user_token or guest_token,
             token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
 
         if not flask.request.is_json:
@@ -937,13 +986,19 @@ def post_customer_info():
 def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
     user_token = flask.session.get("authentication_token")
     guest_token = flask.session.get("guest_authentication_token")
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
             user_token or guest_token,
             token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
 
         return advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
@@ -954,13 +1009,19 @@ def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
 def get_purchase(purchase_id):
     user_token = flask.session.get("authentication_token")
     guest_token = flask.session.get("guest_authentication_token")
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session) or guest_token:
         advantage = AdvantageContracts(
             session,
             user_token or guest_token,
             token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
 
         return advantage.get_purchase(purchase_id)
@@ -975,6 +1036,13 @@ def ensure_purchase_account():
     contains an auth token required for subsequent calls to the
     contract API.
     """
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
     if not flask.request.is_json:
         return flask.jsonify({"error": "JSON required"}), 400
 
@@ -984,7 +1052,7 @@ def ensure_purchase_account():
     advantage = AdvantageContracts(
         session,
         auth_token,
-        api_url=flask.current_app.config["CONTRACTS_API_URL"],
+        api_url=api_url,
     )
 
     request = flask.request.json
@@ -1010,11 +1078,18 @@ def ensure_purchase_account():
 
 
 def get_renewal(renewal_id):
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
             flask.session["authentication_token"],
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
 
         return advantage.get_renewal(renewal_id)
@@ -1023,11 +1098,18 @@ def get_renewal(renewal_id):
 
 
 def get_customer_info(account_id):
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
             flask.session["authentication_token"],
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
 
         return advantage.get_customer_info(account_id)
@@ -1036,11 +1118,18 @@ def get_customer_info(account_id):
 
 
 def accept_renewal(renewal_id):
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
     if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
             flask.session["authentication_token"],
-            api_url=flask.current_app.config["CONTRACTS_API_URL"],
+            api_url=api_url,
         )
 
         return advantage.accept_renewal(renewal_id)

@@ -14,7 +14,7 @@
       <div class="col-12 u-sv3">
         {% if not user_info %}
           <h1>Subscribe to Ubuntu Advantage</h1>
-          <p>If you have existing subscriptions or sales offers, <a href="/login" onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });">sign in</a> to see them.
+          <p>If you have existing subscriptions or sales offers, <a href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}" onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });">sign in</a> to see them.
         {% else %}
           <h1>Add machines to your subscription</h1>
         {% endif %}
