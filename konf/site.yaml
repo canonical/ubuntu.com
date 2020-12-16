@@ -13,6 +13,11 @@ env:
       key: database_url
       name: usn-db-url
 
+  - name: GOOGE_SERVICE_ACCOUNT_ANALYTICS
+    secretKeyRef:
+      key: google-service-account-analytics
+      name: google-api
+
   - name: SEARCH_API_KEY
     secretKeyRef:
       key: google-custom-search-key
