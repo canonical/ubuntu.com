@@ -247,6 +247,11 @@ unrestricted or is otherwise managed outside of Juju.
 If you have more restrictions on traffic between resources within or used by
 the model, you may need to manage the security group rules manually.
 
+### Using Keystone
+
+The `openstack-integrator` also provides an interface for authentication and authorisation using 
+Keystone. This is covered in detail in the [Keystone and LDAP documentation][ldap].
+
 ### Upgrading the integrator charm
 
 The openstack-integrator is not specifically tied to the version of Charmed Kubernetes installed and may
@@ -278,6 +283,7 @@ juju debug-log --replay --include openstack-integrator/0
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
 [openstack-integrator-readme]: https://jujucharms.com/u/containers/openstack-integrator/
 [install]: /kubernetes/docs/install-manual
+[ldap]: /kubernetes/docs/ldap
 [charm-config]: https://ubuntu.com/kubernetes/docs/charm-openstack-integrator#configuration
 
 <!-- FEEDBACK -->
