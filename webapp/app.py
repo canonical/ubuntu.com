@@ -64,6 +64,7 @@ from webapp.views import (
     build_engage_index,
     engage_thank_you,
     sitemap_index,
+    stats_view,
 )
 from webapp.login import login_handler, logout, user_info
 from webapp.security.database import db_session
@@ -163,6 +164,7 @@ def utility_processor():
 # Simple routes
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/advantage", view_func=advantage_view)
+app.add_url_rule("/desktop/statistics", view_func=stats_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule(
     "/advantage/subscribe/thank-you", view_func=advantage_thanks_view

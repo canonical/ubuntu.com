@@ -1387,3 +1387,44 @@ def sitemap_index():
 
     response.headers["Content-Type"] = "application/xml"
     return response
+
+
+def stats_view():
+    from googleapiclient.discovery import build
+    from google.oauth2 import service_account
+
+    SCOPES = [
+        "https://www.googleapis.com/auth/analytics",
+        "https://www.googleapis.com/auth/analytics.readonly",
+    ]
+    SERVICE_ACCOUNT_FILE = "client.json"
+
+    creds = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=SCOPES
+    )
+
+    service = build(
+        "analytics", "v3", credentials=creds, cache_discovery=False
+    )
+
+    try:
+        response = (
+            service.data()
+            .realtime()
+            .get(
+                ids="ga:113106543",
+                metrics="rt:activeUsers",
+                dimensions="rt:city,ga:pagePath,rt:country",
+                filters="ga:pagePath=~ubuntu.com/download/.*/thank-you",
+            )
+            .execute()
+        )
+        cities = response["rows"]
+        total_results = response["totalResults"]
+    except Exception:
+        cities = []
+        total_results = 0
+
+    return flask.render_template(
+        "desktop/statistics.html", cities=cities, total_results=total_results
+    )
