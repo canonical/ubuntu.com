@@ -274,6 +274,33 @@ def read_notices():
     )
 
 
+def single_notices_sitemap(offset):
+    notices = (
+        db_session.query(Notice)
+        .order_by(Notice.published)
+        .offset(offset)
+        .limit(10000)
+        .all()
+    )
+
+    xml_sitemap = flask.render_template(
+        "sitemap.xml",
+        links=[
+            {
+                "url": f"https://ubuntu.com/security/notices/{notice.id}",
+                "last_updated": notice.published.strftime("%Y-%m-%d"),
+            }
+            for notice in notices
+        ],
+    )
+
+    response = flask.make_response(xml_sitemap)
+    response.headers["Content-Type"] = "application/xml"
+    response.headers["Cache-Control"] = "public, max-age=43200"
+
+    return response
+
+
 @authorization_required
 def create_notice():
     """
