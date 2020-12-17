@@ -11,8 +11,21 @@
 
 <section id="ua-infra" class="p-strip--suru-topped is-bordered">
   <div class="u-fixed-width">
-    <h1>Open Infrastructure support & security</h1>
-    <p>Ubuntu Advantage for Infrastructure covers all aspects of open infrastructure - Ubuntu, KVM, OpenStack, Kubernetes, Docker, storage, networking, Ceph, SWIFT, SDN, logging, alerting and monitoring.</p>
+    <h1>Support and security pricing</h1>
+    <!-- TODO Find copy -->
+    <p>THIS NEEDS NEW COPY</p>
+  </div>
+</section>
+
+<section class="p-strip--light is-shallow" id="ua-infra">
+  <div class="u-fixed-width">
+    <h3>Ubuntu Advantage</h3>
+  </div>
+  {% with extra="Please refer to the <a href='/uasd'>service description</a> for full details." %}{% include "shared/pricing/_ua-for-infrastructure.html" %}{% endwith %}
+  <div class="u-fixed-width">
+    <p>
+      See our consulting, architecture, deployment and training packages for <a href="/pricing/consulting#openstack">OpenStack</a>, <a href="/pricing/consulting#kubernetes">Kubernetes</a> and <a href="/pricing/consulting#kubeflow">Kubeflow</a>.
+    </p>
     <ul class="p-inline-list">
       <li class="p-inline-list__item">
         <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
@@ -21,21 +34,6 @@
         <a href="/advantage" class="p-button--neutral">Purchase a subscription</a>
       </li>
     </ul>
-  </div>
-</section>
-
-<section class="p-strip--light is-shallow" id="ua-infra">
-  <div class="u-fixed-width">
-    <h3>Security maintenance and support</h3>
-  </div>
-  {% with extra="Please refer to the <a href='/uasd'>service description</a> for full details." %}{% include "shared/pricing/_ua-for-infrastructure.html" %}{% endwith %}
-  <div class="u-fixed-width">
-    <p>
-      See our consulting, architecture, deployment and training packages for <a href="/pricing/consulting#openstack">OpenStack</a>, <a href="/pricing/consulting#kubernetes">Kubernetes</a> and <a href="/pricing/consulting#kubeflow">Kubeflow</a>.
-    </p>
-    <p>
-      <a href="/support/contact-us" class="p-button js-invoke-modal">Solve compliance and security for your Ubuntu estate</a>
-    </p>
   </div>
 </section>
 

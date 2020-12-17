@@ -373,20 +373,10 @@ summary {
   @media only screen and (min-width: $breakpoint-small) {
     td,
     th {
-      &:nth-child(1) {
-        width: 50%;
-      }
+      width: 15%;
 
-      &:nth-child(2) {
-        width: 20%;
-      }
-
-      &:nth-child(3) {
-        width: 20%;
-      }
-
-      &:nth-child(4) {
-        width: 20%;
+      &:first-child() {
+        width: 40%;
       }
     }
   }

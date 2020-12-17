@@ -53,7 +53,12 @@
     <section class="p-strip--light is-shallow u-hide p-card u-no-margin--bottom" aria-hidden="true" id="enterprise-table" style="border-left: 0; border-right: 0; overflow: visible;">
       <div class="row u-arrow-up">
         <div class="col-12">
-          {% include "advantage/_table.html" %}
+          {% include "shared/pricing/_ua-for-infrastructure.html" %}
+          <div class="row">
+            <div class="col-12">
+              <p><a class="p-button--neutral" href="/advantage/subscribe">Buy a subscription</a></p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -377,7 +382,12 @@
     <section class="p-strip is-shallow is-bordered">
       <div class="row">
         <h2>Plans for enterprise use</h2>
-        {% include "advantage/_table.html" %}
+        {% include "shared/pricing/_ua-for-infrastructure.html" %}
+        <div class="row">
+          <div class="col-12">
+            <p><a class="p-button--neutral" href="/advantage/subscribe">Buy a subscription</a></p>
+          </div>
+        </div>
       </div>
     </section>
   {% endif %}
@@ -432,7 +442,12 @@
   <section class="p-strip is-shallow is-bordered">
     <div class="row">
       <h2>Plans for enterprise use</h2>
-      {% include "advantage/_table.html" %}
+      {% include "shared/pricing/_ua-for-infrastructure.html" %}
+      <div class="row">
+        <div class="col-12">
+          <p><a class="p-button--neutral" href="/advantage/subscribe">Buy a subscription</a></p>
+        </div>
+      </div>
     </div>
   </section>
 {% endif %}

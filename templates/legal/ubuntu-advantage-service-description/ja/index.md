@@ -12,6 +12,8 @@ context:
 
 {% include "shared/pricing/_ua-for-infrastructure-ja.html" %}
 
+<!-- TODO is the new table ok for the legal section? + Needs Japanese translation -->
+
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
 <h2 id="uasd-subscription">サブスクリプション</h2>
