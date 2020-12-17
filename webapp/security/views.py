@@ -301,6 +301,29 @@ def single_notices_sitemap(offset):
     return response
 
 
+def notices_sitemap():
+    notices_count = db_session.query(Notice).order_by(Notice.published).count()
+
+    base_url = "https://ubuntu.com/security/notices"
+
+    xml_sitemap = flask.render_template(
+        "sitemap_index_template.xml",
+        base_url=base_url,
+        links=[
+            {
+                "url": f"{base_url}/sitemap-{link*10000}.xml",
+            }
+            for link in range(ceil(notices_count / 10000))
+        ],
+    )
+
+    response = flask.make_response(xml_sitemap)
+    response.headers["Content-Type"] = "application/xml"
+    response.headers["Cache-Control"] = "public, max-age=43200"
+
+    return response
+
+
 @authorization_required
 def create_notice():
     """
