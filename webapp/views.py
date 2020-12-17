@@ -1292,7 +1292,7 @@ def engage_thank_you(engage_pages):
                 if item["language"] == language
             ]
             template_language = "engage/thank-you.html"
-            if language != "en":
+            if language and language != "en":
                 template_language = f"engage/shared/_{language}_thank-you.html"
 
             return flask.render_template(
