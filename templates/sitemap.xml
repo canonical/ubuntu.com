@@ -11,7 +11,7 @@
   {% for link in links %}
   <url>
     <loc>{{ link["url"] }}</loc>
-    {% if "last_updated" in link %}
+    {% if "last_updated" in link and link["last_updated"] != "" %}
     <lastmod>{{ link["last_updated"] }}</lastmod>
     {% endif %}
     <changefreq>monthly</changefreq>
