@@ -7,27 +7,30 @@
 {% block content %}
 
 {% if user %}
-<section class="p-strip--square-suru has-cube is-slanted--bottom-left">
+<section class="p-strip--square-suru has-cube is-dark is-slanted--bottom-left">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
       <h1>Your progress to CUBEdom</h1>
     </div>
-    <div class="col-6 p-cube-progression u-hide--small">
-      <div class="p-cube-progression__badge--1"></div>
-      <div class="p-cube-progression__badge--2"></div>
-      <div class="p-cube-progression__badge--3"></div>
-      <div class="p-cube-progression__badge--4"></div>
-      <div class="p-cube-progression__badge--5"></div>
-      <div class="p-cube-progression__badge--6"></div>
-      <div class="p-cube-progression__badge--7"></div>
-      <div class="p-cube-progression__badge--8"></div>
-      <div class="p-cube-progression__badge--9"></div>
-      <div class="p-cube-progression__badge--10"></div>
-      <div class="p-cube-progression__badge--11"></div>
-      <div class="p-cube-progression__badge--12"></div>
-      <div class="p-cube-progression__badge--13"></div>
-      <div class="p-cube-progression__badge--14"></div>
-      <div class="p-cube-progression__badge--15"></div>
+    <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
+      <div class="p-cube-progression__tag u-align--center u-vertically-center">
+        <span><small>Micro<br /><span>Certifications:</span></small><br /><span class="p-heading--4">5/15</span></span>
+      </div>
+      <div class="p-cube-progression__architecture"></div>
+      <div class="p-cube-progression__bash"></div>
+      <div class="p-cube-progression__devices"></div>
+      <div class="p-cube-progression__packages"></div>
+      <div class="p-cube-progression__services"></div>
+      <div class="p-cube-progression__admin"></div>
+      <div class="p-cube-progression__commands"></div>
+      <div class="p-cube-progression__security"></div>
+      <div class="p-cube-progression__networking"></div>
+      <div class="p-cube-progression__kernel"></div>
+      <div class="p-cube-progression__microk8s"></div>
+      <div class="p-cube-progression__virtualisation"></div>
+      <div class="p-cube-progression__storage"></div>
+      <div class="p-cube-progression__juju"></div>
+      <div class="p-cube-progression__maas"></div>
     </div>
   </div>
 </section>
@@ -135,4 +138,10 @@
 </section>
 
 {% endif %}
+
+<script>
+  const progressionHero = document.querySelector(".p-cube-progression")
+  const rhombuses = progressionHero.children
+  console.log(rhombuses)
+</script>
 {% endblock content %}
