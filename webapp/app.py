@@ -84,6 +84,7 @@ from webapp.security.views import (
     bulk_upsert_cve,
     single_notices_sitemap,
     notices_sitemap,
+    single_cves_sitemap,
 )
 
 
@@ -313,6 +314,11 @@ app.add_url_rule(
 )
 
 app.add_url_rule("/security/notices/sitemap.xml", view_func=notices_sitemap)
+
+app.add_url_rule(
+    "/security/cve/sitemap-<regex('[0-9]*'):offset>.xml",
+    view_func=single_cves_sitemap,
+)
 
 app.add_url_rule(
     "/security/releases", view_func=create_release, methods=["POST"]

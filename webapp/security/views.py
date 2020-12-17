@@ -968,3 +968,32 @@ def bulk_upsert_cve():
         ),
         200,
     )
+
+
+def single_cves_sitemap(offset):
+    cves = (
+        db_session.query(CVE)
+        .order_by(CVE.published)
+        .offset(offset)
+        .limit(10000)
+        .all()
+    )
+
+    xml_sitemap = flask.render_template(
+        "sitemap.xml",
+        links=[
+            {
+                "url": f"https://ubuntu.com/security/cve/{cve.id}",
+                "last_updated": (
+                    cve.published.strftime("%Y-%m-%d") if cve.published else ""
+                ),
+            }
+            for cve in cves
+        ],
+    )
+
+    response = flask.make_response(xml_sitemap)
+    response.headers["Content-Type"] = "application/xml"
+    response.headers["Cache-Control"] = "public, max-age=43200"
+
+    return response
