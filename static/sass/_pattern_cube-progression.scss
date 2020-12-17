@@ -4,13 +4,36 @@
     "height": 99,
   );
   $rhombusSize: (
-    "width": 169,
-    "height": 195,
+    "width": 85,
+    "height": 145,
   );
 
   .p-cube-progression {
     height: 382px;
     position: relative;
+
+    %is-faded {
+      background-color: rgba(255, 255, 255, 0.3);
+      opacity: 0.5;
+    }
+
+    .is-faded__diamond {
+      @extend %is-faded;
+
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+
+    .is-faded__rhombus-right {
+      @extend %is-faded;
+
+      clip-path: polygon(0% 34%, 100% 0%, 100% 66%, 0% 100%);
+    }
+
+    .is-faded__rhombus-left {
+      @extend %is-faded;
+
+      clip-path: polygon(0% 0%, 100% 34%, 100% 100%, 0% 66%);
+    }
 
     %diamond-badge {
       background-size: map-get($diamondSize, "width") * 1px
@@ -28,142 +51,155 @@
       width: map-get($rhombusSize, "width") * 1px;
     }
 
-    &__badge--1 {
+    &__tag {
+      @extend %diamond-badge;
+
+      background: $color-accent;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      transform: translate(
+        map-get($diamondSize, "width") * -0.5px,
+        map-get($rhombusSize, "height") * 1px
+      );
+    }
+
+    &__architecture {
       @extend %diamond-badge;
 
       background: url(https://assets.ubuntu.com/v1/8b175afd-Architecture.svg);
     }
 
-    &__badge--2 {
+    &__bash {
       @extend %rhombus-badge;
 
-      background: url(https://assets.ubuntu.com/v1/92dba1d3-bash.svg);
+      background: url(https://assets.ubuntu.com/v1/4b2c2de2-bash.svg);
       transform: translate(
-        map-get($rhombusSize, "width") * 1px /4,
-        map-get($diamondSize, "height") * 1px /4
+        map-get($diamondSize, "width") * 0.5px,
+        map-get($diamondSize, "height") * 0.5px
       );
     }
 
-    &__badge--3 {
+    &__devices {
       @extend %rhombus-badge;
 
-      background: url(https://assets.ubuntu.com/v1/0229c2b1-Devices_and_files.svg);
-      transform: translate(
-        map-get($rhombusSize, "width") * -1px /4,
-        map-get($diamondSize, "height") * 1px /4
-      );
+      background: url(https://assets.ubuntu.com/v1/9ba960cc-devices+and+files.svg);
+      transform: translate(0, map-get($diamondSize, "height") * 0.5px);
     }
 
-    &__badge--4 {
+    &__packages {
       @extend %diamond-badge;
 
       background: url(https://assets.ubuntu.com/v1/eb3be63d-Packages.svg);
       transform: translate(map-get($diamondSize, "width") * 1px, 0);
     }
 
-    &__badge--5 {
+    &__services {
       @extend %rhombus-badge;
 
-      background: url(https://assets.ubuntu.com/v1/1ab7ca08-Services.svg);
+      background: url(https://assets.ubuntu.com/v1/74e5c92e-Services.svg);
       transform: translate(
-        map-get($rhombusSize, "width") * 1.25px,
-        map-get($diamondSize, "height") * 1px /4
+        map-get($diamondSize, "width") * 1.5px,
+        map-get($diamondSize, "height") * 0.5px
       );
     }
 
-    &__badge--6 {
+    &__admin {
       @extend %rhombus-badge;
 
-      background: url(https://assets.ubuntu.com/v1/814f47d4-Admin.svg);
+      background: url(https://assets.ubuntu.com/v1/0a374de7-Admin.svg);
       transform: translate(
-        map-get($rhombusSize, "width") * 0.75px,
-        map-get($diamondSize, "height") * 1px /4
+        map-get($diamondSize, "width") * 1px,
+        map-get($diamondSize, "height") * 0.5px
       );
     }
 
-    &__badge--7 {
+    &__commands {
       @extend %diamond-badge;
 
       background: url(https://assets.ubuntu.com/v1/5e068487-Commands.svg);
       transform: translate(map-get($diamondSize, "width") * 2px, 0);
     }
 
-    &__badge--8 {
+    &__security {
       @extend %rhombus-badge;
 
-      background: url(https://assets.ubuntu.com/v1/9e2cd72d-Security.svg);
+      background: url(https://assets.ubuntu.com/v1/d9074c81-Security.svg);
       transform: translate(
-        map-get($rhombusSize, "width") * 2.24px,
-        map-get($diamondSize, "height") * 1px /4
+        map-get($diamondSize, "width") * 2.5px,
+        map-get($diamondSize, "height") * 0.5px
       );
     }
 
-    &__badge--9 {
+    &__networking {
       @extend %rhombus-badge;
 
-      background: url(https://assets.ubuntu.com/v1/eea43d23-Networking.svg);
+      background: url(https://assets.ubuntu.com/v1/3f3f2687-Networking.svg);
       transform: translate(
-        map-get($rhombusSize, "width") * 1.74px,
-        map-get($diamondSize, "height") * 1px /4
+        map-get($diamondSize, "width") * 2px,
+        map-get($diamondSize, "height") * 0.5px
       );
     }
 
-    &__badge--10 {
+    &__kernel {
       @extend %diamond-badge;
 
       background: url(https://assets.ubuntu.com/v1/7b4466fe-Kernel.svg);
       transform: translate(
         map-get($diamondSize, "width") * 0.5px,
-        map-get($rhombusSize, "height") * 0.74px
+        map-get($rhombusSize, "height") * 1px
       );
     }
 
-    &__badge--11 {
+    &__microk8s {
       @extend %rhombus-badge;
 
-      background: url(https://assets.ubuntu.com/v1/b78b8ce5-Microk8s.svg);
+      background: url(https://assets.ubuntu.com/v1/c26080a5-Microk8s.svg);
       transform: translate(
-        map-get($rhombusSize, "width") * 0.75px,
-        map-get($rhombusSize, "height") * 0.87px
+        map-get($diamondSize, "width") * 1px,
+        (map-get($rhombusSize, "height") * 1px) +
+          (map-get($diamondSize, "height") * 0.5px)
       );
     }
 
-    &__badge--12 {
+    &__virtualisation {
       @extend %rhombus-badge;
 
-      background: url(https://assets.ubuntu.com/v1/7bf66792-Virtualisation.svg);
+      background: url(https://assets.ubuntu.com/v1/4f1c55a5-Virtualisation.svg);
       transform: translate(
-        map-get($rhombusSize, "width") * 1px /4,
-        map-get($rhombusSize, "height") * 0.87px
+        map-get($diamondSize, "width") * 0.5px,
+        (map-get($rhombusSize, "height") * 1px) +
+          (map-get($diamondSize, "height") * 0.5px)
       );
     }
 
-    &__badge--13 {
+    &__storage {
       @extend %diamond-badge;
 
       background: url(https://assets.ubuntu.com/v1/090ef9e2-Storage.svg);
       transform: translate(
         map-get($diamondSize, "width") * 1.5px,
-        map-get($rhombusSize, "height") * 0.74px
-      );
-    }
-    &__badge--14 {
-      @extend %rhombus-badge;
-
-      background: url(https://assets.ubuntu.com/v1/d1773359-Juju.svg);
-      transform: translate(
-        map-get($rhombusSize, "width") * 1.74px,
-        map-get($rhombusSize, "height") * 0.87px
+        map-get($rhombusSize, "height") * 1px
       );
     }
 
-    &__badge--15 {
+    &__juju {
       @extend %rhombus-badge;
 
-      background: url(https://assets.ubuntu.com/v1/9cd2a2c8-MAAS.svg);
+      background: url(https://assets.ubuntu.com/v1/ce96b82f-Juju.svg);
       transform: translate(
-        map-get($rhombusSize, "width") * 1.25px,
-        map-get($rhombusSize, "height") * 0.87px
+        map-get($diamondSize, "width") * 2px,
+        (map-get($rhombusSize, "height") * 1px) +
+          (map-get($diamondSize, "height") * 0.5px)
+      );
+    }
+
+    &__maas {
+      @extend %rhombus-badge;
+
+      background: url(https://assets.ubuntu.com/v1/711b3e71-MAAS.svg);
+      transform: translate(
+        map-get($diamondSize, "width") * 1.5px,
+        (map-get($rhombusSize, "height") * 1px) +
+          (map-get($diamondSize, "height") * 0.5px)
       );
     }
   }
