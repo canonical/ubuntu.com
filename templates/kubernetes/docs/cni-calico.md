@@ -35,6 +35,9 @@ BGP peers to allow cross-subnet traffic to work.
 If Calico is configured to use IPIP mode, then the cloud must be configured to
 allow IPIP (protocol 4) network traffic.
 
+If all else fails, then running Calico with VXLAN encapsulation enabled should
+make it work on most clouds with no special configuration.
+
 ### AWS
 
 On AWS, it is recommended to run Calico in BGP mode. This usually requires the
@@ -64,18 +67,19 @@ that would apply to `charmed-kubernetes` to this bundle also.
 |---------------------|--------|------------------------------------------|----------------------------------------------------------------|
 | calico-node-image   | string | docker.io/calico/node:v3.6.1             | The image id to use for calico/node                            |
 | calico-policy-image | string | docker.io/calico/kube-controllers:v3.6.1 | The image id to use for calico/kube-controllers                |
-| ipip                | string | Never                                    | IPIP mode. Must be one of "Always", "CrossSubnet", or "Never". |
-| nat-outgoing        | bool   | True                                     | Enable NAT on outgoing traffic                                 |
 | cidr                | string | 192.168.0.0/16                           | Network CIDR assigned to Calico. This is applied to the default Calico pool, and is also communicated to the Kubernetes charms for use in kube-proxy configuration. |
-| manage-pools        | bool   | True                                     | If true, a default pool is created using the cidr and ipip charm configuration values. Warning: When manage-pools is enabled, the charm will delete any pools that are unrecognized. |
 | global-as-number    | int    | 64512                                    | Global AS number.
-| subnet-as-numbers   | string | {}                                       | Mapping of subnets to AS numbers, specified as YAML. Each Calico node will be assigned an AS number based on the entries in this mapping. |
-| unit-as-numbers     | string | {}                                       | Mapping of unit IDs to AS numbers, specified as YAML. Each Calico node will be assigned an AS number based on the entries in this mapping. |
-| node-to-node-mesh   | bool   | True                                     | When enabled, each Calico node will peer with every other Calico node in the cluster. |
 | global-bgp-peers    | string | []                                       | List of global BGP peers. Each BGP peer is specified with an address and an as-number. |
-| subnet-bgp-peers    | string | {}                                       | Mapping of subnets to lists of BGP peers. Each BGP peer is specified with an address and an as-number. |
-| unit-bgp-peers      | string | {}                                       | Mapping of unit IDs to lists of BGP peers. Each BGP peer is specified with an address and an as-number. |
+| ipip                | string | Never                                    | IPIP encapsulation mode. Must be one of "Always", "CrossSubnet", or "Never". This is incompatible with VXLAN encapsulation. If VXLAN encapsulation is enabled, then this must be set to "Never". |
+| manage-pools        | bool   | True                                     | If true, a default pool is created using the cidr and ipip charm configuration values. Warning: When manage-pools is enabled, the charm will delete any pools that are unrecognized. |
+| nat-outgoing        | bool   | True                                     | Enable NAT on outgoing traffic                                 |
+| node-to-node-mesh   | bool   | True                                     | When enabled, each Calico node will peer with every other Calico node in the cluster. |
 | route-reflector-cluster-ids | string | {}                               | Mapping of unit IDs to route reflector cluster IDs. Assigning a route reflector cluster ID allows the node to function as a route reflector. |
+| subnet-as-numbers   | string | {}                                       | Mapping of subnets to AS numbers, specified as YAML. Each Calico node will be assigned an AS number based on the entries in this mapping. |
+| subnet-bgp-peers    | string | {}                                       | Mapping of subnets to lists of BGP peers. Each BGP peer is specified with an address and an as-number. |
+| unit-as-numbers     | string | {}                                       | Mapping of unit IDs to AS numbers, specified as YAML. Each Calico node will be assigned an AS number based on the entries in this mapping. |
+| unit-bgp-peers      | string | {}                                       | Mapping of unit IDs to lists of BGP peers. Each BGP peer is specified with an address and an as-number. |
+| vxlan               | string | Never                                    | VXLAN encapsulation mode. Must be one of "Always", "CrossSubnet", or "Never". This is incompatible with IPIP encapsulation. If IPIP encapsulation is enabled, then this must be set to "Never". |
 
 ### Checking the current configuration
 
@@ -109,6 +113,22 @@ traffic only, set the `ipip` charm config to `CrossSubnet`:
 
 ```
 juju config calico ipip=CrossSubnet
+```
+
+## Calico VXLAN configuration
+
+By default, VXLAN encapsulation is disabled. To enable VXLAN encapsulation, set
+the `vxlan` charm config to `Always`:
+
+```
+juju config calico vxlan=Always
+```
+
+Alternatively, if you would like VXLAN encapsulation to be used for cross-subnet
+traffic only, set the `vxlan` charm config to `CrossSubnet`:
+
+```
+juju config calico vxlan=CrossSubnet
 ```
 
 ## Calico BGP configuration
@@ -380,9 +400,9 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cni-calico.md" class="p-notification__action">edit this page</a>
-    or
+    We appreciate your feedback on the documentation. You can 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cni-calico.md" class="p-notification__action">edit this page</a> 
+    or 
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>
