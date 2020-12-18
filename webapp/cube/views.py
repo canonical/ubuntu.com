@@ -23,6 +23,7 @@ def cube_microcerts():
 
     if user:
         courses = cube_api.get_courses(organization="ubuntu")["results"]
+        username = cube_api.get_user(user["email"])[0]["username"]
 
         modules = []
         for course in courses:
@@ -37,6 +38,16 @@ def cube_microcerts():
             badge = COURSE_DATA[course_id].get("logo")
             topics = COURSE_DATA[course_id].get("topics")
 
+            grade = None
+            try:
+                grade = cube_api.get_course_grades(course_id, username)[0]
+            except KeyError:
+                pass
+
+            status = "not-enrolled"
+            if grade:
+                status = "passed" if grade["passed"] else "enrolled"
+
             modules.append(
                 {
                     "number": len(modules) + 1,
@@ -45,7 +56,7 @@ def cube_microcerts():
                     "topics": topics,
                     "test_url": course_uri,
                     "training_url": course_uri,
-                    "status": "Hardcoded",
+                    "status": status,
                     "action": "Test",
                     "date_attempted": "20-12-07",
                 }
