@@ -20,16 +20,16 @@
       <div class="p-cube-progression__bash"></div>
       <div class="p-cube-progression__devices"></div>
       <div class="p-cube-progression__packages"></div>
-      <div class="p-cube-progression__services is-faded__right"></div>
-      <div class="p-cube-progression__admin is-faded__left"></div>
-      <div class="p-cube-progression__commands is-faded__diamond"></div>
+      <div class="p-cube-progression__services is-faded--right"></div>
+      <div class="p-cube-progression__admin is-faded--left"></div>
+      <div class="p-cube-progression__commands is-faded"></div>
       <div class="p-cube-progression__security"></div>
       <div class="p-cube-progression__networking"></div>
-      <div class="p-cube-progression__kernel is-faded__diamond"></div>
+      <div class="p-cube-progression__kernel is-faded"></div>
       <div class="p-cube-progression__microk8s"></div>
       <div class="p-cube-progression__virtualisation"></div>
       <div class="p-cube-progression__storage"></div>
-      <div class="p-cube-progression__juju is-faded__right"></div>
+      <div class="p-cube-progression__juju is-faded--right"></div>
       <div class="p-cube-progression__maas"></div>
     </div>
   </div>
@@ -137,10 +137,4 @@
 </section>
 
 {% endif %}
-
-<script>
-  const progressionHero = document.querySelector(".p-cube-progression")
-  const rhombuses = progressionHero.children
-  console.log(rhombuses)
-</script>
 {% endblock content %}
