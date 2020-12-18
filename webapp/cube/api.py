@@ -58,25 +58,37 @@ class CubeEdxAPI:
             "/api/courses/v1/courses"
             "?username=webteam%40canonical.com"
             f"&org={organization}"
-            "&page_size=35"
+            "&page_size=100"
         )
         return self.make_request("GET", uri).json()
 
     def get_course_grades(self, course_id: str, username: str):
         course_id = urllib.parse.quote_plus(course_id)
-        return self.make_request(
-            "GET", f"/api/grades/v1/courses/{course_id}?username={username}"
-        ).json()
+        uri = (
+            f"/api/grades/v1/courses/{course_id}"
+            f"?username={username}"
+            "&page_size=100"
+        )
+        return self.make_request("GET", uri).json()
 
     def get_course_gradebook(self, course_id: str, username: str):
         course_id = urllib.parse.quote_plus(course_id)
-        return self.make_request(
-            "GET", f"/api/grades/v1/gradebook/{course_id}?username={username}"
-        ).json()
+        uri = (
+            f"/api/grades/v1/gradebook/{course_id}"
+            f"?username={username}"
+            "&page_size=100"
+        )
+        return self.make_request("GET", uri).json()
 
     def get_enrollments(self, username: str):
+        uri = (
+            "/api/enrollment/v1/enrollments"
+            f"?username={username}"
+            "&page_size=100"
+        )
         return self.make_request(
-            "GET", f"/api/enrollment/v1/enrollments?username={username}"
+            "GET",
+            uri,
         ).json()
 
     def get_user(self, email: str):
