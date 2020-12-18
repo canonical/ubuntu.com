@@ -12,27 +12,22 @@
     height: 382px;
     position: relative;
 
-    %is-faded {
+    .is-faded {
       background-color: rgba(255, 255, 255, 0.3);
-      opacity: 0.5;
-    }
-
-    .is-faded__diamond {
-      @extend %is-faded;
-
       clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    }
+      opacity: 0.5;
 
-    .is-faded__right {
-      @extend %is-faded;
+      &--right {
+        @extend .is-faded;
 
-      clip-path: polygon(0% 34%, 100% 0%, 100% 66%, 0% 100%);
-    }
+        clip-path: polygon(0% 34%, 100% 0%, 100% 66%, 0% 100%);
+      }
 
-    .is-faded__left {
-      @extend %is-faded;
+      &--left {
+        @extend .is-faded;
 
-      clip-path: polygon(0% 0%, 100% 34%, 100% 100%, 0% 66%);
+        clip-path: polygon(0% 0%, 100% 34%, 100% 100%, 0% 66%);
+      }
     }
 
     %diamond-badge {
