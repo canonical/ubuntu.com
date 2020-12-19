@@ -85,8 +85,6 @@ const elements = stripe.elements({
   fonts: [
     {
       family: "Ubuntu",
-      src:
-        'url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2") format("woff2"), url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff")',
     },
   ],
 });
