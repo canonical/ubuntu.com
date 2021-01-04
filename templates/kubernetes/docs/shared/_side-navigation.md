@@ -3,9 +3,9 @@
 - [Overview](/kubernetes/docs/overview)
 
 ## Supported versions
+- [1.20](/kubernetes/docs/1.20/components)
 - [1.19](/kubernetes/docs/1.19/components)
 - [1.18](/kubernetes/docs/1.18/components)
-- [1.17](/kubernetes/docs/1.17/components)
 - [Version info](/kubernetes/docs/supported-versions)
 
 ## Install

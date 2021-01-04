@@ -274,6 +274,56 @@ def read_notices():
     )
 
 
+def single_notices_sitemap(offset):
+    notices = (
+        db_session.query(Notice)
+        .order_by(Notice.published)
+        .offset(offset)
+        .limit(10000)
+        .all()
+    )
+
+    xml_sitemap = flask.render_template(
+        "sitemap.xml",
+        links=[
+            {
+                "url": f"https://ubuntu.com/security/notices/{notice.id}",
+                "last_updated": notice.published.strftime("%Y-%m-%d"),
+            }
+            for notice in notices
+        ],
+    )
+
+    response = flask.make_response(xml_sitemap)
+    response.headers["Content-Type"] = "application/xml"
+    response.headers["Cache-Control"] = "public, max-age=43200"
+
+    return response
+
+
+def notices_sitemap():
+    notices_count = db_session.query(Notice).order_by(Notice.published).count()
+
+    base_url = "https://ubuntu.com/security/notices"
+
+    xml_sitemap = flask.render_template(
+        "sitemap_index_template.xml",
+        base_url=base_url,
+        links=[
+            {
+                "url": f"{base_url}/sitemap-{link*10000}.xml",
+            }
+            for link in range(ceil(notices_count / 10000))
+        ],
+    )
+
+    response = flask.make_response(xml_sitemap)
+    response.headers["Content-Type"] = "application/xml"
+    response.headers["Cache-Control"] = "public, max-age=43200"
+
+    return response
+
+
 @authorization_required
 def create_notice():
     """
@@ -918,3 +968,55 @@ def bulk_upsert_cve():
         ),
         200,
     )
+
+
+def single_cves_sitemap(offset):
+    cves = (
+        db_session.query(CVE)
+        .order_by(CVE.published)
+        .offset(offset)
+        .limit(10000)
+        .all()
+    )
+
+    xml_sitemap = flask.render_template(
+        "sitemap.xml",
+        links=[
+            {
+                "url": f"https://ubuntu.com/security/cve/{cve.id}",
+                "last_updated": (
+                    cve.published.strftime("%Y-%m-%d") if cve.published else ""
+                ),
+            }
+            for cve in cves
+        ],
+    )
+
+    response = flask.make_response(xml_sitemap)
+    response.headers["Content-Type"] = "application/xml"
+    response.headers["Cache-Control"] = "public, max-age=43200"
+
+    return response
+
+
+def cves_sitemap():
+    cves_count = db_session.query(CVE).order_by(CVE.published).count()
+
+    base_url = "https://ubuntu.com/security/cve"
+
+    xml_sitemap = flask.render_template(
+        "sitemap_index_template.xml",
+        base_url=base_url,
+        links=[
+            {
+                "url": f"{base_url}/sitemap-{link * 10000}.xml",
+            }
+            for link in range(ceil(cves_count / 10000))
+        ],
+    )
+
+    response = flask.make_response(xml_sitemap)
+    response.headers["Content-Type"] = "application/xml"
+    response.headers["Cache-Control"] = "public, max-age=43200"
+
+    return response

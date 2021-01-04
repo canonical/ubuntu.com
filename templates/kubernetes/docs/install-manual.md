@@ -232,13 +232,14 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
-| 1.19.x   |  [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml) |
-| 1.18.x         | [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml) |
-| 1.17.x         | [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml) |
-| 1.16.x         | [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-316/archive/bundle.yaml) |
-| 1.15.x         | [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml) |
-| 1.14.x         | [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml) |
-| 1.13.x         | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
+| 1.20.x    | [charmed-kubernetes-559](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-559/archive/bundle.yaml) |
+| 1.19.x    | [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml) |
+| 1.18.x    | [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml) |
+| 1.17.x    | [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml) |
+| 1.16.x    | [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-316/archive/bundle.yaml) |
+| 1.15.x    | [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml) |
+| 1.14.x    | [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml) |
+| 1.13.x    | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
 | 1.12.x         | [canonical-kubernetes-357](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-357/archive/bundle.yaml?channel=stable) |
 | 1.11.x         | [canonical-kubernetes-254](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-254/archive/bundle.yaml?channel=stable) |
 | 1.10.x         | [canonical-kubernetes-211](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-211/archive/bundle.yaml?channel=stable)  |

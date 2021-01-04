@@ -13,6 +13,55 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+
+# 1.20
+
+### December 16th, 2020 - [charmed-kubernetes-559](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-559/archive/bundle.yaml)
+
+## What's new
+
+- Calico VXLAN support
+
+The Calico charm now supports enabling VXLAN encapsulation for Calico network
+traffic. This provides an easier alternative to the direct routing or IPIP
+encapsulation modes, making it possible to run Calico on any Juju cloud without
+special cloud configuration. For more details, see the
+[Calico CNI documentation page][cni-calico].
+
+- CoreDNS operator charm support
+
+The CoreDNS component can now be deployed as an operator charm inside the
+Kubernetes cluster instead of being managed by the `cdk-addons` snap. This allows
+for more control over the component, including additional configuration options
+and easier contribution of bug fixes or upgrades to that component.
+
+Details on how to set this up can be found in the [CoreDNS section of the Addons page][coredns].
+
+- Kubernetes Dashboard operator charm support
+
+The Kubernetes Dashboard component can now be deployed as an operator charm inside the
+Kubernetes cluster instead of being managed by the `cdk-addons` snap. This allows
+for more control over the component, including additional configuration options
+and easier contribution of bug fixes or upgrades to that component.
+
+Details on how to set this up can be found in the [Kubernetes Dashboard section of the Addons page][dashboard].
+
+## Component upgrades
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.20](https://launchpad.net/charmed-kubernetes/+milestone/1.20).
+
+
+## Notes / Known Issues
+
+## Deprecations and API changes
+
+For details of deprecation notices and API changes for Kubernetes 1.20, please see the
+relevant sections of the [upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation)
+
+
 # 1.19+ck2 Bugfix release
 
 ### November 27th, 2020 - [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml)
@@ -514,6 +563,7 @@ Please see [this page][historic] for release notes of earlier versions.
 [container-runtime]: /kubernetes/docs/container-runtime
 [cis-benchmark]: https://www.cisecurity.org/benchmark/kubernetes/
 [heapster-deprecation]: https://github.com/kubernetes-retired/heapster/blob/master/docs/deprecation.md
+[dashboard]: /kubernetes/docs/cdk-addons#kubernetes-dashboard
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

@@ -82,6 +82,10 @@ from webapp.security.views import (
     cve,
     delete_cve,
     bulk_upsert_cve,
+    single_notices_sitemap,
+    notices_sitemap,
+    single_cves_sitemap,
+    cves_sitemap,
 )
 
 
@@ -102,8 +106,11 @@ app = FlaskBase(
 )
 
 # Settings
-app.config["CONTRACTS_API_URL"] = os.getenv(
-    "CONTRACTS_API_URL", "https://contracts.canonical.com"
+app.config["CONTRACTS_LIVE_API_URL"] = os.getenv(
+    "CONTRACTS_LIVE_API_URL", "https://contracts.canonical.com"
+).rstrip("/")
+app.config["CONTRACTS_TEST_API_URL"] = os.getenv(
+    "CONTRACTS_TEST_API_URL", "https://contracts.staging.canonical.com"
 ).rstrip("/")
 app.config["CANONICAL_LOGIN_URL"] = os.getenv(
     "CANONICAL_LOGIN_URL", "https://login.ubuntu.com"
@@ -301,6 +308,20 @@ app.add_url_rule(
 )
 
 app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
+
+app.add_url_rule(
+    "/security/notices/sitemap-<regex('[0-9]*'):offset>.xml",
+    view_func=single_notices_sitemap,
+)
+
+app.add_url_rule("/security/notices/sitemap.xml", view_func=notices_sitemap)
+
+app.add_url_rule(
+    "/security/cve/sitemap-<regex('[0-9]*'):offset>.xml",
+    view_func=single_cves_sitemap,
+)
+
+app.add_url_rule("/security/cve/sitemap.xml", view_func=cves_sitemap)
 
 app.add_url_rule(
     "/security/releases", view_func=create_release, methods=["POST"]

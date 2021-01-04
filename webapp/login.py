@@ -49,10 +49,15 @@ def empty_session(user_session):
 
 @open_id.loginhandler
 def login_handler():
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
-
-    api_url = flask.current_app.config["CONTRACTS_API_URL"]
 
     response = session.request(
         method="get", url=f"{api_url}/v1/canonical-sso-macaroon"

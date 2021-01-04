@@ -76,10 +76,35 @@ juju unexpose keystone
 juju unexpose openstack-dashboard
 ```
 
+## Using existing Keystone from an OpenStack model
+
+If you have an existing Keystone application deployed as part of OpenStack in a separate Juju model,
+it is possible to re-use it for authenticating and authorising users in Kubernetes.
+
+To do so, first deploy the [openstack-integrator charm][openstack-integrator]
+
+```bash
+juju deploy cs:~containers/openstack-integrator
+```
+
+Use 'juju trust' to grant openstack-integrator a permission to access the OpenStack model,
+or configure the credentials config parameter manually
+
+```bash
+juju trust openstack-integrator
+```
+
+Finally add a relation between `kubernetes-master` and `openstack-integrator`
+
+```bash
+juju add-relation kubernetes-master:keystone-credentials openstack-integrator:keystone-credentials
+```
+
 ## Fetch the Keystone script
 
-When related to Keystone, the Kubernetes master application will generate a utility
-script. This should be copied to the local client with:
+When related to Keystone directly (or to the `openstack-integrator:keystone-credentials` interface),
+the Kubernetes master application will generate a utility script. 
+This should be copied to the local client with:
 
 ```bash
 juju scp kubernetes-master/0:kube-keystone.sh ~/kube-keystone.sh
@@ -202,7 +227,7 @@ This token can then be used to log in to the Kubernetes dashboard.
 
 Keystone has the ability to use LDAP for authentication.
 The Keystone charm is related to the Keystone-LDAP subordinate charm in order to
-support LDAP.
+support LDAP.  
 
 ```bash
 juju deploy keystone-ldap
@@ -292,13 +317,15 @@ configuring Keystone/LDAP.
 [keystone-bundle]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/keystone.yaml
 [docs-ldap-keystone]: https://jujucharms.com/keystone-ldap
 [trouble]: /kubernetes/docs/troubleshooting/#troubleshooting-keystoneldap-issues
+[openstack-integrator]: /kubernetes/docs/openstack-integration
+
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/ldap.md" class="p-notification__action">edit this page</a>
-    or
+    We appreciate your feedback on the documentation. You can 
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/ldap.md" class="p-notification__action">edit this page</a> 
+    or 
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
   </p>
 </div>

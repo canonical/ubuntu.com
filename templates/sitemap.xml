@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  {% if base_url %}
+    <url>
+      <loc>{{ base_url }}</loc>
+      <changefreq>weekly</changefreq>
+    </url>
+  {% endif %}
+
+  {% for link in links %}
+  <url>
+    <loc>{{ link["url"] }}</loc>
+    {% if "last_updated" in link and link["last_updated"] != "" %}
+    <lastmod>{{ link["last_updated"] }}</lastmod>
+    {% endif %}
+    <changefreq>monthly</changefreq>
+  </url>
+  {% endfor %}
+</urlset>
