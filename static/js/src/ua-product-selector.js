@@ -16,7 +16,7 @@ function productSelector() {
   const shopHeroElement = document.querySelector(".js-shop-hero");
   const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
   const quantityTypeEl = form.querySelector(".js-type-name");
-  const steps = ["type", "quantity", "version", "support", "add", "cart"];
+  const steps = ["type", "quantity", "version", "esm-apps", "other-software", "support", "add", "cart"];
 
   let state = new StateManager(steps, render);
 
@@ -340,7 +340,7 @@ function productSelector() {
 
           infoElement.classList.remove("u-hide");
           state.set(inputElement.name, [inputElement.value]);
-          disableSteps(["quantity", "version", "support", "add"]);
+          disableSteps(["quantity", "version", "esm-apps", "other-software", "support", "add"]);
         } else {
           quantityTypeEl.innerHTML = `How many ${inputElement.dataset.productName}s?`;
           state.set(inputElement.name, [inputElement.value]);
@@ -450,11 +450,11 @@ function productSelector() {
 
     if (version === "#other") {
       // disable the rest of the form
-      disableSteps(["support", "add"]);
+      disableSteps(["esm-apps", "other-software", "support", "add"]);
     } else if (quantity) {
       // user has completed the form up to this
       // point, enable the rest of the form
-      enableSteps(["support", "add"]);
+      enableSteps(["esm-apps", "other-software", "support", "add"]);
     }
 
     versionTabs.forEach((tab) => {

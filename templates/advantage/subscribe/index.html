@@ -148,6 +148,65 @@
 
     {% include "advantage/_ubuntu_version_select.html" %}
 
+    <section class="p-strip is-shallow js-shop-step--esm-apps">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="p-heading--three u-no-margin--bottom u-sv2">New: Extended Security Maintenance for Applications</h2>
+        </div>
+
+        <div class="col-2 u-align--center u-hide--small u-vertically-center">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/92a095cb-Shield-greentick.svg",
+            alt="",
+            height="70",
+            width="59",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+
+        <div class="col-10">
+          <p class="u-no-margin--bottom">ESM Apps, for Ubuntu 16.04 18.04 and 20.04 LTS, extends security updates to <a href="https://packages.ubuntu.com/" class="p-link--external">all official Ubuntu packages</a> for ten years after release.</p>
+          <label class="p-checkbox">
+            <input type="checkbox" aria-labelledby="esm-apps-label" class="p-checkbox__input">
+            <span class="p-checkbox__label" id="esm-apps-label">Include ESM Apps in my plan</span>
+          </label>
+        </div>
+    </section>
+
+    <section class="p-strip is-shallow js-shop-step--other-software">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="p-heading--three u-no-margin--bottom u-sv2">Do you need any other software or updates?</h2>
+        </div>
+
+        <div class="col-2 u-align--center u-hide--small u-vertically-center">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/c87f3151-Update.svg",
+            alt="",
+            height="70",
+            width="73",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+
+        <div class="col-10">
+          <label class="p-checkbox">
+            <input type="checkbox" aria-labelledby="security-updates-label" class="p-checkbox__input">
+            <span class="p-checkbox__label" id="security-updates-label">Security updates for OpenStack, Ceph or MAAS</span>
+          </label>
+          <label class="p-checkbox">
+            <input type="checkbox" aria-labelledby="windows-drivers-label" class="p-checkbox__input">
+            <span class="p-checkbox__label" id="windows-drivers-label">Certified Windows drivers for KVM guests</span>
+          </label>
+        </div>
+    </section>
+
     <section class="p-strip is-shallow js-shop-step--support">
       <div class="row">
         <div class="col-12">
@@ -184,7 +243,7 @@
       </div>
     </section>
 
-    <section class="p-strip--light is-shallow js-shop-step--add p-shop-cart">
+    <section class="p-strip--light is-shallow js-shop-step--add p-shop-cart u-sv3">
       <div class="row">
         <div class="col-12">
           <h3>Your chosen plan</h3>
