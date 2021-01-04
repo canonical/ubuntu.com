@@ -16,7 +16,17 @@ function productSelector() {
   const shopHeroElement = document.querySelector(".js-shop-hero");
   const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
   const quantityTypeEl = form.querySelector(".js-type-name");
-  const steps = ["type", "quantity", "version", "esm-apps", "other-software", "support", "add", "cart"];
+  const steps = [
+    "type",
+    "quantity",
+    "version",
+    "esm-apps",
+    "other-software",
+    "support",
+    "add",
+    "cart",
+  ];
+  //trigger prettier
 
   let state = new StateManager(steps, render);
 
@@ -340,7 +350,14 @@ function productSelector() {
 
           infoElement.classList.remove("u-hide");
           state.set(inputElement.name, [inputElement.value]);
-          disableSteps(["quantity", "version", "esm-apps", "other-software", "support", "add"]);
+          disableSteps([
+            "quantity",
+            "version",
+            "esm-apps",
+            "other-software",
+            "support",
+            "add",
+          ]);
         } else {
           quantityTypeEl.innerHTML = `How many ${inputElement.dataset.productName}s?`;
           state.set(inputElement.name, [inputElement.value]);
