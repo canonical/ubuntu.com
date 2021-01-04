@@ -26,7 +26,6 @@ function productSelector() {
     "add",
     "cart",
   ];
-  //trigger prettier
 
   let state = new StateManager(steps, render);
 
