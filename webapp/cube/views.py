@@ -84,6 +84,7 @@ def cube_microcerts():
         data = {
             "user": {"name": user["fullname"]},
             "modules": modules,
+            "passed_courses": 2,
         }
 
         response = flask.make_response(
