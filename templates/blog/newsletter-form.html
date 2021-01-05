@@ -6,7 +6,7 @@
   <div class="blog-p-card__content">
     <form action="https://pages.canonical.com/index.php/leadCapture/save" method="post" id="mktoForm_1212" novalidate="novalidate" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
       <h3 class="p-card--title p-heading--four">Select topics you're <br />interested in</h3>
-      
+
       <ul class="p-list">
         <li class="p-list__item u-clearfix">
           <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightscloudserver" name="insightscloudserver" value="Cloud and server" />
@@ -63,11 +63,11 @@
         </span>
 
         <input type="hidden" name="Consent_to_Processing__c" value="yes" />
-        
+
         <input value="1959" class="mktoField mktoFieldDescriptor" name="lpId" type="hidden">
-        
+
         <input value="30" class="mktoField mktoFieldDescriptor" name="subId" type="hidden">
-        
+
         <input name="lpurl" value="https://pages.canonical.com/Insights-Subscription_Insights-Subscription-test.html?cr={creative}&amp;kw={keyword}" type="hidden">
         <input value="1212" class="mktoField mktoFieldDescriptor" name="formid" type="hidden">
         <input type="hidden" name="ret" value="{{request.build_absolute_uri}}?newsletter=true" />
@@ -86,6 +86,7 @@
 
 <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
 <script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>
 <script>
   $("#mktoForm_1212").validate({
     errorPlacement: function(error, element) {
