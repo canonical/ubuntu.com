@@ -983,7 +983,7 @@ def single_cves_sitemap(offset):
         "sitemap.xml",
         links=[
             {
-                "url": f"https://ubuntu.com/security/cve/{cve.id}",
+                "url": f"https://ubuntu.com/security/{cve.id}",
                 "last_updated": (
                     cve.published.strftime("%Y-%m-%d") if cve.published else ""
                 ),
