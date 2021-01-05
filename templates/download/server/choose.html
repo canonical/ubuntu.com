@@ -1,203 +1,63 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Get Ubuntu Server | Download{% endblock %}
+{% block title %}Get Ubuntu Server  | Download{% endblock %}
 {% block meta_description %}Get Ubuntu Server one of three ways; by using Multipass on your desktop, using MAAS to provision machines in your data centre or installing it directly on a server.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1FFQQUtzFGH88hA30qnZm-3pwVqcVl9UYyrNT4qQWrSM/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1e-vav_b54KlKsi92w3rDu9J14O0gpp8yAanEAIImlE8/edit{% endblock meta_copydoc %}
 
 {% block content %}
-
 <section class="p-strip--suru-topped">
-  <div class="row u-equal-height">
-    <div class="col-7">
-      <p class="p-muted-heading">
-        Get Ubuntu server
-      </p>
-      <h1 class="js-download-option">
-        Option 3: Manual install
-      </h1>
-      <h2 class="p-heading--three">
-        Get Ubuntu Server {{ releases.lts.full_version }} LTS
-      </h2>
-      <p>
-        Download and install Ubuntu Server using a USB stick or a DVD burner.
-      </p>
-      <p>
-        The long-term support version of Ubuntu Server, including the {{ releases.openstack_lts.slug }} release of OpenStack and support guaranteed until {{ releases.lts.eol }}.
-      </p>
-      <p class="u-sv3">
-        <a href="https://wiki.ubuntu.com/{{ releases.lts.slug }}/ReleaseNotes" class="p-link--external">
-          Ubuntu {{ releases.lts.short_version }} LTS release notes
-        </a>
-      </p>
-      <form action="/download/server" method="post" class="p-inline-list__item" style="display: inline">
-        <input type="hidden" name="next-step" value="step1">
-        <button type="submit" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 1', 'eventValue' : undefined });">
-          Option 1
-        </button>
-      </form>
-      <form action="/download/server" method="post" class="p-inline-list__item" style="display: inline">
-        <input type="hidden" name="next-step" value="step2">
-        <button type="submit" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
-          Option 2
-        </button>
-      </form>
-      <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
-        <input type="hidden" name="architecture" value="amd64">
-        <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
-      </form>
-      <p>
-        <a href="https://www.brighttalk.com/webcast/6793/398353/ubuntu-20-04-lts-whats-new-in-server" class="p-link--external">Watch the webinar &ndash; "Ubuntu 20.04 LTS: What's new in server?"</a>
-      </p>
-      <h4 class="p-muted-heading">Explore:</h4>
-      <ul class="p-inline-list">
-        <li class="p-inline-list__item">
-          <a href="https://multipass.run/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">
-            <img src="https://assets.ubuntu.com/v1/4e0ff71e-Multipass+logo_thin_rgb.svg" alt="" width="543" height="104" style="height: 26px; width: auto;" />
-        </li>
-        <li class="p-inline-list__item">
-          <a href="https://maas.io" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'MAAS', 'eventValue' : undefined });">
-            <img src="https://assets.ubuntu.com/v1/038514e8-MAAS_black-orange_rgb.svg" alt="" width="543" height="104" style="height: 26px; width: auto;" />
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center" style="min-height: 328px">
-      <div class="u-hide--small u-align--center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/28e0ebb7-Focal-Fossa-gradient-outline.svg",
-            alt="",
-            height="1500",
-            width="1922",
-            hi_def=True,
-            loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-  </div>
-  {% if releases.latest.short_version > releases.lts.short_version %}
-  <div class="p-strip is-shallow">
-    <div class="u-fixed-width">
-      <hr>
+  <div class="row">
+    <div class="col-12">
+      <h2>Get Ubuntu Server!</h2>
     </div>
   </div>
   <div class="row u-equal-height">
     <div class="col-6">
-      <h3>
-        Get Ubuntu Server {{ releases.latest.full_version }}
-      </h3>
-      <p>
-        The latest version of Ubuntu Server, including nine months of security and maintenance updates, until {{ releases.latest.eol }}.
-      </p>
-      <p>
-        <a href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes" class="p-link--external">
-          Ubuntu {{ releases.latest.short_version }} release notes
-        </a>
-      </p>
-      <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="version" value="{{ releases.latest.full_version }}">
-        <input type="hidden" name="architecture" value="amd64">
-        <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install - latest', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</button>
-      </form>
+      <p class="p-muted-heading">Option 3</p>
+      <h1 class="js-download-option">Automated server provisioning</h1>
+      <p class="p-heading--four">Provision machines with Ubuntu Server in a fully automated way with MAAS</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Bare metal cloud experience</li>
+        <li class="p-list__item is-ticked">Ubuntu Server, CentOS and Windows machines</li>
+        <li class="p-list__item is-ticked">Infrastructure discovery and automation</li>
+      </ul>
     </div>
-    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center">
+    <div class="col-6 u-hide--small u-align--center u-vertically-center" style="min-height: 328px">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/fe951eda-20.10_Groovy+Gorilla_RPi_Sketch.svg",
+          url="https://assets.ubuntu.com/v1/1be3ba70-maas-images.png?w=504",
           alt="",
-          height="237",
-          width="153",
+          height="310",
+          width="504",
           hi_def=True,
-          loading="lazy"
+          loading="lazy",
+          attrs={"class": "p-image--bordered"}
         ) | safe
       }}
     </div>
   </div>
-  {% endif %}
-</section>
-
-<section class="p-strip--light u-no-padding--bottom">
   <div class="row">
-    <div class="col-10">
-      <h2>Alternative downloads</h2>
-    </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">BitTorrents</h3>
-      <p>BitTorrent sometimes enables higher download speeds and more reliable downloads of large files.</p>
-      <ul class="p-list">
-        <li class="p-list__item">
-          <a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">
-          Ubuntu Server {{ releases.lts.full_version }} LTS&nbsp;&rsaquo;
-        </a>
-        </li>
-        <li class="p-list__item">
-          <a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">
-          Ubuntu Server {{ releases.latest.full_version }}&nbsp;&rsaquo;
-        </a>
-        </li>
-    </ul>
-    </div>
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">
-        Get the previous LTS
-      </h3>
-      <p>
-        The previous long-term support version of Ubuntu Server, including support guaranteed until {{ releases.previous_lts.eol }}.
-      </p>
+    <div class="col-12">
       <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="version" value="{{ releases.previous_lts.full_version }}">
-        <input type="hidden" name="architecture" value="amd64">
-        <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install - previous_lts', 'eventValue' : undefined });">Get Ubuntu Server {{ releases.previous_lts.short_version }} LTS</button>
+        <input type="hidden" name="next-step" value="step1">
+        <button type="submit" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 1', 'eventValue' : undefined });">
+          Option 1 - Instant Ubuntu VMs
+        </button>
       </form>
-    </div>
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">Other versions</h3>
-      <p>Other versions of Ubuntu Server including torrents, the network installer, a list of local mirrors and past releases.</p>
-      <p><a href="/download/alternative-downloads">See alternative downloads&nbsp;&rsaquo;</a></p>
+      <form action="/download/server" method="post" style="display: inline">
+        <input type="hidden" name="next-step" value="step2">
+        <button type="submit" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+          Option 2 - Manual server installation
+        </button>
+      </form>
+      <button disabled class="p-button--neutral u-no-margin--left">
+        Option 3 - Automated server provisioning
+      </button>
     </div>
   </div>
-</section>
-
-<section class="p-strip--light">
   <div class="row">
-    <div class="col-10">
-      <h2>Alternative architectures</h2>
-    </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">Ubuntu Server for ARM</h3>
-      <p>
-        Optimised for hyperscale deployments and certified on ARM chipsets &mdash; Ubuntu Server for ARM includes the 64-bit ARMv8 platforms.
-      </p>
-      <p>
-        <a href="/download/server/arm">Get Ubuntu Server for ARM&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">Ubuntu for POWER</h3>
-      <p>
-        Ubuntu is available on the IBM POWER platform, bringing the entire Ubuntu ecosystem to IBM POWER.
-      </p>
-      <p>
-        <a href="/download/server/power">Get Ubuntu for POWER&nbsp;&rsaquo;</a>
-      </p>
-    </div>
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">Ubuntu for IBM Z</h3>
-      <p>
-        IBM Z and LinuxONE leverage open technology solutions to meet the demands of the new application economy. Ubuntu is now available, with Juju and Ubuntu OpenStack.
-      </p>
-      <p>
-        <a href="/download/server/s390x">Get Ubuntu for IBM Z&nbsp;&rsaquo;</a>
-      </p>
+    <div class="col-12">
+      <p><a href="https://maas.io" class="p-button--positive p-link--external u-no-margin--top" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'MAAS', 'eventValue' : undefined });">Get MAAS</a></p>
     </div>
   </div>
 </section>
