@@ -1,0 +1,14 @@
+{% extends "cube/base_cube.html" %}
+
+{% block title %}Contact us | CUBE {% endblock %}
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+{% with h1="Contact us about CUBE Beta",
+  intro_text="Fill in your details below and a member of our team will be in touch.",
+  formid="3801",
+  lpId="7140",
+  returnURL="https://ubuntu.com/cube/thank-you?product=cube-beta" %}
+  {% include "shared/_cloud-contact-us-form.html" %}
+{% endwith %}
+{% endblock content %}
