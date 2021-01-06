@@ -1149,16 +1149,16 @@ export var openStackReleases = [
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
-    startDate: new Date("2020-04-01T00:00:00"),
-    endDate: new Date("2020-05-15T00:00:00"),
-    taskName: "OpenStack Ussuri LTS",
-    status: "TECH_PREVIEW",
-  },
-  {
     startDate: new Date("2020-05-15T00:00:00"),
     endDate: new Date("2025-04-01T00:00:00"),
     taskName: "OpenStack Ussuri LTS",
-    status: "LTS",
+    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT"
+  },
+  {
+    startDate: new Date("2025-04-01T00:00:00"),
+    endDate: new Date("2030-04-01T00:00:00"),
+    taskName: "OpenStack Ussuri LTS",
+    status: "EXTENDED_SUPPORT_MAINTENANCE"
   },
   {
     startDate: new Date("2025-04-01T00:00:00"),
@@ -1177,12 +1177,6 @@ export var openStackReleases = [
     endDate: new Date("2030-04-01T00:00:00"),
     taskName: "Ubuntu 20.04 LTS (v5.4)",
     status: "ESM",
-  },
-  {
-    startDate: new Date("2020-04-01T00:00:00"),
-    endDate: new Date("2020-05-15T00:00:00"),
-    taskName: "OpenStack Ussuri",
-    status: "TECH_PREVIEW",
   },
   {
     startDate: new Date("2020-05-15T00:00:00"),
@@ -1338,7 +1332,7 @@ export var kernelStatusALL = {
 };
 
 export var openStackStatus = {
-  TECH_PREVIEW: "chart__bar--orange-light",
+  //TECH_PREVIEW: "chart__bar--orange-light",
   LTS: "chart__bar--orange",
   MATCHING_OPENSTACK_RELEASE_SUPPORT: "chart__bar--grey",
   ESM: "chart__bar--aubergine",
