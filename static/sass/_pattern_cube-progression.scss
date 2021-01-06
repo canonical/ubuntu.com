@@ -181,20 +181,20 @@
     }
 
     .is-faded {
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.1);
       clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
       opacity: 0.5;
 
       &--right {
         @extend .is-faded;
 
-        clip-path: polygon(0% 34%, 100% 0%, 100% 66%, 0% 100%);
+        clip-path: polygon(0% 34%, 100% 0%, 100% 66.6%, 0% 100%);
       }
 
       &--left {
         @extend .is-faded;
 
-        clip-path: polygon(0% 0%, 100% 34%, 100% 100%, 0% 66%);
+        clip-path: polygon(0% 0%, 100% 34%, 100% 100%, 0% 66.6%);
       }
     }
   }
