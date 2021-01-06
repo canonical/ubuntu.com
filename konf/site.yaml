@@ -38,6 +38,16 @@ env:
       key: auth-consumer
       name: launchpad-imagebuild
 
+  - name: BAGDR_USER
+    secretKeyRef:
+      key: user
+      name: badgr
+
+  - name: BADGR_PASSWORD
+    secretKeyRef:
+      key: password
+      name: badgr
+
   - name: CUBE_EDX_CLIENT_ID
     secretKeyRef:
       key: client-id

@@ -123,6 +123,8 @@ For the most part this will happen automatically as long as the subpages (/ai/wh
 If you want to work on CUBE you need to add some environment vars into your .env.local
 
 ```
+BAGDR_USER=<badgr_user>
+BADGR_PASSWORD=<badgr_password>
 CUBE_EDX_CLIENT_ID=<cube_client_id>
 CUBE_EDX_CLIENT_SECRET=<cube_client_secret>
 ```
