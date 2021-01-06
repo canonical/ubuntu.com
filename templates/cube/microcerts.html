@@ -14,9 +14,6 @@
       <p class="p-heading--4">You have completed {{ passed_courses }} of 15 MicroCertifications</p>
     </div>
     <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
-      <!-- <div class="p-cube-progression is-tag u-align--center u-vertically-center">
-        <span><small>Micro<br /><span>Certifications:</span></small><br /><span class="p-heading--4">{{ passed_courses }}/15</span></span>
-      </div> -->
       <div class="p-cube-progression is-architecture {% if modules[12].status != 'Passed' %}is-faded{% endif %}"></div>
       <div class="p-cube-progression is-bash {% if modules[10].status != 'Passed' %}is-faded--right{% endif %}"></div>
       <div class="p-cube-progression is-devices {% if modules[2].status != 'Passed' %}is-faded--left{% endif %}"></div>
