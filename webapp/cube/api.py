@@ -2,6 +2,48 @@ import urllib
 from requests import Session
 
 
+class BadgrAPI:
+    def __init__(
+        self, base_url: str, username: str, password: str, session: Session
+    ):
+        self.base_url = base_url
+        self.username = username
+        self.password = password
+        self.session = session
+        self.token = None
+
+    def make_request(
+        self,
+        method: str,
+        path: str,
+        headers: dict = {},
+        data: dict = {},
+    ):
+        if not self.token:
+            self._authenticate()
+
+        uri = f"{self.base_url}{path}"
+        headers["Authorization"] = f"Bearer {self.token}"
+
+        response = self.session.request(
+            method, uri, data=data, headers=headers
+        )
+
+        return response
+
+    def _authenticate(self):
+        uri = f"{self.base_url}/o/token"
+
+        data = {"username": self.username, "password": self.password}
+
+        response = self.session.post(uri, data=data).json()
+        self.token = response["access_token"]
+
+    def get_assertions(self, issuer: str, email: str):
+        uri = f"/v2/issuers/{issuer}/assertions?recipient={email}"
+        return self.make_request("GET", uri).json()
+
+
 class CubeEdxAPI:
     def __init__(
         self,
@@ -92,6 +134,12 @@ class CubeEdxAPI:
         ).json()
 
     def get_user(self, email: str):
-        return self.make_request(
+        response = self.make_request(
             "GET", f"/api/user/v1/accounts?email={email}"
-        ).json()
+        )
+
+        if not response.ok:
+            return None
+
+        data = response.json()
+        return data[0]
