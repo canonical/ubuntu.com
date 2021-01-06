@@ -11,7 +11,7 @@
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
       <h1>Your progress to CUBEdom</h1>
-      <p class="p-heading--4">You have completed {{ passed_courses }} of 15 MicroCertifications</p>
+      <p class="p-heading--4">You have completed {{ passed_courses }} out of 15 MicroCertifications</p>
     </div>
     <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
       <div class="p-cube-progression is-architecture {% if modules[12].status != 'Passed' %}is-faded{% endif %}"></div>
@@ -60,18 +60,19 @@
       {% for module in modules %}
         <tr>
           <td aria-label="Module number">
-            <div class="table-contents">
+            <div class="p-table--cube__contents">
               <p class="u-text--muted">{{ module.number }}</p>
             </div>
           </td>
           <td aria-label="Badge">
               <img
+                class="p-table--cube__badge"
                 src="{{ module.badge }}"
                 alt="Badge for {{ module.name }}"
               />
           </td>
           <td aria-label="Module">
-            <div class="table-contents">
+            <div class="p-table--cube__contents">
               <h5>{{ module.name }}</h5>
             </div>
             <p class="u-text--muted u-hide--small">
@@ -79,7 +80,7 @@
             </p>
           </td>
           <td aria-label="Topics">
-            <div class="table-contents">
+            <div class="p-table--cube__contents">
               <ul class="p-list u-no-margin">
                 {% for topic in module.topics %}
                 <li class="p-list__item">{{ topic }}</li>
@@ -88,8 +89,8 @@
             </div>
           </td>
           <td class="p-table__cell--icon-placeholder" aria-label="Status">
-            <div class="table-contents">
-              {% if module.status == "passed" %}
+            <div class="p-table--cube__contents">
+              {% if module.status == "Passed" %}
               <p>
                 <i class="p-icon--success"></i>Passed
               </p>
@@ -105,11 +106,11 @@
             </div>
           </td>
           <td aria-label="Action">
-            {% if module.status == "enrolled" %}
-            <div class="table-contents">
+            {% if module.status != "Passed" %}
+            <div class="p-table--cube__contents">
               <p class="u-align--right">
-                <a class="p-button--neutral" href="{{ module.training_url }}">Prepare</a>
-                <a class="p-button--positive" href="{{ module.test_url }}">{{ module.action }}</a>
+                <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
+                <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.test_url }}">{{ module.action }}</a>
               </p>
             </div>
             {% endif %}

@@ -38,19 +38,31 @@
   }
 }
 
-.table-contents {
-  padding-top: 1rem;
-
+.p-table--cube__contents {
   > * {
-    margin: 0;
-    padding: 0;
-  }
-
-  li:first-of-type {
-    margin-top: 0;
     padding-top: 0;
   }
-  li:last-of-type {
-    padding-bottom: 1rem;
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    padding-top: 1rem;
+
+    > * {
+      margin: 0;
+      padding: 0;
+    }
+
+    li:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+    }
+    li:last-of-type {
+      padding-bottom: 1rem;
+    }
+  }
+}
+
+.p-table--cube__badge {
+  @media only screen and (max-width: $breakpoint-medium) {
+    margin-top: -0.4rem !important;
   }
 }
