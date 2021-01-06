@@ -33,7 +33,6 @@
 
       {% endif %}
     </div>
-    {% if has_enrollment %}
     <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
       <div class="p-cube-progression is-architecture {% if modules[12].status != 'passed' %}is-faded{% endif %}"></div>
       <div class="p-cube-progression is-bash {% if modules[10].status != 'passed' %}is-faded--right{% endif %}"></div>
@@ -51,25 +50,6 @@
       <div class="p-cube-progression is-juju {% if modules[3].status != 'passed' %}is-faded--right{% endif %}"></div>
       <div class="p-cube-progression is-maas {% if modules[5].status != 'passed' %}is-faded--left{% endif %}"></div>
     </div>
-    {% else %}
-    <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
-      <div class="p-cube-progression is-architecture is-faded"></div>
-      <div class="p-cube-progression is-bash is-faded--right"></div>
-      <div class="p-cube-progression is-devices is-faded--left"></div>
-      <div class="p-cube-progression is-packages is-faded"></div>
-      <div class="p-cube-progression is-services is-faded--right"></div>
-      <div class="p-cube-progression is-admin is-faded--left"></div>
-      <div class="p-cube-progression is-commands is-faded"></div>
-      <div class="p-cube-progression is-security is-faded--right"></div>
-      <div class="p-cube-progression is-networking is-faded--left"></div>
-      <div class="p-cube-progression is-kernel is-faded"></div>
-      <div class="p-cube-progression is-microk8s is-faded--right"></div>
-      <div class="p-cube-progression is-virtualisation is-faded--left"></div>
-      <div class="p-cube-progression is-storage  is-faded"></div>
-      <div class="p-cube-progression is-juju is-faded--right"></div>
-      <div class="p-cube-progression is-maas is-faded--left"></div>
-    </div>
-    {% endif %}
   </div>
 </section>
 
@@ -159,12 +139,12 @@
         <tr>
           <td aria-label="Module number">
             <div class="p-table--cube__contents">
-              <p class="u-text--muted">{{ module.number }}</p>
+              <p class="u-text--muted">{{ loop.index }}</p>
             </div>
           </td>
           <td class="u-hide--small" aria-label="Badge">
               <img 
-                src="{{ module.badge }}"
+                src="{{ module.badge.url }}"
                 alt="Badge for {{ module.name }}"
               />
           </td>
@@ -219,13 +199,13 @@
         <tr>
           <td aria-label="Module number">
             <div class="p-table--cube__contents">
-              <p class="u-text--muted">{{ module.number }}</p>
+              <p class="u-text--muted">{{ loop.index }}</p>
             </div>
           </td>
           <td aria-label="Badge">
               <img
                 class="p-table--cube__badge"
-                src="{{ module.badge }}"
+                src="{{ module.badge.url }}"
                 alt="Badge for {{ module.name }}"
               />
           </td>
@@ -248,7 +228,7 @@
           </td>
           <td class="p-table__cell--icon-placeholder" aria-label="Status">
             <div class="p-table--cube__contents">
-              {% if module.status == "Passed" %}
+              {% if module.status == "passed" %}
               <p>
                 <i class="p-icon--success"></i>Passed
               </p>
@@ -277,15 +257,17 @@
               </span>
             </span>
           </div>
-        </td>
+          </td>
           {% elif module.status == "enrolled" %}
           <td>
             <div class="p-table--cube__contents u-align--right">
               <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
-              <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.test_url }}">{{ module.action }}</a>
+              <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.test_url }}">Test</a>
             </div>
           </td>
           {% endif %}
+          <td></td>
+          {% else %}
         </tr>
       {% endfor %}
       </tbody>
