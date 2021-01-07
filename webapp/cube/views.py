@@ -2,6 +2,7 @@ import os
 import flask
 import talisker.requests
 import yaml
+from requests import Session
 
 from webapp.cube.api import CubeEdxAPI
 from webapp.login import user_info
@@ -10,11 +11,22 @@ from webapp.login import user_info
 with open("webapp/cube/mappings/courses.yaml", "r") as stream:
     COURSE_DATA = yaml.load(stream.read(), Loader=yaml.Loader)
 
+
+# This API lives under a sub-domain of ubuntu.com but requests to it
+# still need proxying, so we configure the session manually to avoid
+# it loading the configurations from environment variables, since those
+# deafult to not proxy requests for ubuntu.com sub-domains and that is
+# the intended behaviour for most of our apps
+proxies = {"http": os.getenv("HTTP_PROXY"), "https": os.getenv("HTTPS_PROXY")}
+cube_session = Session()
+cube_session.proxies.update(proxies)
+talisker.requests.configure(cube_session)
+
 cube_api = CubeEdxAPI(
     "https://qa.cube.ubuntu.com",
     os.getenv("CUBE_EDX_CLIENT_ID"),
     os.getenv("CUBE_EDX_CLIENT_SECRET"),
-    talisker.requests.get_session(),
+    cube_session,
 )
 
 
