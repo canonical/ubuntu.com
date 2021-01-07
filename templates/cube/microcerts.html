@@ -7,16 +7,38 @@
 {% block content %}
 
 {% if user %}
-<section class="p-strip--suru is-dark is-deep">
-  <div class="row u-equal-height">
-    <div class="col-8">
+<section class="p-strip--square-suru has-cube is-dark is-slanted--bottom-left">
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-6">
       <h1>Your progress to CUBEdom</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor.
-      </p>
+      <p class="p-heading--4">You have completed {{ passed_courses }} out of 15 MicroCertifications</p>
     </div>
-    <div class="col-4"></div>
+    <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
+      <div class="p-cube-progression is-architecture {% if modules[12].status != 'Passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-bash {% if modules[10].status != 'Passed' %}is-faded--right{% endif %}"></div>
+      <div class="p-cube-progression is-devices {% if modules[2].status != 'Passed' %}is-faded--left{% endif %}"></div>
+      <div class="p-cube-progression is-packages {% if modules[8].status != 'Passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-services"></div>
+      <div class="p-cube-progression is-admin {% if modules[0].status != 'Passed' %}is-faded--left{% endif %}"></div>
+      <div class="p-cube-progression is-commands {% if modules[1].status != 'Passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-security {% if modules[9].status != 'Passed' %}is-faded--right{% endif %}"></div>
+      <div class="p-cube-progression is-networking {% if modules[7].status != 'Passed' %}is-faded--left{% endif %}"></div>
+      <div class="p-cube-progression is-kernel {% if modules[4].status != 'Passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-microk8s {% if modules[6].status != 'Passed' %}is-faded--right{% endif %}"></div>
+      <div class="p-cube-progression is-virtualisation"></div>
+      <div class="p-cube-progression is-storage {% if modules[11].status != 'Passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-juju {% if modules[3].status != 'Passed' %}is-faded--right{% endif %}"></div>
+      <div class="p-cube-progression is-maas {% if modules[5].status != 'Passed' %}is-faded--left{% endif %}"></div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-slanted--top-right">
+  <div class="u-fixed-width">
+    <h2> Courseware access</h2>
+    <p><strong>Reccomended preparation</strong></p>
+    <p class="u-sv2">Access to the CUBE courseware. Be prepared for all modules.</p>
+    <a href="{module.training_url}" class="p-button--positive">Prepare</a>
   </div>
 </section>
 
@@ -38,18 +60,19 @@
       {% for module in modules %}
         <tr>
           <td aria-label="Module number">
-            <div class="table-contents">
+            <div class="p-table--cube__contents">
               <p class="u-text--muted">{{ module.number }}</p>
             </div>
           </td>
           <td aria-label="Badge">
               <img
+                class="p-table--cube__badge"
                 src="{{ module.badge }}"
                 alt="Badge for {{ module.name }}"
               />
           </td>
           <td aria-label="Module">
-            <div class="table-contents">
+            <div class="p-table--cube__contents">
               <h5>{{ module.name }}</h5>
             </div>
             <p class="u-text--muted u-hide--small">
@@ -57,7 +80,7 @@
             </p>
           </td>
           <td aria-label="Topics">
-            <div class="table-contents">
+            <div class="p-table--cube__contents">
               <ul class="p-list u-no-margin">
                 {% for topic in module.topics %}
                 <li class="p-list__item">{{ topic }}</li>
@@ -66,7 +89,7 @@
             </div>
           </td>
           <td class="p-table__cell--icon-placeholder" aria-label="Status">
-            <div class="table-contents">
+            <div class="p-table--cube__contents">
               {% if module.status == "passed" %}
               <p>
                 <i class="p-icon--success"></i>Passed
@@ -84,11 +107,9 @@
           </td>
           <td aria-label="Action">
             {% if module.status == "enrolled" %}
-            <div class="table-contents">
-              <p class="u-align--right">
-                <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
-                <a class="p-button--positive u-no-margin--left" href="{{ module.test_url }}">{{ module.action }}</a>
-              </p>
+            <div class="p-table--cube__contents u-align--right">
+              <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
+              <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.test_url }}">{{ module.action }}</a>
             </div>
             {% endif %}
           </td>
