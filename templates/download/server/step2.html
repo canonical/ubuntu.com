@@ -48,8 +48,9 @@
             <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
           </form>
         </li>
-        <li class="p-inline-list__item"><a href="#releases">Other releases&nbsp;&rsaquo;</a></li>
-        <li class="p-inline-list__item"><a href="#architectures">Other architectures&nbsp;&rsaquo;</a></li>
+        <li class="p-inline-list__item"><a href="#releases">Alternative releases&nbsp;&rsaquo;</a></li>
+        <li class="p-inline-list__item"><a href="#downloads">Alternative downloads&nbsp;&rsaquo;</a></li>
+        <li class="p-inline-list__item"><a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a></li>
       </ul>
     </div>
 
@@ -62,12 +63,12 @@
           Option 1 - Instant Ubuntu VMs
         </button>
       </form>
-      <button disabled class="p-button--neutral u-no-margin--left u-no-margin--top">
+      <button disabled class="p-button--neutral u-no-margin--top is-inline">
         Option 2 - Manual server installation
       </button>
       <form action="/download/server" method="post" style="display: inline">
         <input type="hidden" name="next-step" value="choose">
-        <button type="submit" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+        <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
           Option 3 - Automated server provisioning
         </button>
       </form>
@@ -123,7 +124,7 @@
   {% endif %}
 </section>
 
-<section class="p-strip--light u-no-padding--bottom">
+<section class="p-strip--light u-no-padding--bottom" id="downloads">
   <div class="row">
     <div class="col-10">
       <h2>Alternative downloads</h2>
