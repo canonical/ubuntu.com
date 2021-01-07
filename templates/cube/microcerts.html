@@ -90,22 +90,23 @@
           </td>
           <td class="p-table__cell--icon-placeholder" aria-label="Status">
             <div class="p-table--cube__contents">
-              {% if module.status == "Passed" %}
+              {% if module.status == "passed" %}
               <p>
                 <i class="p-icon--success"></i>Passed
               </p>
-              {% elif module.status == "Failed" %}
+              {% elif module.status == "failed" %}
               <p>
                 <i class="p-icon--error"></i>Failed
               </p>
-              {% else %}
-              <p>Never tried</p>
+              {% elif module.status == "enrolled" %}
+              <p>
+                Enrolled
+              </p>
               {% endif %}
             </div>
-            <p class="u-text--muted"><small>{{ module.date_attempted }}</small></p>
           </td>
           <td aria-label="Action">
-            {% if module.status != "Passed" %}
+            {% if module.status == "enrolled" %}
             <div class="p-table--cube__contents u-align--right">
               <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
               <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.test_url }}">{{ module.action }}</a>
