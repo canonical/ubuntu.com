@@ -15,7 +15,7 @@ with open("webapp/cube/mappings/courses.yaml", "r") as stream:
 # This API lives under a sub-domain of ubuntu.com but requests to it
 # still need proxying, so we configure the session manually to avoid
 # it loading the configurations from environment variables, since those
-# deafult to not proxy requests for ubuntu.com sub-domains and that is
+# default to not proxy requests for ubuntu.com sub-domains and that is
 # the intended behaviour for most of our apps
 proxies = {"http": os.getenv("HTTP_PROXY"), "https": os.getenv("HTTPS_PROXY")}
 cube_session = Session()
@@ -36,6 +36,11 @@ def cube_microcerts():
     if user:
         courses = cube_api.get_courses(organization="ubuntu")["results"]
         username = cube_api.get_user(user["email"])[0]["username"]
+        enrollments = [
+            item["course_id"]
+            for item in cube_api.get_enrollments(username)["results"]
+            if item["is_active"]
+        ]
 
         modules = []
         for course in courses:
@@ -50,15 +55,17 @@ def cube_microcerts():
             badge = COURSE_DATA[course_id].get("logo")
             topics = COURSE_DATA[course_id].get("topics")
 
-            grade = None
-            try:
-                grade = cube_api.get_course_grades(course_id, username)[0]
-            except KeyError:
-                pass
-
-            status = "not-enrolled"
-            if grade:
-                status = "passed" if grade["passed"] else "enrolled"
+            if course_id in enrollments:
+                status = "enrolled"
+                try:
+                    grade = cube_api.get_course_grades(course_id, username)[0]
+                    if grade["passed"] and grade["username"] == username:
+                        status = "passed"
+                except IndexError:
+                    # There is no grade the user is just "enrolled"
+                    pass
+            else:
+                status = "not-enrolled"
 
             modules.append(
                 {
