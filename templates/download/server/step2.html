@@ -21,17 +21,8 @@
         <li class="p-list__item is-ticked">Extended security maintenance until April 2030</li>
         <li class="p-list__item is-ticked">Commercial support for enterprise customers</li>
       </ul>
-      <p>
-        The default is Ubuntu Server 20.04.1 LTS Live Install on x86.
-      </p>
-      <form action="/download/server" method="post" class="p-inline-list__item" style="display: inline">
-        <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
-        <input type="hidden" name="architecture" value="amd64">
-        <input type="hidden" name="next-step" value="download">
-        <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
-      </form>
     </div>
-    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center" style="min-height: 328px">
+    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center" style="min-height: 228px">
       <div class="u-hide--small u-align--center">
         {{
           image(
@@ -45,6 +36,23 @@
         }}
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <ul class="p-inline-list">
+        <li class="p-inline-list__item">
+          <form action="/download/server" method="post" class="p-inline-list__item" style="display: inline">
+            <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
+            <input type="hidden" name="architecture" value="amd64">
+            <input type="hidden" name="next-step" value="download">
+            <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
+          </form>
+        </li>
+        <li class="p-inline-list__item"><a href="#releases">Other releases&nbsp;&rsaquo;</a></li>
+        <li class="p-inline-list__item"><a href="#architectures">Other architectures&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+
   </div>
   <div class="row">
     <div class="col-12">
@@ -63,15 +71,6 @@
           Option 3 - Automated server provisioning
         </button>
       </form>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <p class="u-no-margin--bottom">See also:</p>
-      <ul class="p-list">
-        <li class="p-list__item"><a href="#releases">Other releases&nbsp;&rsaquo;</a></li>
-        <li class="p-list__item"><a href="#architectures">Other architectures&nbsp;&rsaquo;</a></li>
-      </ul>
     </div>
   </div>
   {% if releases.latest.short_version > releases.lts.short_version %}
