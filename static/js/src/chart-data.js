@@ -1152,13 +1152,13 @@ export var openStackReleases = [
     startDate: new Date("2020-05-15T00:00:00"),
     endDate: new Date("2025-04-01T00:00:00"),
     taskName: "OpenStack Ussuri LTS",
-    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT"
+    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
     startDate: new Date("2025-04-01T00:00:00"),
     endDate: new Date("2030-04-01T00:00:00"),
     taskName: "OpenStack Ussuri LTS",
-    status: "EXTENDED_SUPPORT_MAINTENANCE"
+    status: "EXTENDED_SUPPORT_MAINTENANCE",
   },
   {
     startDate: new Date("2025-04-01T00:00:00"),
