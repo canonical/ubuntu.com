@@ -4,6 +4,7 @@ A Flask application for ubuntu.com
 
 # Packages
 import os
+import requests
 import talisker.requests
 import flask
 from canonicalwebteam.flask_base.app import FlaskBase
@@ -352,35 +353,29 @@ app.add_url_rule("/logout", view_func=logout)
 # Engage pages and takeovers from Discourse
 # This section needs to provide takeover data for /
 
-engage_path = "/engage"
-engage_pages = EngagePages(
-    parser=EngageParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.ubuntu.com/",
-            session=session,
-        ),
-        index_topic_id=17229,
-        url_prefix=engage_path,
-    ),
-    document_template="/engage/base.html",
-    url_prefix=engage_path,
-    blueprint_name="engage-pages",
-)
-
-app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
-
 
 def build_takeovers(engage_pages):
     def index_page():
-        engage_pages.parser.parse()
+        try:
+            engage_pages.parser.parse()
 
-        # Show only active
-        active_takeovers = [
-            takeover
-            for takeover in engage_pages.parser.takeovers
-            if takeover["active"] == "true"
-        ]
-        return flask.render_template("index.html", takeovers=active_takeovers)
+        except requests.exceptions.HTTPError as error:
+            """
+            This should catch all HTTP errors whether 429 or any other
+            and return a simple index.html without takeovers
+            """
+
+            print(f"HTTPerror{error}")
+            return flask.render_template("index.html")
+        else:
+            active_takeovers = [
+                takeover
+                for takeover in engage_pages.parser.takeovers
+                if takeover["active"] == "true"
+            ]
+            return flask.render_template(
+                "index.html", takeovers=active_takeovers
+            )
 
     return index_page
 
@@ -410,8 +405,36 @@ def build_takeovers_index(engage_pages):
     return takeover_index
 
 
-# app.add_url_rule("/", view_func=build_takeovers(engage_pages))
+engage_path = "/engage"
+engage_pages = EngagePages(
+    parser=EngageParser(
+        api=DiscourseAPI(
+            base_url="https://discourse.ubuntu.com/",
+            session=session,
+        ),
+        index_topic_id=17229,
+        url_prefix=engage_path,
+    ),
+    document_template="/engage/base.html",
+    url_prefix=engage_path,
+    blueprint_name="engage-pages",
+)
+
+
+app.add_url_rule("/", view_func=build_takeovers(engage_pages))
 app.add_url_rule("/takeovers", view_func=build_takeovers_index(engage_pages))
+
+app.add_url_rule(
+    "/engage/<page>/thank-you",
+    defaults={"language": None},
+    view_func=engage_thank_you(engage_pages),
+)
+app.add_url_rule(
+    "/engage/<language>/<page>/thank-you",
+    endpoint="alternative_thank-you",
+    view_func=engage_thank_you(engage_pages),
+)
+
 engage_pages.init_app(app)
 
 # All other routes
@@ -475,17 +498,6 @@ ceph_docs = Docs(
     blueprint_name="ceph",
 )
 ceph_docs.init_app(app)
-
-app.add_url_rule(
-    "/engage/<page>/thank-you",
-    defaults={"language": None},
-    view_func=engage_thank_you(engage_pages),
-)
-app.add_url_rule(
-    "/engage/<language>/<page>/thank-you",
-    endpoint="alternative_thank-you",
-    view_func=engage_thank_you(engage_pages),
-)
 
 
 @app.after_request
