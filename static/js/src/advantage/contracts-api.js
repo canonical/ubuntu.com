@@ -29,7 +29,7 @@ export async function ensurePurchaseAccount(
     },
     body: JSON.stringify({
       email: email,
-      accountName: accountName,
+      account_name: accountName,
       payment_method_id: paymentMethodID,
     }),
   });
