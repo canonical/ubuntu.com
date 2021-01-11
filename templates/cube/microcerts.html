@@ -35,7 +35,6 @@
 
       {% endif %}
     </div>
-    {% else %}
     <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
       <div class="p-cube-progression is-architecture {% if modules[12].status != 'passed' %}is-faded{% endif %}"></div>
       <div class="p-cube-progression is-bash {% if modules[10].status != 'passed' %}is-faded--right{% endif %}"></div>
@@ -52,25 +51,7 @@
       <div class="p-cube-progression is-storage {% if modules[11].status != 'passed' %}is-faded{% endif %}"></div>
       <div class="p-cube-progression is-juju {% if modules[3].status != 'passed' %}is-faded--right{% endif %}"></div>
       <div class="p-cube-progression is-maas {% if modules[5].status != 'passed' %}is-faded--left{% endif %}"></div>
-        <span><small>Micro<br /><span>Certifications:</span></small><br /><span class="p-heading--4">{{ passed_courses }}/15</span></span>
-      </div> -->
-      <div class="p-cube-progression is-architecture {% if modules[12].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-bash {% if modules[10].status != 'Passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-devices {% if modules[2].status != 'Passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-packages {% if modules[8].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-services"></div>
-      <div class="p-cube-progression is-admin {% if modules[0].status != 'Passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-commands {% if modules[1].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-security {% if modules[9].status != 'Passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-networking {% if modules[7].status != 'Passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-kernel {% if modules[4].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-microk8s {% if modules[6].status != 'Passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-virtualisation"></div>
-      <div class="p-cube-progression is-storage {% if modules[11].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-juju {% if modules[3].status != 'Passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-maas {% if modules[5].status != 'Passed' %}is-faded--left{% endif %}"></div>
     </div>
-    {% endif %}
   </div>
 </section>
 
@@ -340,27 +321,7 @@
   </div>
 </section>
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/cube-beta" data-form-id="3801" data-lp-id="7140" data-return-url="https://www.ubuntu.com/cube/thank-you" data-lp-url="https://pages.ubuntu.com/Contact_Us_Ubuntu_CUBEbetatest_Cube-contact-us-landing-page.html">
-</div>
-
-<script>
-  const myObserver = new ResizeObserver(entries => {
-    entries.forEach(entry => {
-    const width = Math.floor(entry.contentRect.width);
-    if(width < 1035) {
-      entry.target.classList.remove("is-shallow");
-      document.getElementById("hero-content").style.marginTop = "2rem";
-    } else {
-      entry.target.classList.add("is-shallow")
-      document.getElementById("hero-content").style.marginTop = "-2rem";
-    }
-    })
-  });
- 
-  const strip = document.querySelector(".p-strip--square-suru");
-  myObserver.observe(strip);
-</script>
+{% else %}
 
 <section class="p-strip--square-suru has-cube is-slanted--top-right">
   <div class="u-fixed-width">
