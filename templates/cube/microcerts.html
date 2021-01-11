@@ -35,6 +35,7 @@
 
       {% endif %}
     </div>
+    {% else %}
     <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
       <div class="p-cube-progression is-architecture {% if modules[12].status != 'passed' %}is-faded{% endif %}"></div>
       <div class="p-cube-progression is-bash {% if modules[10].status != 'passed' %}is-faded--right{% endif %}"></div>
@@ -69,6 +70,7 @@
       <div class="p-cube-progression is-juju {% if modules[3].status != 'Passed' %}is-faded--right{% endif %}"></div>
       <div class="p-cube-progression is-maas {% if modules[5].status != 'Passed' %}is-faded--left{% endif %}"></div>
     </div>
+    {% endif %}
   </div>
 </section>
 
@@ -338,7 +340,27 @@
   </div>
 </section>
 
-{% else %}
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/cube-beta" data-form-id="3801" data-lp-id="7140" data-return-url="https://www.ubuntu.com/cube/thank-you" data-lp-url="https://pages.ubuntu.com/Contact_Us_Ubuntu_CUBEbetatest_Cube-contact-us-landing-page.html">
+</div>
+
+<script>
+  const myObserver = new ResizeObserver(entries => {
+    entries.forEach(entry => {
+    const width = Math.floor(entry.contentRect.width);
+    if(width < 1035) {
+      entry.target.classList.remove("is-shallow");
+      document.getElementById("hero-content").style.marginTop = "2rem";
+    } else {
+      entry.target.classList.add("is-shallow")
+      document.getElementById("hero-content").style.marginTop = "-2rem";
+    }
+    })
+  });
+ 
+  const strip = document.querySelector(".p-strip--square-suru");
+  myObserver.observe(strip);
+</script>
 
 <section class="p-strip--square-suru has-cube is-slanted--top-right">
   <div class="u-fixed-width">
