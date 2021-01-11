@@ -89,26 +89,42 @@
     </div>
     <div class="col-7">
       <h2>Badge of honor</h2>
-      <p>Share your certification with your network</p>
-      <ul class="p-inline-list-icons u-no-padding--left u-no-margin--left">
+      <p style="margin-bottom:0.5rem;">Share your certification with your network</p>
+      <ul class="p-inline-list-icons u-no-padding--left u-no-margin--left u-no-padding--top">
         <li class="p-inline-list__item">
           <a title="Share on Twitter" href="https://twitter.com/share?text=My Tweet&amp;url=https://www.ubuntu.com/cube&amp;hashtags=ubuntu">
-            <img src="https://assets.ubuntu.com/v1/3688269e-Twitter-share-button.png" alt="Share on twitter"/>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/6d51a38d-Twitter.png",
+            alt="",
+            width="61",
+            height="20",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
           </a>
         </li>
         <li class="p-inline-list__item">
           <a title="Share on LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ubuntu.com">
-            <img src="https://assets.ubuntu.com/v1/1af29aea-LindedIn_share-button.png" alt="Share on Linkedin"/>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/72040dde-LindedIn.png",
+            alt="",
+            width="60",
+            height="20",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
           </a>
         </li>
       </ul>
       <p>You can <a href="https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Test%20Certificate&organizationName=LinkedIn&issueYear=2018&issueMonth=2&expirationYear=2020&expirationMonth=5&certUrl=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Flearn%2Fcertifications%2Fd365-functional-consultant-sales&certId=1234">add this badge</a> to the Certification section of your LinkedIn profile</p>
-      <code>https://api.badgr.io/public/assertions/MPhZ1kQGT061-hl</code>
+      <p class="u-no-padding--top"><small>https://api.badgr.io/public/assertions/MPhZ1kQGT061-hl</small></p>
     </div>
   </div>
 </section>
 
-{% elif user %}
+{% elif has_enrollment %}
 
 <section class="p-strip--light is-slanted--top-right is-shallow">
   <div class="row">
@@ -121,7 +137,6 @@
   </div>
 </section>
 
-{% else %}
 {% endif %}
 
 {% if passed_courses == 15 %}
