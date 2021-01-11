@@ -42,6 +42,9 @@
     td {
       &:nth-child(1) {
         width: 4%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 6%;
+        }
       }
 
       &:nth-child(2) {
