@@ -36,6 +36,34 @@
       width: 19%;
     }
   }
+
+  &.is-passed {
+    th,
+    td {
+      &:nth-child(1) {
+        width: 4%;
+      }
+
+      &:nth-child(2) {
+        width: 5%;
+        img {
+          height: 3rem;
+          margin-top: 0.25rem;
+        }
+      }
+
+      &:nth-child(3) {
+        width: 70%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 40%;
+        }
+      }
+
+      &:nth-child(4) {
+        width: 17%;
+      }
+    }
+  }
 }
 
 .p-table--cube__contents {
