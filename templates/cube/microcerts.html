@@ -6,41 +6,178 @@
 
 {% block content %}
 
-{% if user %}
 <section class="p-strip--square-suru has-cube is-dark is-slanted--bottom-left">
   <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
-      <h1>Your progress to CUBEdom</h1>
-      <p class="p-heading--4">You have completed {{ passed_courses }} out of 15 MicroCertifications</p>
+    <div id="hero-content" class="col-6">
+      {% if passed_courses == 15 %}
+
+        <h1>CUBE 2020 complete</h1>
+        <p class="p-heading--4">You have completed all 15 microcerts, proving your Ubuntu expertise. You are now a Certified Ubuntu Engineer.</p>
+
+      {% elif has_enrollment %}
+
+        <h1>Your road to CUBE</h1>
+        <p class="p-heading--4">You have completed {{ passed_courses }} microcerts.</br>Complete {{ (15 - passed_courses) }} more microcerts to attain CUBE.</p>
+
+      {% else %}
+
+        <h1>The road to CUBE</h1>
+        <p class="p-heading--4">The path to certification is clear and convenient. Complete 15 microcerts to attain CUBE.</p>
+        <div>
+          <a href="/cube/contact-us" class="p-button--positive js-invoke-modal">Apply for access</a></br>
+          {% if not user %}
+            <a href="/login" class="p-link--inverted">Sign in&nbsp;&rsaquo;</a>
+          {% endif %}
+        </div>
+
+      {% endif %}
     </div>
+    {% if has_enrollment %}
     <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
-      <div class="p-cube-progression is-architecture {% if modules[12].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-bash {% if modules[10].status != 'Passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-devices {% if modules[2].status != 'Passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-packages {% if modules[8].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-services"></div>
-      <div class="p-cube-progression is-admin {% if modules[0].status != 'Passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-commands {% if modules[1].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-security {% if modules[9].status != 'Passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-networking {% if modules[7].status != 'Passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-kernel {% if modules[4].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-microk8s {% if modules[6].status != 'Passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-virtualisation"></div>
-      <div class="p-cube-progression is-storage {% if modules[11].status != 'Passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-juju {% if modules[3].status != 'Passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-maas {% if modules[5].status != 'Passed' %}is-faded--left{% endif %}"></div>
+      <div class="p-cube-progression is-architecture {% if modules[12].status != 'passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-bash {% if modules[10].status != 'passed' %}is-faded--right{% endif %}"></div>
+      <div class="p-cube-progression is-devices {% if modules[2].status != 'passed' %}is-faded--left{% endif %}"></div>
+      <div class="p-cube-progression is-packages {% if modules[8].status != 'passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-services {% if modules[13].status != 'passed' %}is-faded--right{% endif %}"></div>
+      <div class="p-cube-progression is-admin {% if modules[0].status != 'passed' %}is-faded--left{% endif %}"></div>
+      <div class="p-cube-progression is-commands {% if modules[1].status != 'passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-security {% if modules[9].status != 'passed' %}is-faded--right{% endif %}"></div>
+      <div class="p-cube-progression is-networking {% if modules[7].status != 'passed' %}is-faded--left{% endif %}"></div>
+      <div class="p-cube-progression is-kernel {% if modules[4].status != 'passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-microk8s {% if modules[6].status != 'passed' %}is-faded--right{% endif %}"></div>
+      <div class="p-cube-progression is-virtualisation {% if modules[14].status != 'passed' %}is-faded--left{% endif %}"></div>
+      <div class="p-cube-progression is-storage {% if modules[11].status != 'passed' %}is-faded{% endif %}"></div>
+      <div class="p-cube-progression is-juju {% if modules[3].status != 'passed' %}is-faded--right{% endif %}"></div>
+      <div class="p-cube-progression is-maas {% if modules[5].status != 'passed' %}is-faded--left{% endif %}"></div>
+    </div>
+    {% else %}
+    <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
+      <div class="p-cube-progression is-architecture is-faded"></div>
+      <div class="p-cube-progression is-bash is-faded--right"></div>
+      <div class="p-cube-progression is-devices is-faded--left"></div>
+      <div class="p-cube-progression is-packages is-faded"></div>
+      <div class="p-cube-progression is-services is-faded--right"></div>
+      <div class="p-cube-progression is-admin is-faded--left"></div>
+      <div class="p-cube-progression is-commands is-faded"></div>
+      <div class="p-cube-progression is-security is-faded--right"></div>
+      <div class="p-cube-progression is-networking is-faded--left"></div>
+      <div class="p-cube-progression is-kernel is-faded"></div>
+      <div class="p-cube-progression is-microk8s is-faded--right"></div>
+      <div class="p-cube-progression is-virtualisation is-faded--left"></div>
+      <div class="p-cube-progression is-storage  is-faded"></div>
+      <div class="p-cube-progression is-juju is-faded--right"></div>
+      <div class="p-cube-progression is-maas is-faded--left"></div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% if passed_courses == 15 %}
+
+<section class="p-strip--light is-slanted--top-right">
+  <div class="row">
+    <div class="col-3 col-start-large-2 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/37fab8d1-CUBE+Certified.svg",
+        alt="CUBE certified",
+        width="175",
+        height="252",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h2>Badge of honor</h2>
+      <p>Share your certification with your network</p>
+      <ul class="p-inline-list-icons u-no-padding--left u-no-margin--left">
+        <li class="p-inline-list__item">
+          <a title="Share on Twitter" href="https://twitter.com/share?text=My Tweet&amp;url=https://www.ubuntu.com/cube&amp;hashtags=ubuntu">
+            <img src="https://assets.ubuntu.com/v1/3688269e-Twitter-share-button.png" alt="Share on twitter"/>
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a title="Share on LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ubuntu.com">
+            <img src="https://assets.ubuntu.com/v1/1af29aea-LindedIn_share-button.png" alt="Share on Linkedin"/>
+          </a>
+        </li>
+      </ul>
+      <p>You can <a href="https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Test%20Certificate&organizationName=LinkedIn&issueYear=2018&issueMonth=2&expirationYear=2020&expirationMonth=5&certUrl=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Flearn%2Fcertifications%2Fd365-functional-consultant-sales&certId=1234">add this badge</a> to the Certification section of your LinkedIn profile</p>
+      <code>https://api.badgr.io/public/assertions/MPhZ1kQGT061-hl</code>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-slanted--top-right">
-  <div class="u-fixed-width">
-    <h2> Courseware access</h2>
-    <p><strong>Reccomended preparation</strong></p>
-    <p class="u-sv2">Access to the CUBE courseware. Be prepared for all modules.</p>
-    <a href="https://qa.cube.ubuntu.com/" class="p-button--positive">Prepare</a>
+{% elif user %}
+
+<section class="p-strip--light is-slanted--top-right is-shallow">
+  <div class="row">
+    <div class="col-5" style="margin-top: 3rem;">
+      <h2>Refresh your knowledge</h2>
+      <p><strong>Be prepared for every exam</strong></p>
+      <p class="u-sv2">Brush up on your Ubuntu skills with preparatory materials that cover every microcert.</p>
+      <a href="https://qa.cube.ubuntu.com/" class="p-button--positive">Prepare</a>
+    </div>
   </div>
 </section>
+
+{% else %}
+{% endif %}
+
+{% if passed_courses == 15 %}
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Microcertification history</h2>
+    <table class="p-table--cube is-passed">
+      <thead>
+          <tr>
+            <th>#</th>
+            <th class="u-hide--small"></th>
+            <th>Module</th>
+            <th class="p-table__cell--icon-placeholder">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for module in modules %}
+        <tr>
+          <td aria-label="Module number">
+            <div class="p-table--cube__contents">
+              <p class="u-text--muted">{{ module.number }}</p>
+            </div>
+          </td>
+          <td class="u-hide--small" aria-label="Badge">
+              <img 
+                src="{{ module.badge }}"
+                alt="Badge for {{ module.name }}"
+              />
+          </td>
+          <td aria-label="Module">
+            <div class="p-table--cube__contents">
+              <h5>{{ module.name }}</h5>
+            </div>
+            <p class="u-text--muted u-hide--small">
+              <small>{{ module.topics|length }} topics</small>
+            </p>
+          </td>
+          <td class="p-table__cell--icon-placeholder" aria-label="Status">
+            <div class="p-table--cube__contents">
+              <p>
+                <i class="p-icon--success"></i>Passed
+              </p>
+            </div>
+            <p class="u-text--muted u-hide--small">
+              <small>{{ module.date_attempted }}</small>
+            </p>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% else %}
 
 <section class="p-strip">
   <div class="u-fixed-width">
@@ -119,20 +256,29 @@
     </table>
   </div>
 </section>
-
-{% else %}
-
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2>Microcertifications</h2>
-    <p>Sign in to see your microcertifications</p>
-    <p>
-      <a href="/login" class="p-button--neutral">
-        Sign in
-      </a>
-    </p>
-  </div>
-</section>
-
 {% endif %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/cube-beta" data-form-id="3801" data-lp-id="7140" data-return-url="https://www.ubuntu.com/cube/thank-you" data-lp-url="https://pages.ubuntu.com/Contact_Us_Ubuntu_CUBEbetatest_Cube-contact-us-landing-page.html">
+</div>
+
+<script>
+  const myObserver = new ResizeObserver(entries => {
+    entries.forEach(entry => {
+    const width = Math.floor(entry.contentRect.width);
+    if(width < 1035) {
+      entry.target.classList.remove("is-shallow");
+      document.getElementById("hero-content").style.marginTop = "2rem";
+    } else {
+      entry.target.classList.add("is-shallow")
+      document.getElementById("hero-content").style.marginTop = "-2rem";
+    }
+    })
+  });
+ 
+  const strip = document.querySelector(".p-strip--square-suru");
+  myObserver.observe(strip);
+</script>
+
+
 {% endblock content %}
