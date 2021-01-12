@@ -2,20 +2,23 @@
 
 {% block title %}Get Ubuntu Server  | Download{% endblock %}
 {% block meta_description %}Get Ubuntu Server one of three ways; by using Multipass on your desktop, using MAAS to provision machines in your data centre or installing it directly on a server.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1e-vav_b54KlKsi92w3rDu9J14O0gpp8yAanEAIImlE8/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1Qob4Ni_y1ffIdSWqaw2xH0dxiHZQmkRGP5nuoBhIfyM/edit{% endblock meta_copydoc %}
 
 {% block content %}
 <section class="p-strip--suru-topped">
   <div class="row u-equal-height">
     <div class="col-6">
-      <p class="p-muted-heading">Get Ubuntu server</p>
-      <h1 class="js-download-option">Option 1: Multipass</h1>
-      <p class="p-heading--four">On-demand Ubuntu Server VMs for Mac, Windows and Linux</p>
+      <h1>Get Ubuntu Server</h1>
+      <h2 class="js-download-option">Option 1: Instant Ubuntu VMs</h2>
+      <p>Try Multipass, a mini cloud on Mac, Windows and Linux</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Multipass provides instant Ubuntu VMs</li>
-        <li class="p-list__item is-ticked">Use cloud-init metadata for rapid cloud development and testing.</li>
-        <li class="p-list__item is-ticked">On Windows. On Mac. And on Linux.</li>
+        <li class="p-list__item is-ticked">Always up-to-date with security fixes</li>
+        <li class="p-list__item is-ticked"><a href="https://cloud-init.io/" class="p-link--external">Cloud-init</a> metadata for cloud dev and test</li>
+        <li class="p-list__item is-ticked">Virtualbox, Hyper-V, HyperKit or KVM</li>
       </ul>
+      <p>
+        <a href="https://multipass.run" class="p-button--positive p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">Get Multipass</a>
+      </p>
     </div>
     <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center" style="min-height: 328px">
       <div class=" u-hide--small u-align--center">
@@ -33,18 +36,20 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-8">
-      <a href="https://multipass.run" class="p-button--positive p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Multipass', 'eventValue' : undefined });">Get Multipass</a>
+    <div class="col-12">
+      <button disabled class="p-button--neutral u-no-margin--left">
+        Option 1 - Instant Ubuntu VMs
+      </button>
       <form action="/download/server" method="post" style="display: inline">
         <input type="hidden" name="next-step" value="step2">
         <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
-          Option 2
+          Option 2 - Manual server installation
         </button>
       </form>
       <form action="/download/server" method="post" style="display: inline">
         <input type="hidden" name="next-step" value="choose">
         <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
-          Option 3
+          Option 3 - Automated server provisioning
         </button>
       </form>
     </div>
