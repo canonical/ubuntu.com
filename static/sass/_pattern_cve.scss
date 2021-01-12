@@ -107,7 +107,7 @@
     border-bottom: 10px solid #b0b0b0;
   }
 
-  .cve-table-cell--muted {
+  .cve-table-cell.status-DNE, .cve-table-cell.status-not-affected {
     @extend .cve-table-cell;
 
     color: $color-mid-dark;
