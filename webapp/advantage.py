@@ -157,7 +157,7 @@ class AdvantageContracts:
             method="get",
             path=(
                 f"v1/accounts/{account_id}"
-                f"/marketplace/{marketplace}/subscriptions"
+                f"/marketplace/{marketplace}/subscriptions?period=yearly&status=active"
             ),
         )
 
