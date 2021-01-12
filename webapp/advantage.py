@@ -157,10 +157,10 @@ class AdvantageContracts:
             method="get",
             path=(
                 f"v1/accounts/{account_id}"
-                f"/marketplace/{marketplace}/subscriptions?period=yearly&status=active"
+                f"/marketplace/{marketplace}"
+                f"/subscriptions?period=yearly&status=active"
             ),
         )
-
         return response.json()
 
     def get_account_purchases(self, account_id: str) -> dict:
