@@ -78,13 +78,18 @@
             <hr class="u-sv1">
             <div class="row p-card__content">
               {% if new_subscription_id == contract['contractInfo']['id'] %}
-              <h4>Welcome to your new subscription.</h4>
-              <p>To get started, first attach each machine:</p>
-              <p>To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code></p>
-              <p>To detach a machine: <code>sudo ua detach</code></p>
+                <h4>Welcome to your new subscription</h4>
+                <p>If you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
+                <p>To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code></p>
+                <p>To detach a machine: <code>sudo ua detach</code></p>
+                <p>If you’re using Ubuntu 16.04 or 18.04 LTS, you don’t need to attach machines.</p>
               {% else %}
               <div class="col-12 u-align--center u-sv3">
-                To attach a machine: <br /><code>sudo ua attach {{ contract['token'] }}</code>
+                  <h4>Ubuntu 14.04 ESM and 20.04 LTS</h4>
+                  <p>To attach a machine: <br /><code>sudo ua attach {{ contract['token'] }}</code></p>
+                  <p>To detach a machine: <code>sudo ua detach</code></p>
+                  <h4>Ubuntu 16.04 and 18.04 LTS</h4>
+                  <p>You don’t need to attach machines before setting up UA services.</p>
               </div>
               {% endif %}
             </div>
