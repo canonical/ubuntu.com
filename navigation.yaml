@@ -1006,6 +1006,24 @@ core:
     - title: Overview
       path: /core
 
+    - title: Docs
+      path: /core/docs
+      persist: True
+      hidden: True
+
+      children:
+        - title: Bluetooth management
+          path: /core/docs/bluetooth-management
+          persist: True
+        - title: Network management
+          path: /core/docs/network-management-services
+          persist: True
+        - title: Audio management
+          path: /core/docs/audio-management
+          persist: True
+          
+
+
     - title: Contact us
       path: /core/contact-us
       hidden: True
@@ -1014,6 +1032,8 @@ core:
         - title: Thank you
           path: /core/thank-you
           hidden: True
+    
+    
 
 iot:
   title: IoT
