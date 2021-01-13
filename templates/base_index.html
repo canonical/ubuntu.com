@@ -8,28 +8,28 @@
 
 {% block outer_content %}
 {% block content %}
-<template id="takeovers" class="u-hide">
+<template class="u-hide">
   {% block takeover_content %}
   {% endblock takeover_content %}
 </template>
 
 <!-- Default Takeover: Download the latest Ubuntu -->
-<section data-lang="all" id="takeover" class="p-strip--image is-dark is-deep" style="background-color: #5E2750; background-image: linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%)">
-  <div class="row">
+<section data-lang="all" id="takeover" class="p-takeover--grad is-dark is-deep">
+  <div class="row p-takeover-animation">
     <div class="col-7 u-vertically-center">
-      <h1>What's new in<br>Ubuntu {{ releases.latest.short_version }}?</h1>
-      <h4>Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.</h4>
-      <div class="u-hide--small">
-        <p><a href="/download" class="p-button--positive">Get Ubuntu {{ releases.latest.short_version }}</a></p>
+      <h1 id="takeover-title">What's new in<br>Ubuntu {{ releases.latest.short_version }}?</h1>
+      <h4 id="takeover-subtitle">Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.</h4>
+      <div id="takeover-ctas">
+        <p><a id="takeover-primary-url" href="/download" class="p-button--positive">Get Ubuntu {{ releases.latest.short_version }}</a></p>
         <p>
-          <a href="/raspberry-pi" class=" p-link--inverted">
+          <a id="takeover-secondary-url" href="/raspberry-pi" class=" p-link--inverted">
             Learn more about Ubuntu on the Raspberry Pi&nbsp;›
           </a>
         </p>
       </div>
     </div>
     <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
-      {{  image(      url="https://assets.ubuntu.com/v1/fe951eda-20.10_Groovy+Gorilla_RPi_Sketch.svg",      alt="",      width="250",      height="388",      hi_def=True,      loading="lazy",      attrs={"style": "width: 250px; height: 388px;"},  ) | safe }}
+      <img id="takeover-image" src="https://assets.ubuntu.com/v1/fe951eda-20.10_Groovy+Gorilla_RPi_Sketch.svg" width="200" alt="" />
     </div>
   </div>
 </section>
@@ -1409,55 +1409,103 @@
     * Choose a takeover
     * ===
     *
-    * From the list of provided takeovers in the #takeovers template,
+    * From the list of provided takeovers from /.takeovers.json,
     * choose one (that matches the client's language), and replace the
     * base template with it.
     */
 
-    var baseTakeover = document.getElementById('takeover');  // The base takeover element
-    var takeovers = document.getElementById('takeovers');  // The list of current takeovers to choose from
-
-    // For browsers that support <template> (all but IE), grab the template's ".content"
-    takeovers = 'content' in takeovers ? takeovers.content: takeovers;
-
-    // First, select takeovers that don't specify a language and don't exclude the users language
-    var takeoverSelectors = [".js-takeover:not([lang]).js-takeover:not([lang-skip*=" + primaryParentLanguage + "])"]
-
-    // Add selectors to find takeovers for any of the user's languages
-    takeoverSelectors.push(".js-takeover[lang=" + primaryParentLanguage + "]");
-    takeoverSelectors.push(".js-takeover[data-lang-extra*=" + primaryParentLanguage + "]");
-
-    // Get the selected takeovers
-    var selectedTakeovers = (takeovers.querySelectorAll(takeoverSelectors.join(',')));
-
-    if (selectedTakeovers) {
-      var selectedIndex = null;
-
-      if (localStorage.getItem('selected_takeover_index') !== null) {
-        // If we previously chose a takeover, increment the number to show the next takeover
-        var nextIndex = parseInt(localStorage.getItem('selected_takeover_index')) + 1
-        selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
-      } else {
-        // Otherwise, randomly choose one of the takeovers and store it for next time
-        selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
-      }
-
-      // Store the current takeover
-      localStorage.setItem('selected_takeover_index', selectedIndex)
-
-      // Get the takeover element
-      var selectedTakeover = selectedTakeovers[selectedIndex]
-
-      if (! document.body.contains(selectedTakeover)) {
-        // If it's not in the current document (as in, it's in a template) import it
-        // Note: This is for all browser *except* IE, which doesn't support <template>s
-        selectedTakeover = document.importNode(selectedTakeover, true);
-      }
-
-      // Replace the base takeover with the new one
-      // Note: We can't use Node.replaceWith (which would be nice), as it's not supported in IE
-      baseTakeover.parentNode.replaceChild(selectedTakeover, baseTakeover)
+    var xhr = new XMLHttpRequest();
+    if (window.ActiveXObject) {
+      xhr = new ActiveXObject('Microsoft.XMLHTTP');
     }
+    
+    xhr.onreadystatechange = function() {
+      
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+
+        var takeovers = JSON.parse(xhr.responseText);
+        var baseTakeover = document.getElementById('takeover');  // The base takeover element
+
+        // Get the selected takeovers
+        var selectedTakeovers = takeovers.filter(function(item) {
+          return item.lang === primaryParentLanguage || item.lang === ""
+        })
+
+        if (selectedTakeovers && selectedTakeovers.length > 0) {
+        var selectedIndex = null;
+
+        if (localStorage.getItem('selected_takeover_index') !== null) {
+          // If we previously chose a takeover, increment the number to show the next takeover
+          var nextIndex = parseInt(localStorage.getItem('selected_takeover_index')) + 1
+          selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
+          showTakeover(selectedTakeovers, selectedIndex);
+        } else {
+          // Otherwise, randomly choose one of the takeovers and store it for next time
+          selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
+          showTakeover(selectedTakeovers, selectedIndex);
+        }
+
+        // Store the current takeover
+        localStorage.setItem('selected_takeover_index', selectedIndex)
+
+        }
+      }
+    };
+
+    xhr.open("GET", "/takeovers.json", true);
+    xhr.send();
+
+  }
+
+  function showTakeover(takeovers, index) {
+    // Default parameter
+    index = typeof index !== 'undefined' ? index : 0;
+
+    // Get HTML elements
+    var takeover = document.getElementById("takeover");
+    var title = document.getElementById("takeover-title");
+    var subtitle = document.getElementById("takeover-subtitle");
+    var image = document.getElementById("takeover-image");
+    var primaryUrl = document.getElementById("takeover-primary-url");
+    var secondaryUrl = document.getElementById("takeover-secondary-url");
+    var get_ctas = document.getElementById("takeover-ctas").getElementsByTagName("p")[0];
+    var takeoverAnimation = document.getElementsByClassName("p-takeover-animation")
+
+    // Set values to homepage takeover
+    var selectedTakeover = takeovers[index];
+
+    takeover.className = "";
+    takeover.removeAttribute("style");
+
+    // Add takeover classes
+    var classNameString = "js-takeover p-takeover--" + selectedTakeover.class;
+    takeover.className += classNameString;
+
+    // Set language attributes
+    takeover.setAttribute("lang", selectedTakeover.lang);
+    takeover.setAttribute("lang-skip", selectedTakeover.lang_skip);
+
+    // Set takeover content
+    title.textContent = selectedTakeover.title;
+    subtitle.textContent = selectedTakeover.subtitle;
+    image.src = selectedTakeover.image;
+    image.removeAttribute("style");
+    image.style.width = selectedTakeover.image_width;
+    image.style.height = selectedTakeover.image_height;
+    primaryUrl.href = selectedTakeover.primary_url;
+    primaryUrl.textContent = selectedTakeover.primary_cta;
+    if (selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
+      secondaryUrl.href = selectedTakeover.secondary_url;
+      secondaryUrl.textContent = selectedTakeover.secondary_cta + " ›";
+    } else {
+      secondaryUrl.remove();
+    }
+
+    // Remove animation delay
+    if (takeoverAnimation[0]) {
+      takeoverAnimation[0].className +=  " .is-loaded";
+    }
+    
   }
 </script>
 

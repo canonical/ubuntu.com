@@ -805,3 +805,24 @@ body {
     }
   }
 }
+
+// Homepage takeover animation
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.p-takeover-animation {
+  animation: FadeIn map-get($animation-duration, "fast")
+    map-get($animation-easing, "out");
+  animation-fill-mode: backwards;
+  animation-delay: 2.5s;
+
+  &.is-loaded {
+    animation-delay: 0s !important;
+  }
+}
