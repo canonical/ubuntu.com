@@ -56,7 +56,7 @@ function attachHoverEvent(toggle) {
 
 function setupContextualMenuListeners(contextualMenuToggleSelector) {
   const toggles = document.querySelectorAll(contextualMenuToggleSelector);
-
+  console.log(toggles);
   toggles.forEach((toggle) => {
     if (toggle.getAttribute("data-trigger") === "click") {
       attachClickEvent(toggle);
