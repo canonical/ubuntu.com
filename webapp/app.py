@@ -380,7 +380,7 @@ def build_takeovers(engage_pages):
             for takeover in engage_pages.parser.takeovers
             if takeover["active"] == "true"
         ]
-        return flask.render_template("index.html", takeovers=active_takeovers)
+        return flask.jsonify(active_takeovers)
 
     return index_page
 
@@ -410,7 +410,7 @@ def build_takeovers_index(engage_pages):
     return takeover_index
 
 
-app.add_url_rule("/", view_func=build_takeovers(engage_pages))
+app.add_url_rule("/takeovers.json", view_func=build_takeovers(engage_pages))
 app.add_url_rule("/takeovers", view_func=build_takeovers_index(engage_pages))
 engage_pages.init_app(app)
 

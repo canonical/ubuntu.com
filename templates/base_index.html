@@ -8,7 +8,7 @@
 
 {% block outer_content %}
 {% block content %}
-<template id="takeovers" class="u-hide">
+<template class="u-hide">
   {% block takeover_content %}
   {% endblock takeover_content %}
 </template>
@@ -17,18 +17,18 @@
 <section data-lang="all" id="takeover" class="p-strip--image is-dark is-deep" style="background-color: #5E2750; background-image: linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%)">
   <div class="row">
     <div class="col-7 u-vertically-center">
-      <h1>What's new in<br>Ubuntu {{ releases.latest.short_version }}?</h1>
-      <h4>Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.</h4>
-      <div class="u-hide--small">
-        <p><a href="/download" class="p-button--positive">Get Ubuntu {{ releases.latest.short_version }}</a></p>
+      <h1 id="takeover-title">What's new in<br>Ubuntu {{ releases.latest.short_version }}?</h1>
+      <h4 id="takeover-subtitle">Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.</h4>
+      <div id="takeover-ctas" class="u-hide--small">
+        <p><a id="takeover-primary-url" href="/download" class="p-button--positive">Get Ubuntu {{ releases.latest.short_version }}</a></p>
         <p>
-          <a href="/raspberry-pi" class=" p-link--inverted">
+          <a id="takeover-secondary-url" href="/raspberry-pi" class=" p-link--inverted">
             Learn more about Ubuntu on the Raspberry Pi&nbsp;›
           </a>
         </p>
       </div>
     </div>
-    <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
+    <div id="takeover-image" class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
       {{  image(      url="https://assets.ubuntu.com/v1/fe951eda-20.10_Groovy+Gorilla_RPi_Sketch.svg",      alt="",      width="250",      height="388",      hi_def=True,      loading="lazy",      attrs={"style": "width: 250px; height: 388px;"},  ) | safe }}
     </div>
   </div>
@@ -1409,37 +1409,35 @@
     * Choose a takeover
     * ===
     *
-    * From the list of provided takeovers in the #takeovers template,
+    * From the list of provided takeovers from /.takeovers.json,
     * choose one (that matches the client's language), and replace the
     * base template with it.
     */
 
+    fetch("/takeovers.json").then(response => response.json()).then(takeovers => {
+
+
     var baseTakeover = document.getElementById('takeover');  // The base takeover element
-    var takeovers = document.getElementById('takeovers');  // The list of current takeovers to choose from
-
-    // For browsers that support <template> (all but IE), grab the template's ".content"
-    takeovers = 'content' in takeovers ? takeovers.content: takeovers;
-
-    // First, select takeovers that don't specify a language and don't exclude the users language
-    var takeoverSelectors = [".js-takeover:not([lang]).js-takeover:not([lang-skip*=" + primaryParentLanguage + "])"]
-
-    // Add selectors to find takeovers for any of the user's languages
-    takeoverSelectors.push(".js-takeover[lang=" + primaryParentLanguage + "]");
-    takeoverSelectors.push(".js-takeover[data-lang-extra*=" + primaryParentLanguage + "]");
+    
 
     // Get the selected takeovers
-    var selectedTakeovers = (takeovers.querySelectorAll(takeoverSelectors.join(',')));
+    var selectedTakeovers = takeovers.filter(function(item) 
+       {
+        return item.lang === primaryParentLanguage || item.lang === ""
+      })
 
-    if (selectedTakeovers) {
+      if (selectedTakeovers && selectedTakeovers.length > 0) {
       var selectedIndex = null;
 
       if (localStorage.getItem('selected_takeover_index') !== null) {
         // If we previously chose a takeover, increment the number to show the next takeover
         var nextIndex = parseInt(localStorage.getItem('selected_takeover_index')) + 1
         selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
+        showTakeover(selectedTakeovers, selectedIndex);
       } else {
         // Otherwise, randomly choose one of the takeovers and store it for next time
         selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
+        showTakeover(selectedTakeovers, selectedIndex);
       }
 
       // Store the current takeover
@@ -1458,7 +1456,40 @@
       // Note: We can't use Node.replaceWith (which would be nice), as it's not supported in IE
       baseTakeover.parentNode.replaceChild(selectedTakeover, baseTakeover)
     }
+    });
   }
+
+  function showTakeover(takeovers, index = 0) {
+    // Get HTML elements
+    const takeover = document.getElementById("takeover");
+    const title = document.getElementById("takeover-title");
+    const subtitle = document.getElementById("takeover-subtitle");
+    const image = document.getElementById("takeover-image").getElementsByTagName("img")[0];
+    const primaryUrl = document.getElementById("takeover-primary-url");
+    const secondaryUrl = document.getElementById("takeover-secondary-url");
+    const get_ctas = document.getElementById("takeover-ctas").getElementsByTagName("p")[0];
+
+    // Set values to homepage takeover
+    const selectedTakeover = takeovers[index];
+    takeover.classList.add(selectedTakeover.class);
+    takeover.setAttribute("lang", selectedTakeover.lang);
+    takeover.setAttribute("lang-skip", selectedTakeover.lang_skip);
+    title.textContent = selectedTakeover.title;
+    subtitle.textContent = selectedTakeover.subtitle;
+    image.src = selectedTakeover.image;
+    image.style.width = selectedTakeover.image_width;
+    image.style.height = selectedTakeover.image_height;
+    primaryUrl.href = selectedTakeover.primary_url;
+    primaryUrl.textContent = selectedTakeover.primary_cta;
+    if (selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
+      secondaryUrl.href = selectedTakeover.secondary_url;
+      secondaryUrl.textContent = `${selectedTakeover.secondary_cta}&nbsp;›`;
+    } else {
+      secondaryUrl.remove();
+    }
+  }
+
+
 </script>
 
 <!-- Set default Marketo information for contact form below-->
