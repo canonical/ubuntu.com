@@ -204,8 +204,13 @@
           <th></th>
           <th>Module</th>
           <th>Topics</th>
+          {% if has_enrollment %}
           <th class="p-table__cell--icon-placeholder">Status</th>
           <th class="u-align--right">Action</th>
+          {% else %}
+          <th></th>
+          <th></th>
+          {% endif %}
         </tr>
       </thead>
       <tbody>
@@ -258,11 +263,23 @@
             </div>
           </td>
           <td aria-label="Action">
-            {% if module.status != "Passed" %}
-            <div class="p-table--cube__contents u-align--right">
+            {% if module.status == "enrolled" %}
+            <div class="p-table--cube__contents u-align--right" style="margin-top:-0.5rem;">
+            <span class="p-contextual-menu--left">
+              <button class="p-button--positive p-contextual-menu__toggle has-icon" aria-controls="share-menu" aria-expanded="false" aria-haspopup="true"><i class="p-icon--chevron-down is-light p-contextual-menu__indicator"></i><span>Share</span></button>
+              <span class="p-contextual-menu__dropdown" id="share-menu" aria-hidden="true">
+                <span class="p-contextual-menu__group">
+                  <a href="#" class="p-contextual-menu__link">Share via Linkedin</a>
+                  <a href="#" class="p-contextual-menu__link">Share via Twitter</a>
+                  <a href="#" class="p-contextual-menu__link">Copy to clipboaord</a>
+                </span>
+              </span>
+            </span>
+            </div>
+            <!-- <div class="p-table--cube__contents u-align--right">
               <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
               <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.test_url }}">{{ module.action }}</a>
-            </div>
+            </div> -->
             {% endif %}
           </td>
         </tr>
@@ -288,7 +305,7 @@
   <div class="u-fixed-width">
     <h2>Apply for beta access</h2>
     <p>Canonical are seeking participants from the community for the CUBE beta test. If you would like to be considered for the beta, please enter your information in the form below. Canonical will reach out to you if you are selected.</p>
-    <a href="/cube/contact-us" class="p-button--positive js-invoke-modal">Apply for access</a>
+    <a  href="/cube/contact-us" class="p-button--positive js-invoke-modal">Apply for access</a>
   </div>
 </section>
 
@@ -314,6 +331,7 @@
  
   const strip = document.querySelector(".p-strip--square-suru");
   myObserver.observe(strip);
+
 </script>
 
 

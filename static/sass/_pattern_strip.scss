@@ -963,7 +963,7 @@
       linear-gradient(-89deg, #e95420 0%, #772953 38%, #2c001e 85%);
     background-position: top right, top left, left top;
     background-repeat: no-repeat;
-    background-size: 86% 105%, 67% 152%, 100% 99.8%;
+    background-size: 86% 105%, 67% 152%, 100% 99.9%;
     color: $color-x-light;
   }
 }
@@ -983,6 +983,9 @@
     }
     * {
       z-index: 2;
+    }
+    > div a {
+      position: relative;
     }
   }
 }
