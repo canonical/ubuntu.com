@@ -262,25 +262,25 @@
               {% endif %}
             </div>
           </td>
-          <td aria-label="Action">
-            {% if module.status == "enrolled" %}
-            <div class="p-table--cube__contents u-align--right" style="margin-top:-0.5rem;">
-            <span class="p-contextual-menu--left">
-              <button class="p-button--positive p-contextual-menu__toggle has-icon" aria-controls="share-menu" aria-expanded="false" aria-haspopup="true"><i class="p-icon--chevron-down is-light p-contextual-menu__indicator"></i><span>Share</span></button>
+          <td aria-label="Action" class="p-table__cell--share-actions">
+
+          <div class="p-share-button u-align--right">
+            <span class="p-contextual-menu p-contextual-menu--right">
+              <button class="p-button--positive p-contextual-menu__toggle has-icon" aria-controls="#share-menu" aria-expanded="false" aria-haspopup="true" data-trigger="click"><i class="p-icon--chevron-down is-light p-contextual-menu__indicator"></i><span>Share</span></button>
               <span class="p-contextual-menu__dropdown" id="share-menu" aria-hidden="true">
                 <span class="p-contextual-menu__group">
-                  <a href="#" class="p-contextual-menu__link">Share via Linkedin</a>
+                  <a href="#" class="p-contextual-menu__link">Share via LinkedIn</a>
                   <a href="#" class="p-contextual-menu__link">Share via Twitter</a>
-                  <a href="#" class="p-contextual-menu__link">Copy to clipboaord</a>
+                  <a href="#" class="p-contextual-menu__link">Copy to clipboard</a>
                 </span>
               </span>
             </span>
-            </div>
+          </div>
             <!-- <div class="p-table--cube__contents u-align--right">
               <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
               <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.test_url }}">{{ module.action }}</a>
             </div> -->
-            {% endif %}
+
           </td>
         </tr>
       {% endfor %}
@@ -328,7 +328,7 @@
     }
     })
   });
- 
+
   const strip = document.querySelector(".p-strip--square-suru");
   myObserver.observe(strip);
 
