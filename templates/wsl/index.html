@@ -18,6 +18,9 @@
       <p>Install a complete Ubuntu terminal environment in minutes on Windows 10 with Windows Subsystem for Linux (WSL).</p>
       <p>Access the Linux terminal on Windows, develop cross-platform applications, and manage IT infrastructure without leaving Windows.</p>
       <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6" class="p-link--external p-button--positive">Download from the Microsoft Store</a>
+      <p>
+        <a class="p-link--external p-link--inverted" href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6">Instructions for installing Windows Subsystem for Linux</a>
+      </p>
     </div>
 
     <div class="col-5 col-start-large-8 u-hide--small">
@@ -166,7 +169,7 @@
 
 <section class="p-strip--light is-bordered" id="install-ubuntu-on-wsl">
   <div class="u-fixed-width">
-    <h2>Install Ubuntu on Windows Subsystem for Linux</h2>
+    <h2>Install Ubuntu on Windows Subsystem for Linux (WSL)</h2>
 
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
@@ -187,12 +190,32 @@
               ) | safe
             }}
           </a>
-
-          <p>Type the following commands:</p>
-
-          <pre><code>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</code></pre>
-
-          <p>Restart your computer when prompted.</p>
+          <p>
+            Type the following command to enable WSL 1:
+          </p>
+          <pre><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</code></pre>
+          <p>
+            Restart your computer.
+          </p>
+          <pre><code>Restart-Computer</code></pre>
+          <p>
+            After restarting, download and install the WSL 2 Linux kernel from Microsoft for your device architecture:
+          </p>
+          <ul>
+            <li>
+              <a class="p-link--external" href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">x86_64</a> for Intel and AMD devices
+            </li>
+            <li>
+              <a class="p-link--external" href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">arm64</a> for Snapdragon and other ARM devices
+            </li>
+          </ul>
+          <p>
+            Finally, it is recommended to set WSL 2 as the default WSL environment.
+          </p>
+          <p>
+            Open PowerShell as Administrator as above and type the following command:
+          </p>
+          <pre><code>wsl.exe --set-default-version 2</code></pre>
         </div>
       </li>
       <li class="p-stepped-list__item">
@@ -257,6 +280,9 @@
               ) | safe
             }}
           </a>
+          <p>
+            Once complete, it is recommended you download and try the new <a class="p-link--external" href="https://www.microsoft.com/store/productId/9N0DX20HK701">Windows Terminal</a> for the best Ubuntu on WSL experience.
+          </p>
         </div>
       </li>
     </ol>
@@ -333,7 +359,7 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2>WSL 1 and WSL 2</h2>
+    <h2>WSL 1 vs WSL 2</h2>
   </div>
 
   <div class="row u-equal-height">
@@ -346,8 +372,6 @@
           <li class="p-list__item is-ticked">Supported on all versions of Windows 10 since Fall Creators Update.</li>
           <li class="p-list__item is-ticked">Supported on all editions of Windows 10, including Home, Pro, Enterprise, and Server.</li>
         </ul>
-
-        <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6" class="p-button--positive p-link--external">Download from the Microsoft Store</a>
       </div>
     </div>
 
@@ -360,8 +384,6 @@
           <li class="p-list__item is-ticked">Features significant speed and networking improvements.</li>
           <li class="p-list__item is-ticked">Available to everyone, on all editions of Windows 10, as of the May 2020 update from Microsoft.</li>
         </ul>
-
-        <a href="/blog/ubuntu-on-wsl-2-is-generally-available" class="p-button--positive">How to Enable WSL 2</a>
       </div>
     </div>
   </div>
