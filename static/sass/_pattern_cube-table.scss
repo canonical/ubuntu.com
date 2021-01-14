@@ -110,3 +110,15 @@
     margin-top: -0.4rem !important;
   }
 }
+
+.p-table__cell--share-actions {
+  overflow: visible;
+
+  .p-share-button {
+    position: relative;
+
+    [class*="p-button"] {
+      margin-bottom: 0;
+    }
+  }
+}
