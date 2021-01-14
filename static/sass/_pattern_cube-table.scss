@@ -36,6 +36,37 @@
       width: 19%;
     }
   }
+
+  &.is-passed {
+    th,
+    td {
+      &:nth-child(1) {
+        width: 4%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 6%;
+        }
+      }
+
+      &:nth-child(2) {
+        width: 5%;
+        img {
+          height: 3rem;
+          margin-top: 0.25rem;
+        }
+      }
+
+      &:nth-child(3) {
+        width: 70%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 40%;
+        }
+      }
+
+      &:nth-child(4) {
+        width: 17%;
+      }
+    }
+  }
 }
 
 .p-table--cube__contents {
@@ -77,5 +108,18 @@
 .p-table--cube__badge {
   @media only screen and (max-width: $breakpoint-medium) {
     margin-top: -0.4rem !important;
+  }
+}
+
+.p-table__cell--share-actions {
+  overflow: visible;
+
+  .p-share-button {
+    margin-top: 0.5rem;
+    position: relative;
+
+    [class*="p-button"] {
+      margin-bottom: 0;
+    }
   }
 }

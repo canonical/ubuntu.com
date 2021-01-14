@@ -1,7 +1,5 @@
 function toggleMenu(element, show) {
-  const dropdown = document.querySelector(
-    element.getAttribute("aria-controls")
-  );
+  const dropdown = element.nextElementSibling;
 
   element.setAttribute("aria-expanded", show);
   dropdown.setAttribute("aria-hidden", !show);
@@ -56,7 +54,6 @@ function attachHoverEvent(toggle) {
 
 function setupContextualMenuListeners(contextualMenuToggleSelector) {
   const toggles = document.querySelectorAll(contextualMenuToggleSelector);
-
   toggles.forEach((toggle) => {
     if (toggle.getAttribute("data-trigger") === "click") {
       attachClickEvent(toggle);
@@ -67,9 +64,7 @@ function setupContextualMenuListeners(contextualMenuToggleSelector) {
 
   document.addEventListener("click", (e) => {
     toggles.forEach((toggle) => {
-      const contextualMenu = document.querySelector(
-        toggle.getAttribute("aria-controls")
-      );
+      const contextualMenu = document.querySelector(".p-contextual-menu");
 
       const clickOutside = !(
         toggle.contains(e.target) || contextualMenu.contains(e.target)

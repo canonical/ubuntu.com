@@ -80,21 +80,45 @@ def cube_microcerts():
                     "date_attempted": "20-12-07",
                 }
             )
+    else:
+        courses = cube_api.get_courses(organization="ubuntu")["results"]
+        modules = []
+        for course in courses:
+            course_id = course["id"]
+            if course_id not in COURSE_DATA:
+                continue
 
-        data = {
-            "user": {"name": user["fullname"]},
-            "modules": modules,
-            "passed_courses": 2,
-        }
+            course_uri = (
+                f"https://qa.cube.ubuntu.com/courses/{course_id}/course"
+            )
 
-        response = flask.make_response(
-            flask.render_template("cube/microcerts.html", **data)
-        )
-        response.cache_control.private = True
+            badge = COURSE_DATA[course_id].get("logo")
+            topics = COURSE_DATA[course_id].get("topics")
 
-        return response
-
-    return flask.render_template("cube/microcerts.html")
+            modules.append(
+                {
+                    "number": len(modules) + 1,
+                    "badge": badge,
+                    "name": course["name"],
+                    "topics": topics,
+                    "test_url": course_uri,
+                    "training_url": course_uri,
+                    "status": "Not enrolled",
+                    "action": "Test",
+                    "date_attempted": "20-12-07",
+                }
+            )
+    data = {
+        "user": {"name": user["fullname"]} if user else None,
+        "modules": modules,
+        "passed_courses": 0,
+        "has_enrollment": False,
+    }
+    response = flask.make_response(
+        flask.render_template("cube/microcerts.html", **data)
+    )
+    response.cache_control.private = True
+    return response
 
 
 def cube_home():
