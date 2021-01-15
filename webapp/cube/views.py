@@ -111,8 +111,8 @@ def cube_microcerts():
     data = {
         "user": {"name": user["fullname"]} if user else None,
         "modules": modules,
-        "passed_courses": 0,
-        "has_enrollment": False,
+        "passed_courses": 15,
+        "has_enrollment": True,
     }
     response = flask.make_response(
         flask.render_template("cube/microcerts.html", **data)
