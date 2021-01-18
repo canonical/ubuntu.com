@@ -104,6 +104,10 @@ tooltipIconList.forEach(function (tooltipIcon) {
         const priority = this.dataset.priority;
         const status = this.dataset.status;
 
+        if (!(priority in priorities) && !(status in statuses)) {
+          return;
+        }
+
         const tooltip = document.createElement("div");
         tooltip.classList.add("cve-tooltip");
 
