@@ -1,5 +1,6 @@
 # Standard library
 import re
+from ast import literal_eval
 from collections import defaultdict
 from datetime import datetime
 from math import ceil
@@ -22,7 +23,6 @@ from webapp.security.models import CVE, Notice, Package, Status, Release
 from webapp.security.schemas import CVESchema, NoticeSchema, ReleaseSchema
 from webapp.security.auth import authorization_required
 
-
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
 )
@@ -34,7 +34,7 @@ def notice(notice_id):
     if not notice:
         flask.abort(404)
 
-    package_descriptions = set()
+    package_descriptions = {}
     release_packages = SortedDict()
 
     if notice.release_packages:
@@ -47,16 +47,41 @@ def notice(notice_id):
             )
 
             release_packages[release_version] = []
-            for package in pkgs:
-                if package["is_source"]:
-                    package_descriptions.add(
-                        f"{package['name']} - {package['description']}"
-                    )
-                else:
+            if notice.get_type == "USN":
+                for package in pkgs:
+                    if package["is_source"]:
+                        name = package["name"]
+                        if name not in package_descriptions:
+                            package_descriptions[name] = package["description"]
+                    else:
+                        release_packages[release_version].append(package)
+
+            elif notice.get_type == "LSN":
+                for package in pkgs:
+                    name = package["name"]
+                    if name not in package_descriptions:
+                        package_descriptions[name] = package["description"]
+
                     release_packages[release_version].append(package)
 
             # Order packages for release by the name key
             release_packages[release_version].sort(key=lambda pkg: pkg["name"])
+
+        package_descriptions = {
+            key: package_descriptions[key]
+            for key in sorted(package_descriptions.keys())
+        }
+
+    instructions = ""
+    instruction_packages = []
+    if notice.get_type == "USN":
+        instructions = markdown_parser(notice.instructions)
+    elif notice.get_type == "LSN":
+        instructions = literal_eval(notice.instructions)
+        for packages_lists in instructions.values():
+            instruction_packages += packages_lists
+
+        set(instruction_packages)
 
     notice_cve_ids = [cve.id for cve in notice.cves]
     related_notices = (
@@ -66,14 +91,20 @@ def notice(notice_id):
         .all()
     )
 
+    if notice.get_type == "LSN":
+        template = "security/notices/lsn.html"
+    else:
+        template = "security/notices/usn.html"
+
     notice = {
         "id": notice.id,
         "title": notice.title,
         "published": notice.published,
         "summary": notice.summary,
-        "details": markdown_parser(notice.details),
-        "instructions": markdown_parser(notice.instructions),
-        "package_descriptions": sorted(package_descriptions),
+        "details": markdown_parser(notice.get_processed_details),
+        "instructions": instructions,
+        "instruction_packages": instruction_packages,
+        "package_descriptions": package_descriptions,
         "release_packages": release_packages,
         "releases": notice.releases,
         "cves": notice.cves,
@@ -87,7 +118,7 @@ def notice(notice_id):
         ],
     }
 
-    return flask.render_template("security/notice.html", notice=notice)
+    return flask.render_template(template, notice=notice)
 
 
 def notices():
@@ -311,7 +342,7 @@ def notices_sitemap():
         base_url=base_url,
         links=[
             {
-                "url": f"{base_url}/sitemap-{link*10000}.xml",
+                "url": f"{base_url}/sitemap-{link * 10000}.xml",
             }
             for link in range(ceil(notices_count / 10000))
         ],

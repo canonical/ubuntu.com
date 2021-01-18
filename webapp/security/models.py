@@ -1,3 +1,4 @@
+import re
 from collections import defaultdict
 from datetime import datetime
 
@@ -139,6 +140,23 @@ class Notice(Base):
         order_by="desc(Release.release_date)",
         back_populates="notices",
     )
+
+    @hybrid_property
+    def get_type(self):
+        if "USN-" in self.id.upper():
+            return "USN"
+        if "LSN-" in self.id.upper():
+            return "LSN"
+
+        return ""
+
+    @hybrid_property
+    def get_processed_details(self):
+        pattern = re.compile(r"(cve|CVE-)\d{4}-\d{4,7}", re.MULTILINE)
+
+        return re.sub(
+            pattern, r'<a href="/security/\g<0>">\g<0></a>', self.details
+        )
 
     @hybrid_property
     def package_list(self):
