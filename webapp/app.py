@@ -416,6 +416,7 @@ engage_pages.init_app(app)
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
+template_finder_view._exclude_xframe_options_header = True
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/snaps", view_func=search_snaps)
 app.add_url_rule("/core/build", view_func=build)
