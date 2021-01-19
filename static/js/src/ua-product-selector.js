@@ -368,6 +368,9 @@ function productSelector() {
           handleQuantityInputs(inputElement);
         }, 500)();
         break;
+      case "esm-apps":
+        state.set(inputElement.name, [inputElement.checked]);
+        break;
       case "support":
         state.set(inputElement.name, [inputElement.value]);
         break;
@@ -407,6 +410,7 @@ function productSelector() {
     state.reset("type");
     state.reset("quantity");
     state.reset("version");
+    state.reset("esm-apps");
     state.reset("support");
     state.reset("add");
     form.reset();
@@ -581,22 +585,27 @@ function productSelector() {
   function updateSelectedProduct() {
     const quantity = state.get("quantity")[0];
     const support = state.get("support")[0];
+    const isESMApps = state.get("esm-apps")[0];
     const type = state.get("type")[0];
     const validVersion = state.get("version")[0] !== "#other";
     const productsArray = Object.entries(products);
     const productId = `uai-${support}-${type}`;
+    const ESMAppId =
+      type === "physical" ? `uaa-${support}` : `uaa-${support}-${type}`;
     const completedForm = type && quantity && support && validVersion;
     const headerHTML =
       "<div class='row'><div class='col-12'><h3>Your chosen plan</h3></div></div>";
 
-    let lineItemHTML;
     let listingId;
+    let lineItemHTML;
     let privateForAccount = false;
 
     // check whether user has private offers
     productsArray.forEach((product) => {
       const listingProduct = product[1];
-      const isSelectedProduct = listingProduct["productID"] === productId;
+      const isSelectedProduct = isESMApps
+        ? listingProduct["productID"] === ESMAppId
+        : listingProduct["productID"] === productId; //Apps overrides infra
       if (listingProduct.private && isSelectedProduct) {
         privateForAccount = true;
         listingId = product[0];
