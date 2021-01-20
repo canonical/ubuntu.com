@@ -465,16 +465,21 @@ function productSelector() {
     const versionTabs = form.querySelectorAll(
       ".js-shop-step--version .p-tabs__link"
     );
-    const esmAppsSection = document.querySelector(".js-shop-step--esm-apps");
+    const ESMAppsSection = document.querySelector(".js-shop-step--esm-apps");
+    const ESMAppscheckbox = document.getElementById("esm-apps-checkbox");
     const version = state.get("version")[0];
     const quantity = state.get("quantity")[0];
 
     // ESM Apps is not available for Ubuntu 14.04 so we hide the section
     if (version === "#trusty") {
       disableSteps(["esm-apps"]);
-      esmAppsSection.classList.add("u-hide");
+      ESMAppsSection.classList.add("u-hide");
+      if (state.get("esm-apps")[0]) {
+        ESMAppscheckbox.checked = false;
+        state.set("esm-apps", [false]);
+      }
     } else {
-      esmAppsSection.classList.remove("u-hide");
+      ESMAppsSection.classList.remove("u-hide");
       if (quantity) {
         enableSteps(["esm-apps"]);
       }
