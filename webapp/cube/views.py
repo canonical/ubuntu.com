@@ -113,6 +113,9 @@ def cube_microcerts():
         "modules": modules,
         "passed_courses": 15,
         "has_enrollment": True,
+        "certified_badge": {
+            "url": "https//www.thisismybadge.com"
+        }
     }
     response = flask.make_response(
         flask.render_template("cube/microcerts.html", **data)
