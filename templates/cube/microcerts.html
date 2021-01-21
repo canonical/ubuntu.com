@@ -93,7 +93,7 @@
       <p style="margin-bottom:0.5rem;">Share your certification with your network</p>
       <ul class="p-inline-list-icons u-no-padding--left u-no-margin--left u-no-padding--top">
         <li class="p-inline-list__item">
-          <a title="Share on Twitter" href="https://twitter.com/share?text=I am officially a Certified Ubuntu Engineer. My CUBE 2020 from @Canonical means that I’m a proven @Ubuntu professional. Learn more about CUBE 2020 at https://www.ubuntu.com/cube&amp;url={{ certified_badge.url }}&amp;hashtags=cube2020">
+          <a title="Share on Twitter" href="https://twitter.com/share?text=I am officially a Certified Ubuntu Engineer. My CUBE 2020 from @Canonical means that I’m a proven @Ubuntu professional. Learn more about CUBE 2020 at https://www.ubuntu.com/cube&amp;url={{ certified_badge.url }}&amp;hashtags=CUBE2020">
           {{ image (
             url="https://assets.ubuntu.com/v1/6d51a38d-Twitter.png",
             alt="",
@@ -106,7 +106,7 @@
           </a>
         </li>
         <li class="p-inline-list__item">
-          <div id="linkedin-share" title="Share on LinkedIn">
+          <a id="linkedin-share" title="Share on LinkedIn" href="https://www.linkedin.com/shareArticle?url={{ certified_badge.url }}&title=CUBE 2020">
           {{ image (
             url="https://assets.ubuntu.com/v1/72040dde-LindedIn.png",
             alt="",
@@ -116,11 +116,11 @@
             loading="auto"
             ) | safe
           }}
-        </div>
+        </a>
         </li>
       </ul>
-      <p>You can <a href="https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Test%20Certificate&organizationName=LinkedIn&issueYear=2018&issueMonth=2&expirationYear=2020&expirationMonth=5&certUrl=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Flearn%2Fcertifications%2Fd365-functional-consultant-sales&certId=1234">add this badge</a> to the Certification section of your LinkedIn profile</p>
-      <p class="u-no-padding--top"><small>https://api.badgr.io/public/assertions/MPhZ1kQGT061-hl</small></p>
+      <p>You can <a href="https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=CUBE 2020&organizationName=Canonical&certUrl={{ certified_badge.url }}">add this badge</a> to the Certification section of your LinkedIn profile</p>
+      <p class="u-no-padding--top"><small>{{ certified_badge.url }}</small></p>
     </div>
   </div>
 </section>
@@ -270,9 +270,9 @@
               <button class="p-button--neutral p-contextual-menu__toggle has-icon" aria-controls="#share-menu" aria-expanded="false" aria-haspopup="true" data-trigger="click"><i class="p-icon--chevron-down p-contextual-menu__indicator"></i><span>Share</span></button>
               <span class="p-contextual-menu__dropdown" id="share-menu" aria-hidden="true">
                 <span class="p-contextual-menu__group">
-                  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ubuntu.com" class="p-contextual-menu__link">Share via LinkedIn</a>
-                  <a href="https://twitter.com/share?text=My Tweet&amp;url=https://www.ubuntu.com/cube&amp;hashtags=ubuntu" class="p-contextual-menu__link">Share via Twitter</a>
-                  <a href="#" class="p-contextual-menu__link">Copy to clipboard</a>
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ module.badge }}" class="p-contextual-menu__link">Share via LinkedIn</a>
+                  <a href="https://twitter.com/share?text=I earned {{ module.name }} from @Canonical. Now I’m one step closer to becoming a Certified @Ubuntu Engineer. Learn more about Canonical’s available microcerts and CUBE 2020 at https://www.ubuntu.com/cube.&amp;url={{ module.badge }}&amp;hashtags=CUBE2020" class="p-contextual-menu__link">Share via Twitter</a>
+                  <a data-badge="{{ module.badge }}" class="p-contextual-menu__link copy-to-clipboard">Copy to clipboard</a>
                 </span>
               </span>
             </span>
@@ -319,7 +319,43 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/cube-beta" data-form-id="3801" data-lp-id="7140" data-return-url="https://www.ubuntu.com/cube/thank-you" data-lp-url="https://pages.ubuntu.com/Contact_Us_Ubuntu_CUBEbetatest_Cube-contact-us-landing-page.html">
 </div>
 
-<script ></script>
+<script >
+const myObserver = new ResizeObserver((entries) => {
+  entries.forEach((entry) => {
+    const width = Math.floor(entry.contentRect.width);
+    if (width < 1035) {
+      entry.target.classList.remove("is-shallow");
+      document.getElementById("hero-content").style.marginTop = "2rem";
+    } else {
+      entry.target.classList.add("is-shallow");
+      document.getElementById("hero-content").style.marginTop = "-2rem";
+    }
+  });
+});
+
+const strip = document.querySelector(".p-strip--square-suru");
+myObserver.observe(strip);
+
+
+function copyBadgeUrl(badgeUrl) {
+  const el = document.createElement('textarea');
+  el.value = badgeUrl;
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+}
+
+const copyToClipboardLinks = document.querySelectorAll(".copy-to-clipboard");
+const linksArr = Array.from(copyToClipboardLinks);
+linksArr.forEach(link => {
+  const badgeUrl = link.dataset.badge;
+  link.addEventListener("click", () => copyBadgeUrl(badgeUrl));
+});
+</script>
 
 
 {% endblock content %}
