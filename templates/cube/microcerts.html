@@ -16,9 +16,12 @@
 
       {% elif has_enrollment %}
 
-        <h1>Your road to CUBE</h1>
+      <h1>Your road to CUBE</h1>
+        {% if passed_courses > 0 %}
         <p class="p-heading--4">You have completed {{ passed_courses }} microcerts.</br>Complete {{ (15 - passed_courses) }} more microcerts to attain CUBE.</p>
-
+        {% else %}
+        <p class="p-heading--4">Complete {{ (15 - passed_courses) }} microcerts to attain CUBE.</p>
+        {% endif %}
       {% else %}
 
         <h1>The road to CUBE</h1>
@@ -90,7 +93,7 @@
       <p style="margin-bottom:0.5rem;">Share your certification with your network</p>
       <ul class="p-inline-list-icons u-no-padding--left u-no-margin--left u-no-padding--top">
         <li class="p-inline-list__item">
-          <a title="Share on Twitter" href="https://twitter.com/share?text=My Tweet&amp;url=https://www.ubuntu.com/cube&amp;hashtags=ubuntu">
+          <a title="Share on Twitter" href="https://twitter.com/share?text=I am officially a Certified Ubuntu Engineer. My CUBE 2020 from @Canonical means that I’m a proven @Ubuntu professional. Learn more about CUBE 2020 at https://www.ubuntu.com/cube&amp;url={{ certified_badge.url }}&amp;hashtags=cube2020">
           {{ image (
             url="https://assets.ubuntu.com/v1/6d51a38d-Twitter.png",
             alt="",
@@ -103,7 +106,7 @@
           </a>
         </li>
         <li class="p-inline-list__item">
-          <a title="Share on LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ubuntu.com">
+          <div id="linkedin-share" title="Share on LinkedIn">
           {{ image (
             url="https://assets.ubuntu.com/v1/72040dde-LindedIn.png",
             alt="",
@@ -113,7 +116,7 @@
             loading="auto"
             ) | safe
           }}
-          </a>
+        </div>
         </li>
       </ul>
       <p>You can <a href="https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Test%20Certificate&organizationName=LinkedIn&issueYear=2018&issueMonth=2&expirationYear=2020&expirationMonth=5&certUrl=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Flearn%2Fcertifications%2Fd365-functional-consultant-sales&certId=1234">add this badge</a> to the Certification section of your LinkedIn profile</p>
@@ -316,24 +319,7 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/cube-beta" data-form-id="3801" data-lp-id="7140" data-return-url="https://www.ubuntu.com/cube/thank-you" data-lp-url="https://pages.ubuntu.com/Contact_Us_Ubuntu_CUBEbetatest_Cube-contact-us-landing-page.html">
 </div>
 
-<script>
-  const myObserver = new ResizeObserver(entries => {
-    entries.forEach(entry => {
-    const width = Math.floor(entry.contentRect.width);
-    if(width < 1035) {
-      entry.target.classList.remove("is-shallow");
-      document.getElementById("hero-content").style.marginTop = "2rem";
-    } else {
-      entry.target.classList.add("is-shallow")
-      document.getElementById("hero-content").style.marginTop = "-2rem";
-    }
-    })
-  });
-
-  const strip = document.querySelector(".p-strip--square-suru");
-  myObserver.observe(strip);
-
-</script>
+<script ></script>
 
 
 {% endblock content %}

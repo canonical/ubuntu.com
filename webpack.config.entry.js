@@ -19,6 +19,7 @@ module.exports = {
     "./static/js/src/form-validation.js",
     "./static/js/src/scratch.js",
     "./static/js/src/smartquotes.js",
+    "./static/js/src/microcerts.js",
   ],
   "release-chart": "./static/js/src/release-chart.js",
   tabotronic: "./static/js/src/tabotronic.js",
