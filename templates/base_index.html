@@ -15,21 +15,21 @@
 
 <!-- Default Takeover: Download the latest Ubuntu -->
 <section data-lang="all" id="takeover" class="p-takeover--grad is-dark is-deep">
-  <div class="row p-takeover-animation">
+  <div class="row p-takeover-animation" id="takeover-animaition">
     <div class="col-7 u-vertically-center">
       <h1 id="takeover-title">What's new in<br>Ubuntu {{ releases.latest.short_version }}?</h1>
       <h4 id="takeover-subtitle">Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.</h4>
       <div id="takeover-ctas">
         <p><a id="takeover-primary-url" href="/download" class="p-button--positive">Get Ubuntu {{ releases.latest.short_version }}</a></p>
         <p>
-          <a id="takeover-secondary-url" href="/raspberry-pi" class=" p-link--inverted">
+          <a id="takeover-secondary-url" href="/raspberry-pi" class="p-link--inverted">
             Learn more about Ubuntu on the Raspberry Pi&nbsp;&rsaquo;
           </a>
         </p>
       </div>
     </div>
     <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
-      <img id="takeover-image" src="https://assets.ubuntu.com/v1/fe951eda-20.10_Groovy+Gorilla_RPi_Sketch.svg" width="200" alt="" />
+      <img id="takeover-image" src="" width="200" alt="" />
     </div>
   </div>
 </section>
@@ -1405,6 +1405,7 @@
   }
 
   var baseTakeover = document.getElementById('takeover');
+  var takeoverAnimation = document.getElementById("takeover-animaition");
 
   if (window.localStorage && baseTakeover) {
     /**
@@ -1451,6 +1452,7 @@
 
     xhr.open("GET", "/takeovers.json", true);
     xhr.send();
+    takeoverAnimation.className +=  " is-loading";
   }
 
   function showTakeover(takeovers, index) {
@@ -1464,7 +1466,6 @@
     var image = document.getElementById("takeover-image");
     var primaryUrl = document.getElementById("takeover-primary-url");
     var secondaryUrl = document.getElementById("takeover-secondary-url");
-    var takeoverAnimation = document.getElementsByClassName("p-takeover-animation")
 
     // Set values to homepage takeover
     var selectedTakeover = takeovers[index];
@@ -1486,8 +1487,9 @@
     image.src = selectedTakeover.image;
     image.onload = function () {
       // Remove animation delay
-      if (takeoverAnimation[0]) {
-        takeoverAnimation[0].className +=  " is-loaded";
+      if (takeoverAnimation) {
+        takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
+        takeoverAnimation.className +=  " is-loaded";
       }
     }
 
