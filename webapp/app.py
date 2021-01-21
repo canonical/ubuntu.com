@@ -370,36 +370,23 @@ engage_pages = EngagePages(
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 
 
-def build_takeovers(engage_pages):
-    def index_page():
-        engage_pages.parser.parse()
-
-        # Show only active
-        active_takeovers = [
-            takeover
-            for takeover in engage_pages.parser.takeovers
-            if takeover["active"] == "true"
-        ]
-        return flask.render_template("index.html", takeovers=active_takeovers)
-
-    return index_page
-
-
-def build_takeovers_index(engage_pages):
-    def takeover_index():
-        engage_pages.parser.parse()
-        sorted_takeovers = sorted(
-            engage_pages.parser.takeovers,
-            key=lambda takeover: takeover["publish_date"],
-            reverse=True,
-        )
-        active_takeovers = [
-            takeover
-            for takeover in engage_pages.parser.takeovers
-            if takeover["active"] == "true"
-        ]
-        active_count = len(active_takeovers)
-        hidden_count = len(sorted_takeovers) - active_count
+def get_takeovers(engage_pages, active=False):
+    engage_pages.parser.parse()
+    sorted_takeovers = sorted(
+        engage_pages.parser.takeovers,
+        key=lambda takeover: takeover["publish_date"],
+        reverse=True,
+    )
+    active_takeovers = [
+        takeover
+        for takeover in engage_pages.parser.takeovers
+        if takeover["active"] == "true"
+    ]
+    active_count = len(active_takeovers)
+    hidden_count = len(sorted_takeovers) - active_count
+    if active:
+        return flask.jsonify(active_takeovers)
+    else:
         return flask.render_template(
             "takeovers/index.html",
             active_count=active_count,
@@ -407,10 +394,23 @@ def build_takeovers_index(engage_pages):
             takeovers=sorted_takeovers,
         )
 
+
+def build_takeovers(engage_pages):
+    def index_page():
+        return get_takeovers(engage_pages, True)
+
+    return index_page
+
+
+def build_takeovers_index(engage_pages):
+    def takeover_index():
+        return get_takeovers(engage_pages)
+
     return takeover_index
 
 
 # app.add_url_rule("/", view_func=build_takeovers(engage_pages))
+app.add_url_rule("/takeovers.json", view_func=build_takeovers(engage_pages))
 app.add_url_rule("/takeovers", view_func=build_takeovers_index(engage_pages))
 engage_pages.init_app(app)
 
