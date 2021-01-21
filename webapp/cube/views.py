@@ -111,7 +111,7 @@ def cube_microcerts():
     data = {
         "user": {"name": user["fullname"]} if user else None,
         "modules": modules,
-        "passed_courses": 15,
+        "passed_courses": 2,
         "has_enrollment": True,
         "certified_badge": {
             "url": "https//www.thisismybadge.com"
