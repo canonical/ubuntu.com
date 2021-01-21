@@ -1424,28 +1424,33 @@
 
     xhr.onreadystatechange = function() {
       if (xhr.readyState == XMLHttpRequest.DONE) {
-        var takeovers = JSON.parse(xhr.responseText);
+        if (xhr.status === 200) {
+          var takeovers = JSON.parse(xhr.responseText);
 
-        // Get the selected takeovers based on the primary language
-        var selectedTakeovers = takeovers.filter(function(item) {
-          return item.lang === primaryParentLanguage || item.lang === ""
-        })
+          // Get the selected takeovers based on the primary language
+          var selectedTakeovers = takeovers.filter(function(item) {
+            return item.lang === primaryParentLanguage || item.lang === ""
+          })
 
-        if (selectedTakeovers && selectedTakeovers.length > 0) {
-          var selectedIndex = null;
+          if (selectedTakeovers && selectedTakeovers.length > 0) {
+            var selectedIndex = null;
 
-          if (window.localStorage.getItem('selected_takeover_index') !== null) {
-            // If we previously visited a takeover, increment the number to show the next takeover
-            var nextIndex = parseInt(window.localStorage.getItem('selected_takeover_index')) + 1
-            selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
-          } else {
-            // Otherwise, randomly choose one of the takeovers and store it for next time
-            selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
+            if (window.localStorage.getItem('selected_takeover_index') !== null) {
+              // If we previously visited a takeover, increment the number to show the next takeover
+              var nextIndex = parseInt(window.localStorage.getItem('selected_takeover_index')) + 1
+              selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
+            } else {
+              // Otherwise, randomly choose one of the takeovers and store it for next time
+              selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
+            }
+            showTakeover(selectedTakeovers, selectedIndex);
+
+            // Store the current takeover index
+            localStorage.setItem('selected_takeover_index', selectedIndex)
           }
-          showTakeover(selectedTakeovers, selectedIndex);
-
-          // Store the current takeover index
-          localStorage.setItem('selected_takeover_index', selectedIndex)
+        } else {
+          takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
+          takeoverAnimation.className +=  " is-loaded";
         }
       }
     };
