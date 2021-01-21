@@ -1404,7 +1404,9 @@
     notices[0].classList.remove("u-hide")
   }
 
-  if (window.localStorage && window.sessionStorage) {
+  var baseTakeover = document.getElementById('takeover');
+
+  if (window.localStorage && baseTakeover) {
     /**
     * Choose a takeover
     * ===
@@ -1418,43 +1420,37 @@
     if (window.ActiveXObject) {
       xhr = new ActiveXObject('Microsoft.XMLHTTP');
     }
-    
+
     xhr.onreadystatechange = function() {
-      
       if (xhr.readyState == XMLHttpRequest.DONE) {
-
         var takeovers = JSON.parse(xhr.responseText);
-        var baseTakeover = document.getElementById('takeover');  // The base takeover element
 
-        // Get the selected takeovers
+        // Get the selected takeovers based on the primary language
         var selectedTakeovers = takeovers.filter(function(item) {
           return item.lang === primaryParentLanguage || item.lang === ""
         })
 
         if (selectedTakeovers && selectedTakeovers.length > 0) {
-        var selectedIndex = null;
+          var selectedIndex = null;
 
-        if (localStorage.getItem('selected_takeover_index') !== null) {
-          // If we previously chose a takeover, increment the number to show the next takeover
-          var nextIndex = parseInt(localStorage.getItem('selected_takeover_index')) + 1
-          selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
+          if (window.localStorage.getItem('selected_takeover_index') !== null) {
+            // If we previously visited a takeover, increment the number to show the next takeover
+            var nextIndex = parseInt(window.localStorage.getItem('selected_takeover_index')) + 1
+            selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
+          } else {
+            // Otherwise, randomly choose one of the takeovers and store it for next time
+            selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
+          }
           showTakeover(selectedTakeovers, selectedIndex);
-        } else {
-          // Otherwise, randomly choose one of the takeovers and store it for next time
-          selectedIndex = Math.floor(Math.random() * selectedTakeovers.length);
-          showTakeover(selectedTakeovers, selectedIndex);
-        }
 
-        // Store the current takeover
-        localStorage.setItem('selected_takeover_index', selectedIndex)
-
+          // Store the current takeover index
+          localStorage.setItem('selected_takeover_index', selectedIndex)
         }
       }
     };
 
     xhr.open("GET", "/takeovers.json", true);
     xhr.send();
-
   }
 
   function showTakeover(takeovers, index) {
@@ -1468,7 +1464,6 @@
     var image = document.getElementById("takeover-image");
     var primaryUrl = document.getElementById("takeover-primary-url");
     var secondaryUrl = document.getElementById("takeover-secondary-url");
-    var get_ctas = document.getElementById("takeover-ctas").getElementsByTagName("p")[0];
     var takeoverAnimation = document.getElementsByClassName("p-takeover-animation")
 
     // Set values to homepage takeover
@@ -1489,23 +1484,24 @@
     title.textContent = selectedTakeover.title;
     subtitle.textContent = selectedTakeover.subtitle;
     image.src = selectedTakeover.image;
+    image.onload = function () {
+      // Remove animation delay
+      if (takeoverAnimation[0]) {
+        takeoverAnimation[0].className +=  " is-loaded";
+      }
+    }
+
     image.removeAttribute("style");
-    image.style.width = selectedTakeover.image_width;
-    image.style.height = selectedTakeover.image_height;
+    image.width = selectedTakeover.image_width;
+    image.height = selectedTakeover.image_height;
     primaryUrl.href = selectedTakeover.primary_url;
     primaryUrl.textContent = selectedTakeover.primary_cta;
     if (selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
       secondaryUrl.href = selectedTakeover.secondary_url;
-      secondaryUrl.textContent = selectedTakeover.secondary_cta + " ›";
+      secondaryUrl.innerHTML = selectedTakeover.secondary_cta + "&nbsp;&rsaquo;";
     } else {
       secondaryUrl.remove();
     }
-
-    // Remove animation delay
-    if (takeoverAnimation[0]) {
-      takeoverAnimation[0].className +=  " .is-loaded";
-    }
-    
   }
 </script>
 

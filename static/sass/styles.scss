@@ -819,8 +819,8 @@ body {
 .p-takeover-animation {
   animation: FadeIn map-get($animation-duration, "fast")
     map-get($animation-easing, "out");
-  animation-fill-mode: backwards;
   animation-delay: 2.5s;
+  animation-fill-mode: backwards;
 
   &.is-loaded {
     animation-delay: 0s !important;
