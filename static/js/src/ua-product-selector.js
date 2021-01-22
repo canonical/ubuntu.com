@@ -594,9 +594,8 @@ function productSelector() {
     const type = state.get("type")[0];
     const validVersion = state.get("version")[0] !== "#other";
     const productsArray = Object.entries(products);
-    const productId = `uai-${support}-${type}`;
-    const ESMAppId =
-      type === "physical" ? `uaa-${support}` : `uaa-${support}-${type}`;
+    const prefix = isESMApps ? "uaia" : "uai";
+    const productId = `${prefix}-${support}-${type}`;
     const completedForm = type && quantity && support && validVersion;
     const headerHTML =
       "<div class='row'><div class='col-12'><h3>Your chosen plan</h3></div></div>";
@@ -608,9 +607,7 @@ function productSelector() {
     // check whether user has private offers
     productsArray.forEach((product) => {
       const listingProduct = product[1];
-      const isSelectedProduct = isESMApps
-        ? listingProduct["productID"] === ESMAppId
-        : listingProduct["productID"] === productId; //Apps overrides infra
+      const isSelectedProduct = listingProduct["productID"] === productId;
       if (listingProduct.private && isSelectedProduct) {
         privateForAccount = true;
         listingId = product[0];
