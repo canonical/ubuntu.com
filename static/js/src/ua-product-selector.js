@@ -207,9 +207,9 @@ function productSelector() {
 
   function disableSteps(steps) {
     steps.forEach((step) => {
-      const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
+      const wrappers = form.querySelectorAll(`${stepClassPrefix}${step}`);
 
-      if (wrapper) {
+      wrappers.forEach((wrapper) => {
         const tabbableItems = wrapper.querySelectorAll(
           "input, .p-tabs__link, button, a"
         );
@@ -218,15 +218,15 @@ function productSelector() {
         tabbableItems.forEach((item) => {
           item.setAttribute("tabindex", "-1");
         });
-      }
+      });
     });
   }
 
   function enableSteps(steps) {
     steps.forEach((step) => {
-      const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
+      const wrappers = form.querySelectorAll(`${stepClassPrefix}${step}`);
 
-      if (wrapper) {
+      wrappers.forEach((wrapper) => {
         const tabbableItems = wrapper.querySelectorAll(
           "input, .p-tabs__link, button, a"
         );
@@ -235,7 +235,7 @@ function productSelector() {
         tabbableItems.forEach((item) => {
           item.removeAttribute("tabindex");
         });
-      }
+      });
     });
   }
 
