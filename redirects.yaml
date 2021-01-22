@@ -53,12 +53,6 @@ aboutus/online-accounts-legal-notice/?: "/legal/online-account-terms"
 aboutus/privacypolicy/?: "/legal/data-privacy"
 aboutus/privacypolicy/thirdparties/?: "/legal/data-privacy"
 aboutus/trademarkpolicy.*/?: "/legal/intellectual-property-policy"
-ai/?: "/kubeflow"
-ai/consulting/?: "/kubeflow/consulting"
-ai/contact-us/?: "/kubeflow/contact-us"
-ai/features/?: "/kubeflow/features"
-ai/install/?: "/kubeflow/install"
-ai/thank-you/?: "/kubeflow/thank-you"
 android/?: "/mobile"
 appliances/?: "/appliance"
 arm/?: "https://partners.ubuntu.com/arm"
@@ -499,6 +493,13 @@ juju/?:  "https://jaas.ai/"
 jumpstart/?: "/openstack/contact-us?product=managed-cloud"
 jobs/?: "https://pages.ubuntu.com/employee_engagement_campaign.html"
 k8s/?:  "/kubernetes"
+kubeflow/?: "/ai/what-is-kubeflow"
+kubeflow/consulting/?: "/ai/services"
+kubeflow/what-is-kubeflow/?: "/ai/what-is-kubeflow"
+kubeflow/features/?: "/ai/what-is-kubeflow"
+kubeflow/install/?: "/ai/install-kubeflow"
+kubeflow/contact-us/?: "/ai/contact-us"
+kubeflow/thank-you/?: "/ai/thank-you"
 kubuntu/simple/oneiric/desktop/kubuntu-11\.10-desktop-amd64\.iso\.torrent/?: "https://kubuntu.org/getkubuntu/"
 kubernetes/partners/?: "/kubernetes"
 landscape/?: "https://landscape.canonical.com"
@@ -856,3 +857,6 @@ shared/forms/interactive/_(?P<path>.*)/?: /shared/forms/interactive/{path}
 
 # Download harness
 download/server/thank-you: /download/server
+
+# Server guide
+server/guide: /server/docs
