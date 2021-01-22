@@ -114,14 +114,14 @@ def download_thank_you(category):
     )
 
 
-def appliance_install(app, device):
+def appliance_install(appliance, device):
     with open("appliances.yaml") as appliances:
         appliances = yaml.load(appliances, Loader=yaml.FullLoader)
 
     return flask.render_template(
-        f"appliance/{app}/{device}.html",
+        f"appliance/{appliance}/{device}.html",
         http_host=flask.request.host,
-        appliance=appliances["appliances"][app],
+        appliance=appliances["appliances"][appliance],
     )
 
 
