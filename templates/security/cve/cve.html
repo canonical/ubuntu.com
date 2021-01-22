@@ -1,12 +1,6 @@
 {% extends "security/cve/base_cve.html" %}
 {% block title %}{{ cve.id }}{% endblock %}
 
-{% block head_extra %}
-  {% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
-    <meta name="robots" content="noindex">
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 
 <nav class="p-navigation--secondary">
