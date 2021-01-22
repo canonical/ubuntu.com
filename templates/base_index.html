@@ -1505,6 +1505,14 @@
     } else {
       secondaryUrl.remove();
     }
+
+    dataLayer.push({
+      event: "NonInteractiveGAEvent",
+      eventCategory: "www.ubuntu.com-impression-takeover",
+      eventAction: "from:" + window.location.href + " to:" + selectedTakeover.primary_url,
+      eventLabel: selectedTakeover.primary_cta,
+      eventValue: undefined,
+    });
   }
 </script>
 
