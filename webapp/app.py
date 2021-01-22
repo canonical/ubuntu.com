@@ -404,7 +404,7 @@ def takeovers_json():
 
 
 def takeovers_index():
-    takeovers = get_takeovers(engage_pages)
+    takeovers = get_takeovers()
 
     return flask.render_template(
         "takeovers/index.html",
