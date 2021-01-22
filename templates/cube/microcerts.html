@@ -251,9 +251,9 @@
               <button class="p-button--neutral p-contextual-menu__toggle has-icon" aria-controls="#share-menu" aria-expanded="false" aria-haspopup="true" data-trigger="click"><i class="p-icon--chevron-down p-contextual-menu__indicator"></i><span>Share</span></button>
               <span class="p-contextual-menu__dropdown" id="share-menu" aria-hidden="true">
                 <span class="p-contextual-menu__group">
-                  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ module.badge }}" class="p-contextual-menu__link">Share via LinkedIn</a>
-                  <a href="https://twitter.com/share?text=I earned {{ module.name }} from @Canonical. Now I’m one step closer to becoming a Certified @Ubuntu Engineer. Learn more about Canonical’s available microcerts and CUBE 2020 at https://www.ubuntu.com/cube.&amp;url={{ module.badge }}&amp;hashtags=CUBE2020" class="p-contextual-menu__link">Share via Twitter</a>
-                  <a data-badge="{{ module.badge }}" class="p-contextual-menu__link copy-to-clipboard">Copy to clipboard</a>
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ module.badge.url }}" class="p-contextual-menu__link">Share via LinkedIn</a>
+                  <a href="https://twitter.com/share?text=I earned {{ module.name }} from @Canonical. Now I’m one step closer to becoming a Certified @Ubuntu Engineer. Learn more about Canonical’s available microcerts and CUBE 2020 at https://www.ubuntu.com/cube.&amp;url={{ module.badge.url }}&amp;hashtags=CUBE2020" class="p-contextual-menu__link">Share via Twitter</a>
+                  <a data-badge="{{ module.badge.url }}" class="p-contextual-menu__link copy-to-clipboard">Copy to clipboard</a>
                 </span>
               </span>
             </span>
