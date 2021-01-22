@@ -44,7 +44,7 @@ from webapp.views import (
     BlogSitemapPage,
     build,
     build_tutorials_index,
-    download_harness,
+    download_server_steps,
     download_thank_you,
     appliance_install,
     appliance_portfolio,
@@ -236,9 +236,9 @@ app.add_url_rule(
 )
 
 app.add_url_rule(
-    "/download/<regex('server'):category>",
+    "/download/server",
     methods=["GET", "POST"],
-    view_func=download_harness,
+    view_func=download_server_steps,
 )
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
@@ -246,7 +246,10 @@ app.add_url_rule(
     "/search", "search", build_search_view(template_path="search.html")
 )
 app.add_url_rule(
-    "/appliance/<regex('.+'):app>/<regex('.+'):device>",
+    (
+        "/appliance/<regex('[a-z-]+'):appliance>/"
+        "<regex('(raspberry-pi2?|intel-nuc|vm)'):device>"
+    ),
     view_func=appliance_install,
 )
 app.add_url_rule(
