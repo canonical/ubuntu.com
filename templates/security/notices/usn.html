@@ -25,8 +25,8 @@
     <div class="col-12">
       <h2>Packages</h2>
       <ul class="p-list">
-        {% for package_description in notice.package_descriptions %}
-          <li class="p-list__item">{{ package_description }}</li>
+        {% for package_name, package_title in notice.package_descriptions.items() %}
+          <li class="p-list__item"><a href="/security/cve?package={{ package_name }}">{{ package_name }}</a> - {{ package_title }}</li>
         {% endfor %}
       </ul>
     </div>

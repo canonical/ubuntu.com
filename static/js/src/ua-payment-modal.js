@@ -248,8 +248,13 @@ function attachFormEvents() {
     checkVAT();
   });
 
-  forMyselfRadio.addEventListener("change", handleNameFieldRadio);
-  forOrganisationRadio.addEventListener("change", handleNameFieldRadio);
+  // these elements aren't rendered on the renewal form
+  // or if an account isn't present, so check for their
+  // existence first
+  if (forMyselfRadio && forOrganisationRadio) {
+    forMyselfRadio.addEventListener("change", handleNameFieldRadio);
+    forOrganisationRadio.addEventListener("change", handleNameFieldRadio);
+  }
 
   termsCheckbox.addEventListener("change", () => {
     if (termsCheckbox.checked) {

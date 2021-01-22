@@ -370,52 +370,52 @@ engage_pages = EngagePages(
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 
 
-def build_takeovers(engage_pages):
-    def index_page():
-        engage_pages.parser.parse()
+def get_takeovers():
+    takeovers = {}
 
-        # Show only active
-        active_takeovers = [
-            takeover
-            for takeover in engage_pages.parser.takeovers
-            if takeover["active"] == "true"
-        ]
-        return flask.render_template("index.html", takeovers=active_takeovers)
+    engage_pages.parser.parse()
+    takeovers["sorted"] = sorted(
+        engage_pages.parser.takeovers,
+        key=lambda takeover: takeover["publish_date"],
+        reverse=True,
+    )
+    takeovers["active"] = [
+        takeover
+        for takeover in engage_pages.parser.takeovers
+        if takeover["active"] == "true"
+    ]
 
-    return index_page
-
-
-def build_takeovers_index(engage_pages):
-    def takeover_index():
-        engage_pages.parser.parse()
-        sorted_takeovers = sorted(
-            engage_pages.parser.takeovers,
-            key=lambda takeover: takeover["publish_date"],
-            reverse=True,
-        )
-        active_takeovers = [
-            takeover
-            for takeover in engage_pages.parser.takeovers
-            if takeover["active"] == "true"
-        ]
-        active_count = len(active_takeovers)
-        hidden_count = len(sorted_takeovers) - active_count
-        return flask.render_template(
-            "takeovers/index.html",
-            active_count=active_count,
-            hidden_count=hidden_count,
-            takeovers=sorted_takeovers,
-        )
-
-    return takeover_index
+    return takeovers
 
 
-app.add_url_rule("/", view_func=build_takeovers(engage_pages))
-app.add_url_rule("/takeovers", view_func=build_takeovers_index(engage_pages))
+def takeovers_json():
+    takeovers = get_takeovers()
+    response = flask.jsonify(takeovers["active"])
+    response.cache_control.max_age = "300"
+    response.cache_control._set_cache_value(
+        "stale-while-revalidate", "360", int
+    )
+    response.cache_control._set_cache_value("stale-if-error", "600", int)
+
+    return response
+
+
+def takeovers_index():
+    takeovers = get_takeovers(engage_pages)
+
+    return flask.render_template(
+        "takeovers/index.html",
+        takeovers=takeovers,
+    )
+
+
+app.add_url_rule("/takeovers.json", view_func=takeovers_json)
+app.add_url_rule("/takeovers", view_func=takeovers_index)
 engage_pages.init_app(app)
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
+template_finder_view._exclude_xframe_options_header = True
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/snaps", view_func=search_snaps)
 app.add_url_rule("/core/build", view_func=build)
@@ -486,6 +486,105 @@ app.add_url_rule(
     endpoint="alternative_thank-you",
     view_func=engage_thank_you(engage_pages),
 )
+
+# Core docs
+core_docs = Docs(
+    parser=DocParser(
+        api=discourse_api, index_topic_id=19764, url_prefix="/core/docs"
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs",
+    blueprint_name="core",
+)
+core_docs.init_app(app)
+# Core docs - Modem Manager
+core_modem_manager_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19901,
+        url_prefix="/core/docs/modem-manager",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/modem-manager",
+    blueprint_name="modem-manager",
+)
+core_modem_manager_docs.init_app(app)
+
+# Core docs - Bluetooth (bluez) docs
+core_bluetooth_docs = Docs(
+    parser=DocParser(
+        api=discourse_api, index_topic_id=19971, url_prefix="/core/docs/bluez"
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/bluez",
+    blueprint_name="bluez",
+)
+core_bluetooth_docs.init_app(app)
+
+# Core docs - NetworkManager
+core_network_manager_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19917,
+        url_prefix="/core/docs/networkmanager",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/networkmanager",
+    blueprint_name="networkmanager",
+)
+core_network_manager_docs.init_app(app)
+
+# Core docs - wp-supplicant
+core_wpa_supplicant_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19943,
+        url_prefix="/core/docs/wpa-supplicant",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/wpa-supplicant",
+    blueprint_name="wpa-supplicant",
+)
+core_wpa_supplicant_docs.init_app(app)
+
+# Core docs - easy-openvpn
+core_easy_openvpn_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19950,
+        url_prefix="/core/docs/easy-openvpn",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/easy-openvpn",
+    blueprint_name="easy-openvpn",
+)
+core_easy_openvpn_docs.init_app(app)
+
+# Core docs - wifi-ap
+core_wifi_ap_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19959,
+        url_prefix="/core/docs/wifi-ap",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/wifi-ap",
+    blueprint_name="wifi-ap",
+)
+core_wifi_ap_docs.init_app(app)
+
+# Core docs - alsa-utils
+core_als_autils_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=19995,
+        url_prefix="/core/docs/alsa-utils",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/core/docs/alsa-utils",
+    blueprint_name="alsa-utils",
+)
+core_als_autils_docs.init_app(app)
 
 
 @app.after_request

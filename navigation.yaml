@@ -242,6 +242,14 @@ publiccloud:
     - title: Overview
       path: /public-cloud
 
+cloud:
+  title: Cloud
+  path: /cloud
+
+  children:
+    - title: Overview
+      path: /cloud
+
 server:
   title: Server
   path: /server
@@ -1006,6 +1014,24 @@ core:
     - title: Overview
       path: /core
 
+    - title: Docs
+      path: /core/docs
+      persist: True
+      hidden: True
+
+      children:
+        - title: Bluetooth management
+          path: /core/docs/bluetooth-management
+          persist: True
+        - title: Network management
+          path: /core/docs/network-management-services
+          persist: True
+        - title: Audio management
+          path: /core/docs/audio-management
+          persist: True
+
+
+
     - title: Contact us
       path: /core/contact-us
       hidden: True
@@ -1014,6 +1040,8 @@ core:
         - title: Thank you
           path: /core/thank-you
           hidden: True
+
+
 
 iot:
   title: IoT
@@ -1357,9 +1385,8 @@ security:
       path: /security/certifications#cis
     - title: Certifications
       path: /security/certifications
-    # Hidden for soft launch
-    # - title: CVEs
-    # path: /security/cve
+    - title: CVEs
+      path: /security/cve
     - title: Notices
       path: /security/notices
       persist: True
