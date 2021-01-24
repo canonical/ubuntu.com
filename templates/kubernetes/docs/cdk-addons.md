@@ -157,4 +157,4 @@ a Prometheus/Grafana/Telegraf stack in the [monitoring docs][].
 [GPU workers page]: /kubernetes/docs/gpu-workers
 [LDAP and Keystone page]: /kubernetes/docs/ldap
 [monitoring docs]: /kubernetes/docs/monitoring
-[coredns-charm]: /kubernetes/docs/charm-coredns
+[coredns-charm]: https://jaas.ai/u/containers/coredns

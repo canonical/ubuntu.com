@@ -10,10 +10,10 @@
   <div class="row">
     <ul class="p-inline-list u-no-margin--bottom">
       <li class="p-inline-list__item">
-        Active takeovers: <strong>{{ len(takeovers["active"]) }}</strong>
+        Active takeovers: <strong>{{ takeovers["active"] | length }}</strong>
       </li>
       <li class="p-inline-list__item">
-        Hidden takeovers: <strong>{{ len(takeovers["sorted"]) - len(takeovers["active"]) }}</strong>
+        Hidden takeovers: <strong>{{ (takeovers["sorted"] | length) - (takeovers["active"] | length) }}</strong>
       </li>
     </ul>
   </div>

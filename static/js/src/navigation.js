@@ -139,7 +139,6 @@ function addGAContentEvents(target) {
   }
 }
 
-addGAImpressionEvents(".js-takeover", "takeover");
 addGAImpressionEvents(".js-product-card", "product-card");
 
 function addGAImpressionEvents(target, category) {
