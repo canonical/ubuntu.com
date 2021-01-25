@@ -451,6 +451,20 @@ def advantage_view():
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
 
+            if account is not None:
+                resp = advantage.get_account_subscriptions_for_marketplace(
+                    account["id"], "canonical-ua"
+                )
+                subs = resp.get("subscriptions")
+                if subs is not None:
+                    subscriptions ={}
+                    subscriptions["total_subscriptions"] = 0
+                    for subscription in subs:
+                        subscriptions["total_subscriptions"] += len(subscription["purchasedProductListings"])
+                        print(subscription["subscription"]["endOfCycle"])
+                        print("-------------------")
+                    print(subscriptions)
+
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
                 contract["machineCount"] = get_machine_usage(
