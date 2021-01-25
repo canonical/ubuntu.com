@@ -19,6 +19,11 @@ The notes are organised according to the upgrade path below, but also be aware t
 upgrade that spans more than one minor version may need to beware of notes in
 any of the intervening steps.
 
+## Upgrades to all versions deployed to Juju's `localhost` LXD based cloud
+
+There is a known issue ([https://bugs.launchpad.net/juju/+bug/1904619](https://bugs.launchpad.net/juju/+bug/1904619))
+with container profiles not surviving an upgrade in clouds running on LXD. If your container-based applications fail to work properly after an upgrade, please see this [topic on the troubleshooting page](/kubernetes/docs/troubleshooting#lxd)
+
 <a  id="1.19"> </a>
 
 ## Upgrading to 1.19

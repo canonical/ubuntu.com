@@ -115,6 +115,88 @@ Running the `juju-crashdump` script will generate a tarball of debug information
 
 ## Common Problems
 
+<a id="lxd"> </a>
+### Charms deployed to LXD containers fail after upgrade/reboot
+
+For deployments using Juju's `localhost` cloud, which deploys charms to LXD/LXC containers, or other 
+cases where applications are deployed to LXD, there is a known issue
+([https://bugs.launchpad.net/juju/+bug/1904619](https://bugs.launchpad.net/juju/+bug/1904619))
+with the profiles applied by Juju. The LXD profile used by Juju is named after the charm, including
+the revision number. Upgrading the charm causes Juju to create a new profile for LXD which does not
+necessarily contain the same settings which were originally supplied. If services based on LXD
+containers fail to resume after an upgrade, this is a potential cause of that failure.
+
+To check what the profiles should contain, the YAML output from `juju status` or `juju machines` can be used:
+
+```bash
+juju machines --format=yaml
+```
+... will detail the profiles in the output, e.g.:
+
+```
+model:
+  name: default
+machines:
+  "0":
+...
+    instance-id: juju-4ac678-1
+...
+lxd-profiles:
+      juju-default-kubernetes-worker-718:
+        config:
+          linux.kernel_modules: ip_tables,ip6_tables,netlink_diag,nf_nat,overlay
+          raw.lxc: |
+            lxc.apparmor.profile=unconfined
+            lxc.mount.auto=proc:rw sys:rw
+            lxc.cgroup.devices.allow=a
+            lxc.cap.drop=
+          security.nesting: "true"
+          security.privileged: "true"
+        description: ""
+        devices:
+          aadisable:
+            path: /dev/kmsg
+            source: /dev/kmsg
+            type: unix-char
+
+...
+```
+
+To check this matches with the actually applied profile, you can run `lxc` (this needs to be run on the machine where the containers are running).
+
+```bash
+lxc profile show juju-default-kubernetes-worker-718
+```
+This should give the appropriate corresponding output:
+
+```yaml
+config:
+  linux.kernel_modules: ip_tables,ip6_tables,netlink_diag,nf_nat,overlay
+  raw.lxc: |
+    lxc.apparmor.profile=unconfined
+    lxc.mount.auto=proc:rw sys:rw
+    lxc.cgroup.devices.allow=a
+    lxc.cap.drop=
+  security.nesting: "true"
+  security.privileged: "true"
+description: ""
+devices:
+  aadisable:
+    path: /dev/kmsg
+    source: /dev/kmsg
+    type: unix-char
+name: juju-default-kubernetes-worker-718
+used_by:
+- /1.0/instances/juju-4ac678-1
+```
+
+If this differs from what is expected, the profile can be manually edited. E.g., for the above profile:
+
+```bash
+lxc profile edit juju-default-kubernetes-worker-718
+```
+
+
 ### Load Balancer interfering with Helm
 
 This section assumes you have a working deployment of Kubernetes via Juju using a Load Balancer for the API, and that you are using Helm to deploy charts.

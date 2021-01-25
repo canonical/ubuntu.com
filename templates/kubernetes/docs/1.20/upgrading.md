@@ -1,5 +1,5 @@
 ---
-wrapper_template: "templates/docs/markdown.html"
+wrapper_template: "kubernetes/docs/base_docs.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
@@ -26,6 +26,18 @@ This page describes the general upgrade process. It is important to follow the s
 </div>
 
 <!-- END OF UPGRADE VERSIONS-->
+
+<div class="p-notification--caution">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Caution:</span>
+There is a known issue 
+<a href="https://bugs.launchpad.net/juju/+bug/1904619"> (https://bugs.launchpad.net/juju/+bug/1904619)</a>
+with container profiles not surviving an upgrade when deploying applications to LXD. If your 
+container-based applications fail to work properly after an upgrade, or you use the Juju `localhost` cloud,
+ please see this 
+<a href="/kubernetes/docs/troubleshooting#lxd"> topic on the troubleshooting page</a>
+  </p>
+</div>
 
 
 
