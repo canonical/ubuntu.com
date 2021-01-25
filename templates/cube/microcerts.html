@@ -143,11 +143,12 @@
               <p class="u-text--muted">{{ loop.index }}</p>
             </div>
           </td>
-          <td class="u-hide--small" aria-label="Badge">
+          <td class="u-hide--small u-no-padding--left u-no-padding--right" aria-label="Badge">
               <img 
                 src="{{ module.badge.url }}"
                 alt="Badge for {{ module.name }}"
-              />
+                style="margin-left: -0.2rem;"
+              >
           </td>
           <td aria-label="Module">
             <div class="p-table--cube__contents">
@@ -203,11 +204,14 @@
               <p class="u-text--muted">{{ loop.index }}</p>
             </div>
           </td>
-          <td aria-label="Badge">
+          <td aria-label="Badge" class="u-no-padding--left u-no-padding--right">
               <img
                 class="p-table--cube__badge"
                 src="{{ module.badge.url }}"
                 alt="Badge for {{ module.name }}"
+                {% if module.status == 'passed' %}
+                style="margin-left: -0.2rem;"
+                {% endif %}
               />
           </td>
           <td aria-label="Module">
