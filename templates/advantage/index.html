@@ -40,7 +40,7 @@
     <section class="p-strip is-shallow" style="overflow: visible;">
       <div class="row u-vertically-center">
         <div class="col-6 col-medium-3">
-          <h2>Your paid subscriptions</h2>
+          <h2>Your {% if subscriptions['total_subscriptions'] > 1 %}{{subscriptions['total_subscriptions']}} {%endif%}paid subscription{% if subscriptions['total_subscriptions'] == 1 %}{%else%}s{%endif%}</h2>
         </div>
         <div class="col-6 col-medium-3 u-align--right">
           <div id="reveal-table">
@@ -48,6 +48,13 @@
           </div>
         </div>
       </div>
+      {%if subscriptions['total_subscriptions'] > 0 %}
+        <div class="row">
+          <div class="col-12 col-medium-3">
+            <p>Your next recurring payment of <strong><span class="js-format-price">{{subscriptions["next_payment"]["ammount"]}}</span></strong> will be taken on <strong>{{subscriptions["next_payment"]["date"]}}</strong>.</p>
+          </div>
+        </div>
+      {%endif%}
     </section>
 
     <section class="p-strip--light is-shallow u-hide p-card u-no-margin--bottom" aria-hidden="true" id="enterprise-table" style="border-left: 0; border-right: 0; overflow: visible;">
@@ -516,13 +523,19 @@
   }
 </script>
 
-  <script defer>
-    {% for account in enterprise_contracts %}
-      {% for contract in enterprise_contracts[account] %}
-        console.log("{{contract}}");
-      {% endfor %}
-    {% endfor %}
-  </script>
+<script>
+  const prices = document.querySelectorAll('.js-format-price');
+  prices.forEach(price => {
+    const ammount = price.innerText.split(' ')[0];
+    const currency = price.innerText.split(' ')[1];
+    var formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: currency,
+    });
+
+    price.innerText = formatter.format(ammount)
+  });
+</script>
 
 {% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
