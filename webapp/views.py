@@ -397,6 +397,8 @@ def advantage_view():
     personal_account = None
     enterprise_contracts = {}
     entitlements = {}
+    subscriptions = {}
+    subscriptions["total_subscriptions"] = 0
     new_subscription_start_date = None
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
@@ -457,13 +459,16 @@ def advantage_view():
                 )
                 subs = resp.get("subscriptions")
                 if subs is not None:
-                    subscriptions ={}
-                    subscriptions["total_subscriptions"] = 0
+                    subscriptions["current_subscription_number"] = len(subs[0]["purchasedProductListings"])
+                    subscriptions["next_payment"] = {}
+                    subscriptions["next_payment"]["date"] = subs[0]["subscription"]["endOfCycle"]
+                    subscriptions["next_payment"]["ammount"] = get_subscription_payment_total(subs[0])
                     for subscription in subs:
                         subscriptions["total_subscriptions"] += len(subscription["purchasedProductListings"])
-                        print(subscription["subscription"]["endOfCycle"])
-                        print("-------------------")
-                    print(subscriptions)
+                        if (subscription["subscription"]["endOfCycle"] < subscriptions["next_payment"]["date"]):
+                            subscriptions["next_payment"]["date"] = subscription["subscription"]["endOfCycle"]
+                            subscriptions["next_payment"]["ammount"] = get_subscription_payment_total(subscription)
+                    subscriptions["next_payment"]["date"] = dateutil.parser.parse(subscriptions["next_payment"]["date"]).strftime("%d %B %Y")
 
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
@@ -579,6 +584,7 @@ def advantage_view():
     return flask.render_template(
         "advantage/index.html",
         accounts=accounts,
+        subscriptions=subscriptions,
         enterprise_contracts=enterprise_contracts,
         personal_account=personal_account,
         open_subscription=open_subscription,
@@ -587,6 +593,13 @@ def advantage_view():
         is_test_backend=is_test_backend,
     )
 
+
+def get_subscription_payment_total(subscription):
+    """Return ammount of next renewal"""
+    total = 0
+    for listing in subscription["purchasedProductListings"]:
+        total += listing["productListing"]["price"]["value"] * listing["value"]
+    return f'{total / 100} {subscription["purchasedProductListings"][0]["productListing"]["price"]["currency"]}' #This assumes that every price in the subscription uses the same currency. Could be wrong
 
 def get_machine_usage(advantage, contract):
     """Return machine usage for the given contract as a MachineUsage object."""
