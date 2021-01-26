@@ -344,6 +344,7 @@ function productSelector() {
         } else {
           quantityTypeEl.innerHTML = `How many ${inputElement.dataset.productName}s?`;
           state.set(inputElement.name, [inputElement.value]);
+          focusQuantityField();
         }
 
         break;
@@ -439,6 +440,11 @@ function productSelector() {
     });
 
     input.closest(".p-card--radio").classList.add("is-selected");
+  }
+
+  function focusQuantityField() {
+    const quantityField = document.querySelector(".js-product-quantity");
+    quantityField.focus();
   }
 
   function setVersionTabs() {
