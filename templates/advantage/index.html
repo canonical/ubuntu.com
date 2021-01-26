@@ -44,17 +44,30 @@
         </div>
         <div class="col-6 col-medium-3 u-align--right">
           <div id="reveal-table">
-            <a href="#reveal-table" class="p-button u-no-margin--bottom" id="js-reveal-table" aria-controls="enterprise-table" aria-expanded="false">Add another subscription <i class="p-icon--contextual-menu">Open</i></a>
+            <a href="#reveal-table" class="p-button u-no-margin--bottom js-reveal-table" aria-controls="enterprise-table" aria-expanded="false">Add another subscription <i class="p-icon--contextual-menu">Open</i></a>
           </div>
         </div>
       </div>
       {%if subscriptions['total_subscriptions'] > 0 %}
         <div class="row">
-          <div class="col-12 col-medium-3">
-            <p>Your next recurring payment of <strong><span class="js-format-price">{{subscriptions["next_payment"]["ammount"]}}</span></strong> will be taken on <strong>{{subscriptions["next_payment"]["date"]}}</strong>.</p>
+          <div class="col-12">
+            <a href="#reveal-summary" class="p-button--base u-no-padding--left u-no-margin--bottom js-reveal-table" aria-controls="subscriptions-summary" aria-expanded="false">Your next recurring payment of <strong><span class="js-format-price">{{subscriptions["next_payment"]["ammount"]}}</span></strong> will be taken on <strong>{{subscriptions["next_payment"]["date"]}}</strong>. <i class="p-icon--contextual-menu">Open</i></a>
           </div>
         </div>
       {%endif%}
+    </section>
+
+    <section class="p-strip--light is-shallow u-hide p-card u-no-margin--bottom" aria-hidden="true" id="subscriptions-summary" style="border-left: 0; border-right: 0; overflow: visible;">
+      <div class="row u-arrow-up--center">
+        <span class="col-small-2 col-medium-3 col-6 u-align--right p-muted-text">Recurring subscriptions:</span>
+        <span class="col-small-2 col-medium-3 col-6 u-align--left">{{subscriptions['current_subscription_number']}}</span>
+        <span class="col-small-2 col-medium-3 col-6 u-align--right p-muted-text">Most recent payment:</span>
+        <span class="col-small-2 col-medium-3 col-6 u-align--left">AAAAAAAAA</span>
+        <span class="col-small-2 col-medium-3 col-6 u-align--right p-muted-text">Next payment:</span>
+        <span class="col-small-2 col-medium-3 col-6 u-align--left">{{subscriptions["next_payment"]["date"]}}&emsp;<button class="p-button--neutral is-small is-dense">Cancel{% if subscriptions['total_subscriptions'] > 1 %} all{% endif %}...</button></span>
+        <span class="col-small-2 col-medium-3 col-6 u-align--right p-muted-text">Amount:</span>
+        <span class="col-small-2 col-medium-3 col-6 u-align--left js-format-price">{{subscriptions["next_payment"]["ammount"]}}</span>
+      </div>
     </section>
 
     <section class="p-strip--light is-shallow u-hide p-card u-no-margin--bottom" aria-hidden="true" id="enterprise-table" style="border-left: 0; border-right: 0; overflow: visible;">
@@ -520,8 +533,8 @@
 </script>
 
 <script>
-  var toggle = document.querySelector('#js-reveal-table');
-  if (toggle) {
+  var toggles = document.querySelectorAll('.js-reveal-table');
+  toggles.forEach(toggle => {
     var chevron = toggle.querySelector('.p-icon--contextual-menu');
     if (chevron){
       toggle.addEventListener('click', function(e) {
@@ -530,7 +543,7 @@
         content.classList.toggle('u-hide');
       });
     }
-  }
+  });
 </script>
 
 <script>
