@@ -468,6 +468,7 @@ def advantage_view():
                         if (subscription["subscription"]["endOfCycle"] < subscriptions["next_payment"]["date"]):
                             subscriptions["next_payment"]["date"] = subscription["subscription"]["endOfCycle"]
                             subscriptions["next_payment"]["ammount"] = get_subscription_payment_total(subscription)
+                            subscriptions["current_subscription_number"] = len(subscription["purchasedProductListings"])
                     subscriptions["next_payment"]["date"] = dateutil.parser.parse(subscriptions["next_payment"]["date"]).strftime("%d %B %Y")
 
             for contract in account["contracts"]:

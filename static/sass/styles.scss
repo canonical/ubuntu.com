@@ -535,6 +535,15 @@ summary {
       top: -2rem;
     }
   }
+
+  &--center {
+    @extend .u-arrow-up;
+    @media only screen and (min-width: $breakpoint-small) {
+      &::after {
+        right: 50%;
+      }
+    }
+  }
 }
 
 .u-padding-top--small {
