@@ -392,6 +392,180 @@ def search_snaps():
 
 
 @store_maintenance
+def advantage_query():
+    accounts = None
+    personal_account = None
+    enterprise_contracts = {}
+    entitlements = {}
+    new_subscription_start_date = None
+    new_subscription_id = None
+    open_subscription = flask.request.args.get("subscription", None)
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    stripe_publishable_key = os.getenv(
+        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+    )
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        stripe_publishable_key = os.getenv(
+            "STRIPE_TEST_PUBLISHABLE_KEY",
+            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
+        )
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=api_url,
+        )
+
+        try:
+            accounts = advantage.get_accounts()
+        except HTTPError as http_error:
+            if http_error.response.status_code == 401:
+                # We got an unauthorized request, so we likely
+                # need to re-login to refresh the macaroon
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "session_keys": flask.session.keys(),
+                        "request_url": http_error.request.url,
+                        "request_headers": http_error.request.headers,
+                        "response_headers": http_error.response.headers,
+                        "response_body": http_error.response.json(),
+                        "response_code": http_error.response.json()["code"],
+                        "response_message": http_error.response.json()[
+                            "message"
+                        ],
+                    }
+                )
+
+                empty_session(flask.session)
+
+                return flask.render_template("advantage/index.html")
+
+            raise http_error
+
+        for account in accounts:
+            account["contracts"] = advantage.get_account_contracts(account)
+
+            for contract in account["contracts"]:
+                contract["token"] = advantage.get_contract_token(contract)
+                contract["machineCount"] = get_machine_usage(
+                    advantage, contract
+                )
+
+                if contract["contractInfo"].get("origin", "") == "free":
+                    personal_account = account
+                    personal_account["free_token"] = contract["token"]
+                    for entitlement in contract["contractInfo"][
+                        "resourceEntitlements"
+                    ]:
+                        if entitlement["type"] == "esm-infra":
+                            entitlements["esm-infra"] = True
+                        elif entitlement["type"] == "esm-apps":
+                            entitlements["esm-apps"] = True
+                        elif entitlement["type"] == "livepatch":
+                            entitlements["livepatch"] = True
+                        elif entitlement["type"] == "fips":
+                            entitlements["fips"] = True
+                        elif entitlement["type"] == "cc-eal":
+                            entitlements["cc-eal"] = True
+                    personal_account["entitlements"] = entitlements
+                else:
+                    entitlements = {}
+                    for entitlement in contract["contractInfo"][
+                        "resourceEntitlements"
+                    ]:
+                        contract["supportLevel"] = "-"
+                        if entitlement["type"] == "esm-infra":
+                            entitlements["esm-infra"] = True
+                        elif entitlement["type"] == "esm-apps":
+                            entitlements["esm-apps"] = True
+                        elif entitlement["type"] == "livepatch":
+                            entitlements["livepatch"] = True
+                        elif entitlement["type"] == "fips":
+                            entitlements["fips"] = True
+                        elif entitlement["type"] == "cc-eal":
+                            entitlements["cc-eal"] = True
+                        elif entitlement["type"] == "support":
+                            contract["supportLevel"] = entitlement[
+                                "affordances"
+                            ]["supportLevel"]
+                    contract["entitlements"] = entitlements
+                    created_at = dateutil.parser.parse(
+                        contract["contractInfo"]["createdAt"]
+                    )
+                    contract["contractInfo"][
+                        "createdAtFormatted"
+                    ] = created_at.strftime("%d %B %Y")
+                    contract["contractInfo"]["status"] = "active"
+
+                    time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+
+                    # TODO(frankban): what is the logic below about?
+                    # Why do we do the same thing in both branches of the
+                    # condition?
+                    if not contract["machineCount"].attached:
+                        if not new_subscription_start_date:
+                            new_subscription_start_date = created_at
+                            new_subscription_id = contract["contractInfo"][
+                                "id"
+                            ]
+                        elif created_at > new_subscription_start_date:
+                            new_subscription_start_date = created_at
+                            new_subscription_id = contract["contractInfo"][
+                                "id"
+                            ]
+
+                    if "effectiveTo" in contract["contractInfo"]:
+                        effective_to = dateutil.parser.parse(
+                            contract["contractInfo"]["effectiveTo"]
+                        )
+                        contract["contractInfo"][
+                            "effectiveToFormatted"
+                        ] = effective_to.strftime("%d %B %Y")
+
+                        if effective_to < time_now:
+                            contract["contractInfo"]["status"] = "expired"
+                            contract["contractInfo"][
+                                "expired_restart_date"
+                            ] = time_now - timedelta(days=1)
+
+                        date_difference = effective_to - time_now
+                        contract["expiring"] = date_difference.days <= 30
+                        contract["contractInfo"][
+                            "daysTillExpiry"
+                        ] = date_difference.days
+
+                    try:
+                        contract["renewal"] = make_renewal(
+                            advantage, contract["contractInfo"]
+                        )
+                    except KeyError:
+                        flask.current_app.extensions[
+                            "sentry"
+                        ].captureException()
+                        contract["renewal"] = None
+
+                    enterprise_contract = enterprise_contracts.setdefault(
+                        contract["accountInfo"]["name"], []
+                    )
+                    # If a subscription id is present and this contract
+                    # matches add it to the start of the list
+                    if contract["contractInfo"]["id"] == open_subscription:
+                        enterprise_contract.insert(0, contract)
+                    elif contract["contractInfo"]["id"] == new_subscription_id:
+                        enterprise_contract.insert(0, contract)
+                    else:
+                        enterprise_contract.append(contract)
+
+    return flask.jsonify({"enterprise_contracts": enterprise_contracts})
+
+
+@store_maintenance
 def advantage_view():
     accounts = None
     personal_account = None

@@ -35,6 +35,7 @@ from webapp.context import (
 from webapp.views import (
     accept_renewal,
     advantage_view,
+    advantage_query,
     advantage_shop_view,
     advantage_thanks_view,
     BlogCustomGroup,
@@ -166,6 +167,7 @@ def utility_processor():
 # Simple routes
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/advantage", view_func=advantage_view)
+app.add_url_rule("/advantage.json", view_func=advantage_query)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule(
     "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
@@ -586,10 +588,10 @@ core_als_autils_docs.init_app(app)
 
 @app.after_request
 def cache_headers(response):
-    """
-    Set cache expiry to 60 seconds for homepage and blog page
-    """
 
+    """
+    Set cache to private for image builder and advantage to prevent caching
+    """
     if flask.request.path in ["/core/build", "/advantage"]:
         response.cache_control.private = True
 
@@ -599,6 +601,9 @@ def cache_headers(response):
         ] = "no-cache, no-store, must-revalidate"
         response.headers["Pragma"] = "no-cache"
 
+    """
+    Set cache expiry to 60 seconds for homepage and blog page
+    """
     if flask.request.path in ["/", "/blog"]:
         response.headers[
             "Cache-Control"
