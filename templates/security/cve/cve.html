@@ -209,7 +209,12 @@
                           Fixed by
                           <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}" target="_blank">{{ patch.content.fixed }}</a>
                         {% elif patch.type == "link" %}
-                          {{ patch.content.prefix }}: <a href="{{ patch.content.suffix }}" target="_blank">{{ patch.content.suffix }}</a>
+                          {{ patch.content.prefix }}:
+                          {% if cve._clean_url(patch.content.suffix) %}
+                            <a href="{{ cve._clean_url(patch.content.suffix) }}" target="_blank">{{ patch.content.suffix }}</a>
+                          {% else %}
+                            {{ patch.content.suffix }}
+                          {% endif %}
                         {% endif %}
                         <br>
                       {% endfor %}
@@ -275,7 +280,9 @@
         <ul>
           {% if cve.references %}
             {% for reference in cve.references %}
-            <li><a href="{{ reference }}">{{ reference }}</a></li>
+              {% if cve._clean_url(reference) %}
+                <li><a href="{{ cve._clean_url(reference) }}">{{ reference }}</a></li>
+              {% endif %}
             {% endfor %}
           {% else %}
             <li>
@@ -300,12 +307,14 @@
         </ul>
 
         {% if cve.bugs %}
-        <h2>Bugs</h2>
-        <ul>
-          {% for bug in cve.bugs %}
-          <li><a href="{{ bug }}">{{ bug }}</a></li>
-          {% endfor %}
-        </ul>
+          <h2>Bugs</h2>
+          <ul>
+            {% for bug in cve.bugs %}
+              {% if cve._clean_url(bug) %}
+                <li><a href="{{ cve._clean_url(bug) }}">{{ bug }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
         {% endif %}
       </div>
     </div>
