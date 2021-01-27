@@ -121,6 +121,18 @@ class CVE(Base):
 
         return {"type": "text", "content": patch}
 
+    def _clean_url(self, dirty_url):
+        new_url = re.sub(r"\(.*?\)", "", dirty_url)
+        url_check_regex = re.compile(
+            r"^(?:http|ftp)s?:\/\/[-a-zA-Z0-9@:%._\+~#=]{1,256}\."
+            r"[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)",
+            re.IGNORECASE,
+        )
+
+        is_url = re.match(url_check_regex, new_url) is not None
+
+        return new_url if is_url else ""
+
 
 class Notice(Base):
     __tablename__ = "notice"
