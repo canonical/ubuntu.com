@@ -199,12 +199,12 @@
       <tbody>
       {% for module in modules %}
         <tr>
-          <td aria-label="Module number">
+          <td class="u-vertically-center" aria-label="Module number">
             <div class="p-table--cube__contents">
-              <p class="u-text--muted">{{ loop.index }}</p>
+              <p class="u-text--muted" style="margin-bottom: auto; margin-top: auto;" >{{ loop.index }}</p>
             </div>
           </td>
-          <td aria-label="Badge" class="u-no-padding--left u-no-padding--right">
+          <td class="p-table--cube__badge-column" aria-label="Badge">
               <img
                 class="p-table--cube__badge"
                 src="{{ module.badge.url }}"
