@@ -270,6 +270,18 @@ function productSelector() {
     }
   }
 
+  function setOtherSoftwareState() {
+    const checkboxes = document.querySelectorAll(".other-software-checkbox");
+    var isSelected = false;
+    checkboxes.forEach((checkbox) => {
+      isSelected = isSelected || checkbox.checked;
+    });
+
+    if (state.get("other-software")[0] !== isSelected) {
+      state.set("other-software", [isSelected]);
+    }
+  }
+
   function handleCartAction(data) {
     const action = data.action;
     const productId = data.productId;
@@ -393,6 +405,9 @@ function productSelector() {
       case "esm-apps":
         state.set(inputElement.name, [inputElement.checked]);
         break;
+      case "other-software":
+        render();
+        break;
       case "support":
         state.set(inputElement.name, [inputElement.value]);
         break;
@@ -462,6 +477,7 @@ function productSelector() {
     }
 
     setESMAppsState();
+    setOtherSoftwareState();
   }
 
   function setFormHeader() {
@@ -598,11 +614,12 @@ function productSelector() {
     const quantity = state.get("quantity")[0];
     const support = state.get("support")[0];
     const isESMApps = state.get("esm-apps")[0];
+    const isOtherSoftware = state.get("other-software")[0];
     const type = state.get("type")[0];
     const validVersion = state.get("version")[0] !== "#other";
     const productsArray = Object.entries(products);
-    const prefix = isESMApps ? "uaia" : "uai";
-    const productId = `${prefix}-${support}-${type}`;
+
+    const productId = getProductId(isESMApps, isOtherSoftware, support, type);
     const completedForm = type && quantity && support && validVersion;
     const headerHTML =
       "<div class='row'><div class='col-12'><h3>Your chosen plan</h3></div></div>";
@@ -640,5 +657,19 @@ function productSelector() {
     addStep.innerHTML = headerHTML + lineItemHTML;
   }
 }
+
+const getProductId = (isESMApps, isOtherSoftware, support, type) => {
+  let prefix = "uai";
+  let typeString = `-${type}`;
+
+  if (isESMApps && isOtherSoftware) {
+    prefix = "uaia";
+  } else if (isESMApps) {
+    prefix = "uaa";
+    if (type === "physical") typeString = "";
+  }
+
+  return `${prefix}-${support}${typeString}`;
+};
 
 productSelector();
