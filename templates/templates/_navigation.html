@@ -88,7 +88,7 @@
               }
             </script>
           {% else %}
-            <a href="/login" style="position: relative;top: .75rem;padding-left: 1rem;color: white;">
+            <a href="/login" style="position: relative;padding-left: 1rem;color: white;">
               Sign in
             </a>
           {% endif %}
@@ -108,7 +108,7 @@
               .then(response => response.json())
               .then(data => {
                 if (data.account === null) {
-                  accountContainer.innerHTML = '<a href="/login" style="position: relative;top: .75rem;padding-left: 1rem;color: white;">Sign in</a>';
+                  accountContainer.innerHTML = '<a href="/login" style="position: relative;padding-left: 1rem;color: white;">Sign in</a>';
                 } else {
                   var contracts = data.contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
                   accountContainer.innerHTML = `<span class="p-contextual-menu">
