@@ -115,7 +115,6 @@ Running the `juju-crashdump` script will generate a tarball of debug information
 
 ## Common Problems
 
-<a id="lxd"> </a>
 ### Charms deployed to LXD containers fail after upgrade/reboot
 
 For deployments using Juju's `localhost` cloud, which deploys charms to LXD/LXC containers, or other 
