@@ -391,29 +391,26 @@ def search_snaps():
     )
 
 
-@store_maintenance
-def advantage_query():
-    accounts = None
-    personal_account = None
-    enterprise_contracts = {}
-    entitlements = {}
-    new_subscription_start_date = None
-    new_subscription_id = None
-    open_subscription = flask.request.args.get("subscription", None)
-    is_test_backend = flask.request.args.get("test_backend", False)
+def account_query():
+    """
+    A JSON endpoint to request login status
+    """
+    contracts = get_subscriptions()
 
-    stripe_publishable_key = os.getenv(
-        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+    return flask.jsonify(
+        {
+            "account": user_info(flask.session),
+            "contracts": contracts,
+        }
     )
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    if is_test_backend:
-        stripe_publishable_key = os.getenv(
-            "STRIPE_TEST_PUBLISHABLE_KEY",
-            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
-        )
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+def get_subscriptions():
+    accounts = None
+    enterprise_contracts = {}
+    new_subscription_id = None
+    open_subscription = flask.request.args.get("subscription", None)
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
     if user_info(flask.session):
         advantage = AdvantageContracts(
@@ -457,44 +454,7 @@ def advantage_query():
                     advantage, contract
                 )
 
-                if contract["contractInfo"].get("origin", "") == "free":
-                    personal_account = account
-                    personal_account["free_token"] = contract["token"]
-                    for entitlement in contract["contractInfo"][
-                        "resourceEntitlements"
-                    ]:
-                        if entitlement["type"] == "esm-infra":
-                            entitlements["esm-infra"] = True
-                        elif entitlement["type"] == "esm-apps":
-                            entitlements["esm-apps"] = True
-                        elif entitlement["type"] == "livepatch":
-                            entitlements["livepatch"] = True
-                        elif entitlement["type"] == "fips":
-                            entitlements["fips"] = True
-                        elif entitlement["type"] == "cc-eal":
-                            entitlements["cc-eal"] = True
-                    personal_account["entitlements"] = entitlements
-                else:
-                    entitlements = {}
-                    for entitlement in contract["contractInfo"][
-                        "resourceEntitlements"
-                    ]:
-                        contract["supportLevel"] = "-"
-                        if entitlement["type"] == "esm-infra":
-                            entitlements["esm-infra"] = True
-                        elif entitlement["type"] == "esm-apps":
-                            entitlements["esm-apps"] = True
-                        elif entitlement["type"] == "livepatch":
-                            entitlements["livepatch"] = True
-                        elif entitlement["type"] == "fips":
-                            entitlements["fips"] = True
-                        elif entitlement["type"] == "cc-eal":
-                            entitlements["cc-eal"] = True
-                        elif entitlement["type"] == "support":
-                            contract["supportLevel"] = entitlement[
-                                "affordances"
-                            ]["supportLevel"]
-                    contract["entitlements"] = entitlements
+                if contract["contractInfo"].get("origin", "") != "free":
                     created_at = dateutil.parser.parse(
                         contract["contractInfo"]["createdAt"]
                     )
@@ -503,30 +463,15 @@ def advantage_query():
                     ] = created_at.strftime("%d %B %Y")
                     contract["contractInfo"]["status"] = "active"
 
-                    time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
-
-                    # TODO(frankban): what is the logic below about?
-                    # Why do we do the same thing in both branches of the
-                    # condition?
-                    if not contract["machineCount"].attached:
-                        if not new_subscription_start_date:
-                            new_subscription_start_date = created_at
-                            new_subscription_id = contract["contractInfo"][
-                                "id"
-                            ]
-                        elif created_at > new_subscription_start_date:
-                            new_subscription_start_date = created_at
-                            new_subscription_id = contract["contractInfo"][
-                                "id"
-                            ]
+                    enterprise_contract = enterprise_contracts.setdefault(
+                        contract["accountInfo"]["name"], []
+                    )
 
                     if "effectiveTo" in contract["contractInfo"]:
                         effective_to = dateutil.parser.parse(
                             contract["contractInfo"]["effectiveTo"]
                         )
-                        contract["contractInfo"][
-                            "effectiveToFormatted"
-                        ] = effective_to.strftime("%d %B %Y")
+                        time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
 
                         if effective_to < time_now:
                             contract["contractInfo"]["status"] = "expired"
@@ -534,25 +479,6 @@ def advantage_query():
                                 "expired_restart_date"
                             ] = time_now - timedelta(days=1)
 
-                        date_difference = effective_to - time_now
-                        contract["expiring"] = date_difference.days <= 30
-                        contract["contractInfo"][
-                            "daysTillExpiry"
-                        ] = date_difference.days
-
-                    try:
-                        contract["renewal"] = make_renewal(
-                            advantage, contract["contractInfo"]
-                        )
-                    except KeyError:
-                        flask.current_app.extensions[
-                            "sentry"
-                        ].captureException()
-                        contract["renewal"] = None
-
-                    enterprise_contract = enterprise_contracts.setdefault(
-                        contract["accountInfo"]["name"], []
-                    )
                     # If a subscription id is present and this contract
                     # matches add it to the start of the list
                     if contract["contractInfo"]["id"] == open_subscription:
@@ -561,6 +487,13 @@ def advantage_query():
                         enterprise_contract.insert(0, contract)
                     else:
                         enterprise_contract.append(contract)
+
+    return {"enterprise_contracts": enterprise_contracts}
+
+
+@store_maintenance
+def advantage_query():
+    enterprise_contracts = get_subscriptions()
 
     return flask.jsonify({"enterprise_contracts": enterprise_contracts})
 

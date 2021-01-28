@@ -50,55 +50,150 @@
           {% include "templates/header_noscript.html" %}
         </ul>
       </noscript>
-      <div class="p-navigation__search">
+      <div class="p-navigation__search u-align--right">
+        <div class="p-navigation__user">
+          {% if user_info %}
+            <span class="p-contextual-menu">
+              <button style="background: transparent !important; color: white !important; margin-bottom: 0;"
+                class="p-button--base p-contextual-menu__toggle has-icon"
+                data-trigger="click"
+                aria-controls="#menu-3"
+                aria-expanded="false"
+                aria-haspopup="true">
+                <span>{{ user_info.fullname }}</span>
+                <i class="p-icon--chevron-down is-light p-contextual-menu__indicator"></i>
+              </button>
+              <span class="p-contextual-menu__dropdown" id="menu-3" aria-hidden="true">
+                <span class="p-contextual-menu__group">
+                  <a href="/advantage" class="p-contextual-menu__link" data-js="ua-subscriptions">UA subscriptions</a>
+                </span>
+                <span class="p-contextual-menu__group">
+                  <a href="/cube" class="p-contextual-menu__link" data-js="ua-subscriptions">CUBE microcertifications</a>
+                </span>
+                <span class="p-contextual-menu__group">
+                  <a href="https://login.ubuntu.com" class="p-contextual-menu__link">Account settings</a>
+                  <a href="/logout" class="p-contextual-menu__link">Logout</a>
+                </span>
+              </span>
+            </span>
+            <script>
+              var uaElement = document.querySelector('[data-js="ua-subscriptions"]');
+              if (uaElement) {
+                fetch('/advantage.json')
+                  .then(response => response.json())
+                  .then(data => {
+                    var contracts = data.enterprise_contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
+                    uaElement.innerHTML = `<div>UA subscriptions</div><div><small>See your <div class="p-label--new">${contracts.length}</div> subscriptions</small></div>`;
+                  });
+              }
+            </script>
+          {% else %}
+            <a href="/login" style="position: relative;top: .75rem;padding-left: 1rem;color: white;">
+              Sign in
+            </a>
+          {% endif %}
+        </div>
+        <div class="p-navigation__user js-account">
+          <span style="position: relative;padding-left: 1rem;color: white;">
+            <i class="p-icon--spinner u-animation--spin is-light">Loading account data</i>
+            <i class="p-icon--chevron-down is-light p-contextual-menu__indicator"></i>
+          </span>
+        </div>
+
+        <script>
+          var accountContainer = document.querySelector('.js-account');
+
+          if (accountContainer) {
+            fetch('/account.json')
+              .then(response => response.json())
+              .then(data => {
+                if (data.account === null) {
+                  accountContainer.innerHTML = '<a href="/login" style="position: relative;top: .75rem;padding-left: 1rem;color: white;">Sign in</a>';
+                } else {
+                  var contracts = data.contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
+                  accountContainer.innerHTML = `<span class="p-contextual-menu">
+                    <button style="background: transparent !important; color: white !important; margin-bottom: 0;"
+                      class="p-button--base p-contextual-menu__toggle has-icon"
+                      data-trigger="click"
+                      aria-controls="#menu-5"
+                      aria-expanded="false"
+                      aria-haspopup="true">
+                      <span>${data.account.fullname}</span>
+                      <i class="p-icon--chevron-down is-light p-contextual-menu__indicator"></i>
+                    </button>
+                    <span class="p-contextual-menu__dropdown" id="menu-5" aria-hidden="true">
+                      <span class="p-contextual-menu__group">
+                        <a href="/advantage" class="p-contextual-menu__link" data-js="ua-subscriptions">
+                          <div>UA subscriptions</div><div><small>See your <div class="p-label--new">${contracts.length}</div> subscriptions</small></div>
+                        </a>
+                      </span>
+                      <span class="p-contextual-menu__group">
+                        <a href="/cube" class="p-contextual-menu__link">CUBE microcertifications</a>
+                      </span>
+                      <span class="p-contextual-menu__group">
+                        <a href="https://login.ubuntu.com" class="p-contextual-menu__link">Account settings</a>
+                        <a href="/logout" class="p-contextual-menu__link">Logout</a>
+                      </span>
+                    </span>
+                  </span>`;
+                  menuListener(accountContainer);
+                }
+              });
+          }
+
+          function menuListener(accountContainer) {
+            var toggle = accountContainer.querySelector(".p-contextual-menu__toggle");
+            toggle.addEventListener("click", (e) => {
+              e.preventDefault();
+              const menuAlreadyOpen = toggle.getAttribute("aria-expanded") === "true";
+
+              const dropdown = document.querySelector(
+                toggle.getAttribute("aria-controls")
+              );
+
+              toggle.setAttribute("aria-expanded", !menuAlreadyOpen);
+              dropdown.setAttribute("aria-hidden", menuAlreadyOpen);
+            });
+          }
+        </script>
+
+        <script>
+          var uaElement = document.querySelector('[data-js="ua-subscriptions"]');
+          if (uaElement) {
+            fetch('/advantage.json')
+              .then(response => response.json())
+              .then(data => {
+                var contracts = data.enterprise_contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
+                uaElement.innerHTML = `<div>UA subscriptions</div><div><small>See your <div class="p-label--new">${contracts.length}</div> subscriptions</small></div>`;
+              });
+          }
+        </script>
+
         <form action="/search" class="p-search-box" id="google-appliance-search-form">
           <input type="search" class="p-search-box__input" name="q" placeholder="Search" required="" aria-label="Search">
           <button type="reset" class="p-search-box__reset u-no-margin--right"><i class="p-icon--close">Clear</i></button>
           <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
         </form>
       </div>
-      <div class="p-navigation__user">
-        {% if user_info %}
-          <span class="p-contextual-menu">
-            <button style="background: transparent !important; color: white !important; margin-bottom: 0; margin-top: .25rem;"
-              class="p-button--base p-contextual-menu__toggle has-icon"
-              data-trigger="click"
-              aria-controls="#menu-3"
-              aria-expanded="false"
-              aria-haspopup="true">
-              <span>{{ user_info.fullname }}</span>
-              <i class="p-icon--chevron-down is-light p-contextual-menu__indicator"></i>
-            </button>
-            <span class="p-contextual-menu__dropdown" id="menu-3" aria-hidden="true">
-              <span class="p-contextual-menu__group">
-                <a href="/advantage" class="p-contextual-menu__link" data-js="ua-subscriptions">UA subscriptions</a>
-              </span>
-              <span class="p-contextual-menu__group">
-                <a href="/cube" class="p-contextual-menu__link" data-js="ua-subscriptions">CUBE microcertifications</a>
-              </span>
-              <span class="p-contextual-menu__group">
-                <a href="https://login.ubuntu.com" class="p-contextual-menu__link">Account settings</a>
-                <a href="/logout" class="p-contextual-menu__link">Logout</a>
-              </span>
-            </span>
-          </span>
-          <script>
-            var uaElement = document.querySelector('[data-js="ua-subscriptions"]');
-            if (uaElement) {
-              fetch('/advantage.json')
-                .then(response => response.json())
-                .then(data => {
-                  var contracts = data.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
-                  uaElement.innerHTML = `<div>UA subscriptions</div><div><small>See your <div class="p-label--new">${contracts.length}</div> subscriptions</small></div>`;
-                });
-            }
-          </script>
-        {% else %}
-          <a href="/login" style="position: relative;top: .75rem;padding-left: 1rem;color: white;">
-            Sign in
-          </a>
-        {% endif %}
-      </div>
+
+      <style>
+        .p-search-box {
+          max-width: 3rem !important;
+          margin: 0 !important;
+        }
+        .p-navigation__search .p-search-box__input {
+          opacity: 0;
+          translate: all .5s;
+          min-width: 0;
+          width: 0;
+          padding-right: 0;
+        }
+        .p-navigation__search .p-search-box__input:focus {
+          position: absolute;
+          opacity: 1;
+          width: 62vw;
+        }
+      </style>
     </nav>
   </div>
   {% endblock header_banner %}

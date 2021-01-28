@@ -34,6 +34,7 @@ from webapp.context import (
 
 from webapp.views import (
     accept_renewal,
+    account_query,
     advantage_view,
     advantage_query,
     advantage_shop_view,
@@ -168,6 +169,7 @@ def utility_processor():
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule("/advantage.json", view_func=advantage_query)
+app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule(
     "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
