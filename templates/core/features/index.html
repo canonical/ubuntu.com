@@ -1,0 +1,215 @@
+{% extends "core/base_core.html" %}
+
+{% block title %}Features | Ubuntu Core{% endblock %}
+{% block meta_description %}Case studies and customer stories of products launched with Ubuntu Core, a secure, fully containerised Ubuntu for embedded devices that is optimised for reliable updates.{% endblock %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="u-fixed-width">
+    <h1>Ubuntu Core features</h1>
+    <p class="p-heading--4">What’s under the hood</p>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+      <div class="col-8">
+        <h2>Snaps</h2>
+        <p>Ubuntu Core is built from snaps, a secure, confined, dependency-free, cross-platform Linux packaging format. Snaps are entirely self-contained, even to the point of encapsulating their own file system. This means they include everything they need to run in any environment. They're used by Ubuntu Core to both compose the image that's run on a device, and to deliver consistent and reliable software updates, even to low-powered, inaccessible and remotely administered embedded and IoT systems.</p>
+        <p>
+          <a class="p-link--external" href="https://core.docs.ubuntu.com/en/coresnaps">Learn more about snaps</a>
+        </p>
+      </div>
+      <div class="col-4 u-vertically-center u-align--center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/146d23a2-snapcraft-logo-bird.svg",
+            alt="Snapcraft",
+            width="190",
+            height="181",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+      </div>
+    </div>
+    <hr />
+    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+      <div class="col-8">
+        <h2>Snapd</h2>
+        <p>Snapd is the background service that manages and maintains installed snaps. Alongside its various service and management functions, snapd:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Provides an API used to install and remove snaps and interact with snaps</li>
+          <li class="p-list__item is-ticked">Implements confinement policies that isolate snaps from the base system and from other snaps</li>
+          <li class="p-list__item is-ticked">Governs the interfaces that allow snaps to access specific system resources outside of their container</li>
+        </ul>
+        <p>
+          <a class="p-link--external" href="https://github.com/snapcore/snapd">Learn more about snapd</a>
+        </p>
+      </div>
+      <div class="col-4 u-vertically-center u-align--center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c5cb0f8e-picto-ubuntu.svg",
+            alt="Ubuntu logo",
+            width="150",
+            height="150",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+      </div>
+    </div>
+    <hr />
+    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+      <div class="col-8">
+        <h2>Snapcraft</h2>
+        <p>Snapcraft is a powerful and easy to use tool for building and publishing snaps. It helps you: </p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Build and then publish your snaps to your IoT app store</li>
+          <li class="p-list__item is-ticked">Fine version  control of updates and releases</li>
+          <li class="p-list__item is-ticked">Build and debug snaps within a confined environment</li>
+          <li class="p-list__item is-ticked">Update and iterate over new builds without rebuilding the environment</li>
+          <li class="p-list__item is-ticked">Test and share your snaps locally</li>
+        </ul>
+        <p><a class="p-link--external" href="https://snapcraft.io/docs/snapcraft-overview">Learn more about Snapcraft</a></p>
+      </div>
+      <div class="col-4 u-vertically-center u-align--center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/146d23a2-snapcraft-logo-bird.svg",
+            alt="Snapcraft",
+            width="190",
+            height="181",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+      </div>
+    </div>
+    <hr />
+    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+      <div class="col-8">
+        <h2>IoT app stores</h2>
+        <p>White-label app stores for Linux and IoT:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Update software seamlessly OTA on your fleet of devices</li>
+          <li class="p-list__item is-ticked">Build a platform ecosystem for connected devices </li>
+          <li class="p-list__item is-ticked">Unlock new revenue streams through IoT-as-a-service</li>
+        </ul>
+        <p>
+          <a href="/internet-of-things/appstore">Learn more about IoT app stores&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+      <div class="col-4 u-vertically-center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/a46ea917-3+-+Leverage+snaps+to+build+a+lean+custom+production+image.svg",
+            alt="Leverage snaps",
+            width="250",
+            height="160",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+      </div>
+    </div>
+    <hr />
+    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+      <div class="col-8">
+        <h2>Secure boot</h2>
+        <p>Ubuntu Core 20 authenticates the boot process by default. Authentication is based on the verification of digital signatures. This means:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Each component in the boot sequence cryptographically validates the authenticity of the subsequent component in the boot sequence.</li>
+          <li class="p-list__item is-ticked">Every component is measured, before it is loaded in the runtime memory space</li>
+          <li class="p-list__item is-ticked">If an improper or unsigned component is detected, the boot process is stopped</li>
+          <li class="p-list__item is-ticked">Supports for both hardware and software Root of Trust</li>
+        </ul>
+      </div>
+      <div class="col-4 u-align--center u-vertically-center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/6ed19d21-UC20_Secure_boot.svg",
+            alt="Secure boot",
+            width="160",
+            height="160",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+      </div>
+    </div>
+    <hr />
+    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+      <div class="col-8">
+        <h2>Full disk encryption</h2>
+        <p>Ubuntu Core uses digital signatures to cryptographically ensure data integrity with: </p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Disks are locked with private key based cryptography</li>
+          <li class="p-list__item is-ticked">Private keys for hardware, TPM and other secure layers are securely stored</li>
+          <li class="p-list__item is-ticked">Symmetric key encryption enabled by use of specialised software-enabled stores</li>
+        </ul>
+      </div>
+      <div class="col-4 u-align--center u-vertically-center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/1fbe51df-UC20_Full-disc-encryption.svg",
+            alt="Full disc encryption",
+            width="160",
+            height="160",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+      </div>
+    </div>
+    <hr />
+    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+      <div class="col-8">
+        <h2>Recovery mode</h2>
+        <p>Ubuntu Core offers a recovery mode that can be activated manually when booting or remotely via an API call. It additionally offers:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">A graphical user interface to manage recovery options</li>
+          <li class="p-list__item is-ticked">Snapshots of configuration settings and software bills of materials are backed up in the recovery system</li>
+        </ul>
+      </div>
+      <div class="col-4 u-align--center u-vertically-center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/3bbf268f-UC20_Device_Recovery.svg",
+            alt="",
+            width="167",
+            height="200",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-5 u-align--center">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+            alt="",
+            width="211",
+            height="150",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+    </div>
+    <div class="col-7">
+      <h2>Secure your devices</h2>
+      <p>Get in touch with a Ubuntu security expert to discuss the advanced security requirements of your application.</p>
+      <p>
+        <a href="/core/contact-us?product=core-features" class="p-button--positive js-invoke-modal">Get in touch</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1266" data-lp-id="2166" data-return-url="https://www.ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
+
+
+{% endblock content %}
