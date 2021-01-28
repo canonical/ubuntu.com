@@ -165,12 +165,28 @@ Knowing the path to the snapshot file from the output of the above command, you 
 download a local copy:
 `bash juju scp etcd/0:/home/ubuntu/etcd-snapshots/<filename>.tar.gz .`
 
-#### 3. Upgrade
+#### 3. Upgrade the charm
 
-You can now upgrade **etcd**:
+You can now upgrade the **etcd** charm:
 
 ```bash
 juju upgrade-charm etcd
+```
+
+#### 4. Upgrade etcd
+
+To upgrade **etcd** itself, you will need to set the **etcd** charm's channel
+config.
+
+To determine the correct channel, go to the
+[Supported Versions][supported-versions] page and check the relevant
+**Charmed Kubernetes** bundle. Within the bundle, you should see which channel
+the **etcd** charm is configured to use.
+
+Once you know the correct channel, set the **etcd** charm's channel config:
+
+```bash
+juju config etcd channel=3.4/stable
 ```
 
 ### Upgrading additional components
@@ -438,6 +454,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 [snap-channels]: https://docs.snapcraft.io/reference/channels
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/docs/validation
+[supported-versions]: /kubernetes/docs/supported-versions
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
