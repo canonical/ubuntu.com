@@ -27,6 +27,18 @@ This page describes the general upgrade process. It is important to follow the s
 
 <!-- END OF UPGRADE VERSIONS-->
 
+<div class="p-notification--caution">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Caution:</span>
+There is a known issue 
+<a href="https://bugs.launchpad.net/juju/+bug/1904619"> (https://bugs.launchpad.net/juju/+bug/1904619)</a>
+with container profiles not surviving an upgrade when deploying applications to LXD. If your 
+container-based applications fail to work properly after an upgrade, or you use the Juju `localhost` cloud,
+ please see this 
+<a href="/kubernetes/docs/troubleshooting#lxd"> topic on the troubleshooting page</a>
+  </p>
+</div>
+
 
 
 It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Kubernetes**. Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
