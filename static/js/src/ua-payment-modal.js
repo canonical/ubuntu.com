@@ -266,13 +266,15 @@ function attachFormEvents() {
 }
 
 function handleNameFieldRadio() {
-  if (forMyselfRadio.checked) {
-    accountNameField.value = "";
-    accountNameField.disabled = true;
-    accountNameLabel.classList.add("u-text--muted");
-  } else {
-    accountNameField.disabled = false;
-    accountNameLabel.classList.remove("u-text--muted");
+  if (forMyselfRadio) {
+    if (forMyselfRadio.checked) {
+      accountNameField.value = "";
+      accountNameField.disabled = true;
+      accountNameLabel.classList.add("u-text--muted");
+    } else {
+      accountNameField.disabled = false;
+      accountNameLabel.classList.remove("u-text--muted");
+    }
   }
 }
 
