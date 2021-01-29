@@ -38,6 +38,9 @@ env:
       key: auth-consumer
       name: launchpad-imagebuild
 
+  - name: BADGR_URL
+    value: https://eu.api.badgr.com
+
   - name: BAGDR_USER
     secretKeyRef:
       key: user
@@ -47,6 +50,9 @@ env:
     secretKeyRef:
       key: password
       name: badgr
+
+  - name: CUBE_EDX_URL
+    value: https://cube.ubuntu.com
 
   - name: CUBE_EDX_CLIENT_ID
     secretKeyRef:
