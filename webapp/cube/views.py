@@ -1,33 +1,27 @@
 import os
 import flask
 import talisker.requests
+import talisker.sentry
 import yaml
 
 from pathlib import Path
 from requests import Session
 
-from webapp.cube.api import BadgrAPI, CubeEdxAPI
+from webapp.cube.api import BadgrAPI, EdxAPI
 from webapp.login import user_info
 
 
-COURSE_DATA = yaml.load(
-    Path("webapp/cube/mappings/courses.yaml").read_text(), Loader=yaml.Loader
+COURSES = yaml.load(
+    Path("webapp/cube/content/cube.yaml").read_text(), Loader=yaml.Loader
 )
 
-
-BADGR_URL = COURSE_DATA["badgr"]["url"]
-BADGR_ISSUER = COURSE_DATA["badgr"]["issuer"]
-BADGR_CERTIFIED_BADGE_CLASS = COURSE_DATA["badgr"]["certified_badge"]["class"]
-
-
-CUBE_URL = COURSE_DATA["cube"]["url"]
-CUBE_ORG = COURSE_DATA["cube"]["organization"]
-
+BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
+BADGR_CERTIFIED_BADGE_CLASS = "x9kzmcNhSSyqYhZcQGz0qg"
 
 badgr_session = Session()
 talisker.requests.configure(badgr_session),
 badgr_api = BadgrAPI(
-    BADGR_URL,
+    os.getenv("BADGR_URL"),
     os.getenv("BAGDR_USER"),
     os.getenv("BADGR_PASSWORD"),
     badgr_session,
@@ -39,63 +33,41 @@ badgr_api = BadgrAPI(
 # default to not proxy requests for ubuntu.com sub-domains and that is
 # the intended behaviour for most of our apps
 proxies = {"http": os.getenv("HTTP_PROXY"), "https": os.getenv("HTTPS_PROXY")}
-cube_session = Session()
-cube_session.proxies.update(proxies)
-talisker.requests.configure(cube_session)
-cube_api = CubeEdxAPI(
-    CUBE_URL,
+edx_session = Session()
+edx_session.proxies.update(proxies)
+talisker.requests.configure(edx_session)
+
+edx_api = EdxAPI(
+    os.getenv("CUBE_EDX_URL"),
     os.getenv("CUBE_EDX_CLIENT_ID"),
     os.getenv("CUBE_EDX_CLIENT_SECRET"),
-    cube_session,
+    edx_session,
 )
-
-
-def get_course_badge_url(module, assertion):
-    if assertion and not assertion["revoked"]:
-        return assertion["image"]
-    return module["badge"]["url"]
-
-
-def get_course_status(module, enrollments, assertion):
-    if assertion and not assertion["revoked"]:
-        return "passed"
-    elif module["id"] in enrollments:
-        return "enrolled"
-    return "not-enrolled"
 
 
 def cube_microcerts():
     assertions = {}
     enrollments = []
+    passed_courses = 0
 
-    user = user_info(flask.session)
-    if user:
-        email = user["email"]
-        edx_user = cube_api.get_user(email)
+    sso_user = user_info(flask.session)
+    edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
 
-        if edx_user:
-            assertions = {
-                assertion["badgeclass"]: assertion
-                for assertion in badgr_api.get_assertions(BADGR_ISSUER, email)[
-                    "result"
-                ]
-            }
+    if edx_user:
+        assertions = {
+            assertion["badgeclass"]: assertion
+            for assertion in badgr_api.get_assertions(
+                BADGR_ISSUER, edx_user["email"]
+            )["result"]
+        }
 
-            enrollments = [
-                enrollment["course_id"]
-                for enrollment in cube_api.get_enrollments(
-                    edx_user["username"]
-                )["results"]
-                if enrollment["is_active"]
+        enrollments = [
+            enrollment["course_id"]
+            for enrollment in edx_api.get_enrollments(edx_user["username"])[
+                "results"
             ]
-
-    courses = COURSE_DATA["courses"].copy()
-    for course in courses:
-        assertion = assertions.get(course["badge"]["class"])
-        course["test_url"] = f"{CUBE_URL}/courses/{course['id']}/course"
-        course["training_url"] = f"{CUBE_URL}/courses/{course['id']}/course"
-        course["badge"]["url"] = get_course_badge_url(course, assertion)
-        course["status"] = get_course_status(course, enrollments, assertion)
+            if enrollment["is_active"]
+        ]
 
     certified_badge = {}
     if BADGR_CERTIFIED_BADGE_CLASS in assertions:
@@ -104,16 +76,46 @@ def cube_microcerts():
             certified_badge["image"] = assertion["image"]
             certified_badge["share_url"] = assertion["openBadgeId"]
 
-    data = {
-        "user": {"name": user["fullname"]} if user else None,
-        "modules": courses,
-        "passed_courses": len(assertions),
-        "has_enrollment": len(enrollments) > 0,
-        "certified_badge": certified_badge,
-    }
+    courses = COURSES.copy()
+    for course in courses:
+        attempts = []
+
+        if edx_user:
+            attempts = edx_api.get_course_attempts(
+                course["id"], edx_user["username"]
+            )["proctored_exam_attempts"]
+
+        assertion = assertions.get(course["badge"]["class"])
+        course["status"] = "not-enrolled"
+        if assertion and not assertion["revoked"]:
+            course["badge"]["url"] = assertion["image"]
+            course["status"] = "passed"
+            passed_courses += 1
+        elif attempts:
+            course["status"] = (
+                "in-progress" if not attempts[0]["completed_at"] else "failed"
+            )
+        elif course["id"] in enrollments:
+            course["status"] = "enrolled"
+
+        course[
+            "test_url"
+        ] = f"{edx_api.base_url}/courses/{course['id']}/course"
+        course[
+            "training_url"
+        ] = f"{edx_api.base_url}/courses/{course['id']}/course"
 
     response = flask.make_response(
-        flask.render_template("cube/microcerts.html", **data)
+        flask.render_template(
+            "cube/microcerts.html",
+            **{
+                "user": sso_user,
+                "certified_badge": certified_badge,
+                "modules": courses,
+                "passed_courses": passed_courses,
+                "has_enrollment": len(enrollments) > 0,
+            },
+        )
     )
     response.cache_control.private = True
 

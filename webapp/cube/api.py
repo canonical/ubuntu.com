@@ -1,4 +1,3 @@
-import urllib
 from requests import Session
 
 
@@ -44,7 +43,7 @@ class BadgrAPI:
         return self.make_request("GET", uri).json()
 
 
-class CubeEdxAPI:
+class EdxAPI:
     def __init__(
         self,
         base_url: str,
@@ -95,32 +94,16 @@ class CubeEdxAPI:
 
         self.token = response["access_token"]
 
-    def get_courses(self, organization: str):
+    def get_course_attempts(self, course_id: str, username: str):
         uri = (
-            "/api/courses/v1/courses"
-            "?username=webteam%40canonical.com"
-            f"&org={organization}"
+            "/api/edx_proctoring/v1/proctored_exam/attempt/course_id/"
+            f"{course_id}/search/{username}"
             "&page_size=100"
         )
-        return self.make_request("GET", uri).json()
-
-    def get_course_grades(self, course_id: str, username: str):
-        course_id = urllib.parse.quote_plus(course_id)
-        uri = (
-            f"/api/grades/v1/courses/{course_id}"
-            f"?username={username}"
-            "&page_size=100"
-        )
-        return self.make_request("GET", uri).json()
-
-    def get_course_gradebook(self, course_id: str, username: str):
-        course_id = urllib.parse.quote_plus(course_id)
-        uri = (
-            f"/api/grades/v1/gradebook/{course_id}"
-            f"?username={username}"
-            "&page_size=100"
-        )
-        return self.make_request("GET", uri).json()
+        return self.make_request(
+            "GET",
+            uri,
+        ).json()
 
     def get_enrollments(self, username: str):
         uri = (
