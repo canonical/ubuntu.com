@@ -102,7 +102,11 @@ class EdxAPI:
         uri = (
             "/api/edx_proctoring/v1/proctored_exam/attempt/course_id/"
             f"{course_id}/search/{username}"
+<<<<<<< HEAD
             "?page_size=100"
+=======
+            "&page_size=100"
+>>>>>>> Get attempts for each course from EDX to work out the course status
         )
         return self.make_request(
             "GET",

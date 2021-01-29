@@ -304,9 +304,17 @@
               <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.take_url }}">Resume</a>
             </div>
           </td>
-          {% endif %}
+          {% elif module.status == "failed" %}
           <td></td>
-          {% else %}
+          {% elif module.status == "not-enrolled" %}
+          <td>
+            <div class="p-table--cube__contents u-align--right">
+              <a href="/cube/contact-us" class="p-button--positive cube-access js-invoke-modal">Apply for access</a>
+            </div>
+          </td>
+          {% elif module.status == "in-progress" %}
+          <td></td>
+          {% endif %}
         </tr>
       {% endfor %}
       </tbody>
