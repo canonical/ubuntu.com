@@ -110,7 +110,10 @@
                 if (data.account === null) {
                   accountContainer.innerHTML = '<a href="/login" style="position: relative;padding-left: 1rem;color: white;">Sign in</a>';
                 } else {
-                  var contracts = data.contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
+                  var contracts = [];
+                  if (data.contracts.enterprise_contracts) {
+                    contracts = data.contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
+                  }
                   accountContainer.innerHTML = `<span class="p-contextual-menu">
                     <button style="background: transparent !important; color: white !important; margin-bottom: 0;"
                       class="p-button--base p-contextual-menu__toggle has-icon"
@@ -163,7 +166,10 @@
             fetch('/advantage.json')
               .then(response => response.json())
               .then(data => {
-                var contracts = data.enterprise_contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
+                var contracts = [];
+                if (data.enterprise_contracts.enterprise_contracts) {
+                  contracts = data.enterprise_contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
+                }
                 uaElement.innerHTML = `<div>UA subscriptions</div><div><small>See your <div class="p-label--new">${contracts.length}</div> subscriptions</small></div>`;
               });
           }
