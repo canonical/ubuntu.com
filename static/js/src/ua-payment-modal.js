@@ -499,15 +499,33 @@ function createPaymentMethod() {
 }
 
 function disableProcessingState() {
+  const formInputs = form.querySelectorAll("input");
+  const formSelects = form.querySelectorAll("select");
+  const cardInput = document.getElementById("card-element");
+
   clearProgressTimers();
   resetProgressIndicator();
+
+  formInputs.forEach((input) => (input.readonly = false));
+  formSelects.forEach((select) => (select.readonly = false));
   cancelModalButton.disabled = false;
+  cardInput.classList.remove("u-disabled");
+
+  handleNameFieldRadio();
 }
 
 function enableProcessingState(mode) {
+  const formInputs = form.querySelectorAll("input");
+  const formSelects = form.querySelectorAll("select");
+  const cardField = document.getElementById("card-element");
+
   addPaymentMethodButton.disabled = true;
   cancelModalButton.disabled = true;
   processPaymentButton.disabled = true;
+
+  formInputs.forEach((input) => (input.readonly = true));
+  formSelects.forEach((select) => (select.readonly = true));
+  cardField.classList.add("u-disabled");
 
   // show a progress indicator that evolves over time
   progressTimer = setTimeout(() => {

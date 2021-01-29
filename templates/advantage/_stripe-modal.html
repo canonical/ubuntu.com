@@ -42,7 +42,7 @@
             <div class="col-9 col-start-large-4">
               <span class="p-form-validation__message u-hide"></span>
             </div>
-            
+
             {% if type == "purchase" %}
             <div class="col-9 col-start-large-4">
               <small>We'll also send setup instructions to this address.</small>
@@ -76,7 +76,7 @@
                   </label>
 
                   <label class="p-radio--inline">
-                    <input type="radio" class="p-radio__input" name="buying_for" id="buying_for_an_organisation" {% if account %}checked=""{% endif %} aria-labelledby="organisation">
+                    <input type="radio" class="p-radio__input" name="buying_for" id="buying_for_an_organisation" aria-labelledby="organisation" checked="true">
                     <span class="p-radio__label" id="organisation">An organisation</span>
                   </label>
                   <div class="col-9 col-start-large-4">
@@ -86,11 +86,11 @@
             </div>
             <div class="p-form__group row u-no-padding u-vertically-center">
               <div class="col-3">
-                <label class="u-no-padding--top u-text--muted" for="account_name" id="account_name_label">{% if account %}Account name{% else %}Choose account name{% endif %}:</label>
+                <label class="u-no-padding--top" for="account_name" id="account_name_label">Organisation:</label>
               </div>
 
               <div class="col-9">
-                <input name="account_name" id="account_name" type="text" value="{{ account.name }}" disabled />
+                <input name="account_name" id="account_name" type="text" value="{{ account.name }}" />
               </div>
 
               <div class="col-9 col-start-large-4">
