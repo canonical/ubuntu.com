@@ -27,6 +27,18 @@ This page describes the general upgrade process. It is important to follow the s
 
 <!-- END OF UPGRADE VERSIONS-->
 
+<div class="p-notification--caution">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Caution:</span>
+There is a known issue 
+<a href="https://bugs.launchpad.net/juju/+bug/1904619"> (https://bugs.launchpad.net/juju/+bug/1904619)</a>
+with container profiles not surviving an upgrade when deploying applications to LXD. If your 
+container-based applications fail to work properly after an upgrade, or you use the Juju `localhost` cloud,
+ please see this 
+<a href="/kubernetes/docs/troubleshooting#lxd"> topic on the troubleshooting page</a>
+  </p>
+</div>
+
 
 
 It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Kubernetes**. Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
@@ -185,12 +197,28 @@ Substitute in your own etcd unit number and filename, or copy and paste the comm
 output. Remember to add the ` .` at the end to copy to your local directory! 
 
 
-#### 3. Upgrade
+#### 3. Upgrade the charm
 
-You can now upgrade **etcd**:
+You can now upgrade the **etcd** charm:
 
 ```bash
 juju upgrade-charm etcd
+```
+
+#### 4. Upgrade etcd
+
+To upgrade **etcd** itself, you will need to set the **etcd** charm's channel
+config.
+
+To determine the correct channel, go to the
+[Supported Versions][supported-versions] page and check the relevant
+**Charmed Kubernetes** bundle. Within the bundle, you should see which channel
+the **etcd** charm is configured to use.
+
+Once you know the correct channel, set the **etcd** charm's channel config:
+
+```bash
+juju config etcd channel=3.4/stable
 ```
 
 ### Upgrading additional components
@@ -470,6 +498,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 [snap-channels]: https://docs.snapcraft.io/reference/channels
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/docs/validation
+[supported-versions]: /kubernetes/docs/supported-versions
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

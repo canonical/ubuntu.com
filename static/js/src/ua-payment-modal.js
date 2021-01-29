@@ -506,8 +506,8 @@ function disableProcessingState() {
   clearProgressTimers();
   resetProgressIndicator();
 
-  formInputs.forEach((input) => (input.disabled = false));
-  formSelects.forEach((select) => (select.disabled = false));
+  formInputs.forEach((input) => (input.readonly = false));
+  formSelects.forEach((select) => (select.readonly = false));
   cancelModalButton.disabled = false;
   cardInput.classList.remove("u-disabled");
 
@@ -523,8 +523,8 @@ function enableProcessingState(mode) {
   cancelModalButton.disabled = true;
   processPaymentButton.disabled = true;
 
-  formInputs.forEach((input) => (input.disabled = true));
-  formSelects.forEach((select) => (select.disabled = true));
+  formInputs.forEach((input) => (input.readonly = true));
+  formSelects.forEach((select) => (select.readonly = true));
   cardField.classList.add("u-disabled");
 
   // show a progress indicator that evolves over time

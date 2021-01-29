@@ -30,10 +30,10 @@
 </nav>
 
 {% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
-<section class="p-strip--light is-bordered--top">
-  {% else %}
+  <section class="p-strip--light is-bordered--top">
+{% else %}
   <section class="p-strip">
-    {% endif %}
+{% endif %}
 
     <div class="row">
       <div class="col-9">
@@ -41,6 +41,10 @@
 
         {% if cve.published %}
         <p>Published: <strong>{{ cve.published.strftime("%d %B %Y") }}</strong></p>
+        {% endif %}
+
+        {% if cve.status == 'not-in-ubuntu' %}
+          <p>This CVE does not apply to software in Ubuntu archives.</p>
         {% endif %}
 
         {% if cve.description %}

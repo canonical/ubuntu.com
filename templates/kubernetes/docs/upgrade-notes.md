@@ -19,6 +19,11 @@ The notes are organised according to the upgrade path below, but also be aware t
 upgrade that spans more than one minor version may need to beware of notes in
 any of the intervening steps.
 
+## Upgrades to all versions deployed to Juju's `localhost` LXD based cloud
+
+There is a known issue ([https://bugs.launchpad.net/juju/+bug/1904619](https://bugs.launchpad.net/juju/+bug/1904619))
+with container profiles not surviving an upgrade in clouds running on LXD. If your container-based applications fail to work properly after an upgrade, please see this [topic on the troubleshooting page](/kubernetes/docs/troubleshooting#charms-deployed-to-lxd-containers-fail-after-upgradereboot).
+
 <a  id="1.19"> </a>
 
 ## Upgrading to 1.19
@@ -27,6 +32,22 @@ New in 1.19, master units rely on Kubernetes secrets for authentication. Entries
 in the previously used "basic_auth.csv" and "known_tokens.csv" will be migrated to
 secrets and new kubeconfig files will be created during the upgrade. Administrators
 should update any existing kubeconfig files that are used outside of the cluster.
+
+There is a [known issue](https://bugs.launchpad.net/charm-etcd/+bug/1913227)
+with etcd 3.2 and Kubernetes 1.19. If you are still running etcd 3.2, upgrade
+to etcd 3.4 prior to upgrading Kubernetes.
+
+As of Kubernetes 1.19, kube-proxy's userspace proxier no longer works. Before you
+upgrade, check the proxy-extra-args configs to make sure that the userspace proxy
+mode is not being used in your cluster:
+
+```bash
+juju config kubernetes-master proxy-extra-args
+juju config kubernetes-worker proxy-extra-args
+```
+
+If you see `proxy-mode=userspace` in the charm configs, remove it, then proceed
+with the upgrade.
 
 Please follow the [upgrade instructions for 1.19](/kubernetes/docs/1.19/upgrading).
 
