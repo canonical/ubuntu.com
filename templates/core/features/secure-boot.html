@@ -1,6 +1,7 @@
 {% extends "core/base_core.html" %}
 
 {% block title %}Secure boot | Ubuntu Core{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1ltH7T2boIJ7VcUni4Kmc0XGlmmxWAf5u82LEwkEGP24/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -30,7 +31,7 @@
 </section>
 
 <section class="p-strip is-shallow">
-  <div class="u-fixed-width u-align--center">
+  <div class="row u-align--center">
     {{ image (
       url="https://assets.ubuntu.com/v1/720e50fa-UC20_advanced_security_features.svg",
       alt="Advanced security features",
@@ -44,7 +45,7 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
+  <div class="row">
     <h2>Integrity verification</h2>
     <p>The integrity of the boot firmware must be proven before trust is established in user space processes. This requires a secure mechanism to establish integrity.</p>
     <p>Such a mechanism should be implemented into low level computer initialisation firmware like UEFI, as validating the boot process integrity at this low level assures that a device has started up in a secure state.</p>
@@ -59,7 +60,7 @@
 </section>
 
 <section class="p-strip">
-  <div class="u-fixed-width u-sv3">
+  <div class="row u-sv3">
     <h2>Secure boot on Ubuntu Core</h2>
   </div>
   <div class="row u-vertically-center">
@@ -75,43 +76,45 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
+  <div class="row">
     <h2>How it works</h2>
     <p>Ubuntu Core 20 authenticates the boot process by default. Authentication is based on the verification of digital signatures.</p>
-    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
-      <div class="col-8">
-        <h3>Chain of Trust</h3>
-        <p>Each component in the boot sequence cryptographically validates the authenticity of the subsequent component in the boot sequence. Every component is measured before it is loaded in the runtime memory space. If an improper or unsigned component is detected, the boot process is stopped.</p>
-      </div>
-      <div class="col-4 u-vertically-center u-align--center u-hide--small">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/146a6eba-2+assessment_AW.svg",
-            alt="Assessment",
-            width="263",
-            height="150",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-      </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h3>Chain of Trust</h3>
+      <p>Each component in the boot sequence cryptographically validates the authenticity of the subsequent component in the boot sequence. Every component is measured before it is loaded in the runtime memory space. If an improper or unsigned component is detected, the boot process is stopped.</p>
     </div>
-    <hr />
-    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
-      <div class="col-8">
-        <h3>Digital keys</h3>
-        <p>Ubuntu Core supports both hardware and software root of trust for secure boot. Security admins can create and store the digital keys used to validate the boot sequence in either a secure element, a TPM device or a software TEE</p>
-      </div>
-      <div class="col-4 u-vertically-center u-align--center u-hide--small">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/2131b805-We+transfer+control.svg",
-          alt="Transfer control",
-          width="150",
-          height="150",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/146a6eba-2+assessment_AW.svg",
+        alt="Assessment",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h3>Digital keys</h3>
+      <p>Ubuntu Core supports both hardware and software root of trust for secure boot. Security admins can create and store the digital keys used to validate the boot sequence in either a secure element, a TPM device or a software TEE</p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/2131b805-We+transfer+control.svg",
+        alt="Transfer control",
+        width="150",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -119,21 +122,21 @@
 <section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-5 u-align--center u-hide--small">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-            alt="",
-            width="281",
-            height="200",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+        alt="",
+        width="281",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
     <div class="col-7">
       <h2>Secure your devices</h2>
       <p>Get in touch with a Ubuntu security expert to discuss the advanced security requirements of your application.</p>
       <p>
-        <a href="/core/contact-us?product=core-features" class="p-button--positive js-invoke-modal">Get in touch</a>
+        <a href="/core/contact-us?product=core-secure-boot" class="p-button--positive js-invoke-modal">Get in touch</a>
       </p>
     </div>
   </div>

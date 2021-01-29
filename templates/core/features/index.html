@@ -2,19 +2,21 @@
 
 {% block title %}Features | Ubuntu Core{% endblock %}
 {% block meta_description %}Case studies and customer stories of products launched with Ubuntu Core, a secure, fully containerised Ubuntu for embedded devices that is optimised for reliable updates.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/10S6FGVRA1R1qi9v859CnFrl8rS25Za2SjEmSpPVQkzY/edit#heading=h.2rlj58ccsw9y{% endblock meta_copydoc %}
+
 
 {% block content %}
 
 <section class="p-strip--suru-topped">
-  <div class="u-fixed-width">
+  <div class="row">
     <h1>Ubuntu Core features</h1>
     <p class="p-heading--4">What’s under the hood</p>
   </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
-    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+  <div class="row">
+    <div class="row u-equal-height">
       <div class="col-8">
         <h2>Snaps</h2>
         <p>Ubuntu Core is built from snaps, a secure, confined, dependency-free, cross-platform Linux packaging format. Snaps are entirely self-contained, even to the point of encapsulating their own file system. This means they include everything they need to run in any environment. They're used by Ubuntu Core to both compose the image that's run on a device, and to deliver consistent and reliable software updates, even to low-powered, inaccessible and remotely administered embedded and IoT systems.</p>
@@ -34,8 +36,10 @@
           }}
       </div>
     </div>
-    <hr />
-    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+    <div class="u-fixed-width">
+      <hr class="p-separator" />
+    </div>
+    <div class="row u-equal-height">
       <div class="col-8">
         <h2>Snapd</h2>
         <p>Snapd is the background service that manages and maintains installed snaps. Alongside its various service and management functions, snapd:</p>
@@ -60,8 +64,10 @@
           }}
       </div>
     </div>
-    <hr />
-    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+    <div class="u-fixed-width">
+      <hr class="p-separator" />
+    </div>
+    <div class="row u-equal-height">
       <div class="col-8">
         <h2>Snapcraft</h2>
         <p>Snapcraft is a powerful and easy to use tool for building and publishing snaps. It helps you: </p>
@@ -86,8 +92,10 @@
           }}
       </div>
     </div>
-    <hr />
-    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+    <div class="u-fixed-width">
+      <hr class="p-separator" />
+    </div>
+    <div class="row u-equal-height">
       <div class="col-8">
         <h2>IoT app stores</h2>
         <p>White-label app stores for Linux and IoT:</p>
@@ -112,8 +120,10 @@
           }}
       </div>
     </div>
-    <hr />
-    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+    <div class="u-fixed-width">
+      <hr class="p-separator" />
+    </div>
+    <div class="row u-equal-height">
       <div class="col-8">
         <h2>Secure boot</h2>
         <p>Ubuntu Core 20 authenticates the boot process by default. Authentication is based on the verification of digital signatures. This means:</p>
@@ -136,8 +146,10 @@
           }}
       </div>
     </div>
-    <hr />
-    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+    <div class="u-fixed-width">
+      <hr class="p-separator" />
+    </div>
+    <div class="row u-equal-height">
       <div class="col-8">
         <h2>Full disk encryption</h2>
         <p>Ubuntu Core uses digital signatures to cryptographically ensure data integrity with: </p>
@@ -159,8 +171,10 @@
           }}
       </div>
     </div>
-    <hr />
-    <div class="p-strip is-shallow row u-equal-height u-no-padding--left u-no-padding--right">
+    <div class="u-fixed-width">
+      <hr class="p-separator" />
+    </div>
+    <div class="row u-equal-height">
       <div class="col-8">
         <h2>Recovery mode</h2>
         <p>Ubuntu Core offers a recovery mode that can be activated manually when booting or remotely via an API call. It additionally offers:</p>
