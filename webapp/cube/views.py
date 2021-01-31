@@ -8,6 +8,7 @@ from pathlib import Path
 from requests import Session
 
 from webapp.cube.api import BadgrAPI, EdxAPI
+from webapp.decorators import login_required
 from webapp.login import user_info
 
 
@@ -45,14 +46,22 @@ edx_api = EdxAPI(
 )
 
 
+def is_authorized(user):
+    email_domain = user["email"].split("@")[1]
+    return email_domain.lower() == "canonical.com"
+
+
+@login_required
 def cube_microcerts():
     assertions = {}
     enrollments = []
     passed_courses = 0
 
     sso_user = user_info(flask.session)
-    edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
+    if not is_authorized(sso_user):
+        flask.abort(403)
 
+    edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
     if edx_user:
         assertions = {
             assertion["badgeclass"]: assertion
@@ -122,5 +131,10 @@ def cube_microcerts():
     return response
 
 
+@login_required
 def cube_home():
+    sso_user = user_info(flask.session)
+    if not is_authorized(sso_user):
+        flask.abort(403)
+
     return flask.render_template("cube/index.html")
