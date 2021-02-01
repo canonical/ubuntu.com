@@ -51,50 +51,8 @@
         </ul>
       </noscript>
       <div class="p-navigation__search u-align--right">
-        <div class="p-navigation__user">
-          {% if user_info %}
-            <span class="p-contextual-menu">
-              <button style="background: transparent !important; color: white !important; margin-bottom: 0;"
-                class="p-button--base p-contextual-menu__toggle has-icon"
-                data-trigger="click"
-                aria-controls="#menu-3"
-                aria-expanded="false"
-                aria-haspopup="true">
-                <span>{{ user_info.fullname }}</span>
-                <i class="p-icon--chevron-down is-light p-contextual-menu__indicator"></i>
-              </button>
-              <span class="p-contextual-menu__dropdown" id="menu-3" aria-hidden="true">
-                <span class="p-contextual-menu__group">
-                  <a href="/advantage" class="p-contextual-menu__link" data-js="ua-subscriptions">UA subscriptions</a>
-                </span>
-                <span class="p-contextual-menu__group">
-                  <a href="/cube" class="p-contextual-menu__link" data-js="ua-subscriptions">CUBE microcertifications</a>
-                </span>
-                <span class="p-contextual-menu__group">
-                  <a href="https://login.ubuntu.com" class="p-contextual-menu__link">Account settings</a>
-                  <a href="/logout" class="p-contextual-menu__link">Logout</a>
-                </span>
-              </span>
-            </span>
-            <script>
-              var uaElement = document.querySelector('[data-js="ua-subscriptions"]');
-              if (uaElement) {
-                fetch('/advantage.json')
-                  .then(response => response.json())
-                  .then(data => {
-                    var contracts = data.enterprise_contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
-                    uaElement.innerHTML = `<div>UA subscriptions</div><div><small>See your <div class="p-label--new">${contracts.length}</div> subscriptions</small></div>`;
-                  });
-              }
-            </script>
-          {% else %}
-            <a href="/login" style="position: relative;padding-left: 1rem;color: white;">
-              Sign in
-            </a>
-          {% endif %}
-        </div>
         <div class="p-navigation__user js-account">
-          <span style="position: relative;padding-left: 1rem;color: white;">
+          <span style="padding-left: 1rem;color: white;">
             <i class="p-icon--spinner u-animation--spin is-light">Loading account data</i>
             <i class="p-icon--chevron-down is-light p-contextual-menu__indicator"></i>
           </span>
@@ -111,7 +69,7 @@
                   accountContainer.innerHTML = '<a href="/login" style="position: relative;padding-left: 1rem;color: white;">Sign in</a>';
                 } else {
                   var contracts = [];
-                  if (data.contracts.enterprise_contracts) {
+                  if (data.contracts && data.contracts.enterprise_contracts) {
                     contracts = data.contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
                   }
                   accountContainer.innerHTML = `<span class="p-contextual-menu">
@@ -127,7 +85,7 @@
                     <span class="p-contextual-menu__dropdown" id="menu-5" aria-hidden="true">
                       <span class="p-contextual-menu__group">
                         <a href="/advantage" class="p-contextual-menu__link" data-js="ua-subscriptions">
-                          <div>UA subscriptions</div><div><small>See your <div class="p-label--new">${contracts.length}</div> subscriptions</small></div>
+                          UA subscriptions
                         </a>
                       </span>
                       <span class="p-contextual-menu__group">
@@ -140,6 +98,7 @@
                     </span>
                   </span>`;
                   menuListener(accountContainer);
+                  retreveServices();
                 }
               });
           }
@@ -158,20 +117,20 @@
               dropdown.setAttribute("aria-hidden", menuAlreadyOpen);
             });
           }
-        </script>
 
-        <script>
-          var uaElement = document.querySelector('[data-js="ua-subscriptions"]');
-          if (uaElement) {
-            fetch('/advantage.json')
-              .then(response => response.json())
-              .then(data => {
-                var contracts = [];
-                if (data.enterprise_contracts.enterprise_contracts) {
-                  contracts = data.enterprise_contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
-                }
-                uaElement.innerHTML = `<div>UA subscriptions</div><div><small>See your <div class="p-label--new">${contracts.length}</div> subscriptions</small></div>`;
-              });
+          function retreveServices() {
+            var uaElement = document.querySelector('[data-js="ua-subscriptions"]');
+            if (uaElement) {
+              fetch('/advantage.json')
+                .then(response => response.json())
+                .then(data => {
+                  var contracts = [];
+                  if (data.enterprise_contracts.enterprise_contracts) {
+                    contracts = data.enterprise_contracts.enterprise_contracts[""].filter(contract => contract.contractInfo.status != 'expired' );
+                  }
+                  uaElement.innerHTML = `<div>UA subscriptions</div><div><small>See your <div class="p-label--new">${contracts.length}</div> subscriptions</small></div>`;
+                });
+            }
           }
         </script>
 

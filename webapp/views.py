@@ -395,12 +395,10 @@ def account_query():
     """
     A JSON endpoint to request login status
     """
-    contracts = get_subscriptions()
 
     return flask.jsonify(
         {
             "account": user_info(flask.session),
-            "contracts": contracts,
         }
     )
 
