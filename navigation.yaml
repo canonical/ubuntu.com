@@ -201,26 +201,6 @@ financial-services:
         - title: Thank you
           path: /financial-services/thank-you
           hidden: True
-
-smartstart:
-  title: SMART START
-  path: /smartstart
-
-  children:
-    - title: Overview
-      path: /smartstart
-    - title: Guide
-      path: /smartstart/guide
-      persist: True
-    - title: Contact us
-      path: /smartstart/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /smartstart/thank-you
-          hidden: True
-
 ceph:
   title: Ceph
   path: /ceph
@@ -1018,6 +998,39 @@ core:
       path: /core/docs
       persist: True
 
+    - title: Features
+      path: /core/features
+
+      children:
+        - title: Secure boot
+          path: /core/features/secure-boot
+        - title: Full disk encryption
+          path: /core/features/full-disk-encryption
+        - title: Recovery
+          path: /core/features/recovery
+
+
+    - title: Success stories
+      path: /core/stories
+
+    - smartstart:
+      title: Consulting
+      path: /core/smartstart
+      persist: True
+
+      children:
+        - title: Guide
+          path: /core/smartstart/guide
+          persist: True
+        - title: Contact us
+          path: /core/smartstart/contact-us
+          hidden: True
+
+          children:
+            - title: Thank you
+              path: /core/smartstart/thank-you
+              hidden: True
+
     - title: Contact us
       path: /core/contact-us
       hidden: True
@@ -1026,7 +1039,6 @@ core:
         - title: Thank you
           path: /core/thank-you
           hidden: True
-
 
 iot:
   title: IoT
@@ -1385,7 +1397,6 @@ security:
     - title: Thank you
       path: /security/thank-you
       hidden: True
-
 
 licensing:
   title: Licensing

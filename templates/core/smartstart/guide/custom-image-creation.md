@@ -1,7 +1,7 @@
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
-  nav: "smartstart/shared/_side-navigation.md"
+  nav: "core/smartstart/shared/_side-navigation.md"
 context:
   title: "Custom image creation"
   description: With a private IoT app store to host your snaps, it becomes very easy for you to create custom Ubuntu system images for your certified devices. This section shows how.
@@ -56,11 +56,11 @@ Ubuntu-image is the build tool for creating Ubuntu Core images. It is freely ava
 - [Download Ubuntu-image](https://snapcraft.io/ubuntu-image)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smartstart/guide/app-store-commissioning">
+  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/app-store-commissioning">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">App store commissioning</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smartstart/guide/secure-device-onboarding">
+  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/secure-device-onboarding">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Secure device onboarding</span>
   </a>
