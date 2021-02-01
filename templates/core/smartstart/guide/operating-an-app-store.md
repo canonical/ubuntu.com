@@ -1,7 +1,7 @@
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
-  nav: "smartstart/shared/_side-navigation.md"
+  nav: "core/smartstart/shared/_side-navigation.md"
 context:
   title: "Operating an app store"
   description: Once connected to an app store, devices access a catalog of snaps curated by the owner. Connected devices check for updates of these apps regularly.
@@ -61,11 +61,11 @@ Monitoring capabilities embedded in app stores enable detailed usage metering. A
 - [Refresh control](https://core.docs.ubuntu.com/en/build-store/refresh-control)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smartstart/guide/secure-device-onboarding">
+  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/secure-device-onboarding">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Secure device onboarding</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smartstart/guide/technical-support">
+  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/technical-support">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Technical support</span>
   </a>

@@ -1,7 +1,7 @@
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
-  nav: "smartstart/shared/_side-navigation.md"
+  nav: "core/smartstart/shared/_side-navigation.md"
 context:
   title: "App store commissioning"
   description: SMART START customers benefit from their own IoT app store. While app stores are hosted by Canonical, they are entirely operated by customers. This section describes the first steps a customer takes when commissioning their app store.
@@ -35,13 +35,13 @@ IoT app stores are administered via a dashboard. [Ubuntu SSO](https://login.ubun
 
 The app store administrators can assign the following roles to accounts:
 
-| Role | Description |
-| --- | --- |
-| Store Administrator | Assign roles to other accounts<br>Curate snaps hosted in the store<br>Manage keys stored in the serial vault
-| Publisher | Publisher Register snap names in the store<br>Configure a team of collaborators for such snaps.<br>Publish specific snap revisions
-| Collaborator | Upload snap revisions to the store<br>Release snap revisions onto store channels
-| Reviewer | Accept uploaded snap revisions before the revision can be published
-| Viewer | Download snaps from IoT app stores<br>Build images that include snaps published in IoT app stores
+| Role                | Description                                                                                                                        |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Store Administrator | Assign roles to other accounts<br>Curate snaps hosted in the store<br>Manage keys stored in the serial vault                       |
+| Publisher           | Publisher Register snap names in the store<br>Configure a team of collaborators for such snaps.<br>Publish specific snap revisions |
+| Collaborator        | Upload snap revisions to the store<br>Release snap revisions onto store channels                                                   |
+| Reviewer            | Accept uploaded snap revisions before the revision can be published                                                                |
+| Viewer              | Download snaps from IoT app stores<br>Build images that include snaps published in IoT app stores                                  |
 
 ### 3. Configure the serial vault
 
@@ -49,11 +49,11 @@ A serial vault stores various keys and also provides signed configuration files 
 
 The main configuration files that are stored and served by the serial vault are:
 
-| Resource | Description |
-| --- | --- |
-| Account key | Cryptographic key used to sign assertions
-| Model assertion | The model assertion is a statement by a brand about the properties of a device model. It should contain all information needed to create an Ubuntu Core image
-| Serial assertion | A statement binding a device identity with the device public key.
+| Resource         | Description                                                                                                                                                   |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Account key      | Cryptographic key used to sign assertions                                                                                                                     |
+| Model assertion  | The model assertion is a statement by a brand about the properties of a device model. It should contain all information needed to create an Ubuntu Core image |
+| Serial assertion | A statement binding a device identity with the device public key.                                                                                             |
 
 All of these are used by the device, serial vault and IoT app store to verify and manage the access to a device.
 
@@ -69,11 +69,11 @@ Store Administrators can create derivative IoT app stores hierarchically tied to
 - [IoT app stores](/internet-of-things/appstore)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smartstart/guide/snap-publishing">
+  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/snap-publishing">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Snap publishing</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smartstart/guide/custom-image-creation">
+  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/custom-image-creation">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Custom image creation</span>
   </a>

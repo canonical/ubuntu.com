@@ -1,7 +1,7 @@
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
-  nav: "smartstart/shared/_side-navigation.md"
+  nav: "core/smartstart/shared/_side-navigation.md"
 context:
   title: "Device enablement"
   description: Device enablement is a service available for OEMs who want to bring up a board to run Ubuntu. Embedded applications depend on the kernel, drivers, libraries, filesystems and runtimes.
@@ -46,11 +46,11 @@ Should a high or critical security CVE threat emerge, we provide maintenance upd
 - [Ubuntu stable release process](https://wiki.ubuntu.com/StableReleaseUpdates)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smartstart/guide/advanced-options">
+  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/advanced-options">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Advanced options</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smartstart/guide/certification-and-validation">
+  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/certification-and-validation">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Certification and validation</span>
   </a>
