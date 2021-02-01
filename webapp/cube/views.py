@@ -107,9 +107,11 @@ def cube_microcerts():
         elif course["id"] in enrollments:
             course["status"] = "enrolled"
 
-        course[
-            "test_url"
-        ] = f"{edx_api.base_url}/courses/{course['id']}/course"
+        course["take_url"] = (
+            f"{edx_api.base_url}/courses/{course['id']}"
+            "/courseware/2020/start/?child=first"
+        )
+
         course[
             "training_url"
         ] = f"{edx_api.base_url}/courses/{course['id']}/course"
