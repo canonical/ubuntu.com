@@ -10,8 +10,14 @@
 <section class="p-strip--suru is-dark">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
-      <h1>Build secure IoT devices  <br> with Ubuntu Core</h1>
-      <p class="p-heading--four u-sv3">Everything you love about Ubuntu, locked down for security. Helping you make safer things &ndash; because we're all connected.</p>
+      <h1>Secure embedded devices</h1>
+      <p class="p-heading--four u-sv3">Give your device its own app store</p>
+      <p>
+        <a class="p-button--positive" href="/smartstart">Get to market faster</a>
+      </p>
+      <p>
+        <a class="p-link--external p-link--inverted" href="https://drive.google.com/file/d/1R_50ARrypET1gn0drz1KIr4ymxA0kTDA/view?usp=sharing">Ubuntu Core datasheet</a>
+      </p>
     </div>
     <div class="col-6 u-align--center u-hide--small">
       {{
@@ -36,85 +42,286 @@
 
 <section class="p-strip">
   <div class="u-fixed-width u-sv3 u-align--center">
-    <h5 class="p-muted-heading u-no-max-width">Get straight to market with our device partners</h5>
+    <h5 class="p-muted-heading u-no-max-width">Get to market fast with our device partners</h5>
   </div>
-
-  <div class="u-sv3">
-    <div class="row p-divider">
-      <div class="col-6 p-divider__block">
-        <div class="row u-equal-height u-no-margin--bottom">
-          <div class="col-3 col-small-2 col-medium-3 col-2 col-start-large-3 u-align--center">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/94ea495b-2018-logo-Intel.svg",
-                alt="Intel",
-                height="142",
-                width="143",
-                hi_def=True,
-                loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="col-3 col-small-2 col-medium-3 col-2 u-align--center">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/b1767848-2018-logo-raspberry-pi.svg",
-                alt="Raspberry Pi",
-                height="143",
-                width="143",
-                hi_def=True,
-                loading="lazy"
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-      <div class="col-6 p-divider__block">
-        <div class="row u-equal-height u-no-margin--bottom">
-          <div class="p-list__item col-2 col-medium-3 col-small-2 u-vertically-center u-align--center">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/0970d532-2018-logo-dell.svg",
-                alt="Dell",
-                height="143",
-                width="143",
-                hi_def=True,
-                loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-list__item col-2 col-medium-3 col-small-2 u-vertically-center u-align--center">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/a6d7f650-Rigado-logo.svg",
-                alt="Rigado",
-                height="143",
-                width="143",
-                hi_def=True,
-                loading="lazy"
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="u-fixed-width u-align--center">
-    <p class="u-no-max-width">Canonical and partners speed up your device development.</p>
-    <p class="u-no-max-width"><a class="p-button--positive js-invoke-modal" href="/core/contact-us?product=core-overview">Get to market faster</a></p>
-  </div>
+  <ul class="p-inline-images">
+    <li class="p-inline-images__item">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg",
+          alt="Intel",
+          height="60",
+          width="91",
+          hi_def=True,
+          loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/016b770d-raspberry+pi+horizontal.svg",
+          alt="Raspberry Pi",
+          height="80",
+          width="68",
+          hi_def=True,
+          loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/731aab6c-logo-amd.svg",
+        alt="AMD",
+        width="115",
+        height="27",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/1ac0e434-Nvidia_Logo_Horizontal.svg",
+        alt="NVIDIA",
+        width="152",
+        height="29",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/49a1df89-qualcommLOGO.png",
+        alt="QUALCOMM",
+        width="158",
+        height="35",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c95e6028-rigado-logo.png",
+        alt="RIGADO",
+        width="133",
+        height="76",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/bd1a47c9-ADLINK-logo.png",
+        alt="ADLINK",
+        width="160",
+        height="52",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/582bee22-avantech-logo.png",
+        alt="Avantech",
+        width="145",
+        height="35",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/185a14f4-Avnet.png",
+        alt="Avnet",
+        width="150",
+        height="28",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/97e29c13-Dell.svg",
+          alt="Dell",
+          height="90",
+          width="90",
+          hi_def=True,
+          loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/53de61ea-honeywell-logo.png",
+        alt="Honeywell",
+        width="156",
+        height="30",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/156ddbf8-rexroth_logo.svg",
+        alt="rexroth",
+        width="131",
+        height="53",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/255a3171-abb-logo.svg",
+        alt="ABB",
+        width="120",
+        height="47",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/2234031b-Siemens-logo.svg.png",
+        alt="Siemens",
+        width="128",
+        height="30",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+    <li class="p-inline-images__item">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/61fd936f-osram-vector-logo.png",
+        alt="osram",
+        width="128",
+        height="71",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </li>
+  </ul>
 </section>
 
-<!-- start of generated content -->
+<!-- start generated content -->
+
+<section class="p-strip--light is-bordered">
+  <div class="row u-equal-height u-align--center u-vertically-center">
+    <div class="col-4">
+      <div class="u-sv2">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ec2d60d0-IoT_Digital_Signage.svg",
+        alt="Linux",
+        width="100",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <p class="p-heading--4"><a href="/internet-of-things/digital-signage">Signage&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv2">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/9d42b2ab-3B-embedded-linux_AW.svg",
+        alt="Linux",
+        width="156",
+        height="90",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <p class="p-heading--4"><a href="/embedded">Embedded&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv2">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e39199bc-Internet+of+Things_digital-gateways.svg",
+        alt="Digital gateways",
+        width="144",
+        height="126",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <p class="p-heading--4"><a href="/internet-of-things/networking">IoT&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row u-equal-height u-align--center u-vertically-center">
+    <div class="col-4">
+      <div class="u-sv2">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/af98e3d6-automotive_car-network.svg",
+          alt="Automotive",
+          width="184",
+          height="107",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p class="p-heading--4"><a href="/automotive">Automotive&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv3">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/26e28883-Industrial+ML.svg",
+          alt="Industrial",
+          width="192",
+          height="110",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p class="p-heading--4"><a href="/industrial">Industrial&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv2">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/f84b4cec-robot-arm.svg",
+          alt="Robotics",
+          width="120",
+          height="121",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p class="p-heading--4"><a href="robotics">Robotics&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
 
 <section class='p-strip--image p-banner-core' id="security-first" >
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Security first</h2>
-      <p class="p-heading--four">Security is our job from the moment you power it on.</p>
-      <p>We redesigned the entire system from first boot to create the most secure embedded Linux for devices and connected things.</p>
+      <p class="p-heading--four">Imagine a world where every device is trustworthy</p>
+      <p>We rethought every aspect of Ubuntu to create the most secure embedded Linux ever.</p>
       <p>
-        <a href="https://assets.ubuntu.com/v1/66fcd858-ubuntu-core-security-whitepaper.pdf" class="p-link--external">Read the Ubuntu Core security whitepaper</a>
+        <a href="/engage/ubuntu-core-security-audit">Read an independent security audit of Ubuntu Core&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
@@ -125,8 +332,11 @@
     <div class="col-6">
       <h4>Tamper-resistant and hardened against corruption</h4>
       <p class='p-heading--five'>Every aspect of the system is checked and verified.</p>
-      <p>You need to know your software is pristine; not just for installation, but for the whole lifetime of the device.</p>
-      <p>Immutable packages and persistent digital signatures mean Ubuntu Core can verify any software component at any time.</p>
+      <p>You need to know your software is pristine; not just for installation, but for the lifetime of the device.</p>
+      <p>Immutable packages and persistent digital signatures mean Ubuntu Core can verify any software component at any time, to guard against corruption and attack.</p>
+      <p>
+        <a href="/core/features/full-disk-encryption">Learn more about full disk encryption&nbsp;&rsaquo;</a>
+      </p>
     </div>
     <div class="col-6 u-hide--small u-align--center u-vertically-center">
       {{
@@ -161,8 +371,9 @@
     </div>
     <div class="col-6">
       <h4>Strict confinement everywhere</h4>
-      <p class='p-heading--five'>One bad app shouldn't compromise the whole system</p>
-      <p>You trust your developers, but anybody can make a mistake. We created a whole new armoury of Linux security capabilities to ensure all applications stay confined to their own data.</p>
+      <p class='p-heading--five'>Keep a bad app in its box</p>
+      <p>You trust your developers, but anybody can make a mistake. We created and integrated a whole new armoury of Linux security capabilities to ensure applications stay confined to their own data.</p>
+      <p><a class="p-link--external" href="https://snapcraft.io/docs/snap-confinement">Learn more about confinement</a></p>
     </div>
   </div>
 
@@ -172,10 +383,9 @@
 
   <div class="row">
     <div class="col-6">
-      <h4>10 years security updates, by Canonical</h4>
-      <p class='p-heading--five'>That's a decade of sleeping soundly.</p>
-      <p>Ubuntu Core 18 gets 10 years of Canonical maintenance from Ubuntu 18.04 LTS. Your smallest devices are now as secure as your servers.</p>
-      <p>No other embedded Linux comes close.</p>
+      <h4>10 year security update commitment</h4>
+      <p class='p-heading--five'>That's a decade of sleeping soundly</p>
+      <p>Ubuntu Core gets 10 years of Canonical maintenance.<br /> Your smallest devices are now as secure as your servers.<br /> No other embedded Linux comes close.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -210,8 +420,8 @@
     </div>
     <div class="col-6">
       <h4>Minimal core, minimal risk, minimal bugs</h4>
-      <p class='p-heading--five'>Core is for machines, so we stripped it down to bare essentials.</p>
-      <p>Fewer packages to attack, fewer bugs to fix, fewer forced changes. We reduced the OS to reduce the attack surface. That leaves more disk for your IoT applications and data.</p>
+      <p class='p-heading--five'>We stripped Ubuntu Core down to bare essentials</p>
+      <p>Fewer packages to attack, fewer bugs to fix, fewer forced changes. We reduced the OS to reduce the attack surface. That leaves more disk for your applications and data.</p>
     </div>
   </div>
 
@@ -222,12 +432,8 @@
   <div class="row">
     <div class="col-6">
       <h4>Vulnerability scanning</h4>
-      <p class='p-heading--five'>We check every snap for known weaknesses or risks.</p>
-      <p>Ubuntu Core benefits from the automatic scanning of all snaps for vulnerable libraries and problematic code.</p>
-      <p>
-        <a class="p-button--positive is-inline js-invoke-modal" href="/core/contact-us?product=core-overview" style="margin-left: 0;">Contact us</a>
-        <a href="/download/iot#core">Get Ubuntu Core&nbsp;&rsaquo;</a>
-      </p>
+      <p class='p-heading--five'>We check for known weaknesses or risks</p>
+      <p>Automatic scanning of all snaps for vulnerable libraries and problematic code keeps the Ubuntu Core ecosystem clean and healthy.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -242,9 +448,61 @@
       }}
     </div>
   </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row">
+    <div class="col-6 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6ed19d21-UC20_Secure_boot.svg",
+        alt="Secure boot",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h4>Secure boot</h4>
+      <p class='p-heading--five'>System integrity with hardware trust</p>
+      <p>Guarantee your entire fleet of devices runs the system software you select, and resist low-level boot attacks on X86 and ARM.</p>
+      <p>
+        <a href="/core/features/secure-boot">Learn more about secure boot&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+
+<div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <h4>Full disk encryption</h4>
+      <p class='p-heading--five'>Protect sensitive customer data</p>
+      <p>Lock data to devices with hardware keys in TPM or TEE, and unlock disks for your system software only, to block a physical attack on sensitive information.</p>
+      <p>
+        <a href="/core/features/full-disk-encryption">Learn more about full disk encryption&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/1fbe51df-UC20_Full-disc-encryption.svg",
+        alt="Full disk encryption",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
 </section>
 
-<section class='p-strip--image p-banner-core' id="built-for-business">
+<section class='p-strip--image p-banner-core is-deep' id="built-for-business">
   <div class='row u-vertically-center'>
     <div class='col-8'>
       <h2>Built for business</h2>
@@ -256,9 +514,9 @@
 <section class='p-strip'>
   <div class="row">
     <div class="col-6">
-      <h4>Manufacturer's update control</h4>
+      <h4>Manufacturer update control</h4>
       <p class='p-heading--five'>Decide which updates go to your devices.</p>
-      <p>As a device manufacturer or a snap publisher, you decide which updates are signed, certified and delivered to your devices.</p>
+      <p>As a device manufacturer or a snap publisher, you decide which updates are signed, certified and delivered to your devices, when they happen and to which devices.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -293,7 +551,7 @@
     </div>
     <div class="col-6">
       <h4>App store included</h4>
-      <p class='p-heading--five'>Your own app store. Your own software portfolio.</p>
+      <p class='p-heading--five'>Your own app store and software curation</p>
       <p>Every device built with Ubuntu Core has a secure app store. Use the global store for access to all the standard apps, or curate your own collection.</p>
       <p><a class="p-button--neutral is-inline" href="/internet-of-things/appstore" style="margin-left: 0;"><span class="p-link--external">See what an app store can do for your things</span></a></p>
     </div>
@@ -307,8 +565,7 @@
     <div class="col-6">
       <h4>Enterprise management</h4>
       <p class='p-heading--five'>Absolute control over every device in the building.</p>
-      <p>Enterprises gain complete audit and control over every piece of software on every single device on the network. Regardless of manufacturer. Know exactly which kernel version and which OS version is running.</p>
-      <p>You decide when updates happen. You decide which versions, too.</p>
+      <p>Enterprises gain complete control over every app on every device on the network, regardless of manufacturer. Know exactly which kernel version and which apps are running.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center u-vertically-center">
       {{
@@ -343,8 +600,8 @@
     </div>
     <div class="col-6">
       <h4>License compliance</h4>
-      <p class='p-heading--five'>We help you keep track of the licenses you depend on.</p>
-      <p>Standard license metadata simplifies compliance. Ubuntu Core uses open source packages from the world's most widely deployed Linux, and we track licenses in all key components.</p>
+      <p class='p-heading--five'>Keep track of the licenses you depend on</p>
+      <p>Standard license metadata simplifies compliance. Ubuntu Core uses open source packages from the world’s most widely deployed Linux, and we track licenses in each system component, so you don’t have to.</p>
     </div>
   </div>
 
@@ -355,8 +612,8 @@
   <div class="row u-vertically-center">
     <div class="col-6">
       <h4>Software ecosystem, ready to go</h4>
-      <p class='p-heading--five'>Thousands of applications built to work across devices.</p>
-      <p>A standard platform helps publishers support multiple devices without recompiling. And everybody wants to support Ubuntu - it's the most widely deployed Linux in the world.</p>
+      <p class='p-heading--five'>Thousands of applications built to work across devices</p>
+      <p>A standard platform helps publishers support multiple devices without recompiling. Everybody wants to support Ubuntu - it’s the most widely deployed Linux in the world.</p>
       <p><a class="p-button--neutral is-inline" href="https://snapcraft.io/store" style="margin-left: 0;"><span class="p-link--external">Visit the Snap Store</span></a></p>
     </div>
     <div class="col-6 u-align--center u-hide--small">
@@ -393,8 +650,8 @@
     </div>
     <div class="col-6">
       <h4>Mission critical support</h4>
-      <p class='p-heading--five'>Every Ubuntu Core device qualifies for Canonical support.</p>
-      <p>Your Ubuntu Advantage contract covers enterprise support for all these devices. Get to the heart of a problem faster, get fixes straight from the source.</p>
+      <p class='p-heading--five'>Canonical supports Ubuntu Core devices</p>
+      <p>World class support - for product teams and enterprise customers. Get to the heart of a problem faster, get fixes straight from the source.</p>
       <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-modal">Contact us</a></p>
     </div>
   </div>
@@ -423,9 +680,9 @@
 <section class='p-strip'>
   <div class="row u-vertically-center">
     <div class="col-6">
-      <h4>One platform from workstation to device</h4>
-      <p class='p-heading--five'>Bring your apps from Ubuntu Server to Ubuntu Core.</p>
-      <p>Snaps run on Ubuntu Server, Desktop and Core. One platform, one process. Your developer workstation, your build farm, your cloud and servers all use snaps. Your appliances too - with extra security.</p>
+      <h4>One platform from cloud to device</h4>
+      <p class='p-heading--five'>Bring apps from Ubuntu Server to Ubuntu Core</p>
+      <p>Snaps run on Ubuntu Server, Desktop and Core. One platform, one process. Your developer workstation, your build farm, your cloud and servers all use snaps. Your appliances can too, with extra security.</p>
       <p><a class="p-button--neutral" href="https://snapcraft.io/"><span class="p-link--external">Build your IoT application with Snapcraft</span></a></p>
     </div>
     <div class="col-6 u-align--center u-hide--small">
@@ -461,7 +718,7 @@
     </div>
     <div class="col-6">
       <h4>Embedded Linux is easy on Ubuntu</h4>
-      <p class='p-heading--five'>We handle the board. You handle the apps.</p>
+      <p class='p-heading--five'>We handle the board, you handle the apps</p>
       <p>No bad BSPs. No maintenance nightmares. No integration delays. Just develop on Ubuntu. Embedded, but not as you knew it.</p>
     </div>
   </div>
@@ -473,8 +730,8 @@
   <div class="row">
     <div class="col-6">
       <h4>Deploy to devices as fast as the cloud</h4>
-      <p class='p-heading--five'>Publish direct to devices and watch updates in real time. Bring continuous deployment right to the edge.</p>
-      <p>Put your devices on rails for rapid iteration with continuous deployment pipelines, beta testing and canary updates. Featuring Travis integration and a multi-architecture build service.</p>
+      <p class='p-heading--five'>Continuous deployment on devices</p>
+      <p>Put your devices on rails for rapid iteration with continuous deployment pipelines, beta testing and canary updates. Featuring Travis integration and a multi-arch build service.</p>
       <p>
         <a href="https://snapcraft.io/build" class="p-button--neutral"><span class="p-link--external">More about CI/CD with Snapcraft</span></a>
       </p>
@@ -534,7 +791,7 @@
   <div class="row">
     <div class="col-6">
       <h4>Transactional updates everywhere</h4>
-      <p class='p-heading--five'>Bulletproof updates need a whole new approach. Preserve data and roll back on error. Automatically.</p>
+      <p class='p-heading--five'>Preserve data, and rollback on error automatically</p>
       <p>Your power supply may not be reliable. Your devices will be. Resilience to adversity saves money and reputations. Bank on Ubuntu Core to deliver your updates safely.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
@@ -584,7 +841,6 @@
       <h4>Snapshots for application data</h4>
       <p class='p-heading--five'>Standard mechanisms for application data management.</p>
       <p>Every device has apps which keep track of critical data. We make sure you can manage the data which matters to you, consistently, across all your Ubuntu Core devices. Backup and restore anything, anywhere.</p>
-      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-modal">Contact us</a></p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -597,6 +853,30 @@
           loading="lazy"
         ) | safe
       }}
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row">
+    <div class="col-6 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/3bbf268f-UC20_Device_Recovery.svg",
+        alt="Device recovery",
+        width="181",
+        height="214",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h4>Low-touch device recovery</h4>
+      <p class='p-heading--five'>Remote device recovery in the field.</p>
+      <p>Dramatically reduce the cost of field maintenance.</p>
+      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-modal">Contact us</a></p>
     </div>
   </div>
 </section>
@@ -615,8 +895,7 @@
   <div class="row">
     <div class="col-6">
       <h4>Bandwidth matters for billions of devices</h4>
-      <p class='p-heading--five'>Delta updates reduce traffic to the edge.</p>
-      <p>Shipping and updating apps adds up to a lot of traffic. Control costs with automatic compression and delta composition.</p>
+      <p class='p-heading--five'>Updates add up to a lot of traffic. Control costs with automatic compression and delta composition.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -650,9 +929,9 @@
       }}
     </div>
     <div class="col-6">
-      <h4>Off-the-shelf board support by Canonical</h4>
-      <p class='p-heading--five'>First class enablement for widely used boards and silicon gets you straight to market.</p>
-      <p>Low-level development is a distraction in the race to market. Focus all your effort on the experience that differentiates. Pre-certified chipsets keep you out of the weeds.</p>
+      <h4>Ubuntu board support by Canonical</h4>
+      <p class='p-heading--five'>First class enablement for widely used boards and silicon</p>
+      <p>Low-level development is a distraction in the race to market. Focus all your effort on differentiation, not Linux. Pre-certified boards keep you out of the weeds.</p>
       <p><a href="/download/iot#core">See our supported boards&nbsp;&rsaquo;</a></p>
     </div>
   </div>
@@ -701,9 +980,8 @@
     </div>
     <div class="col-6">
       <h4>Choice of ARM or x86</h4>
-      <p class='p-heading--five'>Ubuntu runs the same. Your apps build the same.</p>
-      <p>We support both 32-bit and 64-bit apps on both architectures. If it doesn't compile and run the same, we'll fix it. Open up your supply chain.</p>
-      <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-modal">Contact us</a></p>
+      <p class='p-heading--five'>Unified application build experience</p>
+      <p>We support both 32-bit and 64-bit apps on both architectures. If it doesn’t compile and run the same, we’ll fix it.</p>
     </div>
   </div>
 </section>
@@ -713,7 +991,7 @@
 <!-- whitepapers and case studies -->
 <div class="p-strip is-deep">
   <div class="u-fixed-width">
-    <h3>See how customers succeeded with Ubuntu Core</h3>
+    <h3 class="u-sv3">Learn more about Ubuntu Core</h3>
   </div>
   <div class="row p-divider">
     <div class="col-4 p-divider__block" id="ubuntu-com_core_left">
@@ -722,7 +1000,7 @@
         <div class='p-heading-icon__header'>
           {{
             image(
-              url="https://assets.ubuntu.com/v1/f6d6f78b-Case+study.svg",
+              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
               alt="",
               height="28",
               width="32",
@@ -731,10 +1009,31 @@
               attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
             ) | safe
           }}
-          <h4 class='p-heading-icon__title'>Case study</h4>
+          <h4 class='p-heading-icon__title'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a class='p-link--external' href='https://pages.ubuntu.com/CS_IMS_Evolve.html' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - left', 'eventLabel' : 'Case study - IMS Evolve ', 'eventValue' : '1' });'>IMS Evolve adopts Ubuntu Core to provide IoT business intelligence</a></h3>
+      <h3 class='p-heading--four'><a href='/blog/bosch-rexroth-adopts-ubuntu-core-and-snaps-for-app-based-ctrlx-automation-platform' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - left', 'eventLabel' : 'Whitepaper - Embedded Linux ', 'eventValue' : '1' });'>Embedded Linux: make or buy?&nbsp;&rsaquo;</a></h3>
+      <!-- rtp section left end -->
+    </div>
+    <div class="col-4 p-divider__block" id="ubuntu-com_core_left">
+      <!-- rtp section left start -->
+      <div class='p-heading-icon--muted'>
+        <div class='p-heading-icon__header'>
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
+              alt="",
+              height="28",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class='p-heading-icon__title'>Whitepaper</h4>
+        </div>
+      </div>
+      <h3 class='p-heading--four'><a href='/engage/ubuntu-core-security-audit' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Independent security audit', 'eventAction' : 'core - left', 'eventLabel' : 'Whitepaper - IMS Evolve ', 'eventValue' : '1' });'>An independent security audit of Ubuntu Core&nbsp;&rsaquo;</a></h3>
       <!-- rtp section left end -->
     </div>
     <div class="col-4 p-divider__block" id="ubuntu-com_iot-core_center">
@@ -758,38 +1057,88 @@
       <h3 class='p-heading--four'><a href='engage/ubuntu-core-and-kura' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Whitepaper - Ubuntu Core and Kura - a framework for IoT gateways', 'eventValue' : '1' });'>Ubuntu Core and Kura &mdash; a framework for IoT gateways&nbsp;&rsaquo;</a></h3>
       <!-- rtp section center end -->
     </div>
-    <div class="col-4 p-divider__block" id="ubuntu-com_iot-robotics_right">
-      <!-- rtp section right start -->
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block" id="ubuntu-com_core_left">
+      <!-- rtp section left start -->
       <div class='p-heading-icon--muted'>
         <div class='p-heading-icon__header'>
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/f6d6f78b-Case+study.svg",
-              alt="",
-              height="28",
-              width="32",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+          {{ image (
+            url="https://assets.ubuntu.com/v1/3769b4a7-webinar-icon.svg",
+            alt="",
+            width="88",
+            height="72",
+            hi_def=True,
+            loading="lazy"
             ) | safe
           }}
-          <h4 class='p-heading-icon__title'>Case study</h4>
+          <h4 class='p-heading-icon__title'>Webinar</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='/engage/fingbox-case-study' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - right', 'eventLabel' : 'Case study - Fing snaps up 30,000 customers', 'eventValue' : '1' });'>Fing snaps up 30,000 customers with a secure, future-proof device&nbsp;&rsaquo;</a></h3>
-      <!-- rtp section right end -->
+      <h3 class='p-heading--four'><a href='/engage/ubuntu-core-20-webinar' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - left', 'eventLabel' : 'Webinar - Introuction to Ubuntu Core 20 ', 'eventValue' : '1' });'>Introduction to Ubuntu Core 20&nbsp;&rsaquo;</a></h3>
+      <!-- rtp section left end -->
+    </div>
+    <div class="col-4 p-divider__block" id="ubuntu-com_core_left">
+      <!-- rtp section left start -->
+      <div class='p-heading-icon--muted'>
+        <div class='p-heading-icon__header'>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/3769b4a7-webinar-icon.svg",
+            alt="",
+            width="88",
+            height="72",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+          <h4 class='p-heading-icon__title'>Webinar</h4>
+        </div>
+      </div>
+      <h3 class='p-heading--four'><a class="p-link--external" href='https://www.brighttalk.com/webcast/6793/402503/ubuntu-core-a-cybersecurity-analysis' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Independent security audit', 'eventAction' : 'core - left', 'eventLabel' : 'Webinar - a cybersecurity analysis', 'eventValue' : '1' });'>Ubuntu Core: a cybersecurity analysis</a></h3>
+      <!-- rtp section left end -->
+    </div>
+    <div class="col-4 p-divider__block" id="ubuntu-com_iot-core_center">
+      <!-- rtp section center start -->
+      <div class='p-heading-icon--muted'>
+        <div class='p-heading-icon__header'>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/3769b4a7-webinar-icon.svg",
+            alt="",
+            width="88",
+            height="72",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+          <h4 class='p-heading-icon__title'>Webinar</h4>
+        </div>
+      </div>
+      <h3 class='p-heading--four'><a class="p-link--external" href='https://www.brighttalk.com/webcast/6793/373030/migrating-to-ubuntu-core' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Webinar - Migrating to Ubuntu Core', 'eventValue' : '1' });'>Migrating to Ubuntu Core</a></h3>
+      <!-- rtp section center end -->
     </div>
   </div>
 </div>
 
-{% include "shared/pricing/_smart-start-prices.html" %}
+<section class='p-strip--image p-banner-core is-deep'>
+  <div class="row">
+    <h2>Get to market quickly with SMART START</h2>
+    <p>
+      <a class="p-button--positive" href="/smartstart">Launch your smart product</a>
+    </p>
+  </div>
+</section>
 
 <section class="p-strip">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <h4>Download Ubuntu Core</h4>
-      <p>Try Ubuntu Core 18 on one of a popular development board</p>
-      <p><a class="p-button--neutral p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/">Download and install Ubuntu Core 18</a></p>
+      <p>Try Ubuntu Core 20 on one of a popular development board</p>
+      <p><a class="p-button--neutral p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/">Download and install Ubuntu Core 20</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h4>Make your own Ubuntu Core device</h4>
