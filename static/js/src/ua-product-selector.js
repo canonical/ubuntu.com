@@ -207,9 +207,9 @@ function productSelector() {
 
   function disableSteps(steps) {
     steps.forEach((step) => {
-      const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
+      const wrappers = form.querySelectorAll(`${stepClassPrefix}${step}`);
 
-      if (wrapper) {
+      wrappers.forEach((wrapper) => {
         const tabbableItems = wrapper.querySelectorAll(
           "input, .p-tabs__link, button, a"
         );
@@ -218,15 +218,15 @@ function productSelector() {
         tabbableItems.forEach((item) => {
           item.setAttribute("tabindex", "-1");
         });
-      }
+      });
     });
   }
 
   function enableSteps(steps) {
     steps.forEach((step) => {
-      const wrapper = form.querySelector(`${stepClassPrefix}${step}`);
+      const wrappers = form.querySelectorAll(`${stepClassPrefix}${step}`);
 
-      if (wrapper) {
+      wrappers.forEach((wrapper) => {
         const tabbableItems = wrapper.querySelectorAll(
           "input, .p-tabs__link, button, a"
         );
@@ -235,7 +235,7 @@ function productSelector() {
         tabbableItems.forEach((item) => {
           item.removeAttribute("tabindex");
         });
-      }
+      });
     });
   }
 
@@ -344,6 +344,7 @@ function productSelector() {
         } else {
           quantityTypeEl.innerHTML = `How many ${inputElement.dataset.productName}s?`;
           state.set(inputElement.name, [inputElement.value]);
+          focusQuantityField();
         }
 
         break;
@@ -439,6 +440,11 @@ function productSelector() {
     });
 
     input.closest(".p-card--radio").classList.add("is-selected");
+  }
+
+  function focusQuantityField() {
+    const quantityField = document.querySelector(".js-product-quantity");
+    quantityField.focus();
   }
 
   function setVersionTabs() {

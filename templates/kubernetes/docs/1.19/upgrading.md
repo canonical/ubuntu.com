@@ -44,7 +44,7 @@ You should also make sure:
 -   Your cluster is running normally
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
--   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.19 which may impact your workloads.
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.19 which may impact your workloads. 
 
 ## Infrastructure updates
 
@@ -156,12 +156,28 @@ Knowing the path to the snapshot file from the output of the above command, you 
 download a local copy:
 `bash juju scp etcd/0:/home/ubuntu/etcd-snapshots/<filename>.tar.gz .`
 
-#### 3. Upgrade
+#### 3. Upgrade the charm
 
-You can now upgrade **etcd**:
+You can now upgrade the **etcd** charm:
 
 ```bash
 juju upgrade-charm etcd
+```
+
+#### 4. Upgrade etcd
+
+To upgrade **etcd** itself, you will need to set the **etcd** charm's channel
+config.
+
+To determine the correct channel, go to the
+[Supported Versions][supported-versions] page and check the relevant
+**Charmed Kubernetes** bundle. Within the bundle, you should see which channel
+the **etcd** charm is configured to use.
+
+Once you know the correct channel, set the **etcd** charm's channel config:
+
+```bash
+juju config etcd channel=3.4/stable
 ```
 
 ### Upgrading additional components
@@ -252,7 +268,7 @@ juju scp kubernetes-master/0:config ~/.kube/config
 Verify secrets have been created for expected users:
 
 ```bash
-juju run --unit kubernetes-master/0 'kubectl --kubeconfig /root/.kube/config get secrets'
+juju run --unit kubernetes-master/0 'kubectl --kubeconfig /root/.kube/config get secrets -n kube-system --field-selector type=juju.is/token-auth'
 ```
 
 Minimally, secrets for the following users should be listed:
@@ -468,6 +484,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 [snap-channels]: https://docs.snapcraft.io/reference/channels
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/docs/validation
+[supported-versions]: /kubernetes/docs/supported-versions
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

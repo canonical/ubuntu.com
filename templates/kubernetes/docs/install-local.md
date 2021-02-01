@@ -140,14 +140,6 @@ the default components and configuration. If you wish to customise this install
 (which may be helpful if you are close to the system requirements), please see
 the [main install page][install].
 
-In order to avoid potential IP masquerading issues with kube-proxy on LXD, we
-also recommend configuring kube-proxy to use its userspace proxy mode:
-
-```
-juju config kubernetes-master proxy-extra-args="proxy-mode=userspace"
-juju config kubernetes-worker proxy-extra-args="proxy-mode=userspace"
-```
-
 ## Next Steps
 
 Now you have a cluster up and running, check out the

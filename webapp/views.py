@@ -69,12 +69,12 @@ def _build_mirror_list():
     return mirror_list
 
 
-def download_harness(category):
+def download_server_steps():
     templates = {
-        "step1": f"download/{category}/step1.html",
-        "step2": f"download/{category}/step2.html",
-        "choose": f"download/{category}/choose.html",
-        "download": f"download/{category}/download.html",
+        "step1": "download/server/step1.html",
+        "step2": "download/server/step2.html",
+        "choose": "download/server/choose.html",
+        "download": "download/server/download.html",
     }
     context = {}
     step = "step1"
@@ -114,14 +114,14 @@ def download_thank_you(category):
     )
 
 
-def appliance_install(app, device):
+def appliance_install(appliance, device):
     with open("appliances.yaml") as appliances:
         appliances = yaml.load(appliances, Loader=yaml.FullLoader)
 
     return flask.render_template(
-        f"appliance/{app}/{device}.html",
+        f"appliance/{appliance}/{device}.html",
         http_host=flask.request.host,
-        appliance=appliances["appliances"][app],
+        appliance=appliances["appliances"][appliance],
     )
 
 

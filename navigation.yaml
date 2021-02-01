@@ -997,19 +997,21 @@ core:
     - title: Docs
       path: /core/docs
       persist: True
-      hidden: True
+
+    - title: Features
+      path: /core/features
 
       children:
-        - title: Bluetooth management
-          path: /core/docs/bluetooth-management
-          persist: True
-        - title: Network management
-          path: /core/docs/network-management-services
-          persist: True
-        - title: Audio management
-          path: /core/docs/audio-management
-          persist: True
+        - title: Secure boot
+          path: /core/features/secure-boot
+        - title: Full disk encryption
+          path: /core/features/full-disk-encryption
+        - title: Recovery
+          path: /core/features/recovery
 
+
+    - title: Success stories
+      path: /core/stories
 
     - smartstart:
       title: Consulting
@@ -1037,8 +1039,6 @@ core:
         - title: Thank you
           path: /core/thank-you
           hidden: True
-
-
 
 iot:
   title: IoT
@@ -1397,7 +1397,6 @@ security:
     - title: Thank you
       path: /security/thank-you
       hidden: True
-
 
 licensing:
   title: Licensing

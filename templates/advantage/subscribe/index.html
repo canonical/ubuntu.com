@@ -2,6 +2,7 @@
 
 {% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
 {% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1K65n3NpZCh7EWDXKLhG31seGJ2jKbW6lqw3BwV2mlnU/edit#heading=h.vlvlt0gikzjy{% endblock meta_copydoc %}
 
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
@@ -120,16 +121,16 @@
           </div>
         </div>
 
-        <div class="col-12">
+        <div id="aws" class="col-12 u-hide js-public-cloud-info" style="background-color: #f7f7f7; margin-bottom: 1.5rem; padding: 1.5rem">
+          <span>You can buy <a href="https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro" class="p-link--external">Ubuntu Pro on the AWS Marketplace</a> at an hourly, per-machine rate, with all UA software features included. If you need tech support as well, <a href="/support/contact-us">contact us</a>.</span>
+        </div>
+
+        <div id="azure" class="col-12 u-hide js-public-cloud-info" style="background-color: #f7f7f7; margin-bottom: 1.5rem; padding: 1.5rem">
+          <span>You can buy <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1" class="p-link--external">Ubuntu Pro on the Azure Marketplace</a> at an hourly, per-machine rate, with all UA software features included. If you need tech support as well, <a href="/support/contact-us">contact us</a>.</span>
+        </div>
+
+        <div class="col-12 js-shop-step--quantity">
           <p>If you have more than one kind, you can add the others later.</p>
-        </div>
-
-        <div id="aws" class="col-12 u-hide js-public-cloud-info" style="background-color: #f7f7f7; padding: 1.5rem;">
-          <span>You can buy <a href="https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro" class="p-link--external">Ubuntu Pro on the AWS Marketplace</a> at an hourly, per-machine rate, with all UA software features included.</span>
-        </div>
-
-        <div id="azure" class="col-12 u-hide js-public-cloud-info" style="background-color: #f7f7f7; padding: 1.5rem;">
-          <span>You can buy <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1" class="p-link--external">Ubuntu Pro on the Azure Marketplace</a> at an hourly, per-machine rate, with all UA software features included.</span>
         </div>
       </div>
     </section>
@@ -141,7 +142,7 @@
         </div>
 
         <div class="col-2">
-        <input autocomplete="off" class="js-product-input" type="number" name="quantity" placeholder="0" min="1" max="1000" step="1" data-stage="form" onwheel="this.blur()" pattern="\d+" />
+        <input autocomplete="off" class="js-product-input js-product-quantity shop-quantity-field" type="number" name="quantity" placeholder="0" min="1" max="1000" step="1" data-stage="form" onwheel="this.blur()" pattern="\d+" style="scroll-margin-bottom: 2rem;" />
         </div>
       </div>
     </section>

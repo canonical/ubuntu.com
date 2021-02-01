@@ -1,12 +1,6 @@
 {% extends "security/cve/base_cve.html" %}
 {% block title %}{{ cve.id }}{% endblock %}
 
-{% block head_extra %}
-  {% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
-    <meta name="robots" content="noindex">
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 
 <nav class="p-navigation--secondary">
@@ -36,10 +30,10 @@
 </nav>
 
 {% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
-<section class="p-strip--light is-bordered--top">
-  {% else %}
+  <section class="p-strip--light is-bordered--top">
+{% else %}
   <section class="p-strip">
-    {% endif %}
+{% endif %}
 
     <div class="row">
       <div class="col-9">
@@ -47,6 +41,10 @@
 
         {% if cve.published %}
         <p>Published: <strong>{{ cve.published.strftime("%d %B %Y") }}</strong></p>
+        {% endif %}
+
+        {% if cve.status == 'not-in-ubuntu' %}
+          <p>This CVE does not apply to software in Ubuntu archives.</p>
         {% endif %}
 
         {% if cve.description %}
@@ -215,7 +213,12 @@
                           Fixed by
                           <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}" target="_blank">{{ patch.content.fixed }}</a>
                         {% elif patch.type == "link" %}
-                          {{ patch.content.prefix }}: <a href="{{ patch.content.suffix }}" target="_blank">{{ patch.content.suffix }}</a>
+                          {{ patch.content.prefix }}:
+                          {% if cve._clean_url(patch.content.suffix) %}
+                            <a href="{{ cve._clean_url(patch.content.suffix) }}" target="_blank">{{ patch.content.suffix }}</a>
+                          {% else %}
+                            {{ patch.content.suffix }}
+                          {% endif %}
                         {% endif %}
                         <br>
                       {% endfor %}
@@ -281,7 +284,9 @@
         <ul>
           {% if cve.references %}
             {% for reference in cve.references %}
-            <li><a href="{{ reference }}">{{ reference }}</a></li>
+              {% if cve._clean_url(reference) %}
+                <li><a href="{{ cve._clean_url(reference) }}">{{ reference }}</a></li>
+              {% endif %}
             {% endfor %}
           {% else %}
             <li>
@@ -306,12 +311,14 @@
         </ul>
 
         {% if cve.bugs %}
-        <h2>Bugs</h2>
-        <ul>
-          {% for bug in cve.bugs %}
-          <li><a href="{{ bug }}">{{ bug }}</a></li>
-          {% endfor %}
-        </ul>
+          <h2>Bugs</h2>
+          <ul>
+            {% for bug in cve.bugs %}
+              {% if cve._clean_url(bug) %}
+                <li><a href="{{ cve._clean_url(bug) }}">{{ bug }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
         {% endif %}
       </div>
     </div>
