@@ -39,11 +39,7 @@ env:
       name: launchpad-imagebuild
 
   - name: BADGR_URL
-<<<<<<< HEAD
     value: https://api.eu.badgr.io
-=======
-    value: https://eu.api.badgr.com
->>>>>>> Get attempts for each course from EDX to work out the course status
 
   - name: BAGDR_USER
     secretKeyRef:
@@ -243,7 +239,6 @@ production:
       add_header 'Access-Control-Allow-Origin' '*';
     }
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
-
   nginxServerSnippet: |
     location ^~ /blog/wp-json/wp/v2/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
@@ -251,7 +246,6 @@ production:
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
-
 # Overrides for staging
 staging:
   replicas: 3
@@ -377,7 +371,6 @@ staging:
     }
     more_set_headers "X-Robots-Tag: noindex";
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
-
   nginxServerSnippet: |
     location ^~ /blog/wp-json/wp/v2/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
