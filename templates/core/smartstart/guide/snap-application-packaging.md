@@ -1,7 +1,7 @@
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
-  nav: "smartstart/shared/_side-navigation.md"
+  nav: "core/smartstart/shared/_side-navigation.md"
 context:
   title: "Snap application packaging"
   description: Canonical offers to package your IoT applications in snap containers within the scope of SMART START.
@@ -71,11 +71,11 @@ When released, snaps are published to a [track](https://snapcraft.io/docs/channe
 - [Smart Start training](/smart-start/guide/training-workshops)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smartstart/guide/hardware-setup">
+  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/hardware-setup">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Hardware Setup</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smartstart/guide/snap-publishing">
+  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/snap-publishing">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Snap publishing</span>
   </a>
