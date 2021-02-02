@@ -137,11 +137,11 @@
                   {% if release.codename in statuses %}
                     {% if loop.index == 1 %}
                       <td rowspan="{{ releases | length }}">
-                        <a href="/security/cve?q=&package={{ package_name }}" target="_blank" rel="noopener noreferrer">{{ package_name }}</a><br>
+                        <a href="/security/cve?q=&package={{ package_name }}">{{ package_name }}</a><br>
                         <small>
-                        <a href="https://launchpad.net/distros/ubuntu/+source/{{ package_name }}" target="_blank" rel="noopener noreferrer">Launchpad</a>,
-                        <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package_name }}" target="_blank" rel="noopener noreferrer">Ubuntu</a>,
-                        <a href="https://tracker.debian.org/{{ package_name }}" target="_blank" rel="noopener noreferrer">Debian</a>
+                        <a href="https://launchpad.net/distros/ubuntu/+source/{{ package_name }}">Launchpad</a>,
+                        <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package_name }}">Ubuntu</a>,
+                        <a href="https://tracker.debian.org/{{ package_name }}">Debian</a>
                         </small>
                       </td>
                     {% endif %}
@@ -188,10 +188,10 @@
                     <br>
                     <small>
                       {% if statuses[release.codename].pocket == "esm-infra" %}
-                        Requires <a href="/advantage" target="_blank" rel="noopener noreferrer">Available with UA Infra or UA Apps</a>
+                        Requires <a href="/advantage">Available with UA Infra or UA Apps</a>
                       {% endif %}
                       {% if statuses[release.codename].pocket == "esm-apps" %}
-                        Requires <a href="/advantage" target="_blank" rel="noopener noreferrer">Available with UA Apps</a>
+                        Requires <a href="/advantage">Available with UA Apps</a>
                       {% endif %}
                     </small>
                     </td>
@@ -209,13 +209,13 @@
                           {{ patch.content }}
                         {% elif patch.type == "break-fix" %}
                           Introduced by
-                          <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}" target="_blank" rel="noopener noreferrer">{{ patch.content.introduced }}</a><br>
+                          <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced }}</a><br>
                           Fixed by
-                          <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}" target="_blank" rel="noopener noreferrer">{{ patch.content.fixed }}</a>
+                          <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed }}</a>
                         {% elif patch.type == "link" %}
                           {{ patch.content.prefix }}:
                           {% if cve._clean_url(patch.content.suffix) %}
-                            <a href="{{ cve._clean_url(patch.content.suffix) }}" target="_blank" rel="noopener noreferrer">{{ patch.content.suffix }}</a>
+                            <a href="{{ cve._clean_url(patch.content.suffix) }}">{{ patch.content.suffix }}</a>
                           {% else %}
                             {{ patch.content.suffix }}
                           {% endif %}
