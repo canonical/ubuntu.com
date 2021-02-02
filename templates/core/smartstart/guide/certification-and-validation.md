@@ -1,7 +1,7 @@
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
-  nav: "smartstart/shared/_side-navigation.md"
+  nav: "core/smartstart/shared/_side-navigation.md"
 context:
   title: "Device certification"
   description: Device certification keeps devices secure with security fixes and bug fixes over the life of the certified release (and the next LTS).
@@ -25,7 +25,7 @@ The scope of testing under device validation is low-level software testing, rath
 - [Ubuntu Certified IoT devices](http://certification.ubuntu.com/iot)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smartstart/guide/device-enablement">
+  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/device-enablement">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Device enablement</span>
   </a>
