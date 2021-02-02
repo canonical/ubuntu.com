@@ -1,7 +1,7 @@
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
-  nav: "smartstart/shared/_side-navigation.md"
+  nav: "core/smartstart/shared/_side-navigation.md"
 context:
   title: "Training workshops and consulting"
   description: Canonical transfers knowledge through training and consulting within the scope of SMART START Training workshops empower OEMs to create IoT solutions with Ubuntu Core.
@@ -37,11 +37,11 @@ What's your IoT strategy? Whether you already ship Linux-based devices or are ju
 - [Webinar: Technical introduction to Ubuntu Core](https://www.brighttalk.com/webcast/6793/248379/technical-introduction-to-ubuntu-core)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/smartstart/guide/technical-support">
+  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/technical-support">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Technical support</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/smartstart/guide/advanced-options">
+  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/advanced-options">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Advanced options</span>
   </a>
