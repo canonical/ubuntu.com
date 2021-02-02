@@ -1,3 +1,4 @@
+import copy
 import os
 import flask
 import talisker.requests
@@ -85,7 +86,7 @@ def cube_microcerts():
             certified_badge["image"] = assertion["image"]
             certified_badge["share_url"] = assertion["openBadgeId"]
 
-    courses = COURSES.copy()
+    courses = copy.deepcopy(COURSES)
     for course in courses:
         attempts = []
 
@@ -129,7 +130,6 @@ def cube_microcerts():
         )
     )
     response.cache_control.private = True
-
     return response
 
 
