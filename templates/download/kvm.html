@@ -15,7 +15,7 @@
       <div class="u-equal-height row p-divider">
         <div class="col-6 p-divider__block">
           <h2>Install Ubuntu Core</h2>
-          <p>We will walk you through the steps of installing Ubuntu Core 18 on your Linux desktop in a virtual machine.</p>
+          <p>We will walk you through the steps of installing Ubuntu Core 20 on your Linux desktop in a virtual machine.</p>
         </div>
         <div class="col-6 p-divider__block">
           <h3>Minimum requirements</h3>
@@ -41,11 +41,11 @@
         </h3>
         <div class="p-stepped-list__content">
           <ul class="u-no-margin--left">
-		  <li>Download the <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/ubuntu-core-18-amd64.img.xz">Ubuntu Core 18 image for amd64</a>.</li>
-            <li>You can verify the integrity of the files using the <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/18/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
+		  <li>Download the <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/ubuntu-core-20-amd64.img.xz">Ubuntu Core 20 image for amd64</a>.</li>
+            <li>You can verify the integrity of the files using the <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
             <li>
               <p>Uncompress the image with the following command:</p>
-              <pre><code>unxz ubuntu-core-18-amd64.img.xz</code></pre>
+              <pre><code>unxz ubuntu-core-20-amd64.img.xz</code></pre>
             </li>
           </ul>
         </div>
@@ -81,7 +81,7 @@ KVM acceleration can be used</code></pre>
         </h3>
         <div class="p-stepped-list__content">
           <p>You can now launch a virtual machine with KVM, using the following command:</p>
-          <pre><code>kvm -smp 2 -m 1500 -netdev user,id=mynet0,hostfwd=tcp::8022-:22,hostfwd=tcp::8090-:80 -device virtio-net-pci,netdev=mynet0 -vga qxl -drive file=ubuntu-core-18-amd64.img,format=raw</code></pre>
+          <pre><code>kvm -smp 2 -m 1500 -netdev user,id=mynet0,hostfwd=tcp::8022-:22,hostfwd=tcp::8090-:80 -device virtio-net-pci,netdev=mynet0 -vga qxl -drive file=ubuntu-core-20-amd64.img,format=raw</code></pre>
           <p>
             Note: this command sets up port redirections:
             <ul>
