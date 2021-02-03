@@ -749,8 +749,8 @@ def advantage_shop_view():
 
                 return flask.render_template(
                     "advantage/subscribe/index.html",
-                    account=account,
-                    previous_purchase_id=previous_purchase_id,
+                    account=None,
+                    previous_purchase_id=None,
                     product_listings=[],
                     stripe_publishable_key=stripe_publishable_key,
                     is_test_backend=is_test_backend,
