@@ -24,6 +24,13 @@ function buildInfoRow(item) {
   return `<div class="row u-no-padding u-sv1 ${item.extraClasses || ""}">
     <div class="col-3 u-text-light">${item.label}</div>
     <div class="col-9 js-info-value">${item.value}</div>
+    ${
+      item.info
+        ? `<div class="col-start-large-4 col-9 js-info-supplemental">
+            <small>${item.info}</small>
+          </div>`
+        : ""
+    }
   </div>`;
 }
 
@@ -302,10 +309,18 @@ export function setOrderTotals(country, vatApplicable, purchasePreview, modal) {
     });
   }
 
-  totalsContainer.innerHTML += buildInfoRow({
-    label: "Total: ",
-    value: `<b>${totalValue}</b>`,
-  });
+  if (taxValue === "...") {
+    totalsContainer.innerHTML += buildInfoRow({
+      label: "Total: ",
+      value: `<b>${totalValue}</b>`,
+      info: "Excluding VAT",
+    });
+  } else {
+    totalsContainer.innerHTML += buildInfoRow({
+      label: "Total: ",
+      value: `<b>${totalValue}</b>`,
+    });
+  }
 
   totalsContainer.classList.remove("u-hide");
 }
