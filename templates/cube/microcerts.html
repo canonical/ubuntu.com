@@ -305,7 +305,11 @@
             </div>
           </td>
           {% elif module.status == "failed" %}
-          <td></td>
+          <td>
+            <div class="p-table--cube__contents u-align--right">
+              <a class="p-button--neutral u-no-margin--right" href="https://support.canonical.com">Request retry</a>
+            </div>
+          </td>          
           {% elif module.status == "not-enrolled" %}
           <td>
             <div class="p-table--cube__contents u-align--right">
