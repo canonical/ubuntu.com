@@ -293,7 +293,11 @@
             </div>
           </td>
           {% elif module.status == "in-progress" %}
-          <td></td>
+          <td>
+            <div class="p-table--cube__contents u-align--right">
+              <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.take_url }}">Resume</a>
+            </div>
+          </td>
           {% endif %}
         </tr>
       {% endfor %}
