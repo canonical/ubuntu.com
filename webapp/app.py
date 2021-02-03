@@ -593,6 +593,12 @@ def cache_headers(response):
     if flask.request.path in ["/core/build", "/advantage"]:
         response.cache_control.private = True
 
+    if flask.request.path in ["/advantage/subscribe"]:
+        response.headers[
+            "Cache-Control"
+        ] = "no-cache, no-store, must-revalidate"
+        response.headers["Pragma"] = "no-cache"
+
     if flask.request.path in ["/", "/blog"]:
         response.headers[
             "Cache-Control"

@@ -173,7 +173,7 @@ function attachCTAevents() {
 
       checkoutEvent(analyticsFriendlyProducts(), 1);
       setOrderInformation(cartItems, modal);
-      checkVAT();
+      checkVATdebounce();
     }
 
     if (isRenewalCTA || isShopCTA) {
@@ -246,7 +246,7 @@ function attachFormEvents() {
 
   countryDropdown.addEventListener("change", () => {
     handleCountryInput();
-    checkVAT();
+    checkVATdebounce();
   });
 
   // these elements aren't rendered on the renewal form
@@ -343,9 +343,7 @@ function checkVAT() {
   applyTotals();
 }
 
-const checkVATdebounce = debounce(() => {
-  checkVAT();
-}, 500);
+const checkVATdebounce = debounce(checkVAT, 500);
 
 function applyTotals() {
   // Clear any existing totals
@@ -462,7 +460,6 @@ function setFormElements() {
   if (address) {
     form.elements["Country"].value = address.country;
     handleCountryInput();
-    checkVAT();
     form.elements["address"].value = address.line1;
     form.elements["city"].value = address.city;
     form.elements["postal_code"].value = address.postal_code;
