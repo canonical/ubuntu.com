@@ -76,7 +76,9 @@ class TestCube(VCRTestCase):
                 )
             )
             self.assertTrue(
-                module["training_url"].endswith(f"{module['id']}/course")
+                module["prepare_url"].endswith(
+                    "/course-v1:ubuntu+cubereview+coursecommandsdev/course/"
+                )
             )
 
         self.assertEqual(response.status_code, 200)

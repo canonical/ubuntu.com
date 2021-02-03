@@ -17,6 +17,8 @@ COURSES = yaml.load(
     Path("webapp/cube/content/cube.yaml").read_text(), Loader=yaml.Loader
 )
 
+PREPARE_COURSE_ID = "course-v1:ubuntu+cubereview+coursecommandsdev"
+
 BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
 BADGR_CERTIFIED_BADGE_CLASS = "x9kzmcNhSSyqYhZcQGz0qg"
 
@@ -113,9 +115,10 @@ def cube_microcerts():
             "/courseware/2020/start/?child=first"
         )
 
-        course[
-            "training_url"
-        ] = f"{edx_api.base_url}/courses/{course['id']}/course"
+        course["prepare_url"] = (
+            "https://qa.cube.ubuntu.com/courses"
+            f"/{PREPARE_COURSE_ID}/course/"
+        )
 
     response = flask.make_response(
         flask.render_template(
@@ -125,7 +128,8 @@ def cube_microcerts():
                 "certified_badge": certified_badge,
                 "modules": courses,
                 "passed_courses": passed_courses,
-                "has_enrollment": len(enrollments) > 0,
+                "has_enrollments": len(enrollments) > 0,
+                "has_prepare_material": PREPARE_COURSE_ID in enrollments,
             },
         )
     )
