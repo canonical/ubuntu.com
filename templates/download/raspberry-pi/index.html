@@ -1,6 +1,6 @@
 {% extends "download/_base_download.html" %}
 
-{% block title %}Install Ubuntu on a Raspberry Pi 2, 3 or 4{% endblock %}}
+{% block title %}Install Ubuntu on a Raspberry Pi{% endblock %}}
 
 {% block meta_image %}https://assets.ubuntu.com/v1/f60f86c4-Embedded+social+media+banner+.jpg{% endblock meta_image %}
 
@@ -12,7 +12,7 @@
 <section class="p-strip--suru-bottomed">
   <div class="row u-vertically-center">
     <div class="col-7">
-      <h1>Install Ubuntu on a <br class="u-hide--small">Raspberry Pi 2, 3 or 4</h1>
+      <h1>Install Ubuntu <br class="u-hide--small">on a Raspberry Pi</h1>
       <p>Running Ubuntu on your Raspberry Pi is easy. Just pick the OS image you want, flash it onto a microSD card, load it onto your Pi and away you go.</p>
       <p>First time installing Ubuntu on Raspberry Pi?</p>
       <p>
@@ -22,32 +22,29 @@
     <div class="col-5 u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/016b770d-raspberry+pi+horizontal.svg",
-          alt="",
-          height="184",
-          width="148",
-          hi_def=True,
-          loading="auto"
+        url="https://assets.ubuntu.com/v1/016b770d-raspberry+pi+horizontal.svg",
+        alt="",
+        height="184",
+        width="148",
+        hi_def=True,
+        loading="auto"
         ) | safe
       }}
     </div>
   </div>
 </section>
-<section class="p-strip u-no-padding--bottom u-hide--small">
+<section class="p-strip u-hide--small">
   <div class="row u-equal-height u-vertically-center">
-    <div class="col-3">
-      <h2 class="u-no-margin--bottom">Download your Ubuntu Pi image</h2>
-    </div>
-    <div class="col-2">
+    <div class="col-start-large-2 col-2">
       <div>
         {{
           image(
-            url="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png",
-            alt="",
-            height="156",
-            width="236",
-            hi_def=True,
-            loading="auto"
+          url="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png",
+          alt="",
+          height="156",
+          width="236",
+          hi_def=True,
+          loading="auto"
           ) | safe
         }}
       </div>
@@ -56,12 +53,12 @@
       <div>
         {{
           image(
-            url="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png",
-            alt="",
-            height="151",
-            width="236",
-            hi_def=True,
-            loading="auto"
+          url="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png",
+          alt="",
+          height="151",
+          width="236",
+          hi_def=True,
+          loading="auto"
           ) | safe
         }}
       </div>
@@ -70,185 +67,155 @@
       <div>
         {{
           image(
-            url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
-            alt="",
-            height="151",
-            width="236",
-            hi_def=True,
-            loading="auto"
+          url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
+          alt="",
+          height="151",
+          width="236",
+          hi_def=True,
+          loading="auto"
           ) | safe
         }}
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-2">
       <div>
         {{
           image(
-            url="https://assets.ubuntu.com/v1/9df28d88-RPI_400_rotated.png",
-            alt="",
-            height="92",
-            width="127",
-            hi_def=True,
-            loading="auto"
+          url="https://assets.ubuntu.com/v1/9df28d88-RPI_400_rotated.png",
+          alt="",
+          height="92",
+          width="127",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </div>
+    </div>
+    <div class="col-2">
+      <div>
+        {{ image (
+          url="https://assets.ubuntu.com/v1/22136bb8-pi-cm4-removebg-preview.png",
+          alt="",
+          width="344",
+          height="222",
+          hi_def=True,
+          loading="auto|lazy"
           ) | safe
         }}
       </div>
     </div>
   </div>
   <div class="row u-vertically-center u-sv3">
-    <div class="col-start-large-4 col-2">
-      <h3 class="p-heading--four u-no-margin--bottom">Raspberry Pi 2</h3>
+    <div class="col-start-large-2 col-2">
+      <p class="u-no-margin--bottom"><strong>Raspberry Pi 2</strong></p>
     </div>
     <div class="col-2">
-      <h3 class="p-heading--four u-no-margin--bottom">Raspberry Pi 3</h3>
+      <p class="u-no-margin--bottom"><strong>Raspberry Pi 3</strong></p>
     </div>
     <div class="col-2">
-      <h3 class="p-heading--four u-no-margin--bottom">Raspberry Pi 4</h3>
+      <p class="u-no-margin--bottom"><strong>Raspberry Pi 4</strong></p>
     </div>
-    <div class="col-3">
-      <h3 class="p-heading--four u-no-margin--bottom">Raspberry Pi 400</h3>
+    <div class="col-2">
+      <p class="u-no-margin--bottom"><strong>Raspberry Pi 400</strong></p>
+    </div>
+    <div class="col-2">
+      <p class="u-no-margin--bottom"><strong>Raspberry Pi CM4</strong></p>
     </div>
   </div>
 </section>
 
-{# lts row #}
-<section class="p-strip--light is-shallow u-no-padding--bottom {% if releases.latest.short_version < releases.lts.short_version %}is-bordered{% endif %}">
-  <div class="row u-equal-height">
-    <div class="col-3">
-      <h4 class="u-no-margin--bottom">Ubuntu Server {{ releases.lts.full_version }} LTS</h4>
-      <p class="p-muted-heading">Recommended</p>
+{# server lts row #}
+<section class="p-strip--light u-no-padding--bottom {% if releases.latest.short_version < releases.lts.short_version %}is-bordered{% endif %}">
+  <div class="row">
+    <h2>Ubuntu Server {{ releases.lts.full_version }} LTS</h2>
+    <p class="p-muted-heading">Recommended server</p>
+  </div>
+  <div class="row u-equal-height p-divider">
+    <div class="col-8 p-divider__block">
       <p>The version of Ubuntu with long term support, until {{ releases.lts.eol }}.</p>
+      <p>Works on:</p>
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Raspberry Pi 2 - <em>32-bit only</em></li>
+        <li class="p-list__item is-ticked">Raspberry Pi 3</li>
+        <li class="p-list__item is-ticked">Raspberry Pi 4</li>
+        <li class="p-list__item is-ticked">Raspberry Pi 400</li>
+        <li class="p-list__item is-ticked">Raspberry Pi CM4</li>
+      </ul>
     </div>
-    <div class="col-2">
-      <p class="u-hide--small u-sv2">&nbsp;</p>
+    <div class="col-4">
       <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-armhf+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 2 32-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          <span class="u-hide--medium u-hide--large">Download </span>32-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 2</span>
-        </a>
-      </p>
-    </div>
-    <div class="col-2">
-      <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 64-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          <span class="u-hide--medium u-hide--large">Download </span>64-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 3</span>
-        </a>
+        <a class="p-button--positive is-wide" href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download 64-bit</a>
       </p>
       <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-armhf+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 32-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          <span class="u-hide--medium u-hide--large">Download </span>32-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 3</span>
-        </a>
-      </p>
-    </div>
-    <div class="col-2">
-      <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          <span class="u-hide--medium u-hide--large">Download </span>64-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 4</span>
-        </a>
-      </p>
-      <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-armhf+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          <span class="u-hide--medium u-hide--large">Download </span>32-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 4</span>
-        </a>
-      </p>
-    </div>
-    <div class="col-2">
-      <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          <span class="u-hide--medium u-hide--large">Download </span>64-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 400</span>
-        </a>
-      </p>
-      <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-armhf+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
-          <span class="u-hide--medium u-hide--large">Download </span>32-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 400</span>
-        </a>
+        <a class="p-button is-wide" href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-armhf+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 32-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download 32-bit</a>
       </p>
     </div>
   </div>
+
+  {# server latest row #}
+
+  {% if releases.latest.short_version > releases.lts.short_version %}
+  <div class="p-strip is-shallow">
+    <div class="u-fixed-width">
+      <hr>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <h2>Ubuntu Server {{ releases.latest.full_version }}</h2>
+  </div>
+  <div class="row u-equal-height p-divider">
+    <div class="col-8 p-divider__block">
+      <p>The latest development release of Ubuntu with nine months of support, until {{ releases.latest.eol }}.</p>
+      <p>Works on:</p>
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Raspberry Pi 2 - <em>32-bit only</em></li>
+        <li class="p-list__item is-ticked">Raspberry Pi 3</li>
+        <li class="p-list__item is-ticked">Raspberry Pi 4</li>
+        <li class="p-list__item is-ticked">Raspberry Pi 400</li>
+        <li class="p-list__item is-ticked">Raspberry Pi CM4</li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <p>
+        <a class="p-button--positive is-wide" href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download 64-bit</a>
+      </p>
+      <p>
+        <a class="p-button is-wide" href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-armhf+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 32-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download 32-bit</a>
+      </p>
+    </div>
+  </div>
+  {% endif %}
 </section>
 
-{# latest row #}
-{% if releases.latest.short_version > releases.lts.short_version %}
-<section class="p-strip is-bordered is-shallow">
-  <div class="row u-equal-height">
-    <div class="col-3">
-      <h4>Ubuntu Desktop {{ releases.latest.full_version }}</h4>
-      <p>The latest development release of Ubuntu with nine months of support, until {{ releases.latest.eol }}.</p>
-    </div>
-    <div class="col-2">
-    </div>
-    <div class="col-2">
-    </div>
-    <div class="col-2">
-      <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit - Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-          <span class="u-hide--medium u-hide--large">Download </span>64-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 400</span>
-        </a>
-      </p>
-    </div>
-    <div class="col-2">
-      <p>
-        <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit - Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-          <span class="u-hide--medium u-hide--large">Download </span>64-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 400</span>
-        </a>
-      </p>
-    </div>
-    <div class="p-strip is-shallow">
-      <div class="u-fixed-width">
-        <hr>
-      </div>
-    </div>
-    <div class="row u-equal-height">
-      <div class="col-3">
-        <h4>Ubuntu Server {{ releases.latest.full_version }}</h4>
-        <p>The latest development release of Ubuntu Server with nine months of support, until {{ releases.latest.eol }}.</p>
-      </div>
-      <div class="col-2">
-        <p class="u-hide--small u-sv2">&nbsp;</p>
-        <p>
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-armhf+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 2 32-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-            <span class="u-hide--medium u-hide--large">Download </span>32-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 2</span>
-          </a>
-        </p>
-      </div>
-      <div class="col-2">
-        <p>
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 64-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-            <span class="u-hide--medium u-hide--large">Download </span>64-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 3</span>
-          </a>
-        </p>
-        <p>
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-armhf+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 3 32-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-            <span class="u-hide--medium u-hide--large">Download </span>32-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 3</span>
-          </a>
-        </p>
-      </div>
-      <div class="col-2">
-        <p>
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-            <span class="u-hide--medium u-hide--large">Download </span>64-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 4</span>
-          </a>
-        </p>
-        <p>
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-armhf+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-            <span class="u-hide--medium u-hide--large">Download </span>32-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 4</span>
-          </a>
-        </p>
-      </div>
-      <div class="col-2">
-        <p>
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 64-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-            <span class="u-hide--medium u-hide--large">Download </span>64-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 400</span>
-          </a>
-        </p>
-        <p>
-          <a href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-armhf+raspi" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 4 32-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
-            <span class="u-hide--medium u-hide--large">Download </span>32-bit<span class="u-hide--medium u-hide--large"> for Raspberry Pi 400</span>
-          </a>
-        </p>
-      </div>
+
+{# desktop latest #}
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Ubuntu Desktop {{ releases.latest.full_version }}</h2>
   </div>
+  <div class="row u-equal-height p-divider">
+    <div class="col-8 p-divider__block">
+      <p>The latest development release of Ubuntu with nine months of support, until {{ releases.latest.eol }}.</p>
+      <p>Works on:</p>
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Raspberry Pi 4</li>
+        <li class="p-list__item is-ticked">Raspberry Pi 400</li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <p>
+        <a
+        class="p-button--positive is-wide"
+        href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi"
+        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+        Download 64-bit
+      </a>
+    </p>
+  </div>
+</div>
 </section>
-{% endif %}
+
 
 <section class="p-strip--light">
   <div class="row">
