@@ -119,7 +119,7 @@ aws:
       path: /aws/pro
     - title: Outposts
       path: /aws/outposts
-    - title: Fips
+    - title: FIPS
       path: /aws/fips
     - title: Contact us
       path: /aws/contact-us
@@ -993,11 +993,11 @@ core:
   children:
     - title: Overview
       path: /core
-
     - title: Docs
       path: /core/docs
       persist: True
-
+    - title: Tutorials
+      path: /tutorials?q=core
     - title: Features
       path: /core/features
 
@@ -1008,7 +1008,8 @@ core:
           path: /core/features/full-disk-encryption
         - title: Recovery
           path: /core/features/recovery
-
+        - title: OTA updates
+          path: /core/features/ota-updates
 
     - title: Success stories
       path: /core/stories

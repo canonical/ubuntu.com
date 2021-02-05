@@ -11,7 +11,6 @@ import {
   postRenewalIDToProcessPayment,
   postPurchaseData,
   postPurchasePreviewData,
-  postRenewalPreviewData,
 } from "./advantage/contracts-api.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
@@ -129,7 +128,6 @@ function attachCTAevents() {
 
     if (isRenewalCTA || isShopCTA) {
       e.preventDefault();
-      modal.classList.add("is-processing");
 
       if (!currentTransaction.accountId) {
         currentTransaction.accountId = data.accountId;
@@ -144,10 +142,14 @@ function attachCTAevents() {
       currentTransaction.type = "renewal";
       currentTransaction.contractId = data.contractId;
       currentTransaction.transactionId = data.renewalId;
+      currentTransaction.total = data.total;
 
       setRenewalInformation(data, modal);
+      applyRenewalTotals();
     } else if (isShopCTA) {
       const cartItems = JSON.parse(data.cart);
+
+      modal.classList.add("is-processing");
       currentTransaction.type = "purchase";
 
       // make sure the product array is empty
@@ -170,13 +172,12 @@ function attachCTAevents() {
       });
 
       checkoutEvent(analyticsFriendlyProducts(), 1);
-
       setOrderInformation(cartItems, modal);
+      checkVATdebounce();
     }
 
     if (isRenewalCTA || isShopCTA) {
       handleCountryInput();
-      checkVAT();
       toggleModal();
       card.focus();
       sendGAEvent("opened payment modal");
@@ -245,7 +246,7 @@ function attachFormEvents() {
 
   countryDropdown.addEventListener("change", () => {
     handleCountryInput();
-    checkVAT();
+    checkVATdebounce();
   });
 
   // these elements aren't rendered on the renewal form
@@ -266,13 +267,15 @@ function attachFormEvents() {
 }
 
 function handleNameFieldRadio() {
-  if (forMyselfRadio.checked) {
-    accountNameField.value = "";
-    accountNameField.disabled = true;
-    accountNameLabel.classList.add("u-text--muted");
-  } else {
-    accountNameField.disabled = false;
-    accountNameLabel.classList.remove("u-text--muted");
+  if (forMyselfRadio) {
+    if (forMyselfRadio.checked) {
+      accountNameField.value = "";
+      accountNameField.disabled = true;
+      accountNameLabel.classList.add("u-text--muted");
+    } else {
+      accountNameField.disabled = false;
+      accountNameLabel.classList.remove("u-text--muted");
+    }
   }
 }
 
@@ -340,15 +343,18 @@ function checkVAT() {
   applyTotals();
 }
 
-const checkVATdebounce = debounce(() => {
-  checkVAT();
-}, 500);
+const checkVATdebounce = debounce(checkVAT, 500);
 
 function applyTotals() {
   // Clear any existing totals
   setOrderTotals(null, vatApplicable, null, modal);
 
-  if (currentTransaction.accountId) {
+  if (currentTransaction.type == "renewal") {
+    applyRenewalTotals();
+  } else if (
+    currentTransaction.accountId &&
+    currentTransaction.type == "purchase"
+  ) {
     applyLoggedInPurchaseTotals();
   } else {
     applyGuestPurchaseTotals();
@@ -356,37 +362,37 @@ function applyTotals() {
 }
 
 function applyLoggedInPurchaseTotals() {
-  const formData = new FormData(form);
-  const country = formData.get("Country");
-  const taxObject = formData.get("tax")
-    ? {
-        value: formData.get("tax"),
-        type: "eu_vat",
-      }
-    : null;
+  if (currentTransaction.type == "purchase") {
+    const formData = new FormData(form);
+    const country = formData.get("Country");
+    const taxObject = formData.get("tax")
+      ? {
+          value: formData.get("tax"),
+          type: "eu_vat",
+        }
+      : null;
 
-  const address = customerInfo.address
-    ? customerInfo.address
-    : { country: country };
+    const address = customerInfo.address
+      ? customerInfo.address
+      : { country: country };
 
-  postCustomerInfoForPurchasePreview(
-    currentTransaction.accountId,
-    address,
-    taxObject
-  )
-    .then((data) => {
-      if (data.code) {
-        // an error was returned, most likely
-        // regarding an invalid VAT number.
-        // We don't need it to block posting the
-        // preview data
-        const errorObject = parseForErrorObject(data);
-        presentError(errorObject);
-      } else {
-        validateFormInput(form.tax, true);
-      }
+    postCustomerInfoForPurchasePreview(
+      currentTransaction.accountId,
+      address,
+      taxObject
+    )
+      .then((data) => {
+        if (data.code) {
+          // an error was returned, most likely
+          // regarding an invalid VAT number.
+          // We don't need it to block posting the
+          // preview data
+          const errorObject = parseForErrorObject(data);
+          presentError(errorObject);
+        } else {
+          validateFormInput(form.tax, true);
+        }
 
-      if (currentTransaction.type === "purchase") {
         postPurchasePreviewData(
           currentTransaction.accountId,
           currentTransaction.products,
@@ -397,18 +403,11 @@ function applyLoggedInPurchaseTotals() {
           modal.classList.remove("is-processing");
           setOrderTotals(country, vatApplicable, purchasePreview, modal);
         });
-      } else if (currentTransaction.type === "renewal") {
-        postRenewalPreviewData(currentTransaction.transactionId).then(
-          (purchasePreview) => {
-            modal.classList.remove("is-processing");
-            setOrderTotals(country, vatApplicable, purchasePreview, modal);
-          }
-        );
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }
 
 function applyGuestPurchaseTotals() {
@@ -423,6 +422,17 @@ function applyGuestPurchaseTotals() {
   // we can't yet make a simulated purchase to
   // get back a VAT amount
   setOrderTotals(null, false, purchaseTotals, modal);
+}
+
+function applyRenewalTotals() {
+  const renewalTotals = {
+    total: currentTransaction.total,
+  };
+
+  // the API doesn't allow simulated purchases
+  // on renewals of older contracts (predating the shop),
+  // so we can't show VAT information.
+  setOrderTotals(null, false, renewalTotals, modal);
 }
 
 function fetchCustomerInfo(accountId) {
@@ -450,7 +460,6 @@ function setFormElements() {
   if (address) {
     form.elements["Country"].value = address.country;
     handleCountryInput();
-    checkVAT();
     form.elements["address"].value = address.line1;
     form.elements["city"].value = address.city;
     form.elements["postal_code"].value = address.postal_code;
