@@ -14,7 +14,7 @@
         <h1>CUBE 2020 complete</h1>
         <p class="p-heading--4">You have completed all 15 microcerts, proving your Ubuntu expertise. You are now a Certified Ubuntu Engineer.</p>
 
-      {% elif has_enrollment %}
+      {% elif has_enrollments %}
 
       <h1>Your road to CUBE</h1>
         {% if passed_courses > 0 %}
@@ -106,7 +106,7 @@
   </div>
 </section>
 
-{% elif has_enrollment %}
+{% elif has_enrollments %}
 
 <section class="p-strip--light is-slanted--top-right is-shallow">
   <div class="row">
@@ -114,7 +114,11 @@
       <h2>Refresh your knowledge</h2>
       <p><strong>Be prepared for every exam</strong></p>
       <p class="u-sv2">Brush up on your Ubuntu skills with preparatory materials that cover every microcert.</p>
-      <a href="https://qa.cube.ubuntu.com/" class="p-button--positive">Prepare</a>
+      {% if has_prepare_material %}
+      <a href="https://qa.cube.ubuntu.com/courses/course-v1:ubuntu+cubereview+coursecommandsdev/course/" class="p-button--positive">Prepare</a>
+      {% else %}
+      <a href="/cube/contact-us" class="p-button--positive cube-access js-invoke-modal">Get preparatory materials</a>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -187,7 +191,7 @@
           <th></th>
           <th>Module</th>
           <th>Topics</th>
-          {% if has_enrollment %}
+          {% if has_enrollments %}
           <th class="p-table__cell--icon-placeholder">Status</th>
           <th class="u-align--right">Action</th>
           {% else %}
@@ -274,12 +278,18 @@
           {% elif module.status == "enrolled" %}
           <td>
             <div class="p-table--cube__contents u-align--right">
-              <a class="p-button--neutral u-no-margin--right" href="{{ module.training_url }}">Prepare</a>
+              {% if has_prepare_material %}
+              <a class="p-button--neutral u-no-margin--right" href="{{ module.prepare_url }}">Prepare</a>
+              {% endif %}
               <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.take_url }}">Take</a>
             </div>
           </td>
           {% elif module.status == "failed" %}
-          <td></td>
+          <td>
+            <div class="p-table--cube__contents u-align--right">
+              <a class="p-button--neutral u-no-margin--right" href="https://support.canonical.com">Request retry</a>
+            </div>
+          </td>          
           {% elif module.status == "not-enrolled" %}
           <td>
             <div class="p-table--cube__contents u-align--right">
@@ -287,7 +297,11 @@
             </div>
           </td>
           {% elif module.status == "in-progress" %}
-          <td></td>
+          <td>
+            <div class="p-table--cube__contents u-align--right">
+              <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.take_url }}">Resume</a>
+            </div>
+          </td>
           {% endif %}
         </tr>
       {% endfor %}
@@ -297,7 +311,7 @@
 </section>
 {% endif %}
 
-{% if has_enrollment %}
+{% if has_enrollments %}
 
 <section class="p-strip--square-suru has-cube is-slanted--top-right">
   <div class="u-fixed-width">
