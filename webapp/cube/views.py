@@ -13,14 +13,9 @@ from webapp.decorators import login_required
 from webapp.login import user_info
 
 
-COURSES = yaml.load(
+CUBE_CONTENT = yaml.load(
     Path("webapp/cube/content/cube.yaml").read_text(), Loader=yaml.Loader
 )
-
-PREPARE_COURSE_ID = "course-v1:ubuntu+cubereview+coursecommandsdev"
-
-BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
-BADGR_CERTIFIED_BADGE_CLASS = "x9kzmcNhSSyqYhZcQGz0qg"
 
 badgr_session = Session()
 talisker.requests.configure(badgr_session),
@@ -69,7 +64,7 @@ def cube_microcerts():
         assertions = {
             assertion["badgeclass"]: assertion
             for assertion in badgr_api.get_assertions(
-                BADGR_ISSUER, edx_user["email"]
+                CUBE_CONTENT["badgr-issuer"], edx_user["email"]
             )["result"]
         }
 
@@ -82,13 +77,13 @@ def cube_microcerts():
         ]
 
     certified_badge = {}
-    if BADGR_CERTIFIED_BADGE_CLASS in assertions:
-        assertion = assertions.pop(BADGR_CERTIFIED_BADGE_CLASS)
+    if CUBE_CONTENT["certified-badge"] in assertions:
+        assertion = assertions.pop(CUBE_CONTENT["certified-badge"])
         if not assertion["revoked"]:
             certified_badge["image"] = assertion["image"]
             certified_badge["share_url"] = assertion["openBadgeId"]
 
-    courses = copy.deepcopy(COURSES)
+    courses = copy.deepcopy(CUBE_CONTENT["courses"])
     for course in courses:
         attempts = []
 
@@ -115,10 +110,9 @@ def cube_microcerts():
             "/courseware/2020/start/?child=first"
         )
 
-        course["prepare_url"] = (
-            "https://qa.cube.ubuntu.com/courses"
-            f"/{PREPARE_COURSE_ID}/course/"
-        )
+        course[
+            "prepare_url"
+        ] = f"{edx_api.base_url}/{CUBE_CONTENT['prepare-course']}/course/"
 
     response = flask.make_response(
         flask.render_template(
@@ -129,7 +123,8 @@ def cube_microcerts():
                 "modules": courses,
                 "passed_courses": passed_courses,
                 "has_enrollments": len(enrollments) > 0,
-                "has_prepare_material": PREPARE_COURSE_ID in enrollments,
+                "has_prepare_material": CUBE_CONTENT["prepare-course"]
+                in enrollments,
             },
         )
     )
