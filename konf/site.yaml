@@ -39,7 +39,7 @@ env:
       name: launchpad-imagebuild
 
   - name: BADGR_URL
-    value: https://api.test.badgr.com
+    value: https://api.eu.badgr.io
 
   - name: BAGDR_USER
     secretKeyRef:
@@ -52,7 +52,7 @@ env:
       name: badgr
 
   - name: CUBE_EDX_URL
-    value: https://qa.cube.ubuntu.com
+    value: https://cube.ubuntu.com
 
   - name: CUBE_EDX_CLIENT_ID
     secretKeyRef:

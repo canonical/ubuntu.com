@@ -34,18 +34,18 @@ class TestCube(VCRTestCase):
             "course-v1:CUBE+admintasks+2020": "not-enrolled",
             "course-v1:CUBE+commands+2020": "passed",
             "course-v1:CUBE+devices+2020": "enrolled",
-            "course-v1:CUBE+juju+2020": "passed",
+            "course-v1:CUBE+juju+2020": "enrolled",
             "course-v1:CUBE+kernel+2020": "enrolled",
             "course-v1:CUBE+maas+2020": "enrolled",
             "course-v1:CUBE+microk8s+2020": "enrolled",
             "course-v1:CUBE+networking+2020": "enrolled",
             "course-v1:CUBE+package+2020": "failed",
             "course-v1:CUBE+security+2020": "in-progress",
-            "course-v1:CUBE+shellscript+2020": "passed",
+            "course-v1:CUBE+shellscript+2020": "enrolled",
             "course-v1:CUBE+storage+2020": "enrolled",
             "course-v1:CUBE+sysarch+2020": "enrolled",
             "course-v1:CUBE+systemd+2020": "enrolled",
-            "course-v1:CUBE+virtualisation+2020": "passed",
+            "course-v1:CUBE+virtualisation+2020": "enrolled",
         }
 
         with self.client.session_transaction() as session:
@@ -77,7 +77,7 @@ class TestCube(VCRTestCase):
             )
             self.assertTrue(
                 module["prepare_url"].endswith(
-                    "/course-v1:ubuntu+cubereview+coursecommandsdev/course/"
+                    "/course-v1:CUBE+study_labs_2020+alpha/course/"
                 )
             )
 

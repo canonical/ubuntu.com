@@ -120,13 +120,22 @@ For the most part this will happen automatically as long as the subpages (/kubef
 
 ### Working on CUBE
 
-If you want to work on CUBE you need to add some environment vars into your .env.local
+If you want to work on CUBE you need to add some environment vars into your .env.local.
+You will probably want to connect to the DEV/QA environment, to do so use the URLs pasted bellow together with the appropriate credentials.
 
 ```
+BADGR_URL=https://api.test.badgr.com
 BAGDR_USER=<badgr_user>
 BADGR_PASSWORD=<badgr_password>
+CUBE_EDX_URL=https://qa.cube.ubuntu.com
 CUBE_EDX_CLIENT_ID=<cube_client_id>
 CUBE_EDX_CLIENT_SECRET=<cube_client_secret>
 ```
 
-Please requests them from one of the members of the webteam.
+In addition load the `cube-qa.yaml` in `webapp/cube/views.py` by changing the the file we load into `CUBE_CONTENT`:
+
+```
+CUBE_CONTENT = yaml.load(
+    Path("webapp/cube/content/cube-qa.yaml").read_text(), Loader=yaml.Loader
+)
+```
