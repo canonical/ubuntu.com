@@ -60,6 +60,7 @@ extraHosts:
   - domain: ubuntuserver.org
   - domain: developer.ubuntu.com
   - domain: buy.ubuntu.com
+  - domain: core.docs.ubuntu.com
 
 # Overrides for production
 production:
@@ -149,6 +150,9 @@ production:
     if ($host = 'ubuntuserver.org' ) {
       rewrite ^ https://ubuntu.com/server$request_uri? permanent;
     }
+    if ($host = 'core.docs.ubuntu.com' ) {
+      rewrite ^(\/en)?(\/.*)$ https://ubuntu.com/core/docs$2? permanent;
+    }
     if ($host != 'ubuntu.com' ) {
       rewrite ^ https://ubuntu.com$request_uri? permanent;
     }
@@ -225,6 +229,9 @@ staging:
     }
     if ($host = 'insights.staging.ubuntu.com' ) {
       rewrite ^ https://staging.ubuntu.com/blog$request_uri? permanent;
+    }
+    if ($host = 'core.docs.staging.ubuntu.com' ) {
+      rewrite ^(\/en)?(\/.*)$ https://staging.ubuntu.com/core/docs$2? permanent;
     }
     if ($host != 'staging.ubuntu.com' ) {
       rewrite ^ https://staging.ubuntu.com$request_uri? permanent;
