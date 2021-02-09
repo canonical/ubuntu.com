@@ -416,19 +416,15 @@ summary {
   .p-table__row {
     position: relative;
 
-    th:nth-child(1),
-    td:nth-child(1) {
+    > th:nth-child(1),
+    > td:nth-child(1) {
       flex: 3;
     }
 
-    th:nth-child(2),
-    td:nth-child(2) {
-      flex: 0.75;
-    }
-
-    th:nth-child(3),
-    td:nth-child(3) {
-      flex: 0.75;
+    // matches 2nd to 5th direct child
+    > th:not(:nth-child(1)):nth-child(-n + 6),
+    > td:not(:nth-child(1)):nth-child(-n + 6) {
+      flex: 1;
     }
 
     &:not(:last-of-type) {
@@ -444,12 +440,28 @@ summary {
     margin: 0;
   }
 
+  .p-table-title {
+    @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+      &::after {
+        display: block;
+        content: "";
+        align-self: center;
+        border-right: 1px solid $color-mid-light;
+        height: calc(100% - (2 * 0.5rem));
+      }
+    }
+  }
+
   .p-table--open {
     background-color: $color-x-light;
     border-left: 1px solid $color-mid-light;
     border-right: 1px solid $color-mid-light;
     box-shadow: 0 1px 0 0 $color-x-light;
     z-index: 5;
+
+    &::after {
+      display: none;
+    }
   }
 
   .u-toggle {
