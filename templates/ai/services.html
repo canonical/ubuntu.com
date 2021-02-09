@@ -7,91 +7,285 @@
 
 {% block content %}
 <section class="p-strip--suru-bottomed">
-  <div class="row">
-    <div class="col-8">
-      <h1>
-        AI consulting and delivery
-      </h1>
-      <h4>
-        Canonical and leading data scientists team up to consult on the full enterprise AI stack.
-      </h4>
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h1>Enterprise MLOps solutions</h1>
+      <p class="p-heading--4">Consulting, support, training and managed services for AI/ML at scale</p>
+      <p>Accelerate your artificial intelligence strategy with data science + infra + ops expertise, delivered by Canonical and trusted partners.</p>
       <p>
-        Our data science consulting partners bring machine learning and deep learning expertise to the AI mix and Canonical delivers optimised infrastructure for multi-cloud AI with Ubuntu, GPUs, Kubernetes and Kubeflow. Assess data readiness, empower developers and accelerate your machine learning processing - on-premises or in the cloud.
+        <a class="p-button--positive js-invoke-modal" href="/ai/contact-us?product=ai-index">Talk to experts</a>
+        <a class="p-link--external" href="/engage/starting-with-ai?utm_source=bubble&utm_campaign=CY19_DC_AI_Whitepaper_AIConsulting">Download whitepaper</a>
       </p>
+    </div>
+    <div class="col-4 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
+        alt="",
+        width="252",
+        height="273",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-4 u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/50dea393-fixes+in+24hrs.svg",
+        alt="",
+        width="188",
+        height="195",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2>Support for your ML stack</h2>
+      <p class="p-heading--4">Fully supported machine learning, from day-0 to day-1500</p>
+      <p>24/7 support with guaranteed SLAs under Ubuntu Advantage.</p>
+      <p>Ubuntu Advantage for Infrastructure - Bare metal, OS, Kubernetes, Openstack. Ubuntu Advantage for Applications - Kafka, Cassandra, Spark, Kubeflow and more.</p>
+      <p>Get your Ubuntu data science workstations supported from $25 per year.</p>
       <p>
-        <a class="p-button--positive js-invoke-modal" href="/kubeflow/contact-us?product=ai-index">Speak to the experts</a>
-        <a class="p-link--external" href="/engage/starting-with-ai?utm_source=bubble&utm_campaign=CY19_DC_AI_Whitepaper_AIConsulting">Download the Getting started with AI whitepaper</a>
+        <a class="p-button--neutral" href="/support">Get UA support</a>
+        <a class="p-button--neutral js-invoke-modal" href="/ai/contact-us?product=ai-index">Contact us</a>
       </p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
-  <div class="row">
+<section class="p-strip">
+  <div class="row u-vertically-center">
     <div class="col-8">
-      <h2>Develop your data science capabilities</h2>
-      <h4>
-        Stay focused and productive in a fast-moving landscape of code and data.
-      </h4>
+      <h2>Kubeflow design & deployment consulting</h2>
+      <p class="p-heading--4">Get Kubeflow right on top of any Kubernetes, no fuss</p>
+      <p>Off-load the complexity of Kubeflow design and deployment to Canonical’s engineers.</p>
+      <p>AKS, EKS, GKE, OpenShift, Rancher, Charmed Kubernetes or other CNCF conformant Kubernetes.</p>
+      <p>Enable portability for your AI workloads with multi-cloud and hybrid-cloud Kubeflow deployments.</p>
       <p>
-        The complexity of AI/ML spans infrastructure, operations, machine
-        learning model development, model evolution, model deployment and
-        updates, compliance and security. To add to the challenge, the speed of
-        innovation in open source machine learning means that complexity is
-        compounding annually.
+        <a class="p-button--neutral js-invoke-modal" href="/ai/contact-us?product=ai-index">Get a quote</a>
       </p>
+    </div>
+    <div class="col-4 u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f887a7db-deploy+fast.svg",
+        alt="",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-4 u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a22613fc-train-with-ubuntu_AW.svg",
+        alt="",
+        width="190",
+        height="190",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <div>
+        <p style="margin-top: -1rem;" class="p-muted-heading">IN PARTNERSHIP WITH:</p>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4566e59b-mavencode-logo.png",
+            alt="Mavencode",
+            width="155",
+            height="19",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+      </div>
       <p>
-        That's why it pays off to bring Canonical and data scientists in early. The right resources and experts accelerate delivery and keep your team focused on your particular data streams and particular business objectives. Together, we help deliver a five-day/five-step AI design sprint with your analytics and infrastructure teams. At the end of the engagement you will have a pattern for productive AI development - spanning developer workstations, machine learning infrastructure (in the cloud or on-premises), and AI applications - delivering daily insights, powered by your data.
+        <a class="p-link--external" href="https://canonical.com/partners/become-a-partner"><small>Become a trusted partner</small></a>
       </p>
+    </div>
+    <div class="col-8">
+      <h2>Enterprise MLOps training</h2>
+      <p class="p-heading--4">4&ndash;days to success with machine learning on Kubeflow</p>
+      <p>Grow end-to-end machine learning knowledge within your team, with enterprise training by Canonical.</p>
+      <p>Align your sysadmins, devops, data engineers and data scientists with the latest MLOps solutions.</p>
+      <p>Any infra and level of expertise. Tailored to your use cases. Up to 15 attendees. 4-day on-premise training for $29.500.</p>
       <p>
-        With our structured program, we can approach any situation and provide the infrastructure and capabilities that your business needs. Proven best practices mean that we can take the guesswork and experimentation out of your AI adoption, and fast-track you to value without breaking your budget.
-      </p>
-      <p>
-        <a
-           class="p-link--external"
-           href="https://assets.ubuntu.com/v1/62e71815-Kubernetes-for-the-Enterprise.pdf"
-           >Read our consulting datasheet</a
-        >
+        <a class="p-link--external p-button--neutral" href="https://assets.ubuntu.com/v1/ee5a96f3-Kubeflow+Training+Curriculum.pdf?_ga=2.202291033.951646160.1607941648-154096706.1586788067">See Curriculum</a>
+        <a class="p-button--neutral js-invoke-modal" href="/training/contact-us?product=kubeflow-training-onsite">Talk to us</a>
       </p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <h5 class="p-muted-heading u-sv3">Our consulting partners</h5>
-      <ul class="row u-equal-height">
-        <li class="col-2 col-small-2 col-medium-2 u-vertically-center">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/e9e4d429-Manceps.png",
-              alt="",
-              height="31",
-              width="147",
-              hi_def=True,
-              loading="lazy",
+</section>
+
+<section class="p-strip--square-darksuru is-dark">
+  <div class="row u-equal-height">
+    <div class="col-7 u-vertically-center">
+      <div>
+        <h2>Easy Kubeflow operations</h2>
+        <p>Charmed Kubeflow integrates the 30+ apps that make up Kubeflow with ops code to provide the best Kubeflow experience, from deployment to day-2 operations. </p>
+        <br />
+          <a class="p-link--external p-button--positive" href="https://charmed-kubeflow.io">Visit Charmed-Kubeflow.io</a>
+          <a class="p-link--external p-link--inverted" href="https://assets.ubuntu.com/v1/197d9867-Charmed_Kubeflow_Kubernetes_10.11.20+%282%29.pdf">Download datasheet</a>
+      </div>
+    </div>
+    <div class="col-5 u-align--center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/20f5bfae-Kubeflow-nicely-packaged-simple-transparent.svg",
+          alt="",
+          width="212",
+          height="201",
+          hi_def=True,
+        ) | safe
+      }}
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-vertically-center">
+    <div class="col-4 u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/431b4ca2-ubuntu+core+18+circular+.svg",
+        alt="",
+        width="249",
+        height="243",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2>Fully&ndash;managed Kubeflow</h2>
+      <p class="p-heading--4">MLOps with guaranteed uptime for hyper-focused data science</p>
+      <p>Bring models to production fast, while off-loading the management of Kubeflow.</p>
+      <p>Canonical provides a hands-off Kubeflow experience, taking care of the infrastructure while your team focuses on orchestrating success for your business.</p>
+      <p>Available on any CNCF conformant Kubernetes, including AKS, EKS, GKE, OpenShift, Rancher and Charmed Kubernetes.</p>
+      <p>
+        <a class="p-button--neutral js-invoke-modal" href="/ai/contact-us?product=ai-index">Contact us</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Join our network of partners</h2>
+      <p>Canonical partners with highly regarded data science specialist firms to better serve its customers on consulting engagements.</p>
+      <p>If your company delivers excellence in AI/ML solutions, join our trusted partners program and grow the scale of your business.</p>
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item u-no-margin--left">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4566e59b-mavencode-logo.png",
+            alt="Mavencode",
+            width="139",
+            height="17",
+            hi_def=True,
+            loading="lazy"
             ) | safe
           }}
         </li>
-        <li class="col-2 col-small-2 col-medium-2 u-vertically-center">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/99d8f79e-deepsense.png",
-              alt="",
-              height="27",
-              width="147",
-              hi_def=True,
-              loading="lazy",
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e9e4d429-Manceps.png",
+            alt="Manceps",
+            width="126",
+            height="26",
+            hi_def=True,
+            loading="lazy"
             ) | safe
           }}
         </li>
-        <li class="col-2 col-small-2 col-medium-2 u-vertically-center">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/4566e59b-mavencode-logo.png",
-              alt="",
-              height="17",
-              width="147",
-              hi_def=True,
-              loading="lazy",
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/7076871b-logo_czarne.png",
+            alt="Czarne",
+            width="135",
+            height="26",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+      </ul>
+      <p>
+        <a class="p-button--neutral p-link--external" href="https://canonical.com/partners/become-a-partner">Become a partner</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-hide--small">
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
+            alt="AWS",
+            width="96",
+            height="57",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+            alt="Microsoft Azure",
+            width="160",
+            height="45",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
+            alt="Google cloud",
+            width="96",
+            height="79",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
+            alt="Nvidia",
+            width="94",
+            height="63",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e0ef0377-intel-logo-2-1.png",
+            alt="Intel",
+            width="101",
+            height="39",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5c2662f7-dellemc.png",
+            alt="DellEMC",
+            width="154",
+            height="27",
+            hi_def=True,
+            loading="lazy"
             ) | safe
           }}
         </li>
@@ -100,223 +294,10 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    <h2>AI design sprint</h2>
-    <h4>
-      Produce tangible results in one week with agile AI technologies and methodologies.
-    </h4>
-    <p>
-      The core of our one week engagement centers on the AI design sprint - an introduction to our AI technologies and methodologies, combined with developing a proof of concept (PoC) that solves a real business challenge for your organization. The blueprints that are produced during this sprint will serve as a foundation for your ongoing AI innovations.
-    </p>
-    <p>
-      Additional key outcomes that you can expect from this week are a baseline architecture for iterative solution development – which includes a working continuous integration pipeline – and a high level strategy that addresses your AI transformation journey. Please note: this week typically relies on having the right infrastructure in place to support the AI technology stack.
-    </p>
-    <h3>
-      The AI design process in more detail
-    </h3>
-  </div>
-  <div class="row">
-    <div class="col-6 u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/e68fd355-1+discovery_AW.svg",
-          alt="",
-          height="191",
-          width="335",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <h4>1 - Discovery</h4>
-      <p>
-        Following a consultative whiteboarding session to set the stage, partner data scientists and data engineers
-        will explore your business requirements, expected outcomes, data
-        sources, potential opportunities and risks. The partner will discuss
-        machine learning use cases for your industry and explore the specific
-        business applications that can add the most value.
-      </p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <h4>2 - Assessment</h4>
-      <p>
-        Domain experts will provide initial
-        feedback based on the Discovery phase. They will report on the data and
-        make solution recommendations. They will discuss building a strategy
-        roadmap for the project based on your specific business case. Any
-        changes to your infrastructure should be highlighted during this step.
-      </p>
-    </div>
-    <div class="col-6 u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/146a6eba-2+assessment_AW.svg",
-          alt="",
-          height="191",
-          width="335",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
-  </div>
-
-  <div class="row">
-    <div class="col-6 u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/455740b4-3+design_AW.svg",
-          alt="",
-          height="191",
-          width="335",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <h4>3 - Design</h4>
-      <p>
-        Prototype new solutions and identify a candidate solution that seems to be the best fit for the use case under consideration. Data engineers will prepare the data, data scientists will discuss and select appropriate features and machine learning algorithms, and machine Learning engineers will design, build and perform preliminary tests on your prototype neural network. Time permitting, the iterative process of design and discovery on the data and the neural network model will start.
-      </p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <h4>4 - Implementation</h4>
-      <p>
-        Complete the design process and begin training and testing your AI model until it reaches the desired accuracy threshold. A kubeflow pipeline that will put your model into a suitable environment for testing and feedback from additional stakeholders will be built. Domain experts will offer guidance on assessing machine learning predictions and putting discovered insights into action.
-      </p>
-    </div>
-    <div class="col-6 u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/ae0d7b33-4+implementation_AW.svg",
-          alt="",
-          height="191",
-          width="335",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
-  </div>
-
-  <div class="row">
-    <div class="col-6 u-hide--small u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/70227781-5+operation+and+feedback_AW.svg",
-          alt="",
-          height="191",
-          width="335",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <h4>5 - Operation and Feedback</h4>
-      <p>
-        This may include UI development, technical documentation, and hands-on knowledge transfer between development and operations teams to ensure they can operate the solution. Production deployment options will be discussed – for example, a dark launch of an integration with a business application. During this step we'll elicit feedback from key stakeholders, covering the baseline architecture and model.
-      </p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
-  </div>
-
-  <div class="u-fixed-width">
-    <p>
-      The specific steps for each phase will be adjusted based on your
-      particular needs.
-    </p>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>Perfectly portable AI workloads</h2>
-      <h4>
-        Open and pluggable machine learning workflows for multi-cloud AI, ML and DL.
-      </h4>
-      <p>
-        In the multi-cloud AI world, where AI practitioners leverage multiple environments, portability requirements surface rather quickly. We consider each environment to be different and in need of the ability to define a repeatable machine learning stack.
-      </p>
-      <p>
-        The full AI/ML workflow starts with the developer workstation, for rapid iteration of algorithms and analytic techniques. Training at scale takes place on the rack or on GPU-accelerated instances on the cloud. Resulting models are then delivered to the point of decision, whether that's on cloud or IoT at the edge.
-      </p>
-      <p>
-        Working with Canonical and all the leading clouds, Kubeflow on Ubuntu provides infrastructure and operations that span that full range, and seamless portability of AI workloads. This forms a key part of the baseline architecture delivered in the AI design sprint.
-      </p>
-      <a class="p-button--neutral" href="/engage/deploy-ai-ml-model?utm_campaign=FY19_Cloud_K8_WBN_AIWebinar2">
-        Explore Kubeflow
-      </a>
-    </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/da5a7c9e-Kubeflow-Logo.svg",
-          alt="",
-          height="178",
-          width="180",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    <h2>Train your infrastructure engineers</h2>
-    <p>
-      Get more detailed information in our
-      <a
-        class="p-link--external"
-        href="https://assets.ubuntu.com/v1/62e71815-Kubernetes-for-the-Enterprise.pdf"
-        >consulting datasheet</a
-      >
-    </p>
-  </div>
-
-  {% include "shared/pricing/_kubernetes-consulting-add-ons.html" %}
-
-</section>
-
-  {% include "ai/shared/_learn-more.html" %}
-
-{% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% include "ai/shared/_learn-more.html" %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubeflow" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/kubeflow/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
-
-
 
 {% endblock content %}
