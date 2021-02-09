@@ -151,7 +151,7 @@ class AdvantageContracts:
             path=(
                 f"v1/accounts/{account_id}"
                 f"/marketplace/{marketplace}"
-                f"/subscriptions?period=yearly&status=active"
+                f"/subscriptions?status=active"
             ),
         )
         return response.json()

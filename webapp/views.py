@@ -397,8 +397,11 @@ def advantage_view():
     personal_account = None
     enterprise_contracts = {}
     entitlements = {}
-    subscriptions = {}
-    subscriptions["total_subscriptions"] = 0
+    subscriptions = {
+        "total_subscriptions": 0,
+        "has_monthly": False,
+        "next_payment": {},
+    }
     new_subscription_start_date = None
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
@@ -458,18 +461,39 @@ def advantage_view():
                     account["id"], "canonical-ua"
                 )
                 subs = resp.get("subscriptions")
+
                 if subs is not None:
-                    subscriptions["current_subscription_number"] = len(subs[0]["purchasedProductListings"])
-                    subscriptions["next_payment"] = {}
-                    subscriptions["next_payment"]["date"] = subs[0]["subscription"]["endOfCycle"]
-                    subscriptions["next_payment"]["ammount"] = get_subscription_payment_total(subs[0])
                     for subscription in subs:
-                        subscriptions["total_subscriptions"] += len(subscription["purchasedProductListings"])
-                        if (subscription["subscription"]["endOfCycle"] < subscriptions["next_payment"]["date"]):
-                            subscriptions["next_payment"]["date"] = subscription["subscription"]["endOfCycle"]
-                            subscriptions["next_payment"]["ammount"] = get_subscription_payment_total(subscription)
-                            subscriptions["current_subscription_number"] = len(subscription["purchasedProductListings"])
-                    subscriptions["next_payment"]["date"] = dateutil.parser.parse(subscriptions["next_payment"]["date"]).strftime("%d %B %Y")
+                        subscriptions["total_subscriptions"] += len(
+                            subscription["purchasedProductListings"]
+                        )
+                        if subscription["subscription"]["period"] == "monthly":
+                            subscriptions["has_monthly"] = True
+                            last_purchase = advantage.get_purchase(
+                                subscription["lastPurchaseID"]
+                            )
+                            subscriptions[
+                                "last_payment_date"
+                            ] = dateutil.parser.parse(
+                                last_purchase["createdAt"]
+                            ).strftime(
+                                "%d %B %Y"
+                            )
+                            subscriptions["current_subscription_number"] = len(
+                                subscription["purchasedProductListings"]
+                            )
+                            subscriptions["next_payment"][
+                                "date"
+                            ] = dateutil.parser.parse(
+                                subscription["subscription"]["endOfCycle"]
+                            ).strftime(
+                                "%d %B %Y"
+                            )
+                            subscriptions["next_payment"][
+                                "ammount"
+                            ] = get_subscription_payment_total(
+                                subscription["purchasedProductListings"]
+                            )
 
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
@@ -595,12 +619,18 @@ def advantage_view():
     )
 
 
-def get_subscription_payment_total(subscription):
+def get_subscription_payment_total(productsListings):
     """Return ammount of next renewal"""
     total = 0
-    for listing in subscription["purchasedProductListings"]:
+    for listing in productsListings:
         total += listing["productListing"]["price"]["value"] * listing["value"]
-    return f'{total / 100} {subscription["purchasedProductListings"][0]["productListing"]["price"]["currency"]}' #This assumes that every price in the subscription uses the same currency. Could be wrong
+    # This assumes that every price in the subscription uses the same currency.
+
+    return (
+        f"{total / 100} "
+        f'{productsListings[0]["productListing"]["price"]["currency"]}'
+    )
+
 
 def get_machine_usage(advantage, contract):
     """Return machine usage for the given contract as a MachineUsage object."""
