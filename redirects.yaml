@@ -460,6 +460,7 @@ gateways/?:  "/internet-of-things/gateways"
 get/?: "/download"
 getubuntu.*/?: "/download"
 GetUbuntu.*/?: "/download"
+gov.*?: "/desktop/organisations"
 hardware-summit/?: "/blog/canonical-hosts-leading-odms-at-ubuntu-hardware-summit/"
 hardy/?: "https://wiki.ubuntu.com/HardyHeron"
 how-can-it-be-free/?: "/desktop"
@@ -684,12 +685,8 @@ services/?: "/support"
 services/server/?: "/server/management"
 shipit.*: "https://blog.canonical.com/2011/04/05/shipit-comes-to-an-end/"
 sites/.*: "/blog"
-smart-start/?: "/core/smartstart"
-smart-start/guide/?: "/core/smartstart/guide"
-smart-start/guide/(?P<path>.*)/?: "/core/smartstart/guide/{path}"
-smartstart/?: "/core/smartstart"
-smartstart/guide/?: "/core/smartstart/guide"
-smartstart/guide/(?P<path>.*)/?: "/core/smartstart/guide/{path}"
+smart-start(?P<path>.*)/?: "/core/smartstart{path}"
+smartstart(?P<path>.*)/?: "/core/smartstart{path}"
 snappy/?: "/desktop/developers"
 software/?: "https://apps.ubuntu.com/cat/"
 start-download.*: "/download"
@@ -831,6 +828,8 @@ blog/home/?: /
 blog/event/mobile-world-congress-2018/?:  /blog/nvidia-gtc-2018
 blog/(2019/02/05/)?ubuntu-14-04-trusty-tahr-end-of-life/?: /blog/ubuntu-14-04-trusty-tahr
 blog/kubernetes-1-19-available-from-canonical%EF%BB%BF: /blog/kubernetes-1-19-available-from-canonical
+blog/what-is-elasticsearch-and-how-are-enterprises-using-it: /blog/what-is-elasticsearch
+blog/managed-postgresql: /blog/what-is-postgresql
 
 # Move snappy topic to snapcraft
 blog/topics/snappy/?: /blog/topics/snapcraft
