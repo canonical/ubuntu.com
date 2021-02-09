@@ -22,19 +22,15 @@
           <h4 class="p-heading-icon__title">Webinars</h4>
         </div>
       </div>
-      <p>
-        A detailed look into the AI and ML landscape, how to deploy your first model and more.
-      </p>
       <ul class="p-list">
         <li class="p-list__item">
-          <a href="/blog/ai-ml-ubuntu-everything-you-need-to-know">
-            AI, ML &amp; Ubuntu: Everything you need to know&nbsp;&rsaquo;
-          </a>
+          <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/427925">AI to production</a>
         </li>
         <li class="p-list__item">
-          <a href="/blog/ai-ml-model-ubuntu">
-            How to build and deploy your first AI/ML model on Ubuntu&nbsp;&rsaquo;
-          </a>
+          <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/424551/demystifying-kubeflow-pipelines-from-tensorflow-notebook-to-pipeline">Kubeflow Pipelines</a>
+        </li>
+        <li class="p-list__item">
+          <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/451777">AI deployment and inference</a>
         </li>
       </ul>
     </div>
@@ -43,7 +39,7 @@
         <div class="p-heading-icon__header">
           {{
             image(
-              url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
+              url="https://assets.ubuntu.com/v1/fd84bbdc-Document-open.svg",
               alt="",
               height="28",
               width="32",
@@ -52,34 +48,10 @@
               loading="lazy",
             ) | safe
           }}
-          <h4 class="p-heading-icon__title">Articles</h4>
+          <h4 class="p-heading-icon__title">Latest news on AI / ML</h4>
         </div>
       </div>
-      <p>
-        Articles from across the web on getting started with AI and Kubeflow in your workplace.
-      </p>
-      <ul class="p-list">
-        <li class="p-list__item">
-          <a class="p-link--external" href="https://www.cmswire.com/digital-experience/stop-waiting-on-the-ai-sidelines-heres-how-to-take-the-plunge/">
-            Stop Waiting on the AI Sidelines: Here's How to Take the Plunge
-          </a>
-        </li>
-        <li class="p-list__item">
-          <a class="p-link--external" href="http://www.financederivative.com/getting-serious-about-ai/">
-            Getting Serious About AI
-          </a>
-        </li>
-        <li class="p-list__item">
-          <a class="p-link--external" href="https://www.datacenterknowledge.com/industry-perspectives/kubernetes-and-ai-marriage-made-it-heaven">
-            Kubernetes and AI: Marriage Made in IT Heaven
-          </a>
-        </li>
-        <li class="p-list__item">
-          <a class="p-link--external" href="https://www.comparethecloud.net/articles/automating-the-future-workplace/">
-            Automating the Future of the Workplace
-          </a>
-        </li>
-      </ul>
+      {% include "/shared/contextual_footers/_ai_further_reading.html" %}
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon--muted">
@@ -95,17 +67,22 @@
               loading="lazy",
             ) | safe
           }}
-          <h4 class="p-heading-icon__title">Whitepaper</h4>
+          <h4 class="p-heading-icon__title">Download</h4>
         </div>
       </div>
-      <p>
-        Examine the fundamentals of a successful AI project that helps your organisation achieve their AI ambitions.
-      </p>
-      <p>
-        <a href="/engage/starting-with-ai">
-          Get started with enterprise AI&nbsp;&rsaquo;
-        </a>
-      </p>
+      <ul class="p-list">
+        <li class="p-list__item">
+          <a href="engage/starting-with-ai">Whitepaper: Get started with AI&nbsp;&rsaquo;
+          </a>
+        </li>
+        <li class="p-list__item">
+          <a href="/engage/dell-kubeflow-reference-architecture">Kubeflow Reference Architecture&nbsp;&rsaquo;
+          </a>
+        </li>
+        <li class="p-list__item">
+          <a class="p-link--external" href="https://assets.ubuntu.com/v1/197d9867-Charmed_Kubeflow_Kubernetes_10.11.20.pdf">Charmed Kubeflow datasheet</a>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
