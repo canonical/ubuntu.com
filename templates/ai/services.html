@@ -182,13 +182,18 @@
       <h2>Join our network of partners</h2>
       <p>Canonical partners with highly regarded data science specialist firms to better serve its customers on consulting engagements.</p>
       <p>If your company delivers excellence in AI/ML solutions, join our trusted partners program and grow the scale of your business.</p>
+      <p>
+        <a class="p-button--neutral p-link--external" href="https://canonical.com/partners/become-a-partner">Become a partner</a>
+      </p>
+    </div>
+    <div class="col-4 col-start-large-8 u-align--center u-hide--small">
       <ul class="p-inline-images">
-        <li class="p-inline-images__item u-no-margin--left">
+        <li class="p-inline-images__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/4566e59b-mavencode-logo.png",
             alt="Mavencode",
-            width="139",
-            height="17",
+            width="185",
+            height="22",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -198,8 +203,8 @@
           {{ image (
             url="https://assets.ubuntu.com/v1/e9e4d429-Manceps.png",
             alt="Manceps",
-            width="126",
-            height="26",
+            width="163",
+            height="34",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -208,82 +213,9 @@
         <li class="p-inline-images__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/7076871b-logo_czarne.png",
-            alt="Czarne",
-            width="135",
-            height="26",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
-      <p>
-        <a class="p-button--neutral p-link--external" href="https://canonical.com/partners/become-a-partner">Become a partner</a>
-      </p>
-    </div>
-    <div class="col-5 u-align--center u-hide--small">
-      <ul class="p-inline-images">
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
-            alt="AWS",
-            width="96",
-            height="57",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
-            alt="Microsoft Azure",
-            width="160",
-            height="45",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
-            alt="Google cloud",
-            width="96",
-            height="79",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
-            alt="Nvidia",
-            width="94",
-            height="63",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/e0ef0377-intel-logo-2-1.png",
-            alt="Intel",
-            width="101",
-            height="39",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/5c2662f7-dellemc.png",
-            alt="DellEMC",
-            width="154",
-            height="27",
+            alt="deepsense.ai",
+            width="175",
+            height="34",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -292,9 +224,86 @@
       </ul>
     </div>
   </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row">
+    <ul class="p-inline-images">
+      <li class="p-inline-images__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
+          alt="AWS",
+          width="86",
+          height="51",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+          alt="Microsoft Azure",
+          width="144",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
+          alt="Google cloud",
+          width="86",
+          height="70",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
+          alt="Nvidia",
+          width="85",
+          height="57",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/e0ef0377-intel-logo-2-1.png",
+          alt="Intel",
+          width="91",
+          height="35",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </li>
+      <li class="p-inline-images__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/5c2662f7-dellemc.png",
+          alt="DellEMC",
+          width="139",
+          height="24",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </li>
+    </ul>
+  </div>
 </section>
 
 {% include "ai/shared/_learn-more.html" %}
+
+{% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubeflow" data-form-id="3231" data-lp-id="6279" data-return-url="https://www.ubuntu.com/kubeflow/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
