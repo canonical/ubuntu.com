@@ -16,21 +16,21 @@
       });
     });
 
-    // recaptcha submitCallback
-    window.CaptchaCallback = function () {
-      let recaptchas = [].slice.call(
-        document.querySelectorAll("div[class^=g-recaptcha]")
-      );
-      recaptchas.forEach(function (field) {
-        if (!field.hasAttribute("data-widget-id")) {
-          let siteKey = field.getAttribute("data-sitekey");
-          const recaptchaWidgetId = grecaptcha.render(field, {
-            sitekey: siteKey,
-          });
-          field.setAttribute("data-widget-id", recaptchaWidgetId);
-        }
-      });
-    };
+    // // recaptcha submitCallback
+    // window.CaptchaCallback = function () {
+    //   let recaptchas = [].slice.call(
+    //     document.querySelectorAll("div[class^=g-recaptcha]")
+    //   );
+    //   recaptchas.forEach(function (field) {
+    //     if (!field.hasAttribute("data-widget-id")) {
+    //       let siteKey = field.getAttribute("data-sitekey");
+    //       const recaptchaWidgetId = grecaptcha.render(field, {
+    //         sitekey: siteKey,
+    //       });
+    //       field.setAttribute("data-widget-id", recaptchaWidgetId);
+    //     }
+    //   });
+    // };
 
     // Fetch, load and initialise form
     function fetchForm(formData, contactButton) {
@@ -67,8 +67,17 @@
       head.appendChild(script);
     }
 
+    function createAsyncForm() {
+      //prevent default
+      //grab the values in each field
+      //post to marketo
+      //if success show thankyou modal page
+      //if fails show unsuccessful message
+    }
+
     // Open the contact us modal
-    function open() {
+    function open(formDataSet) {
+      console.log(formDataSet);
       updateHash(triggeringHash);
       ga(
         "send",
@@ -77,6 +86,7 @@
         "open",
         window.location.pathname
       );
+      createAsyncForm();
     }
 
     // Removes the triggering hash
@@ -425,14 +435,14 @@
     // Opens the form when the initial hash matches the trigger
     if (window.location.hash === triggeringHash) {
       fetchForm(formContainer.dataset);
-      open();
+      open(formContainer.dataset);
     }
 
     // Listens for hash changes and opens the form if it matches the trigger
     function locationHashChanged() {
       if (window.location.hash === triggeringHash) {
         fetchForm(formContainer.dataset);
-        open();
+        open(formContainer.dataset);
       }
     }
     window.onhashchange = locationHashChanged;
