@@ -17,16 +17,20 @@ class BadgrAPI:
         path: str,
         headers: dict = {},
         data: dict = {},
+        retry: bool = True,
     ):
-        if not self.token:
-            self._authenticate()
-
         uri = f"{self.base_url}{path}"
         headers["Authorization"] = f"Bearer {self.token}"
 
         response = self.session.request(
             method, uri, data=data, headers=headers
         )
+
+        if retry and response.status_code == 401:
+            self._authenticate()
+            response = self.make_request(
+                method, path, data=data, headers=headers, retry=False
+            )
 
         return response
 
