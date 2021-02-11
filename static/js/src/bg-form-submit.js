@@ -21,7 +21,6 @@ const afterFormSubmit = function (
 ) {
   // Now start the download
   if (download_asset_url) {
-    console.log("start download");
     const downloadFrame = document.createElement("iframe");
     downloadFrame.setAttribute("src", download_asset_url);
     downloadFrame.style.width = 0 + "px";
@@ -31,7 +30,6 @@ const afterFormSubmit = function (
 
   // Redirect user back to the return url page
   if (return_url) {
-    console.log("return to url");
     window.setTimeout(function () {
       window.location.href = return_url;
     }, 1000);
