@@ -1,4 +1,4 @@
-import { assignMarketoBackgroundSubmit } from "./backgroundFormSubmit";
+import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
