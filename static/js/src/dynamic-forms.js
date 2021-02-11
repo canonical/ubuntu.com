@@ -70,17 +70,8 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
       head.appendChild(script);
     }
 
-    function createAsyncForm() {
-      //prevent default
-      //grab the values in each field
-      //post to marketo
-      //if success show thankyou modal page
-      //if fails show unsuccessful message
-    }
-
     // Open the contact us modal
-    function open(formDataSet) {
-      console.log(formDataSet);
+    function open() {
       updateHash(triggeringHash);
       ga(
         "send",
@@ -89,7 +80,6 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
         "open",
         window.location.pathname
       );
-      createAsyncForm();
     }
 
     // Removes the triggering hash
@@ -441,14 +431,14 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
     // Opens the form when the initial hash matches the trigger
     if (window.location.hash === triggeringHash) {
       fetchForm(formContainer.dataset);
-      open(formContainer.dataset);
+      open();
     }
 
     // Listens for hash changes and opens the form if it matches the trigger
     function locationHashChanged() {
       if (window.location.hash === triggeringHash) {
         fetchForm(formContainer.dataset);
-        open(formContainer.dataset);
+        open();
       }
     }
     window.onhashchange = locationHashChanged;
