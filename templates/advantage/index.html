@@ -53,25 +53,25 @@
               <a href="#reveal-renewal-options" class="p-button u-no-margin--bottom js-reveal-renewal-options" aria-controls="renewal-options" aria-expanded="false">Auto-renewal settings <i class="p-icon--contextual-menu">Open</i></a>
             </div>
           </div>
-          <div class="col-12  p-strip--light is-shallow u-hide p-card"  aria-hidden="true" id="renewal-options" style="border-left: 0; border-right: 0; overflow: visible;"> 
+          <div class="col-12  p-strip--light is-shallow u-hide p-card"  aria-hidden="true" id="renewal-options" style="border-left: 0; border-right: 0; overflow: visible; padding-top: 3rem; padding-bottom: 2rem;"> 
               <div class="row">
                 <div class="row col-start-large-2 col-10">
                   <p><strong>{{subscriptions["current_subscription_number"]}} subscriptions are set to auto-renew monthly</strong></p>
                   <hr>
                   <div> 
                     <label class="p-radio">
-                      <input type="radio" class="p-radio__input" name="auto-renewal"  checked="" aria-labelledby="enable">
+                      <input id="auto-renewal-on" type="radio" class="p-radio__input" name="auto-renewal"  {% if subscriptions['is_auto_renewal_enabled'] %}checked=""{% endif %} aria-labelledby="enable" value="on">
                       <span class="p-radio__label" id="enable">Enable auto-renewal</span>
                     </label>
 
                     <label class="p-radio">
-                      <input type="radio" class="p-radio__input" name="auto-renewal" aria-labelledby="disable">
+                      <input id="auto-renewal-off" type="radio" class="p-radio__input" name="auto-renewal" {% if not subscriptions['is_auto_renewal_enabled'] %}checked=""{% endif %} aria-labelledby="disable" value="off">
                       <span class="p-radio__label" id="disable">Disable auto-renewal</span>
                     </label>
                   </div>
                   <div class="u-align--right">
-                    <button class="p-button--neutral js-reveal-renewal-options" id="renewal-cancel">Cancel changes</button>
-                    <button class="p-button--positive" id="renewal-save-changes">Save changes</button>
+                    <button class="p-button--neutral" id="renewal-cancel" data-default-state="{{subscriptions['is_auto_renewal_enabled']}}">Cancel changes</button>
+                    <button class="p-button--positive" id="renewal-confirm" data-subscription-id="{{subscriptions['id']}}">Save changes</button>
                   </div>
                 </div>
               </div>
@@ -561,6 +561,9 @@
     price.innerText = formatter.format(ammount)
   });
 </script>
+
+<script src="{{ versioned_static('js/src/advantage/auto-renewal.js') }}" type="module" defer></script>
+
 
 {% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
