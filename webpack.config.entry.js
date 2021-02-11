@@ -13,7 +13,7 @@ module.exports = {
     "./static/js/src/polyfills.js",
     "./static/js/src/contextual-menu.js",
     "./static/js/src/accordion.js",
-    "./static/js/src/dynamic-contact-form.js",
+    "./static/js/src/dynamic-forms.js",
     "./static/js/src/core.js",
     "./static/js/src/navigation.js",
     "./static/js/src/form-validation.js",

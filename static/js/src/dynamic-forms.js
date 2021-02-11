@@ -1,3 +1,5 @@
+import { assignMarketoBackgroundSubmit } from "./backgroundFormSubmit";
+
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     var triggeringHash = "#get-in-touch";
@@ -16,21 +18,22 @@
       });
     });
 
-    // // recaptcha submitCallback
-    // window.CaptchaCallback = function () {
-    //   let recaptchas = [].slice.call(
-    //     document.querySelectorAll("div[class^=g-recaptcha]")
-    //   );
-    //   recaptchas.forEach(function (field) {
-    //     if (!field.hasAttribute("data-widget-id")) {
-    //       let siteKey = field.getAttribute("data-sitekey");
-    //       const recaptchaWidgetId = grecaptcha.render(field, {
-    //         sitekey: siteKey,
-    //       });
-    //       field.setAttribute("data-widget-id", recaptchaWidgetId);
-    //     }
-    //   });
-    // };
+    // recaptcha submitCallback
+    window.CaptchaCallback = function () {
+      let recaptchas = [].slice.call(
+        document.querySelectorAll("div[class^=g-recaptcha]")
+      );
+      recaptchas.forEach(function (field) {
+        if (!field.hasAttribute("data-widget-id")) {
+          let siteKey = field.getAttribute("data-sitekey");
+          const gc = grecaptcha || null;
+          const recaptchaWidgetId = gc.render(field, {
+            sitekey: siteKey,
+          });
+          field.setAttribute("data-widget-id", recaptchaWidgetId);
+        }
+      });
+    };
 
     // Fetch, load and initialise form
     function fetchForm(formData, contactButton) {
@@ -430,6 +433,9 @@
       }
 
       setCheckboxLimit();
+
+      // Assign listeners to forms added after initial DOM render
+      assignMarketoBackgroundSubmit();
     }
 
     // Opens the form when the initial hash matches the trigger
