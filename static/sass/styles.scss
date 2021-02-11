@@ -345,6 +345,9 @@ summary {
   @extend %vf-is-bordered;
   @extend %vf-has-round-corners;
 
+  border-left: none;
+  border-right: none;
+
   margin-bottom: 0;
   padding: 1.5rem !important;
 }
@@ -425,6 +428,34 @@ summary {
     > th:not(:nth-child(1)):nth-child(-n + 6),
     > td:not(:nth-child(1)):nth-child(-n + 6) {
       flex: 1;
+    }
+    > .left-aligned {
+      justify-content: flex-start !important;
+      text-align: left !important;
+      padding-left: 2rem;
+      button {
+        padding-left: 0;
+      }
+
+      @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+        padding-left: 0.5rem;
+      }
+    }
+
+    > .right-aligned {
+      justify-content: flex-end !important;
+      text-align: right !important;
+      padding-right: 2rem;
+      button {
+        padding-right: 0;
+      }
+      @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+        padding-right: 0.5rem;
+      }
+    }
+
+    .p-icon--contextual-menu {
+      margin-left: 0.5rem;
     }
 
     &:not(:last-of-type) {
