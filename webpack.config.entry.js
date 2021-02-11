@@ -17,7 +17,7 @@ module.exports = {
     "./static/js/src/core.js",
     "./static/js/src/navigation.js",
     "./static/js/src/form-access.js",
-    "./static/js/src/utils/bg-form-submit.js",
+    "./static/js/src/bg-form-submit.js",
     "./static/js/src/scratch.js",
     "./static/js/src/smartquotes.js",
   ],
