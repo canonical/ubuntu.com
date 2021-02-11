@@ -468,6 +468,13 @@ def advantage_view():
                     )
                     if subscription["subscription"]["period"] == "monthly":
                         subscriptions["has_monthly"] = True
+                        subscriptions["id"] = subscription["subscription"][
+                            "id"
+                        ]
+
+                        # TODO get the correct auto-renewal state
+                        subscriptions["is_auto_renewal_enabled"] = True
+
                         last_purchase = advantage.get_purchase(
                             subscription["lastPurchaseID"]
                         )
@@ -975,6 +982,11 @@ def post_anonymised_customer_info():
         )
     else:
         return flask.jsonify({"error": "authentication required"}), 401
+
+
+def post_auto_renewal_settings():
+    # TODO Call the API
+    return flask.jsonify({"error": "not implemented"}), 501
 
 
 def post_customer_info():

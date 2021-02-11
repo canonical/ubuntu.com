@@ -202,3 +202,24 @@ export async function postCustomerInfoForPurchasePreview(
   let data = await response.json();
   return data;
 }
+
+export async function setAutoRenewal(subscriptionId, value) {
+  const queryString = window.location.search;
+
+  let response = await fetch(`/advantage/set-auto-renewal${queryString}`, {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      subscriptionId: subscriptionId,
+      value: value,
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}
