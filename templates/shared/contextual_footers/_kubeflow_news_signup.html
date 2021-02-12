@@ -1,0 +1,44 @@
+<div class="col-4 p-divider__block">
+  <h3 class="p-heading--four">Kubeflow news</h3>
+  <!-- MARKETO FORM -->
+  <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3415" class="marketo-form">
+    <p>Subscribe to our newsletter and get a weekly update of <a class="p-link--external" href="https://kubeflow-news.com/">Kubeflow news</a> from across the web.</p>
+    <ul class="p-list">
+      <li class="mktFormReq mktField p-list__item">
+        <label for="Email" class="mktoLabel contextual-footer__text--label">Work email:</label>
+        <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
+      </li>
+      <li class="p-list__item u-no-margin--top">
+        <p>
+          In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+        </p>
+      </li>
+      <li>
+        <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
+      </li>
+      <li class="mktField p-list__item">
+        <button type="submit" class="mktoButton p-button--neutral">Subscribe now</button>
+      </li>
+    </ul>
+    <div>
+      <input type="hidden" name="thankyoumessage" value="Thank you for subscribing!<br />You will begin receiving emails as new content is posted. You may unsubscribe any time by clicking the link in the email.">
+    </div>
+  </form>
+
+  <!-- /MARKETO FORM -->
+</div>
+
+<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer></script>
+
+<script>
+  $("#mktoForm_3415").validate({
+    errorPlacement: function(error, element) {
+      error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
+      error.appendTo( element.addClass( "p-form-validation__input" ));
+    },
+    errorElement: "span",
+    errorClass: "p-form-validation__message"
+  });
+</script>
