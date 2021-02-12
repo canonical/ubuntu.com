@@ -37,17 +37,16 @@ def notice(notice_id):
     package_descriptions = {}
     release_packages = SortedDict()
 
+    releases = {
+        release.codename: release.version
+        for release in db_session.query(Release).all()
+    }
+
     if notice.release_packages:
         for codename, pkgs in notice.release_packages.items():
-            release_version = (
-                db_session.query(Release)
-                .filter(Release.codename == codename)
-                .one()
-                .version
-            )
-
-            release_packages[release_version] = []
+            release_version = releases[codename]
             if notice.get_type == "USN":
+                release_packages[release_version] = []
                 for package in pkgs:
                     if package["is_source"]:
                         name = package["name"]
@@ -56,16 +55,18 @@ def notice(notice_id):
                     else:
                         release_packages[release_version].append(package)
 
+                # Order packages for release by the name key
+                release_packages[release_version].sort(
+                    key=lambda pkg: pkg["name"]
+                )
             elif notice.get_type == "LSN":
+                release_packages[release_version] = {}
                 for package in pkgs:
                     name = package["name"]
                     if name not in package_descriptions:
                         package_descriptions[name] = package["description"]
 
-                    release_packages[release_version].append(package)
-
-            # Order packages for release by the name key
-            release_packages[release_version].sort(key=lambda pkg: pkg["name"])
+                    release_packages[release_version][name] = package
 
         package_descriptions = {
             key: package_descriptions[key]
@@ -73,15 +74,15 @@ def notice(notice_id):
         }
 
     instructions = ""
-    instruction_packages = []
     if notice.get_type == "USN":
         instructions = markdown_parser(notice.instructions)
     elif notice.get_type == "LSN":
-        instructions = literal_eval(notice.instructions)
-        for packages_lists in instructions.values():
-            instruction_packages += packages_lists
-
-        set(instruction_packages)
+        instructions = {
+            releases[codename]: packages
+            for (codename, packages) in literal_eval(
+                notice.instructions
+            ).items()
+        }
 
     notice_cve_ids = [cve.id for cve in notice.cves]
     related_notices = (
@@ -103,7 +104,6 @@ def notice(notice_id):
         "summary": notice.summary,
         "details": markdown_parser(notice.get_processed_details),
         "instructions": instructions,
-        "instruction_packages": instruction_packages,
         "package_descriptions": package_descriptions,
         "release_packages": release_packages,
         "releases": notice.releases,
