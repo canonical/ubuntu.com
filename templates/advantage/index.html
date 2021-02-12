@@ -56,7 +56,7 @@
           <div class="col-12  p-strip--light is-shallow u-hide p-card"  aria-hidden="true" id="renewal-options" style="border-left: 0; border-right: 0; overflow: visible; padding-top: 3rem; padding-bottom: 2rem;"> 
               <div class="row">
                 <div class="row col-start-large-2 col-10">
-                  <p><strong>{{subscriptions["current_subscription_number"]}} subscriptions are set to auto-renew monthly</strong></p>
+                  <h5>{{subscriptions["current_subscription_number"]}} subscriptions are set to auto-renew monthly</h5>
                   <hr>
                   <div> 
                     <label class="p-radio">
@@ -525,20 +525,6 @@
   }
 
   contextualMenu();
-</script>
-
-<script>
-  var toggles = document.querySelectorAll('.js-reveal-renewal-options');
-  toggles.forEach(toggle => {
-    var chevron = toggle.querySelector('.p-icon--contextual-menu');
-    if (chevron){
-      toggle.addEventListener('click', function(e) {
-        chevron.classList.toggle('u-rotate');
-        var content = document.querySelector('#' + this.getAttribute('aria-controls'));
-        content.classList.toggle('u-hide');
-      });
-    }
-  });
 </script>
 
 <script>
