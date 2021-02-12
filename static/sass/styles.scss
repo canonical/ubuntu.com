@@ -345,8 +345,11 @@ summary {
   @extend %vf-is-bordered;
   @extend %vf-has-round-corners;
 
+  background-color: $color-light;
+
   border-left: none;
   border-right: none;
+  border-top-color: $color-mid-x-light;
 
   margin-bottom: 0;
   padding: 1.5rem !important;
@@ -421,37 +424,35 @@ summary {
 
     > th:nth-child(1),
     > td:nth-child(1) {
-      flex: 3;
+      flex: 4;
     }
 
-    // matches 2nd to 5th direct child
-    > th:not(:nth-child(1)):nth-child(-n + 6),
-    > td:not(:nth-child(1)):nth-child(-n + 6) {
-      flex: 1;
-    }
-    > .left-aligned {
-      justify-content: flex-start !important;
-      text-align: left !important;
-      padding-left: 2rem;
-      button {
-        padding-left: 0;
-      }
+    > .spacer {
+      flex: 0.5;
 
       @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-        padding-left: 0.5rem;
+        display: none;
       }
     }
 
-    > .right-aligned {
-      justify-content: flex-end !important;
-      text-align: right !important;
-      padding-right: 2rem;
-      button {
+    > .plan,
+    > .machines,
+    > .esm,
+    > .livepatch,
+    > .certifications {
+      flex: 1;
+      > button {
+        padding-left: 0;
         padding-right: 0;
       }
-      @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-        padding-right: 0.5rem;
-      }
+    }
+
+    > .livepatch {
+      flex: 0.8;
+    }
+
+    > .certifications {
+      flex: 1.2;
     }
 
     .p-icon--contextual-menu {
@@ -484,11 +485,18 @@ summary {
   }
 
   .p-table--open {
-    background-color: $color-x-light;
-    border-left: 1px solid $color-mid-light;
-    border-right: 1px solid $color-mid-light;
-    box-shadow: 0 1px 0 0 $color-x-light;
+    background-color: $color-light;
+    box-shadow: -1px 0 0 0 $color-mid-x-light, 1px 0 0 0 $color-mid-x-light,
+      0 1px 0 0 $color-light;
     z-index: 5;
+
+    &:first-child {
+      box-shadow: 1px 0 0 0 $color-mid-x-light, 0 1px 0 0 $color-light;
+    }
+
+    &.certifications {
+      box-shadow: -1px 0 0 0 $color-mid-x-light, 0 1px 0 0 $color-light;
+    }
 
     &::after {
       display: none;
