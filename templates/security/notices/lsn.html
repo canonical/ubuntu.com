@@ -23,10 +23,10 @@
   {% if notice.package_descriptions %}
   <div class="row">
     <div class="col-12">
-      <h2>Packages</h2>
+      <h2>Software Description</h2>
       <ul class="p-list">
         {% for package_name, package_title in notice.package_descriptions.items() %}
-          <li class="p-list__item"><a href="/security/cve?package={{ package_name }}">{{ package_name }}</a> - {{ package_title }}</li>
+        <li class="p-list__item"><strong>{{ package_name }}</strong> - {{ package_title }}</li>
         {% endfor %}
       </ul>
     </div>
@@ -46,17 +46,17 @@
       <table>
         <thead>
           <th>Kernel type</th>
-          {% for version in notice.instructions %}
+          {% for version in notice.release_packages.__reversed__() %}
             <th>{{ version }}</th>
           {% endfor %}
         </thead>
         <tbody>
-          {% for instruction_package in notice.instruction_packages %}
+          {% for package_name in notice.package_descriptions.keys() %}
             <tr>
-              <td><strong>{{ instruction_package }}</strong></td>
-              {% for version in notice.instructions %}
-                {% if notice.instructions[version][instruction_package] %}
-                  <td>{{ notice.instructions[version][instruction_package] }}</td>
+              <td><strong>{{ package_name }}</strong></td>
+              {% for version in notice.release_packages.__reversed__() %}
+                {% if notice.release_packages[version][package_name] %}
+                  <td>{{ notice.release_packages[version][package_name].version }}</td>
                 {% else %}
                   <td>&mdash;</td>
                 {% endif %}
@@ -78,32 +78,12 @@
       <div class="col-8">
         <h2>Support Information</h2>
         <p>Kernels older than the levels listed below do not receive livepatch updates. If you are running a kernel version earlier than the one listed below, please upgrade your kernel as soon as possible.</p>
-        {% for version in notice.release_packages.__reversed__() %}
-          <h3 class="p-heading--five">Ubuntu {{ version }}</h3>
+        {% for release_version, packages in notice.instructions.items() %}
+        <h3 class="p-heading--five">Ubuntu {{ release_version }}</h3>
           <ul class="p-list">
-            {% for package in notice.release_packages[version] %}
+            {% for name, version in packages.items() %}
               <li class="p-list__item">
-                {% if package.source_link %}
-                  <a href="{{package.source_link}}">{{ package.name }}</a>
-                {% else %}
-                  {{ package.name }}
-                {% endif %}
-                -
-                {% if package.version_link %}
-                  <a href="{{package.version_link}}">{{ package.version }}</a>
-                {% else%}
-                  {{ package.version }}
-                {% endif %}
-                <div>
-                  <small>
-                    {% if package.pocket == "esm-infra" %}
-                      Available with <a href="/advantage">UA Infra or UA Desktop</a>
-                    {% endif %}
-                    {% if package.pocket == "esm-apps" %}
-                      Available with <a href="/advantage">UA Apps or UA Desktop</a>
-                    {% endif %}
-                  </small>
-                </div>
+                <strong>{{ name }}</strong> - {{ version }}
               </li>
             {% endfor %}
           </ul>
