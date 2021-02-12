@@ -362,6 +362,8 @@ function applyTotals() {
 }
 
 function applyLoggedInPurchaseTotals() {
+  setCustomerInfo();
+
   if (currentTransaction.type == "purchase") {
     const formData = new FormData(form);
     const country = formData.get("Country");
