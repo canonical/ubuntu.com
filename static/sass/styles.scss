@@ -509,43 +509,6 @@ summary {
   }
 }
 
-.u-arrow-up {
-  overflow: visible;
-  position: relative;
-  z-index: 20;
-
-  @media only screen and (min-width: $breakpoint-small) {
-    &::after {
-      background: $color-light;
-      box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
-      content: "";
-      height: 1rem;
-      pointer-events: none;
-      position: absolute;
-      right: 2.1rem;
-      top: -1.2rem;
-      transform: rotate(45deg);
-      width: 1rem;
-      z-index: 5;
-    }
-  }
-
-  @media only screen and (min-width: $breakpoint-large) {
-    &::after {
-      top: -2rem;
-    }
-  }
-
-  &--center {
-    @extend .u-arrow-up;
-    @media only screen and (min-width: $breakpoint-small) {
-      &::after {
-        right: 50%;
-      }
-    }
-  }
-}
-
 .u-padding-top--small {
   @media only screen and (max-width: $breakpoint-small) {
     margin-left: 0 !important;
