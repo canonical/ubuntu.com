@@ -863,6 +863,66 @@ def advantage_shop_view():
 
 
 @store_maintenance
+def advantage_payment_methods_view():
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    stripe_publishable_key = os.getenv(
+        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
+    )
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        stripe_publishable_key = os.getenv(
+            "STRIPE_TEST_PUBLISHABLE_KEY",
+            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
+        )
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            flask.session["authentication_token"],
+            api_url=api_url,
+        )
+
+        try:
+            account = advantage.get_purchase_account()
+            customer_info = get_customer_info(account["id"])
+            default_payment_method = customer_info["customerInfo"]["defaultPaymentMethod"]
+        except HTTPError as http_error:
+            if http_error.response.status_code == 401:
+                # We got an unauthorized request, so we likely
+                # need to re-login to refresh the macaroon
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "session_keys": flask.session.keys(),
+                        "request_url": http_error.request.url,
+                        "request_headers": http_error.request.headers,
+                        "response_headers": http_error.response.headers,
+                        "response_body": http_error.response.json(),
+                        "response_code": http_error.response.json()["code"],
+                        "response_message": http_error.response.json()[
+                            "message"
+                        ],
+                    }
+                )
+
+                empty_session(flask.session)
+
+                return flask.render_template("advantage/index.html")
+
+            raise http_error
+
+    return flask.render_template(
+        "advantage/payment-methods/index.html",
+        stripe_publishable_key=stripe_publishable_key,
+        is_test_backend=is_test_backend,
+        default_payment_method=default_payment_method
+    )
+
+
+@store_maintenance
 def advantage_thanks_view():
     email = flask.request.args.get("email")
 

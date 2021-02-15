@@ -1,0 +1,74 @@
+{% extends "advantage/base_advantage.html" %}
+
+{% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
+{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1K65n3NpZCh7EWDXKLhG31seGJ2jKbW6lqw3BwV2mlnU/edit#heading=h.nleu1cdig11l{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% if user_info %}
+  <section class="p-strip--suru-topped">
+    <div class="row">
+      <div class="col-12">
+        <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
+
+        <p>You are signed in as {{ user_info.fullname }} ({{ user_info.email }})
+          <span class="u-hide--large u-hide--medium"><br/></br/></span>
+          <a href="/logout?return_to={{ request.host_url }}advantage" class="p-button--neutral is-inline is-dense u-no-margin--bottom" onclick="dataLayer.push({
+            'event' : 'GAEvent',
+            'eventCategory' : 'Advantage',
+            'eventAction' : 'Authentication',
+            'eventLabel' : 'Sign out',
+            'eventValue' : undefined
+          });">Sign out</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr></hr>
+
+  <section class="p-strip">
+    <div class="row">
+      <div class="col-12">
+        <h1>Payment methods</h1>
+        <p><span style="text-transform: capitalize;">{{default_payment_method["brand"]}}</span> ending in {{default_payment_method["last4"]}}</p>
+        <hr></hr>
+
+      </div>
+    </div>
+  </section>
+{% else %}
+  <section class="p-strip--suru-topped">
+    <div class="row">
+      <div class="col-12">
+        <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
+        <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
+        <p>Sign in to access your personal or paid subscriptions.</p>
+        <p>
+          <a href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}" class="p-button--neutral"
+            onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Authentication',
+              'eventLabel' : 'Sign in',
+              'eventValue' : undefined
+            });">
+            Sign in
+          </a>
+          <a href="/advantage/subscribe" class="p-button--neutral">Buy a subscription</a>
+        </p>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+
+<script>
+
+</script>
+
+
+{% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+{% endblock content %}
