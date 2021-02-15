@@ -224,11 +224,15 @@
               <thead>
                 <tr class="p-table__row">
                   <th class="u-no-padding u-vertically-center"><span style="padding-left: 0.5rem;">{{ account }}</span></th>
-                  <th>UA plan</th>
-                  <th class="u-align--center">Attached</th>
-                  <th class="u-align--center">ESM</th>
-                  <th class="u-align--center">Livepatch</th>
-                  <th class="u-align--center">Certifications</th>
+                  <th class="spacer"></th>
+                  <th class="plan">UA plan</th>
+                  <th class="u-align--right machines">Machines</th>
+                  <th class="spacer"></th>
+                  <th class="u-align--right esm">ESM</th>
+                  <th class="spacer"></th>
+                  <th class="u-align--right livepatch">Livepatch</th>
+                  <th class="spacer"></th>
+                  <th class="u-align--right certifications">Certifications</th>
                   <th class="u-hide">&nbsp;</th>
                   <th class="u-hide">&nbsp;</th>
                   <th class="u-hide">&nbsp;</th>
@@ -247,18 +251,20 @@
 
                     <tr class="p-table__row">
                       {% include "advantage/table/_contract-name.html" %}
-                      <td style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
-                      <td class="u-align--center {% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}">
+                      <td class="spacer"></td>
+                      <td class="plan" style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
+                      <td class="u-align--right machines {% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}">
                         <span class="u-hide">{{ contract }}</span>
                         <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
                           {{ contract['machineCount'] }}&nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
                         </button>
                       </td>
+                      <td class="spacer"></td>
 
-                      <td class="u-align--center">
+                      <td class="u-align--right esm">
                         {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
                         <button class="u-toggle" style="position: relative;" aria-controls="#expanded-row-esm-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
-                          <span class="u-truncate" style="position: relative;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> {% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--contextual-menu">Open</i>
+                          <span class="u-truncate" style="position: relative;">{% if contract['entitlements']['esm-infra'] == True %}Infra{% else %}Apps{% endif %} <i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i> <i class="p-icon--contextual-menu">Open</i>
                           </span>
                           {% if new_subscription_id == contract['contractInfo']['id'] %}
                             <i class="p-icon--attention u-hide" data-entitlement="esm-infra" style="position: absolute; right: 11px; top: 4px;"></i>
@@ -268,7 +274,9 @@
                         <span style="padding-top: 0.35rem;">N/A</span>
                         {% endif %}
                       </td>
-                      <td class="u-align--center">
+                      <td class="spacer"></td>
+
+                      <td class="u-align--right livepatch">
                         {% if contract['entitlements']['livepatch'] == True %}
                         <button class="u-toggle" style="position: relative;" aria-controls="#expanded-row-livepatch-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                           <span class="u-truncate" style="position: relative;">
@@ -282,7 +290,9 @@
                         <span style="padding-top: 0.35rem;">N/A</span>
                         {% endif %}
                       </td>
-                      <td class="u-align--center">
+                      <td class="spacer"></td>
+
+                      <td class="u-align--right certifications">
                         {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
                         <button class="u-toggle" style="position: relative;" aria-controls="#expanded-row-certifications-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="false" data-shown-text="Hide" data-hidden-text="Show">
                           <span class="u-truncate" style="position: relative;"><i class="p-icon--{% if expired_renewable %}error u-disable{% else %}success{% endif %}"></i>&nbsp;<i class="p-icon--contextual-menu">Open</i>

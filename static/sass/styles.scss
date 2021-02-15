@@ -345,6 +345,12 @@ summary {
   @extend %vf-is-bordered;
   @extend %vf-has-round-corners;
 
+  background-color: $color-light;
+
+  border-left: none;
+  border-right: none;
+  border-top-color: $color-mid-x-light;
+
   margin-bottom: 0;
   padding: 1.5rem !important;
 }
@@ -416,19 +422,41 @@ summary {
   .p-table__row {
     position: relative;
 
-    th:nth-child(1),
-    td:nth-child(1) {
-      flex: 3;
+    > th:nth-child(1),
+    > td:nth-child(1) {
+      flex: 4;
     }
 
-    th:nth-child(2),
-    td:nth-child(2) {
-      flex: 0.75;
+    > .spacer {
+      flex: 0.5;
+
+      @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+        display: none;
+      }
     }
 
-    th:nth-child(3),
-    td:nth-child(3) {
-      flex: 0.75;
+    > .plan,
+    > .machines,
+    > .esm,
+    > .livepatch,
+    > .certifications {
+      flex: 1;
+      > button {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    > .livepatch {
+      flex: 0.8;
+    }
+
+    > .certifications {
+      flex: 1.2;
+    }
+
+    .p-icon--contextual-menu {
+      margin-left: 0.5rem;
     }
 
     &:not(:last-of-type) {
@@ -444,12 +472,35 @@ summary {
     margin: 0;
   }
 
+  .p-table-title {
+    @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
+      &::after {
+        display: block;
+        content: "";
+        align-self: center;
+        border-right: 1px solid $color-mid-light;
+        height: calc(100% - (2 * 0.5rem));
+      }
+    }
+  }
+
   .p-table--open {
-    background-color: $color-x-light;
-    border-left: 1px solid $color-mid-light;
-    border-right: 1px solid $color-mid-light;
-    box-shadow: 0 1px 0 0 $color-x-light;
+    background-color: $color-light;
+    box-shadow: -1px 0 0 0 $color-mid-x-light, 1px 0 0 0 $color-mid-x-light,
+      0 1px 0 0 $color-light;
     z-index: 5;
+
+    &:first-child {
+      box-shadow: 1px 0 0 0 $color-mid-x-light, 0 1px 0 0 $color-light;
+    }
+
+    &.certifications {
+      box-shadow: -1px 0 0 0 $color-mid-x-light, 0 1px 0 0 $color-light;
+    }
+
+    &::after {
+      display: none;
+    }
   }
 
   .u-toggle {
