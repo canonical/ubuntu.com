@@ -985,7 +985,21 @@ def post_anonymised_customer_info():
 
 
 def post_auto_renewal_settings():
-    # TODO Call the API
+
+    # try:
+    #     # TODO Call the API
+    # except HTTPError as http_error:
+    #     flask.current_app.extensions["sentry"].captureException(
+    #         extra={
+    #             "purchase_request": set_auto_renewal,
+    #             "api_response": http_error.response.json(),
+    #         }
+    #     )
+    #     return (
+    #         flask.jsonify({"error": "could change auto renewal settings"}),
+    #         500,
+    #     )
+
     return flask.jsonify({"error": "not implemented"}), 501
 
 
