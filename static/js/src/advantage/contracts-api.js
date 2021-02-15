@@ -1,5 +1,5 @@
 export async function getPurchase(purchaseID) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(
     `/advantage/purchases/${purchaseID}${queryString}`,
@@ -17,7 +17,7 @@ export async function ensurePurchaseAccount(
   accountName,
   paymentMethodID
 ) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/purchase-account${queryString}`, {
     method: "POST",
@@ -39,7 +39,7 @@ export async function ensurePurchaseAccount(
 }
 
 export async function getRenewal(renewalID) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/renewals/${renewalID}${queryString}`, {
     cache: "no-store",
@@ -50,7 +50,7 @@ export async function getRenewal(renewalID) {
 }
 
 export async function getCustomerInfo(accountId) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(
     `/advantage/customer-info/${accountId}${queryString}`,
@@ -64,7 +64,7 @@ export async function getCustomerInfo(accountId) {
 }
 
 export async function postInvoiceID(transactionType, transactionID, invoiceID) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(
     `/advantage/${transactionType}/${transactionID}/invoices/${invoiceID}${queryString}`,
@@ -80,7 +80,7 @@ export async function postInvoiceID(transactionType, transactionID, invoiceID) {
 }
 
 export async function postRenewalIDToProcessPayment(renewalID) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(
     `/advantage/renewals/${renewalID}/process-payment${queryString}`,
@@ -100,7 +100,7 @@ export async function postPurchaseData(
   products,
   previousPurchaseId
 ) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "POST",
@@ -126,7 +126,7 @@ export async function postPurchasePreviewData(
   products,
   previousPurchaseId
 ) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/subscribe/preview${queryString}`, {
     method: "POST",
@@ -154,7 +154,7 @@ export async function postCustomerInfoToStripeAccount(
   name,
   taxID
 ) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/customer-info${queryString}`, {
     method: "POST",
@@ -182,7 +182,7 @@ export async function postCustomerInfoForPurchasePreview(
   address,
   taxID
 ) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/customer-info-anon${queryString}`, {
     method: "POST",
@@ -204,7 +204,7 @@ export async function postCustomerInfoForPurchasePreview(
 }
 
 export async function setAutoRenewal(subscriptionId, value) {
-  const queryString = window.location.search;
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/set-auto-renewal${queryString}`, {
     method: "POST",
