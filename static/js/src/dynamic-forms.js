@@ -26,8 +26,7 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
       recaptchas.forEach(function (field) {
         if (!field.hasAttribute("data-widget-id")) {
           let siteKey = field.getAttribute("data-sitekey");
-          const gc = grecaptcha || null;
-          const recaptchaWidgetId = gc.render(field, {
+          const recaptchaWidgetId = grecaptcha.render(field, {
             sitekey: siteKey,
           });
           field.setAttribute("data-widget-id", recaptchaWidgetId);
@@ -53,7 +52,6 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
           setGclid();
           loadCaptchaScript();
           initialiseForm();
-          window.CaptchaCallback();
         })
         .catch(function (error) {
           console.log("Request failed", error);
