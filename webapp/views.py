@@ -475,9 +475,9 @@ def advantage_view():
             account["contracts"] = advantage.get_account_contracts(account)
             customer_info = get_customer_info(account["id"])
             if customer_info:
-                default_payment_method = customer_info["customerInfo"][
+                default_payment_method = customer_info["customerInfo"].get(
                     "defaultPaymentMethod"
-                ]
+                )
 
             monthly_subscriptions = (
                 advantage.get_account_subscriptions_for_marketplace(
