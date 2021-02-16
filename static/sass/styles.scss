@@ -885,3 +885,22 @@ body {
   cursor: not-allowed;
   opacity: 0.33;
 }
+
+.current-payment-method {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.1rem;
+
+  > p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.payment-card-logo {
+  height: 1.7rem;
+  margin-right: 1rem;
+  background-color: $color-x-light;
+  border: 1px solid $color-mid-light;
+  border-radius: 2px;
+}

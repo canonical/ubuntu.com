@@ -28,12 +28,37 @@
 
   <hr></hr>
 
-  <section class="p-strip">
+  <section class="p-strip" style="height: 600px">
     <div class="row">
       <div class="col-12">
         <h1>Payment methods</h1>
-        <p><span style="text-transform: capitalize;">{{default_payment_method["brand"]}}</span> ending in {{default_payment_method["last4"]}}</p>
+        <div id="default-payment-method-section" class="row" style="margin-top: 2rem;">
+          <div class="col-4 current-payment-method">
+            {% with brand=default_payment_method["brand"] %}
+              {% include "advantage/payment-methods/_card-logo.html" %}
+            {% endwith %}
+            <p><span style="text-transform: capitalize;">{{default_payment_method["brand"]}}</span> ending in {{default_payment_method["last4"]}}</p>
+            </div>
+          <p class="col-4 u-text--muted">Default payment method</p>
+          <div class="col-4 u-align--right">
+            <button class="p-button--neutral" id="edit-payment-details">Edit</button>
+          </div>
+        </div>
+
+        <div id="edit-payment-method-section" class="row u-hide" style="margin-top: 2rem;">
+          <div class="col-8">
+              <div id="card-element"></div>
+              <span id="card-errors" class="p-form-validation__message u-hide"></span>
+          </div>
+          <div class="col-4 u-align--right">
+            <button class="p-button--neutral" id="cancel-payment-details">Cancel</button>
+            <button class="p-button--positive" id="confirm-payment-details" disabled>Confirm</button>
+          </div>
+          <div class="col-8">
+          </div>
+        </div>
         <hr></hr>
+
 
       </div>
     </div>
@@ -64,9 +89,12 @@
 {% endif %}
 
 
+<script src="https://js.stripe.com/v3/"></script>
 <script>
-
+  window.stripePublishableKey = "{{ stripe_publishable_key }}";
+  var accountId = "{{ account_id }}";
 </script>
+<script src="{{ versioned_static('js/dist/ua-payment-methods.js') }}" type="module" defer></script>
 
 
 {% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}

@@ -889,7 +889,10 @@ def advantage_payment_methods_view():
         try:
             account = advantage.get_purchase_account()
             customer_info = get_customer_info(account["id"])
-            default_payment_method = customer_info["customerInfo"]["defaultPaymentMethod"]
+            default_payment_method = customer_info["customerInfo"][
+                "defaultPaymentMethod"
+            ]
+            account_id = customer_info["accountInfo"]["id"]
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
                 # We got an unauthorized request, so we likely
@@ -918,7 +921,8 @@ def advantage_payment_methods_view():
         "advantage/payment-methods/index.html",
         stripe_publishable_key=stripe_publishable_key,
         is_test_backend=is_test_backend,
-        default_payment_method=default_payment_method
+        default_payment_method=default_payment_method,
+        account_id=account_id,
     )
 
 
@@ -1040,6 +1044,54 @@ def post_anonymised_customer_info():
         return advantage.put_anonymous_customer_info(
             account_id, address, tax_id
         )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+
+def post_payment_method():
+    user_token = flask.session.get("authentication_token")
+    guest_token = flask.session.get("guest_authentication_token")
+    is_test_backend = flask.request.args.get("test_backend", False)
+
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
+    if user_info(flask.session) or guest_token:
+        advantage = AdvantageContracts(
+            session,
+            user_token or guest_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
+            api_url=api_url,
+        )
+
+        if not flask.request.is_json:
+            return flask.jsonify({"error": "JSON required"}), 400
+
+        account_id = flask.request.json.get("account_id")
+        if not account_id:
+            return flask.jsonify({"error": "account_id required"}), 400
+
+        payment_method_id = flask.request.json.get("payment_method_id")
+        if not payment_method_id:
+            return flask.jsonify({"error": "payment_method_id required"}), 400
+
+        try:
+            return advantage.put_payment_method(account_id, payment_method_id)
+        except HTTPError as http_error:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "payment_method_id": payment_method_id,
+                    "api_response": http_error.response.json(),
+                }
+            )
+            return (
+                flask.jsonify(
+                    {"error": "could not update default payment method"}
+                ),
+                500,
+            )
     else:
         return flask.jsonify({"error": "authentication required"}), 401
 
