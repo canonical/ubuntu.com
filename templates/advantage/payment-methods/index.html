@@ -28,10 +28,10 @@
 
   <hr></hr>
 
-  <section class="p-strip" style="height: 600px">
+  <section class="p-strip is-shallow" style="height: 600px">
     <div class="row">
       <div class="col-12">
-        <h1>Payment methods</h1>
+        <h2>Payment methods</h2>
         <div id="default-payment-method-section" class="row {% if not default_payment_method["id"] %}u-hide{% endif %}" style="margin-top: 2rem;">
           <div class="col-4 current-payment-method">
             {% with brand=default_payment_method["brand"] %}
