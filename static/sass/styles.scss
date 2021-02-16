@@ -886,21 +886,33 @@ body {
   opacity: 0.33;
 }
 
-.current-payment-method {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.1rem;
+.card-management-section {
+  height: 600px;
 
-  > p {
-    margin: 0;
-    padding: 0;
+  @media (max-width: $breakpoint-small) {
+    height: auto;
+
+    #card-element {
+      margin-bottom: 1rem;
+    }
   }
-}
 
-.payment-card-logo {
-  height: 1.7rem;
-  margin-right: 0.5rem;
-  background-color: $color-x-light;
-  border: 1px solid $color-mid-light;
-  border-radius: 2px;
+  .current-payment-method {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.1rem;
+
+    > p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .payment-card-logo {
+    height: 1.7rem;
+    margin-right: 0.5rem;
+    background-color: $color-x-light;
+    border: 1px solid $color-mid-light;
+    border-radius: 2px;
+  }
 }
