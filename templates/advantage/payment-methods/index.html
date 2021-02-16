@@ -32,7 +32,7 @@
     <div class="row">
       <div class="col-12">
         <h1>Payment methods</h1>
-        <div id="default-payment-method-section" class="row" style="margin-top: 2rem;">
+        <div id="default-payment-method-section" class="row {% if not default_payment_method["id"] %}u-hide{% endif %}" style="margin-top: 2rem;">
           <div class="col-4 current-payment-method">
             {% with brand=default_payment_method["brand"] %}
               {% include "advantage/payment-methods/_card-logo.html" %}
@@ -45,13 +45,13 @@
           </div>
         </div>
 
-        <div id="edit-payment-method-section" class="row u-hide" style="margin-top: 2rem;">
+        <div id="edit-payment-method-section" class="row {% if default_payment_method["id"] %}u-hide{% endif %}" style="margin-top: 2rem;">
           <div class="col-8">
               <div id="card-element"></div>
               <span id="card-errors" class="p-form-validation__message u-hide"></span>
           </div>
           <div class="col-4 u-align--right">
-            <button class="p-button--neutral" id="cancel-payment-details">Cancel</button>
+            {% if default_payment_method["id"] %}<button class="p-button--neutral" id="cancel-payment-details">Cancel</button>{% endif %}
             <button class="p-button--positive" id="confirm-payment-details" disabled>Confirm</button>
           </div>
           <div class="col-8">
@@ -92,7 +92,7 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script>
   window.stripePublishableKey = "{{ stripe_publishable_key }}";
-  var accountId = "{{ account_id }}";
+  window.accountId = "{{ account_id }}";
 </script>
 <script src="{{ versioned_static('js/dist/ua-payment-methods.js') }}" type="module" defer></script>
 
