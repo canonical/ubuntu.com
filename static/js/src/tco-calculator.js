@@ -9,9 +9,9 @@ const DEPLOYMENT_TYPE_COSTS = {
 
 const MANAGED_SERVICE_COSTS = {
   maas: 300,
-  openstack: 4275,
-  kubernetes: 3250,
-  openstack_and_kubernetes: 6465,
+  openstack: 3975,
+  kubernetes: 2485,
+  openstack_and_kubernetes: 4851,
 };
 
 const SERVICE_LEVEL_COST_PER_HOST = {
@@ -174,10 +174,10 @@ function updateTotals() {
       hosts * MANAGED_SERVICE_COSTS["openstack_and_kubernetes"];
   } else if (openstack.checked) {
     rollout += openstackDeploymentCost;
-    managedServicesCost += hosts * MANAGED_SERVICE_COSTS["openstack"];
+    managedServicesCost += 3 * hosts * MANAGED_SERVICE_COSTS["openstack"];
   } else if (kubernetes.checked) {
     rollout += kubernetesDeploymentCost;
-    managedServicesCost += hosts * MANAGED_SERVICE_COSTS["kubernetes"];
+    managedServicesCost += 3 * hosts * MANAGED_SERVICE_COSTS["kubernetes"];
   }
 
   if (openstack.checked || kubernetes.checked) {
