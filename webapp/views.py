@@ -865,6 +865,8 @@ def advantage_shop_view():
 @store_maintenance
 def advantage_payment_methods_view():
     is_test_backend = flask.request.args.get("test_backend", False)
+    default_payment_method = {}
+    account_id = {}
 
     stripe_publishable_key = os.getenv(
         "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
