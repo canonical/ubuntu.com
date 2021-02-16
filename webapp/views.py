@@ -891,9 +891,10 @@ def advantage_payment_methods_view():
         try:
             account = advantage.get_purchase_account()
             customer_info = get_customer_info(account["id"])
-            default_payment_method = customer_info["customerInfo"][
+
+            default_payment_method = customer_info["customerInfo"].get(
                 "defaultPaymentMethod"
-            ]
+            )
             account_id = customer_info["accountInfo"]["id"]
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
