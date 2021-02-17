@@ -151,8 +151,7 @@ function updateTotals() {
   // an additional 3 hosts are required to host MAAS, Juju, etc
   const hostCost = SERVICE_LEVEL_COST_PER_HOST[serviceLevel] * hosts;
   const maasHostCost = MANAGED_SERVICE_COSTS["maas"] * 3;
-  const managedSupportCost =
-    SERVICE_LEVEL_COST_PER_HOST["advanced"] * hosts;
+  const managedSupportCost = SERVICE_LEVEL_COST_PER_HOST["advanced"] * hosts;
 
   let managedServicesCost = 0;
   let rollout = 0;
@@ -181,8 +180,7 @@ function updateTotals() {
   }
 
   if (openstack.checked || kubernetes.checked) {
-    yearly +=
-      managedServicesCost + managedSupportCost + storageCost ;
+    yearly += managedServicesCost + managedSupportCost + storageCost;
     selfYearly += hostCost + storageCost;
   }
 
