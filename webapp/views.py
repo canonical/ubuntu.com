@@ -422,7 +422,7 @@ def advantage_view():
     new_subscription_start_date = None
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
-    default_payment_method = {}
+    default_payment_method = None
     is_test_backend = flask.request.args.get("test_backend", False)
 
     stripe_publishable_key = os.getenv(
@@ -473,9 +473,12 @@ def advantage_view():
 
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
-            customer_info = get_customer_info(account["id"])
-            if customer_info:
-                default_payment_method = customer_info["customerInfo"].get(
+            customer_info_response = get_customer_info(account["id"])
+            if customer_info_response["success"]:
+                customer_info = customer_info_response["data"].get(
+                    "customerInfo"
+                )
+                default_payment_method = customer_info.get(
                     "defaultPaymentMethod"
                 )
 
