@@ -677,6 +677,13 @@ summary {
   padding: 0.25rem 0.85rem;
 }
 
+// Keep font weight 300 for copyable code snippets
+// Bug https://github.com/canonical-web-and-design/vanilla-framework/issues/3564
+
+.p-code-copyable__input {
+  font-weight: 300;
+}
+
 // XXX: Align accordion icons top instead of center
 // Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/2926
 .p-accordion__tab {
