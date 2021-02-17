@@ -456,50 +456,44 @@ def advantage_view():
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
 
-            resp = advantage.get_account_subscriptions_for_marketplace(
-                account["id"], "canonical-ua"
+            monthly_subscriptions = (
+                advantage.get_account_subscriptions_for_marketplace(
+                    account_id=account["id"],
+                    marketplace="canonical-ua",
+                    filters={
+                        "status": "active",
+                        "period": "monthly",
+                    },
+                )
             )
-            subs = resp.get("subscriptions")
 
-            if subs is not None:
-                for subscription in subs:
-                    subscriptions["total_subscriptions"] += len(
-                        subscription["purchasedProductListings"]
-                    )
-                    if subscription["subscription"]["period"] == "monthly":
-                        subscriptions["has_monthly"] = True
-                        subscriptions["id"] = subscription["subscription"][
-                            "id"
-                        ]
+            for subscription in monthly_subscriptions.get("subscriptions", []):
+                subscriptions["total_subscriptions"] += len(
+                    subscription["purchasedProductListings"]
+                )
+                subscriptions["has_monthly"] = True
+                subscriptions["id"] = subscription["subscription"]["id"]
 
-                        # TODO get the correct auto-renewal state
-                        subscriptions["is_auto_renewal_enabled"] = True
+                # TODO get the correct auto-renewal state
+                subscriptions["is_auto_renewal_enabled"] = True
 
-                        last_purchase = advantage.get_purchase(
-                            subscription["lastPurchaseID"]
-                        )
-                        subscriptions[
-                            "last_payment_date"
-                        ] = dateutil.parser.parse(
-                            last_purchase["createdAt"]
-                        ).strftime(
-                            "%d %B %Y"
-                        )
-                        subscriptions["current_subscription_number"] = len(
-                            subscription["purchasedProductListings"]
-                        )
-                        subscriptions["next_payment"][
-                            "date"
-                        ] = dateutil.parser.parse(
-                            subscription["subscription"]["endOfCycle"]
-                        ).strftime(
-                            "%d %B %Y"
-                        )
-                        subscriptions["next_payment"][
-                            "ammount"
-                        ] = get_subscription_payment_total(
-                            subscription["purchasedProductListings"]
-                        )
+                last_purchase = advantage.get_purchase(
+                    subscription["lastPurchaseID"]
+                )
+                subscriptions["last_payment_date"] = dateutil.parser.parse(
+                    last_purchase["createdAt"]
+                ).strftime("%d %B %Y")
+                subscriptions["current_subscription_number"] = len(
+                    subscription["purchasedProductListings"]
+                )
+                subscriptions["next_payment"]["date"] = dateutil.parser.parse(
+                    subscription["subscription"]["endOfCycle"]
+                ).strftime("%d %B %Y")
+                subscriptions["next_payment"][
+                    "ammount"
+                ] = get_subscription_payment_total(
+                    subscription["purchasedProductListings"]
+                )
 
             for contract in account["contracts"]:
                 contract["token"] = advantage.get_contract_token(contract)
@@ -687,13 +681,16 @@ def post_advantage_subscriptions(preview):
 
     account_id = payload.get("account_id")
     previous_purchase_id = payload.get("previous_purchase_id")
-    last_subscription = {}
+    period = payload.get("subscription_period")
+    existing_subscription = {}
 
     if not guest_token:
         try:
             subscriptions = (
                 advantage.get_account_subscriptions_for_marketplace(
-                    account_id=account_id, marketplace="canonical-ua"
+                    account_id=account_id,
+                    marketplace="canonical-ua",
+                    filters={"status": "active"},
                 )
             )
         except HTTPError:
@@ -707,15 +704,16 @@ def post_advantage_subscriptions(preview):
                 500,
             )
 
-        if subscriptions:
-            last_subscription = subscriptions["subscriptions"][0]
+        for subscription in subscriptions.get("subscriptions", []):
+            if subscription["subscription"]["period"] == period:
+                existing_subscription = subscriptions["subscriptions"]
 
     # If there is a subscription we get the current metric
     # value for each product listing so we can generate a
     # purchase request with updated quantities later.
     subscribed_quantities = {}
-    if "purchasedProductListings" in last_subscription:
-        for item in last_subscription["purchasedProductListings"]:
+    if "purchasedProductListings" in existing_subscription:
+        for item in existing_subscription["purchasedProductListings"]:
             product_listing_id = item["productListing"]["id"]
             subscribed_quantities[product_listing_id] = item["value"]
 
@@ -757,7 +755,12 @@ def post_advantage_subscriptions(preview):
             }
         )
         return (
-            flask.jsonify({"error": "could not complete this purchase"}),
+            flask.jsonify(
+                {
+                    "purchase_request": purchase_request,
+                    "api_response": http_error.response.json(),
+                }
+            ),
             500,
         )
 
@@ -766,7 +769,8 @@ def post_advantage_subscriptions(preview):
 
 @store_maintenance
 def advantage_shop_view():
-    account = previous_purchase_id = None
+    account = None
+    previous_purchase_ids = {"monthly": "", "yearly": ""}
     is_test_backend = flask.request.args.get("test_backend", False)
 
     stripe_publishable_key = os.getenv(
@@ -814,7 +818,7 @@ def advantage_shop_view():
                 return flask.render_template(
                     "advantage/subscribe/index.html",
                     account=None,
-                    previous_purchase_id=None,
+                    previous_purchase_ids=previous_purchase_ids,
                     product_listings=[],
                     stripe_publishable_key=stripe_publishable_key,
                     is_test_backend=is_test_backend,
@@ -829,11 +833,14 @@ def advantage_shop_view():
 
     if account is not None:
         resp = advantage.get_account_subscriptions_for_marketplace(
-            account["id"], "canonical-ua"
+            account_id=account["id"],
+            marketplace="canonical-ua",
+            filters={"status": "active"},
         )
-        subs = resp.get("subscriptions")
-        if subs:
-            previous_purchase_id = subs[0].get("lastPurchaseID")
+
+        for subscription in resp.get("subscriptions", []):
+            period = subscription["subscription"]["period"]
+            previous_purchase_ids[period] = subscription["lastPurchaseID"]
 
     listings_response = advantage.get_marketplace_product_listings(
         "canonical-ua"
@@ -855,7 +862,7 @@ def advantage_shop_view():
     return flask.render_template(
         "advantage/subscribe/index.html",
         account=account,
-        previous_purchase_id=previous_purchase_id,
+        previous_purchase_ids=previous_purchase_ids,
         product_listings=listings,
         stripe_publishable_key=stripe_publishable_key,
         is_test_backend=is_test_backend,

@@ -114,6 +114,7 @@ export async function postPurchaseData(
       account_id: accountID,
       products: products,
       previous_purchase_id: previousPurchaseId,
+      period: "yearly",
     }),
   });
 
@@ -140,6 +141,7 @@ export async function postPurchasePreviewData(
       account_id: accountID,
       products: products,
       previous_purchase_id: previousPurchaseId,
+      period: "yearly",
     }),
   });
 

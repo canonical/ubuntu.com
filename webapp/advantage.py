@@ -144,14 +144,19 @@ class AdvantageContracts:
         return response.json()
 
     def get_account_subscriptions_for_marketplace(
-        self, account_id: str, marketplace: str
+        self, account_id: str, marketplace: str, filters=None
     ) -> dict:
+        if filters:
+            filters = "&".join(
+                "{}={}".format(key, value) for key, value in filters.items()
+            )
+
         response = self._request(
             method="get",
             path=(
                 f"v1/accounts/{account_id}"
                 f"/marketplace/{marketplace}"
-                f"/subscriptions?status=active"
+                f"/subscriptions?{filters}"
             ),
         )
         return response.json()
