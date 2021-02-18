@@ -55,6 +55,11 @@
         <h2>From the Ubuntu security team</h2>
         <p>{{ cve.ubuntu_description }}</p>
         {% endif %}
+
+        {%if cve.mitigation %}
+        <h2>Mitigation</h2>
+        <pre>{{ cve.mitigation }}</pre>
+        {% endif %}
       </div>
 
       <div class="col-3">
@@ -274,7 +279,7 @@
             {% for note in cve.notes %}
             <tr>
               <td><a href="https://launchpad.net/~{{ note.author }}">{{ note.author }}</a></td>
-              <td>{{ note.note }}</td>
+              <td><pre>{{ note.note }}</pre></td>
             </tr>
             {% endfor %}
           </table>

@@ -143,6 +143,7 @@ class CVESchema(Schema):
     priority = String(allow_none=True)
     status = String(allow_none=True)
     cvss3 = Float(allow_none=True)
+    mitigation = String(allow_none=True)
     packages = List(Nested(CvePackage))
     references = List(String())
     bugs = List(String())
