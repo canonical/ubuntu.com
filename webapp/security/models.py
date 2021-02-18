@@ -55,6 +55,7 @@ class CVE(Base):
         )
     )
     cvss3 = Column(Float)
+    mitigation = Column(String)
     references = Column(JSON)
     patches = Column(JSON)
     tags = Column(JSON)
