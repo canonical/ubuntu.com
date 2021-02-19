@@ -249,6 +249,10 @@ def _update_notice_object(notice, data):
     notice.published = data["published"]
     notice.references = data["references"]
     notice.instructions = data["instructions"]
+
+    if "is_hidden" in data:
+        notice.is_hidden = data["is_hidden"]
+
     notice.releases = [
         db_session.query(Release).get(codename)
         for codename in data["release_packages"].keys()

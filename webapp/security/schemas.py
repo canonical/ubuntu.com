@@ -92,6 +92,7 @@ class NoticeSchema(Schema):
     cves = List(String(validate=Regexp(r"(cve-|CVE-)\d{4}-\d{4,7}")))
     published = ParsedDateTime(required=True)
     description = String(allow_none=True)
+    is_hidden = Boolean(required=False)
     release_packages = Dict(
         keys=ReleaseCodename(),
         values=List(Nested(NoticePackage), required=True),

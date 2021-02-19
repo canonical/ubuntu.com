@@ -147,6 +147,7 @@ class Notice(Base):
     release_packages = Column(JSON)
     cves = relationship("CVE", secondary=notice_cves, back_populates="notices")
     references = Column(JSON)
+    is_hidden = Column(Boolean)
     releases = relationship(
         "Release",
         secondary=notice_releases,
