@@ -111,8 +111,8 @@ class EdxAPI:
 
     def get_enrollments(self, username: str):
         uri = (
-            "/api/enrollment/v1/enrollments"
-            f"?username={username}"
+            "/api/enrollment/v1/enrollment"
+            f"?user={username}"
             "&page_size=100"
         )
         return self.make_request(
