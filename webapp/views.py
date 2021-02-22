@@ -1053,7 +1053,6 @@ def post_anonymised_customer_info():
 
 def post_payment_method():
     user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
     is_test_backend = flask.request.args.get("test_backend", False)
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
@@ -1061,10 +1060,10 @@ def post_payment_method():
     if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
-    if user_info(flask.session) or guest_token:
+    if user_info(flask.session):
         advantage = AdvantageContracts(
             session,
-            user_token or guest_token,
+            user_token,
             token_type=("Macaroon" if user_token else "Bearer"),
             api_url=api_url,
         )
