@@ -37,12 +37,12 @@ card.mount("#card-element");
 
 card.on("change", (event) => {
   if (event.error) {
-    confirmButton.disabled = true;
+    updateButton.disabled = true;
     cardErrorElement.innerHTML = event.error.message;
     cardErrorElement.classList.remove("u-hide");
   } else if (event.complete) {
-    confirmButton.disabled = false;
-    confirmButton.focus();
+    updateButton.disabled = false;
+    updateButton.focus();
     cardErrorElement.classList.add("u-hide");
   } else {
     cardErrorElement.classList.add("u-hide");
@@ -51,7 +51,7 @@ card.on("change", (event) => {
 
 const editButton = document.getElementById("edit-payment-details");
 const cancelButton = document.getElementById("cancel-payment-details");
-const confirmButton = document.getElementById("confirm-payment-details");
+const updateButton = document.getElementById("update-payment-details");
 const previewSection = document.getElementById(
   "default-payment-method-section"
 );
@@ -68,7 +68,7 @@ cancelButton.addEventListener("click", () => {
   editSection.classList.add("u-hide");
 });
 
-confirmButton.addEventListener("click", function () {
+updateButton.addEventListener("click", function () {
   this.classList.add("is-processing");
   this.innerHTML = '<i class="p-icon--spinner u-animation--spin is-light"></i>';
   this.disabled = true;
@@ -87,7 +87,7 @@ confirmButton.addEventListener("click", function () {
     .catch((error) => {
       console.error(error);
       this.classList.remove("is-processing");
-      this.innerHTML = "Confirm";
+      this.innerHTML = "Update";
       this.disabled = false;
       cancelButton.disabled = false;
     });
