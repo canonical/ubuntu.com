@@ -15,8 +15,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import relationship
-
+from sqlalchemy.orm import relationship, Query
 
 Base = declarative_base()
 
@@ -197,6 +196,10 @@ class Notice(Base):
             "cves": [c.id for c in self.cves],
         }
 
+    @classmethod
+    def _base_filters(self):
+        return self.is_hidden == "False"
+
 
 class Release(Base):
     __tablename__ = "release"
@@ -275,3 +278,45 @@ class Package(Base):
     ubuntu = Column(String)
     debian = Column(String)
     statuses = relationship("Status", cascade="all, delete-orphan")
+
+
+class BaseFilterQuery(Query):
+    __set_default_filters = True
+
+    def without_default_filters(self):
+        base_filter_query = self._clone()
+        base_filter_query.__set_default_filters = False
+
+        return base_filter_query
+
+    def get(self, ident):
+        # Override get() so that the flag is always checked in the
+        # DB as opposed to pulling from the identity map. - this is optional.
+        return Query.get(self.populate_existing(), ident)
+
+    def __iter__(self):
+        return Query.__iter__(self.private())
+
+    def from_self(self, *ent):
+        # Override from_self() to automatically apply
+        # the criterion to.  this works with count() and
+        # others.
+        return Query.from_self(self.private(), *ent)
+
+    def private(self):
+        if not self.__set_default_filters:
+            return self
+
+        # Fetch the model name and column list
+        # apply model-specific base filters
+        mapper_zero = self._mapper_zero()
+
+        if mapper_zero:
+            model = mapper_zero.class_
+
+            if hasattr(model, "_base_filters"):
+                return self.enable_assertions(False).filter(
+                    model._base_filters()
+                )
+
+        return self
