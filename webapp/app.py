@@ -226,6 +226,7 @@ app.add_url_rule(
     view_func=accept_renewal,
     methods=["POST"],
 )
+
 app.add_url_rule(
     (
         "/download"

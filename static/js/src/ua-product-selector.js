@@ -86,6 +86,8 @@ function productSelector() {
       }
     });
 
+    const previous_purchase_id = window.previousPurchaseIds["yearly"];
+
     return `<div class="row">
       <div class="col-12">
         <h2>Your subscription so far</h2>
@@ -111,13 +113,17 @@ function productSelector() {
       </div>
 
       <div class="col-2 u-align--right">
-        <button class="p-button--positive js-ua-shop-cta ${
-          subtotal === 0 ? "u-disable" : ""
-        }" data-cart='${JSON.stringify(cartData)}' data-account-id="${
-      window.accountId
-    }" data-subtotal='${subtotalUnits}' data-previous-purchase-id="${
-      window.previousPurchaseId
-    }">Buy now</button>
+        <button 
+          class="p-button--positive js-ua-shop-cta ${
+            subtotal === 0 ? "u-disable" : ""
+          }" 
+          data-cart='${JSON.stringify(cartData)}' 
+          data-account-id="${window.accountId}" 
+          data-subtotal='${subtotalUnits}' 
+          data-previous-purchase-id="${previous_purchase_id}"
+        >
+          Buy now
+        </button>
       </div>
     </div>
     `;

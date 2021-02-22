@@ -217,7 +217,11 @@
 
     var accountId = "{% if account %}{{ account.id }}{% endif %}";
     var accountName = "{% if account %}{{ account.name }}{% endif %}";
-    var previousPurchaseId = "{{ previous_purchase_id or ''}}"
+    var previousPurchaseIds = {
+      {% for period, id in previous_purchase_ids.items() %}
+        "{{ period }}": "{{ id }}",
+      {% endfor %}
+    }
   </script>
 
 {% endblock %}
