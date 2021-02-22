@@ -215,10 +215,10 @@ interactions:
       User-Agent:
       - python-requests/2.24.0
     method: GET
-    uri: https://api.test.badgr.com/v2/issuers/oz0pyuGyQcKsOLAvUGCmKA/assertions?recipient=cube@canonical.com
+    uri: https://api.test.badgr.com/v2/issuers/eTedPNzMTuqy1SMWJ05UbA/assertions?recipient=cube@canonical.com
   response:
     body:
-      string: '{"status":{"success":true,"description":"ok"},"result":[{"entityType":"Assertion","entityId":"1","openBadgeId":"https://api.test.badgr.com/public/assertions/1","createdAt":"2021-01-14T19:54:03.956331Z","createdBy":"mXJunowbRSaOGoaZQznG4w","badgeclass":"fYdCiza0Q5ujV5l2_q0gew","badgeclassOpenBadgeId":"https://api.test.badgr.com/public/badges/fYdCiza0Q5ujV5l2_q0gew","issuer":"oz0pyuGyQcKsOLAvUGCmKA","issuerOpenBadgeId":"https://api.test.badgr.com/public/issuers/36ZEJnXdTjqobw93BJElog","image":"https://media.test.badgr.com/uploads/badges/assertion-1.png","recipient":{"identity":"sha256$cec79a94829fe03aa7651ced998e718ec76b5b96700dc02b4866b333a1bbbce2","hashed":true,"type":"email","plaintextIdentity":"cube@canonical.com","salt":"289adbc72609405ba8dc122e8edfe2be"},"issuedOn":"2021-01-14T05:00:00Z","narrative":null,"evidence":[],"revoked":false,"revocationReason":null,"acceptance":"Unaccepted","expires":null,"extensions":{}}]}'
+      string: '{"status":{"success":true,"description":"ok"},"result":[{"entityType":"Assertion","entityId":"1","openBadgeId":"https://api.test.badgr.com/public/assertions/1","createdAt":"2021-01-14T19:54:03.956331Z","createdBy":"mXJunowbRSaOGoaZQznG4w","badgeclass":"Yjz2TbTASeajywVHtNtcnA","badgeclassOpenBadgeId":"https://api.test.badgr.com/public/badges/Yjz2TbTASeajywVHtNtcnA","issuer":"eTedPNzMTuqy1SMWJ05UbA","issuerOpenBadgeId":"https://api.test.badgr.com/public/issuers/eTedPNzMTuqy1SMWJ05UbA","image":"https://media.test.badgr.com/uploads/badges/assertion-1.png","recipient":{"identity":"sha256$cec79a94829fe03aa7651ced998e718ec76b5b96700dc02b4866b333a1bbbce2","hashed":true,"type":"email","plaintextIdentity":"cube@canonical.com","salt":"289adbc72609405ba8dc122e8edfe2be"},"issuedOn":"2021-01-14T05:00:00Z","narrative":null,"evidence":[],"revoked":false,"revocationReason":null,"acceptance":"Unaccepted","expires":null,"extensions":{}}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
