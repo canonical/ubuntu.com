@@ -221,11 +221,23 @@ class AdvantageContracts:
     def purchase_from_marketplace(
         self, marketplace: str, purchase_request: dict
     ) -> dict:
-        response = self._request(
-            method="post",
-            path=f"v1/marketplace/{marketplace}/purchase",
-            json=purchase_request,
-        )
+        try:
+            response = self._request(
+                method="post",
+                path=f"v1/marketplace/{marketplace}/purchase",
+                json=purchase_request,
+            )
+        except HTTPError as http_error:
+            api_response = http_error.response.json()
+
+            if (
+                "cannot remove all subscription items"
+                in api_response["message"]
+            ):
+                raise CannotCancelLastContractError
+
+            raise
+
         return response.json()
 
     def preview_purchase_from_marketplace(
@@ -238,6 +250,14 @@ class AdvantageContracts:
         )
 
         return response.json()
+
+    def cancel_subscription(self, subscription_id: str) -> dict:
+        response = self._request(
+            method="delete",
+            path=f"v1/subscriptions/{subscription_id}",
+        )
+
+        return response.json() if response.status_code != 200 else None
 
 
 class UnauthorizedError(Exception):
@@ -252,3 +272,7 @@ class UnauthorizedError(Exception):
 
     def asdict(self):
         return self.__dict__
+
+
+class CannotCancelLastContractError(Exception):
+    pass
