@@ -872,8 +872,8 @@ def advantage_shop_view():
 @store_maintenance
 def advantage_payment_methods_view():
     is_test_backend = flask.request.args.get("test_backend", False)
-    default_payment_method = {}
-    account_id = {}
+    default_payment_method = None
+    account_id = None
 
     stripe_publishable_key = os.getenv(
         "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
@@ -897,12 +897,20 @@ def advantage_payment_methods_view():
 
         try:
             account = advantage.get_purchase_account()
-            customer_info = get_customer_info(account["id"])
+            customer_info_response = get_customer_info(account["id"])
+            if customer_info_response["success"]:
+                customer_info = customer_info_response["data"].get(
+                    "customerInfo"
+                )
+                
+                if customer_info:
+                    default_payment_method = customer_info.get(
+                        "defaultPaymentMethod"
+                    )
+                    
+                    if customer_info.get("accountInfo"):
+                        account_id = customer_info["accountInfo"].get("id")
 
-            default_payment_method = customer_info["customerInfo"].get(
-                "defaultPaymentMethod"
-            )
-            account_id = customer_info["accountInfo"]["id"]
         except HTTPError as http_error:
             if http_error.response.status_code == 401:
                 # We got an unauthorized request, so we likely
@@ -1280,22 +1288,29 @@ def get_renewal(renewal_id):
 
 def get_customer_info(account_id):
     is_test_backend = flask.request.args.get("test_backend", False)
+    response = {"success": False, "data": {}}
 
     api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
     if is_test_backend:
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
-    if user_info(flask.session):
+    try:
         advantage = AdvantageContracts(
             session,
             flask.session["authentication_token"],
             api_url=api_url,
         )
-
-        return advantage.get_customer_info(account_id)
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
+        response["data"] = advantage.get_customer_info(account_id)
+        response["success"] = True
+    except HTTPError as error:
+        if error.response.status_code == 404:
+            response["data"] = error.response.json()
+            response["success"] = False
+        else:
+            flask.current_app.extensions["sentry"].captureException()
+            raise error
+    return response
 
 
 def accept_renewal(renewal_id):

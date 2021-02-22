@@ -63,16 +63,25 @@ editButton.addEventListener("click", () => {
   editSection.classList.remove("u-hide");
 });
 
-cancelButton.addEventListener("click", () => {
-  previewSection.classList.remove("u-hide");
-  editSection.classList.add("u-hide");
-});
+if (cancelButton)
+  cancelButton.addEventListener("click", () => {
+    previewSection.classList.remove("u-hide");
+    editSection.classList.add("u-hide");
+  });
+
+const handleError = (error) => {
+  console.error(error);
+  updateButton.classList.remove("is-processing");
+  updateButton.innerHTML = "Update";
+  updateButton.disabled = false;
+  if (cancelButton) cancelButton.disabled = false;
+};
 
 updateButton.addEventListener("click", function () {
   this.classList.add("is-processing");
   this.innerHTML = '<i class="p-icon--spinner u-animation--spin is-light"></i>';
   this.disabled = true;
-  cancelButton.disabled = true;
+  if (cancelButton) cancelButton.disabled = true;
 
   stripe
     .createPaymentMethod({
@@ -80,15 +89,15 @@ updateButton.addEventListener("click", function () {
       card: card,
     })
     .then((result) => {
-      setPaymentMethod(window.accountId, result.paymentMethod.id).then(() => {
-        location.reload();
-      });
+      if (result.paymentMethod) {
+        setPaymentMethod(window.accountId, result.paymentMethod.id).then(() => {
+          location.reload();
+        });
+      } else {
+        handleError(result.error);
+      }
     })
     .catch((error) => {
-      console.error(error);
-      this.classList.remove("is-processing");
-      this.innerHTML = "Update";
-      this.disabled = false;
-      cancelButton.disabled = false;
+      handleError(error);
     });
 });
