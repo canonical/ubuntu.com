@@ -7,7 +7,7 @@
 {% block content %}
 
 {% if user_info %}
-  <section class="p-strip--suru-topped">
+  <section class="p-strip--suru-topped u-no-padding--bottom">
     <script>
       dataLayer.push({
         'event' : 'GAEvent',
@@ -36,7 +36,7 @@
     </div>
   </section>
 
-  <hr></hr>
+  <hr class="p-separator" />   
 
   {% if enterprise_contracts %}
     <section class="p-strip is-shallow" style="overflow: visible;">
@@ -68,7 +68,7 @@
               <div class="row">
                 <div class="row col-start-large-2 col-10">
                   <h5>{{subscriptions["current_subscription_number"]}} subscriptions are set to auto-renew monthly</h5>
-                  <hr>
+                  <hr class="p-separator" />
                   <div> 
                     <label class="p-radio">
                       <input id="auto-renewal-on" type="radio" class="p-radio__input" name="auto-renewal"  {% if subscriptions['is_auto_renewal_enabled'] %}checked=""{% endif %} aria-labelledby="enable" value="on">
@@ -380,15 +380,11 @@
         <div class="col-12 u-align--right">
           <a href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" class="p-button--positive u-align--right" >Add new subscription</a>
         </div>
+        <hr class="p-separator" />
       </div>
     </section>
   {% endif %}
 
-  <section class="p-strip u-no-padding--top is-shallow" style="overflow: visible;">
-    <div class="row">
-      <hr></hr>
-    </div>
-  </section>
 
   <section class="p-strip u-no-padding--top" style="overflow: visible;">
     <div class="row">
