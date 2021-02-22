@@ -902,12 +902,12 @@ def advantage_payment_methods_view():
                 customer_info = customer_info_response["data"].get(
                     "customerInfo"
                 )
-                
+
                 if customer_info:
                     default_payment_method = customer_info.get(
                         "defaultPaymentMethod"
                     )
-                    
+
                     if customer_info.get("accountInfo"):
                         account_id = customer_info["accountInfo"].get("id")
 
