@@ -962,6 +962,10 @@ def bulk_upsert_cve():
             update_cve = True
             cve.tags = data.get("tags")
 
+        if cve.mitigation != data.get("mitigation"):
+            update_cve = True
+            cve.mitigation = data.get("mitigation")
+
         if update_cve:
             db_session.add(cve)
 

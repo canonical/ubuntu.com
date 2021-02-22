@@ -596,10 +596,11 @@ def cache_headers(response):
     Set cache expiry to 60 seconds for homepage and blog page
     """
 
-    if flask.request.path in ["/core/build", "/advantage"]:
+    if flask.request.path in ["/core/build"]:
         response.cache_control.private = True
 
-    if flask.request.path in ["/advantage/subscribe"]:
+    if flask.request.path.startswith("/advantage"):
+        response.cache_control.private = True
         response.headers[
             "Cache-Control"
         ] = "no-cache, no-store, must-revalidate"
