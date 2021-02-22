@@ -36,6 +36,7 @@ from webapp.views import (
     accept_renewal,
     advantage_view,
     advantage_shop_view,
+    advantage_payment_methods_view,
     advantage_thanks_view,
     BlogCustomGroup,
     BlogCustomTopic,
@@ -54,6 +55,7 @@ from webapp.views import (
     get_renewal,
     post_advantage_subscriptions,
     post_anonymised_customer_info,
+    post_payment_method,
     post_auto_renewal_settings,
     post_customer_info,
     post_stripe_invoice_id,
@@ -169,6 +171,9 @@ app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule(
+    "/advantage/payment-methods", view_func=advantage_payment_methods_view
+)
+app.add_url_rule(
     "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
 )
 app.add_url_rule(
@@ -189,6 +194,11 @@ app.add_url_rule(
 app.add_url_rule(
     "/advantage/customer-info-anon",
     view_func=post_anonymised_customer_info,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/advantage/payment-method",
+    view_func=post_payment_method,
     methods=["POST"],
 )
 app.add_url_rule(

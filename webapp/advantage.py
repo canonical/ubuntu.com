@@ -105,6 +105,20 @@ class AdvantageContracts:
 
         return response.json()
 
+    def put_payment_method(self, account_id, payment_method_id):
+        try:
+            response = self._request(
+                method="put",
+                path=f"v1/accounts/{account_id}/customer-info/stripe",
+                json={
+                    "defaultPaymentMethod": {"Id": payment_method_id},
+                },
+            )
+        except HTTPError as http_error:
+            return http_error.response.json()
+
+        return response.json()
+
     def post_stripe_invoice_id(self, tx_type, tx_id, invoice_id):
         try:
             response = self._request(
