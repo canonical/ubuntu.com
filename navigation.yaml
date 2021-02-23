@@ -301,6 +301,15 @@ ai:
     - title: Services
       path: /ai/services
 
+    - title: Contact us
+      path: /ai/contact-us
+      hidden: True
+
+      children:
+        - title: Thank you
+          path: /ai/thank-you
+          hidden: True
+
 kubernetes:
   title: Kubernetes
   path: /kubernetes
@@ -898,31 +907,6 @@ kubernetes:
       children:
         - title: Thank you
           path: /kubernetes/thank-you
-          hidden: True
-
-kubeflow:
-  title: Kubeflow
-  path: /kubeflow
-
-  children:
-    - title: Overview
-      path: /kubeflow
-    - title: What is Kubeflow
-      path: /kubeflow/what-is-kubeflow
-    - title: Features
-      path: /kubeflow/features
-    - title: Install
-      path: /kubeflow/install
-    - title: Consulting
-      path: /kubeflow/consulting
-
-    - title: Contact us
-      path: /kubeflow/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /kubeflow/thank-you
           hidden: True
 
 blog:

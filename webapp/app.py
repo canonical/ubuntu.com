@@ -59,6 +59,7 @@ from webapp.views import (
     post_build,
     releasenotes_redirect,
     search_snaps,
+    show_template,
     notify_build,
     build_engage_index,
     engage_thank_you,
@@ -439,10 +440,7 @@ server_docs.init_app(app)
 app.add_url_rule(
     "/templates/<filename>",
     "templates",
-    lambda filename: (
-        flask.render_template(f"templates/{filename}.html"),
-        {"Access-Control-Allow-Origin": "*"},
-    ),
+    view_func=show_template,
 )
 
 tutorials_path = "/tutorials"
