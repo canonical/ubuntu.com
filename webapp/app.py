@@ -621,6 +621,13 @@ def cache_headers(response):
             "Cache-Control"
         ] = "max-age=61, stale-while-revalidate=90"
 
+    if flask.request.path.startswith("/cube"):
+        response.cache_control.private = True
+        response.headers[
+            "Cache-Control"
+        ] = "no-cache, no-store, must-revalidate"
+        response.headers["Pragma"] = "no-cache"
+
     return response
 
 

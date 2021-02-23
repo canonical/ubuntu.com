@@ -112,22 +112,18 @@ def cube_microcerts():
             "prepare_url"
         ] = f"{edx_api.base_url}/{CUBE_CONTENT['prepare-course']}/course/"
 
-    response = flask.make_response(
-        flask.render_template(
-            "cube/microcerts.html",
-            **{
-                "user": sso_user,
-                "certified_badge": certified_badge,
-                "modules": courses,
-                "passed_courses": passed_courses,
-                "has_enrollments": len(enrollments) > 0,
-                "has_prepare_material": CUBE_CONTENT["prepare-course"]
-                in enrollments,
-            },
-        )
+    return flask.render_template(
+        "cube/microcerts.html",
+        **{
+            "user": sso_user,
+            "certified_badge": certified_badge,
+            "modules": courses,
+            "passed_courses": passed_courses,
+            "has_enrollments": len(enrollments) > 0,
+            "has_prepare_material": CUBE_CONTENT["prepare-course"]
+            in enrollments,
+        },
     )
-    response.cache_control.private = True
-    return response
 
 
 @login_required
