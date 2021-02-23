@@ -866,3 +866,7 @@ download/server/thank-you: /download/server
 
 # Server guide
 server/guide: /server/docs
+
+# Blog redirects to fix 500s
+blog/topic/(?P<path>.*): /blog/topics/{path}
+blog/topic: /blog
