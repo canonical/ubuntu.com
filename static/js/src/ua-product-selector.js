@@ -16,7 +16,7 @@ function productSelector() {
   const shopHeroElement = document.querySelector(".js-shop-hero");
   const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
   const quantityTypeEl = form.querySelector(".js-type-name");
-  const steps = ["type", "quantity", "version", "support", "add", "cart"];
+  const steps = ["type", "quantity", "version", "support", "add", "cart", "billing"];
 
   let state = new StateManager(steps, render);
 
@@ -70,7 +70,7 @@ function productSelector() {
     lineItems.forEach((lineItem) => {
       const id = lineItem.get("productId")[0];
       const quantity = lineItem.get("quantity")[0];
-      lineItemsHTML += `<li class="p-list__item">${buildLineItemHTML(
+      lineItemsHTML += `<li class="p-list__item">${renderSummary(
         id,
         quantity,
         lineItem.get("imageURL")[0],
@@ -113,13 +113,13 @@ function productSelector() {
       </div>
 
       <div class="col-2 u-align--right">
-        <button 
+        <button
           class="p-button--positive js-ua-shop-cta ${
             subtotal === 0 ? "u-disable" : ""
-          }" 
-          data-cart='${JSON.stringify(cartData)}' 
-          data-account-id="${window.accountId}" 
-          data-subtotal='${subtotalUnits}' 
+          }"
+          data-cart='${JSON.stringify(cartData)}'
+          data-account-id="${window.accountId}"
+          data-subtotal='${subtotalUnits}'
           data-previous-purchase-id="${previous_purchase_id}"
         >
           Buy now
@@ -129,75 +129,47 @@ function productSelector() {
     `;
   }
 
-  function buildLineItemHTML(productId, quantity = "0", imageURL, action) {
+  function renderSummary(summaryContainer, productId, imageURL) {
     let product;
     let rawTotal;
     let cost = "";
     let productString = "&mldr;";
-    let quantityHTML = `× ${quantity.replace(/^0+/, "")}`;
     let imageHTML = "";
+    const billing = state.get('billing')[0];
 
     if (productId) {
       product = products[productId];
       productString = product.name;
-      rawTotal = (product.price.value / 100) * quantity;
+      rawTotal = (product.price.value / 100) * state.get('quantity')[0];
+
+      // Super hacky, needs fixing!
+      if (billing === 'annual') {
+        rawTotal = (rawTotal * 12) * 0.85;
+      }
       cost = parseCurrencyAmount(rawTotal, product.price.currency);
     }
 
     if (imageURL) {
-      imageHTML = `<img src="${imageURL}" style="height: 32px;" />`;
+      imageHTML = `<img src="${imageURL}" style="height: 32px; float: left;" />`;
     }
 
-    if (action === "remove") {
-      quantityHTML = `<input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity.replace(
-        /^0+/,
-        ""
-      )}" step="1" min="1" pattern="\\d+" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
+    const quantityElement = summaryContainer.querySelector('.js-summary-quantity');
+    quantityElement.innerHTML = `× ${state.get('quantity')[0].replace(/^0+/, "")}`;
+
+    const productElement = summaryContainer.querySelector('.js-summary-product');
+    productElement.innerHTML = `<span>${imageHTML}</span>&nbsp;&nbsp;<span>${productString}</span>`;
+
+    const costElement = summaryContainer.querySelector('.js-summary-cost');
+    costElement.innerHTML = `${cost} /${billing === 'annual' ? 'year' : 'month'}`;
+
+    const saveMessage = summaryContainer.querySelector('.js-summary-save-with-annual');
+    if (billing === 'annual') {
+      saveMessage.classList.add('u-hide');
+    } else {
+      saveMessage.classList.remove('u-hide');
     }
 
-    return `
-      <div class="row u-vertically-center">
-        <div class="col-6">
-          <div class="row u-vertically-center p-shop-cart__block">
-            <div class="col-4 col-small-3">
-              <strong>${productString}</strong>
-            </div>
-
-            <div class="col-2 col-small-1 u-vertically-center p-shop-cart__icon">
-              ${imageHTML}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-4 ${
-          action === "add" ? "p-shop-cart__block" : "col-small-2"
-        }">
-          <div class="row u-vertically-center">
-            <div class="col-2 col-small-2">
-              ${quantity !== null ? quantityHTML : ""}
-            </div>
-
-            <div class="col-2 u-align--right ${
-              action === "add" ? "col-small-2" : "u-hide--small"
-            }">
-              <span>
-                <strong>${cost} /year</strong>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-2 u-align--right ${
-          action === "add" ? "p-shop-cart__block" : "col-small-2"
-        }">
-          <button class="p-button${
-            action === "add" ? "--positive" : ""
-          } u-no-margin--bottom js-cart-action" data-image-url="${imageURL}" data-action="${action}" data-product-id="${productId}" data-quantity=${quantity} tabindex="${
-      productId ? "" : "-1"
-    }">${action}</button>
-        </div>
-      </div>
-    `;
+    summaryContainer.classList.remove("u-hide");
   }
 
   function calculateSubtotal(lineItems) {
@@ -570,10 +542,6 @@ function productSelector() {
     const productsArray = Object.entries(products);
     const productId = `uai-${support}-${type}`;
     const completedForm = type && quantity && support && validVersion;
-    const headerHTML =
-      "<div class='row'><div class='col-12'><h3>Your chosen plan</h3></div></div>";
-
-    let lineItemHTML;
     let listingId;
     let privateForAccount = false;
 
@@ -594,16 +562,13 @@ function productSelector() {
         .querySelector(`.js-image-${type}`)
         .getAttribute("src");
 
-      lineItemHTML = buildLineItemHTML(listingId, quantity, imageURL, "add");
-
-      addStep.classList.remove("u-disable");
-    } else {
-      lineItemHTML = buildLineItemHTML(null, quantity, null, "add");
-
-      addStep.classList.add("u-disable");
+      renderSummary(addStep, listingId, imageURL);
     }
 
-    addStep.innerHTML = headerHTML + lineItemHTML;
+    const billing = addStep.querySelector('#billing-period');
+    billing.addEventListener('change', function(e) {
+      state.set("billing", [e.target.value]);
+    });
   }
 }
 

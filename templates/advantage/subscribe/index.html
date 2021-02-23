@@ -7,7 +7,7 @@
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block content %}
-  <section class="p-strip--suru-topped-light js-shop-step--cart p-shop-cart u-hide" style="margin-bottom: 2rem;">
+  <section class="p-strip--suru-topped-light js-shop-step--cart u-hide" style="margin-bottom: 2rem;">
   </section>
 
   <section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
@@ -185,14 +185,29 @@
       </div>
     </section>
 
-    <section class="p-strip--light is-shallow js-shop-step--add p-shop-cart">
+    <section class="p-strip--light is-shallow js-shop-step--add p-shop-cart u-hide">
       <div class="row">
         <div class="col-12">
           <h3>Your chosen plan</h3>
         </div>
-
-        <div class="col-12">
-          &mldr;
+      </div>
+      <div class="row">
+        <div class="col-1 u-align--center js-summary-quantity"></div>
+        <div class="col-4 js-summary-product">
+          <span>${imageHTML}</span>&nbsp;&nbsp;
+          <span>${productString}</span>
+        </div>
+        <div class="col-4">
+          <select name="billing-period" id="billing-period" class="u-no-margin--bottom" style="width: auto;">
+            <option value="monthly">Monthly billing</option>
+            <option value="annual">Annual billing</option>
+          </select>
+          <p class="js-summary-save-with-annual"><strong>Switch to annual billing and save over 15%</strong></p>
+        </div>
+        <div class="col-3">
+          <strong class="js-summary-cost">${cost} /year</strong>
+          <button class="p-button--positive u-no-margin--bottom u-float-right js-ua-shop-cta" data-image-url="${imageURL}" data-action="${action}" data-product-id="${productId}" data-quantity="${quantity}" tabindex="${
+      productId">Buy now</button>
         </div>
       </div>
     </section>
