@@ -584,7 +584,7 @@ core_als_autils_docs.init_app(app)
 openstack_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        index_topic_id=20998,
+        index_topic_id=20990,
         url_prefix="/openstack/docs",
     ),
     document_template="/templates/docs/discourse.html",

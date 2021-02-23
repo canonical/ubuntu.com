@@ -10,14 +10,14 @@ We use [Yarn](https://yarnpkg.com/lang/en/) for building static files like CSS t
 
 The recommended way to run the site is with [the `dotrun` snap](https://github.com/canonical-web-and-design/dotrun/):
 
-``` bash
+```bash
 sudo snap install dotrun
 dotrun  # Build dependencies and run the server
 ```
 
 Then to learn about `dotrun`'s options, type:
 
-``` bash
+```bash
 dotrun --help
 ```
 
@@ -25,7 +25,7 @@ dotrun --help
 
 Since the site is basically a Flask app, you can also run the site in the traditional way using [python 3](https://docs.python.org/3/) and [venv](https://docs.python.org/3/library/venv.html?highlight=venv#module-venv):
 
-``` bash
+```bash
 python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
@@ -42,13 +42,13 @@ The CSS needs to be built from the `static/css/styles.scss` file. This in turn r
 
 If you can't build using the `./run build` command, you can pull down dependencies this using `yarn`:
 
-``` bash
+```bash
 yarn install
 ```
 
 Then you can use the built in scripts to build or watch the Sass:
 
-``` bash
+```bash
 yarn run build  # Build the Sass to CSS then exit
 yarn run watch  # Dynamically watch for Sass changes and build CSS
 ```
@@ -57,7 +57,7 @@ yarn run watch  # Dynamically watch for Sass changes and build CSS
 
 You can use the `./run` script to use Node modules from a local folder on a one-time basis, instead of the modules declared in `package.json`, as follows:
 
-``` bash
+```bash
 ./run --node-module $HOME/projects/vanilla-framework watch  # Build CSS dynamically, using a local version of vanilla-framework
 ```
 
@@ -71,21 +71,21 @@ The basic navigation structure of the site is listed in `navigation.yaml`. This 
 
 The file should be of the following format:
 
-``` yaml
-{section-identifier}:
-  title: {Section title}
+```yaml
+{ section-identifier }:
+  title: { Section title }
   url_path: /{section-url}
 
   children:
-    - title: {Child title}
+    - title: { Child title }
       url_path: /{child-url}
 
       children:
-        - title: {Grandchild}
+        - title: { Grandchild }
           url_path: /{grandchild-url}
 
-    - title: {Hidden child}
-      url_path: {child-url}
+    - title: { Hidden child }
+      url_path: { child-url }
       hidden: True
 ```
 
@@ -108,7 +108,7 @@ On mobile we have a pattern of showing the section title next to the logo, e.g.
 
 ![Section title example](https://assets.ubuntu.com/v1/bb50217a-Screenshot+from+2020-02-04+15-29-36.png)
 
-For the most part this will happen automatically as long as the subpages (/kubeflow/what-is-kubeflow) are in `navigtation.yml` as children. In some cases this isn't possible due to dynamically created content such as tutorials. In this case you can set the `section_title` and `section_path` variables in the template e.g.
+For the most part this will happen automatically as long as the subpages (/ai/what-is-kubeflow) are in `navigtation.yml` as children. In some cases this isn't possible due to dynamically created content such as tutorials. In this case you can set the `section_title` and `section_path` variables in the template e.g.
 
 ```
 {% set section_title="Tutorials" %}
