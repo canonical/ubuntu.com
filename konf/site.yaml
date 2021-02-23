@@ -113,6 +113,52 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
+    - paths: [/cube]
+      name: ubuntu-com-cube
+      app_name: ubuntu.com-cube
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 5
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: SENTRY_DSN
+          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+   
+        - name: BADGR_URL
+          value: https://api.eu.badgr.io
+
+        - name: BAGDR_USER
+          secretKeyRef:
+            key: user
+            name: badgr
+
+        - name: BADGR_PASSWORD
+          secretKeyRef:
+            key: password
+            name: badgr
+
+        - name: CUBE_EDX_URL
+          value: https://cube.ubuntu.com
+
+        - name: CUBE_EDX_CLIENT_ID
+          secretKeyRef:
+            key: client-id
+            name: cube-edx
+
+        - name: CUBE_EDX_CLIENT_SECRET
+          secretKeyRef:
+            key: client-secret
+            name: cube-edx
+
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
       app_name: ubuntu.com-tutorials
@@ -219,6 +265,52 @@ staging:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+    - paths: [/cube]
+      name: ubuntu-com-cube
+      app_name: ubuntu.com-cube
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 3
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: SENTRY_DSN
+          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+        - name: BADGR_URL
+          value: https://api.eu.badgr.io
+
+        - name: BAGDR_USER
+          secretKeyRef:
+            key: user
+            name: badgr
+
+        - name: BADGR_PASSWORD
+          secretKeyRef:
+            key: password
+            name: badgr
+
+        - name: CUBE_EDX_URL
+          value: https://cube.ubuntu.com
+
+        - name: CUBE_EDX_CLIENT_ID
+          secretKeyRef:
+            key: client-id
+            name: cube-edx
+
+        - name: CUBE_EDX_CLIENT_SECRET
+          secretKeyRef:
+            key: client-secret
+            name: cube-edx
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
