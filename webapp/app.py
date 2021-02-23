@@ -583,6 +583,18 @@ core_als_autils_docs = Docs(
 )
 core_als_autils_docs.init_app(app)
 
+openstack_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=20998,
+        url_prefix="/openstack/docs",
+    ),
+    document_template="/templates/docs/discourse.html",
+    url_prefix="/openstack/docs",
+    blueprint_name="openstack-docs",
+)
+openstack_docs.init_app(app)
+
 
 @app.after_request
 def cache_headers(response):
@@ -590,10 +602,11 @@ def cache_headers(response):
     Set cache expiry to 60 seconds for homepage and blog page
     """
 
-    if flask.request.path in ["/core/build", "/advantage"]:
+    if flask.request.path in ["/core/build"]:
         response.cache_control.private = True
 
-    if flask.request.path in ["/advantage/subscribe"]:
+    if flask.request.path.startswith("/advantage"):
+        response.cache_control.private = True
         response.headers[
             "Cache-Control"
         ] = "no-cache, no-store, must-revalidate"

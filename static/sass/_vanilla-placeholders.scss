@@ -46,6 +46,7 @@ h4,
 .p-p--small {
   &:not(.is-v-condensed) {
     @extend %small-text-fixed;
+
     line-height: 1.25rem;
   }
 
@@ -55,10 +56,6 @@ h4,
 
   & + & {
     margin-top: -$p-small-lh-diff;
-  }
-
-  .p-text-list--small + & {
-    margin-top: -map-get($line-heights, small);
   }
 }
 
