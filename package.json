@@ -11,7 +11,7 @@
     "build-cookie-policy": "cp node_modules/@canonical/cookie-policy/build/js/cookie-policy.js static/js/dist/",
     "build-global-nav": "cp node_modules/@canonical/global-nav/dist/global-nav.js static/js/dist/",
     "build-latest-news": "cp node_modules/@canonical/latest-news/dist/latest-news.js static/js/dist",
-    "build-css": "node-sass --include-path node_modules static/sass --source-map true --output-style compressed --output static/css && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
+    "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
     "build-js": "webpack && yarn run build-global-nav && yarn run build-cookie-policy && yarn run build-latest-news",
     "build": "yarn run build-css && yarn run build-js && yarn build-global-nav",
     "watch": "yarn run watch-css && yarn run watch-js",
@@ -42,13 +42,13 @@
     "eslint": "7.19.0",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-cypress": "2.11.2",
-    "exports-loader": "1.1.1",
+    "exports-loader": "2.0.0",
     "full-icu": "1.3.1",
     "jest": "26.6.3",
-    "node-sass": "4.14.1",
     "postcss": "8.2.5",
     "postcss-cli": "8.3.1",
     "prettier": "2.2.1",
+    "sass": "1.27.0",
     "stylelint": "13.9.0",
     "stylelint-config-prettier": "8.0.2",
     "stylelint-config-standard": "20.0.0",
@@ -60,18 +60,17 @@
     "webpack-cli": "4.5.0"
   },
   "dependencies": {
-    "@canonical/cookie-policy": "3.1.2",
+    "@canonical/cookie-policy": "3.2.0",
     "@canonical/global-nav": "2.4.5",
     "@canonical/latest-news": "1.2.0",
     "url-polyfill": "1.1.12",
     "date-fns": "2.17.0",
     "smartquotes": "2.3.2",
     "url-search-params-polyfill": "8.1.0",
-    "vanilla-framework": "2.23.0"
+    "vanilla-framework": "2.24.1"
   },
   "resolutions": {
     "lodash": "4.17.20",
-    "minimatch": "3.0.4",
-    "merge": "1.2.1"
+    "minimatch": "3.0.4"
   }
 }
