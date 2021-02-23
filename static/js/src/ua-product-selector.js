@@ -1,9 +1,5 @@
 import { StateManager } from "./utils/state.js";
 import { debounce } from "./utils/debounce.js";
-import {
-  addToCartEvent,
-  removeFromCartEvent,
-} from "./advantage/ecom-events.js";
 
 function productSelector() {
   const form = document.querySelector(".js-shop-form");
@@ -11,9 +7,6 @@ function productSelector() {
   const products = window.productList;
 
   const addStep = form.querySelector(`${stepClassPrefix}add`);
-  const cartStep = document.querySelector(`${stepClassPrefix}cart`);
-  const formHeader = form.querySelector(".js-shop--form-heading");
-  const shopHeroElement = document.querySelector(".js-shop-hero");
   const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
   const quantityTypeEl = form.querySelector(".js-type-name");
   const steps = ["type", "quantity", "version", "support", "add", "cart", "billing"];
@@ -51,82 +44,6 @@ function productSelector() {
         state.set("version", [tab.getAttribute("href")]);
       });
     });
-
-    document.addEventListener("click", (e) => {
-      if (e.target && e.target.classList.contains("js-cart-action")) {
-        e.preventDefault();
-        handleCartAction(e.target.dataset);
-      }
-    });
-  }
-
-  function buildCartHTML(lineItems) {
-    const subtotalRaw = calculateSubtotal(lineItems);
-    const subtotalUnits = subtotalRaw * 100;
-    const subtotal = parseCurrencyAmount(subtotalRaw, "USD");
-    let lineItemsHTML = "";
-    let cartData = [];
-
-    lineItems.forEach((lineItem) => {
-      const id = lineItem.get("productId")[0];
-      const quantity = lineItem.get("quantity")[0];
-      lineItemsHTML += `<li class="p-list__item">${renderSummary(
-        id,
-        quantity,
-        lineItem.get("imageURL")[0],
-        "remove"
-      )}</li>`;
-
-      if (quantity > 0) {
-        cartData.push({
-          listingID: id,
-          product: products[id],
-          quantity: quantity,
-        });
-      }
-    });
-
-    const previous_purchase_id = window.previousPurchaseIds["yearly"];
-
-    return `<div class="row">
-      <div class="col-12">
-        <h2>Your subscription so far</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <ul class="p-list--divided">
-          ${lineItemsHTML}
-        </ul>
-      </div>
-
-      <div class="col-10">
-        <div class="row u-vertically-center">
-          <div class="col-2 col-small-2 col-start-large-7">
-            <h3 class="p-heading--four">Yearly cost:</h3>
-          </div>
-
-          <div class="col-2 col-small-2 u-align--right">
-            <h3 class="p-heading--four">${subtotal} /year</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-2 u-align--right">
-        <button
-          class="p-button--positive js-ua-shop-cta ${
-            subtotal === 0 ? "u-disable" : ""
-          }"
-          data-cart='${JSON.stringify(cartData)}'
-          data-account-id="${window.accountId}"
-          data-subtotal='${subtotalUnits}'
-          data-previous-purchase-id="${previous_purchase_id}"
-        >
-          Buy now
-        </button>
-      </div>
-    </div>
-    `;
   }
 
   function renderSummary(summaryContainer, productId, imageURL) {
@@ -135,12 +52,13 @@ function productSelector() {
     let cost = "";
     let productString = "&mldr;";
     let imageHTML = "";
+    const quantity = state.get('quantity')[0];
     const billing = state.get('billing')[0];
 
     if (productId) {
       product = products[productId];
       productString = product.name;
-      rawTotal = (product.price.value / 100) * state.get('quantity')[0];
+      rawTotal = (product.price.value / 100) * quantity;
 
       // Super hacky, needs fixing!
       if (billing === 'annual') {
@@ -154,7 +72,7 @@ function productSelector() {
     }
 
     const quantityElement = summaryContainer.querySelector('.js-summary-quantity');
-    quantityElement.innerHTML = `× ${state.get('quantity')[0].replace(/^0+/, "")}`;
+    quantityElement.innerHTML = `× ${quantity.replace(/^0+/, "")}`;
 
     const productElement = summaryContainer.querySelector('.js-summary-product');
     productElement.innerHTML = `<span>${imageHTML}</span>&nbsp;&nbsp;<span>${productString}</span>`;
@@ -169,18 +87,14 @@ function productSelector() {
       saveMessage.classList.remove('u-hide');
     }
 
+    const buyButton = summaryContainer.querySelector('.js-ua-shop-cta');
+    var productObject = JSON.stringify(product);
+    buyButton.dataset.cart = `[{"listingID": "${productId}", "product": ${productObject}, "quantity": ${quantity}}]`;
+    buyButton.dataset.accountId = window.accountId;
+    buyButton.dataset.subtotal = product.price.value;
+    buyButton.dataset.previousPurchaseId = "";
+
     summaryContainer.classList.remove("u-hide");
-  }
-
-  function calculateSubtotal(lineItems) {
-    let subtotal = 0;
-
-    lineItems.forEach((lineItem) => {
-      const productCost = products[lineItem.get("productId")[0]].price.value;
-      subtotal += parseInt(productCost / 100) * lineItem.get("quantity")[0];
-    });
-
-    return subtotal;
   }
 
   function disableSteps(steps) {
@@ -217,41 +131,6 @@ function productSelector() {
     });
   }
 
-  function handleCartAction(data) {
-    const action = data.action;
-    const productId = data.productId;
-    const imageURL = data.imageUrl;
-    const quantity = data.quantity;
-    const product = products[productId];
-    const name = product.name;
-    const unitPrice = product.price.value / 100;
-
-    if (action === "add") {
-      updateCartState(productId, quantity, imageURL);
-      addToCartEvent({
-        id: productId,
-        name: name,
-        price: unitPrice,
-        quantity: quantity,
-      });
-      cartStep.scrollIntoView();
-      resetForm();
-    } else if (action === "remove") {
-      state.remove("cart", {
-        productId: productId,
-        quantity: quantity,
-        imageURL: imageURL,
-      });
-
-      removeFromCartEvent({
-        id: productId,
-        name: name,
-        price: unitPrice,
-        quantity: quantity,
-      });
-    }
-  }
-
   function handleQuantityInputs(input) {
     const data = input.dataset;
     const formStage = data.stage === "form";
@@ -272,28 +151,6 @@ function productSelector() {
       } else if (formStage || selectionStage) {
         state.reset("quantity");
         formQuantity.value = 0;
-      } else if (data.stage === "cart") {
-        // cart quantity
-        const products = state.get("cart");
-
-        products.forEach((product) => {
-          if (product.get("productId")[0] === data.productId) {
-            const productId = product.get("productId")[0];
-            const originalQuantity = product.get("quantity")[0];
-            let updatedQuantity = input.value;
-
-            if (input.value < 0) {
-              updatedQuantity = "0";
-            }
-
-            updateEcomAnalyticsQuantity(
-              productId,
-              originalQuantity,
-              updatedQuantity
-            );
-            product.set("quantity", [updatedQuantity]);
-          }
-        });
       }
     } else {
       input.reportValidity();
@@ -354,25 +211,8 @@ function productSelector() {
 
   function render() {
     setActiveSteps();
-    setFormHeader();
     setVersionTabs();
-    updateCart();
     updateSelectedProduct();
-  }
-
-  function resetForm() {
-    const selectedInputs = form.querySelectorAll(".is-selected");
-
-    selectedInputs.forEach((input) => {
-      input.classList.remove("is-selected");
-    });
-
-    state.reset("type");
-    state.reset("quantity");
-    state.reset("version");
-    state.reset("support");
-    state.reset("add");
-    form.reset();
   }
 
   function setActiveSteps() {
@@ -396,14 +236,6 @@ function productSelector() {
 
     if (stepsToDisable) {
       disableSteps(stepsToDisable);
-    }
-  }
-
-  function setFormHeader() {
-    if (state.get("cart")[0]) {
-      formHeader.innerHTML = "Any more to add?";
-    } else {
-      formHeader.innerHTML = "What are you setting up?";
     }
   }
 
@@ -456,82 +288,6 @@ function productSelector() {
         target.classList.add("u-hide");
       }
     });
-  }
-
-  function updateCart() {
-    const lineItems = state.get("cart");
-
-    if (lineItems.length) {
-      const cartHTML = buildCartHTML(lineItems);
-
-      cartStep.innerHTML = cartHTML;
-      cartStep.classList.remove("u-hide");
-      shopHeroElement.classList.add("u-hide");
-    } else {
-      cartStep.classList.add("u-hide");
-      shopHeroElement.classList.remove("u-hide");
-    }
-  }
-
-  function updateCartState(productId, quantity, imageURL) {
-    const cartLineItems = state.get("cart");
-    let newLineItem = true;
-
-    cartLineItems.forEach((lineItem) => {
-      // avoid multiple rows for the same product
-      if (lineItem.get("productId")[0] === productId) {
-        quantity = parseInt(quantity);
-        quantity += parseInt(lineItem.get("quantity")[0]);
-        lineItem.set("quantity", [`${quantity}`]);
-        newLineItem = false;
-      } else if (lineItem.get("quantity")[0] === "0") {
-        // user has set a cart item to zero, remove it if they
-        // add another
-        state.remove("cart", lineItem);
-      }
-    });
-
-    if (newLineItem) {
-      let product = new StateManager(
-        ["productId", "quantity", "imageURL"],
-        render
-      );
-      product.set("productId", [productId]);
-      product.set("quantity", [`${quantity}`]);
-      product.set("imageURL", [imageURL]);
-      state.push("cart", product);
-    }
-  }
-
-  function updateEcomAnalyticsQuantity(
-    productId,
-    originalQuantity,
-    updatedQuantity
-  ) {
-    const product = products[productId];
-    const name = product.name;
-    const unitPrice = product.price.value / 100;
-    let quantityDelta;
-
-    if (updatedQuantity > originalQuantity) {
-      quantityDelta = updatedQuantity - originalQuantity;
-
-      addToCartEvent({
-        id: productId,
-        name: name,
-        price: unitPrice,
-        quantity: quantityDelta,
-      });
-    } else if (updatedQuantity < originalQuantity) {
-      quantityDelta = originalQuantity - updatedQuantity;
-
-      removeFromCartEvent({
-        id: productId,
-        name: name,
-        price: unitPrice,
-        quantity: quantityDelta,
-      });
-    }
   }
 
   function updateSelectedProduct() {

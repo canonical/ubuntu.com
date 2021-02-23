@@ -124,6 +124,7 @@ function attachCTAevents() {
   document.addEventListener("click", (e) => {
     const isRenewalCTA = e.target.classList.contains("js-ua-renewal-cta");
     const isShopCTA = e.target.classList.contains("js-ua-shop-cta");
+
     const data = e.target.dataset;
 
     if (isRenewalCTA || isShopCTA) {
