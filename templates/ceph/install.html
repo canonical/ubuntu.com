@@ -1,0 +1,144 @@
+{% extends "ceph/base_ceph.html" %}
+
+{% block title %}Install Ceph on Ubuntu{% endblock %}
+
+{% block meta_description %}A step-by-step installation guide to Ceph on your software defined infrastructure.
+{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1EmOtHjuEMKhVLQA7GwyrKfCzOKfc8UCEyh-p04-PxzA/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h1>Install Ceph on Ubuntu</h1>
+      <p class="u-sv2">Ceph is a storage system designed for excellent performance, reliability, and scalability. However, the installation and management of Ceph can be challenging. The Ceph-on- Ubuntu solution takes the administration minutiae out of the equation through the use of Juju charms. With charms, the deployment of a Ceph cluster becomes trivial as does the scaling of the cluster&rsquo;s storage capacity.</p>
+      <p>Looking for help running Ceph?</p>
+      <p>
+        <a class="p-button--positive" href="/ceph/contact-us?product=ceph-install">Get in touch with Canonical to talk about hosting</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/cea78fa7-Install+Ceph.svg",
+        alt="Ceph install",
+        width="314",
+        height="216",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-12">
+      <h2>How to install Ceph on Ubuntu</h2>
+      <p>Charmed Ceph is Ubuntu’s fully automated, model-driven approach to installing and managing Ceph. <a href="/ceph">Charmed Ceph</a> is generally deployed on bare-metal that is managed by <a href="https://maas.io/" class="p-link--external">MAAS</a>.</p>
+      <h3>How to install Ceph on MAAS</h3>
+      <p>These instructions will result in an environment consisting of Ubuntu 20.04 LTS on three machines (one OSD node and one containerised MON node on each) that will run Ceph Octopus.</p>
+      <ol class="p-stepped-list--detailed">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Install Juju</h3>
+          <div class="p-stepped-list__content">
+            <p>Juju simplifies how you configure, scale and operate today’s complex software. Install it now:</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block--icon"><code>sudo snap install juju --classic</code></pre>
+            </div>
+            <p>This requires snapd to be installed. The latest Ubuntu release comes with this built in. For other Linux systems <a href="https://docs.snapcraft.io/installing-snapd" class="p-link--external">install snapd first</a>.</p>
+          </div>
+        </li>
+
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Add your MAAS cloud</h3>
+          <div class="p-stepped-list__content">
+            <p>This interactive step will register your private MAAS cloud that currently manages your bare metal infrastructure. </p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block--icon"><code>juju add-cloud</code></pre>
+            </div>
+            <p>You would choose MAAS in the interactive session and answer a few questions (see <a href="https://juju.is/docs/maas-cloud" class="p-link--external">Juju</a> for details). Let us assume that we have named the cloud &rsquo;mymaas&rsquo;.</a></p>
+          </div>
+        </li>
+
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Add Credentials</h3>
+          <div class="p-stepped-list__content">
+            <p>Cloud &rsquo;mymaas&rsquo; requires credentials in the form of a user&rsquo;s API key that is created on the MAAS server. Inform Juju about it:</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block--icon"><code>juju add-credential mymaas</code></pre>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Add Controller</h3>
+          <div class="p-stepped-list__content">
+            <p>The Juju controller is used to manage the software deployed through Juju. Create one now called, say, &rsquo;maas-one&rsquo;:</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block--icon"><code>juju bootstrap mymaas maas-one</code></pre>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Add Model</h3>
+          <div class="p-stepped-list__content">
+            <p>The model will hold the Ceph deployment, which includes the various applications and the number of units for each. Create one now called, say, &rsquo;ceph&rsquo;:</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block--icon"><code>juju add-model ceph</code></pre>
+            </div>
+          </div>
+        </li>
+
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Deploy Ceph</h3>
+          <div class="p-stepped-list__content">
+            <p>Deploy the Ceph cluster with the <a href="https://jaas.ai/ceph-base" class="p-link--external">ceph-base</a> bundle from the Charm Store:</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block--icon"><code>juju deploy ceph-base</code></pre>
+            </div>
+            <p>The bundle uses block device &rsquo;/dev/sdb&rsquo; to back cluster OSDs. Adjust as needed post-install with:</p>
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block--icon"><code>juju config ceph-osd osd-devices=/dev/&lt;XXX&gt;</code></pre>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <p>
+        <a href="/ceph/docs">For more details, see the Ceph documentation &nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep">
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-5 u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
+        alt="Contact us",
+        width="240",
+        height="171",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h2>Need more help with Ceph?</h2>
+      <p>Let our Ceph experts help you take the next step.</p>
+      <p>
+        <a href="/ceph/contact-us?product=ceph-install" class="p-button--positive">Contact us</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+{% with section_classes='p-strip--light is-deep is-bordered', heading_topic='Ceph', tag_name='ceph', tag_id='1780', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
+
+{% endblock content %}
