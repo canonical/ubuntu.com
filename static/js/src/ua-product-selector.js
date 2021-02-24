@@ -44,6 +44,12 @@ function productSelector() {
         state.set("version", [tab.getAttribute("href")]);
       });
     });
+
+    const billingElement = addStep.querySelector('.js-summary-billing');
+    billingElement.addEventListener('change', function(e) {
+      state.set("billing", [e.target.value]);
+    });
+
     state.set('billing', ['monthly']);
   }
 
@@ -61,11 +67,6 @@ function productSelector() {
       product = products[productId];
       productString = product.name;
       rawTotal = (product.price.value / 100) * quantity;
-
-      // Super hacky, needs fixing!
-      if (billing === 'annual') {
-        rawTotal = (rawTotal * 12) * 0.85;
-      }
       cost = parseCurrencyAmount(rawTotal, product.price.currency);
     }
 
@@ -80,7 +81,7 @@ function productSelector() {
     productElement.innerHTML = `<span>${imageHTML}</span>&nbsp;&nbsp;<span>${productString}</span>`;
 
     const costElement = summaryContainer.querySelector('.js-summary-cost');
-    costElement.innerHTML = `${cost} /${billing === 'annual' ? 'year' : 'month'}`;
+    costElement.innerHTML = `${cost} /${billing === 'yearly' ? 'year' : 'month'}`;
 
     const billingElement = summaryContainer.querySelector('.js-summary-billing');
     if (support !== 'essential') {
@@ -91,7 +92,7 @@ function productSelector() {
     }
 
     const saveMessage = summaryContainer.querySelector('.js-summary-save-with-annual');
-    if (billing === 'annual') {
+    if (billing === 'yearly') {
       saveMessage.classList.add('u-hide');
     } else {
       saveMessage.classList.remove('u-hide');
@@ -201,7 +202,7 @@ function productSelector() {
       case "support":
         state.set(inputElement.name, [inputElement.value]);
         if (state.get('support')[0] !== 'essential') {
-          state.set('billing', ['annual']);
+          state.set('billing', ['yearly']);
         }
         break;
       case "add":
@@ -307,6 +308,7 @@ function productSelector() {
     const quantity = state.get("quantity")[0];
     const support = state.get("support")[0];
     const type = state.get("type")[0];
+    const billing = state.get("billing")[0];
     const validVersion = state.get("version")[0] !== "#other";
     const productsArray = Object.entries(products);
     const productId = `uai-${support}-${type}`;
@@ -317,7 +319,10 @@ function productSelector() {
     // check whether user has private offers
     productsArray.forEach((product) => {
       const listingProduct = product[1];
-      const isSelectedProduct = listingProduct["productID"] === productId;
+      let isSelectedProduct = false;
+      if (listingProduct["productID"] === productId && listingProduct["period"] === billing) {
+        isSelectedProduct = true;
+      }
       if (listingProduct.private && isSelectedProduct) {
         privateForAccount = true;
         listingId = product[0];
@@ -333,11 +338,6 @@ function productSelector() {
 
       renderSummary(addStep, listingId, imageURL);
     }
-
-    const billing = addStep.querySelector('.js-summary-billing');
-    billing.addEventListener('change', function(e) {
-      state.set("billing", [e.target.value]);
-    });
   }
 }
 
