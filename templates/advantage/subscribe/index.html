@@ -195,11 +195,13 @@
           <span>${productString}</span>
         </div>
         <div class="col-4">
-          <select name="billing-period" id="billing-period" class="u-no-margin--bottom" style="width: auto;">
-            <option value="monthly">Monthly billing</option>
-            <option value="annual">Annual billing</option>
-          </select>
-          <p class="js-summary-save-with-annual"><strong>Switch to annual billing and save over 15%</strong></p>
+          <div class="js-summary-billing">
+            <select name="billing-period" id="billing-period" class="u-no-margin--bottom" style="width: auto;">
+              <option value="monthly">Monthly billing</option>
+              <option value="annual">Annual billing</option>
+            </select>
+            <p class="js-summary-save-with-annual"><strong>Switch to annual billing and save over 15%</strong></p>
+          </div>
         </div>
         <div class="col-3">
           <strong class="js-summary-cost">${cost} /year</strong>

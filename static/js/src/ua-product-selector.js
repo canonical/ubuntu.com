@@ -44,6 +44,7 @@ function productSelector() {
         state.set("version", [tab.getAttribute("href")]);
       });
     });
+    state.set('billing', ['monthly']);
   }
 
   function renderSummary(summaryContainer, productId, imageURL) {
@@ -54,6 +55,7 @@ function productSelector() {
     let imageHTML = "";
     const quantity = state.get('quantity')[0];
     const billing = state.get('billing')[0];
+    const support = state.get('support')[0];
 
     if (productId) {
       product = products[productId];
@@ -79,6 +81,14 @@ function productSelector() {
 
     const costElement = summaryContainer.querySelector('.js-summary-cost');
     costElement.innerHTML = `${cost} /${billing === 'annual' ? 'year' : 'month'}`;
+
+    const billingElement = summaryContainer.querySelector('.js-summary-billing');
+    if (support !== 'essential') {
+      billingElement.classList.add('u-hide');
+    } else {
+      billingElement.classList.remove('u-hide');
+      billingElement.querySelector('#billing-period').value = billing;
+    }
 
     const saveMessage = summaryContainer.querySelector('.js-summary-save-with-annual');
     if (billing === 'annual') {
@@ -190,6 +200,9 @@ function productSelector() {
         break;
       case "support":
         state.set(inputElement.name, [inputElement.value]);
+        if (state.get('support')[0] !== 'essential') {
+          state.set('billing', ['annual']);
+        }
         break;
       case "add":
         state.set(inputElement.name, [inputElement.value]);
@@ -321,7 +334,7 @@ function productSelector() {
       renderSummary(addStep, listingId, imageURL);
     }
 
-    const billing = addStep.querySelector('#billing-period');
+    const billing = addStep.querySelector('.js-summary-billing');
     billing.addEventListener('change', function(e) {
       state.set("billing", [e.target.value]);
     });
