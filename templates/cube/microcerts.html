@@ -13,15 +13,15 @@
       {% if certified_badge %}
 
         <h1>CUBE 2020 complete</h1>
-        <p class="p-heading--4">You have completed all 15 microcerts, proving your Ubuntu expertise. You are now a Certified Ubuntu Engineer.</p>
+        <p class="p-heading--4">You have completed all {{ modules|length }} microcerts, proving your Ubuntu expertise. You are now a Certified Ubuntu Engineer.</p>
 
       {% elif has_enrollments %}
 
       <h1>Your road to CUBE</h1>
         {% if passed_courses > 0 %}
-        <p class="p-heading--4">You have completed {{ passed_courses }} microcerts.</br>Complete {{ (15 - passed_courses) }} more microcerts to attain CUBE.</p>
+        <p class="p-heading--4">You have completed {{ passed_courses }} microcerts.</br>Complete {{ (modules|length - passed_courses) }} more microcerts to attain CUBE.</p>
         {% else %}
-        <p class="p-heading--4">Complete {{ (15 - passed_courses) }} microcerts to attain CUBE.</p>
+        <p class="p-heading--4">Complete {{ modules|length }} microcerts to attain CUBE.</p>
         {% endif %}
 
       {% else %}
@@ -265,7 +265,7 @@
           <td aria-label="Action" class="p-table__cell--share-actions u-hide--small">
           <div class="p-share-button u-align--right">
             <span class="p-contextual-menu p-contextual-menu--right u-hide--small">
-              <button class="p-button--neutral p-contextual-menu__toggle has-icon" aria-controls="#share-menu" aria-expanded="false" aria-haspopup="true" data-trigger="click"><i class="p-icon--chevron-down p-contextual-menu__indicator"></i><span>Share</span></button>
+              <button class="p-button--neutral p-contextual-menu__toggle has-icon u-no-margin--bottom" aria-controls="#share-menu" aria-expanded="false" aria-haspopup="true" data-trigger="click"><i class="p-icon--chevron-down p-contextual-menu__indicator"></i><span>Share</span></button>
               <span class="p-contextual-menu__dropdown" id="share-menu" aria-hidden="true">
                 <span class="p-contextual-menu__group">
                   <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ module.badge.url }}" class="p-contextual-menu__link">Share via LinkedIn</a>
