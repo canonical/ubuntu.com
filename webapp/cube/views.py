@@ -69,7 +69,7 @@ def cube_microcerts():
         }
 
         enrollments = [
-            enrollment["course_id"]
+            enrollment["course_details"]["course_id"]
             for enrollment in edx_api.get_enrollments(edx_user["username"])
             if enrollment["is_active"]
         ]
