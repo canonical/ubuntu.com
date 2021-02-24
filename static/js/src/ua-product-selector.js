@@ -218,8 +218,8 @@ function productSelector() {
       style: "currency",
       currency: currency,
       currencyDisplay: "symbol",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     }).format(parseFloat(total));
   }
 
