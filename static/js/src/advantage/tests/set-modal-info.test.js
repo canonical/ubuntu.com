@@ -79,7 +79,7 @@ describe("getOrderInformation", () => {
         items: [
           {
             end: {
-              label: "Ends:",
+              label: "Next payment:",
               value: endDate,
               extraClasses: "js-end-date",
             },
@@ -98,7 +98,7 @@ describe("getOrderInformation", () => {
           },
           {
             end: {
-              label: "Ends:",
+              label: "Next payment:",
               value: endDate,
               extraClasses: "js-end-date",
             },
