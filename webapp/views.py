@@ -16,6 +16,7 @@ import gnupg
 import pytz
 import talisker.requests
 import yaml
+import jinja2
 from ubuntu_release_info.data import Data
 from canonicalwebteam.store_api.stores.snapstore import SnapStore
 from canonicalwebteam.launchpad import Launchpad
@@ -67,6 +68,18 @@ def _build_mirror_list():
                 )
 
     return mirror_list
+
+
+def show_template(filename):
+    try:
+        template_content = flask.render_template(f"templates/{filename}.html")
+    except jinja2.exceptions.TemplateNotFound:
+        flask.abort(404)
+
+    return (
+        template_content,
+        {"Access-Control-Allow-Origin": "*"},
+    )
 
 
 def download_server_steps():
