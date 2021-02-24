@@ -102,7 +102,7 @@ function productSelector() {
     var productObject = JSON.stringify(product);
     buyButton.dataset.cart = `[{"listingID": "${productId}", "product": ${productObject}, "quantity": ${quantity}}]`;
     buyButton.dataset.accountId = window.accountId;
-    buyButton.dataset.subtotal = product.price.value;
+    buyButton.dataset.subtotal = product.price.value * quantity;
     buyButton.dataset.previousPurchaseId = "";
 
     summaryContainer.classList.remove("u-hide");
