@@ -34,12 +34,12 @@ function buildInfoRow(item) {
   </div>`;
 }
 
-function buildQuantityString(quantity, unitPrice, currency) {
+function buildQuantityString(quantity, unitPrice, currency, period = 'yearly') {
   return `${quantity} &#215; ${formattedCurrency(
     unitPrice,
     currency,
     "en-CA"
-  )}/year`;
+  )}/${period === 'monthly'? 'month' : 'year'}`;
 }
 
 function getProductsString(productsArrayString) {
@@ -124,7 +124,7 @@ export function getOrderInformation(listings) {
   const items = [];
   const currency = "USD";
   const startDate = new Date();
-  const endDate = add(new Date(), { months: 12 });
+  let endDate = add(new Date(), { months: 12 });
   let subtotal = 0;
   let planLabel = "Plan type:";
 
@@ -132,6 +132,9 @@ export function getOrderInformation(listings) {
     subtotal = subtotal + listing.quantity * listing.product.price.value;
     if (listings.length > 1) {
       planLabel = `Plan ${i + 1}:`;
+    }
+    if (listing.product.period === 'monthly') {
+      endDate = add(new Date(), { months: 1 });
     }
 
     items.push({
@@ -144,7 +147,8 @@ export function getOrderInformation(listings) {
         value: buildQuantityString(
           listing.quantity,
           listing.product.price.value,
-          currency
+          currency,
+          listing.product.period
         ),
       },
       start: {
@@ -152,7 +156,7 @@ export function getOrderInformation(listings) {
         value: format(startDate, DATE_FORMAT),
       },
       end: {
-        label: "Ends:",
+        label: "Next payment:",
         value: format(endDate, DATE_FORMAT),
         extraClasses: "js-end-date",
       },
