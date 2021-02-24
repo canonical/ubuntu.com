@@ -2,12 +2,13 @@
   th,
   td {
     &:nth-child(1) {
-      width: 4%;
       overflow: visible;
+      width: 4%;
     }
 
     &:nth-child(2) {
       width: 5%;
+
       img {
         height: 3rem;
         margin-top: 0.25rem;
@@ -100,6 +101,7 @@
       margin-top: 0;
       padding-top: 0;
     }
+
     li:last-of-type {
       padding-bottom: 1rem;
     }
@@ -129,9 +131,5 @@
   .p-share-button {
     margin-top: 0.5rem;
     position: relative;
-
-    [class*="p-button"] {
-      margin-bottom: 0;
-    }
   }
 }
