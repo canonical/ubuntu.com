@@ -34,7 +34,7 @@ Kubernetes cluster running on the cloud of your choice in minutes!
   - [Rackspace][cloud-rackspace]
 
 <div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span> If you don't meet these requirements, there are additional ways of installing the <emphasis>Charmed Distribution of Kubernetes<sup>&reg;</sup></emphasis>, including additional OS support and an entirely local deploy. Please see the more general <a href="/kubernetes/docs/install-manual">Installing Charmed Kubernetes</a> page for details. </p></div>
+<span class="p-notification__status">Note:</span> If you don't meet these requirements, there are additional ways of installing <emphasis>Charmed Kubernetes<sup>&reg;</sup></emphasis>, including additional OS support and an entirely local deploy. Please see the more general <a href="/kubernetes/docs/install-manual">Installing Charmed Kubernetes</a> page for details. </p></div>
 
 
 <section class="p-strip--light is-bordered">
