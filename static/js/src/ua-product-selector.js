@@ -344,7 +344,6 @@ function productSelector() {
           } else if (!privateForAccount) {
             listingId = listingProduct.id;
           }
-          break;
         }
       }
 
