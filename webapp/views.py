@@ -28,7 +28,11 @@ from canonicalwebteam.search.views import NoAPIKeyError
 
 # Local
 from webapp.login import empty_session, user_info
-from webapp.advantage import AdvantageContracts, UnauthorizedError
+from webapp.advantage import (
+    AdvantageContracts,
+    UnauthorizedError,
+    CannotCancelLastContractError,
+)
 from webapp.decorators import store_maintenance
 
 
@@ -776,6 +780,113 @@ def post_advantage_subscriptions(preview):
             ),
             500,
         )
+
+    return flask.jsonify(purchase), 200
+
+
+def cancel_advantage_subscriptions():
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if flask.request.args.get("test_backend", False):
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
+    user_token = flask.session.get("authentication_token")
+
+    if user_info(flask.session):
+        advantage = AdvantageContracts(
+            session,
+            user_token,
+            token_type=("Macaroon" if user_token else "Bearer"),
+            api_url=api_url,
+        )
+    else:
+        return flask.jsonify({"error": "authentication required"}), 401
+
+    payload = flask.request.json
+
+    account_id = payload.get("account_id")
+    previous_purchase_id = payload.get("previous_purchase_id")
+    product_listings = payload.get("product_listings")
+
+    if not (account_id and previous_purchase_id and product_listings):
+        return flask.jsonify({"error": "bad request"}), 400
+
+    account_id = payload.get("account_id")
+    previous_purchase_id = payload.get("previous_purchase_id")
+
+    try:
+        monthly_subscriptions = (
+            advantage.get_account_subscriptions_for_marketplace(
+                account_id=account_id,
+                marketplace="canonical-ua",
+                filters={"status": "active", "period": "monthly"},
+            )
+        )
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"payload": payload}
+        )
+        return (
+            flask.jsonify(
+                {"error": "could not retrieve account subscriptions"}
+            ),
+            500,
+        )
+
+    if not monthly_subscriptions.get("subscriptions"):
+        return flask.jsonify({"error": "no monthly subscriptions found"}), 400
+
+    monthly_subscription = monthly_subscriptions.get("subscriptions")[0]
+
+    purchase_request = {
+        "accountID": account_id,
+        "purchaseItems": [
+            {
+                "productListingID": product_listing,
+                "metric": "active-machines",
+                "value": 0,
+                "delete": True,
+            }
+            for product_listing in product_listings
+        ],
+        "previousPurchaseID": previous_purchase_id,
+    }
+
+    try:
+        purchase = advantage.purchase_from_marketplace(
+            marketplace="canonical-ua", purchase_request=purchase_request
+        )
+    except CannotCancelLastContractError:
+        try:
+            advantage.cancel_subscription(
+                subscription_id=monthly_subscription["subscription"]["id"]
+            )
+
+            return (
+                flask.jsonify({"message": "Subscription Cancelled"}),
+                200,
+            )
+        except HTTPError as http_error:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "subscription": monthly_subscription,
+                    "api_response": http_error.response.json(),
+                }
+            )
+
+            return (
+                flask.jsonify({"error": "could not cancel subscription"}),
+                500,
+            )
+    except HTTPError as http_error:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={
+                "purchase_request": purchase_request,
+                "api_response": http_error.response.json(),
+            }
+        )
+
+        return flask.jsonify({"error": "purchase failed"}), 500
 
     return flask.jsonify(purchase), 200
 

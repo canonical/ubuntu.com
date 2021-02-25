@@ -67,6 +67,7 @@ from webapp.views import (
     build_engage_index,
     engage_thank_you,
     sitemap_index,
+    cancel_advantage_subscriptions,
 )
 from webapp.login import login_handler, logout, user_info
 from webapp.security.database import db_session
@@ -182,6 +183,11 @@ app.add_url_rule(
     view_func=post_advantage_subscriptions,
     methods=["POST"],
     defaults={"preview": False},
+)
+app.add_url_rule(
+    "/advantage/subscribe",
+    view_func=cancel_advantage_subscriptions,
+    methods=["DELETE"],
 )
 app.add_url_rule(
     "/advantage/subscribe/preview",
