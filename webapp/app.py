@@ -32,6 +32,8 @@ from webapp.context import (
     releases,
 )
 
+from webapp.cube.views import cube_home, cube_microcerts
+
 from webapp.views import (
     accept_renewal,
     advantage_view,
@@ -581,6 +583,10 @@ core_als_autils_docs = Docs(
 )
 core_als_autils_docs.init_app(app)
 
+# Cube docs
+app.add_url_rule("/cube", view_func=cube_home)
+app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
+
 openstack_docs = Docs(
     parser=DocParser(
         api=discourse_api,
@@ -614,6 +620,13 @@ def cache_headers(response):
         response.headers[
             "Cache-Control"
         ] = "max-age=61, stale-while-revalidate=90"
+
+    if flask.request.path.startswith("/cube"):
+        response.cache_control.private = True
+        response.headers[
+            "Cache-Control"
+        ] = "no-cache, no-store, must-revalidate"
+        response.headers["Pragma"] = "no-cache"
 
     return response
 
