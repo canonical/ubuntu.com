@@ -34,12 +34,12 @@ function buildInfoRow(item) {
   </div>`;
 }
 
-function buildQuantityString(quantity, unitPrice, currency, period = 'yearly') {
+function buildQuantityString(quantity, unitPrice, currency, period = "yearly") {
   return `${quantity} &#215; ${formattedCurrency(
     unitPrice,
     currency,
     "en-CA"
-  )}/${period === 'monthly'? 'month' : 'year'}`;
+  )}/${period === "monthly" ? "month" : "year"}`;
 }
 
 function getProductsString(productsArrayString) {
@@ -133,7 +133,7 @@ export function getOrderInformation(listings) {
     if (listings.length > 1) {
       planLabel = `Plan ${i + 1}:`;
     }
-    if (listing.product.period === 'monthly') {
+    if (listing.product.period === "monthly") {
       endDate = add(new Date(), { months: 1 });
     }
 

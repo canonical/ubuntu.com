@@ -9,7 +9,15 @@ function productSelector() {
   const addStep = form.querySelector(`${stepClassPrefix}add`);
   const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
   const quantityTypeEl = form.querySelector(".js-type-name");
-  const steps = ["type", "quantity", "version", "support", "add", "cart", "billing"];
+  const steps = [
+    "type",
+    "quantity",
+    "version",
+    "support",
+    "add",
+    "cart",
+    "billing",
+  ];
 
   let state = new StateManager(steps, render);
 
@@ -45,12 +53,12 @@ function productSelector() {
       });
     });
 
-    const billingElement = addStep.querySelector('.js-summary-billing');
-    billingElement.addEventListener('change', function(e) {
+    const billingElement = addStep.querySelector(".js-summary-billing");
+    billingElement.addEventListener("change", function (e) {
       state.set("billing", [e.target.value]);
     });
 
-    state.set('billing', ['monthly']);
+    state.set("billing", ["monthly"]);
   }
 
   function renderSummary(summaryContainer, productId, imageURL) {
@@ -59,9 +67,9 @@ function productSelector() {
     let cost = "";
     let productString = "&mldr;";
     let imageHTML = "";
-    const quantity = state.get('quantity')[0];
-    const billing = state.get('billing')[0];
-    const support = state.get('support')[0];
+    const quantity = state.get("quantity")[0];
+    const billing = state.get("billing")[0];
+    const support = state.get("support")[0];
 
     if (productId) {
       product = products[productId];
@@ -74,31 +82,41 @@ function productSelector() {
       imageHTML = `<img src="${imageURL}" style="height: 32px; float: left;" />`;
     }
 
-    const quantityElement = summaryContainer.querySelector('.js-summary-quantity');
+    const quantityElement = summaryContainer.querySelector(
+      ".js-summary-quantity"
+    );
     quantityElement.innerHTML = `× ${quantity.replace(/^0+/, "")}`;
 
-    const productElement = summaryContainer.querySelector('.js-summary-product');
+    const productElement = summaryContainer.querySelector(
+      ".js-summary-product"
+    );
     productElement.innerHTML = `<span>${imageHTML}</span>&nbsp;&nbsp;<span>${productString}</span>`;
 
-    const costElement = summaryContainer.querySelector('.js-summary-cost');
-    costElement.innerHTML = `${cost} /${billing === 'yearly' ? 'year' : 'month'}`;
+    const costElement = summaryContainer.querySelector(".js-summary-cost");
+    costElement.innerHTML = `${cost} /${
+      billing === "yearly" ? "year" : "month"
+    }`;
 
-    const billingElement = summaryContainer.querySelector('.js-summary-billing');
-    if (support !== 'essential') {
-      billingElement.classList.add('u-hide');
+    const billingElement = summaryContainer.querySelector(
+      ".js-summary-billing"
+    );
+    if (support !== "essential") {
+      billingElement.classList.add("u-hide");
     } else {
-      billingElement.classList.remove('u-hide');
-      billingElement.querySelector('#billing-period').value = billing;
+      billingElement.classList.remove("u-hide");
+      billingElement.querySelector("#billing-period").value = billing;
     }
 
-    const saveMessage = summaryContainer.querySelector('.js-summary-save-with-annual');
-    if (billing === 'yearly') {
-      saveMessage.classList.add('u-hide');
+    const saveMessage = summaryContainer.querySelector(
+      ".js-summary-save-with-annual"
+    );
+    if (billing === "yearly") {
+      saveMessage.classList.add("u-hide");
     } else {
-      saveMessage.classList.remove('u-hide');
+      saveMessage.classList.remove("u-hide");
     }
 
-    const buyButton = summaryContainer.querySelector('.js-ua-shop-cta');
+    const buyButton = summaryContainer.querySelector(".js-ua-shop-cta");
     var productObject = JSON.stringify(product);
     buyButton.dataset.cart = `[{"listingID": "${productId}", "product": ${productObject}, "quantity": ${quantity}}]`;
     buyButton.dataset.accountId = window.accountId;
@@ -201,8 +219,8 @@ function productSelector() {
         break;
       case "support":
         state.set(inputElement.name, [inputElement.value]);
-        if (state.get('support')[0] !== 'essential') {
-          state.set('billing', ['yearly']);
+        if (state.get("support")[0] !== "essential") {
+          state.set("billing", ["yearly"]);
         }
         break;
       case "add":
@@ -320,7 +338,10 @@ function productSelector() {
     productsArray.forEach((product) => {
       const listingProduct = product[1];
       let isSelectedProduct = false;
-      if (listingProduct["productID"] === productId && listingProduct["period"] === billing) {
+      if (
+        listingProduct["productID"] === productId &&
+        listingProduct["period"] === billing
+      ) {
         isSelectedProduct = true;
       }
       if (listingProduct.private && isSelectedProduct) {
