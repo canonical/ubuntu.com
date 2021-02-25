@@ -40,12 +40,6 @@ function productSelector() {
       });
     });
 
-    document.addEventListener("input", (e) => {
-      if (e.target && e.target.classList.contains("js-product-input")) {
-        handleStepSpecificAction(e.target);
-      }
-    });
-
     versionTabs.forEach((tab) => {
       tab.addEventListener("click", (e) => {
         e.preventDefault();
@@ -61,7 +55,7 @@ function productSelector() {
     state.set("billing", ["monthly"]);
   }
 
-  function renderSummary(summaryContainer, productId, imageURL) {
+  function renderSummary(summaryContainer, productId, imageURL, hideBillingPeriod = true) {
     let product;
     let rawTotal;
     let cost = "";
@@ -100,7 +94,7 @@ function productSelector() {
     const billingElement = summaryContainer.querySelector(
       ".js-summary-billing"
     );
-    if (support !== "essential") {
+    if (support !== "essential" || hideBillingPeriod) {
       billingElement.classList.add("u-hide");
     } else {
       billingElement.classList.remove("u-hide");
@@ -219,9 +213,6 @@ function productSelector() {
         break;
       case "support":
         state.set(inputElement.name, [inputElement.value]);
-        if (state.get("support")[0] !== "essential") {
-          state.set("billing", ["yearly"]);
-        }
         break;
       case "add":
         state.set(inputElement.name, [inputElement.value]);
@@ -333,32 +324,59 @@ function productSelector() {
     const completedForm = type && quantity && support && validVersion;
     let listingId;
     let privateForAccount = false;
+    let hideBillingPeriod = false;
 
-    // check whether user has private offers
-    productsArray.forEach((product) => {
-      const listingProduct = product[1];
-      let isSelectedProduct = false;
-      if (
-        listingProduct["productID"] === productId &&
-        listingProduct["period"] === billing
-      ) {
-        isSelectedProduct = true;
+    if (completedForm) {
+      // check whether user has private offers
+      for (let i = 0; i< productsArray.length; i++) {
+        const product = productsArray[i];
+        const listingProduct = product[1];
+        listingProduct.id = product[0];
+        if (matchingProduct(listingProduct, productId, billing)) {
+          if (listingProduct.private) {
+            privateForAccount = true;
+            listingId = listingProduct.id;
+          } else if (!privateForAccount) {
+            listingId = listingProduct.id;
+          }
+          break;
+        }
       }
-      if (listingProduct.private && isSelectedProduct) {
-        privateForAccount = true;
-        listingId = product[0];
-      } else if (!privateForAccount && isSelectedProduct) {
-        listingId = product[0];
+
+      if (!listingId) {
+        for (let i = 0; i< productsArray.length; i++) {
+          const product = productsArray[i];
+          const listingProduct = product[1];
+          listingProduct.id = product[0];
+          if (listingProduct.productID === productId) {
+            listingId = listingProduct.id;
+            state.set('billing', [listingProduct.period]);
+            hideBillingPeriod = true;
+            break;
+          }
+        }
       }
-    });
 
-    if (completedForm && listingId) {
-      const imageURL = form
-        .querySelector(`.js-image-${type}`)
-        .getAttribute("src");
+      if (listingId) {
+        const imageURL = form
+          .querySelector(`.js-image-${type}`)
+          .getAttribute("src");
 
-      renderSummary(addStep, listingId, imageURL);
+        renderSummary(addStep, listingId, imageURL, hideBillingPeriod);
+      } else {
+        console.error('Selected UA product does not match a product in the product list');
+      }
     }
+  }
+
+  function matchingProduct(testItem, selectedProductId, selectedBillingPeriod) {
+    if (
+      testItem.productID === selectedProductId &&
+      testItem.period === selectedBillingPeriod
+    ) {
+      return true;
+    }
+    return false;
   }
 }
 
