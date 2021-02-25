@@ -407,19 +407,6 @@ def search_snaps():
 
 @store_maintenance
 def advantage_view():
-    accounts = None
-    personal_account = None
-    enterprise_contracts = {}
-    entitlements = {}
-    subscriptions = {
-        "total_subscriptions": 0,
-        "has_monthly": False,
-        "next_payment": {},
-    }
-    new_subscription_start_date = None
-    new_subscription_id = None
-    open_subscription = flask.request.args.get("subscription", None)
-    payment_method_warning = None
     is_test_backend = flask.request.args.get("test_backend", False)
 
     stripe_publishable_key = os.getenv(
@@ -435,201 +422,252 @@ def advantage_view():
         )
         api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
-    if user_info(flask.session):
-        advantage = AdvantageContracts(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
+    if not user_info(flask.session):
+        return flask.render_template(
+            "advantage/index-no-login.html",
+            is_test_backend=is_test_backend,
         )
 
+    open_subscription = flask.request.args.get("subscription", None)
+
+    personal_account = None
+    new_subscription_id = None
+    new_subscription_start_date = None
+    payment_method_warning = None
+
+    enterprise_contracts = {}
+    previous_purchase_ids = {"monthly": "", "yearly": ""}
+    monthly_info = {
+        "total_subscriptions": 0,
+        "has_monthly": False,
+        "next_payment": {},
+    }
+
+    advantage = AdvantageContracts(
+        session,
+        flask.session["authentication_token"],
+        api_url=api_url,
+    )
+
+    try:
+        accounts = advantage.get_accounts()
+    except HTTPError as http_error:
+        if http_error.response.status_code == 401:
+            # We got an unauthorized request, so we likely
+            # need to re-login to refresh the macaroon
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "session_keys": flask.session.keys(),
+                    "request_url": http_error.request.url,
+                    "request_headers": http_error.request.headers,
+                    "response_headers": http_error.response.headers,
+                    "response_body": http_error.response.json(),
+                    "response_code": http_error.response.json()["code"],
+                    "response_message": http_error.response.json()["message"],
+                }
+            )
+
+            empty_session(flask.session)
+
+            return flask.render_template("advantage/index.html")
+
+        raise http_error
+
+    for account in accounts:
+        monthly_purchased_products = {}
+        yearly_purchased_products = {}
+        account["contracts"] = advantage.get_account_contracts(account)
+
         try:
-            accounts = advantage.get_accounts()
-        except HTTPError as http_error:
-            if http_error.response.status_code == 401:
-                # We got an unauthorized request, so we likely
-                # need to re-login to refresh the macaroon
-                flask.current_app.extensions["sentry"].captureException(
-                    extra={
-                        "session_keys": flask.session.keys(),
-                        "request_url": http_error.request.url,
-                        "request_headers": http_error.request.headers,
-                        "response_headers": http_error.response.headers,
-                        "response_body": http_error.response.json(),
-                        "response_code": http_error.response.json()["code"],
-                        "response_message": http_error.response.json()[
-                            "message"
-                        ],
-                    }
-                )
-
-                empty_session(flask.session)
-
-                return flask.render_template("advantage/index.html")
-
-            raise http_error
-
-        for account in accounts:
-            account["contracts"] = advantage.get_account_contracts(account)
-
-            monthly_subscriptions = (
+            all_subscriptions = (
                 advantage.get_account_subscriptions_for_marketplace(
                     account_id=account["id"],
                     marketplace="canonical-ua",
-                    filters={
-                        "period": "monthly",
-                    },
                 )
             )
+        except HTTPError:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={"account_id": account["id"]}
+            )
+            return (
+                flask.jsonify(
+                    {"error": "could not retrieve account subscriptions"}
+                ),
+                500,
+            )
 
-            for subscription in monthly_subscriptions.get("subscriptions", []):
-                # If there are any pending purchase,
-                # we show the payment method warning.
+        monthly_subscriptions = []
+        yearly_subscriptions = []
+        for subscription in all_subscriptions.get("subscriptions", []):
+            period = subscription["subscription"]["period"]
+            status = subscription["subscription"]["status"]
+
+            # If there are any pending purchase, for monthly (active or locked)
+            # we show the payment method warning.
+            if period == "monthly" and status in ["active", "locked"]:
                 payment_method_warning = subscription.get("pendingPurchases")
 
-                subscriptions["total_subscriptions"] += len(
-                    subscription["purchasedProductListings"]
-                )
-                subscriptions["has_monthly"] = True
-                subscriptions["id"] = subscription["subscription"]["id"]
+            previous_purchase_ids[period] = subscription["lastPurchaseID"]
 
-                # TODO get the correct auto-renewal state
-                subscriptions["is_auto_renewal_enabled"] = True
+            if subscription["subscription"]["period"] == "yearly":
+                yearly_subscriptions.append(subscription)
+                continue
 
-                last_purchase = advantage.get_purchase(
-                    subscription["lastPurchaseID"]
-                )
-                subscriptions["last_payment_date"] = dateutil.parser.parse(
-                    last_purchase["createdAt"]
-                ).strftime("%d %B %Y")
-                subscriptions["current_subscription_number"] = len(
-                    subscription["purchasedProductListings"]
-                )
-                subscriptions["next_payment"]["date"] = dateutil.parser.parse(
-                    subscription["subscription"]["endOfCycle"]
-                ).strftime("%d %B %Y")
-                subscriptions["next_payment"][
-                    "ammount"
-                ] = get_subscription_payment_total(
-                    subscription["purchasedProductListings"]
-                )
+            monthly_subscriptions.append(subscription)
 
-            for contract in account["contracts"]:
+        for subscription in monthly_subscriptions:
+            purchased_products = subscription["purchasedProductListings"]
+            for purchased_product_listing in purchased_products:
+                product_listing = purchased_product_listing["productListing"]
+                product_id = product_listing["productID"]
+                quantity = purchased_product_listing["value"]
+                monthly_purchased_products[product_id] = {
+                    "quantity": quantity,
+                    "price": product_listing["price"],
+                }
+
+            prepare_monthly_info(monthly_info, subscription, advantage)
+
+        for subscription in yearly_subscriptions:
+            purchased_products = subscription["purchasedProductListings"]
+            for purchased_product_listing in purchased_products:
+                product_listing = purchased_product_listing["productListing"]
+                product_id = product_listing["productID"]
+                quantity = purchased_product_listing["value"]
+                yearly_purchased_products[product_id] = {
+                    "quantity": quantity,
+                    "price": product_listing["price"],
+                }
+
+        for contract in account["contracts"]:
+            try:
                 contract["token"] = advantage.get_contract_token(contract)
-                contract["machineCount"] = get_machine_usage(
-                    advantage, contract
+            except HTTPError:
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={"contract_id": contract["contractInfo"]["id"]}
+                )
+                return (
+                    flask.jsonify(
+                        {"error": "could not retrieve contract token"}
+                    ),
+                    500,
                 )
 
-                if contract["contractInfo"].get("origin", "") == "free":
-                    personal_account = account
-                    personal_account["free_token"] = contract["token"]
-                    for entitlement in contract["contractInfo"][
-                        "resourceEntitlements"
-                    ]:
-                        if entitlement["type"] == "esm-infra":
-                            entitlements["esm-infra"] = True
-                        elif entitlement["type"] == "esm-apps":
-                            entitlements["esm-apps"] = True
-                        elif entitlement["type"] == "livepatch":
-                            entitlements["livepatch"] = True
-                        elif entitlement["type"] == "fips":
-                            entitlements["fips"] = True
-                        elif entitlement["type"] == "cc-eal":
-                            entitlements["cc-eal"] = True
-                    personal_account["entitlements"] = entitlements
+            contract["machineCount"] = get_machine_usage(advantage, contract)
+
+            if contract["contractInfo"].get("origin", "") == "free":
+                personal_account = account
+                personal_account["free_token"] = contract["token"]
+
+                continue
+
+            contract_info = contract["contractInfo"]
+            entitlements = {}
+            for entitlement in contract_info["resourceEntitlements"]:
+                contract["supportLevel"] = "-"
+                if entitlement["type"] == "support":
+                    affordance = entitlement["affordances"]
+                    contract["supportLevel"] = affordance["supportLevel"]
+
+                    continue
+
+                entitlement_type = entitlement["type"]
+                entitlements[entitlement_type] = True
+            contract["entitlements"] = entitlements
+
+            created_at = dateutil.parser.parse(contract_info["createdAt"])
+            format_create = created_at.strftime("%d %B %Y")
+            contract["contractInfo"]["createdAtFormatted"] = format_create
+            contract["contractInfo"]["status"] = "active"
+
+            time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+
+            if (
+                not new_subscription_start_date
+                or created_at > new_subscription_start_date
+            ):
+                new_subscription_start_date = created_at
+                new_subscription_id = contract["contractInfo"]["id"]
+
+            effective_to = dateutil.parser.parse(contract_info["effectiveTo"])
+            format_effective = effective_to.strftime("%d %B %Y")
+            contract["contractInfo"]["effectiveToFormatted"] = format_effective
+
+            if effective_to < time_now:
+                contract["contractInfo"]["status"] = "expired"
+                restart_date = time_now - timedelta(days=1)
+                contract["contractInfo"]["expired_restart_date"] = restart_date
+
+            date_difference = effective_to - time_now
+            contract["expiring"] = date_difference.days <= 30
+            contract["contractInfo"]["daysTillExpiry"] = date_difference.days
+
+            try:
+                contract["renewal"] = make_renewal(
+                    advantage, contract["contractInfo"]
+                )
+            except KeyError:
+                flask.current_app.extensions["sentry"].captureException()
+                contract["renewal"] = None
+
+            enterprise_contract = enterprise_contracts.setdefault(
+                contract["accountInfo"]["name"], []
+            )
+
+            product_name = contract["contractInfo"]["products"][0]
+
+            contract["productID"] = product_name
+            contract["is_detached"] = False
+            contract["machineCount"] = "-"
+
+            if product_name in yearly_purchased_products:
+                purchased_product = yearly_purchased_products[product_name]
+                contract["price_per_unit"] = purchased_product["price"]
+                contract["machineCount"] = purchased_product["quantity"]
+                contract["period"] = "yearly"
+
+                if contract["contractInfo"]["id"] == open_subscription:
+                    enterprise_contract.insert(0, contract)
+                elif contract["contractInfo"]["id"] == new_subscription_id:
+                    enterprise_contract.insert(0, contract)
                 else:
-                    entitlements = {}
-                    for entitlement in contract["contractInfo"][
-                        "resourceEntitlements"
-                    ]:
-                        contract["supportLevel"] = "-"
-                        if entitlement["type"] == "esm-infra":
-                            entitlements["esm-infra"] = True
-                        elif entitlement["type"] == "esm-apps":
-                            entitlements["esm-apps"] = True
-                        elif entitlement["type"] == "livepatch":
-                            entitlements["livepatch"] = True
-                        elif entitlement["type"] == "fips":
-                            entitlements["fips"] = True
-                        elif entitlement["type"] == "cc-eal":
-                            entitlements["cc-eal"] = True
-                        elif entitlement["type"] == "support":
-                            contract["supportLevel"] = entitlement[
-                                "affordances"
-                            ]["supportLevel"]
-                    contract["entitlements"] = entitlements
-                    created_at = dateutil.parser.parse(
-                        contract["contractInfo"]["createdAt"]
-                    )
-                    contract["contractInfo"][
-                        "createdAtFormatted"
-                    ] = created_at.strftime("%d %B %Y")
-                    contract["contractInfo"]["status"] = "active"
+                    enterprise_contract.append(contract)
 
-                    time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+            if product_name in monthly_purchased_products:
+                contract = contract.copy()
+                purchased_product = monthly_purchased_products[product_name]
+                contract["price_per_unit"] = purchased_product["price"]
+                contract["machineCount"] = purchased_product["quantity"]
+                contract["is_cancelable"] = True
+                contract["period"] = "monthly"
 
-                    # TODO(frankban): what is the logic below about?
-                    # Why do we do the same thing in both branches of the
-                    # condition?
-                    if not contract["machineCount"].attached:
-                        if not new_subscription_start_date:
-                            new_subscription_start_date = created_at
-                            new_subscription_id = contract["contractInfo"][
-                                "id"
-                            ]
-                        elif created_at > new_subscription_start_date:
-                            new_subscription_start_date = created_at
-                            new_subscription_id = contract["contractInfo"][
-                                "id"
-                            ]
+                if contract["contractInfo"]["id"] == open_subscription:
+                    enterprise_contract.insert(0, contract)
+                elif contract["contractInfo"]["id"] == new_subscription_id:
+                    enterprise_contract.insert(0, contract)
+                else:
+                    enterprise_contract.append(contract)
 
-                    if "effectiveTo" in contract["contractInfo"]:
-                        effective_to = dateutil.parser.parse(
-                            contract["contractInfo"]["effectiveTo"]
-                        )
-                        contract["contractInfo"][
-                            "effectiveToFormatted"
-                        ] = effective_to.strftime("%d %B %Y")
+            if (
+                product_name not in yearly_purchased_products
+                and product_name not in monthly_purchased_products
+            ):
+                contract["is_detached"] = True
 
-                        if effective_to < time_now:
-                            contract["contractInfo"]["status"] = "expired"
-                            contract["contractInfo"][
-                                "expired_restart_date"
-                            ] = time_now - timedelta(days=1)
-
-                        date_difference = effective_to - time_now
-                        contract["expiring"] = date_difference.days <= 30
-                        contract["contractInfo"][
-                            "daysTillExpiry"
-                        ] = date_difference.days
-
-                    try:
-                        contract["renewal"] = make_renewal(
-                            advantage, contract["contractInfo"]
-                        )
-                    except KeyError:
-                        flask.current_app.extensions[
-                            "sentry"
-                        ].captureException()
-                        contract["renewal"] = None
-
-                    enterprise_contract = enterprise_contracts.setdefault(
-                        contract["accountInfo"]["name"], []
-                    )
-                    # If a subscription id is present and this contract
-                    # matches add it to the start of the list
-                    if contract["contractInfo"]["id"] == open_subscription:
-                        enterprise_contract.insert(0, contract)
-                    elif contract["contractInfo"]["id"] == new_subscription_id:
-                        enterprise_contract.insert(0, contract)
-                    else:
-                        enterprise_contract.append(contract)
+                if contract["contractInfo"]["id"] == open_subscription:
+                    enterprise_contract.insert(0, contract)
+                elif contract["contractInfo"]["id"] == new_subscription_id:
+                    enterprise_contract.insert(0, contract)
+                else:
+                    enterprise_contract.append(contract)
 
     return flask.render_template(
         "advantage/index.html",
         accounts=accounts,
         payment_method_warning=payment_method_warning,
-        subscriptions=subscriptions,
+        subscriptions=monthly_info,
         enterprise_contracts=enterprise_contracts,
+        previous_purchase_ids=previous_purchase_ids,
         personal_account=personal_account,
         open_subscription=open_subscription,
         new_subscription_id=new_subscription_id,
@@ -638,16 +676,51 @@ def advantage_view():
     )
 
 
-def get_subscription_payment_total(productsListings):
-    """Return ammount of next renewal"""
+def prepare_monthly_info(monthly_info, subscription, advantage):
+    purchased_products = subscription["purchasedProductListings"]
+    purchased_products_no = len(purchased_products)
+
+    monthly_info["total_subscriptions"] += purchased_products_no
+    monthly_info["has_monthly"] = True
+    monthly_info["id"] = subscription["subscription"]["id"]
+    monthly_info["is_auto_renewal_enabled"] = subscription.get(
+        "autoRenew", False
+    )
+
+    last_purchase_id = subscription["lastPurchaseID"]
+
+    try:
+        last_purchase = advantage.get_purchase(last_purchase_id)
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"last_purchase_id": last_purchase_id}
+        )
+        return (
+            flask.jsonify({"error": "could not fetch last purchase"}),
+            500,
+        )
+
+    monthly_info["last_payment_date"] = dateutil.parser.parse(
+        last_purchase["createdAt"]
+    ).strftime("%d %B %Y")
+    monthly_info["current_subscription_no"] = purchased_products_no
+    monthly_info["next_payment"]["date"] = dateutil.parser.parse(
+        subscription["subscription"]["endOfCycle"]
+    ).strftime("%d %B %Y")
+    monthly_info["next_payment"]["ammount"] = get_subscription_payment_total(
+        subscription["purchasedProductListings"]
+    )
+
+
+def get_subscription_payment_total(products_listings):
     total = 0
-    for listing in productsListings:
+
+    for listing in products_listings:
         total += listing["productListing"]["price"]["value"] * listing["value"]
-    # This assumes that every price in the subscription uses the same currency.
 
     return (
         f"{total / 100} "
-        f'{productsListings[0]["productListing"]["price"]["currency"]}'
+        f'{products_listings[0]["productListing"]["price"]["currency"]}'
     )
 
 
@@ -655,9 +728,19 @@ def get_machine_usage(advantage, contract):
     """Return machine usage for the given contract as a MachineUsage object."""
     allowances = contract.get("contractInfo", {}).get("allowances", [])
     allowed = sum(a["value"] for a in allowances)
-    attached_machines = advantage.get_contract_machines(contract).get(
-        "machines", []
-    )
+
+    try:
+        attached_machines = advantage.get_contract_machines(contract).get(
+            "machines", []
+        )
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"contract_id": contract["contractInfo"]["id"]}
+        )
+        return (
+            flask.jsonify({"error": "could not retrieve attached machines"}),
+            500,
+        )
     attached = len(attached_machines)
     return MachineUsage(attached=attached, allowed=allowed)
 
