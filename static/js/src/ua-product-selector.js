@@ -55,7 +55,12 @@ function productSelector() {
     state.set("billing", ["monthly"]);
   }
 
-  function renderSummary(summaryContainer, productId, imageURL, hideBillingPeriod = true) {
+  function renderSummary(
+    summaryContainer,
+    productId,
+    imageURL,
+    hideBillingPeriod = true
+  ) {
     let product;
     let rawTotal;
     let cost = "";
@@ -328,7 +333,7 @@ function productSelector() {
 
     if (completedForm) {
       // check whether user has private offers
-      for (let i = 0; i< productsArray.length; i++) {
+      for (let i = 0; i < productsArray.length; i++) {
         const product = productsArray[i];
         const listingProduct = product[1];
         listingProduct.id = product[0];
@@ -344,13 +349,13 @@ function productSelector() {
       }
 
       if (!listingId) {
-        for (let i = 0; i< productsArray.length; i++) {
+        for (let i = 0; i < productsArray.length; i++) {
           const product = productsArray[i];
           const listingProduct = product[1];
           listingProduct.id = product[0];
           if (listingProduct.productID === productId) {
             listingId = listingProduct.id;
-            state.set('billing', [listingProduct.period]);
+            state.set("billing", [listingProduct.period]);
             hideBillingPeriod = true;
             break;
           }
@@ -364,7 +369,9 @@ function productSelector() {
 
         renderSummary(addStep, listingId, imageURL, hideBillingPeriod);
       } else {
-        console.error('Selected UA product does not match a product in the product list');
+        console.error(
+          "Selected UA product does not match a product in the product list"
+        );
       }
     }
   }
