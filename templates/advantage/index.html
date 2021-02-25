@@ -329,33 +329,15 @@
                       </td>
                       <td id="expanded-details-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if open_subscription == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
                         <div class="row">
-                          <div class="row col-start-large-2 col-10" id="view-mode--{{contract["contractInfo"]["id"]}}">
-                            <p class="col-2 p-muted-text">Created on</p>
-                            <p class="col-3 u-no-margin--top">{{ contract['contractInfo']['createdAtFormatted'] }}</p>
-                            <hr />
-                            <p class="col-2 p-muted-text">Ends</p>
-                            <p class="col-3 u-no-margin--top">{{ contract['contractInfo']['effectiveToFormatted'] }}</p>
+                          {% if not contract["period"] == "monthly" %}
 
-                            <div class="change-subscription">
-                              <p>Auto-renewal {% if subscriptions['is_auto_renewal_enabled'] %}enabled{% else %}disabled{% endif %}</p>
-                              <button class="p-button--neutral js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}">Change subscription</button>
-                            </div>
-                          </div>
+                            {% include "advantage/table/_manage-monthly.html" %}
 
-                          <div class="row col-start-large-2 col-10 u-hide" id="edit-mode--{{contract["contractInfo"]["id"]}}">
-                            <h5>{{contract['contractInfo']['name']}}</h5>
-                            <hr />
-                            <div class="p-notification--caution">
-                              <p class="p-notification__response" role="status">
-                                <span class="p-notification__status">End in {{contract["contractInfo"]["daysTillExpiry"] }} days.</span>Auto-renewal disabled.
-                              </p>
-                            </div>
-                            <p class="p-muted-text">Machines</p>
-                            <div class="panel-input-wrapper"><input id="resize-input--{{contract["contractInfo"]["id"]}}" type="number" value="{{ contract['machineCount']['allowed'] }}"/><p id="resize-summary--{{contract["contractInfo"]["id"]}}" class="u-hidee" >Your changes will remove UA for 5 machines</p></div>
-                            <p id="new-payment--{{contract["contractInfo"]["id"]}}" >Your monthly payment will be <strong>reduced by $42, to $42 per month</strong>. <br/>Unused credit will be applied to next month’s invoice.</p>
-                            <div class="col-6"><button id="cancel-subscription--{{contract["contractInfo"]["id"]}}" class="p-button--negative">Cancel subscription</button></div>
-                            <div class="col-6 u-align--right"><button id="cancel-changes--{{contract["contractInfo"]["id"]}}" class="p-button--neutral">Cancel changes</button> <button id="save-changes--{{contract["contractInfo"]["id"]}}" class="p-button--positive">Save changes</button></div>
-                          </div>
+                          {% else %}
+                          
+                            {% include "advantage/table/_manage-yearly.html" %}
+
+                          {% endif %}
                         </div>
                       </td>
 

@@ -122,6 +122,62 @@ export async function postPurchaseData(
   return data;
 }
 
+export async function cancelContract(accountId, previousPurchaseId, productId) {
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
+
+  let response = await fetch(`/advantage/subscribe${queryString}`, {
+    method: "DELETE",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      account_id: accountId,
+      product_listings: [{ product_listing: productId }],
+      previous_purchase_id: previousPurchaseId,
+      period: "monthly",
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}
+
+export async function resizeContract(
+  accountId,
+  previousPurchaseId,
+  productId,
+  quantity
+) {
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
+
+  let response = await fetch(`/advantage/subscribe${queryString}`, {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      account_id: accountId,
+      previous_purchase_id: previousPurchaseId,
+      period: "monthly",
+      products: [
+        {
+          product_listing_id: productId,
+          quantity: quantity,
+        },
+      ],
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}
+
 export async function postPurchasePreviewData(
   accountID,
   products,
