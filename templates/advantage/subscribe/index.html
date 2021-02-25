@@ -188,23 +188,23 @@
           <h3>Your chosen plan</h3>
         </div>
       </div>
-      <div class="row">
-        <div class="col-1 u-align--center js-summary-quantity"></div>
-        <div class="col-4 js-summary-product">
+      <div class="row u-sv3">
+        <div class="col-1 js-summary-quantity u-align-form-elements p-shop-cart__quantity"></div>
+        <div class="col-4 js-summary-product u-align-form-elements p-shop-cart__product">
           <span>${imageHTML}</span>&nbsp;&nbsp;
           <span>${productString}</span>
         </div>
-        <div class="col-4">
+        <div class="col-4 p-shop-cart__billing">
           <div class="js-summary-billing">
             <select name="billing-period" id="billing-period" class="u-no-margin--bottom" style="width: auto;">
               <option value="monthly">Monthly billing</option>
               <option value="yearly">Annual billing</option>
             </select>
-            <p class="js-summary-save-with-annual"><strong>Switch to annual billing and save over 15%</strong></p>
+            <p class="js-summary-save-with-annual p-text--small"><strong>Switch to annual billing and save over 15%</strong></p>
           </div>
         </div>
-        <div class="col-3">
-          <strong class="js-summary-cost">${cost} /year</strong>
+        <div class="col-3 p-shop-cart__buy">
+          <strong class="js-summary-cost u-align-form-elements">${cost} /year</strong>
           <button class="p-button--positive u-no-margin--bottom u-float-right js-ua-shop-cta">Buy now</button>
         </div>
       </div>

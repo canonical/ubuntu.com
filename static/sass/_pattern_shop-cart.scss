@@ -1,0 +1,24 @@
+@mixin ubuntu-p-ua-shop-cart {
+  .p-shop-cart {
+    .p-shop-cart__quantity {
+      margin-bottom: 0.5rem;
+
+      @media (min-width: $breakpoint-medium) {
+        text-align: right !important;
+      }
+    }
+
+    .p-shop-cart__product,
+    .p-shop-cart__billing,
+    .p-shop-cart__buy {
+      margin-bottom: 0.5rem;
+    }
+
+    .u-align-form-elements {
+      @media (min-width: $breakpoint-medium) {
+        position: relative;
+        top: 0.5rem;
+      }
+    }
+  }
+}
