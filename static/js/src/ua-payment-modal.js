@@ -442,8 +442,9 @@ function applyRenewalTotals() {
 function fetchCustomerInfo(accountId) {
   getCustomerInfo(accountId)
     .then((res) => {
-      const { name, address } = res.customerInfo;
-      customerInfo = { ...customerInfo, name, address };
+      const name = res.data.accountInfo.name;
+      const address = res.data.customerInfo.address;
+      customerInfo = { ...res.customerInfo, name, address };
       setFormElements();
       isCustomerInfoSet = true;
     })
