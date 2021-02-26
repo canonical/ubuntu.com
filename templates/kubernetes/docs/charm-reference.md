@@ -1,7 +1,7 @@
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
-  nav: "kubernetes/docs/shared/_side-navigation(/kubernetes/docs/)"
+  nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Charm reference"
   description: Detailed configuration and usage for the Charmed Kubernetes charms
