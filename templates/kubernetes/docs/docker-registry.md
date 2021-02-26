@@ -6,33 +6,30 @@ context:
   title: "Private Docker Registry"
   description: How to use a private Docker registry to serve Docker images to your Kubernetes cluster components.
 keywords: juju, docker, registry
-tags: [operating]
+tags: [operating, registry]
 sidebar: k8smain-sidebar
 permalink: docker-registry.html
 layout: [base, ubuntu-com]
 toc: False
 ---
 
-The [docker-registry][registry-charm] charm facilitates the storage and
-distribution of container images. Include this in a **Kubernetes**
-deployment to provide images to cluster components without requiring
-access to public registries.
-See [https://docs.docker.com/registry/][upstream-registry] for
-details.
+The [docker-registry][registry-charm] charm deploys a local image registry 
+for your cluster, taking care of the storage and distribution of 
+container images. There are a few reasons why this may be a useful option
+for your cluster:
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-    Currently, when using a custom private registry, Charmed Kubernetes
-    requires <strong>ALL</strong> the required images to be served from
-    that registry. The list of images used by Charmed Kubernetes itself
-    can be found in the
-    <a href="https://github.com/charmed-kubernetes/bundle/blob/master/container-images.txt">bundle repository </a>.
-  </p>
-</div>
+-  Providing the images required by Charmed Kubernetes without requiring
+   access to a public registry (e.g. in environments where network access
+   is controlled, expensive or otherwise problematic).
+-  Providing images required by workloads running on the cluster.
 
+When deployed and related to the cluster as described below, this 
+registry will be checked first for any image requests, so it can be used
+in addition to public registries. For more details of the mechanics of 
+the Docker Registry, see the
+[upstream documentation at https://docs.docker.com/registry][upstream-registry].
 
-## Deploy
+## Deploying
 
 The registry is deployed as a stand-alone application. Many deployment
 scenarios are described in the [charm readme][registry-charm]. The most common
@@ -145,7 +142,10 @@ A list of images that may be used by **Charmed Kubernetes** can be found in
 the [container-images.txt][container-images-txt] document. This is a
 comprehensive list sorted by release; not all images are required for all
 deployments. Take note of the images required by your deployment that will
-need to be hosted in your private registry.
+need to be hosted in your private registry. A list of images required by
+a specific release is also included on the 'components' page in the 
+documentation, for example, the list for the 1.20 release is located on the
+[1.20 components page][1.20]
 
 ## Hosting images
 
@@ -186,6 +186,7 @@ juju config kubernetes-master image-registry=$REGISTRY
 [quickstart]: /kubernetes/docs/quickstart
 [container-runtime]: /kubernetes/docs/container-runtime
 [container-images-txt]: https://github.com/charmed-kubernetes/bundle/blob/master/container-images.txt
+[1.20]: /kubernetes/docs/1.20/components#images
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

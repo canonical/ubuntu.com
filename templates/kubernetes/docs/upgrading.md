@@ -60,6 +60,14 @@ You should also make sure:
 -   Your cluster is running normally
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.19 which may impact your workloads.
+
+It is also important to understand that **Charmed Kubernetes** will only upgrade
+and if necessary migrate, components relating specifically to elements of
+Kubernetes installed and configured as part of Charmed Kubernetes.
+This may not include any customised configuration of Kubernetes, or user
+generated objects (e.g. storage classes) or deployments which rely on
+deprecated APIs.
 
 ## Infrastructure updates
 
@@ -280,7 +288,7 @@ juju upgrade-charm kubernetes-master
 Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.19 version of **Kubernetes**, you would enter:
 
 ```bash
-juju config kubernetes-master channel=1.18/stable
+juju config kubernetes-master channel=1.19/stable
 ```
 
 If you wanted to try a release candidate for 1.20, the channel would be `1.20/candidate`.
