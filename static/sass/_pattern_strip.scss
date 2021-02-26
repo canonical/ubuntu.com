@@ -5,6 +5,7 @@
   @include ubuntu-p-strip-suru-blog-header;
   @include ubuntu-p-strip-suru-blog-hero;
   @include ubuntu-p-strip-suru-bottomed;
+  @include ubuntu-p-strip-suru-cube;
   @include ubuntu-p-strip-suru-half-and-half;
   @include ubuntu-p-strip-suru-half-and-half-reversed;
   @include ubuntu-p-strip-suru-half-top;
@@ -806,6 +807,10 @@
       clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% calc(100% - 4rem));
       padding-bottom: 6rem;
     }
+    &--bottom-right {
+      clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 4rem), 0% 100%);
+      padding-bottom: 6rem;
+    }
     &--top-right {
       clip-path: polygon(0% 0%, 100% 4rem, 100% 100%, 0% 100%);
       margin-top: -4rem;
@@ -958,7 +963,31 @@
       linear-gradient(-89deg, #e95420 0%, #772953 38%, #2c001e 85%);
     background-position: top right, top left, left top;
     background-repeat: no-repeat;
-    background-size: 86% 105%, 67% 152%, 100% 99.8%;
+    background-size: 86% 105%, 67% 152%, 100% 99.9%;
     color: $color-x-light;
+  }
+}
+
+@mixin ubuntu-p-strip-suru-cube {
+  [class*="p-strip"].has-cube,
+  [class*="p-takeover"].has-cube {
+    &::after {
+      background: url("https://assets.ubuntu.com/v1/b3ae0076-CUBE-pattern-bigger2.svg");
+      content: "";
+      height: 100%;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+    }
+
+    * {
+      z-index: 2;
+    }
+
+    > div .cube-access {
+      position: relative;
+    }
   }
 }

@@ -1,0 +1,135 @@
+.p-table--cube {
+  th,
+  td {
+    &:nth-child(1) {
+      overflow: visible;
+      width: 4%;
+    }
+
+    &:nth-child(2) {
+      width: 5%;
+
+      img {
+        height: 3rem;
+        margin-top: 0.25rem;
+      }
+    }
+
+    &:nth-child(3) {
+      width: 27%;
+    }
+
+    &:nth-child(4) {
+      width: 32%;
+    }
+
+    &:nth-child(5) {
+      width: 13%;
+
+      @media only screen and (max-width: $breakpoint-medium) {
+        i,
+        small {
+          display: none !important;
+        }
+      }
+    }
+
+    &:nth-child(6) {
+      width: 19%;
+    }
+  }
+
+  &.is-passed {
+    th,
+    td {
+      &:nth-child(1) {
+        width: 4%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 6%;
+        }
+      }
+
+      &:nth-child(2) {
+        width: 5%;
+        img {
+          height: 3rem;
+          margin-top: 0.25rem;
+        }
+      }
+
+      &:nth-child(3) {
+        width: 70%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 40%;
+        }
+      }
+
+      &:nth-child(4) {
+        width: 17%;
+      }
+    }
+  }
+}
+
+.p-table--cube__contents {
+  @media only screen and (max-width: $breakpoint-medium) {
+    > p,
+    h5 {
+      padding-top: 0;
+    }
+
+    > a {
+      margin-left: 0 !important;
+      width: 100%;
+    }
+  }
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    padding-top: 1rem;
+
+    > p,
+    h5 {
+      margin: 0;
+      padding: 0;
+    }
+
+    > a {
+      margin-top: -0.5rem;
+    }
+
+    li:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    li:last-of-type {
+      padding-bottom: 1rem;
+    }
+  }
+}
+
+.p-table--cube__badge-column {
+  @media only screen and (min-width: $breakpoint-medium) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @media only screen and (max-width: $breakpoint-medium) {
+    align-items: center !important;
+    display: grid;
+    justify-content: flex-start;
+    padding-top: 0 !important;
+
+    > .p-table--cube__badge {
+      align-self: center !important;
+    }
+  }
+}
+
+.p-table__cell--share-actions {
+  overflow: visible;
+
+  .p-share-button {
+    margin-top: 0.5rem;
+    position: relative;
+  }
+}
