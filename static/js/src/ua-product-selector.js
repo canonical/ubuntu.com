@@ -115,12 +115,14 @@ function productSelector() {
       saveMessage.classList.remove("u-hide");
     }
 
+    const previous_purchase_id = window.previousPurchaseIds[billing];
+
     const buyButton = summaryContainer.querySelector(".js-ua-shop-cta");
     var productObject = JSON.stringify(product);
     buyButton.dataset.cart = `[{"listingID": "${productId}", "product": ${productObject}, "quantity": ${quantity}}]`;
     buyButton.dataset.accountId = window.accountId;
     buyButton.dataset.subtotal = product.price.value * quantity;
-    buyButton.dataset.previousPurchaseId = "";
+    buyButton.dataset.previousPurchaseId = previous_purchase_id;
 
     summaryContainer.classList.remove("u-hide");
   }

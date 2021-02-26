@@ -169,6 +169,7 @@ function attachCTAevents() {
           price: item.product.price.value,
           product_listing_id: item.listingID,
           quantity: parseInt(item.quantity),
+          period: item.product.period,
         });
       });
 
