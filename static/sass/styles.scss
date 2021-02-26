@@ -359,7 +359,7 @@ summary {
   border-top-color: $color-mid-x-light;
 
   margin-bottom: 0;
-  padding: 1.5rem !important;
+  padding: 3rem 0 !important;
 
   .change-subscription {
     display: flex;
@@ -368,6 +368,14 @@ summary {
     > button {
       margin-left: 1.2rem;
     }
+
+    > * {
+      margin-bottom: 0;
+    }
+  }
+
+  .buttons-wrapper button {
+    margin-bottom: 0;
   }
 
   .panel-input-wrapper {
