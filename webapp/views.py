@@ -422,7 +422,7 @@ def advantage_view():
     new_subscription_start_date = None
     new_subscription_id = None
     open_subscription = flask.request.args.get("subscription", None)
-    default_payment_method = None
+    payment_method_warning = None
     is_test_backend = flask.request.args.get("test_backend", False)
 
     stripe_publishable_key = os.getenv(
@@ -473,15 +473,7 @@ def advantage_view():
 
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
-            customer_info_response = get_customer_info(account["id"])
-            if customer_info_response["success"]:
-                customer_info = customer_info_response["data"].get(
-                    "customerInfo"
-                )
-                default_payment_method = customer_info.get(
-                    "defaultPaymentMethod"
-                )
-
+                
             monthly_subscriptions = (
                 advantage.get_account_subscriptions_for_marketplace(
                     account_id=account["id"],
@@ -494,6 +486,10 @@ def advantage_view():
             )
 
             for subscription in monthly_subscriptions.get("subscriptions", []):
+                # If there are any pending purchase,
+                # we show the payment method warning.
+                payment_method_warning = subscription.get("pendingPurchases")
+
                 subscriptions["total_subscriptions"] += len(
                     subscription["purchasedProductListings"]
                 )
@@ -635,7 +631,7 @@ def advantage_view():
     return flask.render_template(
         "advantage/index.html",
         accounts=accounts,
-        default_payment_method=default_payment_method,
+        payment_method_warning=payment_method_warning,
         subscriptions=subscriptions,
         enterprise_contracts=enterprise_contracts,
         personal_account=personal_account,

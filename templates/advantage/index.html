@@ -46,7 +46,7 @@
         </div>
       </div>
       {% if subscriptions['has_monthly'] %}
-        {% if not default_payment_method["id"] %}
+        {% if payment_method_warning %}
           <div class="row">
             <div class="p-notification--caution">
               <p class="p-notification__response" role="status">
