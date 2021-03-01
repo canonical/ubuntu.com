@@ -124,6 +124,7 @@ function attachCTAevents() {
   document.addEventListener("click", (e) => {
     const isRenewalCTA = e.target.classList.contains("js-ua-renewal-cta");
     const isShopCTA = e.target.classList.contains("js-ua-shop-cta");
+
     const data = e.target.dataset;
 
     if (isRenewalCTA || isShopCTA) {
@@ -168,6 +169,7 @@ function attachCTAevents() {
           price: item.product.price.value,
           product_listing_id: item.listingID,
           quantity: parseInt(item.quantity),
+          period: item.product.period,
         });
       });
 
@@ -440,8 +442,9 @@ function applyRenewalTotals() {
 function fetchCustomerInfo(accountId) {
   getCustomerInfo(accountId)
     .then((res) => {
-      const { name, address } = res.customerInfo;
-      customerInfo = { ...customerInfo, name, address };
+      const name = res.data.accountInfo.name;
+      const address = res.data.customerInfo.address;
+      customerInfo = { ...res.customerInfo, name, address };
       setFormElements();
       isCustomerInfoSet = true;
     })

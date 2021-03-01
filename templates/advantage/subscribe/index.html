@@ -7,9 +7,6 @@
 {% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block content %}
-  <section class="p-strip--suru-topped-light js-shop-step--cart p-shop-cart u-hide" style="margin-bottom: 2rem;">
-  </section>
-
   <section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
     <div class="row">
       <div class="col-12 u-sv3">
@@ -185,14 +182,30 @@
       </div>
     </section>
 
-    <section class="p-strip--light is-shallow js-shop-step--add p-shop-cart">
+    <section class="p-strip--light is-shallow js-shop-step--add p-shop-cart u-hide">
       <div class="row">
         <div class="col-12">
           <h3>Your chosen plan</h3>
         </div>
-
-        <div class="col-12">
-          &mldr;
+      </div>
+      <div class="row u-sv3">
+        <div class="col-1 js-summary-quantity u-align-form-elements p-shop-cart__quantity"></div>
+        <div class="col-4 js-summary-product u-align-form-elements p-shop-cart__product">
+          <span>${imageHTML}</span>&nbsp;&nbsp;
+          <span>${productString}</span>
+        </div>
+        <div class="col-4 p-shop-cart__billing">
+          <div class="js-summary-billing">
+            <select name="billing-period" id="billing-period" class="u-no-margin--bottom" style="width: auto;">
+              <option value="monthly">Monthly billing</option>
+              <option value="yearly">Annual billing</option>
+            </select>
+            <p class="js-summary-save-with-annual p-text--small p-shop-cart__billing-help"><strong>Switch to annual billing and save over 15%</strong></p>
+          </div>
+        </div>
+        <div class="col-3 p-shop-cart__buy">
+          <strong class="js-summary-cost u-align-form-elements">${cost} /year</strong>
+          <button class="p-button--positive u-no-margin--bottom u-float-right js-ua-shop-cta p-shop-cart__buy-button">Buy now</button>
         </div>
       </div>
     </section>
@@ -209,7 +222,8 @@
       "{{ listing.id }}": {
         name: "{{ listing.product.name }}",
         price: {{ listing.price|tojson }},
-        productID: "{{ listing.product.id}}",
+        period: "{{ listing.period }}",
+        productID: "{{ listing.product.id }}",
         private: "{{ listing.privateForAccount }}"
       },
       {% endfor %}

@@ -1,9 +1,5 @@
 import { StateManager } from "./utils/state.js";
 import { debounce } from "./utils/debounce.js";
-import {
-  addToCartEvent,
-  removeFromCartEvent,
-} from "./advantage/ecom-events.js";
 
 function productSelector() {
   const form = document.querySelector(".js-shop-form");
@@ -11,12 +7,17 @@ function productSelector() {
   const products = window.productList;
 
   const addStep = form.querySelector(`${stepClassPrefix}add`);
-  const cartStep = document.querySelector(`${stepClassPrefix}cart`);
-  const formHeader = form.querySelector(".js-shop--form-heading");
-  const shopHeroElement = document.querySelector(".js-shop-hero");
   const publicCloudElements = form.querySelectorAll(".js-public-cloud-info");
   const quantityTypeEl = form.querySelector(".js-type-name");
-  const steps = ["type", "quantity", "version", "support", "add", "cart"];
+  const steps = [
+    "type",
+    "quantity",
+    "version",
+    "support",
+    "add",
+    "cart",
+    "billing",
+  ];
 
   let state = new StateManager(steps, render);
 
@@ -39,12 +40,6 @@ function productSelector() {
       });
     });
 
-    document.addEventListener("input", (e) => {
-      if (e.target && e.target.classList.contains("js-product-input")) {
-        handleStepSpecificAction(e.target);
-      }
-    });
-
     versionTabs.forEach((tab) => {
       tab.addEventListener("click", (e) => {
         e.preventDefault();
@@ -52,90 +47,28 @@ function productSelector() {
       });
     });
 
-    document.addEventListener("click", (e) => {
-      if (e.target && e.target.classList.contains("js-cart-action")) {
-        e.preventDefault();
-        handleCartAction(e.target.dataset);
-      }
-    });
-  }
-
-  function buildCartHTML(lineItems) {
-    const subtotalRaw = calculateSubtotal(lineItems);
-    const subtotalUnits = subtotalRaw * 100;
-    const subtotal = parseCurrencyAmount(subtotalRaw, "USD");
-    let lineItemsHTML = "";
-    let cartData = [];
-
-    lineItems.forEach((lineItem) => {
-      const id = lineItem.get("productId")[0];
-      const quantity = lineItem.get("quantity")[0];
-      lineItemsHTML += `<li class="p-list__item">${buildLineItemHTML(
-        id,
-        quantity,
-        lineItem.get("imageURL")[0],
-        "remove"
-      )}</li>`;
-
-      if (quantity > 0) {
-        cartData.push({
-          listingID: id,
-          product: products[id],
-          quantity: quantity,
-        });
-      }
+    const billingElement = addStep.querySelector(".js-summary-billing");
+    billingElement.addEventListener("change", function (e) {
+      state.set("billing", [e.target.value]);
     });
 
-    const previous_purchase_id = window.previousPurchaseIds["yearly"];
-
-    return `<div class="row">
-      <div class="col-12">
-        <h2>Your subscription so far</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <ul class="p-list--divided">
-          ${lineItemsHTML}
-        </ul>
-      </div>
-
-      <div class="col-10">
-        <div class="row u-vertically-center">
-          <div class="col-2 col-small-2 col-start-large-7">
-            <h3 class="p-heading--four">Yearly cost:</h3>
-          </div>
-
-          <div class="col-2 col-small-2 u-align--right">
-            <h3 class="p-heading--four">${subtotal} /year</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-2 u-align--right">
-        <button 
-          class="p-button--positive js-ua-shop-cta ${
-            subtotal === 0 ? "u-disable" : ""
-          }" 
-          data-cart='${JSON.stringify(cartData)}' 
-          data-account-id="${window.accountId}" 
-          data-subtotal='${subtotalUnits}' 
-          data-previous-purchase-id="${previous_purchase_id}"
-        >
-          Buy now
-        </button>
-      </div>
-    </div>
-    `;
+    state.set("billing", ["monthly"]);
   }
 
-  function buildLineItemHTML(productId, quantity = "0", imageURL, action) {
+  function renderSummary(
+    summaryContainer,
+    productId,
+    imageURL,
+    hideBillingPeriod = true
+  ) {
     let product;
     let rawTotal;
     let cost = "";
     let productString = "&mldr;";
-    let quantityHTML = `× ${quantity.replace(/^0+/, "")}`;
     let imageHTML = "";
+    const quantity = state.get("quantity")[0];
+    const billing = state.get("billing")[0];
+    const support = state.get("support")[0];
 
     if (productId) {
       product = products[productId];
@@ -145,70 +78,53 @@ function productSelector() {
     }
 
     if (imageURL) {
-      imageHTML = `<img src="${imageURL}" style="height: 32px;" />`;
+      imageHTML = `<img src="${imageURL}" style="height: 32px; float: left;" />`;
     }
 
-    if (action === "remove") {
-      quantityHTML = `<input autocomplete="off" class="js-product-input js-quantity-input u-no-margin--bottom" type="number" name="quantity" value="${quantity.replace(
-        /^0+/,
-        ""
-      )}" step="1" min="1" pattern="\\d+" style="min-width: 0;" data-stage="cart" data-product-id="${productId}" />`;
+    const quantityElement = summaryContainer.querySelector(
+      ".js-summary-quantity"
+    );
+    quantityElement.innerHTML = `× ${quantity.replace(/^0+/, "")}`;
+
+    const productElement = summaryContainer.querySelector(
+      ".js-summary-product"
+    );
+    productElement.innerHTML = `<span>${imageHTML}</span>&nbsp;&nbsp;<span>${productString}</span>`;
+
+    const costElement = summaryContainer.querySelector(".js-summary-cost");
+    costElement.innerHTML = `${cost} /${
+      billing === "yearly" ? "year" : "month"
+    }`;
+
+    const billingElement = summaryContainer.querySelector(
+      ".js-summary-billing"
+    );
+    if (support !== "essential" || hideBillingPeriod) {
+      billingElement.classList.add("u-hide");
+    } else {
+      billingElement.classList.remove("u-hide");
+      billingElement.querySelector("#billing-period").value = billing;
     }
 
-    return `
-      <div class="row u-vertically-center">
-        <div class="col-6">
-          <div class="row u-vertically-center p-shop-cart__block">
-            <div class="col-4 col-small-3">
-              <strong>${productString}</strong>
-            </div>
+    const saveMessage = summaryContainer.querySelector(
+      ".js-summary-save-with-annual"
+    );
+    if (billing === "yearly") {
+      saveMessage.classList.add("u-hide");
+    } else {
+      saveMessage.classList.remove("u-hide");
+    }
 
-            <div class="col-2 col-small-1 u-vertically-center p-shop-cart__icon">
-              ${imageHTML}
-            </div>
-          </div>
-        </div>
+    const previous_purchase_id = window.previousPurchaseIds[billing];
 
-        <div class="col-4 ${
-          action === "add" ? "p-shop-cart__block" : "col-small-2"
-        }">
-          <div class="row u-vertically-center">
-            <div class="col-2 col-small-2">
-              ${quantity !== null ? quantityHTML : ""}
-            </div>
+    const buyButton = summaryContainer.querySelector(".js-ua-shop-cta");
+    var productObject = JSON.stringify(product);
+    buyButton.dataset.cart = `[{"listingID": "${productId}", "product": ${productObject}, "quantity": ${quantity}}]`;
+    buyButton.dataset.accountId = window.accountId;
+    buyButton.dataset.subtotal = product.price.value * quantity;
+    buyButton.dataset.previousPurchaseId = previous_purchase_id;
 
-            <div class="col-2 u-align--right ${
-              action === "add" ? "col-small-2" : "u-hide--small"
-            }">
-              <span>
-                <strong>${cost} /year</strong>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-2 u-align--right ${
-          action === "add" ? "p-shop-cart__block" : "col-small-2"
-        }">
-          <button class="p-button${
-            action === "add" ? "--positive" : ""
-          } u-no-margin--bottom js-cart-action" data-image-url="${imageURL}" data-action="${action}" data-product-id="${productId}" data-quantity=${quantity} tabindex="${
-      productId ? "" : "-1"
-    }">${action}</button>
-        </div>
-      </div>
-    `;
-  }
-
-  function calculateSubtotal(lineItems) {
-    let subtotal = 0;
-
-    lineItems.forEach((lineItem) => {
-      const productCost = products[lineItem.get("productId")[0]].price.value;
-      subtotal += parseInt(productCost / 100) * lineItem.get("quantity")[0];
-    });
-
-    return subtotal;
+    summaryContainer.classList.remove("u-hide");
   }
 
   function disableSteps(steps) {
@@ -245,41 +161,6 @@ function productSelector() {
     });
   }
 
-  function handleCartAction(data) {
-    const action = data.action;
-    const productId = data.productId;
-    const imageURL = data.imageUrl;
-    const quantity = data.quantity;
-    const product = products[productId];
-    const name = product.name;
-    const unitPrice = product.price.value / 100;
-
-    if (action === "add") {
-      updateCartState(productId, quantity, imageURL);
-      addToCartEvent({
-        id: productId,
-        name: name,
-        price: unitPrice,
-        quantity: quantity,
-      });
-      cartStep.scrollIntoView();
-      resetForm();
-    } else if (action === "remove") {
-      state.remove("cart", {
-        productId: productId,
-        quantity: quantity,
-        imageURL: imageURL,
-      });
-
-      removeFromCartEvent({
-        id: productId,
-        name: name,
-        price: unitPrice,
-        quantity: quantity,
-      });
-    }
-  }
-
   function handleQuantityInputs(input) {
     const data = input.dataset;
     const formStage = data.stage === "form";
@@ -300,28 +181,6 @@ function productSelector() {
       } else if (formStage || selectionStage) {
         state.reset("quantity");
         formQuantity.value = 0;
-      } else if (data.stage === "cart") {
-        // cart quantity
-        const products = state.get("cart");
-
-        products.forEach((product) => {
-          if (product.get("productId")[0] === data.productId) {
-            const productId = product.get("productId")[0];
-            const originalQuantity = product.get("quantity")[0];
-            let updatedQuantity = input.value;
-
-            if (input.value < 0) {
-              updatedQuantity = "0";
-            }
-
-            updateEcomAnalyticsQuantity(
-              productId,
-              originalQuantity,
-              updatedQuantity
-            );
-            product.set("quantity", [updatedQuantity]);
-          }
-        });
       }
     } else {
       input.reportValidity();
@@ -375,32 +234,15 @@ function productSelector() {
       style: "currency",
       currency: currency,
       currencyDisplay: "symbol",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     }).format(parseFloat(total));
   }
 
   function render() {
     setActiveSteps();
-    setFormHeader();
     setVersionTabs();
-    updateCart();
     updateSelectedProduct();
-  }
-
-  function resetForm() {
-    const selectedInputs = form.querySelectorAll(".is-selected");
-
-    selectedInputs.forEach((input) => {
-      input.classList.remove("is-selected");
-    });
-
-    state.reset("type");
-    state.reset("quantity");
-    state.reset("version");
-    state.reset("support");
-    state.reset("add");
-    form.reset();
   }
 
   function setActiveSteps() {
@@ -424,14 +266,6 @@ function productSelector() {
 
     if (stepsToDisable) {
       disableSteps(stepsToDisable);
-    }
-  }
-
-  function setFormHeader() {
-    if (state.get("cart")[0]) {
-      formHeader.innerHTML = "Any more to add?";
-    } else {
-      formHeader.innerHTML = "What are you setting up?";
     }
   }
 
@@ -486,124 +320,71 @@ function productSelector() {
     });
   }
 
-  function updateCart() {
-    const lineItems = state.get("cart");
-
-    if (lineItems.length) {
-      const cartHTML = buildCartHTML(lineItems);
-
-      cartStep.innerHTML = cartHTML;
-      cartStep.classList.remove("u-hide");
-      shopHeroElement.classList.add("u-hide");
-    } else {
-      cartStep.classList.add("u-hide");
-      shopHeroElement.classList.remove("u-hide");
-    }
-  }
-
-  function updateCartState(productId, quantity, imageURL) {
-    const cartLineItems = state.get("cart");
-    let newLineItem = true;
-
-    cartLineItems.forEach((lineItem) => {
-      // avoid multiple rows for the same product
-      if (lineItem.get("productId")[0] === productId) {
-        quantity = parseInt(quantity);
-        quantity += parseInt(lineItem.get("quantity")[0]);
-        lineItem.set("quantity", [`${quantity}`]);
-        newLineItem = false;
-      } else if (lineItem.get("quantity")[0] === "0") {
-        // user has set a cart item to zero, remove it if they
-        // add another
-        state.remove("cart", lineItem);
-      }
-    });
-
-    if (newLineItem) {
-      let product = new StateManager(
-        ["productId", "quantity", "imageURL"],
-        render
-      );
-      product.set("productId", [productId]);
-      product.set("quantity", [`${quantity}`]);
-      product.set("imageURL", [imageURL]);
-      state.push("cart", product);
-    }
-  }
-
-  function updateEcomAnalyticsQuantity(
-    productId,
-    originalQuantity,
-    updatedQuantity
-  ) {
-    const product = products[productId];
-    const name = product.name;
-    const unitPrice = product.price.value / 100;
-    let quantityDelta;
-
-    if (updatedQuantity > originalQuantity) {
-      quantityDelta = updatedQuantity - originalQuantity;
-
-      addToCartEvent({
-        id: productId,
-        name: name,
-        price: unitPrice,
-        quantity: quantityDelta,
-      });
-    } else if (updatedQuantity < originalQuantity) {
-      quantityDelta = originalQuantity - updatedQuantity;
-
-      removeFromCartEvent({
-        id: productId,
-        name: name,
-        price: unitPrice,
-        quantity: quantityDelta,
-      });
-    }
-  }
-
   function updateSelectedProduct() {
     const quantity = state.get("quantity")[0];
     const support = state.get("support")[0];
     const type = state.get("type")[0];
+    const billing = state.get("billing")[0];
     const validVersion = state.get("version")[0] !== "#other";
     const productsArray = Object.entries(products);
     const productId = `uai-${support}-${type}`;
     const completedForm = type && quantity && support && validVersion;
-    const headerHTML =
-      "<div class='row'><div class='col-12'><h3>Your chosen plan</h3></div></div>";
-
-    let lineItemHTML;
     let listingId;
     let privateForAccount = false;
+    let hideBillingPeriod = false;
 
-    // check whether user has private offers
-    productsArray.forEach((product) => {
-      const listingProduct = product[1];
-      const isSelectedProduct = listingProduct["productID"] === productId;
-      if (listingProduct.private && isSelectedProduct) {
-        privateForAccount = true;
-        listingId = product[0];
-      } else if (!privateForAccount && isSelectedProduct) {
-        listingId = product[0];
+    if (completedForm) {
+      // check whether user has private offers
+      for (let i = 0; i < productsArray.length; i++) {
+        const product = productsArray[i];
+        const listingProduct = product[1];
+        listingProduct.id = product[0];
+        if (matchingProduct(listingProduct, productId, billing)) {
+          if (listingProduct.private) {
+            privateForAccount = true;
+            listingId = listingProduct.id;
+          } else if (!privateForAccount) {
+            listingId = listingProduct.id;
+          }
+        }
       }
-    });
 
-    if (completedForm && listingId) {
-      const imageURL = form
-        .querySelector(`.js-image-${type}`)
-        .getAttribute("src");
+      if (!listingId) {
+        for (let i = 0; i < productsArray.length; i++) {
+          const product = productsArray[i];
+          const listingProduct = product[1];
+          listingProduct.id = product[0];
+          if (listingProduct.productID === productId) {
+            listingId = listingProduct.id;
+            state.set("billing", [listingProduct.period]);
+            hideBillingPeriod = true;
+            break;
+          }
+        }
+      }
 
-      lineItemHTML = buildLineItemHTML(listingId, quantity, imageURL, "add");
+      if (listingId) {
+        const imageURL = form
+          .querySelector(`.js-image-${type}`)
+          .getAttribute("src");
 
-      addStep.classList.remove("u-disable");
-    } else {
-      lineItemHTML = buildLineItemHTML(null, quantity, null, "add");
-
-      addStep.classList.add("u-disable");
+        renderSummary(addStep, listingId, imageURL, hideBillingPeriod);
+      } else {
+        console.error(
+          "Selected UA product does not match a product in the product list"
+        );
+      }
     }
+  }
 
-    addStep.innerHTML = headerHTML + lineItemHTML;
+  function matchingProduct(testItem, selectedProductId, selectedBillingPeriod) {
+    if (
+      testItem.productID === selectedProductId &&
+      testItem.period === selectedBillingPeriod
+    ) {
+      return true;
+    }
+    return false;
   }
 }
 
