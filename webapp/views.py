@@ -473,7 +473,7 @@ def advantage_view():
 
         for account in accounts:
             account["contracts"] = advantage.get_account_contracts(account)
-                
+
             monthly_subscriptions = (
                 advantage.get_account_subscriptions_for_marketplace(
                     account_id=account["id"],
