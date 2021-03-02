@@ -21,7 +21,7 @@
   </div>
   <p class="p-muted-text" style="margin-bottom: .5rem">Machines</p>
   <div class="panel-input-wrapper">
-    <input id="resize-input--{{contract["contractInfo"]["id"]}}" type="number" value="{{ contract['machineCount']['allowed']}}" data-next-payment="{{subscriptions["next_payment"]["ammount"]}}" data-unit-price="{{contract["price_per_unit"]}}" min="1"/>
+    <input id="resize-input--{{contract["contractInfo"]["id"]}}" type="number" value="{{ contract['machineCount']['allowed']}}" data-next-payment="{{subscriptions["next_payment"]["ammount"]}}" data-unit-price="{{contract["price_per_unit"]}}" min="1" max="999"/>
     <p class="u-hide" id="resize-summary--{{contract["contractInfo"]["id"]}}" ></p>
   </div>
   <p class="u-hide "id="new-payment--{{contract["contractInfo"]["id"]}}" ></p>

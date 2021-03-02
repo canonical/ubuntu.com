@@ -139,7 +139,7 @@ function handleCancelChangesClick(id) {
 
 function handleChange(e, id) {
   const defaultValue = Number.parseInt(e.target.defaultValue);
-  const newValue = Number.parseInt(e.target.value);
+  let newValue = Number.parseInt(e.target.value);
 
   const unitPrice = Number.parseFloat(e.target.dataset.unitPrice.split(" ")[0]);
   const nextPayment = Number.parseFloat(
@@ -159,6 +159,16 @@ function handleChange(e, id) {
     resizeSummary.classList.remove("u-hide");
     newPayment.classList.remove("u-hide");
     updateButton.disabled = false;
+
+    if (newValue < 1) {
+      newValue = 1;
+      e.target.value = 1;
+    }
+
+    if (newValue > 999) {
+      newValue = 999;
+      e.target.value = 999;
+    }
 
     if (newValue > defaultValue) {
       resizeSummary.innerHTML = `Your changes will add UA for ${
