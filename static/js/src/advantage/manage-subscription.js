@@ -89,7 +89,7 @@ function createModal(id) {
               : "<strong>machines</strong>"
           } will stop receiving updates and services at the end of the billing period.</li>
           </ul>
-        <p>Want help or advice? <a>Chat with us</a>.</p>
+        <p>Want help or advice? <a href="/contact-us">Chat with us</a>.</p>
         <div id="cancel-modal-field-wrapper" class="u-align--right">
           <label for="confirm-cancel">Please type <strong>cancel</strong> to confirm.</label>
         </div>
