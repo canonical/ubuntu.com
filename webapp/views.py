@@ -90,21 +90,18 @@ def download_server_steps():
         "download": "download/server/download.html",
     }
     context = {}
-    step = "step1"
+    step = flask.request.form.get("next-step") or "step1"
 
-    if flask.request.method == "POST":
-        if step not in templates:
+    if step not in templates:
+        flask.abort(400)
+
+    if step == "download":
+        version = flask.request.form.get("version")
+
+        if not version:
             flask.abort(400)
 
-        step = flask.request.form.get("next-step")
-
-        if step == "download":
-            version = flask.request.form.get("version")
-
-            if not version:
-                flask.abort(400)
-
-            context = {"version": version, "mirror_list": _build_mirror_list()}
+        context = {"version": version, "mirror_list": _build_mirror_list()}
 
     return flask.render_template(templates[step], **context)
 
