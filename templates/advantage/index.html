@@ -329,7 +329,7 @@
                       </td>
                       <td id="expanded-details-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if open_subscription == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
                         <div class="row">
-                          {% if not contract["period"] == "monthly" %}
+                          {% if contract["period"] == "monthly" %}
 
                             {% include "advantage/table/_manage-monthly.html" %}
 

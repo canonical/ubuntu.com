@@ -134,7 +134,7 @@ function handleCancelChangesClick(id) {
   const cancelChangesButton = document.getElementById(`cancel-changes--${id}`);
   updateButton.onclick = () => {};
   cancelChangesButton.onclick = () => {};
-  cancelSubscriptionButton.onclick = () => {};
+  if (cancelSubscriptionButton) cancelSubscriptionButton.onclick = () => {};
 }
 
 function handleChange(e, id) {
@@ -146,6 +146,8 @@ function handleChange(e, id) {
     e.target.dataset.nextPayment.split(" ")[0]
   );
 
+  const billingPeriod = e.target.dataset.billingPeriod;
+
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -155,31 +157,40 @@ function handleChange(e, id) {
   const newPayment = document.getElementById(`new-payment--${id}`);
   const updateButton = document.getElementById(`save-changes--${id}`);
 
+  const { min, max } = e.target;
+
+  if (newValue < min) {
+    newValue = Number.parseInt(min);
+    e.target.value = min;
+  }
+
+  if (newValue > max) {
+    newValue = Number.parseInt(max);
+    e.target.value = max;
+  }
+
   if (newValue !== defaultValue) {
     resizeSummary.classList.remove("u-hide");
     newPayment.classList.remove("u-hide");
     updateButton.disabled = false;
 
-    if (newValue < 1) {
-      newValue = 1;
-      e.target.value = 1;
-    }
-
-    if (newValue > 999) {
-      newValue = 999;
-      e.target.value = 999;
-    }
-
     if (newValue > defaultValue) {
       resizeSummary.innerHTML = `Your changes will add UA for ${
         newValue - defaultValue
       } machines`;
-      newPayment.innerHTML = `Your monthly payment will be <strong>increased by ${formatter.format(
+      newPayment.innerHTML = `Your ${billingPeriod} payment will be <strong>increased by ${formatter.format(
         unitPrice * (newValue - defaultValue)
       )}, to ${formatter.format(
         unitPrice * (newValue - defaultValue) + nextPayment
-      )} per month</strong>.`;
+      )} ${
+        billingPeriod === "monthly"
+          ? "per month</strong>."
+          : `per year</strong>. <br/>A payment of ${formatter.format(
+              unitPrice * (newValue - defaultValue)
+            )} will be charged immediately`
+      }`;
     } else {
+      //Downsizing is only for monthly contracts
       resizeSummary.innerHTML = `Your changes will remove UA for ${
         defaultValue - newValue
       } machines`;
@@ -223,9 +234,11 @@ function handleChangeClick() {
     handleUpdateClick(id);
   };
 
-  cancelSubscriptionButton.onclick = () => {
-    createModal(id);
-  };
+  if (cancelSubscriptionButton) {
+    cancelSubscriptionButton.onclick = () => {
+      createModal(id);
+    };
+  }
 }
 
 const editButtons = document.querySelectorAll(".js-change-subscription-button");
