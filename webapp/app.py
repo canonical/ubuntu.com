@@ -589,10 +589,6 @@ core_als_autils_docs.init_app(app)
 app.add_url_rule("/cube", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 
-# Cube docs
-app.add_url_rule("/cube", view_func=cube_home)
-app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
-
 openstack_docs = Docs(
     parser=DocParser(
         api=discourse_api,

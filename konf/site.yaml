@@ -132,7 +132,7 @@ production:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
-
+   
         - name: BADGR_URL
           value: https://api.eu.badgr.io
 
@@ -179,14 +179,7 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths:
-        [
-          /security/cves\.json,
-          /security/cves/.*\.json,
-          /security/notices\.json,
-          /security/notices/.*\.json,
-          /security/api/.*,
-        ]
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
 
   nginxConfigurationSnippet: |
@@ -239,6 +232,7 @@ production:
       add_header 'Access-Control-Allow-Origin' '*';
     }
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
+
   nginxServerSnippet: |
     location ^~ /blog/wp-json/wp/v2/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
@@ -246,6 +240,7 @@ production:
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
+
 # Overrides for staging
 staging:
   replicas: 3
@@ -337,14 +332,7 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths:
-        [
-          /security/cves\.json,
-          /security/cves/.*\.json,
-          /security/notices\.json,
-          /security/notices/.*\.json,
-          /security/api/.*,
-        ]
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
 
   nginxConfigurationSnippet: |
@@ -371,6 +359,7 @@ staging:
     }
     more_set_headers "X-Robots-Tag: noindex";
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
+
   nginxServerSnippet: |
     location ^~ /blog/wp-json/wp/v2/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;

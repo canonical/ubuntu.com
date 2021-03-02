@@ -218,7 +218,6 @@
                 style="margin-left: -0.2rem;"
                 {% endif %}
               />
-            {% endif %}
           </td>
           <td aria-label="Module">
             <div class="p-table--cube__contents">
@@ -284,24 +283,6 @@
               <a class="p-button--neutral u-no-margin--right" href="{{ module.prepare_url }}">Prepare</a>
               {% endif %}
               <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.take_url }}">Take</a>
-            </div>
-          </td>
-          {% elif module.status == "failed" %}
-          <td>
-            <div class="p-table--cube__contents u-align--right">
-              <a class="p-button--neutral u-no-margin--right" href="https://support.canonical.com">Request retry</a>
-            </div>
-          </td>          
-          {% elif module.status == "not-enrolled" %}
-          <td>
-            <div class="p-table--cube__contents u-align--right">
-              <a href="/cube/contact-us" class="p-button--positive cube-access js-invoke-modal">Apply for access</a>
-            </div>
-          </td>
-          {% elif module.status == "in-progress" %}
-          <td>
-            <div class="p-table--cube__contents u-align--right">
-              <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.take_url }}">Resume</a>
             </div>
           </td>
           {% elif module.status == "failed" %}
