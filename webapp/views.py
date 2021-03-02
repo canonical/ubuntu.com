@@ -1238,22 +1238,84 @@ def post_payment_method():
 
 
 def post_auto_renewal_settings():
+    user_token = flask.session.get("authentication_token")
+    is_test_backend = flask.request.args.get("test_backend", False)
 
-    # try:
-    #     # TODO Call the API
-    # except HTTPError as http_error:
-    #     flask.current_app.extensions["sentry"].captureException(
-    #         extra={
-    #             "purchase_request": set_auto_renewal,
-    #             "api_response": http_error.response.json(),
-    #         }
-    #     )
-    #     return (
-    #         flask.jsonify({"error": "could change auto renewal settings"}),
-    #         500,
-    #     )
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-    return flask.jsonify({"error": "not implemented"}), 501
+    if is_test_backend:
+        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
+    if not user_info(flask.session):
+        return flask.jsonify({"error": "authentication required"}), 401
+
+    should_auto_renew = flask.request.json.get("should_auto_renew", False)
+
+    if not should_auto_renew:
+        return flask.jsonify({"error": "should_auto_renew required"}), 400
+
+    advantage = AdvantageContracts(
+        session,
+        user_token,
+        token_type=("Macaroon" if user_token else "Bearer"),
+        api_url=api_url,
+    )
+
+    try:
+        accounts = advantage.get_accounts()
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+        return (
+            flask.jsonify({"error": "could not retrieve accounts"}),
+            500,
+        )
+
+    for account in accounts:
+        try:
+            monthly_subscriptions = (
+                advantage.get_account_subscriptions_for_marketplace(
+                    account_id=account["id"],
+                    marketplace="canonical-ua",
+                    filters={"status": "active", "period": "monthly"},
+                )
+            )
+        except HTTPError:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={"account_id": account["id"]}
+            )
+            return (
+                flask.jsonify(
+                    {"error": "could not retrieve account subscriptions"}
+                ),
+                500,
+            )
+
+        for subscription in monthly_subscriptions.get("subscriptions", []):
+            try:
+                advantage.post_subscription_auto_renewal(
+                    subscription_id=subscription["subscription"]["id"],
+                    should_auto_renew=should_auto_renew,
+                )
+            except HTTPError as http_error:
+                flask.current_app.extensions["sentry"].captureException(
+                    extra={
+                        "subscription_id": subscription["subscription"]["id"],
+                        "api_response": http_error.response.json(),
+                    }
+                )
+                return (
+                    flask.jsonify(
+                        {
+                            "error": "could not change auto renewal settings",
+                        }
+                    ),
+                    500,
+                )
+
+    return (
+        flask.jsonify({"message": "subscription renewal status was changed"}),
+        200,
+    )
 
 
 def post_customer_info():

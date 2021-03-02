@@ -259,6 +259,17 @@ class AdvantageContracts:
 
         return response.json() if response.status_code != 200 else None
 
+    def post_subscription_auto_renewal(
+        self, subscription_id: str, should_auto_renew: bool
+    ) -> dict:
+        response = self._request(
+            method="post",
+            path=f"v1/subscription/{subscription_id}/auto-renewal",
+            json={"shouldAutoRenew": should_auto_renew},
+        )
+
+        return response.json() if response.status_code != 200 else None
+
 
 class UnauthorizedError(Exception):
     """An error representing an unauthorized request."""
