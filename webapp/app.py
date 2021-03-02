@@ -17,6 +17,8 @@ from canonicalwebteam.discourse import (
     DocParser,
     EngageParser,
     EngagePages,
+    Tutorials,
+    TutorialParser,
 )
 
 # Local
@@ -431,8 +433,7 @@ url_prefix = "/server/docs"
 server_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        category_id=26,
-        index_topic_id=11322,
+        index_topic_id=21195,
         url_prefix=url_prefix,
     ),
     document_template="/templates/docs/discourse.html",
@@ -448,8 +449,8 @@ app.add_url_rule(
 )
 
 tutorials_path = "/tutorials"
-tutorials_docs = Docs(
-    parser=DocParser(
+tutorials_docs = Tutorials(
+    parser=TutorialParser(
         api=discourse_api,
         category_id=34,
         index_topic_id=13611,
