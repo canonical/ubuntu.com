@@ -1,7 +1,7 @@
 from requests.exceptions import HTTPError
 
 
-class AdvantageContracts:
+class UAContractsAPI:
     def __init__(
         self,
         session,
@@ -20,11 +20,11 @@ class AdvantageContracts:
         self.api_url = api_url.rstrip("/")
 
     def _request(self, method, path, json=None):
-        headers = {}
-
-        headers["Authorization"] = (
-            f"{self.token_type} " f"{self.authentication_token}"
-        )
+        headers = {
+            "Authorization": (
+                f"{self.token_type} " f"{self.authentication_token}"
+            )
+        }
 
         response = self.session.request(
             method=method,

@@ -37,11 +37,6 @@ from webapp.context import (
 from webapp.cube.views import cube_home, cube_microcerts
 
 from webapp.views import (
-    accept_renewal,
-    advantage_view,
-    advantage_shop_view,
-    advantage_payment_methods_view,
-    advantage_thanks_view,
     BlogCustomGroup,
     BlogCustomTopic,
     BlogPressCentre,
@@ -53,6 +48,22 @@ from webapp.views import (
     download_thank_you,
     appliance_install,
     appliance_portfolio,
+    post_build,
+    releasenotes_redirect,
+    search_snaps,
+    show_template,
+    notify_build,
+    build_engage_index,
+    engage_thank_you,
+    sitemap_index,
+)
+
+from webapp.advantage.views import (
+    accept_renewal,
+    advantage_view,
+    advantage_shop_view,
+    advantage_payment_methods_view,
+    advantage_thanks_view,
     ensure_purchase_account,
     get_customer_info,
     get_purchase,
@@ -63,16 +74,9 @@ from webapp.views import (
     post_auto_renewal_settings,
     post_customer_info,
     post_stripe_invoice_id,
-    post_build,
-    releasenotes_redirect,
-    search_snaps,
-    show_template,
-    notify_build,
-    build_engage_index,
-    engage_thank_you,
-    sitemap_index,
     cancel_advantage_subscriptions,
 )
+
 from webapp.login import login_handler, logout, user_info
 from webapp.security.database import db_session
 from webapp.security.views import (
