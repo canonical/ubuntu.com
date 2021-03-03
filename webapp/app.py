@@ -34,6 +34,7 @@ from webapp.context import (
     releases,
 )
 
+from webapp.advantage.parser import AdvantageValidationError
 from webapp.cube.views import cube_home, cube_microcerts
 
 from webapp.views import (
@@ -137,6 +138,11 @@ discourse_api = DiscourseAPI(
 @app.errorhandler(400)
 def bad_request_error(error):
     return flask.render_template("400.html"), 400
+
+
+@app.errorhandler(AdvantageValidationError)
+def advantage_validation_error(error):
+    return flask.jsonify({"errors": str(error)}), 422
 
 
 @app.errorhandler(410)

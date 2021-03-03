@@ -1,6 +1,5 @@
 # Standard library
 from datetime import datetime, timedelta, timezone
-import os
 
 # Packages
 import dateutil.parser
@@ -8,45 +7,40 @@ import flask
 import talisker.requests
 import pytz
 from requests.exceptions import HTTPError
-
+from webargs.fields import String, Boolean
 
 # Local
+from webapp.decorators import store_maintenance, advantage_checks
+from webapp.login import empty_session, user_info
+from webapp.advantage.parser import use_kwargs
 from webapp.advantage.api import (
     UAContractsAPI,
     CannotCancelLastContractError,
     UnauthorizedError,
 )
-from webapp.login import empty_session, user_info
-from webapp.decorators import store_maintenance
+
+from webapp.advantage.schemas import (
+    post_advantage_subscriptions,
+    post_anonymised_customer_info,
+    cancel_advantage_subscriptions,
+    post_customer_info,
+    ensure_purchase_account,
+    post_payment_method,
+)
 
 
 session = talisker.requests.get_session()
 
 
 @store_maintenance
-def advantage_view():
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    stripe_publishable_key = os.getenv(
-        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
-    )
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        stripe_publishable_key = os.getenv(
-            "STRIPE_TEST_PUBLISHABLE_KEY",
-            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
-        )
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not user_info(flask.session):
-        return flask.render_template(
-            "advantage/index-no-login.html",
-            is_test_backend=is_test_backend,
-        )
-
-    open_subscription = flask.request.args.get("subscription", None)
+@advantage_checks(check_list=["view_need_user"])
+@use_kwargs({"subscription": String()}, location="query")
+def advantage_view(**kwargs):
+    is_test_backend = kwargs.get("test_backend")
+    api_url = kwargs.get("api_url")
+    stripe_publishable_key = kwargs["stripe_publishable_key"]
+    token = kwargs.get("token")
+    open_subscription = kwargs.get("subscription", None)
 
     personal_account = None
     new_subscription_id = None
@@ -61,11 +55,7 @@ def advantage_view():
         "next_payment": {},
     }
 
-    advantage = UAContractsAPI(
-        session,
-        flask.session["authentication_token"],
-        api_url=api_url,
-    )
+    advantage = UAContractsAPI(session, token, api_url=api_url)
 
     try:
         accounts = advantage.get_accounts()
@@ -294,29 +284,19 @@ def advantage_view():
 
 
 @store_maintenance
-def advantage_shop_view():
+@advantage_checks()
+def advantage_shop_view(**kwargs):
+    is_test_backend = kwargs.get("test_backend")
+    api_url = kwargs.get("api_url")
+    stripe_publishable_key = kwargs["stripe_publishable_key"]
+    token = kwargs.get("token")
+
     account = None
     previous_purchase_ids = {"monthly": "", "yearly": ""}
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    stripe_publishable_key = os.getenv(
-        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
-    )
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        stripe_publishable_key = os.getenv(
-            "STRIPE_TEST_PUBLISHABLE_KEY",
-            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
-        )
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
     if user_info(flask.session):
-        advantage = UAContractsAPI(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
-        )
+        advantage = UAContractsAPI(session, token, api_url=api_url)
+
         if flask.session.get("guest_authentication_token"):
             flask.session.pop("guest_authentication_token")
 
@@ -396,70 +376,44 @@ def advantage_shop_view():
 
 
 @store_maintenance
-def advantage_payment_methods_view():
-    is_test_backend = flask.request.args.get("test_backend", False)
-    default_payment_method = None
-    account_id = None
+@advantage_checks(check_list=["view_need_user"])
+def advantage_payment_methods_view(**kwargs):
+    is_test_backend = kwargs.get("test_backend")
+    stripe_publishable_key = kwargs["stripe_publishable_key"]
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
 
-    stripe_publishable_key = os.getenv(
-        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
-    )
+    advantage = UAContractsAPI(session, token, api_url=api_url)
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+    try:
+        account = advantage.get_purchase_account()
+        account_id = account["id"]
+        account_info = advantage.get_customer_info(account_id)
 
-    if is_test_backend:
-        stripe_publishable_key = os.getenv(
-            "STRIPE_TEST_PUBLISHABLE_KEY",
-            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
-        )
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+        customer_info = account_info["customerInfo"]
+        default_payment_method = customer_info["defaultPaymentMethod"]
 
-    if user_info(flask.session):
-        advantage = UAContractsAPI(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
-        )
+    except HTTPError as http_error:
+        if http_error.response.status_code == 401:
+            # We got an unauthorized request, so we likely
+            # need to re-login to refresh the macaroon
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "session_keys": flask.session.keys(),
+                    "request_url": http_error.request.url,
+                    "request_headers": http_error.request.headers,
+                    "response_headers": http_error.response.headers,
+                    "response_body": http_error.response.json(),
+                    "response_code": http_error.response.json()["code"],
+                    "response_message": http_error.response.json()["message"],
+                }
+            )
 
-        try:
-            account = advantage.get_purchase_account()
-            customer_info_response = get_customer_info(account["id"])
-            if customer_info_response["success"]:
-                customer_info = customer_info_response["data"].get(
-                    "customerInfo"
-                )
+            empty_session(flask.session)
 
-                if customer_info:
-                    default_payment_method = customer_info.get(
-                        "defaultPaymentMethod"
-                    )
+            return flask.redirect("/advantage")
 
-                    if customer_info.get("accountInfo"):
-                        account_id = customer_info["accountInfo"].get("id")
-
-        except HTTPError as http_error:
-            if http_error.response.status_code == 401:
-                # We got an unauthorized request, so we likely
-                # need to re-login to refresh the macaroon
-                flask.current_app.extensions["sentry"].captureException(
-                    extra={
-                        "session_keys": flask.session.keys(),
-                        "request_url": http_error.request.url,
-                        "request_headers": http_error.request.headers,
-                        "response_headers": http_error.response.headers,
-                        "response_body": http_error.response.json(),
-                        "response_code": http_error.response.json()["code"],
-                        "response_message": http_error.response.json()[
-                            "message"
-                        ],
-                    }
-                )
-
-                empty_session(flask.session)
-
-                return flask.render_template("advantage/index.html")
-
-            raise http_error
+        raise http_error
 
     return flask.render_template(
         "advantage/payment-methods/index.html",
@@ -471,49 +425,37 @@ def advantage_payment_methods_view():
 
 
 @store_maintenance
-def advantage_thanks_view():
-    email = flask.request.args.get("email")
+@advantage_checks()
+@use_kwargs({"email": String()}, location="query")
+def advantage_thanks_view(**kwargs):
+    email = kwargs.get("email")
 
     if user_info(flask.session):
         return flask.redirect("/advantage")
-    else:
-        return flask.render_template(
-            "advantage/subscribe/thank-you.html",
-            email=email,
-        )
+
+    return flask.render_template(
+        "advantage/subscribe/thank-you.html",
+        email=email,
+    )
 
 
-def post_advantage_subscriptions(preview):
-    is_test_backend = flask.request.args.get("test_backend", False)
+@advantage_checks(check_list=["need_user_or_guest"])
+@use_kwargs(post_advantage_subscriptions, location="json")
+def post_advantage_subscriptions(preview, **kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+    token_type = kwargs.get("token_type")
+    account_id = kwargs.get("account_id")
+    previous_purchase_id = kwargs.get("previous_purchase_id")
+    period = kwargs.get("period")
+    products = kwargs.get("products")
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+    advantage = UAContractsAPI(
+        session, token, token_type=token_type, api_url=api_url
+    )
 
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-
-    if user_info(flask.session) or guest_token:
-        advantage = UAContractsAPI(
-            session,
-            user_token or guest_token,
-            token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=api_url,
-        )
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
-
-    payload = flask.request.json
-    if not payload:
-        return flask.jsonify({}), 400
-
-    account_id = payload.get("account_id")
-    previous_purchase_id = payload.get("previous_purchase_id")
-    period = payload.get("period")
-    existing_subscription = {}
-
-    if not guest_token:
+    current_subscription = {}
+    if user_info(flask.session):
         try:
             subscriptions = (
                 advantage.get_account_subscriptions_for_marketplace(
@@ -524,7 +466,7 @@ def post_advantage_subscriptions(preview):
             )
         except HTTPError:
             flask.current_app.extensions["sentry"].captureException(
-                extra={"payload": payload}
+                extra={"payload": kwargs}
             )
             return (
                 flask.jsonify(
@@ -535,19 +477,19 @@ def post_advantage_subscriptions(preview):
 
         for subscription in subscriptions.get("subscriptions", []):
             if subscription["subscription"]["period"] == period:
-                existing_subscription = subscription
+                current_subscription = subscription
 
     # If there is a subscription we get the current metric
     # value for each product listing so we can generate a
     # purchase request with updated quantities later.
     subscribed_quantities = {}
-    if existing_subscription:
-        for item in existing_subscription["purchasedProductListings"]:
+    if current_subscription:
+        for item in current_subscription["purchasedProductListings"]:
             product_listing_id = item["productListing"]["id"]
             subscribed_quantities[product_listing_id] = item["value"]
 
     purchase_items = []
-    for product in payload.get("products"):
+    for product in products:
         product_listing_id = product["product_listing_id"]
         metric_value = product["quantity"] + subscribed_quantities.get(
             product_listing_id, 0
@@ -596,35 +538,16 @@ def post_advantage_subscriptions(preview):
     return flask.jsonify(purchase), 200
 
 
-def cancel_advantage_subscriptions():
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+@advantage_checks(check_list=["need_user"])
+@use_kwargs(cancel_advantage_subscriptions, location="json")
+def cancel_advantage_subscriptions(**kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+    account_id = kwargs.get("account_id")
+    previous_purchase_id = kwargs.get("previous_purchase_id")
+    product_listings = kwargs.get("product_listings")
 
-    if flask.request.args.get("test_backend", False):
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    user_token = flask.session.get("authentication_token")
-
-    if user_info(flask.session):
-        advantage = UAContractsAPI(
-            session,
-            user_token,
-            token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=api_url,
-        )
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
-
-    payload = flask.request.json
-
-    account_id = payload.get("account_id")
-    previous_purchase_id = payload.get("previous_purchase_id")
-    product_listings = payload.get("product_listings")
-
-    if not (account_id and previous_purchase_id and product_listings):
-        return flask.jsonify({"error": "bad request"}), 400
-
-    account_id = payload.get("account_id")
-    previous_purchase_id = payload.get("previous_purchase_id")
+    advantage = UAContractsAPI(session, token, api_url=api_url)
 
     try:
         monthly_subscriptions = (
@@ -636,7 +559,7 @@ def cancel_advantage_subscriptions():
         )
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException(
-            extra={"payload": payload}
+            extra={"payload": kwargs}
         )
         return (
             flask.jsonify(
@@ -703,71 +626,32 @@ def cancel_advantage_subscriptions():
     return flask.jsonify(purchase), 200
 
 
-def post_anonymised_customer_info():
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not (user_info(flask.session) or guest_token):
-        return flask.jsonify({"error": "authentication required"}), 401
+@advantage_checks(check_list=["need_user_or_guest"])
+@use_kwargs(post_anonymised_customer_info, location="json")
+def post_anonymised_customer_info(**kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+    token_type = kwargs.get("token_type")
+    account_id = kwargs.get("account_id")
+    address = kwargs.get("address")
+    tax_id = kwargs.get("tax_id")
 
     advantage = UAContractsAPI(
-        session,
-        user_token or guest_token,
-        token_type=("Macaroon" if user_token else "Bearer"),
-        api_url=api_url,
+        session, token, token_type=token_type, api_url=api_url
     )
-
-    if not flask.request.is_json:
-        return flask.jsonify({"error": "JSON required"}), 400
-
-    account_id = flask.request.json.get("account_id")
-    if not account_id:
-        return flask.jsonify({"error": "account_id required"}), 400
-
-    address = flask.request.json.get("address")
-    if not address:
-        return flask.jsonify({"error": "address required"}), 400
-
-    tax_id = flask.request.json.get("tax_id")
 
     return advantage.put_anonymous_customer_info(account_id, address, tax_id)
 
 
-def post_payment_method():
-    user_token = flask.session.get("authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
+@advantage_checks(check_list=["need_user"])
+@use_kwargs(post_payment_method, location="json")
+def post_payment_method(**kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+    account_id = kwargs.get("account_id")
+    payment_method_id = kwargs.get("payment_method_id")
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not user_info(flask.session):
-        return flask.jsonify({"error": "authentication required"}), 401
-
-    advantage = UAContractsAPI(
-        session,
-        user_token,
-        token_type=("Macaroon" if user_token else "Bearer"),
-        api_url=api_url,
-    )
-
-    if not flask.request.is_json:
-        return flask.jsonify({"error": "JSON required"}), 400
-
-    account_id = flask.request.json.get("account_id")
-    if not account_id:
-        return flask.jsonify({"error": "account_id required"}), 400
-
-    payment_method_id = flask.request.json.get("payment_method_id")
-    if not payment_method_id:
-        return flask.jsonify({"error": "payment_method_id required"}), 400
+    advantage = UAContractsAPI(session, token, api_url=api_url)
 
     try:
         return advantage.put_payment_method(account_id, payment_method_id)
@@ -786,29 +670,14 @@ def post_payment_method():
         )
 
 
-def post_auto_renewal_settings():
-    user_token = flask.session.get("authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
+@advantage_checks(check_list=["need_user"])
+@use_kwargs({"should_auto_renew": Boolean()}, location="query")
+def post_auto_renewal_settings(**kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+    should_auto_renew = kwargs.get("should_auto_renew", False)
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not user_info(flask.session):
-        return flask.jsonify({"error": "authentication required"}), 401
-
-    should_auto_renew = flask.request.json.get("should_auto_renew", False)
-
-    if not should_auto_renew:
-        return flask.jsonify({"error": "should_auto_renew required"}), 400
-
-    advantage = UAContractsAPI(
-        session,
-        user_token,
-        token_type=("Macaroon" if user_token else "Bearer"),
-        api_url=api_url,
-    )
+    advantage = UAContractsAPI(session, token, api_url=api_url)
 
     try:
         accounts = advantage.get_accounts()
@@ -867,24 +736,15 @@ def post_auto_renewal_settings():
     )
 
 
-def get_customer_info(account_id):
-    is_test_backend = flask.request.args.get("test_backend", False)
+@advantage_checks(check_list=["need_user"])
+def get_customer_info(account_id, **kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+
     response = {"success": False, "data": {}}
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not user_info(session):
-        return flask.jsonify({"error": "authentication required"}), 401
-
     try:
-        advantage = UAContractsAPI(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
-        )
+        advantage = UAContractsAPI(session, token, api_url=api_url)
         response["data"] = advantage.get_customer_info(account_id)
         response["success"] = True
     except HTTPError as error:
@@ -898,125 +758,79 @@ def get_customer_info(account_id):
     return response
 
 
-def post_customer_info():
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not (user_info(flask.session) or guest_token):
-        return flask.jsonify({"error": "authentication required"}), 401
+@advantage_checks(check_list=["need_user_or_guest"])
+@use_kwargs(post_customer_info, location="json")
+def post_customer_info(**kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+    token_type = kwargs.get("token_type")
+    payment_method_id = kwargs.get("payment_method_id")
+    account_id = kwargs.get("account_id")
+    address = kwargs.get("address")
+    name = kwargs.get("name")
+    tax_id = kwargs.get("tax_id")
 
     advantage = UAContractsAPI(
-        session,
-        user_token or guest_token,
-        token_type=("Macaroon" if user_token else "Bearer"),
-        api_url=api_url,
+        session, token, token_type=token_type, api_url=api_url
     )
-
-    if not flask.request.is_json:
-        return flask.jsonify({"error": "JSON required"}), 400
-
-    payment_method_id = flask.request.json.get("payment_method_id")
-    if not payment_method_id:
-        return flask.jsonify({"error": "payment_method_id required"}), 400
-
-    account_id = flask.request.json.get("account_id")
-    if not account_id:
-        return flask.jsonify({"error": "account_id required"}), 400
-
-    address = flask.request.json.get("address")
-    name = flask.request.json.get("name")
-    tax_id = flask.request.json.get("tax_id")
 
     return advantage.put_customer_info(
         account_id, payment_method_id, address, name, tax_id
     )
 
 
-def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not (user_info(flask.session) or guest_token):
-        return flask.jsonify({"error": "authentication required"}), 401
+@advantage_checks(check_list=["need_user_or_guest"])
+def post_stripe_invoice_id(tx_type, tx_id, invoice_id, **kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+    token_type = kwargs.get("token_type")
 
     advantage = UAContractsAPI(
-        session,
-        user_token or guest_token,
-        token_type=("Macaroon" if user_token else "Bearer"),
-        api_url=api_url,
+        session, token, token_type=token_type, api_url=api_url
     )
 
     return advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
 
 
-def get_purchase(purchase_id):
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not (user_info(flask.session) or guest_token):
-        return flask.jsonify({"error": "authentication required"}), 401
+@advantage_checks(check_list=["need_user_or_guest"])
+def get_purchase(purchase_id, **kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+    token_type = kwargs.get("token_type")
 
     advantage = UAContractsAPI(
-        session,
-        user_token or guest_token,
-        token_type=("Macaroon" if user_token else "Bearer"),
-        api_url=api_url,
+        session, token, token_type=token_type, api_url=api_url
     )
 
     return advantage.get_purchase(purchase_id)
 
 
-def ensure_purchase_account():
+@advantage_checks()
+@use_kwargs(ensure_purchase_account, location="json")
+def ensure_purchase_account(**kwargs):
     """
     Returns an object with the ID of an account a user can make
     purchases on. If the user is not logged in, the object also
     contains an auth token required for subsequent calls to the
     contract API.
     """
-    is_test_backend = flask.request.args.get("test_backend", False)
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+    api_url = kwargs.get("api_url")
+    email = kwargs.get("email")
+    account_name = kwargs.get("account_name")
+    payment_method_id = kwargs.get("payment_method_id")
 
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not flask.request.is_json:
-        return flask.jsonify({"error": "JSON required"}), 400
-
-    auth_token = None
+    token = None
     if user_info(flask.session):
-        auth_token = flask.session["authentication_token"]
+        token = flask.session["authentication_token"]
 
-    advantage = UAContractsAPI(
-        session,
-        auth_token,
-        api_url=api_url,
-    )
+    advantage = UAContractsAPI(session, token, api_url=api_url)
 
-    request = flask.request.json
     try:
         account = advantage.ensure_purchase_account(
-            email=request.get("email"),
-            account_name=request.get("account_name"),
-            payment_method_id=request.get("payment_method_id"),
+            email=email,
+            account_name=account_name,
+            payment_method_id=payment_method_id,
         )
     except UnauthorizedError as err:
         # This kind of errors are handled js side.
@@ -1028,47 +842,29 @@ def ensure_purchase_account():
     # The guest authentication token is included in the response only when the
     # user is not logged in.
     token = account.get("token")
+
     if token:
         flask.session["guest_authentication_token"] = token
+
     return flask.jsonify(account), 200
 
 
-def get_renewal(renewal_id):
-    is_test_backend = flask.request.args.get("test_backend", False)
+@advantage_checks(check_list=["need_user"])
+def get_renewal(renewal_id, **kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+    advantage = UAContractsAPI(session, token, api_url=api_url)
 
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session):
-        advantage = UAContractsAPI(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
-        )
-
-        return advantage.get_renewal(renewal_id)
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
+    return advantage.get_renewal(renewal_id)
 
 
-def accept_renewal(renewal_id):
-    is_test_backend = flask.request.args.get("test_backend", False)
+@advantage_checks(check_list=["need_user"])
+def accept_renewal(renewal_id, **kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not user_info(flask.session):
-        return flask.jsonify({"error": "authentication required"}), 401
-
-    advantage = UAContractsAPI(
-        session,
-        flask.session["authentication_token"],
-        api_url=api_url,
-    )
+    advantage = UAContractsAPI(session, token, api_url=api_url)
 
     return advantage.accept_renewal(renewal_id)
 
