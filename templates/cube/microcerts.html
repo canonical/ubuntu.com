@@ -1,15 +1,15 @@
 {% extends "cube/base_cube.html" %}
 
-{% block title %} Microcerts | CUBE {% endblock %}
+{% block title %} Microcertifications | CUBE {% endblock %}
 
-{% block meta_description %}This is the CUBE Microcerts page{% endblock meta_description %}
+{% block meta_description %}The path to certification is clear and convenient. Complete 15 microcerts to attain CUBE.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1IHmr2SIxcEKVNN2sA-z_32PV0fCXi38pmeVP7k7O1mM/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip--square-suru has-cube is-dark is-slanted--bottom-left">
+<section class="p-strip--square-suru has-cube is-dark is-slanted--bottom-left js-cube-hero">
   <div class="row u-equal-height u-vertically-center">
-    <div id="hero-content" class="col-6">
+    <div class="col-6 js-hero-content">
       {% if certified_badge %}
 
         <h1>CUBE 2020 complete</h1>
@@ -343,15 +343,15 @@ const myObserver = new ResizeObserver((entries) => {
     const width = Math.floor(entry.contentRect.width);
     if (width < 1035) {
       entry.target.classList.remove("is-shallow");
-      document.getElementById("hero-content").style.marginTop = "2rem";
+      document.querySelector(".js-hero-content").style.marginTop = "2rem";
     } else {
       entry.target.classList.add("is-shallow");
-      document.getElementById("hero-content").style.marginTop = "-2rem";
+      document.querySelector(".js-hero-content").style.marginTop = "-2rem";
     }
   });
 });
 
-const strip = document.querySelector(".p-strip--square-suru");
+const strip = document.querySelector(".js-cube-hero");
 myObserver.observe(strip);
 
 
