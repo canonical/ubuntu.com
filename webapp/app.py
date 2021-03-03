@@ -433,7 +433,7 @@ url_prefix = "/server/docs"
 server_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        index_topic_id=21195,
+        index_topic_id=11322,
         url_prefix=url_prefix,
     ),
     document_template="/templates/docs/discourse.html",
@@ -468,7 +468,7 @@ tutorials_docs.init_app(app)
 # Ceph docs
 ceph_docs = Docs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=21186, url_prefix="/ceph/docs"
+        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
     ),
     document_template="/templates/docs/discourse.html",
     url_prefix="/ceph/docs",
@@ -490,7 +490,7 @@ app.add_url_rule(
 # Core docs
 core_docs = Docs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=21188, url_prefix="/core/docs"
+        api=discourse_api, index_topic_id=19764, url_prefix="/core/docs"
     ),
     document_template="/templates/docs/discourse.html",
     url_prefix="/core/docs",
@@ -501,7 +501,7 @@ core_docs.init_app(app)
 core_modem_manager_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        index_topic_id=21187,
+        index_topic_id=19901,
         url_prefix="/core/docs/modem-manager",
     ),
     document_template="/templates/docs/discourse.html",
@@ -513,7 +513,7 @@ core_modem_manager_docs.init_app(app)
 # Core docs - Bluetooth (bluez) docs
 core_bluetooth_docs = Docs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=21194, url_prefix="/core/docs/bluez"
+        api=discourse_api, index_topic_id=19971, url_prefix="/core/docs/bluez"
     ),
     document_template="/templates/docs/discourse.html",
     url_prefix="/core/docs/bluez",
@@ -525,7 +525,7 @@ core_bluetooth_docs.init_app(app)
 core_network_manager_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        index_topic_id=21193,
+        index_topic_id=19917,
         url_prefix="/core/docs/networkmanager",
     ),
     document_template="/templates/docs/discourse.html",
@@ -551,7 +551,7 @@ core_wpa_supplicant_docs.init_app(app)
 core_easy_openvpn_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        index_topic_id=21192,
+        index_topic_id=19950,
         url_prefix="/core/docs/easy-openvpn",
     ),
     document_template="/templates/docs/discourse.html",
@@ -564,7 +564,7 @@ core_easy_openvpn_docs.init_app(app)
 core_wifi_ap_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        index_topic_id=21190,
+        index_topic_id=19959,
         url_prefix="/core/docs/wifi-ap",
     ),
     document_template="/templates/docs/discourse.html",
@@ -593,7 +593,7 @@ app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 openstack_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        index_topic_id=21185,
+        index_topic_id=20990,
         url_prefix="/openstack/docs",
     ),
     document_template="/templates/docs/discourse.html",
