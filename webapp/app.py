@@ -91,6 +91,7 @@ from webapp.security.views import (
     single_cves_sitemap,
     cves_sitemap,
 )
+from webapp.metaimage import share_meta_image
 
 
 CAPTCHA_TESTING_API_KEY = os.getenv(
@@ -254,8 +255,11 @@ app.add_url_rule(
     view_func=appliance_install,
 )
 app.add_url_rule(
-    "/appliance/portfolio",
-    view_func=appliance_portfolio,
+    "/appliance/portfolio", view_func=appliance_portfolio,
+)
+
+app.add_url_rule(
+    "/static/files/meta_image.png", view_func=share_meta_image, methods=["GET"]
 )
 
 # blog section
@@ -289,12 +293,10 @@ app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
 app.add_url_rule(
-    "/security/api/notices/<notice_id>",
-    view_func=read_notice,
+    "/security/api/notices/<notice_id>", view_func=read_notice,
 )
 app.add_url_rule(
-    "/security/api/notices",
-    view_func=read_notices,
+    "/security/api/notices", view_func=read_notices,
 )
 app.add_url_rule("/security/notices", view_func=notices)
 app.add_url_rule(
@@ -360,8 +362,7 @@ engage_path = "/engage"
 engage_pages = EngagePages(
     parser=EngageParser(
         api=DiscourseAPI(
-            base_url="https://discourse.ubuntu.com/",
-            session=session,
+            base_url="https://discourse.ubuntu.com/", session=session,
         ),
         index_topic_id=17229,
         url_prefix=engage_path,
@@ -407,10 +408,7 @@ def takeovers_json():
 def takeovers_index():
     takeovers = get_takeovers()
 
-    return flask.render_template(
-        "takeovers/index.html",
-        takeovers=takeovers,
-    )
+    return flask.render_template("takeovers/index.html", takeovers=takeovers,)
 
 
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
@@ -432,9 +430,7 @@ app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 url_prefix = "/server/docs"
 server_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
-        index_topic_id=11322,
-        url_prefix=url_prefix,
+        api=discourse_api, index_topic_id=11322, url_prefix=url_prefix,
     ),
     document_template="/templates/docs/discourse.html",
     url_prefix=url_prefix,
@@ -443,9 +439,7 @@ server_docs.init_app(app)
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
-    "/templates/<filename>",
-    "templates",
-    view_func=show_template,
+    "/templates/<filename>", "templates", view_func=show_template,
 )
 
 tutorials_path = "/tutorials"
@@ -592,9 +586,7 @@ app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 
 openstack_docs = Docs(
     parser=DocParser(
-        api=discourse_api,
-        index_topic_id=20990,
-        url_prefix="/openstack/docs",
+        api=discourse_api, index_topic_id=20990, url_prefix="/openstack/docs",
     ),
     document_template="/templates/docs/discourse.html",
     url_prefix="/openstack/docs",
