@@ -24,21 +24,6 @@ def login_required(func):
     return is_user_logged_in
 
 
-def store_maintenance(func):
-    """
-    Decorator that checks if the maintence mode is enabled
-    """
-
-    @functools.wraps(func)
-    def is_store_in_maintenance(*args, **kwargs):
-        if strtobool(os.getenv("STORE_MAINTENANCE")):
-            return flask.render_template("advantage/maintenance.html")
-
-        return func(*args, **kwargs)
-
-    return is_store_in_maintenance
-
-
 def advantage_checks(check_list=None):
     if check_list is None:
         check_list = []
@@ -46,6 +31,10 @@ def advantage_checks(check_list=None):
     def advantage_checks_decorator(func):
         @functools.wraps(func)
         def check_advantage(*args, **kwargs):
+            if "is_maintenance":
+                if strtobool(os.getenv("STORE_MAINTENANCE")):
+                    return flask.render_template("advantage/maintenance.html")
+
             is_test_backend = flask.request.args.get("test_backend", False)
 
             stripe_publishable_key = os.getenv(

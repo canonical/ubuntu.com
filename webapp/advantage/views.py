@@ -10,7 +10,7 @@ from requests.exceptions import HTTPError
 from webargs.fields import String, Boolean
 
 # Local
-from webapp.decorators import store_maintenance, advantage_checks
+from webapp.decorators import advantage_checks
 from webapp.login import empty_session, user_info
 from webapp.advantage.parser import use_kwargs
 from webapp.advantage.api import (
@@ -32,8 +32,7 @@ from webapp.advantage.schemas import (
 session = talisker.requests.get_session()
 
 
-@store_maintenance
-@advantage_checks(check_list=["view_need_user"])
+@advantage_checks(check_list=["is_maintenance", "view_need_user"])
 @use_kwargs({"subscription": String()}, location="query")
 def advantage_view(**kwargs):
     is_test_backend = kwargs.get("test_backend")
@@ -283,8 +282,7 @@ def advantage_view(**kwargs):
     )
 
 
-@store_maintenance
-@advantage_checks()
+@advantage_checks(check_list=["is_maintenance"])
 def advantage_shop_view(**kwargs):
     is_test_backend = kwargs.get("test_backend")
     api_url = kwargs.get("api_url")
@@ -375,8 +373,7 @@ def advantage_shop_view(**kwargs):
     )
 
 
-@store_maintenance
-@advantage_checks(check_list=["view_need_user"])
+@advantage_checks(check_list=["is_maintenance", "view_need_user"])
 def advantage_payment_methods_view(**kwargs):
     is_test_backend = kwargs.get("test_backend")
     stripe_publishable_key = kwargs["stripe_publishable_key"]
@@ -424,8 +421,7 @@ def advantage_payment_methods_view(**kwargs):
     )
 
 
-@store_maintenance
-@advantage_checks()
+@advantage_checks(check_list=["is_maintenance"])
 @use_kwargs({"email": String()}, location="query")
 def advantage_thanks_view(**kwargs):
     email = kwargs.get("email")
