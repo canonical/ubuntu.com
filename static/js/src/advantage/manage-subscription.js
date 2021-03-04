@@ -5,8 +5,12 @@ function cancelSubscription(id) {
     `cancel-subscription--${id}`
   );
   const { accountId, previousPurchaseId } = cancelSubscriptionButton.dataset;
+  let contractId = id;
+  if (id.includes("--mobile")) {
+    contractId = id.replace("--mobile", "");
+  }
 
-  cancelContract(accountId, previousPurchaseId, id)
+  cancelContract(accountId, previousPurchaseId, contractId)
     .then((data) => {
       if (data.error) {
         console.error(data.error);
@@ -23,8 +27,12 @@ function handleUpdateClick(id) {
   const resizeField = document.getElementById(`resize-input--${id}`);
   const updateButton = document.getElementById(`save-changes--${id}`);
   const { accountId, previousPurchaseId } = updateButton.dataset;
+  let contractId = id;
+  if (id.includes("--mobile")) {
+    contractId = id.replace("--mobile", "");
+  }
 
-  resizeContract(accountId, previousPurchaseId, id, resizeField.value)
+  resizeContract(accountId, previousPurchaseId, contractId, resizeField.value)
     .then((data) => {
       if (data.error) {
         console.error(data.error);

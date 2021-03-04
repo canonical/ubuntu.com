@@ -115,6 +115,21 @@
               </div>
               {% endif %}
             </div>
+            <div class="row">
+              {% with mobile="true" %}
+
+                {% if contract["period"] == "monthly" %}
+
+                  {% include "advantage/table/_manage-monthly.html" %}
+
+                {% else %}
+                
+                  {% include "advantage/table/_manage-yearly.html" %}
+
+                {% endif %}
+
+              {% endwith %}
+            </div>
             <div class="row p-card__content">
               <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Created on:</div>
               <div class="col-small-2 col-medium-3 u-align--left">{{ contract['contractInfo']['createdAtFormatted'] }}</div>
