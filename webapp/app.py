@@ -461,7 +461,7 @@ tutorials_docs = Tutorials(
     blueprint_name="tutorials",
 )
 app.add_url_rule(
-    tutorials_path, view_func=build_tutorials_index(tutorials_docs)
+    tutorials_path, view_func=build_tutorials_index(session, tutorials_docs)
 )
 tutorials_docs.init_app(app)
 
