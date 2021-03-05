@@ -159,6 +159,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       margin: 0;
 
       .p-search-box {
+        order: 0;
+
         @media only screen and (min-width: $breakpoint-navigation-threshold) {
           margin-right: 0;
           max-width: 12rem;
@@ -171,6 +173,23 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
         &__input {
           border-radius: $border-radius;
+        }
+      }
+    }
+
+    &__user {
+      @media only screen and (max-width: $breakpoint-navigation-threshold - 1) {
+        position: absolute;
+        top: 0;
+        right: 1rem;
+      }
+
+      .p-navigation__link-anchor {
+        padding-right: 0;
+        padding-right: 1rem;
+
+        &:hover {
+          background: transparent;
         }
       }
     }
@@ -346,7 +365,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     &__search {
       @media (max-width: $breakpoint-navigation-threshold) {
         margin-top: $sp-medium !important;
-        order: 1;
       }
     }
 

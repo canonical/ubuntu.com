@@ -38,6 +38,7 @@ from webapp.cube.views import cube_home, cube_microcerts
 
 from webapp.views import (
     accept_renewal,
+    account_query,
     advantage_view,
     advantage_shop_view,
     advantage_thanks_view,
@@ -170,6 +171,7 @@ def utility_processor():
 
 # Simple routes
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
+app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule(
@@ -605,12 +607,17 @@ openstack_docs.init_app(app)
 
 @app.after_request
 def cache_headers(response):
-    """
-    Set cache expiry to 60 seconds for homepage and blog page
-    """
+    # Set cache to private to prevent caching
 
     if flask.request.path in ["/core/build"]:
         response.cache_control.private = True
+
+    if flask.request.path in ["/account.json"]:
+        response.cache_control.private = True
+        response.headers[
+            "Cache-Control"
+        ] = "no-cache, no-store, must-revalidate"
+        response.headers["Pragma"] = "no-cache"
 
     if flask.request.path.startswith("/advantage"):
         response.cache_control.private = True

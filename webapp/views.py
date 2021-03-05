@@ -401,6 +401,18 @@ def search_snaps():
     )
 
 
+def account_query():
+    """
+    A JSON endpoint to request login status
+    """
+
+    return flask.jsonify(
+        {
+            "account": user_info(flask.session),
+        }
+    )
+
+
 @store_maintenance
 def advantage_view():
     accounts = None
