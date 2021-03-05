@@ -479,7 +479,6 @@ def advantage_view():
                     account_id=account["id"],
                     marketplace="canonical-ua",
                     filters={
-                        "status": "active",
                         "period": "monthly",
                     },
                 )
