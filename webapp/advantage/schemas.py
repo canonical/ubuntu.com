@@ -5,6 +5,7 @@ from webargs.fields import (
     List,
     Nested,
     Int,
+    Boolean,
 )
 
 
@@ -29,6 +30,7 @@ post_advantage_subscriptions = {
     "period": String(enum=["monthly", "yearly"], required=True),
     "previous_purchase_id": String(required=True),
     "products": List(Nested(ProductSchema), required=True),
+    "resizing": Boolean(),
 }
 
 cancel_advantage_subscriptions = {

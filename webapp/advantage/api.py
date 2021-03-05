@@ -173,7 +173,7 @@ class UAContractsAPI:
                 f"/subscriptions?{filters}"
             ),
         )
-        return response.json()
+        return response.json().get("subscriptions", [])
 
     def get_account_purchases(self, account_id: str) -> dict:
         response = self._request(

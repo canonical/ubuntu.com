@@ -106,7 +106,7 @@ def advantage_view(**kwargs):
 
         monthly_subscriptions = []
         yearly_subscriptions = []
-        for subscription in all_subscriptions.get("subscriptions", []):
+        for subscription in all_subscriptions:
             period = subscription["subscription"]["period"]
             status = subscription["subscription"]["status"]
 
@@ -336,13 +336,13 @@ def advantage_shop_view(**kwargs):
         advantage = UAContractsAPI(session, None, api_url=api_url)
 
     if account is not None:
-        resp = advantage.get_account_subscriptions_for_marketplace(
+        subscriptions = advantage.get_account_subscriptions_for_marketplace(
             account_id=account["id"],
             marketplace="canonical-ua",
             filters={"status": "active"},
         )
 
-        for subscription in resp.get("subscriptions", []):
+        for subscription in subscriptions:
             period = subscription["subscription"]["period"]
             previous_purchase_ids[period] = subscription["lastPurchaseID"]
 
@@ -445,6 +445,7 @@ def post_advantage_subscriptions(preview, **kwargs):
     previous_purchase_id = kwargs.get("previous_purchase_id")
     period = kwargs.get("period")
     products = kwargs.get("products")
+    resizing = kwargs.get("resizing", False)
 
     advantage = UAContractsAPI(
         session, token, token_type=token_type, api_url=api_url
@@ -471,15 +472,16 @@ def post_advantage_subscriptions(preview, **kwargs):
                 500,
             )
 
-        for subscription in subscriptions.get("subscriptions", []):
+        for subscription in subscriptions:
             if subscription["subscription"]["period"] == period:
                 current_subscription = subscription
 
     # If there is a subscription we get the current metric
     # value for each product listing so we can generate a
     # purchase request with updated quantities later.
+    # If we resize we want to override the existing value
     subscribed_quantities = {}
-    if current_subscription:
+    if not resizing and current_subscription:
         for item in current_subscription["purchasedProductListings"]:
             product_listing_id = item["productListing"]["id"]
             subscribed_quantities[product_listing_id] = item["value"]
@@ -704,7 +706,7 @@ def post_auto_renewal_settings(**kwargs):
                 500,
             )
 
-        for subscription in monthly_subscriptions.get("subscriptions", []):
+        for subscription in monthly_subscriptions:
             try:
                 advantage.post_subscription_auto_renewal(
                     subscription_id=subscription["subscription"]["id"],
