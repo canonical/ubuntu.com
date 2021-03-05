@@ -52,18 +52,12 @@
       <p class="u-no-padding--top p-heading--four">
         {{document['metadata']['subtitle']}}
       </p>
-      {% if document["metadata"]["primary_cta"] != "" %}
+      {% if ("primary_cta" in document["metadata"]) and (document["metadata"]["primary_cta"] != "") %}
       <p class="{% if 'secondary_cta' not in document['metadata'] %}u-hide--large{% endif %}">
-        {% if "primary_cta" in document["metadata"] %}
           <a href="{{ document['metadata']['primary_link'] }}" class="p-button--positive">
             {{ document["metadata"]["primary_cta"] }}
           </a>
-          {% else %}
-          <a href="#webinar" class="p-button--positive">
-            Watch the webinar
-          </a>
-        {% endif %}
-        {% if "secondary_cta" in document['metadata'] %}
+        {% if ("secondary_cta" in document['metadata']) and (document["metadata"]["primary_cta"] != "") %}
           <a href="{{ document['metadata']['secondary_link'] }}" class="p-button--neutral">
             {{document['metadata']['secondary_cta']}}
           </a>
@@ -115,7 +109,7 @@
       {% endif %}
 
     </div>
-    <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>
+    <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer></script>
     {% endif %}
   </div>
 
@@ -142,7 +136,7 @@
 <!-- Youtube webinars -->
 <section class="p-strip is-shallow" id="youtube-section">
   <div class="row" id="webinar">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ document["metadata"]["youtube_id"] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ document['metadata']['youtube_id'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </section>
 {% endif %}
