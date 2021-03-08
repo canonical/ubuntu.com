@@ -116,7 +116,7 @@
       <p><strong>Be prepared for every exam</strong></p>
       <p class="u-sv2">Brush up on your Ubuntu skills with preparatory materials that cover every microcert.</p>
       {% if has_prepare_material %}
-      <a href="https://qa.cube.ubuntu.com/courses/course-v1:ubuntu+cubereview+coursecommandsdev/course/" class="p-button--positive">Prepare</a>
+      <a href="{{ prepare_material_url }}" class="p-button--positive">Prepare</a>
       {% else %}
       <a href="/cube/contact-us" class="p-button--positive cube-access js-invoke-modal">Apply for access</a>
       {% endif %}
