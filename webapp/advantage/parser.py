@@ -1,13 +1,13 @@
 from webargs.flaskparser import FlaskParser
 
 
-class AdvantageValidationError(Exception):
+class UAContractsValidationError(Exception):
     pass
 
 
 class Parser(FlaskParser):
     def handle_error(self, error, req, *args, **kwargs):
-        raise AdvantageValidationError(error.messages)
+        raise UAContractsValidationError(error.messages)
 
 
 parser = Parser()

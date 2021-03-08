@@ -2,7 +2,7 @@
 from datetime import datetime, timedelta, timezone
 
 # Packages
-import dateutil.parser
+from dateutil.parser import parse
 import flask
 import talisker.requests
 import pytz
@@ -11,12 +11,14 @@ from webargs.fields import String, Boolean
 
 # Local
 from webapp.decorators import advantage_checks
-from webapp.login import empty_session, user_info
+from webapp.login import user_info
 from webapp.advantage.parser import use_kwargs
 from webapp.advantage.api import (
     UAContractsAPI,
     CannotCancelLastContractError,
     UnauthorizedError,
+    UAContractsUserHasNoAccount,
+    UAContractsAPIError,
 )
 
 from webapp.advantage.schemas import (
@@ -54,55 +56,22 @@ def advantage_view(**kwargs):
         "next_payment": {},
     }
 
-    advantage = UAContractsAPI(session, token, api_url=api_url)
+    advantage = UAContractsAPI(
+        session, token, api_url=api_url, is_for_view=True
+    )
 
-    try:
-        accounts = advantage.get_accounts()
-    except HTTPError as http_error:
-        if http_error.response.status_code == 401:
-            # We got an unauthorized request, so we likely
-            # need to re-login to refresh the macaroon
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "session_keys": flask.session.keys(),
-                    "request_url": http_error.request.url,
-                    "request_headers": http_error.request.headers,
-                    "response_headers": http_error.response.headers,
-                    "response_body": http_error.response.json(),
-                    "response_code": http_error.response.json()["code"],
-                    "response_message": http_error.response.json()["message"],
-                }
-            )
-
-            empty_session(flask.session)
-
-            return flask.render_template("advantage/index-no-login.html")
-
-        raise http_error
+    accounts = advantage.get_accounts()
 
     for account in accounts:
         monthly_purchased_products = {}
         yearly_purchased_products = {}
-        account["contracts"] = advantage.get_account_contracts(account)
+        account["contracts"] = advantage.get_account_contracts(account["id"])
 
-        try:
-            all_subscriptions = (
-                advantage.get_account_subscriptions_for_marketplace(
-                    account_id=account["id"],
-                    marketplace="canonical-ua",
-                    filters={"status": "active"},
-                )
-            )
-        except HTTPError:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={"account_id": account["id"]}
-            )
-            return (
-                flask.jsonify(
-                    {"error": "could not retrieve account subscriptions"}
-                ),
-                500,
-            )
+        all_subscriptions = advantage.get_account_subscriptions(
+            account_id=account["id"],
+            marketplace="canonical-ua",
+            filters={"status": "active"},
+        )
 
         monthly_subscriptions = []
         yearly_subscriptions = []
@@ -148,26 +117,16 @@ def advantage_view(**kwargs):
                 }
 
         for contract in account["contracts"]:
-            try:
-                contract["token"] = advantage.get_contract_token(contract)
-            except HTTPError:
-                flask.current_app.extensions["sentry"].captureException(
-                    extra={"contract_id": contract["contractInfo"]["id"]}
-                )
-                return (
-                    flask.jsonify(
-                        {"error": "could not retrieve contract token"}
-                    ),
-                    500,
-                )
+            contract_id = contract["contractInfo"]["id"]
+            contract["token"] = advantage.get_contract_token(contract_id)
+            contract_info = contract["contractInfo"]
 
-            if contract["contractInfo"].get("origin", "") == "free":
+            if contract_info.get("origin", "") == "free":
                 personal_account = account
                 personal_account["free_token"] = contract["token"]
 
                 continue
 
-            contract_info = contract["contractInfo"]
             entitlements = {}
             for entitlement in contract_info["resourceEntitlements"]:
                 contract["supportLevel"] = "-"
@@ -181,7 +140,7 @@ def advantage_view(**kwargs):
                 entitlements[entitlement_type] = True
             contract["entitlements"] = entitlements
 
-            created_at = dateutil.parser.parse(contract_info["createdAt"])
+            created_at = parse(contract_info["createdAt"])
             format_create = created_at.strftime("%d %B %Y")
             contract["contractInfo"]["createdAtFormatted"] = format_create
             contract["contractInfo"]["status"] = "active"
@@ -195,7 +154,7 @@ def advantage_view(**kwargs):
                 new_subscription_start_date = created_at
                 new_subscription_id = contract["contractInfo"]["id"]
 
-            effective_to = dateutil.parser.parse(contract_info["effectiveTo"])
+            effective_to = parse(contract_info["effectiveTo"])
             format_effective = effective_to.strftime("%d %B %Y")
             contract["contractInfo"]["effectiveToFormatted"] = format_effective
 
@@ -286,90 +245,67 @@ def advantage_view(**kwargs):
 def advantage_shop_view(**kwargs):
     is_test_backend = kwargs.get("test_backend")
     api_url = kwargs.get("api_url")
-    stripe_publishable_key = kwargs["stripe_publishable_key"]
+    stripe_publishable_key = kwargs.get("stripe_publishable_key")
     token = kwargs.get("token")
 
     account = None
     previous_purchase_ids = {"monthly": "", "yearly": ""}
+    advantage = UAContractsAPI(
+        session, None, api_url=api_url, is_for_view=True
+    )
 
     if user_info(flask.session):
-        advantage = UAContractsAPI(session, token, api_url=api_url)
+        advantage = UAContractsAPI(
+            session, token, api_url=api_url, is_for_view=True
+        )
 
         if flask.session.get("guest_authentication_token"):
             flask.session.pop("guest_authentication_token")
 
         try:
             account = advantage.get_purchase_account()
-        except HTTPError as err:
-            code = err.response.status_code
-            if code == 401:
-                # We got an unauthorized request, so we likely
-                # need to re-login to refresh the macaroon
-                flask.current_app.extensions["sentry"].captureException(
-                    extra={
-                        "session_keys": flask.session.keys(),
-                        "request_url": err.request.url,
-                        "request_headers": err.request.headers,
-                        "response_headers": err.response.headers,
-                        "response_body": err.response.json(),
-                        "response_code": err.response.json()["code"],
-                        "response_message": err.response.json()["message"],
-                    }
-                )
-
-                empty_session(flask.session)
-
-                return flask.render_template(
-                    "advantage/subscribe/index.html",
-                    account=None,
-                    previous_purchase_ids=previous_purchase_ids,
-                    product_listings=[],
-                    stripe_publishable_key=stripe_publishable_key,
-                    is_test_backend=is_test_backend,
-                )
-            if code != 404:
-                raise
+        except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later, but this is an expected
             # condition.
-    else:
-        advantage = UAContractsAPI(session, None, api_url=api_url)
 
-    if account is not None:
-        subscriptions = advantage.get_account_subscriptions_for_marketplace(
-            account_id=account["id"],
-            marketplace="canonical-ua",
-            filters={"status": "active"},
-        )
+            pass
 
-        for subscription in subscriptions:
-            period = subscription["subscription"]["period"]
-            previous_purchase_ids[period] = subscription["lastPurchaseID"]
+        if account:
+            subscriptions = advantage.get_account_subscriptions(
+                account_id=account["id"],
+                marketplace="canonical-ua",
+                filters={"status": "active"},
+            )
 
-    listings_response = advantage.get_marketplace_product_listings(
-        "canonical-ua"
-    )
-    product_listings = listings_response.get("productListings")
+            for subscription in subscriptions:
+                period = subscription["subscription"]["period"]
+                previous_purchase_ids[period] = subscription["lastPurchaseID"]
+
+    listings = advantage.get_product_listings("canonical-ua")
+    product_listings = listings.get("productListings")
     if not product_listings:
         # For the time being, no product listings means the shop has not been
         # activated, so fallback to shopify. This should become an error later.
         return flask.redirect("https://buy.ubuntu.com/")
 
-    products = {pr["id"]: pr for pr in listings_response["products"]}
-    listings = []
+    products = {product["id"]: product for product in listings["products"]}
+
+    website_listing = []
     for listing in product_listings:
         if "price" not in listing:
             continue
+
         listing["product"] = products[listing["productID"]]
-        listings.append(listing)
+        website_listing.append(listing)
 
     return flask.render_template(
         "advantage/subscribe/index.html",
+        is_test_backend=is_test_backend,
+        stripe_publishable_key=stripe_publishable_key,
         account=account,
         previous_purchase_ids=previous_purchase_ids,
-        product_listings=listings,
-        stripe_publishable_key=stripe_publishable_key,
-        is_test_backend=is_test_backend,
+        product_listings=website_listing,
     )
 
 
@@ -384,40 +320,19 @@ def advantage_payment_methods_view(**kwargs):
 
     try:
         account = advantage.get_purchase_account()
-        account_id = account["id"]
-        account_info = advantage.get_customer_info(account_id)
+    except UAContractsUserHasNoAccount as error:
+        raise UAContractsAPIError(error)
 
-        customer_info = account_info["customerInfo"]
-        default_payment_method = customer_info["defaultPaymentMethod"]
-
-    except HTTPError as http_error:
-        if http_error.response.status_code == 401:
-            # We got an unauthorized request, so we likely
-            # need to re-login to refresh the macaroon
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "session_keys": flask.session.keys(),
-                    "request_url": http_error.request.url,
-                    "request_headers": http_error.request.headers,
-                    "response_headers": http_error.response.headers,
-                    "response_body": http_error.response.json(),
-                    "response_code": http_error.response.json()["code"],
-                    "response_message": http_error.response.json()["message"],
-                }
-            )
-
-            empty_session(flask.session)
-
-            return flask.redirect("/advantage")
-
-        raise http_error
+    account_info = advantage.get_customer_info(account["id"])
+    customer_info = account_info["customerInfo"]
+    default_payment_method = customer_info["defaultPaymentMethod"]
 
     return flask.render_template(
         "advantage/payment-methods/index.html",
         stripe_publishable_key=stripe_publishable_key,
         is_test_backend=is_test_backend,
         default_payment_method=default_payment_method,
-        account_id=account_id,
+        account_id=account["id"],
     )
 
 
@@ -453,24 +368,11 @@ def post_advantage_subscriptions(preview, **kwargs):
 
     current_subscription = {}
     if user_info(flask.session):
-        try:
-            subscriptions = (
-                advantage.get_account_subscriptions_for_marketplace(
-                    account_id=account_id,
-                    marketplace="canonical-ua",
-                    filters={"status": "active"},
-                )
-            )
-        except HTTPError:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={"payload": kwargs}
-            )
-            return (
-                flask.jsonify(
-                    {"error": "could not retrieve account subscriptions"}
-                ),
-                500,
-            )
+        subscriptions = advantage.get_account_subscriptions(
+            account_id=account_id,
+            marketplace="canonical-ua",
+            filters={"status": "active"},
+        )
 
         for subscription in subscriptions:
             if subscription["subscription"]["period"] == period:
@@ -516,22 +418,8 @@ def post_advantage_subscriptions(preview, **kwargs):
             purchase = advantage.preview_purchase_from_marketplace(
                 marketplace="canonical-ua", purchase_request=purchase_request
             )
-    except HTTPError as http_error:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "purchase_request": purchase_request,
-                "api_response": http_error.response.json(),
-            }
-        )
-        return (
-            flask.jsonify(
-                {
-                    "purchase_request": purchase_request,
-                    "api_response": http_error.response.json(),
-                }
-            ),
-            500,
-        )
+    except CannotCancelLastContractError as error:
+        raise UAContractsAPIError(error)
 
     return flask.jsonify(purchase), 200
 
@@ -547,29 +435,16 @@ def cancel_advantage_subscriptions(**kwargs):
 
     advantage = UAContractsAPI(session, token, api_url=api_url)
 
-    try:
-        monthly_subscriptions = (
-            advantage.get_account_subscriptions_for_marketplace(
-                account_id=account_id,
-                marketplace="canonical-ua",
-                filters={"status": "active", "period": "monthly"},
-            )
-        )
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={"payload": kwargs}
-        )
-        return (
-            flask.jsonify(
-                {"error": "could not retrieve account subscriptions"}
-            ),
-            500,
-        )
+    monthly_subscriptions = advantage.get_account_subscriptions(
+        account_id=account_id,
+        marketplace="canonical-ua",
+        filters={"status": "active", "period": "monthly"},
+    )
 
-    if not monthly_subscriptions.get("subscriptions"):
+    if not monthly_subscriptions:
         return flask.jsonify({"error": "no monthly subscriptions found"}), 400
 
-    monthly_subscription = monthly_subscriptions.get("subscriptions")[0]
+    monthly_subscription = monthly_subscriptions[0]
 
     purchase_request = {
         "accountID": account_id,
@@ -590,36 +465,14 @@ def cancel_advantage_subscriptions(**kwargs):
             marketplace="canonical-ua", purchase_request=purchase_request
         )
     except CannotCancelLastContractError:
-        try:
-            advantage.cancel_subscription(
-                subscription_id=monthly_subscription["subscription"]["id"]
-            )
-
-            return (
-                flask.jsonify({"message": "Subscription Cancelled"}),
-                200,
-            )
-        except HTTPError as http_error:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "subscription": monthly_subscription,
-                    "api_response": http_error.response.json(),
-                }
-            )
-
-            return (
-                flask.jsonify({"error": "could not cancel subscription"}),
-                500,
-            )
-    except HTTPError as http_error:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "purchase_request": purchase_request,
-                "api_response": http_error.response.json(),
-            }
+        advantage.cancel_subscription(
+            subscription_id=monthly_subscription["subscription"]["id"]
         )
 
-        return flask.jsonify({"error": "purchase failed"}), 500
+        return (
+            flask.jsonify({"message": "Subscription Cancelled"}),
+            200,
+        )
 
     return flask.jsonify(purchase), 200
 
@@ -651,21 +504,7 @@ def post_payment_method(**kwargs):
 
     advantage = UAContractsAPI(session, token, api_url=api_url)
 
-    try:
-        return advantage.put_payment_method(account_id, payment_method_id)
-    except HTTPError as http_error:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "payment_method_id": payment_method_id,
-                "api_response": http_error.response.json(),
-            }
-        )
-        return (
-            flask.jsonify(
-                {"error": "could not update default payment method"}
-            ),
-            500,
-        )
+    return advantage.put_payment_method(account_id, payment_method_id)
 
 
 @advantage_checks(check_list=["need_user"])
@@ -676,57 +515,20 @@ def post_auto_renewal_settings(**kwargs):
     should_auto_renew = kwargs.get("should_auto_renew", False)
 
     advantage = UAContractsAPI(session, token, api_url=api_url)
-
-    try:
-        accounts = advantage.get_accounts()
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
-        return (
-            flask.jsonify({"error": "could not retrieve accounts"}),
-            500,
-        )
+    accounts = advantage.get_accounts()
 
     for account in accounts:
-        try:
-            monthly_subscriptions = (
-                advantage.get_account_subscriptions_for_marketplace(
-                    account_id=account["id"],
-                    marketplace="canonical-ua",
-                    filters={"status": "active", "period": "monthly"},
-                )
-            )
-        except HTTPError:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={"account_id": account["id"]}
-            )
-            return (
-                flask.jsonify(
-                    {"error": "could not retrieve account subscriptions"}
-                ),
-                500,
-            )
+        monthly_subscriptions = advantage.get_account_subscriptions(
+            account_id=account["id"],
+            marketplace="canonical-ua",
+            filters={"status": "active", "period": "monthly"},
+        )
 
         for subscription in monthly_subscriptions:
-            try:
-                advantage.post_subscription_auto_renewal(
-                    subscription_id=subscription["subscription"]["id"],
-                    should_auto_renew=should_auto_renew,
-                )
-            except HTTPError as http_error:
-                flask.current_app.extensions["sentry"].captureException(
-                    extra={
-                        "subscription_id": subscription["subscription"]["id"],
-                        "api_response": http_error.response.json(),
-                    }
-                )
-                return (
-                    flask.jsonify(
-                        {
-                            "error": "could not change auto renewal settings",
-                        }
-                    ),
-                    500,
-                )
+            advantage.post_subscription_auto_renewal(
+                subscription_id=subscription["subscription"]["id"],
+                should_auto_renew=should_auto_renew,
+            )
 
     return (
         flask.jsonify({"message": "subscription renewal status was changed"}),
@@ -879,23 +681,13 @@ def _prepare_monthly_info(monthly_info, subscription, advantage):
     )
 
     last_purchase_id = subscription["lastPurchaseID"]
+    last_purchase = advantage.get_purchase(last_purchase_id)
 
-    try:
-        last_purchase = advantage.get_purchase(last_purchase_id)
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={"last_purchase_id": last_purchase_id}
-        )
-        return (
-            flask.jsonify({"error": "could not fetch last purchase"}),
-            500,
-        )
-
-    monthly_info["last_payment_date"] = dateutil.parser.parse(
+    monthly_info["last_payment_date"] = parse(
         last_purchase["createdAt"]
     ).strftime("%d %B %Y")
     monthly_info["current_subscription_no"] = purchased_products_no
-    monthly_info["next_payment"]["date"] = dateutil.parser.parse(
+    monthly_info["next_payment"]["date"] = parse(
         subscription["subscription"]["endOfCycle"]
     ).strftime("%d %B %Y")
     monthly_info["next_payment"]["ammount"] = _get_subscription_payment_total(
@@ -923,7 +715,7 @@ def _make_renewal(advantage, contract_info):
 
     sorted_renewals = sorted(
         (r for r in renewals if r["status"] != "closed"),
-        key=lambda renewal: dateutil.parser.parse(renewal["start"]),
+        key=lambda renewal: parse(renewal["start"]),
     )
 
     if len(sorted_renewals) == 0:
@@ -942,12 +734,10 @@ def _make_renewal(advantage, contract_info):
 
     if renewal["status"] == "done":
         try:
-            renewal_modified_date = dateutil.parser.parse(
-                renewal["lastModified"]
-            )
-            oneHourAgo = datetime.now(timezone.utc) - timedelta(hours=1)
+            renewal_modified_date = parse(renewal["lastModified"])
+            one_hour_ago = datetime.now(timezone.utc) - timedelta(hours=1)
 
-            renewal["recently_renewed"] = oneHourAgo < renewal_modified_date
+            renewal["recently_renewed"] = one_hour_ago < renewal_modified_date
         except KeyError:
             renewal["recently_renewed"] = False
 
@@ -961,8 +751,8 @@ def _make_renewal(advantage, contract_info):
         return renewal
 
     # The renewal is renewable only during its time window.
-    start = dateutil.parser.parse(renewal["start"])
-    end = dateutil.parser.parse(renewal["end"])
+    start = parse(renewal["start"])
+    end = parse(renewal["end"])
     if not (start <= datetime.now(timezone.utc) <= end):
         return renewal
 

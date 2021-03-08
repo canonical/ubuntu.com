@@ -22,6 +22,12 @@ from canonicalwebteam.discourse import (
 )
 
 # Local
+from webapp.advantage.api import (
+    UAContractsAPIAuthError,
+    UAContractsAPIError,
+    UAContractsAPIErrorView,
+    UAContractsAPIAuthErrorView,
+)
 from webapp.context import (
     current_year,
     descending_years,
@@ -34,7 +40,7 @@ from webapp.context import (
     releases,
 )
 
-from webapp.advantage.parser import AdvantageValidationError
+from webapp.advantage.parser import UAContractsValidationError
 from webapp.cube.views import cube_home, cube_microcerts
 
 from webapp.views import (
@@ -78,7 +84,7 @@ from webapp.advantage.views import (
     cancel_advantage_subscriptions,
 )
 
-from webapp.login import login_handler, logout, user_info
+from webapp.login import login_handler, logout, user_info, empty_session
 from webapp.security.database import db_session
 from webapp.security.views import (
     create_notice,
@@ -140,9 +146,84 @@ def bad_request_error(error):
     return flask.render_template("400.html"), 400
 
 
-@app.errorhandler(AdvantageValidationError)
-def advantage_validation_error(error):
+@app.errorhandler(UAContractsValidationError)
+def ua_contracts_validation_error(error):
     return flask.jsonify({"errors": str(error)}), 422
+
+
+@app.errorhandler(UAContractsAPIError)
+def ua_contracts_api_error(error):
+    flask.current_app.extensions["sentry"].captureException(
+        extra={
+            "session_keys": flask.session.keys(),
+            "request_url": error.request.url,
+            "request_headers": error.request.headers,
+            "response_headers": error.response.headers,
+            "response_body": error.response.json(),
+            "response_code": error.response.json()["code"],
+            "response_message": error.response.json()["message"],
+        }
+    )
+
+    return (
+        flask.jsonify({"errors": error.response.json()["message"]}),
+        error.response.json()["code"],
+    )
+
+
+@app.errorhandler(UAContractsAPIErrorView)
+def ua_contracts_api_error_view(error):
+    flask.current_app.extensions["sentry"].captureException(
+        extra={
+            "session_keys": flask.session.keys(),
+            "request_url": error.request.url,
+            "request_headers": error.request.headers,
+            "response_headers": error.response.headers,
+            "response_body": error.response.json(),
+            "response_code": error.response.json()["code"],
+            "response_message": error.response.json()["message"],
+        }
+    )
+
+    return flask.render_template("500.html"), 500
+
+
+@app.errorhandler(UAContractsAPIAuthError)
+def ua_contracts_api_authentication_error(error):
+    flask.current_app.extensions["sentry"].captureException(
+        extra={
+            "session_keys": flask.session.keys(),
+            "request_url": error.request.url,
+            "request_headers": error.request.headers,
+            "response_headers": error.response.headers,
+            "response_body": error.response.json(),
+            "response_code": error.response.json()["code"],
+            "response_message": error.response.json()["message"],
+        }
+    )
+
+    empty_session(flask.session)
+
+    return flask.jsonify({"errors": error.response.json()["message"]}), 401
+
+
+@app.errorhandler(UAContractsAPIAuthErrorView)
+def ua_contracts_api_authentication_error_view(error):
+    flask.current_app.extensions["sentry"].captureException(
+        extra={
+            "session_keys": flask.session.keys(),
+            "request_url": error.request.url,
+            "request_headers": error.request.headers,
+            "response_headers": error.response.headers,
+            "response_body": error.response.json(),
+            "response_code": error.response.json()["code"],
+            "response_message": error.response.json()["message"],
+        }
+    )
+
+    empty_session(flask.session)
+
+    return flask.redirect(flask.request.url)
 
 
 @app.errorhandler(410)
