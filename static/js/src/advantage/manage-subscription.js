@@ -94,7 +94,7 @@ function createModal(id) {
           <li>The ${
             machineCount > 1
               ? `<strong>${machineCount} machines</strong>`
-              : "<strong>machines</strong>"
+              : "<strong>machine</strong>"
           } will stop receiving updates and services at the end of the billing period.</li>
           </ul>
         <p>Want help or advice? <a href="/contact-us">Chat with us</a>.</p>
