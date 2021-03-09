@@ -1,14 +1,11 @@
 import { resizeContract, cancelContract } from "./contracts-api.js";
 
-function cancelSubscription(id) {
-  const cancelSubscriptionButton = document.getElementById(
-    `cancel-subscription--${id}`
+function cancelSubscription(id, VPSize) {
+  const cancelSubscriptionButton = document.querySelector(
+    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
   );
   const { accountId, previousPurchaseId } = cancelSubscriptionButton.dataset;
   let contractId = id;
-  if (id.includes("--mobile")) {
-    contractId = id.replace("--mobile", "");
-  }
 
   cancelContract(accountId, previousPurchaseId, contractId)
     .then((data) => {
@@ -23,14 +20,15 @@ function cancelSubscription(id) {
     });
 }
 
-function handleUpdateClick(id) {
-  const resizeField = document.getElementById(`resize-input--${id}`);
-  const updateButton = document.getElementById(`save-changes--${id}`);
+function handleUpdateClick(id, VPSize) {
+  const resizeField = document.querySelector(
+    `#resize-input--${id}[data-viewport="${VPSize}"]`
+  );
+  const updateButton = document.querySelector(
+    `#save-changes--${id}[data-viewport="${VPSize}"]`
+  );
   const { accountId, previousPurchaseId } = updateButton.dataset;
   let contractId = id;
-  if (id.includes("--mobile")) {
-    contractId = id.replace("--mobile", "");
-  }
 
   resizeContract(accountId, previousPurchaseId, contractId, resizeField.value)
     .then((data) => {
@@ -45,9 +43,9 @@ function handleUpdateClick(id) {
     });
 }
 
-function createModal(id) {
-  const cancelSubscriptionButton = document.getElementById(
-    `cancel-subscription--${id}`
+function createModal(id, VPSize) {
+  const cancelSubscriptionButton = document.querySelector(
+    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
   );
 
   const { contractName, machineCount } = cancelSubscriptionButton.dataset;
@@ -68,7 +66,7 @@ function createModal(id) {
   confirmCancelButton.textContent = "Yes, cancel subscription";
 
   confirmCancelButton.onclick = () => {
-    cancelSubscription(id);
+    cancelSubscription(id, VPSize);
   };
 
   const confirmCancelField = document.createElement("input");
@@ -109,43 +107,57 @@ function createModal(id) {
   container.innerHTML = content;
   document.body.appendChild(container);
 
-  const fieldWrapper = document.getElementById("cancel-modal-field-wrapper");
+  const fieldWrapper = document.querySelector("#cancel-modal-field-wrapper");
   fieldWrapper.appendChild(confirmCancelField);
 
-  const buttonWrapper = document.getElementById("cancel-modal-buttons-wrapper");
+  const buttonWrapper = document.querySelector("#cancel-modal-buttons-wrapper");
   buttonWrapper.appendChild(goBackButton);
   buttonWrapper.appendChild(confirmCancelButton);
 }
 
-function handleCancelChangesClick(id) {
+function handleCancelChangesClick(id, VPSize) {
   // Hide edit options
-  const previewSection = document.getElementById(`view-mode--${id}`);
-  const editSection = document.getElementById(`edit-mode--${id}`);
+  const previewSection = document.querySelector(
+    `#view-mode--${id}[data-viewport="${VPSize}"]`
+  );
+  const editSection = document.querySelector(
+    `#edit-mode--${id}[data-viewport="${VPSize}"]`
+  );
   previewSection.classList.remove("u-hide");
   editSection.classList.add("u-hide");
 
   // Reset input and help text
-  const resizeField = document.getElementById(`resize-input--${id}`);
+  const resizeField = document.querySelector(
+    `#resize-input--${id}[data-viewport="${VPSize}"]`
+  );
   resizeField.oninput = () => {};
   resizeField.value = resizeField.defaultValue;
-  const resizeSummary = document.getElementById(`resize-summary--${id}`);
-  const newPayment = document.getElementById(`new-payment--${id}`);
-  const updateButton = document.getElementById(`save-changes--${id}`);
+  const resizeSummary = document.querySelector(
+    `#resize-summary--${id}[data-viewport="${VPSize}"]`
+  );
+  const newPayment = document.querySelector(
+    `#new-payment--${id}[data-viewport="${VPSize}"]`
+  );
+  const updateButton = document.querySelector(
+    `#save-changes--${id}[data-viewport="${VPSize}"]`
+  );
   resizeSummary.classList.add("u-hide");
   newPayment.classList.add("u-hide");
   updateButton.disabled = true;
 
   // Remove buttons handlers
-  const cancelSubscriptionButton = document.getElementById(
-    `cancel-subscription--${id}`
+  const cancelSubscriptionButton = document.querySelector(
+    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
   );
-  const cancelChangesButton = document.getElementById(`cancel-changes--${id}`);
+  const cancelChangesButton = document.querySelector(
+    `#cancel-changes--${id}[data-viewport="${VPSize}"]`
+  );
   updateButton.onclick = () => {};
   cancelChangesButton.onclick = () => {};
   if (cancelSubscriptionButton) cancelSubscriptionButton.onclick = () => {};
 }
 
-function handleChange(e, id) {
+function handleChange(e, id, VPSize) {
   const defaultValue = Number.parseInt(e.target.defaultValue);
   let newValue = Number.parseInt(e.target.value);
 
@@ -161,9 +173,15 @@ function handleChange(e, id) {
     currency: "USD",
   });
 
-  const resizeSummary = document.getElementById(`resize-summary--${id}`);
-  const newPayment = document.getElementById(`new-payment--${id}`);
-  const updateButton = document.getElementById(`save-changes--${id}`);
+  const resizeSummary = document.querySelector(
+    `#resize-summary--${id}[data-viewport="${VPSize}"]`
+  );
+  const newPayment = document.querySelector(
+    `#new-payment--${id}[data-viewport="${VPSize}"]`
+  );
+  const updateButton = document.querySelector(
+    `#save-changes--${id}[data-viewport="${VPSize}"]`
+  );
 
   const { min, max } = e.target;
 
@@ -217,34 +235,45 @@ function handleChange(e, id) {
 
 function handleChangeClick() {
   const id = this.dataset.id;
-  const updateButton = document.getElementById(`save-changes--${id}`);
-  const cancelChangesButton = document.getElementById(`cancel-changes--${id}`);
-  const cancelSubscriptionButton = document.getElementById(
-    `cancel-subscription--${id}`
+  const VPSize = this.dataset.viewport;
+  const updateButton = document.querySelector(
+    `#save-changes--${id}[data-viewport="${VPSize}"]`
   );
-  const resizeField = document.getElementById(`resize-input--${id}`);
+  const cancelChangesButton = document.querySelector(
+    `#cancel-changes--${id}[data-viewport="${VPSize}"]`
+  );
+  const cancelSubscriptionButton = document.querySelector(
+    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
+  );
+  const resizeField = document.querySelector(
+    `#resize-input--${id}[data-viewport="${VPSize}"]`
+  );
 
   // Show edit options
-  const previewSection = document.getElementById(`view-mode--${id}`);
-  const editSection = document.getElementById(`edit-mode--${id}`);
+  const previewSection = document.querySelector(
+    `#view-mode--${id}[data-viewport="${VPSize}"]`
+  );
+  const editSection = document.querySelector(
+    `#edit-mode--${id}[data-viewport="${VPSize}"]`
+  );
   previewSection.classList.add("u-hide");
   editSection.classList.remove("u-hide");
 
   resizeField.oninput = (e) => {
-    handleChange(e, id);
+    handleChange(e, id, VPSize);
   };
 
   cancelChangesButton.onclick = () => {
-    handleCancelChangesClick(id);
+    handleCancelChangesClick(id, VPSize);
   };
 
   updateButton.onclick = () => {
-    handleUpdateClick(id);
+    handleUpdateClick(id, VPSize);
   };
 
   if (cancelSubscriptionButton) {
     cancelSubscriptionButton.onclick = () => {
-      createModal(id);
+      createModal(id, VPSize);
     };
   }
 }
