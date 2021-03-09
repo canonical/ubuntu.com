@@ -108,9 +108,15 @@ def cube_microcerts():
             "/courseware/2020/start/?child=first"
         )
 
-        course[
-            "prepare_url"
-        ] = f"{edx_api.base_url}/{CUBE_CONTENT['prepare-course']}/course/"
+        course["prepare_url"] = (
+            f"{edx_api.base_url}/courses/"
+            f"{CUBE_CONTENT['prepare-course']}/course/"
+        )
+
+    has_prepare_material = CUBE_CONTENT["prepare-course"] in enrollments
+    prepare_material_url = (
+        f"{edx_api.base_url}/courses/{CUBE_CONTENT['prepare-course']}/course/"
+    )
 
     return flask.render_template(
         "cube/microcerts.html",
@@ -120,8 +126,8 @@ def cube_microcerts():
             "modules": courses,
             "passed_courses": passed_courses,
             "has_enrollments": len(enrollments) > 0,
-            "has_prepare_material": CUBE_CONTENT["prepare-course"]
-            in enrollments,
+            "has_prepare_material": has_prepare_material,
+            "prepare_material_url": prepare_material_url,
         },
     )
 

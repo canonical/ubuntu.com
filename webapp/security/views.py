@@ -1,6 +1,5 @@
 # Standard library
 import re
-from ast import literal_eval
 from collections import defaultdict
 from datetime import datetime
 from math import ceil
@@ -35,6 +34,7 @@ def notice(notice_id):
         flask.abort(404)
 
     package_descriptions = {}
+    package_versions = {}
     release_packages = SortedDict()
 
     releases = {
@@ -45,43 +45,32 @@ def notice(notice_id):
     if notice.release_packages:
         for codename, pkgs in notice.release_packages.items():
             release_version = releases[codename]
-            if notice.get_type == "USN":
-                release_packages[release_version] = []
-                for package in pkgs:
-                    if package["is_source"]:
-                        name = package["name"]
-                        if name not in package_descriptions:
-                            package_descriptions[name] = package["description"]
-                    else:
-                        release_packages[release_version].append(package)
-
-                # Order packages for release by the name key
-                release_packages[release_version].sort(
-                    key=lambda pkg: pkg["name"]
-                )
-            elif notice.get_type == "LSN":
-                release_packages[release_version] = {}
-                for package in pkgs:
-                    name = package["name"]
-                    if name not in package_descriptions:
-                        package_descriptions[name] = package["description"]
-
+            release_packages[release_version] = {}
+            for package in pkgs:
+                name = package["name"]
+                if not package["is_source"]:
                     release_packages[release_version][name] = package
+                    continue
+
+                if notice.get_type == "LSN":
+                    if name not in package_descriptions:
+                        package_versions[name] = []
+
+                    package_versions[name].append(package["version"])
+                    versions = ", >= ".join(package_versions[name])
+                    description = (
+                        f"{package['description']} - " f"(>= {versions})"
+                    )
+                    package_descriptions[name] = description
+
+                    continue
+
+                if name not in package_descriptions:
+                    package_descriptions[name] = package["description"]
 
         package_descriptions = {
             key: package_descriptions[key]
             for key in sorted(package_descriptions.keys())
-        }
-
-    instructions = ""
-    if notice.get_type == "USN":
-        instructions = markdown_parser(notice.instructions)
-    elif notice.get_type == "LSN":
-        instructions = {
-            releases[codename]: packages
-            for (codename, packages) in literal_eval(
-                notice.instructions
-            ).items()
         }
 
     notice_cve_ids = [cve.id for cve in notice.cves]
@@ -103,7 +92,7 @@ def notice(notice_id):
         "published": notice.published,
         "summary": notice.summary,
         "details": markdown_parser(notice.get_processed_details),
-        "instructions": instructions,
+        "instructions": markdown_parser(notice.instructions),
         "package_descriptions": package_descriptions,
         "release_packages": release_packages,
         "releases": notice.releases,

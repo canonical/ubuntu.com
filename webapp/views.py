@@ -1124,7 +1124,7 @@ def accept_renewal(renewal_id):
         return flask.jsonify({"error": "authentication required"}), 401
 
 
-def build_tutorials_index(tutorials_docs):
+def build_tutorials_index(session, tutorials_docs):
     def tutorials_index():
         page = flask.request.args.get("page", default=1, type=int)
         topic = flask.request.args.get("topic", default=None, type=str)
@@ -1149,6 +1149,7 @@ def build_tutorials_index(tutorials_docs):
 
         if query:
             results = get_search_results(
+                session=session,
                 api_key=search_api_key,
                 search_engine_id=search_engine_id,
                 siteSearch="ubuntu.com/tutorials",
