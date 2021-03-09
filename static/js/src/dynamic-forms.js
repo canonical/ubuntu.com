@@ -1,3 +1,5 @@
+import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
+
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     var triggeringHash = "#get-in-touch";
@@ -50,7 +52,6 @@
           setGclid();
           loadCaptchaScript();
           initialiseForm();
-          window.CaptchaCallback();
         })
         .catch(function (error) {
           console.log("Request failed", error);
@@ -420,6 +421,9 @@
       }
 
       setCheckboxLimit();
+
+      // Assign listeners to forms added after initial DOM render
+      assignMarketoBackgroundSubmit();
     }
 
     // Opens the form when the initial hash matches the trigger

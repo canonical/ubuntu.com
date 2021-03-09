@@ -17,6 +17,8 @@ from canonicalwebteam.discourse import (
     DocParser,
     EngageParser,
     EngagePages,
+    Tutorials,
+    TutorialParser,
 )
 
 # Local
@@ -263,7 +265,9 @@ app.add_url_rule(
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
-    "/search", "search", build_search_view(template_path="search.html")
+    "/search",
+    "search",
+    build_search_view(session=session, template_path="search.html"),
 )
 app.add_url_rule(
     (
@@ -452,7 +456,6 @@ url_prefix = "/server/docs"
 server_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        category_id=26,
         index_topic_id=11322,
         url_prefix=url_prefix,
     ),
@@ -469,8 +472,8 @@ app.add_url_rule(
 )
 
 tutorials_path = "/tutorials"
-tutorials_docs = Docs(
-    parser=DocParser(
+tutorials_docs = Tutorials(
+    parser=TutorialParser(
         api=discourse_api,
         category_id=34,
         index_topic_id=13611,
@@ -481,7 +484,7 @@ tutorials_docs = Docs(
     blueprint_name="tutorials",
 )
 app.add_url_rule(
-    tutorials_path, view_func=build_tutorials_index(tutorials_docs)
+    tutorials_path, view_func=build_tutorials_index(session, tutorials_docs)
 )
 tutorials_docs.init_app(app)
 
