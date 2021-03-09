@@ -1,13 +1,7 @@
 import { resizeContract, cancelContract } from "./contracts-api.js";
 
-function cancelSubscription(id, VPSize) {
-  const cancelSubscriptionButton = document.querySelector(
-    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
-  );
-  const { accountId, previousPurchaseId } = cancelSubscriptionButton.dataset;
-  let contractId = id;
-
-  cancelContract(accountId, previousPurchaseId, contractId)
+function handleAPICall(APIFunction, parameters) {
+  APIFunction(...parameters)
     .then((data) => {
       if (data.error) {
         console.error(data.error);
@@ -20,6 +14,16 @@ function cancelSubscription(id, VPSize) {
     });
 }
 
+function cancelSubscription(id, VPSize) {
+  const cancelSubscriptionButton = document.querySelector(
+    `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
+  );
+  const { accountId, previousPurchaseId } = cancelSubscriptionButton.dataset;
+  let contractId = id;
+
+  handleAPICall(cancelContract, [accountId, previousPurchaseId, contractId]);
+}
+
 function handleUpdateClick(id, VPSize) {
   const resizeField = document.querySelector(
     `#resize-input--${id}[data-viewport="${VPSize}"]`
@@ -30,17 +34,12 @@ function handleUpdateClick(id, VPSize) {
   const { accountId, previousPurchaseId } = updateButton.dataset;
   let contractId = id;
 
-  resizeContract(accountId, previousPurchaseId, contractId, resizeField.value)
-    .then((data) => {
-      if (data.error) {
-        console.error(data.error);
-      } else {
-        location.reload();
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  handleAPICall(resizeContract, [
+    accountId,
+    previousPurchaseId,
+    contractId,
+    resizeField.value,
+  ]);
 }
 
 function createModal(id, VPSize) {
