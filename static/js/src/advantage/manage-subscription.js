@@ -160,11 +160,12 @@ function handleChange(e, id, VPSize) {
   const defaultValue = Number.parseInt(e.target.defaultValue);
   let newValue = Number.parseInt(e.target.value);
 
-  const unitPrice = Number.parseFloat(e.target.dataset.unitPrice.split(" ")[0]);
-  const nextPayment = Number.parseFloat(
-    e.target.dataset.nextPayment.split(" ")[0]
-  );
-
+  // const unitPrice = Number.parseFloat(e.target.dataset.unitPrice.split(" ")[0]);
+  // const nextPayment = Number.parseFloat(
+  //   e.target.dataset.nextPayment.split(" ")[0]
+  // );
+  const unitPrice = 10;
+  const nextPayment = 1000;
   const billingPeriod = e.target.dataset.billingPeriod;
 
   const formatter = new Intl.NumberFormat("en-US", {
@@ -194,35 +195,33 @@ function handleChange(e, id, VPSize) {
     e.target.value = max;
   }
 
-  if (newValue !== defaultValue) {
+  const deltaMachines = newValue - defaultValue;
+
+  if (deltaMachines !== 0) {
     resizeSummary.classList.remove("u-hide");
     newPayment.classList.remove("u-hide");
     updateButton.disabled = false;
 
-    if (newValue > defaultValue) {
-      resizeSummary.innerHTML = `Your changes will add UA for ${
-        newValue - defaultValue
-      } machines`;
+    if (deltaMachines > 0) {
+      resizeSummary.innerHTML = `Your changes will add UA for ${deltaMachines} machines`;
       newPayment.innerHTML = `Your ${billingPeriod} payment will be <strong>increased by ${formatter.format(
-        unitPrice * (newValue - defaultValue)
-      )}, to ${formatter.format(
-        unitPrice * (newValue - defaultValue) + nextPayment
-      )} ${
+        unitPrice * deltaMachines
+      )}, to ${formatter.format(unitPrice * deltaMachines + nextPayment)} ${
         billingPeriod === "monthly"
           ? "per month</strong>."
           : `per year</strong>. <br/>A payment of ${formatter.format(
-              unitPrice * (newValue - defaultValue)
+              unitPrice * deltaMachines
             )} will be charged immediately`
       }`;
     } else {
       //Downsizing is only for monthly contracts
       resizeSummary.innerHTML = `Your changes will remove UA for ${
-        defaultValue - newValue
+        deltaMachines * -1
       } machines`;
       newPayment.innerHTML = `Your monthly payment will be <strong>reduced by ${formatter.format(
-        unitPrice * (defaultValue - newValue)
+        unitPrice * (deltaMachines * -1)
       )}, to ${formatter.format(
-        unitPrice * (newValue - defaultValue) + nextPayment
+        unitPrice * deltaMachines + nextPayment
       )} per month</strong>. <br/>Unused credit will be applied to next month’s invoice.`;
     }
   } else {
