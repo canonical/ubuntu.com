@@ -1238,6 +1238,7 @@ def build_engage_index(engage_docs):
             preview=preview,
             posts_per_page=posts_per_page,
             total_pages=total_pages,
+            errors=engage_docs.parser.engage_page_errors
         )
 
     return engage_index
