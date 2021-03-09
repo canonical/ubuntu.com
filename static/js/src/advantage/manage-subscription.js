@@ -88,7 +88,7 @@ function createModal(id) {
         </h2>
       </header>
       <div id="modal-description" class="p-modal__body">
-        <p>if you cancel this subscription:</p>
+        <p>If you cancel this subscription:</p>
         <ul>
           <li>No additional charge will be incurred.</li>
           <li>The ${
