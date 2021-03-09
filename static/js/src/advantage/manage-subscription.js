@@ -51,6 +51,7 @@ function createModal(id, VPSize) {
   const { contractName, machineCount } = cancelSubscriptionButton.dataset;
 
   const container = document.createElement("div");
+  container.classList.add("p-modal");
 
   const goBackButton = document.createElement("button");
   goBackButton.classList.add("p-button--neutral");
@@ -77,7 +78,6 @@ function createModal(id, VPSize) {
     confirmCancelButton.disabled = e.target.value.toLowerCase() !== "cancel";
   };
 
-  container.classList.add("p-modal");
   const content = `
     <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" style="overflow: auto;">
       <header class="p-modal__header">
