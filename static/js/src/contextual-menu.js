@@ -1,5 +1,5 @@
 function toggleMenu(element, show) {
-  const dropdown = element.nextElementSibling;
+  const dropdown = element.getAttribute("aria-controls");
 
   element.setAttribute("aria-expanded", show);
   dropdown.setAttribute("aria-hidden", !show);

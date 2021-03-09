@@ -73,25 +73,6 @@
     </div>
   </div>
 
-  {% if notice.release_packages %}
-    <div class="row">
-      <div class="col-8">
-        <h2>Support Information</h2>
-        <p>Kernels older than the levels listed below do not receive livepatch updates. If you are running a kernel version earlier than the one listed below, please upgrade your kernel as soon as possible.</p>
-        {% for release_version, packages in notice.instructions.items() %}
-        <h3 class="p-heading--five">Ubuntu {{ release_version }}</h3>
-          <ul class="p-list">
-            {% for name, version in packages.items() %}
-              <li class="p-list__item">
-                <strong>{{ name }}</strong> - {{ version }}
-              </li>
-            {% endfor %}
-          </ul>
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
-
   {% if notice.cves or notice.references %}
   <div class="row">
     <div class="col-8">

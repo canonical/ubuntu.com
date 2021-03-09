@@ -47,7 +47,7 @@
       {% for version in notice.release_packages.__reversed__() %}
         <h5>Ubuntu {{ version }}</h5>
         <ul class="p-list">
-          {% for package in notice.release_packages[version] %}
+          {% for package_name, package in notice.release_packages[version].items() %}
             <li class="p-list__item">
               {% if package.source_link %}
                 <a href="{{package.source_link}}">{{ package.name }}</a>
