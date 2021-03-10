@@ -24,6 +24,15 @@
 {% endmacro %}
 
 {% block outer_content %}
+<section id="search-docs" class="p-strip--light is-shallow">
+  <div class="row">
+    <form class="p-search-box u-no-margin--bottom" action="/docs/search">
+      <input type="search" class="p-search-box__input" name="q" {% if query %}value="{{ query }}"{% endif %} placeholder="Search documentation" required/>
+      <button type="submit" class="p-search-box__button" alt="search"><i class="p-icon--search">Search</i></button>
+    </form>
+  </div>
+</section>
+
 <div class="p-strip is-shallow">
   <div class="row">
     <aside class="col-3">

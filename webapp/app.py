@@ -586,10 +586,22 @@ core_als_autils_docs = Docs(
 )
 core_als_autils_docs.init_app(app)
 
+# Core docs search
+app.add_url_rule(
+    "/docs/search",
+    "core-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/core/docs",
+        template_path="templates/docs/search.html"
+    ),
+)
+
 # Cube docs
 app.add_url_rule("/cube", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 
+# Openstack docs
 openstack_docs = Docs(
     parser=DocParser(
         api=discourse_api,
