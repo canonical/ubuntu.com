@@ -387,6 +387,27 @@ summary {
       margin-right: 1rem;
     }
   }
+
+  .advantage-table-instruction {
+    margin: 1.5rem 0;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 2rem;
+    grid-row-gap: 0.5rem;
+
+    > span {
+      grid-column: 1;
+      color: $color-mid-dark;
+    }
+    > code {
+      grid-column: 2;
+    }
+    > hr {
+      grid-column: span 2;
+      margin: 0;
+    }
+  }
 }
 
 // Advantage section
