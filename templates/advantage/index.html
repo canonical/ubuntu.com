@@ -126,6 +126,21 @@
               </div>
               {% endif %}
             </div>
+            <div class="row">
+              {% with mobile="true" %}
+
+                {% if contract["period"] == "monthly" %}
+
+                  {% include "advantage/table/_manage-monthly.html" %}
+
+                {% else %}
+                
+                  {% include "advantage/table/_manage-yearly.html" %}
+
+                {% endif %}
+
+              {% endwith %}
+            </div>
             <div class="row p-card__content">
               <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Created on:</div>
               <div class="col-small-2 col-medium-3 u-align--left">{{ contract['contractInfo']['createdAtFormatted'] }}</div>
@@ -340,22 +355,15 @@
                       </td>
                       <td id="expanded-details-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if open_subscription == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
                         <div class="row">
-                          <div class="col-12 u-align--center">
-                            <table class="p-table--advantage-contract">
-                              <tr>
-                                <td class="u-align--right">Created on:</td>
-                                <td class="u-align--left"><strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></td>
-                              </tr>
+                          {% if contract["period"] == "monthly" %}
 
-                              {% if contract['contractInfo']['effectiveTo'] %}
-                                {% include "advantage/table/_expiry-date.html" %}
-                              {% endif %}
+                            {% include "advantage/table/_manage-monthly.html" %}
 
-                              {% if contract["renewal"] %}
-                                {% include "advantage/table/_renewal-actions.html" %}
-                              {% endif %}
-                            </table>
-                          </div>
+                          {% else %}
+                          
+                            {% include "advantage/table/_manage-yearly.html" %}
+
+                          {% endif %}
                         </div>
                       </td>
 
@@ -565,6 +573,7 @@
 </script>
 
 <script src="{{ versioned_static('js/src/advantage/auto-renewal.js') }}" type="module" defer></script>
+<script src="{{ versioned_static('js/src/advantage/manage-subscription.js') }}" type="module" defer></script>
 
 
 {% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
