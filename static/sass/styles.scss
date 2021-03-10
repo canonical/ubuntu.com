@@ -388,6 +388,12 @@ summary {
     }
   }
 
+  .advantage-table-section {
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
+
   .advantage-table-instruction {
     margin: 1.5rem 0;
 
@@ -400,12 +406,18 @@ summary {
       grid-column: 1;
       color: $color-mid-dark;
     }
-    > code {
+    > code,
+    > a {
       grid-column: 2;
+      padding-left: 0;
     }
     > hr {
       grid-column: span 2;
       margin: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
