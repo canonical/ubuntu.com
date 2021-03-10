@@ -436,9 +436,21 @@ server_docs = Docs(
         index_topic_id=11322,
         url_prefix=url_prefix,
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/server/docs/document.html",
     url_prefix=url_prefix,
 )
+
+# Server docs search
+app.add_url_rule(
+    "/server/docs/search",
+    "server-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/server/docs",
+        template_path="/server/docs/search-results.html",
+    ),
+)
+
 server_docs.init_app(app)
 
 # Allow templates to be queried from discourse.ubuntu.com
@@ -470,11 +482,22 @@ ceph_docs = Docs(
     parser=DocParser(
         api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/ceph/docs/document.html",
     url_prefix="/ceph/docs",
     blueprint_name="ceph",
 )
 ceph_docs.init_app(app)
+
+# Ceph docs search
+app.add_url_rule(
+    "/ceph/docs/search",
+    "ceph-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/ceph/docs",
+        template_path="ceph/docs/search-results.html",
+    ),
+)
 
 app.add_url_rule(
     "/engage/<page>/thank-you",
@@ -492,11 +515,22 @@ core_docs = Docs(
     parser=DocParser(
         api=discourse_api, index_topic_id=19764, url_prefix="/core/docs"
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs",
     blueprint_name="core",
 )
+# Core docs search
+app.add_url_rule(
+    "/core/docs/search",
+    "core-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/core/docs",
+        template_path="/core/docs/search-results.html",
+    ),
+)
 core_docs.init_app(app)
+
 # Core docs - Modem Manager
 core_modem_manager_docs = Docs(
     parser=DocParser(
@@ -504,7 +538,7 @@ core_modem_manager_docs = Docs(
         index_topic_id=19901,
         url_prefix="/core/docs/modem-manager",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/modem-manager",
     blueprint_name="modem-manager",
 )
@@ -515,7 +549,7 @@ core_bluetooth_docs = Docs(
     parser=DocParser(
         api=discourse_api, index_topic_id=19971, url_prefix="/core/docs/bluez"
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/bluez",
     blueprint_name="bluez",
 )
@@ -528,7 +562,7 @@ core_network_manager_docs = Docs(
         index_topic_id=19917,
         url_prefix="/core/docs/networkmanager",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/networkmanager",
     blueprint_name="networkmanager",
 )
@@ -541,7 +575,7 @@ core_wpa_supplicant_docs = Docs(
         index_topic_id=19943,
         url_prefix="/core/docs/wpa-supplicant",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/wpa-supplicant",
     blueprint_name="wpa-supplicant",
 )
@@ -554,7 +588,7 @@ core_easy_openvpn_docs = Docs(
         index_topic_id=19950,
         url_prefix="/core/docs/easy-openvpn",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/easy-openvpn",
     blueprint_name="easy-openvpn",
 )
@@ -567,7 +601,7 @@ core_wifi_ap_docs = Docs(
         index_topic_id=19959,
         url_prefix="/core/docs/wifi-ap",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/wifi-ap",
     blueprint_name="wifi-ap",
 )
@@ -580,38 +614,39 @@ core_als_autils_docs = Docs(
         index_topic_id=19995,
         url_prefix="/core/docs/alsa-utils",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/alsa-utils",
     blueprint_name="alsa-utils",
 )
 core_als_autils_docs.init_app(app)
 
-# Core docs search
-app.add_url_rule(
-    "/docs/search",
-    "core-docs-search",
-    build_search_view(
-        session=session,
-        site="ubuntu.com/core/docs",
-        template_path="templates/docs/search.html"
-    ),
-)
-
 # Cube docs
 app.add_url_rule("/cube", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 
-# Openstack docs
+# Charmed OpenStack docs
 openstack_docs = Docs(
     parser=DocParser(
         api=discourse_api,
         index_topic_id=20990,
         url_prefix="/openstack/docs",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="openstack/docs/document.html",
     url_prefix="/openstack/docs",
     blueprint_name="openstack-docs",
 )
+
+# Charmed OpenStack docs search
+app.add_url_rule(
+    "/openstack/docs/search",
+    "openstack-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/openstack/docs",
+        template_path="openstack/docs/search-results.html",
+    ),
+)
+
 openstack_docs.init_app(app)
 
 

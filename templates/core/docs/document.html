@@ -1,0 +1,10 @@
+{% with
+  document=document,
+  nav_items=nav_items,
+  search_action="/core/docs/search",
+  siteSearch="https://ubuntu.com/core/docs",
+  placeholder="Search on Ubuntu Core Docs",
+  navigation=navigation
+%}
+  {% include "templates/docs/shared/_docs.html" %}
+{% endwith %}

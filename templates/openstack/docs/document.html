@@ -1,0 +1,10 @@
+{% with
+  document=document,
+  nav_items=nav_items,
+  search_action="/openstack/docs/search",
+  siteSearch="https://ubuntu.com/openstack/docs",
+  placeholder="Search on Charmed Openstack Docs",
+  navigation=navigation
+%}
+  {% include "templates/docs/shared/_docs.html" %}
+{% endwith %}
