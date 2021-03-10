@@ -160,12 +160,10 @@ function handleChange(e, id, VPSize) {
   const defaultValue = Number.parseInt(e.target.defaultValue);
   let newValue = Number.parseInt(e.target.value);
 
-  // const unitPrice = Number.parseFloat(e.target.dataset.unitPrice.split(" ")[0]);
-  // const nextPayment = Number.parseFloat(
-  //   e.target.dataset.nextPayment.split(" ")[0]
-  // );
-  const unitPrice = 10;
-  const nextPayment = 1000;
+  const unitPrice = Number.parseFloat(e.target.dataset.unitPrice.split(" ")[0]);
+  const nextPayment = Number.parseFloat(
+    e.target.dataset.nextPayment.split(" ")[0]
+  );
   const billingPeriod = e.target.dataset.billingPeriod;
 
   const formatter = new Intl.NumberFormat("en-US", {
