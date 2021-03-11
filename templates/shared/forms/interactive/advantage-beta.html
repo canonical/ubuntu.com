@@ -5,21 +5,21 @@
       <h2 class="p-modal__title  u-sv1" id="modal-title">Register your interest for the Ubuntu Pro on-prem beta</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <p>In 2020, Canonical launched Ubuntu Pro for comprehensive security and compliance for Azure and AWS production environments, and <strong>now is extending Ubuntu Pro to be available on-prem through a beta programme</strong>. This programme will give Ubuntu users a free, one-month subscription to Ubuntu Pro - please register your interest below to learn more.</p>
+      <p>In 2020, Canonical launched Ubuntu Pro for comprehensive security and compliance for Azure and AWS production environments, and <strong>now is extending Ubuntu Pro to be available on-prem through a beta programme</strong>. This programme will give Ubuntu users a free, one-month subscription to Ubuntu Pro &mdash; please register your interest below to learn more.</p>
       <div class="js-formfield">
         <h3 class="p-heading--five">Which Ubuntu LTS are you using?</h3>
         <div class="row u-no-padding u-equal-height">
           <div class="col-4 u-sv3">
             <input type="checkbox" id="which-ubuntu-Xenial">
-            <label for="which-ubuntu-Xenial">Xenial</label>
+            <label for="which-ubuntu-Xenial">16.04 (Xenial)</label>
           </div>
           <div class="col-4 u-sv3">
             <input type="checkbox" id="which-ubuntu-Bionic">
-            <label for="which-ubuntu-Bionic">Bionic</label>
+            <label for="which-ubuntu-Bionic">18.04 (Bionic)</label>
           </div>
           <div class="col-4 u-sv3">
             <input type="checkbox" id="which-ubuntu-Focal">
-            <label for="which-ubuntu-Focal">Focal</label>
+            <label for="which-ubuntu-Focal">20.04 (Focal)</label>
           </div>
         </div>
       </div>
@@ -63,26 +63,30 @@
             <label for="packages-libonig">libonig</label>
             <input type="checkbox" id="packages-zeromq3">
             <label for="packages-zeromq3">zeromq3</label>
+            <div class="col-4 u-sv3">
+              <div class="js-other-container">
+                <input type="checkbox" class="js-other-container__checkbox" id="packages-other">
+                <label for="packages-other">Other</label>
+                <input type="text" id="packages-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other Board">
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="js-formfield">
-        <h3 class="p-heading--five">Where do you get your open source from?</h3>
+        <h3 class="p-heading--five">Where do you get your open source software from?</h3>
         <div class="row u-no-padding u-equal-height">
           <div class="col-4 u-sv3">
             <input type="checkbox" id="open-source-from-Ubuntu-repositories">
             <label for="open-source-from-Ubuntu-repositories">Ubuntu repositories</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="open-source-from-Github">
-            <label for="open-source-from-Github">Github</label>
+            <input type="checkbox" id="open-source-from-Upstream-packages">
+            <label for="open-source-from-Upstream-packages">Upstream packages</label>
           </div>
           <div class="col-4 u-sv3">
-            <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="open-source-from-other">
-              <label for="open-source-from-other">Other</label>
-              <input type="text" id="open-source-from-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other Board">
-            </div>
+            <input type="checkbox" id="open-source-from-Github">
+            <label for="open-source-from-Github">Github</label>
           </div>
         </div>
       </div>
