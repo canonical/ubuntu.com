@@ -138,7 +138,7 @@
               <ul class="p-accordion__list u-no-margin--bottom">
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="esm-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="esm-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">ESM</div>
+                    <div class="col-small-2 col-medium-3" style="margin-left: 3rem">ESM</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
                       <span>
@@ -159,7 +159,7 @@
                 </li>
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Livepatch</div>
+                    <div class="col-small-2 col-medium-3" style="margin-left: 3rem">Livepatch</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['livepatch'] == True %}
                       <span>
@@ -179,7 +179,7 @@
                 </li>
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Certifications</div>
+                    <div class="col-small-2 col-medium-3" style="margin-left: 3rem">Certifications</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
                       <span>
