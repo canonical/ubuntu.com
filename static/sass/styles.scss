@@ -363,7 +363,6 @@ summary {
 
   .change-subscription {
     display: flex;
-    margin-top: 2rem;
 
     > button {
       margin-left: 1.2rem;
@@ -387,45 +386,62 @@ summary {
       margin-right: 1rem;
     }
   }
+}
 
-  .advantage-table-section {
+.advantage-table-section {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  @media only screen and (min-width: $breakpoint-medium) {
     &:not(:last-child) {
       margin-bottom: 3rem;
     }
   }
+}
 
-  .advantage-table-instruction {
+.advantage-table-instruction {
+  margin: 1rem 0;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 2rem;
+  grid-row-gap: 0.5rem;
+
+  > span {
+    grid-column: 1;
+    color: $color-mid-dark;
+  }
+
+  > code,
+  > a,
+  > p {
+    grid-column: 2;
+    align-self: flex-start;
+    padding-left: 0;
+  }
+
+  > p {
+    padding: 0;
+    margin: 0;
+  }
+
+  > hr {
+    display: none;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    grid-template-columns: auto 2fr;
     margin: 1.5rem 0;
 
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-column-gap: 2rem;
-    grid-row-gap: 0.5rem;
-
-    > span {
-      grid-column: 1;
-      color: $color-mid-dark;
-    }
-
-    > code,
-    > a,
-    > p {
-      grid-column: 2;
-      padding-left: 0;
-    }
-
-    > p {
-      padding: 0;
-      margin: 0;
-    }
-
     > hr {
+      display: block;
       grid-column: span 2;
       margin: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
     }
   }
 }
