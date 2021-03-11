@@ -1291,7 +1291,7 @@ export var kubernetesReleases = [
   },
   {
     startDate: new Date("2020-03-24T00:00:00"),
-    endDate: new Date("2021-02-23T00:00:00"),
+    endDate: new Date("2021-04-08T00:00:00"),
     taskName: "Kubernetes 1.18",
     status: "CHARMED_KUBERNETES_SUPPORT",
   },
