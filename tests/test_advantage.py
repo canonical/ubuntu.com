@@ -2,7 +2,7 @@ import unittest
 
 from requests.exceptions import HTTPError
 
-from webapp import advantage
+from webapp.advantage.api import UAContractsAPI, UnauthorizedError
 
 
 class Response:
@@ -34,7 +34,7 @@ class Session:
 
 def make_client(session: Session):
     """Create and return a ua-contracts client for tests."""
-    return advantage.AdvantageContracts(
+    return UAContractsAPI(
         session,
         "secret-token",
         token_type="Bearer",
@@ -99,7 +99,7 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
             )
         )
         client = make_client(session)
-        with self.assertRaises(advantage.UnauthorizedError) as ctx:
+        with self.assertRaises(UnauthorizedError) as ctx:
             client.ensure_purchase_account(
                 email="picard@enterprise",
                 account_name="jeanluc",
@@ -154,7 +154,7 @@ class TestGetPurchaseAccount(unittest.TestCase):
 
 class TestUnauthorizedError(unittest.TestCase):
 
-    err = advantage.UnauthorizedError("bad wolf", "end of the universe")
+    err = UnauthorizedError("bad wolf", "end of the universe")
 
     def test_str(self):
         """The error is well represented as a string."""
