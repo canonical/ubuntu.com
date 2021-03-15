@@ -36,7 +36,7 @@ post_advantage_subscriptions = {
 cancel_advantage_subscriptions = {
     "account_id": String(required=True),
     "previous_purchase_id": String(required=True),
-    "product_listings": String(required=True),
+    "product_listing_id": String(required=True),
 }
 
 post_anonymised_customer_info = {
