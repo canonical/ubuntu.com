@@ -389,7 +389,7 @@ def update_notice(notice_id):
     """
     PUT method to update a single notice
     """
-    notice = db_session.query(Notice).get(notice_id)
+    notice = db_session.query(Notice).without_default_filters().get(notice_id)
 
     if not notice:
         return (
@@ -425,7 +425,7 @@ def delete_notice(notice_id):
     """
     DELETE method to delete a single notice
     """
-    notice = db_session.query(Notice).get(notice_id)
+    notice = db_session.query(Notice).without_default_filters().get(notice_id)
 
     if not notice:
         return (
