@@ -9,8 +9,7 @@
     {% endif %}
 
     <div class="change-subscription {% if mobile %}u-align--center{% endif %}">
-      <p>Auto-renewal {% if subscriptions['is_auto_renewal_enabled'] %}enabled{% else %}disabled{% endif %}</p>
-      <button class="p-button--neutral js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}">Change subscription</button>
+      <button class="p-button--neutral u-no-margin--left js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}">Change subscription</button>
     </div>
   </div>
 </div>
@@ -34,10 +33,10 @@
       <input 
         id="resize-input--{{contract["contractInfo"]["id"]}}" 
         type="number" 
-        value="{{ contract['machineCount']['allowed']}}" 
+        value="{{ contract['machineCount']}}" 
         data-next-payment="{{subscriptions["next_payment"]["ammount"]}}" 
-        data-unit-price="{{contract["price_per_unit"]}}" 
-        min="{{ contract['machineCount']['allowed']}}" 
+        data-unit-price="{{contract["price_per_unit"]["value"]}}" 
+        min="{{ contract['machineCount']}}" 
         max="999"
         data-billing-period="yearly"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
@@ -58,7 +57,7 @@
         class="p-button--positive" 
         disabled 
         data-account-id="{{contract['accountInfo']['id']}}" 
-        data-previous-purchase-id="{{contract['previous_purchase_id']}}"
+        data-previous-purchase-id="{{previous_purchase_ids['yearly']}}"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       >
         Save changes

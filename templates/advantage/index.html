@@ -71,17 +71,17 @@
                   <hr class="p-separator" />
                   <div> 
                     <label class="p-radio">
-                      <input id="auto-renewal-on" type="radio" class="p-radio__input" name="auto-renewal"  {% if subscriptions['is_auto_renewal_enabled'] %}checked=""{% endif %} aria-labelledby="enable" value="on">
+                      <input id="auto-renewal-on" type="radio" class="p-radio__input" name="auto-renewal"  {% if subscriptions["is_auto_renewal_enabled"] %}checked=""{% endif %} aria-labelledby="enable" value="on">
                       <span class="p-radio__label" id="enable">Enable auto-renewal</span>
                     </label>
 
                     <label class="p-radio">
-                      <input id="auto-renewal-off" type="radio" class="p-radio__input" name="auto-renewal" {% if not subscriptions['is_auto_renewal_enabled'] %}checked=""{% endif %} aria-labelledby="disable" value="off">
+                      <input id="auto-renewal-off" type="radio" class="p-radio__input" name="auto-renewal" {% if not subscriptions["is_auto_renewal_enabled"] %}checked=""{% endif %} aria-labelledby="disable" value="off">
                       <span class="p-radio__label" id="disable">Disable auto-renewal</span>
                     </label>
                   </div>
                   <div class="u-align--right">
-                    <button class="p-button--neutral" id="renewal-cancel" data-default-state="{{subscriptions['is_auto_renewal_enabled']}}">Cancel changes</button>
+                    <button class="p-button--neutral" id="renewal-cancel" data-default-state="{{subscriptions["is_auto_renewal_enabled"]}}">Cancel changes</button>
                     <button class="p-button--positive" id="renewal-confirm" data-subscription-id="{{subscriptions['id']}}">Save changes</button>
                   </div>
                 </div>
