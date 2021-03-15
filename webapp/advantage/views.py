@@ -431,7 +431,7 @@ def cancel_advantage_subscriptions(**kwargs):
     token = kwargs.get("token")
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
-    product_listings = kwargs.get("product_listings")
+    product_listing_id = kwargs.get("product_listing_id")
 
     advantage = UAContractsAPI(session, token, api_url=api_url)
 
@@ -450,12 +450,11 @@ def cancel_advantage_subscriptions(**kwargs):
         "accountID": account_id,
         "purchaseItems": [
             {
-                "productListingID": product_listing,
+                "productListingID": product_listing_id,
                 "metric": "active-machines",
                 "value": 0,
                 "delete": True,
             }
-            for product_listing in product_listings
         ],
         "previousPurchaseID": previous_purchase_id,
     }
