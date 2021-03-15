@@ -19,11 +19,20 @@ function toggleAutoRenewalSection() {
 
 function confirmChanges() {
   const enabledRadio = document.getElementById("auto-renewal-on");
-  const subscriptionId = this.dataset.subscriptionId;
 
-  setAutoRenewal(subscriptionId, enabledRadio.checked).catch((error) => {
-    console.error(error);
-  });
+  setAutoRenewal(enabledRadio.checked)
+    .then((data) => {
+      if (data.errors) {
+        console.error(data.errors);
+        console.error(enabledRadio.checked);
+      } else {
+        console.log({ data });
+        // location.reload();
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function cancelChanges() {

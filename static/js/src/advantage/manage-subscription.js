@@ -3,10 +3,11 @@ import { resizeContract, cancelContract } from "./contracts-api.js";
 function handleAPICall(APIFunction, parameters) {
   APIFunction(...parameters)
     .then((data) => {
-      if (data.error) {
-        console.error(data.error);
+      if (data.errors) {
+        console.error(data.errors);
       } else {
-        location.reload();
+        console.log({ data });
+        // location.reload();
       }
     })
     .catch((error) => {
@@ -160,7 +161,7 @@ function handleChange(e, id, VPSize) {
   const defaultValue = Number.parseInt(e.target.defaultValue);
   let newValue = Number.parseInt(e.target.value);
 
-  const unitPrice = Number.parseFloat(e.target.dataset.unitPrice.split(" ")[0]);
+  const unitPrice = Number.parseFloat(e.target.dataset.unitPrice / 100);
   const nextPayment = Number.parseFloat(
     e.target.dataset.nextPayment.split(" ")[0]
   );
@@ -204,10 +205,12 @@ function handleChange(e, id, VPSize) {
       resizeSummary.innerHTML = `Your changes will add UA for ${deltaMachines} machines`;
       newPayment.innerHTML = `Your ${billingPeriod} payment will be <strong>increased by ${formatter.format(
         unitPrice * deltaMachines
-      )}, to ${formatter.format(unitPrice * deltaMachines + nextPayment)} ${
+      )}${
         billingPeriod === "monthly"
-          ? "per month</strong>."
-          : `per year</strong>. <br/>A payment of ${formatter.format(
+          ? `, to ${formatter.format(
+              unitPrice * deltaMachines + nextPayment
+            )} per month</strong>.`
+          : ` per year</strong>. <br/>A payment of ${formatter.format(
               unitPrice * deltaMachines
             )} will be charged immediately`
       }`;
