@@ -100,14 +100,14 @@
           {% for contract in enterprise_contracts[account] %}
           {% set expired_renewable = contract['renewal'] and contract['contractInfo']['daysTillExpiry'] < 0 %}
           <div class="p-card">
-            <h5 class="p-card__title u-sv1 u-no-margin--bottom">
+            <h4 class="p-card__title u-sv1 u-no-margin--bottom">
               {% if contract["contractInfo"]["id"] == new_subscription_id %}
                 {% if "daysTillExpiry" in contract["contractInfo"] and contract["contractInfo"]["daysTillExpiry"] > 0 %}
                   <div class="p-label--new">New</div>
                 {% endif %}
               {% endif %}
               {{ contract['contractInfo']['name'] }}
-            </h5>
+            </h4>
             <hr class="u-sv1">
             <div class="row p-card__content">
               {% include "advantage/table/_attached-machines.html" %}
