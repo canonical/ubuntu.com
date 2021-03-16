@@ -35,7 +35,7 @@
         type="number" 
         value="{{ contract['machineCount']}}" 
         data-next-payment="{{subscriptions["next_payment"]["ammount"]}}" 
-        data-unit-price="{{contract["price_per_unit"]["value"]}}" 
+        data-unit-price="{% if contract["price_per_unit"] %} {{contract["price_per_unit"]["value"]}} {% endif %}" 
         min="{{ contract['machineCount']}}" 
         max="999"
         data-billing-period="yearly"
@@ -57,6 +57,7 @@
         class="p-button--positive" 
         disabled 
         data-account-id="{{contract['accountInfo']['id']}}" 
+        data-product-listing-id="{{contract["product_listing_id"]}}"
         data-previous-purchase-id="{{previous_purchase_ids['yearly']}}"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       >

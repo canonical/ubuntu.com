@@ -24,11 +24,13 @@
     {% if not mobile %}
       <hr />
     {% endif %}
-    <div class="p-notification--caution">
-      <p class="p-notification__response" role="status">
-        <span class="p-notification__status">End in {{contract["contractInfo"]["daysTillExpiry"] }} days.</span>Auto-renewal disabled.
-      </p>
-    </div>
+    {% if not subscriptions['is_auto_renewal_enabled'] %}
+      <div class="p-notification--caution">
+        <p class="p-notification__response" role="status">
+          <span class="p-notification__status">End in {{contract["contractInfo"]["daysTillExpiry"] }} days.</span>Auto-renewal disabled.
+        </p>
+      </div>
+    {% endif %}
     <p class="p-muted-text" style="margin-bottom: .5rem">Machines</p>
     <div class="panel-input-wrapper">
       <input 
@@ -51,6 +53,7 @@
         data-contract-name="{{contract['contractInfo']['name']}}" 
         data-machine-count="{{ contract['machineCount']}}" 
         data-account-id="{{contract['accountInfo']['id']}}" 
+        data-product-listing-id="{{contract["product_listing_id"]}}"
         data-previous-purchase-id="{{previous_purchase_ids['monthly']}}"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       >
@@ -70,6 +73,7 @@
         class="p-button--positive" 
         disabled 
         data-account-id="{{contract['accountInfo']['id']}}" 
+        data-product-listing-id="{{contract["product_listing_id"]}}"
         data-previous-purchase-id="{{previous_purchase_ids['monthly']}}"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       >

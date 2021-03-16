@@ -24,10 +24,9 @@ function confirmChanges() {
     .then((data) => {
       if (data.errors) {
         console.error(data.errors);
-        console.error(enabledRadio.checked);
       } else {
         console.log({ data });
-        // location.reload();
+        location.reload();
       }
     })
     .catch((error) => {
