@@ -4,7 +4,7 @@
     <div class="col-start-large-2 col-10">
       <div class="row">
           <h5>Welcome to your new subscription</h5>
-          <p>If you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
+          <p class="u-no-margin--bottom">If you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
           <div class="advantage-table-instruction">
             <span>To attach a machine</span>
             <code>sudo ua attach {{ contract['token'] }}</code>
@@ -12,7 +12,7 @@
             <span>To detach a machine</span>
             <code>sudo ua detach</code>
           </div>
-          <p>
+          <p class="u-hide--small">
             Once a machine is attached, you can configure its services.&nbsp;&nbsp;
             <button class="p-button is-dense u-no-margin--bottom js-entitlements-callout" data-entitlements='{{ contract["entitlements"]|tojson }}'>Where?</button>
           </p>
