@@ -683,7 +683,7 @@ def _prepare_monthly_info(monthly_info, subscription, advantage):
     monthly_info["total_subscriptions"] += purchased_products_no
     monthly_info["has_monthly"] = True
     monthly_info["id"] = subscription["subscription"]["id"]
-    monthly_info["is_auto_renewal_enabled"] = subscription.get(
+    monthly_info["is_auto_renewal_enabled"] = subscription["subscription"].get(
         "autoRenew", False
     )
 
