@@ -25,7 +25,6 @@ function confirmChanges() {
       if (data.errors) {
         console.error(data.errors);
       } else {
-        console.log({ data });
         location.reload();
       }
     })
