@@ -101,6 +101,7 @@ def advantage_view(**kwargs):
                 monthly_purchased_products[product_id] = {
                     "quantity": quantity,
                     "price": product_listing["price"],
+                    "product_listing_id": product_listing["id"],
                 }
 
             _prepare_monthly_info(monthly_info, subscription, advantage)
@@ -114,6 +115,7 @@ def advantage_view(**kwargs):
                 yearly_purchased_products[product_id] = {
                     "quantity": quantity,
                     "price": product_listing["price"],
+                    "product_listing_id": product_listing["id"],
                 }
 
         for contract in account["contracts"]:
@@ -189,6 +191,9 @@ def advantage_view(**kwargs):
                 purchased_product = yearly_purchased_products[product_name]
                 contract["price_per_unit"] = purchased_product["price"]
                 contract["machineCount"] = purchased_product["quantity"]
+                contract["product_listing_id"] = purchased_product[
+                    "product_listing_id"
+                ]
                 contract["period"] = "yearly"
 
                 if contract["contractInfo"]["id"] == open_subscription:
@@ -204,6 +209,9 @@ def advantage_view(**kwargs):
                 contract["price_per_unit"] = purchased_product["price"]
                 contract["machineCount"] = purchased_product["quantity"]
                 contract["is_cancelable"] = True
+                contract["product_listing_id"] = purchased_product[
+                    "product_listing_id"
+                ]
                 contract["period"] = "monthly"
 
                 if contract["contractInfo"]["id"] == open_subscription:
