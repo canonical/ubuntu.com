@@ -515,7 +515,7 @@ def post_payment_method(**kwargs):
 
 
 @advantage_checks(check_list=["need_user"])
-@use_kwargs({"should_auto_renew": Boolean()}, location="query")
+@use_kwargs({"should_auto_renew": Boolean()}, location="json")
 def post_auto_renewal_settings(**kwargs):
     api_url = kwargs.get("api_url")
     token = kwargs.get("token")
