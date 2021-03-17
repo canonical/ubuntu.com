@@ -1,4 +1,4 @@
-<div class="col-start-large-2 col-10" id="view-mode--{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
+<div class="col-start-large-2 col-10" id="view-mode--{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
   <div class="row">
     {% if not mobile %}
       <p class="col-2 p-muted-text" style="margin-bottom: .5rem">Created on</p>
@@ -10,12 +10,12 @@
 
     <div class="change-subscription {% if mobile %}u-align--center{% endif %}">
       <p>Auto-renewal {% if subscriptions['is_auto_renewal_enabled'] %}enabled{% else %}disabled{% endif %}</p>
-      <button class="p-button--neutral js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}">Change subscription</button>
+      <button class="p-button--neutral js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">Change subscription</button>
     </div>
   </div>
 </div>
 
-<div class="col-start-large-2 col-10 u-hide" id="edit-mode--{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
+<div class="col-start-large-2 col-10 u-hide" id="edit-mode--{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
   <div class="row">
     {% if mobile %}
       <hr />
@@ -34,7 +34,7 @@
     <p class="p-muted-text" style="margin-bottom: .5rem">Machines</p>
     <div class="panel-input-wrapper">
       <input 
-        id="resize-input--{{contract["contractInfo"]["id"]}}" 
+        id="resize-input--{{contract["contractInfo"]["id"]}}--monthly" 
         type="number" 
         value="{{ contract['machineCount']}}" 
         data-next-payment="{{subscriptions["next_payment"]["ammount"]}}" 
@@ -44,11 +44,11 @@
         data-billing-period="monthly"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       />
-      <p class="u-hide" id="resize-summary--{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}" ></p>
+      <p class="u-hide" id="resize-summary--{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}" ></p>
     </div>
-    <p class="u-hide "id="new-payment--{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}" ></p>
+    <p class="u-hide "id="new-payment--{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}" ></p>
     <div class="col-6 buttons-wrapper">
-      <button id="cancel-subscription--{{contract["contractInfo"]["id"]}}" 
+      <button id="cancel-subscription--{{contract["contractInfo"]["id"]}}--monthly" 
         class="p-button--negative" 
         data-contract-name="{{contract['contractInfo']['name']}}" 
         data-machine-count="{{ contract['machineCount']}}" 
@@ -62,14 +62,14 @@
     </div>
     <div class="col-6 u-align--right buttons-wrapper">
       <button 
-        id="cancel-changes--{{contract["contractInfo"]["id"]}}" 
+        id="cancel-changes--{{contract["contractInfo"]["id"]}}--monthly" 
         class="p-button--neutral"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       >
         Cancel changes
       </button>
       <button 
-        id="save-changes--{{contract["contractInfo"]["id"]}}" 
+        id="save-changes--{{contract["contractInfo"]["id"]}}--monthly" 
         class="p-button--positive" 
         disabled 
         data-account-id="{{contract['accountInfo']['id']}}" 
