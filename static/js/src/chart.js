@@ -138,6 +138,9 @@ function highlightChartRow(svg, highlightVersion) {
     if (highlightVersion && !text.includes(highlightVersion)) {
       this.classList.add("chart__label--transparent");
     }
+    if (text.includes("20") && !text.includes("20.")) {
+      this.classList.remove("chart__label--transparent");
+    }
   });
 }
 
