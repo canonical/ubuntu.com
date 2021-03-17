@@ -57,7 +57,10 @@ function buildCharts() {
       "#eol-1604",
       desktopServerReleaseNames,
       desktopServerStatus,
-      serverAndDesktopReleases
+      serverAndDesktopReleases,
+      false,
+      [],
+      "16.04"
     );
   }
   if (document.querySelector("#kernel-eol")) {

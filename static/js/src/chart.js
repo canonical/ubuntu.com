@@ -26,7 +26,7 @@ function sortTasks(tasks) {
  *
  * Add bars to chart using supplied data
  */
-function addBarsToChart(svg, tasks, taskStatus, x, y) {
+function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
   svg
     .selectAll(".chart")
     .data(tasks, function (d) {
@@ -42,8 +42,8 @@ function addBarsToChart(svg, tasks, taskStatus, x, y) {
         return;
       }
 
-      if (!d.taskName.includes("16.04")) {
-        className += " transparent";
+      if (highlightVersion && !d.taskName.includes(highlightVersion)) {
+        className += " chart__bar--transparent";
       }
 
       className += " " + taskStatus[d.status];
@@ -121,7 +121,7 @@ function cleanUpChart(svg) {
  *
 
  */
-function emboldenLTSLabels(svg) {
+function emboldenLTSLabels(svg, highlightVersion) {
   svg.selectAll(".tick text").select(function () {
     var text = this.textContent;
 
@@ -129,7 +129,7 @@ function emboldenLTSLabels(svg) {
       this.classList.add("chart__label--bold");
     }
 
-    if (!text.includes("16.04")) {
+    if (highlightVersion && !text.includes(highlightVersion)) {
       this.classList.add("chart__label--transparent");
     }
   });
@@ -240,7 +240,8 @@ export function createChart(
   taskStatus,
   tasks,
   taskVersions,
-  removePadding
+  removePadding,
+  highlightVersion
 ) {
   var margin = {
     top: 0,
@@ -318,7 +319,7 @@ export function createChart(
       "translate(" + chartTranslateX + ", " + margin.top + ")"
     );
 
-  addBarsToChart(svg, tasks, taskStatus, x, y);
+  addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion);
   addXAxis(svg, height, margin, xAxis);
   addYAxis(svg, yAxis);
 
@@ -332,6 +333,6 @@ export function createChart(
   buildChartKey(chartSelector, taskStatus);
 
   setTimeout(function () {
-    emboldenLTSLabels(svg);
+    emboldenLTSLabels(svg, highlightVersion);
   }, 500);
 }
