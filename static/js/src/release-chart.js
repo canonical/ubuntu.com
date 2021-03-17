@@ -52,6 +52,14 @@ function buildCharts() {
       serverAndDesktopReleases
     );
   }
+  if (document.querySelector("#eol-1604")) {
+    createChart(
+      "#eol-1604",
+      desktopServerReleaseNames,
+      desktopServerStatus,
+      serverAndDesktopReleases
+    );
+  }
   if (document.querySelector("#kernel-eol")) {
     createChart(
       "#kernel-eol",
@@ -143,6 +151,9 @@ function clearCharts() {
   }
   if (document.querySelector("#server-desktop-eol")) {
     document.querySelector("#server-desktop-eol").innerHTML = "";
+  }
+  if (document.querySelector("#eol-1604")) {
+    document.querySelector("#eol-1604").innerHTML = "";
   }
   if (document.querySelector("#kernel-eol")) {
     document.querySelector("#kernel-eol").innerHTML = "";
