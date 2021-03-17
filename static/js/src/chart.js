@@ -121,13 +121,19 @@ function cleanUpChart(svg) {
  *
 
  */
-function emboldenLTSLabels(svg, highlightVersion) {
+function emboldenLTSLabels(svg) {
   svg.selectAll(".tick text").select(function () {
     var text = this.textContent;
 
     if (text.includes("LTS")) {
       this.classList.add("chart__label--bold");
     }
+  });
+}
+
+function highlightChartRow(svg, highlightVersion) {
+  svg.selectAll(".tick text").select(function () {
+    var text = this.textContent;
 
     if (highlightVersion && !text.includes(highlightVersion)) {
       this.classList.add("chart__label--transparent");
@@ -333,6 +339,7 @@ export function createChart(
   buildChartKey(chartSelector, taskStatus);
 
   setTimeout(function () {
-    emboldenLTSLabels(svg, highlightVersion);
+    emboldenLTSLabels(svg);
+    highlightChartRow(svg, highlightVersion);
   }, 500);
 }
