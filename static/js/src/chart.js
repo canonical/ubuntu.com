@@ -35,10 +35,20 @@ function addBarsToChart(svg, tasks, taskStatus, x, y) {
     .enter()
     .append("rect")
     .attr("class", function (d) {
-      if (taskStatus[d.status] == null) {
-        return "bar";
+      let className = "";
+
+      if (taskStatus[d.status] === null) {
+        className = "bar";
+        return;
       }
-      return taskStatus[d.status];
+
+      if (!d.taskName.includes("16.04")) {
+        className += " transparent";
+      }
+
+      className += " " + taskStatus[d.status];
+
+      return className;
     })
     .attr("y", 0)
     .attr("transform", function (d) {
@@ -117,6 +127,10 @@ function emboldenLTSLabels(svg) {
 
     if (text.includes("LTS")) {
       this.classList.add("chart__label--bold");
+    }
+
+    if (!text.includes("16.04")) {
+      this.classList.add("chart__label--transparent");
     }
   });
 }
