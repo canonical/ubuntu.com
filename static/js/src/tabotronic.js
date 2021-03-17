@@ -47,4 +47,13 @@
   window.addEventListener("hashchange", function () {
     hashChange();
   });
+
+  const selectedTabGroup = document.querySelector("[data-js-selected-tab]");
+  if (selectedTabGroup) {
+    const selectedTab = selectedTabGroup.querySelector(
+      "#" + selectedTabGroup.dataset.jsSelectedTab
+    );
+    const selectedTabId = selectedTab.getAttribute("aria-controls");
+    tabClickHandler(selectedTab, selectedTabId);
+  }
 })();

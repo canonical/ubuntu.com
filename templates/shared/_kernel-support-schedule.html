@@ -3,7 +3,7 @@
     <div class="col-8">
       <h2>Kernel support schedule</h2>
 
-      <div class="js-tab-container">
+      <div class="js-tab-container" {% if selected_tab %}data-js-selected-tab="{{ selected_tab }}"{% endif %}>
         <nav class="p-tabs">
           <ul class="p-tabs__list" role="tablist">
             <li class="p-tabs__item" role="presentation">
