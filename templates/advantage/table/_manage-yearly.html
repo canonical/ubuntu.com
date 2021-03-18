@@ -36,7 +36,7 @@
         id="resize-input--{{contract["contractInfo"]["id"]}}--yearly" 
         type="number" 
         value="{{ contract['machineCount']}}" 
-        data-next-payment="{{subscriptions["next_payment"]["ammount"]}}" 
+        data-next-payment="{{monthly_information["next_payment"]["ammount"]}}" 
         data-unit-price="{% if contract["price_per_unit"] %} {{contract["price_per_unit"]["value"]}} {% endif %}" 
         min="{{ contract['machineCount']}}" 
         max="999"
