@@ -35,11 +35,10 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
     .enter()
     .append("rect")
     .attr("class", function (d) {
-      let className = "";
+      var className = "";
 
       if (taskStatus[d.status] === null) {
-        className = "bar";
-        return;
+        return "bar";
       }
 
       if (highlightVersion && !d.taskName.includes(highlightVersion)) {
@@ -134,11 +133,15 @@ function emboldenLTSLabels(svg) {
 function highlightChartRow(svg, highlightVersion) {
   svg.selectAll(".tick text").select(function () {
     var text = this.textContent;
+    var isNotHighlightedVersion =
+      highlightVersion && !text.includes(highlightVersion);
+    var isYearLabel = text.includes("20") && !text.includes("Ubuntu ");
 
-    if (highlightVersion && !text.includes(highlightVersion)) {
+    if (isNotHighlightedVersion) {
       this.classList.add("chart__label--transparent");
     }
-    if (text.includes("20") && !text.includes("20.")) {
+
+    if (isYearLabel) {
       this.classList.remove("chart__label--transparent");
     }
   });
