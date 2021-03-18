@@ -7,22 +7,23 @@
         <nav class="p-tabs">
           <ul class="p-tabs__list" role="tablist">
             <li class="p-tabs__item" role="presentation">
-              <a href="#support-all" class="p-tabs__link" role="tab" id="support-all-tab" aria-controls="support-all" aria-selected="true">All releases</a>
+              <a href="#support-all" class="p-tabs__link" role="tab" id="support-all-tab" {% if selected_tab == "support-all-tab" %}aria-selected="true"{% endif %} aria-controls="support-all">All releases</a>
             </li>
             <li class="p-tabs__item" role="presentation">
-              <a href="#support-lts" class="p-tabs__link" role="tab" id="support-lts-tab" aria-controls="support-lts">All LTS releases</a>
+              <a href="#support-lts" class="p-tabs__link" role="tab" id="support-lts-tab" {% if selected_tab == "support-lts-tab" %}aria-selected="true"{% endif %}aria-controls="support-lts">All LTS releases</a>
             </li>
             <li class="p-tabs__item" role="presentation">
-              <a href="#support-20-04" class="p-tabs__link" role="tab" id="support-20-04-tab" aria-controls="support-20-04">20.04 LTS</a>
+              <a href="#support-20-04" class="p-tabs__link" role="tab" id="support-20-04-tab" {% if selected_tab == "support-20-04-tab" %}aria-selected="true"{% endif %}aria-controls="support-20-04">20.04 LTS</a>
             </li>
             <li class="p-tabs__item" role="presentation">
-              <a href="#support-18-04" class="p-tabs__link" role="tab" id="support-18-04-tab" aria-controls="support-18-04">18.04 LTS</a>
+              <a href="#support-18-04" class="p-tabs__link" role="tab" id="support-18-04-tab" {% if selected_tab == "support-18-04-tab" %}aria-selected="true"{% endif %} aria-controls="support-18-04">18.04 LTS</a>
             </li>
             <li class="p-tabs__item" role="presentation">
-              <a href="#support-16-04" class="p-tabs__link" role="tab" id="support-16-04-tab" aria-controls="support-16-04">16.04 LTS</a>
+              <a href="#support-16-04" class="p-tabs__link" role="tab" id="support-16-04-tab" {% if selected_tab == "support-16-04-tab" %}aria-selected="true"{% endif %} aria-controls="support-16-04">16.04 LTS</a>
             </li>
             <li class="p-tabs__item" role="presentation">
-              <a href="#support-14-04" class="p-tabs__link" role="tab" id="support-14-04-tab" aria-controls="support-14-04">14.04 LTS</a>
+              <a href="#support-14-04" class="p-tabs__link" role="tab" id="support-14-04-tab"
+              {% if selected_tab == "support-14-04-tab" %}aria-selected="true"{% endif %}  aria-controls="support-14-04">14.04 LTS</a>
             </li>
           </ul>
         </nav>

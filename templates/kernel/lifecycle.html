@@ -156,6 +156,8 @@
   </div>
 </section>
 
-{% include "shared/_kernel-support-schedule.html" %}
+{% with selected_tab="support-all-tab" %}
+  {% include "shared/_kernel-support-schedule.html" %}
+{% endwith %}
 
 {% endblock %}
