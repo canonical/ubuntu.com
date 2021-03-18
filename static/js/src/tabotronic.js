@@ -13,6 +13,12 @@
 
   tabLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
+      e.preventDefault();
+      history.pushState({}, "", link.href);
+
+      history.pushState({}, "", link.href);
+      history.back();
+
       const panelToOpen = e.target.getAttribute("aria-controls");
       if (panelToOpen) {
         tabClickHandler(e.target, panelToOpen);
@@ -33,7 +39,6 @@
       panel.classList.add("u-hide");
     });
     panelElement.classList.remove("u-hide");
-    panelElement.scrollIntoView();
   }
 
   function hashChange() {
