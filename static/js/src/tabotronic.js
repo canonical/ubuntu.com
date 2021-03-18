@@ -13,12 +13,6 @@
 
   tabLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
-      e.preventDefault();
-      history.pushState({}, "", link.href);
-
-      history.pushState({}, "", link.href);
-      history.back();
-
       const panelToOpen = e.target.getAttribute("aria-controls");
       if (panelToOpen) {
         tabClickHandler(e.target, panelToOpen);
@@ -39,6 +33,7 @@
       panel.classList.add("u-hide");
     });
     panelElement.classList.remove("u-hide");
+    panelElement.scrollIntoView();
   }
 
   function hashChange() {
@@ -52,13 +47,4 @@
   window.addEventListener("hashchange", function () {
     hashChange();
   });
-
-  const selectedTabGroup = document.querySelector("[data-js-selected-tab]");
-  if (selectedTabGroup) {
-    const selectedTab = selectedTabGroup.querySelector(
-      "#" + selectedTabGroup.dataset.jsSelectedTab
-    );
-    const selectedTabId = selectedTab.getAttribute("aria-controls");
-    tabClickHandler(selectedTab, selectedTabId);
-  }
 })();
