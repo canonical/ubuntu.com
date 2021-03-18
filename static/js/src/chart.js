@@ -26,7 +26,7 @@ function sortTasks(tasks) {
  *
  * Add bars to chart using supplied data
  */
-function addBarsToChart(svg, tasks, taskStatus, x, y) {
+function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
   svg
     .selectAll(".chart")
     .data(tasks, function (d) {
@@ -35,10 +35,19 @@ function addBarsToChart(svg, tasks, taskStatus, x, y) {
     .enter()
     .append("rect")
     .attr("class", function (d) {
-      if (taskStatus[d.status] == null) {
+      var className = "";
+
+      if (taskStatus[d.status] === null) {
         return "bar";
       }
-      return taskStatus[d.status];
+
+      if (highlightVersion && !d.taskName.includes(highlightVersion)) {
+        className += " chart__bar--transparent";
+      }
+
+      className += " " + taskStatus[d.status];
+
+      return className;
     })
     .attr("y", 0)
     .attr("transform", function (d) {
@@ -117,6 +126,23 @@ function emboldenLTSLabels(svg) {
 
     if (text.includes("LTS")) {
       this.classList.add("chart__label--bold");
+    }
+  });
+}
+
+function highlightChartRow(svg, highlightVersion) {
+  svg.selectAll(".tick text").select(function () {
+    var text = this.textContent;
+    var isNotHighlightedVersion =
+      highlightVersion && !text.includes(highlightVersion);
+    var isYearLabel = text.includes("20") && !text.includes("Ubuntu ");
+
+    if (isNotHighlightedVersion) {
+      this.classList.add("chart__label--transparent");
+    }
+
+    if (isYearLabel) {
+      this.classList.remove("chart__label--transparent");
     }
   });
 }
@@ -226,7 +252,8 @@ export function createChart(
   taskStatus,
   tasks,
   taskVersions,
-  removePadding
+  removePadding,
+  highlightVersion
 ) {
   var margin = {
     top: 0,
@@ -304,7 +331,7 @@ export function createChart(
       "translate(" + chartTranslateX + ", " + margin.top + ")"
     );
 
-  addBarsToChart(svg, tasks, taskStatus, x, y);
+  addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion);
   addXAxis(svg, height, margin, xAxis);
   addYAxis(svg, yAxis);
 
@@ -319,5 +346,6 @@ export function createChart(
 
   setTimeout(function () {
     emboldenLTSLabels(svg);
+    highlightChartRow(svg, highlightVersion);
   }, 500);
 }
