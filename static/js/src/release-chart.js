@@ -197,9 +197,9 @@ function clearCharts() {
   if (kubernetesEol) {
     kubernetesEol.innerHTML = "";
   }
-  const kubernetesSchedule = document.querySelector("#kernel-schedule");
-  if (kubernetesSchedule) {
-    kubernetesSchedule.innerHTML = "";
+  const kernelSchedule = document.querySelector("#kernel-schedule");
+  if (kernelSchedule) {
+    kernelSchedule.innerHTML = "";
   }
 }
 
