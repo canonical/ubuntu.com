@@ -237,7 +237,7 @@ def advantage_view(**kwargs):
     return flask.render_template(
         "advantage/index.html",
         accounts=accounts,
-        subscriptions=monthly_info,
+        monthly_information=monthly_info,
         payment_method_warning=payment_method_warning,
         enterprise_contracts=enterprise_contracts,
         previous_purchase_ids=previous_purchase_ids,
@@ -693,7 +693,6 @@ def _prepare_monthly_info(monthly_info, subscription, advantage):
     monthly_info["last_payment_date"] = parse(
         last_purchase["createdAt"]
     ).strftime("%d %B %Y")
-    monthly_info["current_subscription_no"] = purchased_products_no
     monthly_info["next_payment"]["date"] = parse(
         subscription["subscription"]["endOfCycle"]
     ).strftime("%d %B %Y")
