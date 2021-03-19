@@ -157,22 +157,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       display: inline-flex;
       flex-grow: 1;
       margin: 0;
-
-      .p-search-box {
-        @media only screen and (min-width: $breakpoint-navigation-threshold) {
-          margin-right: 0;
-          max-width: 12rem;
-        }
-
-        &__button {
-          padding: 0 0.5rem;
-          width: 2rem;
-        }
-
-        &__input {
-          border-radius: $border-radius;
-        }
-      }
     }
 
     &--secondary {
@@ -354,13 +338,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       @media (max-width: $breakpoint-x-small - 1) {
         padding-left: $grid-margin-width / 4 !important;
         padding-right: $grid-margin-width / 4 !important;
-      }
-    }
-
-    .p-search-box {
-      @media (max-width: $breakpoint-x-small - 1) {
-        margin-left: $grid-margin-width / 1.5 !important;
-        margin-right: $grid-margin-width / 1.5 !important;
       }
     }
   }
