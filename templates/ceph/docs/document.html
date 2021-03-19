@@ -1,0 +1,10 @@
+{% with
+  document=document,
+  nav_items=nav_items,
+  search_action="/ceph/docs/search",
+  siteSearch="https://ubuntu.com/ceph/docs",
+  placeholder="Search on Ceph Docs",
+  navigation=navigation
+%}
+  {% include "templates/docs/shared/_docs.html" %}
+{% endwith %}

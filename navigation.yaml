@@ -76,7 +76,7 @@ appliance:
           path: /appliance/openhab/intel-nuc
         - title: VM
           path: /appliance/openhab/vm
-    - title: NexCloud
+    - title: Nextcloud
       path: /appliance/nextcloud
       hidden: True
       children:
@@ -1509,3 +1509,33 @@ cube:
         - title: Thank you
           path: /cube/thank-you
           hidden: True
+
+gcp:
+  title: GCP
+  path: /gcp
+
+  children:
+    - title: Overview
+      path: /gcp
+
+    - title: Pro
+      path: /gcp/pro
+
+    - title: Contact us
+      path: /gcp/contact-us
+      hidden: True
+
+      children:
+        - title: Thank you
+          path: /gcp/thank-you
+          hidden: True
+
+ubuntu1604:
+  title: 16-04
+  path: /16-04
+
+  children:
+    - title: Overview
+      path: /16-04
+    - title: Google Cloud
+      path: /16-04/gcp

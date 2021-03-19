@@ -931,3 +931,9 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+// Override global search box padding to accomodate for search width
+// https://github.com/canonical-web-and-design/vanilla-framework/issues/3626
+#ubuntu-global-search-form .p-search-box__input {
+  padding-right: calc(2 * 0.9rem);
+}
