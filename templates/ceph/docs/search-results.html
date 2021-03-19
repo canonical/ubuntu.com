@@ -1,0 +1,11 @@
+{% with
+  title="Ceph Docs",
+  query=query,
+  results=results,
+  search_action="/ceph/docs/search",
+  siteSearch="https://ubuntu.com/ceph/docs",
+  placeholder="Search on Ceph Docs",
+  forum_link="https://discourse.ubuntu.com/c/ceph/52"
+%}
+    {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}
