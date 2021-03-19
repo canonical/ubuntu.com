@@ -50,6 +50,8 @@ def advantage_view(**kwargs):
 
     enterprise_contracts = {}
     previous_purchase_ids = {"monthly": "", "yearly": ""}
+    total_enterprise_contracts = 0
+
     monthly_info = {
         "total_subscriptions": 0,
         "has_monthly": False,
@@ -203,6 +205,8 @@ def advantage_view(**kwargs):
                 else:
                     enterprise_contract.append(contract)
 
+                total_enterprise_contracts += 1
+
             if product_name in monthly_purchased_products:
                 contract = contract.copy()
                 purchased_product = monthly_purchased_products[product_name]
@@ -221,6 +225,8 @@ def advantage_view(**kwargs):
                 else:
                     enterprise_contract.append(contract)
 
+                total_enterprise_contracts += 1
+
             if (
                 product_name not in yearly_purchased_products
                 and product_name not in monthly_purchased_products
@@ -234,10 +240,13 @@ def advantage_view(**kwargs):
                 else:
                     enterprise_contract.append(contract)
 
+                total_enterprise_contracts += 1
+
     return flask.render_template(
         "advantage/index.html",
         accounts=accounts,
         monthly_information=monthly_info,
+        total_enterprise_contracts=total_enterprise_contracts,
         payment_method_warning=payment_method_warning,
         enterprise_contracts=enterprise_contracts,
         previous_purchase_ids=previous_purchase_ids,
