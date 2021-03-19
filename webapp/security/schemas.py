@@ -54,7 +54,7 @@ class Component(String):
 
 class Pocket(String):
     default_error_messages = {
-        "unrecognised_component": (
+        "unrecognised_pocket": (
             "Pocket must be one of "
             "'security', 'updates', 'esm-infra', 'esm-apps'"
         )
