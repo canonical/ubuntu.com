@@ -2,10 +2,10 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="border-bottom: 0; display: block;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
-      <h2 class="p-modal__title u-sv1" id="modal-title">Join the CUBE beta test</h2>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Apply for the CUBE beta</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <h3 class="p-heading--five">How should we get in touch?</h3>
+      <h3 class="p-heading--five">Provide your contact information to join the beta candidate pool.</h3>
       <div class="row u-no-padding">
         <div class="col-6">
           <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
@@ -26,7 +26,9 @@
                 <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
                 <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
               </li>
+              <br>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical&rsquo;s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+              <br>
               <li class="p-list__item">
                 <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
               </li>
@@ -72,8 +74,8 @@
       <div class="row u-no-padding">
         <div class="u-equal-height">
           <div class="col-7">
-            <h3 class="p-heading--two">Thank you for enquiring about CUBE beta</h3>
-            <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
+            <h3 class="p-heading--two">Thank you for enquiring about the CUBE beta</h3>
+            <p class="p-heading--four">We will be in touch if you are selected for the beta.</p>
           </div>
           <div class="col-5 u-vertically-center u-align--center u-hide--small">
             {{
