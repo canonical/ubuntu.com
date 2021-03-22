@@ -1,39 +1,29 @@
 <div class="row">
   <div class="row col-start-large-2 col-10">
-    <div class="col-9">
-      <h4>Ubuntu 14.04 ESM and 20.04 LTS</h4>
+    <div class="advantage-table-section">
+      <h5>Ubuntu 14.04 ESM and 20.04 LTS</h5>
+      <div class="advantage-table-instruction">
+        <span>To activate Livepatch</span>
+        <code>ua enable livepatch</code>
+          <hr />
+        <span>To deactivate</span>
+        <code>ua disable livepatch</code>
+      </div>
+    </div>
+    
+    <div class="advantage-table-section">
+      <h5>Ubuntu 16.04 LTS and 18.04 LTS</h5>
+      <div class="advantage-table-instruction">
+        <span>To activate Livepatch</span>
+        <a class="p-link--external" href="https://auth.livepatch.canonical.com/">Follow the instructions on the Livepatch site</a>
+          <hr />
+        <span>To deactivate</span>
+        <code>sudo canonical-livepatch disable</code>
+      </div>
+    </div>
 
-      <table class="p-table--key-value">
-        <tbody>
-          <tr>
-            <td>To activate Livepatch:</td>
-            <td><code>ua enable livepatch</code></td>
-          </tr>
-
-          <tr>
-            <td>To deactivate:</td>
-            <td><code>ua disable livepatch</code></td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <h4>Ubuntu 16.04 LTS and 18.04 LTS</h4>
-
-      <table class="p-table--key-value">
-        <tbody>
-          <tr>
-            <td>To activate Livepatch:</td>
-            <td><a class="p-link--external" href="https://auth.livepatch.canonical.com/">Follow the instructions on the Livepatch site</a></td>
-          </tr>
-
-          <tr>
-            <td>To deactivate:</td>
-            <td><code>sudo canonical-livepatch disable</code></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h4>Other Ubuntu versions</h4>
+    <div class="advantage-table-section">
+      <h5>Other Ubuntu versions</h5>
       <p>Livepatch is available only on LTS versions. Consider upgrading to Ubuntu 20.04 LTS.</p>
     </div>
   </div>

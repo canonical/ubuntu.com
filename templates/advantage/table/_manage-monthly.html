@@ -1,12 +1,14 @@
 <div class="col-start-large-2 col-10" id="view-mode--{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
   <div class="row">
-    {% if not mobile %}
-      <p class="col-2 p-muted-text" style="margin-bottom: .5rem">Created on</p>
-      <p class="col-3 u-no-margin--top" style="margin-bottom: .5rem">{{ contract['contractInfo']['createdAtFormatted'] }}</p>
-      <hr />
-      <p class="col-2 p-muted-text u-no-padding--top">Ends</p>
-      <p class="col-3 u-no-margin--top u-no-padding--top">{{ contract['contractInfo']['effectiveToFormatted'] }}</p>
-    {% endif %}
+    <div class="advantage-table-section">
+      <div class="advantage-table-instruction">
+        <span>Created on</span>
+        <p>{{ contract['contractInfo']['createdAtFormatted'] }}</p>
+        <hr />
+        <span>Ends</span>
+        <p>{{ contract['contractInfo']['effectiveToFormatted'] }}</p>
+      </div>
+    </div>
 
     <div class="change-subscription {% if mobile %}u-align--center{% endif %}">
       <p>Auto-renewal {% if subscriptions['is_auto_renewal_enabled'] %}enabled{% else %}disabled{% endif %}</p>
