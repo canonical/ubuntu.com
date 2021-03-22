@@ -100,31 +100,17 @@
           {% for contract in enterprise_contracts[account] %}
           {% set expired_renewable = contract['renewal'] and contract['contractInfo']['daysTillExpiry'] < 0 %}
           <div class="p-card">
-            <h5 class="p-card__title u-sv1 u-no-margin--bottom">
+            <h4 class="p-card__title u-sv1 u-no-margin--bottom">
               {% if contract["contractInfo"]["id"] == new_subscription_id %}
                 {% if "daysTillExpiry" in contract["contractInfo"] and contract["contractInfo"]["daysTillExpiry"] > 0 %}
                   <div class="p-label--new">New</div>
                 {% endif %}
               {% endif %}
               {{ contract['contractInfo']['name'] }}
-            </h5>
+            </h4>
             <hr class="u-sv1">
             <div class="row p-card__content">
-              {% if new_subscription_id == contract['contractInfo']['id'] %}
-                <h4>Welcome to your new subscription</h4>
-                <p>If you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
-                <p>To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code></p>
-                <p>To detach a machine: <code>sudo ua detach</code></p>
-                <p>If you’re using Ubuntu 16.04 or 18.04 LTS, you don’t need to attach machines.</p>
-              {% else %}
-              <div class="col-12 u-align--center u-sv3">
-                  <h4>Ubuntu 14.04 ESM and 20.04 LTS</h4>
-                  <p>To attach a machine: <br /><code>sudo ua attach {{ contract['token'] }}</code></p>
-                  <p>To detach a machine: <code>sudo ua detach</code></p>
-                  <h4>Ubuntu 16.04 and 18.04 LTS</h4>
-                  <p>You don’t need to attach machines before setting up UA services.</p>
-              </div>
-              {% endif %}
+              {% include "advantage/table/_attached-machines.html" %}
             </div>
             <div class="row">
               {% with mobile="true" %}
@@ -141,44 +127,6 @@
 
               {% endwith %}
             </div>
-            <div class="row p-card__content">
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Created on:</div>
-              <div class="col-small-2 col-medium-3 u-align--left">{{ contract['contractInfo']['createdAtFormatted'] }}</div>
-            </div>
-            {% if contract['contractInfo']['effectiveTo'] %}
-            <div class="row p-card__content">
-              {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">
-                {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
-                  <i class="p-icon--error u-disable"></i>&nbsp;&nbsp;Expired:
-                {% else %}
-                  <i class="p-icon--warning"></i>&nbsp;&nbsp;Ends:
-                {% endif %}
-              </div>
-              <div class="col-small-2 col-medium-3 u-align--left">
-                {{ contract['contractInfo']['effectiveToFormatted'] }}
-                {% if contract["contractInfo"]["daysTillExpiry"] >= 0 %}
-                &nbsp;&mdash;&nbsp;
-                  {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
-                    today
-                  {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
-                    in 1 day
-                  {% else %}
-                    in {{ contract["contractInfo"]["daysTillExpiry"] }} days
-                  {% endif %}
-                {% endif %}
-              </div>
-              {% else %}
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Ends:</div>
-              <div class="col-small-2 col-medium-3 u-align--left">
-                {{ contract['contractInfo']['effectiveToFormatted'] }}
-                {% if contract["renewal"]["recently_renewed"] %}
-                <div class="p-label--updated">Renewed</div>
-                {% endif %}
-              </div>
-              {% endif %}
-            </div>
-            {% endif %}
 
             {% if contract["renewal"] %}
             <table>
@@ -186,19 +134,11 @@
             </table>
             {% endif %}
 
-            <div class="row p-card__content">
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">UA plan</div>
-              <div class="col-small-2 col-medium-3 u-align--left" style="text-transform: capitalize;">{{ contract['supportLevel'] }}</div>
-            </div>
-            <div class="row p-card__content">
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Attached</div>
-              <div class="col-small-2 col-medium-3 u-align--left">{{ contract['machineCount'] }}</div>
-            </div>
             <div class="p-accordion">
               <ul class="p-accordion__list u-no-margin--bottom">
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="esm-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="esm-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">ESM</div>
+                    <div class="col-small-2 col-medium-3" style="margin-left: 3rem">ESM</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
                       <span>
@@ -219,7 +159,7 @@
                 </li>
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Livepatch</div>
+                    <div class="col-small-2 col-medium-3" style="margin-left: 3rem">Livepatch</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['livepatch'] == True %}
                       <span>
@@ -239,7 +179,7 @@
                 </li>
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Certifications</div>
+                    <div class="col-small-2 col-medium-3" style="margin-left: 3rem">Certifications</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
                       <span>

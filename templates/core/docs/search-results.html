@@ -1,0 +1,11 @@
+{% with
+  title="Ubuntu Core Docs",
+  query=query,
+  results=results,
+  search_action="/core/docs/search",
+  siteSearch="https://ubuntu.com/core/docs",
+  placeholder="Search on Ubuntu Core Docs",
+  forum_link="https://discourse.ubuntu.com/c/ceph/52"
+%}
+    {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}

@@ -151,15 +151,6 @@
 }
 
 @mixin ubuntu-p-stepped-list {
-  // XXX Ant - 11 July 2018
-  // This block can be removed when the following issue is resolved:
-  // https://github.com/vanilla-framework/vanilla-framework/issues/1917
-  .p-stepped-list--detailed .p-stepped-list {
-    &__item {
-      margin-top: 1rem;
-    }
-  }
-
   // XXX Scott - 19 August 2019
   // This block can be removed when the following issues are resolved:
   // https://github.com/canonical-web-and-design/vanilla-framework/issues/2489
@@ -269,9 +260,7 @@
       &::after {
         bottom: 0;
         height: 0;
-        margin-bottom: auto;
-        margin-top: auto;
-        right: -0.65em;
+        right: -0.85em;
         top: 0;
       }
     }

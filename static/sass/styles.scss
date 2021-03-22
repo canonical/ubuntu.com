@@ -219,11 +219,6 @@ select {
   }
 }
 
-// XXX Caleb: 26.02.18 Fix middot list wrapping issue
-.p-inline-list--middot > .p-inline-list__item {
-  white-space: nowrap;
-}
-
 // XXX Steve: 21.06.18
 // https://github.com/vanilla-framework/vanilla-framework/issues/1794
 .u-no-max-width {
@@ -363,7 +358,6 @@ summary {
 
   .change-subscription {
     display: flex;
-    margin-top: 2rem;
 
     > button {
       margin-left: 1.2rem;
@@ -385,6 +379,64 @@ summary {
       min-width: 0;
       width: 4rem;
       margin-right: 1rem;
+    }
+  }
+}
+
+.advantage-table-section {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+.advantage-table-instruction {
+  margin: 1rem 0;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 2rem;
+  grid-row-gap: 0.5rem;
+
+  > span {
+    grid-column: 1;
+    color: $color-mid-dark;
+  }
+
+  > code,
+  > a,
+  > p {
+    grid-column: 2;
+    align-self: flex-start;
+    padding-left: 0;
+  }
+
+  > p {
+    padding: 0;
+    margin: 0;
+  }
+
+  > hr {
+    display: none;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    grid-template-columns: auto 2fr;
+    margin: 1.5rem 0;
+
+    > hr {
+      display: block;
+      grid-column: span 2;
+      margin: 0;
     }
   }
 }
@@ -960,4 +1012,10 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+// Override global search box padding to accomodate for search width
+// https://github.com/canonical-web-and-design/vanilla-framework/issues/3626
+#ubuntu-global-search-form .p-search-box__input {
+  padding-right: calc(2 * 0.9rem);
 }
