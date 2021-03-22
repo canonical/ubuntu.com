@@ -1,5 +1,6 @@
 # Standard library
 import unittest
+import logging
 
 # Packages
 from bs4 import BeautifulSoup
@@ -9,13 +10,20 @@ from vcr_unittest import VCRTestCase
 from webapp.app import app
 
 
+# Suppress talisker warnings, that get annoying
+logging.getLogger("talisker.context").disabled = True
+
+
 class TestRoutes(VCRTestCase):
     def _get_vcr_kwargs(self):
         """
         This removes the authorization header
         from VCR so we don't record auth parameters
         """
-        return {"filter_headers": ["Authorization", "Cookie"]}
+        return {
+            "filter_headers": ["Authorization", "Cookie"],
+            "filter_query_parameters": ["key"],
+        }
 
     def setUp(self):
         """
@@ -62,7 +70,7 @@ class TestRoutes(VCRTestCase):
 
         self.assertEqual(self.client.get("/server/docs").status_code, 200)
 
-    def test_tutorials(self):
+    def test_tutorials_homepage(self):
         """
         Check the tutorials homepage loads
         """
@@ -77,6 +85,16 @@ class TestRoutes(VCRTestCase):
             ).status_code,
             200,
         )
+
+    def test_tutorials_search(self):
+        """
+        Check the tutorials search works
+        """
+
+        search_response = self.client.get("/tutorials?q=ubuntu")
+
+        self.assertEqual(search_response.status_code, 200)
+        self.assertIn(b"search results", search_response.data)
 
     def test_download(self):
         """
