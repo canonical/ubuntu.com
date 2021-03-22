@@ -161,4 +161,27 @@
       }
     }
   }
+
+  .p-card--radio--support {
+    @extend .p-card--radio;
+
+    > label {
+      font-weight: 400;
+
+      > small {
+        font-weight: normal;
+      }
+    }
+
+    > img {
+      margin: 0 auto;
+      max-height: none;
+      height: 60px;
+      width: 60px;
+    }
+
+    > p {
+      text-align: center;
+    }
+  }
 }

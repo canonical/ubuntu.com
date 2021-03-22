@@ -49,85 +49,14 @@ endblock meta_copydoc %} {% block head_extra %}<meta
 <form class="js-shop-form">
   <div class="row">
     <ol class="p-stepped-list col-12">
-
       {% include "advantage/subscribe/form/_type_select.html" %}
       
       {% include "advantage/subscribe/form/_ubuntu_version_select.html" %}
-
+      
       {% include "advantage/subscribe/form/_feature_coverage.html" %}
-
-
-
-      <li class="p-stepped-list__item js-shop-step--support">
-        <h2 class="p-stepped-list__title">Do you also want tech support?</h2>
-        <div class="row subscribe-section">
-          <div
-            class="col-4 p-card--radio u-no-padding--top u-no-padding--bottom"
-          >
-            <input
-              autocomplete="off"
-              class="js-product-input"
-              type="radio"
-              id="support_one"
-              name="support"
-              value="essential"
-            />
-            <label for="support_one">
-              No thanks<br />
-              <small class="u-text-light"
-                >Software and security updates only</small
-              >
-            </label>
-          </div>
-
-          <div
-            class="col-4 p-card--radio u-no-padding--top u-no-padding--bottom"
-          >
-            <input
-              autocomplete="off"
-              class="js-product-input"
-              type="radio"
-              id="support_two"
-              name="support"
-              value="standard"
-            />
-            <label for="support_two">
-              24 hours, 5 days a week<br />
-              <small class="u-text-light">Phone and ticket support</small>
-            </label>
-          </div>
-
-          <div
-            class="col-4 p-card--radio u-no-padding--top u-no-padding--bottom"
-          >
-            <input
-              autocomplete="off"
-              class="js-product-input"
-              type="radio"
-              id="support_three"
-              name="support"
-              value="advanced"
-            />
-            <label for="support_three">
-              24 hours, 7 days a week<br />
-              <small class="u-text-light">Phone and ticket support</small>
-            </label>
-          </div>
-
-          <div class="col-12">
-            <p>
-              <a
-                href="/legal/ubuntu-advantage-service-description"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Get details on our tech support response times&nbsp;&rsaquo;</a
-              >
-            </p>
-          </div>
-        </div>
-      </li>
-
-
+      
+      {% include "advantage/subscribe/form/_tech_support.html" %}
+      
       <li class="p-stepped-list__item js-shop-step--quantity">
         <h2 class="p-stepped-list__title">How many?</h2>
         <div class="row subscribe-section">
@@ -149,7 +78,6 @@ endblock meta_copydoc %} {% block head_extra %}<meta
           </div>
         </div>
       </li>
-
 
       <section
         class="p-strip--light is-shallow js-shop-step--add p-shop-cart u-hide"
