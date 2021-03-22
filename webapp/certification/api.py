@@ -1,6 +1,5 @@
 from requests import Session
 
-
 class CertificationAPI:
     """
     Method names and properties to describe and map directly
