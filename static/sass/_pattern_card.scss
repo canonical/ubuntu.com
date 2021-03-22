@@ -162,6 +162,38 @@
     }
   }
 
+  .p-card--radio--version {
+    @extend .p-card--radio;
+
+    &.is-selected {
+      background-color: $color-light;
+      position: relative;
+      overflow: visible;
+
+      // Arrow
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 2rem;
+        width: 2rem;
+        left: calc(50% - 1rem);
+        bottom: -41px;
+        background: $color-light;
+        border-left: solid 1px $color-mid-light;
+        border-top: solid 1px $color-mid-light;
+        pointer-events: none;
+        transform: rotate(45deg) skew(-10deg, -10deg);
+        z-index: 5;
+      }
+    }
+
+    > img {
+      margin: 0 auto 1rem;
+      max-height: none;
+      height: 80px;
+    }
+  }
   .p-card--radio--support {
     @extend .p-card--radio;
 
