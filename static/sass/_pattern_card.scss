@@ -100,6 +100,24 @@
       }
     }
 
+    .p-card__title {
+      &--is-new {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &::after {
+          content: "New";
+          font-size: 1rem;
+          display: inline-block;
+          padding: 0 0.5rem;
+          color: white;
+          border-radius: 2px;
+          background-color: #0e8420;
+        }
+      }
+    }
+
     img {
       display: block;
       margin: 1.2rem auto 2.4rem;
