@@ -42,7 +42,7 @@
     <section class="p-strip is-shallow" style="overflow: visible;">
       <div class="row u-vertically-center">
         <div class="col-6 col-medium-3">
-          <h2>Your {% if subscriptions['total_subscriptions'] > 1 %}{{subscriptions['total_subscriptions']}} {% endif %}paid subscription{% if subscriptions['total_subscriptions'] == 1 %}{% else %}s{% endif %}</h2>
+          <h2>Your {% if total_enterprise_contracts > 1 %}{{total_enterprise_contracts}} {% endif %}paid subscription{% if total_enterprise_contracts == 1 %}{% else %}s{% endif %}</h2>
         </div>
       </div>
       {% if monthly_information['has_monthly'] %}
