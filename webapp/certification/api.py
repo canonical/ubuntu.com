@@ -1,5 +1,6 @@
 from requests import Session
 
+
 class CertificationAPI:
     """
     Method names and properties to describe and map directly
@@ -12,7 +13,7 @@ class CertificationAPI:
         self.base_url = base_url
         self.session = session
 
-    def _get(self, path: str, params: dict={}):
+    def _get(self, path: str, params: dict = {}):
         # Remove "None" values from params
         params = {
             key: value for key, value in params.items() if value is not None
@@ -28,7 +29,7 @@ class CertificationAPI:
 
         return response
 
-    def certifiedmakes(
+    def certified_makes(
         self,
         limit=None,
         offset=None,
@@ -51,7 +52,7 @@ class CertificationAPI:
             },
         ).json()
 
-    def certifiedmodels(
+    def certified_models(
         self,
         limit=None,
         offset=None,
@@ -95,7 +96,7 @@ class CertificationAPI:
 
         return response.json()
 
-    def certifiedmodeldetails(
+    def certified_model_details(
         self, limit=None, offset=None, canonical_id=None
     ):
         return self._get(
@@ -107,7 +108,7 @@ class CertificationAPI:
             },
         ).json()
 
-    def certifiedmodeldevices(
+    def certified_model_devices(
         self,
         limit=None,
         offset=None,
@@ -128,7 +129,7 @@ class CertificationAPI:
             },
         ).json()
 
-    def certifiedreleases(
+    def certified_releases(
         self, limit=None, offset=None, smart_core__gte=None, soc__gte=None
     ):
         return self._get(
@@ -141,7 +142,7 @@ class CertificationAPI:
             },
         ).json()
 
-    def componentsummaries(
+    def component_summaries(
         self,
         limit=None,
         offset=None,
@@ -162,10 +163,10 @@ class CertificationAPI:
             },
         ).json()
 
-    def componentsummary(self, id):
+    def component_summary(self, id):
         return self._get(f"componentsummaries/{id}").json()
 
-    def devicecategories(self, limit=None, offset=None):
+    def device_categories(self, limit=None, offset=None):
         return self._get(
             "devicecategories", params={"limit": limit, "offset": offset}
         ).json()
@@ -175,7 +176,7 @@ class CertificationAPI:
             "releases", params={"limit": limit, "offset": offset}
         ).json()
 
-    def vendorsummaries_server(self, limit=None, offset=None):
+    def vendor_summaries_server(self, limit=None, offset=None):
         return self._get(
             "vendorsummaries/server", params={"limit": limit, "offset": offset}
         ).json()
