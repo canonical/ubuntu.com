@@ -387,9 +387,7 @@ def search_snaps():
 
     return flask.jsonify(
         {
-            "results": search_response.get("_embedded", {}).get(
-                "clickindex:package", {}
-            ),
+            "results": search_response.get("results", {}),
             "architecture": architecture,
         }
     )

@@ -17,6 +17,12 @@ CUBE_CONTENT = yaml.load(
     Path("webapp/cube/content/cube.yaml").read_text(), Loader=yaml.Loader
 )
 
+AUTHORIZED_USERS = (
+    os.getenv("CUBE_AUTHORIZED_USERS").strip(" ,").split(",")
+    if os.getenv("CUBE_AUTHORIZED_USERS")
+    else []
+)
+
 badgr_session = Session()
 talisker.requests.configure(badgr_session),
 badgr_api = BadgrAPI(
@@ -46,7 +52,10 @@ edx_api = EdxAPI(
 
 def is_authorized(user):
     email_domain = user["email"].split("@")[1]
-    return email_domain.lower() == "canonical.com"
+    return (
+        email_domain.lower() == "canonical.com"
+        or user["email"].lower() in AUTHORIZED_USERS
+    )
 
 
 @login_required
