@@ -1,51 +1,79 @@
-import { configureStore, createAction, createReducer } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
-import formReducer from "./reducers/form-reducer";
-
-console.log("woaah mama");
-
-const increment = createAction("increment");
-const decrement = createAction("decrement");
-
-const counter = createReducer(0, {
-  [increment]: (state) => state + 1,
-  [decrement]: (state) => state - 1,
-});
+import formReducer, {
+  changeFeature,
+  changeQuantity,
+  changeSupport,
+  changeType,
+  changeVersion,
+} from "./reducers/form-reducer";
 
 const store = configureStore({
   reducer: {
     form: formReducer,
   },
 });
-const valueEl = document.getElementById("value");
+
+const inputs = [
+  {
+    action: changeType,
+    name: "type",
+  },
+  {
+    action: changeVersion,
+    name: "version",
+  },
+  {
+    action: changeFeature,
+    name: "feature",
+  },
+  {
+    action: changeSupport,
+    name: "support",
+  },
+  {
+    action: changeQuantity,
+    name: "quantity",
+  },
+];
+
+function initInputs(action, name) {
+  const inputs = form.querySelectorAll(`input[name='${name}']`);
+  inputs.forEach((input) => {
+    input.addEventListener("input", (e) => {
+      console.log(e.target.value);
+      store.dispatch(action(e.target.value));
+    });
+  });
+}
+
+const form = document.querySelector(".js-shop-form");
+
+inputs.forEach((section) => {
+  initInputs(section.action, section.name);
+});
+
+function renderRadios(sections) {
+  sections.forEach((section) => {
+    const radios = section.querySelectorAll(".js-radio");
+    const step = section.dataset.step;
+    radios.forEach((radio) => {
+      const input = radio.querySelector("input");
+      if (input.value === store.getState().form[step]) {
+        radio.classList.add("is-selected");
+      } else {
+        radio.classList.remove("is-selected");
+      }
+    });
+  });
+}
 
 function render() {
-  valueEl.innerHTML = store.getState().toString();
+  const sections = form.querySelectorAll(".js-form-section");
+  console.log({ sections });
+  renderRadios(sections);
+  console.info("render");
 }
 
 render();
 store.subscribe(render);
-
-document.getElementById("increment").addEventListener("click", function () {
-  store.dispatch(increment());
-});
-
-document.getElementById("decrement").addEventListener("click", function () {
-  store.dispatch(decrement());
-});
-
-document
-  .getElementById("incrementIfOdd")
-  .addEventListener("click", function () {
-    if (store.getState() % 2 !== 0) {
-      store.dispatch(increment());
-    }
-  });
-
-document
-  .getElementById("incrementAsync")
-  .addEventListener("click", function () {
-    setTimeout(function () {
-      store.dispatch(increment());
-    }, 1000);
-  });

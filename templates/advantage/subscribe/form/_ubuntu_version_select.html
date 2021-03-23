@@ -1,4 +1,4 @@
-<li class="p-stepped-list__item js-shop-step--vesion">
+<li class="p-stepped-list__item js-form-section" data-step="version">
   <h2 class="p-stepped-list__title">What Ubuntu version are you running?</h2>
   <div class="row subscribe-section">
     <p>
@@ -7,7 +7,7 @@
       >
     </p>
     <div class="col-12 row--5-col">
-      <div class="p-card--radio--version">
+      <div class="p-card--radio--version js-radio">
         {{ 
           image(
             url="https://assets.ubuntu.com/v1/91f43b54-Focal+Fossa+20.04.svg",
@@ -20,21 +20,18 @@
         }}
         <input
           autocomplete="off"
-          class="js-product-input"
           type="radio"
-          id="type_server"
-          name="type"
-          value="physical"
-          data-unit-price="100000"
-          data-product-name="server"
+          id="version_20.04"
+          name="version"
+          value="20.04"
         />
-        <label for="type_server">
+        <label for="version_20.04">
           Ubuntu 20.04 LTS<br />
           (Focal Fossa)        
         </label>
       </div>
 
-      <div class="p-card--radio--version is-selected">
+      <div class="p-card--radio--version js-radio is-selected">
         {{ 
           image(
             url="https://assets.ubuntu.com/v1/bb580eec-Bionic+Beaver_18.04.svg",
@@ -47,19 +44,18 @@
         }}
         <input
           autocomplete="off"
-          class="js-product-input"
           type="radio"
-          id="type_aws"
-          name="type"
-          value="aws"
+          id="version_18.04"
+          name="version"
+          value="18.04"
         />
-        <label for="type_aws">
+        <label for="version_18.04">
           Ubuntu 18.04 LTS<br />
           (Bionic Beaver)
         </label>
       </div>
 
-      <div class="p-card--radio--version">
+      <div class="p-card--radio--version js-radio">
         {{ 
           image(
             url="https://assets.ubuntu.com/v1/e1b5cbd2-Xenial+Xerus_16.04.svg",
@@ -72,19 +68,18 @@
         }}
         <input
           autocomplete="off"
-          class="js-product-input"
           type="radio"
-          id="type_azure"
-          name="type"
-          value="azure"
+          id="version_16.04"
+          name="version"
+          value="16.04"
         />
-        <label for="type_azure">
+        <label for="version_16.04">
           Ubuntu 16.04 LTS<br />
           (Xenial Xerus)
         </label>
       </div>
 
-      <div class="p-card--radio--version">
+      <div class="p-card--radio--version js-radio">
         {{ 
           image(
             url="https://assets.ubuntu.com/v1/0981dc7e-Trusty+Tahr_14.04.svg",
@@ -97,15 +92,12 @@
         }}
         <input
           autocomplete="off"
-          class="js-product-input"
           type="radio"
-          id="type_other"
-          name="type"
-          value="virtual"
-          data-unit-price="150000"
-          data-product-name="virtual machine"
+          id="version_14.04"
+          name="version"
+          value="14.04"
         />
-        <label for="type_other">
+        <label for="version_14.04">
           Ubuntu 14.04 LTS<br />
           (Trusty Tahr)
         </label>

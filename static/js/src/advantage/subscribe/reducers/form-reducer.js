@@ -26,7 +26,7 @@ const formSlice = createSlice({
     },
     changeQuantity(state, action) {
       if (action.payload >= 1) {
-        state.feature = action.payload;
+        state.quantity = action.payload;
       }
     },
   },

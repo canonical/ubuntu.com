@@ -1,4 +1,4 @@
-<li class="p-stepped-list__item js-shop-step--type">
+<li class="p-stepped-list__item js-form-section" data-step="feature">
   <h2 class="p-stepped-list__title">Select your feature coverage</h2>
   <div class="row subscribe-section">
     <p>
@@ -6,14 +6,15 @@
       You can add Infrastructure and Application features to your plan.
     </p>
     <div class="col-12 row--5-col">
-      <div class="p-card--radio">
+      <div class="p-card--radio js-radio">
         <input
           autocomplete="off"
           type="radio"
-          name="coverage"
+          id="feature_infra"
+          name="feature"
           value="infra"
         />
-        
+        <label for="feature_infra">
           <h4 class="p-card__title">Infrastructure</h4>
           <hr class="u-sv1">
           <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
@@ -22,18 +23,18 @@
             <li class="p-list__item is-ticked">Lorem ipsum dolor sit amet</li>
             <li class="p-list__item is-ticked">Proin porta nibh et congue</li>
           </ul>
+        </label>
       </div>
 
-      <div class="p-card--radio">
+      <div class="p-card--radio js-radio">
         <input
           autocomplete="off"
-
           type="radio"
-
-          name="coverage"
+          id="feature_apps"
+          name="feature"
           value="apps"
         />
-        
+        <label for="feature_apps">
           <h4 class="p-card__title--is-new">Applications</h4>
           <hr class="u-sv1">
           <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
@@ -42,17 +43,18 @@
             <li class="p-list__item is-ticked">Sed eleifend quam ut ornare feugiat</li>
             <li class="p-list__item is-ticked">Proin porta nibh et congue</li>
           </ul>
+        </label>
       </div>
 
-      <div class="p-card--radio">
+      <div class="p-card--radio js-radio">
         <input
           autocomplete="off"
-
           type="radio"
-          name="coverage"
+          id="feature_infra+apps"
+          name="feature"
           value="infra+apps"
         />
-        
+        <label for="feature_infra+apps">
           <h4 class="p-card__title">Apps + Infra</h4>
           <hr class="u-sv1">
           <ul class="p-list--ticked u-no-margin--left u-no-padding--left">
@@ -61,6 +63,7 @@
             <li class="p-list__item is-ticked">Lorem ipsum dolor sit amet</li>
             <li class="p-list__item is-ticked">Sed eleifend quam ut ornare feugiat</li>
           </ul>
+        </label>
       </div>
   </div>
 </li>
