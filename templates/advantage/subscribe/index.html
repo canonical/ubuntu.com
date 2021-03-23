@@ -49,14 +49,11 @@ endblock meta_copydoc %} {% block head_extra %}<meta
 <form class="js-shop-form">
   <div class="row">
     <ol class="p-stepped-list col-12">
-      {% include "advantage/subscribe/form/_type_select.html" %}
-      
-      {% include "advantage/subscribe/form/_ubuntu_version_select.html" %}
-      
-      {% include "advantage/subscribe/form/_feature_coverage.html" %}
-      
-      {% include "advantage/subscribe/form/_tech_support.html" %}
-      
+      {% include "advantage/subscribe/form/_type_select.html" %} {% include
+      "advantage/subscribe/form/_ubuntu_version_select.html" %} {% include
+      "advantage/subscribe/form/_feature_coverage.html" %} {% include
+      "advantage/subscribe/form/_tech_support.html" %}
+
       <li class="p-stepped-list__item js-shop-step--quantity">
         <h2 class="p-stepped-list__title">How many?</h2>
         <div class="row subscribe-section">
@@ -136,6 +133,11 @@ endwith %}
 
 <script
   src="{{ versioned_static('js/src/ua-product-selector.js') }}"
+  type="module"
+  defer
+></script>
+<script
+  src="{{ versioned_static('js/src/advantage/subscribe/product-selector.js') }}"
   type="module"
   defer
 ></script>
