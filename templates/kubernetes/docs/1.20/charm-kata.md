@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '63'
+charm_revision: '64'
 bundle_release: '1.20'
 ---
 
@@ -67,7 +67,7 @@ juju run-action kata ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Collect debug data
     </p>
