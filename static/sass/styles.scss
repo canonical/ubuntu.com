@@ -219,11 +219,6 @@ select {
   }
 }
 
-// XXX Caleb: 26.02.18 Fix middot list wrapping issue
-.p-inline-list--middot > .p-inline-list__item {
-  white-space: nowrap;
-}
-
 // XXX Steve: 21.06.18
 // https://github.com/vanilla-framework/vanilla-framework/issues/1794
 .u-no-max-width {
@@ -930,10 +925,4 @@ body {
 
 html {
   scroll-behavior: smooth;
-}
-
-// Override global search box padding to accomodate for search width
-// https://github.com/canonical-web-and-design/vanilla-framework/issues/3626
-#ubuntu-global-search-form .p-search-box__input {
-  padding-right: calc(2 * 0.9rem);
 }

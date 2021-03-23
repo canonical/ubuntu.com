@@ -171,7 +171,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          /snap/bin/dotrun exec coverage run --source=. -m unittest discover tests
+          /snap/bin/dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. -m unittest discover tests
           bash <(curl -s https://codecov.io/bash) -cF python
 
   test-js:
