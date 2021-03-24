@@ -60,7 +60,7 @@ endblock meta_copydoc %} {% block head_extra %}<meta
           <div class="col-2">
             <input
               autocomplete="off"
-              class="js-product-input js-product-quantity shop-quantity-field"
+              id="quantity-input"
               type="number"
               name="quantity"
               placeholder="0"
@@ -84,16 +84,12 @@ endblock meta_copydoc %} {% block head_extra %}<meta
       </div>
     </div>
     <div class="row u-sv3">
-      <div
-        class="col-1 js-summary-quantity u-align-form-elements p-shop-cart__quantity"
-      ></div>
-      <div
-        class="col-4 js-summary-product u-align-form-elements p-shop-cart__product"
-      >
-        <span>${imageHTML}</span>&nbsp;&nbsp;
-        <span>${productString}</span>
+      <div class="col-5 p-shop-cart__selected-product">
+        <span id="summary-plan-quantity">1x</span>
+        <img id="summary-plan-image" src="${imageURL}" style="height: 32px" />
+        <span id="summary-plan-name"></span>
       </div>
-      <div class="col-4 p-shop-cart__billing">
+      <div class="col-3 p-shop-cart__billing">
         <div class="js-summary-billing">
           <select
             name="billing-period"

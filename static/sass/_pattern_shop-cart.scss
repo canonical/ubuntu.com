@@ -8,6 +8,15 @@
       transform: translateY(100%);
     }
 
+    .p-shop-cart__selected-product {
+      display: flex;
+      align-items: center;
+
+      > img {
+        margin: 0 1rem;
+      }
+    }
+
     .p-shop-cart__quantity {
       margin-bottom: 0.5rem;
 
@@ -27,7 +36,6 @@
       }
     }
 
-    .p-shop-cart__product,
     .p-shop-cart__billing,
     .p-shop-cart__buy {
       margin-bottom: 0.5rem;

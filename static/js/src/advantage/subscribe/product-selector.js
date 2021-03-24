@@ -72,6 +72,7 @@ function renderRadios(sections) {
       const input = radio.querySelector("input");
       if (input.value === store.getState().form[step]) {
         radio.classList.add("is-selected");
+        input.checked = "true";
       } else {
         radio.classList.remove("is-selected");
       }
@@ -123,13 +124,36 @@ function renderPublicClouds(sections) {
   }
 }
 
+function renderFeature() {
+  const supportSection = form.querySelector(
+    ".js-form-section[data-step=feature]"
+  );
+  const radios = supportSection.querySelectorAll(".js-radio");
+
+  if (store.getState().form.type === "desktop") {
+    radios.forEach((radio) => {
+      const input = radio.querySelector("input");
+      if (input.value === "infra+apps") {
+        radio.classList.add("u-disable");
+      }
+    });
+  } else {
+    radios.forEach((radio) => {
+      radio.classList.remove("u-disable");
+    });
+  }
+}
+
 function renderSupport() {
   const supportSection = form.querySelector(
     ".js-form-section[data-step=support]"
   );
   const radios = supportSection.querySelectorAll(".js-radio");
 
-  if (store.getState().form.billing === "monthly") {
+  if (
+    store.getState().form.type === "desktop" &&
+    store.getState().form.feature === "apps"
+  ) {
     radios.forEach((radio) => {
       const input = radio.querySelector("input");
       if (input.value !== "essential") {
@@ -143,15 +167,71 @@ function renderSupport() {
   }
 }
 
+function renderQuantity() {
+  const quantity = store.getState().form.quantity;
+  const quantityInput = form.querySelector("#quantity-input");
+  quantityInput.value = quantity;
+}
+
+const imgUrl = {
+  physical: "https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+  virtual: "https://assets.ubuntu.com/v1/9ed50294-Virtual+machine.svg",
+  desktop: "https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+};
+
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
 function renderSummary() {
   const billing = store.getState().form.billing;
+  const type = store.getState().form.type;
+  const quantity = store.getState().form.quantity;
+  const price = store.getState().form.product.price.value / 100;
   const summarySection = form.querySelector("#summary-section");
   const saveMessage = summarySection.querySelector("#summary-save-with-annual");
+  const quantityElement = summarySection.querySelector(
+    "#summary-plan-quantity"
+  );
+  const billingSection = summarySection.querySelector(".js-summary-billing");
+  const buyButton = summarySection.querySelector(".js-ua-shop-cta");
 
   if (!store.getState().form.product.ok) {
     summarySection.classList.add("p-shop-cart--hidden");
+    buyButton.classList.add("u-disable");
   } else {
+    const image = summarySection.querySelector("#summary-plan-image");
+    const title = summarySection.querySelector("#summary-plan-name");
+    const costElement = summarySection.querySelector(".js-summary-cost");
+
     summarySection.classList.remove("p-shop-cart--hidden");
+    quantityElement.innerHTML = `${quantity}x`;
+    image.setAttribute("src", imgUrl[type]);
+    title.innerHTML = store.getState().form.product.name;
+    costElement.innerHTML = `${formatter.format(price * quantity)} / ${
+      billing === "monthly" ? "month" : "year"
+    }`;
+
+    const previous_purchase_id = window.previousPurchaseIds[billing];
+
+    buyButton.classList.remove("u-disable");
+    const productObject = JSON.stringify(store.getState().form.product);
+    buyButton.dataset.cart = `[{"listingID": "${
+      store.getState().form.product.productID
+    }", "product": ${productObject}, "quantity": ${quantity}}]`;
+    buyButton.dataset.accountId = window.accountId;
+    buyButton.dataset.subtotal = price * quantity;
+    buyButton.dataset.previousPurchaseId = previous_purchase_id;
+  }
+
+  if (
+    store.getState().form.feature !== "infra" ||
+    store.getState().form.support !== "essential"
+  ) {
+    billingSection.classList.add("u-hide");
+  } else {
+    billingSection.classList.remove("u-hide");
   }
 
   if (billing === "yearly") {
@@ -168,7 +248,9 @@ function render() {
   renderRadios(sections);
   renderVersionDetails();
   renderPublicClouds(sections);
+  renderFeature();
   renderSupport();
+  renderQuantity();
   renderSummary();
   console.info("render");
 }
