@@ -177,19 +177,27 @@
 
   function openSearch(e) {
     e.preventDefault();
+    var navigation = document.querySelector('.p-navigation__nav');
+    var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
     var searchButton = document.querySelector('.js-search-button');
     var search = document.querySelector('.p-navigation__search');
     var searchInput = document.querySelector('.p-search-box__input');
     var searchActive = !search.classList.contains('u-hide');
     search.classList.remove('u-hide');
     searchButton.classList.add('u-hide');
+    dropdownWindowOverlay.classList.remove("fade-animation");
+    navigation.classList.add('has-active-search');
     searchInput.focus();
   }
 
   function closeSearch(e) {
+    var navigation = document.querySelector('.p-navigation__nav');
+    var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
     var searchButton = document.querySelector('.js-search-button');
     var search = document.querySelector('.p-navigation__search');
     search.classList.add('u-hide');
+    dropdownWindowOverlay.classList.add("fade-animation");
+    navigation.classList.remove('has-active-search');
     searchButton.classList.remove('u-hide');
   }
 </script>
