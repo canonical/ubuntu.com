@@ -32,7 +32,6 @@ def certification_home():
     iot_vendors = []
 
     # Search results filters
-
     all_releases = []
     all_vendors = []
 
