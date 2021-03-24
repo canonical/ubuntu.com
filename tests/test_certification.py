@@ -24,3 +24,10 @@ class TestCertification(VCRTestCase):
     def test_certification_home(self):
         response = self.client.get("/certification")
         self.assertEqual(response.status_code, 200)
+
+    def test_search_results(self):
+        response = self.client.get(
+            "/certification?text=lenovo&form=Desktop&release=\
+            20.04+LTS&vendors=Lenovo"
+        )
+        self.assertEqual(response.status_code, 200)
