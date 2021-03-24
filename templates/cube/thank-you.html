@@ -5,7 +5,26 @@
 {% block meta_copydoc %}{% endblock meta_copydoc %}
 
 {% block content %}
-    {% with thanks_context="enquiring about CUBE beta" %}{% include "shared/_thank_you.html" %}{% endwith %}
+  <div class="p-strip is-bordered is-deep">
+    <div class="row u-equal-height">
+      <div class="col-7">
+        <h1>Thank you for enquiring about the CUBE beta</h1>
+        <p class="p-heading--four">We will be in touch if you are selected for the beta.</p>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center u-hide--small">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg",
+              alt="Smile",
+              width="200",
+              height="200",
+              hi_def=True,
+              loading="auto",
+            ) | safe
+        }}
+      </div>
+    </div>
+  </div>
 {% endblock content %}
 
 {% block footer_extra %}
