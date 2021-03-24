@@ -113,12 +113,32 @@ function renderPublicClouds(sections) {
   if (type === "aws" || type === "azure") {
     sections.forEach((section) => {
       if (section.dataset.step !== "type") {
-        section.classList.add("u-disabled");
+        section.classList.add("u-disable");
       }
     });
   } else {
     sections.forEach((section) => {
-      section.classList.remove("u-disabled");
+      section.classList.remove("u-disable");
+    });
+  }
+}
+
+function renderSupport() {
+  const supportSection = form.querySelector(
+    ".js-form-section[data-step=support]"
+  );
+  const radios = supportSection.querySelectorAll(".js-radio");
+
+  if (store.getState().form.billing === "monthly") {
+    radios.forEach((radio) => {
+      const input = radio.querySelector("input");
+      if (input.value !== "essential") {
+        radio.classList.add("u-disable");
+      }
+    });
+  } else {
+    radios.forEach((radio) => {
+      radio.classList.remove("u-disable");
     });
   }
 }
@@ -148,6 +168,7 @@ function render() {
   renderRadios(sections);
   renderVersionDetails();
   renderPublicClouds(sections);
+  renderSupport();
   renderSummary();
   console.info("render");
 }

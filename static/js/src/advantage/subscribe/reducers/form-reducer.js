@@ -4,11 +4,11 @@ const initialFormState = {
   type: "physical",
   version: "18.04",
   feature: "infra",
-  support: "essential",
+  support: "unset",
   quantity: 1,
-  billing: "monthly",
+  billing: "yearly",
   product: {
-    name: "uai",
+    ok: false,
   },
 };
 
@@ -78,6 +78,9 @@ const formSlice = createSlice({
     },
     changeBilling(state, action) {
       state.billing = action.payload;
+      if (action.payload === "monthly") {
+        state.support = "essential";
+      }
       state.product = getProduct(state);
     },
   },
