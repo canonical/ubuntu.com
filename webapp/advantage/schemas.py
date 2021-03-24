@@ -68,3 +68,16 @@ ensure_purchase_account = {
     "account_name": String(),
     "payment_method_id": String(),
 }
+
+post_guest_trial = {
+    "email": String(),
+    "account_name": String(),
+    "name": String(),
+    "address": Nested(AddressSchema),
+    "products": List(Nested(ProductSchema), required=True),
+}
+
+post_trial = {
+    "account_id": String(),
+    "products": List(Nested(ProductSchema), required=True),
+}
