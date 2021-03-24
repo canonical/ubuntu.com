@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '342'
+charm_revision: '345'
 bundle_release: '1.20'
 ---
 
@@ -122,15 +122,15 @@ def store_server(tls):
 
 ### Backup/Restore the PKI
 
-This charm includes actions which support creating and managing snapshots 
+This charm includes actions which support creating and managing snapshots
 of the Easy-RSA PKI. Their usage is explained in the following sections:
 
 #### Create backups
 
 Use the charm's `backup` action to capture current snapshot of the Easy-RSA PKI.
 This will generate a file in the directory `/home/ubuntu/easyrsa_backup` on the
-relevant unit. The backup file follows the naming convention: 
-`easyrsa-YYYY-MM-DD_HH-MM-SS.tar.gz`. 
+relevant unit. The backup file follows the naming convention:
+`easyrsa-YYYY-MM-DD_HH-MM-SS.tar.gz`.
 
 For example:
 
@@ -138,7 +138,7 @@ For example:
 juju run-action --wait easyrsa/0 backup
 ```
 
-For convenience, the output of the `backup` action will output the exact 
+For convenience, the output of the `backup` action will output the exact
 `juju scp` command to download the created file to your local machine.
 
 #### List backups
@@ -154,7 +154,7 @@ unit's `/home/ubuntu/easyrsa_backup/` directory.
 
 The names can be used either directly as a parameters for the
 `restore` and `delete-backup` actions or as part of a `juju scp` command to
-download the backup files. For example, to download a backup named 
+download the backup files. For example, to download a backup named
 `easyrsa-2020-12-10_16-37-54.tar.gz`, the corresponding `juju scp` command
 would be:
 
@@ -202,7 +202,7 @@ command. For example:
 juju scp easyrsa-2020-12-10_16-37-54.tar.gz easyrsa/0:/home/ubuntu/easyrsa_backup/
 ```
 
-In the case where units have been added to the Juju model since the 
+In the case where units have been added to the Juju model since the
 backup was created, Easy-RSA will issue new certificates to these
 units.
 
@@ -211,7 +211,7 @@ units.
     <span class="p-notification__status">Warning:</span>
 There is a known issue thatthe `kubernetes-master` units
 need to be restarted after the certificate change. These units may settle in
-the <code>active/idle</code> state but all new pods will hang in the 
+the <code>active/idle</code> state but all new pods will hang in the
 <code>pending</code> state. . <br><br>
   </p>
 </div>
