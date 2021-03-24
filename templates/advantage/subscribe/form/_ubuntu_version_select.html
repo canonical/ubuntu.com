@@ -8,16 +8,6 @@
     </p>
     <div class="col-12 row--5-col">
       <div class="p-card--radio--version js-radio">
-        {{ 
-          image(
-            url="https://assets.ubuntu.com/v1/91f43b54-Focal+Fossa+20.04.svg",
-            alt="", 
-            height="160", 
-            width="206", 
-            hi_def=True, 
-            loading="auto",
-          ) | safe 
-        }}
         <input
           autocomplete="off"
           type="radio"
@@ -26,22 +16,11 @@
           value="20.04"
         />
         <label for="version_20.04">
-          Ubuntu 20.04 LTS<br />
-          (Focal Fossa)        
+          <h4>Ubuntu 20.04 LTS</h4>
         </label>
       </div>
 
       <div class="p-card--radio--version js-radio is-selected">
-        {{ 
-          image(
-            url="https://assets.ubuntu.com/v1/bb580eec-Bionic+Beaver_18.04.svg",
-            alt="", 
-            height="160", 
-            width="286", 
-            hi_def=True, 
-            loading="auto", 
-          ) | safe
-        }}
         <input
           autocomplete="off"
           type="radio"
@@ -50,22 +29,11 @@
           value="18.04"
         />
         <label for="version_18.04">
-          Ubuntu 18.04 LTS<br />
-          (Bionic Beaver)
+          <h4>Ubuntu 18.04 LTS</h4>
         </label>
       </div>
 
       <div class="p-card--radio--version js-radio">
-        {{ 
-          image(
-            url="https://assets.ubuntu.com/v1/e1b5cbd2-Xenial+Xerus_16.04.svg",
-            alt="", 
-            height="160", 
-            width="158", 
-            hi_def=True, 
-            loading="auto", 
-          ) | safe
-        }}
         <input
           autocomplete="off"
           type="radio"
@@ -74,22 +42,11 @@
           value="16.04"
         />
         <label for="version_16.04">
-          Ubuntu 16.04 LTS<br />
-          (Xenial Xerus)
+          <h4>Ubuntu 16.04 LTS</h4>
         </label>
       </div>
 
       <div class="p-card--radio--version js-radio">
-        {{ 
-          image(
-            url="https://assets.ubuntu.com/v1/0981dc7e-Trusty+Tahr_14.04.svg",
-            alt="", 
-            height="160", 
-            width="127", 
-            hi_def=True, 
-            loading="auto"
-          ) | safe 
-        }}
         <input
           autocomplete="off"
           type="radio"
@@ -98,14 +55,16 @@
           value="14.04"
         />
         <label for="version_14.04">
-          Ubuntu 14.04 LTS<br />
-          (Trusty Tahr)
+          <h4>Ubuntu 14.04 LTS</h4>
         </label>
       </div>
     </div>
     <div class="col-12">
       <div class="p-card" style="background-color: #f7f7f7">
-        <h4 class="p-card__title">For Ubuntu <span id="version-number">18.04</span>, all UA plans include:</h4>
+        <h4 class="p-card__title">
+          For Ubuntu <span id="version-number">18.04</span>, all UA plans
+          include:
+        </h4>
         <div class="row u-equal-height">
           <div class="col-10">
             <ul
