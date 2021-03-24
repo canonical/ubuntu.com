@@ -5,7 +5,6 @@ import math
 from flask import request, render_template
 from requests import Session
 from webapp.certification.api import CertificationAPI
-from webapp.certification.helpers import get_pagination_page_array
 
 session = Session()
 talisker.requests.configure(session)
@@ -31,8 +30,15 @@ def certification_home():
     iot_releases = []
     iot_vendors = []
 
+    # Search results filters
+    all_releases = []
+    all_vendors = []
+
     for release in certified_releases:
         version = release["release"]
+
+        if version not in all_vendors:
+            all_releases.append(version)
 
         if int(release["desktops"]) > 0 or int(release["laptops"]) > 0:
             release["path"] = f"/certification?form=Desktop&release={version}"
@@ -50,6 +56,9 @@ def certification_home():
 
     for vendor in certified_makes:
         make = vendor["make"]
+
+        if make not in all_vendors:
+            all_vendors.append(make)
 
         if int(vendor["desktops"]) > 0 or int(vendor["laptops"]) > 0:
             vendor["path"] = f"/certification?form=Desktop&vendor={make}"
@@ -74,13 +83,84 @@ def certification_home():
             else:
                 server_releases[release] = vendor[release]
 
-    return flask.render_template(
-        "certification/index.html",
-        desktop_releases=desktop_releases,
-        desktop_vendors=desktop_vendors,
-        server_releases=server_releases,
-        iot_releases=iot_releases,
-        iot_vendors=iot_vendors,
-        soc_releases=soc_releases,
-        soc_vendors=soc_vendors,
-    )
+    if request.args:
+        query = request.args.get("text", default=None, type=str)
+        limit = request.args.get("limit", default=20, type=int)
+        offset = request.args.get("offset", default=0, type=int)
+
+        forms = (
+            ",".join(request.args.getlist("form"))
+            if request.args.getlist("form")
+            else None
+        )
+        releases = (
+            ",".join(request.args.getlist("release"))
+            if request.args.getlist("release")
+            else None
+        )
+        vendors = (
+            ",".join(request.args.getlist("vendor"))
+            if request.args.getlist("vendor")
+            else None
+        )
+
+        models_response = api.certified_models(
+            category__in=forms,
+            major_release__in=releases,
+            vendor=vendors,
+            query=query,
+            offset=offset,
+        )
+        results = models_response["objects"]
+        total = models_response["meta"]["total_count"]
+
+        if forms and ("Components" in forms):
+            components_response = api.component_summaries(
+                category__iexact=forms,
+                make=vendors,
+                query=query,
+                offset=offset,
+            )
+            results.append(components_response["objects"])
+            total += components_response["meta"]["total_count"]
+
+        # Pagination
+        total_results = total
+
+        params = request.args.copy()
+        params.pop("page", None)
+        query_items = []
+
+        for key, value_list in params.lists():
+            for value in value_list:
+                query_items.append(f"{key}={value}")
+
+        return render_template(
+            "certification/search-results.html",
+            results=results,
+            query=query,
+            form=forms,
+            releases=releases,
+            all_releases=sorted(all_releases, reverse=True),
+            vendors=vendors,
+            all_vendors=sorted(all_vendors),
+            total=total,
+            query_string="&".join(query_items),
+            total_results=total_results,
+            total_pages=math.ceil(total_results / limit),
+            offset=offset,
+            limit=limit,
+        )
+
+    else:
+
+        return render_template(
+            "certification/index.html",
+            desktop_releases=desktop_releases,
+            desktop_vendors=desktop_vendors,
+            server_releases=server_releases,
+            iot_releases=iot_releases,
+            iot_vendors=iot_vendors,
+            soc_releases=soc_releases,
+            soc_vendors=soc_vendors,
+        )
