@@ -1,5 +1,6 @@
 from requests import Session
 
+
 class CertificationAPI:
     """
     Method names and properties to describe and map directly
@@ -12,7 +13,7 @@ class CertificationAPI:
         self.base_url = base_url
         self.session = session
 
-    def _get(self, path: str, params: dict={}):
+    def _get(self, path: str, params: dict = {}):
         # Remove "None" values from params
         params = {
             key: value for key, value in params.items() if value is not None
