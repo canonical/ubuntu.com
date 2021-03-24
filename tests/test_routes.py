@@ -230,10 +230,6 @@ class TestRoutes(VCRTestCase):
             soup.find("meta", {"name": "robots", "content": "nofollow"})
         )
 
-    def test_certification_home(self):
-        response = self.client.get("/certification")
-        self.assertEqual(response.status_code, 200)
-
 
 if __name__ == "__main__":
     unittest.main()
