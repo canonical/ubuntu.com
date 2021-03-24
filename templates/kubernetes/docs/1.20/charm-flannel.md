@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '514'
+charm_revision: '518'
 bundle_release: '1.20'
 ---
 
