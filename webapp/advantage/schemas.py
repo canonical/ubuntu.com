@@ -25,6 +25,11 @@ class AddressSchema(Schema):
     state = String()
 
 
+class TaxIdSchema(Schema):
+    type = String()
+    value = String()
+
+
 post_advantage_subscriptions = {
     "account_id": String(required=True),
     "period": String(enum=["monthly", "yearly"], required=True),
@@ -42,7 +47,7 @@ cancel_advantage_subscriptions = {
 post_anonymised_customer_info = {
     "account_id": String(required=True),
     "address": Nested(AddressSchema, required=True),
-    "tax_id": String(allow_none=True),
+    "tax_id": Nested(TaxIdSchema, allow_none=True),
 }
 
 post_payment_method = {
@@ -54,7 +59,7 @@ post_customer_info = {
     "payment_method_id": String(required=True),
     "account_id": String(required=True),
     "name": String(),
-    "tax_id": String(allow_none=True),
+    "tax_id": Nested(TaxIdSchema, allow_none=True),
     "address": Nested(AddressSchema),
 }
 
