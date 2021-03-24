@@ -1,12 +1,24 @@
 import { resizeContract, cancelContract } from "./contracts-api.js";
 
-function handleAPICall(APIFunction, parameters) {
+function handleAPICall(APIFunction, parameters, button) {
+  const buttonText = button.innerHTML;
+  button.classList.add("is-processing");
+  button.innerHTML =
+    '<i class="p-icon--spinner u-animation--spin is-light"></i>';
+  button.disabled = true;
+
   APIFunction(...parameters)
     .then((data) => {
-      if (data.error) {
-        console.error(data.error);
+      if (data.errors) {
+        console.error(data.errors);
+        button.classList.remove("is-processing");
+        button.innerHTML = buttonText;
+        button.disabled = false;
       } else {
-        location.reload();
+        // if it reloads too fast then some data is missing.
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
       }
     })
     .catch((error) => {
@@ -18,10 +30,17 @@ function cancelSubscription(id, VPSize) {
   const cancelSubscriptionButton = document.querySelector(
     `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
   );
-  const { accountId, previousPurchaseId } = cancelSubscriptionButton.dataset;
-  let contractId = id;
+  const {
+    accountId,
+    productListingId,
+    previousPurchaseId,
+  } = cancelSubscriptionButton.dataset;
 
-  handleAPICall(cancelContract, [accountId, previousPurchaseId, contractId]);
+  handleAPICall(
+    cancelContract,
+    [accountId, previousPurchaseId, productListingId],
+    cancelSubscriptionButton
+  );
 }
 
 function handleUpdateClick(id, VPSize) {
@@ -31,15 +50,17 @@ function handleUpdateClick(id, VPSize) {
   const updateButton = document.querySelector(
     `#save-changes--${id}[data-viewport="${VPSize}"]`
   );
-  const { accountId, previousPurchaseId } = updateButton.dataset;
-  let contractId = id;
-
-  handleAPICall(resizeContract, [
+  const {
     accountId,
+    productListingId,
     previousPurchaseId,
-    contractId,
-    resizeField.value,
-  ]);
+  } = updateButton.dataset;
+
+  handleAPICall(
+    resizeContract,
+    [accountId, previousPurchaseId, productListingId, resizeField.value],
+    updateButton
+  );
 }
 
 function createModal(id, VPSize) {
@@ -160,7 +181,7 @@ function handleChange(e, id, VPSize) {
   const defaultValue = Number.parseInt(e.target.defaultValue);
   let newValue = Number.parseInt(e.target.value);
 
-  const unitPrice = Number.parseFloat(e.target.dataset.unitPrice.split(" ")[0]);
+  const unitPrice = Number.parseFloat(e.target.dataset.unitPrice / 100);
   const nextPayment = Number.parseFloat(
     e.target.dataset.nextPayment.split(" ")[0]
   );
@@ -204,10 +225,12 @@ function handleChange(e, id, VPSize) {
       resizeSummary.innerHTML = `Your changes will add UA for ${deltaMachines} machines`;
       newPayment.innerHTML = `Your ${billingPeriod} payment will be <strong>increased by ${formatter.format(
         unitPrice * deltaMachines
-      )}, to ${formatter.format(unitPrice * deltaMachines + nextPayment)} ${
+      )}${
         billingPeriod === "monthly"
-          ? "per month</strong>."
-          : `per year</strong>. <br/>A payment of ${formatter.format(
+          ? `, to ${formatter.format(
+              unitPrice * deltaMachines + nextPayment
+            )} per month</strong>.`
+          : ` per year</strong>. <br/>A payment of ${formatter.format(
               unitPrice * deltaMachines
             )} will be charged immediately`
       }`;
