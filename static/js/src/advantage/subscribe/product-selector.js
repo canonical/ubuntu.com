@@ -42,6 +42,10 @@ const inputs = [
 
 const form = document.querySelector(".js-shop-form");
 
+// We add a solid background to the footer so we can hide the "cart" behind it.
+const footer = document.querySelector("footer.p-footer");
+footer.style.backgroundColor = "white";
+
 function initInputs(action, name) {
   const inputs = form.querySelectorAll(`input[name='${name}']`);
   inputs.forEach((input) => {
@@ -121,7 +125,15 @@ function renderPublicClouds(sections) {
 
 function renderSummary() {
   const billing = store.getState().form.billing;
-  const saveMessage = form.querySelector("#summary-save-with-annual");
+  const summarySection = form.querySelector("#summary-section");
+  const saveMessage = summarySection.querySelector("#summary-save-with-annual");
+
+  if (!store.getState().form.product.ok) {
+    summarySection.classList.add("p-shop-cart--hidden");
+  } else {
+    summarySection.classList.remove("p-shop-cart--hidden");
+  }
+
   if (billing === "yearly") {
     saveMessage.classList.add("u-hide");
   } else {

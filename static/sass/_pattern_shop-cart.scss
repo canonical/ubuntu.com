@@ -2,6 +2,11 @@
   .p-shop-cart {
     position: sticky;
     bottom: 0px;
+    transition: 0.5s ease-out transform;
+
+    &--hidden {
+      transform: translateY(100%);
+    }
 
     .p-shop-cart__quantity {
       margin-bottom: 0.5rem;
