@@ -7,18 +7,20 @@
 
 {% block content %}
 <h1>Search results page</h1>
-Models:
-<p>{{ models }}</p>
+Results:
+<p>{{ results }}</p>
 query
 <p>{{ query }}</p>
-level
-<p>{{ level }}</p>
-categories
-<p>{{ categories }}</p>
-Releases
+
+Selected Form (Show:)
+<p>{{ form }}</p>
+
+Release selected
 <p>{{ releases }}</p>
-all releases
+
+All releases
 <p>{{ all_releases }}</p>
+
 vendors
 <p>{{ vendors }}</p>
 all vendors
@@ -27,10 +29,26 @@ total
 <p>{{ total }}</p>
 query string
 <p>{{ query_string }}</p>
-total count
-<p>{{ total }}</p>
-page
-<p>{{ page }}</p>
+
+
+<h2>Pagination</h2>
+
+
+
+<h3>These are provided not required to submit</h3>
+total results
+<p>{{ total_results }}</p>
+
 total pages
-<p>{{ pages }}</p>
+<p>{{ total_pages }}</p>
+
+<h3>These 2 need to be returned to get results paged:</h3>
+
+E.g.: page 2 is offset 21 limit 20 (always the same)
+Limit
+<p>{{ limit }}</p>
+
+Offset
+<p>{{ offset }}</p>
+
 {% endblock content %}

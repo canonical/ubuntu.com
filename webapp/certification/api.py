@@ -116,6 +116,12 @@ class CertificationAPI:
         canonical_id=None,
         identifier=None,
         subsystem=None,
+        category=None,
+        make=None,
+        name=None,
+        subproduct_name=None,
+        subvendor_id=None,
+        vendor_id=None,
     ):
         return self._get(
             "certifiedmodeldevices",
@@ -126,6 +132,12 @@ class CertificationAPI:
                 "canonical_id": canonical_id,
                 "identifier": identifier,
                 "subsystem": subsystem,
+                "category": category,
+                "make": make,
+                "name": name,
+                "subproduct_name": subproduct_name,
+                "subvendor_id": subvendor_id,
+                "vendor_id": vendor_id,
             },
         ).json()
 
@@ -150,6 +162,7 @@ class CertificationAPI:
         canonical_id=None,
         query=None,
         make=None,
+        category__iexact=None,
     ):
         return self._get(
             "componentsummaries",
@@ -160,6 +173,7 @@ class CertificationAPI:
                 "canonical_id": canonical_id,
                 "query": query,
                 "make": make,
+                "category__iexact": category__iexact,
             },
         ).json()
 
