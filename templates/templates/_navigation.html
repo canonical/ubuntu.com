@@ -188,6 +188,7 @@
     dropdownWindowOverlay.classList.remove("fade-animation");
     navigation.classList.add('has-active-search');
     searchInput.focus();
+    dropdownWindowOverlay.addEventListener('click', closeSearch);
     document.addEventListener('keyup', keyPressHandler);
   }
 
@@ -201,6 +202,7 @@
     navigation.classList.remove('has-active-search');
     searchButton.classList.remove('u-hide');
     document.removeEventListener('keyup', keyPressHandler);
+    dropdownWindowOverlay.removeEventListener('click', closeSearch);
   }
 
   function keyPressHandler (e) {
