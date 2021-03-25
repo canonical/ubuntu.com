@@ -135,9 +135,8 @@ export async function cancelContract(accountId, previousPurchaseId, productId) {
     },
     body: JSON.stringify({
       account_id: accountId,
-      product_listings: [{ product_listing: productId }],
       previous_purchase_id: previousPurchaseId,
-      period: "monthly",
+      product_listing_id: productId,
     }),
   });
 
@@ -171,6 +170,7 @@ export async function resizeContract(
           quantity: quantity,
         },
       ],
+      resizing: true,
     }),
   });
 
@@ -282,7 +282,7 @@ export async function setPaymentMethod(accountID, paymentMethodId) {
   return data;
 }
 
-export async function setAutoRenewal(subscriptionId, value) {
+export async function setAutoRenewal(value) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/set-auto-renewal${queryString}`, {
@@ -294,8 +294,7 @@ export async function setAutoRenewal(subscriptionId, value) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      subscriptionId: subscriptionId,
-      value: value,
+      should_auto_renew: value,
     }),
   });
 

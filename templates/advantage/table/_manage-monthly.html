@@ -1,21 +1,23 @@
-<div class="col-start-large-2 col-10" id="view-mode--{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
+<div class="col-start-large-2 col-10" id="view-mode--{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
   <div class="row">
-    {% if not mobile %}
-      <p class="col-2 p-muted-text" style="margin-bottom: .5rem">Created on</p>
-      <p class="col-3 u-no-margin--top" style="margin-bottom: .5rem">{{ contract['contractInfo']['createdAtFormatted'] }}</p>
-      <hr />
-      <p class="col-2 p-muted-text u-no-padding--top">Ends</p>
-      <p class="col-3 u-no-margin--top u-no-padding--top">{{ contract['contractInfo']['effectiveToFormatted'] }}</p>
-    {% endif %}
+    <div class="advantage-table-section">
+      <div class="advantage-table-instruction">
+        <span>Created on</span>
+        <p>{{ contract['contractInfo']['createdAtFormatted'] }}</p>
+        <hr />
+        <span>Ends</span>
+        <p>{{ contract['contractInfo']['effectiveToFormatted'] }}</p>
+      </div>
+    </div>
 
     <div class="change-subscription {% if mobile %}u-align--center{% endif %}">
-      <p>Auto-renewal {% if subscriptions['is_auto_renewal_enabled'] %}enabled{% else %}disabled{% endif %}</p>
-      <button class="p-button--neutral js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}">Change subscription</button>
+      <p>Auto-renewal {% if monthly_information['is_auto_renewal_enabled'] %}enabled{% else %}disabled{% endif %}</p>
+      <button class="p-button--neutral js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">Change subscription</button>
     </div>
   </div>
 </div>
 
-<div class="col-start-large-2 col-10 u-hide" id="edit-mode--{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
+<div class="col-start-large-2 col-10 u-hide" id="edit-mode--{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
   <div class="row">
     {% if mobile %}
       <hr />
@@ -24,34 +26,37 @@
     {% if not mobile %}
       <hr />
     {% endif %}
-    <div class="p-notification--caution">
-      <p class="p-notification__response" role="status">
-        <span class="p-notification__status">End in {{contract["contractInfo"]["daysTillExpiry"] }} days.</span>Auto-renewal disabled.
-      </p>
-    </div>
+    {% if not monthly_information['is_auto_renewal_enabled'] %}
+      <div class="p-notification--caution">
+        <p class="p-notification__response" role="status">
+          <span class="p-notification__status">End in {{contract["contractInfo"]["daysTillExpiry"] }} days.</span>Auto-renewal disabled.
+        </p>
+      </div>
+    {% endif %}
     <p class="p-muted-text" style="margin-bottom: .5rem">Machines</p>
     <div class="panel-input-wrapper">
       <input 
-        id="resize-input--{{contract["contractInfo"]["id"]}}" 
+        id="resize-input--{{contract["contractInfo"]["id"]}}--monthly" 
         type="number" 
-        value="{{ contract['machineCount']['allowed']}}" 
-        data-next-payment="{{subscriptions["next_payment"]["ammount"]}}" 
-        data-unit-price="{{contract["price_per_unit"]}}" 
+        value="{{ contract['machineCount']}}" 
+        data-next-payment="{{monthly_information["next_payment"]["ammount"]}}" 
+        data-unit-price="{{contract["price_per_unit"]["value"]}}" 
         min="1" 
         max="999"
         data-billing-period="monthly"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       />
-      <p class="u-hide" id="resize-summary--{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}" ></p>
+      <p class="u-hide" id="resize-summary--{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}" ></p>
     </div>
-    <p class="u-hide "id="new-payment--{{contract["contractInfo"]["id"]}}" data-viewport="{% if mobile %}small{% else %}large{% endif %}" ></p>
+    <p class="u-hide "id="new-payment--{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}" ></p>
     <div class="col-6 buttons-wrapper">
-      <button id="cancel-subscription--{{contract["contractInfo"]["id"]}}" 
+      <button id="cancel-subscription--{{contract["contractInfo"]["id"]}}--monthly" 
         class="p-button--negative" 
         data-contract-name="{{contract['contractInfo']['name']}}" 
-        data-machine-count="{{ contract['machineCount']['allowed']}}" 
+        data-machine-count="{{ contract['machineCount']}}" 
         data-account-id="{{contract['accountInfo']['id']}}" 
-        data-previous-purchase-id="{{contract['previous_purchase_id']}}"
+        data-product-listing-id="{{contract["product_listing_id"]}}"
+        data-previous-purchase-id="{{previous_purchase_ids['monthly']}}"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       >
         Cancel subscription
@@ -59,18 +64,19 @@
     </div>
     <div class="col-6 u-align--right buttons-wrapper">
       <button 
-        id="cancel-changes--{{contract["contractInfo"]["id"]}}" 
+        id="cancel-changes--{{contract["contractInfo"]["id"]}}--monthly" 
         class="p-button--neutral"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       >
         Cancel changes
       </button>
       <button 
-        id="save-changes--{{contract["contractInfo"]["id"]}}" 
+        id="save-changes--{{contract["contractInfo"]["id"]}}--monthly" 
         class="p-button--positive" 
         disabled 
         data-account-id="{{contract['accountInfo']['id']}}" 
-        data-previous-purchase-id="{{contract['previous_purchase_id']}}"
+        data-product-listing-id="{{contract["product_listing_id"]}}"
+        data-previous-purchase-id="{{previous_purchase_ids['monthly']}}"
         data-viewport="{% if mobile %}small{% else %}large{% endif %}"
       >
         Save changes
