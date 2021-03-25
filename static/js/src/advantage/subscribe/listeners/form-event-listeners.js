@@ -50,4 +50,11 @@ export default function initFormInputs(store) {
   billingSelect.addEventListener("change", (e) => {
     store.dispatch(changeBilling(e.target.value));
   });
+
+  const publicCloudOtherVMLinks = form.querySelectorAll(".js-cloud-other-VM");
+  publicCloudOtherVMLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      store.dispatch(changeType("virtual"));
+    });
+  });
 }
