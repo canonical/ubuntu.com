@@ -1,15 +1,12 @@
-{% extends "advantage/base_advantage.html" %} {% block title %}Ubuntu Advantage
-for Infrastructure{% endblock %} {% block meta_description %}Ubuntu Advantage
-for Infrastructure offers a single, per-node packaging of the most comprehensive
-software, security and IaaS support in the industry, with OpenStack support,
-Kubernetes support included, and Livepatch, Landscape and Extended Security
-Maintenance to address security and compliance concerns.{% endblock %} {% block
-meta_copydoc
-%}https://docs.google.com/document/d/1K65n3NpZCh7EWDXKLhG31seGJ2jKbW6lqw3BwV2mlnU/edit#heading=h.vlvlt0gikzjy{%
-endblock meta_copydoc %} {% block head_extra %}<meta
-  name="robots"
-  content="noindex"
-/>{% endblock %} {% block content %}
+{% extends "advantage/base_advantage.html" %} 
+
+{% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
+{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %} 
+{% block meta_copydoc %}https://docs.google.com/document/d/1K65n3NpZCh7EWDXKLhG31seGJ2jKbW6lqw3BwV2mlnU/edit#heading=h.vlvlt0gikzjy{% endblock meta_copydoc %} 
+{% block head_extra %}<meta name="robots" content="noindex"/>{% endblock %} 
+
+{% block content %}
+
 <section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
   <div class="row">
     <div class="col-12">
@@ -19,9 +16,9 @@ endblock meta_copydoc %} {% block head_extra %}<meta
           <a
             href="/support/contact-us"
             class="p-notification__action js-invoke-modal"
-            >Join our free beta programme for Ubuntu Pro on
-            prem&nbsp;&rsaquo;</a
           >
+            Join our free beta programme for Ubuntu Pro on prem&nbsp;&rsaquo;
+          </a>
         </p>
       </div>
     </div>
@@ -29,18 +26,19 @@ endblock meta_copydoc %} {% block head_extra %}<meta
   <div class="row">
     <div class="col-12 u-sv3">
       {% if not user_info %}
-      <h1>Subscribe to Ubuntu Advantage</h1>
-      <p>
-        If you have existing subscriptions or sales offers,
-        <a
-          href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}"
-          onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });"
-          >sign in</a
-        >
-        to see them. {% else %}
-      </p>
-
-      <h1>Add machines to your subscription</h1>
+        <h1>Subscribe to Ubuntu Advantage</h1>
+        <p>
+          If you have existing subscriptions or sales offers,
+          <a
+            href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}"
+            onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });" 
+          >
+            sign in
+          </a>
+          to see them. 
+        </p>
+      {% else %}
+        <h1>Add machines to your subscription</h1>
       {% endif %}
     </div>
   </div>
@@ -49,10 +47,14 @@ endblock meta_copydoc %} {% block head_extra %}<meta
 <form class="js-shop-form">
   <div class="row">
     <ol class="p-stepped-list col-12">
-      {% include "advantage/subscribe/form/_type_select.html" %} {% include
-      "advantage/subscribe/form/_ubuntu_version_select.html" %} {% include
-      "advantage/subscribe/form/_feature_coverage.html" %} {% include
-      "advantage/subscribe/form/_tech_support.html" %}
+
+      {% include "advantage/subscribe/form/_type_select.html" %}
+
+      {% include "advantage/subscribe/form/_ubuntu_version_select.html" %}
+
+      {% include "advantage/subscribe/form/_feature_coverage.html" %}
+
+      {% include "advantage/subscribe/form/_tech_support.html" %}
 
       <li class="p-stepped-list__item js-form-section" data-step="quantity">
         <h2 class="p-stepped-list__title">How many?</h2>
@@ -109,8 +111,7 @@ endblock meta_copydoc %} {% block head_extra %}<meta
         </div>
       </div>
       <div class="col-3 p-shop-cart__buy">
-        <strong class="js-summary-cost u-align-form-elements"
-          >${cost} /year</strong
+        <strong class="js-summary-cost u-align-form-elements">${cost} /year</strong
         >
         <button
           class="p-button--positive u-no-margin--bottom u-float-right js-ua-shop-cta p-shop-cart__buy-button"
@@ -122,8 +123,9 @@ endblock meta_copydoc %} {% block head_extra %}<meta
   </section>
 </form>
 
-{% with type="purchase" %} {% include 'advantage/_stripe-modal.html' %} {%
-endwith %}
+{% with type="purchase" %} 
+{% include 'advantage/_stripe-modal.html' %} 
+{% endwith %}
 
 <script src="/static/js/dist/productSelector.js" type="module"></script>
 <script defer>
