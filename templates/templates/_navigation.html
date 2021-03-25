@@ -188,9 +188,10 @@
     dropdownWindowOverlay.classList.remove("fade-animation");
     navigation.classList.add('has-active-search');
     searchInput.focus();
+    document.addEventListener('keyup', keyPressHandler);
   }
 
-  function closeSearch(e) {
+  function closeSearch() {
     var navigation = document.querySelector('.p-navigation__nav');
     var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
     var searchButton = document.querySelector('.js-search-button');
@@ -199,5 +200,13 @@
     dropdownWindowOverlay.classList.add("fade-animation");
     navigation.classList.remove('has-active-search');
     searchButton.classList.remove('u-hide');
+    document.removeEventListener('keyup', keyPressHandler);
+  }
+
+  function keyPressHandler (e) {
+    console.log(e);
+    if (e.key === "Escape") {
+      closeSearch();
+    }
   }
 </script>
