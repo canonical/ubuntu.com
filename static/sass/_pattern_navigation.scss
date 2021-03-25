@@ -111,8 +111,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       width: 100%;
 
       &.has-active-search {
-        .p-navigation__items {
-          display: none;
+        @media (min-width: $breakpoint-navigation-threshold) {
+          .p-navigation__items {
+            display: none;
+          }
         }
       }
     }
