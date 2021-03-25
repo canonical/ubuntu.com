@@ -9,8 +9,10 @@ const initialFormState = {
   billing: "yearly",
   product: {
     ok: false,
-    price: {
-      value: 0,
+    supportPriceRange: {
+      essential: null,
+      standard: 52500,
+      advanced: 127500,
     },
   },
 };
@@ -21,9 +23,11 @@ const prefixMap = {
   "infra+apps": "uaia",
 };
 
-function matchingProduct(testItem, selectedProductId, selectedBillingPeriod) {
+const productsArray = Object.entries(window.productList);
+
+function matchingProduct(testItem, selectedProductID, selectedBillingPeriod) {
   if (
-    testItem.productID === selectedProductId &&
+    testItem.productID === selectedProductID &&
     testItem.period === selectedBillingPeriod
   ) {
     return true;
@@ -31,27 +35,63 @@ function matchingProduct(testItem, selectedProductId, selectedBillingPeriod) {
   return false;
 }
 
-const productsArray = Object.entries(window.productList);
+function getProductByID(productID, billing) {
+  var selectedProduct = initialFormState.product;
+  productsArray.forEach((product) => {
+    const listingProduct = product[1];
+    listingProduct.id = product[0];
+    if (matchingProduct(listingProduct, productID, billing)) {
+      selectedProduct = { ...listingProduct, ok: true };
+      return;
+    }
+  });
+  return selectedProduct;
+}
 
-console.table(window.productList);
+function getDifferentSupportID(productID, newSupport) {
+  return productID.replace(productID.split("-")[1], newSupport);
+}
+
+function getSupportPriceRange(productID) {
+  const essentialID = getDifferentSupportID(productID, "essential");
+  const standardID = getDifferentSupportID(productID, "standard");
+  const advancedID = getDifferentSupportID(productID, "advanced");
+
+  const essentialProduct = getProductByID(essentialID, "yearly");
+  const standardProduct = getProductByID(standardID, "yearly");
+  const advancedProduct = getProductByID(advancedID, "yearly");
+
+  if (!essentialProduct.ok) {
+    return {
+      essential: null,
+      standard: null,
+      advanced: null,
+    };
+  }
+
+  return {
+    essential: essentialProduct.price.value,
+    standard: standardProduct.ok
+      ? standardProduct.price.value - essentialProduct.price.value
+      : null,
+    advanced: advancedProduct.ok
+      ? advancedProduct.price.value - essentialProduct.price.value
+      : null,
+  };
+}
 
 function getProduct(state) {
   const prefix = prefixMap[state.feature];
   const suffix =
     state.feature === "apps" && state.type === "physical"
       ? ""
-      : `-${state.type}`; //the suffix is always the type except for UA Apps
-  const productId = `${prefix}-${state.support}${suffix}`;
-  var selectedProduct = initialFormState.product;
-  productsArray.forEach((product) => {
-    const listingProduct = product[1];
-    listingProduct.id = product[0];
-    if (matchingProduct(listingProduct, productId, state.billing)) {
-      selectedProduct = { ...listingProduct, ok: true };
-      return listingProduct;
-    }
-  });
-  return selectedProduct;
+      : `-${state.type}`; //the suffix is always the type except for physical UA Apps
+  const productID = `${prefix}-${state.support}${suffix}`;
+  const product = getProductByID(productID, state.billing);
+  return {
+    ...product,
+    supportPriceRange: getSupportPriceRange(productID, state.billing),
+  };
 }
 
 const formSlice = createSlice({
@@ -60,7 +100,6 @@ const formSlice = createSlice({
   reducers: {
     changeType(state, action) {
       state.type = action.payload;
-      console.log(getProduct(state));
       if (action.payload === "desktop" && state.feature === "infra+apps") {
         state.feature = initialFormState.feature;
       }
