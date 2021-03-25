@@ -618,7 +618,9 @@ summary {
 }
 
 .subscribe-section {
-  margin-left: 4rem !important;
+  @media (min-width: $breakpoint-medium) {
+    margin-left: 4rem;
+  }
 }
 
 .p-contextual-menu--advantage {
