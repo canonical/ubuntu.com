@@ -29,23 +29,35 @@ def certification_home():
     iot_vendors = []
 
     for release in certified_releases:
+        version = release["release"]
+
         if int(release["desktops"]) > 0 or int(release["laptops"]) > 0:
+            release["path"] = f"/certification?form=Desktop&release={version}"
             desktop_releases.append(release)
 
         if int(release["smart_core"] > 1):
-            iot_vendors.append(release)
+            release[
+                "path"
+            ] = f"/certification?form=Ubuntu%20Core&release={version}"
+            iot_releases.append(release)
 
         if int(release["soc"] > 1):
+            release["path"] = f"/certification?form=SoC&release={version}"
             soc_releases.append(release)
 
     for vendor in certified_makes:
+        make = vendor["make"]
+
         if int(vendor["desktops"]) > 0 or int(vendor["laptops"]) > 0:
+            vendor["path"] = f"/certification?form=Desktop&vendor={make}"
             desktop_vendors.append(vendor)
 
         if int(vendor["smart_core"] > 1):
-            iot_releases.append(vendor)
+            vendor["path"] = f"/certification?form=Ubuntu%20Core&vendor={make}"
+            iot_vendors.append(vendor)
 
         if int(vendor["soc"] > 1):
+            vendor["path"] = f"/certification?form=SoC&vendor={make}"
             soc_vendors.append(vendor)
 
     # Server section
