@@ -3,40 +3,278 @@
 {% block title %}Certified hardware | Ubuntu{% endblock %}
 
 {% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1QuhO-9FEOGLrYp8bErS_9snqdljl7d6tFAUoNQxoVDQ/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}{% endblock meta_copydoc %}
 
 {% block content %}
 
-Desktop
-Releases:
-<p>{{ desktop_releases }}</p>
+<section class="p-strip--suru-bottomed">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h1>Ubuntu Certified hardware</h1>
+      <p>Looking for machines you can trust with Ubuntu? Ubuntu Certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out of the box, ready for your organisation. We work closely with OEMs to jointly make Ubuntu available on a wide range of desktops, laptops, servers, IoT, and SoC hardware.</p>
+    </div>
+    <div class="col-5 u-hide--small u-align-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a491f87c-Ubuntu+Certified+Hardware.svg",
+        alt="",
+        width="364",
+        height="297",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>  
+</section>
 
-Vendors: 
-<p>{{ desktop_vendors }}</p>
+<section class="p-strip--light is-shallow">
+  <div class="row">
+    <div class="col-4" style="margin-top: 1rem;">
+      <select name="certified-hardware" id="certified-hardware">
+        <option value="models-and-components">Models and components</option>
+        <optgroup label="Models">
+          <option value="models">Models</option>
+          <option value="desktops">Desktops</option>
+          <option value="laptops">Laptops</option>
+          <option value="servers">Servers</option>
+          <option value="iot">IoT</option>
+          <option value="soc">SoC</option>
+        </optgroup>
+        <option value="components">Components</option>
+      </select>
+    </div>
+    <div class="col-8" style="margin-top: 1rem;">
+      <form class="p-search-box">
+        <input type="search" class="p-search-box__input" name="search" placeholder="Search hardware" required="" autocomplete="on">
+        <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+        <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+      </form>
+    </div>
+  </div>
+</section>
 
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+        alt="",
+        width="83",
+        height="48",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <h2 class="p-card__title p-heading--3">Ubuntu Desktop certified hardware</h2>
+      <hr />
+      <p class="p-card__content u-sv2">Many of the world's biggest PC manufacturers certify their desktops for Ubuntu.</p>
+      <p class="p-muted-text u-no-margin--bottom">Vendor:</p>
+      <ul class="p-inline-list" style="margin-bottom: 0.5rem;">
+        {% for desktop_vendor in desktop_vendors %}
+        <li class="p-inline-list__item">
+          <a href="#">{{ desktop_vendor.make }} ({{ desktop_vendor.total }})</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="p-muted-text u-no-margin--bottom">Certified for Ubuntu:</p>
+      <ul class="p-inline-list">
+        {% for desktop_release in desktop_releases %}
+        <li class="p-inline-list__item">
+          <a href="#">{{ desktop_release.release }} ({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <p><a href="#">All Ubuntu Desktop certified hardware&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 p-card">    
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+        alt="",
+        width="40",
+        height="48",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <h2 class="p-card__title p-heading--3">Ubuntu Server certified hardware</h2>
+      <hr />
+      <p class="p-card__content u-sv2">Ubuntu Server gives you the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
+      <p class="p-muted-text u-no-margin--bottom">Certified for Ubuntu:</p>
+      <ul class="p-inline-list">
+        {% for server_release, total in server_releases.items() %}
+        <li class="p-inline-list__item">
+          <a href="#">{{ server_release }} ({{ total }})</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <p><a href="#">All Ubuntu Server certified hardware&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
+        alt="",
+        width="46",
+        height="50",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <h2 class="p-card__title p-heading--3">IoT certified hardware</h2>
+      <hr />
+      <p class="p-card__content u-sv2">IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. Ubuntu Core delivers bullet-proof security, reliable updates and access to a rich ecosystem on 32 and 64-bit ARM and X86 platforms.</p>
+      <p class="p-muted-text u-no-margin--bottom">Vendor:</p>
+      <ul class="p-inline-list">
+        {% for iot_release in iot_releases %}
+        <li class="p-inline-list__item">
+          <a href="#">{{ iot_release.make }} ({{ iot_release.total }})</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <p><a href="#">All IoT certified hardware&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 p-card">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
+        alt="",
+        width="42",
+        height="50",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <h2 class="p-card__title p-heading--3">Ubuntu System on a Chip certified hardware</h2>
+      <hr />
+      <p class="p-card__content u-sv2">Low-power small-footprint System on a Chip (SoC) hardware is redefining the future of sustainable data centers.</p>
+      <p class="p-muted-text u-no-margin--bottom">Vendor:</p>
+      <ul class="p-inline-list">
+        {% for soc_vendor in soc_vendors %}
+        <li class="p-inline-list__item">
+          <a href="#">{{ soc_vendor.make }} ({{ soc_vendor.total }})</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <p><a href="#">All Ubuntu SoC certified hardware&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
 
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Tech support for certified systems</h2>
+      <p class="u-sv2">Ubuntu Advantage is the professional support package from Canonical, with <a href="/uasd">more support for certified hardware</a>.</p>
+      <a href="/advantage" class="p-button--positive"> Get Ubuntu Advantage</a>
+    </div>
+    <div class="col-5 u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/b0af9ede-UA_24-7_Support.svg",
+        alt="",
+        width="130",
+        height="130",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
 
-Server
-Releases:
-<p>{{ server_releases }}</p>
+<section class="p-strip is-shallow">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Get your hardware Ubuntu Certified</h2>
+      <p>Join OEM market leaders in the list of Ubuntu Certified hardware. Work with us to test that your hardware works fine with Ubuntu.</p>
+      <a href="#">Learn more</a>
+    </div>
+    <div class="col-5 u-align--center">
+      <ul class="p-inline-images">
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/97e29c13-Dell.svg",
+            alt="Dell",
+            width="90",
+            height="90",
+            hi_def=True,
+            attrs={"class":"p-inline-images__logo"},
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/cd5c35a3-partners-logo-hp.png",
+            alt="hp",
+            width="212",
+            height="211",
+            hi_def=True,
+            attrs={"class":"p-inline-images__logo"},
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/68713fd5-logo-lenovo.svg",
+            alt="Lenovo",
+            width="400",
+            height="66",
+            hi_def=True,
+            attrs={"class":"p-inline-images__logo"},
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fb30ce34-IBM.svg",
+            alt="IBM",
+            width="88",
+            height="36",
+            hi_def=True,
+            attrs={"class":"p-inline-images__logo"},
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Certification reference</h2>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <ul class="p-list">
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/2a2ee894-Checkbox-snappyTutorial.pdf" class="p-link--external">Running Checkbox on Ubuntu Core</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/f1f2fc8e-MAAS_Advanced_Network_Installation_And_Configuration.pdf" class="p-link--external">MAAS advanced network installation and configuration</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/8561bb98-PlatformConfigCert.pdf" class="p-link--external">OEM partner programme definitions</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/e6e61575-ReferenceDeviceTP.pdf" class="p-link--external">IoT reference device test plans</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/4a65f316-TestCaseGuide2004.pdf" class="p-link--external">Ubuntu 20.04 client certification tests</a></li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <ul class="p-list">
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/bae83a86-UC18Coverage.pdf" class="p-link--external">Ubuntu Core 18 certified hardware coverage</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/afc699d1-UbuntuCoreCertifiedHardwareCoverageforSeries16SmartDevices.pdf" class="p-link--external">Ubuntu Core 16 certified hardware coverage</a></li>
+        <li class="p-list__item"><a href="http://certification-static.canonical.com/docs/Ubuntu_Desktop_Certified_Hardware_Self-Testing_Guide.pdf" class="p-link--external">Ubuntu Desktop certified hardware self-testing guide</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/44871442-Ubuntu_Server_Hardware_Certification_Coverage_18.04.pdf" class="p-link--external">Ubuntu Server 18.04 LTS hardware certification converage</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/74830270-Ubuntu_Server_Hardware_Certification_Coverage_20.04.pdf" class="p-link--external">Ubuntu Server 20.04 LTS hardware certification converage</a></li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <ul class="p-list">
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/7b7982d7-Ubuntu_Server_Hardware_Certification_Overview.pdf" class="p-link--external">Ubuntu Server hardware certification overview</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/d05795f9-Ubuntu_Server_Hardware_Certification_Policy_Guide.pdf" class="p-link--external">Ubuntu Server hardware certification policies</a></li>
+        <li class="p-list__item"><a href="http://certification-static.canonical.com/docs/Ubuntu_Server_Hardware_Certification_Self-Testing_Guide.pdf" class="p-link--external">Ubuntu Server certified hardware self-testing guide (20.04 LTS)</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/94d2994f-Ubuntu_Server_Hardware_Certification_Test_Cases_Guide_18.04.pdf" class="p-link--external">Ubuntu Server hardware certification test case guide (16.04 LTS)</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-
-IoT
-Releases:
-<p>{{ iot_releases }}</p>
-
-Vendors: 
-<p>{{ iot_vendors }}</p>
-
-
-
-SoC
-Releases:
-<p>{{ soc_releases }}</p>
-
-Vendors: 
-<p>{{ soc_vendors }}</p>
-
-
-{% endblock content %}
+{% endblock content%}
