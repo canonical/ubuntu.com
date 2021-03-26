@@ -72,7 +72,7 @@
       <ul class="p-inline-list" style="margin-bottom: 0.5rem;">
         {% for desktop_vendor in desktop_vendors %}
         <li class="p-inline-list__item">
-          <a href="#">{{ desktop_vendor.make }} ({{ desktop_vendor.total }})</a>
+          <a href="#">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -80,7 +80,7 @@
       <ul class="p-inline-list">
         {% for desktop_release in desktop_releases %}
         <li class="p-inline-list__item">
-          <a href="#">{{ desktop_release.release }} ({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
+          <a href="#">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -103,7 +103,7 @@
       <ul class="p-inline-list">
         {% for server_release, total in server_releases.items() %}
         <li class="p-inline-list__item">
-          <a href="#">{{ server_release }} ({{ total }})</a>
+          <a href="#">{{ server_release }}&nbsp;({{ total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -128,7 +128,7 @@
       <ul class="p-inline-list">
         {% for iot_release in iot_releases %}
         <li class="p-inline-list__item">
-          <a href="#">{{ iot_release.make }} ({{ iot_release.total }})</a>
+          <a href="#">{{ iot_release.make }}&nbsp;({{ iot_release.total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -218,9 +218,9 @@
     </div>
     <div class="col-4">
       <ul class="p-list">
-        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/bae83a86-UC18Coverage.pdf" class="p-link--external">Ubuntu Core 18 certified hardware coverage</a></li>
-        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/afc699d1-UbuntuCoreCertifiedHardwareCoverageforSeries16SmartDevices.pdf" class="p-link--external">Ubuntu Core 16 certified hardware coverage</a></li>
-        <li class="p-list__item"><a href="http://certification-static.canonical.com/docs/Ubuntu_Desktop_Certified_Hardware_Self-Testing_Guide.pdf" class="p-link--external">Ubuntu Desktop certified hardware self-testing guide</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/bae83a86-UC18Coverage.pdf" class="p-link--external">Ubuntu Core 18 certified hardware<br>coverage</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/afc699d1-UbuntuCoreCertifiedHardwareCoverageforSeries16SmartDevices.pdf" class="p-link--external">Ubuntu Core 16 certified hardware<br>coverage</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/02ca9ede-Ubuntu_Server_Hardware_Certification_Self-Testing_Guide-compressed.pdf" class="p-link--external">Ubuntu Desktop certified hardware self-testing guide</a></li>
         <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/44871442-Ubuntu_Server_Hardware_Certification_Coverage_18.04.pdf" class="p-link--external">Ubuntu Server 18.04 LTS hardware certification converage</a></li>
         <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/74830270-Ubuntu_Server_Hardware_Certification_Coverage_20.04.pdf" class="p-link--external">Ubuntu Server 20.04 LTS hardware certification converage</a></li>
       </ul>
@@ -228,7 +228,7 @@
     <div class="col-4">
       <ul class="p-list">
         <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/7b7982d7-Ubuntu_Server_Hardware_Certification_Overview.pdf" class="p-link--external">Ubuntu Server hardware certification overview</a></li>
-        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/d05795f9-Ubuntu_Server_Hardware_Certification_Policy_Guide.pdf" class="p-link--external">Ubuntu Server hardware certification policies</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/d05795f9-Ubuntu_Server_Hardware_Certification_Policy_Guide.pdf" class="p-link--external">Ubuntu Server hardware certification<br>policies</a></li>
         <li class="p-list__item"><a href="http://certification-static.canonical.com/docs/Ubuntu_Server_Hardware_Certification_Self-Testing_Guide.pdf" class="p-link--external">Ubuntu Server certified hardware self-testing guide (20.04 LTS)</a></li>
         <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/94d2994f-Ubuntu_Server_Hardware_Certification_Test_Cases_Guide_18.04.pdf" class="p-link--external">Ubuntu Server hardware certification test case guide (16.04 LTS)</a></li>
       </ul>
