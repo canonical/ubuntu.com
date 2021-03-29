@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import initFormInputs from "./listeners/form-event-listeners";
+import initUIControls from "./listeners/ui-event-listeners";
 
 import formReducer from "./reducers/form-reducer";
+import UIReducer from "./reducers/ui-reducer";
 
 import render from "./renderers/main-renderer";
 
@@ -12,10 +14,12 @@ footer.style.backgroundColor = "white";
 const store = configureStore({
   reducer: {
     form: formReducer,
+    ui: UIReducer,
   },
 });
 
 initFormInputs(store);
+initUIControls(store);
 
 render(store.getState());
 store.subscribe(() => {
