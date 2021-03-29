@@ -1,0 +1,36 @@
+{% extends "certification/base_certification.html" %}
+
+{% block title %}Certified hardware | Ubuntu{% endblock %}
+
+{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1QuhO-9FEOGLrYp8bErS_9snqdljl7d6tFAUoNQxoVDQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<h1>Search results page</h1>
+Models:
+<p>{{ models }}</p>
+query
+<p>{{ query }}</p>
+level
+<p>{{ level }}</p>
+categories
+<p>{{ categories }}</p>
+Releases
+<p>{{ releases }}</p>
+all releases
+<p>{{ all_releases }}</p>
+vendors
+<p>{{ vendors }}</p>
+all vendors
+<p>{{ all_vendors }}</p>
+total
+<p>{{ total }}</p>
+query string
+<p>{{ query_string }}</p>
+total count
+<p>{{ total }}</p>
+page
+<p>{{ page }}</p>
+total pages
+<p>{{ pages }}</p>
+{% endblock content %}
