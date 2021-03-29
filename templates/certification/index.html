@@ -3,7 +3,7 @@
 {% block title %}Certified hardware | Ubuntu{% endblock %}
 
 {% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
-{% block meta_copydoc %}{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1cPdcdSLLawGMn1bSKjbbeJh_CMgpj7d8YPm7F40XP38/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -72,7 +72,7 @@
       <ul class="p-inline-list" style="margin-bottom: 0.5rem;">
         {% for desktop_vendor in desktop_vendors %}
         <li class="p-inline-list__item">
-          <a href="#">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.total }})</a>
+          <a href="{{ desktop_vendor.path }}">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -80,13 +80,13 @@
       <ul class="p-inline-list">
         {% for desktop_release in desktop_releases %}
         <li class="p-inline-list__item">
-          <a href="#">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
+          <a href="{{ desktop_release.path }}">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
         </li>
         {% endfor %}
       </ul>
-      <p><a href="#">All Ubuntu Desktop certified hardware&nbsp;&rsaquo;</a></p>
+      <p><a href="/certification?form=Desktop">All Ubuntu Desktop certified hardware&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-6 p-card">    
+    <div class="col-6 p-card">
       {{ image (
         url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
         alt="",
@@ -103,11 +103,11 @@
       <ul class="p-inline-list">
         {% for server_release, total in server_releases.items() %}
         <li class="p-inline-list__item">
-          <a href="#">{{ server_release }}&nbsp;({{ total }})</a>
+          <a href="/certification?form=Server&release={{ server_release }}">{{ server_release }}&nbsp;({{ total }})</a>
         </li>
         {% endfor %}
       </ul>
-      <p><a href="#">All Ubuntu Server certified hardware&nbsp;&rsaquo;</a></p>
+      <p><a href="/certification?form=Server">All Ubuntu Server certified hardware&nbsp;&rsaquo;</a></p>
     </div>
   </div>
   <div class="row u-equal-height">
@@ -126,13 +126,13 @@
       <p class="p-card__content u-sv2">IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. Ubuntu Core delivers bullet-proof security, reliable updates and access to a rich ecosystem on 32 and 64-bit ARM and X86 platforms.</p>
       <p class="p-muted-text u-no-margin--bottom">Vendor:</p>
       <ul class="p-inline-list">
-        {% for iot_release in iot_releases %}
+        {% for iot_vendor in iot_vendors %}
         <li class="p-inline-list__item">
-          <a href="#">{{ iot_release.make }}&nbsp;({{ iot_release.total }})</a>
+          <a href="{{ iot_vendor.path }}">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
-      <p><a href="#">All IoT certified hardware&nbsp;&rsaquo;</a></p>
+      <p><a href="/certification?form=Ubuntu%20Core">All IoT certified hardware&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-card">
       {{ image (
@@ -151,11 +151,11 @@
       <ul class="p-inline-list">
         {% for soc_vendor in soc_vendors %}
         <li class="p-inline-list__item">
-          <a href="#">{{ soc_vendor.make }} ({{ soc_vendor.total }})</a>
+          <a href="{{ soc_vendor.path }}">{{ soc_vendor.make }} ({{ soc_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
-      <p><a href="#">All Ubuntu SoC certified hardware&nbsp;&rsaquo;</a></p>
+      <p><a href="/certification?form=SoC">All Ubuntu SoC certified hardware&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
