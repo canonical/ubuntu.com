@@ -2,16 +2,99 @@ import talisker.requests
 import talisker.sentry
 
 import math
-from flask import request, render_template
+from flask import request, render_template, abort
 from requests import Session
 from webapp.certification.api import CertificationAPI
 from collections import defaultdict
+from webapp.certification.helpers import get_download_url
 
 session = Session()
 talisker.requests.configure(session)
 api = CertificationAPI(
     base_url="https://certification.canonical.com/api/v1", session=session
 )
+
+
+def certification_model_details(canonical_id):
+    models = api.certified_models(canonical_id=canonical_id)["objects"]
+
+    if not models:
+        abort(404)
+
+    model_releases = api.certified_model_details(
+        canonical_id=canonical_id, limit="0"
+    )["objects"]
+    component_summaries = api.component_summaries(canonical_id=canonical_id)[
+        "objects"
+    ]
+
+    release_details = {"components": {}, "releases": []}
+    has_enabled_releases = False
+
+    for model_release in model_releases:
+        ubuntu_version = model_release["certified_release"]
+        arch = model_release["architecture"]
+
+        if arch == "amd64":
+            arch = "64 Bit"
+
+        release_info = {
+            "name": f"Ubuntu {ubuntu_version} {arch}",
+            "kernel": model_release["kernel_version"],
+            "bios": model_release["bios"],
+            "level": model_release["level"],
+            "notes": model_release["notes"],
+            "version": ubuntu_version,
+            "download_url": get_download_url(models[0], model_release),
+        }
+
+        if release_info["level"] == "Enabled":
+            has_enabled_releases = True
+
+        release_details["releases"].append(release_info)
+
+        for device_category, devices in model_release.items():
+            if (
+                device_category
+                in ["video", "processor", "network", "wireless"]
+                and devices
+            ):
+                device_category = device_category.capitalize()
+
+                release_details["components"][device_category] = []
+
+                if device_category in release_details["components"]:
+                    for device in devices:
+                        release_details["components"][device_category].append(
+                            {
+                                "name": (
+                                    f"{device['make']} {device['name']}"
+                                    f" {device['subproduct_name']}"
+                                ),
+                                "bus": device["bus"],
+                                "identifier": device["identifier"],
+                            }
+                        )
+
+    # Build model name
+    model_names = [model["model"] for model in models]
+
+    category = models[0]["category"]
+    # default to category, which contains the least specific form_factor
+    form_factor = model_release and model_release.get("form_factor", category)
+
+    return render_template(
+        "certification/model-details.html",
+        canonical_id=canonical_id,
+        name=", ".join(model_names),
+        category=category,
+        form_factor=form_factor,
+        vendor=models[0]["make"],
+        major_release=models[0]["major_release"],
+        release_details=release_details,
+        has_enabled_releases=has_enabled_releases,
+        components=component_summaries,
+    )
 
 
 def certification_home():

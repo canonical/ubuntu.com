@@ -109,7 +109,10 @@ from webapp.security.views import (
     cves_sitemap,
 )
 
-from webapp.certification.views import certification_home
+from webapp.certification.views import (
+    certification_home,
+    certification_model_details,
+)
 
 
 CAPTCHA_TESTING_API_KEY = os.getenv(
@@ -766,6 +769,10 @@ app.add_url_rule(
 openstack_docs.init_app(app)
 
 app.add_url_rule("/certification", view_func=certification_home)
+app.add_url_rule(
+    "/certification/<canonical_id>",
+    view_func=certification_model_details,
+)
 
 
 @app.before_request
