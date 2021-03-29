@@ -63,9 +63,29 @@
 }
 
 @mixin ubuntu-card-radio {
-  .row--5-col {
+  .radio-wrapper--staggering {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.5rem;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      display: flex;
+      > div {
+        flex-grow: 1;
+        flex-basis: 0;
+      }
+    }
+  }
+
+  .radio-wrapper--stacking {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 1.5rem;
+    }
   }
 
   .p-card--radio {
@@ -80,24 +100,6 @@
     &:hover,
     &.is-selected {
       background-color: $color-light;
-    }
-
-    .row--5-col & {
-      flex: 1 1 18%;
-      margin-right: 2.5%;
-
-      @media only screen and (max-width: $breakpoint-medium - 1) {
-        flex: 0 0 49%;
-        margin-right: 2%;
-
-        &:nth-child(even) {
-          margin-right: 0;
-        }
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
     }
 
     .p-card__title {
