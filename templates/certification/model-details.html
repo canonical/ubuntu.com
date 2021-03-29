@@ -1,0 +1,37 @@
+<h1>This is the models details page</h1>
+
+<h2>ID (Canonical ID)</h2>
+{{canonical_id}}
+
+<h2>Name:</h2>
+{{ name }}
+
+<h2>Category/Form</h2>
+{{ category }}
+
+<h2>form_factor</h2>
+{{ form_factor }}
+
+<h2>vendor</h2>
+{{ vendor }}
+
+<h2>major release</h2>
+{{ major_release }}
+
+<h2>Release details</h2>
+<p>This contains data for all elements in the table </p>
+<ul>
+    <li>release.name</li>
+    <li>ubuntu image or not (release.level)</li>
+    <li>release.kernel</li>
+    <li>release.notes</li>
+    <li>whole hardware details page, but you need to filter the amount of data accordingly</li>
+</ul>
+<p>Links need to be built in the for of /certification/{model-id}/{release} to link to the corresponding hardware details page</p>
+{{ release_details }}
+
+<h2>Processor, network, video are contained within release.components</h2>
+
+{% if components %}
+<p>{{ components }}</p>
+{% endif %}
