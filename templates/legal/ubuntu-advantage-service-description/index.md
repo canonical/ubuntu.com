@@ -23,7 +23,7 @@ markdown_includes:
 
 As an Ubuntu Advantage for Infrastructure customer, you are entitled to the following benefits and services with respect to the [Nodes](#term-node) attached to your subscription.
 
-When an Ubuntu Advantage subscription is attached to a physical host running a [Covered Hypervisor](#term-hypervisor), it covers the same services for all Ubuntu guests on that host.
+When Ubuntu Advantage subscriptions are attached to all physical hosts in an Enviroment running a [Covered Hypervisor](#term-hypervisor), they cover the same services for all Ubuntu guests on that Enviroment.
 
 1. Self-service customer care portal and knowledge base. Knowledge base access will be widely granted to all necessary personnel. A specific number of designated personnel will also be entitled to raise support issues.
 2. Landscape Management. Landscape SAAS systems management is included with all support offerings, unless otherwise noted. RBAC for designated personnel will be under your control.
@@ -39,7 +39,7 @@ When an Ubuntu Advantage subscription is attached to a physical host running a [
   3. Extended Security Maintenance does not provide:
     1. Bug fixes, unless a bug was created by an Extended Security Maintenance security update
     2. Security fixes for packages not found in the Maintained Packages list.
-    3. Security fixes for CVE's that are not High or Critical
+    3. Security fixes for CVEs that are not High or Critical
   4. Extended Security Maintenance does not guarantee secure software or fixes to all High or Critical CVEs.
 5. FIPS-certified cryptographic modules
   1. Access to packages (when available) sufficient for compliance with the FIPS 140-2 Level 1 standard when used with Ubuntu on certain Intel x86\_64, IBM POWER8 and IBM Z hardware.
@@ -58,7 +58,7 @@ When an Ubuntu Advantage subscription is attached to a physical host running a [
 As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infrastructure Advanced customer, you are entitled to all of the benefits and services described under the Subscriptions section above, and in addition are entitled to the following benefits and services:
 
 1. 24x5 (Standard) or 24x7 (Advanced) phone and ticket support.
-  1. Releases. Canonical will provide support for installation, configuration, maintenance, and management of any standard release of Ubuntu when installed using official sources and within its product life cycle, including any applicable Extended Security Maintenance term. The life cycle for each version of Ubuntu is specified here: [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle).
+  1. Releases. Canonical will provide support for installation, configuration, maintenance, troubleshooting and usage of any standard release of Ubuntu when installed using official sources and within its product life cycle, including any applicable Extended Security Maintenance term. The life cycle for each version of Ubuntu is specified here: [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle).
   2. Hardware. Ubuntu Certified hardware has passed Canonical's extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification/](http://www.ubuntu.com/certification/) The services apply only with respect to customer's hardware which has been certified. In the event a customer requests the services with respect to hardware which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description.
   3. Packages. The service applies to:
     1. Packages found in the Ubuntu Main Repository, including the "proposed" and "backports" repository pockets
@@ -95,7 +95,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     6. [Charms](#term-charms):
         1. Each Charm version is supported for one year from the release date.
         2. Canonical will not provide support for any Charms that have been modified from the supported version found in the page at [https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms)
-    7. Canonical will provide support for 72TB of raw storage per Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. If the number of these Nodes exceeds the number of compute Nodes in the covered OpenStack cluster, the supported Ceph and Swift storage will be limited to 48TB per compute Node in the cluster.
+    7. Canonical will provide support for 72TB of raw storage per Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. If the number of these Nodes exceeds the number of compute Nodes in the covered OpenStack cluster, the supported Ceph and Swift storage will be limited to 72TB per compute Node in the cluster.
     8. Ubuntu Advantage OpenStack includes a licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.
     9. OpenStack support excludes:
         1. Support for workloads other than those required to run an OpenStack deployment.
@@ -110,7 +110,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     2. Unless Full-Stack Support requirements are met, support is limited to:
         1. The software packages and Charms necessary for running Charmed Kubernetes.
         2. Kubernetes clusters deployed using kubeadm utilising the software packages available from apt.kubernetes.io.
-        3. Bug-fix support in the supplied software artefacts by Canonical.
+        3. Bug-fix support in the supplied software artefacts by Canonical during the Ubuntu LTS.
 3. Ubuntu Legal Assurance programme. The customer is entitled to participate in the Ubuntu Assurance Programme, subject to its terms and conditions. Canonical may update the Assurance Programme and its terms periodically. The current Ubuntu Assurance Programme and its IP indemnification terms are available at Canonical's Ubuntu Assurance page:[ http://www.ubuntu.com/legal/ubuntu-advantage/assurance](http://www.ubuntu.com/legal/ubuntu-advantage/assurance)
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
@@ -363,7 +363,7 @@ Add-Ons constitute additional support services available separately on a per-Nod
 - <strong id="term-dse">DSE</strong> means a Canonical dedicated support engineer dedicated to work full-time for a single customer acting as an extension of the customer's support organization with a primary focus on integrating and supporting Canonicals offerings within the customer's environment.
 - <strong id="term-dtam">DTAM</strong> means a Canonical support engineer dedicated to work full-time remotely for a single customer.
 - <strong id="term-environment">Environment</strong> means a Cloud or Cluster, as applicable to the particular service offering.
-- <strong id="term-full-stack-support">Full Stack Support</strong> means addressing problems pertaining to user and operations-level OpenStack functionality, performance and availability.
+- <strong id="term-full-stack-support">Full Stack Support</strong> means addressing problems pertaining to user and operations-level OpenStack or Kubernetes functionality, performance and availability.
 - <strong id="term-guest-instance">Guest Instance</strong> means a virtual machine instance running in the Cloud.
 - <strong>Infrastructure Services</strong> refers to the services used by Canonical to deploy, manage, monitor and maintain the Environment.  It includes MAAS, Landscape and LMA Services.
 - <strong id="term-kubernetes">Kubernetes</strong> means the container orchestration software known as "Kubernetes" as distributed by Canonical.
