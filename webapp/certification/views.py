@@ -5,6 +5,7 @@ import math
 from flask import request, render_template
 from requests import Session
 from webapp.certification.api import CertificationAPI
+from collections import defaultdict
 
 session = Session()
 talisker.requests.configure(session)
@@ -31,14 +32,16 @@ def certification_home():
     iot_vendors = []
 
     # Search results filters
+
     all_releases = []
     all_vendors = []
 
     for release in certified_releases:
         version = release["release"]
 
-        if version not in all_vendors:
+        if release not in all_releases:
             all_releases.append(version)
+            all_releases = sorted(all_releases, reverse=True)
 
         if int(release["desktops"]) > 0 or int(release["laptops"]) > 0:
             release["path"] = f"/certification?form=Desktop&release={version}"
@@ -59,6 +62,7 @@ def certification_home():
 
         if make not in all_vendors:
             all_vendors.append(make)
+            all_vendors = sorted(all_vendors)
 
         if int(vendor["desktops"]) > 0 or int(vendor["laptops"]) > 0:
             vendor["path"] = f"/certification?form=Desktop&vendor={make}"
@@ -111,29 +115,33 @@ def certification_home():
             query=query,
             offset=offset,
         )
-        results = models_response["objects"]
-        total = models_response["meta"]["total_count"]
 
-        if forms and ("Components" in forms):
-            components_response = api.component_summaries(
-                category__iexact=forms,
-                make=vendors,
-                query=query,
-                offset=offset,
-            )
-            results.append(components_response["objects"])
-            total += components_response["meta"]["total_count"]
+        # Filters and result numbers
+        form_filters = {
+            "Laptop": 0,
+            "Desktop": 0,
+            "Ubuntu Core": 0,
+            "Server": 0,
+            "Server SoC": 0,
+        }
+        release_filters = defaultdict(lambda: 0)
+        for release in all_releases:
+            release_filters[release] = 0
+
+        vendor_filters = defaultdict(lambda: 0)
+        for vendor in all_vendors:
+            vendor_filters[vendor] = 0
+
+        results = models_response["objects"]
+
+        # Populate filter numbers
+        for model in enumerate(results):
+            form_filters[model["category"]] += 1
+            release_filters[model["release"]] += 1
+            vendor_filters[model["make"]] += 1
 
         # Pagination
-        total_results = total
-
-        params = request.args.copy()
-        params.pop("page", None)
-        query_items = []
-
-        for key, value_list in params.lists():
-            for value in value_list:
-                query_items.append(f"{key}={value}")
+        total_results = models_response["meta"]["total_count"]
 
         return render_template(
             "certification/search-results.html",
@@ -141,11 +149,10 @@ def certification_home():
             query=query,
             form=forms,
             releases=releases,
-            all_releases=sorted(all_releases, reverse=True),
+            form_filters=form_filters,
+            release_filters=release_filters,
+            vendor_filters=vendor_filters,
             vendors=vendors,
-            all_vendors=sorted(all_vendors),
-            total=total,
-            query_string="&".join(query_items),
             total_results=total_results,
             total_pages=math.ceil(total_results / limit),
             offset=offset,
