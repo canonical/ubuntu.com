@@ -5,7 +5,7 @@ on: pull_request
 jobs:
   check-links:
     if: github.repository == 'canonical-web-and-design/ubuntu.com'
-    runs-on: ubuntu-ubuntu.com
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout master
