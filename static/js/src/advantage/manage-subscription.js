@@ -36,6 +36,14 @@ function cancelSubscription(id, VPSize) {
     previousPurchaseId,
   } = cancelSubscriptionButton.dataset;
 
+  dataLayer.push({
+    event: "GAEvent",
+    eventCategory: "Advantage",
+    eventAction: "cancel-subscription",
+    eventLabel: "Cancel subscription",
+    eventValue: productListingId,
+  });
+
   handleAPICall(
     cancelContract,
     [accountId, previousPurchaseId, productListingId],
@@ -55,6 +63,14 @@ function handleUpdateClick(id, VPSize) {
     productListingId,
     previousPurchaseId,
   } = updateButton.dataset;
+
+  dataLayer.push({
+    event: "GAEvent",
+    eventCategory: "Advantage",
+    eventAction: "update-subscription",
+    eventLabel: "Save changes",
+    eventValue: productListingId,
+  });
 
   handleAPICall(
     resizeContract,
@@ -295,6 +311,14 @@ function handleChangeClick() {
       createModal(id, VPSize);
     };
   }
+
+  dataLayer.push({
+    event: "GAEvent",
+    eventCategory: "Advantage",
+    eventAction: "change-subscription",
+    eventLabel: "Change subscription",
+    eventValue: undefined,
+  });
 }
 
 const editButtons = document.querySelectorAll(".js-change-subscription-button");
