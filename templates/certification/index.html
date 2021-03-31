@@ -27,30 +27,32 @@
   </div>  
 </section>
 
-<section class="p-strip--light is-shallow">
+<section class="p-strip--light is-shallow">\
+  <form>
   <div class="row">
     <div class="col-4" style="margin-top: 1rem;">
-      <select name="certified-hardware" id="certified-hardware">
-        <option value="models-and-components">Models and components</option>
-        <option value="models">Models</option>
-        <optgroup label="-">
-          <option value="desktops">Desktops</option>
-          <option value="laptops">Laptops</option>
-          <option value="servers">Servers</option>
-          <option value="iot">IoT</option>
-          <option value="soc">SoC</option>
-        </optgroup>
-        <option value="components">Components</option>
-      </select>
+      <div class="p-form__group">
+        <select name="form" id="form">
+          <option value="Desktop+Laptop+Server+Ubuntu+20Core+SoC">Models</option>
+          <option value="Desktop">Desktops</option>
+          <option value="Laptop">Laptops</option>
+          <option value="Server">Servers</option>
+          <option value="Ubuntu%20Core">IoT</option>
+          <option value="SoC">SoC</option>
+        </select>
+      </div>
     </div>
     <div class="col-8" style="margin-top: 1rem;">
-      <form class="p-search-box">
-        <input type="search" class="p-search-box__input" name="search" placeholder="Search hardware" required="" autocomplete="on">
-        <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
-        <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
-      </form>
+      <div class="p-form__group">
+        <div class="p-search-box">
+          <input class="p-search-box__input" type="text" name="text" id="text" value="{{ query or '' }}">
+          <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+          <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+        </div>
+      </div>
     </div>
   </div>
+  </form>
 </section>
 
 <section class="p-strip">
