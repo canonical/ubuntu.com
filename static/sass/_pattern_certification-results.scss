@@ -1,0 +1,32 @@
+@mixin ubuntu-p-certification-results {
+  .p-certification-filter {
+    > label {
+      margin-bottom: 0;
+    }
+
+    &__count {
+      padding-left: 0.5rem;
+    }
+  }
+
+  .p-certification-results {
+    th,
+    td {
+      &:nth-child(1) {
+        width: 85%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 60%;
+        }
+      }
+
+      &:nth-child(2) {
+        width: 15%;
+      }
+    }
+  }
+
+  .p-update-results {
+    margin-left: 0.5rem;
+    width: fit-content;
+  }
+}
