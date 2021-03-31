@@ -38,41 +38,15 @@
             <tbody>
               <tr>
                 <td>
+                  {% for form_filter, total in form_filters.items() %}
                   <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="desktop-filter" class="p-checkbox__input" value="Desktop" name="form">
-                    <div class="p-checkbox__label" id="desktop-filter">
-                      <span>Desktops</span>
-                      <span class="p-certification-filter__count p-muted-text">0</span>
+                    <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" name="form" value="{{ form_filter }}">
+                    <div class="p-checkbox__label" id="{{ form_filter }}">
+                      <span>{{ form_filter }}</span>
+                      <span class="p-certification-filter__count p-muted-text">{{ total }}</span>
                     </div>
                   </label>
-                  <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="laptop-filter" class="p-checkbox__input" value="Laptop" name="form">
-                    <div class="p-checkbox__label" id="laptop-filter">
-                      <span>Laptops</span>
-                      <span class="p-certification-filter__count p-muted-text">0</span>
-                    </div>
-                  </label>
-                  <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="server-filter" class="p-checkbox__input" value="Server" name="form">
-                    <div class="p-checkbox__label" id="server-filter">
-                      <span>Servers</span>
-                      <span class="p-certification-filter__count p-muted-text">0</span>
-                    </div>
-                  </label>
-                  <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="iot-filter" class="p-checkbox__input" value="Ubuntu%20Core" name="form">
-                    <div class="p-checkbox__label" id="iot-filter">
-                      <span>IoT</span>
-                      <span class="p-certification-filter__count p-muted-text">0</span>
-                    </div>
-                  </label>
-                  <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="soc-filter" class="p-checkbox__input" value="SoC" name="form">
-                    <div class="p-checkbox__label" id="soc-filter">
-                      <span>SoCs</span>
-                      <span class="p-certification-filter__count p-muted-text">0</span>
-                    </div>
-                  </label>
+                  {% endfor %}
                 </td>
               </tr>
             </tbody>
@@ -86,12 +60,12 @@
             <tbody>
               <tr>
                 <td>
-                  {% for release in all_releases %}
+                  {% for release_filter, total in release_filters.items() %}
                   <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="{{ release }}" class="p-checkbox__input" name="release" value="{{ release }}">
-                    <div class="p-checkbox__label" id="{{ release }}">
-                      <span>{{ release }}</span>
-                      <span class="p-certification-filter__count p-muted-text">0</span>
+                    <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" name="release" value="{{ release_filter }}">
+                    <div class="p-checkbox__label" id="{{ release_filter }}">
+                      <span>{{ release_filter }}</span>
+                      <span class="p-certification-filter__count p-muted-text">{{ total }}</span>
                     </div>
                   </label>
                   {% endfor %}
@@ -108,12 +82,12 @@
             <tbody>
               <tr>
                 <td>
-                  {% for vendor in all_vendors %}
+                  {% for vendor_filter, total in vendor_filters.items() %}
                   <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="{{ vendor }}" class="p-checkbox__input" name="vendors" value="{{ vendor }}">
-                    <div class="p-checkbox__label" id="{{ vendor }}">
-                      <span>{{ vendor }}</span>
-                      <span class="p-certification-filter__count p-muted-text">0</span>
+                    <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" name="vendors" value="{{ vendor_filter }}">
+                    <div class="p-checkbox__label" id="{{ vendor_filter }}">
+                      <span>{{ vendor_filter }}</span>
+                      <span class="p-certification-filter__count p-muted-text">{{ total }}</span>
                     </div>
                   </label>
                   {% endfor %}
@@ -149,7 +123,7 @@
         <tbody>
           {% for result in results %}
           <tr>
-          <td>{{ result.model }}</td>
+          <td><a href="/certification/{{ canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
           <td>{{ result.category }}</td>
           </tr>
           {% endfor %}
