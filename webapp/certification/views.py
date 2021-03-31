@@ -124,21 +124,21 @@ def certification_home():
             "Server": 0,
             "Server SoC": 0,
         }
-        release_filters = defaultdict(lambda: 0)
+        release_filters = {}
         for release in all_releases:
             release_filters[release] = 0
 
-        vendor_filters = defaultdict(lambda: 0)
+        vendor_filters = {}
         for vendor in all_vendors:
             vendor_filters[vendor] = 0
 
         results = models_response["objects"]
 
         # Populate filter numbers
-        for model in enumerate(results):
-            form_filters[model["category"]] += 1
-            release_filters[model["release"]] += 1
-            vendor_filters[model["make"]] += 1
+        for index, model in enumerate(results):
+            form_filters[model["category"]] = int(index + 1)
+            release_filters[model["release"]] = int(index + 1)
+            vendor_filters[model["make"]] = int(index + 1)
 
         # Pagination
         total_results = models_response["meta"]["total_count"]
