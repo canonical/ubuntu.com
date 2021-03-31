@@ -336,7 +336,18 @@
           {% endfor %}
         </div>
         <div class="col-12 u-align--right">
-          <a href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" class="p-button--positive u-align--right" >Add new subscription</a>
+          <a 
+            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" 
+            class="p-button--positive u-align--right"   
+            onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'go-to-shop',
+              'eventLabel' : 'Add new subscription',
+              'eventValue' : 5
+            });">
+              Add new subscription
+            </a>
         </div>
         <hr class="p-separator" />
       </div>
@@ -435,6 +446,16 @@
       tab.parentNode.classList.add('p-table--open');
       tab.querySelector('.p-icon--contextual-menu').classList.add('u-rotate');
       panel.setAttribute('aria-hidden', 'false');
+      if(panel.id.includes("row")){
+        const rowName = panel.id.split('-')[2]
+        dataLayer.push({
+          'event' : 'GAEvent',
+          'eventCategory' : 'Advantage',
+          'eventAction' : 'table-row-expand',
+          'eventLabel' : rowName,
+          'eventValue' : undefined
+        });
+      }
     }
 
     function close(tab) {
@@ -445,6 +466,16 @@
       tab.parentNode.classList.remove('p-table--open');
       tab.querySelector('.p-icon--contextual-menu').classList.remove('u-rotate');
       panel.setAttribute('aria-hidden', 'true');
+      if(panel.id.includes("row")){
+        const rowName = panel.id.split('-')[2]
+        dataLayer.push({
+          'event' : 'GAEvent',
+          'eventCategory' : 'Advantage',
+          'eventAction' : 'table-row-collapse',
+          'eventLabel' : rowName,
+          'eventValue' : undefined
+        });
+      }
     }
 
     function closeAll(table) {
