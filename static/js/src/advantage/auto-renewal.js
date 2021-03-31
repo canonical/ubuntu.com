@@ -25,7 +25,9 @@ function confirmChanges() {
       dataLayer.push({
         event: "GAEvent",
         eventCategory: "Advantage",
-        eventAction: "set-auto-renewal",
+        eventAction: enabledRadio.checked
+          ? "toggle-auto-renewal-on"
+          : "toggle-auto-renewal-off",
         eventLabel: "Save changes",
         eventValue: undefined,
       });
