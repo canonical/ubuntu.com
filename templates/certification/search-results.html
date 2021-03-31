@@ -1,0 +1,54 @@
+{% extends "certification/base_certification.html" %}
+
+{% block title %}Certified hardware | Ubuntu{% endblock %}
+
+{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1QuhO-9FEOGLrYp8bErS_9snqdljl7d6tFAUoNQxoVDQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<h1>Search results page</h1>
+Results:
+<p>{{ results }}</p>
+query
+<p>{{ query }}</p>
+
+Selected Form (Show:)
+<p>{{ form }}</p>
+
+Release selected
+<p>{{ releases }}</p>
+
+Forms/Categories
+<p>{{ form_filters }}</p>
+
+Release filters
+<p>{{ release_filters }}</p>
+
+Vendors
+<p>{{ vendor_filters }}</p>
+
+vendors selected
+<p>{{ vendors }}</p>
+
+total
+<p>{{ total }}</p>
+
+
+<h2>Pagination</h2>
+<h3>These are provided not required to submit</h3>
+total results
+<p>{{ total_results }}</p>
+
+total pages
+<p>{{ total_pages }}</p>
+
+<h3>These 2 need to be returned to get results paged:</h3>
+
+E.g.: page 2 is offset 21 limit 20 (always the same)
+Limit
+<p>{{ limit }}</p>
+
+Offset
+<p>{{ offset }}</p>
+
+{% endblock content %}
