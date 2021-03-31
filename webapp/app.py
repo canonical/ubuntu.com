@@ -510,10 +510,6 @@ def takeovers_json():
     takeovers = get_takeovers()
     response = flask.jsonify(takeovers["active"])
     response.cache_control.max_age = "300"
-    response.cache_control._set_cache_value(
-        "stale-while-revalidate", "360", int
-    )
-    response.cache_control._set_cache_value("stale-if-error", "600", int)
 
     return response
 
@@ -770,27 +766,10 @@ def cache_headers(response):
     Set cache expiry to 60 seconds for homepage and blog page
     """
 
-    if flask.request.path in ["/core/build"]:
-        response.cache_control.private = True
+    disable_cache_on = ("/advantage", "/cube", "/core/build")
 
-    if flask.request.path.startswith("/advantage"):
-        response.cache_control.private = True
-        response.headers[
-            "Cache-Control"
-        ] = "no-cache, no-store, must-revalidate"
-        response.headers["Pragma"] = "no-cache"
-
-    if flask.request.path in ["/", "/blog"]:
-        response.headers[
-            "Cache-Control"
-        ] = "max-age=61, stale-while-revalidate=90"
-
-    if flask.request.path.startswith("/cube"):
-        response.cache_control.private = True
-        response.headers[
-            "Cache-Control"
-        ] = "no-cache, no-store, must-revalidate"
-        response.headers["Pragma"] = "no-cache"
+    if flask.request.path.startswith(disable_cache_on):
+        response.cache_control.no_store = True
 
     return response
 

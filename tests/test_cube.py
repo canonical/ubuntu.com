@@ -84,9 +84,8 @@ class TestCube(VCRTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
             response.headers.get("Cache-Control"),
-            "no-cache, no-store, must-revalidate",
+            "no-store",
         )
-        self.assertEqual(response.headers.get("Pragma"), "no-cache")
 
     def test_microcerts_403_authenticated_non_canonical_user(self):
         with self.client.session_transaction() as session:
@@ -115,9 +114,8 @@ class TestCube(VCRTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
             response.headers.get("Cache-Control"),
-            "no-cache, no-store, must-revalidate",
+            "no-store",
         )
-        self.assertEqual(response.headers.get("Pragma"), "no-cache")
 
     def test_home_403_non_canonical_user(self):
         with self.client.session_transaction() as session:
