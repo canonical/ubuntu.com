@@ -41,7 +41,7 @@ function cancelSubscription(id, VPSize) {
     eventCategory: "Advantage",
     eventAction: "cancel-subscription",
     eventLabel: "Cancel subscription",
-    eventValue: productListingId,
+    eventValue: undefined,
   });
 
   handleAPICall(
@@ -69,7 +69,7 @@ function handleUpdateClick(id, VPSize) {
     eventCategory: "Advantage",
     eventAction: "update-subscription",
     eventLabel: "Save changes",
-    eventValue: productListingId,
+    eventValue: undefined,
   });
 
   handleAPICall(
@@ -315,7 +315,7 @@ function handleChangeClick() {
   dataLayer.push({
     event: "GAEvent",
     eventCategory: "Advantage",
-    eventAction: "change-subscription",
+    eventAction: "show-subscription-options",
     eventLabel: "Change subscription",
     eventValue: undefined,
   });

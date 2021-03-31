@@ -27,7 +27,7 @@ function confirmChanges() {
         eventCategory: "Advantage",
         eventAction: "set-auto-renewal",
         eventLabel: "Save changes",
-        eventValue: enabledRadio.checked,
+        eventValue: undefined,
       });
       if (data.errors) {
         console.error(data.errors);

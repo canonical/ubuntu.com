@@ -342,9 +342,9 @@
             onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',
-              'eventAction' : 'add-new-subscription',
+              'eventAction' : 'go-to-shop',
               'eventLabel' : 'Add new subscription',
-              'eventValue' : undefined
+              'eventValue' : 5
             });">
               Add new subscription
             </a>
@@ -447,11 +447,12 @@
       tab.querySelector('.p-icon--contextual-menu').classList.add('u-rotate');
       panel.setAttribute('aria-hidden', 'false');
       if(panel.id.includes("row")){
-          dataLayer.push({
+        const rowName = panel.id.split('-')[2]
+        dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
           'eventAction' : 'table-row-expand',
-          'eventLabel' : panel.id.split('-')[2],
+          'eventLabel' : rowName,
           'eventValue' : undefined
         });
       }
@@ -466,11 +467,12 @@
       tab.querySelector('.p-icon--contextual-menu').classList.remove('u-rotate');
       panel.setAttribute('aria-hidden', 'true');
       if(panel.id.includes("row")){
-          dataLayer.push({
+        const rowName = panel.id.split('-')[2]
+        dataLayer.push({
           'event' : 'GAEvent',
           'eventCategory' : 'Advantage',
           'eventAction' : 'table-row-collapse',
-          'eventLabel' : panel.id.split('-')[2],
+          'eventLabel' : rowName,
           'eventValue' : undefined
         });
       }
