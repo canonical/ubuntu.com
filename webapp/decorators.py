@@ -31,7 +31,7 @@ def store_maintenance(func):
 
     @functools.wraps(func)
     def is_store_in_maintenance(*args, **kwargs):
-        if strtobool(os.getenv("STORE_MAINTENANCE")):
+        if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
             return flask.render_template("advantage/maintenance.html")
 
         return func(*args, **kwargs)
