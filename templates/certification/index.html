@@ -33,19 +33,19 @@
     <div class="col-4" style="margin-top: 1rem;">
       <div class="p-form__group">
         <select name="form" id="form">
-          <option value="Desktop+Laptop+Server+Ubuntu+20Core+SoC">Models</option>
+          <option value="Models">Models</option>
           <option value="Desktop">Desktops</option>
           <option value="Laptop">Laptops</option>
           <option value="Server">Servers</option>
-          <option value="Ubuntu%20Core">IoT</option>
-          <option value="SoC">SoC</option>
+          <option value='Ubuntu Core'>IoT</option>
+          <option value='Server SoC'>SoC</option>
         </select>
       </div>
     </div>
     <div class="col-8" style="margin-top: 1rem;">
       <div class="p-form__group">
         <div class="p-search-box">
-          <input class="p-search-box__input" type="text" name="text" id="text" value="{{ query or '' }}">
+          <input class="p-search-box__input" type="text" name="text" id="text" value="{{ query or '' }}" required>
           <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
           <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
         </div>
@@ -157,7 +157,7 @@
         </li>
         {% endfor %}
       </ul>
-      <p><a href="/certification?form=SoC">All Ubuntu SoC certified hardware&nbsp;&rsaquo;</a></p>
+      <p><a href="/certification?form=Server%20SoC">All Ubuntu SoC certified hardware&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -222,7 +222,7 @@
       <ul class="p-list">
         <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/bae83a86-UC18Coverage.pdf" class="p-link--external">Ubuntu Core 18 certified hardware<br>coverage</a></li>
         <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/afc699d1-UbuntuCoreCertifiedHardwareCoverageforSeries16SmartDevices.pdf" class="p-link--external">Ubuntu Core 16 certified hardware<br>coverage</a></li>
-        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/02ca9ede-Ubuntu_Server_Hardware_Certification_Self-Testing_Guide-compressed.pdf" class="p-link--external">Ubuntu Desktop certified hardware self-testing guide</a></li>
+        <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/6c8e9c5f-Ubuntu_Desktop_Certified_Hardware_Self-Testing_Guide.pdf" class="p-link--external">Ubuntu Desktop certified hardware self-testing guide</a></li>
         <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/44871442-Ubuntu_Server_Hardware_Certification_Coverage_18.04.pdf" class="p-link--external">Ubuntu Server 18.04 LTS hardware certification converage</a></li>
         <li class="p-list__item"><a href="https://assets.ubuntu.com/v1/74830270-Ubuntu_Server_Hardware_Certification_Coverage_20.04.pdf" class="p-link--external">Ubuntu Server 20.04 LTS hardware certification converage</a></li>
       </ul>
