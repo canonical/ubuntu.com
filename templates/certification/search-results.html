@@ -43,7 +43,6 @@
                     <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" name="form" value="{{ form_filter }}" {% if form == form_filter or form == "Desktops,Laptops,Ubuntu Core,Server,Server SoC" %}checked{% endif %}>
                     <div class="p-checkbox__label" id="{{ form_filter }}">
                       <span>{{ form_filter }}</span>
-                      <span class="p-certification-filter__count p-muted-text">{{ total }}</span>
                     </div>
                   </label>
                   {% endfor %}
@@ -65,7 +64,6 @@
                     <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" name="release" value="{{ release_filter }}" {% if releases == release_filter %}checked{% endif %}>
                     <div class="p-checkbox__label" id="{{ release_filter }}">
                       <span>{{ release_filter }}</span>
-                      <span class="p-certification-filter__count p-muted-text">{{ total }}</span>
                     </div>
                   </label>
                   {% endfor %}
@@ -87,7 +85,6 @@
                     <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" name="vendors" value="{{ vendor_filter }}" {% if vendor == vendor_filter %}checked{% endif %}>
                     <div class="p-checkbox__label" id="{{ vendor_filter }}">
                       <span>{{ vendor_filter }}</span>
-                      <span class="p-certification-filter__count p-muted-text">{{ total }}</span>
                     </div>
                   </label>
                   {% endfor %}
