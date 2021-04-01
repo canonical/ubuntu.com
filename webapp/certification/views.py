@@ -73,7 +73,7 @@ def certification_home():
             iot_vendors.append(vendor)
 
         if int(vendor["soc"] > 1):
-            vendor["path"] = f"/certification?form=SoC&vendor={make}"
+            vendor["path"] = f"/certification?form=Server%20SoC&vendor={make}"
             soc_vendors.append(vendor)
 
     # Server section
