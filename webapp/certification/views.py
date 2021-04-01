@@ -97,6 +97,10 @@ def certification_home():
             if request.args.getlist("form")
             else None
         )
+        if "Models" in forms:
+            forms = ",".join(
+                ["Desktops", "Laptops", "Ubuntu Core", "Server", "Server SoC"]
+            )
         releases = (
             ",".join(request.args.getlist("release"))
             if request.args.getlist("release")
@@ -124,21 +128,21 @@ def certification_home():
             "Server": 0,
             "Server SoC": 0,
         }
-        release_filters = {}
+        release_filters = defaultdict(lambda: 0)
         for release in all_releases:
             release_filters[release] = 0
 
-        vendor_filters = {}
+        vendor_filters = defaultdict(lambda: 0)
         for vendor in all_vendors:
             vendor_filters[vendor] = 0
 
         results = models_response["objects"]
 
         # Populate filter numbers
-        for index, model in enumerate(results):
-            form_filters[model["category"]] = int(index + 1)
-            release_filters[model["release"]] = int(index + 1)
-            vendor_filters[model["make"]] = int(index + 1)
+        for model in results:
+            form_filters[model["category"]] += 1
+            release_filters[model["release"]] += 1
+            vendor_filters[model["make"]] += 1
 
         # Pagination
         total_results = models_response["meta"]["total_count"]
