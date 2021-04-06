@@ -21,7 +21,7 @@ class UAContractsAPI:
         self.api_url = api_url.rstrip("/")
         self.is_for_view = is_for_view
 
-    def _request(self, method, path, json=None):
+    def _request(self, method, path, json=None, params=None):
         headers = {
             "Authorization": (
                 f"{self.token_type} " f"{self.authentication_token}"
@@ -33,14 +33,18 @@ class UAContractsAPI:
             url=f"{self.api_url}/{path}",
             json=json,
             headers=headers,
+            params=params,
         )
         response.raise_for_status()
 
         return response
 
-    def get_accounts(self):
+    def get_accounts(self, email=""):
+        params = {"email": email} if email else None
         try:
-            response = self._request(method="get", path="v1/accounts")
+            response = self._request(
+                method="get", path="v1/accounts", params=params
+            )
         except HTTPError as error:
             if error.response.status_code == 401:
                 if self.is_for_view:

@@ -2,7 +2,14 @@ import unittest
 
 from requests.exceptions import HTTPError
 
-from webapp.advantage.api import UAContractsAPI, UnauthorizedError
+from webapp.advantage.api import (
+    UAContractsAPI,
+    UAContractsAPIAuthError,
+    UAContractsAPIAuthErrorView,
+    UAContractsAPIError,
+    UAContractsAPIErrorView,
+    UnauthorizedError,
+)
 
 
 class Response:
@@ -32,14 +39,68 @@ class Session:
         return self._resp
 
 
-def make_client(session: Session):
+def make_client(session: Session, **kwargs):
     """Create and return a ua-contracts client for tests."""
     return UAContractsAPI(
         session,
         "secret-token",
         token_type="Bearer",
         api_url="https://1.2.3.4/contracts/",
+        **kwargs,
     )
+
+
+class TestGetAccounts(unittest.TestCase):
+    def test_errors(self):
+        """Exceptions are raised in case of errors."""
+        for code, is_for_view, want_error in (
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+            (401, False, UAContractsAPIAuthError),
+            (401, True, UAContractsAPIAuthErrorView),
+        ):
+            with self.subTest(code=code, is_for_view=is_for_view):
+                session = Session(Response(code, {"code": "bad wolf"}))
+                client = make_client(session, is_for_view=is_for_view)
+                with self.assertRaises(want_error) as ctx:
+                    client.get_accounts()
+                self.assertEqual(
+                    ctx.exception.response.json(), {"code": "bad wolf"}
+                )
+
+    def test_success(self):
+        """Accounts are returned for the current user."""
+        session = Session(Response(200, {"accounts": ["acc1", "acc2"]}))
+        client = make_client(session)
+        resp = client.get_accounts()
+        self.assertEqual(resp, ["acc1", "acc2"])
+        self.assertEqual(
+            session.request_kwargs,
+            {
+                "headers": {"Authorization": "Bearer secret-token"},
+                "json": None,
+                "method": "get",
+                "params": None,
+                "url": "https://1.2.3.4/contracts/v1/accounts",
+            },
+        )
+
+    def test_success_email(self):
+        """Accounts are returned for the given email."""
+        session = Session(Response(200, {"accounts": ["acc3", "acc4"]}))
+        client = make_client(session)
+        resp = client.get_accounts(email="picard@enterprise")
+        self.assertEqual(resp, ["acc3", "acc4"])
+        self.assertEqual(
+            session.request_kwargs,
+            {
+                "headers": {"Authorization": "Bearer secret-token"},
+                "json": None,
+                "method": "get",
+                "params": {"email": "picard@enterprise"},
+                "url": "https://1.2.3.4/contracts/v1/accounts",
+            },
+        )
 
 
 class TestEnsurePurchaseAccount(unittest.TestCase):
@@ -63,6 +124,7 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
                     "name": "jeanluc",
                 },
                 "method": "post",
+                "params": None,
                 "url": "https://1.2.3.4/contracts/v1/purchase-account",
             },
         )
@@ -83,6 +145,7 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
                     "name": "",
                 },
                 "method": "post",
+                "params": None,
                 "url": "https://1.2.3.4/contracts/v1/purchase-account",
             },
         )
@@ -137,6 +200,7 @@ class TestGetPurchaseAccount(unittest.TestCase):
                 "headers": {"Authorization": "Bearer secret-token"},
                 "method": "get",
                 "json": None,
+                "params": None,
                 "url": "https://1.2.3.4/contracts/v1/purchase-account",
             },
         )

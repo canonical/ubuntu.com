@@ -35,7 +35,7 @@ session = talisker.requests.get_session()
 
 
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
-@use_kwargs({"subscription": String()}, location="query")
+@use_kwargs({"subscription": String(), "email": String()}, location="query")
 def advantage_view(**kwargs):
     is_test_backend = kwargs.get("test_backend")
     api_url = kwargs.get("api_url")
@@ -62,7 +62,9 @@ def advantage_view(**kwargs):
         session, token, api_url=api_url, is_for_view=True
     )
 
-    accounts = advantage.get_accounts()
+    # Support admin "view as" functionality.
+    email = kwargs.get("email", "").strip()
+    accounts = advantage.get_accounts(email=email)
 
     for account in accounts:
         monthly_purchased_products = {}
@@ -121,9 +123,14 @@ def advantage_view(**kwargs):
                 }
 
         for contract in account["contracts"]:
-            contract_id = contract["contractInfo"]["id"]
-            contract["token"] = advantage.get_contract_token(contract_id)
             contract_info = contract["contractInfo"]
+            if not contract_info.get("items"):
+                # TODO(frankban): clean up existing contracts with no items in
+                # production.
+                continue
+
+            contract_id = contract_info["id"]
+            contract["token"] = advantage.get_contract_token(contract_id)
 
             if contract_info.get("origin", "") == "free":
                 personal_account = account
