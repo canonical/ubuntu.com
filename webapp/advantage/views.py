@@ -19,6 +19,7 @@ from webapp.advantage.api import (
     UnauthorizedError,
     UAContractsUserHasNoAccount,
     UAContractsAPIError,
+    UAContractsAPIAuthErrorView,
     UAContractsAPIErrorView,
 )
 
@@ -29,18 +30,26 @@ from webapp.advantage.schemas import (
     post_customer_info,
     ensure_purchase_account,
     post_payment_method,
+    post_trial,
+    post_guest_trial,
 )
 
 
 session = talisker.requests.get_session()
 
 
-@advantage_checks(check_list=["is_maintenance", "view_need_user"])
+@advantage_checks(
+    check_list=[
+        "is_maintenance",
+        "view_need_user",
+        "check_for_guest_trials",
+    ]
+)
 @use_kwargs({"subscription": String(), "email": String()}, location="query")
 def advantage_view(**kwargs):
     is_test_backend = kwargs.get("test_backend")
     api_url = kwargs.get("api_url")
-    stripe_publishable_key = kwargs["stripe_publishable_key"]
+    stripe_publishable_key = kwargs.get("stripe_publishable_key")
     token = kwargs.get("token")
     open_subscription = kwargs.get("subscription", None)
 
@@ -748,6 +757,111 @@ def accept_renewal(renewal_id, **kwargs):
     advantage = UAContractsAPI(session, token, api_url=api_url)
 
     return advantage.accept_renewal(renewal_id)
+
+
+@advantage_checks(check_list=["need_user"])
+@use_kwargs(post_trial, location="json")
+def post_trial(**kwargs):
+    api_url = kwargs.get("api_url")
+    token = kwargs.get("token")
+    account_id = kwargs.get("account_id")
+    products = kwargs.get("products")
+    name = kwargs.get("name")
+    address = kwargs.get("address")
+
+    advantage = UAContractsAPI(session, token, api_url=api_url)
+
+    trial = advantage.post_marketplace_trial(
+        marketplace="canonical-ua",
+        trial_request={
+            "accountID": account_id,
+            "items": [
+                {
+                    "productListingID": product["product_listing_id"],
+                    "value": product["quantity"],
+                }
+                for product in products
+            ],
+            "customerInfo": {
+                "name": name,
+                "address": address,
+            },
+        },
+    )
+
+    return flask.jsonify(trial), 200
+
+
+@advantage_checks()
+@use_kwargs(post_guest_trial, location="json")
+def post_guest_trial(**kwargs):
+    flask.session["guest_trial"] = {
+        "is_test_backend": kwargs.get("is_test_backend"),
+        "api_url": kwargs.get("api_url"),
+        "email": kwargs.get("email"),
+        "account_name": kwargs.get("account_name"),
+        "name": kwargs.get("name"),
+        "address": kwargs.get("address"),
+        "products": kwargs.get("products"),
+    }
+
+    return flask.jsonify({"message": "guest trial stored"})
+
+
+@advantage_checks(check_list=["view_need_user", "need_guest_trial"])
+def save_guest_trial(**kwargs):
+    token = kwargs.get("token")
+    session_values = flask.session.get("guest_trial")
+    is_test_backend = session_values.get("test_backend")
+    api_url = session_values.get("api_url")
+    email = session_values.get("email")
+    account_name = session_values.get("account_name")
+    name = session_values.get("name")
+    address = session_values.get("address")
+    products = session_values.get("products")
+
+    flask.session.pop("guest_trial")
+
+    advantage = UAContractsAPI(
+        session, token, api_url=api_url, is_for_view=True
+    )
+
+    try:
+        account = advantage.ensure_purchase_account(
+            email=email, account_name=account_name
+        )
+    except (UnauthorizedError, HTTPError) as error:
+        if error.response.status_code == 401:
+            raise UAContractsAPIAuthErrorView(error)
+
+        raise UAContractsAPIErrorView
+
+    advantage.put_customer_info(
+        account.get("accountID"), None, address, name, None
+    )
+
+    advantage.post_marketplace_trial(
+        marketplace="canonical-ua",
+        trial_request={
+            "accountID": account.get("accountID"),
+            "items": [
+                {
+                    "productListingID": product["product_listing_id"],
+                    "value": product["quantity"],
+                }
+                for product in products
+            ],
+            "customerInfo": {
+                "name": name,
+                "address": address,
+            },
+        },
+    )
+
+    if is_test_backend:
+        return flask.redirect("/advantage?test_backend=true")
+
+    return flask.redirect("/advantage")
 
 
 def _prepare_monthly_info(monthly_info, subscription, advantage):
