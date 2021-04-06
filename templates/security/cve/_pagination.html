@@ -6,7 +6,7 @@
 
 {% if total_results > limit %}
 <div class="u-fixed-width">
-  <ol class="p-pagination u-align--center">
+  <ol class="p-pagination {% if align %}align{% else %}u-align--center{% endif %}">
     <li class="p-pagination__item">
       {% if current_page > 1 %}
       <a class="p-pagination__link--previous" href="?{{ modify_query({'offset': offset - limit}) }}" title="Previous page">
