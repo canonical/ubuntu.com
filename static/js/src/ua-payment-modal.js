@@ -135,7 +135,7 @@ function attachCTAevents() {
       }
     }
 
-    if (currentTransaction.accountId && !isCustomerInfoSet) {
+    if (currentTransaction.accountId && !isCustomerInfoSet && !guestPurchase) {
       fetchCustomerInfo(currentTransaction.accountId);
     }
 
