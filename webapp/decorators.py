@@ -32,7 +32,7 @@ def advantage_checks(check_list=None):
         @functools.wraps(func)
         def check_advantage(*args, **kwargs):
             if "is_maintenance":
-              if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
+                if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
                     return flask.render_template("advantage/maintenance.html")
 
             is_test_backend = flask.request.args.get("test_backend", False)
