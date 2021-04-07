@@ -18,6 +18,9 @@ if (accountContainer && accountContainerSmall) {
               <li><a href="/cube" class="p-subnav__item">CUBE microcertifications</a></li>
               <li>
                 <hr class="u-no-margin--bottom">
+                <a href="https://login.ubuntu.com/" class="p-subnav__item">Account settings</a>
+              </li>
+              <li>
                 <a href="/logout" class="p-subnav__item">Logout</a>
               </li>
             </ul>
