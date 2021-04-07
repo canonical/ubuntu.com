@@ -151,6 +151,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     .p-navigation__banner .p-navigation__link-anchor {
+      @media (max-width: $breakpoint-x-small) {
+        margin-right: calc(1rem - 6px);
+      }
+
       &:hover {
         background-color: transparent;
       }
