@@ -38,6 +38,7 @@ from webapp.cube.views import cube_home, cube_microcerts
 
 from webapp.views import (
     accept_renewal,
+    account_query,
     advantage_view,
     advantage_shop_view,
     advantage_thanks_view,
@@ -170,6 +171,7 @@ def utility_processor():
 
 # Simple routes
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
+app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule(
@@ -652,7 +654,7 @@ def cache_headers(response):
     Set cache expiry to 60 seconds for homepage and blog page
     """
 
-    disable_cache_on = ("/advantage", "/cube", "/core/build")
+    disable_cache_on = ("/advantage", "/cube", "/core/build", "/account.json")
 
     if flask.request.path.startswith(disable_cache_on):
         response.cache_control.no_store = True

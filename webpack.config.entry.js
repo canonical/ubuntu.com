@@ -20,6 +20,7 @@ module.exports = {
     "./static/js/src/bg-form-submit.js",
     "./static/js/src/scratch.js",
     "./static/js/src/smartquotes.js",
+    "./static/js/src/header-account.js",
   ],
   "release-chart": "./static/js/src/release-chart.js",
   tabotronic: "./static/js/src/tabotronic.js",

@@ -150,6 +150,20 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
     }
 
+    .p-navigation__banner .p-navigation__link-anchor {
+      &:hover {
+        background-color: transparent;
+      }
+
+      .p-link--inverted:visited {
+        color: $color-x-light;
+      }
+    }
+
+    .p-navigation__user .p-navigation__link-anchor {
+      transition-duration: 0s;
+    }
+
     & &__row {
       @extend %row-no-margins-on-mobile;
 
@@ -169,6 +183,17 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       display: inline-flex;
       flex-grow: 1;
       margin: 0;
+    }
+
+    &__user .p-navigation__link-anchor {
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      @media (min-width: $breakpoint-large) {
+        max-width: 240px;
+      }
     }
 
     &--secondary {
