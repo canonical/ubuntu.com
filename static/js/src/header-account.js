@@ -11,17 +11,16 @@ if (accountContainer && accountContainerSmall) {
           '<a href="/login" class="p-navigation__link-anchor" style="padding-right: 1rem;">Sign in</a>';
       } else {
         accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor">${data.account.fullname} (<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
-        accountContainer.innerHTML = `<div class="p-navigation__dropdown-link p-contextual-menu--right">
-            <a href="" class="p-navigation__link-anchor p-contextual-menu__toggle" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
-            <span class="p-contextual-menu__dropdown" id="user-menu" aria-hidden="true">
-              <span class="p-contextual-menu__group">
-              <a href="/advantage" class="p-contextual-menu__link">UA subscriptions</a>
-                <a href="/cube" class="p-contextual-menu__link">CUBE microcertifications</a>
-              </span>
-              <span class="p-contextual-menu__group">
-                <a href="/logout" class="p-contextual-menu__link">Logout</a>
-              </span>
-            </span>
+        accountContainer.innerHTML = `<div class="p-navigation__dropdown-link p-subnav">
+            <a href="" class="p-navigation__link-anchor p-subnav__toggle" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
+            <ul class="p-subnav__items--right" id="user-menu" aria-hidden="true">
+              <li><a href="/advantage" class="p-subnav__item">UA subscriptions</a></li>
+              <li><a href="/cube" class="p-subnav__item">CUBE microcertifications</a></li>
+              <li>
+                <hr class="u-no-margin--bottom">
+                <a href="/logout" class="p-subnav__item">Logout</a>
+              </li>
+            </ul>
           </div>`;
       }
 
@@ -94,8 +93,6 @@ if (accountContainer && accountContainerSmall) {
         });
       }
 
-      setupAllContextualMenus(
-        ".p-navigation__link-anchor.p-contextual-menu__toggle"
-      );
+      setupAllContextualMenus(".p-navigation__link-anchor.p-subnav__toggle");
     });
 }

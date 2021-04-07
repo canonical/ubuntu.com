@@ -168,6 +168,19 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       transition-duration: 0s;
     }
 
+    .p-navigation__user .p-subnav__items--right {
+      border-radius: 0 0 0.125rem 0.125rem;
+      box-shadow: none;
+
+      &[aria-hidden="true"] {
+        display: none;
+      }
+
+      &[aria-hidden="false"] {
+        display: block;
+      }
+    }
+
     & &__row {
       @extend %row-no-margins-on-mobile;
 
