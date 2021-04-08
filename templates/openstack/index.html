@@ -2,21 +2,21 @@
 
 {% block title %}OpenStack private cloud - a cost-effective extension to public clouds{% endblock %}
 
-{% block meta_description %}Canonical’s Charmed OpenStack ensures the best price-performance of a private cloud, providing full automation around OpenStack deployments and operations. Together with Ubuntu, it meets the highest security, stability and quality standards in the industry. Run with confidence: supported or fully-managed.{% endblock meta_description %}
+{% block meta_description %}Canonical's Charmed OpenStack ensures the best price-performance of a private cloud, providing full automation around OpenStack deployments and operations. Together with Ubuntu, it meets the highest security, stability and quality standards in the industry. Run with confidence: supported or fully-managed.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1eqHK0hc9v7Mn-XV36QRyNkJenTXgBQR_-RULKm5rZ5o/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-deep">
+<section class="p-strip--suru-bottomed">
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>OpenStack private cloud</h1>
-      <p>Multi-cloud operations are more cost-effective with a private cloud.</p>
-      <p>Private cloud is more cost-effective with Canonical’s Charmed OpenStack.</p>
+      <p>Multi&ndash;cloud operations are more cost-effective with a private cloud. Private cloud is more cost&ndash;effective with Canonical's Charmed OpenStack.</p>
+      <p>Save up to 60% with Charmed OpenStack.</p>
       <p>
         <a class="p-button--positive js-invoke-modal" href="/openstack/contact-us?product=openstack">
           Get in touch
-        </a> to save up to 60% with Charmed OpenStack
+        </a>
       </p>
       <p>
         <a href="/engage/redhat-openstack-comparison-whitepaper">
@@ -24,30 +24,28 @@
         </a>
       </p>
     </div>
-    <div class="col-4 u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/669390e0-openstack-cloud.svg",
-          alt="Canonical OpenStack",
-          height="184",
-          width="323",
-          hi_def=True,
-          loading="auto",
-          attrs={"class": "u-hide--small"},
+    <div class="col-4 u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/346134cb-Openstack-cost-effective.svg",
+        alt="",
+        width="313",
+        height="180",
+        hi_def=True,
+        loading="auto"
         ) | safe
       }}
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="u-fixed-width">
     <p class="p-muted-heading u-align--center">Proven record of success</p>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
         {{ image (
           url="https://assets.ubuntu.com/v1/0143bd92-AT%26T_logo_2016.svg",
-          alt="",
+          alt="AT&T",
           width="1000",
           height="411",
           hi_def=True,
@@ -232,20 +230,20 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-6">
-      <h2>Engineered for best price-performance</h2>
+      <h2>Engineered for best price&ndash;performance</h2>
       <h3 class="p-heading--5">Designed to be economical in every way</h3>
       <p>Smart operations, optimal architecture, better pricing. All of this to ensure TCO reduction of your cloud, while expanding your budget for innovation.</p>
       <a href="/openstack/compare">Compare OpenStack distros&nbsp;&rsaquo;</a>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/9faeb5af-Openstack+illustration_3.png",
+        url="https://assets.ubuntu.com/v1/8468f4b4-Openstack-price-performance.svg",
         alt="",
-        width="1600",
-        height="979",
+        width="446",
+        height="270",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -254,14 +252,14 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
+<section class="p-strip">
+  <div class="row u-vertically-center">
+    <div class="col-6 u-hide--small u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/9faeb5af-Openstack+illustration_3.png",
+        url="https://assets.ubuntu.com/v1/ba7bf5ff-Openstack-cloud-optimisation.svg",
         alt="",
-        width="1600",
-        height="979",
+        width="390",
+        height="174",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -272,12 +270,12 @@
       <h3 class="p-heading--5">Run your workloads where it makes the most sense from an economical point of view</h3>
       <p>The future of infrastructure is multi-cloud.</p>
       <p>Using private and public cloud infrastructure at the same time allows you to optimise your CapEx and OpEx costs.</p>
-      <a class="p-link--external" href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf?_ga=2.41518498.1083732777.1610363777-647098137.1594061070">Download datasheet</a>
+      <button class="p-link--external p-button--neutral" href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf?_ga=2.41518498.1083732777.1610363777-647098137.1594061070">Download datasheet</button>
     </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-6">
       <h2>Cheaper VMs</h2>
@@ -386,18 +384,18 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row u-vertically-center">
     <div class="col-6">
       <h2>We bring infrastructure costs down</h2>
       <p class="u-sv3">Read how Charmed OpenStack helped SBI Group to optimise their CapEx and OpEx costs</p>
       <blockquote class="p-pull-quote">
-        <p class="p-pull-quote__quote">Canonical’s solution was a third of the price of the other proposals we’d received. The solution is also proving to be highly cost-effective, both from CAPEX and OPEX perspectives.</p>
+        <p class="p-pull-quote__quote">Canonical's solution was a third of the price of the other proposals we'd received. The solution is also proving to be highly cost-effective, both from CAPEX and OPEX perspectives.</p>
         <cite class="p-pull-quote__citation">Georgi Georgiev, CIO at SBI BITS</cite>
       </blockquote>
-      <a href="/engage/sbi-casestudy" class="p-button--neutral">Download casestudy</a>
+      <button href="/engage/sbi-casestudy" class="p-button--neutral">Download casestudy</button>
     </div>
-    <div class="col-6">
+    <div class="col-6 u-hide--small">
       <a href="/engage/sbi-casestudy">
       {{ image (
         url="https://assets.ubuntu.com/v1/0cf02c9e-SBI-info.png",
@@ -413,7 +411,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Fixed-price delivery</h2>
     <p class="p-heading--5">Consulting packages tailored to your needs</p>
@@ -446,7 +444,7 @@
       <div class="p-card__content">
         <p>$150,000 fixed price</p>
         <p>Design and deployment of a carrier-grade, feature-rich OpenStack cloud based on a custom architecture.</p>
-        <p>What’s included: *</p>
+        <p>What's included: *</p>
         <p>Everything in the Private Cloud Build, plus:</p>
         <ul class="p-list">
           <li class="p-list__item is-ticked">Custom architecture</li>
@@ -466,14 +464,14 @@
   </div>
   <div class="u-fixed-width">
     <p>* Additional features, functionality and integrations are available via add-ons</p>
-    <button href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-button--neutral">Download datasheet</button>
+    <button href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-button--neutral p-link--external">Download datasheet</button>
     <p>
       <a href="/openstack/consulting">Learn more about our consulting packages&nbsp;&rsaquo;</a>
     </p>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row u-vertically-center">
     <div class="col-6">
       <h2>Total bottom-up automation</h2>
@@ -496,14 +494,14 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row u-vertically-center">
     <div class="col-6 u-hide--small u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/e02f9f2e-Open-infrastructure-stack.png",
+        url="https://assets.ubuntu.com/v1/a21ceaf9-Openstack-extendable-containers-layers.svg",
         alt="",
-        width="619",
-        height="555",
+        width="387",
+        height="330",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -518,7 +516,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row u-vertically-center">
     <div class="col-6">
       <h2>Product interoperability</h2>
@@ -529,9 +527,9 @@
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/25c42877-simplified-software-management-2.svg",
+        url="https://assets.ubuntu.com/v1/0678b279-Openstack-puzzle.svg",
         alt="",
-        width="300",
+        width="262",
         height="300",
         hi_def=True,
         loading="lazy"
@@ -541,7 +539,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row u-vertically-center">
     <div class="col-6 u-hide--small u-align--center">
       {{ image (
@@ -572,7 +570,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="u-fixed-width">
     <p class="p-muted-heading u-align--center u-sv3">
       Endorsed by customers, globally
@@ -614,7 +612,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2 class="u-sv3">Security maintenance and support</h2>
     {% with no_desktop="true" %}{% include "shared/pricing/_ua-for-infrastructure.html" %}{% endwith %}
@@ -626,7 +624,7 @@
 </section>
 
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Fully-managed OpenStack</h2>
@@ -655,13 +653,13 @@
       </div>
       <button href="https://assets.ubuntu.com/v1/a797f6f9-Datasheet_Openstack_05.10.20+%281%29.pdf?_ga=2.108619394.1083732777.1610363777-647098137.1594061070" class="p-button--neutral p-link--external">Download datasheet</button>
       <p>
-        <a href="/openstack/managed">I want fully-managed OpenStack&nbsp;&rsaquo;</a>
+        <a href="/openstack/managed">I want fully&ndash;managed OpenStack&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-6">
       <h2>Long-term community member</h2>
@@ -686,7 +684,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row u-vertically-center">
     <div class="col-5 u-hide--small u-align--center">
       {{ image (
@@ -701,7 +699,7 @@
     </div>
     <div class="col-7">
       <h2>Get in touch</h2>
-      <p>Tell us your story and let’s work together on expanding the benefits of using Charmed OpenStack in your organisation.</p>
+      <p>Tell us your story and let's work together on expanding the benefits of using Charmed OpenStack in your organisation.</p>
       <button href="/openstack/contact-us?product=openstack" class="p-button--positive js-invoke-modal">Get in touch</button>
     </div>
   </div>
