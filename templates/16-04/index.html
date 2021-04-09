@@ -43,6 +43,48 @@
 </section>
 
 <section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-12">
+      <h2>Ubuntu 16.04 LTS security updates</h2>
+      <p>The Ubuntu Security Team continues its dedication to providing security updates for Ubuntu 16.04 LTS beyond the five-year standard support with Extended Security Maintenance (ESM).</p>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 1rem">
+    <div class="col-4">
+      <span id="total-patches-applied" style="font-size: 3rem; line-height: 4rem">-</span>
+      <hr>
+      <span class="p-muted-heading">16.04 LTS ESM <br>PATCHES APPLIED</span>
+    </div>
+    <div class="col-4">
+      <span id="total-notices-issued" style="font-size: 3rem; line-height: 4rem">-</span>
+      <hr>
+      <span class="p-muted-heading">USNS ISSUED</span>
+    </div>
+    <div class="col-4">
+      <span id="total-cves-issued" style="font-size: 3rem; line-height: 4rem">-</span>
+      <hr>
+      <span class="p-muted-heading">CVES ADDRESSED</span>
+    </div>
+  </div>
+  <div class="row" id="notice-feed" style="margin-top: 3rem">
+    Loading notices feed...
+  </div>
+  <div class="row" style="margin-top: 2rem">
+    <a href="/security/notices?release=xenial">View the full list&nbsp;&rsaquo;</a>
+  </div>
+  <template id="notice-row-template" style="display:none">
+    <hr>
+    <div class="col-6">
+      <strong><span><a class="notice-title"></a></span></strong><br>
+      <span class="p-muted-heading notice-date"></span><br><br>
+    </div>
+    <div class="col-6">
+      <p class="notice-summary"></p>
+    </div>
+  </template>
+</section>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-6">
       <h2>Ubuntu 16.04 LTS Extended Security Maintenance (ESM)</h2>
@@ -268,4 +310,84 @@ hwe-16.04</code></pre>
     text-align: left;
   }
 </style>
+
+<script async>
+  function formatDate(date) {
+    let parsedDate = new Date(date);
+    let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    return parsedDate.getDate() + " " + monthNames[parsedDate.getMonth()] + " " + parsedDate.getFullYear();
+  }
+
+  function getTemplate(selector) {
+    let fragment;
+    let template = document.querySelector(selector);
+
+    if ("content" in template) {
+      fragment = document.importNode(template.content, true);
+    } else {
+      fragment = document.createDocumentFragment();
+
+      for (let i = 0; i < template.childNodes.length; i++) {
+        fragment.appendChild(template.childNodes[i].cloneNode(true));
+      }
+    }
+
+    return fragment
+  }
+
+  total_patches_applied = document.querySelector("#total-patches-applied");
+  total_patches_applied.innerHTML = "69"; /** will be hard-coded for now **/
+
+  fetch(`https://ubuntu.com/security/notices.json?release=xenial`)
+    .then((res) => {
+      if (res.ok) return res.json()
+
+      throw new Error(`${res.status} Failed Fetch`);
+    })
+    .then((results) => {
+      let total_notices_issued = document.querySelector("#total-notices-issued");
+      total_notices_issued.innerHTML = results["total_results"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    })
+
+  fetch(`https://ubuntu.com/security/cves.json?version=xenial&status=released`)
+    .then((res) => {
+      if (res.ok) return res.json()
+
+      throw new Error(`${res.status} Failed Fetch`);
+    })
+    .then((results) => {
+      let total_cves_issued = document.querySelector("#total-cves-issued");
+      total_cves_issued.innerHTML = results["total_results"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")    })
+
+
+  fetch(`https://ubuntu.com/security/notices.json?release=xenial&limit=5`)
+    .then((res) => {
+      if (res.ok) return res.json()
+
+      throw new Error(`${res.status} Failed Fetch`);
+    })
+    .then((results) => {
+      let notice_feed = document.querySelector("#notice-feed");
+      notice_feed.innerHTML = "";
+
+      results["notices"].forEach((notice) => {
+        let template = getTemplate("#notice-row-template")
+        let notice_title = template.querySelector(".notice-title");
+        let notice_date = template.querySelector(".notice-date");
+        let notice_summary = template.querySelector(".notice-summary");
+
+        notice_title.href = "https://ubuntu.com/security/notices/" + notice["id"]
+        notice_title.innerHTML = notice["title"] + "&nbsp;&rsaquo;"
+        notice_date.innerText = formatDate(notice["published"]);
+        notice_summary.innerHTML = notice["summary"]
+
+        notice_feed.appendChild(template);
+      })
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+</script>
+
 {% endblock content %}
