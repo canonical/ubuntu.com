@@ -14,6 +14,7 @@ const initialFormState = {
   support: "unset",
   quantity: isSmallVP ? 0 : 1,
   billing: "yearly",
+  usesFreeTrial: true,
   product: {
     ok: false,
     supportPriceRange: {
@@ -23,6 +24,9 @@ const initialFormState = {
     },
   },
   periods: [],
+  paymentCard: {
+    ok: false,
+  },
 };
 
 const prefixMap = {
@@ -172,6 +176,12 @@ const formSlice = createSlice({
       state.product = getProduct(state);
       state.periods = getProductPeriods(state.product.productID);
     },
+    changeFreeTrial(state) {
+      state.usesFreeTrial = !state.usesFreeTrial;
+    },
+    changePaymentCard(state, action) {
+      state.paymentCard.ok = action.payload;
+    },
   },
 });
 
@@ -185,6 +195,8 @@ export const {
   changeSupport,
   changeQuantity,
   changeBilling,
+  changeFreeTrial,
+  changePaymentCard,
 } = actions;
 
 export default reducer;

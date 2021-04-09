@@ -113,7 +113,9 @@
           <strong class="js-summary-cost">${cost} /year</strong>
         </span>
         <button
-          class="p-button--positive u-no-margin--bottom u-float-right js-ua-shop-cta"
+          class="p-button--positive u-no-margin--bottom u-float-right"
+          id="buy-now-button"
+          aria-controls="purchase-modal"
         >
           Buy now
         </button>
@@ -122,9 +124,7 @@
   </section>
 </form>
 
-{% with type="purchase" %} 
-{% include 'advantage/_stripe-modal.html' %} 
-{% endwith %}
+{% include '/advantage/subscribe/_purchase-modal.html' %} 
 
 <script src="/static/js/dist/productSelector.js" type="module"></script>
 <script defer>
@@ -135,7 +135,8 @@
       price: {{ listing.price|tojson }},
       period: "{{ listing.period }}",
       productID: "{{ listing.product.id }}",
-      private: "{{ listing.privateForAccount }}"
+      private: "{{ listing.privateForAccount }}",
+      canBeTrialled: "{{ listing.can_be_trialled }}" === "True"
     },
     {% endfor %}
   };

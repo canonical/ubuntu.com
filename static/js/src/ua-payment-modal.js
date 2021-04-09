@@ -51,6 +51,14 @@ const cardErrorElement = document.getElementById("card-errors");
 const paymentErrorElement = document.getElementById("payment-errors");
 
 const forMyselfRadio = document.getElementById("buying_for_myself");
+
+const creditCardSection = document.getElementById("credit-card-section");
+
+// const freeTrialRadio = document.getElementById("use_free_trial_input");
+// const payNowRadio = document.getElementById("pay_now_input");
+
+var isFreeTrial = false;
+
 const forOrganisationRadio = document.getElementById(
   "buying_for_an_organisation"
 );
@@ -258,14 +266,6 @@ function attachFormEvents() {
     forMyselfRadio.addEventListener("change", handleNameFieldRadio);
     forOrganisationRadio.addEventListener("change", handleNameFieldRadio);
   }
-
-  termsCheckbox.addEventListener("change", () => {
-    if (termsCheckbox.checked) {
-      processPaymentButton.disabled = false;
-    } else {
-      processPaymentButton.disabled = true;
-    }
-  });
 }
 
 function handleNameFieldRadio() {
@@ -285,9 +285,13 @@ function attachModalButtonEvents() {
   addPaymentMethodButton.addEventListener("click", (e) => {
     e.preventDefault();
 
-    changingPaymentMethod = false;
-    sendGAEvent("submitted payment details");
-    createPaymentMethod();
+    if (isFreeTrial) {
+      console.log("Lessgooo");
+    } else {
+      changingPaymentMethod = false;
+      sendGAEvent("submitted payment details");
+      createPaymentMethod();
+    }
   });
 
   processPaymentButton.addEventListener("click", (e) => {
@@ -1136,7 +1140,7 @@ function toggleModal() {
 
 function validateForm() {
   const inputs = form.elements;
-  let inputsValidity = [cardValid];
+  let inputsValidity = [cardValid || isFreeTrial];
 
   for (let i = 0; i < inputs.length; i++) {
     const isValid = inputs[i].checkValidity();

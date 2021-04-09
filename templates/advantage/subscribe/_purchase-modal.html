@@ -1,11 +1,32 @@
-<div class="p-modal p-modal--ua-payment u-hide is-details-mode" id="ua-payment-modal">
+<div class="p-modal p-modal--ua-payment is-details-mode"id="purchase-modal" style="display: none;">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
     <header class="p-modal__header">
-      <h2 class="p-modal__title js-contract-name u-no-margin--bottom" id="modal-title">
+      <h2 class="p-modal__title u-no-margin--bottom" id="modal-title">
+        Complete purchase
       </h2>
     </header>
     <div id="modal-description" class="p-modal__body">
-      <section id="order-info" class="p-strip is-shallow u-no-padding--top u-hide">
+      <section id="summary-section" class="p-strip is-shallow u-no-padding--top">
+        <div class="row u-no-padding u-sv1 ">
+          <div class="col-3 u-text-light">Plan type:</div>
+          <div class="col-9" id="plan-type"></div>  
+        </div>
+        <div class="row u-no-padding u-sv1 ">
+          <div class="col-3 u-text-light">Machines:</div>
+          <div class="col-9" id="allowance"></div>  
+        </div>
+        <div class="row u-no-padding u-sv1 ">
+          <div class="col-3 u-text-light">Starts:</div>
+          <div class="col-9" id="start-date"></div>  
+        </div>
+        <div class="row u-no-padding u-sv1 ">
+          <div class="col-3 u-text-light">Ends:</div>
+          <div class="col-9" id="end-date"></div>  
+        </div>
+        <div class="row u-no-padding u-sv1 ">
+          <div class="col-3 u-text-light">Subtotal:</div>
+          <div class="col-9" id="subtotal"></div>  
+        </div>
       </section>
 
       <section class="p-strip is-shallow u-no-padding" style="overflow-x: visible;">
@@ -16,9 +37,9 @@
         </div>
 
         <form class="p-form p-form--stacked u-sv3" id="details-form">
-          <div class="p-form__group p-form-validation row u-no-padding" id="free-trial-section">
+          <div class="p-form__group  row u-no-padding" id="free-trial-section">
             <div class="col-3">
-              <label for="address"><strong>Free trial:</strong></label>
+              <label for="free-trial"><strong>Free trial:</strong></label>
             </div>
 
             <div class="col-9">
@@ -34,9 +55,6 @@
                   <input type="radio" class="p-radio__input" name="free_trial" aria-labelledby="pay_now" id="pay_now_input">
                   <span class="p-radio__label" id="pay_now">Pay now</span>
                 </label>
-                <div class="col-9 col-start-large-4">
-                  <span id="trial-errors" class="p-form-validation__message u-hide"></span>
-                </div>
             </div>
           </div>
 
@@ -67,11 +85,9 @@
               <span class="p-form-validation__message u-hide"></span>
             </div>
 
-            {% if type == "purchase" %}
             <div class="col-9 col-start-large-4">
               <small>We'll also send setup instructions to this address.</small>
             </div>
-            {% endif %}
           </div>
 
           <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
@@ -157,7 +173,8 @@
             </div>
 
             <div class="col-9">
-              {% with raw="true" %} {% include "shared/forms/_country.html" %}
+              {% with raw="true" %} 
+                {% include "shared/forms/_country.html" %}
               {% endwith %}
             </div>
 
@@ -312,7 +329,7 @@
       </span>
 
       <div class="row u-no-padding">
-        <button class="js-cancel-modal col-small-2 col-medium-2 col-start-medium-3 col-start-large-7 col-3 u-no-margin" style="text-align: center;">
+        <button class="js-cancel-modal col-small-2 col-medium-2 col-start-medium-3 col-start-large-7 col-3 u-no-margin" style="text-align: center;" aria-controls="purchase-modal">
           Cancel
         </button>
 
@@ -334,4 +351,4 @@
 <script>
   window.stripePublishableKey = "{{ stripe_publishable_key }}";
 </script>
-<script src="{{ versioned_static('js/dist/ua-payment-modal.js') }}" type="module" defer></script>
+
