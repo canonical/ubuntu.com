@@ -73,7 +73,7 @@ def certification_home():
             iot_vendors.append(vendor)
 
         if int(vendor["soc"] > 1):
-            vendor["path"] = f"/certification?form=SoC&vendor={make}"
+            vendor["path"] = f"/certification?form=Server%20SoC&vendor={make}"
             soc_vendors.append(vendor)
 
     # Server section
@@ -97,6 +97,10 @@ def certification_home():
             if request.args.getlist("form")
             else None
         )
+        if "Models" in forms:
+            forms = ",".join(
+                ["Desktops", "Laptops", "Ubuntu Core", "Server", "Server SoC"]
+            )
         releases = (
             ",".join(request.args.getlist("release"))
             if request.args.getlist("release")
@@ -135,7 +139,7 @@ def certification_home():
         results = models_response["objects"]
 
         # Populate filter numbers
-        for model in enumerate(results):
+        for model in results:
             form_filters[model["category"]] += 1
             release_filters[model["release"]] += 1
             vendor_filters[model["make"]] += 1

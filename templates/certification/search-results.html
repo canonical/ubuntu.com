@@ -6,49 +6,174 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1QuhO-9FEOGLrYp8bErS_9snqdljl7d6tFAUoNQxoVDQ/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<h1>Search results page</h1>
-Results:
-<p>{{ results }}</p>
-query
-<p>{{ query }}</p>
 
-Selected Form (Show:)
-<p>{{ form }}</p>
+<form>
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="u-sv3">Ubuntu Certified hardware search</h1>
+      <div class="p-search-box">
+        <input class="p-search-box__input" type="text" name="text" value="{{ query or '' }}">
+        <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 p-side-navigation" id="drawer">
+      <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">Toggle filters</a>
+      <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+      <nav class="p-side-navigation__drawer" aria-label="Example side navigation">
+        <div class="p-side-navigation__drawer-header">
+          <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
+            Toggle filters
+          </a>
+        </div>
+        <div>
+          <table aria-label="show">
+            <thead>
+              <tr>
+                <th style="color: #111;">Show</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  {% for form_filter, total in form_filters.items() %}
+                  <label class="p-checkbox">
+                    <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" name="form" value="{{ form_filter }}" {% if form == form_filter or form == "Desktops,Laptops,Ubuntu Core,Server,Server SoC" %}checked{% endif %}>
+                    <div class="p-checkbox__label" id="{{ form_filter }}">
+                      <span>{{ form_filter }}</span>
+                    </div>
+                  </label>
+                  {% endfor %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table aria-label="show">
+            <thead>
+              <tr>
+                <th style="color: #111;">Certified for Ubuntu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  {% for release_filter, total in release_filters.items() %}
+                  <label class="p-checkbox">
+                    <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" name="release" value="{{ release_filter }}" {% if releases == release_filter %}checked{% endif %}>
+                    <div class="p-checkbox__label" id="{{ release_filter }}">
+                      <span>{{ release_filter }}</span>
+                    </div>
+                  </label>
+                  {% endfor %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table aria-label="show">
+            <thead>
+              <tr>
+                <th style="color: #111;">Vendor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  {% for vendor_filter, total in vendor_filters.items() %}
+                  <label class="p-checkbox">
+                    <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" name="vendors" value="{{ vendor_filter }}" {% if vendor == vendor_filter %}checked{% endif %}>
+                    <div class="p-checkbox__label" id="{{ vendor_filter }}">
+                      <span>{{ vendor_filter }}</span>
+                    </div>
+                  </label>
+                  {% endfor %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
+        </div>
+      </nav>
+    </div>
+    <div class="col-9">
+      {% if total_results > 0 %}
+      <table class="p-certification-results">
+        <thead>
+          <tr>
+            <th>
+              {% if total_results and total_results > 1 %}
+                {{ offset + 1 }}
+                &ndash;
+                {% if offset + limit > total_results %}
+                  {{ total_results }}
+                {% else %}
+                  {{ offset + limit }}
+                {% endif %}
+                of
+              {% endif %}
+              {{ total_results }} result{% if total_results != 1 %}s{% endif %}
+            </th>
+            <th>type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for result in results %}
+          <tr>
+          <td><a href="/certification/{{ canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
+          <td>{{ result.category }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+        {% with total_results=total_results, total_pages=total_pages, offset=offset, limit=limit, align="u-align--left"%}
+        {% include "security/cve/_pagination.html" %}
+        {% endwith %}
+  
+       {% else %}
+       <p>There are no results to show</p>
+       {% endif %}
+    </div>
+  </div>
+</section>
+</form>
 
-Release selected
-<p>{{ releases }}</p>
+<script>
 
-Forms/Categories
-<p>{{ form_filters }}</p>
+function toggleDrawer(sideNavigation, show) {
+  if (sideNavigation) {
+    if (show) {
+      sideNavigation.classList.remove('is-collapsed');
+      sideNavigation.classList.add('is-expanded');
+    } else {
+      sideNavigation.classList.remove('is-expanded');
+      sideNavigation.classList.add('is-collapsed');
+    }
+  }
+}
 
-Release filters
-<p>{{ release_filters }}</p>
+function setupSideNavigation(sideNavigation) {
+  var toggles = [].slice.call(sideNavigation.querySelectorAll('.js-drawer-toggle'));
 
-Vendors
-<p>{{ vendor_filters }}</p>
+  toggles.forEach(function (toggle) {
+    toggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      var sideNav = document.getElementById(toggle.getAttribute('aria-controls'));
 
-vendors selected
-<p>{{ vendors }}</p>
+      if (sideNav) {
+        toggleDrawer(sideNav, !sideNav.classList.contains('is-expanded'));
+      }
+    });
+  });
+}
 
-total
-<p>{{ total }}</p>
+function setupSideNavigations(sideNavigationSelector) {
+  var sideNavigations = [].slice.call(document.querySelectorAll(sideNavigationSelector));
 
+  sideNavigations.forEach(setupSideNavigation);
+}
 
-<h2>Pagination</h2>
-<h3>These are provided not required to submit</h3>
-total results
-<p>{{ total_results }}</p>
-
-total pages
-<p>{{ total_pages }}</p>
-
-<h3>These 2 need to be returned to get results paged:</h3>
-
-E.g.: page 2 is offset 21 limit 20 (always the same)
-Limit
-<p>{{ limit }}</p>
-
-Offset
-<p>{{ offset }}</p>
+setupSideNavigations('.p-side-navigation, [class*="p-side-navigation--"]');
+</script>
 
 {% endblock content %}
