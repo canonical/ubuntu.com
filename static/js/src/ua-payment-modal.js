@@ -749,7 +749,8 @@ function handleGuestPaymentMethodResponse(data) {
   ensurePurchaseAccount(
     customerInfo.email,
     customerInfo.accountName,
-    paymentMethod.id
+    paymentMethod.id,
+    customerInfo.address.country
   ).then((data) => {
     if (data.code) {
       // an error was returned, most likely cause
