@@ -15,6 +15,8 @@ const initialFormState = {
   quantity: isSmallVP ? 0 : 1,
   billing: "yearly",
   usesFreeTrial: true,
+  buyingForMyself: false,
+  isFreeTrialsTermsChecked: false,
   product: {
     ok: false,
     supportPriceRange: {
@@ -178,9 +180,16 @@ const formSlice = createSlice({
     },
     changeFreeTrial(state) {
       state.usesFreeTrial = !state.usesFreeTrial;
+      state.isFreeTrialsTermsChecked = false;
+    },
+    changeBuyingFor(state) {
+      state.buyingForMyself = !state.buyingForMyself;
     },
     changePaymentCard(state, action) {
       state.paymentCard.ok = action.payload;
+    },
+    checkFreeTrialTerms(state) {
+      state.isFreeTrialsTermsChecked = !state.isFreeTrialsTermsChecked;
     },
   },
 });
@@ -196,7 +205,9 @@ export const {
   changeQuantity,
   changeBilling,
   changeFreeTrial,
+  changeBuyingFor,
   changePaymentCard,
+  checkFreeTrialTerms,
 } = actions;
 
 export default reducer;

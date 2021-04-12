@@ -105,7 +105,7 @@
           </div>
 
           {% if account is defined %}
-            <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
+            <div class="p-form__group row u-no-padding u-vertically-center">
               <div class="col-3">
                 <label class="u-no-padding--top" for="customer_name">I'm buying for:</label>
               </div>
@@ -119,18 +119,15 @@
                     <input type="radio" class="p-radio__input" name="buying_for" id="buying_for_an_organisation" aria-labelledby="organisation" checked="true">
                     <span class="p-radio__label" id="organisation">An organisation</span>
                   </label>
-                  <div class="col-9 col-start-large-4">
-                    <span id="buying-for-errors" class="p-form-validation__message u-hide"></span>
-                  </div>
               </div>
             </div>
-            <div class="p-form__group row u-no-padding u-vertically-center">
+            <div id="organisation-section" class="p-form-validation p-form__group row u-no-padding u-vertically-center">
               <div class="col-3">
-                <label class="u-no-padding--top" for="account_name" id="account_name_label">Organisation:</label>
+                <label class="u-no-padding--top" for="account_name" >Organisation:</label>
               </div>
 
               <div class="col-9">
-                <input name="account_name" id="account_name" type="text" value="{{ account.name }}" />
+                <input class="p-form-validation__input" name="organisation" id="account_name" type="text" value="{{ account.name }}" />
               </div>
 
               <div class="col-9 col-start-large-4">
@@ -145,7 +142,7 @@
             </div>
 
             <div class="col-9">
-              <input class="p-form-validation__input" name="address" type="text" autocomplete="address" required />
+              <input class="p-form-validation__input" name="street" type="text" autocomplete="address" required />
             </div>
 
             <div class="col-9 col-start-large-4">
@@ -167,7 +164,7 @@
             </div>
           </div>
 
-          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center">
+          <div class="p-form-validation p-form__group row u-no-padding u-vertically-center">
             <div class="col-3">
               <label class="u-no-padding--top" >Country/Region:</label>
             </div>
@@ -189,7 +186,7 @@
             </div>
 
             <div class="col-9">
-              <input class="p-form-validation__input" type="text" name="postal_code" autocomplete="postal_code" required />
+              <input class="p-form-validation__input" type="text" name="postalCode" autocomplete="postal_code" required />
             </div>
 
             <div class="col-9 col-start-large-4">
@@ -197,7 +194,7 @@
             </div>
           </div>
 
-          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center u-hide js-states-container">
+          <div id="us-states-container" class="p-form__group p-form-validation row u-no-padding u-vertically-center u-hide">
             <div class="col-3">
               <label class="u-no-padding--top" for="us_state">State:</label>
             </div>
@@ -211,7 +208,7 @@
             </div>
           </div>
 
-          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center u-hide js-provinces-container">
+          <div id="ca-provinces-container" class="p-form__group p-form-validation row u-no-padding u-vertically-center u-hide">
             <div class="col-3">
               <label class="u-no-padding--top" for="ca_province">Province:</label>
             </div>
@@ -225,13 +222,13 @@
             </div>
           </div>
 
-          <div class="p-form__group p-form-validation row u-no-padding u-vertically-center u-hide js-vat-container">
+          <div id="vat-container" class="p-form__group p-form-validation row u-no-padding u-vertically-center u-hide">
             <div class="col-3">
               <label class="u-no-padding--top" >VAT number:</label>
             </div>
 
             <div class="col-7">
-              <input class="p-form-validation__input" name="tax" type="text" />
+              <input class="p-form-validation__input" name="VATNumber" type="text" />
             </div>
 
             <div class="col-2">
@@ -248,7 +245,14 @@
           </div>
         </form>
 
-        <div id="order-totals" class="u-hide u-sv1">
+        <div id="vat-summary-section" class="row u-no-padding u-sv1">
+          <div class="col-3 u-text-light">VAT:</div>
+          <div class="col-9" id="vat"></div>  
+        </div>
+        <div class="row u-no-padding u-sv1 ">
+          <div class="col-3 u-text-light">Total:</div>
+          <div class="col-9" id="total"></div>  
+          <p class="col-9 col-start-large-4" id="excluding-vat"><small>Excluding VAT</small></p>  
         </div>
 
         <section id="free-trial-terms-section" class="p-strip is-shallow u-no-padding--top">
@@ -333,7 +337,7 @@
           Cancel
         </button>
 
-        <button class="js-payment-method col-small-2 col-medium-2 col-3 p-button--positive u-no-margin" style="text-align: center;" disabled type="submit">
+        <button id="continue-button" class="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin" style="text-align: center;" disabled type="submit">
           Continue
         </button>
 

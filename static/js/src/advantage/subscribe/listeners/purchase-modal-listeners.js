@@ -1,4 +1,9 @@
-import { changePaymentCard, changeFreeTrial } from "../reducers/form-reducer";
+import {
+  changePaymentCard,
+  changeFreeTrial,
+  changeBuyingFor,
+  checkFreeTrialTerms,
+} from "../reducers/form-reducer";
 import { updateField, validateField } from "../reducers/user-info-reducer";
 
 // initialise Stripe
@@ -46,20 +51,61 @@ export default function initPurchaseModalInputs(store) {
   );
   freeTrialsRadios.forEach((toggle) => {
     toggle.addEventListener("change", (e) => {
-      console.log(e.target.value);
       e.preventDefault();
       store.dispatch(changeFreeTrial());
     });
   });
 
-  const field = document.querySelector(".p-form-validation__input");
-  console.log(field);
-  field.addEventListener("input", (e) => {
-    store.dispatch(updateField({ field: field.name, value: e.target.value }));
+  const buyingForRadios = document.querySelectorAll("input[name='buying_for']");
+  buyingForRadios.forEach((toggle) => {
+    toggle.addEventListener("change", (e) => {
+      e.preventDefault();
+      store.dispatch(changeBuyingFor());
+    });
   });
-  field.addEventListener("blur", () => {
+
+  const fields = document.querySelectorAll(".p-form-validation__input");
+  fields.forEach((field) => {
+    field.addEventListener("input", (e) => {
+      store.dispatch(updateField({ field: field.name, value: e.target.value }));
+    });
+    field.addEventListener("blur", () => {
+      store.dispatch(
+        validateField({ field: field.name, valid: field.checkValidity() })
+      );
+    });
+  });
+
+  const countrySelect = document.querySelector("select#Country");
+  countrySelect.addEventListener("input", (e) => {
+    store.dispatch(updateField({ field: "country", value: e.target.value }));
     store.dispatch(
-      validateField({ field: field.name, valid: field.checkValidity() })
+      validateField({ field: "country", valid: e.target.value !== "" })
     );
+  });
+
+  countrySelect.name = "country";
+  countrySelect.classList.add("p-form-validation__input");
+
+  const USStateSelect = document.querySelector("select#us_state");
+  const CAProvinceSelect = document.querySelector("select#ca_province");
+
+  [USStateSelect, CAProvinceSelect].forEach((select) => {
+    select.addEventListener("input", (e) => {
+      store.dispatch(
+        updateField({ field: "countryState", value: e.target.value })
+      );
+      store.dispatch(
+        validateField({ field: "countryState", valid: e.target.value !== "" })
+      );
+    });
+    select.name = "countryState";
+    select.classList.add("p-form-validation__input");
+    select.required = true;
+  });
+
+  const freeTrialsTermsCheckbox = document.querySelector("#free-trial-terms");
+  freeTrialsTermsCheckbox.addEventListener("change", () => {
+    store.dispatch(checkFreeTrialTerms());
   });
 }

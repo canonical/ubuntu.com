@@ -51,15 +51,15 @@ const userInfoSlice = createSlice({
       } = action.payload;
 
       return {
-        email: { value: email, validity: VALIDITY.PRISTINE },
-        name: { value: name, validity: VALIDITY.PRISTINE },
-        organisation: { value: organisation, validity: VALIDITY.PRISTINE },
-        street: { value: street, validity: VALIDITY.PRISTINE },
-        city: { value: city, validity: VALIDITY.PRISTINE },
-        postalCode: { value: postalCode, validity: VALIDITY.PRISTINE },
-        country: { value: country, validity: VALIDITY.PRISTINE },
-        countryState: { value: countryState, validity: VALIDITY.PRISTINE },
-        VATNumber: { value: "", validity: VALIDITY.PRISTINE },
+        email: { value: email, validity: VALIDITY.VALID },
+        name: { value: name, validity: VALIDITY.VALID },
+        organisation: { value: organisation, validity: VALIDITY.VALID },
+        street: { value: street, validity: VALIDITY.VALID },
+        city: { value: city, validity: VALIDITY.VALID },
+        postalCode: { value: postalCode, validity: VALIDITY.VALID },
+        country: { value: country, validity: VALIDITY.VALID },
+        countryState: { value: countryState, validity: VALIDITY.VALID },
+        VATNumber: { value: "", validity: VALIDITY.VALID },
         isGuest: false,
       };
     },
