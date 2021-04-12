@@ -234,7 +234,7 @@
   <div class="row">
     <div class="col-6">
       <h2>Engineered for best price&ndash;performance</h2>
-      <h3 class="p-heading--5">Designed to be economical in every way</h3>
+      <h3 class="p-heading--4">Designed to be economical in every way</h3>
       <p>Smart operations, optimal architecture, better pricing. All of this to ensure TCO reduction of your cloud, while expanding your budget for innovation.</p>
       <a href="/openstack/compare">Compare OpenStack distros&nbsp;&rsaquo;</a>
     </div>
@@ -267,7 +267,7 @@
     </div>
     <div class="col-6">
       <h2>Maximum multi-cloud cost optimisation</h2>
-      <h3 class="p-heading--5">Run your workloads where it makes the most sense from an economical point of view</h3>
+      <h3 class="p-heading--4">Run your workloads where it makes the most sense from an economical point of view</h3>
       <p>The future of infrastructure is multi-cloud.</p>
       <p>Using private and public cloud infrastructure at the same time allows you to optimise your CapEx and OpEx costs.</p>
       <button class="p-link--external p-button--neutral" href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf?_ga=2.41518498.1083732777.1610363777-647098137.1594061070">Download datasheet</button>
@@ -279,10 +279,10 @@
   <div class="row">
     <div class="col-6">
       <h2>Cheaper VMs</h2>
-      <h3 class="p-heading--5">Machines cost less if they run in a private cloud</h3>
+      <h3 class="p-heading--4">Machines cost less if they run in a private cloud</h3>
       <p>Compare the prices of sample VMs running on a baseline Charmed OpenStack cloud over a three-year period. The calculations include hardware costs, typical hosting charges and <a href="/openstack/managed">fully-managed service</a>*.</p>
       <a class="u-sv2" href="/openstack/tco-calculator">Check pricing for other VMs&nbsp;&rsaquo;</a>
-      <p>* - Exact prices may vary depending on the used hardware, cloud configuration, local hosting charges and salary costs.</p>
+      <p>* Exact prices may vary depending on the used hardware, cloud configuration, local hosting charges and salary costs.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       <table aria-label="Comparison table for pricing of VMs">
@@ -384,86 +384,103 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h2>We bring infrastructure costs down</h2>
-      <p class="u-sv3">Read how Charmed OpenStack helped SBI Group to optimise their CapEx and OpEx costs</p>
-      <blockquote class="p-pull-quote">
-        <p class="p-pull-quote__quote">Canonical's solution was a third of the price of the other proposals we'd received. The solution is also proving to be highly cost-effective, both from CAPEX and OPEX perspectives.</p>
-        <cite class="p-pull-quote__citation">Georgi Georgiev, CIO at SBI BITS</cite>
-      </blockquote>
-      <button href="/engage/sbi-casestudy" class="p-button--neutral">Download casestudy</button>
-    </div>
-    <div class="col-6 u-hide--small">
-      <a href="/engage/sbi-casestudy">
+<section class="p-strip--suru-accent is-dark">
+  <div class="row">
+    <div class="col-3 p-card u-hide--small u-vertically-center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/0cf02c9e-SBI-info.png",
-        alt="",
-        width="792",
-        height="920",
+        url="https://assets.ubuntu.com/v1/91fb9ca2-SBI-BITS_logo.svg",
+        alt="SBI Bits",
+        width="292",
+        height="85",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
-      </a>
     </div>
+    <div class="col-8 col-start-large-5">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
+            alt="",
+            width="32",
+            height="32",
+            hi_def=True,
+            attrs={"class":"p-heading-icon__img"},
+            loading="lazy"
+            ) | safe
+          }}
+          <p class="p-muted-heading u-sv3" style="color: #fff; line-height: 1.5rem;">Case study</p>
+        </div>
+        <h2 class="p-heading--4">We bring infrastructure costs down</h2>
+        <p>Read how Charmed OpenStack helped SBI Group to optimise their CapEx and OpEx costs</p>
+        <p><a href="/engage/sbi-casestudy" class="p-button--neutral">Read the case study</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <blockquote class="p-pull-quote">
+      <p class="p-pull-quote__quote">Canonical's solution was a third of the price of the other proposals we'd received. The solution is also proving to be highly cost-effective, both from CAPEX and OPEX perspectives.</p>
+      <cite class="p-pull-quote__citation">Georgi Georgiev, CIO at SBI BITS</cite>
+    </blockquote>
   </div>
 </section>
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Fixed-price delivery</h2>
-    <p class="p-heading--5">Consulting packages tailored to your needs</p>
-    <p>No hidden costs. No surprises. Everything is clear from the beginning.</p>
-    <p>We design the cloud. We build the cloud.</p>
+    <p class="p-heading--4">Consulting packages tailored to your needs</p>
+    <p>No hidden costs. No surprises. Everything is clear from the beginning. We design the cloud. We build the cloud.</p>
     <p>Choose your package:</p>
   </div>
   <div class="row">
-    <div class="p-card col-6">
-      <h3 class="p-card__title">Private Cloud Build</h3>
-      <div class="p-card__content">
-        <p>$75,000 fixed price</p>
-        <p>Design and deployment of a baseline OpenStack cloud based on the reference architecture.</p>
-        <p>What’s included: *</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Hardware guidance and sizing</li>
-          <li class="p-list__item is-ticked">Reference architecture</li>
-          <li class="p-list__item is-ticked">Simplified networking</li>
-          <li class="p-list__item is-ticked">Hyper-converged or Converged</li>
-          <li class="p-list__item is-ticked">Containerised control plane</li>
-          <li class="p-list__item is-ticked">Observability stack</li>
-          <li class="p-list__item is-ticked">Block and object storage</li>
-          <li class="p-list__item is-ticked">High availability</li>
-        </ul>
-        <p>Design and delivery on certified hardware.</p>
-      </div>
+    <div class="col-6 p-card">
+      <h2 class="p-heading--four">Private Cloud Build</h2>
+      <p><span class="p-heading--two">$75,000</span> fixed price</p>
+      <hr class="u-sv1">
+      <p>Design and deployment of a baseline OpenStack cloud based on the reference architecture.</p>
+      <p>What’s included: <sup><a href="#os-footnote">*</a></sup></p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Hardware guidance and sizing</li>
+        <li class="p-list__item is-ticked">Reference architecture</li>
+        <li class="p-list__item is-ticked">Simplified networking</li>
+        <li class="p-list__item is-ticked">Hyper-converged or Converged</li>
+        <li class="p-list__item is-ticked">Containerised control plane</li>
+        <li class="p-list__item is-ticked">Observability stack</li>
+        <li class="p-list__item is-ticked">Block and object storage</li>
+        <li class="p-list__item is-ticked">High availability</li>
+      </ul>
+      <p>Design and delivery on certified hardware.</p>
+      <p><a href="/openstack/consulting">Get OpenStack&nbsp;›</a></p>
     </div>
-    <div class="p-card col-6">
-      <h3 class="p-card__title">Private Cloud Build Plus</h3>
-      <div class="p-card__content">
-        <p>$150,000 fixed price</p>
-        <p>Design and deployment of a carrier-grade, feature-rich OpenStack cloud based on a custom architecture.</p>
-        <p>What's included: *</p>
-        <p>Everything in the Private Cloud Build, plus:</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Custom architecture</li>
-          <li class="p-list__item is-ticked">Containerised or isolated control plane</li>
-          <li class="p-list__item is-ticked">Complex networking</li>
-          <li class="p-list__item is-ticked">LDAP or Active Directory integration</li>
-          <li class="p-list__item is-ticked">Regulatory compliance</li>
-          <li class="p-list__item is-ticked">Encryption in flight and at rest</li>
-          <li class="p-list__item is-ticked">EPA tuning options</li>
-          <li class="p-list__item is-ticked">Block, object and file storage</li>
-          <li class="p-list__item is-ticked">Layer-7 load balancer</li>
-          <li class="p-list__item is-ticked">Secrets management</li>
-        </ul>
-        <p>Workshops determine the optimal architecture for your workloads and integration requirements.</p>
-      </div>
+    <div class="col-6 p-card">
+      <h2 class="p-heading--four">Private Cloud Build Plus</h2>
+      <p><span class="p-heading--two">$150,000</span> fixed price</p>
+      <hr class="u-sv1">
+      <p>Design and deployment of a carrier-grade, feature-rich OpenStack cloud based on a custom architecture.</p>
+      <p>What’s included: <sup><a href="#os-footnote">*</a></sup></p>
+      <p>Everything in Private Cloud Build, plus:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Custom architecture</li>
+        <li class="p-list__item is-ticked">Containerised or isolated control plane</li>
+        <li class="p-list__item is-ticked">Complex networking</li>
+        <li class="p-list__item is-ticked">LDAP or Active Directory integration</li>
+        <li class="p-list__item is-ticked">Regulatory compliance</li>
+        <li class="p-list__item is-ticked">Encryption in flight and at rest</li>
+        <li class="p-list__item is-ticked">EPA tuning options</li>
+        <li class="p-list__item is-ticked">Block, object and file storage</li>
+        <li class="p-list__item is-ticked">Layer&ndash;7 load balancer</li>
+        <li class="p-list__item is-ticked">Secrets management</li>
+      </ul>
+      <p>Workshops determine the optimal architecture for your workloads and integration requirements.</p>
+      <p><a href="/openstack/consulting">Migrate from VMware&nbsp;›</a></p>
     </div>
   </div>
   <div class="u-fixed-width">
-    <p>* Additional features, functionality and integrations are available via add-ons</p>
+    <p id="os-footnote">* Additional features, functionality and integrations are available via add-ons</p>
     <button href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-button--neutral p-link--external">Download datasheet</button>
     <p>
       <a href="/openstack/consulting">Learn more about our consulting packages&nbsp;&rsaquo;</a>
@@ -475,7 +492,7 @@
   <div class="row u-vertically-center">
     <div class="col-6">
       <h2>Total bottom-up automation</h2>
-      <p class="p-heading--5">Fully automated OpenStack deployment and operations</p>
+      <h3 class="p-heading--4">Fully automated OpenStack deployment and operations</h3>
       <p>From bare metal to cloud control plane, Charmed OpenStack uses automation everywhere.</p>
       <p>Save time and money by moving to the only OpenStack platform on the market that uses operators for OpenStack automation.</p>
       <a href="/engage/openstack-deployment-guide">Read how to deploy and operate OpenStack effectively&nbsp;&rsaquo;</a>
@@ -509,7 +526,7 @@
     </div>
     <div class="col-6">
       <h2>Extendable containers layer</h2>
-      <p class="p-heading--5">Run both containers and VMs on the same platform</p>
+      <h3 class="p-heading--4">Run both containers and VMs on the same platform</h3>
       <p>Extend your cloud with a <a href="/kubernetes">Kubernetes</a> layer running on top of it and benefit from a unified approach to both containers and legacy workloads management.</p>
       <p>The entire stack is supported under the same <a href="/advantage">subscription</a>.</p>
     </div>
@@ -520,7 +537,7 @@
   <div class="row u-vertically-center">
     <div class="col-6">
       <h2>Product interoperability</h2>
-      <p class="p-heading--5">Servers, SDN controllers, storage platforms and more</p>
+      <h3 class="p-heading--4">Servers, SDN controllers, storage platforms and more</h3>
       <p>We partner with leading semiconductor companies, hardware vendors, network equipment providers and open source communities to ensure the best bread of technology choices.</p>
       <p>All of that to design the optimal architecture and ensure the best price-performance all of the time.</p>
       <a href="/openstack/features">Read about supported options&nbsp;&rsaquo;</a>
@@ -554,7 +571,7 @@
     </div>
     <div class="col-6">
       <h2>100 Gbps OpenStack</h2>
-      <p class="p-heading--5">For telcos, for HPC, for AI/ML</p>
+      <h3 class="p-heading--4">For telcos, for HPC, for AI/ML</h3>
       <p>All necessary performance extensions for running NFVI/VIM and other advanced cloud architectures:</p>
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">OVS hardware offloading</li>
@@ -572,38 +589,20 @@
 
 <section class="p-strip">
   <div class="u-fixed-width">
-    <p class="p-muted-heading u-align--center u-sv3">
-      Endorsed by customers, globally
-    </p>
+    <h2 class="u-sv2">Endorsed by customers, globally</h2>
   </div>
   <div class="row">
     <div class="col-6">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/d2bfbb2b-MTS_logo_%282016%29.svg",
-        alt="",
-        width="130",
-        height="50",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-      <blockquote class="p-pull-quote">
+      <blockquote class="p-pull-quote has-image">
+        <img class="p-pull-quote__image" src="https://assets.ubuntu.com/v1/d2bfbb2b-MTS_logo_%282016%29.svg" alt="MTS">
         <p class="p-pull-quote__quote">Building an ecosystem based on OpenStack will speed up our technology adoption, lay a foundation for future 5G rollout, and enable us to improve virtualization cost effectiveness.</p>
         <cite class="p-pull-quote__citation">Victor Belov, CTO at MTS</cite>
       </blockquote>
       <a href="/blog/mts-selects-openstack-and-canonical-for-next-generation-cloud-infrastructure">Read the announement&nbsp;&rsaquo;</a>
     </div>
     <div class="col-6">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg",
-        alt="",
-        width="50",
-        height="50",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-      <blockquote class="p-pull-quote">
+      <blockquote class="p-pull-quote has-image">
+        <img class="p-pull-quote__image" src="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg" alt="BT">
         <p class="p-pull-quote__quote">Canonical is providing us with the ‘cloud-native’ foundation that enables us to create a smart and fully converged network.</p>
         <cite class="p-pull-quote__citation">Neil J. McRae, Group Chief Architect at BT</cite>
       </blockquote>
@@ -614,7 +613,10 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2 class="u-sv3">Security maintenance and support</h2>
+    <h2 class="u-sv3">Full-stack enterprise support</h2>
+    <h3 class="p-heading--4">Multiple products, single subscription</h3>
+    <p>Manage your cloud with confidence with commercial support from Canonical.</p>
+    <p class="u-sv3">Choose the plan that suits you the best:</p>
     {% with no_desktop="true" %}{% include "shared/pricing/_ua-for-infrastructure.html" %}{% endwith %}
     <button href="https://assets.ubuntu.com/v1/b0b42477-Ubuntu_Advantage_+Datasheet-2019.pdf" class="p-button--neutral p-link--external">Download datasheet</button>
     <p>
@@ -625,17 +627,19 @@
 
 
 <section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Fully-managed OpenStack</h2>
+    <h3 class="p-heading--4">We manage the cloud for you</h3>
+    <p>Just like a public cloud, but running on your premises or in one of our partner data centres.</p>
+  </div>
   <div class="row">
-    <div class="col-8">
-      <h2>Fully-managed OpenStack</h2>
-      <p class="p-heading--5">We manage the cloud for you</p>
-      <p>Just like a public cloud, but running on your premises or in one of our partner data centres.</p>
+    <div class="col-6">
       <div class="p-card">
-        <h3 class="p-card__title">Managed OpenStack</h3>
-        <div class="p-card__content">
-          <p>$15 per server per day</p>
-          <p>Full remote operations of your Charmed OpenStack cloud.</p>
-          <p>What’s included:</p>
+        <h2 class="p-heading--four">Managed OpenStack</h2>
+        <p><span class="p-heading--two">$15</span> per server per day</p>
+        <hr class="u-sv1">
+        <p>Full remote operations of your Charmed OpenStack cloud.</p>
+        <p>What’s included: <sup><a href="#os-footnote">*</a></sup></p>
           <ul class="p-list">
             <li class="p-list__item is-ticked">Logging, monitoring and alerting</li>
             <li class="p-list__item is-ticked">24/7 operations with fully staffed NOC</li>
@@ -648,13 +652,12 @@
             <li class="p-list__item is-ticked">EU and US regulatory compliance options</li>
             <li class="p-list__item is-ticked">Training and transfer options</li>
           </ul>
-          <p>The most straightforward way to accelerate your time to market.</p>
-        </div>
+        <p>The most straightforward way to accelerate your time to market.</p>
+        <button href="https://assets.ubuntu.com/v1/a797f6f9-Datasheet_Openstack_05.10.20+%281%29.pdf?_ga=2.108619394.1083732777.1610363777-647098137.1594061070" class="p-button--neutral p-link--external">Download datasheet</button>
+        <p>
+          <a href="/openstack/managed">I want fully&ndash;managed OpenStack&nbsp;&rsaquo;</a>
+        </p>
       </div>
-      <button href="https://assets.ubuntu.com/v1/a797f6f9-Datasheet_Openstack_05.10.20+%281%29.pdf?_ga=2.108619394.1083732777.1610363777-647098137.1594061070" class="p-button--neutral p-link--external">Download datasheet</button>
-      <p>
-        <a href="/openstack/managed">I want fully&ndash;managed OpenStack&nbsp;&rsaquo;</a>
-      </p>
     </div>
   </div>
 </section>
@@ -662,22 +665,22 @@
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-6">
-      <h2>Long-term community member</h2>
+      <h2 class="p-heading--4">Long-term community member</h2>
       <p>Open source comes through contribution and community collaboration. Canonical is a long-term member of the OpenStack community, <a href="https://www.stackalytics.com/?metric=loc&release=all" class="p-link--external">one of the top contributors</a> to the OpenStack code and Gold Member of the <a href="https://openinfra.dev/" class="p-link--external">Open Infrastructure Foundation</a>. Together with other leaders we constantly drive the evolution of OpenStack towards new challenges.</p>
     </div>
     <div class="col-6">
-      <h2>The most popular open source cloud platform</h2>
+      <h2 class="p-heading--4">The most popular open source cloud platform</h2>
       <p><a href="https://www.statista.com/statistics/511526/worldwide-survey-private-coud-services-running-application/" class="p-link--external">OpenStack adoption continues to grow</a> every year. Its combined market size worldwide is approaching $8,000,000,000. OpenStack is supported by leading industry players, and successfully used by thousands of organisations all over the world. The popularity of OpenStack comes from its better economics, stability and openness of the code.</p>
     </div>
   </div>
   <div class="row u-equal-height">
     <div class="col-6">
-      <h2>From VMware to OpenStack</h2>
+      <h2 class="p-heading--4">From VMware to OpenStack</h2>
       <p>VMware costs increasing? Do not worry. Charmed OpenStack significantly decreases the TCO of infrastructure maintenance. Our team of cloud experts will help you to migrate from VMware to Charmed OpenStack and take control over your budget back.</p>
       <a href="engage/vmware-to-charmed-openstack">Explore how to perform a live migration&nbsp;&rsaquo;</a>
     </div>
     <div class="col-6">
-      <h2>Install OpenStack yourself</h2>
+      <h2 class="p-heading--4">Install OpenStack yourself</h2>
       <p>Looking for the most straightforward installation instructions for OpenStacK? <a href="https://microstack.run" class="p-link--external">MicroStack</a> allows you to install a fully functional OpenStack on your workstation in just two commands. The entire process takes around twenty minutes.</p>
       <a href="/openstack/install">Get started with OpenStack today&nbsp;&rsaquo;</a>
     </div>
