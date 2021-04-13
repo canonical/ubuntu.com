@@ -120,7 +120,7 @@
         <tbody>
           {% for result in results %}
           <tr>
-          <td><a href="/certification/{{ canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
+          <td><a href="/certification/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
           <td>{{ result.category }}</td>
           </tr>
           {% endfor %}
