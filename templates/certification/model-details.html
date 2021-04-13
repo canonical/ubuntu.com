@@ -71,8 +71,25 @@
               <button type="button" class="p-accordion__tab" style="background-position: top 1.25rem left 1rem;"id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="{% if release_details['releases']|length == 1 %}true{% else %}false{% endif %}"><h3 class="u-no-margin--bottom">{{ release.name }}</h3></button>
             </div>
             <section class="p-accordion__panel" id="tab{{ loop.index }}-section" aria-hidden="{% if release_details['releases']|length == 1 %}false{% else %}true{% endif %}" aria-labelledby="tab{{ loop.index }}">
-              <p class="u-no-margin--bottom">Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system’s hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.</p>
-              <p></p>
+              {% if release.level == "Enabled" %}
+                <p class="u-no-margin--bottom">Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system’s hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.</p>
+              {% elif release.level == "Certified" %}
+                <p>The {{ vendor }} {{ name }} development board with the components described below has been awarded the status of certified for Ubuntu.</p>
+                <p class="u-no-margin--bottom">
+                  {% if category == "Desktop" or category == "Laptop" %}
+                  <a href="/download/desktop" class="p-button--neutral">Download</a>
+                  {% endif%}
+                  {% if category == "Ubuntu Core" %}
+                  <a href="/download/iot" class="p-button--neutral">Download</a>
+                  {% endif%}
+                  {% if category == "Server" %}
+                  <a href="/download/server" class="p-button--neutral">Download</a>
+                  {% endif%}
+                  {% if category == "Server SoC" %}
+                  <a href="/download/server/arm" class="p-button--neutral">Download</a>
+                  {% endif%}
+                </p>
+              {% endif %}
               {% if release.kernel %}
               <h4 class="u-no-margin--bottom">Kernel</h4>
               <p>{{ release.kernel }}</p>
@@ -88,16 +105,16 @@
                 <tbody>
                 {% for hardware_subtitle, values in release_details["components"].items() %}
                   <tr>
-                    <th colspan="3" class="p-muted-text">{{ hardware_subtitle }}</th>
-                    <td colspan="9">{% for value in values %} 
-                      <p style="margin-bottom: 0.5rem;"><a href="#">{{ value.name }} {{ value.bus }}</a> ({{ value.identifier }})</p>
+                    <th colspan="2" class="p-muted-text">{{ hardware_subtitle }}</th>
+                    <td colspan="8">{% for value in values %} 
+                      <p style="margin-bottom: 0.5rem;">{{ value.name }} {{ value.bus }}({{ value.identifier }})</p>
                       {% endfor %}
                     </td>
                   </tr>
                 {% endfor%}
                 </tbody>
               </table>
-              <p>
+              <p class="u-sv3">
                 <a href="/certification/{{ canonical_id }}/{{ release.version }}">Hardware details&nbsp;&rsaquo;</a>
               </p>
             </section>
