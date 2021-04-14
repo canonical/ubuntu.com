@@ -101,7 +101,7 @@
               {% endfor %}
               {% endif %}
               <h4>Hardware</h4>
-              <table aria-label="Hardware">
+              <table aria-label="Hardware" class="u-no-margin--bottom">
                 <tbody>
                 {% for hardware_subtitle, values in release_details["components"].items() %}
                   <tr>
@@ -239,11 +239,14 @@
         {% endfor %}
     </table>
     <ul class="p-inline-list" style="margin-left:0.5rem;">
-      <li class="p-inline-list__item"><i class="p-icon--success"></i> Supported</li>
       <li class="p-inline-list__item">
-          <img src="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg" alt=""> May require 3rd-party driver
+        <i class="p-icon--success"></i> <small class="p-">Supported</small></li>
+      <li class="p-inline-list__item">
+          <img src="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg" alt=""> <small>May require 3rd-party driver</small>
       </li>
-      <li class="p-inline-list__item"><i class="p-icon--help"></i> In progress</li>
+      <li class="p-inline-list__item">
+        <i class="p-icon--help"></i> <small>In progress</small>
+      </li>
     </ul>
   </div>
 </section>
