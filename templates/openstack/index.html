@@ -443,7 +443,7 @@
       <p><span class="p-heading--two">$75,000</span> fixed price</p>
       <hr class="u-sv1">
       <p>Design and deployment of a baseline OpenStack cloud based on the reference architecture.</p>
-      <p>What’s included: <sup><a href="#os-footnote">*</a></sup></p>
+      <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Hardware guidance and sizing</li>
         <li class="p-list__item is-ticked">Reference architecture</li>
@@ -462,7 +462,7 @@
       <p><span class="p-heading--two">$150,000</span> fixed price</p>
       <hr class="u-sv1">
       <p>Design and deployment of a carrier-grade, feature-rich OpenStack cloud based on a custom architecture.</p>
-      <p>What’s included: <sup><a href="#os-footnote">*</a></sup></p>
+      <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
       <p>Everything in Private Cloud Build, plus:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Custom architecture</li>
@@ -604,7 +604,7 @@
     <div class="col-6">
       <blockquote class="p-pull-quote has-image">
         <img class="p-pull-quote__image" src="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg" alt="BT">
-        <p class="p-pull-quote__quote">Canonical is providing us with the ‘cloud-native’ foundation that enables us to create a smart and fully converged network.</p>
+        <p class="p-pull-quote__quote">Canonical is providing us with the ‘cloud-native' foundation that enables us to create a smart and fully converged network.</p>
         <cite class="p-pull-quote__citation">Neil J. McRae, Group Chief Architect at BT</cite>
       </blockquote>
       <a href="/blog/bt-turns-to-canonical-ubuntu-to-enable-next-generation-5g-cloud-core">Read the announement&nbsp;&rsaquo;</a>
@@ -626,8 +626,52 @@
   </div>
 </section>
 
-
 <section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2 class="p-heading--4">
+        Every OpenStack version supported
+      </h2>
+      <p>
+        Each upstream OpenStack version comes with new features that may bring measurable benefits to your business. We recognise that and provide <a href="/about/release-cycle">full support for every version of OpenStack</a> within two weeks of the upstream release. Every two years we release an LTS version of Charmed OpenStack which we support for five years.
+      </p>
+    </div>
+    <div class="col-6">
+      <h2 class="p-heading--4">
+        Secure, compliant, hardened
+      </h2>
+      <p>
+        Canonical provides up to ten years of security updates for Charmed OpenStack under the <a href="/advantage">UA-I subscription</a> for customers who value stability above all else. Moreover, the support package includes various EU and US regulatory compliance options. Additional hardening tools and benchmarks ensure the highest level of security.
+      </p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2 class="p-heading--4">
+        Upgrades included, fully automated
+      </h2>
+      <p>
+        OpenStack upgrades are known to be painful due to the complexity of the process. By leveraging the model-driven architecture and using OpenStack Charmed Operators for automation purposes, Charmed OpenStack <a class="p-link--external" href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html">can be easily upgraded</a> between its consecutive versions. This allows you to stay up to date with the upstream features, while not putting additional pressure on your operations team.
+      </p>
+    </div>
+    <div class="col-6">
+      <h2 class="p-heading--4">
+        Carrier-grade private cloud
+      </h2>
+      <p>
+        Of all market sectors, telecommunications companies typically have the highest requirements in terms of infrastructure stability, security and resilience.
+      </p>
+      <p>
+        Charmed OpenStack meets those requirements.
+      </p>
+      <p>
+        <a href="/blog/mts-selects-openstack-and-canonical-for-next-generation-cloud-infrastructure">Learn why MTS choose Canonical's Charmed OpenStack for their NFVI implementation&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Fully-managed OpenStack</h2>
     <h3 class="p-heading--4">We manage the cloud for you</h3>
@@ -640,7 +684,7 @@
         <p><span class="p-heading--two">$15</span> per server per day</p>
         <hr class="u-sv1">
         <p>Full remote operations of your Charmed OpenStack cloud.</p>
-        <p>What’s included: <sup><a href="#os-footnote">*</a></sup></p>
+        <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
           <ul class="p-list">
             <li class="p-list__item is-ticked">Logging, monitoring and alerting</li>
             <li class="p-list__item is-ticked">24/7 operations with fully staffed NOC</li>
@@ -663,7 +707,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-6">
       <h2 class="p-heading--4">Long-term community member</h2>
@@ -688,7 +732,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light is-deep">
   <div class="row u-vertically-center">
     <div class="col-5 u-hide--small u-align--center">
       {{ image (
@@ -709,7 +753,7 @@
   </div>
 </section>
 
-{% with first_item="_openstack_next_step", second_item="_cloud_newsletter", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_openstack_next_step", second_item="_cloud_newsletter", third_item="_openstack_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=foundation-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
