@@ -3,12 +3,19 @@
   <div class="row">
     <div class="col-start-large-2 col-10">
       <div class="row">
-          <h5>Welcome to your new subscription</h5>
-          <p>If you’re using Ubuntu 16.04 or 18.04 LTS you may need to install the UA client first. First, add the PPA containing it:</p>
-          <code>sudo add-apt-repository ppa:ua-client/stable</code><br/>
-          <code>sudo apt-get update</code>
-          <p>Now install the UA client:</p>
-          <code>sudo apt install ubuntu-advantage-tools</code>
+        <div class="advantage-table-section">
+            <h5>Welcome to your new subscription</h5>
+            <p class="u-no-margin--bottom">If you’re using Ubuntu 16.04 or 18.04 LTS you may need to install the UA client first.</p>
+            <div class="advantage-table-instruction">
+              <span>Add the PPA</span>
+              <code>sudo add-apt-repository ppa:ua-client/stable<br/>
+              sudo apt-get update</code>
+              <hr />
+              <span>Install the UA client</span>
+            <code>sudo apt install ubuntu-advantage-tools</code>
+            </div>
+          </div>
+        <div class="advantage-table-section">
           <p class="u-no-margin--bottom">Once installed or if you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
           <div class="advantage-table-instruction">
             <span>To attach a machine</span>
@@ -17,6 +24,7 @@
             <span>To detach a machine</span>
             <code>sudo ua detach</code>
           </div>
+        </div>
       </div>
     </div>
   </div>
