@@ -4,7 +4,12 @@
     <div class="col-start-large-2 col-10">
       <div class="row">
           <h5>Welcome to your new subscription</h5>
-          <p class="u-no-margin--bottom">If you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
+          <p>If you’re using Ubuntu 16.04 or 18.04 LTS you may need to install the UA client first. First, add the PPA containing it:</p>
+          <code>sudo add-apt-repository ppa:ua-client/stable</code><br/>
+          <code>sudo apt-get update</code>
+          <p>Now install the UA client:</p>
+          <code>sudo apt install ubuntu-advantage-tools</code>
+          <p class="u-no-margin--bottom">Once installed or if you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
           <div class="advantage-table-instruction">
             <span>To attach a machine</span>
             <code>sudo ua attach {{ contract['token'] }}</code>
@@ -12,21 +17,9 @@
             <span>To detach a machine</span>
             <code>sudo ua detach</code>
           </div>
-          <p class="u-hide--small">
-            Once a machine is attached, you can configure its services.&nbsp;&nbsp;
-            <button class="p-button is-dense u-no-margin--bottom js-entitlements-callout" data-entitlements='{{ contract["entitlements"]|tojson }}'>Where?</button>
-          </p>
-          <p>If you’re using Ubuntu 16.04 or 18.04 LTS You may need to install the UA client first. First, add the PPA containing it:</p>
-          <code>sudo add-apt-repository ppa:ua-client/stable</code><br/>
-          <code>sudo apt-get update</code>
-          <p>Now install the UA client:</p>
-          <code>sudo apt install ubuntu-advantage-tools</code>
-          <p>Once installed:</p>
-          <p>Attach a machine with: <code>sudo ua attach {{ contract['token'] }}</code></p>
       </div>
     </div>
   </div>
-  <script src="{{ versioned_static('js/dist/ua-entitlements-callout.js') }}" defer></script>
 </td>
 {% else %}
 <td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
