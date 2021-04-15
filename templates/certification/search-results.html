@@ -7,11 +7,29 @@
 
 {% block content %}
 
-<form>
+<form class="form">
 <section class="p-strip--suru-topped">
   <div class="row">
     <div class="col-12">
-      <h1 class="u-sv3">Ubuntu Certified hardware search</h1>
+      {{ filters }}
+      {% if form == "Desktop" %}
+        <h1>Ubuntu Certified desktop hardware</h1>
+        <p class="u-sv3">Many of the world’s biggest PC manufacturers certify their desktops for Ubuntu, ensuring it always runs as smoothly as its millions of users expect. Ubuntu is fast, reliable, packed with great software and free of viruses. That’s why you’ll find Ubuntu preloaded on desktops across government, education and enterprise, and in homes around the world.</p>
+      {% elif form == "Server" %}
+        <h1>Ubuntu Certified server hardware</h1>
+        <p>Ubuntu Server gives you the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
+        <p class="u-sv3">Deploying on certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-centre environments.</p>
+      {% elif form == "Ubuntu Core" %}
+        <h1>Ubuntu Certified IoT hardware</h1>
+        <p>IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. They certify their devices to offer users the guarantee of a stable, secure and optimised Ubuntu, either pre-loaded or as a build-your-own option.</p>
+        <p class="u-sv3">Canonical's certification program offers you peace of mind that all your Internet of Things devices will remain secure and regularly updated over the long term.</p>
+      {% elif form == "Server SoC" %}
+        <h1>Ubuntu Certified SoC hardware</h1>
+        <p>Low-power small-footprint System on a Chip (SoC) hardware is redefining the future of sustainable data centers.</p>
+        <p class="u-sv3">Canonical's certification program offers manufacturers a selection of SoCs officially supported and maintained in Ubuntu.</p>
+      {% else %}
+        <h1 class="u-sv3">Ubuntu Certified hardware search</h1>
+      {% endif %}
       <div class="p-search-box">
         <input class="p-search-box__input" type="text" name="text" value="{{ query or '' }}">
         <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
@@ -29,69 +47,55 @@
           </a>
         </div>
         <div>
-          <table aria-label="show">
-            <thead>
-              <tr>
-                <th style="color: #111;">Show</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
+          <aside class="p-accordion">
+          <ul class="p-accordion__list">
+            <li class="p-accordion__group">
+              <div role="heading" aria-level="2" class="p-accordion__heading">
+                <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">Show</button>
+              </div>
+              <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
                   {% for form_filter, total in form_filters.items() %}
                   <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" name="form" value="{{ form_filter }}" {% if form == form_filter or form == "Desktops,Laptops,Ubuntu Core,Server,Server SoC" %}checked{% endif %}>
+                    <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" id="form-filter" name="form" value="{{ form_filter }}" {% if form_filter in form %}checked{% endif %}>
                     <div class="p-checkbox__label" id="{{ form_filter }}">
                       <span>{{ form_filter }}</span>
                     </div>
                   </label>
                   {% endfor %}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table aria-label="show">
-            <thead>
-              <tr>
-                <th style="color: #111;">Certified for Ubuntu</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {% for release_filter, total in release_filters.items() %}
-                  <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" name="release" value="{{ release_filter }}" {% if releases == release_filter %}checked{% endif %}>
-                    <div class="p-checkbox__label" id="{{ release_filter }}">
-                      <span>{{ release_filter }}</span>
-                    </div>
-                  </label>
-                  {% endfor %}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table aria-label="show">
-            <thead>
-              <tr>
-                <th style="color: #111;">Vendor</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {% for vendor_filter, total in vendor_filters.items() %}
-                  <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" name="vendors" value="{{ vendor_filter }}" {% if vendor == vendor_filter %}checked{% endif %}>
-                    <div class="p-checkbox__label" id="{{ vendor_filter }}">
-                      <span>{{ vendor_filter }}</span>
-                    </div>
-                  </label>
-                  {% endfor %}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+              </section>
+            </li>
+            <li class="p-accordion__group">
+              <div role="heading" aria-level="2" class="p-accordion__heading">
+                <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="false">Certified for Ubuntu</button>
+              </div>
+              <section class="p-accordion__panel" id="tab2-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab2">
+                {% for release_filter, total in release_filters.items() %}
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}">
+                  <div class="p-checkbox__label" id="{{ release_filter }}">
+                    <span>{{ release_filter }}</span>
+                  </div>
+                </label>
+                {% endfor %}
+              </section>
+            </li>
+            <li class="p-accordion__group">
+              <div role="heading" aria-level="2" class="p-accordion__heading">
+                <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">Vendor</button>
+              </div>
+              <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab3">
+                {% for vendor_filter, total in vendor_filters.items() %}
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendors" value="{{ vendor_filter }}" {% if vendor_filter|lower in query|lower %}checked{% endif %}>
+                  <div class="p-checkbox__label" id="{{ vendor_filter }}">
+                    <span>{{ vendor_filter }}</span>
+                  </div>
+                </label>
+                {% endfor %}
+              </section>
+            </li>
+          </ul>
+        </aside>
           <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
         </div>
       </nav>
@@ -174,6 +178,24 @@ function setupSideNavigations(sideNavigationSelector) {
 }
 
 setupSideNavigations('.p-side-navigation, [class*="p-side-navigation--"]');
+
+
+(function () {
+  const updateButton = document.querySelector(".p-update-results");
+
+  let currentUrl = location.href
+
+  updateButton.addEventListener("click", (e) => {
+    if(!currentUrl.includes("filters")) {
+      console.log("before prevent default", currentUrl)
+      e.preventDefault()
+      currentUrl += '&filters=True';
+      window.location = currentUrl;
+    }
+    console.log("After click", currentUrl)
+  })
+})();
+
 </script>
 
 {% endblock content %}
