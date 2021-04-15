@@ -134,7 +134,8 @@ def advantage_view(**kwargs):
 
         for contract in account["contracts"]:
             contract_info = contract["contractInfo"]
-            if not contract_info.get("items"):
+            items = contract_info.get("items")
+            if not items:
                 # TODO(frankban): clean up existing contracts with no items in
                 # production.
                 continue
@@ -201,6 +202,10 @@ def advantage_view(**kwargs):
             )
 
             product_name = contract["contractInfo"]["products"][0]
+
+            reason = items[0].get("reason")
+            is_trialled = len(items) == 1 and reason == "trial_started"
+            contract["is_trialled"] = is_trialled and date_difference.days > 0
 
             contract["productID"] = product_name
             contract["is_detached"] = False
