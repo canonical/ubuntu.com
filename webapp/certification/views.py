@@ -173,6 +173,7 @@ def certification_home():
         query = request.args.get("text", default=None, type=str)
         limit = request.args.get("limit", default=20, type=int)
         offset = request.args.get("offset", default=0, type=int)
+        filters = request.args.get("filters", default=False, type=bool)
 
         forms = (
             ",".join(request.args.getlist("form"))
@@ -243,6 +244,7 @@ def certification_home():
             total_pages=math.ceil(total_results / limit),
             offset=offset,
             limit=limit,
+            filters=filters,
         )
 
     else:
