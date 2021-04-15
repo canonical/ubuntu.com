@@ -16,7 +16,13 @@
             Once a machine is attached, you can configure its services.&nbsp;&nbsp;
             <button class="p-button is-dense u-no-margin--bottom js-entitlements-callout" data-entitlements='{{ contract["entitlements"]|tojson }}'>Where?</button>
           </p>
-          <p>If you’re using Ubuntu 16.04 or 18.04 LTS, you don’t need to attach machines.</p>
+          <p>If you’re using Ubuntu 16.04 or 18.04 LTS You may need to install the UA client first. First, add the PPA containing it:</p>
+          <code>sudo add-apt-repository ppa:ua-client/stable</code><br/>
+          <code>sudo apt-get update</code>
+          <p>Now install the UA client:</p>
+          <code>sudo apt install ubuntu-advantage-tools</code>
+          <p>Once installed:</p>
+          <p>Attach a machine with: <code>sudo ua attach {{ contract['token'] }}</code></p>
       </div>
     </div>
   </div>
