@@ -37,7 +37,7 @@
       }}
       <div style="margin: auto; width: 70%;">
         <hr class="p-separator u-no-margin--bottom"/>
-        <p class="p-muted-heading hero-muted-heading">out of standard support, upgrade to esm support</p>
+        <p class="p-muted-heading hero-muted-heading u-align--left">out of standard support, <br>upgrade to esm support</p>
       </div>
     </div>
   </div>
@@ -80,10 +80,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6">
-      <h3 class="p-muted-heading">
+    <div class="col-7">
+      <h4>
         New or redeployed instances
-      </h3>
+      </h4>
       <p>
         For fresh Ubuntu 16.04 instances, or if you are able to redeploy your workload, we recommend using Ubuntu Pro images. <a href="/azure/pro">Ubuntu Pro for Azure</a> is a premium image, optimised for Azure with security and compliance features built in, and optimised for the public cloud.
       </p>
@@ -94,10 +94,10 @@
         <a class="p-button--positive p-link--external" href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial?tab=Overview">Launch Ubuntu Pro 16.04 LTS on Azure</a>
       </p>
     </div>
-    <div class="col-6">
-      <h3 class="p-muted-heading">
+    <div class="col-5">
+      <h4>
         Upgrading existing instances
-      </h3>
+      </h4>
       <p>
         If you are looking to upgrade your existing Ubuntu 16.04 LTS Azure instances you can <a class="p-link--external" href="https://azuremarketplace.microsoft.com/uk-ua/marketplace/apps/Canonical.UbuntuAdvantageSupport?tab=Overview">enable the Ubuntu Advantage subscription directly from the Azure marketplace</a>.
       </p>
@@ -127,6 +127,17 @@
 </section>
 
 <section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>
+        Ubuntu 16.04 LTS support lifecycle
+      </h2>
+    </div>
+  </div>
+  {% include "16-04/_release-chart-1604.html" %}
+</section>
+
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>
