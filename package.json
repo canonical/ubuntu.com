@@ -12,7 +12,7 @@
     "build-global-nav": "cp node_modules/@canonical/global-nav/dist/global-nav.js static/js/dist/",
     "build-latest-news": "cp node_modules/@canonical/latest-news/dist/latest-news.js static/js/dist",
     "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
-    "build-js": "webpack && yarn run build-global-nav && yarn run build-cookie-policy && yarn run build-latest-news",
+    "build-js": "node build.js && yarn run build-global-nav && yarn run build-cookie-policy && yarn run build-latest-news",
     "build": "yarn run build-css && yarn run build-js && yarn build-global-nav",
     "watch": "yarn run watch-css && yarn run watch-js",
     "watch-css": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/**/*.scss' -c 'yarn run build-css'",
@@ -31,6 +31,7 @@
   "author": "Canonical webteam",
   "license": "LGPL v3",
   "devDependencies": {
+    "esbuild": "0.9.2",
     "@babel/core": "7.12.13",
     "@babel/plugin-transform-runtime": "7.12.15",
     "@babel/preset-env": "7.12.13",
@@ -55,9 +56,7 @@
     "stylelint-order": "4.1.0",
     "stylelint-prettier": "1.1.2",
     "stylelint-scss": "3.19.0",
-    "watch-cli": "0.2.3",
-    "webpack": "5.21.2",
-    "webpack-cli": "4.5.0"
+    "watch-cli": "0.2.3"
   },
   "dependencies": {
     "@canonical/cookie-policy": "3.2.0",

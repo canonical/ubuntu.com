@@ -393,6 +393,18 @@ def search_snaps():
     )
 
 
+def account_query():
+    """
+    A JSON endpoint to request login status
+    """
+
+    return flask.jsonify(
+        {
+            "account": user_info(flask.session),
+        }
+    )
+
+
 def build_tutorials_index(session, tutorials_docs):
     def tutorials_index():
         page = flask.request.args.get("page", default=1, type=int)
