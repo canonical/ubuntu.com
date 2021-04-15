@@ -41,20 +41,29 @@ function renderPublicClouds(state, sections) {
   const type = state.type;
   const awsSection = form.querySelector("#aws-public-cloud");
   const azureSection = form.querySelector("#azure-public-cloud");
+  const gcpSection = form.querySelector("#gcp-public-cloud");
+
   // Show the public cloud section
   if (type === "aws") {
     awsSection.classList.remove("u-hide");
     azureSection.classList.add("u-hide");
+    gcpSection.classList.add("u-hide");
   } else if (type === "azure") {
-    awsSection.classList.add("u-hide");
     azureSection.classList.remove("u-hide");
+    awsSection.classList.add("u-hide");
+    gcpSection.classList.add("u-hide");
+  } else if (type === "gcp") {
+    gcpSection.classList.remove("u-hide");
+    awsSection.classList.add("u-hide");
+    azureSection.classList.add("u-hide");
   } else {
     awsSection.classList.add("u-hide");
     azureSection.classList.add("u-hide");
+    gcpSection.classList.add("u-hide");
   }
 
   // Disable the rest of the form
-  if (type === "aws" || type === "azure") {
+  if (type === "aws" || type === "azure" || type === "gcp") {
     sections.forEach((section) => {
       if (section.dataset.step !== "type") {
         section.classList.add("u-disable");
