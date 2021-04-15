@@ -306,3 +306,51 @@ export async function setAutoRenewal(value) {
   let data = await response.json();
   return data;
 }
+
+export async function postGuestFreeTrial({
+  email,
+  account_name,
+  name,
+  city,
+  country,
+  line1,
+  postal_code,
+  state,
+  product_listing_id,
+  quantity,
+}) {
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
+
+  let response = await fetch(`/advantage/post_guest_trial${queryString}`, {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      account_name: account_name,
+      name: name,
+      address: {
+        city: city,
+        country: country,
+        line1: line1,
+        postal_code: postal_code,
+        state: state,
+      },
+      products: [
+        {
+          product_listing_id: product_listing_id,
+          quantity: quantity,
+        },
+      ],
+    }),
+  });
+
+  let data = await response.json();
+
+  console.log({ data });
+  return data;
+}

@@ -1,5 +1,6 @@
 import { add, format } from "date-fns";
 import { vatCountries } from "../../vat-countries";
+import { checkFormValidity } from "../listeners/purchase-modal-listeners";
 import { VALIDITY } from "../reducers/user-info-reducer";
 import { formatter } from "./form-renderer";
 
@@ -10,7 +11,6 @@ function renderFreeTrialField(state) {
   const useTrialRadio = document.querySelector("#use_free_trial_input");
   const payNowRadio = document.querySelector("#pay_now_input");
   const creditCardSection = document.querySelector("#credit-card-section");
-  console.log(state.usesFreeTrial);
 
   if (state.product.ok && state.product.canBeTrialled) {
     freeTrialSection.classList.remove("u-hide");
@@ -154,46 +154,10 @@ function renderFreeTrialCheckBox(state) {
 
 function renderConfirmButton(state) {
   const button = document.querySelector("#continue-button");
+  const formAction = checkFormValidity(state);
 
-  const isOrganisationValid =
-    state.form.buyingForMyself ||
-    state.userInfo.organisation.validity === VALIDITY.VALID;
-  const isStateValid =
-    !(state.userInfo.country === "US" || state.userInfo.country === "CA") ||
-    state.userInfo.countryState.validity === VALIDITY.VALID;
-
-  if (
-    state.userInfo.email.validity === VALIDITY.VALID &&
-    state.userInfo.name.validity === VALIDITY.VALID &&
-    isOrganisationValid &&
-    state.userInfo.street.validity === VALIDITY.VALID &&
-    state.userInfo.city.validity === VALIDITY.VALID &&
-    state.userInfo.country.validity === VALIDITY.VALID &&
-    state.userInfo.postalCode.validity === VALIDITY.VALID &&
-    isStateValid
-  ) {
-    if (
-      state.form.product.ok &&
-      state.form.product.canBeTrialled &&
-      state.form.usesFreeTrial
-    ) {
-      // free trial
-      if (state.form.isFreeTrialsTermsChecked) {
-        button.disabled = false;
-      } else {
-        button.disabled = true;
-      }
-    } else {
-      // purchase
-      if (
-        state.form.paymentMethod &&
-        state.userInfo.VATNumber.validity === VALIDITY.VALID
-      ) {
-        button.disabled = false;
-      } else {
-        button.disabled = true;
-      }
-    }
+  if (formAction === "freeTrial" || formAction === "purchase") {
+    button.disabled = false;
   } else {
     button.disabled = true;
   }
