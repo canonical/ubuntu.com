@@ -8,138 +8,211 @@
 {% block content %}
 
 <form class="form">
-<section class="p-strip--suru-topped">
-  <div class="row">
-    <div class="col-12">
-      {{ filters }}
+  <section class="p-strip--suru-topped">
+    {% if filters != True%}
       {% if form == "Desktop" %}
-        <h1>Ubuntu Certified desktop hardware</h1>
-        <p class="u-sv3">Many of the world’s biggest PC manufacturers certify their desktops for Ubuntu, ensuring it always runs as smoothly as its millions of users expect. Ubuntu is fast, reliable, packed with great software and free of viruses. That’s why you’ll find Ubuntu preloaded on desktops across government, education and enterprise, and in homes around the world.</p>
+      <div class="row">
+        <div class="col-7">
+          <h1>Ubuntu Certified desktop hardware</h1>
+          <p class="u-sv3">Many of the world’s biggest PC manufacturers certify their desktops for Ubuntu, ensuring it always runs as smoothly as its millions of users expect. Ubuntu is fast, reliable, packed with great software and free of viruses. That’s why you’ll find Ubuntu preloaded on desktops across government, education and enterprise, and in homes around the world.</p>
+        </div>
+        <div class="col-5 u-align--center u-vertically-center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+            alt="",
+            width="132",
+            height="77",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
       {% elif form == "Server" %}
-        <h1>Ubuntu Certified server hardware</h1>
-        <p>Ubuntu Server gives you the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
-        <p class="u-sv3">Deploying on certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-centre environments.</p>
+      <div class="row">
+        <div class="col-7">
+          <h1>Ubuntu Certified server hardware</h1>
+          <p>Ubuntu Server gives you the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
+          <p class="u-sv3">Deploying on certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-centre environments.</p>
+        </div>
+        <div class="col-5 u-align--center u-vertically-center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+            alt="Server",
+            width="80",
+            height="96",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
       {% elif form == "Ubuntu Core" %}
-        <h1>Ubuntu Certified IoT hardware</h1>
-        <p>IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. They certify their devices to offer users the guarantee of a stable, secure and optimised Ubuntu, either pre-loaded or as a build-your-own option.</p>
-        <p class="u-sv3">Canonical's certification program offers you peace of mind that all your Internet of Things devices will remain secure and regularly updated over the long term.</p>
+      <div class="row">
+        <div class="col-7">
+          <h1>Ubuntu Certified IoT hardware</h1>
+          <p>IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. They certify their devices to offer users the guarantee of a stable, secure and optimised Ubuntu, either pre-loaded or as a build-your-own option.</p>
+          <p class="u-sv3">Canonical's certification program offers you peace of mind that all your Internet of Things devices will remain secure and regularly updated over the long term.</p>
+        </div>
+        <div class="col-5 u-align--center u-vertically-center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
+            alt="Gateway",
+            width="96",
+            height="100",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
       {% elif form == "Server SoC" %}
-        <h1>Ubuntu Certified SoC hardware</h1>
-        <p>Low-power small-footprint System on a Chip (SoC) hardware is redefining the future of sustainable data centers.</p>
-        <p class="u-sv3">Canonical's certification program offers manufacturers a selection of SoCs officially supported and maintained in Ubuntu.</p>
-      {% else %}
-        <h1 class="u-sv3">Ubuntu Certified hardware search</h1>
-      {% endif %}
+      <div class="row">
+        <div class="col-7">
+          <h1>Ubuntu Certified SoC hardware</h1>
+          <p>Low-power small-footprint System on a Chip (SoC) hardware is redefining the future of sustainable data centers.</p>
+          <p class="u-sv3">Canonical's certification program offers manufacturers a selection of SoCs officially supported and maintained in Ubuntu.</p>
+        </div>
+        <div class="col-5 u-align--center u-vertically-center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
+            alt="Chip",
+            width="84",
+            height="100",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
+    {% endif %}
+    {% else %}
+    <div class="u-fixed-width">
+      <h1 class="u-sv3">Ubuntu Certified hardware search</h1>
+    </div>
+    {% endif %}
+    <div class="u-fixed-width">
       <div class="p-search-box">
         <input class="p-search-box__input" type="text" name="text" value="{{ query or '' }}">
         <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-3 p-side-navigation" id="drawer">
-      <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">Toggle filters</a>
-      <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
-      <nav class="p-side-navigation__drawer" aria-label="Example side navigation">
-        <div class="p-side-navigation__drawer-header">
-          <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
-            Toggle filters
-          </a>
-        </div>
-        <div>
-          <aside class="p-accordion">
-          <ul class="p-accordion__list">
-            <li class="p-accordion__group">
-              <div role="heading" aria-level="2" class="p-accordion__heading">
-                <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">Show</button>
-              </div>
-              <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
-                  {% for form_filter, total in form_filters.items() %}
-                  <label class="p-checkbox">
-                    <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" id="form-filter" name="form" value="{{ form_filter }}" {% if form_filter in form %}checked{% endif %}>
-                    <div class="p-checkbox__label" id="{{ form_filter }}">
-                      <span>{{ form_filter }}</span>
-                    </div>
-                  </label>
-                  {% endfor %}
-              </section>
-            </li>
-            <li class="p-accordion__group">
-              <div role="heading" aria-level="2" class="p-accordion__heading">
-                <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="false">Certified for Ubuntu</button>
-              </div>
-              <section class="p-accordion__panel" id="tab2-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab2">
-                {% for release_filter, total in release_filters.items() %}
-                <label class="p-checkbox">
-                  <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}">
-                  <div class="p-checkbox__label" id="{{ release_filter }}">
-                    <span>{{ release_filter }}</span>
+    <div class="row">
+      <div class="col-3 p-side-navigation" id="drawer">
+        <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">Toggle filters</a>
+        <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+        <nav class="p-side-navigation__drawer" aria-label="Example side navigation">
+          <div class="p-side-navigation__drawer-header">
+            <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
+              Toggle filters
+            </a>
+          </div>
+          <div>
+            <aside class="p-accordion">
+              <ul class="p-accordion__list">
+                <li class="p-accordion__group">
+                  <div role="heading" aria-level="2" class="p-accordion__heading">
+                    <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">Show</button>
                   </div>
-                </label>
-                {% endfor %}
-              </section>
-            </li>
-            <li class="p-accordion__group">
-              <div role="heading" aria-level="2" class="p-accordion__heading">
-                <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">Vendor</button>
-              </div>
-              <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab3">
-                {% for vendor_filter, total in vendor_filters.items() %}
-                <label class="p-checkbox">
-                  <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendors" value="{{ vendor_filter }}" {% if vendor_filter|lower in query|lower %}checked{% endif %}>
-                  <div class="p-checkbox__label" id="{{ vendor_filter }}">
-                    <span>{{ vendor_filter }}</span>
+                  <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
+                    {% for form_filter, total in form_filters.items() %}
+                    <label class="p-checkbox">
+                      <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" id="form-filter" name="form" value="{{ form_filter }}" {% if form and form_filter in form %}checked{% endif %}>
+                      <div class="p-checkbox__label" id="{{ form_filter }}">
+                        <span>{{ form_filter }}</span>
+                      </div>
+                    </label>
+                    {% endfor %}
+                  </section>
+                </li>
+                <li class="p-accordion__group">
+                  <div role="heading" aria-level="2" class="p-accordion__heading">
+                    <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="false">Certified for Ubuntu</button>
                   </div>
-                </label>
-                {% endfor %}
-              </section>
-            </li>
-          </ul>
-        </aside>
-          <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
-        </div>
-      </nav>
-    </div>
-    <div class="col-9">
+                  <section class="p-accordion__panel" id="tab2-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab2">
+                    {% for release_filter, total in release_filters.items() %}
+                    <label class="p-checkbox">
+                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
+                      <div class="p-checkbox__label" id="{{ release_filter }}">
+                        <span>{{ release_filter }}</span>
+                      </div>
+                    </label>
+                    {% endfor %}
+                  </section>
+                </li>
+                <li class="p-accordion__group">
+                  <div role="heading" aria-level="2" class="p-accordion__heading">
+                    <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">Vendor</button>
+                  </div>
+                  <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab3">
+                    {% for vendor_filter, total in vendor_filters.items() %}
+                    <label class="p-checkbox">
+                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendors" value="{{ vendor_filter }}" {% if query and vendor_filter|lower in query|lower %}checked{% endif %}>
+                      <div class="p-checkbox__label" id="{{ vendor_filter }}">
+                        <span>{{ vendor_filter }}</span>
+                      </div>
+                    </label>
+                    {% endfor %}
+                  </section>
+                </li>
+              </ul>
+            </aside>
+            <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
+            <input hidden id="filters" value="True" name="filters">
+          </div>
+        </nav>
+      </div>
       {% if total_results > 0 %}
-      <table class="p-certification-results">
-        <thead>
-          <tr>
-            <th>
-              {% if total_results and total_results > 1 %}
-                {{ offset + 1 }}
-                &ndash;
-                {% if offset + limit > total_results %}
-                  {{ total_results }}
-                {% else %}
-                  {{ offset + limit }}
+      <div class="col-9">
+        <table class="p-certification-results">
+          <thead>
+            <tr>
+              <th>
+                {% if total_results and total_results > 1 %}
+                  {{ offset + 1 }}
+                  &ndash;
+                  {% if offset + limit > total_results %}
+                    {{ total_results }}
+                  {% else %}
+                    {{ offset + limit }}
+                  {% endif %}
+                  of
                 {% endif %}
-                of
-              {% endif %}
-              {{ total_results }} result{% if total_results != 1 %}s{% endif %}
-            </th>
-            <th>type</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for result in results %}
-          <tr>
-          <td><a href="/certification/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
-          <td>{{ result.category }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+                {{ total_results }} result{% if total_results != 1 %}s{% endif %}
+              </th>
+              <th>type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for result in results %}
+            <tr>
+            <td><a href="/certification/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
+            <td>{{ result.category }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
         {% with total_results=total_results, total_pages=total_pages, offset=offset, limit=limit, align="u-align--left"%}
         {% include "security/cve/_pagination.html" %}
         {% endwith %}
-  
-       {% else %}
-       <p>There are no results to show</p>
-       {% endif %}
+      </div>
+      {% else %}
+      <div class="col-5">
+        <h3>Why not try widening your search?</h3>
+        <p>You can do this by:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked u-sv1">
+            Adding alternative words or phrases
+          </li>
+          <li class="p-list__item is-ticked  u-sv1">
+            Using individual words instead of phrases
+          </li>
+          <li class="p-list__item is-ticked">Trying a different spelling</li>
+        </ul>
+      </div>
+      {% endif %}
     </div>
-  </div>
-</section>
+  </section>
 </form>
 
 <script>
@@ -178,23 +251,6 @@ function setupSideNavigations(sideNavigationSelector) {
 }
 
 setupSideNavigations('.p-side-navigation, [class*="p-side-navigation--"]');
-
-
-(function () {
-  const updateButton = document.querySelector(".p-update-results");
-
-  let currentUrl = location.href
-
-  updateButton.addEventListener("click", (e) => {
-    if(!currentUrl.includes("filters")) {
-      console.log("before prevent default", currentUrl)
-      e.preventDefault()
-      currentUrl += '&filters=True';
-      window.location = currentUrl;
-    }
-    console.log("After click", currentUrl)
-  })
-})();
 
 </script>
 
