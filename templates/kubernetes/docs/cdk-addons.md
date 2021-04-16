@@ -86,7 +86,7 @@ juju config kubernetes-master enable-dashboard-addons=true
 
 For additional control over the Kubernetes Dashboard (Different versions,
 authentication methods...) you can also deploy it into the cluster using the
-[Kubernetes Dashboard operator bundle](kubernetes-dashboard-bundle).
+[Kubernetes Dashboard operator bundle][kubernetes-dashboard-bundle].
 
 To do so, set the `enable-dashboard-addons` [kubernetes-master configuration][]
 option to `false` and deploy the charm into a Kubernetes model on your cluster:
@@ -158,3 +158,4 @@ a Prometheus/Grafana/Telegraf stack in the [monitoring docs][].
 [LDAP and Keystone page]: /kubernetes/docs/ldap
 [monitoring docs]: /kubernetes/docs/monitoring
 [coredns-charm]: https://jaas.ai/u/containers/coredns
+[kubernetes-dashboard-bundle]: https://jaas.ai/u/containers/kubernetes-dashboard-bundle
