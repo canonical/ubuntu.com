@@ -68,10 +68,19 @@ function renderPublicClouds(state, sections) {
 }
 
 function renderFeature(state) {
-  const supportSection = form.querySelector(
+  const featureSection = form.querySelector(
     ".js-form-section[data-step=feature]"
   );
-  const radios = supportSection.querySelectorAll(".js-radio");
+  const radios = featureSection.querySelectorAll(".js-radio");
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const isAppsEnabled = urlParams.get("ESMApps") === "true";
+
+  if (isAppsEnabled) {
+    featureSection.classList.add("u-hide");
+  } else {
+    featureSection.classList.remove("u-hide");
+  }
 
   // Disable infra + apps if desktop is selected
   if (state.type === "desktop") {
