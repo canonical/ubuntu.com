@@ -136,7 +136,9 @@ def certification_home():
             iot_releases.append(release)
 
         if int(release["soc"] > 1):
-            release["path"] = f"/certification?form=SoC&release={version}"
+            release[
+                "path"
+            ] = f"/certification?form=Server%20SoC&release={version}"
             soc_releases.append(release)
 
     for vendor in certified_makes:
@@ -180,7 +182,7 @@ def certification_home():
             if request.args.getlist("form")
             else None
         )
-        if "Models" in forms:
+        if forms and "Models" in forms:
             forms = ",".join(
                 ["Desktops", "Laptops", "Ubuntu Core", "Server", "Server SoC"]
             )
