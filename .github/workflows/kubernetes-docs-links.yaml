@@ -1,8 +1,6 @@
 name: docs links on ubuntu.com/kubernetes/docs
 
-on:
-  schedule:
-    - cron: "0 13 * * 1"
+on: "pull_request"
 
 jobs:
   check-links:
@@ -17,8 +15,8 @@ jobs:
         run: sudo pip install LinkChecker
 
       - name: Run linkchecker
-        run: linkchecker --threads 2 --ignore-url https://res.cloudinary.com --ignore-url '.*&start=.*' --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url "https://www.gstatic.com" --ignore-url "https://assets.ubuntu.com$" --check-extern --no-warnings https://ubuntu.com/kubernetes/docs
+        run: linkchecker --no-follow-url '!https:\/\/ubuntu.com\/kubernetes\/docs\/' --ignore-url https://res.cloudinary.com --ignore-url '.*&start=.*' --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url "https://www.gstatic.com" --ignore-url "https://assets.ubuntu.com$" --check-extern --no-warnings https://ubuntu.com/kubernetes/docs
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=docs
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=test-bot-channel
