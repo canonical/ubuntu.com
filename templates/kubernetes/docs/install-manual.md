@@ -205,11 +205,11 @@ juju deploy charmed-kubernetes
 ```
 
 It is also possible to deploy a specific version of the bundle by including the
-revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.14
+revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.20
 release, you could run:
 
 ```bash
-juju deploy cs:~containers/charmed-kubernetes-124
+juju deploy charmed-kubernetes-596
 ```
 
 <div class="p-notification--positive">
@@ -217,7 +217,7 @@ juju deploy cs:~containers/charmed-kubernetes-124
     <span class="p-notification__status">Older Versions:</span>
 Previous versions of <strong>Charmed Kubernetes</strong> used the name
 <code>canonical-kubernetes</code>. These versions are still available under that name
-and links in the charm store. Versions from 1.14 onwards will use
+and links in the charm store. Versions from 1.14 onwards use
 <code>charmed-kubernetes</code>.
   </p>
 </div>
@@ -232,6 +232,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
+| 1.21.x    | [charmed-kubernetes-632](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-632/archive/bundle.yaml) |
 | 1.20.x    | [charmed-kubernetes-596](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-596/archive/bundle.yaml) |
 | 1.19.x    | [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml) |
 | 1.18.x    | [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml) |

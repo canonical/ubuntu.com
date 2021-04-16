@@ -1,21 +1,21 @@
 ---
-charm_name: etcd
-charm_revision: '0'
-context:
-  description: Etcd Charm reference
-  title: etcd charm
-keywords: etcd, charm, config
-layout:
-- base
-- ubuntu-com
+wrapper_template: templates/docs/markdown.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-permalink: charm-etcd.html
-sidebar: k8smain-sidebar
+context:
+  title: 'Etcd charm '
+  description: Deploy a TLS terminated ETCD Cluster
+keywords: component, charms, versions, release
 tags:
-- reference
+    - reference
+sidebar: k8smain-sidebar
+permalink: 1.21/charm-etcd.html
+layout:
+    - base
+    - ubuntu-com
 toc: false
-wrapper_template: "templates/docs/markdown.html"
+charm_revision: '569'
+bundle_release: '1.21'
 ---
 
 Etcd is a highly available distributed key value store that provides a reliable

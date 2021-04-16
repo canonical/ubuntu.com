@@ -8,7 +8,7 @@ context:
 keywords: juju, upgrading, track, version
 tags: [operating]
 sidebar: k8smain-sidebar
-permalink: upgrading.html
+permalink: 1.21/upgrading.html
 layout: [base, ubuntu-com]
 toc: False
 ---
