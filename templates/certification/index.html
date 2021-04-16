@@ -74,7 +74,7 @@
       <ul class="p-inline-list" style="margin-bottom: 0.5rem;">
         {% for desktop_vendor in desktop_vendors %}
         <li class="p-inline-list__item">
-          <a href="{{ desktop_vendor.path }}">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.total }})</a>
+          <a href="/certification?form=Desktop&vendor={{ desktop_vendor.make }}&filters=True">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -82,7 +82,7 @@
       <ul class="p-inline-list">
         {% for desktop_release in desktop_releases %}
         <li class="p-inline-list__item">
-          <a href="{{ desktop_release.path }}">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
+          <a href="/certification?form=Desktop&release={{ desktop_release.release }}&filters=True">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -105,7 +105,7 @@
       <ul class="p-inline-list">
         {% for server_release, total in server_releases.items() %}
         <li class="p-inline-list__item">
-          <a href="/certification?form=Server&release={{ server_release }}">{{ server_release }}&nbsp;({{ total }})</a>
+          <a href="/certification?form=Server&release={{ server_release }}&filters=True">{{ server_release }}&nbsp;({{ total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -130,7 +130,7 @@
       <ul class="p-inline-list">
         {% for iot_vendor in iot_vendors %}
         <li class="p-inline-list__item">
-          <a href="{{ iot_vendor.path }}">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.total }})</a>
+          <a href="{{ iot_vendor.path }}&filters=True">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -153,7 +153,7 @@
       <ul class="p-inline-list">
         {% for soc_vendor in soc_vendors %}
         <li class="p-inline-list__item">
-          <a href="{{ soc_vendor.path }}">{{ soc_vendor.make }} ({{ soc_vendor.total }})</a>
+          <a href="{{ soc_vendor.path }}&filters=True">{{ soc_vendor.make }} ({{ soc_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
