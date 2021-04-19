@@ -77,9 +77,9 @@ function renderFeature(state) {
   const isAppsEnabled = urlParams.get("ESMApps") === "true";
 
   if (isAppsEnabled) {
-    featureSection.classList.add("u-hide");
-  } else {
     featureSection.classList.remove("u-hide");
+  } else {
+    featureSection.classList.add("u-hide");
   }
 
   // Disable infra + apps if desktop is selected
