@@ -117,7 +117,7 @@
                   <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
                     {% for form_filter, total in form_filters.items() %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" id="form-filter" name="form" value="{{ form_filter }}" {% if form and form_filter in form %}checked{% endif %}>
+                      <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" id="form-filter" name="form" value="{{ form_filter }}" {% if form and form_filter in form or form == "Models" %}checked{% endif %}>
                       <div class="p-checkbox__label" id="{{ form_filter }}">
                         <span>{{ form_filter }}</span>
                       </div>

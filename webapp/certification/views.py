@@ -182,11 +182,7 @@ def certification_home():
             selected_forms.remove("SoC")
             selected_forms.append("Server SoC")
 
-        forms = (
-            ",".join(selected_forms)
-            if selected_forms
-            else None
-        )
+        forms = ",".join(selected_forms) if selected_forms else None
         if forms and "Models" in forms:
             forms = None
         releases = (
