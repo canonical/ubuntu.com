@@ -136,7 +136,9 @@ def certification_home():
             iot_releases.append(release)
 
         if int(release["soc"] > 1):
-            release["path"] = f"/certification?form=SoC&release={version}"
+            release[
+                "path"
+            ] = f"/certification?form=Server%20SoC&release={version}"
             soc_releases.append(release)
 
     for vendor in certified_makes:
@@ -173,16 +175,16 @@ def certification_home():
         query = request.args.get("text", default=None, type=str)
         limit = request.args.get("limit", default=20, type=int)
         offset = request.args.get("offset", default=0, type=int)
+        filters = request.args.get("filters", default=False, type=bool)
 
-        forms = (
-            ",".join(request.args.getlist("form"))
-            if request.args.getlist("form")
-            else None
-        )
-        if "Models" in forms:
-            forms = ",".join(
-                ["Desktops", "Laptops", "Ubuntu Core", "Server", "Server SoC"]
-            )
+        selected_forms = request.args.getlist("form")
+        if "SoC" in selected_forms:
+            selected_forms.remove("SoC")
+            selected_forms.append("Server SoC")
+
+        forms = ",".join(selected_forms) if selected_forms else None
+        if forms and "Models" in forms:
+            forms = None
         releases = (
             ",".join(request.args.getlist("release"))
             if request.args.getlist("release")
@@ -208,7 +210,7 @@ def certification_home():
             "Desktop": 0,
             "Ubuntu Core": 0,
             "Server": 0,
-            "Server SoC": 0,
+            "SoC": 0,
         }
         release_filters = defaultdict(lambda: 0)
         for release in all_releases:
@@ -222,7 +224,10 @@ def certification_home():
 
         # Populate filter numbers
         for model in results:
-            form_filters[model["category"]] += 1
+            if model["category"] == "Server SoC":
+                form_filters["SoC"] += 1
+            else:
+                form_filters[model["category"]] += 1
             release_filters[model["release"]] += 1
             vendor_filters[model["make"]] += 1
 
@@ -233,7 +238,7 @@ def certification_home():
             "certification/search-results.html",
             results=results,
             query=query,
-            form=forms,
+            form=",".join(request.args.getlist("form")),
             releases=releases,
             form_filters=form_filters,
             release_filters=release_filters,
@@ -243,6 +248,7 @@ def certification_home():
             total_pages=math.ceil(total_results / limit),
             offset=offset,
             limit=limit,
+            filters=filters,
         )
 
     else:
