@@ -116,7 +116,10 @@ const formSlice = createSlice({
       state.version = action.payload;
     },
     changeFeature(state, action) {
-      state.feature = action.payload;
+      const urlParams = new URLSearchParams(window.location.search);
+      const isAppsEnabled = urlParams.get("esm_apps") === "true";
+      state.feature = isAppsEnabled ? action.payload : "infra"; //if ESM Apps is disabled we default to infra
+
       if (
         action.payload === "apps" &&
         state.type === "desktop" &&
