@@ -74,7 +74,7 @@ function renderFeature(state) {
   const radios = featureSection.querySelectorAll(".js-radio");
 
   const urlParams = new URLSearchParams(window.location.search);
-  const isAppsEnabled = urlParams.get("ESMApps") === "true";
+  const isAppsEnabled = urlParams.get("esm_apps") === "true";
 
   if (isAppsEnabled) {
     featureSection.classList.remove("u-hide");
