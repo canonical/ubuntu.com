@@ -147,9 +147,10 @@
                   <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab3">
                     {% for vendor_filter, total in vendor_filters.items() %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if query and vendor_filter|lower in query|lower or vendors and vendor_filter|lower in vendors|lower %}checked{% endif %}>
+                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
                       <div class="p-checkbox__label" id="{{ vendor_filter }}">
                         <span>{{ vendor_filter }}</span>
+                        </p>
                       </div>
                     </label>
                     {% endfor %}
