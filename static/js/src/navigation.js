@@ -273,22 +273,24 @@ if (accountContainer && accountContainerSmall) {
       function setupAllContextualMenus(contextualMenuToggleSelector) {
         // Setup all menu toggles on the page.
         var userToggle = document.querySelector(contextualMenuToggleSelector);
-        setupContextualMenu(userToggle);
+        if (userToggle) {
+          setupContextualMenu(userToggle);
 
-        // Add handler for clicking outside the menu.
-        document.addEventListener("click", function (event) {
-          var contextualMenu = document.getElementById(
-            userToggle.getAttribute("aria-controls")
-          );
-          var clickOutside = !(
-            userToggle.contains(event.target) ||
-            contextualMenu.contains(event.target)
-          );
+          // Add handler for clicking outside the menu.
+          document.addEventListener("click", function (event) {
+            var contextualMenu = document.getElementById(
+              userToggle.getAttribute("aria-controls")
+            );
+            var clickOutside = !(
+              userToggle.contains(event.target) ||
+              contextualMenu.contains(event.target)
+            );
 
-          if (clickOutside) {
-            toggleMenu(userToggle, false);
-          }
-        });
+            if (clickOutside) {
+              toggleMenu(userToggle, false);
+            }
+          });
+        }
       }
 
       setupAllContextualMenus(".p-navigation__link-anchor.p-subnav__toggle");
