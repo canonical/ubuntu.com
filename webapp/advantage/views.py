@@ -212,7 +212,8 @@ def advantage_view(**kwargs):
                 else:
                     enterprise_contract.append(contract)
 
-                total_enterprise_contracts += 1
+                if contract["contractInfo"]["status"] != "expired":
+                    total_enterprise_contracts += 1
 
             if product_name in monthly_purchased_products:
                 contract = contract.copy()
@@ -232,7 +233,8 @@ def advantage_view(**kwargs):
                 else:
                     enterprise_contract.append(contract)
 
-                total_enterprise_contracts += 1
+                if contract["contractInfo"]["status"] != "expired":
+                    total_enterprise_contracts += 1
 
             if (
                 product_name not in yearly_purchased_products
@@ -247,7 +249,8 @@ def advantage_view(**kwargs):
                 else:
                     enterprise_contract.append(contract)
 
-                total_enterprise_contracts += 1
+                if contract["contractInfo"]["status"] != "expired":
+                    total_enterprise_contracts += 1
 
     return flask.render_template(
         "advantage/index.html",
