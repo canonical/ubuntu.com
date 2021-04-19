@@ -15,6 +15,69 @@ api = CertificationAPI(
 )
 
 
+def certification_hardware_details(canonical_id, release):
+
+    try:
+        models = api.certified_models(canonical_id=canonical_id)["objects"][0]
+    except KeyError:
+        abort(404)
+
+    model_releases = api.certified_model_details(
+        canonical_id=canonical_id, limit="0"
+    )["objects"]
+
+    # Release section
+    release_details = next(
+        (
+            detail
+            for detail in model_releases
+            if detail["certified_release"] == release
+        ),
+        None,
+    )
+    if not release_details:
+        abort(404)
+
+    model_devices = api.certified_model_devices(
+        canonical_id=canonical_id, limit="0"
+    )["objects"]
+
+    hardware_details = {}
+    for device in model_devices:
+        device_info = {
+            "name": (
+                f"{device['make']} {device['name']}"
+                f" {device['subproduct_name']}"
+            ),
+            "bus": device["bus"],
+            "identifier": device["identifier"],
+        }
+
+        category = device["category"]
+        if category not in ["BIOS", "USB"]:
+            category = category.capitalize()
+
+        if category not in hardware_details:
+            hardware_details[category] = []
+
+        hardware_details[category].append(device_info)
+
+    # default to category, which contains the least specific form_factor
+    form_factor = release_details.get("form_factor", category)
+
+    return render_template(
+        "certification/hardware-details.html",
+        canonical_id=canonical_id,
+        model_name=models["model"],
+        form=models["category"],
+        form_factor=form_factor,
+        vendor=models["make"],
+        major_release=models["major_release"],
+        hardware_details=hardware_details,
+        release_details=release_details,
+    )
+
+
 def certification_model_details(canonical_id):
     models = api.certified_models(canonical_id=canonical_id)["objects"]
 
@@ -76,18 +139,16 @@ def certification_model_details(canonical_id):
                             }
                         )
 
-    # Build model name
-    model_names = [model["model"] for model in models]
-
-    category = models[0]["category"]
     # default to category, which contains the least specific form_factor
-    form_factor = model_release and model_release.get("form_factor", category)
+    form_factor = model_release and model_release.get(
+        "form_factor", models[0]["category"]
+    )
 
     return render_template(
         "certification/model-details.html",
         canonical_id=canonical_id,
-        name=", ".join(model_names),
-        category=category,
+        name=models[0]["model"],
+        category=models[0]["category"],
         form_factor=form_factor,
         vendor=models[0]["make"],
         major_release=models[0]["major_release"],
