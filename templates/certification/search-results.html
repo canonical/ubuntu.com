@@ -9,7 +9,11 @@
 
 <form class="form">
   <section class="p-strip--suru-topped">
-    {% if filters != True%}
+    {% if vendor_page %}
+    <div class="u-fixed-width">
+      <h1 class="u-sv3">Ubuntu certified hardware from {{ vendors }}</h1>
+    </div>
+    {% elif filters != True%}
       {% if form == "Desktop" %}
       <div class="row">
         <div class="col-8">
@@ -140,6 +144,7 @@
                     {% endfor %}
                   </section>
                 </li>
+                {% if vendor_page != True %}
                 <li class="p-accordion__group">
                   <div role="heading" aria-level="2" class="p-accordion__heading">
                     <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">Vendor</button>
@@ -156,6 +161,7 @@
                     {% endfor %}
                   </section>
                 </li>
+                {% endif %}
               </ul>
             </aside>
             <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
@@ -181,13 +187,15 @@
                 {% endif %}
                 {{ total_results }} result{% if total_results != 1 %}s{% endif %}
               </th>
-              <th>type</th>
+              <th>Vendor</th>
+              <th>Type</th>
             </tr>
           </thead>
           <tbody>
             {% for result in results %}
             <tr>
             <td><a href="/certification/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
+            <td><a href="/certification?vendor={{ result.make }}&vendor_page=True">{{ result.make }}</a></td>
             <td>{{ result.category }}</td>
             </tr>
             {% endfor %}
