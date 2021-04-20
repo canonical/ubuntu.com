@@ -237,6 +237,7 @@ def certification_home():
         limit = request.args.get("limit", default=20, type=int)
         offset = request.args.get("offset", default=0, type=int)
         filters = request.args.get("filters", default=False, type=bool)
+        vendor_page = request.args.get("vendor_page", default=False, type=bool)
 
         selected_forms = request.args.getlist("form")
         if "SoC" in selected_forms:
@@ -310,6 +311,7 @@ def certification_home():
             offset=offset,
             limit=limit,
             filters=filters,
+            vendor_page=vendor_page
         )
 
     else:
