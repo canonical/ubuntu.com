@@ -1,6 +1,6 @@
 {% extends "certification/base_certification.html" %}
 
-{% block title %}Model details | Ubuntu{% endblock %}
+{% block title %} {{ vendor }} {{ model }} certified with Ubuntu | Ubuntu{% endblock %}
 
 {% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1QuhO-9FEOGLrYp8bErS_9snqdljl7d6tFAUoNQxoVDQ/edit{% endblock meta_copydoc %}
@@ -119,7 +119,7 @@
 <section class="p-strip--light">
   <div class="u-fixed-width">
     <h2 class="u-sv2">Components certified with this system</h2>
-    <table class="p-table--mobile-card p-table--devices" aria-label="Component Devices table">
+    <table class="p-table--mobile-card p-table-component-devices" aria-label="Component Devices table">
       <thead>
         <tr>
           <th>Component</th>
@@ -171,7 +171,7 @@
                 }}
               </td>
               {% elif details[0].status == 'inprogress' %}
-              <td aria-label="16.04 ESM"><i class="p-icon--help">In progress</i></td>
+              <td aria-label="16.04 ESM"><i class="p-icon--help">Untested</i></td>
               {% elif details[0].status == 'certified'%}
               <td aria-label="16.04 LTS"><i class="p-icon--success">Supported</i></td>
               {% endif %}
