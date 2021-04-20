@@ -113,6 +113,7 @@ from webapp.certification.views import (
     certification_home,
     certification_model_details,
     certification_hardware_details,
+    certification_component_details,
 )
 
 
@@ -777,6 +778,10 @@ app.add_url_rule(
 app.add_url_rule(
     "/certification/<canonical_id>/<release>",
     view_func=certification_hardware_details,
+)
+app.add_url_rule(
+    "/certification/component/<component_id>",
+    view_func=certification_component_details,
 )
 
 
