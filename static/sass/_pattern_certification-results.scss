@@ -9,13 +9,17 @@
     th,
     td {
       &:nth-child(1) {
-        width: 85%;
+        width: 70%;
         @media only screen and (max-width: $breakpoint-small) {
           width: 60%;
         }
       }
 
       &:nth-child(2) {
+        width: 15%;
+      }
+
+      &:nth-child(3) {
         width: 15%;
       }
     }
