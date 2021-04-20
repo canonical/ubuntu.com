@@ -1,35 +1,93 @@
-<h1>This is the hardware details page</h1>
+{% extends "certification/base_certification.html" %}
 
-<h2>ID (Canonical ID)</h2>
-{{canonical_id}}
+{% block title %} {{ vendor }} {{ model }} certified with Ubuntu {{ release }} | Ubuntu{% endblock %}
 
-<h2>Name:</h2>
-{{ name }}
+{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1QuhO-9FEOGLrYp8bErS_9snqdljl7d6tFAUoNQxoVDQ/edit{% endblock meta_copydoc %}
 
-<h2>Category/Form</h2>
-{{ category }}
+{% block content %}
 
-<h2>form_factor</h2>
-{{ form_factor }}
+<section class="p-strip--suru-topped">
+  <div class="row u-sv3">
+    <div class="col-7">
+      <p class="p-heading--4">
+        <a href="/certification/{{ release_details.canonical_id }}">{{ release_details.make }} {{ release_details.model }} certified on Ubuntu {{ release_details.certified_release }}</a>
+      </p>
+      <h1 class="p-heading--2">Hardware details</h1>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+    {% if release_details.category == "Desktop" or release_details.category == "Laptop" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+        alt="",
+        width="132",
+        height="77",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+      {% if release_details.category == "Server" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+        alt="Server",
+        width="80",
+        height="96",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+      {% if release_details.category == "Ubuntu Core" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
+        alt="Gateway",
+        width="96",
+        height="100",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+      {% if release_details.category == "Server SoC" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
+        alt="Chip",
+        width="84",
+        height="100",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="p-table-hardware-details" aria-label="Hardware details for {{ release_details.make }} {{ release_details.model }}">
+        <tbody>
+          {% for category, devices in hardware_details.items() %}
+            {% if category != "Other" %}
+            <tr>
+              <th class="p-muted-text">
+                {{ category }}
+              </th>
+              <td>
+                <ul class="p-list u-no-margin--bottom">
+                {% for device in devices %}
+                <li class="p-list__item u-no-padding--top">
+                  {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}){% endif %}
+                </li>
+                {% endfor %}
+                </ul>
+              </td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-<h2>vendor</h2>
-{{ vendor }}
-
-<h2>major release</h2>
-{{ major_release }}
-
-<h2>Release details</h2>
-<p>This contains data for all elements in the table </p>
-<ul>
-    <li>release.name</li>
-    <li>ubuntu image or not (release.level)</li>
-    <li>release.kernel</li>
-    <li>release.notes</li>
-    <li>whole hardware details page, but you need to filter the amount of data accordingly</li>
-</ul>
-<p>Links need to be built in the for of /certification/{model-id}/{release} to link to the corresponding hardware details page</p>
-{{ release_details }}
-
-<h2>Processor, network, video are contained within release.components</h2>
-<p>hardware_details contains info about cdrom, keyboard etc... what's called devices</p>
-{{ hardware_details }}
+{% endblock content %}
