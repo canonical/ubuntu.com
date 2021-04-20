@@ -1,6 +1,8 @@
 name: docs links on ubuntu.com/core/docs
 
-on: "pull_request"
+on:
+  schedule:
+    - cron: "0 13 * * 1"
 
 jobs:
   check-links:
@@ -19,4 +21,4 @@ jobs:
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=test-bot-channel
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=docs
