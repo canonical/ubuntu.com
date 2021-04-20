@@ -250,7 +250,7 @@ def certification_home():
             offset=offset,
             limit=limit,
             filters=filters,
-            vendor_page=vendor_page
+            vendor_page=vendor_page,
         )
 
     else:
