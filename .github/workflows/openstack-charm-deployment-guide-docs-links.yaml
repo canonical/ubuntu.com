@@ -1,6 +1,8 @@
 name: docs links on docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
 
-on: "pull_request"
+on:
+  schedule:
+    - cron: "0 13 * * 1"
 
 jobs:
   check-links:
@@ -12,8 +14,8 @@ jobs:
         run: sudo pip install LinkChecker
 
       - name: Run linkchecker
-        run: linkchecker --no-follow-url '!https:\/\/docs.openstack.org\/project-deploy-guide\/charm-deployment-guide\/latest\/' --ignore-url $.css --check-extern --no-warnings https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
+        run: linkchecker --no-follow-url '!https:\/\/docs.openstack.org\/project-deploy-guide\/charm-deployment-guide\/latest\/' --ignore-url http://localhost* --ignore-url ^.*\.css --check-extern --no-warnings https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=test-bot-channel
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=docs
