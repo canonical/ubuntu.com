@@ -166,6 +166,10 @@
             </aside>
             <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
             <input hidden id="filters" value="True" name="filters">
+            {% if vendor_page %}
+            <input hidden value="{{ vendors }}" name="vendor">
+            <input hidden value="True" name="vendor_page">
+            {% endif %}
           </div>
         </nav>
       </div>
