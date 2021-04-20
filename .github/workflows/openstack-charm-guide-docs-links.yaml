@@ -12,7 +12,7 @@ jobs:
         run: sudo pip install LinkChecker
 
       - name: Run linkchecker
-        run: linkchecker --no-follow-url '!https:\/\/docs.openstack.org\/charm-guide\/latest\/' --check-extern --no-warnings https://docs.openstack.org/charm-guide/latest/
+        run: linkchecker --no-follow-url '!https:\/\/docs.openstack.org\/charm-guide\/latest\/' --ignore-url http://localhost:8001* --ignore-url *.css --check-extern --no-warnings https://docs.openstack.org/charm-guide/latest/
 
       - name: Send message on failure
         if: failure()
