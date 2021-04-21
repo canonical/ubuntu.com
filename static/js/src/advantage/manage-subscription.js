@@ -195,7 +195,7 @@ function handleCancelChangesClick(id, VPSize) {
 
 function handleChange(e, id, VPSize) {
   const defaultValue = Number.parseInt(e.target.defaultValue);
-  let newValue = Number.parseInt(e.target.value);
+  let newValue = Number.parseInt(e.target.value) || 0;
 
   const unitPrice = Number.parseFloat(e.target.dataset.unitPrice / 100);
   const nextPayment = Number.parseFloat(
