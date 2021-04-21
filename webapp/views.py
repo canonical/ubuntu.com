@@ -79,7 +79,7 @@ def sixteen_zero_four():
     try:
         response = session.request(
             method="GET",
-            url=f"{host}/security/notices.json?release=xenial",
+            url=f"{host}/security/notices.json?release=xenial&limit=1",
         )
 
         total_notices_issued = response.json().get("total_results")
@@ -89,7 +89,10 @@ def sixteen_zero_four():
     try:
         response = session.request(
             method="GET",
-            url=f"{host}/security/cves.json?version=xenial&status=released",
+            url=(
+                f"{host}/security/cves.json"
+                f"?version=xenial&status=released&limit=1"
+            ),
         )
 
         total_cves_issued = response.json().get("total_results")
