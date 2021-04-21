@@ -101,7 +101,7 @@ function setSupportCost(state, support) {
   const element = form.querySelector(`#${support}-support-costs`);
   const value = state.product.supportPriceRange[support];
   element.innerHTML = value
-    ? `${formatter.format(value / 100)} per machine per year`
+    ? `+${formatter.format(value / 100)} per machine per year`
     : "";
 }
 
