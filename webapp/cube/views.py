@@ -130,7 +130,13 @@ def cube_microcerts():
     return flask.render_template(
         "cube/microcerts.html",
         **{
-            "user": sso_user,
+            "edx_user": edx_user,
+            "edx_register_url": (
+                f"{edx_api.base_url}/"
+                "auth/login/tpa-saml/"
+                "?auth_entry=register&next=%2F&idp=ubuntuone"
+            ),
+            "sso_user": sso_user,
             "certified_badge": certified_badge,
             "modules": courses,
             "passed_courses": passed_courses,

@@ -333,6 +333,20 @@
 
 {% endif %}
 
+{% if not edx_user %}
+<div class="p-modal" id="modal">
+  <section class="p-modal__dialog" role="dialog">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="modal-title">edX Account</h2>
+    </header>
+    <p>In order to use CUBE you will need to create an account with edX. By clicking the button below you are accepting the <a href="/legal/terms-and-policies/cube-terms" target="_blank" rel="noopener noreferrer">terms of service</a> and an account will be created for you.</p>
+    <footer class="p-modal__footer">
+      <a class="p-button p-button--positive u-no-margin--bottom" href="{{edx_register_url}}">Accept and register</a>
+    </footer>
+  </section>
+</div>
+{% endif %}
+
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/cube-beta" data-form-id="3801" data-lp-id="7140" data-return-url="https://www.ubuntu.com/cube/thank-you" data-lp-url="https://pages.ubuntu.com/Contact_Us_Ubuntu_CUBEbetatest_Cube-contact-us-landing-page.html">
 </div>
