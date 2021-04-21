@@ -74,7 +74,6 @@ def advantage_view(**kwargs):
         all_subscriptions = advantage.get_account_subscriptions(
             account_id=account["id"],
             marketplace="canonical-ua",
-            filters={"status": "active"},
         )
 
         monthly_subscriptions = []
@@ -83,12 +82,14 @@ def advantage_view(**kwargs):
             period = subscription["subscription"]["period"]
             status = subscription["subscription"]["status"]
 
-            # If there are any pending purchase, for monthly (active or locked)
-            # we show the payment method warning.
-            if period == "monthly" and status in ["active", "locked"]:
-                payment_method_warning = subscription.get("pendingPurchases")
+            if status not in ["active", "locked"]:
+                continue
 
-            previous_purchase_ids[period] = subscription["lastPurchaseID"]
+            # If there are any pending purchase for a sub (active or locked)
+            # we show the payment method warning.
+            payment_method_warning = subscription.get("pendingPurchases")
+
+            previous_purchase_ids[period] = subscription.get("lastPurchaseID")
 
             if subscription["subscription"]["period"] == "yearly":
                 yearly_subscriptions.append(subscription)
@@ -97,7 +98,10 @@ def advantage_view(**kwargs):
             monthly_subscriptions.append(subscription)
 
         for subscription in monthly_subscriptions:
-            purchased_products = subscription["purchasedProductListings"]
+            purchased_products = subscription.get("purchasedProductListings")
+            if purchased_products is None:
+                continue
+
             for purchased_product_listing in purchased_products:
                 product_listing = purchased_product_listing["productListing"]
                 product_id = product_listing["productID"]
@@ -111,7 +115,10 @@ def advantage_view(**kwargs):
             _prepare_monthly_info(monthly_info, subscription, advantage)
 
         for subscription in yearly_subscriptions:
-            purchased_products = subscription["purchasedProductListings"]
+            purchased_products = subscription.get("purchasedProductListings")
+            if purchased_products is None:
+                continue
+
             for purchased_product_listing in purchased_products:
                 product_listing = purchased_product_listing["productListing"]
                 product_id = product_listing["productID"]
