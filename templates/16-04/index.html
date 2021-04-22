@@ -70,7 +70,7 @@
     {% for notice in latest_notices %}
       <hr>
       <div class="col-6">
-        <strong><span><a>{{ notice.title }}</a></span></strong><br>
+        <strong><span><a href="/security/notices/{{ notice.id }}">{{ notice.title }}</a></span></strong><br>
         <span class="p-muted-heading">{{ notice.date }}</span><br><br>
       </div>
       <div class="col-6">

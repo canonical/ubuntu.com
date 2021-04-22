@@ -107,6 +107,7 @@ def sixteen_zero_four():
 
         latest_notices = [
             {
+                "id": notice.get("id"),
                 "title": notice.get("title"),
                 "date": dateutil.parser.parse(
                     notice.get("published")
