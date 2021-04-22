@@ -64,6 +64,7 @@ from webapp.views import (
     engage_thank_you,
     sitemap_index,
     account_query,
+    sixteen_zero_four,
 )
 
 from webapp.advantage.views import (
@@ -525,6 +526,7 @@ def takeovers_index():
     )
 
 
+app.add_url_rule("/16-04", view_func=sixteen_zero_four)
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
 engage_pages.init_app(app)
