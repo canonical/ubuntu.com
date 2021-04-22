@@ -645,6 +645,7 @@ def ensure_purchase_account(**kwargs):
     email = kwargs.get("email")
     account_name = kwargs.get("account_name")
     payment_method_id = kwargs.get("payment_method_id")
+    country = kwargs.get("country")
 
     token = None
     if user_info(flask.session):
@@ -657,6 +658,7 @@ def ensure_purchase_account(**kwargs):
             email=email,
             account_name=account_name,
             payment_method_id=payment_method_id,
+            country=country,
         )
     except UnauthorizedError as err:
         # This kind of errors are handled js side.
