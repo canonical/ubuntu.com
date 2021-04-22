@@ -35,6 +35,7 @@ function cancelSubscription(id, VPSize) {
     productListingId,
     previousPurchaseId,
   } = cancelSubscriptionButton.dataset;
+  const confirmCancelButton = document.querySelector(`#confirmCancelButton`);
 
   dataLayer.push({
     event: "GAEvent",
@@ -47,7 +48,7 @@ function cancelSubscription(id, VPSize) {
   handleAPICall(
     cancelContract,
     [accountId, previousPurchaseId, productListingId],
-    cancelSubscriptionButton
+    confirmCancelButton
   );
 }
 
@@ -98,6 +99,7 @@ function createModal(id, VPSize) {
   };
 
   const confirmCancelButton = document.createElement("button");
+  confirmCancelButton.id = "confirmCancelButton";
   confirmCancelButton.classList.add("p-button--negative");
   confirmCancelButton.disabled = true;
   confirmCancelButton.textContent = "Yes, cancel subscription";
