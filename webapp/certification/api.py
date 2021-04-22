@@ -78,6 +78,8 @@ class CertificationAPI:
                 "offset": offset,
                 "level": level,
                 "major_release__in": major_release__in,
+                # If vendor is a list, requests will tranform into
+                # &vendor=item&vendor=item
                 "vendor": vendor,
                 "make__iexact": make__iexact,
                 "query": query,
