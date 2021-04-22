@@ -286,7 +286,7 @@ def certification_home():
             else None
         )
         vendors = (
-            ",".join(request.args.getlist("vendor"))
+            request.args.getlist("vendor")
             if request.args.getlist("vendor")
             else None
         )
