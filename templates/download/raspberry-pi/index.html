@@ -44,7 +44,7 @@
 <section class="p-strip--light {% if releases.latest.short_version < releases.lts.short_version %}is-bordered{% endif %}">
   <div class="row">
     <div class="col-6">
-      <h2>
+      <h2 class="u-sv2">
         Download Ubuntu Server
       </h2>
       <p class="p-muted-heading">
@@ -105,46 +105,46 @@
   </div>
 
   <div class="u-fixed-width u-hide--small">
-    <h3>
+    <h4>
       Works on:
-    </h3>
+    </h4>
   </div>
   <div class="row u-hide--small">
     <div class="col-2">
-      <h3 class="p-heading--five u-no-padding--top">
+      <p class="u-no-padding--top" style="margin-bottom: 1rem;">
         Raspberry Pi 2
-      </h3>
+      </p>
       <hr>
       <div class="u-align--center">
         {{
           image(
           url="https://assets.ubuntu.com/v1/8542c958-Raspberry+Pi+2.png",
           alt="",
-          height="156",
-          width="236",
+          height="48",
+          width="72",
           hi_def=True,
           loading="auto"
           ) | safe
         }}
       </div>
-      <p>
+      <h6 class="u-text-light">
         <em>
           * 32-bit only
         </em>
-      </p>
+      </h6>
     </div>
     <div class="col-2">
-      <h3 class="p-heading--five u-no-padding--top">
+      <p class="u-no-padding--top" style="margin-bottom: 1rem;">
         Raspberry Pi 3
-      </h3>
+      </p>
       <hr>
       <div class="u-align--center">
         {{
           image(
           url="https://assets.ubuntu.com/v1/c4a007b6-Raspberry+Pi+3.png",
           alt="",
-          height="151",
-          width="236",
+          height="48",
+          width="75",
           hi_def=True,
           loading="auto"
           ) | safe
@@ -152,17 +152,17 @@
       </div>
     </div>
     <div class="col-2">
-      <h3 class="p-heading--five u-no-padding--top">
+      <p class="u-no-padding--top" style="margin-bottom: 1rem;">
         Raspberry Pi 4
-      </h3>
+      </p>
       <hr>
       <div class="u-align--center">
         {{
           image(
           url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
           alt="",
-          height="151",
-          width="236",
+          height="48",
+          width="75",
           hi_def=True,
           loading="auto"
           ) | safe
@@ -170,16 +170,16 @@
       </div>
     </div>
     <div class="col-2">
-      <h3 class="p-heading--five u-no-padding--top">
+      <p class="u-no-padding--top" style="margin-bottom: 1rem;">
         Raspberry Pi 400
-      </h3>
+      </p>
       <hr>
       <div class="u-align--center">
         {{ image (
           url="https://assets.ubuntu.com/v1/cfdcd6c7-Raspberry-Pi-400-back--1536x1097.png",
           alt="",
-          width="1478",
-          height="760",
+          height="48",
+          width="93",
           hi_def=True,
           loading="lazy"
           ) | safe
@@ -187,16 +187,16 @@
       </div>
     </div>
     <div class="col-2">
-      <h3 class="p-heading--five u-no-padding--top">
+      <p class="u-no-padding--top" style="margin-bottom: 1rem;">
         Raspberry Pi CM4
-      </h3>
+      </p>
       <hr>
       <div class="u-align--center">
         {{ image (
           url="https://assets.ubuntu.com/v1/3be8f179-Raspberry-Pi-CM4.png",
           alt="",
-          width="932",
-          height="660",
+          height="48",
+          width="68",
           hi_def=True,
           loading="lazy"
           ) | safe
@@ -241,22 +241,22 @@
 </div>
 
 <div class="u-fixed-width u-hide--small">
-  <h3>
+  <h4>
     Works on:
-  </h3>
+  </h4>
 </div>
 <div class="row u-hide--small">
   <div class="col-2">
-    <h3 class="p-heading--five u-no-padding--top">
+    <p class="u-no-padding--top" style="margin-bottom: 1rem;">
       Raspberry Pi 400
-    </h3>
+    </p>
     <hr>
     <div class="u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/cfdcd6c7-Raspberry-Pi-400-back--1536x1097.png",
         alt="",
-        width="1478",
-        height="760",
+        height="48",
+        width="93",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -264,16 +264,16 @@
     </div>
   </div>
   <div class="col-2">
-    <h3 class="p-heading--five u-no-padding--top">
+    <p class="u-no-padding--top" style="margin-bottom: 1rem;">
       Raspberry Pi CM4
-    </h3>
+    </p>
     <hr>
     <div class="u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/3be8f179-Raspberry-Pi-CM4.png",
         alt="",
-        width="932",
-        height="660",
+        height="48",
+        width="68",
         hi_def=True,
         loading="lazy"
         ) | safe
