@@ -43,6 +43,47 @@
 </section>
 
 <section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-12">
+      <h2>Ubuntu 16.04 LTS security updates</h2>
+      <p>The Ubuntu Security Team continues its dedication to providing security updates for Ubuntu 16.04 LTS beyond the five-year standard support with Extended Security Maintenance (ESM).</p>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 1rem">
+    <div class="col-4">
+      <span style="font-size: 3rem; line-height: 4rem">{{ total_patches_applied }}</span>
+      <hr>
+      <span class="p-muted-heading">16.04 LTS ESM <br>PATCHES APPLIED</span>
+    </div>
+    <div class="col-4">
+      <span style="font-size: 3rem; line-height: 4rem">{{ total_notices_issued }}</span>
+      <hr>
+      <span class="p-muted-heading">USNS ISSUED</span>
+    </div>
+    <div class="col-4">
+      <span style="font-size: 3rem; line-height: 4rem">{{ total_cves_issued }}</span>
+      <hr>
+      <span class="p-muted-heading">CVES ADDRESSED</span>
+    </div>
+  </div>
+  <div class="row" id="notice-feed" style="margin-top: 3rem">
+    {% for notice in latest_notices %}
+      <hr>
+      <div class="col-6">
+        <strong><span><a>{{ notice.title }}</a></span></strong><br>
+        <span class="p-muted-heading">{{ notice.date }}</span><br><br>
+      </div>
+      <div class="col-6">
+        <p>{{ notice.summary }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="row" style="margin-top: 2rem">
+    <a href="/security/notices?release=xenial">View the full list&nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-6">
       <h2>Ubuntu 16.04 LTS Extended Security Maintenance (ESM)</h2>
@@ -268,4 +309,5 @@ hwe-16.04</code></pre>
     text-align: left;
   }
 </style>
+
 {% endblock content %}

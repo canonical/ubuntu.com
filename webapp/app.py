@@ -69,6 +69,7 @@ from webapp.views import (
     build_engage_index,
     engage_thank_you,
     sitemap_index,
+    sixteen_zero_four,
 )
 from webapp.login import login_handler, logout, user_info
 from webapp.security.database import db_session
@@ -411,6 +412,7 @@ def takeovers_index():
     )
 
 
+app.add_url_rule("/16-04", view_func=sixteen_zero_four)
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
 engage_pages.init_app(app)
