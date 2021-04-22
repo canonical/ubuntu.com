@@ -4,6 +4,8 @@ export function debounce(func, wait, immediate) {
   return function () {
     var context = this,
       args = arguments;
+    console.log({ context });
+    console.log({ args });
     var later = function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
