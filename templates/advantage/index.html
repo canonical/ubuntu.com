@@ -213,6 +213,18 @@
           {% endfor %}
           {% endfor %}
         </div>
+          <a 
+            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" 
+            class="p-button--positive"   
+            onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'go-to-shop',
+              'eventLabel' : 'Add new subscription',
+              'eventValue' : 5
+            });">
+              Add new subscription
+          </a>
       </div>
       <div class="row u-hide--small">
         <div class="col-12">
@@ -347,7 +359,7 @@
               'eventValue' : 5
             });">
               Add new subscription
-            </a>
+          </a>
         </div>
         <hr class="p-separator" />
       </div>
