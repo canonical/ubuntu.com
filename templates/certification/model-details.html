@@ -133,7 +133,7 @@
       <tbody>
         {% for component in components%}
         <tr>
-          <th aria-label="Component"><a href="/certification/component/{{ canonical_id }}">{{ component.vendor_name }} {{ component.model}}</a></th>
+          <th aria-label="Component"><a href="/certification/component/{{ component.id }}">{{ component.vendor_name }} {{ component.model }}</a></th>
           {% for lts_release, details in component.lts_releases.items() %}
             {% if lts_release == '14.04 ESM' %}
               {% if details[0].third_party_driver == True %}
