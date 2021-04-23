@@ -1,11 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const isSmallVP =
+  Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) <
+  875;
+
 const initialFormState = {
   type: "physical",
   version: "18.04",
   feature: "infra",
   support: "unset",
-  quantity: 1,
+  quantity: isSmallVP ? 0 : 1,
   billing: "yearly",
   product: {
     ok: false,

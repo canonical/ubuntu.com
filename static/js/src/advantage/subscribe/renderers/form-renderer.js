@@ -150,7 +150,7 @@ function renderSummary(state) {
   const billingSection = summarySection.querySelector(".js-summary-billing");
   const buyButton = summarySection.querySelector(".js-ua-shop-cta");
 
-  if (!state.product.ok) {
+  if (!state.product.ok || quantity <= 0) {
     summarySection.classList.add("p-shop-cart--hidden");
     buyButton.classList.add("u-disable");
   } else {
