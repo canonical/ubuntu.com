@@ -1,56 +1,99 @@
-<h1>This is the components detail page</h1>
+{% extends "certification/base_certification.html" %}
 
+{% block title %}Ubuntu certified component: {{ component.vendor_name }} {{ component.model }}{% endblock %}
 
-<h1>Components certified in Ubuntu releases</h1>
-{% for name, details in component.lts_releases.items() %}
-    <p>{{ details.0.status.title() }}</p>
-    <p>{{ details.0.release }}</p>
-    <p>{{ details.0.third_party_driver }}</p>
-{% endfor %}
+{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1QuhO-9FEOGLrYp8bErS_9snqdljl7d6tFAUoNQxoVDQ/edit{% endblock meta_copydoc %}
 
-<h1>Component details</h1>
-<table>
-    <tbody>
-        <tr>
-        <th scope="row">Vendor</th>
-        <td>{{ component.vendor_name }}</td>
-        </tr>
-        <tr>
-        <th scope="row">Component model name</th>
-        <td>{{ component.model }}</td>
-        </tr>
-        <tr>
-        <th scope="row">Identifier</th>
-        <td>{{ component.identifier }}</td>
-        </tr>
-        <tr>
-        <th scope="row">Subsystem Identifier</th>
-        <td>{{ component.subsystem_identifier}}</td>
-        </tr>
-        <tr>
-        <th scope="row">Hardware Vendor Make</th>
-        <td>{{ component.hardware_vendor_make }}</td>
-        </tr>
-        <tr>
-        <th scope="row">Vendor Make</th>
-        <td>{{ component.vendor_make }}</td>
-        </tr>
-        <tr>
-        <th scope="row">Part Number</th>
-        <td>{{ component.part_number }}</td>
-        </tr>
-        <tr>
-        <th scope="row">Device Category</th>
-        <td>{{ component.category }}</td>
-        </tr>
-        <tr>
-        <th scope="row">Note</th>
-        <td>{{ component.note }}</td>
-        </tr>
-    </tbody>
-</table>
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row u-sv3">
+    <div class="col-12">
+      <h1>{{ component.vendor_name }} {{ component.model }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h2 class="u-sv2">Components certified in Ubuntu releases</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <table class="u-sv1" aria-label="Components certified in ubuntu releases">
+        <thead>
+          <tr>
+            <th>Release</th>
+            <th>Status</th>
+            <th>Third-party driver</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for name, details in component.lts_releases.items() %}
+          <tr>
+            <td>{{ details.0.release }}</td>
+            <td>{{ details.0.status.title() }}</td>
+            <td>{% if details.0.third_party_driver != True %}No{% else %}Yes{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row u-sv1">
+    <div class="col-12">
+      <h2 class="u-sv2">Component details</h2>
+      <table class="p-table--component-details" aria-label="Component details table">
+        <tbody>
+          <tr>
+            <th class="p-muted-text">Vendor</th>
+            <td>{{ component.vendor_name }}</td>
+          </tr>
+          <tr>
+            <th class="p-muted-text">Model name</th>
+            <td>{{ component.model }}</td>
+          </tr>
+          <tr>
+            <th class="p-muted-text">Identifier</th>
+            <td>{{ component.identifier }}</td>
+          </tr>
+          <tr>
+            <th class="p-muted-text">Subsystem Identifier</th>
+            <td>{{ component.subsystem_identifier}}</td>
+          </tr>
+          <tr>
+            <th class="p-muted-text">Hardware Vendor make</th>
+            <td>{{ component.hardware_vendor_make }}</td>
+          </tr>
+          <tr>
+            <th class="p-muted-text">Vendor make</th>
+            <td>{{ component.vendor_make }}</td>
+          </tr>
+          <tr>
+            <th class="p-muted-text">Part number</th>
+            <td>{{ component.part_number }}</td>
+          </tr>
+          <tr>
+            <th class="p-muted-text">Device category</th>
+            <td>{{ component.category }}</td>
+          </tr>
+          <tr>
+            <th class="p-muted-text">Note</th>
+            <td>{{ component.note }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <h2>Present in {{ machines|length }} certified system{% if machines|length > 1 %}s{% endif %}</h2>
+    <ul class="p-list">
+      {% for machine in machines %}
+      <li class="p-list__item">
+        <a href="/certification/{{ machine.canonical_id }}">{{ machine.canonical_id }} {{ machine.make }} {{ machine.model }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
 
-<h2>Present in {{total_results}} certified systems</h2>
-{% for machine in machines %}
-<p>{{ machine }}</p>
-{% endfor %}
+{% endblock content %}
