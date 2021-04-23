@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadState } from "../../../utils/persitState";
 
 const initialFormState = {
   type: "physical",
@@ -96,7 +97,7 @@ function getProduct(state) {
 
 const formSlice = createSlice({
   name: "form",
-  initialState: initialFormState,
+  initialState: loadState("ua-subscribe-state", "form", initialFormState),
   reducers: {
     changeType(state, action) {
       state.type = action.payload;
