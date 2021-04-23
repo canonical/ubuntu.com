@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadState } from "../../../utils/persitState";
 
 const initialUIState = {
   otherVersionsModal: {
@@ -8,7 +9,7 @@ const initialUIState = {
 
 const UISlice = createSlice({
   name: "ui",
-  initialState: initialUIState,
+  initialState: loadState("ua-subscribe-state", "ui", initialUIState),
   reducers: {
     toggleOtherVersionsModal(state) {
       state.otherVersionsModal.show = !state.otherVersionsModal.show;

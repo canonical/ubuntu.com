@@ -1,4 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { debounce } from "../../utils/debounce";
+import { saveState } from "../../utils/persitState";
 import initFormInputs from "./listeners/form-event-listeners";
 import initUIControls from "./listeners/ui-event-listeners";
 
@@ -24,4 +26,7 @@ initUIControls(store);
 render(store.getState());
 store.subscribe(() => {
   render(store.getState());
+  debounce(function () {
+    saveState(store.getState(), "ua-subscribe-state");
+  }, 1000)();
 });
