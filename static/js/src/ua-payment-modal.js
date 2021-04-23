@@ -831,6 +831,9 @@ function handleSuccessfulPayment(transaction) {
     const products = analyticsFriendlyProducts();
 
     purchaseEvent(purchaseInfo, products);
+
+    // Remove the product selection from the local storage
+    localStorage.removeItem("ua-subscribe-state");
   }
 
   disableProcessingState();
