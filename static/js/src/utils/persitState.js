@@ -1,5 +1,4 @@
 export function saveState(state, stateName) {
-  console.log("write");
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(stateName, serializedState);
