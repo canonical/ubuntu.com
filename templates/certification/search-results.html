@@ -9,12 +9,106 @@
 
 <form class="form">
   <section class="p-strip--suru-topped">
+
     {% if vendor_page %}
-    <div class="u-fixed-width">
-      <h1 class="u-sv3">Ubuntu certified hardware from {{ vendors }}</h1>
-    </div>
+     {% if vendors[0] == "Dell" %}
+      <div class="row u-vertically-center">
+        <div class="col-8">
+          <h1>Ubuntu certified hardware <br/> from Dell</h1>
+          <p class="u-sv3">Dell is an American multinational computer technology company that develops, sells, repairs, and supports computers and related products and services. Founded in 1984 by Michael Dell, the company is one of the largest technology corporations in the world, employing more than 165,000 people in the U.S. and around the world.</p>
+        </div>
+        <div class="col-4 u-align--center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/97e29c13-Dell.svg",
+            alt="Dell",
+            width="100",
+            height="100",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
+     {% elif vendors[0] == "Lenovo" %}
+      <div class="row u-vertically-center">
+        <div class="col-8">
+          <h1>Ubuntu certified hardware <br/> from Lenovo</h1>
+          <p class="u-sv3">Dell is an American multinational computer technology company that develops, sells, repairs, and supports computers and related products and services. Founded in 1984 by Michael Dell, the company is one of the largest technology corporations in the world, employing more than 165,000 people in the U.S. and around the world.</p>
+        </div>
+        <div class="col-4 u-align--center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/7c91270a-Lenovo.svg",
+            alt="Lenovo",
+            width="165",
+            height="35",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
+     {% elif vendors[0] == "HP" %}
+      <div class="row u-vertically-center">
+        <div class="col-8">
+          <h1>Ubuntu certified hardware <br/> from HP</h1>
+          <p class="u-sv3">Dell is an American multinational computer technology company that develops, sells, repairs, and supports computers and related products and services. Founded in 1984 by Michael Dell, the company is one of the largest technology corporations in the world, employing more than 165,000 people in the U.S. and around the world.</p>
+        </div>
+        <div class="col-4 u-align--center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ffda2d20-HP.svg",
+            alt="HP",
+            width="100",
+            height="100",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
+     {% elif vendors[0] == "Intel Corp." %}
+      <div class="row u-vertically-center">
+        <div class="col-8">
+          <h1>Ubuntu certified hardware <br/> from Intel</h1>
+          <p class="u-sv3">Dell is an American multinational computer technology company that develops, sells, repairs, and supports computers and related products and services. Founded in 1984 by Michael Dell, the company is one of the largest technology corporations in the world, employing more than 165,000 people in the U.S. and around the world.</p>
+        </div>
+        <div class="col-4 u-align--center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ab843223-Intel.svg",
+            alt="Intel",
+            width="130",
+            height="86",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
+     {% elif vendors[0] == "Acer" %}
+      <div class="row u-vertically-center">
+        <div class="col-8">
+          <h1>Ubuntu certified hardware <br/> from Acer</h1>
+          <p class="u-sv3">Dell is an American multinational computer technology company that develops, sells, repairs, and supports computers and related products and services. Founded in 1984 by Michael Dell, the company is one of the largest technology corporations in the world, employing more than 165,000 people in the U.S. and around the world.</p>
+        </div>
+        <div class="col-4 u-align--center u-hide--small">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/40a0745b-acer-2011.svg",
+            alt="Acer",
+            width="200",
+            height="50",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+        </div>
+      </div>
+     {% else %}
+      <div class="u-fixed-width">
+        <h1 class="u-sv3">Ubuntu certified hardware from {{ vendors[0] }}</h1>
+      </div>
+     {% endif %}
+
     {% elif filters != True%}
-      {% if form == "Desktop" %}
+      {% if form == "Desktop" or form == "Dekstop,Laptop" %}
       <div class="row">
         <div class="col-8">
           <h1>Ubuntu Certified desktop hardware</h1>
@@ -89,7 +183,11 @@
           }}
         </div>
       </div>
-    {% endif %}
+      {% else %}
+      <div class="u-fixed-width">
+        <h1 class="u-sv3">Ubuntu Certified hardware search</h1>
+      </div>
+      {% endif %}
     {% else %}
     <div class="u-fixed-width">
       <h1 class="u-sv3">Ubuntu Certified hardware search</h1>
@@ -97,7 +195,13 @@
     {% endif %}
     <div class="u-fixed-width">
       <div class="p-search-box">
-        <input class="p-search-box__input" type="text" name="text" value="{{ query or '' }}">
+        {% if vendor_page == True%}
+        <input class="p-search-box__input" type="text" name="text" value="{{ query or '' }}" placeholder="Search {{ vendors[0] }} hardware">
+        {% elif form and filters != True %}
+        <input class="p-search-box__input" type="text" name="text" value="{{ query or '' }}" placeholder="Search {{ form|lower }} hardware">
+        {% else %}
+        <input class="p-search-box__input" type="text" name="text" value="{{ query or '' }}" placeholder="Search all hardware">
+        {% endif %}
         <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
       </div>
     </div>
@@ -116,7 +220,7 @@
               <ul class="p-accordion__list">
                 <li class="p-accordion__group">
                   <div role="heading" aria-level="2" class="p-accordion__heading">
-                    <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">Show</button>
+                    <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">Hardware</button>
                   </div>
                   <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
                     {% for form_filter, total in form_filters.items() %}
@@ -136,7 +240,14 @@
                   <section class="p-accordion__panel" id="tab2-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab2">
                     {% for release_filter, total in release_filters.items() %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
+                      <input 
+                        type="checkbox" 
+                        aria-labelledby="{{ release_filter }}" 
+                        class="p-checkbox__input" 
+                        id="release-filter"
+                        name="release"
+                        value="{{ release_filter }}"
+                        {% if releases and release_filter in releases%}checked{% endif %}>
                       <div class="p-checkbox__label" id="{{ release_filter }}">
                         <span>{{ release_filter }}</span>
                       </div>
@@ -144,7 +255,7 @@
                     {% endfor %}
                   </section>
                 </li>
-                {% if vendor_page != True %}
+                {% if vendor_page != True%}
                 <li class="p-accordion__group">
                   <div role="heading" aria-level="2" class="p-accordion__heading">
                     <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">Vendor</button>
@@ -152,7 +263,15 @@
                   <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab3">
                     {% for vendor_filter, total in vendor_filters.items() %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
+                      <input 
+                        type="checkbox" 
+                        aria-labelledby="{{ vendor_filter }}" 
+                        class="p-checkbox__input" 
+                        id="vendor-filter" 
+                        name="vendor" 
+                        value="{{ vendor_filter }}" 
+                        {% if vendors and vendor_filter in vendors %}checked{% endif %}
+                        >
                       <div class="p-checkbox__label" id="{{ vendor_filter }}">
                         <span>{{ vendor_filter }}</span>
                         </p>
@@ -167,7 +286,7 @@
             <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
             <input hidden id="filters" value="True" name="filters">
             {% if vendor_page %}
-            <input hidden value="{{ vendors }}" name="vendor">
+            <input hidden value="{{ vendors[0] }}" name="vendor">
             <input hidden value="True" name="vendor_page">
             {% endif %}
           </div>
