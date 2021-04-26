@@ -14,7 +14,7 @@
       <h1 class="u-sv3">Ubuntu certified hardware from {{ vendors }}</h1>
     </div>
     {% elif filters != True%}
-      {% if form == "Desktop" %}
+      {% if form == "Desktop" or form == "Desktop,Laptop" %}
       <div class="row">
         <div class="col-8">
           <h1>Ubuntu Certified desktop hardware</h1>
