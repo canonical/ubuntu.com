@@ -1,4 +1,4 @@
-name: docs links on ubuntu.com/core/docs
+name: docs links on docs.openstack.org/charm-guide/latest/
 
 on:
   schedule:
@@ -14,7 +14,7 @@ jobs:
         run: sudo pip install LinkChecker
 
       - name: Run linkchecker
-        run: linkchecker --no-follow-url '!https:\/\/ubuntu.com\/core\/docs\/' --ignore-url https://res.cloudinary.com --ignore-url '.*&start=.*' --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url "https://www.gstatic.com" --ignore-url "https://assets.ubuntu.com$" --check-extern --no-warnings https://ubuntu.com/core/docs
+        run: linkchecker --no-follow-url '!https:\/\/docs.openstack.org\/charm-guide\/latest\/' --ignore-url http://localhost:8001\* --ignore-url ^.*\.css --check-extern --no-warnings https://docs.openstack.org/charm-guide/latest/
 
       - name: Send message on failure
         if: failure()
