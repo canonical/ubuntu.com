@@ -174,27 +174,13 @@ juju add-storage etcd/0 data=cinder,10G
 ### Restore
 
 Allows the operator to restore the data from a cluster-data snapshot. This
-comes with caveats and a very specific path to restore a cluster:
-
-The cluster must be in a state of only having a single member. So it's best to
-deploy a new cluster using the etcd charm, without adding any additional units.
-Snapshots are also only supported on the same etcd version with which the
-snapshot was taken.
+action is supported on both single member and cluster deployments. However
+it must be always executed on the leader unit.
 
 ```
-juju deploy etcd new-etcd
+juju attach etcd snapshot=/path/to/etcd-backup
+juju run-action --wait etcd/leader restore
 ```
-
-> The above code snippet will deploy a single unit of etcd, as 'new-etcd'
-> Don't forget to `juju attach` the snapshot created in the snapshot action.
-
-```
-juju attach new-etcd snapshot=/path/to/etcd-backup
-juju run-action --wait new-etcd/0 restore
-```
-
-Once the restore action has completed, evaluate the cluster health. If the
-cluster is healthy, you may resume scaling the application to meet your needs.
 
 - **param** target: destination directory to save the existing data.
 

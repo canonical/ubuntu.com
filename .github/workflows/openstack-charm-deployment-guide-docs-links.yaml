@@ -1,0 +1,21 @@
+name: docs links on docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"
+
+jobs:
+  check-links:
+    if: github.repository == 'canonical-web-and-design/ubuntu.com'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install linkchecker
+        run: sudo pip install LinkChecker
+
+      - name: Run linkchecker
+        run: linkchecker --no-follow-url '!https:\/\/docs.openstack.org\/project-deploy-guide\/charm-deployment-guide\/latest\/' --ignore-url http://localhost* --ignore-url ^.*\.css --check-extern --no-warnings https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
+
+      - name: Send message on failure
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=docs

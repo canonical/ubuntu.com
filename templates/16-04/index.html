@@ -7,8 +7,8 @@
 {% block content %}
 <section class="p-strip--suru-topped">
   <div class="row u-vertically-center">
-    <div class="col-6">
-      <h1>Ubuntu 16.04 LTS (Xenial Xerus)</h1>
+    <div class="col-7">
+      <h1>Ubuntu 16.04 LTS <br class="u-hide--small">(Xenial Xerus)</h1>
       <p>Ubuntu 16.04 LTS (Xenial Xerus) was released on 21 April 2016 and introduced us to snaps, a more secure app format, with faster and simpler updates, as well as LXD, the pure-container hypervisor and OpenStack Mitaka. </p>
       <h2 class="p-heading--4">Is Ubuntu 16.04 LTS still supported?</h2>
       <p class="u-sv2">Yes, Ubuntu 16.04 LTS is supported until 2024 through Canonical’s Extended Security Maintenance (ESM) product. Xenial enters the ESM period in April 2021, with security patches provided for an additional three years beyond the traditional five-year standard support.</p>
@@ -23,15 +23,15 @@
       {{ image (
         url="https://assets.ubuntu.com/v1/41cb88c9-xerus_orange_hex.svg",
         alt="",
-        width="249",
-        height="253",
+        width="200",
+        height="203",
         hi_def=True,
         loading="auto"
         ) | safe
       }}
       <div style="margin: auto; width: 70%;">
         <hr class="p-separator u-no-margin--bottom"/>
-        <p class="p-muted-heading hero-muted-heading">out of standard support, upgrade to esm support</p>
+        <p class="p-muted-heading hero-muted-heading">out of standard support, <br> upgrade to esm support</p>
       </div>
     </div>
   </div>
@@ -39,107 +39,51 @@
   <div class="u-fixed-width">
     <hr class="p-separator"/>
   </div>
-
-  <div class="row">
-    <div class="col-10" style="overflow: auto;">
-      <div class="u-hide--small" id="eol-1604"></div>
-      <table class="u-hide--medium u-hide--large" style="width: auto;">
-        <thead>
-          <tr>
-            <td>&nbsp;</td>
-            <th scope="col">Released</th>
-            <th scope="col">End of Life</th>
-            <th scope="col">Extended security maintenance</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Ubuntu 22.04 LTS</strong></td>
-            <td>April 2022</td>
-            <td>April 2027</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 21.10</td>
-            <td>October 2021</td>
-            <td>July 2022</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 21.04</td>
-            <td>April 2021</td>
-            <td>January 2022</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 20.10</td>
-            <td>October 2020</td>
-            <td>July 2021</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 20.04 LTS</strong></td>
-            <td>April 2020</td>
-            <td>April 2025</td>
-            <td>April 2030</td>
-          </tr>
-          <tr>
-            <td>Ubuntu 19.10</td>
-            <td>October 2019</td>
-            <td>July 2020</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 19.04</td>
-            <td>April 2019</td>
-            <td>January 2020</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Ubuntu 18.10</td>
-            <td>October 2018</td>
-            <td>July 2019</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 18.04 LTS</strong></td>
-            <td>April 2018</td>
-            <td>April 2023</td>
-            <td>April 2028</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 16.04 LTS</strong></td>
-            <td>April 2016</td>
-            <td>April 2021</td>
-            <td>April 2024</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 14.04 LTS</strong></td>
-            <td>April 2014</td>
-            <td>April 2019</td>
-            <td>April 2022</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 12.04 LTS</strong></td>
-            <td>April 2012</td>
-            <td>April 2017</td>
-            <td>April 2019</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 10.04 LTS</strong></td>
-            <td>April 2010</td>
-            <td>April 2015</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js"></script>
-<script src="{{ versioned_static('js/dist/release-chart.js') }}"></script>
+  {% include "16-04/_release-chart-1604.html" %}
 </section>
 
 <section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-12">
+      <h2>Ubuntu 16.04 LTS security updates</h2>
+      <p>The Ubuntu Security Team continues its dedication to providing security updates for Ubuntu 16.04 LTS beyond the five-year standard support with Extended Security Maintenance (ESM).</p>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 1rem">
+    <div class="col-4">
+      <span style="font-size: 3rem; line-height: 4rem">{{ total_patches_applied }}</span>
+      <hr>
+      <span class="p-muted-heading">16.04 LTS ESM <br>PATCHES APPLIED</span>
+    </div>
+    <div class="col-4">
+      <span style="font-size: 3rem; line-height: 4rem">{{ total_notices_issued }}</span>
+      <hr>
+      <span class="p-muted-heading">USNS ISSUED</span>
+    </div>
+    <div class="col-4">
+      <span style="font-size: 3rem; line-height: 4rem">{{ total_cves_issued }}</span>
+      <hr>
+      <span class="p-muted-heading">CVES ADDRESSED</span>
+    </div>
+  </div>
+  <div class="row" id="notice-feed" style="margin-top: 3rem">
+    {% for notice in latest_notices %}
+      <hr>
+      <div class="col-6">
+        <strong><span><a href="/security/notices/{{ notice.id }}">{{ notice.title }}</a></span></strong><br>
+        <span class="p-muted-heading">{{ notice.date }}</span><br><br>
+      </div>
+      <div class="col-6">
+        <p>{{ notice.summary }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="row" style="margin-top: 2rem">
+    <a href="/security/notices?release=xenial">View the full list&nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-6">
       <h2>Ubuntu 16.04 LTS Extended Security Maintenance (ESM)</h2>
@@ -365,4 +309,5 @@ hwe-16.04</code></pre>
     text-align: left;
   }
 </style>
+
 {% endblock content %}

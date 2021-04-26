@@ -110,7 +110,7 @@ to use the Kubernetes API to create the necessary resources to make MetalLB
 work. You can apply the manifest using `kubectl`:
 
 ```bash
-wget https://raw.githubusercontent.com/containers/metallb-operator/master/docs/rbac-permissions-operators.yaml
+wget https://raw.githubusercontent.com/charmed-kubernetes/metallb-operator/master/docs/rbac-permissions-operators.yaml
 kubectl apply -f rbac-permissions-operators.yaml
 ```
 
@@ -157,7 +157,7 @@ To test your deployment of MetalLB, you can use the [microbot manifest][] to
 deploy a simple webapp with a service type of `LoadBalancer`:
 
 ```bash
-wget https://raw.githubusercontent.com/containers/metallb-operator/master/docs/example-microbot-lb.yaml
+wget https://raw.githubusercontent.com/charmed-kubernetes/metallb-operator/master/docs/example-microbot-lb.yaml
 kubectl apply -f example-microbot-lb.yaml
 kubectl get service microbot-lb
 ```
@@ -180,10 +180,10 @@ kubectl delete -f example-microbot-lb.yaml
 [arp]: https://tools.ietf.org/html/rfc826
 [bgp]: https://tools.ietf.org/html/rfc1105
 [bundle overlay]: https://juju.is/docs/charm-bundles#heading--overlay-bundles
-[rbac-manifest]: https://raw.githubusercontent.com/containers/metallb-operator/master/docs/rbac-permissions-operators.yaml
+[rbac-manifest]: https://raw.githubusercontent.com/charmed-kubernetes/metallb-operator/master/docs/rbac-permissions-operators.yaml
 [upstream manifests]: https://github.com/metallb/metallb/tree/main/manifests
 [configmap]: https://metallb.universe.tf/configuration/#bgp-configuration
-[microbot manifest]: https://raw.githubusercontent.com/containers/metallb-operator/master/docs/example-microbot-lb.yaml
+[microbot manifest]: https://raw.githubusercontent.com/charmed-kubernetes/metallb-operator/master/docs/example-microbot-lb.yaml
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
