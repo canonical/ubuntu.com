@@ -1,8 +1,8 @@
 import talisker.requests
 import talisker.sentry
-
+import requests
 import math
-from flask import request, render_template, abort
+from flask import request, render_template, abort, current_app
 from requests import Session
 from webapp.certification.api import CertificationAPI
 from collections import defaultdict
@@ -13,6 +13,39 @@ talisker.requests.configure(session)
 api = CertificationAPI(
     base_url="https://certification.canonical.com/api/v1", session=session
 )
+
+
+def certification_component_details(component_id):
+
+    try:
+        component = api.component_summary(component_id)
+    except requests.exceptions.HTTPError as error:
+        if error.response.status_code == 404:
+            abort(404)
+        else:
+            current_app.extensions["sentry"].captureException()
+            abort(500)
+
+    models_response = api.certified_models(
+        canonical_id__in=component["machine_canonical_ids"],
+        limit=0,
+    )
+
+    all_machines = models_response["objects"]
+
+    machines_by_id = {}
+    for machine in all_machines:
+        machines_by_id[machine["canonical_id"]] = machine
+
+    machines = machines_by_id.values()
+
+    return render_template(
+        "certification/component-details.html",
+        component=component,
+        machines=sorted(
+            machines, key=lambda machine: machine["canonical_id"], reverse=True
+        ),
+    )
 
 
 def certification_hardware_details(canonical_id, release):
