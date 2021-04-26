@@ -50,7 +50,7 @@ def _remove_hidden(pages):
     return filtered_pages
 
 
-def get_navigation(path):
+def get_navigation(request):
     """
     Set "nav_sections" and "breadcrumbs" dictionaries
     as global template variables
@@ -58,6 +58,7 @@ def get_navigation(path):
 
     breadcrumbs = {}
 
+    path = request.path
     is_topic_page = path.startswith("/blog/topics/")
 
     sections = copy.deepcopy(nav_sections)
@@ -102,6 +103,8 @@ def get_navigation(path):
                         nav_section["active"] = True
                         breadcrumbs["section"] = nav_section
                         breadcrumbs["children"] = [child]
+
+                        # if ("query_page" in nav_section) and request.args.get(nav_section["query_page"]) == :
 
                         if grandchild.get("hidden"):
                             # Hidden nodes appear alone

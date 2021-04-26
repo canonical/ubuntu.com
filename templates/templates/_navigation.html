@@ -1,4 +1,4 @@
-{% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
+{% set breadcrumbs = get_navigation(request).breadcrumbs %}
 
 <header id="navigation" class="p-navigation">
   {% block header_banner %}
@@ -103,6 +103,8 @@
             </span>
           </li>
           {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
+          {{"hello"}}
+          {{child }}
           <li class="breadcrumbs__item">
             <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}">{{ child.title }}</a>
           </li>
