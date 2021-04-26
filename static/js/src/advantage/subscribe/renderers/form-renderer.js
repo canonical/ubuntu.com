@@ -161,13 +161,13 @@ function renderSummary(state) {
     const quantityElement = summarySection.querySelector(
       "#summary-plan-quantity"
     );
-    const price = state.product.price.value / 100;
+    const price = state.product.price.value;
 
     summarySection.classList.remove("p-shop-cart--hidden");
     quantityElement.innerHTML = `${quantity}x`;
     image.setAttribute("src", imgUrl[type]);
     title.innerHTML = state.product.name;
-    costElement.innerHTML = `${formatter.format(price * quantity)} / ${
+    costElement.innerHTML = `${formatter.format((price / 100) * quantity)} / ${
       billing === "monthly" ? "month" : "year"
     }`;
 
