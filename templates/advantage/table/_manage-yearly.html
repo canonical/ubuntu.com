@@ -9,6 +9,11 @@
         <p>{{ contract['contractInfo']['effectiveToFormatted'] }}</p>
       </div>
     </div>
+    {% if contract["renewal"] %}
+    <table>
+      {% include "advantage/table/_renewal-actions.html" %}
+    </table>
+    {% endif %}
     {% if not contract["is_detached"] and contract['machineCount']%}
       <div class="change-subscription">
         <button class="p-button--neutral u-no-margin--left js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}--yearly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">Change subscription</button>

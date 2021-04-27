@@ -10,6 +10,12 @@
       </div>
     </div>
 
+    {% if contract["renewal"] %}
+    <table>
+      {% include "advantage/table/_renewal-actions.html" %}
+    </table>
+    {% endif %}
+
     <div class="change-subscription {% if mobile %}u-align--center{% endif %}">
       <p>Auto-renewal {% if monthly_information['is_auto_renewal_enabled'] %}enabled{% else %}disabled{% endif %}</p>
       <button class="p-button--neutral js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}--monthly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">Change subscription</button>

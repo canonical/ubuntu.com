@@ -1,7 +1,6 @@
 {% if contract["renewal"]["renewable"] %}
   <tr style="border-top: 0;">
-    <td></td>
-    <td>
+    <td style="padding:0">
       <a
         id="showModal"
         href="#ua-payment-modal"
@@ -23,14 +22,15 @@
         data-total="{{ contract['renewal']['renewalItems'][0]['priceTotal']['value'] }}"
         data-currency="{{ contract['renewal']['renewalItems'][0]['priceTotal']['currency'] }}">Renew...</a>
     </td>
+    <td></td>
   </tr>
 {% elif contract["renewal"]["status"] == "processing" %}
   <tr style="border-top: 0;">
-    <td></td>
-    <td>
+    <td style="padding:0">
       <button disabled class="p-button--positive u-no-margin--bottom">Renew</button>
       <span>Renewal in progress...</span>
     </td>
+    <td></td>
   </tr>
 {% elif contract["renewal"]["actionable"] == false %}
   </table>
