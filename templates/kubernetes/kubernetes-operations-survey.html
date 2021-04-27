@@ -1,0 +1,62 @@
+{% extends "kubernetes/base_kubernetes.html" %}
+
+{% block title %}Kubernetes & Cloud Native Operations Survey{% endblock %}
+
+{% block meta_description %}Kubernetes & Cloud Native Operations Survey{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1MLNVczyhDYNnZT-4Ddq0D4D5YU5JcgRdt7hR4x7IOnQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-6">
+      <h1>Kubernetes & Cloud Native Operations Survey</h1>
+      <p>We want to understand more about the experience of developers, operations, SREs, and those who work with them in the Kubernetes and Cloud Native space. The more answers we get from you, the more data we’ll be able to give back to the community. If you’re happy to spare a few minutes of your time to contribute, just scroll down to get started.</p>
+    </div>
+    <div class="col-6 u-align--center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/d1cf05bd-Kubernetes_survey.svg",
+          alt="K8s survey",
+          width="300",
+          hi_def=True,
+        ) | safe
+      }}
+      </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+        <h4>For a limited time</h4>
+        <p>To celebrate KubeCon + CloudNativeCon Europe 2021, we’re running a raffle for a chance to win a limited edition Ubuntu T-shirt for those who take the survey during April 28-7 ONLY. Go ahead and throw your name in the proverbial hat by completing our survey below.</p>
+        <p>In submitting the below survey, I confirm I have read and agreed to Canonical’s <a href="/legal/data-privacy">Privacy Policy</a>, <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Kubernetes %26 CloudNative Survey - _Privacy Notice %E2%80%93 Survey_.pdf">Privacy Notice</a>, and this <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Operator Day Raffle 2021 - Terms and Conditions .pdf">Competition’s Terms and Conditions</a>.</p>
+    </div>
+    <div class="col-6 u-align--center">
+    {{
+        image(
+            url="https://assets.ubuntu.com/v1/09c52614-Charming_Tshirt_Mockup_1.png",
+            alt="K8s Charms T-shirt",
+            width="450",
+            hi_def=True,
+        ) | safe
+    }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+    <div class="row">
+        <div class="col-12">
+            <div class="typeform-widget" data-url="https://form.typeform.com/to/lZ0RY5km?typeform-medium=embed-snippet" style="width: 100%; height: 500px;"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block footer_extra %}
+<script>(function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })()</script>
+{% endblock %}
