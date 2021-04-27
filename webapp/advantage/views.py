@@ -350,7 +350,9 @@ def advantage_payment_methods_view(**kwargs):
     api_url = kwargs.get("api_url")
     token = kwargs.get("token")
 
-    advantage = UAContractsAPI(session, token, api_url=api_url)
+    advantage = UAContractsAPI(
+        session, token, api_url=api_url, is_for_view=True
+    )
 
     try:
         account = advantage.get_purchase_account()
