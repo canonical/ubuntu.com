@@ -132,7 +132,9 @@ function renderSupport(state) {
 function renderQuantity(state) {
   const quantity = state.quantity;
   const quantityInput = form.querySelector("#quantity-input");
-  quantityInput.value = quantity;
+  if (quantityInput !== document.activeElement) {
+    quantityInput.value = quantity;
+  }
 }
 
 const imgUrl = {
