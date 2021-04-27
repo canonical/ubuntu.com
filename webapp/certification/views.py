@@ -208,6 +208,9 @@ def certification_home():
     iot_releases = []
     iot_vendors = []
 
+    # Server section
+    server_releases = []
+
     # Search results filters
     all_releases = []
     all_vendors = []
@@ -220,7 +223,9 @@ def certification_home():
             all_releases = sorted(all_releases, reverse=True)
 
         if int(release["desktops"]) > 0 or int(release["laptops"]) > 0:
-            release["path"] = f"/certification?form=Desktop&release={version}"
+            release[
+                "path"
+            ] = f"/certification?form=Desktop&form=Laptop&release={version}"
             desktop_releases.append(release)
 
         if int(release["smart_core"] > 1):
@@ -235,6 +240,12 @@ def certification_home():
             ] = f"/certification?form=Server%20SoC&release={version}"
             soc_releases.append(release)
 
+        if int(release["servers"] > 1):
+            release[
+                "path"
+            ] = f"/certification?form=Server%20SoC&release={version}"
+            server_releases.append(release)
+
     for vendor in certified_makes:
         make = vendor["make"]
 
@@ -243,7 +254,9 @@ def certification_home():
             all_vendors = sorted(all_vendors)
 
         if int(vendor["desktops"]) > 0 or int(vendor["laptops"]) > 0:
-            vendor["path"] = f"/certification?form=Desktop&vendor={make}"
+            vendor[
+                "path"
+            ] = f"/certification?form=Desktop&form=Laptop&vendor={make}"
             desktop_vendors.append(vendor)
 
         if int(vendor["smart_core"] > 1):
@@ -253,17 +266,6 @@ def certification_home():
         if int(vendor["soc"] > 1):
             vendor["path"] = f"/certification?form=Server%20SoC&vendor={make}"
             soc_vendors.append(vendor)
-
-    # Server section
-    server_releases = {}
-    server_vendors = api.vendor_summaries_server()["vendors"]
-
-    for vendor in server_vendors:
-        for release in vendor["releases"]:
-            if release in server_releases:
-                server_releases[release] += vendor[release]
-            else:
-                server_releases[release] = vendor[release]
 
     if request.args:
         query = request.args.get("text", default=None, type=str)
