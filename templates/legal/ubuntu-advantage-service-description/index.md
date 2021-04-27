@@ -78,7 +78,7 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
         1. The version of OpenStack provided initially in the release of a Long Term Support (LTS) version of Ubuntu is supported for the entire lifecycle of that Ubuntu version.
         2. Releases of OpenStack released after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack version.
         3. Bug-fix support is provided only during LTS and is not offered during the ESM period.
-        4. The OpenStack release support schedule is available here [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle)
+        4. The OpenStack release support schedule is available here [ubuntu.com/about/release-cycle](/about/release-cycle)
     2. OpenStack support requires all Nodes that participate in the OpenStack Cloud  to be covered under an active support agreement.
     3. Full Stack support requirements:
         1. In addition to the requirements set out above, hardware must meet the minimum criteria for Charmed OpenStack.
