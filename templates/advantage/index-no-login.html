@@ -21,9 +21,8 @@
       <div class="col-12">
         <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
         <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
-        <p>Sign in to access your personal or paid subscriptions.</p>
-        <p>
-          <a href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}" class="p-button--neutral"
+        <h5>
+          <a href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}" class="p-link"
              onclick="dataLayer.push({
                 'event' : 'GAEvent',
                 'eventCategory' : 'Advantage',
@@ -33,7 +32,10 @@
               });">
             Sign in
           </a>
-          <a href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" class="p-button--neutral">Buy a subscription</a>
+          to edit existing or add new subscriptions.
+        </h5>
+        <p>
+          <a href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" class="p-button--neutral">Sign up to Ubuntu Advantage</a>
         </p>
       </div>
     </div>
@@ -45,7 +47,7 @@
         <h2>Free for personal use</h2>
         <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you're a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it's free on up to 50 machines.</p>
         <p class="u-no-margin--bottom">
-          <span class="u-sv1"><small>Initially, free subscription is available for Ubuntu 14.04 LTS only. By registering you agree to our <a href="/legal/ubuntu-advantage/personal">Terms of Service</a>.</small><br /></span>
+          <span class="u-sv1"><small>Ubuntu 14.04 LTS machines can receive Extended Security Maintenance (ESM) updates and other Ubuntu Advantage benefits. By registering you agree to our <a href="/legal/ubuntu-advantage/personal">Terms of Service</a>.</small><br /></span>
           <a href="/login" class="p-button--positive" onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',
