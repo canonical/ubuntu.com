@@ -43,10 +43,51 @@
 </section>
 
 <section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-12">
+      <h2>Ubuntu 16.04 LTS security updates</h2>
+      <p>The Ubuntu Security Team continues its dedication to providing security updates for Ubuntu 16.04 LTS beyond the five-year standard support with Extended Security Maintenance (ESM).</p>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 1rem">
+    <div class="col-4">
+      <span style="font-size: 3rem; line-height: 4rem">{{ total_patches_applied }}</span>
+      <hr>
+      <span class="p-muted-heading">16.04 LTS ESM <br>PATCHES APPLIED</span>
+    </div>
+    <div class="col-4">
+      <span style="font-size: 3rem; line-height: 4rem">{{ total_notices_issued }}</span>
+      <hr>
+      <span class="p-muted-heading">USNS ISSUED</span>
+    </div>
+    <div class="col-4">
+      <span style="font-size: 3rem; line-height: 4rem">{{ total_cves_issued }}</span>
+      <hr>
+      <span class="p-muted-heading">CVES ADDRESSED</span>
+    </div>
+  </div>
+  <div class="row" id="notice-feed" style="margin-top: 3rem">
+    {% for notice in latest_notices %}
+    <hr>
+    <div class="col-6">
+      <strong><span><a href="/security/notices/{{ notice.id }}">{{ notice.title }}</a></span></strong><br>
+      <span class="p-muted-heading">{{ notice.date }}</span><br><br>
+    </div>
+    <div class="col-6">
+      <p>{{ notice.summary }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row" style="margin-top: 2rem">
+    <a href="/security/notices?release=xenial">View the full list&nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-6">
       <h2>Ubuntu 16.04 LTS Extended Security Maintenance (ESM)</h2>
-      <h3 class="p-heading--4">What is Ubuntu ESM?</h3>
+      <h3>What is Ubuntu ESM?</h3>
       <p><a href="/security/esm">Extended Security Maintenance</a> (ESM) provides extended Linux kernel and open source security updates for the Ubuntu base OS, key infrastructure components, like Ceph, OpenStack and Kubernetes, as well as open source applications, like PostgreSQL and NGINX.</p>
       <p>ESM is available for free on up to three machines and for broader enterprise use through an Ubuntu Advantage subscription. The subscription includes additional services such FIPS-compliant modules and the Canonical Livepatch Service to apply critical kernel patches without unplanned downtime.</p>
       <p>
@@ -71,11 +112,19 @@
   </div>
 
   <div class="row">
-    <div class="col-6">
-      <h3 class="p-heading--4">What is covered by Ubuntu 16.04 ESM?</h3>
-      <p>Standard Security Maintenance of an Ubuntu LTS release covers binary packages that reside in the 'main' Ubuntu repository for a period of five years. For continued security beyond the standard five-year maintenance period, Canonical provides security maintenance to a wide range of binary packages that are commonly used in cloud and server workloads on 64-bit x86 AMD/Intel architectures for a period of three years beyond the normal end of life.</p>
-      <h4 class="p-heading--5">Supported kernels</h4>
-      <p>For continued Linux kernel security, ESM for Ubuntu 16.04 LTS includes support for the below versions:</p>
+    <div class="col-8">
+      <h3>
+        What is covered by Ubuntu 16.04 ESM?
+      </h3>
+      <p>
+        Standard Security Maintenance of an Ubuntu LTS release covers binary packages that reside in the 'main' Ubuntu repository for a period of five years. For continued security beyond the standard five-year maintenance period, Canonical provides security maintenance to a wide range of binary packages that are commonly used in cloud and server workloads on 64-bit x86 AMD/Intel architectures for a period of three years beyond the normal end of life.
+      </p>
+      <h4>
+        Supported kernels
+      </h4>
+      <p>
+        For continued Linux kernel security, ESM for Ubuntu 16.04 LTS includes support for the below versions:
+      </p>
       <table class="p-table--mobile-card" aria-label="Supported kernels table">
         <thead>
           <tr>
@@ -88,30 +137,32 @@
         <tbody>
           <tr>
             <td aria-label="Ubuntu release">Ubuntu 16.04 LTS</td>
-            <td aria-label="Architecture">64-bit x86</td>
+            <td aria-label="Architecture">arm64, amd64 (AMD/Intel) and s390x</td>
             <td aria-label="Kernel Version">4.15 (HWE)</td>
-            <td aria-label="Kernel Variants">generic, low latency, azure</td>
+            <td aria-label="Kernel Variants">generic, low-latency, linux-aws-hwe, linux-azure, linux-gcp, linux-oracle</td>
           </tr>
           <tr>
             <td aria-label="Ubuntu release">Ubuntu 16.04 LTS</td>
-            <td aria-label="Architecture">64-bit x86</td>
+            <td aria-label="Architecture">arm64, amd64 (AMD/Intel) and s390x</td>
             <td aria-label="Kernel Version">4.4 (GA)</td>
-            <td aria-label="Kernel Variants">generic, lowlatency, aws</td>
+            <td aria-label="Kernel Variants">generic, low-latency, generic-fips, linux-aws</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-6">
-      <h4 class="p-heading--5">Infrastructure packages</h4>
-      <p>Canonical will provide extended security maintenance to all binary packages that reside in Ubuntu Main Repository.</p>
-      <p>OpenStack Mitaka packages will be supported in Ubuntu 16.04 ESM for those with an Ubuntu Advantage for Infrastructure subscription.</p>
-      <h4 class="p-heading--5">Application packages</h4>
-      <p>Canonical will provide application extended security maintenance to the binary packages that reside in main. A few commonly-used packages include:</p>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h4>
+        Application packages
+      </h4>
+      <p>
+        Canonical will provide application extended security maintenance to the binary packages that reside in main. A few commonly-used packages include:
+      </p>
+      
       <table class="p-table--mobile-card" aria-label="Application packages table">
         <thead>
           <tr>
-            <th>Application</th>
-            <th class="u-align--right">16.04 LTS version</th>
             <th>Application</th>
             <th class="u-align--right">16.04 LTS version</th>
           </tr>
@@ -120,29 +171,47 @@
           <tr>
             <td aria-label="Application">MySQL</td>
             <td aria-label="16.04 LTS version" class="u-align--right">5.7</td>
+          </tr>
+          <tr>
             <td aria-label="Application">Python</td>
             <td aria-label="16.04 LTS version" class="u-align--right">2.7</td>
           </tr>
           <tr>
             <td aria-label="Application">PostgreSQL</td>
             <td aria-label="16.04 LTS version" class="u-align--right">9.5</td>
+          </tr>
+          <tr>
             <td aria-label="Application">Ruby</td>
             <td aria-label="16.04 LTS version" class="u-align--right">2.3</td>
           </tr>
           <tr>
             <td aria-label="Application">nodejs</td>
             <td aria-label="16.04 LTS version" class="u-align--right">4.2.6</td>
+          </tr>
+          <tr>
             <td aria-label="Application">Elasticsearch</td>
             <td aria-label="16.04 LTS version" class="u-align--right">1.7</td>
           </tr>
           <tr>
             <td aria-label="Application">PHP</td>
             <td aria-label="16.04 LTS version" class="u-align--right">7.0</td>
+          </tr>
+          <tr>
             <td aria-label="Application">NGINX</td>
             <td aria-label="16.04 LTS version" class="u-align--right">1.10</td>
           </tr>
         </tbody>
       </table>
+
+      <h4>
+        Infrastructure packages
+      </h4>
+      <p>
+        Canonical will provide extended security maintenance to all binary packages that reside in Ubuntu Main Repository.
+      </p>
+      <p>
+        OpenStack Mitaka packages will be supported in Ubuntu 16.04 ESM for those with an Ubuntu Advantage for Infrastructure subscription.
+      </p>
     </div>
   </div>
 
@@ -238,34 +307,35 @@
     </div>
     <div class="col-6 u-vertically-center">
       <div class="p-code-snippet">
-      <h3 class="p-heading--5">Installing the Ubuntu 16.04 LTS HWE stack:</h3>
+        <h3 class="p-heading--5">Installing the Ubuntu 16.04 LTS HWE stack:</h3>
         <div class="p-code-snippet__header">
           <h5 class="p-code-snippet__title">Desktop:</h5>
         </div>
 
         <pre class="p-code-snippet__block"><code>sudo apt-get install --install-recommends linux-generic-
-hwe-16.04 xserver-xorg-hwe-16.04</code></pre>
+          hwe-16.04 xserver-xorg-hwe-16.04</code></pre>
 
-        <div class="p-code-snippet__header">
-          <h5 class="p-code-snippet__title">Server:</h5>
+          <div class="p-code-snippet__header">
+            <h5 class="p-code-snippet__title">Server:</h5>
+          </div>
+
+          <pre class="p-code-snippet__block"><code>sudo apt-get install --install-recommends linux-generic-
+            hwe-16.04</code></pre>
+          </div>
         </div>
-
-        <pre class="p-code-snippet__block"><code>sudo apt-get install --install-recommends linux-generic-
-hwe-16.04</code></pre>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-{% with section_classes='p-strip is-bordered', heading_topic='Ubuntu 16.04 LTS', tag_name='ubuntu-16-04', tag_id='2563', limit='4' %}
-  {% include "shared/_latest_news_strip.html" %}
-{% endwith %}
+    {% with section_classes='p-strip is-bordered', heading_topic='Ubuntu 16.04 LTS', tag_name='ubuntu-16-04', tag_id='2563', limit='4' %}
+    {% include "shared/_latest_news_strip.html" %}
+    {% endwith %}
 
-<style>
-  .hero-muted-heading {
-    line-height: 1.5;
-    padding-top: 0.5rem;
-    text-align: left;
-  }
-</style>
-{% endblock content %}
+    <style>
+      .hero-muted-heading {
+        line-height: 1.5;
+        padding-top: 0.5rem;
+        text-align: left;
+      }
+    </style>
+
+    {% endblock content %}
