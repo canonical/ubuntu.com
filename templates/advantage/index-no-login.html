@@ -21,9 +21,8 @@
       <div class="col-12">
         <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
         <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
-        <p>Sign in to access your personal or paid subscriptions.</p>
-        <p>
-          <a href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}" class="p-button--neutral"
+        <h5>
+          <a href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}" class="p-link"
              onclick="dataLayer.push({
                 'event' : 'GAEvent',
                 'eventCategory' : 'Advantage',
@@ -33,7 +32,10 @@
               });">
             Sign in
           </a>
-          <a href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" class="p-button--neutral">Buy a subscription</a>
+          to edit existing or add new subscriptions.
+        </h5>
+        <p>
+          <a href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" class="p-button--neutral">Sign up to Ubuntu Advantage</a>
         </p>
       </div>
     </div>
