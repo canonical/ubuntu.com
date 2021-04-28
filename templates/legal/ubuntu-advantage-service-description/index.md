@@ -77,7 +77,8 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
     1. OpenStack software support depends on the Ubuntu release deployed on the underlying [Nodes](#term-node):
         1. The version of OpenStack provided initially in the release of a Long Term Support (LTS) version of Ubuntu is supported for the entire lifecycle of that Ubuntu version.
         2. Releases of OpenStack released after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack version.
-        3. The OpenStack release support schedule is available here [https://www.ubuntu.com/about/release-cycle](https://www.ubuntu.com/about/release-cycle)
+        3. Bug-fix support is provided only during LTS and is not offered during the ESM period.
+        4. The OpenStack release support schedule is available here [ubuntu.com/about/release-cycle](/about/release-cycle)
     2. OpenStack support requires all Nodes that participate in the OpenStack Cloud  to be covered under an active support agreement.
     3. Full Stack support requirements:
         1. In addition to the requirements set out above, hardware must meet the minimum criteria for Charmed OpenStack.
@@ -91,13 +92,14 @@ As an Ubuntu Advantage for Infrastructure Standard or Ubuntu Advantage for Infra
           6. Addition of new cloud Nodes and replacement of existing Nodes with new Nodes of equivalent capacity are both supported.
           7. [Full Stack Support](#term-full-stack-support) excludes customisations which are not considered [Valid Customisations](#term-valid-customisations).
     4. OpenStack clouds not deployed through a Private OpenStack Build or validated using the Cloud Validation Package are limited to [Bug-fix Support](#term-bug-fix-support).
-    5. OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud.
-    6. [Charms](#term-charms):
+    5. Bug-fix support is provided only during LTS and is not offered during the ESM period.
+    6. OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud.
+    7. [Charms](#term-charms):
         1. Each Charm version is supported for one year from the release date.
-        2. Canonical will not provide support for any Charms that have been modified from the supported version found in the page at [https://wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms)
-    7. Canonical will provide support for 72TB of raw storage per storage Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. Please note that only storage Nodes count towards the 72TB free tier of raw storage per Node.
-    8. Ubuntu Advantage OpenStack includes a licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.
-    9. OpenStack support excludes:
+        2. Canonical will not provide support for any Charms that have been modified from the supported version found in the page at [wiki.ubuntu.com/OpenStack/OpenStackCharms](https://wiki.ubuntu.com/OpenStack/OpenStackCharms)
+    8. Canonical will provide support for 72TB of raw storage per storage Node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. Please note that only storage Nodes count towards the 72TB free tier of raw storage per Node.
+    9. Ubuntu Advantage OpenStack includes a licence to use available Canonical provided Microsoft-certified drivers in Windows Guest instances.
+    10. OpenStack support excludes:
         1. Support for workloads other than those required to run an OpenStack deployment.
         2. Support for guest instances other than [Cloud Guests](#term-cloud-guests).
   2. Support for Kubernetes
@@ -186,7 +188,7 @@ Note: Only underlying technology is listed. These can be provided via a cloud li
 <h2 id="uasd-desktop-support">Desktop support</h2>
 
 1. Desktop support services are subject to the exceptions listed below.
-2. Scope. Desktop support covers all packages in the base Ubuntu desktop image and packages necessary for basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager plugins in the Ubuntu Main repository.
+2. Scope. Desktop support covers all packages in the base Ubuntu desktop image and packages necessary for basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager plugins in the Ubuntu Main repository. It also covers Ubuntu distribution for Windows Subsystem for Linux (WSL).
 3. Out of scope.
   1. Dual-booting (cohabitating with other operating systems).
   2. Peripherals which are not certified to work with Ubuntu.
