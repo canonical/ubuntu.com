@@ -34,7 +34,7 @@ SMART START brings agility to enterprise IoT projects. Through this bundle enter
 
 ### Helpful resources
 
-- [Ubuntu pre-certified IoT hardware](https://certification.ubuntu.com/iot)
+- [Ubuntu pre-certified IoT hardware](/certification?form=Ubuntu%20Core)
 - [SMART START pricing](/pricing/devices)
 - [Ubuntu Core](/core)
 
