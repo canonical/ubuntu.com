@@ -1614,12 +1614,11 @@ certification:
   title: Hardware
   path: /certification
   persist: True
-  # Use query value as page
-  query_page: form
+  match_query: True
 
   children:
     - title: Overview
-      path: /certification
+      path: /certification?
     - title: Desktops
       path: /certification?form=Desktop
     - title: Servers

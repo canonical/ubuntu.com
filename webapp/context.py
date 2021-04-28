@@ -74,9 +74,18 @@ def get_navigation(request):
                 # always show "Topics" as active on child topic pages
                 child["active"] = True
                 break
+
             elif (
-                child["path"] == path and path.startswith(nav_section["path"])
-            ) or (child.get("persist") and path.startswith(child["path"])):
+                (
+                    child["path"] == path
+                    and path.startswith(nav_section["path"])
+                )
+                or (child.get("persist") and path.startswith(child["path"]))
+                or (
+                    nav_section.get("match_query")
+                    and child["path"] == request.full_path
+                )
+            ):
                 # If child path matches current path or has persist set to true
                 child["active"] = True
                 nav_section["active"] = True
@@ -95,7 +104,7 @@ def get_navigation(request):
                     breadcrumbs["children"] = _remove_hidden(
                         nav_section.get("children", [])
                     )
-                break
+
             else:
                 for grandchild in child.get("children", []):
                     if grandchild["path"] == path:
@@ -103,8 +112,6 @@ def get_navigation(request):
                         nav_section["active"] = True
                         breadcrumbs["section"] = nav_section
                         breadcrumbs["children"] = [child]
-
-                        # if ("query_page" in nav_section) and request.args.get(nav_section["query_page"]) == :
 
                         if grandchild.get("hidden"):
                             # Hidden nodes appear alone
