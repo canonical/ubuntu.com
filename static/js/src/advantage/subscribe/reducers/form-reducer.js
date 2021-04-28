@@ -5,6 +5,15 @@ const isSmallVP =
   Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) <
   875;
 
+const productsArray = Object.entries(window.productList);
+function hasMonthly() {
+  var hasMonthly = false;
+  productsArray.map((product) => {
+    hasMonthly = hasMonthly || product[1].period === "monthly";
+  });
+  return hasMonthly;
+}
+
 const initialFormState = {
   type: "physical",
   version: "18.04",
@@ -20,6 +29,7 @@ const initialFormState = {
       advanced: 127500,
     },
   },
+  hasMonthly: false,
 };
 
 const prefixMap = {
@@ -27,8 +37,6 @@ const prefixMap = {
   apps: "uaa",
   "infra+apps": "uaia",
 };
-
-const productsArray = Object.entries(window.productList);
 
 function matchingProduct(testItem, selectedProductID, selectedBillingPeriod) {
   if (
@@ -101,7 +109,10 @@ function getProduct(state) {
 
 const formSlice = createSlice({
   name: "form",
-  initialState: loadState("ua-subscribe-state", "form", initialFormState),
+  initialState: {
+    ...loadState("ua-subscribe-state", "form", initialFormState),
+    hasMonthly: hasMonthly(),
+  },
   reducers: {
     changeType(state, action) {
       state.type = action.payload;

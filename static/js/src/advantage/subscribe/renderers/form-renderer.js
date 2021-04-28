@@ -145,6 +145,7 @@ const imgUrl = {
 
 function renderSummary(state) {
   const billing = state.billing;
+  const hasMonthly = state.hasMonthly;
   const type = state.type;
   const quantity = state.quantity;
   const summarySection = form.querySelector("#summary-section");
@@ -185,10 +186,13 @@ function renderSummary(state) {
   }
 
   // Monthlty is only available for infra and essential
-  if (state.feature !== "infra" || state.support !== "essential") {
-    billingSection.classList.add("u-hide");
-  } else {
+  if (
+    hasMonthly &&
+    (state.feature === "infra" || state.support === "essential")
+  ) {
     billingSection.classList.remove("u-hide");
+  } else {
+    billingSection.classList.add("u-hide");
   }
 
   if (billing === "yearly") {
