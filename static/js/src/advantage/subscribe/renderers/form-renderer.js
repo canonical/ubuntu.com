@@ -185,11 +185,7 @@ function renderSummary(state) {
     buyButton.dataset.previousPurchaseId = previous_purchase_id;
   }
 
-  // Monthlty is only available for infra and essential
-  if (
-    hasMonthly &&
-    (state.feature === "infra" || state.support === "essential")
-  ) {
+  if (hasMonthly) {
     billingSection.classList.remove("u-hide");
   } else {
     billingSection.classList.add("u-hide");

@@ -6,13 +6,6 @@ const isSmallVP =
   875;
 
 const productsArray = Object.entries(window.productList);
-function hasMonthly() {
-  var hasMonthly = false;
-  productsArray.map((product) => {
-    hasMonthly = hasMonthly || product[1].period === "monthly";
-  });
-  return hasMonthly;
-}
 
 const initialFormState = {
   type: "physical",
@@ -38,6 +31,16 @@ const prefixMap = {
   "infra+apps": "uaia",
 };
 
+function hasMonthly(productID) {
+  let numberOfPeriods = 0;
+  productsArray.forEach((product) => {
+    if (product[1].productID === productID) {
+      numberOfPeriods++;
+    }
+  });
+  return numberOfPeriods > 1;
+}
+
 function matchingProduct(testItem, selectedProductID, selectedBillingPeriod) {
   if (
     testItem.productID === selectedProductID &&
@@ -54,7 +57,10 @@ function getProductByID(productID, billing) {
     const listingProduct = product[1];
     listingProduct.id = product[0];
     if (matchingProduct(listingProduct, productID, billing)) {
-      selectedProduct = { ...listingProduct, ok: true };
+      selectedProduct = {
+        ...listingProduct,
+        ok: true,
+      };
       return;
     }
   });
@@ -109,10 +115,7 @@ function getProduct(state) {
 
 const formSlice = createSlice({
   name: "form",
-  initialState: {
-    ...loadState("ua-subscribe-state", "form", initialFormState),
-    hasMonthly: hasMonthly(),
-  },
+  initialState: loadState("ua-subscribe-state", "form", initialFormState),
   reducers: {
     changeType(state, action) {
       state.type = action.payload;
@@ -127,6 +130,7 @@ const formSlice = createSlice({
         state.support = "essential";
       }
       state.product = getProduct(state);
+      state.hasMonthly = hasMonthly(state.product.productID);
     },
     changeVersion(state, action) {
       state.version = action.payload;
@@ -148,6 +152,7 @@ const formSlice = createSlice({
         state.billing = "yearly";
       }
       state.product = getProduct(state);
+      state.hasMonthly = hasMonthly(state.product.productID);
     },
     changeSupport(state, action) {
       state.support = action.payload;
@@ -155,6 +160,7 @@ const formSlice = createSlice({
         state.billing = "yearly";
       }
       state.product = getProduct(state);
+      state.hasMonthly = hasMonthly(state.product.productID);
     },
     changeQuantity(state, action) {
       if (action.payload >= 1) {
@@ -164,6 +170,7 @@ const formSlice = createSlice({
     changeBilling(state, action) {
       state.billing = action.payload;
       state.product = getProduct(state);
+      state.hasMonthly = hasMonthly(state.product.productID);
     },
   },
 });
