@@ -5,10 +5,6 @@ const formatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-String.prototype.capitalize = function () {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
 const form = document.querySelector(".js-shop-form");
 
 function renderRadios(state, sections) {
@@ -194,7 +190,11 @@ function renderSummary(state) {
     billingSection.classList.remove("u-hide");
     let options = "";
     periods.forEach((period) => {
-      options += `<option value="${period}">${period.capitalize()} billing</option>`;
+      if (period === "monthly") {
+        options += `<option value="monthly">Monthly billing</option>`;
+      } else if (period === "yearly") {
+        options += `<option value="yearly">Annual billing</option>`;
+      }
     });
     billingSelect.innerHTML = options;
   } else {
