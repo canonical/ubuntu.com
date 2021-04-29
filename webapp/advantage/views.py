@@ -19,6 +19,7 @@ from webapp.advantage.api import (
     UnauthorizedError,
     UAContractsUserHasNoAccount,
     UAContractsAPIError,
+    UAContractsAPIErrorView,
 )
 
 from webapp.advantage.schemas import (
@@ -357,11 +358,11 @@ def advantage_payment_methods_view(**kwargs):
     try:
         account = advantage.get_purchase_account()
     except UAContractsUserHasNoAccount as error:
-        raise UAContractsAPIError(error)
+        raise UAContractsAPIErrorView(error)
 
     account_info = advantage.get_customer_info(account["id"])
     customer_info = account_info["customerInfo"]
-    default_payment_method = customer_info["defaultPaymentMethod"]
+    default_payment_method = customer_info.get("defaultPaymentMethod")
 
     return flask.render_template(
         "advantage/payment-methods/index.html",
