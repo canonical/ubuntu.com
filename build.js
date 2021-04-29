@@ -12,11 +12,12 @@ let entries = {
   appliance: "./static/js/src/appliance.js",
   "tco-calculator": "./static/js/src/tco-calculator.js",
   "ua-payment-modal": "./static/js/src/ua-payment-modal.js",
+  "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
   "sticky-nav": "./static/js/src/sticky-nav.js",
   imageBuilder: "./static/js/src/imageBuilder.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
-  "ua-product-selector": "./static/js/src/ua-product-selector.js",
+  productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
   "ua-entitlements-callout":
     "./static/js/src/advantage/entitlements-callout.js",
 };
@@ -29,6 +30,7 @@ for (const [key, value] of Object.entries(entries)) {
     sourcemap: true,
     outfile: "static/js/dist/" + key + ".js",
     target: ["chrome58", "firefox57", "safari11", "edge16"],
+    define: { "process.env.NODE_ENV": '"production"' },
   };
 
   esbuild.build(options).then((result) => {

@@ -5,7 +5,7 @@ from datetime import (
 )
 import unittest
 
-from webapp import views
+from webapp.advantage import views
 
 
 class TestMakeRenewal(unittest.TestCase):
@@ -13,7 +13,7 @@ class TestMakeRenewal(unittest.TestCase):
         """None is returned if there are no renewals."""
         advantage = make_advantage()
         contract_info = {}
-        renewal = views.make_renewal(advantage, contract_info)
+        renewal = views._make_renewal(advantage, contract_info)
         self.assertIsNone(renewal)
 
     def test_processing(self):
@@ -31,7 +31,7 @@ class TestMakeRenewal(unittest.TestCase):
         contract_info = {
             "renewals": [{"id": "1", "status": "processing", "start": start}],
         }
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "id": "1",
             "actionable": False,
@@ -56,7 +56,7 @@ class TestMakeRenewal(unittest.TestCase):
                 }
             ],
         }
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "id": "1",
             "status": "pending",
@@ -82,7 +82,7 @@ class TestMakeRenewal(unittest.TestCase):
                 }
             ],
         }
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "actionable": False,
             "id": "1",
@@ -111,7 +111,7 @@ class TestMakeRenewal(unittest.TestCase):
                 }
             ],
         }
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "actionable": False,
             "id": "1",
@@ -140,7 +140,7 @@ class TestMakeRenewal(unittest.TestCase):
                 }
             ],
         }
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "id": "1",
             "status": "pending",
@@ -168,7 +168,7 @@ class TestMakeRenewal(unittest.TestCase):
                 }
             ],
         }
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "id": "1",
             "status": "pending",
@@ -196,7 +196,7 @@ class TestMakeRenewal(unittest.TestCase):
                 }
             ],
         }
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "id": "1",
             "status": "pending",
@@ -232,7 +232,7 @@ class TestMakeRenewal(unittest.TestCase):
                 },
             ],
         }
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "id": "2",
             "status": "pending",
@@ -267,7 +267,7 @@ class TestMakeRenewal(unittest.TestCase):
                 },
             ],
         }
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "id": "2",
             "status": "pending",
@@ -298,7 +298,7 @@ class TestMakeRenewal(unittest.TestCase):
         }
         advantage = make_advantage(renewal=renewal)
         contract_info = {"renewals": [renewal]}
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "id": "1",
             "status": "processing",
@@ -329,7 +329,7 @@ class TestMakeRenewal(unittest.TestCase):
         }
         advantage = make_advantage(renewal=renewal)
         contract_info = {"renewals": [renewal]}
-        got = views.make_renewal(advantage, contract_info)
+        got = views._make_renewal(advantage, contract_info)
         want = {
             "id": "1",
             "status": "processing",
@@ -339,45 +339,6 @@ class TestMakeRenewal(unittest.TestCase):
             "renewable": False,
         }
         self.assertEqual(got, want)
-
-
-class TestGetMachineUsage(unittest.TestCase):
-    def test_no_usage(self):
-        """There could be no machines attached or allowed."""
-        advantage = make_advantage()
-        contract = {}
-        got = views.get_machine_usage(advantage, contract)
-        self.assertEqual(got, views.MachineUsage(attached=0, allowed=0))
-
-    def test_both_attached_and_allowed(self):
-        """Both attached and allowed counts are returned."""
-        advantage = make_advantage(machines={"machines": range(47)})
-        contract = {
-            "contractInfo": {
-                "allowances": [
-                    {
-                        "metric": "active-machines",
-                        "value": 42,
-                    },
-                ]
-            }
-        }
-        got = views.get_machine_usage(advantage, contract)
-        self.assertEqual(got, views.MachineUsage(attached=47, allowed=42))
-
-
-class TestMachineUsage(unittest.TestCase):
-    def test_str(self):
-        """Machine usages are represented correctly as strings."""
-        tests = {
-            views.MachineUsage(attached=0, allowed=0): "0",
-            views.MachineUsage(attached=0, allowed=4): "0/4",
-            views.MachineUsage(attached=42, allowed=0): "42",
-            views.MachineUsage(attached=42, allowed=47): "42/47",
-        }
-        for usage, want in tests.items():
-            with self.subTest(usage=usage):
-                self.assertEqual(str(usage), want)
 
 
 def make_advantage(renewal=None, machines=None):

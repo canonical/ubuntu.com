@@ -7,7 +7,7 @@
 {% block content %}
 
 {% if user_info %}
-  <section class="p-strip--suru-topped">
+  <section class="p-strip--suru-topped u-no-padding--bottom">
     <script>
       dataLayer.push({
         'event' : 'GAEvent',
@@ -46,29 +46,62 @@
     </div>
   </section>
 
+  <hr class="p-separator" />   
+
   {% if enterprise_contracts %}
     <section class="p-strip is-shallow" style="overflow: visible;">
       <div class="row u-vertically-center">
         <div class="col-6 col-medium-3">
-          <h2>Your paid subscriptions</h2>
+          <h2>Your {% if total_enterprise_contracts > 1 %}{{total_enterprise_contracts}} {% endif %}paid subscription{% if total_enterprise_contracts == 1 %}{% else %}s{% endif %}</h2>
         </div>
-        <div class="col-6 col-medium-3 u-align--right">
-          <div id="reveal-table">
-            <a href="#reveal-table" class="p-button u-no-margin--bottom" id="js-reveal-table" aria-controls="enterprise-table" aria-expanded="false">Add another subscription <i class="p-icon--contextual-menu">Open</i></a>
+      </div>
+      {% if payment_method_warning %}
+        <div class="row">
+          <div class="p-notification--caution">
+            <p class="p-notification__response" role="status">
+              <span class="p-notification__status">Payment method:</span>You need to <a href="/advantage/payment-methods{% if is_test_backend %}?test_backend=true{% endif %}">update your payment methods</a> to ensure there is no interruption to your Ubuntu Advantage subscriptions
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+      {% endif %}
+      {% if monthly_information['has_monthly'] %}
+        <div class="row">
+          <div class="col-8 col-medium-3">
+            <p class="u-no-margin--bottom">Your next recurring payment of <strong><span class="js-format-price">{{monthly_information["next_payment"]["ammount"]}}</span></strong> will be taken on <strong>{{monthly_information["next_payment"]["date"]}}</strong>.</p>
+          </div>
+          <div class="col-4 col-medium-3 u-align--right">
+            <div id="reveal-renewal-options">
+              <button class="p-button u-no-margin--bottom js-reveal-renewal-options" aria-controls="renewal-options" aria-expanded="false">Auto-renewal settings <i class="p-icon--contextual-menu">Open</i></button>
+            </div>
+          </div>
+          <div class="p-strip--light is-shallow u-hide p-card"  aria-hidden="true" id="renewal-options" style="border-left: 0; border-right: 0; overflow: visible; padding-top: 3rem; padding-bottom: 2rem;">
+              <div class="row">
+                <div class="row col-start-large-2 col-10">
+                  <h5>{{monthly_information['total_subscriptions']}} monthly subscription{% if monthly_information['total_subscriptions'] > 1 %}s are {% else %} is {% endif %}affected by auto-renewal settings.</h5>
+                  <hr class="p-separator" />
+                  <div> 
+                    <label class="p-radio">
+                      <input id="auto-renewal-on" type="radio" class="p-radio__input" name="auto-renewal"  {% if monthly_information["is_auto_renewal_enabled"] %}checked=""{% endif %} aria-labelledby="enable" value="on">
+                      <span class="p-radio__label" id="enable">Enable auto-renewal</span>
+                    </label>
 
-    <section class="p-strip--light is-shallow u-hide p-card u-no-margin--bottom" aria-hidden="true" id="enterprise-table" style="border-left: 0; border-right: 0; overflow: visible;">
-      <div class="row u-arrow-up">
-        <div class="col-12">
-          {% include "advantage/_table.html" %}
+                    <label class="p-radio">
+                      <input id="auto-renewal-off" type="radio" class="p-radio__input" name="auto-renewal" {% if not monthly_information["is_auto_renewal_enabled"] %}checked=""{% endif %} aria-labelledby="disable" value="off">
+                      <span class="p-radio__label" id="disable">Disable auto-renewal</span>
+                    </label>
+                  </div>
+                  <div class="u-align--right">
+                    <button class="p-button--neutral" id="renewal-cancel" data-default-state="{{monthly_information["is_auto_renewal_enabled"]}}">Cancel changes</button>
+                    <button class="p-button--positive" id="renewal-confirm" data-subscription-id="{{monthly_information['id']}}">Save changes</button>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
-      </div>
+      {% endif %}
     </section>
 
-    <section class="p-strip u-no-padding--top is-shallow">
+    <section class="p-strip is-shallow">
       <div class="row u-hide--medium u-hide--large">
         <div class="col-12">
           {% for account in enterprise_contracts %}
@@ -77,90 +110,39 @@
           {% for contract in enterprise_contracts[account] %}
           {% set expired_renewable = contract['renewal'] and contract['contractInfo']['daysTillExpiry'] < 0 %}
           <div class="p-card">
-            <h5 class="p-card__title u-sv1 u-no-margin--bottom">
+            <h4 class="p-card__title u-sv1 u-no-margin--bottom">
               {% if contract["contractInfo"]["id"] == new_subscription_id %}
                 {% if "daysTillExpiry" in contract["contractInfo"] and contract["contractInfo"]["daysTillExpiry"] > 0 %}
                   <div class="p-label--new">New</div>
                 {% endif %}
               {% endif %}
               {{ contract['contractInfo']['name'] }}
-            </h5>
+            </h4>
             <hr class="u-sv1">
             <div class="row p-card__content">
-              {% if new_subscription_id == contract['contractInfo']['id'] %}
-                <h4>Welcome to your new subscription</h4>
-                <p>If you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
-                <p>To attach a machine: <code>sudo ua attach {{ contract['token'] }}</code></p>
-                <p>To detach a machine: <code>sudo ua detach</code></p>
-                <p>If you’re using Ubuntu 16.04 or 18.04 LTS, you don’t need to attach machines.</p>
-              {% else %}
-              <div class="col-12 u-align--center u-sv3">
-                  <h4>Ubuntu 14.04 ESM and 20.04 LTS</h4>
-                  <p>To attach a machine: <br /><code>sudo ua attach {{ contract['token'] }}</code></p>
-                  <p>To detach a machine: <code>sudo ua detach</code></p>
-                  <h4>Ubuntu 16.04 and 18.04 LTS</h4>
-                  <p>You don’t need to attach machines before setting up UA services.</p>
-              </div>
-              {% endif %}
+              {% include "advantage/table/_attached-machines.html" %}
             </div>
-            <div class="row p-card__content">
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Created on:</div>
-              <div class="col-small-2 col-medium-3 u-align--left">{{ contract['contractInfo']['createdAtFormatted'] }}</div>
-            </div>
-            {% if contract['contractInfo']['effectiveTo'] %}
-            <div class="row p-card__content">
-              {% if contract["renewal"]["renewable"] or contract["renewal"]["actionable"] == false %}
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">
-                {% if contract["contractInfo"]["daysTillExpiry"] < 0 %}
-                  <i class="p-icon--error u-disable"></i>&nbsp;&nbsp;Expired:
+            <div class="row">
+              {% with mobile="true" %}
+
+                {% if contract["period"] == "monthly" %}
+
+                  {% include "advantage/table/_manage-monthly.html" %}
+
                 {% else %}
-                  <i class="p-icon--warning"></i>&nbsp;&nbsp;Ends:
-                {% endif %}
-              </div>
-              <div class="col-small-2 col-medium-3 u-align--left">
-                {{ contract['contractInfo']['effectiveToFormatted'] }}
-                {% if contract["contractInfo"]["daysTillExpiry"] >= 0 %}
-                &nbsp;&mdash;&nbsp;
-                  {% if contract["contractInfo"]["daysTillExpiry"] == 0 %}
-                    today
-                  {% elif contract["contractInfo"]["daysTillExpiry"] == 1 %}
-                    in 1 day
-                  {% else %}
-                    in {{ contract["contractInfo"]["daysTillExpiry"] }} days
-                  {% endif %}
-                {% endif %}
-              </div>
-              {% else %}
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Ends:</div>
-              <div class="col-small-2 col-medium-3 u-align--left">
-                {{ contract['contractInfo']['effectiveToFormatted'] }}
-                {% if contract["renewal"]["recently_renewed"] %}
-                <div class="p-label--updated">Renewed</div>
-                {% endif %}
-              </div>
-              {% endif %}
-            </div>
-            {% endif %}
+                
+                  {% include "advantage/table/_manage-yearly.html" %}
 
-            {% if contract["renewal"] %}
-            <table>
-              {% include "advantage/table/_renewal-actions.html" %}
-            </table>
-            {% endif %}
+                {% endif %}
 
-            <div class="row p-card__content">
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">UA plan</div>
-              <div class="col-small-2 col-medium-3 u-align--left" style="text-transform: capitalize;">{{ contract['supportLevel'] }}</div>
+              {% endwith %}
             </div>
-            <div class="row p-card__content">
-              <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Attached</div>
-              <div class="col-small-2 col-medium-3 u-align--left">{{ contract['machineCount'] }}</div>
-            </div>
+
             <div class="p-accordion">
               <ul class="p-accordion__list u-no-margin--bottom">
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="esm-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="esm-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">ESM</div>
+                    <div class="col-small-2 col-medium-3" style="margin-left: 3rem">ESM</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['esm-infra'] == True or contract['entitlements']['esm-apps'] == True %}
                       <span>
@@ -181,7 +163,7 @@
                 </li>
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="livepatch-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Livepatch</div>
+                    <div class="col-small-2 col-medium-3" style="margin-left: 3rem">Livepatch</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['livepatch'] == True %}
                       <span>
@@ -201,7 +183,7 @@
                 </li>
                 <li class="p-accordion__group">
                   <div tabindex="0" role="button" style="cursor: pointer;" class="p-accordion__tab row" id="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}" aria-controls="certifications-tab-{{ outer_loop.index }}-{{ loop.index }}-section" aria-expanded="false">
-                    <div class="col-small-2 col-medium-3 u-align--right p-muted-text">Certifications</div>
+                    <div class="col-small-2 col-medium-3" style="margin-left: 3rem">Certifications</div>
                     <div class="col-small-2 col-medium-3 u-align--left">
                       {% if contract['entitlements']['fips']  == True or contract['entitlements']['cc-eal']  == True %}
                       <span>
@@ -225,6 +207,18 @@
           {% endfor %}
           {% endfor %}
         </div>
+          <a 
+            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" 
+            class="p-button--positive"   
+            onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'go-to-shop',
+              'eventLabel' : 'Add new subscription',
+              'eventValue' : 5
+            });">
+              Add new subscription
+          </a>
       </div>
       <div class="row u-hide--small">
         <div class="col-12">
@@ -317,22 +311,15 @@
                       </td>
                       <td id="expanded-details-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if open_subscription == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
                         <div class="row">
-                          <div class="col-12 u-align--center">
-                            <table class="p-table--advantage-contract">
-                              <tr>
-                                <td class="u-align--right">Created on:</td>
-                                <td class="u-align--left"><strong>{{ contract['contractInfo']['createdAtFormatted'] }}</strong></td>
-                              </tr>
+                          {% if contract["period"] == "monthly" %}
 
-                              {% if contract['contractInfo']['effectiveTo'] %}
-                                {% include "advantage/table/_expiry-date.html" %}
-                              {% endif %}
+                            {% include "advantage/table/_manage-monthly.html" %}
 
-                              {% if contract["renewal"] %}
-                                {% include "advantage/table/_renewal-actions.html" %}
-                              {% endif %}
-                            </table>
-                          </div>
+                          {% else %}
+                          
+                            {% include "advantage/table/_manage-yearly.html" %}
+
+                          {% endif %}
                         </div>
                       </td>
 
@@ -354,9 +341,25 @@
             </table>
           {% endfor %}
         </div>
+        <div class="col-12 u-align--right">
+          <a 
+            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" 
+            class="p-button--positive u-align--right"   
+            onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'go-to-shop',
+              'eventLabel' : 'Add new subscription',
+              'eventValue' : 5
+            });">
+              Add new subscription
+          </a>
+        </div>
+        <hr class="p-separator" />
       </div>
     </section>
   {% endif %}
+
 
   <section class="p-strip u-no-padding--top" style="overflow: visible;">
     <div class="row">
@@ -410,67 +413,6 @@
   {% with type="renewal" %}
     {% include 'advantage/_stripe-modal.html' %}
   {% endwith %}
-
-{% else %}
-  <section class="p-strip--suru-topped">
-
-    <div class="row">
-      <div class="col-12">
-        <div class="p-notification">
-          <p class="p-notification__response" role="status">
-            Are you using Ubuntu in production? <a href="/support/contact-us" class="p-notification__action js-invoke-modal">Join our free beta programme for Ubuntu Pro on prem&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
-        <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
-        <p>Sign in to access your personal or paid subscriptions.</p>
-        <p>
-          <a href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}" class="p-button--neutral"
-            onclick="dataLayer.push({
-              'event' : 'GAEvent',
-              'eventCategory' : 'Advantage',
-              'eventAction' : 'Authentication',
-              'eventLabel' : 'Sign in',
-              'eventValue' : undefined
-            });">
-            Sign in
-          </a>
-          <a href="/advantage/subscribe" class="p-button--neutral">Buy a subscription</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip is-shallow">
-    <div class="row">
-      <div class="col-6">
-        <h2>Free for personal use</h2>
-        <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you're a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it's free on up to 50 machines.</p>
-        <p class="u-no-margin--bottom">
-          <span class="u-sv1"><small>Ubuntu 14.04 LTS machines can receive Extended Security Maintenance (ESM) updates and other Ubuntu Advantage benefits. By registering you agree to our <a href="/legal/ubuntu-advantage/personal">Terms of Service</a>.</small><br /></span>
-          <a href="/login" class="p-button--positive" onclick="dataLayer.push({
-            'event' : 'GAEvent',
-            'eventCategory' : 'Advantage',
-            'eventAction' : 'Authentication',
-            'eventLabel' : 'Register',
-            'eventValue' : undefined
-          });">Register</a> to get your free subscription.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip is-shallow is-bordered">
-    <div class="row">
-      <h2>Plans for enterprise use</h2>
-      {% include "advantage/_table.html" %}
-    </div>
-  </section>
 {% endif %}
 
 <script>
@@ -510,6 +452,16 @@
       tab.parentNode.classList.add('p-table--open');
       tab.querySelector('.p-icon--contextual-menu').classList.add('u-rotate');
       panel.setAttribute('aria-hidden', 'false');
+      if(panel.id.includes("row")){
+        const rowName = panel.id.split('-')[2]
+        dataLayer.push({
+          'event' : 'GAEvent',
+          'eventCategory' : 'Advantage',
+          'eventAction' : 'table-row-expand',
+          'eventLabel' : rowName,
+          'eventValue' : undefined
+        });
+      }
     }
 
     function close(tab) {
@@ -520,6 +472,16 @@
       tab.parentNode.classList.remove('p-table--open');
       tab.querySelector('.p-icon--contextual-menu').classList.remove('u-rotate');
       panel.setAttribute('aria-hidden', 'true');
+      if(panel.id.includes("row")){
+        const rowName = panel.id.split('-')[2]
+        dataLayer.push({
+          'event' : 'GAEvent',
+          'eventCategory' : 'Advantage',
+          'eventAction' : 'table-row-collapse',
+          'eventLabel' : rowName,
+          'eventValue' : undefined
+        });
+      }
     }
 
     function closeAll(table) {
@@ -534,18 +496,21 @@
 </script>
 
 <script>
-  var toggle = document.querySelector('#js-reveal-table');
-  if (toggle) {
-    var chevron = toggle.querySelector('.p-icon--contextual-menu');
-    if (chevron){
-      toggle.addEventListener('click', function(e) {
-        chevron.classList.toggle('u-rotate');
-        var content = document.querySelector('#' + this.getAttribute('aria-controls'));
-        content.classList.toggle('u-hide');
-      });
-    }
-  }
+  const prices = document.querySelectorAll('.js-format-price');
+  prices.forEach(price => {
+    const ammount = price.innerText.split(' ')[0];
+    const currency = price.innerText.split(' ')[1];
+    var formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: currency,
+    });
+
+    price.innerText = formatter.format(ammount)
+  });
 </script>
+
+<script src="{{ versioned_static('js/src/advantage/auto-renewal.js') }}" type="module" defer></script>
+<script src="{{ versioned_static('js/src/advantage/manage-subscription.js') }}" type="module" defer></script>
 
 
 {% with first_item="_ua_got_questions", second_item="_ua_legal", third_item="_ua_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}

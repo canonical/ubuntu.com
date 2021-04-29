@@ -124,6 +124,7 @@ function attachCTAevents() {
   document.addEventListener("click", (e) => {
     const isRenewalCTA = e.target.classList.contains("js-ua-renewal-cta");
     const isShopCTA = e.target.classList.contains("js-ua-shop-cta");
+
     const data = e.target.dataset;
 
     if (isRenewalCTA || isShopCTA) {
@@ -134,7 +135,7 @@ function attachCTAevents() {
       }
     }
 
-    if (currentTransaction.accountId && !isCustomerInfoSet) {
+    if (currentTransaction.accountId && !isCustomerInfoSet && !guestPurchase) {
       fetchCustomerInfo(currentTransaction.accountId);
     }
 
@@ -168,6 +169,7 @@ function attachCTAevents() {
           price: item.product.price.value,
           product_listing_id: item.listingID,
           quantity: parseInt(item.quantity),
+          period: item.product.period,
         });
       });
 
@@ -440,8 +442,9 @@ function applyRenewalTotals() {
 function fetchCustomerInfo(accountId) {
   getCustomerInfo(accountId)
     .then((res) => {
-      const { name, address } = res.customerInfo;
-      customerInfo = { ...customerInfo, name, address };
+      const name = res.data.accountInfo.name;
+      const address = res.data.customerInfo.address;
+      customerInfo = { ...res.customerInfo, name, address };
       setFormElements();
       isCustomerInfoSet = true;
     })
@@ -746,7 +749,8 @@ function handleGuestPaymentMethodResponse(data) {
   ensurePurchaseAccount(
     customerInfo.email,
     customerInfo.accountName,
-    paymentMethod.id
+    paymentMethod.id,
+    customerInfo.address.country
   ).then((data) => {
     if (data.code) {
       // an error was returned, most likely cause
@@ -827,6 +831,9 @@ function handleSuccessfulPayment(transaction) {
     const products = analyticsFriendlyProducts();
 
     purchaseEvent(purchaseInfo, products);
+
+    // Remove the product selection from the local storage
+    localStorage.removeItem("ua-subscribe-state");
   }
 
   disableProcessingState();

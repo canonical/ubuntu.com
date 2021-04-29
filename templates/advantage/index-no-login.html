@@ -1,0 +1,70 @@
+{% extends "advantage/base_advantage.html" %}
+
+{% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
+{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1K65n3NpZCh7EWDXKLhG31seGJ2jKbW6lqw3BwV2mlnU/edit#heading=h.nleu1cdig11l{% endblock meta_copydoc %}
+
+{% block content %}
+  <section class="p-strip--suru-topped">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="p-notification">
+          <p class="p-notification__response" role="status">
+            Are you using Ubuntu in production? <a href="/support/contact-us" class="p-notification__action js-invoke-modal">Join our free beta programme for Ubuntu Pro on prem&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
+        <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
+        <h5>
+          <a href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}" class="p-link"
+             onclick="dataLayer.push({
+                'event' : 'GAEvent',
+                'eventCategory' : 'Advantage',
+                'eventAction' : 'Authentication',
+                'eventLabel' : 'Sign in',
+                'eventValue' : undefined
+              });">
+            Sign in
+          </a>
+          to edit existing or add new subscriptions.
+        </h5>
+        <p>
+          <a href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" class="p-button--neutral">Sign up to Ubuntu Advantage</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-shallow">
+    <div class="row">
+      <div class="col-6">
+        <h2>Free for personal use</h2>
+        <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you're a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it's free on up to 50 machines.</p>
+        <p class="u-no-margin--bottom">
+          <span class="u-sv1"><small>Ubuntu 14.04 LTS machines can receive Extended Security Maintenance (ESM) updates and other Ubuntu Advantage benefits. By registering you agree to our <a href="/legal/ubuntu-advantage/personal">Terms of Service</a>.</small><br /></span>
+          <a href="/login" class="p-button--positive" onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Authentication',
+              'eventLabel' : 'Register',
+              'eventValue' : undefined
+            });">Register</a> to get your free subscription.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-shallow is-bordered">
+    <div class="row">
+      <h2>Plans for enterprise use</h2>
+      {% include "advantage/_table.html" %}
+    </div>
+  </section>
+
+{% endblock content %}

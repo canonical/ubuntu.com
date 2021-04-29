@@ -24,16 +24,67 @@ def login_required(func):
     return is_user_logged_in
 
 
-def store_maintenance(func):
-    """
-    Decorator that checks if the maintence mode is enabled
-    """
+def advantage_checks(check_list=None):
+    if check_list is None:
+        check_list = []
 
-    @functools.wraps(func)
-    def is_store_in_maintenance(*args, **kwargs):
-        if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
-            return flask.render_template("advantage/maintenance.html")
+    def advantage_checks_decorator(func):
+        @functools.wraps(func)
+        def check_advantage(*args, **kwargs):
+            if "is_maintenance":
+                if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
+                    return flask.render_template("advantage/maintenance.html")
 
-        return func(*args, **kwargs)
+            is_test_backend = flask.request.args.get("test_backend", False)
 
-    return is_store_in_maintenance
+            stripe_publishable_key = os.getenv(
+                "STRIPE_LIVE_PUBLISHABLE_KEY",
+                "pk_live_68aXqowUeX574aGsVck8eiIE",
+            )
+
+            api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+            if is_test_backend:
+                stripe_publishable_key = os.getenv(
+                    "STRIPE_TEST_PUBLISHABLE_KEY",
+                    "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
+                )
+                api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+
+            user_token = flask.session.get("authentication_token")
+            guest_token = flask.session.get("guest_authentication_token")
+
+            kwargs["test_backend"] = is_test_backend
+            kwargs["api_url"] = api_url
+            kwargs["stripe_publishable_key"] = stripe_publishable_key
+            kwargs["token"] = user_token or guest_token
+            kwargs["token_type"] = "Macaroon" if user_token else "Bearer"
+
+            if "view_need_user" in check_list and not user_info(flask.session):
+                if flask.request.path != "/advantage":
+                    return flask.redirect("/advantage")
+
+                return flask.render_template(
+                    "advantage/index-no-login.html",
+                    is_test_backend=is_test_backend,
+                )
+
+            if "need_user" in check_list:
+                if not user_info(flask.session):
+                    return (
+                        flask.jsonify({"error": "authentication required"}),
+                        401,
+                    )
+
+            if "need_user_or_guest" in check_list:
+                if not user_info(flask.session) and not guest_token:
+                    return (
+                        flask.jsonify({"error": "authentication required"}),
+                        401,
+                    )
+
+            return func(*args, **kwargs)
+
+        return check_advantage
+
+    return advantage_checks_decorator

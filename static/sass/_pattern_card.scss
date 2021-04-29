@@ -63,9 +63,29 @@
 }
 
 @mixin ubuntu-card-radio {
-  .row--5-col {
+  .radio-wrapper--staggering {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.5rem;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      display: flex;
+      > div {
+        flex-grow: 1;
+        flex-basis: 0;
+      }
+    }
+  }
+
+  .radio-wrapper--stacking {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 1.5rem;
+    }
   }
 
   .p-card--radio {
@@ -82,21 +102,21 @@
       background-color: $color-light;
     }
 
-    .row--5-col & {
-      flex: 1 1 18%;
-      margin-right: 2.5%;
+    .p-card__title {
+      &--is-new {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-      @media only screen and (max-width: $breakpoint-medium - 1) {
-        flex: 0 0 49%;
-        margin-right: 2%;
-
-        &:nth-child(even) {
-          margin-right: 0;
+        &::after {
+          content: "New";
+          font-size: 1rem;
+          display: inline-block;
+          padding: 0 0.5rem;
+          color: white;
+          border-radius: 2px;
+          background-color: #0e8420;
         }
-      }
-
-      &:last-child {
-        margin-right: 0;
       }
     }
 
@@ -114,11 +134,14 @@
 
       & + label {
         background-color: transparent;
-        margin: 0.5rem auto;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
         padding: 0;
         position: initial;
         text-align: center;
         width: 100%;
+        max-width: none;
       }
 
       & + label::after {
@@ -140,7 +163,121 @@
 
       &:focus + label::before {
         border: 0.1875rem solid #2e96ff;
+        outline: none;
       }
+    }
+  }
+
+  .p-card--radio--version {
+    @extend .p-card--radio;
+    padding: 3rem 1rem;
+
+    h4 {
+      margin: 0;
+    }
+
+    &.is-selected {
+      background-color: $color-light;
+      position: relative;
+      overflow: visible;
+
+      // Arrow
+      @media (min-width: $breakpoint-medium) {
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          height: 2rem;
+          width: 2rem;
+          left: calc(50% - 1rem);
+          bottom: -41px;
+          background: $color-light;
+          border-left: solid 1px $color-mid-light;
+          border-top: solid 1px $color-mid-light;
+          pointer-events: none;
+          transform: rotate(45deg) skew(-10deg, -10deg);
+          z-index: 5;
+        }
+      }
+      @media (min-width: $breakpoint-x-large) {
+        &::after {
+          bottom: -46px;
+        }
+      }
+    }
+  }
+
+  .p-card--radio--feature {
+    @extend .p-card--radio;
+
+    [type="radio"] {
+      & + label {
+        text-align: left;
+        height: 100%;
+      }
+    }
+
+    span {
+      position: relative;
+      padding-left: 2rem;
+      margin-top: auto;
+
+      &::before,
+      &::after {
+        position: absolute;
+        content: "";
+        transition-duration: 0.333s;
+        transition-property: background-color, border-color;
+        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        position: absolute;
+        border-radius: 50%;
+        background: white;
+      }
+
+      &::before {
+        height: 1rem;
+        width: 1rem;
+        margin-right: 1rem;
+        border-radius: 50%;
+        border: solid 1px #0000008f;
+        left: 0;
+        outline-offset: 1px;
+        top: 0.2rem;
+      }
+      &::after {
+        height: 0.375rem;
+        left: 0.3125rem;
+        top: 0.5rem;
+        width: 0.375rem;
+      }
+    }
+
+    &.is-selected span::before {
+      background-color: #06c;
+      border-color: #06c;
+    }
+  }
+
+  .p-card--radio--support {
+    @extend .p-card--radio;
+
+    > label {
+      font-weight: 400;
+
+      > small {
+        font-weight: normal;
+      }
+    }
+
+    > img {
+      margin: 0 auto;
+      max-height: none;
+      height: 60px;
+      width: 60px;
+    }
+
+    > p {
+      text-align: center;
     }
   }
 }

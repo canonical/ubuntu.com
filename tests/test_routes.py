@@ -139,7 +139,8 @@ class TestRoutes(VCRTestCase):
             }
             s["authentication_token"] = "test_token"
 
-        self.assertEqual(self.client.get("/advantage").status_code, 200)
+        # if user has unauthorized token we remove the cookie and reload page
+        self.assertEqual(self.client.get("/advantage").status_code, 302)
 
     def test_ceph(self):
         """
