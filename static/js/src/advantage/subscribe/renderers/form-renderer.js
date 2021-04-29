@@ -145,7 +145,7 @@ const imgUrl = {
 
 function renderSummary(state) {
   const billing = state.billing;
-  const hasMonthly = state.hasMonthly;
+  const hasMultiplePeriods = state.hasMultiplePeriods;
   const type = state.type;
   const quantity = state.quantity;
   const summarySection = form.querySelector("#summary-section");
@@ -185,7 +185,7 @@ function renderSummary(state) {
     buyButton.dataset.previousPurchaseId = previous_purchase_id;
   }
 
-  if (hasMonthly) {
+  if (hasMultiplePeriods) {
     billingSection.classList.remove("u-hide");
   } else {
     billingSection.classList.add("u-hide");

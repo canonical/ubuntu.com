@@ -22,7 +22,7 @@ const initialFormState = {
       advanced: 127500,
     },
   },
-  hasMonthly: false,
+  hasMultiplePeriods: false,
 };
 
 const prefixMap = {
@@ -31,7 +31,7 @@ const prefixMap = {
   "infra+apps": "uaia",
 };
 
-function hasMonthly(productID) {
+function hasMultiplePeriods(productID) {
   let numberOfPeriods = 0;
   productsArray.forEach((product) => {
     if (product[1].productID === productID) {
@@ -130,7 +130,7 @@ const formSlice = createSlice({
         state.support = "essential";
       }
       state.product = getProduct(state);
-      state.hasMonthly = hasMonthly(state.product.productID);
+      state.hasMultiplePeriods = hasMultiplePeriods(state.product.productID);
     },
     changeVersion(state, action) {
       state.version = action.payload;
@@ -152,7 +152,7 @@ const formSlice = createSlice({
         state.billing = "yearly";
       }
       state.product = getProduct(state);
-      state.hasMonthly = hasMonthly(state.product.productID);
+      state.hasMultiplePeriods = hasMultiplePeriods(state.product.productID);
     },
     changeSupport(state, action) {
       state.support = action.payload;
@@ -160,7 +160,7 @@ const formSlice = createSlice({
         state.billing = "yearly";
       }
       state.product = getProduct(state);
-      state.hasMonthly = hasMonthly(state.product.productID);
+      state.hasMultiplePeriods = hasMultiplePeriods(state.product.productID);
     },
     changeQuantity(state, action) {
       if (action.payload >= 1) {
@@ -170,7 +170,7 @@ const formSlice = createSlice({
     changeBilling(state, action) {
       state.billing = action.payload;
       state.product = getProduct(state);
-      state.hasMonthly = hasMonthly(state.product.productID);
+      state.hasMultiplePeriods = hasMultiplePeriods(state.product.productID);
     },
   },
 });
