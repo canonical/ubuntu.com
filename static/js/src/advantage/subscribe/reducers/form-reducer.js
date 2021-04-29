@@ -1,11 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadState } from "../../../utils/persitState";
+
+const isSmallVP =
+  Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) <
+  875;
+
+const productsArray = Object.entries(window.productList);
 
 const initialFormState = {
   type: "physical",
   version: "18.04",
   feature: "infra",
   support: "unset",
-  quantity: 1,
+  quantity: isSmallVP ? 0 : 1,
   billing: "yearly",
   product: {
     ok: false,
@@ -15,6 +22,7 @@ const initialFormState = {
       advanced: 127500,
     },
   },
+  periods: [],
 };
 
 const prefixMap = {
@@ -23,7 +31,15 @@ const prefixMap = {
   "infra+apps": "uaia",
 };
 
-const productsArray = Object.entries(window.productList);
+function getProductPeriods(productID) {
+  const productPeriods = [];
+  productsArray.forEach((product) => {
+    if (product[1].productID === productID) {
+      productPeriods.push(product[1].period);
+    }
+  });
+  return productPeriods;
+}
 
 function matchingProduct(testItem, selectedProductID, selectedBillingPeriod) {
   if (
@@ -41,7 +57,10 @@ function getProductByID(productID, billing) {
     const listingProduct = product[1];
     listingProduct.id = product[0];
     if (matchingProduct(listingProduct, productID, billing)) {
-      selectedProduct = { ...listingProduct, ok: true };
+      selectedProduct = {
+        ...listingProduct,
+        ok: true,
+      };
       return;
     }
   });
@@ -96,7 +115,7 @@ function getProduct(state) {
 
 const formSlice = createSlice({
   name: "form",
-  initialState: initialFormState,
+  initialState: loadState("ua-subscribe-state", "form", initialFormState),
   reducers: {
     changeType(state, action) {
       state.type = action.payload;
@@ -111,12 +130,16 @@ const formSlice = createSlice({
         state.support = "essential";
       }
       state.product = getProduct(state);
+      state.periods = getProductPeriods(state.product.productID);
     },
     changeVersion(state, action) {
       state.version = action.payload;
     },
     changeFeature(state, action) {
-      state.feature = action.payload;
+      const urlParams = new URLSearchParams(window.location.search);
+      const isAppsEnabled = urlParams.get("esm_apps") === "true";
+      state.feature = isAppsEnabled ? action.payload : "infra"; //if ESM Apps is disabled we default to infra
+
       if (
         action.payload === "apps" &&
         state.type === "desktop" &&
@@ -129,6 +152,7 @@ const formSlice = createSlice({
         state.billing = "yearly";
       }
       state.product = getProduct(state);
+      state.periods = getProductPeriods(state.product.productID);
     },
     changeSupport(state, action) {
       state.support = action.payload;
@@ -136,6 +160,7 @@ const formSlice = createSlice({
         state.billing = "yearly";
       }
       state.product = getProduct(state);
+      state.periods = getProductPeriods(state.product.productID);
     },
     changeQuantity(state, action) {
       if (action.payload >= 1) {
@@ -145,6 +170,7 @@ const formSlice = createSlice({
     changeBilling(state, action) {
       state.billing = action.payload;
       state.product = getProduct(state);
+      state.periods = getProductPeriods(state.product.productID);
     },
   },
 });

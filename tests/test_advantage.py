@@ -112,6 +112,7 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
             email="picard@enterprise",
             account_name="jeanluc",
             payment_method_id="pmid",
+            country="BR",
         )
         self.assertEqual(resp, {"ok": True})
         self.assertEqual(
@@ -122,6 +123,7 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
                     "defaultPaymentMethod": {"Id": "pmid"},
                     "email": "picard@enterprise",
                     "name": "jeanluc",
+                    "address": {"country": "BR"},
                 },
                 "method": "post",
                 "params": None,
@@ -143,6 +145,7 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
                     "defaultPaymentMethod": {"Id": ""},
                     "email": "",
                     "name": "",
+                    "address": {"country": ""},
                 },
                 "method": "post",
                 "params": None,

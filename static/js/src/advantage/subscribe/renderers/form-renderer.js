@@ -68,10 +68,19 @@ function renderPublicClouds(state, sections) {
 }
 
 function renderFeature(state) {
-  const supportSection = form.querySelector(
+  const featureSection = form.querySelector(
     ".js-form-section[data-step=feature]"
   );
-  const radios = supportSection.querySelectorAll(".js-radio");
+  const radios = featureSection.querySelectorAll(".js-radio");
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const isAppsEnabled = urlParams.get("esm_apps") === "true";
+
+  if (isAppsEnabled) {
+    featureSection.classList.remove("u-hide");
+  } else {
+    featureSection.classList.add("u-hide");
+  }
 
   // Disable infra + apps if desktop is selected
   if (state.type === "desktop") {
@@ -92,7 +101,7 @@ function setSupportCost(state, support) {
   const element = form.querySelector(`#${support}-support-costs`);
   const value = state.product.supportPriceRange[support];
   element.innerHTML = value
-    ? `${formatter.format(value / 100)} per machine per year`
+    ? `+${formatter.format(value / 100)} per machine per year`
     : "";
 }
 
@@ -123,7 +132,9 @@ function renderSupport(state) {
 function renderQuantity(state) {
   const quantity = state.quantity;
   const quantityInput = form.querySelector("#quantity-input");
-  quantityInput.value = quantity;
+  if (quantityInput !== document.activeElement) {
+    quantityInput.value = quantity;
+  }
 }
 
 const imgUrl = {
@@ -134,14 +145,16 @@ const imgUrl = {
 
 function renderSummary(state) {
   const billing = state.billing;
+  const periods = state.periods;
   const type = state.type;
   const quantity = state.quantity;
   const summarySection = form.querySelector("#summary-section");
   const saveMessage = summarySection.querySelector("#summary-save-with-annual");
   const billingSection = summarySection.querySelector(".js-summary-billing");
+  const billingSelect = summarySection.querySelector("select#billing-period");
   const buyButton = summarySection.querySelector(".js-ua-shop-cta");
 
-  if (!state.product.ok) {
+  if (!state.product.ok || quantity <= 0) {
     summarySection.classList.add("p-shop-cart--hidden");
     buyButton.classList.add("u-disable");
   } else {
@@ -152,13 +165,13 @@ function renderSummary(state) {
     const quantityElement = summarySection.querySelector(
       "#summary-plan-quantity"
     );
-    const price = state.product.price.value / 100;
+    const price = state.product.price.value;
 
     summarySection.classList.remove("p-shop-cart--hidden");
     quantityElement.innerHTML = `${quantity}x`;
     image.setAttribute("src", imgUrl[type]);
     title.innerHTML = state.product.name;
-    costElement.innerHTML = `${formatter.format(price * quantity)} / ${
+    costElement.innerHTML = `${formatter.format((price / 100) * quantity)} / ${
       billing === "monthly" ? "month" : "year"
     }`;
 
@@ -173,11 +186,19 @@ function renderSummary(state) {
     buyButton.dataset.previousPurchaseId = previous_purchase_id;
   }
 
-  // Monthlty is only available for infra and essential
-  if (state.feature !== "infra" || state.support !== "essential") {
-    billingSection.classList.add("u-hide");
-  } else {
+  if (periods.length > 1) {
     billingSection.classList.remove("u-hide");
+    let options = "";
+    periods.forEach((period) => {
+      if (period === "monthly") {
+        options += `<option value="monthly">Monthly billing</option>`;
+      } else if (period === "yearly") {
+        options += `<option value="yearly">Annual billing</option>`;
+      }
+    });
+    billingSelect.innerHTML = options;
+  } else {
+    billingSection.classList.add("u-hide");
   }
 
   if (billing === "yearly") {
@@ -186,7 +207,6 @@ function renderSummary(state) {
     saveMessage.classList.remove("u-hide");
   }
 
-  const billingSelect = form.querySelector("#billing-period");
   billingSelect.value = billing;
 }
 

@@ -35,6 +35,7 @@ function cancelSubscription(id, VPSize) {
     productListingId,
     previousPurchaseId,
   } = cancelSubscriptionButton.dataset;
+  const confirmCancelButton = document.querySelector(`#confirmCancelButton`);
 
   dataLayer.push({
     event: "GAEvent",
@@ -47,7 +48,7 @@ function cancelSubscription(id, VPSize) {
   handleAPICall(
     cancelContract,
     [accountId, previousPurchaseId, productListingId],
-    cancelSubscriptionButton
+    confirmCancelButton
   );
 }
 
@@ -98,6 +99,7 @@ function createModal(id, VPSize) {
   };
 
   const confirmCancelButton = document.createElement("button");
+  confirmCancelButton.id = "confirmCancelButton";
   confirmCancelButton.classList.add("p-button--negative");
   confirmCancelButton.disabled = true;
   confirmCancelButton.textContent = "Yes, cancel subscription";
@@ -220,19 +222,11 @@ function handleChange(e, id, VPSize) {
 
   const { min, max } = e.target;
 
-  if (newValue < min) {
-    newValue = Number.parseInt(min);
-    e.target.value = min;
-  }
-
-  if (newValue > max) {
-    newValue = Number.parseInt(max);
-    e.target.value = max;
-  }
+  const valid = newValue >= min && newValue <= max;
 
   const deltaMachines = newValue - defaultValue;
 
-  if (deltaMachines !== 0) {
+  if (deltaMachines !== 0 && !isNaN(newValue) && valid) {
     resizeSummary.classList.remove("u-hide");
     newPayment.classList.remove("u-hide");
     updateButton.disabled = false;
@@ -268,6 +262,29 @@ function handleChange(e, id, VPSize) {
   }
 }
 
+function handleBlur(e, id, VPSize) {
+  const defaultValue = Number.parseInt(e.target.defaultValue);
+  let newValue = Number.parseInt(e.target.value);
+
+  const { min, max } = e.target;
+
+  if (newValue < min) {
+    newValue = Number.parseInt(min);
+    e.target.value = min;
+  }
+
+  if (newValue > max) {
+    newValue = Number.parseInt(max);
+    e.target.value = max;
+  }
+
+  if (isNaN(newValue)) {
+    e.target.value = defaultValue;
+  }
+
+  handleChange(e, id, VPSize);
+}
+
 function handleChangeClick() {
   const id = this.dataset.id;
   const VPSize = this.dataset.viewport;
@@ -296,6 +313,10 @@ function handleChangeClick() {
 
   resizeField.oninput = (e) => {
     handleChange(e, id, VPSize);
+  };
+
+  resizeField.onblur = (e) => {
+    handleBlur(e, id, VPSize);
   };
 
   cancelChangesButton.onclick = () => {

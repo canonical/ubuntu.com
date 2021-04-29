@@ -7,6 +7,7 @@ import os
 import re
 
 # Packages
+import dateutil
 import feedparser
 import flask
 import gnupg
@@ -62,6 +63,65 @@ def _build_mirror_list():
                 )
 
     return mirror_list
+
+
+def sixteen_zero_four():
+    host = "https://ubuntu.com"
+    total_notices_issued = "-"
+    total_cves_issued = "-"
+    latest_notices = []
+
+    try:
+        response = session.request(
+            method="GET",
+            url=f"{host}/security/notices.json?release=xenial&limit=1",
+        )
+
+        total_notices_issued = response.json().get("total_results")
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+
+    try:
+        response = session.request(
+            method="GET",
+            url=(
+                f"{host}/security/cves.json"
+                f"?version=xenial&status=released&limit=1"
+            ),
+        )
+
+        total_cves_issued = response.json().get("total_results")
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+
+    try:
+        response = session.request(
+            method="GET",
+            url=f"{host}/security/notices.json?release=xenial&limit=5",
+        )
+
+        latest_notices = [
+            {
+                "id": notice.get("id"),
+                "title": notice.get("title"),
+                "date": dateutil.parser.parse(
+                    notice.get("published")
+                ).strftime("%d %B %Y"),
+                "summary": notice.get("summary"),
+            }
+            for notice in response.json().get("notices")
+        ]
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+
+    context = {
+        "total_patches_applied": 69,  # hard-coded for now
+        "total_notices_issued": f"{total_notices_issued:,}",
+        "total_cves_issued": f"{total_cves_issued:,}",
+        "latest_notices": latest_notices,
+    }
+
+    return flask.render_template("16-04/index.html", **context)
 
 
 def show_template(filename):
@@ -389,6 +449,18 @@ def search_snaps():
         {
             "results": search_response.get("results", {}),
             "architecture": architecture,
+        }
+    )
+
+
+def account_query():
+    """
+    A JSON endpoint to request login status
+    """
+
+    return flask.jsonify(
+        {
+            "account": user_info(flask.session),
         }
     )
 

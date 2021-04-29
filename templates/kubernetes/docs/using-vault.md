@@ -64,7 +64,7 @@ juju deploy charmed-kubernetes --overlay ./vault-pki-overlay.yaml
 
 Once the deployment settles, you will notice that several applications are in a
 `blocked` state in **Juju**, with **Vault** indicating that it needs to be initialised
-and unsealed. To unseal **Vault**, you can read [the guide][vault-guide-unseal] for
+and unsealed. To unseal **Vault**, you can read the [vault charm documentation][vault-charm-unseal] for
 in-depth instructions (you may also need to [expose][] **Vault**), or you can use
 the **Vault** client already on the deployed unit with the following steps:
 
@@ -231,7 +231,7 @@ and the root token you generated previously.
 [expose]: https://docs.jujucharms.com/stable/en/charms-deploying#exposing-deployed-applications
 [hacluster]: https://jujucharms.com/hacluster/
 [vault-guide-csr]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
-[vault-guide-unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#initialize-and-unseal-vault
+[vault-charm-unseal]: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md#post-deployment-tasks
 [csr]: https://en.wikipedia.org/wiki/Certificate_signing_request
 [leadership]: https://discourse.jujucharms.com/t/implementing-leadership/1124
 [cdk-bundle]: https://jujucharms.com/charmed-kubernetes

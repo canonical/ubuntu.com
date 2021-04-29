@@ -304,6 +304,7 @@ class UAContractsAPI:
         email: str = "",
         account_name: str = "",
         payment_method_id: str = "",
+        country: str = "",
     ) -> dict:
         try:
             response = self._request(
@@ -313,6 +314,7 @@ class UAContractsAPI:
                     "email": email,
                     "name": account_name,
                     "defaultPaymentMethod": {"Id": payment_method_id},
+                    "address": {"country": country},
                 },
             )
         except HTTPError as err:

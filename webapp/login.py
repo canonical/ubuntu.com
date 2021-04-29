@@ -1,6 +1,3 @@
-# Standard library
-from urllib.parse import quote, unquote
-
 # Packages
 import flask
 import flask_openid
@@ -104,16 +101,12 @@ def after_login(resp):
 
 
 def logout():
-    return_to = flask.request.args.get("return_to") or flask.request.url_root
+    return_to = flask.request.args.get("return_to") or flask.request.path
 
-    # Make sure return_to is URL encoded
-    if return_to == unquote(return_to):
-        return_to = quote(return_to, safe="")
+    # Protect against redirect loop if return_to is logout
+    if return_to == "/logout":
+        return_to = "/"
 
     empty_session(flask.session)
 
-    login_url = flask.current_app.config["CANONICAL_LOGIN_URL"]
-
-    return flask.redirect(
-        f"{login_url}/+logout?return_to={return_to}&return_now=True"
-    )
+    return flask.redirect(return_to)

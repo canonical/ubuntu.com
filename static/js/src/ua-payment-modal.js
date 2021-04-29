@@ -749,7 +749,8 @@ function handleGuestPaymentMethodResponse(data) {
   ensurePurchaseAccount(
     customerInfo.email,
     customerInfo.accountName,
-    paymentMethod.id
+    paymentMethod.id,
+    customerInfo.address.country
   ).then((data) => {
     if (data.code) {
       // an error was returned, most likely cause
@@ -830,6 +831,9 @@ function handleSuccessfulPayment(transaction) {
     const products = analyticsFriendlyProducts();
 
     purchaseEvent(purchaseInfo, products);
+
+    // Remove the product selection from the local storage
+    localStorage.removeItem("ua-subscribe-state");
   }
 
   disableProcessingState();

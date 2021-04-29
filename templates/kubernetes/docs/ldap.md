@@ -97,7 +97,7 @@ juju trust openstack-integrator
 Finally add a relation between `kubernetes-master` and `openstack-integrator`
 
 ```bash
-juju add-relation kubernetes-master:keystone-credentials openstack-integrator:keystone-credentials
+juju add-relation kubernetes-master:keystone-credentials openstack-integrator:credentials
 ```
 
 ## Fetch the Keystone script

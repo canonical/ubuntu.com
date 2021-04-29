@@ -1,26 +1,12 @@
-module.exports = {
+let esbuild = require("esbuild");
+
+let entries = {
   contributions: "./static/js/src/contributions.js",
   "desktop-statistics": "./static/js/src/desktop-statistics.js",
-  tutorials: [
-    "./static/js/src/tutorial-list.js",
-    "./static/js/src/tutorial.js",
-  ],
+  tutorials: "./static/js/src/tutorials.js",
   forms: "./static/js/src/forms.js",
   "image-download": "./static/js/src/image-download.js",
-  main: [
-    "url-polyfill",
-    "url-search-params-polyfill",
-    "./static/js/src/polyfills.js",
-    "./static/js/src/contextual-menu.js",
-    "./static/js/src/accordion.js",
-    "./static/js/src/dynamic-forms.js",
-    "./static/js/src/core.js",
-    "./static/js/src/navigation.js",
-    "./static/js/src/form-access.js",
-    "./static/js/src/bg-form-submit.js",
-    "./static/js/src/scratch.js",
-    "./static/js/src/smartquotes.js",
-  ],
+  main: "./static/js/src/main.js",
   "release-chart": "./static/js/src/release-chart.js",
   tabotronic: "./static/js/src/tabotronic.js",
   appliance: "./static/js/src/appliance.js",
@@ -35,3 +21,19 @@ module.exports = {
   "ua-entitlements-callout":
     "./static/js/src/advantage/entitlements-callout.js",
 };
+
+for (const [key, value] of Object.entries(entries)) {
+  const options = {
+    entryPoints: [value],
+    bundle: true,
+    minify: true,
+    sourcemap: true,
+    outfile: "static/js/dist/" + key + ".js",
+    target: ["chrome58", "firefox57", "safari11", "edge16"],
+    define: { "process.env.NODE_ENV": '"production"' },
+  };
+
+  esbuild.build(options).then((result) => {
+    console.log("Built " + key + ".js");
+  });
+}
