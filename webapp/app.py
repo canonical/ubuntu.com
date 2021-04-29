@@ -742,7 +742,7 @@ app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 openstack_docs = Docs(
     parser=DocParser(
         api=discourse_api,
-        index_topic_id=20990,
+        index_topic_id=20991,
         url_prefix="/openstack/docs",
     ),
     document_template="openstack/docs/document.html",
