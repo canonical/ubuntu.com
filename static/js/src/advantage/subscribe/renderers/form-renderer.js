@@ -145,11 +145,13 @@ const imgUrl = {
 
 function renderSummary(state) {
   const billing = state.billing;
+  const periods = state.periods;
   const type = state.type;
   const quantity = state.quantity;
   const summarySection = form.querySelector("#summary-section");
   const saveMessage = summarySection.querySelector("#summary-save-with-annual");
   const billingSection = summarySection.querySelector(".js-summary-billing");
+  const billingSelect = summarySection.querySelector("select#billing-period");
   const buyButton = summarySection.querySelector(".js-ua-shop-cta");
 
   if (!state.product.ok || quantity <= 0) {
@@ -184,11 +186,19 @@ function renderSummary(state) {
     buyButton.dataset.previousPurchaseId = previous_purchase_id;
   }
 
-  // Monthlty is only available for infra and essential
-  if (state.feature !== "infra" || state.support !== "essential") {
-    billingSection.classList.add("u-hide");
-  } else {
+  if (periods.length > 1) {
     billingSection.classList.remove("u-hide");
+    let options = "";
+    periods.forEach((period) => {
+      if (period === "monthly") {
+        options += `<option value="monthly">Monthly billing</option>`;
+      } else if (period === "yearly") {
+        options += `<option value="yearly">Annual billing</option>`;
+      }
+    });
+    billingSelect.innerHTML = options;
+  } else {
+    billingSection.classList.add("u-hide");
   }
 
   if (billing === "yearly") {
@@ -197,7 +207,6 @@ function renderSummary(state) {
     saveMessage.classList.remove("u-hide");
   }
 
-  const billingSelect = form.querySelector("#billing-period");
   billingSelect.value = billing;
 }
 
