@@ -22,7 +22,7 @@ const initialFormState = {
       advanced: 127500,
     },
   },
-  hasMonthly: false,
+  periods: [],
 };
 
 const prefixMap = {
@@ -31,14 +31,14 @@ const prefixMap = {
   "infra+apps": "uaia",
 };
 
-function hasMonthly(productID) {
-  let containsMonthly = false;
+function getProductPeriods(productID) {
+  const productPeriods = [];
   productsArray.forEach((product) => {
-    if (product[1].productID === productID && product[1].period == "monthly") {
-      containsMonthly = true;
+    if (product[1].productID === productID) {
+      productPeriods.push(product[1].period);
     }
   });
-  return containsMonthly;
+  return productPeriods;
 }
 
 function matchingProduct(testItem, selectedProductID, selectedBillingPeriod) {
@@ -130,7 +130,7 @@ const formSlice = createSlice({
         state.support = "essential";
       }
       state.product = getProduct(state);
-      state.hasMonthly = hasMonthly(state.product.productID);
+      state.periods = getProductPeriods(state.product.productID);
     },
     changeVersion(state, action) {
       state.version = action.payload;
@@ -152,7 +152,7 @@ const formSlice = createSlice({
         state.billing = "yearly";
       }
       state.product = getProduct(state);
-      state.hasMonthly = hasMonthly(state.product.productID);
+      state.periods = getProductPeriods(state.product.productID);
     },
     changeSupport(state, action) {
       state.support = action.payload;
@@ -160,7 +160,7 @@ const formSlice = createSlice({
         state.billing = "yearly";
       }
       state.product = getProduct(state);
-      state.hasMonthly = hasMonthly(state.product.productID);
+      state.periods = getProductPeriods(state.product.productID);
     },
     changeQuantity(state, action) {
       if (action.payload >= 1) {
@@ -170,7 +170,7 @@ const formSlice = createSlice({
     changeBilling(state, action) {
       state.billing = action.payload;
       state.product = getProduct(state);
-      state.hasMonthly = hasMonthly(state.product.productID);
+      state.periods = getProductPeriods(state.product.productID);
     },
   },
 });

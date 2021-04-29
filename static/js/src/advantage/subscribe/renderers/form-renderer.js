@@ -5,6 +5,10 @@ const formatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
+String.prototype.capitalize = function () {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
 const form = document.querySelector(".js-shop-form");
 
 function renderRadios(state, sections) {
@@ -145,12 +149,13 @@ const imgUrl = {
 
 function renderSummary(state) {
   const billing = state.billing;
-  const hasMonthly = state.hasMonthly;
+  const periods = state.periods;
   const type = state.type;
   const quantity = state.quantity;
   const summarySection = form.querySelector("#summary-section");
   const saveMessage = summarySection.querySelector("#summary-save-with-annual");
   const billingSection = summarySection.querySelector(".js-summary-billing");
+  const billingSelect = summarySection.querySelector("select#billing-period");
   const buyButton = summarySection.querySelector(".js-ua-shop-cta");
 
   if (!state.product.ok || quantity <= 0) {
@@ -185,8 +190,13 @@ function renderSummary(state) {
     buyButton.dataset.previousPurchaseId = previous_purchase_id;
   }
 
-  if (hasMonthly) {
+  if (periods.length > 1) {
     billingSection.classList.remove("u-hide");
+    let options = "";
+    periods.forEach((period) => {
+      options += `<option value="${period}">${period.capitalize()} billing</option>`;
+    });
+    billingSelect.innerHTML = options;
   } else {
     billingSection.classList.add("u-hide");
   }
@@ -197,7 +207,6 @@ function renderSummary(state) {
     saveMessage.classList.remove("u-hide");
   }
 
-  const billingSelect = form.querySelector("#billing-period");
   billingSelect.value = billing;
 }
 
