@@ -88,7 +88,8 @@ def advantage_view(**kwargs):
 
             # If there are any pending purchase for a sub (active or locked)
             # we show the payment method warning.
-            payment_method_warning = subscription.get("pendingPurchases")
+            if subscription.get("pendingPurchases"):
+                payment_method_warning = subscription.get("pendingPurchases")
 
             previous_purchase_ids[period] = subscription.get("lastPurchaseID")
 
