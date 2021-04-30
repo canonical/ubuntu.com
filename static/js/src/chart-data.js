@@ -1127,7 +1127,7 @@ export var openStackReleases = [
   {
     startDate: new Date("2021-10-01T00:00:00"),
     endDate: new Date("2023-04-01T00:00:00"),
-    taskName: "OpenStack X",
+    taskName: "OpenStack Xena",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
@@ -1513,7 +1513,7 @@ export var openStackReleaseNames = [
   "OpenStack Y LTS",
   "Ubuntu 22.04 LTS",
   "OpenStack Y",
-  "OpenStack X",
+  "OpenStack Xena",
   "OpenStack Wallaby",
   "OpenStack Victoria",
   "OpenStack Ussuri LTS",
