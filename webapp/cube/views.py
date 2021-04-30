@@ -134,7 +134,7 @@ def cube_microcerts():
             "edx_register_url": (
                 f"{edx_api.base_url}/"
                 "auth/login/tpa-saml/"
-                "?auth_entry=register&next=%2F&idp=ubuntuone"
+                "?auth_entry=logins&next=%2F&idp=ubuntuone"
             ),
             "sso_user": sso_user,
             "certified_badge": certified_badge,
