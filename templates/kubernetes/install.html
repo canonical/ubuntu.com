@@ -12,13 +12,12 @@
     <div class="col-7">
       <h1>Install Kubernetes</h1>
       <p>
-        Canonical Kubernetes is pure upstream and works on any cloud, from bare metal to public and edge. Deploy single
-        node and multi-node clusters with Charmed Kubernetes and MicroK8s to support container orchestration, from
-        testing to production. Both distributions bring the latest innovations from the Kubernetes community within a
-        week of upstream release, allowing for time to learn, experiment and upskill.
+        Canonical Kubernetes is pure upstream and works on any cloud, from bare metal to public and edge. Deploy single node and multi-node clusters with Charmed Kubernetes and MicroK8s to support container orchestration, from testing to production. Both distributions bring the latest innovations from the Kubernetes community within a week of upstream release, allowing for time to learn, experiment and upskill.
       </p>
       <p>
-        <a class="p-button--positive" href="/kubernetes/install#get-in-touch">Get support for Kubernetes</a>
+        <a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">
+          Get support for Kubernetes
+        </a>
       </p>
     </div>
     <div class="col-5 u-align--center u-hide--small">
@@ -94,7 +93,7 @@
               loading="lazy"
               ) | safe
             }}
-          </td>        
+          </td>
         </tr>
         <tr>
           <td aria-label="Product"><a href="/kubernetes">Charmed Kubernetes</a></td>
@@ -121,7 +120,7 @@
               loading="lazy"
               ) | safe
             }}
-          </td>          
+          </td>
           <td class="u-align--center" aria-label="Managed Kubernetes">
             {{ image (
               url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
@@ -131,7 +130,7 @@
               loading="lazy"
               ) | safe
             }}
-          </td>        
+          </td>
         </tr>
         <tr>
           <td aria-label="Product">
@@ -189,7 +188,7 @@
     </table>
     <p><strong>(i).</strong> Use Ubuntu’s platform to run worker nodes on all public clouds (AKS, EKS, and GKE)</p>
     <p>
-      <a href="/kubernetes/contact-us?product=kubernetes-install">Looking for help running Kubernetes? Get in touch&nbsp;&rsaquo;</a>
+      <a class="js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Looking for help running Kubernetes? Get in touch&nbsp;&rsaquo;</a>
     </p>
   </div>
 </section>
@@ -312,7 +311,7 @@
         hi_def=True,
         loading="lazy"
         ) | safe
-      }}      
+      }}
     </a>
 
     <a id="tab-aws" href="#tab-aws__content" class="col-3 p-card p-tab u-align--center u-vertically-center js-tab-multi" role="tab" aria-selected="false">
@@ -366,7 +365,7 @@
     </div>
   </div>
 
-  
+
 
   <div class="row">
     <h1 class="p-heading--4">Multi-node, highly available Kubernetes with MicroK8s</h1>
