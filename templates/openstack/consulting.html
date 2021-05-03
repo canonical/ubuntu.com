@@ -118,7 +118,7 @@
     </div>
 
     <div class="row u-equal-height">
-      <div class="col-4 p-card u-align--center">
+      <div class="col-6 p-card u-align--center">
         <a href="/openstack/contact-us?product=foundation-cloud"  class="js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Talk to us', 'eventLabel' : 'Talk to us - get started', 'eventValue' : undefined });">
           {{
             image(
@@ -135,7 +135,7 @@
         <h4 class="u-no-margin--bottom"><a href="/openstack/contact-us?product=foundation-cloud"  class="js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Talk to us', 'eventLabel' : 'Talk to us - get started', 'eventValue' : undefined });">Talk to us&nbsp;&rsaquo;</a></h4>
       </div>
 
-      <div class="col-4 p-card u-align--center">
+      <div class="col-6 p-card u-align--center">
         <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf">
           {{
             image(
@@ -159,7 +159,9 @@
       <h2>Consulting, design and delivery pricing</h2>
       <p>Our consulting delivery package comes in two flavours &mdash; Private Cloud Build and Private Cloud Build Plus, with the latter offering more consulting time to evaluate and integrate a wider range of custom architectural possibilities.</p>
     </div>
-    {% with columns=2 %}{% include "shared/pricing/_openstack-packages.html" %}{% endwith %}
+
+    {% include "shared/pricing/_openstack-packages.html" %}
+    
     <div class="u-fixed-width">
       <p><a href="/openstack/contact-us?product=foundation-cloud" class="js-invoke-modal">For more information about services please contact us&nbsp;&rsaquo;</a></p>
     </div>
