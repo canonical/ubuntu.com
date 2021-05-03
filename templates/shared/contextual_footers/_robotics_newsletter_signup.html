@@ -1,0 +1,57 @@
+<div class="col-4 p-divider__block">
+  <h3 class="p-heading--four">Robotics newsletter</h3>
+  <!-- MARKETO FORM -->
+  <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1212" class="marketo-form">
+    <p>Receive regular updates from our Robotics newsletter.</p>
+    <ul class="p-list">
+      <li class="mktFormReq mktField p-list__item">
+        <label for="Email" class="mktoLabel contextual-footer__text--label">Your email address:</label>
+        <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
+      </li>
+      <li class="mktField mktLblRight p-list__item">
+        <span class="mktInput mktLblRight">
+          <input class="mktFormCheckbox" name="canonicalOptIn" id="canonicalOptIn" value="yes" type="checkbox" />
+          <label class="contextual-footer__text--label" for="canonicalOptIn">I agree to receive information about Canonical's products and services.</label>&nbsp;<span class="mktFormMsg"></span>
+        </span>
+      </li>
+
+      <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
+
+      <li class="p-list__item u-no-margin--top">
+        <p>
+          In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+        </p>
+      </li>
+      <li class="mktField p-list__item">
+        <button type="submit" class="mktoButton p-button--neutral">Submit</button>
+        <input type="hidden" name="formid" class="mktoField" value="1212">
+        <input type="hidden" name="formVid" class="mktoField" value="1212">
+        <input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335">
+        <input type="hidden" name="lpurl" class="mktoField " value="//pages.canonical.com/Insights-Subscription_Insights-Subscription-test.html?cr={creative}&kw={keyword}">
+        <input type="hidden" name="source" class="mktoField  mktoFormCol" value="ubuntu.com">
+        <input type="hidden" name="insightsrobotics" class="mktoField  mktoFormCol" value="Robotics">
+        <input type="hidden" name="returnURL" value="https://ubuntu.com/robotics/thank-you?product=newsletter" />
+        <input type="hidden" name="retURL" value="https://ubuntu.com/robotics/thank-you?product=newsletter" />
+        <input type="hidden" name="return_url" value="https://ubuntu.com/robotics/thank-you?product=newsletter" />
+        <input type="hidden" name="Consent_to_Processing__c" value="yes" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="gclid" class="mktoField" id="gclid" value="" />
+      </li>
+    </ul>
+  </form>
+
+  <!-- /MARKETO FORM -->
+</div>
+
+<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>
+<script>
+  $("#mktoForm_1212").validate({
+    errorPlacement: function(error, element) {
+      error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
+      error.appendTo( element.addClass( "p-form-validation__input" ));
+    },
+    errorElement: "span",
+    errorClass: "p-form-validation__message"
+  });
+</script>
