@@ -41,7 +41,7 @@ from webapp.context import (
 )
 
 from webapp.advantage.parser import UAContractsValidationError
-from webapp.cube.views import cube_home, cube_microcerts
+from webapp.cube.views import cube_home, cube_microcerts, is_authorized
 
 from webapp.views import (
     BlogCustomGroup,
@@ -762,6 +762,17 @@ app.add_url_rule(
 )
 
 openstack_docs.init_app(app)
+
+
+@app.before_request
+def cube_require_login_cube_study():
+    if flask.request.path.startswith("/cube/study"):
+        user = user_info(flask.session)
+        if not user:
+            return flask.redirect("/login?next=" + flask.request.path)
+
+        if not is_authorized(user):
+            flask.abort(403)
 
 
 @app.after_request
