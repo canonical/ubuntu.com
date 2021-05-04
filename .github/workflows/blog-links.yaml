@@ -1,8 +1,8 @@
-name: docs links on ubuntu.com/server/docs
+name: Blog Links
 
 on:
   schedule:
-    - cron: "0 13 * * 1"
+    - cron: "20 7 * * *"
 
 jobs:
   check-links:
@@ -15,8 +15,9 @@ jobs:
 
       - name: Run linkchecker
         run: |
-          linkchecker --check-extern --no-warnings https://ubuntu.com/server/docs \
-          	--no-follow-url '!https:\/\/ubuntu.com\/server\/docs' \
+          linkchecker --recursion-level=2 \
+          	--check-extern --no-warnings https://ubuntu.com/blog \
+          	--no-follow-url '!https:\/\/ubuntu.com\/blog' \
           	--ignore-url https://res.cloudinary.com \
           	--ignore-url q_auto \
           	--ignore-url fl_sanitize \
@@ -27,4 +28,4 @@ jobs:
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=docs
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=marketing-pub
