@@ -63,6 +63,7 @@ function handleUpdateClick(id, VPSize) {
     accountId,
     productListingId,
     previousPurchaseId,
+    billingPeriod,
   } = updateButton.dataset;
 
   dataLayer.push({
@@ -75,7 +76,13 @@ function handleUpdateClick(id, VPSize) {
 
   handleAPICall(
     resizeContract,
-    [accountId, previousPurchaseId, productListingId, resizeField.value],
+    [
+      accountId,
+      previousPurchaseId,
+      productListingId,
+      resizeField.value,
+      billingPeriod,
+    ],
     updateButton
   );
 }

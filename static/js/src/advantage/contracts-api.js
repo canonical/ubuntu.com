@@ -150,7 +150,8 @@ export async function resizeContract(
   accountId,
   previousPurchaseId,
   productId,
-  quantity
+  quantity,
+  period
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
@@ -165,7 +166,7 @@ export async function resizeContract(
     body: JSON.stringify({
       account_id: accountId,
       previous_purchase_id: previousPurchaseId,
-      period: "monthly",
+      period: period,
       products: [
         {
           product_listing_id: productId,
