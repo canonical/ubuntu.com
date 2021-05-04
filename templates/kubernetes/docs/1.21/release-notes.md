@@ -20,7 +20,7 @@ toc: False
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
-[https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1).
+[the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1).
 
 
 # 1.21
@@ -55,7 +55,7 @@ to easily determine what registry changes are needed prior to an upgrade.
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
-[https://launchpad.net/charmed-kubernetes/+milestone/1.21](https://launchpad.net/charmed-kubernetes/+milestone/1.21).
+[the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21).
 
 ## Notes and Known Issues
 
