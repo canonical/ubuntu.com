@@ -14,6 +14,16 @@ toc: False
 ---
 
 
+# 1.21+ck1 Bugfix release
+
+### May 04, 2021 - [charmed-kubernetes-655](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-655/archive/bundle.yaml)
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1).
+
+
 # 1.21
 
 ### April 15, 2021 - [charmed-kubernetes-632](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-632/archive/bundle.yaml)
@@ -46,9 +56,9 @@ to easily determine what registry changes are needed prior to an upgrade.
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
-[the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21).
+[https://launchpad.net/charmed-kubernetes/+milestone/1.21](https://launchpad.net/charmed-kubernetes/+milestone/1.21).
 
-## Notes and Known Issues
+## Notes / Known Issues
 
 - [LP 1920216](https://bugs.launchpad.net/operator-metallb/+bug/1920216) MetalLB
 speaker pod logs error with "selfLink was empty, can't make reference".
