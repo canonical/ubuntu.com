@@ -16,6 +16,9 @@ const initialFormState = {
   country: { value: "", validity: VALIDITY.PRISTINE },
   countryState: { value: "", validity: VALIDITY.PRISTINE },
   VATNumber: { value: "", validity: VALIDITY.PRISTINE },
+  defaultPaymentMethod: {
+    id: "",
+  },
   isGuest: true,
 };
 
@@ -47,6 +50,7 @@ const userInfoSlice = createSlice({
             postal_code: postalCode,
             state: countryState,
           },
+          defaultPaymentMethod: { id: paymentMethodId },
         },
       } = action.payload;
 
@@ -60,6 +64,9 @@ const userInfoSlice = createSlice({
         country: { value: country, validity: VALIDITY.VALID },
         countryState: { value: countryState, validity: VALIDITY.VALID },
         VATNumber: { value: "", validity: VALIDITY.VALID },
+        defaultPaymentMethod: {
+          id: paymentMethodId,
+        },
         isGuest: false,
       };
     },

@@ -1,4 +1,9 @@
-import { postGuestFreeTrial } from "../../contracts-api";
+import {
+  ensurePurchaseAccount,
+  postCustomerInfoToStripeAccount,
+  postGuestFreeTrial,
+  postLoggedInFreeTrial,
+} from "../../contracts-api";
 import {
   changePaymentCard,
   changeFreeTrial,
@@ -47,7 +52,7 @@ export function checkFormValidity(state) {
   const isOrganisationValid =
     state.form.buyingForMyself ||
     state.userInfo.organisation.validity === VALIDITY.VALID;
-  const isStateValid =
+  const isStateOrProvinceValid =
     !(state.userInfo.country === "US" || state.userInfo.country === "CA") ||
     state.userInfo.countryState.validity === VALIDITY.VALID;
 
@@ -59,7 +64,7 @@ export function checkFormValidity(state) {
     state.userInfo.city.validity === VALIDITY.VALID &&
     state.userInfo.country.validity === VALIDITY.VALID &&
     state.userInfo.postalCode.validity === VALIDITY.VALID &&
-    isStateValid
+    isStateOrProvinceValid
   ) {
     if (
       state.form.product.ok &&
@@ -89,6 +94,14 @@ export function checkFormValidity(state) {
 }
 
 function handleContinueClick(state) {
+  const address = {
+    city: state.userInfo.city.value,
+    country: state.userInfo.country.value,
+    line1: state.userInfo.street.value,
+    postal_code: state.userInfo.postalCode.value,
+    state: state.userInfo.countryState.value,
+  };
+
   switch (checkFormValidity(state)) {
     case "freeTrial":
       console.log("Free trial");
@@ -97,16 +110,54 @@ function handleContinueClick(state) {
           email: state.userInfo.email.value,
           account_name: state.userInfo.organisation.value,
           name: state.userInfo.name.value,
-          city: state.userInfo.city.value,
-          country: state.userInfo.country.value,
-          line1: state.userInfo.street.value,
-          postal_code: state.userInfo.postalCode.value,
-          state: state.userInfo.countryState.value,
-          product_listing_id: state.form.product.id,
+          address: address,
+          productListingId: state.form.product.id,
           quantity: state.form.quantity,
         });
       } else {
         //logged in purchase
+        ensurePurchaseAccount({
+          email: state.userInfo.email.value,
+          accountName: state.userInfo.organisation.value,
+          paymentMethodID: state.userInfo.defaultPaymentMethod.id,
+          country: state.userInfo.country.value,
+        }).then((data) => {
+          if (!data.ok) {
+            // an error was returned, most likely cause
+            // is that the user is trying to make a purchase
+            // with an email address belonging to an
+            // existing SSO account
+            console.error(data.error);
+          } else {
+            const accountID = data.accountID;
+            postCustomerInfoToStripeAccount({
+              paymentMethodID: state.userInfo.defaultPaymentMethod.id,
+              accountID: accountID,
+              address: address,
+              name: state.userInfo.name.value,
+              taxID: null,
+            }).then((data) => {
+              if (!data.ok) {
+                console.error(data.error);
+              } else {
+                // POST /advantage/post-trial
+                postLoggedInFreeTrial({
+                  accountID: accountID,
+                  name: state.userInfo.name.value,
+                  address: address,
+                  productListingId: state.form.product.id,
+                  quantity: state.form.quantity,
+                }).then((data) => {
+                  if (!data.ok) {
+                    console.error(data.error);
+                  } else {
+                    // window.location = `/advantage${window.location.search}`;
+                  }
+                });
+              }
+            });
+          }
+        });
       }
       break;
     case "purchase":

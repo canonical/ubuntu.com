@@ -12,12 +12,12 @@ export async function getPurchase(purchaseID) {
   return data;
 }
 
-export async function ensurePurchaseAccount(
+export async function ensurePurchaseAccount({
   email,
   accountName,
   paymentMethodID,
-  country
-) {
+  country,
+}) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/purchase-account${queryString}`, {
@@ -36,8 +36,12 @@ export async function ensurePurchaseAccount(
     }),
   });
 
-  let data = await response.json();
-  return data;
+  if (response.ok) {
+    const data = await response.json();
+    return { ok: true, ...data };
+  } else {
+    console.error(`${response.status} - ${response.statusText}`);
+  }
 }
 
 export async function getRenewal(renewalID) {
@@ -208,13 +212,13 @@ export async function postPurchasePreviewData(
   return data;
 }
 
-export async function postCustomerInfoToStripeAccount(
+export async function postCustomerInfoToStripeAccount({
   paymentMethodID,
   accountID,
   address,
   name,
-  taxID
-) {
+  taxID,
+}) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
 
   let response = await fetch(`/advantage/customer-info${queryString}`, {
@@ -234,8 +238,13 @@ export async function postCustomerInfoToStripeAccount(
     }),
   });
 
-  let data = await response.json();
-  return data;
+  if (response.ok) {
+    const data = await response.json();
+    return { ok: true, ...data };
+  } else {
+    console.error(`${response.status} - ${response.statusText}`);
+    return { ok: false };
+  }
 }
 
 export async function postCustomerInfoForPurchasePreview(
@@ -311,12 +320,8 @@ export async function postGuestFreeTrial({
   email,
   account_name,
   name,
-  city,
-  country,
-  line1,
-  postal_code,
-  state,
-  product_listing_id,
+  address,
+  productListingId,
   quantity,
 }) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
@@ -333,24 +338,59 @@ export async function postGuestFreeTrial({
       email: email,
       account_name: account_name,
       name: name,
-      address: {
-        city: city,
-        country: country,
-        line1: line1,
-        postal_code: postal_code,
-        state: state,
-      },
+      address: address,
       products: [
         {
-          product_listing_id: product_listing_id,
+          product_listing_id: productListingId,
           quantity: quantity,
         },
       ],
     }),
   });
 
-  let data = await response.json();
+  if (response.ok) {
+    const data = await response.json();
+    return { ok: true, ...data };
+  } else {
+    console.error(`${response.status} - ${response.statusText}`);
+    return { ok: false };
+  }
+}
 
-  console.log({ data });
-  return data;
+export async function postLoggedInFreeTrial({
+  accountID,
+  name,
+  address,
+  productListingId,
+  quantity,
+}) {
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test=backend=true"
+
+  let response = await fetch(`/advantage/post-trial${queryString}`, {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      account_id: accountID,
+      name: name,
+      address: address,
+      products: [
+        {
+          product_listing_id: productListingId,
+          quantity: quantity,
+        },
+      ],
+    }),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    return { ok: true, ...data };
+  } else {
+    console.error(`${response.status} - ${response.statusText}`);
+    return { ok: false };
+  }
 }
