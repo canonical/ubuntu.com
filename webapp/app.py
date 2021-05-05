@@ -110,10 +110,10 @@ from webapp.security.views import (
 )
 
 from webapp.certification.views import (
-    certification_home,
-    certification_model_details,
-    certification_hardware_details,
-    certification_component_details,
+    certified_home,
+    certified_model_details,
+    certified_hardware_details,
+    certified_component_details,
 )
 
 
@@ -770,18 +770,18 @@ app.add_url_rule(
 
 openstack_docs.init_app(app)
 
-app.add_url_rule("/certification", view_func=certification_home)
+app.add_url_rule("/certified", view_func=certified_home)
 app.add_url_rule(
-    "/certification/<canonical_id>",
-    view_func=certification_model_details,
+    "/certified/<canonical_id>",
+    view_func=certified_model_details,
 )
 app.add_url_rule(
-    "/certification/<canonical_id>/<release>",
-    view_func=certification_hardware_details,
+    "/certified/<canonical_id>/<release>",
+    view_func=certified_hardware_details,
 )
 app.add_url_rule(
-    "/certification/component/<component_id>",
-    view_func=certification_component_details,
+    "/certified/component/<component_id>",
+    view_func=certified_component_details,
 )
 
 

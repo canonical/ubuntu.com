@@ -11,11 +11,11 @@ from webapp.certification.helpers import get_download_url
 session = Session()
 talisker.requests.configure(session)
 api = CertificationAPI(
-    base_url="https://certification.canonical.com/api/v1", session=session
+    base_url="https://certified.canonical.com/api/v1", session=session
 )
 
 
-def certification_component_details(component_id):
+def certified_component_details(component_id):
 
     try:
         component = api.component_summary(component_id)
@@ -48,7 +48,7 @@ def certification_component_details(component_id):
     )
 
 
-def certification_hardware_details(canonical_id, release):
+def certified_hardware_details(canonical_id, release):
 
     try:
         models = api.certified_models(canonical_id=canonical_id)["objects"][0]
@@ -111,7 +111,7 @@ def certification_hardware_details(canonical_id, release):
     )
 
 
-def certification_model_details(canonical_id):
+def certified_model_details(canonical_id):
     models = api.certified_models(canonical_id=canonical_id)["objects"]
 
     if not models:
@@ -191,7 +191,7 @@ def certification_model_details(canonical_id):
     )
 
 
-def certification_home():
+def certified_home():
 
     certified_releases = api.certified_releases(limit="0")["objects"]
     certified_makes = api.certified_makes(limit="0")["objects"]
@@ -220,19 +220,19 @@ def certification_home():
             all_releases = sorted(all_releases, reverse=True)
 
         if int(release["desktops"]) > 0 or int(release["laptops"]) > 0:
-            release["path"] = f"/certification?form=Desktop&release={version}"
+            release["path"] = f"/certified?form=Desktop&release={version}"
             desktop_releases.append(release)
 
         if int(release["smart_core"] > 1):
             release[
                 "path"
-            ] = f"/certification?form=Ubuntu%20Core&release={version}"
+            ] = f"/certified?form=Ubuntu%20Core&release={version}"
             iot_releases.append(release)
 
         if int(release["soc"] > 1):
             release[
                 "path"
-            ] = f"/certification?form=Server%20SoC&release={version}"
+            ] = f"/certified?form=Server%20SoC&release={version}"
             soc_releases.append(release)
 
     for vendor in certified_makes:
@@ -243,15 +243,15 @@ def certification_home():
             all_vendors = sorted(all_vendors)
 
         if int(vendor["desktops"]) > 0 or int(vendor["laptops"]) > 0:
-            vendor["path"] = f"/certification?form=Desktop&vendor={make}"
+            vendor["path"] = f"/certified?form=Desktop&vendor={make}"
             desktop_vendors.append(vendor)
 
         if int(vendor["smart_core"] > 1):
-            vendor["path"] = f"/certification?form=Ubuntu%20Core&vendor={make}"
+            vendor["path"] = f"/certified?form=Ubuntu%20Core&vendor={make}"
             iot_vendors.append(vendor)
 
         if int(vendor["soc"] > 1):
-            vendor["path"] = f"/certification?form=Server%20SoC&vendor={make}"
+            vendor["path"] = f"/certified?form=Server%20SoC&vendor={make}"
             soc_vendors.append(vendor)
 
     # Server section
@@ -266,16 +266,20 @@ def certification_home():
                 server_releases[release] = vendor[release]
 
     if request.args:
-        query = request.args.get("text", default=None, type=str)
+        query = request.args.get("q", default=None, type=str)
         limit = request.args.get("limit", default=20, type=int)
         offset = request.args.get("offset", default=0, type=int)
         filters = request.args.get("filters", default=False, type=bool)
         vendor_page = request.args.get("vendor_page", default=False, type=bool)
 
-        selected_forms = request.args.getlist("form")
+        selected_forms = request.args.getlist("category")
         if "SoC" in selected_forms:
             selected_forms.remove("SoC")
             selected_forms.append("Server SoC")
+        
+        if "Device" in selected_forms:
+            selected_forms.remove("Device")
+            selected_forms.append("Ubuntu Core")
 
         forms = ",".join(selected_forms) if selected_forms else None
         if forms and "Models" in forms:
@@ -299,32 +303,14 @@ def certification_home():
             offset=offset,
         )
 
-        # Filters and result numbers
-        form_filters = {
-            "Laptop": 0,
-            "Desktop": 0,
-            "Ubuntu Core": 0,
-            "Server": 0,
-            "SoC": 0,
-        }
-        release_filters = defaultdict(lambda: 0)
-        for release in all_releases:
-            release_filters[release] = 0
-
-        vendor_filters = defaultdict(lambda: 0)
-        for vendor in all_vendors:
-            vendor_filters[vendor] = 0
-
         results = models_response["objects"]
 
         # Populate filter numbers
-        for model in results:
-            if model["category"] == "Server SoC":
-                form_filters["SoC"] += 1
-            else:
-                form_filters[model["category"]] += 1
-            release_filters[model["release"]] += 1
-            vendor_filters[model["make"]] += 1
+        category_filters = ["Laptop", "Desktop", "Server", "Device", "SoC"]
+        for index, model in enumerate(results):
+            # Replace "Ubuntu Core" with "Device"
+            if model["category"] == "Ubuntu Core":
+                results[index]["category"] = "Device"
 
         # Pagination
         total_results = models_response["meta"]["total_count"]
@@ -333,11 +319,11 @@ def certification_home():
             "certification/search-results.html",
             results=results,
             query=query,
-            form=",".join(request.args.getlist("form")),
+            category=",".join(request.args.getlist("category")),
             releases=releases,
-            form_filters=form_filters,
-            release_filters=release_filters,
-            vendor_filters=vendor_filters,
+            category_filters=category_filters,
+            release_filters=all_releases,
+            vendor_filters=all_vendors,
             vendors=vendors,
             total_results=total_results,
             total_pages=math.ceil(total_results / limit),
