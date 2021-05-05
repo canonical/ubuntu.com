@@ -1620,17 +1620,18 @@ ubuntu1604:
 
 certification:
   title: Hardware
-  path: /certification
-  persist: True
+  path: /certified
 
   children:
     - title: Overview
-      path: /certification
+      path: /certified
+    - title: Laptops
+      path: /certified/laptops
     - title: Desktops
-      path: /certification?form=Desktop
+      path: /certified/servers
     - title: Servers
-      path: /certification?form=Server
-    - title: IoT
-      path: /certification?form=Ubuntu%20Core
+      path: /certified/servers
+    - title: Devices
+      path: /certified/devices
     - title: SoCs
-      path: /certification?form=SoC
+      path: /certified/socs
