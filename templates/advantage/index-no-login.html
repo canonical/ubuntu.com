@@ -5,7 +5,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1K65n3NpZCh7EWDXKLhG31seGJ2jKbW6lqw3BwV2mlnU/edit#heading=h.nleu1cdig11l{% endblock meta_copydoc %}
 
 {% block content %}
-  <section class="p-strip--suru-topped">
+  <section class="p-strip--suru-topped" style="padding-bottom: 32px">
 
     <div class="row">
       <div class="col-12">
@@ -31,27 +31,47 @@
                 'eventValue' : undefined
               });">Sign in</a> to edit existing or add new subscriptions.
         </h5>
-        <p>
-          <a href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" class="p-button--neutral">Sign up to Ubuntu Advantage</a>
-        </p>
       </div>
     </div>
   </section>
 
-  <section class="p-strip is-shallow">
-    <div class="row">
+  <section class="p-strip--light is-shallow">
+    <div class="row u-equal-height">
       <div class="col-6">
-        <h2>Free for personal use</h2>
-        <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply).  All you need is an Ubuntu One account. And if you're a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it's free on up to 50 machines.</p>
+        <h3>Per-machine enterprise subscriptions</h3>
+        <p>Enterprises choose Ubuntu Advantage for extended security, certified compliance and 24x7support.</p>
+        <p>See the table below to find the plan that’s right for you</p>
         <p class="u-no-margin--bottom">
-          <span class="u-sv1"><small>Ubuntu 14.04 LTS machines can receive Extended Security Maintenance (ESM) updates and other Ubuntu Advantage benefits. By registering you agree to our <a href="/legal/ubuntu-advantage/personal">Terms of Service</a>.</small><br /></span>
+          <a 
+            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" 
+            class="p-button--positive"   
+            onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'go-to-shop',
+              'eventLabel' : 'Add new subscription',
+              'eventValue' : 5
+            });">
+              Buy
+          </a>
+          <span>an enterprise subscription</span>
+        </p>
+      </div>
+      <div class="col-6">
+        <h3>Free for personal use</h3>
+        <p>Anyone can use UA-I Essential for free on up to 3 machines, or 50 if you are an <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">official Ubuntu Community member</a>.</p>
+        <p>See the table below to find the plan that’s right for you</p>
+        <p class="u-no-margin--bottom">
           <a href="/login" class="p-button--positive" onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',
               'eventAction' : 'Authentication',
               'eventLabel' : 'Register',
               'eventValue' : undefined
-            });">Register</a> to get your free subscription.
+            });">
+              Register
+            </a> 
+          <span>for your free subscription.</span>
         </p>
       </div>
     </div>
