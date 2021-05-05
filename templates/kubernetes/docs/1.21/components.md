@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-bundle_revision: '632'
+bundle_revision: '655'
 bundle_release: '1.21'
 ---
 
