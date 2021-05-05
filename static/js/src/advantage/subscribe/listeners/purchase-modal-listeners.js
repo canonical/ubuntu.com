@@ -48,6 +48,65 @@ const card = elements.create("card", { style });
 
 card.mount("#card-element");
 
+async function createPaymentMethod(name, email, address) {
+  try {
+    const result = await stripe.createPaymentMethod({
+      type: "card",
+      card: card,
+      billing_details: {
+        name: name,
+        email: email,
+        address: address,
+      },
+    });
+
+    if (result.error) {
+      console.error(result.error);
+      return false;
+    } else {
+      console.log(result.paymentMethod);
+      return result.paymentMethod;
+    }
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+function attachCustomerInfoToStripeAccount(
+  VATNumber,
+  paymentMethod,
+  accountID
+) {
+  const stripeTaxObject = VATNumber
+    ? {
+        value: VATNumber,
+        type: "eu_vat",
+      }
+    : null;
+
+  const address = paymentMethod["billing_details"].address;
+  delete address.line2;
+
+  postCustomerInfoToStripeAccount({
+    paymentMethodID: paymentMethod.id,
+    accountID: accountID,
+    address: address,
+    name: paymentMethod["billing_details"].name,
+    taxID: stripeTaxObject,
+  })
+    .then((data) => {
+      // applyLoggedInPurchaseTotals();
+      // handleCustomerInfoResponse(paymentMethod, data);
+      console.log(data);
+    })
+    .catch((data) => {
+      console.error(data);
+      // const errorObject = parseForErrorObject(data);
+      // presentError(errorObject);
+    });
+}
+
 export function checkFormValidity(state) {
   const isOrganisationValid =
     state.form.buyingForMyself ||
@@ -75,25 +134,28 @@ export function checkFormValidity(state) {
       if (state.form.isFreeTrialsTermsChecked) {
         return "freeTrial";
       } else {
+        console.log("free trial false");
         return false;
       }
     } else {
       // purchase
       if (
-        state.form.paymentMethod &&
+        state.form.paymentCard.ok &&
         state.userInfo.VATNumber.validity === VALIDITY.VALID
       ) {
         return "purchase";
       } else {
+        console.log("purchase false");
         return false;
       }
     }
   } else {
+    console.log("general false");
     return false;
   }
 }
 
-function handleContinueClick(state) {
+async function handleContinueClick(state) {
   const address = {
     city: state.userInfo.city.value,
     country: state.userInfo.country.value,
@@ -160,9 +222,40 @@ function handleContinueClick(state) {
         });
       }
       break;
-    case "purchase":
+    case "purchase": {
       console.log("purchase");
+      const paymentMethod = await createPaymentMethod(
+        state.userInfo.name.value,
+        state.userInfo.email.value,
+        address
+      );
+      if (state.userInfo.isGuest) {
+        //guest purchase
+        const response = await ensurePurchaseAccount({
+          email: state.userInfo.email.value,
+          accountName: state.userInfo.organisation.value,
+          paymentMethodID: paymentMethod.id,
+          country: state.userInfo.country.value,
+        });
+        if (response.code) {
+          // an error was returned, most likely cause
+          // is that the user is trying to make a purchase
+          // with an email address belonging to an
+          // existing SSO account
+          console.error(response);
+        } else {
+          const accountID = response.accountID;
+          attachCustomerInfoToStripeAccount(
+            state.userInfo.VATNumber.value,
+            paymentMethod,
+            accountID
+          );
+        }
+      } else {
+        //logged in purchase
+      }
       break;
+    }
   }
 }
 

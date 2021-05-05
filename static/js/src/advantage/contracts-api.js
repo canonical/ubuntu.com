@@ -243,7 +243,7 @@ export async function postCustomerInfoToStripeAccount({
     return { ok: true, ...data };
   } else {
     console.error(`${response.status} - ${response.statusText}`);
-    return { ok: false };
+    return { ok: false, ...response };
   }
 }
 

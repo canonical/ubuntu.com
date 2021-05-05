@@ -121,7 +121,13 @@ function getProduct(state) {
 
 const formSlice = createSlice({
   name: "form",
-  initialState: loadState("ua-subscribe-state", "form", initialFormState),
+  initialState: {
+    ...loadState("ua-subscribe-state", "form", initialFormState),
+    isFreeTrialsTermsChecked: false,
+    paymentCard: {
+      ok: false,
+    },
+  },
   reducers: {
     changeType(state, action) {
       state.type = action.payload;
