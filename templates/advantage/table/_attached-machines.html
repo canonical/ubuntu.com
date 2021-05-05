@@ -1,22 +1,10 @@
-{% if new_subscription_id == contract['contractInfo']['id'] %}
-<td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="false">
+<td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden={% if new_subscription_id == contract['contractInfo']['id'] %}"false"{% else %}"true"{% endif %}>
   <div class="row">
     <div class="col-start-large-2 col-10">
-      <div class="row">
         <div class="advantage-table-section">
+          {% if new_subscription_id == contract['contractInfo']['id'] %}
             <h5>Welcome to your new subscription</h5>
-            <p class="u-no-margin--bottom">If you’re using Ubuntu 16.04 or 18.04 LTS you may need to install the UA client first.</p>
-            <div class="advantage-table-instruction">
-              <span>Add the PPA</span>
-              <code>sudo add-apt-repository ppa:ua-client/stable<br/>
-              sudo apt-get update</code>
-              <hr />
-              <span>Install the UA client</span>
-            <code>sudo apt install ubuntu-advantage-tools</code>
-            </div>
-          </div>
-        <div class="advantage-table-section">
-          <p class="u-no-margin--bottom">Once installed or if you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
+          {% endif %}
           <div class="advantage-table-instruction">
             <span>To attach a machine</span>
             <code>sudo ua attach {{ contract['token'] }}</code>
@@ -25,37 +13,13 @@
             <code>sudo ua detach</code>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</td>
-{% else %}
-<td id="expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="true">
-  <div class="row">
-    <div class="col-start-large-2 col-10">
         <div class="advantage-table-section">
-            <p class="u-no-margin--bottom">If you’re using Ubuntu 16.04 or 18.04 LTS you may need to install the UA client first.</p>
+            <p class="u-no-margin--bottom">Please ensure that you have the latest version of the ua client installed.</p>
             <div class="advantage-table-instruction">
-              <span>Add the PPA</span>
-              <code>sudo add-apt-repository ppa:ua-client/stable<br/>
-              sudo apt-get update</code>
-              <hr />
-              <span>Install the UA client</span>
-            <code>sudo apt install ubuntu-advantage-tools</code>
+              <span>To update the ua client </span>
+              <code>sudo apt upgrade</code>
             </div>
-          </div>
-        <div class="advantage-table-section">
-          <p class="u-no-margin--bottom">Once installed or if you’re using Ubuntu 14.04 ESM or 20.04 LTS, first attach each machine.</p>
-          <div class="advantage-table-instruction">
-            <span>To attach a machine</span>
-            <code>sudo ua attach {{ contract['token'] }}</code>
-            <hr />
-            <span>To detach a machine</span>
-            <code>sudo ua detach</code>
-          </div>
         </div>
       </div>
   </div>
-  </div>
 </td>
-{% endif %}
