@@ -13,8 +13,8 @@
     <div class="u-fixed-width">
       <h1 class="u-sv3">Ubuntu certified hardware from {{ vendors }}</h1>
     </div>
-    {% elif filters != True%}
-      {% if form == "Desktop" %}
+    {% elif filters != True %}
+      {% if category == "Desktop" %}
       <div class="row">
         <div class="col-8">
           <h1>Ubuntu Certified desktop hardware</h1>
@@ -32,7 +32,7 @@
           }}
         </div>
       </div>
-      {% elif form == "Server" %}
+      {% elif category == "Server" %}
       <div class="row">
         <div class="col-8">
           <h1>Ubuntu Certified server hardware</h1>
@@ -51,7 +51,7 @@
           }}
         </div>
       </div>
-      {% elif form == "Ubuntu Core" %}
+      {% elif category == "Ubuntu Core" %}
       <div class="row">
         <div class="col-8">
           <h1>Ubuntu Certified IoT hardware</h1>
@@ -70,7 +70,7 @@
           }}
         </div>
       </div>
-      {% elif form == "SoC" %}
+      {% elif category == "SoC" %}
       <div class="row">
         <div class="col-8">
           <h1>Ubuntu Certified SoC hardware</h1>
@@ -119,11 +119,11 @@
                     <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">Show</button>
                   </div>
                   <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
-                    {% for form_filter, total in form_filters.items() %}
+                    {% for category_filter in category_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ form_filter }}" class="p-checkbox__input" id="form-filter" name="form" value="{{ form_filter }}" {% if form and form_filter in form or form == "Models" %}checked{% endif %}>
-                      <div class="p-checkbox__label" id="{{ form_filter }}">
-                        <span>{{ form_filter }}</span>
+                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input" id="form-filter" name="form" value="{{ category_filter }}" {% if category and category_filter in category or category == "Models" %}checked{% endif %}>
+                      <div class="p-checkbox__label" id="{{ category_filter }}">
+                        <span>{{ category_filter }}</span>
                       </div>
                     </label>
                     {% endfor %}
@@ -134,7 +134,7 @@
                     <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="false">Certified for Ubuntu</button>
                   </div>
                   <section class="p-accordion__panel" id="tab2-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab2">
-                    {% for release_filter, total in release_filters.items() %}
+                    {% for release_filter in release_filters %}
                     <label class="p-checkbox">
                       <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
                       <div class="p-checkbox__label" id="{{ release_filter }}">
@@ -150,7 +150,7 @@
                     <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">Vendor</button>
                   </div>
                   <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab3">
-                    {% for vendor_filter, total in vendor_filters.items() %}
+                    {% for vendor_filter in vendor_filters %}
                     <label class="p-checkbox">
                       <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
                       <div class="p-checkbox__label" id="{{ vendor_filter }}">
@@ -198,8 +198,8 @@
           <tbody>
             {% for result in results %}
             <tr>
-            <td><a href="/certification/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
-            <td><a href="/certification?vendor={{ result.make }}&vendor_page=True">{{ result.make }}</a></td>
+            <td><a href="/certified/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
+            <td><a href="/certified?vendor={{ result.make }}&vendor_page=True">{{ result.make }}</a></td>
             <td>{{ result.category }}</td>
             </tr>
             {% endfor %}

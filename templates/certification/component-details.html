@@ -89,7 +89,7 @@
     <ul class="p-list">
       {% for machine in machines %}
       <li class="p-list__item">
-        <a href="/certification/{{ machine.canonical_id }}">{{ machine.canonical_id }} {{ machine.make }} {{ machine.model }}</a>
+        <a href="/certified/{{ machine.canonical_id }}">{{ machine.canonical_id }} {{ machine.make }} {{ machine.model }}</a>
       </li>
       {% endfor %}
     </ul>
