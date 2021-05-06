@@ -361,6 +361,18 @@ def advantage_payment_methods_view(**kwargs):
     except UAContractsUserHasNoAccount as error:
         raise UAContractsAPIErrorView(error)
 
+    subscriptions = advantage.get_account_subscriptions(
+        account_id=account["id"],
+        marketplace="canonical-ua",
+        filters={"status": "locked"},
+    )
+
+    pending_purchase_id = ""
+    for subscription in subscriptions:
+        if subscription.get("pendingPurchases"):
+            pending_purchase_id = subscription.get("pendingPurchases")[0]
+            break
+
     account_info = advantage.get_customer_info(account["id"])
     customer_info = account_info["customerInfo"]
     default_payment_method = customer_info.get("defaultPaymentMethod")
@@ -370,6 +382,7 @@ def advantage_payment_methods_view(**kwargs):
         stripe_publishable_key=stripe_publishable_key,
         is_test_backend=is_test_backend,
         default_payment_method=default_payment_method,
+        pending_purchase_id=pending_purchase_id,
         account_id=account["id"],
     )
 
@@ -629,7 +642,12 @@ def post_stripe_invoice_id(tx_type, tx_id, invoice_id, **kwargs):
         session, token, token_type=token_type, api_url=api_url
     )
 
-    return advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
+    response = advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
+
+    if response is None:
+        return flask.jsonify({"message": "invoice updated"})
+
+    return response
 
 
 @advantage_checks(check_list=["need_user_or_guest"])
