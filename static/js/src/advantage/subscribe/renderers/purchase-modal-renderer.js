@@ -56,11 +56,17 @@ function renderField(state, section) {
   const message = section.querySelector(".p-form-validation__message");
   input.value = state[input.name].value;
 
-  if (state[input.name].validity === VALIDITY.ERROR && input.required) {
+  if (
+    state[input.name].validity === VALIDITY.ERROR &&
+    input.required &&
+    input !== document.activeElement
+  ) {
     message.classList.remove("u-hide");
     message.innerHTML = input.validationMessage;
+    section.classList.add("is-error");
   } else {
     message.classList.add("u-hide");
+    section.classList.remove("is-error");
   }
 }
 
