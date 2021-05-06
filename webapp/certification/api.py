@@ -6,7 +6,7 @@ class CertificationAPI:
     Method names and properties to describe and map directly
     onto the Certification API
     (at the time of writing, this API is available at
-    https://certified.canonical.com/api/v1)
+    https://certification.canonical.com/api/v1)
     """
 
     def __init__(self, base_url: str, session: Session):
@@ -21,7 +21,8 @@ class CertificationAPI:
 
         # Get the JSON data
         response = self.session.get(
-            f"{self.base_url}/{path.strip('/')}/?format=json", params=params
+            f"{self.base_url}/{path.strip('/')}/?format=json",
+            params=params,
         )
 
         # Raise any HTTP errors
