@@ -20,6 +20,7 @@ const initialFormState = {
     id: "",
   },
   isGuest: true,
+  accountID: null,
 };
 
 const userInfoSlice = createSlice({
@@ -39,7 +40,7 @@ const userInfoSlice = createSlice({
       console.log(action);
 
       const {
-        accountInfo: { name: organisation },
+        accountInfo: { name: organisation, id: accountID },
         customerInfo: {
           name,
           email,
@@ -68,7 +69,11 @@ const userInfoSlice = createSlice({
           id: paymentMethodId,
         },
         isGuest: false,
+        accountID: accountID,
       };
+    },
+    setAccountID(state, action) {
+      state.accountID = action.payload;
     },
   },
 });
@@ -76,6 +81,11 @@ const userInfoSlice = createSlice({
 // Extract the action creators object and the reducer
 const { actions, reducer } = userInfoSlice;
 
-export const { validateField, updateField, initUserInfo } = actions;
+export const {
+  validateField,
+  updateField,
+  initUserInfo,
+  setAccountID,
+} = actions;
 
 export default reducer;

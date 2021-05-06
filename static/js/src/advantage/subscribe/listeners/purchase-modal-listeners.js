@@ -1,5 +1,6 @@
 import {
   ensurePurchaseAccount,
+  postCustomerInfoForPurchasePreview,
   postCustomerInfoToStripeAccount,
   postGuestFreeTrial,
   postLoggedInFreeTrial,
@@ -10,8 +11,14 @@ import {
   changeBuyingFor,
   checkFreeTrialTerms,
 } from "../reducers/form-reducer";
-import { updateField, validateField } from "../reducers/user-info-reducer";
+import {
+  setAccountID,
+  updateField,
+  validateField,
+} from "../reducers/user-info-reducer";
+import { vatCountries } from "../../vat-countries";
 import { VALIDITY } from "../reducers/user-info-reducer";
+import { debounce } from "../../../utils/debounce";
 
 // initialise Stripe
 const stripe = window.Stripe(window.stripePublishableKey);
@@ -73,12 +80,12 @@ async function createPaymentMethod(name, email, address) {
   }
 }
 
-function attachCustomerInfoToStripeAccount(
+async function attachCustomerInfoToStripeAccount(
   VATNumber,
   paymentMethod,
   accountID
 ) {
-  const stripeTaxObject = VATNumber
+  const taxObject = VATNumber
     ? {
         value: VATNumber,
         type: "eu_vat",
@@ -87,24 +94,24 @@ function attachCustomerInfoToStripeAccount(
 
   const address = paymentMethod["billing_details"].address;
   delete address.line2;
-
-  postCustomerInfoToStripeAccount({
-    paymentMethodID: paymentMethod.id,
-    accountID: accountID,
-    address: address,
-    name: paymentMethod["billing_details"].name,
-    taxID: stripeTaxObject,
-  })
-    .then((data) => {
-      // applyLoggedInPurchaseTotals();
-      // handleCustomerInfoResponse(paymentMethod, data);
-      console.log(data);
-    })
-    .catch((data) => {
-      console.error(data);
-      // const errorObject = parseForErrorObject(data);
-      // presentError(errorObject);
+  try {
+    const response = await postCustomerInfoToStripeAccount({
+      paymentMethodID: paymentMethod.id,
+      accountID: accountID,
+      address: address,
+      name: paymentMethod["billing_details"].name,
+      taxID: taxObject,
     });
+    const purchasePreviewResponse = await postCustomerInfoForPurchasePreview(
+      accountID,
+      address,
+      taxObject
+    );
+    console.log({ purchasePreviewResponse });
+    // handleCustomerInfoResponse(paymentMethod, response);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export function checkFormValidity(state) {
@@ -141,7 +148,8 @@ export function checkFormValidity(state) {
       // purchase
       if (
         state.form.paymentCard.ok &&
-        state.userInfo.VATNumber.validity === VALIDITY.VALID
+        (!vatCountries.includes(state.userInfo.country.value) ||
+          state.userInfo.VATNumber.validity === VALIDITY.VALID)
       ) {
         return "purchase";
       } else {
@@ -155,7 +163,7 @@ export function checkFormValidity(state) {
   }
 }
 
-async function handleContinueClick(state) {
+async function handleContinueClick(state, dispatch) {
   const address = {
     city: state.userInfo.city.value,
     country: state.userInfo.country.value,
@@ -245,6 +253,7 @@ async function handleContinueClick(state) {
           console.error(response);
         } else {
           const accountID = response.accountID;
+          dispatch(setAccountID(accountID));
           attachCustomerInfoToStripeAccount(
             state.userInfo.VATNumber.value,
             paymentMethod,
@@ -255,6 +264,36 @@ async function handleContinueClick(state) {
         //logged in purchase
       }
       break;
+    }
+  }
+}
+
+async function checkVAT(state, dispatch) {
+  console.log("checkVAT");
+  if (state.userInfo.accountID) {
+    const address = {
+      city: state.userInfo.city.value,
+      country: state.userInfo.country.value,
+      line1: state.userInfo.street.value,
+      postal_code: state.userInfo.postalCode.value,
+      state: state.userInfo.countryState.value,
+    };
+    const purchasePreviewResponse = await postCustomerInfoForPurchasePreview(
+      state.userInfo.accountID,
+      address,
+      {
+        value: state.userInfo.VATNumber.value,
+        type: "eu_vat",
+      }
+    );
+    console.log(purchasePreviewResponse);
+    if (purchasePreviewResponse.code) {
+      // an error was returned, most likely
+      // regarding an invalid VAT number.
+      console.error(purchasePreviewResponse);
+      dispatch(validateField({ field: "VATNumber", valid: false }));
+    } else {
+      dispatch(validateField({ field: "VATNumber", valid: true }));
     }
   }
 }
@@ -287,7 +326,7 @@ export default function initPurchaseModalInputs(store) {
     field.addEventListener("input", (e) => {
       store.dispatch(updateField({ field: field.name, value: e.target.value }));
     });
-    field.addEventListener("blur", () => {
+    field.addEventListener("input", () => {
       store.dispatch(
         validateField({ field: field.name, valid: field.checkValidity() })
       );
@@ -322,6 +361,14 @@ export default function initPurchaseModalInputs(store) {
     select.required = true;
   });
 
+  const VATField = document.querySelector('input[name="VATNumber"]');
+  VATField.addEventListener(
+    "input",
+    debounce(function () {
+      checkVAT(store.getState(), store.dispatch);
+    }, 500)
+  );
+
   const freeTrialsTermsCheckbox = document.querySelector("#free-trial-terms");
   freeTrialsTermsCheckbox.addEventListener("change", () => {
     store.dispatch(checkFreeTrialTerms());
@@ -329,6 +376,6 @@ export default function initPurchaseModalInputs(store) {
 
   const continueButton = document.querySelector("#continue-button");
   continueButton.addEventListener("click", () => {
-    handleContinueClick(store.getState());
+    handleContinueClick(store.getState(), store.dispatch);
   });
 }
