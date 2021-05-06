@@ -22,24 +22,23 @@ class TestCertification(VCRTestCase):
         return super().setUp()
 
     def test_home(self):
-        response = self.client.get("/certification")
+        response = self.client.get("/certified")
         self.assertEqual(response.status_code, 200)
 
     def test_search_results(self):
         response = self.client.get(
-            "/certification?text=lenovo&form=Desktop&release=\
-            20.04+LTS&vendors=Lenovo"
+            "/certified?q=xps&category=Laptop&vendor=Dell"
         )
         self.assertEqual(response.status_code, 200)
 
     def test_model_details(self):
-        response = self.client.get("/certification/201807-26311")
+        response = self.client.get("/certified/201807-26311")
         self.assertEqual(response.status_code, 200)
 
     def test_model_hardware_details(self):
-        response = self.client.get("/certification/201906-27091/18.04%20LTS")
+        response = self.client.get("/certified/201906-27091/18.04%20LTS")
         self.assertEqual(response.status_code, 200)
 
     def test_component_details(self):
-        response = self.client.get("/certification/component/682")
+        response = self.client.get("/certified/component/682")
         self.assertEqual(response.status_code, 200)
