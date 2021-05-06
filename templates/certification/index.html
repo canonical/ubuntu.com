@@ -75,7 +75,7 @@
       <ul class="p-inline-list" style="margin-bottom: 0.5rem;">
         {% for desktop_vendor in desktop_vendors %}
         <li class="p-inline-list__item">
-          <a href="/certified?form=Desktop&vendor={{ desktop_vendor.make }}&filters=True">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.total }})</a>
+          <a href="/certified?category=Desktop&vendor={{ desktop_vendor.make }}&filters=True">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -83,11 +83,11 @@
       <ul class="p-inline-list">
         {% for desktop_release in desktop_releases %}
         <li class="p-inline-list__item">
-          <a href="/certified?form=Desktop&release={{ desktop_release.release }}&filters=True">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
+          <a href="/certified?category=Desktop&release={{ desktop_release.release }}&filters=True">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
         </li>
         {% endfor %}
       </ul>
-      <p><a href="/certified?form=Desktop">All Ubuntu Desktop certified hardware&nbsp;&rsaquo;</a></p>
+      <p><a href="/certified?category=Desktop">All Ubuntu Desktop certified hardware&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-card">
       {{ image (
@@ -106,11 +106,11 @@
       <ul class="p-inline-list">
         {% for server_release, total in server_releases.items() %}
         <li class="p-inline-list__item">
-          <a href="/certified?form=Server&release={{ server_release }}&filters=True">{{ server_release }}&nbsp;({{ total }})</a>
+          <a href="/certified?category=Server&release={{ server_release }}&filters=True">{{ server_release }}&nbsp;({{ total }})</a>
         </li>
         {% endfor %}
       </ul>
-      <p><a href="/certified?form=Server">All Ubuntu Server certified hardware&nbsp;&rsaquo;</a></p>
+      <p><a href="/certified?category=Server">All Ubuntu Server certified hardware&nbsp;&rsaquo;</a></p>
     </div>
   </div>
   <div class="row u-equal-height">
@@ -135,7 +135,7 @@
         </li>
         {% endfor %}
       </ul>
-      <p><a href="/certified?form=Ubuntu%20Core">All IoT certified hardware&nbsp;&rsaquo;</a></p>
+      <p><a href="/certified?category=Ubuntu%20Core">All IoT certified hardware&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-card">
       {{ image (
@@ -158,7 +158,7 @@
         </li>
         {% endfor %}
       </ul>
-      <p><a href="/certified?form=Server%20SoC">All Ubuntu SoC certified hardware&nbsp;&rsaquo;</a></p>
+      <p><a href="/certified?category=Server%20SoC">All Ubuntu SoC certified hardware&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>

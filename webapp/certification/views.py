@@ -5,13 +5,12 @@ import math
 from flask import request, render_template, abort, current_app
 from requests import Session
 from webapp.certification.api import CertificationAPI
-from collections import defaultdict
 from webapp.certification.helpers import get_download_url
 
 session = Session()
 talisker.requests.configure(session)
 api = CertificationAPI(
-    base_url="https://certified.canonical.com/api/v1", session=session
+    base_url="https://certification.canonical.com/api/v1", session=session
 )
 
 
@@ -220,19 +219,19 @@ def certified_home():
             all_releases = sorted(all_releases, reverse=True)
 
         if int(release["desktops"]) > 0 or int(release["laptops"]) > 0:
-            release["path"] = f"/certified?form=Desktop&release={version}"
+            release["path"] = f"/certified?category=Desktop&release={version}"
             desktop_releases.append(release)
 
         if int(release["smart_core"] > 1):
             release[
                 "path"
-            ] = f"/certified?form=Ubuntu%20Core&release={version}"
+            ] = f"/certified?category=Ubuntu%20Core&release={version}"
             iot_releases.append(release)
 
         if int(release["soc"] > 1):
             release[
                 "path"
-            ] = f"/certified?form=Server%20SoC&release={version}"
+            ] = f"/certified?category=Server%20SoC&release={version}"
             soc_releases.append(release)
 
     for vendor in certified_makes:
@@ -243,15 +242,15 @@ def certified_home():
             all_vendors = sorted(all_vendors)
 
         if int(vendor["desktops"]) > 0 or int(vendor["laptops"]) > 0:
-            vendor["path"] = f"/certified?form=Desktop&vendor={make}"
+            vendor["path"] = f"/certified?category=Desktop&vendor={make}"
             desktop_vendors.append(vendor)
 
         if int(vendor["smart_core"] > 1):
-            vendor["path"] = f"/certified?form=Ubuntu%20Core&vendor={make}"
+            vendor["path"] = f"/certified?category=Ubuntu%20Core&vendor={make}"
             iot_vendors.append(vendor)
 
         if int(vendor["soc"] > 1):
-            vendor["path"] = f"/certified?form=Server%20SoC&vendor={make}"
+            vendor["path"] = f"/certified?category=Server%20SoC&vendor={make}"
             soc_vendors.append(vendor)
 
     # Server section
@@ -272,16 +271,18 @@ def certified_home():
         filters = request.args.get("filters", default=False, type=bool)
         vendor_page = request.args.get("vendor_page", default=False, type=bool)
 
-        selected_forms = request.args.getlist("category")
-        if "SoC" in selected_forms:
-            selected_forms.remove("SoC")
-            selected_forms.append("Server SoC")
-        
-        if "Device" in selected_forms:
-            selected_forms.remove("Device")
-            selected_forms.append("Ubuntu Core")
+        selected_categories = request.args.getlist("category")
+        if "SoC" in selected_categories:
+            selected_categories.remove("SoC")
+            selected_categories.append("Server SoC")
 
-        forms = ",".join(selected_forms) if selected_forms else None
+        if "Device" in selected_categories:
+            # Ubuntu Core is replaced by Device for UX purposes
+            # Ubuntu Core is an operating system not a category
+            selected_categories.remove("Device")
+            selected_categories.append("Ubuntu Core")
+
+        forms = ",".join(selected_categories) if selected_categories else None
         if forms and "Models" in forms:
             forms = None
         releases = (
