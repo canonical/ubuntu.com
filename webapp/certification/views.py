@@ -282,9 +282,11 @@ def certified_home():
             selected_categories.remove("Device")
             selected_categories.append("Ubuntu Core")
 
-        forms = ",".join(selected_categories) if selected_categories else None
-        if forms and "Models" in forms:
-            forms = None
+        categories = (
+            ",".join(selected_categories) if selected_categories else None
+        )
+        if categories and "All" in categories:
+            categories = None
         releases = (
             ",".join(request.args.getlist("release"))
             if request.args.getlist("release")
@@ -297,7 +299,7 @@ def certified_home():
         )
 
         models_response = api.certified_models(
-            category__in=forms,
+            category__in=categories,
             major_release__in=releases,
             vendor=vendors,
             query=query,

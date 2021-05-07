@@ -97,7 +97,7 @@
     {% endif %}
     <div class="u-fixed-width">
       <div class="p-search-box">
-        <input class="p-search-box__input" type="text" name="text" value="{{ query or '' }}">
+        <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}">
         <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
       </div>
     </div>
@@ -121,7 +121,7 @@
                   <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
                     {% for category_filter in category_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input" id="form-filter" name="form" value="{{ category_filter }}" {% if category and category_filter in category or category == "Models" %}checked{% endif %}>
+                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input" id="form-filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
                       <div class="p-checkbox__label" id="{{ category_filter }}">
                         <span>{{ category_filter }}</span>
                       </div>

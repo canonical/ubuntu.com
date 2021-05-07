@@ -27,13 +27,12 @@
   </div>  
 </section>
 
-<section class="p-strip--light is-shallow">\
+<section class="p-strip--light is-shallow">
   <form>
   <div class="row">
     <div class="col-4" style="margin-top: 1rem;">
       <div class="p-form__group">
-        <select name="form" id="form">
-          <option value="Models">Models</option>
+        <select name="category" id="category">
           <option value="Desktop">Desktops</option>
           <option value="Laptop">Laptops</option>
           <option value="Server">Servers</option>
@@ -46,7 +45,7 @@
     <div class="col-8" style="margin-top: 1rem;">
       <div class="p-form__group">
         <div class="p-search-box">
-          <input class="p-search-box__input" type="text" name="text" id="text" value="{{ query or '' }}" required>
+          <input class="p-search-box__input" type="text" name="q" id="text" value="{{ query or '' }}" required>
           <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
           <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
         </div>
