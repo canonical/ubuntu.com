@@ -28,9 +28,66 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 19 Apr 2021 17:17:29 GMT
+      - Thu, 06 May 2021 15:42:36 GMT
       Keep-Alive:
       - timeout=5, max=100
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://certification.canonical.com/api/v1/certifiedmodeldetails/?format=json&limit=0&canonical_id=201906-27091
+  response:
+    body:
+      string: '{"meta": {"limit": 1000, "next": null, "offset": 0, "previous": null,
+        "total_count": 1}, "objects": [{"architecture": "amd64", "bios": "", "canonical_id":
+        "201906-27091", "category": "Desktop", "certified_release": "18.04 LTS", "completed":
+        "2019-09-27T21:28:13.038880", "form_factor": "Desktop", "hardware_website":
+        "", "id": 11539, "kernel_version": "4.15.0-1037-oem", "level": "Enabled",
+        "make": "Dell", "model": "OptiPlex 7071", "name": "1909-11539", "network":
+        [{"bus": "pci", "category": "NETWORK", "identifier": "1d6a:d108", "make":
+        "Aquantia Corp.", "name": "AQC108 NBase-T/IEEE 802.3bz Ethernet Controller
+        [AQtion]", "subproduct_name": "", "subsystem": "1d6a:0001", "subvendor_id":
+        "", "vendor_id": 5483}, {"bus": "pci", "category": "NETWORK", "identifier":
+        "8086:15bb", "make": "Intel Corp.", "name": "Intel(R) Ethernet Connection
+        (7) I219-LM", "subproduct_name": "", "subsystem": "", "subvendor_id": "",
+        "vendor_id": 4103}], "notes": [], "processor": [{"bus": "dmi", "category":
+        "PROCESSOR", "identifier": "dmi:Intel(R)Core(TM)i9-9900KCPU@3.60GHz", "make":
+        "Intel Corp.", "name": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz", "subproduct_name":
+        "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103}], "resource_uri":
+        "/api/v1/certifiedmodeldetails/11539/", "video": [{"bus": "pci", "category":
+        "VIDEO", "identifier": "8086:3e98", "make": "Intel Corp.", "name": "UHD Graphics
+        630 (Desktop 9 Series)", "subproduct_name": "", "subsystem": "1028:094b",
+        "subvendor_id": "", "vendor_id": 4103}], "wireless": []}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '1522'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 06 May 2021 15:42:36 GMT
+      Keep-Alive:
+      - timeout=5, max=99
       Server:
       - gunicorn/19.9.0
       Strict-Transport-Security:
@@ -219,64 +276,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 19 Apr 2021 17:17:29 GMT
-      Keep-Alive:
-      - timeout=5, max=99
-      Server:
-      - gunicorn/19.9.0
-      Strict-Transport-Security:
-      - max-age=2592000
-      Vary:
-      - Accept,Cookie
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.25.1
-    method: GET
-    uri: https://certification.canonical.com/api/v1/certifiedmodeldetails/?format=json&limit=0&canonical_id=201906-27091
-  response:
-    body:
-      string: '{"meta": {"limit": 1000, "next": null, "offset": 0, "previous": null,
-        "total_count": 1}, "objects": [{"architecture": "amd64", "bios": "", "canonical_id":
-        "201906-27091", "category": "Desktop", "certified_release": "18.04 LTS", "completed":
-        "2019-09-27T21:28:13.038880", "form_factor": "Desktop", "hardware_website":
-        "", "id": 11539, "kernel_version": "4.15.0-1037-oem", "level": "Enabled",
-        "make": "Dell", "model": "OptiPlex 7071", "name": "1909-11539", "network":
-        [{"bus": "pci", "category": "NETWORK", "identifier": "1d6a:d108", "make":
-        "Aquantia Corp.", "name": "AQC108 NBase-T/IEEE 802.3bz Ethernet Controller
-        [AQtion]", "subproduct_name": "", "subsystem": "1d6a:0001", "subvendor_id":
-        "", "vendor_id": 5483}, {"bus": "pci", "category": "NETWORK", "identifier":
-        "8086:15bb", "make": "Intel Corp.", "name": "Intel(R) Ethernet Connection
-        (7) I219-LM", "subproduct_name": "", "subsystem": "", "subvendor_id": "",
-        "vendor_id": 4103}], "notes": [], "processor": [{"bus": "dmi", "category":
-        "PROCESSOR", "identifier": "dmi:Intel(R)Core(TM)i9-9900KCPU@3.60GHz", "make":
-        "Intel Corp.", "name": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz", "subproduct_name":
-        "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103}], "resource_uri":
-        "/api/v1/certifiedmodeldetails/11539/", "video": [{"bus": "pci", "category":
-        "VIDEO", "identifier": "8086:3e98", "make": "Intel Corp.", "name": "UHD Graphics
-        630 (Desktop 9 Series)", "subproduct_name": "", "subsystem": "1028:094b",
-        "subvendor_id": "", "vendor_id": 4103}], "wireless": []}]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - Keep-Alive
-      Content-Length:
-      - '1522'
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 19 Apr 2021 17:17:29 GMT
+      - Thu, 06 May 2021 15:42:36 GMT
       Keep-Alive:
       - timeout=5, max=98
       Server:
