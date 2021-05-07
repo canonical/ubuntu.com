@@ -71,7 +71,6 @@ async function createPaymentMethod(name, email, address) {
       console.error(result.error);
       return false;
     } else {
-      console.log(result.paymentMethod);
       return result.paymentMethod;
     }
   } catch (error) {
@@ -83,7 +82,8 @@ async function createPaymentMethod(name, email, address) {
 async function attachCustomerInfoToStripeAccount(
   VATNumber,
   paymentMethod,
-  accountID
+  accountID,
+  product
 ) {
   const taxObject = VATNumber
     ? {
@@ -95,7 +95,7 @@ async function attachCustomerInfoToStripeAccount(
   const address = paymentMethod["billing_details"].address;
   delete address.line2;
   try {
-    const response = await postCustomerInfoToStripeAccount({
+    const stripeAccountResponse = await postCustomerInfoToStripeAccount({
       paymentMethodID: paymentMethod.id,
       accountID: accountID,
       address: address,
@@ -108,9 +108,48 @@ async function attachCustomerInfoToStripeAccount(
       taxObject
     );
     console.log({ purchasePreviewResponse });
+    console.log({ stripeAccountResponse });
     // handleCustomerInfoResponse(paymentMethod, response);
+    if (stripeAccountResponse.message) {
+      // ua-contracts returned an error with information for us to parse
+      // const errorObject = parseForErrorObject(data);
+      // presentError(errorObject);
+      return { error: stripeAccountResponse.message };
+    } else if (stripeAccountResponse.createdAt) {
+      // payment method was successfully attached,
+      // ask user to click "Pay"
+      return { ok: true };
+    } else {
+      // an unexpected error occurred
+      // presentError();
+      return { error: "unknown", data: stripeAccountResponse };
+    }
+  } catch (error) {
+    return { error: error };
+  }
+}
+
+async function getAccountID(state, paymentMethod) {
+  try {
+    const response = await ensurePurchaseAccount({
+      email: state.userInfo.email.value,
+      accountName: state.userInfo.organisation.value,
+      paymentMethodID: paymentMethod.id,
+      country: state.userInfo.country.value,
+    });
+    if (response.code) {
+      // an error was returned, most likely cause
+      // is that the user is trying to make a purchase
+      // with an email address belonging to an
+      // existing SSO account
+      console.error(response);
+      return null;
+    } else {
+      return response.accountID;
+    }
   } catch (error) {
     console.error(error);
+    return null;
   }
 }
 
@@ -175,7 +214,7 @@ async function handleContinueClick(state, dispatch) {
   switch (checkFormValidity(state)) {
     case "freeTrial":
       console.log("Free trial");
-      if (state.userInfo.isGuest) {
+      if (state.userInfo.accountID) {
         postGuestFreeTrial({
           email: state.userInfo.email.value,
           account_name: state.userInfo.organisation.value,
@@ -237,28 +276,41 @@ async function handleContinueClick(state, dispatch) {
         state.userInfo.email.value,
         address
       );
-      if (state.userInfo.isGuest) {
+      if (!state.userInfo.accountID) {
         //guest purchase
-        const response = await ensurePurchaseAccount({
-          email: state.userInfo.email.value,
-          accountName: state.userInfo.organisation.value,
-          paymentMethodID: paymentMethod.id,
-          country: state.userInfo.country.value,
-        });
-        if (response.code) {
-          // an error was returned, most likely cause
-          // is that the user is trying to make a purchase
-          // with an email address belonging to an
-          // existing SSO account
-          console.error(response);
+
+        const accountID = await getAccountID(state, paymentMethod);
+        dispatch(setAccountID(accountID));
+
+        const attachResponse = await attachCustomerInfoToStripeAccount(
+          state.userInfo.VATNumber.value,
+          paymentMethod,
+          accountID
+        );
+        if (attachResponse.ok) {
+          if (dataLayer) {
+            dataLayer.push({
+              event: "continue",
+              ecommerce: {
+                checkout: {
+                  actionField: { step: 2 },
+                  products: [
+                    {
+                      id: state.form.product.id,
+                      name: state.form.product.name,
+                      price: state.form.product.price.value / 100,
+                      quantity: state.form.quantity,
+                    },
+                  ],
+                },
+              },
+            });
+          }
+          // dispatch(setMode("payMode"))
+        } else if (attachResponse.error !== "unknown") {
+          // dispatch(setError(attachResponse.error));
         } else {
-          const accountID = response.accountID;
-          dispatch(setAccountID(accountID));
-          attachCustomerInfoToStripeAccount(
-            state.userInfo.VATNumber.value,
-            paymentMethod,
-            accountID
-          );
+          //Sentry the unknown error
         }
       } else {
         //logged in purchase
@@ -269,7 +321,6 @@ async function handleContinueClick(state, dispatch) {
 }
 
 async function checkVAT(state, dispatch) {
-  console.log("checkVAT");
   if (state.userInfo.accountID) {
     const address = {
       city: state.userInfo.city.value,
@@ -286,7 +337,6 @@ async function checkVAT(state, dispatch) {
         type: "eu_vat",
       }
     );
-    console.log(purchasePreviewResponse);
     if (purchasePreviewResponse.code) {
       // an error was returned, most likely
       // regarding an invalid VAT number.
