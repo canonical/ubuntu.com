@@ -25,7 +25,8 @@ jobs:
           	--ignore-url w_[0-9]* \
           	--ignore-url h_[0-9]* \
           	--ignore-url https://ubuntu.com/blog \
-          	--ignore-url https://ubuntu.com/security
+          	--ignore-url https://ubuntu.com/security \
+            --ignore-url http://www.brendangregg.com
 
       - name: Send message on failure
         if: failure()
