@@ -62,52 +62,56 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <h2>Releases</h2>
+      <h2>Release{% if release_details["releases"]|length > 1 %}s{% endif %}</h2>
       <aside class="p-accordion">
         <ul class="p-accordion__list">
           {% for release in release_details["releases"] %}
-          <li class="p-accordion__group">
-            <div role="heading" aria-level="3" class="p-accordion__heading">
-              <button type="button" class="p-accordion__tab" style="background-position: top 1.25rem left 1rem;"id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="{% if release_details['releases']|length == 1 %}true{% else %}false{% endif %}"><h3 class="u-no-margin--bottom">{{ release.name }}</h3></button>
-            </div>
-            <section class="p-accordion__panel" id="tab{{ loop.index }}-section" aria-hidden="{% if release_details['releases']|length == 1 %}false{% else %}true{% endif %}" aria-labelledby="tab{{ loop.index }}">
-              {% if release.level == "Enabled" %}
-                <p class="u-no-margin--bottom">Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system’s hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.</p>
-              {% elif release.level == "Certified" %}
-                <p>The {{ vendor }} {{ name }} development board with the components described below has been awarded the status of certified for Ubuntu.</p>
-                <p class="u-no-margin--bottom">
-                  <a href="{{ release.download_url }}" class="p-button--neutral">Download</a>
+            <li class="{% if release_details['releases']|length > 1 %}p-accordion__group{% endif %}">
+              {% if release_details['releases']|length > 1%}
+              <div role="heading" aria-level="3" class="p-accordion__heading">
+                <button type="button" class="p-accordion__tab" style="background-position: top 1.25rem left 1rem;"id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="false"><h3 class="u-no-margin--bottom">{{ release.name }}</h3></button>
+              </div>
+              {% else %}
+              <h3>{{ release.name }}</h3>
+              {% endif %}
+                <section class="{% if release_details['releases']|length > 1 %}p-accordion__panel {% endif %}" id="tab{{ loop.index }}-section" aria-hidden="{% if release_details['releases']|length > 1 %}true{% endif %}" aria-labelledby="tab{{ loop.index }}">
+                {% if release.level == "Enabled" %}
+                  <p class="u-no-margin--bottom">Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system’s hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.</p>
+                {% elif release.level == "Certified" %}
+                  <p>The {{ vendor }} {{ name }} development board with the components described below has been awarded the status of certified for Ubuntu.</p>
+                  <p class="u-no-margin--bottom">
+                    <a href="{{ release.download_url }}" class="p-button--neutral">Download</a>
+                  </p>
+                {% endif %}
+                {% if release.kernel %}
+                <h4 class="u-no-margin--bottom">Kernel</h4>
+                <p>{{ release.kernel }}</p>
+                {% endif %}
+                {% if release.notes %}
+                <h4 class="u-no-margin--bottom">Notes</h4>
+                {% for note in release.notes %}
+                <p>{{ note.comment }}</p>
+                {% endfor %}
+                {% endif %}
+                <h4>Hardware</h4>
+                <table aria-label="Hardware" class="u-no-margin--bottom">
+                  <tbody>
+                  {% for hardware_subtitle, values in release_details["components"].items() %}
+                    <tr>
+                      <th colspan="2" class="p-muted-text">{{ hardware_subtitle }}</th>
+                      <td colspan="8">{% for value in values %} 
+                        <p style="margin-bottom: 0.5rem;">{{ value.name }} {{ value.bus }}({{ value.identifier }})</p>
+                        {% endfor %}
+                      </td>
+                    </tr>
+                  {% endfor%}
+                  </tbody>
+                </table>
+                <p class="u-sv3">
+                  <a href="/certification/{{ canonical_id }}/{{ release.version }}">Hardware details&nbsp;&rsaquo;</a>
                 </p>
-              {% endif %}
-              {% if release.kernel %}
-              <h4 class="u-no-margin--bottom">Kernel</h4>
-              <p>{{ release.kernel }}</p>
-              {% endif %}
-              {% if release.notes %}
-              <h4 class="u-no-margin--bottom">Notes</h4>
-              {% for note in release.notes %}
-              <p>{{ note.comment }}</p>
-              {% endfor %}
-              {% endif %}
-              <h4>Hardware</h4>
-              <table aria-label="Hardware" class="u-no-margin--bottom">
-                <tbody>
-                {% for hardware_subtitle, values in release_details["components"].items() %}
-                  <tr>
-                    <th colspan="2" class="p-muted-text">{{ hardware_subtitle }}</th>
-                    <td colspan="8">{% for value in values %} 
-                      <p style="margin-bottom: 0.5rem;">{{ value.name }} {{ value.bus }}({{ value.identifier }})</p>
-                      {% endfor %}
-                    </td>
-                  </tr>
-                {% endfor%}
-                </tbody>
-              </table>
-              <p class="u-sv3">
-                <a href="/certification/{{ canonical_id }}/{{ release.version }}">Hardware details&nbsp;&rsaquo;</a>
-              </p>
-            </section>
-          </li>
+              </section>
+            </li>
           {% endfor %}
         </ul>
       </aside>
