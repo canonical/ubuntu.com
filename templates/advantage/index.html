@@ -67,7 +67,8 @@
       {% if monthly_information['has_monthly'] %}
         <div class="row">
           <div class="col-8 col-medium-3">
-            <p class="u-no-margin--bottom">Your next recurring payment of <strong><span class="js-format-price">{{monthly_information["next_payment"]["ammount"]}}</span></strong> will be taken on <strong>{{monthly_information["next_payment"]["date"]}}</strong>.</p>
+            <p class="u-no-margin--bottom">Your next recurring payment of <strong><span class="js-format-price">{{monthly_information["next_payment"]["ammount"]}}</span></strong> will be taken on <strong>{{monthly_information["next_payment"]["date"]}}</strong>,</p>
+            <p class="u-no-margin--bottom">excluding any applicable taxes.</p>
           </div>
           <div class="col-4 col-medium-3 u-align--right">
             <div id="reveal-renewal-options">
