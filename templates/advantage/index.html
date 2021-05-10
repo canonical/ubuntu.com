@@ -46,7 +46,7 @@
     </div>
   </section>
 
-  <hr class="p-separator" />   
+  <hr class="p-separator" />
 
   {% if enterprise_contracts %}
     <section class="p-strip is-shallow" style="overflow: visible;">
@@ -79,7 +79,7 @@
                 <div class="row col-start-large-2 col-10">
                   <h5>{{monthly_information['total_subscriptions']}} monthly subscription{% if monthly_information['total_subscriptions'] > 1 %}s are {% else %} is {% endif %}affected by auto-renewal settings.</h5>
                   <hr class="p-separator" />
-                  <div> 
+                  <div>
                     <label class="p-radio">
                       <input id="auto-renewal-on" type="radio" class="p-radio__input" name="auto-renewal"  {% if monthly_information["is_auto_renewal_enabled"] %}checked=""{% endif %} aria-labelledby="enable" value="on">
                       <span class="p-radio__label" id="enable">Enable auto-renewal</span>
@@ -130,7 +130,7 @@
                   {% include "advantage/table/_manage-monthly.html" %}
 
                 {% else %}
-                
+
                   {% include "advantage/table/_manage-yearly.html" %}
 
                 {% endif %}
@@ -207,9 +207,9 @@
           {% endfor %}
           {% endfor %}
         </div>
-          <a 
-            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" 
-            class="p-button--positive"   
+          <a
+            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}"
+            class="p-button--positive"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',
@@ -316,7 +316,7 @@
                             {% include "advantage/table/_manage-monthly.html" %}
 
                           {% else %}
-                          
+
                             {% include "advantage/table/_manage-yearly.html" %}
 
                           {% endif %}
@@ -342,9 +342,9 @@
           {% endfor %}
         </div>
         <div class="col-12 u-align--right">
-          <a 
-            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" 
-            class="p-button--positive u-align--right"   
+          <a
+            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}"
+            class="p-button--positive u-align--right"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',

@@ -278,8 +278,8 @@
 {% endblock content %}
 
 {% block footer_extra %}
-<script src="{{ versioned_static('js/src/contributions.js') }}"></script>
-<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>
+<script src="{{ versioned_static('js/dist/contributions.js') }}"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer></script>
 
 {% if version %}
   <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
