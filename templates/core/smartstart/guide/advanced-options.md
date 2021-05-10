@@ -1,5 +1,5 @@
 ---
-wrapper_template: "templates/docs/markdown.html"
+wrapper_template: "core/smartstart/_markdown.html"
 markdown_includes:
   nav: "core/smartstart/shared/_side-navigation.md"
 context:
