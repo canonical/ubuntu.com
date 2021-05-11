@@ -406,11 +406,29 @@ function applyLoggedInPurchaseTotals() {
             currentTransaction.total = purchasePreview.total;
             currentTransaction.tax = purchasePreview.taxAmount;
             modal.classList.remove("is-processing");
-            setOrderTotals(country, vatApplicable, purchasePreview, modal);
+            if (purchasePreview.errors) {
+              setOrderTotals(
+                null,
+                false,
+                {
+                  total: currentTransaction.subtotal,
+                },
+                modal
+              );
+            } else {
+              setOrderTotals(country, vatApplicable, purchasePreview, modal);
+            }
           })
           .catch((error) => {
             modal.classList.remove("is-processing");
-            setOrderTotals(null, false, currentTransaction, modal);
+            setOrderTotals(
+              null,
+              false,
+              {
+                total: currentTransaction.subtotal,
+              },
+              modal
+            );
             console.error(error);
           });
       })
