@@ -28,7 +28,8 @@ The main components of Juju's architecture are:
   Juju model defines the `apt-mirror` to be `de.archive.ubuntu.com`,
   all the machines and applications linked to that model will use
   the `apt-mirror` defined by the model.
-* **Charms** are sets of scripts that simplify the deployment and management tasks of applications.
+* **Charms** are structured sets of scripts and YAML files that simplify both the
+  deployment and management of the charm’s application within Juju.
 * **Bundles** are collections of charms that help deploy and
   start a service in one go.
 * **Relations** are mappings between applications that define which
