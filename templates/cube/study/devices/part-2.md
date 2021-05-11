@@ -27,8 +27,7 @@ The MS-DOS disk label is still common in smaller devices, such as SD
 and MMC cards, but it has an important drawback: it cannot handle
 devices larger than 2 TiB in size. As devices of that size or larger
 are now quite common, the GPT disk label is the natural alternative.
-
-The MS-DOS disk label cannot handle devices larger than 2TiB in size. It remains in common use on smaller devices. The GPT disk label can handle devices with 2^64 logical blocks, resulting in an 8 ZiB maximum for 512-byte block devices.
+The GPT disk label can handle devices with 2^64 logical blocks, resulting in an 8 ZiB maximum for 512-byte block devices.
 
 To create and manipulate partitions on block devices, you have several
 tools at your disposal:
