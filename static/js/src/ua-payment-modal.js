@@ -410,6 +410,7 @@ function applyLoggedInPurchaseTotals() {
           })
           .catch((error) => {
             modal.classList.remove("is-processing");
+            setOrderTotals(null, false, currentTransaction, modal);
             console.error(error);
           });
       })
