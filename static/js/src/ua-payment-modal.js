@@ -401,14 +401,39 @@ function applyLoggedInPurchaseTotals() {
           currentTransaction.accountId,
           currentTransaction.products,
           currentTransaction.previousPurchaseId
-        ).then((purchasePreview) => {
-          currentTransaction.total = purchasePreview.total;
-          currentTransaction.tax = purchasePreview.taxAmount;
-          modal.classList.remove("is-processing");
-          setOrderTotals(country, vatApplicable, purchasePreview, modal);
-        });
+        )
+          .then((purchasePreview) => {
+            currentTransaction.total = purchasePreview.total;
+            currentTransaction.tax = purchasePreview.taxAmount;
+            modal.classList.remove("is-processing");
+            if (purchasePreview.errors) {
+              setOrderTotals(
+                null,
+                false,
+                {
+                  total: currentTransaction.subtotal,
+                },
+                modal
+              );
+            } else {
+              setOrderTotals(country, vatApplicable, purchasePreview, modal);
+            }
+          })
+          .catch((error) => {
+            modal.classList.remove("is-processing");
+            setOrderTotals(
+              null,
+              false,
+              {
+                total: currentTransaction.subtotal,
+              },
+              modal
+            );
+            console.error(error);
+          });
       })
       .catch((error) => {
+        modal.classList.remove("is-processing");
         console.error(error);
       });
   }
