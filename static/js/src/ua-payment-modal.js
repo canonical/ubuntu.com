@@ -401,14 +401,20 @@ function applyLoggedInPurchaseTotals() {
           currentTransaction.accountId,
           currentTransaction.products,
           currentTransaction.previousPurchaseId
-        ).then((purchasePreview) => {
-          currentTransaction.total = purchasePreview.total;
-          currentTransaction.tax = purchasePreview.taxAmount;
-          modal.classList.remove("is-processing");
-          setOrderTotals(country, vatApplicable, purchasePreview, modal);
-        });
+        )
+          .then((purchasePreview) => {
+            currentTransaction.total = purchasePreview.total;
+            currentTransaction.tax = purchasePreview.taxAmount;
+            modal.classList.remove("is-processing");
+            setOrderTotals(country, vatApplicable, purchasePreview, modal);
+          })
+          .catch((error) => {
+            modal.classList.remove("is-processing");
+            console.error(error);
+          });
       })
       .catch((error) => {
+        modal.classList.remove("is-processing");
         console.error(error);
       });
   }
