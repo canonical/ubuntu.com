@@ -148,13 +148,15 @@ DirectMap2M:    16613376 kB
 `vmstat` reports virtual memory statistics:
 
 ```
-
+$ vmstat
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 0  0      0 33447128 135176 3316516    0    0    18    18  105  359  3  1 96  0  0
 ```
 
 `df` displays filesystem disk space usage:
 
 ```
-
 $ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 udev            7.8G     0  7.8G   0% /dev
