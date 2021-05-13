@@ -46,6 +46,7 @@ cancel_advantage_subscriptions = {
 
 post_anonymised_customer_info = {
     "account_id": String(required=True),
+    "name": String(required=True),
     "address": Nested(AddressSchema, required=True),
     "tax_id": Nested(TaxIdSchema, allow_none=True),
 }

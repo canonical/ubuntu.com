@@ -521,6 +521,7 @@ def post_anonymised_customer_info(**kwargs):
     token = kwargs.get("token")
     token_type = kwargs.get("token_type")
     account_id = kwargs.get("account_id")
+    name = kwargs.get("name")
     address = kwargs.get("address")
     tax_id = kwargs.get("tax_id")
 
@@ -528,7 +529,9 @@ def post_anonymised_customer_info(**kwargs):
         session, token, token_type=token_type, api_url=api_url
     )
 
-    return advantage.put_anonymous_customer_info(account_id, address, tax_id)
+    return advantage.put_anonymous_customer_info(
+        account_id, name, address, tax_id
+    )
 
 
 @advantage_checks(check_list=["need_user"])

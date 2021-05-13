@@ -144,12 +144,12 @@ class UAContractsAPI:
 
         return response.json()
 
-    def put_anonymous_customer_info(self, account_id, address, tax_id):
+    def put_anonymous_customer_info(self, account_id, name, address, tax_id):
         try:
             response = self._request(
                 method="put",
                 path=f"v1/accounts/{account_id}/customer-info/stripe",
-                json={"address": address, "taxID": tax_id},
+                json={"address": address, "name": name, "taxID": tax_id},
             )
         except HTTPError as error:
             if error.response.status_code == 401:

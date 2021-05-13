@@ -240,6 +240,7 @@ export async function postCustomerInfoToStripeAccount(
 
 export async function postCustomerInfoForPurchasePreview(
   accountID,
+  name,
   address,
   taxID
 ) {
@@ -255,6 +256,7 @@ export async function postCustomerInfoForPurchasePreview(
     },
     body: JSON.stringify({
       account_id: accountID,
+      name: name,
       address: address,
       tax_id: taxID,
     }),

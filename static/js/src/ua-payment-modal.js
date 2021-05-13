@@ -382,6 +382,7 @@ function applyLoggedInPurchaseTotals() {
 
     postCustomerInfoForPurchasePreview(
       currentTransaction.accountId,
+      customerInfo.name,
       address,
       taxObject
     )
