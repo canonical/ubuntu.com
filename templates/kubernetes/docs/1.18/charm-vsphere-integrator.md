@@ -18,7 +18,7 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: templates/docs/markdown.html
+wrapper_template: "templates/docs/markdown.html"
 ---
 
 This charm acts as a proxy to VMware vSphere and provides an [interface][] to

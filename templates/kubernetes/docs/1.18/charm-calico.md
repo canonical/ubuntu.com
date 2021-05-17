@@ -16,7 +16,7 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: templates/docs/markdown.html
+wrapper_template: "templates/docs/markdown.html"
 ---
 
 Calico is a new approach to virtual networking and network security for containers,

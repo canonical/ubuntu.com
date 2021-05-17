@@ -16,7 +16,7 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: templates/docs/markdown.html
+wrapper_template: "templates/docs/markdown.html"
 ---
 
 This charm will deploy Tigera Secure Enterprise Edition (EE) as a background

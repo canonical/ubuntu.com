@@ -16,7 +16,7 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: templates/docs/markdown.html
+wrapper_template: "templates/docs/markdown.html"
 ---
 
 This subordinate charm deploys the [Docker](http://docker.com) engine within
