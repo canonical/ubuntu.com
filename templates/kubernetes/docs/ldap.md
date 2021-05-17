@@ -315,7 +315,7 @@ configuring Keystone/LDAP.
 [install]: /kubernetes/docs/quickstart
 [policy]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/policy.yaml
 [keystone-bundle]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/keystone.yaml
-[docs-ldap-keystone]: https://jujucharms.com/keystone-ldap
+[docs-ldap-keystone]: https://charmhub.io/keystone-ldap
 [trouble]: /kubernetes/docs/troubleshooting/#troubleshooting-keystoneldap-issues
 [openstack-integrator]: /kubernetes/docs/openstack-integration
 

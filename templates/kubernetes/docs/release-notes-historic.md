@@ -569,11 +569,11 @@ continue to use **KubeDNS** until the operator chooses to upgrade to
 
  - Docker upgrades: Docker 18.09.2 is the new default in Ubuntu. CDK now includes a charm action to simplify [upgrading Docker across a set of worker nodes][upgrading-docker].
 
-- Registry enhancements: Read-only mode, frontend support, and additional TLS configuration options have been added to the [Docker registry charm](https://jujucharms.com/u/containers/docker-registry/114).
+- Registry enhancements: Read-only mode, frontend support, and additional TLS configuration options have been added to the [Docker registry charm](https://charmhub.io/containers-docker-registry).
 
 - Cloud integrations: New configuration options have been added to the
-[vSphere](https://jujucharms.com/u/containers/vsphere-integrator/) (`folder` and `respool_path`) and
-[OpenStack]( https://jujucharms.com/u/containers/openstack-integrator/) (`ignore-volume-az`, `bs-version`, `trust-device-path`) integrator charms.
+[vSphere](https://charmhub.io/containers-vsphere-integrator/) (`folder` and `respool_path`) and
+[OpenStack]( https://charmhub.io/containers-openstack-integrator/) (`ignore-volume-az`, `bs-version`, `trust-device-path`) integrator charms.
 
 
 ## Fixes
@@ -657,7 +657,7 @@ read the [documentation][docs-ldap] for details on how to enable this.
 
 - Vault PKI support
 
-Added support for using [Vault](https://jujucharms.com/u/openstack-charmers/vault/)
+Added support for using [Vault](https://charmhub.io/vault/)
 for PKI in place of EasyRSA. Vault is more secure and robust than EasyRSA and supports
 more advanced features for certificate management. See the
 [documentation][docs-vault] for details of how to add Vault to Charmed Kubernetes and configure it as a
@@ -666,14 +666,14 @@ root or intermediary CA.
 - Encryption-at-rest support using Vault
 
 Added support for encryption-at-rest for cluster secrets, leveraging
-[Vault](https://jujucharms.com/u/openstack-charmers/vault/) for data protection. This
+[Vault](https://charmhub.io/vault/) for data protection. This
 ensures that even the keys used to encrypt the data are protected at rest, unlike many
 configurations of encryption-at-rest for Kubernetes. Please see the
 [documentation][docs-ear] for further details.
 
 - Private Docker registry support
 
-Added support for the [Docker Registry](https://jujucharms.com/u/containers/docker-registry)
+Added support for the [Docker Registry](https://charmhub.io/containers-docker-registry)
 charm to provide Docker images to cluster components without requiring access to
 public registries. Full instructions on using this feature are in the [documentation][docs-registry].
 

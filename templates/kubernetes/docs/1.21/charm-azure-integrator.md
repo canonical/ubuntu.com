@@ -1,5 +1,5 @@
 ---
-wrapper_template: templates/docs/markdown.html
+wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
@@ -187,7 +187,7 @@ in the following:
 
 
 This can be used from bundles with 'include-base64://' (see
-https://jujucharms.com/docs/stable/charms-bundles#setting-charm-configurations-options-in-a-bundle),
+<https://discourse.charmhub.io/t/charm-bundles/1058>),
 or from the command-line with 'juju config aws credentials="$(base64 /path/to/file)"'.
 
 This option will take precedence over the individual config options, if set.

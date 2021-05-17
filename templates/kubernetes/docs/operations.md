@@ -158,7 +158,7 @@ during the run of the action.
 the 'microbots' pods.
 
 - Finally, it will create an ingress resource, which points at a
-[xip.io](http://xip.io) domain to simulate a proper DNS service.
+[nip.io](http://nip.io) domain to simulate a proper DNS service.
 
 To deploy 3 replicas of the microbot web application inside the Kubernetes
 cluster run the following command:
@@ -173,7 +173,7 @@ will be different and contain the address of the cloud instance.)
 ```YAML
 id: 4d4a2245-e544-45d1-886d-b828ccf72c47
   results:
-    address: microbot.52.87.186.136.xip.io
+    address: microbot.52.87.186.136.nip.io
   status: completed
   timing:
     completed: 2019-03-22 15:00:39 +0000 UTC
@@ -223,7 +223,7 @@ kubectl get ingress
 ```
 ```
 NAME               HOSTS                           ADDRESS   PORTS   AGE
-microbot-ingress   microbot.52.87.186.136.xip.io             80      5m36s
+microbot-ingress   microbot.52.87.186.136.nip.io             80      5m36s
 ```
 
 When all the pods are listed as Running, you are ready to visit the address listed in the
@@ -284,7 +284,7 @@ things you may wish to try:
 ## Additional Resources
 
 - [Kubernetes User Guide](https://kubernetes.io/docs/user-guide/)
-- [The Charmed Distribution of Kubernetes](https://jujucharms.com/charmed-kubernetes/)
+- [The Charmed Kubernetes page on Charmhub.io](https://charmhub.io/charmed-kubernetes/)
 - [Bundle source][bundle-source]
 - [Bug tracker](https://bugs.launchpad.net/charmed-kubernetes)
 

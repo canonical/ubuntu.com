@@ -229,12 +229,12 @@ and the root token you generated previously.
 [encryption-doc]: /kubernetes/docs/encryption-at-rest
 [vault]: https://www.vaultproject.io
 [expose]: https://docs.jujucharms.com/stable/en/charms-deploying#exposing-deployed-applications
-[hacluster]: https://jujucharms.com/hacluster/
+[hacluster]: https://charmhub.io/hacluster/
 [vault-guide-csr]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 [vault-charm-unseal]: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md#post-deployment-tasks
 [csr]: https://en.wikipedia.org/wiki/Certificate_signing_request
 [leadership]: https://discourse.jujucharms.com/t/implementing-leadership/1124
-[cdk-bundle]: https://jujucharms.com/charmed-kubernetes
+[cdk-bundle]: https://charmhub.io/charmed-kubernetes
 [vault charm]: https://jaas.ai/vault/
 
 <!-- FEEDBACK -->

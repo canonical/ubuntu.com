@@ -72,7 +72,7 @@ storage pool, or even full-disk-encryption on the host machine.
 [encryption at rest]: https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
 [HashiCorp's Vault]: https://www.vaultproject.io/
 [VaultLocker]: https://github.com/openstack-charmers/vaultlocker
-[Vault charm]: https://jujucharms.com/u/openstack-charmers/vault/
+[Vault charm]: https://charmhub.io/vault
 [unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#initialize-and-unseal-vault
 
 <!-- FEEDBACK -->
