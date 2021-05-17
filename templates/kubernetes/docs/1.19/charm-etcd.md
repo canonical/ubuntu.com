@@ -1,5 +1,5 @@
 ---
-wrapper_template: "templates/docs/markdown.html"
+wrapper_template: templates/docs/markdown.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
@@ -134,7 +134,7 @@ Many cloud providers use ephemeral storage. When using cloud provider
 infrastructures is recommended to place any data-stores on persistent volumes
 that exist outside of the ephemeral storage on the unit.
 
-Juju abstracts this with the [storage provider](https://jujucharms.com/docs/stable/charms-storage).
+Juju abstracts this with the [storage provider](https://juju.is/docs/olm/defining-and-using-persistent-storage).
 
 
 To add a unit of storage we'll first need to discover what storage types the
@@ -497,7 +497,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       alarm-disarm
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Disarm all alarms.
     </p>
@@ -510,7 +510,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       alarm-list
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       List all alarms.
     </p>
@@ -523,7 +523,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       cis-benchmark
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Run the CIS Kubernetes Benchmark against snap-based components.
     </p>
@@ -531,7 +531,7 @@ juju run-action etcd ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       This action has the following parameters:
     </p>
@@ -566,7 +566,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       compact
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Compact etcd event history.
     </p>
@@ -574,7 +574,7 @@ juju run-action etcd ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       This action has the following parameters:
     </p>
@@ -602,7 +602,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Collect debug data
     </p>
@@ -615,7 +615,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       defrag
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Defragment the storage of the local etcd member.
     </p>
@@ -628,7 +628,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       health
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Report the health of the cluster.
     </p>
@@ -641,7 +641,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       package-client-credentials
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Generate a tarball of the client certificates to connect to the cluster remotely.
     </p>
@@ -654,7 +654,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       restore
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Restore an etcd cluster's data from a snapshot tarball.
     </p>
@@ -662,7 +662,7 @@ juju run-action etcd ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       This action has the following parameters:
     </p>
@@ -690,7 +690,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       snap-upgrade
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Execute a migration from the apt package to a snap package format.
     </p>
@@ -698,7 +698,7 @@ juju run-action etcd ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       This action has the following parameters:
     </p>
@@ -719,7 +719,7 @@ juju run-action etcd ACTION [parameters] [--wait]
       snapshot
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Export and compress a backup of the data in the Etcd cluster.
     </p>
@@ -727,7 +727,7 @@ juju run-action etcd ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       This action has the following parameters:
     </p>

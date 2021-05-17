@@ -1,5 +1,5 @@
 ---
-wrapper_template: "templates/docs/markdown.html"
+wrapper_template: templates/docs/markdown.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
@@ -68,7 +68,7 @@ juju run-action kata ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Collect debug data
     </p>

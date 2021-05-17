@@ -55,7 +55,7 @@ juju add-relation ceph-osd ceph-mon
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Note:</span>
 For more on how Juju makes use of storage, please see the relevant
-<a href="https://docs.jujucharms.com/stable/en/charms-storage"> Juju documentation</a>
+<a href="https://juju.is/docs/olm/defining-and-using-persistent-storage"> Juju documentation</a>
   </p>
 </div>
 

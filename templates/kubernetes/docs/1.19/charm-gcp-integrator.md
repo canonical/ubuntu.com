@@ -1,5 +1,5 @@
 ---
-wrapper_template: "templates/docs/markdown.html"
+wrapper_template: templates/docs/markdown.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
@@ -171,7 +171,7 @@ watch kubectl get svc hello -o wide
 The base64-encoded contents of an GCP credentials JSON file.
 
 This can be used from bundles with 'include-base64://' (see
-https://jujucharms.com/docs/stable/charms-bundles#setting-charm-configurations-options-in-a-bundle),
+https://discourse.charmhub.io/t/bundle-reference/1158),
 or from the command-line with 'juju config gcp credentials="$(base64 /path/to/file)"'.
 
 It is strongly recommended that you use 'juju trust' instead, if available.
@@ -208,7 +208,7 @@ juju run-action gcp-integrator ACTION [parameters] [--wait]
       list-service-accounts
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       List all service accounts created by this charm (i.e., with the prefix `juju-gcp-`), both active and unknown (i.e., created by another instance of this charm or no longer in use).
     </p>
@@ -221,7 +221,7 @@ juju run-action gcp-integrator ACTION [parameters] [--wait]
       purge-unknown-service-accounts
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Purge service accounts created by this charm (i.e., with the prefix `juju-gcp-`) that are no longer in active use by this charm. Be careful! There is no way for this action to determine if these accounts are in use elsewhere, such as in another model. Running this action while there are accounts in use elsewhere will likely break the applications depending on those accounts.
     </p>

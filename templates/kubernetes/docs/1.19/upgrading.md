@@ -275,13 +275,13 @@ Minimally, secrets for the following users should be listed:
 
 - *admin*, *kube-controller-manager*, *kube-proxy*, *kubelet-n*, *system-kube-scheduler*, *system-monitoring*
 
-With secrets verified, the charm can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.10 version of **Kubernetes**, you would enter:
+With secrets verified, the charm can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.19 version of **Kubernetes**, you would enter:
 
 ```bash
-juju config kubernetes-master channel=1.10/stable
+juju config kubernetes-master channel=1.20/stable
 ```
 
-If you wanted to try a release candidate for 1.12, the channel would be `1.12/candidate`.
+If you wanted to try a release candidate for 1.20, the channel would be `1.20/candidate`.
 
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">

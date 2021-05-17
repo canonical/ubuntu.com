@@ -1,5 +1,5 @@
 ---
-wrapper_template: "templates/docs/markdown.html"
+wrapper_template: templates/docs/markdown.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
@@ -23,10 +23,7 @@ bundle_release: '1.18'
 source of the information - please file a bug rather than editing the text -->
 
 This page details the charms, snaps, images and other components
-which comprise the 1.18 release of Charmed Kubernetes. This is primarily a
-reference page, detailing very specifically what this release of
-**Charmed Kubernetes** contains. For installation, please refer to the
-[quickstart](../quickstart) page.
+which comprise the 1.18 release of Charmed Kubernetes.
 
 Other information about this release can be found on the following pages:
 

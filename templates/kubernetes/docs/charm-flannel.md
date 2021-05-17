@@ -29,7 +29,8 @@ use with flannel, on any principal charm that implements the
 ## Usage
 
 The flannel charm is a
-[subordinate](https://jujucharms.com/docs/stable/authors-subordinate-services).
+[subordinate](https://juju.is/docs/sdk#heading--subordinate-charms
+).
 This charm will require a principal charm that implements the `kubernetes-cni`
 interface in order to properly deploy.
 

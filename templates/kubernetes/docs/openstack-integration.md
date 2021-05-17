@@ -281,7 +281,7 @@ juju debug-log --replay --include openstack-integrator/0
 [asset-openstack-lb-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-lb-overlay.yaml
 [storage]: /kubernetes/docs/storage
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
-[openstack-integrator-readme]: https://jujucharms.com/u/containers/openstack-integrator/
+[openstack-integrator-readme]: https://charmhub.io/containers-openstack-integrator/
 [install]: /kubernetes/docs/install-manual
 [ldap]: /kubernetes/docs/ldap
 [charm-config]: https://ubuntu.com/kubernetes/docs/charm-openstack-integrator#configuration

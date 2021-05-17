@@ -16,7 +16,7 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: "templates/docs/markdown.html"
+wrapper_template: templates/docs/markdown.html
 ---
 
 This charm deploys a container runtime and the Kubernetes
@@ -344,11 +344,11 @@ update the configuration for the workers:
             hugepages-2Mi: 100Mi
             memory: 100Mi
           requests:
-            memory: 100Mi
+            memory: 100Mi      
       volumes:
       - name: hugepage
         emptyDir:
-          medium: HugePages
+          medium: HugePages  
     ```
     Huge page usage in a namespace can be managed with ResourceQuota,
     similar to other compute resources.
@@ -373,7 +373,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       cis-benchmark
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Run the CIS Kubernetes Benchmark against snap-based components.
     </p>
@@ -381,7 +381,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       This action has the following parameters:
     </p>
@@ -416,7 +416,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Collect debug data
     </p>
@@ -429,7 +429,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       microbot
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Launch microbot containers
     </p>
@@ -437,7 +437,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       This action has the following parameters:
     </p>
@@ -465,7 +465,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       pause
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Mark the node as unschedulable to prevent new pods from arriving, and evict existing pods.
     </p>
@@ -473,7 +473,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       This action has the following parameters:
     </p>
@@ -501,7 +501,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       registry
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Create a private Docker registry. DEPRECATED: See https://ubuntu.com/kubernetes/docs/docker-registry
     </p>
@@ -509,7 +509,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       This action has the following parameters:
     </p>
@@ -572,7 +572,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       resume
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Mark node as schedulable.
     </p>
@@ -585,7 +585,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       upgrade
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Upgrade the kubernetes snaps
     </p>

@@ -16,7 +16,7 @@ sidebar: k8smain-sidebar
 tags:
 - reference
 toc: false
-wrapper_template: "templates/docs/markdown.html"
+wrapper_template: templates/docs/markdown.html
 ---
 
 Simple NGINX reverse proxy to lend a hand in HA kubernetes-master deployments.
@@ -127,7 +127,7 @@ juju run-action kubeapi-load-balancer ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-5">
+  <div class="col-7">
     <p>
       Collect debug data
     </p>

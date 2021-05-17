@@ -30,7 +30,8 @@ The tigera-secure-ee charm is a [subordinate][]. This charm will require a
 principal charm that implements the `kubernetes-cni` interface in order to
 properly deploy.
 
-[subordinate]: https://docs.jujucharms.com/2.4/en/authors-subordinate-applications
+[subordinate]: https://juju.is/docs/sdk#heading--subordinate-charms
+
 
 
 ## Configuration

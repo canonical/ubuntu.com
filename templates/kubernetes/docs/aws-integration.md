@@ -283,7 +283,7 @@ If you are an AWS user, you may also be interested in how to
 [ebs-info]: https://aws.amazon.com/ebs/features/
 [cloudtrail]: https://console.aws.amazon.com/cloudtrail/
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
-[aws-integrator-readme]: https://jujucharms.com/u/containers/aws-integrator/
+[aws-integrator-readme]: https://charmhub.io/containers-aws-integrator
 [aws-iam]: /kubernetes/docs/aws-iam-auth
 [install]: /kubernetes/docs/install-manual
 
