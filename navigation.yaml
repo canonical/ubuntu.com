@@ -1616,17 +1616,19 @@ ubuntu1604:
 certification:
   title: Hardware
   path: /certified
+  persist: True
+  match_query: True
 
   children:
     - title: Overview
-      path: /certified
+      path: /certified?
     - title: Laptops
-      path: /certified/laptops
+      path: /certified?category=Laptop
     - title: Desktops
-      path: /certified/desktops
+      path: /certified?category=Desktop
     - title: Servers
-      path: /certified/servers
+      path: /certified?category=Server
     - title: Devices
-      path: /certified/devices
+      path: /certified?category=Device
     - title: SoCs
-      path: /certified/socs
+      path: /certified?category=SoC

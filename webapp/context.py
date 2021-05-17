@@ -50,13 +50,14 @@ def _remove_hidden(pages):
     return filtered_pages
 
 
-def get_navigation(path):
+def get_navigation(request):
     """
     Set "nav_sections" and "breadcrumbs" dictionaries
     as global template variables
     """
 
     breadcrumbs = {}
+    path = request.path
 
     is_topic_page = path.startswith("/blog/topics/")
 
@@ -73,9 +74,18 @@ def get_navigation(path):
                 # always show "Topics" as active on child topic pages
                 child["active"] = True
                 break
+
             elif (
-                child["path"] == path and path.startswith(nav_section["path"])
-            ) or (child.get("persist") and path.startswith(child["path"])):
+                (
+                    child["path"] == path
+                    and path.startswith(nav_section["path"])
+                )
+                or (child.get("persist") and path.startswith(child["path"]))
+                or (
+                    nav_section.get("match_query")
+                    and child["path"] == request.full_path
+                )
+            ):
                 # If child path matches current path or has persist set to true
                 child["active"] = True
                 nav_section["active"] = True
