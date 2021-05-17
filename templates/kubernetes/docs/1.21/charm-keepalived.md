@@ -25,8 +25,7 @@ those nodes, failing over when one goes down.
 ## Usage
 
 The Keepalived charm is a
-[subordinate](https://juju.is/docs/sdk#heading--subordinate-charms
-).
+[subordinate](https://juju.is/docs/sdk#heading--subordinate-charms).
 
 Allocating a VIP and ensuring that it can route to all of the instances is a
 manual process which depends on your infrastructure.  It does require that the
