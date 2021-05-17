@@ -20,8 +20,7 @@ toc: False
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
-[https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1).
-
+[the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1).
 
 # 1.21
 
@@ -55,9 +54,9 @@ to easily determine what registry changes are needed prior to an upgrade.
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
-[https://launchpad.net/charmed-kubernetes/+milestone/1.21](https://launchpad.net/charmed-kubernetes/+milestone/1.21).
+[the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21).
 
-## Notes / Known Issues
+## Notes and Known Issues
 
 - [LP 1920216](https://bugs.launchpad.net/operator-metallb/+bug/1920216) MetalLB
 speaker pod logs error with "selfLink was empty, can't make reference".
