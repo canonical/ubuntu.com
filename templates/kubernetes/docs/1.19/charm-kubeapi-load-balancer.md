@@ -127,7 +127,7 @@ juju run-action kubeapi-load-balancer ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Collect debug data
     </p>
