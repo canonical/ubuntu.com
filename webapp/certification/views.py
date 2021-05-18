@@ -195,7 +195,7 @@ def certified_home():
     certified_releases = api.certified_releases(limit="0")["objects"]
     certified_makes = api.certified_makes(limit="0")["objects"]
 
-    # Desktop section
+    # Laptop section
     laptop_releases = []
     laptop_vendors = []
 
@@ -223,23 +223,15 @@ def certified_home():
             all_releases = sorted(all_releases, reverse=True)
 
         if int(release["laptops"]) > 0:
-            release["path"] = f"/certified?category=Laptop&release={version}"
-            laptop_releases.append(release)            
+            laptop_releases.append(release)
 
         if int(release["desktops"]) > 0:
-            release["path"] = f"/certified?category=Desktop&release={version}"
             desktop_releases.append(release)
 
         if int(release["smart_core"] > 1):
-            release[
-                "path"
-            ] = f"/certified?category=Ubuntu%20Core&release={version}"
             iot_releases.append(release)
 
         if int(release["soc"] > 1):
-            release[
-                "path"
-            ] = f"/certified?category=Server%20SoC&release={version}"
             soc_releases.append(release)
 
     for vendor in certified_makes:
@@ -250,19 +242,15 @@ def certified_home():
             all_vendors = sorted(all_vendors)
 
         if int(vendor["laptops"]) > 0:
-            vendor["path"] = f"/certified?category=Laptop&vendor={make}"
             laptop_vendors.append(vendor)
 
         if int(vendor["desktops"]) > 0:
-            vendor["path"] = f"/certified?category=Desktop&vendor={make}"
             desktop_vendors.append(vendor)
 
         if int(vendor["smart_core"] > 1):
-            vendor["path"] = f"/certified?category=Ubuntu%20Core&vendor={make}"
             iot_vendors.append(vendor)
 
         if int(vendor["soc"] > 1):
-            vendor["path"] = f"/certified?category=Server%20SoC&vendor={make}"
             soc_vendors.append(vendor)
 
     # Server section
