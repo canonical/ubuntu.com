@@ -47,7 +47,7 @@ def notice(notice_id):
             release_version = releases[codename]
             release_packages[release_version] = {}
             for package in pkgs:
-                if package.get("is_binary", False):
+                if not package.get("is_visible", True):
                     continue
 
                 name = package["name"]
