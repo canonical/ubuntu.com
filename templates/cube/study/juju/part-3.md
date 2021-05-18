@@ -3,8 +3,8 @@ wrapper_template: "cube/study/_markdown.html"
 markdown_includes:
   nav: "cube/study/_navigation.md"
 context:
-  title: "Introduction to Juju"
-  description: "Introduction to Juju"
+  title: "Juju Charms"
+  description: "Juju Charms"
   auto_paginate: True
 ---
 
