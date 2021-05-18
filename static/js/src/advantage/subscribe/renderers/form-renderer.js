@@ -188,11 +188,11 @@ function renderSummary(state) {
 
     // We add the data to the button so the modal can pick it up
     buyButton.classList.remove("u-disable");
-    // const productObject = JSON.stringify(state.product);
-    // buyButton.dataset.cart = `[{"listingID": "${state.product.id}", "product": ${productObject}, "quantity": ${quantity}}]`;
-    // buyButton.dataset.accountId = window.accountId;
-    // buyButton.dataset.subtotal = price * quantity;
-    // buyButton.dataset.previousPurchaseId = previous_purchase_id;
+    const productObject = JSON.stringify(state.product);
+    buyButton.dataset.product = productObject;
+    buyButton.dataset.quantity = quantity;
+    buyButton.dataset.accountId = window.accountId;
+    buyButton.dataset.previousPurchaseId = previous_purchase_id;
   }
 
   if (periods.length > 1) {

@@ -3,7 +3,6 @@ import { debounce } from "../../utils/debounce";
 import { saveState } from "../../utils/persitState";
 import { getCustomerInfo } from "../contracts-api";
 import initFormInputs from "./listeners/form-event-listeners";
-import initPurchaseModalInputs from "./listeners/purchase-modal-listeners";
 import initUIControls from "./listeners/ui-event-listeners";
 
 import formReducer from "./reducers/form-reducer";
@@ -32,7 +31,6 @@ getCustomerInfo(window.accountId)
 
 initFormInputs(store);
 initUIControls(store);
-initPurchaseModalInputs(store);
 
 render(store.getState());
 store.subscribe(() => {

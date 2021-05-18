@@ -1,6 +1,6 @@
 import { add, format } from "date-fns";
 import { vatCountries } from "../../vat-countries";
-import { checkFormValidity } from "../listeners/purchase-modal-listeners";
+// import { checkFormValidity } from "../listeners/purchase-modal-listeners";
 import { VALIDITY } from "../reducers/user-info-reducer";
 import { formatter } from "./form-renderer";
 
@@ -160,26 +160,26 @@ function renderFreeTrialCheckBox(state) {
 
 function renderConfirmButton(state) {
   const button = document.querySelector("#continue-button");
-  const formAction = checkFormValidity(state);
+  // const formAction = checkFormValidity(state);
 
-  if (formAction === "freeTrial" || formAction === "purchase") {
-    button.disabled = false;
-  } else {
-    button.disabled = true;
-  }
+  // if (formAction === "freeTrial" || formAction === "purchase") {
+  //   button.disabled = false;
+  // } else {
+  //   button.disabled = true;
+  // }
 }
 
 export default function render(state) {
-  renderPurchaseModal(state);
-  renderFreeTrialField(state.form);
-  const fields = document.querySelectorAll(".p-form-validation");
-  fields.forEach((field) => {
-    renderField(state.userInfo, field);
-  });
-  renderBuyingFor(state);
-  renderProvinceOrState(state.userInfo.country.value);
-  renderVAT(state);
-  renderTotal(state);
-  renderFreeTrialCheckBox(state.form);
-  renderConfirmButton(state);
+  // renderPurchaseModal(state);
+  // renderFreeTrialField(state.form);
+  // const fields = document.querySelectorAll(".p-form-validation");
+  // fields.forEach((field) => {
+  //   renderField(state.userInfo, field);
+  // });
+  // renderBuyingFor(state);
+  // renderProvinceOrState(state.userInfo.country.value);
+  // renderVAT(state);
+  // renderTotal(state);
+  // renderFreeTrialCheckBox(state.form);
+  // renderConfirmButton(state);
 }
