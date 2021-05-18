@@ -67,6 +67,38 @@
         loading="lazy"
         ) | safe
       }}
+      <h2 class="p-card__title p-heading--3">Ubuntu Laptop certified hardware</h2>
+      <hr />
+      <p class="p-card__content u-sv2">Many of the world's biggest PC manufacturers certify their desktops for Ubuntu.</p>
+      <p class="p-muted-text u-no-margin--bottom">Vendor:</p>
+      <ul class="p-inline-list" style="margin-bottom: 0.5rem;">
+        {% for laptop_vendor in laptop_vendors %}
+        <li class="p-inline-list__item">
+          <a href="/certified?category=Laptop&vendor={{ laptop_vendor.make }}">{{ laptop_vendor.make }}&nbsp;({{ laptop_vendor.laptops }})</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="p-muted-text u-no-margin--bottom">Certified for Ubuntu:</p>
+      <ul class="p-inline-list">
+        {% for laptop_release in laptop_releases %}
+        <li class="p-inline-list__item">
+          <a href="/certified?category=Laptop&release={{ laptop_release.release }}">{{ laptop_release.release }}&nbsp;&nbsp;({{ laptop_release.laptops }})</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <p><a href="/certified?category=Laptop">All Ubuntu Desktop certified hardware&nbsp;&rsaquo;</a></p>
+    </div>
+
+    <div class="col-6 p-card">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+        alt="",
+        width="83",
+        height="48",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
       <h2 class="p-card__title p-heading--3">Ubuntu Desktop certified hardware</h2>
       <hr />
       <p class="p-card__content u-sv2">Many of the world's biggest PC manufacturers certify their desktops for Ubuntu.</p>
@@ -74,7 +106,7 @@
       <ul class="p-inline-list" style="margin-bottom: 0.5rem;">
         {% for desktop_vendor in desktop_vendors %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Desktop&vendor={{ desktop_vendor.make }}&filters=True">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.total }})</a>
+          <a href="/certified?category=Desktop&vendor={{ desktop_vendor.make }}">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.desktops }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -82,7 +114,7 @@
       <ul class="p-inline-list">
         {% for desktop_release in desktop_releases %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Desktop&release={{ desktop_release.release }}&filters=True">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops + desktop_release.laptops + desktop_release.servers + desktop_release.smart_core + desktop_release.soc }})</a>
+          <a href="/certified?category=Desktop&release={{ desktop_release.release }}">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -105,7 +137,7 @@
       <ul class="p-inline-list">
         {% for server_release, total in server_releases.items() %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Server&release={{ server_release }}&filters=True">{{ server_release }}&nbsp;({{ total }})</a>
+          <a href="/certified?category=Server&release={{ server_release }}">{{ server_release }}&nbsp;({{ total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -130,7 +162,7 @@
       <ul class="p-inline-list">
         {% for iot_vendor in iot_vendors %}
         <li class="p-inline-list__item">
-          <a href="{{ iot_vendor.path }}&filters=True">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.total }})</a>
+          <a href="{{ iot_vendor.path }}">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -153,7 +185,7 @@
       <ul class="p-inline-list">
         {% for soc_vendor in soc_vendors %}
         <li class="p-inline-list__item">
-          <a href="{{ soc_vendor.path }}&filters=True">{{ soc_vendor.make }} ({{ soc_vendor.total }})</a>
+          <a href="{{ soc_vendor.path }}">{{ soc_vendor.make }} ({{ soc_vendor.total }})</a>
         </li>
         {% endfor %}
       </ul>
