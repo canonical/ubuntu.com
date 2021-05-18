@@ -196,6 +196,10 @@ def certified_home():
     certified_makes = api.certified_makes(limit="0")["objects"]
 
     # Desktop section
+    laptop_releases = []
+    laptop_vendors = []
+
+    # Desktop section
     desktop_releases = []
     desktop_vendors = []
 
@@ -218,7 +222,11 @@ def certified_home():
             all_releases.append(version)
             all_releases = sorted(all_releases, reverse=True)
 
-        if int(release["desktops"]) > 0 or int(release["laptops"]) > 0:
+        if int(release["laptops"]) > 0:
+            release["path"] = f"/certified?category=Laptop&release={version}"
+            laptop_releases.append(release)            
+
+        if int(release["desktops"]) > 0:
             release["path"] = f"/certified?category=Desktop&release={version}"
             desktop_releases.append(release)
 
@@ -241,7 +249,11 @@ def certified_home():
             all_vendors.append(make)
             all_vendors = sorted(all_vendors)
 
-        if int(vendor["desktops"]) > 0 or int(vendor["laptops"]) > 0:
+        if int(vendor["laptops"]) > 0:
+            vendor["path"] = f"/certified?category=Laptop&vendor={make}"
+            laptop_vendors.append(vendor)
+
+        if int(vendor["desktops"]) > 0:
             vendor["path"] = f"/certified?category=Desktop&vendor={make}"
             desktop_vendors.append(vendor)
 
@@ -340,6 +352,8 @@ def certified_home():
 
         return render_template(
             "certification/index.html",
+            laptop_releases=laptop_releases,
+            laptop_vendors=laptop_vendors,
             desktop_releases=desktop_releases,
             desktop_vendors=desktop_vendors,
             server_releases=server_releases,
