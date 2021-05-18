@@ -63,13 +63,14 @@ class UAContractsAPI:
                 method="get", path=f"v1/accounts/{account_id}/contracts"
             )
         except HTTPError as error:
-            if self.is_for_view:
-                if error.response.status_code == 401:
+            if error.response.status_code == 401:
+                if self.is_for_view:
                     raise UAContractsAPIAuthErrorView(error)
                 raise UAContractsAPIAuthError(error)
 
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
+
             raise UAContractsAPIError(error)
 
         return response.json().get("contracts", [])
@@ -82,13 +83,14 @@ class UAContractsAPI:
                 json={},
             )
         except HTTPError as error:
-            if self.is_for_view:
-                if error.response.status_code == 401:
+            if error.response.status_code == 401:
+                if self.is_for_view:
                     raise UAContractsAPIAuthErrorView(error)
                 raise UAContractsAPIAuthError(error)
 
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
+
             raise UAContractsAPIError(error)
 
         return response.json().get("contractToken")
@@ -115,7 +117,12 @@ class UAContractsAPI:
             )
         except HTTPError as error:
             if error.response.status_code == 401:
+                if self.is_for_view:
+                    raise UAContractsAPIAuthErrorView(error)
                 raise UAContractsAPIAuthError(error)
+
+            if self.is_for_view:
+                raise UAContractsAPIErrorView(error)
 
             raise UAContractsAPIError(error)
 
@@ -188,7 +195,7 @@ class UAContractsAPI:
 
             raise UAContractsAPIError(error)
 
-        return response.json()
+        return response.json() if response.status_code != 200 else None
 
     def get_renewal(self, renewal_id):
         try:
@@ -282,13 +289,15 @@ class UAContractsAPI:
                 method="get", path=f"v1/purchase/{purchase_id}"
             )
         except HTTPError as error:
-            if self.is_for_view:
-                if error.response.status_code == 401:
+            if error.response.status_code == 401:
+                if self.is_for_view:
                     raise UAContractsAPIAuthErrorView(error)
-                raise UAContractsAPIAuthError(error)
+                else:
+                    raise UAContractsAPIAuthError(error)
 
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
+
             raise UAContractsAPIError(error)
 
         return response.json()

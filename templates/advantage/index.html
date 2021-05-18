@@ -48,6 +48,15 @@
 
   <hr class="p-separator" />
 
+  {% if payment_method_warning %}
+  <div class="row">
+    <div class="p-notification--caution">
+      <p class="p-notification__response" role="status">
+        <span class="p-notification__status">Payment method:</span>You need to <a href="/advantage/payment-methods{% if is_test_backend %}?test_backend=true{% endif %}">update your payment methods</a> to ensure there is no interruption to your Ubuntu Advantage subscriptions
+      </p>
+    </div>
+  </div>
+  {% endif %}
   {% if enterprise_contracts %}
     <section class="p-strip is-shallow" style="overflow: visible;">
       <div class="row u-vertically-center">
@@ -55,15 +64,6 @@
           <h2>Your {% if total_enterprise_contracts > 1 %}{{total_enterprise_contracts}} {% endif %}paid subscription{% if total_enterprise_contracts == 1 %}{% else %}s{% endif %}</h2>
         </div>
       </div>
-      {% if payment_method_warning %}
-        <div class="row">
-          <div class="p-notification--caution">
-            <p class="p-notification__response" role="status">
-              <span class="p-notification__status">Payment method:</span>You need to <a href="/advantage/payment-methods{% if is_test_backend %}?test_backend=true{% endif %}">update your payment methods</a> to ensure there is no interruption to your Ubuntu Advantage subscriptions
-            </p>
-          </div>
-        </div>
-      {% endif %}
       {% if monthly_information['has_monthly'] %}
         <div class="row">
           <div class="col-8 col-medium-3">

@@ -169,7 +169,7 @@ def ua_contracts_api_error(error):
 
     return (
         flask.jsonify({"errors": error.response.json()["message"]}),
-        error.response.json()["code"],
+        error.response.status_code or 500,
     )
 
 
