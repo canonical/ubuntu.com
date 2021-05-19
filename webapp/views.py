@@ -728,7 +728,7 @@ def ua_contracts(path):
     srv = flask.current_app.config["CONTRACTS_TEST_API_URL"]
     url = f"{srv}/{path}"
     if flask.request.query_string:
-        url = f"{url}?{flask.request.query_string.encode('utf-8')}"
+        url = f"{url}?{flask.request.query_string.decode('utf-8')}"
     headers = {}
     if flask.session.get("authentication_token"):
         headers["Authorization"] = f"Macaroon {flask.session['authentication_token']}"
