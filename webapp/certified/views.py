@@ -2,9 +2,10 @@ import talisker.requests
 import talisker.sentry
 import requests
 import math
-from flask import request, render_template, abort, current_app
+from flask import request, render_template, abort, current_app, redirect
 from requests import Session
 from webapp.certified.api import CertificationAPI
+from urllib.parse import urlencode
 
 session = Session()
 talisker.requests.configure(session)
@@ -264,10 +265,21 @@ def certified_home():
 
     if request.args:
         query = request.args.get("q", default=None, type=str)
+
+        # Old site replacements
+        if set(request.args) & set(["query", "vendors"]):
+            # Convert ImmutableMultiDict into normal dict
+            parameters = request.args.to_dict()
+            # Do the replacements
+            parameters["q"] = parameters["query"]
+            del parameters["query"]
+            parameters["vendor"] = parameters["vendors"]
+            del parameters["vendors"]
+            # Convert back into query string and redirect
+            return redirect(f"/certified?{urlencode(parameters)}", 301)
+
         limit = request.args.get("limit", default=20, type=int)
         offset = request.args.get("offset", default=0, type=int)
-        filters = request.args.get("filters", default=False, type=bool)
-        vendor_page = request.args.get("vendor_page", default=False, type=bool)
 
         selected_categories = request.args.getlist("category")
         if "SoC" in selected_categories:
@@ -278,6 +290,7 @@ def certified_home():
             # Ubuntu Core is replaced by Device for UX purposes
             # Ubuntu Core is an operating system not a category
             selected_categories.remove("Device")
+            # Put back Ubuntu Core, as required by API endpoint
             selected_categories.append("Ubuntu Core")
 
         categories = (
@@ -330,8 +343,6 @@ def certified_home():
             total_pages=math.ceil(total_results / limit),
             offset=offset,
             limit=limit,
-            filters=filters,
-            vendor_page=vendor_page,
         )
 
     else:
