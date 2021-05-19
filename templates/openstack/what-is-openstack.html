@@ -64,6 +64,103 @@
       <p>Today, hundreds of companies contribute to OpenStack code, with many more playing a part in the broader community.</p>
     </div>
   </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <table class="js-commit-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Company</th>
+            <th>Commits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="3" class="u-align--center">
+            <i class="p-icon--spinner u-animation--spin"></i>
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6">
+      <svg class="js-commit-chart" width="100%" height="100%"></svg>
+    </div>
+  </div>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    fetch('/static/js/data/openstack-commit-stats.json')
+      .then(response => response.json())
+      .then(data => {
+        var data = data.stats.slice(0, 10);
+        var tableData = '';
+        var tableBody = document.querySelector('.js-commit-table tbody');
+        for (var i = 0; i < data.length; i++) {
+          tableData += `<tr>
+            <td>${i + 1}</td>
+            <td>${data[i].name}</td>
+            <td>${data[i].metric}</td>
+          </tr>`;
+        }
+        tableBody.innerHTML = tableData;
+
+        drawChart(data);
+      });
+
+      function drawChart(data) {
+        var svg = d3.select("svg.js-commit-chart"),
+            width = svg.attr("width"),
+            height = svg.attr("height"),
+            radius = 200;
+
+        var tots = d3.sum(data, function(d) {
+                return d.metric;
+            });
+
+        data.forEach(function(d) {
+            d.percentage = Math.round((100 * (d.metric / tots)) * 10) / 10;
+        });
+
+        var g = svg.append("g")
+                   .attr("style", "transform: translate(50%, 50%)");
+
+        var ordScale = d3.scaleOrdinal()
+                        	.domain(data)
+                        	.range(['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
+
+        var pie = d3.pie().value(function(d) {
+                return d.metric;
+            });
+
+        var arc = g.selectAll("arc")
+                   .data(pie(data))
+                   .enter()
+
+        var path = d3.arc()
+                     .outerRadius(radius)
+                     .innerRadius(0)
+
+        arc.append("path")
+           .attr("d", path)
+           .attr("fill", function(d) { return ordScale(d.data.name); });
+
+        var label = d3.arc()
+                      .outerRadius(radius)
+                      .innerRadius(70);
+
+        arc.append("text")
+           .attr("transform", function(d) {
+                    return "translate(" + label.centroid(d) + ")";
+            })
+           .text(function(d) {
+              if ( d.data.percentage < 4) return '';
+              return d.data.percentage + "%";
+            })
+           .style("font-family", "Ubuntu")
+           .style("font-size", 15)
+           .style("font-weight", "bold")
+           .style("color", "#fff");
+      }
+  </script>
+
 </section>
 
 <section class="p-strip u-no-padding--top u-no-padding--bottom">
