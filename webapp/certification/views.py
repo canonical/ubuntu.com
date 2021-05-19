@@ -195,6 +195,10 @@ def certified_home():
     certified_releases = api.certified_releases(limit="0")["objects"]
     certified_makes = api.certified_makes(limit="0")["objects"]
 
+    # Laptop section
+    laptop_releases = []
+    laptop_vendors = []
+
     # Desktop section
     desktop_releases = []
     desktop_vendors = []
@@ -218,20 +222,16 @@ def certified_home():
             all_releases.append(version)
             all_releases = sorted(all_releases, reverse=True)
 
-        if int(release["desktops"]) > 0 or int(release["laptops"]) > 0:
-            release["path"] = f"/certified?category=Desktop&release={version}"
+        if int(release["laptops"]) > 0:
+            laptop_releases.append(release)
+
+        if int(release["desktops"]) > 0:
             desktop_releases.append(release)
 
         if int(release["smart_core"] > 1):
-            release[
-                "path"
-            ] = f"/certified?category=Ubuntu%20Core&release={version}"
             iot_releases.append(release)
 
         if int(release["soc"] > 1):
-            release[
-                "path"
-            ] = f"/certified?category=Server%20SoC&release={version}"
             soc_releases.append(release)
 
     for vendor in certified_makes:
@@ -241,16 +241,16 @@ def certified_home():
             all_vendors.append(make)
             all_vendors = sorted(all_vendors)
 
-        if int(vendor["desktops"]) > 0 or int(vendor["laptops"]) > 0:
-            vendor["path"] = f"/certified?category=Desktop&vendor={make}"
+        if int(vendor["laptops"]) > 0:
+            laptop_vendors.append(vendor)
+
+        if int(vendor["desktops"]) > 0:
             desktop_vendors.append(vendor)
 
         if int(vendor["smart_core"] > 1):
-            vendor["path"] = f"/certified?category=Ubuntu%20Core&vendor={make}"
             iot_vendors.append(vendor)
 
         if int(vendor["soc"] > 1):
-            vendor["path"] = f"/certified?category=Server%20SoC&vendor={make}"
             soc_vendors.append(vendor)
 
     # Server section
@@ -340,6 +340,8 @@ def certified_home():
 
         return render_template(
             "certification/index.html",
+            laptop_releases=laptop_releases,
+            laptop_vendors=laptop_vendors,
             desktop_releases=desktop_releases,
             desktop_vendors=desktop_vendors,
             server_releases=server_releases,
