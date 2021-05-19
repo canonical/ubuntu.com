@@ -65,6 +65,7 @@ from webapp.views import (
     sitemap_index,
     account_query,
     sixteen_zero_four,
+    ua_contracts,
 )
 
 from webapp.advantage.views import (
@@ -275,6 +276,11 @@ def utility_processor():
 # Simple routes
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
+app.add_url_rule(
+    "/ua-contracts/<path:path>",
+    view_func=ua_contracts,
+    methods=["GET", "POST", "PUT", "DELETE", "HEAD"]
+)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule(
