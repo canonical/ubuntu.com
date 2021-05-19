@@ -780,7 +780,7 @@ app.add_url_rule(
     view_func=certified_hardware_details,
 )
 app.add_url_rule(
-    "/certified/component/<component_id>",
+    "/certified/components/<component_id>",
     view_func=certified_component_details,
 )
 
