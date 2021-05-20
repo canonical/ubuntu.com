@@ -9,6 +9,7 @@ module.exports = {
     "eslint:recommended",
     "eslint-config-prettier",
     "plugin:cypress/recommended",
+    "plugin:react/recommended",
   ],
   globals: {
     Atomics: "readonly",
