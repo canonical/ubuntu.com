@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import PurchaseModal from "./purchase-modal";
+import PurchaseModal from "./PurchaseModal";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
