@@ -78,8 +78,8 @@
               <div class="row">
                 <div class="row col-start-large-2 col-10">
                   <h5>{{monthly_information['total_subscriptions']}} monthly subscription{% if monthly_information['total_subscriptions'] > 1 %}s are {% else %} is {% endif %}affected by auto-renewal settings.</h5>
-                  <hr class="p-separator" />
-                  <div>
+                  <hr />
+                  <div> 
                     <label class="p-radio">
                       <input id="auto-renewal-on" type="radio" class="p-radio__input" name="auto-renewal"  {% if monthly_information["is_auto_renewal_enabled"] %}checked=""{% endif %} aria-labelledby="enable" value="on">
                       <span class="p-radio__label" id="enable">Enable auto-renewal</span>
