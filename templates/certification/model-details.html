@@ -79,6 +79,25 @@
             {% else %}
             <section>
             {% endif %}
+            {% if release.level == "Enabled" %}
+              <p class="u-no-margin--bottom">Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system’s hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.</p>
+            {% elif release.level == "Certified" %}
+              <p>The {{ vendor }} {{ name }} development board with the components described below has been awarded the status of certified for Ubuntu.</p>
+              <p class="u-no-margin--bottom">
+                {% if category == "Desktop" or category == "Laptop" %}
+                <a href="/download/desktop" class="p-button--neutral">Download</a>
+                {% endif %}
+                {% if category == "Ubuntu Core" %}
+                <a href="/download/iot" class="p-button--neutral">Download</a>
+                {% endif %}
+                {% if category == "Server" %}
+                <a href="/download/server" class="p-button--neutral">Download</a>
+                {% endif %}
+                {% if category == "Server SoC" %}
+                <a href="/download/server/arm" class="p-button--neutral">Download</a>
+                {% endif %}
+              </p>
+            {% endif %}
             {% if release.notes %}
               <h4 class="u-no-margin--bottom">Notes</h4>
               {% for note in release.notes %}
