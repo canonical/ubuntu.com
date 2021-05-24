@@ -16,7 +16,7 @@
     {% endif %}
     {% if not contract["is_detached"] and contract['machineCount']%}
       <div class="change-subscription">
-        <button class="p-button--neutral u-no-margin--left js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}--yearly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">Change subscription</button>
+        <button class="p-button--neutral u-no-margin--left js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}--yearly" data-viewport="{% if mobile %}small{% else %}large{% endif %}" {% if payment_method_warning %}disabled{% endif %}>Change subscription</button>
       </div>
     {% endif %}
   </div>
