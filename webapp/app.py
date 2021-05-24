@@ -109,7 +109,7 @@ from webapp.security.views import (
     cves_sitemap,
 )
 
-from webapp.certification.views import (
+from webapp.certified.views import (
     certified_home,
     certified_model_details,
     certified_hardware_details,
