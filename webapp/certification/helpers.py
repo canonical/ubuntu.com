@@ -1,4 +1,4 @@
-def get_download_url(model, model_details):
+def get_download_url(model_details):
     """
     Return the appropriate ubuntu.com/download url for the model
 
@@ -6,7 +6,7 @@ def get_download_url(model, model_details):
     :param model_details: a certifiedmodeldetails resource
     :return: appropriate ubuntu.com/download url
     """
-    platform_category = model.get("category", "").lower()
+    platform_category = model_details.get("category", "").lower()
     architecture = model_details.get("architecture", "").lower()
 
     if model_details.get("level") == "Enabled":

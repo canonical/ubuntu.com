@@ -17,26 +17,26 @@ interactions:
       string: '{"archived": false, "category": "", "hardware_vendor_make": "Intel",
         "id": 682, "identifier": "8086:24fd", "lts_certified_releases": {}, "lts_releases":
         {"20.04 LTS": [{"release": "20.04 LTS", "status": "certified", "third_party_driver":
-        false}]}, "machine_canonical_ids": ["202004-27860", "202004-27850", "202004-27840",
-        "202003-27789"], "model": "Intel 8265NGW", "note": "", "part_number": "8086:24fd",
-        "resource_uri": "/api/v1/componentsummaries/682/", "statuses": [{"certified_release":
-        {"codename": "focal", "id": 144, "release": "20.04 LTS", "release_date": "2020-04-23",
-        "resource_uri": "/api/v1/releases/144/", "supported_until": "2030-04-23"},
-        "created": "2020-08-22T01:43:33.056642", "id": 91, "resource_uri": "/api/v1/componentreleases/91/",
-        "status": "certified", "third_party_driver": false, "updated": "2020-08-22T01:43:33.056670"}],
-        "subsystem_identifier": "8086:24fd", "vendor_make": "8265NGW", "vendor_name":
-        "Intel Corp."}'
+        false}]}, "machine_canonical_ids": ["202004-27860", "202004-27850", "202004-27850",
+        "202004-27840", "202004-27840", "202003-27789", "202003-27789"], "model":
+        "Intel 8265NGW", "note": "", "part_number": "8086:24fd", "resource_uri": "/api/v1/componentsummaries/682/",
+        "statuses": [{"certified_release": {"codename": "focal", "id": 144, "release":
+        "20.04 LTS", "release_date": "2020-04-23", "resource_uri": "/api/v1/releases/144/",
+        "supported_until": "2030-04-23"}, "created": "2020-08-22T01:43:33.056642",
+        "id": 91, "resource_uri": "/api/v1/componentreleases/91/", "status": "certified",
+        "third_party_driver": false, "updated": "2020-08-22T01:43:33.056670"}], "subsystem_identifier":
+        "8086:24fd", "vendor_make": "8265NGW", "vendor_name": "Intel Corp."}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - Keep-Alive
       Content-Length:
-      - '940'
+      - '988'
       Content-Type:
       - application/json
       Date:
-      - Thu, 06 May 2021 15:42:32 GMT
+      - Mon, 24 May 2021 15:00:28 GMT
       Keep-Alive:
       - timeout=5, max=100
       Server:
@@ -60,7 +60,7 @@ interactions:
       User-Agent:
       - python-requests/2.25.1
     method: GET
-    uri: https://certification.canonical.com/api/v1/certifiedmodels/?format=json&limit=0&canonical_id__in=202004-27860&canonical_id__in=202004-27850&canonical_id__in=202004-27840&canonical_id__in=202003-27789
+    uri: https://certification.canonical.com/api/v1/certifiedmodels/?format=json&limit=0&canonical_id__in=202004-27860&canonical_id__in=202004-27850&canonical_id__in=202004-27850&canonical_id__in=202004-27840&canonical_id__in=202004-27840&canonical_id__in=202003-27789&canonical_id__in=202003-27789
   response:
     body:
       string: '{"meta": {"limit": 1000, "next": null, "offset": 0, "previous": null,
@@ -86,7 +86,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 06 May 2021 15:42:32 GMT
+      - Mon, 24 May 2021 15:00:28 GMT
       Keep-Alive:
       - timeout=5, max=99
       Server:
