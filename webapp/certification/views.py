@@ -111,14 +111,14 @@ def certified_hardware_details(canonical_id, release):
 
 
 def certified_model_details(canonical_id):
-    models = api.certified_models(canonical_id=canonical_id)["objects"]
 
-    if not models:
+    model_releases = api.certified_model_details(canonical_id=canonical_id)[
+        "objects"
+    ]
+
+    if not model_releases:
         abort(404)
 
-    model_releases = api.certified_model_details(
-        canonical_id=canonical_id, limit="0"
-    )["objects"]
     component_summaries = api.component_summaries(canonical_id=canonical_id)[
         "objects"
     ]
@@ -140,7 +140,7 @@ def certified_model_details(canonical_id):
             "level": model_release["level"],
             "notes": model_release["notes"],
             "version": ubuntu_version,
-            "download_url": get_download_url(models[0], model_release),
+            "download_url": get_download_url(model_release),
         }
 
         if release_info["level"] == "Enabled":
@@ -173,17 +173,17 @@ def certified_model_details(canonical_id):
 
     # default to category, which contains the least specific form_factor
     form_factor = model_release and model_release.get(
-        "form_factor", models[0]["category"]
+        "form_factor", model_release["category"]
     )
 
     return render_template(
         "certification/model-details.html",
         canonical_id=canonical_id,
-        name=models[0]["model"],
-        category=models[0]["category"],
+        name=model_release["model"],
+        category=model_release["category"],
         form_factor=form_factor,
-        vendor=models[0]["make"],
-        major_release=models[0]["major_release"],
+        vendor=model_release["make"],
+        major_release=model_release["certified_release"],
         release_details=release_details,
         has_enabled_releases=has_enabled_releases,
         components=component_summaries,
