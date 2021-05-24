@@ -4,8 +4,8 @@ import requests
 import math
 from flask import request, render_template, abort, current_app
 from requests import Session
-from webapp.certification.api import CertificationAPI
-from webapp.certification.helpers import get_download_url
+from webapp.certified.api import CertificationAPI
+from webapp.certified.helpers import get_download_url
 
 session = Session()
 talisker.requests.configure(session)
@@ -39,7 +39,7 @@ def certified_component_details(component_id):
     machines = machines_by_id.values()
 
     return render_template(
-        "certification/component-details.html",
+        "certified/component-details.html",
         component=component,
         machines=sorted(
             machines, key=lambda machine: machine["canonical_id"], reverse=True
@@ -98,7 +98,7 @@ def certified_hardware_details(canonical_id, release):
     form_factor = release_details.get("form_factor", category)
 
     return render_template(
-        "certification/hardware-details.html",
+        "certified/hardware-details.html",
         canonical_id=canonical_id,
         model_name=models["model"],
         form=models["category"],
@@ -177,7 +177,7 @@ def certified_model_details(canonical_id):
     )
 
     return render_template(
-        "certification/model-details.html",
+        "certified/model-details.html",
         canonical_id=canonical_id,
         name=model_release["model"],
         category=model_release["category"],
@@ -319,7 +319,7 @@ def certified_home():
         total_results = models_response["meta"]["total_count"]
 
         return render_template(
-            "certification/search-results.html",
+            "certified/search-results.html",
             results=results,
             query=query,
             category=",".join(request.args.getlist("category")),
@@ -339,7 +339,7 @@ def certified_home():
     else:
 
         return render_template(
-            "certification/index.html",
+            "certified/index.html",
             laptop_releases=laptop_releases,
             laptop_vendors=laptop_vendors,
             desktop_releases=desktop_releases,
