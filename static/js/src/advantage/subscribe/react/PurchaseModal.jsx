@@ -50,8 +50,9 @@ const PurchaseModal = () => {
         ) : (
           <>
             <Summary product={product} quantity={quantity} />
-            {!!userInfo.customerInfo &&
-            !!userInfo.customerInfo.defaultPaymentMethod ? (
+            {userInfo &&
+            userInfo.customerInfo &&
+            userInfo.customerInfo.defaultPaymentMethod ? (
               <PaymentMethodSummary />
             ) : (
               <PaymentMethodForm />

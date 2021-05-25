@@ -149,6 +149,8 @@
       "{{ period }}": "{{ id }}",
     {% endfor %}
   }
+
+  window.stripePublishableKey = "{{ stripe_publishable_key }}";
 </script>
 
 {% endblock %}
