@@ -2,7 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import PurchaseModal from "./PurchaseModal";
+
+const stripePromise = loadStripe(window.stripePublishableKey);
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -19,9 +23,9 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <PurchaseModal />
-
-      {/* The rest of your application */}
+      <Elements stripe={stripePromise}>
+        <PurchaseModal />
+      </Elements>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

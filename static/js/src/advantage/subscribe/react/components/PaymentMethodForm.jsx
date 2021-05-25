@@ -1,76 +1,97 @@
 import React from "react";
-import { Row, Col, Button } from "@canonical/react-components";
+import {
+  Row,
+  Col,
+  Input,
+  Form,
+  Select,
+  RadioInput,
+} from "@canonical/react-components";
 import useStripeCustomerInfo from "../APICalls/StripeCustomerInfo";
-
-const cardImageMap = {
-  visa: "https://assets.ubuntu.com/v1/2060e728-VBM_COF.png",
-  mastercard: "https://assets.ubuntu.com/v1/f42c6739-mc_symbol.svg",
-  amex: "https://assets.ubuntu.com/v1/5f4f3f7b-Amex_logo_color.svg",
-  discover: "https://assets.ubuntu.com/v1/f5e8abde-discover_logo.jpg",
-};
+import { CardElement } from "@stripe/react-stripe-js";
+import FormRow from "./FormRow";
+import { countries } from "../../../countries-and-states";
 
 function PaymentMethodForm() {
-  const { data: userInfo } = useStripeCustomerInfo();
-
   return (
-    <div>
-      <Row className="u-no-padding">
-        <Col size="3">
-          <p className="u-text-light">Receipt will be sent to:</p>
-        </Col>
+    <Form stacked className="u-sv3" id="payment-modal-form">
+      <FormRow label="Payment card" error="Hé ho là">
+        <div
+          className="#card-element.StripeElement--invalid"
+          style={{
+            padding: "calc(0.4rem - 1px) .5rem",
+            border: "1px solid rgba(0,0,0,.56)",
+            borderRadius: 0,
+            boxShadow: "inset 0 1px 1px rgb(0 0 0 / 12%)",
+          }}
+        >
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  iconColor: "#e95420",
+                  color: "#111",
+                  fontWeight: 300,
+                  fontFamily:
+                    '"Ubuntu", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+                  fontSmoothing: "antialiased",
+                  fontSize: "16px",
+                  lineHeight: "24px",
 
-        <Col size="9">
-          <p>{userInfo.customerInfo.email}</p>
-        </Col>
-      </Row>
+                  "::placeholder": {
+                    color: "#666",
+                  },
+                  ":-webkit-autofill": {
+                    color: "#666",
+                  },
+                },
+              },
+            }}
+          />
+        </div>
+      </FormRow>
 
-      <Row className="u-no-padding">
-        <Col size="6" className="u-vertically-center">
-          <p className="u-text-light">Payment method:</p>
-        </Col>
-
-        <Col size="6" className="u-align--right">
-          <Button className="p-button js-change-payment-method">
-            Change...
-          </Button>
-        </Col>
-      </Row>
-
-      <div className="p-card">
-        <Row className="u-no-padding">
-          <Col size="2" medium="1" small="1">
-            <img
-              src={
-                cardImageMap[userInfo.customerInfo.defaultPaymentMethod.brand]
-              }
-            />
-          </Col>
-          <Col size="8" small="3">
-            <span>{userInfo.customerInfo.name}</span>
-            <br />
-            <span>
-              <span style={{ textTransform: "capitalize" }}>
-                {userInfo.customerInfo.defaultPaymentMethod.brand}
-              </span>{" "}
-              ending in {userInfo.customerInfo.defaultPaymentMethod.last4}
-            </span>
-          </Col>
-          <Col size="2" small="3" emptySmall="2">
-            <span className="u-text-light">Expires:</span>
-            <br />
-            <span>
-              {userInfo.customerInfo.defaultPaymentMethod.expMonth
-                .toString()
-                .padStart(2, "0")}
-              /
-              {userInfo.customerInfo.defaultPaymentMethod.expYear
-                .toString()
-                .slice(-2)}
-            </span>
-          </Col>
-        </Row>
-      </div>
-    </div>
+      <Input
+        type="email"
+        id="email"
+        label="Email my receipt to:"
+        help="We'll also send setup instructions to this address."
+        onChange={(e) => {
+          console.log(e.target.validity);
+          console.log(e.target.validationMessage);
+        }}
+        stacked
+      />
+      <Input type="text" id="name" label="Name" stacked />
+      <FormRow label="I’m buying for:">
+        <Form inline>
+          <RadioInput name="buyingFor" value="myself" label="Myself" />
+          <RadioInput
+            name="buyingFor"
+            value="organisation"
+            label="An organisation"
+          />
+        </Form>
+      </FormRow>
+      <Input type="text" id="organisationName" label="Organisation:" stacked />
+      <Input type="text" id="address" label="Address" stacked />
+      <Input type="text" id="city" label="City" stacked />
+      <Input type="text" id="postalCode" label="Postal code:" stacked />
+      <Select
+        id="exampleSelectInputError3"
+        defaultValue=""
+        options={countries}
+        label="Country/Region:"
+        stacked
+      />
+      <Input
+        type="text"
+        id="vatNumber"
+        label="VAT number:"
+        stacked
+        help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
+      />
+    </Form>
   );
 }
 
