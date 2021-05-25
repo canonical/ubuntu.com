@@ -1,32 +1,197 @@
-import { resizeContract, cancelContract } from "./contracts-api.js";
+import {
+  resizeContract,
+  cancelContract,
+  getPurchase,
+} from "./contracts-api.js";
 
-function handleAPICall(APIFunction, parameters, button) {
-  const buttonText = button.innerHTML;
-  button.classList.add("is-processing");
-  button.innerHTML =
+const stripe = window.Stripe(window.stripePublishableKey);
+
+const getMessage = (code, default_message) => {
+  const map = {
+    resizing_machines_success: "Resizing successful! Reloading page...",
+    cancelling_subscription_success:
+      "Subscription cancelled! Reloading page...",
+    resizing_machines_fail:
+      "<strong>Payment method:</strong> There was an error with the payment please <a href='/advantage/payment-methods'>update your payment methods</a> to fix it.",
+    subscription_missing:
+      "<strong>Cancelling subscription failed:</strong> It could be that you have a pending payment that is blocking this action. Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
+    cancelling_subscription_failed:
+      "<strong>Cancelling subscription failed:</strong> Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
+    pending_purchase:
+      "<strong>Error:</strong> You already have a pending purchase. Please go to <a href='/advantage/payment-methods'>payment methods</a> to fix it. Reloading page...",
+    unknown_error:
+      "<strong>Unknown error:</strong> Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
+  };
+
+  if (map[code]) {
+    return map[code];
+  }
+
+  return default_message;
+};
+
+const handleSuccess = (elements, code) => {
+  const message = getMessage(code, "Success!");
+
+  elements["button"]["html"].classList.remove("is-processing");
+  elements["button"]["html"].innerHTML = elements["button"]["text"];
+  elements["caution"].forEach((element) => {
+    element.classList.add("u-hide");
+    element.querySelector(".p-notification__message").innerHTML = "";
+  });
+  elements["success"].forEach((element) => {
+    element.classList.remove("u-hide");
+    element.querySelector(".p-notification__message").innerHTML = message;
+  });
+
+  setTimeout(() => {
+    location.reload();
+  }, 2000);
+};
+
+const handleError = (elements, code) => {
+  const message = getMessage(code, "Error!");
+
+  elements["button"]["html"].classList.remove("is-processing");
+  elements["button"]["html"].innerHTML = elements["button"]["text"];
+  elements["button"]["html"].disabled = false;
+  elements["success"].forEach((element) => {
+    element.classList.add("u-hide");
+    element.querySelector(".p-notification__message").innerHTML = "";
+  });
+  elements["caution"].forEach((element) => {
+    element.classList.remove("u-hide");
+    element.querySelector(".p-notification__message").innerHTML = message;
+  });
+};
+
+const authenticate_3ds = (invoice, elements) => {
+  stripe.confirmCardPayment(invoice.pi_secret).then(function (data) {
+    if (data.error) {
+      handleError(elements, "resizing_machines_fail");
+    } else {
+      handleSuccess(elements, "resizing_machines_success");
+    }
+  });
+};
+
+// It take a time for the invoice to be attached to the payment.
+// We try 5 times each 2 seconds.
+const retryGetPurchase = (purchaseId, attemptsCounter, elements) => {
+  let maxNumberOfAttempts = 5;
+  if (attemptsCounter > maxNumberOfAttempts) {
+    handleError(elements, "resizing_machines_failed");
+  }
+
+  setTimeout(() => {
+    getPurchase(purchaseId).then((purchase) => {
+      if (purchase.status === "done") {
+        handleSuccess(elements, "resizing_machines_success");
+
+        return;
+      }
+
+      let invoice;
+
+      if (purchase.stripeInvoices && purchase.stripeInvoices.length > 0) {
+        invoice = purchase.stripeInvoices[0];
+      }
+
+      if (!invoice) {
+        attemptsCounter++;
+        retryGetPurchase(purchaseId, attemptsCounter);
+
+        return;
+      }
+
+      if (invoice.pi_status === "requires_payment_method") {
+        handleError(elements, "resizing_machines_fail");
+
+        return;
+      }
+
+      if (requiresAuthentication(invoice)) {
+        authenticate_3ds(invoice, elements);
+      }
+    });
+  }, 2000);
+};
+
+const requiresAuthentication = (invoice) => {
+  return (
+    invoice.pi_decline_code === "authentication_required" ||
+    (invoice.pi_status === "requires_action" && invoice.pi_secret)
+  );
+};
+
+const handleUpdateClick = (id, VPSize) => {
+  const resizeField = document.querySelector(
+    `#resize-input--${id}[data-viewport="${VPSize}"]`
+  );
+  const updateButton = document.querySelector(
+    `#save-changes--${id}[data-viewport="${VPSize}"]`
+  );
+
+  const {
+    accountId,
+    productListingId,
+    previousPurchaseId,
+    billingPeriod,
+  } = updateButton.dataset;
+
+  const successNotificationElements = document.querySelectorAll(
+    `.success-${id}`
+  );
+  const cautionNotificationElements = document.querySelectorAll(
+    `.caution-${id}`
+  );
+
+  const elements = {
+    button: {
+      html: updateButton,
+      text: "Save changes",
+    },
+    success: successNotificationElements,
+    caution: cautionNotificationElements,
+  };
+
+  dataLayer.push({
+    event: "GAEvent",
+    eventCategory: "Advantage",
+    eventAction: "update-subscription",
+    eventLabel: "Save changes",
+    eventValue: undefined,
+  });
+
+  updateButton.classList.add("is-processing");
+  updateButton.innerHTML =
     '<i class="p-icon--spinner u-animation--spin is-light"></i>';
-  button.disabled = true;
+  updateButton.disabled = true;
 
-  APIFunction(...parameters)
-    .then((data) => {
-      if (data.errors) {
-        console.error(data.errors);
-        button.classList.remove("is-processing");
-        button.innerHTML = buttonText;
-        button.disabled = false;
-      } else {
-        // if it reloads too fast then some data is missing.
-        setTimeout(function () {
+  resizeContract(
+    accountId,
+    previousPurchaseId,
+    productListingId,
+    resizeField.value,
+    billingPeriod
+  ).then((data) => {
+    if (data.errors) {
+      if (data.errors.includes("can only make one purchase")) {
+        handleError(elements, "pending_purchase");
+
+        setTimeout(() => {
           location.reload();
         }, 2000);
+      } else {
+        handleError(elements, "unknown_error");
       }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
+    } else {
+      retryGetPurchase(data.id, 1, elements);
+    }
+  });
+};
 
-function cancelSubscription(id, VPSize) {
+const cancelSubscription = (id, VPSize) => {
   const cancelSubscriptionButton = document.querySelector(
     `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
   );
@@ -37,6 +202,22 @@ function cancelSubscription(id, VPSize) {
   } = cancelSubscriptionButton.dataset;
   const confirmCancelButton = document.querySelector(`#confirmCancelButton`);
 
+  const successNotificationElements = document.querySelectorAll(
+    `.success-${id}`
+  );
+  const cautionNotificationElements = document.querySelectorAll(
+    `.caution-${id}`
+  );
+
+  const elements = {
+    button: {
+      html: confirmCancelButton,
+      text: "Cancel subscription",
+    },
+    success: successNotificationElements,
+    caution: cautionNotificationElements,
+  };
+
   dataLayer.push({
     event: "GAEvent",
     eventCategory: "Advantage",
@@ -45,49 +226,27 @@ function cancelSubscription(id, VPSize) {
     eventValue: undefined,
   });
 
-  handleAPICall(
-    cancelContract,
-    [accountId, previousPurchaseId, productListingId],
-    confirmCancelButton
-  );
-}
+  confirmCancelButton.classList.add("is-processing");
+  confirmCancelButton.innerHTML =
+    '<i class="p-icon--spinner u-animation--spin is-light"></i>';
+  confirmCancelButton.disabled = true;
 
-function handleUpdateClick(id, VPSize) {
-  const resizeField = document.querySelector(
-    `#resize-input--${id}[data-viewport="${VPSize}"]`
+  cancelContract(accountId, previousPurchaseId, productListingId).then(
+    (data) => {
+      if (data.errors) {
+        if (data.errors.includes("no monthly subscription")) {
+          handleError(elements, "subscription_missing");
+        } else {
+          handleError(elements, "cancelling_subscription_failed");
+        }
+      } else {
+        handleSuccess(elements, "cancelling_subscription_success");
+      }
+    }
   );
-  const updateButton = document.querySelector(
-    `#save-changes--${id}[data-viewport="${VPSize}"]`
-  );
-  const {
-    accountId,
-    productListingId,
-    previousPurchaseId,
-    billingPeriod,
-  } = updateButton.dataset;
+};
 
-  dataLayer.push({
-    event: "GAEvent",
-    eventCategory: "Advantage",
-    eventAction: "update-subscription",
-    eventLabel: "Save changes",
-    eventValue: undefined,
-  });
-
-  handleAPICall(
-    resizeContract,
-    [
-      accountId,
-      previousPurchaseId,
-      productListingId,
-      resizeField.value,
-      billingPeriod,
-    ],
-    updateButton
-  );
-}
-
-function createModal(id, VPSize) {
+const createModal = (id, VPSize) => {
   const cancelSubscriptionButton = document.querySelector(
     `#cancel-subscription--${id}[data-viewport="${VPSize}"]`
   );
@@ -113,6 +272,7 @@ function createModal(id, VPSize) {
 
   confirmCancelButton.onclick = () => {
     cancelSubscription(id, VPSize);
+    document.body.removeChild(container);
   };
 
   const confirmCancelField = document.createElement("input");
@@ -158,9 +318,9 @@ function createModal(id, VPSize) {
   const buttonWrapper = document.querySelector("#cancel-modal-buttons-wrapper");
   buttonWrapper.appendChild(goBackButton);
   buttonWrapper.appendChild(confirmCancelButton);
-}
+};
 
-function handleCancelChangesClick(id, VPSize) {
+const handleCancelChangesClick = (id, VPSize) => {
   // Hide edit options
   const previewSection = document.querySelector(
     `#view-mode--${id}[data-viewport="${VPSize}"]`
@@ -200,9 +360,18 @@ function handleCancelChangesClick(id, VPSize) {
   updateButton.onclick = () => {};
   cancelChangesButton.onclick = () => {};
   if (cancelSubscriptionButton) cancelSubscriptionButton.onclick = () => {};
-}
 
-function handleChange(e, id, VPSize) {
+  const cautionNotificationElements = document.querySelectorAll(
+    `.caution-${id}`
+  );
+
+  cautionNotificationElements.forEach((element) => {
+    element.classList.add("u-hide");
+    element.querySelector(".p-notification__message").innerHTML = "";
+  });
+};
+
+const handleChange = (e, id, VPSize) => {
   const defaultValue = Number.parseInt(e.target.defaultValue);
   let newValue = Number.parseInt(e.target.value);
 
@@ -267,9 +436,9 @@ function handleChange(e, id, VPSize) {
     newPayment.classList.add("u-hide");
     updateButton.disabled = true;
   }
-}
+};
 
-function handleBlur(e, id, VPSize) {
+const handleBlur = (e, id, VPSize) => {
   const defaultValue = Number.parseInt(e.target.defaultValue);
   let newValue = Number.parseInt(e.target.value);
 
@@ -290,7 +459,7 @@ function handleBlur(e, id, VPSize) {
   }
 
   handleChange(e, id, VPSize);
-}
+};
 
 function handleChangeClick() {
   const id = this.dataset.id;
@@ -336,6 +505,15 @@ function handleChangeClick() {
 
   if (cancelSubscriptionButton) {
     cancelSubscriptionButton.onclick = () => {
+      const cautionNotificationElements = document.querySelectorAll(
+        `.caution-${id}`
+      );
+
+      cautionNotificationElements.forEach((element) => {
+        element.classList.add("u-hide");
+        element.querySelector(".p-notification__message").innerHTML = "";
+      });
+
       createModal(id, VPSize);
     };
   }

@@ -47,7 +47,7 @@ def advantage_view(**kwargs):
     personal_account = None
     new_subscription_id = None
     new_subscription_start_date = None
-    payment_method_warning = None
+    pending_purchase_id = None
 
     enterprise_contracts = {}
     previous_purchase_ids = {"monthly": "", "yearly": ""}
@@ -86,10 +86,8 @@ def advantage_view(**kwargs):
             if status not in ["active", "locked"]:
                 continue
 
-            # If there are any pending purchase for a sub (active or locked)
-            # we show the payment method warning.
             if subscription.get("pendingPurchases"):
-                payment_method_warning = subscription.get("pendingPurchases")
+                pending_purchase_id = subscription.get("pendingPurchases")[0]
 
             previous_purchase_ids[period] = subscription.get("lastPurchaseID")
 
@@ -272,7 +270,7 @@ def advantage_view(**kwargs):
         accounts=accounts,
         monthly_information=monthly_info,
         total_enterprise_contracts=total_enterprise_contracts,
-        payment_method_warning=payment_method_warning,
+        pending_purchase_id=pending_purchase_id,
         enterprise_contracts=enterprise_contracts,
         previous_purchase_ids=previous_purchase_ids,
         personal_account=personal_account,
@@ -499,7 +497,7 @@ def cancel_advantage_subscriptions(**kwargs):
     )
 
     if not monthly_subscriptions:
-        return flask.jsonify({"error": "no monthly subscriptions found"}), 400
+        return flask.jsonify({"errors": "no monthly subscriptions found"}), 400
 
     monthly_subscription = monthly_subscriptions[0]
 
