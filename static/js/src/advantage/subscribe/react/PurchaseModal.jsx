@@ -1,24 +1,20 @@
 import React, { useState } from "react";
-import { Button, Row, Col } from "@canonical/react-components";
+import { Button, Row, Col, CheckboxInput } from "@canonical/react-components";
 import Summary from "./components/Summary";
 import usePurchase from "./APICalls/Purchase";
 import useStripeCustomerInfo from "./APICalls/StripeCustomerInfo";
+import PaymentMethodSummary from "./components/PaymentMethodSummary";
+import PaymentMethodForm from "./components/PaymentMethodForm";
 
 const config = {
   attributes: true,
-};
-
-const cardImageMap = {
-  visa: "https://assets.ubuntu.com/v1/2060e728-VBM_COF.png",
-  mastercard: "https://assets.ubuntu.com/v1/f42c6739-mc_symbol.svg",
-  amex: "https://assets.ubuntu.com/v1/5f4f3f7b-Amex_logo_color.svg",
-  discover: "https://assets.ubuntu.com/v1/f5e8abde-discover_logo.jpg",
 };
 
 const PurchaseModal = () => {
   const [product, setProduct] = useState({ price: {}, ok: false });
   const [quantity, setQuantity] = useState(1);
   const [observerSet, setObserverSet] = useState(false);
+  const [areTermsChecked, setTermsChecked] = useState(false);
 
   const {
     data: userInfo,
@@ -56,75 +52,35 @@ const PurchaseModal = () => {
             <Summary product={product} quantity={quantity} />
             {!!userInfo.customerInfo &&
             !!userInfo.customerInfo.defaultPaymentMethod ? (
-              <div>
-                <Row className="u-no-padding">
-                  <Col size="3">
-                    <p className="u-text-light">Receipt will be sent to:</p>
-                  </Col>
-
-                  <Col size="9">
-                    <p>{userInfo.customerInfo.email}</p>
-                  </Col>
-                </Row>
-
-                <Row className="u-no-padding">
-                  <Col size="6" className="u-vertically-center">
-                    <p className="u-text-light">Payment method:</p>
-                  </Col>
-
-                  <Col size="6" className="u-align--right">
-                    <Button className="p-button js-change-payment-method">
-                      Change...
-                    </Button>
-                  </Col>
-                </Row>
-
-                <div className="p-card">
-                  <Row className="u-no-padding">
-                    <Col size="2" medium="1" small="1">
-                      <img
-                        src={
-                          cardImageMap[
-                            userInfo.customerInfo.defaultPaymentMethod.brand
-                          ]
-                        }
-                      />
-                    </Col>
-                    <Col size="8" small="3">
-                      <span>{userInfo.customerInfo.name}</span>
-                      <br />
-                      <span>
-                        <span style={{ textTransform: "capitalize" }}>
-                          {userInfo.customerInfo.defaultPaymentMethod.brand}
-                        </span>{" "}
-                        ending in{" "}
-                        {userInfo.customerInfo.defaultPaymentMethod.last4}
-                      </span>
-                    </Col>
-                    <Col size="2" small="3" emptySmall="2">
-                      <span className="u-text-light">Expires:</span>
-                      <br />
-                      <span>
-                        {userInfo.customerInfo.defaultPaymentMethod.expMonth
-                          .toString()
-                          .padStart(2, "0")}
-                        /
-                        {userInfo.customerInfo.defaultPaymentMethod.expYear
-                          .toString()
-                          .slice(-2)}
-                      </span>
-                    </Col>
-                  </Row>
-                </div>
-                <Row className="u-no-padding">
-                  <Col size="12">{/* Terms checkbox */}</Col>
-                </Row>
-              </div>
+              <PaymentMethodSummary />
             ) : (
-              <h1>nope</h1>
+              <PaymentMethodForm />
             )}
           </>
         )}
+
+        <Row className="u-no-padding">
+          <Col size="12">
+            <CheckboxInput
+              name="TermsCheckbox"
+              onChange={(e) => {
+                setTermsChecked(e.target.checked);
+              }}
+              label={
+                <>
+                  I agree to the{" "}
+                  <a
+                    href="/legal/ubuntu-advantage-service-terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ubuntu Advantage service terms
+                  </a>
+                </>
+              }
+            />
+          </Col>
+        </Row>
       </div>
 
       <footer className="p-modal__footer">
@@ -140,9 +96,7 @@ const PurchaseModal = () => {
           <Button
             className="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin"
             style={{ textAlign: "center" }}
-            onClick={() => {
-              makePurchase();
-            }}
+            onClick={makePurchase}
           >
             Continue
           </Button>
