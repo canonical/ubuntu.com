@@ -14,7 +14,7 @@ import {
 } from "./advantage/contracts-api.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
-import { vatCountries } from "./advantage/vat-countries.js";
+import { vatCountries } from "./advantage/countries-and-states.js";
 
 import {
   setOrderInformation,

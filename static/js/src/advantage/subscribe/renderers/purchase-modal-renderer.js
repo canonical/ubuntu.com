@@ -1,5 +1,5 @@
 import { add, format } from "date-fns";
-import { vatCountries } from "../../vat-countries";
+import { vatCountries } from "../../countries-and-states";
 // import { checkFormValidity } from "../listeners/purchase-modal-listeners";
 import { VALIDITY } from "../reducers/user-info-reducer";
 import { formatter } from "./form-renderer";

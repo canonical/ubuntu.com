@@ -15,39 +15,39 @@ function Summary({ product, quantity }) {
       className="p-strip is-shallow u-no-padding--top"
     >
       <Row className="u-no-padding u-sv1">
-        <Col size="3">
+        <Col size="4">
           <div className="u-text-light">Plan type:</div>
         </Col>
-        <Col size="9">
+        <Col size="8">
           <div>{product.name}</div>
         </Col>
       </Row>
       <Row className="u-no-padding u-sv1">
-        <Col size="3">
+        <Col size="4">
           <div className="u-text-light">Machines:</div>
         </Col>
-        <Col size="9">
+        <Col size="8">
           <div>
             {quantity} x {formatter.format(product.price.value / 100)}
           </div>
         </Col>
       </Row>
       <Row className="u-no-padding u-sv1">
-        <Col size="3">
+        <Col size="4">
           <div className="u-text-light">Starts:</div>
         </Col>
-        <Col size="9">
+        <Col size="8">
           <div>{format(new Date(), DATE_FORMAT)}</div>
         </Col>
       </Row>
       {preview ? (
         <>
           <Row className="u-no-padding u-sv1">
-            <Col size="3">
+            <Col size="4">
               <div className="u-text-light">Ends:</div>
             </Col>
 
-            <Col size="9">
+            <Col size="8">
               {format(new Date(preview.subscriptionEndOfCycle), DATE_FORMAT)}
               <br />
               <small>The same date as your existing subscription.</small>
@@ -56,10 +56,10 @@ function Summary({ product, quantity }) {
           {preview.taxAmount ? (
             <>
               <Row className="u-no-padding u-sv1">
-                <Col size="3">
+                <Col size="4">
                   <div className="u-text-light">For this period:</div>
                 </Col>
-                <Col size="9">
+                <Col size="8">
                   <div>
                     {formatter.format(
                       (preview.total - preview.taxAmount) / 100
@@ -68,18 +68,18 @@ function Summary({ product, quantity }) {
                 </Col>
               </Row>
               <Row className="u-no-padding u-sv1">
-                <Col size="3">
+                <Col size="4">
                   <div className="u-text-light">Tax:</div>
                 </Col>
-                <Col size="9">
+                <Col size="8">
                   <div>{formatter.format(preview.taxAmount / 100)}</div>
                 </Col>
               </Row>
               <Row className="u-no-padding u-sv1">
-                <Col size="3">
+                <Col size="4">
                   <div className="u-text-light">Total:</div>
                 </Col>
-                <Col size="9">
+                <Col size="8">
                   <div>
                     <b>{formatter.format(preview.total / 100)}</b>
                   </div>
@@ -88,10 +88,10 @@ function Summary({ product, quantity }) {
             </>
           ) : (
             <Row className="u-no-padding u-sv1">
-              <Col size="3">
+              <Col size="4">
                 <div className="u-text-light">For this period:</div>
               </Col>
-              <Col size="9">
+              <Col size="8">
                 <div>{formatter.format(preview.total / 100)}</div>
               </Col>
             </Row>
@@ -100,10 +100,10 @@ function Summary({ product, quantity }) {
       ) : (
         <>
           <Row className="u-no-padding u-sv1">
-            <Col size="3">
+            <Col size="4">
               <div className="u-text-light">Ends:</div>
             </Col>
-            <Col size="9">
+            <Col size="8">
               <div>
                 {format(
                   add(new Date(), {
@@ -115,10 +115,10 @@ function Summary({ product, quantity }) {
             </Col>
           </Row>
           <Row className="u-no-padding u-sv1">
-            <Col size="3">
+            <Col size="4">
               <div className="u-text-light">Subtotal:</div>
             </Col>
-            <Col size="9">
+            <Col size="8">
               <div>
                 {formatter.format((product.price.value * quantity) / 100)}
               </div>
