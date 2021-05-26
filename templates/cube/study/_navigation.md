@@ -27,10 +27,10 @@
 - [Introduction](/cube/study/bash/part-1)
 
 ### Performing Administrative Tasks
-- [Part 1](/cube/study/admin-tasks/part-1)
-- [Part 2](/cube/study/admin-tasks/part-2)
-- [Part 3](/cube/study/admin-tasks/part-3)
-- [Part 4](/cube/study/admin-tasks/part-4)
+- [Introduction to Administrative Tasks](/cube/study/admin-tasks/part-1)
+- [Installation and Upgrade](/cube/study/admin-tasks/part-2)
+- [User Management](/cube/study/admin-tasks/part-3)
+- [Backup, Monitor, and Logs](/cube/study/admin-tasks/part-4)
 
 ### Managing System Services
 - [System Services](/cube/study/services/part-1)
