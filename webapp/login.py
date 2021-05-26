@@ -78,7 +78,16 @@ def login_handler():
 
 @open_id.after_login
 def after_login(resp):
-    root = Macaroon.deserialize(flask.session.pop("macaroon_root"))
+    try:
+        root = Macaroon.deserialize(flask.session.pop("macaroon_root"))
+    except KeyError:
+        return (
+            flask.render_template(
+                "templates/_error_login.html",
+            ),
+            400,
+        )
+
     bound = root.prepare_for_request(
         Macaroon.deserialize(resp.extensions["macaroon"].discharge)
     )
