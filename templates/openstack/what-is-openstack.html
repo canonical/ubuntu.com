@@ -95,13 +95,12 @@
         var tableBody = document.querySelector('.js-commit-table tbody');
         for (var i = 0; i < data.length; i++) {
           tableData += `<tr>
-            <td>${i + 1}</td>
+            <td>${data[i].index}</td>
             <td>${data[i].name}</td>
             <td>${data[i].metric}</td>
           </tr>`;
         }
         tableBody.innerHTML = tableData;
-
         drawChart(data);
       });
 
