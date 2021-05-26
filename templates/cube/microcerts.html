@@ -210,17 +210,18 @@
             </div>
           </td>
           <td class="p-table--cube__badge-column" aria-label="Badge">
-              <img
-                class="p-table--cube__badge"
-                src="{{ module.badge.url }}"
-                alt="Badge for {{ module.name }}"
-                {% if module.status == 'passed' %}
-                style="margin-left: -0.2rem;"
-                {% endif %}
-              />
+            <img
+              class="p-table--cube__badge"
+              src="{{ module.badge.url }}"
+              alt="Badge for {{ module.name }}"
+              {% if module.status == 'passed' %}
+              style="margin-left: -0.2rem;"
+              {% endif %}
+            />
           </td>
           <td aria-label="Module">
-            <div class="p-table--cube__contents">
+            <!-- inline style here and line 230 can be removed when this is fixed https://github.com/canonical-web-and-design/vanilla-framework/issues/3754 -->
+            <div class="p-table--cube__contents" style="white-space: normal">
               <h5>{{ module.name }}</h5>
             </div>
             <p class="u-text--muted u-hide--small">
@@ -229,7 +230,7 @@
           </td>
           <td aria-label="Topics">
             <div class="p-table--cube__contents">
-              <ul class="p-list u-no-margin">
+              <ul class="p-list u-no-margin" style="white-space: normal">
                 {% for topic in module.topics %}
                 <li class="p-list__item">{{ topic }}</li>
                 {% endfor %}
