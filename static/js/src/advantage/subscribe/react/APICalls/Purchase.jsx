@@ -1,9 +1,11 @@
 import { useCallback, useState } from "react";
 import { useQuery } from "react-query";
+import useProduct from "./Product";
 import useSubscriptions from "./Subscriptions";
 
-const usePurchase = (product, quantity) => {
+const usePurchase = () => {
   const { data: subscriptions } = useSubscriptions();
+  const { product, quantity } = useProduct();
 
   const [isPurchaseActive, setPurchaseActive] = useState(false);
 

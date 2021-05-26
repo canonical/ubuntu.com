@@ -3,11 +3,13 @@ import { Row, Col } from "@canonical/react-components";
 import { add, format } from "date-fns";
 import { formatter } from "../../renderers/form-renderer";
 import usePreview from "../APICalls/Preview";
+import useProduct from "../APICalls/Product";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
-function Summary({ product, quantity }) {
-  const { data: preview } = usePreview(product, quantity);
+function Summary() {
+  const { product, quantity } = useProduct();
+  const { data: preview } = usePreview();
 
   return (
     <section
@@ -19,7 +21,7 @@ function Summary({ product, quantity }) {
           <div className="u-text-light">Plan type:</div>
         </Col>
         <Col size="8">
-          <div>{product.name}</div>
+          <div>{product?.name}</div>
         </Col>
       </Row>
       <Row className="u-no-padding u-sv1">
@@ -28,7 +30,7 @@ function Summary({ product, quantity }) {
         </Col>
         <Col size="8">
           <div>
-            {quantity} x {formatter.format(product.price.value / 100)}
+            {quantity} x {formatter.format(product?.price?.value / 100)}
           </div>
         </Col>
       </Row>
@@ -107,7 +109,7 @@ function Summary({ product, quantity }) {
               <div>
                 {format(
                   add(new Date(), {
-                    months: product.period === "monthly" ? 1 : 12,
+                    months: product?.period === "monthly" ? 1 : 12,
                   }),
                   DATE_FORMAT
                 )}
@@ -120,7 +122,7 @@ function Summary({ product, quantity }) {
             </Col>
             <Col size="8">
               <div>
-                {formatter.format((product.price.value * quantity) / 100)}
+                {formatter.format((product?.price?.value * quantity) / 100)}
               </div>
             </Col>
           </Row>

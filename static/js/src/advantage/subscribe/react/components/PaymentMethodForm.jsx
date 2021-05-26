@@ -17,6 +17,7 @@ import {
   USStates,
   vatCountries,
 } from "../../../countries-and-states";
+import Summary from "./Summary";
 
 function PaymentMethodForm() {
   const {
@@ -64,170 +65,176 @@ function PaymentMethodForm() {
 
   return (
     <>
-      <Form stacked className="u-sv3" id="payment-modal-form">
-        <FormRow label="Payment card" error="Hé ho là">
-          <div
-            className="#card-element.StripeElement--invalid"
-            style={{
-              padding: "calc(0.4rem - 1px) .5rem",
-              border: "1px solid rgba(0,0,0,.56)",
-              borderRadius: 0,
-              boxShadow: "inset 0 1px 1px rgb(0 0 0 / 12%)",
-            }}
-          >
-            <CardElement
-              options={{
-                style: {
-                  base: {
-                    iconColor: "#e95420",
-                    color: "#111",
-                    fontWeight: 300,
-                    fontFamily:
-                      '"Ubuntu", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-                    fontSmoothing: "antialiased",
-                    fontSize: "16px",
-                    lineHeight: "24px",
+      <div id="modal-description" className="p-modal__body">
+        <Summary />
+        <Form stacked className="u-sv3" id="payment-modal-form">
+          <FormRow label="Payment card" error="Hé ho là">
+            <div
+              className="#card-element.StripeElement--invalid"
+              style={{
+                padding: "calc(0.4rem - 1px) .5rem",
+                border: "1px solid rgba(0,0,0,.56)",
+                borderRadius: 0,
+                boxShadow: "inset 0 1px 1px rgb(0 0 0 / 12%)",
+              }}
+            >
+              <CardElement
+                options={{
+                  style: {
+                    base: {
+                      iconColor: "#e95420",
+                      color: "#111",
+                      fontWeight: 300,
+                      fontFamily:
+                        '"Ubuntu", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+                      fontSmoothing: "antialiased",
+                      fontSize: "16px",
+                      lineHeight: "24px",
 
-                    "::placeholder": {
-                      color: "#666",
-                    },
-                    ":-webkit-autofill": {
-                      color: "#666",
+                      "::placeholder": {
+                        color: "#666",
+                      },
+                      ":-webkit-autofill": {
+                        color: "#666",
+                      },
                     },
                   },
-                },
-              }}
-            />
-          </div>
-        </FormRow>
+                }}
+              />
+            </div>
+          </FormRow>
 
-        <Input
-          type="email"
-          id="email"
-          label="Email my receipt to:"
-          help="We'll also send setup instructions to this address."
-          stacked
-          {...register("email", {
-            required: "This field is required.",
-            pattern: { value: /^\S+@\S+$/i, message: "must be a valid email." },
-          })}
-          error={errors.email?.message}
-        />
-        <Input
-          type="text"
-          id="name"
-          label="Name"
-          stacked
-          {...register("name", { required: "This field is required." })}
-          error={errors.name?.message}
-        />
-        <FormRow label="I’m buying for:">
-          <Form inline>
-            <RadioInput
-              name="buyingFor"
-              value="myself"
-              label="Myself"
-              {...register("buyingFor")}
-            />
-            <RadioInput
-              name="buyingFor"
-              value="organisation"
-              label="An organisation"
-              defaultChecked
-              {...register("buyingFor")}
-            />
-          </Form>
-        </FormRow>
-        <Input
-          type="text"
-          id="organisationName"
-          disabled={buyingFor === "myself"}
-          label="Organisation:"
-          stacked
-          {...register("organisation", {
-            required: {
-              value: buyingFor !== "myself",
-              message: "This field is required.",
-            },
-          })}
-          error={errors.organisation?.message}
-        />
-        <Input
-          type="text"
-          id="address"
-          label="Address"
-          stacked
-          {...register("address", { required: "This field is required." })}
-          error={errors.address?.message}
-        />
-        <Input
-          type="text"
-          id="postalCode"
-          label="Postal code:"
-          stacked
-          {...register("postalCode", { required: "This field is required." })}
-          error={errors.postalCode?.message}
-        />
-        <Select
-          id="country"
-          defaultValue=""
-          options={countries}
-          label="Country/Region:"
-          stacked
-          {...register("country", { required: "This field is required." })}
-          error={errors.country?.message}
-        />
-        <Input
-          type="text"
-          id="city"
-          label="City"
-          stacked
-          {...register("city", { required: "This field is required." })}
-          error={errors.city?.message}
-        />
-        {country === "US" && (
-          <Select
-            id="usStates"
-            defaultValue=""
-            options={USStates}
-            label="State:"
+          <Input
+            type="email"
+            id="email"
+            label="Email my receipt to:"
+            help="We'll also send setup instructions to this address."
             stacked
-            {...register("USState", {
-              required: {
-                value: country === "US",
-                message: "This field is required.",
+            {...register("email", {
+              required: "This field is required.",
+              pattern: {
+                value: /^\S+@\S+$/i,
+                message: "must be a valid email.",
               },
             })}
-            error={errors.USState?.message}
+            error={errors.email?.message}
           />
-        )}
-        {country === "CA" && (
-          <Select
-            id="CAProvinces"
-            defaultValue=""
-            options={CAProvinces}
-            label="Province:"
-            stacked
-            {...register("CAProvince", {
-              required: {
-                value: country === "CA",
-                message: "This field is required.",
-              },
-            })}
-            error={errors.CAProvince?.message}
-          />
-        )}
-        {vatCountries.includes(country) && (
           <Input
             type="text"
-            id="vatNumber"
-            label="VAT number:"
+            id="name"
+            label="Name"
             stacked
-            help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
-            {...register("VATNumber")}
+            {...register("name", { required: "This field is required." })}
+            error={errors.name?.message}
           />
-        )}
-      </Form>
+          <FormRow label="I’m buying for:">
+            <Form inline>
+              <RadioInput
+                name="buyingFor"
+                value="myself"
+                label="Myself"
+                {...register("buyingFor")}
+              />
+              <RadioInput
+                name="buyingFor"
+                value="organisation"
+                label="An organisation"
+                defaultChecked
+                {...register("buyingFor")}
+              />
+            </Form>
+          </FormRow>
+          <Input
+            type="text"
+            id="organisationName"
+            disabled={buyingFor === "myself"}
+            label="Organisation:"
+            stacked
+            {...register("organisation", {
+              required: {
+                value: buyingFor !== "myself",
+                message: "This field is required.",
+              },
+            })}
+            error={errors.organisation?.message}
+          />
+          <Input
+            type="text"
+            id="address"
+            label="Address"
+            stacked
+            {...register("address", { required: "This field is required." })}
+            error={errors.address?.message}
+          />
+          <Input
+            type="text"
+            id="postalCode"
+            label="Postal code:"
+            stacked
+            {...register("postalCode", { required: "This field is required." })}
+            error={errors.postalCode?.message}
+          />
+          <Select
+            id="country"
+            defaultValue=""
+            options={countries}
+            label="Country/Region:"
+            stacked
+            {...register("country", { required: "This field is required." })}
+            error={errors.country?.message}
+          />
+          <Input
+            type="text"
+            id="city"
+            label="City"
+            stacked
+            {...register("city", { required: "This field is required." })}
+            error={errors.city?.message}
+          />
+          {country === "US" && (
+            <Select
+              id="usStates"
+              defaultValue=""
+              options={USStates}
+              label="State:"
+              stacked
+              {...register("USState", {
+                required: {
+                  value: country === "US",
+                  message: "This field is required.",
+                },
+              })}
+              error={errors.USState?.message}
+            />
+          )}
+          {country === "CA" && (
+            <Select
+              id="CAProvinces"
+              defaultValue=""
+              options={CAProvinces}
+              label="Province:"
+              stacked
+              {...register("CAProvince", {
+                required: {
+                  value: country === "CA",
+                  message: "This field is required.",
+                },
+              })}
+              error={errors.CAProvince?.message}
+            />
+          )}
+          {vatCountries.includes(country) && (
+            <Input
+              type="text"
+              id="vatNumber"
+              label="VAT number:"
+              stacked
+              help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
+              {...register("VATNumber")}
+            />
+          )}
+        </Form>
+      </div>
       <footer className="p-modal__footer">
         <Row className="u-no-padding">
           <Button

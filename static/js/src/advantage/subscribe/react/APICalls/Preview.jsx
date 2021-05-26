@@ -1,8 +1,10 @@
 import { useQuery } from "react-query";
+import useProduct from "./Product";
 import useSubscriptions from "./Subscriptions";
 
-const usePreview = (product, quantity) => {
+const usePreview = () => {
   const { data: subscriptions } = useSubscriptions();
+  const { product, quantity } = useProduct();
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     ["preview", product],
