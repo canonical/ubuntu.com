@@ -262,7 +262,7 @@
                       <td class="plan" style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
                       <td class="u-align--right machines {% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}">
                         <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
-                          {{ contract['machineCount'] }}&nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
+                          {{ contract['rowMachineCount'] }}&nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
                         </button>
                       </td>
                       <td class="spacer"></td>

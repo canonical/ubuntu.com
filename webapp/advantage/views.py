@@ -202,6 +202,7 @@ def advantage_view(**kwargs):
             contract["productID"] = product_name
             contract["is_detached"] = False
             contract["machineCount"] = 0
+            contract["rowMachineCount"] = 0
 
             allowances = contract_info.get("allowances")
             if (
@@ -209,11 +210,12 @@ def advantage_view(**kwargs):
                 and len(allowances) > 0
                 and allowances[0]["metric"] == "units"
             ):
-                contract["machineCount"] = allowances[0]["value"]
+                contract["rowMachineCount"] = allowances[0]["value"]
 
             if product_name in yearly_purchased_products:
                 purchased_product = yearly_purchased_products[product_name]
                 contract["price_per_unit"] = purchased_product["price"]
+                contract["machineCount"] = purchased_product["quantity"]
                 contract["product_listing_id"] = purchased_product[
                     "product_listing_id"
                 ]
@@ -233,6 +235,7 @@ def advantage_view(**kwargs):
                 contract = contract.copy()
                 purchased_product = monthly_purchased_products[product_name]
                 contract["price_per_unit"] = purchased_product["price"]
+                contract["machineCount"] = purchased_product["quantity"]
                 contract["is_cancelable"] = True
                 contract["product_listing_id"] = purchased_product[
                     "product_listing_id"
