@@ -259,7 +259,7 @@
         <p class="p-pull-quote__quote">Canonical's solution was a third of the price of the other proposals we'd received. The solution is also proving to be highly cost-effective, both from CAPEX and OPEX perspectives.</p>
         <cite class="p-pull-quote__citation">Georgi Georgiev, CIO at SBI BITS</cite>
       </blockquote>
-      <p>Charmed OpenStack helped SBI Group reduce OpEx costs and optimise CapEx &mdash; learn how in this case study.</p>
+      <p>Charmed OpenStack helped SBI Group reduce OpEx costs and optimise CapEx.</p>
       <a href="/blog/interana-uses-esm-to-maintain-system-security-while-upgrading-its-customers-to-ubuntu-18-04-lts-across-public-clouds" class="p-button--neutral">Read more in the case study</a>
     </div>
     <div class="col-6">
@@ -631,9 +631,60 @@
   </div>
 </section>
 
-{% with section_classes='p-strip is-bordered', heading_topic='Financial Services', tag_name='financial-services', tag_id='3955', limit='4' %}
+{% with section_classes='p-strip', heading_topic='Financial Services', tag_name='financial-services', tag_id='3955', limit='4' %}
   {% include "shared/_latest_news_strip.html" %}
 {% endwith %}
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Innovate at lower cost with Canonical</h2>
+    <p class="u-sv3">The experts in finserv open source operations, from cloud to devices are waiting to help you on your digital transformation journey.</p>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <div class="u-sv2">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/f22f6ded-get-in-touch_chat.svg",
+          alt="",
+          width="80",
+          height="80",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p class="p-heading--4">Get an immediate answer to your questions through LiveChat</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="u-sv2">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+          alt="",
+          width="112",
+          height="80",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p class="p-heading--4"><a href="#get-in-touch">Tell us your story&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="u-sv2">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/b0af9ede-UA_24-7_Support.svg",
+          alt="",
+          width="80",
+          height="80",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p class="p-heading--4"><a href="#get-in-touch">Schedule a call with a finserv expert&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
 
 <style>
   .p-inline-images.is-flex {
