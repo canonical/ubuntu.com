@@ -25,9 +25,12 @@
 
     &:nth-child(5) {
       width: 13%;
-      i,
-      small {
-        display: none !important;
+
+      @media only screen and (max-width: $breakpoint-medium) {
+        i,
+        small {
+          display: none !important;
+        }
       }
     }
 
