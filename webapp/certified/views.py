@@ -54,6 +54,7 @@ def certified_hardware_details(canonical_id, release):
     except KeyError:
         abort(404)
 
+
     model_releases = api.certified_model_details(
         canonical_id=canonical_id, limit="0"
     )["objects"]

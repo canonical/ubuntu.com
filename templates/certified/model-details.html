@@ -98,12 +98,16 @@
                 {% endif %}
               </p>
             {% endif %}
+            {% if release.kernel_version %}
+              <h4 class="u-no-margin--bottom">Testing details</h4>
+              <p>This system was tested with {{release.certified_release}}, running the {{release.kernel_version}} kernel.</p>
+            {% endif %}
             {% if release.notes %}
               <h4 class="u-no-margin--bottom">Notes</h4>
               {% for note in release.notes %}
-              <p>{{ note.comment }}</p>
+                <p>{{ note.comment }}</p>
               {% endfor %}
-              {% endif %}
+            {% endif %}
               <h4>Hardware</h4>
               <table aria-label="Hardware" class="u-no-margin--bottom">
                 <tbody>
