@@ -81,7 +81,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-6">
+    <div class="col-6" id="pie-chart">
       <svg class="js-commit-chart" width="100%" height="100%"></svg>
     </div>
   </div>
@@ -106,10 +106,11 @@
       });
 
       function drawChart(data) {
+
         var svg = d3.select("svg.js-commit-chart"),
-            width = svg.attr("width"),
-            height = svg.attr("height"),
-            radius = 200;
+                    width = svg.attr("width"),
+                    height = svg.attr("height"),
+                    radius = 200;
 
         var tots = d3.sum(data, function(d) {
                 return d.metric;
@@ -119,8 +120,21 @@
             d.percentage = Math.round((100 * (d.metric / tots)) * 10) / 10;
         });
 
+        var div = d3.select("body").append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", "0")
+                    .style("z-index", "10")
+                    .style("position", "absolute")
+                    .style("background-color", "white")
+                    .style("border", "solid")
+                    .style("border-width", "1px")
+                    .style("border-radius", "3px")
+                    .style("padding", "3px")
+                    .style("pointer-events", "none");
+
         var g = svg.append("g")
-                   .attr("style", "transform: translate(50%, 50%)");
+                   .attr("style", "transform: translate(50%, 50%)")
+                   .attr("text-anchor", "middle");
 
         var ordScale = d3.scaleOrdinal()
                         	.domain(data)
@@ -132,31 +146,55 @@
 
         var arc = g.selectAll("arc")
                    .data(pie(data))
-                   .enter()
+                   .enter();
 
         var path = d3.arc()
                      .outerRadius(radius)
-                     .innerRadius(0)
+                     .innerRadius(0);
 
         arc.append("path")
            .attr("d", path)
-           .attr("fill", function(d) { return ordScale(d.data.name); });
+           .attr("fill", function(d) { return ordScale(d.data.name); })
+           .on("mouseover", function (d, i) {
+             d3.select(this).transition()
+              .duration("0")
+              .attr("opacity", ".80")
+             div.transition()
+              .duration("0")
+              .style("opacity", "1")
+             div.html(d.data.name)
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY - 40) + "px")
+           })
+           .on("mouseout", function (d, i) {
+             d3.select(this).transition()
+              .duration("50")
+              .attr("opacity", "1");
+              div.transition()
+              .duration("50")
+              .style("opacity", "0")
+           })
+           .on("mousemove", function (d, i) {
+            div.html(d.data.name)
+              .style("left", (d3.event.pageX) + "px")
+              .style("top", (d3.event.pageY - 40) + "px")
+           })
 
         var label = d3.arc()
                       .outerRadius(radius)
-                      .innerRadius(70);
+                      .innerRadius(120);
 
         arc.append("text")
            .attr("transform", function(d) {
                     return "translate(" + label.centroid(d) + ")";
             })
            .text(function(d) {
-              if ( d.data.percentage < 4) return '';
+              if (d.data.percentage < 4) return "";
               return d.data.percentage + "%";
             })
+           .style("pointer-events", "none")
            .style("font-family", "Ubuntu")
            .style("font-size", 15)
-           .style("font-weight", "bold")
            .style("color", "#fff");
       }
   </script>
