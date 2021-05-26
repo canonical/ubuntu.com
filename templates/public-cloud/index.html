@@ -96,7 +96,10 @@
       <p>
         <a class="p-link--external" href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-focal?tab=Overview">Launch Ubuntu Pro 20.04 LTS for Azure</a>
       </p>
-      <p>Ubuntu Server {{ releases.lts.short_version }} LTS is a free download that includes five years worth of  security and maintenance updates, guaranteed. Using an Ubuntu partner cloud ensures access to the latest certified Ubuntu cloud images. To run Ubuntu as guest on participating public clouds, the simplest way is to use the image maintained on their server.</p>
+      <p>
+        <a class="p-link--external" href="https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro%20canonical">Launch Ubuntu Pro 20.04 LTS for GCP</a>
+      </p>
+      <p>Ubuntu Pro includes optimised kernel, hardening and security coverage for the entire collection of software packages shipped with Ubuntu.</p>
       <p>
         <a class="p-button--positive" href="/download/cloud">Start using Ubuntu today</a>
       </p>
@@ -124,6 +127,17 @@
               height="100",
               hi_def=True,
               loading="auto",
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/8c1c38b0-google-cloud-3.svg",
+            alt="Google Cloud",
+            width="350",
+            height="61",
+            hi_def=True,
+            loading="lazy"
             ) | safe
           }}
         </li>
