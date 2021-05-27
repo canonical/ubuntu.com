@@ -152,7 +152,7 @@
       <ul class="p-inline-list">
         {% for iot_vendor in iot_vendors %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Device&vendor={{ iot_vendor.make }}">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.total }})</a>
+          <a href="/certified?category=Device&vendor={{ iot_vendor.make }}">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.smart_core }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -178,7 +178,7 @@
       <ul class="p-inline-list">
         {% for soc_vendor in soc_vendors %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Server&vendor={{ soc_vendor.make }}">{{ soc_vendor.make }} ({{ soc_vendor.total }})</a>
+          <a href="/certified?category=SoC&vendor={{ soc_vendor.make }}">{{ soc_vendor.make }} ({{ soc_vendor.soc }})</a>
         </li>
         {% endfor %}
       </ul>
