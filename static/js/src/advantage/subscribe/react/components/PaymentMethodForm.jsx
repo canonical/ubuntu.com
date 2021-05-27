@@ -17,10 +17,13 @@ import {
   vatCountries,
 } from "../../../countries-and-states";
 import { getErrorMessage } from "../../../error-handler";
+import useStripeCustomerInfo from "../APICalls/StripeCustomerInfo";
 
 function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
+
+  const { data: userInfo } = useStripeCustomerInfo();
 
   const {
     register,
@@ -115,6 +118,7 @@ function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
           label="Email my receipt to:"
           help="We'll also send setup instructions to this address."
           stacked
+          defaultValue={userInfo?.customerInfo?.email}
           {...register("email", {
             required: "This field is required.",
             pattern: {
@@ -129,6 +133,7 @@ function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
           id="name"
           label="Name"
           stacked
+          defaultValue={userInfo?.customerInfo?.name}
           {...register("name", { required: "This field is required." })}
           error={errors.name?.message}
         />
@@ -155,6 +160,7 @@ function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
           disabled={buyingFor === "myself"}
           label="Organisation:"
           stacked
+          defaultValue={userInfo?.accountInfo?.name}
           {...register("organisation", {
             required: {
               value: buyingFor !== "myself",
@@ -168,6 +174,7 @@ function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
           id="address"
           label="Address"
           stacked
+          defaultValue={userInfo?.customerInfo?.address?.line1}
           {...register("address", { required: "This field is required." })}
           error={errors.address?.message}
         />
@@ -176,6 +183,7 @@ function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
           id="postalCode"
           label="Postal code:"
           stacked
+          defaultValue={userInfo?.customerInfo?.address?.postal_code}
           {...register("postalCode", { required: "This field is required." })}
           error={errors.postalCode?.message}
         />
@@ -185,6 +193,7 @@ function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
           options={countries}
           label="Country/Region:"
           stacked
+          defaultValue={userInfo?.customerInfo?.address?.country}
           {...register("country", { required: "This field is required." })}
           error={errors.country?.message}
         />
@@ -193,6 +202,7 @@ function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
           id="city"
           label="City"
           stacked
+          defaultValue={userInfo?.customerInfo?.address?.city}
           {...register("city", { required: "This field is required." })}
           error={errors.city?.message}
         />
@@ -203,6 +213,7 @@ function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
             options={USStates}
             label="State:"
             stacked
+            defaultValue={userInfo?.customerInfo?.address?.state}
             {...register("USState", {
               required: {
                 value: country === "US",
@@ -219,6 +230,7 @@ function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
             options={CAProvinces}
             label="Province:"
             stacked
+            defaultValue={userInfo?.customerInfo?.address?.state}
             {...register("CAProvince", {
               required: {
                 value: country === "CA",
