@@ -18,7 +18,7 @@ import {
 } from "../../../countries-and-states";
 import { getErrorMessage } from "../../../error-handler";
 
-function PaymentMethodForm({ formContext, setIsEdit, paymentError }) {
+function PaymentMethodForm({ formContext, setCardValid, paymentError }) {
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
 
@@ -98,8 +98,12 @@ function PaymentMethodForm({ formContext, setIsEdit, paymentError }) {
                 setCardFieldFocus(false);
               }}
               onChange={(e) => {
-                console.log(e.error);
-                setCardFieldError(e.error);
+                if (e.complete && !e.error) {
+                  setCardValid(true);
+                } else {
+                  setCardValid(false);
+                  setCardFieldError(e.error);
+                }
               }}
             />
           </div>

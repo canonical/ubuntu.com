@@ -10,6 +10,7 @@ const PurchaseModal = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
   const [areTermsChecked, setTermsChecked] = useState(false);
+  const [isCardValid, setCardValid] = useState(false);
   const {
     data: userInfo,
     isLoading: isUserInfoLoading,
@@ -43,7 +44,7 @@ const PurchaseModal = () => {
         ) : isFirstStep ? (
           <PaymentMethodForm
             formContext={formContext}
-            setIsEdit={setIsEdit}
+            setCardValid={setCardValid}
             paymentError={paymentError}
           />
         ) : (
@@ -87,7 +88,7 @@ const PurchaseModal = () => {
 
           {isFirstStep ? (
             <Button
-              disabled={!isDirty || !isValid}
+              disabled={!isDirty || !isValid || !isCardValid}
               className="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin"
               style={{ textAlign: "center" }}
               onClick={handleSubmit(onSubmit)}
