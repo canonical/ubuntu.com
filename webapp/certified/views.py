@@ -5,7 +5,6 @@ import math
 from flask import request, render_template, abort, current_app
 from requests import Session
 from webapp.certified.api import CertificationAPI
-from webapp.certified.helpers import get_download_url
 
 session = Session()
 talisker.requests.configure(session)
@@ -53,7 +52,6 @@ def certified_hardware_details(canonical_id, release):
         models = api.certified_models(canonical_id=canonical_id)["objects"][0]
     except KeyError:
         abort(404)
-
 
     model_releases = api.certified_model_details(
         canonical_id=canonical_id, limit="0"
@@ -141,7 +139,6 @@ def certified_model_details(canonical_id):
             "level": model_release["level"],
             "notes": model_release["notes"],
             "version": ubuntu_version,
-            "download_url": get_download_url(model_release),
         }
 
         if release_info["level"] == "Enabled":
