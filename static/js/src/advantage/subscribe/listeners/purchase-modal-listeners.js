@@ -16,7 +16,7 @@ import {
   updateField,
   validateField,
 } from "../reducers/user-info-reducer";
-import { vatCountries } from "../../vat-countries";
+import { vatCountries } from "../../countries-and-states";
 import { VALIDITY } from "../reducers/user-info-reducer";
 import { debounce } from "../../../utils/debounce";
 

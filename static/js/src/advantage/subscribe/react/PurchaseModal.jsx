@@ -1,20 +1,33 @@
 import React, { useState } from "react";
-import { Button, Row, Col, CheckboxInput } from "@canonical/react-components";
-import Summary from "./components/Summary";
-import usePurchase from "./APICalls/Purchase";
+import { Row, Col, Button, CheckboxInput } from "@canonical/react-components";
 import useStripeCustomerInfo from "./APICalls/StripeCustomerInfo";
 import PaymentMethodSummary from "./components/PaymentMethodSummary";
 import PaymentMethodForm from "./components/PaymentMethodForm";
+import Summary from "./components/Summary";
+import { useForm } from "react-hook-form";
 
 const PurchaseModal = () => {
+  const [isEdit, setIsEdit] = useState(false);
+  const [paymentError, setPaymentError] = useState(null);
   const [areTermsChecked, setTermsChecked] = useState(false);
-
   const {
     data: userInfo,
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
+  const formContext = useForm({ mode: "all" });
 
-  const { makePurchase } = usePurchase();
+  const {
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = formContext;
+
+  const onSubmit = (data) => {
+    console.log(data);
+    console.log(errors);
+  };
+
+  const isFirstStep =
+    isEdit || paymentError || !userInfo?.customerInfo?.defaultPaymentMethod;
 
   return (
     <div>
@@ -23,15 +36,23 @@ const PurchaseModal = () => {
           Complete purchase
         </h2>
       </header>
-      {isUserInfoLoading ? (
-        <h1>LOADING.....</h1>
-      ) : userInfo?.customerInfo?.defaultPaymentMethod ? (
-        <PaymentMethodSummary />
-      ) : (
-        <PaymentMethodForm />
-      )}
-
-      {/* <Row className="u-no-padding">
+      <div id="modal-description" className="p-modal__body">
+        <Summary />
+        {isUserInfoLoading ? (
+          <h1>LOADING.....</h1>
+        ) : isFirstStep ? (
+          <PaymentMethodForm
+            formContext={formContext}
+            setIsEdit={setIsEdit}
+            paymentError={paymentError}
+          />
+        ) : (
+          <PaymentMethodSummary
+            setIsEdit={setIsEdit}
+            setPaymentError={setPaymentError}
+          />
+        )}
+        <Row className="u-no-padding">
           <Col size="12">
             <CheckboxInput
               name="TermsCheckbox"
@@ -52,9 +73,9 @@ const PurchaseModal = () => {
               }
             />
           </Col>
-        </Row> */}
-
-      {/* <footer className="p-modal__footer">
+        </Row>
+      </div>
+      <footer className="p-modal__footer">
         <Row className="u-no-padding">
           <Button
             className="js-cancel-modal col-small-2 col-medium-2 col-start-medium-3 col-start-large-7 col-3 u-no-margin"
@@ -64,15 +85,26 @@ const PurchaseModal = () => {
             Cancel
           </Button>
 
-          <Button
-            className="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin"
-            style={{ textAlign: "center" }}
-            onClick={makePurchase}
-          >
-            Continue
-          </Button>
+          {isFirstStep ? (
+            <Button
+              disabled={!isDirty || !isValid}
+              className="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin"
+              style={{ textAlign: "center" }}
+              onClick={handleSubmit(onSubmit)}
+            >
+              Continue
+            </Button>
+          ) : (
+            <Button
+              className="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin"
+              style={{ textAlign: "center" }}
+              disabled={!areTermsChecked}
+            >
+              Pay
+            </Button>
+          )}
         </Row>
-      </footer> */}
+      </footer>
     </div>
   );
 };

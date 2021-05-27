@@ -47,7 +47,7 @@ const usePreview = () => {
       }
       return response.json();
     },
-    { enabled: !!window.accountId && product.ok && !!subscriptions }
+    { enabled: !!window.accountId && !!product && !!subscriptions }
   );
 
   return {

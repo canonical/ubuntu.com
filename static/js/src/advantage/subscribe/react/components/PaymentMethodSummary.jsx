@@ -1,6 +1,7 @@
-import React from "react";
-import { Row, Col, Button } from "@canonical/react-components";
+import React, { useState } from "react";
+import { Row, Col, Button, CheckboxInput } from "@canonical/react-components";
 import useStripeCustomerInfo from "../APICalls/StripeCustomerInfo";
+import usePurchase from "../APICalls/Purchase";
 
 const cardImageMap = {
   visa: "https://assets.ubuntu.com/v1/2060e728-VBM_COF.png",
@@ -9,17 +10,20 @@ const cardImageMap = {
   discover: "https://assets.ubuntu.com/v1/f5e8abde-discover_logo.jpg",
 };
 
-function PaymentMethodSummary() {
+function PaymentMethodSummary({ setIsEdit, setPaymentError }) {
+  const [areTermsChecked, setTermsChecked] = useState(false);
+
   const { data: userInfo } = useStripeCustomerInfo();
+  const { makePurchase } = usePurchase();
 
   return (
-    <div>
+    <>
       <Row className="u-no-padding">
-        <Col size="3">
+        <Col size="4">
           <p className="u-text-light">Receipt will be sent to:</p>
         </Col>
 
-        <Col size="9">
+        <Col size="8">
           <p>{userInfo.customerInfo.email}</p>
         </Col>
       </Row>
@@ -30,7 +34,12 @@ function PaymentMethodSummary() {
         </Col>
 
         <Col size="6" className="u-align--right">
-          <Button className="p-button js-change-payment-method">
+          <Button
+            className="p-button js-change-payment-method"
+            onClick={() => {
+              setIsEdit(true);
+            }}
+          >
             Change...
           </Button>
         </Col>
@@ -70,7 +79,7 @@ function PaymentMethodSummary() {
           </Col>
         </Row>
       </div>
-    </div>
+    </>
   );
 }
 
