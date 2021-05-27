@@ -99,8 +99,12 @@
               </p>
             {% endif %}
             {% if release.kernel %}
-              <h4 class="u-no-margin--bottom">Testing details</h4>
-              <p>This system was tested with {{release.certified_release}}, running the {{release.kernel}} kernel.</p>
+              <h4 class="u-no-margin--bottom">Kernel</h4>
+              <p>This system was tested with {{release.version}}, running the {{release.kernel}} kernel.</p>
+            {% endif %}
+            {% if release.bios %}
+              <h4 class="u-no-margin--bottom">BIOS</h4>
+              <p>{{release.bios}}</p>
             {% endif %}
             {% if release.notes %}
               <h4 class="u-no-margin--bottom">Notes</h4>
