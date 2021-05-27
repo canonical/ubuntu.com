@@ -1,0 +1,188 @@
+{% extends "certified/base_certification.html" %}
+
+{% block title %}Certified hardware{% endblock %}
+
+{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1QuhO-9FEOGLrYp8bErS_9snqdljl7d6tFAUoNQxoVDQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<form class="form">
+ <section class="p-strip--suru-topped">
+   <div class="u-fixed-width">
+     <h1 class="u-sv3">Ubuntu certified
+       {% if category == "Desktop" %} desktops
+       {% elif category == "Laptop" %} laptops
+       {% elif category == "Device" %} devices
+       {% elif category == "Server" %} servers
+       {% elif category == "SoC" %} SoCs
+       {% else %} hardware {% endif %}
+       {% if vendors and vendors|length == 1 %} from {{ vendors [0] }} {% endif %}
+     </h1>
+   </div>
+   <div class="u-fixed-width">
+     <div class="p-search-box">
+       <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}">
+       <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+     </div>
+   </div>
+   <div class="row">
+     <div class="col-3 p-side-navigation" id="drawer">
+       <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">Toggle filters</a>
+       <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+       <nav class="p-side-navigation__drawer" aria-label="Example side navigation">
+         <div class="p-side-navigation__drawer-header">
+           <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
+             Toggle filters
+           </a>
+         </div>
+         <div>
+           <aside class="p-accordion">
+             <ul class="p-accordion__list">
+               <li class="p-accordion__group">
+                 <div role="heading" aria-level="2" class="p-accordion__heading">
+                   <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">Category</button>
+                 </div>
+                 <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
+                   {% for category_filter in category_filters %}
+                   <label class="p-checkbox">
+                     <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input" id="category_filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
+                     <div class="p-checkbox__label" id="{{ category_filter }}">
+                       <span>{{ category_filter }}</span>
+                     </div>
+                   </label>
+                   {% endfor %}
+                 </section>
+               </li>
+               <li class="p-accordion__group">
+                 <div role="heading" aria-level="2" class="p-accordion__heading">
+                   <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="false">Certified Ubuntu release</button>
+                 </div>
+                 <section class="p-accordion__panel" id="tab2-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab2">
+                   {% for release_filter in release_filters %}
+                   <label class="p-checkbox">
+                     <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
+                     <div class="p-checkbox__label" id="{{ release_filter }}">
+                       <span>{{ release_filter }}</span>
+                     </div>
+                   </label>
+                   {% endfor %}
+                 </section>
+               </li>
+               <li class="p-accordion__group">
+                 <div role="heading" aria-level="2" class="p-accordion__heading">
+                   <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">Vendor</button>
+                 </div>
+                 <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab3">
+                   {% for vendor_filter in vendor_filters %}
+                   <label class="p-checkbox">
+                     <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
+                     <div class="p-checkbox__label" id="{{ vendor_filter }}">
+                       <span>{{ vendor_filter }}</span>
+                       </p>
+                     </div>
+                   </label>
+                   {% endfor %}
+                 </section>
+               </li>
+             </ul>
+           </aside>
+           <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
+         </div>
+       </nav>
+     </div>
+     {% if total_results > 0 %}
+     <div class="col-9">
+       <table class="p-certification-results">
+         <thead>
+           <tr>
+             <th>
+               {% if total_results and total_results > 1 %}
+                 {{ offset + 1 }}
+                 &ndash;
+                 {% if offset + limit > total_results %}
+                   {{ total_results }}
+                 {% else %}
+                   {{ offset + limit }}
+                 {% endif %}
+                 of
+               {% endif %}
+               {{ total_results }} result{% if total_results != 1 %}s{% endif %}
+             </th>
+             <th>Vendor</th>
+             <th>Category</th>
+           </tr>
+         </thead>
+         <tbody>
+           {% for result in results %}
+           <tr>
+             <td><a href="/certified/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
+             <td><a href="/certified?vendor={{ result.make }}">{{ result.make }}</a></td>
+             <td>{{ result.category }}</td>
+           </tr>
+           {% endfor %}
+         </tbody>
+       </table>
+       {% with total_results=total_results, total_pages=total_pages, offset=offset, limit=limit, align="u-align--left"%}
+       {% include "security/cve/_pagination.html" %}
+       {% endwith %}
+     </div>
+     {% else %}
+     <div class="col-5">
+       <h3>Why not try widening your search?</h3>
+       <p>You can do this by:</p>
+       <ul class="p-list">
+         <li class="p-list__item is-ticked u-sv1">
+           Adding alternative words or phrases
+         </li>
+         <li class="p-list__item is-ticked  u-sv1">
+           Using individual words instead of phrases
+         </li>
+         <li class="p-list__item is-ticked">Trying a different spelling</li>
+       </ul>
+     </div>
+     {% endif %}
+   </div>
+ </section>
+</form>
+
+<script>
+
+function toggleDrawer(sideNavigation, show) {
+  if (sideNavigation) {
+    if (show) {
+      sideNavigation.classList.remove('is-collapsed');
+      sideNavigation.classList.add('is-expanded');
+    } else {
+      sideNavigation.classList.remove('is-expanded');
+      sideNavigation.classList.add('is-collapsed');
+    }
+  }
+}
+
+function setupSideNavigation(sideNavigation) {
+  var toggles = [].slice.call(sideNavigation.querySelectorAll('.js-drawer-toggle'));
+
+  toggles.forEach(function (toggle) {
+    toggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      var sideNav = document.getElementById(toggle.getAttribute('aria-controls'));
+
+      if (sideNav) {
+        toggleDrawer(sideNav, !sideNav.classList.contains('is-expanded'));
+      }
+    });
+  });
+}
+
+function setupSideNavigations(sideNavigationSelector) {
+  var sideNavigations = [].slice.call(document.querySelectorAll(sideNavigationSelector));
+
+  sideNavigations.forEach(setupSideNavigation);
+}
+
+setupSideNavigations('.p-side-navigation, [class*="p-side-navigation--"]');
+
+</script>
+
+{% endblock content %}

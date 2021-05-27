@@ -122,6 +122,11 @@ category/product/landscape/?: https://landscape.canonical.com/
 category/product/(server|ubuntu-server-edition)/?: /server
 category/product/ubuntu-advantage/?: /support
 category/product/ubuntu-light/?: http://lubuntu.net/
+certified/desktops/?: "/certified?category=Desktop"
+certified/laptops/?: "/certified?category=Laptop"
+certified/servers/?: "/certified?category=Server"
+certified/devices/?: "/certified?category=Device"
+certified/socs/?: "/certified?category=SoC"
 cc/?: "/security/certifications"
 cc-eal/?: "/security/certifications"
 cis-audit/?: "/security/certifications"
@@ -787,7 +792,6 @@ wiki.*/?: "https://wiki.ubuntu.com/"
 yourcloud/?: "/openstack/managed"
 ziskejte/prechod910/?: "/download"
 uasd/?: "/legal/ubuntu-advantage-service-description"
-certification(?P<page>(/.*)?): "https://certification.ubuntu.com{page}"
 (usn/)?(USN|usn)-?(?P<page>[0-9]+-[0-9]+)/?: "/security/notices/USN-{page}/"
 usn/?: "/security/notices"
 usn/rss\.xml: "/security/notices/rss.xml"
@@ -846,7 +850,6 @@ resources/?: "/blog"
 # From https://pastebin.canonical.com/p/3TXyyNkWkg/
 search/google-appliance/(?P<query>.*)/?: /search?q={query}
 news/pressreleasearchive/?: /blog/press-centre
-certification/(?P<path>.*)/?: https://certification.ubuntu.com/{path}
 legal/ubuntu-advantage/service-description/?: /legal/ubuntu-advantage-service-description
 download/desktop/questions/?: /download/desktop/thank-you
 
