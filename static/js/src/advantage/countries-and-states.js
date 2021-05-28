@@ -32,11 +32,11 @@ export const vatCountries = [
 
 export const countries = [
   { value: "", disabled: "disabled", label: "Select..." },
-  { value: "FR", label: "France" },
-  { value: "DE", label: "Germany" },
-  { value: "JP", label: "Japan" },
-  { value: "GB", label: "United Kingdom" },
-  { value: "US", label: "United States of America" },
+  { key: "FRTOP", value: "FR", label: "France" },
+  { key: "DETOP", value: "DE", label: "Germany" },
+  { key: "JPTOP", value: "JP", label: "Japan" },
+  { key: "GBTOP", value: "GB", label: "United Kingdom" },
+  { key: "USTOP", value: "US", label: "United States of America" },
   { value: "-1", disabled: "disabled", label: "—————————————————" },
   { value: "AF", label: "Afghanistan" },
   { value: "AX", label: "Åland Islands" },

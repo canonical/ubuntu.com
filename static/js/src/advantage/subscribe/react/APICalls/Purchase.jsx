@@ -52,7 +52,7 @@ const usePurchase = () => {
     },
     {
       enabled:
-        !!window.accountId && product && !!subscriptions && isPurchaseActive,
+        !!window.accountId && !!product && !!subscriptions && isPurchaseActive,
     }
   );
 
