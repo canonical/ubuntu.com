@@ -18,6 +18,7 @@ let entries = {
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
   productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
+  openstackChart: "./static/js/src/openstack-chart.js",
 };
 
 for (const [key, value] of Object.entries(entries)) {
