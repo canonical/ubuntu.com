@@ -16,7 +16,7 @@ const getMessage = (code, default_message) => {
     subscription_missing:
       "<strong>Cancelling subscription failed:</strong> It could be that you have a pending payment that is blocking this action. Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
     cancelling_subscription_failed:
-      "<strong>Cancelling subscription failed:</strong> Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
+      "<strong>Could not cancel subscription:</strong> Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
     pending_purchase:
       "<strong>Error:</strong> You already have a pending purchase. Please go to <a href='/advantage/payment-methods'>payment methods</a> to fix it. Reloading page...",
     unknown_error:
