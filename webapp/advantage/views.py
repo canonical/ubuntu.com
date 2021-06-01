@@ -291,7 +291,6 @@ def advantage_shop_view(**kwargs):
     token = kwargs.get("token")
 
     account = None
-    contracts = {}
     previous_purchase_ids = {"monthly": "", "yearly": ""}
     advantage = UAContractsAPI(
         session, None, api_url=api_url, is_for_view=True
@@ -325,8 +324,6 @@ def advantage_shop_view(**kwargs):
                 period = subscription["subscription"]["period"]
                 previous_purchase_ids[period] = subscription["lastPurchaseID"]
 
-            contracts = advantage.get_account_contracts(account["id"])
-
     listings = advantage.get_product_listings("canonical-ua")
     product_listings = listings.get("productListings")
     if not product_listings:
@@ -342,16 +339,6 @@ def advantage_shop_view(**kwargs):
             continue
 
         listing["product"] = products[listing["productID"]]
-
-        listing["can_be_trialled"] = (
-            "trialDays" in listing and listing["trialDays"] > 0
-        )
-        if listing["can_be_trialled"]:
-            for contract in contracts:
-                product_id = contract["contractInfo"]["products"][0]
-                if product_id == listing["productID"]:
-                    listing["can_be_trialled"] = False
-                    break
 
         website_listing.append(listing)
 

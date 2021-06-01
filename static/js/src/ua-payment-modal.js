@@ -52,13 +52,6 @@ const paymentErrorElement = document.getElementById("payment-errors");
 
 const forMyselfRadio = document.getElementById("buying_for_myself");
 
-const creditCardSection = document.getElementById("credit-card-section");
-
-// const freeTrialRadio = document.getElementById("use_free_trial_input");
-// const payNowRadio = document.getElementById("pay_now_input");
-
-var isFreeTrial = false;
-
 const forOrganisationRadio = document.getElementById(
   "buying_for_an_organisation"
 );
@@ -285,13 +278,9 @@ function attachModalButtonEvents() {
   addPaymentMethodButton.addEventListener("click", (e) => {
     e.preventDefault();
 
-    if (isFreeTrial) {
-      console.log("Lessgooo");
-    } else {
-      changingPaymentMethod = false;
-      sendGAEvent("submitted payment details");
-      createPaymentMethod();
-    }
+    changingPaymentMethod = false;
+    sendGAEvent("submitted payment details");
+    createPaymentMethod();
   });
 
   processPaymentButton.addEventListener("click", (e) => {
@@ -1140,7 +1129,7 @@ function toggleModal() {
 
 function validateForm() {
   const inputs = form.elements;
-  let inputsValidity = [cardValid || isFreeTrial];
+  let inputsValidity = [cardValid];
 
   for (let i = 0; i < inputs.length; i++) {
     const isValid = inputs[i].checkValidity();

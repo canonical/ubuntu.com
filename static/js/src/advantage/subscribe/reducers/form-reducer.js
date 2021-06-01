@@ -14,9 +14,6 @@ const initialFormState = {
   support: "unset",
   quantity: isSmallVP ? 0 : 1,
   billing: "yearly",
-  usesFreeTrial: true,
-  buyingForMyself: false,
-  isFreeTrialsTermsChecked: false,
   product: {
     ok: false,
     supportPriceRange: {
@@ -26,9 +23,6 @@ const initialFormState = {
     },
   },
   periods: [],
-  paymentCard: {
-    ok: false,
-  },
 };
 
 const prefixMap = {
@@ -123,10 +117,6 @@ const formSlice = createSlice({
   name: "form",
   initialState: {
     ...loadState("ua-subscribe-state", "form", initialFormState),
-    isFreeTrialsTermsChecked: false,
-    paymentCard: {
-      ok: false,
-    },
   },
   reducers: {
     changeType(state, action) {
@@ -184,19 +174,6 @@ const formSlice = createSlice({
       state.product = getProduct(state);
       state.periods = getProductPeriods(state.product.productID);
     },
-    changeFreeTrial(state) {
-      state.usesFreeTrial = !state.usesFreeTrial;
-      state.isFreeTrialsTermsChecked = false;
-    },
-    changeBuyingFor(state) {
-      state.buyingForMyself = !state.buyingForMyself;
-    },
-    changePaymentCard(state, action) {
-      state.paymentCard.ok = action.payload;
-    },
-    checkFreeTrialTerms(state) {
-      state.isFreeTrialsTermsChecked = !state.isFreeTrialsTermsChecked;
-    },
   },
 });
 
@@ -210,10 +187,6 @@ export const {
   changeSupport,
   changeQuantity,
   changeBilling,
-  changeFreeTrial,
-  changeBuyingFor,
-  changePaymentCard,
-  checkFreeTrialTerms,
 } = actions;
 
 export default reducer;

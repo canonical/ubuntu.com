@@ -1,13 +1,15 @@
-{% extends "advantage/base_advantage.html" %} 
-
-{% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
-
-{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1UqL8YJH9ywvOXnrt3syY0U8fiOakfAGWmLS9uerwAWk/edit{% endblock meta_copydoc %}
-
-{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
-
-{% block content %}
+{% extends "advantage/base_advantage.html" %} {% block title %}Ubuntu Advantage
+for Infrastructure{% endblock %} {% block meta_description %}Ubuntu Advantage
+for Infrastructure offers a single, per-node packaging of the most comprehensive
+software, security and IaaS support in the industry, with OpenStack support,
+Kubernetes support included, and Livepatch, Landscape and Extended Security
+Maintenance to address security and compliance concerns.{% endblock %} {% block
+meta_copydoc
+%}https://docs.google.com/document/d/1UqL8YJH9ywvOXnrt3syY0U8fiOakfAGWmLS9uerwAWk/edit{%
+endblock meta_copydoc %} {% block head_extra %}<meta
+  name="robots"
+  content="noindex"
+/>{% endblock %} {% block content %}
 
 <section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
   <div class="row">
@@ -28,35 +30,31 @@
   <div class="row">
     <div class="col-12 u-sv3">
       {% if not user_info %}
-        <h1>Subscribe to Ubuntu Advantage</h1>
-        <p>
-          If you have existing subscriptions or sales offers,
-          <a
-            href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}"
-            onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });" 
-          >
-            sign in
-          </a>
-          to see them. 
-        </p>
+      <h1>Subscribe to Ubuntu Advantage</h1>
+      <p>
+        If you have existing subscriptions or sales offers,
+        <a
+          href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}"
+          onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });"
+        >
+          sign in
+        </a>
+        to see them.
+      </p>
       {% else %}
-        <h1>Add machines to your subscription</h1>
+      <h1>Add machines to your subscription</h1>
       {% endif %}
     </div>
   </div>
 </section>
 
-<form class="js-shop-form" style="padding-top: 4rem;">
+<form class="js-shop-form" style="padding-top: 4rem">
   <div class="row">
     <ol class="p-stepped-list col-12">
-
-      {% include "advantage/subscribe/form/_type_select.html" %}
-
-      {% include "advantage/subscribe/form/_ubuntu_version_select.html" %}
-
-      {% include "advantage/subscribe/form/_feature_coverage.html" %}
-
-      {% include "advantage/subscribe/form/_tech_support.html" %}
+      {% include "advantage/subscribe/form/_type_select.html" %} {% include
+      "advantage/subscribe/form/_ubuntu_version_select.html" %} {% include
+      "advantage/subscribe/form/_feature_coverage.html" %} {% include
+      "advantage/subscribe/form/_tech_support.html" %}
 
       <li class="p-stepped-list__item js-form-section" data-step="quantity">
         <h3 class="p-stepped-list__title">How many?</h3>
@@ -98,12 +96,8 @@
             id="billing-period"
             class="u-no-margin--bottom"
             style="width: auto"
-          >
-          </select>
-          <p
-            id="summary-save-with-annual"
-            class="p-text--small"
-          >
+          ></select>
+          <p id="summary-save-with-annual" class="p-text--small">
             <strong>Switch to annual billing and save over 15%</strong>
           </p>
         </div>
@@ -124,8 +118,12 @@
   </section>
 </form>
 
-<script src="{{ versioned_static('js/dist/uaSubscribe.js') }}" type="module" defer></script>
-{% include '/advantage/subscribe/_purchase-modal.html' %} 
+<script
+  src="{{ versioned_static('js/dist/uaSubscribe.js') }}"
+  type="module"
+  defer
+></script>
+{% include '/advantage/subscribe/_purchase-modal.html' %}
 
 <script src="/static/js/dist/productSelector.js" type="module"></script>
 <script defer>
@@ -136,8 +134,7 @@
       price: {{ listing.price|tojson }},
       period: "{{ listing.period }}",
       productID: "{{ listing.product.id }}",
-      private: "{{ listing.privateForAccount }}",
-      canBeTrialled: "{{ listing.can_be_trialled }}" === "True"
+      private: "{{ listing.privateForAccount }}"
     },
     {% endfor %}
   };
