@@ -72,7 +72,10 @@ const registerPaymentMethod = () => {
       throw new Error(customerInfoRes.errors);
     }
 
-    return accountRes.accountID;
+    return {
+      accountId: accountRes.accountID,
+      paymentMethod: paymentMethod.card,
+    };
   });
 
   return mutation;

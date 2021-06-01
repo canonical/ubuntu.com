@@ -42,48 +42,63 @@ function Summary() {
           <div>{format(new Date(), DATE_FORMAT)}</div>
         </Col>
       </Row>
+      <Row className="u-no-padding u-sv1">
+        <Col size="4">
+          <div className="u-text-light">Ends:</div>
+        </Col>
+
+        {preview?.subscriptionEndOfCycle ? (
+          <Col size="8">
+            {format(new Date(preview?.subscriptionEndOfCycle), DATE_FORMAT)}
+            <br />
+            <small>The same date as your existing subscription.</small>
+          </Col>
+        ) : (
+          <Col size="8">
+            <div>
+              {format(
+                add(new Date(), {
+                  months: product?.period === "monthly" ? 1 : 12,
+                }),
+                DATE_FORMAT
+              )}
+            </div>
+          </Col>
+        )}
+      </Row>
       {preview ? (
         <>
-          <Row className="u-no-padding u-sv1">
-            <Col size="4">
-              <div className="u-text-light">Ends:</div>
-            </Col>
-
-            <Col size="8">
-              {format(new Date(preview.subscriptionEndOfCycle), DATE_FORMAT)}
-              <br />
-              <small>The same date as your existing subscription.</small>
-            </Col>
-          </Row>
-          {preview.taxAmount ? (
+          {preview?.taxAmount ? (
             <>
-              <Row className="u-no-padding u-sv1">
-                <Col size="4">
-                  <div className="u-text-light">For this period:</div>
-                </Col>
-                <Col size="8">
-                  <div>
-                    {formatter.format(
-                      (preview.total - preview.taxAmount) / 100
-                    )}
-                  </div>
-                </Col>
-              </Row>
+              {preview?.subscriptionEndOfCycle && (
+                <Row className="u-no-padding u-sv1">
+                  <Col size="4">
+                    <div className="u-text-light">For this period:</div>
+                  </Col>
+                  <Col size="8">
+                    <div>
+                      {formatter.format(
+                        (preview?.total - preview?.taxAmount) / 100
+                      )}
+                    </div>
+                  </Col>
+                </Row>
+              )}
               <Row className="u-no-padding u-sv1">
                 <Col size="4">
                   <div className="u-text-light">Tax:</div>
                 </Col>
                 <Col size="8">
-                  <div>{formatter.format(preview.taxAmount / 100)}</div>
+                  <div>{formatter.format(preview?.taxAmount / 100)}</div>
                 </Col>
               </Row>
               <Row className="u-no-padding u-sv1">
                 <Col size="4">
-                  <div className="u-text-light">Total:</div>
+                  <div className="u-text-light">Total</div>
                 </Col>
                 <Col size="8">
                   <div>
-                    <b>{formatter.format(preview.total / 100)}</b>
+                    <b>{formatter.format(preview?.total / 100)}</b>
                   </div>
                 </Col>
               </Row>
@@ -91,31 +106,20 @@ function Summary() {
           ) : (
             <Row className="u-no-padding u-sv1">
               <Col size="4">
-                <div className="u-text-light">For this period:</div>
+                <div className="u-text-light">
+                  Total{preview?.subscriptionEndOfCycle && " for this period"}
+                </div>
               </Col>
               <Col size="8">
-                <div>{formatter.format(preview.total / 100)}</div>
+                <div>
+                  <b>{formatter.format(preview?.total / 100)}</b>
+                </div>
               </Col>
             </Row>
           )}
         </>
       ) : (
         <>
-          <Row className="u-no-padding u-sv1">
-            <Col size="4">
-              <div className="u-text-light">Ends:</div>
-            </Col>
-            <Col size="8">
-              <div>
-                {format(
-                  add(new Date(), {
-                    months: product?.period === "monthly" ? 1 : 12,
-                  }),
-                  DATE_FORMAT
-                )}
-              </div>
-            </Col>
-          </Row>
           <Row className="u-no-padding u-sv1">
             <Col size="4">
               <div className="u-text-light">Subtotal:</div>

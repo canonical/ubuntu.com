@@ -20,7 +20,7 @@ function PaymentMethodSummary({ setIsEdit, setPaymentError }) {
         </Col>
 
         <Col size="8">
-          <p>{userInfo.customerInfo.email}</p>
+          <p>{userInfo?.customerInfo?.email}</p>
         </Col>
       </Row>
 
@@ -46,31 +46,33 @@ function PaymentMethodSummary({ setIsEdit, setPaymentError }) {
           <Col size="2" medium="1" small="1">
             <img
               src={
-                cardImageMap[userInfo.customerInfo.defaultPaymentMethod.brand]
+                cardImageMap[
+                  userInfo?.customerInfo?.defaultPaymentMethod?.brand
+                ]
               }
             />
           </Col>
           <Col size="8" small="3">
-            <span>{userInfo.customerInfo.name}</span>
+            <span>{userInfo?.customerInfo?.name}</span>
             <br />
             <span>
               <span style={{ textTransform: "capitalize" }}>
-                {userInfo.customerInfo.defaultPaymentMethod.brand}
+                {userInfo?.customerInfo?.defaultPaymentMethod?.brand}
               </span>{" "}
-              ending in {userInfo.customerInfo.defaultPaymentMethod.last4}
+              ending in {userInfo?.customerInfo?.defaultPaymentMethod?.last4}
             </span>
           </Col>
           <Col size="2" small="3" emptySmall="2">
             <span className="u-text-light">Expires:</span>
             <br />
             <span>
-              {userInfo.customerInfo.defaultPaymentMethod.expMonth
-                .toString()
-                .padStart(2, "0")}
+              {userInfo?.customerInfo?.defaultPaymentMethod?.expMonth
+                ?.toString()
+                ?.padStart(2, "0")}
               /
-              {userInfo.customerInfo.defaultPaymentMethod.expYear
-                .toString()
-                .slice(-2)}
+              {userInfo?.customerInfo?.defaultPaymentMethod?.expYear
+                ?.toString()
+                ?.slice(-2)}
             </span>
           </Col>
         </Row>

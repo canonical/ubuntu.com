@@ -10,6 +10,7 @@ import useProduct from "./APICalls/Product";
 import usePreview from "./APICalls/Preview";
 import makePurchase from "./APICalls/Purchase";
 import usePendingPurchase from "./APICalls/PendingPurchase";
+import { useQueryClient } from "react-query";
 
 const PurchaseModal = () => {
   const [isEdit, setIsEdit] = useState(false);
@@ -20,6 +21,12 @@ const PurchaseModal = () => {
     data: userInfo,
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
+
+  const [step, setStep] = useState(
+    userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
+  );
+
+  const queryClient = useQueryClient();
 
   const { isLoading: isProductLoading } = useProduct();
   // const { data: preview, isLoading: isPreviewLoading } = usePreview();
@@ -43,9 +50,6 @@ const PurchaseModal = () => {
     });
   };
 
-  const isFirstStep =
-    isEdit || paymentError || !userInfo?.customerInfo?.defaultPaymentMethod;
-
   return (
     <div>
       <Formik
@@ -67,6 +71,33 @@ const PurchaseModal = () => {
           paymentMethodMutation.mutate(values, {
             onSuccess: (data, variables) => {
               console.log({ data });
+              window.accountId = data.accountId;
+              setStep(2);
+              queryClient.setQueryData("userInfo", {
+                customerInfo: {
+                  email: variables.email,
+                  name: variables.name,
+                  address: {
+                    line1: variables.address,
+                    postal_code: variables.postalCode,
+                    country: variables.country,
+                    city: variables.city,
+                    state:
+                      variables.country === "US"
+                        ? variables.usState
+                        : variables.CAProvince,
+                  },
+                  defaultPaymentMethod: {
+                    brand: data.paymentMethod.brand,
+                    last4: data.paymentMethod.last4,
+                    expMonth: data.paymentMethod.exp_month,
+                    expYear: data.paymentMethod.exp_year,
+                  },
+                },
+                accountInfo: {
+                  name: variables.organisationName,
+                },
+              });
             },
             onError: (error, variables) => {
               // An error happened!
@@ -92,7 +123,7 @@ const PurchaseModal = () => {
               ) : (
                 <>
                   <Summary />
-                  {isFirstStep ? (
+                  {step === 1 ? (
                     <PaymentMethodForm
                       setCardValid={setCardValid}
                       paymentError={paymentError}
@@ -105,7 +136,7 @@ const PurchaseModal = () => {
                   )}
                 </>
               )}
-              {isFirstStep ? null : (
+              {step === 1 ? null : (
                 <Row className="u-no-padding">
                   <Col size="12">
                     <CheckboxInput
@@ -140,7 +171,7 @@ const PurchaseModal = () => {
                   Cancel
                 </Button>
 
-                {isFirstStep ? (
+                {step === 1 ? (
                   <Button
                     disabled={(!userInfo && !dirty) || !isValid || !isCardValid}
                     className="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin"
