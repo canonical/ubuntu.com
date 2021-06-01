@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { debounce } from "../../utils/debounce";
 import { saveState } from "../../utils/persitState";
-import { getCustomerInfo } from "../contracts-api";
 import initFormInputs from "./listeners/form-event-listeners";
 import initUIControls from "./listeners/ui-event-listeners";
 
 import formReducer from "./reducers/form-reducer";
 import UIReducer from "./reducers/ui-reducer";
-import UserInfoReducer, { initUserInfo } from "./reducers/user-info-reducer";
 
 import render from "./renderers/main-renderer";
 
@@ -19,15 +17,8 @@ const store = configureStore({
   reducer: {
     form: formReducer,
     ui: UIReducer,
-    userInfo: UserInfoReducer,
   },
 });
-
-getCustomerInfo(window.accountId)
-  .then((res) => {
-    store.dispatch(initUserInfo(res.data));
-  })
-  .catch((e) => console.error({ e }));
 
 initFormInputs(store);
 initUIControls(store);
