@@ -1,53 +1,37 @@
 import { useQuery } from "react-query";
+import { postPurchasePreviewData } from "../../../contracts-api";
 import useProduct from "./Product";
-import useSubscriptions from "./Subscriptions";
 
 const usePreview = () => {
-  const { data: subscriptions } = useSubscriptions();
   const { product, quantity } = useProduct();
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     ["preview", product],
     async () => {
-      var numberAlreadyOwned = 0;
+      // const res = await postPurchasePreviewData(
+      //   window.accountId,
+      //   [
+      //     {
+      //       name: product.name,
+      //       period: product.period,
+      //       price: product.price.value,
+      //       product_listing_id: product.id,
+      //       quantity: quantity,
+      //     },
+      //   ],
+      //   window.previousPurchaseIds?.[product.period]
+      // );
+      const res = { errors: "blip blp" };
 
-      subscriptions[product.period].purchasedProductListings.forEach(
-        (listing) => {
-          if (listing.productListing.id === product.id) {
-            numberAlreadyOwned = listing.value;
-          }
-        }
-      );
-
-      const response = await fetch(
-        `/ua-contracts/v1/marketplace/canonical-ua/purchase/preview`,
-        {
-          method: "POST",
-          cache: "no-store",
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            accountID: window.accountId,
-            purchaseItems: [
-              {
-                productListingID: product.id,
-                metric: "active-machines",
-                value: quantity + numberAlreadyOwned,
-              },
-            ],
-            previousPurchaseId: window.previousPurchaseIds[product.period],
-          }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error(response.statusText);
+      if (res.errors) {
+        console.log({ res });
+        throw new Error("sds");
       }
-      return response.json();
+      return res;
     },
-    { enabled: !!window.accountId && !!product && !!subscriptions }
+    {
+      enabled: !!window.accountId && !!product,
+    }
   );
 
   return {

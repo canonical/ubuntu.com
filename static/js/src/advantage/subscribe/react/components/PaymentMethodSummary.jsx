@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Row, Col, Button, CheckboxInput } from "@canonical/react-components";
+import React from "react";
+import { Row, Col, Button } from "@canonical/react-components";
 import useStripeCustomerInfo from "../APICalls/StripeCustomerInfo";
-import usePurchase from "../APICalls/Purchase";
 
 const cardImageMap = {
   visa: "https://assets.ubuntu.com/v1/2060e728-VBM_COF.png",
@@ -11,10 +10,7 @@ const cardImageMap = {
 };
 
 function PaymentMethodSummary({ setIsEdit, setPaymentError }) {
-  const [areTermsChecked, setTermsChecked] = useState(false);
-
   const { data: userInfo } = useStripeCustomerInfo();
-  const { makePurchase } = usePurchase();
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Button, CheckboxInput } from "@canonical/react-components";
 import useStripeCustomerInfo from "./APICalls/StripeCustomerInfo";
 import registerPaymentMethod from "./APICalls/RegisterPaymentMethod";
@@ -6,9 +6,10 @@ import PaymentMethodSummary from "./components/PaymentMethodSummary";
 import PaymentMethodForm from "./components/PaymentMethodForm";
 import Summary from "./components/Summary";
 import { Formik } from "formik";
-import useEnsurePurchaseAccount from "./APICalls/EnsurePurchaseAccount";
 import useProduct from "./APICalls/Product";
 import usePreview from "./APICalls/Preview";
+import makePurchase from "./APICalls/Purchase";
+import usePendingPurchase from "./APICalls/PendingPurchase";
 
 const PurchaseModal = () => {
   const [isEdit, setIsEdit] = useState(false);
@@ -21,9 +22,26 @@ const PurchaseModal = () => {
   } = useStripeCustomerInfo();
 
   const { isLoading: isProductLoading } = useProduct();
-  const { isLoading: isPreviewLoading } = usePreview();
+  const { data: preview, isLoading: isPreviewLoading } = usePreview();
+  const { data: pendingPurchase, setPendingPurchaseID } = usePendingPurchase();
 
   const paymentMethodMutation = registerPaymentMethod();
+  const purchaseMutation = makePurchase();
+
+  const onPayClick = () => {
+    purchaseMutation.mutate("", {
+      onSuccess: (data) => {
+        console.log("Purchase Successful 🎉");
+        console.log({ data });
+        setPendingPurchaseID(data);
+      },
+      onError: (error) => {
+        // An error happened!
+        console.log("OH NO");
+        console.log(error.message);
+      },
+    });
+  };
 
   const isFirstStep =
     isEdit || paymentError || !userInfo?.customerInfo?.defaultPaymentMethod;
@@ -75,7 +93,7 @@ const PurchaseModal = () => {
                 <h1>LOADING.....</h1>
               ) : (
                 <>
-                  <Summary />
+                  {/* <Summary /> */}
                   {isFirstStep ? (
                     <PaymentMethodForm
                       setCardValid={setCardValid}
@@ -131,14 +149,14 @@ const PurchaseModal = () => {
                     style={{ textAlign: "center" }}
                     onClick={submitForm}
                   >
-                    Continue {!(!userInfo && !dirty) && "a"} {isValid && "b"}{" "}
-                    {isCardValid && "c"}
+                    Continue
                   </Button>
                 ) : (
                   <Button
                     className="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin"
                     style={{ textAlign: "center" }}
                     disabled={!areTermsChecked}
+                    onClick={onPayClick}
                   >
                     Pay
                   </Button>
