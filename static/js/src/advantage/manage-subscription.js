@@ -8,7 +8,7 @@ const stripe = window.Stripe(window.stripePublishableKey);
 
 const getMessage = (code, default_message) => {
   const map = {
-    resizing_machines_success: "Resizing successful! Reloading page...",
+    resizing_machines_success: "Your changes were saved successfully, the page will reload",
     cancelling_subscription_success:
       "Subscription cancelled! Reloading page...",
     resizing_machines_fail:
