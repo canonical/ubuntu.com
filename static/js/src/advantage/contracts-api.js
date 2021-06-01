@@ -36,12 +36,8 @@ export async function ensurePurchaseAccount({
     }),
   });
 
-  if (response.ok) {
-    const data = await response.json();
-    return { ok: true, ...data };
-  } else {
-    console.error(`${response.status} - ${response.statusText}`);
-  }
+  const data = await response.json();
+  return data;
 }
 
 export async function getRenewal(renewalID) {
@@ -238,13 +234,8 @@ export async function postCustomerInfoToStripeAccount({
     }),
   });
 
-  if (response.ok) {
-    const data = await response.json();
-    return { ok: true, ...data };
-  } else {
-    console.error(`${response.status} - ${response.statusText}`);
-    return { ok: false, ...response };
-  }
+  let data = await response.json();
+  return data;
 }
 
 export async function postCustomerInfoForPurchasePreview(

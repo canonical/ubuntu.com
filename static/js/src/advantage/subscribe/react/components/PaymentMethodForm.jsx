@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Input, Select, RadioInput } from "@canonical/react-components";
-
+import {
+  Row,
+  Col,
+  Input,
+  Select,
+  RadioInput,
+} from "@canonical/react-components";
 import { CardElement } from "@stripe/react-stripe-js";
+
+import { formatter } from "../../renderers/form-renderer";
+import usePreview from "../APICalls/Preview";
+import useProduct from "../APICalls/Product";
 import FormRow from "./FormRow";
 import {
   CAProvinces,
@@ -13,6 +22,8 @@ import { getErrorMessage } from "../../../error-handler";
 import { Field, Form, useFormikContext } from "formik";
 
 function PaymentMethodForm({ setCardValid }) {
+  const { product, quantity } = useProduct();
+  const { data: preview } = usePreview();
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
 
@@ -242,9 +253,31 @@ function PaymentMethodForm({ setCardValid }) {
           label="VAT number:"
           stacked
           help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
-          error={touched?.VATNumber && errors?.VATNumber}
+          error={touched?.vatNumber && errors?.vatNumber}
         />
       )}
+
+      <Row className="u-no-padding u-sv1">
+        <Col size="4">
+          <div className="u-text-light">Total:</div>
+        </Col>
+        <Col size="8">
+          <div>
+            <strong>
+              {formatter.format(
+                preview
+                  ? preview.total / 100
+                  : (product?.price?.value * quantity) / 100
+              )}
+            </strong>
+          </div>
+        </Col>
+        {preview ? null : (
+          <Col size="8" emptyLarge="5">
+            <div className="u-text-light">Excluding VAT</div>
+          </Col>
+        )}
+      </Row>
     </Form>
   );
 }

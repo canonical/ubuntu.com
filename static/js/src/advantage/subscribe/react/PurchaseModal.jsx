@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Row, Col, Button, CheckboxInput } from "@canonical/react-components";
 import useStripeCustomerInfo from "./APICalls/StripeCustomerInfo";
-import createPaymentMethod from "./APICalls/CreatePaymentMethod";
+import registerPaymentMethod from "./APICalls/RegisterPaymentMethod";
 import PaymentMethodSummary from "./components/PaymentMethodSummary";
 import PaymentMethodForm from "./components/PaymentMethodForm";
 import Summary from "./components/Summary";
 import { Formik } from "formik";
+import useEnsurePurchaseAccount from "./APICalls/EnsurePurchaseAccount";
+import useProduct from "./APICalls/Product";
+import usePreview from "./APICalls/Preview";
 
 const PurchaseModal = () => {
   const [isEdit, setIsEdit] = useState(false);
@@ -17,13 +20,10 @@ const PurchaseModal = () => {
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
 
-  const paymentMethodMutation = createPaymentMethod();
+  const { isLoading: isProductLoading } = useProduct();
+  const { isLoading: isPreviewLoading } = usePreview();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log(errors);
-    paymentMethodMutation.mutate(data);
-  };
+  const paymentMethodMutation = registerPaymentMethod();
 
   const isFirstStep =
     isEdit || paymentError || !userInfo?.customerInfo?.defaultPaymentMethod;
@@ -46,10 +46,16 @@ const PurchaseModal = () => {
         }}
         enableReinitialize={true}
         onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
+          paymentMethodMutation.mutate(values, {
+            onSuccess: (data, variables) => {
+              console.log({ data });
+            },
+            onError: (error, variables) => {
+              // An error happened!
+              console.log(error.message);
+            },
+          });
+          actions.setSubmitting(false);
         }}
       >
         {({ isValid, dirty, submitForm }) => (
@@ -63,42 +69,50 @@ const PurchaseModal = () => {
               </h2>
             </header>
             <div id="modal-description" className="p-modal__body">
-              <Summary />
-              {isUserInfoLoading ? (
+              {isUserInfoLoading ||
+              isProductLoading ||
+              (window.accountId && isPreviewLoading) ? (
                 <h1>LOADING.....</h1>
-              ) : isFirstStep ? (
-                <PaymentMethodForm
-                  setCardValid={setCardValid}
-                  paymentError={paymentError}
-                />
               ) : (
-                <PaymentMethodSummary
-                  setIsEdit={setIsEdit}
-                  setPaymentError={setPaymentError}
-                />
+                <>
+                  <Summary />
+                  {isFirstStep ? (
+                    <PaymentMethodForm
+                      setCardValid={setCardValid}
+                      paymentError={paymentError}
+                    />
+                  ) : (
+                    <PaymentMethodSummary
+                      setIsEdit={setIsEdit}
+                      setPaymentError={setPaymentError}
+                    />
+                  )}
+                </>
               )}
-              <Row className="u-no-padding">
-                <Col size="12">
-                  <CheckboxInput
-                    name="TermsCheckbox"
-                    onChange={(e) => {
-                      setTermsChecked(e.target.checked);
-                    }}
-                    label={
-                      <>
-                        I agree to the{" "}
-                        <a
-                          href="/legal/ubuntu-advantage-service-terms"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Ubuntu Advantage service terms
-                        </a>
-                      </>
-                    }
-                  />
-                </Col>
-              </Row>
+              {isFirstStep ? null : (
+                <Row className="u-no-padding">
+                  <Col size="12">
+                    <CheckboxInput
+                      name="TermsCheckbox"
+                      onChange={(e) => {
+                        setTermsChecked(e.target.checked);
+                      }}
+                      label={
+                        <>
+                          I agree to the{" "}
+                          <a
+                            href="/legal/ubuntu-advantage-service-terms"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Ubuntu Advantage service terms
+                          </a>
+                        </>
+                      }
+                    />
+                  </Col>
+                </Row>
+              )}
             </div>
             <footer className="p-modal__footer">
               <Row className="u-no-padding">
