@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { getCustomerInfo } from "../../../contracts-api";
 
 const useStripeCustomerInfo = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery(
@@ -7,13 +8,12 @@ const useStripeCustomerInfo = () => {
       if (!window.accountId) {
         throw new Error("MISSING ACCOUNT_ID");
       }
-      const response = await fetch(
-        `/ua-contracts/v1/accounts/${window.accountId}/customer-info/stripe`
-      );
-      if (!response.ok) {
-        throw new Error(response.statusText);
+      const res = await getCustomerInfo(window.accountId);
+
+      if (res.errors) {
+        throw new Error(res.errors);
       }
-      return response.json();
+      return res.data;
     },
     {
       enabled: !!window.accountId,

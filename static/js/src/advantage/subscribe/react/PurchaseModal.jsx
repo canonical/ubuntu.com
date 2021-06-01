@@ -22,7 +22,7 @@ const PurchaseModal = () => {
   } = useStripeCustomerInfo();
 
   const { isLoading: isProductLoading } = useProduct();
-  const { data: preview, isLoading: isPreviewLoading } = usePreview();
+  // const { data: preview, isLoading: isPreviewLoading } = usePreview();
   const { data: pendingPurchase, setPendingPurchaseID } = usePendingPurchase();
 
   const paymentMethodMutation = registerPaymentMethod();
@@ -87,13 +87,11 @@ const PurchaseModal = () => {
               </h2>
             </header>
             <div id="modal-description" className="p-modal__body">
-              {isUserInfoLoading ||
-              isProductLoading ||
-              (window.accountId && isPreviewLoading) ? (
+              {isUserInfoLoading || isProductLoading ? (
                 <h1>LOADING.....</h1>
               ) : (
                 <>
-                  {/* <Summary /> */}
+                  <Summary />
                   {isFirstStep ? (
                     <PaymentMethodForm
                       setCardValid={setCardValid}

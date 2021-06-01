@@ -9,9 +9,7 @@ const DATE_FORMAT = "dd MMMM yyyy";
 
 function Summary() {
   const { product, quantity } = useProduct();
-  const { data: preview, isError } = usePreview();
-
-  if (isError) return <h1>prout</h1>;
+  const { data: preview } = usePreview();
 
   return (
     <section
