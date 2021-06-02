@@ -1,17 +1,68 @@
+import { useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { getPurchase } from "../../../contracts-api";
+import { getPurchase, postInvoiceID } from "../../../contracts-api";
 
 const usePendingPurchase = () => {
   const [pendingPurchaseID, setPendingPurchaseID] = useState();
+
+  const stripe = useStripe();
+
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     "pendingPurchase",
     async () => {
       const res = await getPurchase(pendingPurchaseID);
-      return res;
+
+      if (!res.stripeInvoices) {
+        throw new Error("Missing invoice");
+      }
+
+      const {
+        pi_decline_code,
+        pi_status,
+        pi_secret,
+        id: stripeInvoiceId,
+      } = res.stripeInvoices[0];
+
+      if (
+        pi_decline_code === "authentication_required" ||
+        (pi_status === "requires_action" && pi_secret)
+      ) {
+        //Requires 3DS check
+        const threeDSResponse = await stripe.confirmCardPayment(pi_secret);
+        console.log({ threeDSResponse });
+
+        if (threeDSResponse.error) {
+          const error = Error(threeDSResponse.error.message);
+          error.dontRetry = true;
+          throw error;
+        }
+      }
+
+      //Card declined
+      if (pi_status === "requires_payment_method") {
+        const invoiceRes = await postInvoiceID(
+          "purchase",
+          pendingPurchaseID,
+          stripeInvoiceId
+        );
+
+        const error = Error(JSON.parse(invoiceRes.errors).decline_code);
+        error.dontRetry = true;
+        throw error;
+      }
+
+      if (res.status === "done") {
+        return res;
+      } else {
+        throw new Error("Not done yet");
+      }
     },
     {
       enabled: !!pendingPurchaseID,
+      retry: (failureCount, error) => {
+        return !error.dontRetry;
+      },
     }
   );
 
