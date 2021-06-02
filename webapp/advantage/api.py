@@ -408,6 +408,24 @@ class UAContractsAPI:
 
         return response.json() if response.status_code != 200 else None
 
+    def get_subscription_auto_renewal(self, subscription_id: str) -> dict:
+        try:
+            response = self._request(
+                method="get",
+                path=f"v1/subscription/{subscription_id}/auto-renewal",
+            )
+        except HTTPError as error:
+            if error.response.status_code == 401:
+                if self.is_for_view:
+                    raise UAContractsAPIAuthErrorView(error)
+                raise UAContractsAPIAuthError(error)
+
+            if self.is_for_view:
+                raise UAContractsAPIErrorView(error)
+            raise UAContractsAPIError(error)
+
+        return response.json()
+
     def post_subscription_auto_renewal(
         self, subscription_id: str, should_auto_renew: bool
     ) -> dict:
