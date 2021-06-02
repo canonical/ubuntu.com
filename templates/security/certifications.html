@@ -13,7 +13,7 @@
      <h1>Security Certifications</h1>
      <h2 class="p-heading--3">Deploy regulated and high security workloads</h2>
      <p>Regulated and high security environments have complex requirements as they are designed to tackle many threats, known and unknown. Whatever path you have chosen in navigating compliance with a cybersecurity framework, such as the ones defined by ISO 27000, NIST, PCI or CIS Controls, Canonical provides you with a secure and easy to use operating system, that enables your compliance and reduces operational risk, whether on-premise or on a public cloud. We, at Canonical, are transparent on the security features we enable, provide access and automation to Industry accepted hardening and compliance profiles, such as CIS and DISA-STIG as well as present 3rd party attestation and certifications like FIPS 140-2 and Common Criteria.</p>
-     <p><a class="p-button--positive js-invoke-modal" href="/support/contact-us?product=support-overview">Contact us</a></p>
+     <p><a class="p-button--positive js-invoke-modal" href="/support/contact-us">Contact us</a></p>
    </div>
    <div class="col-4 u-hide--small u-align--center">
      {{
@@ -115,7 +115,7 @@
        <small> STIG content</small>
      </li>
    </ul>
-   <a href="#get-in-touch" class="p-button--positive">Contact us</a>
+   <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
  </div>
 </section>
 
@@ -200,7 +200,7 @@
        <small>Tooling & automation</small>
      </li>
    </ul>
-   <a href="#get-in-touch" class="p-button--positive">Contact us</a>
+   <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
  </div>
 >>>>>>> Build security certifications landing page
 </section>
@@ -213,7 +213,7 @@
    <h3>How do I comply with PCI-DSS?</h3>
    <p>PCI-DSS is a payment industry standard and any company that stores, processes or transmits payment card or cardholder information is required to comply with it. The standard is defined by the Payment Card Industry council and defines measures and processes to secure online financial transactions. The standard is about making business as usual processes like monitoring of security controls, timely response, review of environmental and organizational changes, as well as review of hardware and software being under support by its vendors. For companies with large volumes of transactions compliance with the standard is enforced by an audit of a Qualified Security Assessor (QSA).</p>
    <p>Achieving and maintaining compliance is a complex and costly process that involves business processes in addition to software requirements. Ubuntu by Canonical contains software and security controls, such as disk encryption, password settings configuration, <a href="/security/fips">cryptographic compliance with FIPS140-2</a>, CIS hardening as well as <a href="/advantage">a comprehensive Enterprise software maintenance program</a>, to achieve and maintain compliance with the standard.</p>
-   <a href="#get-in-touch" class="p-button--positive">Contact us</a>
+   <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
  </div>
 </section>
 
@@ -221,7 +221,7 @@
 {% with first_item="_security_discussion", second_item="_security_esm", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/general" data-form-id="1257" data-lp-id="2154" data-return-url="https://www.ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1257" data-lp-id="2154" data-return-url="https://www.ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
 {% endblock content %}
