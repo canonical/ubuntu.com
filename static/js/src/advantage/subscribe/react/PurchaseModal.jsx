@@ -141,7 +141,7 @@ const PurchaseModal = () => {
           actions.setSubmitting(false);
         }}
       >
-        {({ isValid, dirty, submitForm }) => (
+        {({ isValid, dirty, submitForm, isSubmitting }) => (
           <>
             <header className="p-modal__header">
               <h2
@@ -201,6 +201,7 @@ const PurchaseModal = () => {
               <Row className="u-no-padding">
                 <Button
                   className="js-cancel-modal col-small-2 col-medium-2 col-start-medium-3 col-start-large-7 col-3 u-no-margin"
+                  appearance="neutral"
                   aria-controls="purchase-modal"
                   style={{ textAlign: "center" }}
                 >
@@ -210,15 +211,18 @@ const PurchaseModal = () => {
                 {step === 1 ? (
                   <Button
                     disabled={(!userInfo && !dirty) || !isValid || !isCardValid}
-                    className="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin"
+                    appearance="positive"
+                    className="col-small-2 col-medium-2 col-3 u-no-margin"
                     style={{ textAlign: "center" }}
                     onClick={submitForm}
+                    isLoading={isSubmitting}
                   >
                     Continue
                   </Button>
                 ) : (
                   <Button
-                    className="col-small-2 col-medium-2 col-3 p-button--positive u-no-margin"
+                    className="col-small-2 col-medium-2 col-3 u-no-margin"
+                    appearance="positive"
                     style={{ textAlign: "center" }}
                     disabled={!areTermsChecked}
                     onClick={onPayClick}
