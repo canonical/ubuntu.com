@@ -24,11 +24,11 @@ const usePendingPurchase = () => {
         id: stripeInvoiceId,
       } = res.stripeInvoices[0];
 
+      //Requires 3DS check
       if (
         pi_decline_code === "authentication_required" ||
         (pi_status === "requires_action" && pi_secret)
       ) {
-        //Requires 3DS check
         const threeDSResponse = await stripe.confirmCardPayment(pi_secret);
         console.log({ threeDSResponse });
 

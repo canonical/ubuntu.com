@@ -9,7 +9,7 @@ const cardImageMap = {
   discover: "https://assets.ubuntu.com/v1/f5e8abde-discover_logo.jpg",
 };
 
-function PaymentMethodSummary({ setIsEdit, setPaymentError }) {
+function PaymentMethodSummary({ setStep }) {
   const { data: userInfo } = useStripeCustomerInfo();
 
   return (
@@ -33,7 +33,7 @@ function PaymentMethodSummary({ setIsEdit, setPaymentError }) {
           <Button
             className="p-button js-change-payment-method"
             onClick={() => {
-              setIsEdit(true);
+              setStep(1);
             }}
           >
             Change...

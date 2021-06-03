@@ -248,8 +248,8 @@ function PaymentMethodForm({ setCardValid }) {
         <Field
           as={Input}
           type="text"
-          id="vatNumber"
-          name="vatNumber"
+          id="VATNumber"
+          name="VATNumber"
           label="VAT number:"
           stacked
           help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"

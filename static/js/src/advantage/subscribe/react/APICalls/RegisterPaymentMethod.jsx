@@ -20,7 +20,7 @@ const registerPaymentMethod = () => {
       postalCode,
       usState,
       CAProvince,
-      vatNumber,
+      VATNumber,
     } = formData;
 
     const card = elements.getElement(CardElement);
@@ -56,7 +56,13 @@ const registerPaymentMethod = () => {
 
     console.log({ accountRes });
     if (accountRes.code) {
-      throw new Error(accountRes.code);
+      if (accountRes.code === "unauthorized") {
+        throw new Error("email_already_exists");
+      } else {
+        throw new Error(
+          JSON.parse(accountRes.message)?.decline_code || accountRes.code
+        );
+      }
     }
 
     const customerInfoRes = await postCustomerInfoToStripeAccount({
@@ -64,12 +70,17 @@ const registerPaymentMethod = () => {
       accountID: accountRes.accountID,
       address: addressObject,
       name: name,
-      taxID: vatNumber,
+      taxID: {
+        type: "eu_vat",
+        value: VATNumber,
+      },
     });
 
     console.log({ customerInfoRes });
     if (customerInfoRes.errors) {
-      throw new Error(customerInfoRes.errors);
+      //We ignore VAT errors but throw the others
+      if (JSON.parse(customerInfoRes.errors).code !== "tax_id_invalid")
+        throw new Error(JSON.parse(customerInfoRes.errors).code);
     }
 
     return {

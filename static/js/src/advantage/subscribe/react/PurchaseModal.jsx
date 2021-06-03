@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Button, CheckboxInput } from "@canonical/react-components";
+import {
+  Row,
+  Col,
+  Button,
+  CheckboxInput,
+  Notification,
+} from "@canonical/react-components";
 import useStripeCustomerInfo from "./APICalls/StripeCustomerInfo";
 import registerPaymentMethod from "./APICalls/RegisterPaymentMethod";
 import PaymentMethodSummary from "./components/PaymentMethodSummary";
@@ -11,9 +17,10 @@ import usePreview from "./APICalls/Preview";
 import makePurchase from "./APICalls/Purchase";
 import usePendingPurchase from "./APICalls/PendingPurchase";
 import { useQueryClient } from "react-query";
+import { getErrorMessage } from "../../error-handler";
 
 const PurchaseModal = () => {
-  const [isEdit, setIsEdit] = useState(false);
+  const [error, setError] = useState(null);
   const [paymentError, setPaymentError] = useState(null);
   const [areTermsChecked, setTermsChecked] = useState(false);
   const [isCardValid, setCardValid] = useState(false);
@@ -22,9 +29,13 @@ const PurchaseModal = () => {
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
 
-  const [step, setStep] = useState(
-    userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
-  );
+  const [step, setStep] = useState(window.accountId ? 2 : 1);
+
+  useEffect(() => {
+    if (userInfo?.customerInfo?.defaultPaymentMethod) {
+      setStep(2);
+    }
+  }, [userInfo]);
 
   const queryClient = useQueryClient();
 
@@ -39,13 +50,14 @@ const PurchaseModal = () => {
     purchaseMutation.mutate("", {
       onSuccess: (data) => {
         console.log("Purchase Successful 🎉");
-        console.log({ data });
         setPendingPurchaseID(data);
       },
       onError: (error) => {
         // An error happened!
         console.log("OH NO");
+        setError(error.message);
         console.log(error.message);
+        console.log("mais ça va hein");
       },
     });
   };
@@ -64,13 +76,13 @@ const PurchaseModal = () => {
           city: userInfo?.customerInfo?.address?.city ?? "",
           usState: userInfo?.customerInfo?.address?.state ?? "",
           CAProvince: userInfo?.customerInfo?.address?.state ?? "",
-          VATNumber: "",
+          VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
         }}
         enableReinitialize={true}
         onSubmit={(values, actions) => {
+          setError(null);
           paymentMethodMutation.mutate(values, {
             onSuccess: (data, variables) => {
-              console.log({ data });
               window.accountId = data.accountId;
               setStep(2);
               queryClient.setQueryData("userInfo", {
@@ -100,8 +112,30 @@ const PurchaseModal = () => {
               });
             },
             onError: (error, variables) => {
-              // An error happened!
-              console.log(error.message);
+              if (error === "email_already_exists") {
+                //Email already exists
+                setError(
+                  <>
+                    An Ubuntu One account with this email address exists. Please{" "}
+                    <a href="/login">sign in</a> to your account first.
+                  </>
+                );
+              }
+
+              if (error === "payment method error") {
+                // unknown payment issue
+                setError(
+                  <>
+                    Sorry, there was an unknown error with your credit card.
+                    Check the details and try again. Contact{" "}
+                    <a href="https://ubuntu.com/contact-us">Canonical sales</a>{" "}
+                    if the problem persists.
+                  </>
+                );
+              }
+
+              // known card error
+              setError(getErrorMessage({ message: "", code: error.message }));
             },
           });
           actions.setSubmitting(false);
@@ -123,16 +157,18 @@ const PurchaseModal = () => {
               ) : (
                 <>
                   <Summary />
+                  {error && (
+                    <Notification type="negative" status="Error:">
+                      {error}
+                    </Notification>
+                  )}
                   {step === 1 ? (
                     <PaymentMethodForm
                       setCardValid={setCardValid}
                       paymentError={paymentError}
                     />
                   ) : (
-                    <PaymentMethodSummary
-                      setIsEdit={setIsEdit}
-                      setPaymentError={setPaymentError}
-                    />
+                    <PaymentMethodSummary setStep={setStep} />
                   )}
                 </>
               )}
