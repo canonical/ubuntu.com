@@ -259,6 +259,14 @@ function attachFormEvents() {
     forMyselfRadio.addEventListener("change", handleNameFieldRadio);
     forOrganisationRadio.addEventListener("change", handleNameFieldRadio);
   }
+
+  termsCheckbox.addEventListener("change", () => {
+    if (termsCheckbox.checked) {
+      processPaymentButton.disabled = false;
+    } else {
+      processPaymentButton.disabled = true;
+    }
+  });
 }
 
 function handleNameFieldRadio() {
