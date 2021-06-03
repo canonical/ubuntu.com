@@ -736,40 +736,28 @@ def accept_renewal(renewal_id, **kwargs):
 
 
 def _prepare_monthly_info(monthly_info, subscription, advantage):
-    purchased_products = subscription["purchasedProductListings"]
-    purchased_products_no = len(purchased_products)
+    purchased_products = subscription.get("purchasedProductListings")
+    subscription_info = subscription.get("subscription")
+    subscription_id = subscription_info.get("id")
+    is_renewing = subscription_info.get("autoRenew", False)
 
-    monthly_info["total_subscriptions"] += purchased_products_no
+    monthly_info["total_subscriptions"] += len(purchased_products)
     monthly_info["has_monthly"] = True
-    monthly_info["id"] = subscription["subscription"]["id"]
-    monthly_info["is_auto_renewal_enabled"] = subscription["subscription"].get(
-        "autoRenew", False
-    )
+    monthly_info["id"] = subscription_id
+    monthly_info["is_auto_renewal_enabled"] = is_renewing
 
-    last_purchase_id = subscription["lastPurchaseID"]
-    last_purchase = advantage.get_purchase(last_purchase_id)
+    if is_renewing:
+        renewal_info = advantage.get_subscription_auto_renewal(subscription_id)
+        last_renewal = parse(renewal_info["subscriptionStartOfCycle"])
+        next_renewal = parse(renewal_info["subscriptionEndOfCycle"])
+        total = renewal_info["total"] / 100
+        currency = renewal_info["currency"]
 
-    monthly_info["last_payment_date"] = parse(
-        last_purchase["createdAt"]
-    ).strftime("%d %B %Y")
-    monthly_info["next_payment"]["date"] = parse(
-        subscription["subscription"]["endOfCycle"]
-    ).strftime("%d %B %Y")
-    monthly_info["next_payment"]["ammount"] = _get_subscription_payment_total(
-        subscription["purchasedProductListings"]
-    )
-
-
-def _get_subscription_payment_total(products_listings):
-    total = 0
-
-    for listing in products_listings:
-        total += listing["productListing"]["price"]["value"] * listing["value"]
-
-    return (
-        f"{total / 100} "
-        f'{products_listings[0]["productListing"]["price"]["currency"]}'
-    )
+        monthly_info["last_payment_date"] = last_renewal.strftime("%d %B %Y")
+        monthly_info["next_payment"] = {
+            "date": next_renewal.strftime("%d %B %Y"),
+            "amount": f"{total} {currency}",
+        }
 
 
 def _make_renewal(advantage, contract_info):
