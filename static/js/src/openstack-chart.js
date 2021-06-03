@@ -51,7 +51,7 @@ function drawChart(data) {
   var ordScale = d3
     .scaleOrdinal()
     .domain(data)
-    .range(["#C33513", "#E79173", "#DF6F47", "#FAD8CB", "#F5BEAB"]);
+    .range(["#ffd384", "#94ebcd", "#fbaccc", "#d3e0ea", "#fa7f72"]);
 
   var pie = d3.pie().value(function (d) {
     return d.metric;
