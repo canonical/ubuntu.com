@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   Row,
   Col,
-  Button,
+  ActionButton,
   CheckboxInput,
   Notification,
 } from "@canonical/react-components";
@@ -45,6 +45,7 @@ const PurchaseModal = () => {
     data: pendingPurchase,
     setPendingPurchaseID,
     error: purchaseError,
+    isLoading: isPendingPurchaseLoading,
   } = usePendingPurchase();
 
   const paymentMethodMutation = registerPaymentMethod();
@@ -157,6 +158,8 @@ const PurchaseModal = () => {
                   name: variables.organisationName,
                 },
               });
+
+              actions.setSubmitting(false);
             },
             onError: (error, variables) => {
               if (error === "email_already_exists") {
@@ -183,9 +186,10 @@ const PurchaseModal = () => {
 
               // known card error
               setError(getErrorMessage({ message: "", code: error.message }));
+
+              actions.setSubmitting(false);
             },
           });
-          actions.setSubmitting(false);
         }}
       >
         {({ isValid, dirty, submitForm, isSubmitting }) => (
@@ -246,36 +250,39 @@ const PurchaseModal = () => {
             </div>
             <footer className="p-modal__footer">
               <Row className="u-no-padding">
-                <Button
+                <ActionButton
                   className="js-cancel-modal col-small-2 col-medium-2 col-start-medium-3 col-start-large-7 col-3 u-no-margin"
                   appearance="neutral"
                   aria-controls="purchase-modal"
                   style={{ textAlign: "center" }}
                 >
                   Cancel
-                </Button>
+                </ActionButton>
 
                 {step === 1 ? (
-                  <Button
+                  <ActionButton
                     disabled={(!userInfo && !dirty) || !isValid || !isCardValid}
                     appearance="positive"
                     className="col-small-2 col-medium-2 col-3 u-no-margin"
                     style={{ textAlign: "center" }}
                     onClick={submitForm}
-                    isLoading={isSubmitting}
+                    loading={isSubmitting}
                   >
                     Continue
-                  </Button>
+                  </ActionButton>
                 ) : (
-                  <Button
+                  <ActionButton
                     className="col-small-2 col-medium-2 col-3 u-no-margin"
                     appearance="positive"
                     style={{ textAlign: "center" }}
                     disabled={!areTermsChecked}
                     onClick={onPayClick}
+                    loading={
+                      purchaseMutation.isLoading || isPendingPurchaseLoading
+                    }
                   >
                     Pay
-                  </Button>
+                  </ActionButton>
                 )}
               </Row>
             </footer>
