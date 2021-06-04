@@ -1,7 +1,7 @@
 {% extends "openstack/_base_openstack.html" %}
 
 {% block title %}OpenStack distributions comparison{% endblock %}
-{% block meta_description %}This page provides a detailed comparison of various OpenStack platforms including both business and technical aspects of each.{% endblock%}
+{% block meta_description %}A detailed comparison of various OpenStack platforms including both business and technical aspects of each.{% endblock%}
 {% block meta_copydoc %}https://docs.google.com/document/d/1ibpATi-e0rKP3GaLgvzwO_XyFU9ZTsUaCHMwrg96MZM/edit{% endblock %}
 
 {% block content %}
@@ -371,6 +371,27 @@
   </div>
 </section>
 
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+        alt="",
+        width="221",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2>More cost-efficient than public clouds</h2>
+      <p>Public clouds are expensive when running workloads in the long-term and at scale. Although they are a more economical solution at the beginning of the cloud transformation process, their costs keep growing over time. Canonical's Charmed OpenStack is a cost-efficient extension to public cloud infrastructure, ensuring lower TCO per VM and enabling businesses to run their workloads where it makes the most sense from an economical point of view.</p>
+      <p><a href="/tco-calculator">Learn more &nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
@@ -399,6 +420,9 @@
     </div>
   </div>
 </section>
+
+{% with first_item="_private_cloud_contact_us", second_item="_cloud_newsletter", third_item="_openstack_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=foundation-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
