@@ -30,6 +30,7 @@ const useProduct = () => {
   return {
     product: data?.product,
     quantity: data?.quantity,
+    isLoading: !data,
   };
 };
 

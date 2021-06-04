@@ -5,6 +5,7 @@ import {
   ActionButton,
   CheckboxInput,
   Notification,
+  Spinner,
 } from "@canonical/react-components";
 import useStripeCustomerInfo from "./APICalls/StripeCustomerInfo";
 import registerPaymentMethod from "./APICalls/RegisterPaymentMethod";
@@ -17,6 +18,7 @@ import makePurchase from "./APICalls/Purchase";
 import usePendingPurchase from "./APICalls/PendingPurchase";
 import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
+import usePreview from "./APICalls/Preview";
 
 const getUserInfoFromVariables = (variables) => {
   return {
@@ -52,7 +54,20 @@ const PurchaseModal = () => {
     data: userInfo,
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
+  const { isLoading: isPreviewLoading } = usePreview();
+  const { isLoading: isProductLoading } = useProduct();
   const [step, setStep] = useState(window.accountId ? 2 : 1);
+  const queryClient = useQueryClient();
+
+  const {
+    data: pendingPurchase,
+    setPendingPurchaseID,
+    error: purchaseError,
+    isLoading: isPendingPurchaseLoading,
+  } = usePendingPurchase();
+
+  const paymentMethodMutation = registerPaymentMethod();
+  const purchaseMutation = makePurchase();
 
   const initialValues = {
     email: userInfo?.customerInfo?.email ?? "",
@@ -73,19 +88,6 @@ const PurchaseModal = () => {
       setStep(2);
     }
   }, [userInfo]);
-
-  const queryClient = useQueryClient();
-
-  const { isLoading: isProductLoading } = useProduct();
-  const {
-    data: pendingPurchase,
-    setPendingPurchaseID,
-    error: purchaseError,
-    isLoading: isPendingPurchaseLoading,
-  } = usePendingPurchase();
-
-  const paymentMethodMutation = registerPaymentMethod();
-  const purchaseMutation = makePurchase();
 
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the purchase status
@@ -221,8 +223,14 @@ const PurchaseModal = () => {
               </h2>
             </header>
             <div id="modal-description" className="p-modal__body">
-              {isUserInfoLoading || isProductLoading ? (
-                <h1>LOADING.....</h1>
+              {isUserInfoLoading || isProductLoading || isPreviewLoading ? (
+                <Col
+                  size="12"
+                  className="u-align--center"
+                  style={{ padding: "10rem 0" }}
+                >
+                  <Spinner />
+                </Col>
               ) : (
                 <>
                   <Summary />
@@ -236,31 +244,31 @@ const PurchaseModal = () => {
                   ) : (
                     <PaymentMethodSummary setStep={setStep} />
                   )}
+                  {step === 1 ? null : (
+                    <Row className="u-no-padding">
+                      <Col size="12">
+                        <CheckboxInput
+                          name="TermsCheckbox"
+                          onChange={(e) => {
+                            setTermsChecked(e.target.checked);
+                          }}
+                          label={
+                            <>
+                              I agree to the{" "}
+                              <a
+                                href="/legal/ubuntu-advantage-service-terms"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Ubuntu Advantage service terms
+                              </a>
+                            </>
+                          }
+                        />
+                      </Col>
+                    </Row>
+                  )}
                 </>
-              )}
-              {step === 1 ? null : (
-                <Row className="u-no-padding">
-                  <Col size="12">
-                    <CheckboxInput
-                      name="TermsCheckbox"
-                      onChange={(e) => {
-                        setTermsChecked(e.target.checked);
-                      }}
-                      label={
-                        <>
-                          I agree to the{" "}
-                          <a
-                            href="/legal/ubuntu-advantage-service-terms"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Ubuntu Advantage service terms
-                          </a>
-                        </>
-                      }
-                    />
-                  </Col>
-                </Row>
               )}
             </div>
             <footer className="p-modal__footer">
