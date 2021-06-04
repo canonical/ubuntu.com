@@ -54,7 +54,6 @@ const registerPaymentMethod = () => {
       country,
     });
 
-    console.log({ accountRes });
     if (accountRes.code) {
       if (accountRes.code === "unauthorized") {
         throw new Error("email_already_exists");
@@ -76,7 +75,6 @@ const registerPaymentMethod = () => {
       },
     });
 
-    console.log({ customerInfoRes });
     if (customerInfoRes.errors) {
       //We ignore VAT errors but throw the others
       if (JSON.parse(customerInfoRes.errors).code !== "tax_id_invalid")

@@ -28,7 +28,6 @@ const makePurchase = () => {
       throw new Error(res.errors);
     }
 
-    console.log({ res });
     return res.id;
   });
 

@@ -13,23 +13,60 @@ import PaymentMethodForm from "./components/PaymentMethodForm";
 import Summary from "./components/Summary";
 import { Formik } from "formik";
 import useProduct from "./APICalls/Product";
-import usePreview from "./APICalls/Preview";
 import makePurchase from "./APICalls/Purchase";
 import usePendingPurchase from "./APICalls/PendingPurchase";
 import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
 
+const getUserInfoFromVariables = (variables) => {
+  return {
+    customerInfo: {
+      email: variables.email,
+      name: variables.name,
+      address: {
+        line1: variables.address,
+        postal_code: variables.postalCode,
+        country: variables.country,
+        city: variables.city,
+        state:
+          variables.country === "US" ? variables.usState : variables.CAProvince,
+      },
+      defaultPaymentMethod: {
+        brand: data.paymentMethod.brand,
+        last4: data.paymentMethod.last4,
+        expMonth: data.paymentMethod.exp_month,
+        expYear: data.paymentMethod.exp_year,
+      },
+    },
+    accountInfo: {
+      name: variables.organisationName,
+    },
+  };
+};
+
 const PurchaseModal = () => {
   const [error, setError] = useState(null);
-  const [paymentError, setPaymentError] = useState(null);
   const [areTermsChecked, setTermsChecked] = useState(false);
   const [isCardValid, setCardValid] = useState(false);
   const {
     data: userInfo,
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
-
   const [step, setStep] = useState(window.accountId ? 2 : 1);
+
+  const initialValues = {
+    email: userInfo?.customerInfo?.email ?? "",
+    name: userInfo?.customerInfo?.name ?? "",
+    buyingFor: "organisation",
+    organisationName: userInfo?.accountInfo?.name ?? "",
+    address: userInfo?.customerInfo?.address?.line1 ?? "",
+    postalCode: userInfo?.customerInfo?.address?.postal_code ?? "",
+    country: userInfo?.customerInfo?.address?.country ?? "",
+    city: userInfo?.customerInfo?.address?.city ?? "",
+    usState: userInfo?.customerInfo?.address?.state ?? "",
+    CAProvince: userInfo?.customerInfo?.address?.state ?? "",
+    VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
+  };
 
   useEffect(() => {
     if (userInfo?.customerInfo?.defaultPaymentMethod) {
@@ -40,7 +77,6 @@ const PurchaseModal = () => {
   const queryClient = useQueryClient();
 
   const { isLoading: isProductLoading } = useProduct();
-  // const { data: preview, isLoading: isPreviewLoading } = usePreview();
   const {
     data: pendingPurchase,
     setPendingPurchaseID,
@@ -97,6 +133,47 @@ const PurchaseModal = () => {
     }
   }, [pendingPurchase]);
 
+  const onSubmit = (values, actions) => {
+    setError(null);
+    paymentMethodMutation.mutate(values, {
+      onSuccess: (data, variables) => {
+        window.accountId = data.accountId;
+        setStep(2);
+        queryClient.setQueryData(
+          "userInfo",
+          getUserInfoFromVariables(variables)
+        );
+
+        actions.setSubmitting(false);
+      },
+      onError: (error, variables) => {
+        if (error.message === "email_already_exists") {
+          //Email already exists
+          setError(
+            <>
+              An Ubuntu One account with this email address exists. Please{" "}
+              <a href="/login">sign in</a> to your account first.
+            </>
+          );
+        } else {
+          // Tries to match the error with a known error code and defaults to a generic error if it fails
+          setError(
+            getErrorMessage({ message: "", code: error.message }) ?? (
+              <>
+                Sorry, there was an unknown error with your credit card. Check
+                the details and try again. Contact{" "}
+                <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
+                the problem persists.
+              </>
+            )
+          );
+        }
+
+        actions.setSubmitting(false);
+      },
+    });
+  };
+
   const onPayClick = () => {
     purchaseMutation.mutate("", {
       onSuccess: (data) => {
@@ -129,83 +206,9 @@ const PurchaseModal = () => {
   return (
     <div>
       <Formik
-        initialValues={{
-          email: userInfo?.customerInfo?.email ?? "",
-          name: userInfo?.customerInfo?.name ?? "",
-          buyingFor: "organisation",
-          organisationName: userInfo?.accountInfo?.name ?? "",
-          address: userInfo?.customerInfo?.address?.line1 ?? "",
-          postalCode: userInfo?.customerInfo?.address?.postal_code ?? "",
-          country: userInfo?.customerInfo?.address?.country ?? "",
-          city: userInfo?.customerInfo?.address?.city ?? "",
-          usState: userInfo?.customerInfo?.address?.state ?? "",
-          CAProvince: userInfo?.customerInfo?.address?.state ?? "",
-          VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
-        }}
+        initialValues={initialValues}
         enableReinitialize={true}
-        onSubmit={(values, actions) => {
-          setError(null);
-          paymentMethodMutation.mutate(values, {
-            onSuccess: (data, variables) => {
-              window.accountId = data.accountId;
-              setStep(2);
-              queryClient.setQueryData("userInfo", {
-                customerInfo: {
-                  email: variables.email,
-                  name: variables.name,
-                  address: {
-                    line1: variables.address,
-                    postal_code: variables.postalCode,
-                    country: variables.country,
-                    city: variables.city,
-                    state:
-                      variables.country === "US"
-                        ? variables.usState
-                        : variables.CAProvince,
-                  },
-                  defaultPaymentMethod: {
-                    brand: data.paymentMethod.brand,
-                    last4: data.paymentMethod.last4,
-                    expMonth: data.paymentMethod.exp_month,
-                    expYear: data.paymentMethod.exp_year,
-                  },
-                },
-                accountInfo: {
-                  name: variables.organisationName,
-                },
-              });
-
-              actions.setSubmitting(false);
-            },
-            onError: (error, variables) => {
-              if (error.message === "email_already_exists") {
-                //Email already exists
-                setError(
-                  <>
-                    An Ubuntu One account with this email address exists. Please{" "}
-                    <a href="/login">sign in</a> to your account first.
-                  </>
-                );
-              } else {
-                // Tries to match the error with a known error code and defaults to a generic error if it fails
-                setError(
-                  getErrorMessage({ message: "", code: error.message }) ?? (
-                    <>
-                      Sorry, there was an unknown error with your credit card.
-                      Check the details and try again. Contact{" "}
-                      <a href="https://ubuntu.com/contact-us">
-                        Canonical sales
-                      </a>{" "}
-                      if the problem persists.
-                    </>
-                  )
-                );
-              }
-
-              actions.setSubmitting(false);
-            },
-          });
-        }}
+        onSubmit={onSubmit}
       >
         {({ isValid, dirty, submitForm, isSubmitting }) => (
           <>
@@ -229,10 +232,7 @@ const PurchaseModal = () => {
                     </Notification>
                   )}
                   {step === 1 ? (
-                    <PaymentMethodForm
-                      setCardValid={setCardValid}
-                      paymentError={paymentError}
-                    />
+                    <PaymentMethodForm setCardValid={setCardValid} />
                   ) : (
                     <PaymentMethodSummary setStep={setStep} />
                   )}
