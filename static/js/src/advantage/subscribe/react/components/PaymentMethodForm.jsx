@@ -185,7 +185,7 @@ function PaymentMethodForm({ setCardValid }) {
         type="text"
         id="address"
         name="address"
-        label="Address"
+        label="Address:"
         stacked
         validate={validateRequired}
         error={touched?.address && errors?.address}
@@ -215,7 +215,7 @@ function PaymentMethodForm({ setCardValid }) {
         type="text"
         id="city"
         name="city"
-        label="City"
+        label="City:"
         stacked
         validate={validateRequired}
         error={touched?.city && errors?.city}

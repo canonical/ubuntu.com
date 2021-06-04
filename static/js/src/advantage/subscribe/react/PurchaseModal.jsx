@@ -41,23 +41,70 @@ const PurchaseModal = () => {
 
   const { isLoading: isProductLoading } = useProduct();
   // const { data: preview, isLoading: isPreviewLoading } = usePreview();
-  const { data: pendingPurchase, setPendingPurchaseID } = usePendingPurchase();
+  const {
+    data: pendingPurchase,
+    setPendingPurchaseID,
+    error: purchaseError,
+  } = usePendingPurchase();
 
   const paymentMethodMutation = registerPaymentMethod();
   const purchaseMutation = makePurchase();
 
+  useEffect(() => {
+    // the initial call was successful but it returned an error while polling the purchase status
+    if (purchaseError) {
+      if (
+        purchaseError.message.includes(
+          "We are unable to authenticate your payment method"
+        )
+      ) {
+        setError(
+          <>
+            We were unable to verify your credit card. Check the details and try
+            again. Contact{" "}
+            <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
+            problem persists.
+          </>
+        );
+      } else {
+        setError(
+          <>
+            We were unable to process the payment. Check the details and try
+            again. Contact{" "}
+            <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
+            problem persists.
+          </>
+        );
+      }
+      setStep(1);
+    }
+  }, [purchaseError]);
+
   const onPayClick = () => {
     purchaseMutation.mutate("", {
       onSuccess: (data) => {
-        console.log("Purchase Successful 🎉");
+        //start polling
         setPendingPurchaseID(data);
       },
       onError: (error) => {
-        // An error happened!
-        console.log("OH NO");
-        setError(error.message);
-        console.log(error.message);
-        console.log("mais ça va hein");
+        // An error happened
+        if (error.message.includes("can only make one purchase at a time")) {
+          setError(
+            <>
+              You already have a pending purchase. Please go to{" "}
+              <a href="/advantage/payment-methods">payment methods</a> to retry.
+            </>
+          );
+        } else {
+          setError(
+            <>
+              Sorry, there was an unknown error with with the payment. Check the
+              details and try again. Contact{" "}
+              <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
+              problem persists.
+            </>
+          );
+        }
       },
     });
   };
