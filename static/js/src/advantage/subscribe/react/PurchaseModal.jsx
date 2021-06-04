@@ -81,6 +81,22 @@ const PurchaseModal = () => {
     }
   }, [purchaseError]);
 
+  useEffect(() => {
+    if (pendingPurchase?.status === "done") {
+      // Remove the product selection from the local storage
+      localStorage.removeItem("ua-subscribe-state");
+
+      //redirect
+      if (window.isGuest) {
+        location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
+          pendingPurchase?.invoice?.customerEmail
+        )}`;
+      } else {
+        location.pathname = "/advantage";
+      }
+    }
+  }, [pendingPurchase]);
+
   const onPayClick = () => {
     purchaseMutation.mutate("", {
       onSuccess: (data) => {
@@ -162,7 +178,7 @@ const PurchaseModal = () => {
               actions.setSubmitting(false);
             },
             onError: (error, variables) => {
-              if (error === "email_already_exists") {
+              if (error.message === "email_already_exists") {
                 //Email already exists
                 setError(
                   <>
@@ -170,22 +186,21 @@ const PurchaseModal = () => {
                     <a href="/login">sign in</a> to your account first.
                   </>
                 );
-              }
-
-              if (error === "payment method error") {
-                // unknown payment issue
+              } else {
+                // Tries to match the error with a known error code and defaults to a generic error if it fails
                 setError(
-                  <>
-                    Sorry, there was an unknown error with your credit card.
-                    Check the details and try again. Contact{" "}
-                    <a href="https://ubuntu.com/contact-us">Canonical sales</a>{" "}
-                    if the problem persists.
-                  </>
+                  getErrorMessage({ message: "", code: error.message }) ?? (
+                    <>
+                      Sorry, there was an unknown error with your credit card.
+                      Check the details and try again. Contact{" "}
+                      <a href="https://ubuntu.com/contact-us">
+                        Canonical sales
+                      </a>{" "}
+                      if the problem persists.
+                    </>
+                  )
                 );
               }
-
-              // known card error
-              setError(getErrorMessage({ message: "", code: error.message }));
 
               actions.setSubmitting(false);
             },

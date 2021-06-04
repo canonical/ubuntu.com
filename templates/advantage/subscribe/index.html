@@ -147,6 +147,7 @@
   };
 
   var accountId = "{% if account %}{{ account.id }}{% endif %}";
+  var isGuest = {% if account %}false{% else %}true{% endif %};
   var accountName = "{% if account %}{{ account.name }}{% endif %}";
   var previousPurchaseIds = {
     {% for period, id in previous_purchase_ids.items() %}
