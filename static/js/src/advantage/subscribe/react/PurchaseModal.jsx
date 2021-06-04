@@ -20,7 +20,7 @@ import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
 import usePreview from "./APICalls/Preview";
 
-const getUserInfoFromVariables = (variables) => {
+const getUserInfoFromVariables = (data, variables) => {
   return {
     customerInfo: {
       email: variables.email,
@@ -143,12 +143,12 @@ const PurchaseModal = () => {
         setStep(2);
         queryClient.setQueryData(
           "userInfo",
-          getUserInfoFromVariables(variables)
+          getUserInfoFromVariables(data, variables)
         );
 
         actions.setSubmitting(false);
       },
-      onError: (error, variables) => {
+      onError: (error) => {
         if (error.message === "email_already_exists") {
           //Email already exists
           setError(

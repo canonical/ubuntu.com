@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Row, Col, Button } from "@canonical/react-components";
 import useStripeCustomerInfo from "../APICalls/StripeCustomerInfo";
 
@@ -80,5 +81,9 @@ function PaymentMethodSummary({ setStep }) {
     </>
   );
 }
+
+PaymentMethodSummary.propTypes = {
+  setStep: PropTypes.func.isRequired,
+};
 
 export default PaymentMethodSummary;

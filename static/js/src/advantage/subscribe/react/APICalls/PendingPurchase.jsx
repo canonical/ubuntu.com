@@ -30,8 +30,6 @@ const usePendingPurchase = () => {
         (pi_status === "requires_action" && pi_secret)
       ) {
         const threeDSResponse = await stripe.confirmCardPayment(pi_secret);
-        console.log({ threeDSResponse });
-
         if (threeDSResponse.error) {
           const error = Error(threeDSResponse.error.message);
           error.dontRetry = true;

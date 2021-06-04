@@ -25,6 +25,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
+    babelOptions: {
+      plugins: ["@babel/plugin-syntax-jsx"],
+    },
   },
   rules: {
     semi: ["error", "always"],

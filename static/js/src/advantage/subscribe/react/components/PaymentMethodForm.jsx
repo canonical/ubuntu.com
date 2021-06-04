@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+
 import {
   Row,
   Col,
@@ -281,5 +283,9 @@ function PaymentMethodForm({ setCardValid }) {
     </Form>
   );
 }
+
+PaymentMethodForm.propTypes = {
+  setCardValid: PropTypes.func.isRequired,
+};
 
 export default PaymentMethodForm;
