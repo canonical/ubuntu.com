@@ -24,10 +24,29 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     flex-direction: column;
     z-index: 40;
 
-    &::after {
-      // disable rule under nav
-      background-color: none;
-      height: 0;
+    &__items {
+      @media (max-width: $breakpoint-x-small - 1) {
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: $breakpoint-navigation-threshold) {
+        align-items: stretch;
+        display: flex;
+        justify-content: center;
+        order: 2;
+
+        .p-navigation__dropdown-link {
+          flex: 1;
+          text-align: center;
+        }
+      }
+    }
+
+    &__link-anchor {
+      @media (max-width: $breakpoint-x-small - 1) {
+        padding-left: $grid-margin-width / 4 !important;
+        padding-right: $grid-margin-width / 4 !important;
+      }
     }
 
     &__banner {
@@ -39,70 +58,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
     }
 
-    .p-navigation__dropdown-link--noscript {
-      position: relative;
-
-      .p-navigation__link-anchor {
-        padding: 0.75rem 1rem;
-      }
-    }
-
-    &__dropdown-link {
-      position: relative;
-
-      &::after {
-        @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
-
-        background-position: top 52% right 50%;
-        background-repeat: no-repeat;
-        background-size: 0.75rem;
-        content: "";
-        height: 100%;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-        transition: transform 0.1s;
-        width: 2rem;
-      }
-
-      &.is-selected {
-        &::after {
-          @include vf-icon-chevron(vf-url-friendly-color($color-dark));
-
-          transform: rotate(-180deg);
-        }
-
-        .p-navigation__link-anchor {
-          background-color: $color-x-light;
-          color: $color-dark;
-
-          &::after {
-            background-color: transparent;
-          }
-
-          &:focus,
-          &:visited {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
-
-          &:hover {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
-        }
-      }
-    }
-
-    &__image {
-      max-height: 1.5rem;
-      max-width: $ubuntu-logo-svg-width;
-    }
-
-    &__logo {
-      background: $color-brand;
-      height: 3rem;
+    &::after {
+      // disable rule under nav
+      background-color: none;
+      height: 0;
     }
 
     & &__nav {
@@ -117,6 +76,18 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
             display: none;
           }
         }
+      }
+    }
+
+    &__user .p-navigation__link-anchor {
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition-duration: 0s;
+      white-space: nowrap;
+
+      @media (min-width: $breakpoint-large) {
+        max-width: 240px;
       }
     }
 
@@ -151,22 +122,12 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
     }
 
-    .p-navigation__banner .p-navigation__link-anchor {
-      @media (max-width: $breakpoint-x-small) {
-        margin-right: calc(1rem - 6px);
-      }
+    .p-navigation__dropdown-link--noscript {
+      position: relative;
 
-      &:hover {
-        background-color: transparent;
+      .p-navigation__link-anchor {
+        padding: 0.75rem 1rem;
       }
-
-      .p-link--inverted:visited {
-        color: $color-x-light;
-      }
-    }
-
-    .p-navigation__user .p-navigation__link-anchor {
-      transition-duration: 0s;
     }
 
     .p-navigation__user .p-subnav__items--right {
@@ -196,21 +157,90 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
     }
 
+    .p-navigation__banner .p-navigation__link-anchor {
+      @media (max-width: $breakpoint-x-small) {
+        margin-right: calc(1rem - 6px);
+      }
+
+      .p-link--inverted:visited {
+        color: $color-x-light;
+      }
+    }
+
+    &__dropdown-link {
+      position: relative;
+
+      &::after {
+        @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
+
+        background-position: top 52% right 50%;
+        background-repeat: no-repeat;
+        background-size: 0.75rem;
+        content: "";
+        height: 100%;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: transform 0.1s;
+        width: 2rem;
+        @media (max-width: $breakpoint-navigation-threshold) {
+          display: none;
+        }
+      }
+
+      &.is-selected {
+        &::after {
+          @include vf-icon-chevron(vf-url-friendly-color($color-dark));
+
+          transform: rotate(-180deg);
+        }
+
+        .p-navigation__link-anchor {
+          background-color: $color-x-light;
+          color: $color-dark;
+
+          &::after {
+            background-color: transparent;
+          }
+
+          &:focus,
+          &:visited {
+            background-color: $color-x-light;
+            color: $color-dark;
+          }
+
+          &:hover {
+            background-color: $color-x-light;
+            color: $color-dark;
+          }
+        }
+      }
+    }
+
+    .p-navigation__banner .p-navigation__link-anchor:hover {
+      background-color: transparent;
+    }
+
+    &__image {
+      max-height: 1.5rem;
+      max-width: $ubuntu-logo-svg-width;
+    }
+
+    &__logo {
+      background: $color-brand;
+      height: 3rem;
+    }
+
     &__search {
       align-items: center;
       display: inline-flex;
       flex-grow: 1;
       margin: 0;
-    }
 
-    &__user .p-navigation__link-anchor {
-      max-width: 160px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      @media (min-width: $breakpoint-large) {
-        max-width: 240px;
+      @media (max-width: $breakpoint-navigation-threshold) {
+        margin-top: $sp-medium !important;
+        order: 1;
       }
     }
 
@@ -267,6 +297,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         &::after {
           // white separator inside lockup
           @extend %vf-pseudo-border--top;
+
           display: none;
 
           @media only screen and (min-width: $breakpoint-navigation-threshold) {
@@ -289,6 +320,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       .breadcrumbs {
         &--secondary {
           @extend .p-inline-list;
+
           display: flex;
           flex-wrap: wrap;
           margin-bottom: 0;
@@ -356,50 +388,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
     }
 
-    &__items {
-      @media (max-width: $breakpoint-x-small - 1) {
-        font-size: 0.875rem;
-      }
-
-      @media (max-width: $breakpoint-navigation-threshold) {
-        align-items: stretch;
-        display: flex;
-        justify-content: center;
-        order: 2;
-
-        .p-navigation__dropdown-link {
-          flex: 1;
-          text-align: center;
-        }
-      }
-    }
-
-    &__dropdown-link {
-      &::after {
-        @media (max-width: $breakpoint-navigation-threshold) {
-          display: none;
-        }
-      }
-    }
-
-    &__search {
-      @media (max-width: $breakpoint-navigation-threshold) {
-        margin-top: $sp-medium !important;
-        order: 1;
-      }
-    }
-
-    &__link-anchor {
-      @media (max-width: $breakpoint-x-small - 1) {
-        padding-left: $grid-margin-width / 4 !important;
-        padding-right: $grid-margin-width / 4 !important;
-      }
-    }
-
     @media (min-width: $breakpoint-navigation-threshold) {
       .p-search-box {
-        max-width: none;
         margin-left: 1rem;
+        max-width: none;
 
         .p-search-box__button {
           display: none;
@@ -407,8 +399,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
         .p-search-box__input:not(:valid) ~ .p-search-box__reset {
           display: inherit;
-          margin-top: 0.3rem;
           margin-bottom: 0;
+          margin-top: 0.3rem;
         }
       }
     }
@@ -427,6 +419,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
   .dropdown-window {
     @include vf-animation(all, brisk, in);
+
     background-color: $color-x-light;
     box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
     flex-direction: column;
@@ -445,6 +438,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
     &__content {
       @extend %p-strip--very-shallow;
+
       background-color: $color-x-light;
       color: $color-dark;
 
@@ -461,6 +455,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
     & .p-inline-list__item {
       @extend %small-text-fixed;
+
       list-style-type: none;
 
       &::after {
@@ -472,7 +467,9 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
     &__summary {
       @extend %small-text-fixed;
+
       @include p-max-width--long;
+
       margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff -
         $nudge--small;
     }
@@ -496,6 +493,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
 .p-card--navigation {
   @include vf-p-card;
+
   display: flex;
   flex-direction: column;
   margin-bottom: 0;
@@ -504,8 +502,11 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
 .p-card--light {
   @extend %vf-has-round-corners;
+
   @extend %bg--light;
+
   @include vf-p-card;
+
   flex-direction: column;
   margin-bottom: $spv-outer--small-scaleable;
   padding: calc(#{$spv-inner--scaleable} - 1px);
@@ -536,5 +537,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
 .p-button--small {
   @extend %small-text;
+
   padding-top: $sp-unit * 0.5 + map-get($nudges, nudge--small);
 }
