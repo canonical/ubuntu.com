@@ -1219,7 +1219,7 @@ export var openStackReleases = [
     endDate: new Date("2028-04-01T00:00:00"),
     taskName: "OpenStack Queens LTS",
     status: "ESM",
-  },openStackReleases
+  },
   {
     startDate: new Date("2018-04-20T00:00:00"),
     endDate: new Date("2023-04-20T00:00:00"),
