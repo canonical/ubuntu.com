@@ -1443,6 +1443,17 @@ security:
       path: /security/certifications#cis
     - title: Certifications
       path: /security/certifications
+      children:
+        - title: Overview
+          path: /security/certifications
+        - title: FIPS
+          path: /security/fips
+        - title: Common Criteria
+          path: /security/cc
+        - title: DISA-STIG
+          path: /security/disa-stig
+        - title: CIS
+          path: /security/cis
     - title: CVEs
       path: /security/cve
     - title: Notices
@@ -1458,26 +1469,6 @@ security:
     - title: Thank you
       path: /security/thank-you
       hidden: True
-
-security-certifications:
-  title: Certifications
-  path: /security/certifications
-
-  children:
-    - title: Overview
-      path: /security/certifications
-    - title: FIPS
-      path: /security/fips
-      persist: True
-    - title: Common Criteria
-      path: /security/cc
-      persist: True
-    - title: DISA-STIG
-      path: /security/disa-stig
-      persist: True
-    - title: CIS
-      path: /security/cis
-      persist: True
 
 licensing:
   title: Licensing
