@@ -92,18 +92,18 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     & &__link-anchor {
-      @include vf-animation(all, brisk, in);
+      @include vf-animation(all, snap, in);
 
       color: $color-light;
       display: block;
 
       @media (max-width: $breakpoint-navigation-threshold) {
-        padding: $spv-inner--medium $grid-margin-width $spv-inner--medium
+        padding: $spv-inner--large $grid-margin-width $spv-inner--large
           $grid-margin-width;
       }
 
       @media (min-width: $breakpoint-navigation-threshold + 1) {
-        padding: $spv-inner--medium 2rem $spv-inner--medium $sph-inner;
+        padding: $spv-inner--large 2rem $spv-inner--large $sph-inner;
       }
 
       &:focus,
@@ -229,7 +229,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
     &__logo {
       background: $color-brand;
-      height: 3rem;
+      height: 3.5rem;
     }
 
     &__search {
