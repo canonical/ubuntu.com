@@ -92,10 +92,9 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     & &__link-anchor {
-      @include vf-animation(all, snap, in);
-
       color: $color-light;
       display: block;
+      line-height: 1.5rem;
 
       @media (max-width: $breakpoint-navigation-threshold) {
         padding: $spv-inner--large $grid-margin-width $spv-inner--large
