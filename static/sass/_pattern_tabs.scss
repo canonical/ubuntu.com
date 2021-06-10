@@ -9,25 +9,25 @@
 
     &.active {
       background-color: $color-light;
-      text-decoration: none;
-      position: relative;
       overflow: visible;
+      position: relative;
+      text-decoration: none;
 
       // Arrow
       @media (min-width: $breakpoint-medium) {
         &::after {
-          content: "";
-          display: block;
-          position: absolute;
-          height: 2rem;
-          width: 2rem;
-          left: calc(50% - 1rem);
-          bottom: -41px;
           background: #f7f7f7;
           border-left: solid 1px $color-mid-light;
           border-top: solid 1px $color-mid-light;
+          bottom: -41px;
+          content: "";
+          display: block;
+          height: 2rem;
+          left: calc(50% - 1rem);
           pointer-events: none;
+          position: absolute;
           transform: rotate(45deg) skew(-10deg, -10deg);
+          width: 2rem;
           z-index: 5;
         }
       }
