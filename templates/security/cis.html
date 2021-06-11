@@ -1,9 +1,9 @@
 {% extends "security/base_security.html" %}
 
 
-{% block title %}CIS Benchmark on Ubuntu{% endblock %}
+{% block title %}CIS{% endblock %}
 {% block meta_description %}Technical details on all of the security certifications for Ubuntu Advantage subscribers.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1bSv8lV9BJoBYh5yog2eYKtvNMitKZetSSBQ3k2Cu5Cw/edit#heading=h.335zx3wyom0b#{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1bSv8lV9BJoBYh5yog2eYKtvNMitKZetSSBQ3k2Cu5Cw/edit#heading=h.335zx3wyom0b{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -35,19 +35,16 @@
     <div class="col-4 p-divider__block">
       <h3>Harden your workloads</h3>
       <p>Hardening always involves a tradeoff with usability and performance. The default configuration of Ubuntu LTS releases, as provided by Canonical, balances between usability, performance and security. However, systems with a dedicated workload are well-positioned to benefit from hardening. Reduce your workload’s attack surface with Ubuntu and CIS.</p>
-      <br />
       <a href="/blog/cis-hardened-ubuntu-cyber-attack-and-malware-prevention-for-mission-critical-systems" class="p-button--neutral">Read more about Ubuntu CIS</a>
     </div>
     <div class="col-4 p-divider__block">
       <h3>Automate your compliance</h3>
       <p>Applying a baseline with a large set of instructions manually is not only time consuming but also error-prone. According to <a class="p-link--external" href="https://enterprise.verizon.com/resources/reports/dbir/">Verizon data breach investigations</a> report for 2020, misconfigurations were among the top five reasons for data breaches. Avoid misconfigurations with tooling provided by Canonical that automates your CIS compliance.</p>
-      <br />
       <a href="https://security-certs.docs.ubuntu.com/en/cis" class="p-button--neutral p-link--external">Read more about Ubuntu’s tooling</a>
     </div>
     <div class="col-4 p-divider__block">
       <h3>Audit with OpenSCAP</h3>
       <p>An important aspect of secure asset configuration for compliance is monitoring. That is being able to verify that systems comply with the selected baseline and contain operating system software supported by the vendor. Ubuntu Pro and Ubuntu Advantage makes content available to audit and monitor systems with the OpenSCAP tool.</p>
-      <br />
       <a href="https://security-certs.docs.ubuntu.com/en/cis" class="p-button--neutral p-link--external">Read more about Ubuntu’s audit tooling</a>
     </div>
   </div>
@@ -55,9 +52,9 @@
 
 <section class="p-strip is-bordered">
   <div class="u-fixed-width">
-    <h2>Which versions of Ubuntu have tooling for CIS benchmarks?</h2>
+    <h2>Which versions of Ubuntu have CIS tooling?</h2>
     <p>Canonical provides OpenSCAP content for auditing systems for CIS benchmark compliance, as well as tooling to automate compliance.</p>
-    <table class="p-table--compliance-profiles">
+    <table>
       <thead>
         <tr>
           <th></th>
