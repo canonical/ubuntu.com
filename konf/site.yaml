@@ -370,7 +370,7 @@ staging:
     if ($host = 'insights.staging.ubuntu.com' ) {
       rewrite ^ https://staging.ubuntu.com/blog$request_uri? permanent;
     }
-    if ($host = 'certification.staging.ubuntu.com/' ) {
+    if ($host = 'certification.staging.ubuntu.com' ) {
       rewrite ^ https://staging.ubuntu.com/certified$request_uri? permanent;
     }
     if ($host = 'core.docs.staging.ubuntu.com' ) {
