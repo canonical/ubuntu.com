@@ -767,7 +767,7 @@ def _make_renewal(advantage, contract_info):
         return None
 
     sorted_renewals = sorted(
-        (r for r in renewals if r["status"] != "closed"),
+        (r for r in renewals if r["status"] not in ["lost", "closed"]),
         key=lambda renewal: parse(renewal["start"]),
     )
 
