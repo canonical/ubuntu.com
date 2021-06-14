@@ -3,6 +3,13 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { getPurchase, postInvoiceID } from "../../../contracts-api";
 
+const requires3DSCheck = (pi_decline_code, pi_status, pi_secret) => {
+  return (
+    pi_decline_code === "authentication_required" ||
+    (pi_status === "requires_action" && pi_secret)
+  );
+};
+
 const usePendingPurchase = () => {
   const [pendingPurchaseID, setPendingPurchaseID] = useState();
 
@@ -24,11 +31,7 @@ const usePendingPurchase = () => {
         id: stripeInvoiceId,
       } = res.stripeInvoices[0];
 
-      //Requires 3DS check
-      if (
-        pi_decline_code === "authentication_required" ||
-        (pi_status === "requires_action" && pi_secret)
-      ) {
+      if (requires3DSCheck(pi_decline_code, pi_status, pi_secret)) {
         const threeDSResponse = await stripe.confirmCardPayment(pi_secret);
         if (threeDSResponse.error) {
           const error = Error(threeDSResponse.error.message);
