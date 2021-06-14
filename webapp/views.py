@@ -22,6 +22,7 @@ from requests import Session
 from requests.exceptions import HTTPError
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
+from werkzeug.exceptions import BadRequest
 
 
 # Local
@@ -744,6 +745,20 @@ def marketo_submit():
     for key, value in flask.request.form.items():
         if value:
             form_fields[key] = value
+
+    # Check honeypot values are not set
+    honeypots = {}
+    honeypots["name"] = flask.request.form.get("name")
+    honeypots["website"] = flask.request.form.get("website")
+    if honeypots["name"] != None and honeypots["website"] != None:
+        if honeypots["name"] != "" and honeypots["website"] != "":
+            raise BadRequest("Unexpected hotpot fields (name, website)")
+        else:
+            form_fields["grecaptcharesponse"] = "no-recaptcha"
+
+    # Pop off the honey pot fields, once passed
+    form_fields.pop("website", None)
+    form_fields.pop("name", None)
 
     form_fields.pop("thankyoumessage", None)
     form_fields.pop("g-recaptcha-response", None)

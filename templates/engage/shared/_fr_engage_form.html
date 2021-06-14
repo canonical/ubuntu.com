@@ -22,6 +22,16 @@
         <label for="company" class="mktoLabel">Société :</label>
         <input required id="company" name="company" maxlength="255" type="text" class="mktoField mktoRequired" />
       </li>
+      {# These are honey pot fields to catch bots #}
+      <li class="mktField u-off-screen">
+        <label class="website" for="website">Website:</label>
+        <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+      </li>
+      <li class="mktField u-off-screen">
+        <label class="name" for="name">Name:</label>
+        <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+      </li>
+      {# End of honey pots #}
       <li class="mktFormReq mktField p-list__item">
         <label for="Title" class="mktoLabel">Votre fonction ou poste:</label>
         <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
@@ -37,9 +47,6 @@
       </li>
       <li class="p-list__item">
         <p>En soumettant ce formulaire, je confirme que j'ai lu et que j'accepte les conditions suivantes : <a href="/legal/data-privacy" target="_blank" rel="noopener noreferrer" class="mchNoDecorate">Politique de confidentialité</a></p>
-      </li>
-      <li class="mktField">
-        <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
       </li>
       <li class="mktField p-list__item">
         <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : 'server-esm', 'eventValue' : undefined });">{% if cta %}{{ cta }}{% else %}Télécharger le livre blanc{% endif %}</button>
