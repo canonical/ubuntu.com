@@ -184,7 +184,6 @@ const PurchaseModal = () => {
         setPendingPurchaseID(data);
       },
       onError: (error) => {
-        // An error happened
         if (error.message.includes("can only make one purchase at a time")) {
           setError(
             <>
