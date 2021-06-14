@@ -295,7 +295,7 @@ export const countries = [
   { value: "ZW", label: "Zimbabwe" },
 ];
 
-export const CAProvinces = [
+export const caProvinces = [
   { value: "", disabled: "disabled", label: "Select..." },
   { value: "AB", label: "Alberta" },
   { value: "BC", label: "British Columbia" },

@@ -15,7 +15,7 @@ import usePreview from "../APICalls/Preview";
 import useProduct from "../APICalls/Product";
 import FormRow from "./FormRow";
 import {
-  CAProvinces,
+  caProvinces,
   countries,
   USStates,
   vatCountries,
@@ -58,7 +58,7 @@ function PaymentMethodForm({ setCardValid }) {
     return errorMessage;
   };
 
-  const validateCAProvince = (value) => {
+  const validatecaProvince = (value) => {
     let errorMessage;
     if (!value && values.country === "CA") {
       errorMessage = "This field is required.";
@@ -237,13 +237,13 @@ function PaymentMethodForm({ setCardValid }) {
       {values.country === "CA" && (
         <Field
           as={Select}
-          id="CAProvinces"
-          name="CAProvince"
-          options={CAProvinces}
+          id="caProvinces"
+          name="caProvince"
+          options={caProvinces}
           label="Province:"
           stacked
-          validate={validateCAProvince}
-          error={touched?.CAProvince && errors?.CAProvince}
+          validate={validatecaProvince}
+          error={touched?.caProvince && errors?.caProvince}
         />
       )}
       {vatCountries.includes(values.country) && (

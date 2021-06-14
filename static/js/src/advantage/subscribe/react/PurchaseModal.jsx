@@ -31,7 +31,7 @@ const getUserInfoFromVariables = (data, variables) => {
         country: variables.country,
         city: variables.city,
         state:
-          variables.country === "US" ? variables.usState : variables.CAProvince,
+          variables.country === "US" ? variables.usState : variables.caProvince,
       },
       defaultPaymentMethod: {
         brand: data.paymentMethod.brand,
@@ -79,7 +79,7 @@ const PurchaseModal = () => {
     country: userInfo?.customerInfo?.address?.country ?? "",
     city: userInfo?.customerInfo?.address?.city ?? "",
     usState: userInfo?.customerInfo?.address?.state ?? "",
-    CAProvince: userInfo?.customerInfo?.address?.state ?? "",
+    caProvince: userInfo?.customerInfo?.address?.state ?? "",
     VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
   };
 

@@ -19,7 +19,7 @@ const registerPaymentMethod = () => {
       country,
       postalCode,
       usState,
-      CAProvince,
+      caProvince,
       VATNumber,
     } = formData;
 
@@ -30,7 +30,7 @@ const registerPaymentMethod = () => {
       country: country,
       line1: address,
       postal_code: postalCode,
-      state: country === "US" ? usState : CAProvince,
+      state: country === "US" ? usState : caProvince,
     };
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
