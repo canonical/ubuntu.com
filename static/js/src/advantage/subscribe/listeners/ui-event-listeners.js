@@ -16,6 +16,9 @@ export default function initUIControls(store) {
     });
   });
 
+  // Find every "purchase-modal" control (buy button and cancel button)
+  // and make them toggle the display of the purchase modal when clicked
+
   const purchaseModalToggles = document.querySelectorAll(
     "[aria-controls='purchase-modal']"
   );
