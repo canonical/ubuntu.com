@@ -152,7 +152,6 @@ const PurchaseModal = () => {
       },
       onError: (error) => {
         if (error.message === "email_already_exists") {
-          //Email already exists
           setError(
             <>
               An Ubuntu One account with this email address exists. Please{" "}
