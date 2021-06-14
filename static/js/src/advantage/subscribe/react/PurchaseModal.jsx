@@ -121,7 +121,9 @@ const PurchaseModal = () => {
 
   useEffect(() => {
     if (pendingPurchase?.status === "done") {
-      // Remove the product selection from the local storage
+      // The state of the product selector is stored in the local storage
+      // if a purchase is successful we empty it so the customer will see
+      // the default values pre-selected instead of what they just bought.
       localStorage.removeItem("ua-subscribe-state");
 
       //redirect
