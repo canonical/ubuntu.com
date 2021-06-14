@@ -5,7 +5,7 @@ const formRow = ({ label, children, error }) => {
   return (
     <Row className="p-form__group  u-no-padding u-vertically-center">
       <Col size="4" style={{ alignSelf: "start" }}>
-        <label className="">{label}</label>
+        <label>{label}</label>
       </Col>
 
       <Col size="8" style={{ marginBottom: "1.2rem" }}>
