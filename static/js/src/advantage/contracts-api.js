@@ -339,13 +339,8 @@ export async function postGuestFreeTrial({
     }),
   });
 
-  if (response.ok) {
-    const data = await response.json();
-    return { ok: true, ...data };
-  } else {
-    console.error(`${response.status} - ${response.statusText}`);
-    return { ok: false };
-  }
+  let data = await response.json();
+  return data;
 }
 
 export async function postLoggedInFreeTrial({
@@ -377,11 +372,7 @@ export async function postLoggedInFreeTrial({
       ],
     }),
   });
-  if (response.ok) {
-    const data = await response.json();
-    return { ok: true, ...data };
-  } else {
-    console.error(`${response.status} - ${response.statusText}`);
-    return { ok: false };
-  }
+
+  let data = await response.json();
+  return data;
 }
