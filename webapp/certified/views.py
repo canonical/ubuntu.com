@@ -49,10 +49,12 @@ def certified_component_details(component_id):
 
 def certified_hardware_details(canonical_id, release):
 
-    try:
-        models = api.certified_models(canonical_id=canonical_id)["objects"][0]
-    except KeyError:
+    models = api.certified_models(canonical_id=canonical_id)["objects"]
+
+    if not models or len(models) == 0:
         abort(404)
+
+    models = models[0]
 
     model_releases = api.certified_model_details(
         canonical_id=canonical_id, limit="0"
@@ -271,10 +273,14 @@ def certified_home():
             # Convert ImmutableMultiDict into normal dict
             parameters = request.args.to_dict()
             # Do the replacements
-            parameters["q"] = parameters["query"]
-            del parameters["query"]
-            parameters["vendor"] = parameters["vendors"]
-            del parameters["vendors"]
+            if "query" in parameters:
+                parameters["q"] = parameters["query"]
+                del parameters["query"]
+
+            if "vendors" in parameters:
+                parameters["vendor"] = parameters["vendors"]
+                del parameters["vendors"]
+
             # Convert back into query string and redirect
             return redirect(f"/certified?{urlencode(parameters)}", 301)
 
