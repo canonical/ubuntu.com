@@ -752,13 +752,11 @@ def marketo_submit():
     honeypots["website"] = flask.request.form.get("website")
     if honeypots["name"] != None and honeypots["website"] != None:
         if honeypots["name"] != "" and honeypots["website"] != "":
-            raise BadRequest("Unexpected hotpot fields (name, website)")
+            raise BadRequest("Unexpected honeypot fields (name, website)")
         else:
             form_fields["grecaptcharesponse"] = "no-recaptcha"
-
-    # Pop off the honey pot fields, once passed
-    form_fields.pop("website", None)
-    form_fields.pop("name", None)
+            form_fields.pop("website", None)
+            form_fields.pop("name", None)
 
     form_fields.pop("thankyoumessage", None)
     form_fields.pop("g-recaptcha-response", None)
