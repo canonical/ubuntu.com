@@ -35,7 +35,7 @@ class TestCertification(VCRTestCase):
         response = self.client.get("/certified/201807-26311")
         self.assertEqual(response.status_code, 200)
 
-    def test_model_hardware_details(self):
+    def test_hardware_details(self):
         response = self.client.get("/certified/201906-27091/18.04%20LTS")
         self.assertEqual(response.status_code, 200)
 
