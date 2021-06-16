@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
+<section class="p-strip--suru-topped u-no-margin--bottom">
   <div class="row u-sv3">
     <div class="col-7">
       <h1>{{ vendor }} {{ name }}</h1>
@@ -263,5 +263,11 @@
   </div>
 </section>
 {% endif %}
+<section class="p-strip is-shallow">
+  <div class="row">
+    <h5>Issues? Let us know</h5>
+    <p>If there is an issue with the information for this system, <a target="_blank" href="https://answers.launchpad.net/ubuntu-certification/+addquestion?field.title=Feedback on the {{ vendor }} {{ name }} ({{ canonical_id }})">please let us know</a>.</p>
+  </div>
+</section>
 
 {% endblock content %}
