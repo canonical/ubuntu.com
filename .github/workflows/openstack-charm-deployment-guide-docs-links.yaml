@@ -16,15 +16,15 @@ jobs:
       - name: Run linkchecker
         run: |
           linkchecker --no-follow-url '!https:\/\/docs.openstack.org\/project-deploy-guide\/charm-deployment-guide\/latest\/' \
-          --ignore-url http://localhost* \
-          --ignore-url https://www.openstack.org/projects/openstack-faq/ \
-          --ignore-url https://www.openstack.org/projects/ \
-          --ignore-url https://openstack.org/projects/ \
-          --ignore-url https://groups.openstack.org \
-          --ignore-url ^.*\.css \
-          --check-extern \
-          --no-status
-          --no-warnings https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
+            --ignore-url http://localhost* \
+            --ignore-url https://www.openstack.org/projects/openstack-faq/ \
+            --ignore-url https://www.openstack.org/projects/ \
+            --ignore-url https://openstack.org/projects/ \
+            --ignore-url https://groups.openstack.org \
+            --ignore-url ^.*\.css \
+            --check-extern \
+            --no-status \
+            --no-warnings https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
 
       - name: Send message on failure
         if: failure()
