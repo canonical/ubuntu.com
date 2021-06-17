@@ -278,7 +278,7 @@ Minimally, secrets for the following users should be listed:
 With secrets verified, the charm can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.19 version of **Kubernetes**, you would enter:
 
 ```bash
-juju config kubernetes-master channel=1.20/stable
+juju config kubernetes-master channel=1.19/stable
 ```
 
 If you wanted to try a release candidate for 1.20, the channel would be `1.20/candidate`.
@@ -336,7 +336,7 @@ juju upgrade-charm kubernetes-worker
 Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the master units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.12/stable
+juju config kubernetes-worker channel=1.19/stable
 ```
 
 Now add additional units of the kubernetes-worker. You should add as many units as you are replacing. For example, to add three additional units:
@@ -388,7 +388,7 @@ juju upgrade-charm kubernetes-worker
 Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the master units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.12/stable
+juju config kubernetes-worker channel=1.19/stable
 ```
 
 All the units can now be upgraded by running the `upgrade` action on each one:
