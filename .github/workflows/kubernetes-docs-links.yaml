@@ -15,15 +15,20 @@ jobs:
 
       - name: Run linkchecker
         run: |
-          linkchecker --check-extern --no-warnings https://ubuntu.com/kubernetes/docs \
-            --no-follow-url '!https:\/\/ubuntu.com\/kubernetes\/docs' \
+          linkchecker --no-follow-url '!https:\/\/ubuntu.com\/kubernetes\/docs' \
+            --ignore-url https://example.com/docker-registry/ \
+            --ignore-url http://snap-proxy.example.com \
+            --ignore-url http://localhost* \
             --ignore-url https://res.cloudinary.com \
             --ignore-url q_auto \
             --ignore-url fl_sanitize \
             --ignore-url c_fill \
             --ignore-url e_sharpen \
             --ignore-url w_[0-9]* \
-            --ignore-url h_[0-9]*
+            --ignore-url h_[0-9]* \
+            --check-extern \
+            --no-status \
+            --no-warnings https://ubuntu.com/kubernetes/docs
 
       - name: Send message on failure
         if: failure()
