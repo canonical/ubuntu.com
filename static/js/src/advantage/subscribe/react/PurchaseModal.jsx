@@ -152,6 +152,7 @@ const PurchaseModal = () => {
           "userInfo",
           getUserInfoFromVariables(data, variables)
         );
+        queryClient.invalidateQueries("preview");
 
         actions.setSubmitting(false);
       },
