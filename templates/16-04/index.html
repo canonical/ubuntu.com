@@ -8,6 +8,130 @@
 <section class="p-strip--suru-topped">
   <div class="row u-vertically-center">
     <div class="col-7">
+      <div class="rad-element snap-3-0-ui deb-3-0-ui"><p>Hello!!!</p></div>
+
+      <div class="p-code-snippet">
+        <div class="p-code-snippet__header">
+          <h5 class="p-code-snippet__title">Installing Thunderbird as a snap</h5>
+
+          <div class="p-code-snippet__dropdowns">
+            <select class="version-dropdown p-code-snippet__dropdown" name="version">
+              <option value="snap-3-0">snap 3.0</option>
+              <option value="deb-3-0">deb 3.0</option>
+              <option value="snap-2-9">snap 2.9</option>
+              <option value="deb-2-9">deb 2.9</option>
+            </select>
+            <select class="view-dropdown p-code-snippet__dropdown" name="view">
+              <option value="ui">UI</option>
+              <option value="cli">CLI</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="p-code-snippet__block--icon snap-3-0-ui"><p>snap 3.0 UI</p></div>
+        <div class="p-code-snippet__block--icon snap-3-0-cli u-hide" aria-hidden="true"><p>v1 snap 3.0 CLI</p></div>
+        <div class="p-code-snippet__block--icon deb-3-0-ui u-hide" aria-hidden="true"><p>v1 snap 3.0 UI</p></div>
+        <div class="p-code-snippet__block--icon deb-3-0-cli u-hide" aria-hidden="true"><p>v1 snap 3.0 CLI</p></div>
+        <div class="p-code-snippet__block--icon snap-2-9-ui u-hide" aria-hidden="true"><p>v1 snap 2.9 UI</p></div>
+        <div class="p-code-snippet__block--icon snap-2-9-cli u-hide" aria-hidden="true"><p>v1 snap 2.9 CLI</p></div>
+        <div class="p-code-snippet__block--icon deb-2-9-ui u-hide" aria-hidden="true"><p>v1 snap 2.9 UI</p></div>
+        <div class="p-code-snippet__block--icon deb-2-9-cli u-hide" aria-hidden="true"><p>v1 snap 2.9 CLI</p></div>
+
+      </div>
+      <div class="p-code-snippet">
+        <div class="p-code-snippet__header">
+          <h5 class="p-code-snippet__title">Installing Thunderbird as a snap</h5>
+
+          <div class="p-code-snippet__dropdowns">
+            <select class="version-dropdown p-code-snippet__dropdown" name="version">
+              <option value="snap-3-0">snap 3.0</option>
+              <option value="deb-3-0">deb 3.0</option>
+              <option value="snap-2-9">snap 2.9</option>
+              <option value="deb-2-9">deb 2.9</option>
+            </select>
+            <select class="view-dropdown p-code-snippet__dropdown" name="view">
+              <option value="ui">UI</option>
+              <option value="cli">CLI</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="p-code-snippet__block--icon snap-3-0-ui"><p>snap 3.0 UI</p></div>
+        <div class="p-code-snippet__block--icon snap-3-0-cli u-hide" aria-hidden="true"><p>v2 snap 3.0 CLI</p></div>
+        <div class="p-code-snippet__block--icon deb-3-0-ui u-hide" aria-hidden="true"><p>v2 deb 3.0 UI</p></div>
+        <div class="p-code-snippet__block--icon deb-3-0-cli u-hide" aria-hidden="true"><p>v2 deb 3.0 CLI</p></div>
+        <div class="p-code-snippet__block--icon snap-2-9-ui u-hide" aria-hidden="true"><p>v2 snap 2.9 UI</p></div>
+        <div class="p-code-snippet__block--icon snap-2-9-cli u-hide" aria-hidden="true"><p>v2 snap 2.9 CLI</p></div>
+        <div class="p-code-snippet__block--icon deb-2-9-ui u-hide" aria-hidden="true"><p>v2 deb 2.9 UI</p></div>
+        <div class="p-code-snippet__block--icon deb-2-9-cli u-hide" aria-hidden="true"><p>v2 deb 2.9 CLI</p></div>
+
+      </div>
+<script>
+function attachDropdownEvents(dropdownType, dropdown) {
+  dropdown.addEventListener('change', function (e) {
+    const newValue = e.target.value;
+
+    const currentActiveClass = '.' + localStorage.getItem('version') + '-' + localStorage.getItem('view');
+    localStorage.setItem(dropdownType, newValue);
+    const newActiveClass = '.' + localStorage.getItem('version') + '-' + localStorage.getItem('view');
+
+    const currentActiveElements = document.querySelectorAll(currentActiveClass);
+    const newActiveElements = document.querySelectorAll(newActiveClass);
+    const dropdowns = document.querySelectorAll(`.${dropdownType}-dropdown`);
+
+    currentActiveElements.forEach(function (element) {
+      element.classList.add('u-hide');
+      element.setAttribute('aria-hidden', true);
+    });
+
+    newActiveElements.forEach(function (element) {
+      element.classList.remove('u-hide');
+      element.setAttribute('aria-hidden', false);
+    });
+
+    dropdowns.forEach(function (element) {
+      element.value = newValue;
+    });
+  });
+}
+
+function setupDropdowns(dropdownSelectorType, defaultValue) {
+  localStorage.setItem(dropdownSelectorType, defaultValue);
+
+  const dropdowns = document.querySelectorAll(`.${dropdownSelectorType}-dropdown`);
+
+  dropdowns.forEach(function (dropdown) {
+    attachDropdownEvents(dropdownSelectorType, dropdown);
+  });
+}
+
+function initRAD() {
+  const settings = ['version', 'view'];
+  const parameters = [];
+
+  settings.forEach(setting => {
+
+  });
+
+  const version = localStorage.getItem('version');
+  const view = localStorage.getItem('view');
+  const activeVersion = `${version}-${view}`;
+  const elements = document.querySelectorAll('.rad-element');
+
+  elements.forEach(function (element) {
+    if (!element.classList.contains(activeVersion)) {
+      element.classList.add('u-hide');
+      element.setAttribute('aria-hidden', true);
+    }
+  })
+}
+
+setupDropdowns('version', 'snap-3-0');
+setupDropdowns('view', 'ui');
+
+initRAD()
+
+</script>
       <h1>Ubuntu 16.04 LTS <br class="u-hide--small">(Xenial Xerus)</h1>
       <p>Ubuntu 16.04 LTS (Xenial Xerus) was released on 21 April 2016 and introduced us to snaps, a more secure app format, with faster and simpler updates, as well as LXD, the pure-container hypervisor and OpenStack Mitaka. </p>
       <h2 class="p-heading--4">Is Ubuntu 16.04 LTS still supported?</h2>
