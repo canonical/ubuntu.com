@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -9,6 +9,7 @@ import {
   RadioInput,
 } from "@canonical/react-components";
 import { CardElement } from "@stripe/react-stripe-js";
+import { debounce } from "lodash";
 
 import { formatter } from "../../renderers/form-renderer";
 import usePreview from "../APICalls/usePreview";
@@ -22,14 +23,19 @@ import {
 } from "../../../countries-and-states";
 import { getErrorMessage } from "../../../error-handler";
 import { Field, Form, useFormikContext } from "formik";
+import { useQueryClient } from "react-query";
+
+import usePostCustomerInfoAnon from "../APICalls/usePostCustomerInfoAnon";
 
 function PaymentMethodForm({ setCardValid }) {
   const { product, quantity } = useProduct();
   const { data: preview } = usePreview();
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
+  const mutation = usePostCustomerInfoAnon();
+  const queryClient = useQueryClient();
 
-  const { errors, touched, values, setTouched } = useFormikContext();
+  const { errors, touched, values, setTouched, setErrors } = useFormikContext();
 
   const validateEmail = (value) => {
     let errorMessage;
@@ -75,19 +81,42 @@ function PaymentMethodForm({ setCardValid }) {
   };
 
   useEffect(() => {
+    setCardValid(false);
+  }, []);
+
+  useEffect(() => {
     if (values.buyingFor === "myself") {
       setTouched({ organisationName: false });
     }
   }, [values.buyingFor]);
 
+  const checkVAT = (formValues) => {
+    mutation.mutate(formValues, {
+      onSuccess: () => {
+        queryClient.invalidateQueries("preview");
+      },
+      onError: (error) => {
+        if (error.message === "tax_id_invalid") {
+          setErrors({
+            VATNumber:
+              "That VAT number is invalid. Check the number and try again.",
+          });
+        }
+      },
+    });
+  };
+  const checkVATDebounced = useMemo(() => debounce(checkVAT, 250), []);
+
   useEffect(() => {
     if (!vatCountries.includes(values.country)) {
       setTouched({ organisationName: false });
-      console.log(values.VATNumber);
-      console.log("goes to 0 hahahaha");
       values.VATNumber = "";
     }
   }, [values.country]);
+
+  useEffect(() => {
+    checkVATDebounced(values);
+  }, [values.country, values.VATNumber]);
 
   return (
     <Form className="u-sv3 p-form p-form--stacked" id="payment-modal-form">
@@ -265,7 +294,7 @@ function PaymentMethodForm({ setCardValid }) {
           label="VAT number:"
           stacked
           help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
-          error={touched?.vatNumber && errors?.vatNumber}
+          error={touched?.VATNumber && errors?.VATNumber}
         />
       )}
 
@@ -284,7 +313,7 @@ function PaymentMethodForm({ setCardValid }) {
             </strong>
           </div>
         </Col>
-        {preview ? null : (
+        {preview?.taxAmount ? null : (
           <Col size="8" emptyLarge="5">
             <div className="u-text-light">Excluding VAT</div>
           </Col>

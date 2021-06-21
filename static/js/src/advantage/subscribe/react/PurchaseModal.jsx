@@ -39,7 +39,7 @@ const getUserInfoFromVariables = (data, variables) => {
         expMonth: data.paymentMethod.exp_month,
         expYear: data.paymentMethod.exp_year,
       },
-      taxID: variables.VATNumber,
+      taxID: { value: variables.VATNumber.value },
     },
     accountInfo: {
       name: variables.organisationName,
@@ -84,7 +84,7 @@ const PurchaseModal = () => {
     city: userInfo?.customerInfo?.address?.city ?? "",
     usState: userInfo?.customerInfo?.address?.state ?? "",
     caProvince: userInfo?.customerInfo?.address?.state ?? "",
-    VATNumber: userInfo?.customerInfo?.taxID ?? "",
+    VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
   };
 
   useEffect(() => {
