@@ -153,3 +153,32 @@ def cube_home():
         flask.abort(403)
 
     return flask.render_template("cube/index.html")
+
+
+@login_required
+def cube_study_labs_button():
+    sso_user = user_info(flask.session)
+    if not is_authorized(sso_user):
+        return flask.jsonify({}), 403
+
+    edx_user = edx_api.get_user(sso_user["email"])
+    enrollments = [
+        enrollment["course_details"]["course_id"]
+        for enrollment in edx_api.get_enrollments(edx_user["username"])
+        if enrollment["is_active"]
+    ]
+
+    text = "Purchase study labs access"
+    redirect_url = "/cube/microcerts"
+
+    if CUBE_CONTENT["prepare-course"] in enrollments:
+        text = "Access study labs"
+        prepare_materials_path = quote_plus(
+            f"/courses/{CUBE_CONTENT['prepare-course']}/course/"
+        )
+        redirect_url = (
+            f"{edx_api.base_url}/auth/login/tpa-saml/"
+            f"?auth_entry=login&idp=ubuntuone&next={prepare_materials_path}"
+        )
+
+    return flask.jsonify({"text": text, "redirect_url": redirect_url})
