@@ -7,18 +7,18 @@ import {
   Notification,
   Spinner,
 } from "@canonical/react-components";
-import useStripeCustomerInfo from "./APICalls/StripeCustomerInfo";
-import registerPaymentMethod from "./APICalls/RegisterPaymentMethod";
+import useStripeCustomerInfo from "./APICalls/useStripeCustomerInfo";
+import registerPaymentMethod from "./APICalls/registerPaymentMethod";
 import PaymentMethodSummary from "./components/PaymentMethodSummary";
 import PaymentMethodForm from "./components/PaymentMethodForm";
 import Summary from "./components/Summary";
 import { Formik } from "formik";
-import useProduct from "./APICalls/Product";
-import makePurchase from "./APICalls/Purchase";
-import usePendingPurchase from "./APICalls/PendingPurchase";
+import useProduct from "./APICalls/useProduct";
+import usePurchase from "./APICalls/usePurchase";
+import usePendingPurchase from "./APICalls/usePendingPurchase";
 import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
-import usePreview from "./APICalls/Preview";
+import usePreview from "./APICalls/usePreview";
 
 const getUserInfoFromVariables = (data, variables) => {
   return {
@@ -67,7 +67,7 @@ const PurchaseModal = () => {
   } = usePendingPurchase();
 
   const paymentMethodMutation = registerPaymentMethod();
-  const purchaseMutation = makePurchase();
+  const purchaseMutation = usePurchase();
 
   const initialValues = {
     email: userInfo?.customerInfo?.email ?? "",

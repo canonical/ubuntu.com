@@ -11,8 +11,8 @@ import {
 import { CardElement } from "@stripe/react-stripe-js";
 
 import { formatter } from "../../renderers/form-renderer";
-import usePreview from "../APICalls/Preview";
-import useProduct from "../APICalls/Product";
+import usePreview from "../APICalls/usePreview";
+import useProduct from "../APICalls/useProduct";
 import FormRow from "./FormRow";
 import {
   caProvinces,
