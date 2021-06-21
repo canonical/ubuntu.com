@@ -20,33 +20,10 @@
 
     <div class="row">
       <div class="col-12">
-        <div class="p-notification">
-          <p class="p-notification__response" role="status">
-            Are you using Ubuntu in production? <a href="/support/contact-us" class="p-notification__action js-invoke-modal">Join our free beta programme for Ubuntu Pro on prem&nbsp;&rsaquo;</a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
         <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
-
-        <p>You are signed in as {{ user_info.fullname }} ({{ user_info.email }})
-          <span class="u-hide--large u-hide--medium"><br/></br/></span>
-          <a href="/logout?return_to={{ request.path }}" class="p-button--neutral is-inline is-dense u-no-margin--bottom" onclick="dataLayer.push({
-            'event' : 'GAEvent',
-            'eventCategory' : 'Advantage',
-            'eventAction' : 'Authentication',
-            'eventLabel' : 'Sign out',
-            'eventValue' : undefined
-          });">Sign out</a>
-        </p>
       </div>
     </div>
   </section>
-
-  <hr class="p-separator" />
 
   {% if pending_purchase_id %}
   <div class="row">
@@ -357,10 +334,21 @@
               Add new subscription
           </a>
         </div>
-        <hr class="p-separator" />
       </div>
     </section>
   {% endif %}
+
+  <section class="p-strip is-shallow u-no-padding">
+    <div class="row">
+      <div class="col-12">
+       <p>Search the knowledge base or open support cases
+          <span class="u-hide--large u-hide--medium"><br/></br/></span>
+          <a href="https://support.canonical.com/s/" class="p-button--neutral is-inline is-dense u-no-margin--bottom">Visit support portal</a>
+        </p>
+        <hr class="p-separator" />
+      </div>
+    </div>
+  </section>
 
 
   <section class="p-strip u-no-padding--top" style="overflow: visible;">
