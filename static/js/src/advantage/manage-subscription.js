@@ -9,17 +9,17 @@ const stripe = window.Stripe(window.stripePublishableKey);
 const getMessage = (code, default_message) => {
   const map = {
     resizing_machines_success:
-      "Your changes were saved successfully, the page will reload",
+      "Your changes were saved successfully, the page will reload.",
     cancelling_subscription_success:
-      "Subscription cancelled! Reloading page...",
+      "Your subscription was cancelled, the page will reload.",
     resizing_machines_fail:
-      "<strong>Payment method:</strong> There was an error with the payment please <a href='/advantage/payment-methods'>update your payment methods</a> to fix it.",
+      "<strong>Payment method:</strong> There was problem with your payment. Please <a href='/advantage/payment-methods'>update your payment methods</a> to retry.",
     subscription_missing:
-      "<strong>Cancelling subscription failed:</strong> It could be that you have a pending payment that is blocking this action. Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
+      "<strong>Could not cancel subscription:</strong> It could be that you have a pending payment that is blocking this action. Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
     cancelling_subscription_failed:
       "<strong>Could not cancel subscription:</strong> Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
     pending_purchase:
-      "<strong>Error:</strong> You already have a pending purchase. Please go to <a href='/advantage/payment-methods'>payment methods</a> to fix it. Reloading page...",
+      "<strong>Error:</strong> You already have a pending purchase. Please go to <a href='/advantage/payment-methods'>payment methods</a> to retry.",
     unknown_error:
       "<strong>Unknown error:</strong> Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
   };
