@@ -39,6 +39,7 @@ const getUserInfoFromVariables = (data, variables) => {
         expMonth: data.paymentMethod.exp_month,
         expYear: data.paymentMethod.exp_year,
       },
+      taxID: variables.VATNumber,
     },
     accountInfo: {
       name: variables.organisationName,
@@ -72,7 +73,10 @@ const PurchaseModal = () => {
   const initialValues = {
     email: userInfo?.customerInfo?.email ?? "",
     name: userInfo?.customerInfo?.name ?? "",
-    buyingFor: "organisation",
+    buyingFor:
+      !window.accountId || userInfo?.accountInfo?.name
+        ? "organisation"
+        : "myself",
     organisationName: userInfo?.accountInfo?.name ?? "",
     address: userInfo?.customerInfo?.address?.line1 ?? "",
     postalCode: userInfo?.customerInfo?.address?.postal_code ?? "",
@@ -80,7 +84,7 @@ const PurchaseModal = () => {
     city: userInfo?.customerInfo?.address?.city ?? "",
     usState: userInfo?.customerInfo?.address?.state ?? "",
     caProvince: userInfo?.customerInfo?.address?.state ?? "",
-    VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
+    VATNumber: userInfo?.customerInfo?.taxID ?? "",
   };
 
   useEffect(() => {

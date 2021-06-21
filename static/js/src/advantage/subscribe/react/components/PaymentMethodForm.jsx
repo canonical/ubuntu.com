@@ -80,6 +80,15 @@ function PaymentMethodForm({ setCardValid }) {
     }
   }, [values.buyingFor]);
 
+  useEffect(() => {
+    if (!vatCountries.includes(values.country)) {
+      setTouched({ organisationName: false });
+      console.log(values.VATNumber);
+      console.log("goes to 0 hahahaha");
+      values.VATNumber = "";
+    }
+  }, [values.country]);
+
   return (
     <Form className="u-sv3 p-form p-form--stacked" id="payment-modal-form">
       <FormRow
@@ -161,13 +170,14 @@ function PaymentMethodForm({ setCardValid }) {
             name="buyingFor"
             value="myself"
             label="Myself"
+            defaultChecked={values.buyingFor === "myself"}
           />
           <Field
             as={RadioInput}
             name="buyingFor"
             value="organisation"
             label="An organisation"
-            defaultChecked
+            defaultChecked={values.buyingFor === "organisation"}
           />
         </div>
       </FormRow>
