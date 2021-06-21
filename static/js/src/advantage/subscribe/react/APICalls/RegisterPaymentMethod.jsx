@@ -46,21 +46,24 @@ const registerPaymentMethod = () => {
     if (error) {
       throw new Error(error.code);
     }
+    var accountRes = { accountID: window.accountId };
 
-    const accountRes = await ensurePurchaseAccount({
-      email: email,
-      accountName: organisation || name,
-      paymentMethodID: paymentMethod.id,
-      country,
-    });
+    if (!accountRes.accountID) {
+      accountRes = await ensurePurchaseAccount({
+        email: email,
+        accountName: organisation || name,
+        paymentMethodID: paymentMethod.id,
+        country,
+      });
 
-    if (accountRes.code) {
-      if (accountRes.code === "unauthorized") {
-        throw new Error("email_already_exists");
-      } else {
-        throw new Error(
-          JSON.parse(accountRes.message)?.decline_code || accountRes.code
-        );
+      if (accountRes.code) {
+        if (accountRes.code === "unauthorized") {
+          throw new Error("email_already_exists");
+        } else {
+          throw new Error(
+            JSON.parse(accountRes.message)?.decline_code || accountRes.code
+          );
+        }
       }
     }
 
