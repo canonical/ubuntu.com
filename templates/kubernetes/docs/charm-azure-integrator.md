@@ -151,6 +151,24 @@ kubectl expose deployment hello-world --type=LoadBalancer --name=hello --port=80
 watch kubectl get svc hello -o wide
 ```
 
+### Providing load-balancers to other charms
+
+Any charm which supports the `loadbalancer` interface can request an Azure-backed
+load-balancer. For example, you can use an Azure LB to run Vault in HA mode with this:
+
+```yaml
+applications:
+  vault:
+    charm: cs:vault
+    num_units: 3
+  azure-integrator:
+    charm: cs:azure-integrator
+    num_units: 1
+    trust: true
+relations:
+  - ["vault:lb-provider", "azure-integrator"]
+```
+
 ## Configuration
 
 <!-- CONFIG STARTS -->
