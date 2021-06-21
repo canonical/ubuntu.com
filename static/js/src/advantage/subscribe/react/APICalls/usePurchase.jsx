@@ -1,8 +1,8 @@
 import { useMutation } from "react-query";
 import { postPurchaseData } from "../../../contracts-api";
-import useProduct from "./Product";
+import useProduct from "./useProduct";
 
-const makePurchase = () => {
+const usePurchase = () => {
   const { product, quantity } = useProduct();
 
   const mutation = useMutation(async () => {
@@ -34,4 +34,4 @@ const makePurchase = () => {
   return mutation;
 };
 
-export default makePurchase;
+export default usePurchase;

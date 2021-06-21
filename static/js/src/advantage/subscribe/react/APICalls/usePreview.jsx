@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { postPurchasePreviewData } from "../../../contracts-api";
-import useProduct from "./Product";
+import useProduct from "./useProduct";
 
 const usePreview = () => {
   const { product, quantity } = useProduct();
