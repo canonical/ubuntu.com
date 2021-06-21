@@ -371,6 +371,7 @@ def build_engage_index(engage_docs):
         posts_per_page = 15
         engage_docs.parser.parse()
         metadata = engage_docs.parser.metadata
+        errors = engage_docs.parser.metadata_errors
 
         resource_types = []
         tags_list = set()
@@ -433,6 +434,7 @@ def build_engage_index(engage_docs):
             tags=tags_list,
             posts_per_page=posts_per_page,
             total_pages=total_pages,
+            errors=errors,
         )
 
     return engage_index
