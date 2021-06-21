@@ -1,14 +1,15 @@
 import {
-  resizeContract,
   cancelContract,
   getPurchase,
+  resizeContract,
 } from "./contracts-api.js";
 
 const stripe = window.Stripe(window.stripePublishableKey);
 
 const getMessage = (code, default_message) => {
   const map = {
-    resizing_machines_success: "Your changes were saved successfully, the page will reload",
+    resizing_machines_success:
+      "Your changes were saved successfully, the page will reload",
     cancelling_subscription_success:
       "Subscription cancelled! Reloading page...",
     resizing_machines_fail:
@@ -283,7 +284,7 @@ const createModal = (id, VPSize) => {
     confirmCancelButton.disabled = e.target.value.toLowerCase() !== "cancel";
   };
 
-  const content = `
+  container.innerHTML = `
     <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" style="overflow: auto;">
       <header class="p-modal__header">
         <h2 class="p-modal__title ">
@@ -309,7 +310,6 @@ const createModal = (id, VPSize) => {
       </div>
     </div>
   `;
-  container.innerHTML = content;
   document.body.appendChild(container);
 
   const fieldWrapper = document.querySelector("#cancel-modal-field-wrapper");
