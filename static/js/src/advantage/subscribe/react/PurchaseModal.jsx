@@ -142,6 +142,7 @@ const PurchaseModal = () => {
     paymentMethodMutation.mutate(values, {
       onSuccess: (data, variables) => {
         window.accountId = data.accountId;
+        setTermsChecked(false);
         setStep(2);
         queryClient.setQueryData(
           "userInfo",
@@ -206,113 +207,108 @@ const PurchaseModal = () => {
   };
 
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        enableReinitialize={true}
-        onSubmit={onSubmit}
-      >
-        {({ isValid, dirty, submitForm, isSubmitting }) => (
-          <>
-            <header className="p-modal__header">
-              <h2
-                className="p-modal__title u-no-margin--bottom"
-                id="modal-title"
+    <Formik
+      initialValues={initialValues}
+      enableReinitialize={true}
+      onSubmit={onSubmit}
+    >
+      {({ isValid, dirty, submitForm, isSubmitting }) => (
+        <>
+          <header className="p-modal__header">
+            <h2 className="p-modal__title u-no-margin--bottom" id="modal-title">
+              Complete purchase {status}
+            </h2>
+          </header>
+          <div id="modal-description" className="p-modal__body">
+            {isUserInfoLoading || isProductLoading || isPreviewLoading ? (
+              <Col
+                size="12"
+                className="u-align--center"
+                style={{ padding: "10rem 0" }}
               >
-                Complete purchase {status}
-              </h2>
-            </header>
-            <div id="modal-description" className="p-modal__body">
-              {isUserInfoLoading || isProductLoading || isPreviewLoading ? (
-                <Col
-                  size="12"
-                  className="u-align--center"
-                  style={{ padding: "10rem 0" }}
-                >
-                  <Spinner />
-                </Col>
-              ) : (
-                <>
-                  <Summary />
-                  {error && (
-                    <Notification type="negative" status="Error:">
-                      {error}
-                    </Notification>
-                  )}
-                  {step === 1 ? (
-                    <PaymentMethodForm setCardValid={setCardValid} />
-                  ) : (
-                    <PaymentMethodSummary setStep={setStep} />
-                  )}
-                  {step === 1 ? null : (
-                    <Row className="u-no-padding">
-                      <Col size="12">
-                        <CheckboxInput
-                          name="TermsCheckbox"
-                          onChange={(e) => {
-                            setTermsChecked(e.target.checked);
-                          }}
-                          label={
-                            <>
-                              I agree to the{" "}
-                              <a
-                                href="/legal/ubuntu-advantage-service-terms"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                Ubuntu Advantage service terms
-                              </a>
-                            </>
-                          }
-                        />
-                      </Col>
-                    </Row>
-                  )}
-                </>
-              )}
-            </div>
-            <footer className="p-modal__footer">
-              <Row className="u-no-padding">
-                <ActionButton
-                  className="js-cancel-modal col-small-2 col-medium-2 col-start-medium-3 col-start-large-7 col-3 u-no-margin"
-                  appearance="neutral"
-                  aria-controls="purchase-modal"
-                  style={{ textAlign: "center" }}
-                >
-                  Cancel
-                </ActionButton>
-
-                {step === 1 ? (
-                  <ActionButton
-                    disabled={(!userInfo && !dirty) || !isValid || !isCardValid}
-                    appearance="positive"
-                    className="col-small-2 col-medium-2 col-3 u-no-margin"
-                    style={{ textAlign: "center" }}
-                    onClick={submitForm}
-                    loading={isSubmitting}
-                  >
-                    Continue
-                  </ActionButton>
-                ) : (
-                  <ActionButton
-                    className="col-small-2 col-medium-2 col-3 u-no-margin"
-                    appearance="positive"
-                    style={{ textAlign: "center" }}
-                    disabled={!areTermsChecked}
-                    onClick={onPayClick}
-                    loading={
-                      purchaseMutation.isLoading || isPendingPurchaseLoading
-                    }
-                  >
-                    Pay
-                  </ActionButton>
+                <Spinner />
+              </Col>
+            ) : (
+              <>
+                <Summary />
+                {error && (
+                  <Notification type="negative" status="Error:">
+                    {error}
+                  </Notification>
                 )}
-              </Row>
-            </footer>
-          </>
-        )}
-      </Formik>
-    </div>
+                {step === 1 ? (
+                  <PaymentMethodForm setCardValid={setCardValid} />
+                ) : (
+                  <PaymentMethodSummary setStep={setStep} />
+                )}
+                {step === 1 ? null : (
+                  <Row className="u-no-padding">
+                    <Col size="12">
+                      <CheckboxInput
+                        name="TermsCheckbox"
+                        onChange={(e) => {
+                          setTermsChecked(e.target.checked);
+                        }}
+                        label={
+                          <>
+                            I agree to the{" "}
+                            <a
+                              href="/legal/ubuntu-advantage-service-terms"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Ubuntu Advantage service terms
+                            </a>
+                          </>
+                        }
+                      />
+                    </Col>
+                  </Row>
+                )}
+              </>
+            )}
+          </div>
+          <footer className="p-modal__footer">
+            <Row className="u-no-padding">
+              <ActionButton
+                className="js-cancel-modal col-small-2 col-medium-2 col-start-medium-3 col-start-large-7 col-3 u-no-margin"
+                appearance="neutral"
+                aria-controls="purchase-modal"
+                style={{ textAlign: "center" }}
+              >
+                Cancel
+              </ActionButton>
+
+              {step === 1 ? (
+                <ActionButton
+                  disabled={(!userInfo && !dirty) || !isValid || !isCardValid}
+                  appearance="positive"
+                  className="col-small-2 col-medium-2 col-3 u-no-margin"
+                  style={{ textAlign: "center" }}
+                  onClick={submitForm}
+                  loading={isSubmitting}
+                >
+                  Continue
+                </ActionButton>
+              ) : (
+                <ActionButton
+                  className="col-small-2 col-medium-2 col-3 u-no-margin"
+                  appearance="positive"
+                  style={{ textAlign: "center" }}
+                  disabled={!areTermsChecked}
+                  onClick={onPayClick}
+                  loading={
+                    purchaseMutation.isLoading || isPendingPurchaseLoading
+                  }
+                >
+                  Pay
+                </ActionButton>
+              )}
+            </Row>
+          </footer>
+        </>
+      )}
+    </Formik>
   );
 };
 
