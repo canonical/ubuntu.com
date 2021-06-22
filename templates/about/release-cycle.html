@@ -55,7 +55,7 @@
   <div class="row">
     <div class="col-8">
       <h2>Long term support and interim releases</h2>
-      <p>LTS or 'Long Term Support' releases are published every two years in April. LTS releases are the 'enterprise grade' releases of Ubuntu and are utilised the most. An estimated 95% of all Ubuntu installations are LTS releases.</p>
+      <p>LTS or 'Long Term Support' releases are published every two years in April. LTS releases are the 'enterprise grade' releases of Ubuntu and are used the most. An estimated 95% of all Ubuntu installations are LTS releases.</p>
       <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.</p>
     </div>
   </div>
@@ -249,8 +249,8 @@
     <div class="u-fixed-width">
       <h2 id="ubuntu-kernel-release-cycle">Ubuntu kernel release cycle</h2>
       <p>Canonical maintains multiple kernel packages for each LTS version of Ubuntu, which serve different purposes. Several of the kernel packages address the need for kernels with specific performance priorities, for example, the low-latency kernel package. Others are focused on optimisation for a particular hypervisor, for example, the kernel packages which are named after public clouds. You are recommended to use the <a class="p-link--external" href="https://wiki.ubuntu.com/Kernel">detailed Ubuntu kernel guide</a> to select the best Ubuntu kernel for your application.</p>
-      <p>In general, all of the LTS kernel packages will use the same base version of the Linux kernel, for example, Ubuntu 18.04 LTS kernels typically used the 4.15 upstream Linux kernel as a base. Some cloud-specific kernels may use a newer version in order to benefit from improved mechanisms in performance or security that are material to that cloud. These kernels are all supported for the full life of their underlying LTS release.</p>
-      <p>In addition, the kernel versions from the subsequent four releases are made available on the latest LTS release of Ubuntu. So Ubuntu 16.04 LTS received the kernels from Ubuntu 16.10, 17.04, 17.10 and 18.04 LTS. These kernels use newer upstream versions and as a result, offer an easy path to newer features and newer classes of hardware for many users of Ubuntu. Note however that these kernels 'roll' which means that they jump every six months until the next LTS. Large scale deployments that adopt the 'hardware enablement' or HWE kernels should manage those transitions explicitly. These newer HWE kernels are accompanied by a collection of userspace tools closely tied to the kernel and hardware, specifically X display enablement on newer graphics cards.</p>
+      <p>In general, all of the LTS kernel packages will use the same base version of the Linux kernel, for example, Ubuntu 20.04 LTS kernels typically used the 5.4 upstream Linux kernel as a base. Some cloud-specific kernels may use a newer version in order to benefit from improved mechanisms in performance or security that are material to that cloud. These kernels are all supported for the full life of their underlying LTS release.</p>
+      <p>In addition, the kernel versions from the subsequent four releases are made available on the latest LTS release of Ubuntu. So Ubuntu 18.04 LTS received the kernels from Ubuntu 18.10, 19.04, 19.10 and 20.04 LTS. These kernels use newer upstream versions and as a result, offer an easy path to newer features and newer classes of hardware for many users of Ubuntu. Note however that these kernels 'roll' which means that they jump every six months until the next LTS. Large scale deployments that adopt the 'hardware enablement' or HWE kernels should manage those transitions explicitly. These newer HWE kernels are accompanied by a collection of userspace tools closely tied to the kernel and hardware, specifically X display enablement on newer graphics cards.</p>
       <p>The Ubuntu kernel support lifecycle is as follows:</p>
     </div>
 
@@ -260,7 +260,8 @@
         <table class="u-hide--medium u-hide--large">
           <thead>
             <tr>
-              <th>Release</th>
+              <th>Kernel version</th>
+              <th>Ubuntu version</th>
               <th>Released</th>
               <th>End of life</th>
               <th>Extended security maintenance</th>
@@ -268,6 +269,7 @@
           </thead>
           <tbody>
             <tr>
+              <td rowspan="2"><strong>22.04 kernel</strong></td>
               <td><strong>Ubuntu 20.04.5 LTS</strong></td>
               <td>Aug 2022</td>
               <td>Apr 2025</td>
@@ -280,6 +282,7 @@
               <td>Mar 2032</td>
             </tr>
             <tr>
+              <td rowspan="2"><strong>21.10 kernel</strong></td>
               <td><strong>Ubuntu 20.04.4 LTS</strong></td>
               <td>Feb 2022</td>
               <td>Jul 2022</td>
@@ -292,6 +295,7 @@
               <td>&nbsp;</td>
             </tr>
             <tr>
+              <td rowspan="2"><strong>5.11 kernel</strong></td>
               <td><strong>Ubuntu 20.04.3 LTS</strong></td>
               <td>Aug 2021</td>
               <td>Jan 2022</td>
@@ -304,6 +308,7 @@
               <td>&nbsp;</td>
             </tr>
             <tr>
+              <td rowspan="2"><strong>5.8 kernel</strong></td>
               <td><strong>Ubuntu 20.04.2 LTS</strong></td>
               <td>Feb 2021</td>
               <td>Jul 2021</td>
@@ -316,6 +321,7 @@
               <td>&nbsp;</td>
             </tr>
             <tr>
+              <td rowspan="3"><strong>5.4 kernel</strong></td>
               <td><strong>Ubuntu 18.04.5 LTS</strong></td>
               <td>Aug 2020</td>
               <td>Apr 2023</td>
@@ -334,6 +340,7 @@
               <td>Apr 2030</td>
             </tr>
             <tr>
+              <td rowspan="3"><strong>4.15 kernel</strong></td>
               <td><strong>Ubuntu 16.04.5 LTS</strong></td>
               <td>Aug 2018</td>
               <td>Apr 2021</td>
@@ -352,11 +359,12 @@
               <td>Apr 2028</td>
             </tr>
             <tr>
+              <td rowspan="3"><strong>4.4 kernel</strong></td>
               <td><strong>Ubuntu 14.04.5 LTS</strong></td>
               <td>Aug 2016</td>
               <td>Apr 2019</td>
               <td>Apr 2022</td>
-            </tr>
+            </tr>"
             <tr>
               <td><strong>Ubuntu 16.04.1 LTS</strong></td>
               <td>Jul 2016</td>
@@ -370,6 +378,7 @@
               <td>Apr 2024</td>
             </tr>
             <tr>
+              <td rowspan="2"><strong>3.13 kernel</strong></td>
               <td><strong>Ubuntu 14.04.1 LTS</strong></td>
               <td>Jul 2014</td>
               <td>Apr 2019</td>
@@ -394,11 +403,21 @@
   <section class="p-strip--light  is-bordered">
     <div class="row">
       <div class="col-8">
-        <h2 id="ubuntu-openstack-release-cycle">Ubuntu OpenStack release cycle</h2>
-        <p>Canonical's Cloud Archive allows users the ability to install newer releases of Ubuntu <a href="https://wiki.ubuntu.com/OpenStack" class="p-link--external">OpenStack</a> on an Ubuntu server as they become available. A given LTS release of Ubuntu will have the current release of OpenStack packaged in its release archives. The next four releases of OpenStack will then be published in the Cloud Archive for that LTS.</p>
-        <p>That means that it is possible to upgrade OpenStack four times on the same Ubuntu LTS release base operating system (upgrading the OpenStack without upgrading the operating system), and then one has the same OpenStack version that is included with the subsequent LTS release, and can choose to upgrade the operating system without upgrading the OpenStack version.</p>
-        <p>The middle OpenStack release (one year after the LTS release and one year before the next LTS release) is maintained for an extended period. Many customers therefore opt to make annual upgrades to their OpenStack rather than tracking each six-monthly release. The actual upgrade is fully supported using Canonical OpenStack tools and operator guides, and involves hopping through the six-monthly versions for database upgrade purposes, but the next effect is an annual upgrade to a version that is fully supportable.</p>
-        <p>The Ubuntu OpenStack support lifecycle can be represented this way:</p>
+        <h2 id="ubuntu-openstack-release-cycle">
+          OpenStack release cycle
+        </h2>
+        <p>
+          <a href="/openstack">OpenStack</a> release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu, however, since Canonical recommends using Ubuntu LTS in production environments, new versions of OpenStack are also available on Ubuntu LTS version through the <a class="p-link--external" href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a>.
+        </p>
+        <p>
+          OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) are supported by Canonical for 5 years. In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months. Enterprise customers can also extend their support for some interim OpenStack versions and subscribe to the <a href="/security/esm">Extended Security Maintenance (ESM) programme</a> for 10 years of security updates.
+        </p>
+        <p>
+          Upgrades between consecutive OpenStack versions are fully supported. Users can first upgrade to newer OpenStack versions until the next OpenStack TLS version. Then they can upgrade the underlying Ubuntu operating system. In order to ensure smooth upgrades of OpenStack on Ubuntu, Canonical provides the automation framework based on the <a href="/openstack/features">OpenStack Charms</a> project.
+        </p>
+        <p>
+           The OpenStack support lifecycle on Ubuntu can be represented this way:
+        </p>
       </div>
     </div>
 

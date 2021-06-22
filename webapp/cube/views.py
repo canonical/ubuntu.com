@@ -6,6 +6,8 @@ import talisker.sentry
 import yaml
 
 from pathlib import Path
+from urllib.parse import quote_plus
+
 from requests import Session
 
 from webapp.cube.api import BadgrAPI, EdxAPI
@@ -68,6 +70,11 @@ def cube_microcerts():
     if not is_authorized(sso_user):
         flask.abort(403)
 
+    edx_url = (
+        f"{edx_api.base_url}/auth/login/tpa-saml/"
+        "?auth_entry=login&idp=ubuntuone&next="
+    )
+
     edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
     if edx_user:
         assertions = {
@@ -112,30 +119,22 @@ def cube_microcerts():
         elif course["id"] in enrollments:
             course["status"] = "enrolled"
 
-        course["take_url"] = (
-            f"{edx_api.base_url}/courses/{course['id']}"
-            "/courseware/2020/start/?child=first"
+        take_path = quote_plus(
+            f"/courses/{course['id']}/courseware/2020/start/?child=first"
         )
+        course["take_url"] = f"{edx_url}{take_path}"
 
-        course["prepare_url"] = (
-            f"{edx_api.base_url}/courses/"
-            f"{CUBE_CONTENT['prepare-course']}/course/"
-        )
-
-    has_prepare_material = CUBE_CONTENT["prepare-course"] in enrollments
-    prepare_material_url = (
-        f"{edx_api.base_url}/courses/{CUBE_CONTENT['prepare-course']}/course/"
+    prepare_material_path = quote_plus(
+        f"/courses/{CUBE_CONTENT['prepare-course']}/course/"
     )
+    prepare_material_url = f"{edx_url}{prepare_material_path}"
+    has_prepare_material = CUBE_CONTENT["prepare-course"] in enrollments
 
     return flask.render_template(
         "cube/microcerts.html",
         **{
             "edx_user": edx_user,
-            "edx_register_url": (
-                f"{edx_api.base_url}/"
-                "auth/login/tpa-saml/"
-                "?auth_entry=login&next=%2F&idp=ubuntuone"
-            ),
+            "edx_register_url": f"{edx_url}%2F",
             "sso_user": sso_user,
             "certified_badge": certified_badge,
             "modules": courses,

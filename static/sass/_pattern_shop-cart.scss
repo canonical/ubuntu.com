@@ -1,7 +1,7 @@
 @mixin ubuntu-p-ua-shop-cart {
   .p-shop-cart {
+    bottom: 0;
     position: sticky;
-    bottom: 0px;
     transition: 0.5s ease-out transform;
 
     &--hidden {
@@ -20,8 +20,8 @@
       }
 
       > img {
-        margin: 0 1rem;
         height: 35px;
+        margin: 0 1rem;
       }
 
       > span,
@@ -31,23 +31,23 @@
     }
 
     .p-shop-cart__buy {
-      display: flex;
       align-items: center;
-      justify-content: flex-end;
+      display: flex;
       flex-direction: column;
+      justify-content: flex-end;
       margin-top: 1rem;
 
       @media (min-width: $breakpoint-x-small) {
-        flex-direction: row;
         align-items: flex-start;
+        flex-direction: row;
       }
       @media (min-width: $breakpoint-medium) {
-        margin-top: 0rem;
+        margin-top: 0;
       }
 
       > span {
-        padding-top: calc(0.4rem - 1px);
         margin-right: 0.5rem;
+        padding-top: calc(0.4rem - 1px);
       }
     }
   }

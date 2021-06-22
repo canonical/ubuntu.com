@@ -5,6 +5,10 @@ fetch("/static/js/data/openstack-commit-stats.json")
     drawChart(data);
   });
 
+window.onresize(() => {
+  console.log("yooo");
+});
+
 function drawChart(data) {
   var totals = d3.sum(data, function (d) {
     return d.metric;
@@ -14,11 +18,15 @@ function drawChart(data) {
   });
   data.reverse();
 
+  var aspectRatio = 0.55;
+  var viewWidth = +d3.select("#bar-chart").style("width").slice(0, -2);
+  var viewHeight = viewWidth * aspectRatio;
   var margin = { top: 20, right: 20, bottom: 20, left: 130 };
-  var viewWidth = 900;
-  var viewHeight = 500;
+  var percentagePosition = viewWidth / 37;
+  console.log(percentagePosition, viewWidth);
   var chartWidth = viewWidth - margin.left - margin.right;
   var chartHeight = viewHeight - margin.top - margin.bottom;
+  var fontSize = viewWidth / 52;
 
   var svg = d3
     .select("#bar-chart")
@@ -26,6 +34,7 @@ function drawChart(data) {
     .attr("class", "svg")
     .attr("width", viewWidth)
     .attr("height", viewHeight);
+  // .attr("viewbox", "0 0" + viewWidth + viewHeight);
 
   var y = d3
     .scaleBand()
@@ -66,11 +75,10 @@ function drawChart(data) {
     .attr("y", (d) => y(d.name))
     .attr("x", (d) => x(d.metric))
     .attr("text-anchor", "end")
-    .attr("dy", 23)
+    .attr("dy", percentagePosition)
     .attr("dx", -5)
-    .attr("font-size", "15px")
     .attr("fill", "white")
     .text((d) => d.percentage + "%");
 
-  svg.selectAll("text").style("font-size", "18px");
+  svg.selectAll("text").style("font-size", fontSize);
 }
