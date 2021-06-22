@@ -42,8 +42,8 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ['azure-integrator', 'kubernetes-master']
-  - ['azure-integrator', 'kubernetes-worker']
+  - ['azure-integrator', 'kubernetes-master:azure']
+  - ['azure-integrator', 'kubernetes-worker:azure']
   ```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified
@@ -156,7 +156,7 @@ EOY
 Charmed Kubernetes can make use of additional types of storage - for more
 information see the [storage documentation][storage].
 
-## Azure load-balancers
+## Azure load-balancers for services
 
 The following commands start the 'hello-world' pod behind an Azure-backed
 load-balancer.
@@ -184,6 +184,17 @@ You can then verify this works by loading the described IP address (on port
 
 For more configuration options and details of the permissions which the integrator uses,
 please see the [azure charm page][azure-integrator].
+
+## Azure load-balancers for the control plane
+
+With revision 1015 and later of the `kubernetes-master` charm, Charmed
+Kubernetes can also use Azure native load balancers in front of the control
+plane, replacing the need to deploy the `kubeapi-load-balancer` charm. The
+`kubernetes-master` charm supports two relation endpoints, `loadbalancer-external`
+for a publicly accessible load balancer which can be used by external clients as
+well as the control plane, and `loadbalancer-internal` for a non-public load
+balancer which can only be used by the rest of the control plane but not by
+external clients.
 
 <!-- LINKS -->
 

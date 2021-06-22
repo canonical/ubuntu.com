@@ -16,7 +16,7 @@
     {% endif %}
     {% if not contract["is_detached"] and contract['machineCount']%}
       <div class="change-subscription">
-        <button class="p-button--neutral u-no-margin--left js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}--yearly" data-viewport="{% if mobile %}small{% else %}large{% endif %}" {% if payment_method_warning %}disabled{% endif %}>Change subscription</button>
+        <button class="p-button--neutral u-no-margin--left js-change-subscription-button" data-id="{{contract["contractInfo"]["id"]}}--yearly" data-viewport="{% if mobile %}small{% else %}large{% endif %}" {% if pending_purchase_id %}disabled{% endif %}>Change subscription</button>
       </div>
     {% endif %}
   </div>
@@ -25,8 +25,21 @@
 <div class="col-start-large-2 col-10 u-hide" id="edit-mode--{{contract["contractInfo"]["id"]}}--yearly" data-viewport="{% if mobile %}small{% else %}large{% endif %}">
   <div class="row">
     {% if mobile %}
-      <hr />
+      <hr class="p-separator" />
     {% endif %}
+
+    <div class="p-notification--positive success-{{contract["contractInfo"]["id"]}}--yearly u-hide">
+      <p class="p-notification__response">
+        <span class="p-notification__message"></span>
+      </p>
+    </div>
+
+    <div class="p-notification--caution caution-{{contract["contractInfo"]["id"]}}--yearly u-hide">
+      <p class="p-notification__response">
+        <span class="p-notification__message"></span>
+      </p>
+    </div>
+
     <h5 class="u-no-padding--top" {% if not mobile %}style="margin-bottom: .5rem"{% endif %}>{{contract['contractInfo']['name']}} (annual)</h5>
     {% if not mobile %}
       <hr />
