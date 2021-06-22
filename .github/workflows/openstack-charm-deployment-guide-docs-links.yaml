@@ -1,8 +1,9 @@
 name: docs links on docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
 
-on:
-  schedule:
-    - cron: "0 13 * * 1"
+# on:
+#   schedule:
+#     - cron: "0 13 * * 1"
+on: pull_request
 
 jobs:
   check-links:
@@ -28,4 +29,4 @@ jobs:
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=docs
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=test-bot-channel
