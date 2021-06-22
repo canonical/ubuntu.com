@@ -115,9 +115,7 @@ function getProduct(state) {
 
 const formSlice = createSlice({
   name: "form",
-  initialState: {
-    ...loadState("ua-subscribe-state", "form", initialFormState),
-  },
+  initialState: loadState("ua-subscribe-state", "form", initialFormState),
   reducers: {
     changeType(state, action) {
       state.type = action.payload;
