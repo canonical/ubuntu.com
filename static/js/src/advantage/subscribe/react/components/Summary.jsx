@@ -11,6 +11,70 @@ function Summary() {
   const { product, quantity } = useProduct();
   const { data: preview } = usePreview();
 
+  let totalSection = (
+    <Row className="u-no-padding u-sv1">
+      <Col size="4">
+        <div className="u-text-light">Subtotal:</div>
+      </Col>
+      <Col size="8">
+        <div>{formatter.format((product?.price?.value * quantity) / 100)}</div>
+      </Col>
+    </Row>
+  );
+
+  if (preview?.taxAmount) {
+    totalSection = (
+      <>
+        {preview?.subscriptionEndOfCycle && (
+          <Row className="u-no-padding u-sv1">
+            <Col size="4">
+              <div className="u-text-light">For this period:</div>
+            </Col>
+            <Col size="8">
+              <div>
+                {formatter.format((preview?.total - preview?.taxAmount) / 100)}
+              </div>
+            </Col>
+          </Row>
+        )}
+        <Row className="u-no-padding u-sv1">
+          <Col size="4">
+            <div className="u-text-light">Tax:</div>
+          </Col>
+          <Col size="8">
+            <div>{formatter.format(preview?.taxAmount / 100)}</div>
+          </Col>
+        </Row>
+        <Row className="u-no-padding u-sv1">
+          <Col size="4">
+            <div className="u-text-light">Total</div>
+          </Col>
+          <Col size="8">
+            <div>
+              <b>{formatter.format(preview?.total / 100)}</b>
+            </div>
+          </Col>
+        </Row>
+      </>
+    );
+  } else if (preview) {
+    totalSection = (
+      <Row className="u-no-padding u-sv1">
+        <Col size="4">
+          <div className="u-text-light">
+            Total
+            {preview?.subscriptionEndOfCycle && " for this period"}
+          </div>
+        </Col>
+        <Col size="8">
+          <div>
+            <b>{formatter.format(preview?.total / 100)}</b>
+          </div>
+        </Col>
+      </Row>
+    );
+  }
+
   return (
     <section
       id="summary-section"
@@ -66,72 +130,7 @@ function Summary() {
           </Col>
         )}
       </Row>
-      {preview ? (
-        <>
-          {preview?.taxAmount ? (
-            <>
-              {preview?.subscriptionEndOfCycle && (
-                <Row className="u-no-padding u-sv1">
-                  <Col size="4">
-                    <div className="u-text-light">For this period:</div>
-                  </Col>
-                  <Col size="8">
-                    <div>
-                      {formatter.format(
-                        (preview?.total - preview?.taxAmount) / 100
-                      )}
-                    </div>
-                  </Col>
-                </Row>
-              )}
-              <Row className="u-no-padding u-sv1">
-                <Col size="4">
-                  <div className="u-text-light">Tax:</div>
-                </Col>
-                <Col size="8">
-                  <div>{formatter.format(preview?.taxAmount / 100)}</div>
-                </Col>
-              </Row>
-              <Row className="u-no-padding u-sv1">
-                <Col size="4">
-                  <div className="u-text-light">Total</div>
-                </Col>
-                <Col size="8">
-                  <div>
-                    <b>{formatter.format(preview?.total / 100)}</b>
-                  </div>
-                </Col>
-              </Row>
-            </>
-          ) : (
-            <Row className="u-no-padding u-sv1">
-              <Col size="4">
-                <div className="u-text-light">
-                  Total{preview?.subscriptionEndOfCycle && " for this period"}
-                </div>
-              </Col>
-              <Col size="8">
-                <div>
-                  <b>{formatter.format(preview?.total / 100)}</b>
-                </div>
-              </Col>
-            </Row>
-          )}
-        </>
-      ) : (
-        <>
-          <Row className="u-no-padding u-sv1">
-            <Col size="4">
-              <div className="u-text-light">Subtotal:</div>
-            </Col>
-            <Col size="8">
-              <div>
-                {formatter.format((product?.price?.value * quantity) / 100)}
-              </div>
-            </Col>
-          </Row>
-        </>
-      )}
+      {totalSection}
     </section>
   );
 }
