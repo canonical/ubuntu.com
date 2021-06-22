@@ -46,22 +46,23 @@
      <thead>
        <th class="u-hide--small"></th>
        <th></th>
-       <th class="u-align--center">16.04</th>
-       <th class="u-align--center">18.04</th>
-       <th class="u-align--center">20.04</th>
+       <th class="u-align--center">Ubuntu 16.04</th>
+       <th class="u-align--center">Ubuntu 18.04</th>
+       <th class="u-align--center">Ubuntu 20.04</th>
      </thead>
      <tbody>
        <tr>
          <td class="u-hide--small">
-         {{ image (
-           url="https://assets.ubuntu.com/v1/f98af83d-cis-logo-removebg-preview.png",
-           alt="CIS logo",
-           width="50",
-           height="50",
-           hi_def=True,
-           loading="lazy"
-           ) | safe
-         }}
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ef01809f-DISA-logo-transparent.png",
+            alt="DISA logo",
+            width="136",
+            height="50",
+            hi_def=True,
+            attrs={"style": "vertical-align: middle;"},
+            loading="lazy"
+            ) | safe
+          }}
          </td>
          <td>
            Defense Information System Agency <a class="p-link--external" href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">Security Technical Implementation Guides (STIGs)</a> for Ubuntu
