@@ -47,7 +47,7 @@ def advantage_view(**kwargs):
     personal_account = None
     new_subscription_id = None
     new_subscription_start_date = None
-    payment_method_warning = None
+    pending_purchase_id = None
 
     enterprise_contracts = {}
     previous_purchase_ids = {"monthly": "", "yearly": ""}
@@ -86,10 +86,8 @@ def advantage_view(**kwargs):
             if status not in ["active", "locked"]:
                 continue
 
-            # If there are any pending purchase for a sub (active or locked)
-            # we show the payment method warning.
             if subscription.get("pendingPurchases"):
-                payment_method_warning = subscription.get("pendingPurchases")
+                pending_purchase_id = subscription.get("pendingPurchases")[0]
 
             previous_purchase_ids[period] = subscription.get("lastPurchaseID")
 
@@ -204,6 +202,7 @@ def advantage_view(**kwargs):
             contract["productID"] = product_name
             contract["is_detached"] = False
             contract["machineCount"] = 0
+            contract["rowMachineCount"] = 0
 
             allowances = contract_info.get("allowances")
             if (
@@ -211,11 +210,12 @@ def advantage_view(**kwargs):
                 and len(allowances) > 0
                 and allowances[0]["metric"] == "units"
             ):
-                contract["machineCount"] = allowances[0]["value"]
+                contract["rowMachineCount"] = allowances[0]["value"]
 
             if product_name in yearly_purchased_products:
                 purchased_product = yearly_purchased_products[product_name]
                 contract["price_per_unit"] = purchased_product["price"]
+                contract["machineCount"] = purchased_product["quantity"]
                 contract["product_listing_id"] = purchased_product[
                     "product_listing_id"
                 ]
@@ -235,6 +235,7 @@ def advantage_view(**kwargs):
                 contract = contract.copy()
                 purchased_product = monthly_purchased_products[product_name]
                 contract["price_per_unit"] = purchased_product["price"]
+                contract["machineCount"] = purchased_product["quantity"]
                 contract["is_cancelable"] = True
                 contract["product_listing_id"] = purchased_product[
                     "product_listing_id"
@@ -272,7 +273,7 @@ def advantage_view(**kwargs):
         accounts=accounts,
         monthly_information=monthly_info,
         total_enterprise_contracts=total_enterprise_contracts,
-        payment_method_warning=payment_method_warning,
+        pending_purchase_id=pending_purchase_id,
         enterprise_contracts=enterprise_contracts,
         previous_purchase_ids=previous_purchase_ids,
         personal_account=personal_account,
@@ -499,7 +500,7 @@ def cancel_advantage_subscriptions(**kwargs):
     )
 
     if not monthly_subscriptions:
-        return flask.jsonify({"error": "no monthly subscriptions found"}), 400
+        return flask.jsonify({"errors": "no monthly subscriptions found"}), 400
 
     monthly_subscription = monthly_subscriptions[0]
 
@@ -736,40 +737,28 @@ def accept_renewal(renewal_id, **kwargs):
 
 
 def _prepare_monthly_info(monthly_info, subscription, advantage):
-    purchased_products = subscription["purchasedProductListings"]
-    purchased_products_no = len(purchased_products)
+    purchased_products = subscription.get("purchasedProductListings")
+    subscription_info = subscription.get("subscription")
+    subscription_id = subscription_info.get("id")
+    is_renewing = subscription_info.get("autoRenew", False)
 
-    monthly_info["total_subscriptions"] += purchased_products_no
+    monthly_info["total_subscriptions"] += len(purchased_products)
     monthly_info["has_monthly"] = True
-    monthly_info["id"] = subscription["subscription"]["id"]
-    monthly_info["is_auto_renewal_enabled"] = subscription["subscription"].get(
-        "autoRenew", False
-    )
+    monthly_info["id"] = subscription_id
+    monthly_info["is_auto_renewal_enabled"] = is_renewing
 
-    last_purchase_id = subscription["lastPurchaseID"]
-    last_purchase = advantage.get_purchase(last_purchase_id)
+    if is_renewing:
+        renewal_info = advantage.get_subscription_auto_renewal(subscription_id)
+        last_renewal = parse(renewal_info["subscriptionStartOfCycle"])
+        next_renewal = parse(renewal_info["subscriptionEndOfCycle"])
+        total = renewal_info["total"] / 100
+        currency = renewal_info["currency"]
 
-    monthly_info["last_payment_date"] = parse(
-        last_purchase["createdAt"]
-    ).strftime("%d %B %Y")
-    monthly_info["next_payment"]["date"] = parse(
-        subscription["subscription"]["endOfCycle"]
-    ).strftime("%d %B %Y")
-    monthly_info["next_payment"]["ammount"] = _get_subscription_payment_total(
-        subscription["purchasedProductListings"]
-    )
-
-
-def _get_subscription_payment_total(products_listings):
-    total = 0
-
-    for listing in products_listings:
-        total += listing["productListing"]["price"]["value"] * listing["value"]
-
-    return (
-        f"{total / 100} "
-        f'{products_listings[0]["productListing"]["price"]["currency"]}'
-    )
+        monthly_info["last_payment_date"] = last_renewal.strftime("%d %B %Y")
+        monthly_info["next_payment"] = {
+            "date": next_renewal.strftime("%d %B %Y"),
+            "amount": f"{total} {currency}",
+        }
 
 
 def _make_renewal(advantage, contract_info):
@@ -779,7 +768,7 @@ def _make_renewal(advantage, contract_info):
         return None
 
     sorted_renewals = sorted(
-        (r for r in renewals if r["status"] != "closed"),
+        (r for r in renewals if r["status"] not in ["lost", "closed"]),
         key=lambda renewal: parse(renewal["start"]),
     )
 

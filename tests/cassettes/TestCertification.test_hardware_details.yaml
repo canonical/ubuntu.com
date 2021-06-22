@@ -1,0 +1,291 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://certification.canonical.com/api/v1/certifiedmodels/?format=json&canonical_id=201906-27091
+  response:
+    body:
+      string: '{"meta": {"limit": 20, "next": null, "offset": 0, "previous": null,
+        "total_count": 1}, "objects": [{"canonical_id": "201906-27091", "category":
+        "Desktop", "level": "Enabled", "major_release": "18.04 LTS", "make": "Dell",
+        "model": "OptiPlex 7071", "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedmodels/201906-27091/"}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '329'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Jun 2021 13:59:45 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://certification.canonical.com/api/v1/certifiedmodeldetails/?format=json&limit=0&canonical_id=201906-27091
+  response:
+    body:
+      string: '{"meta": {"limit": 1000, "next": null, "offset": 0, "previous": null,
+        "total_count": 1}, "objects": [{"architecture": "amd64", "bios": "", "canonical_id":
+        "201906-27091", "category": "Desktop", "certified_release": "18.04 LTS", "completed":
+        "2019-09-27T21:28:13.038880", "form_factor": "Desktop", "hardware_website":
+        "", "id": 11539, "kernel_version": "4.15.0-1037-oem", "level": "Enabled",
+        "make": "Dell", "model": "OptiPlex 7071", "name": "1909-11539", "network":
+        [{"bus": "pci", "category": "NETWORK", "identifier": "1d6a:d108", "make":
+        "Aquantia Corp.", "name": "AQC108 NBase-T/IEEE 802.3bz Ethernet Controller
+        [AQtion]", "subproduct_name": "", "subsystem": "1d6a:0001", "subvendor_id":
+        "", "vendor_id": 5483}, {"bus": "pci", "category": "NETWORK", "identifier":
+        "8086:15bb", "make": "Intel Corp.", "name": "Intel(R) Ethernet Connection
+        (7) I219-LM", "subproduct_name": "", "subsystem": "", "subvendor_id": "",
+        "vendor_id": 4103}], "notes": [], "processor": [{"bus": "dmi", "category":
+        "PROCESSOR", "identifier": "dmi:Intel(R)Core(TM)i9-9900KCPU@3.60GHz", "make":
+        "Intel Corp.", "name": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz", "subproduct_name":
+        "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103}], "resource_uri":
+        "/api/v1/certifiedmodeldetails/11539/", "video": [{"bus": "pci", "category":
+        "VIDEO", "identifier": "8086:3e98", "make": "Intel Corp.", "name": "UHD Graphics
+        630 (Desktop 9 Series)", "subproduct_name": "", "subsystem": "1028:094b",
+        "subvendor_id": "", "vendor_id": 4103}], "wireless": []}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '1522'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Jun 2021 13:59:45 GMT
+      Keep-Alive:
+      - timeout=5, max=99
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://certification.canonical.com/api/v1/certifiedmodeldevices/?format=json&limit=0&canonical_id=201906-27091
+  response:
+    body:
+      string: '{"meta": {"limit": 1000, "next": null, "offset": 0, "previous": null,
+        "total_count": 32}, "objects": [{"bus": "pci", "canonical_id": "201906-27091",
+        "category": "AUDIO", "identifier": "8086:a348", "make": "Intel Corp.", "name":
+        "Cannon Lake PCH cAVS", "raw_make": "Intel Corp.", "raw_name": "Cannon Lake
+        PCH cAVS", "resource_uri": "/api/v1/certifiedmodeldevices/8086:a348/", "subproduct_name":
+        "", "subsystem": "1028:094b", "subvendor_id": "", "vendor_id": 4103}, {"bus":
+        "sound", "canonical_id": "201906-27091", "category": "AUDIO", "identifier":
+        "sound:Unknown", "make": "Intel Corp.", "name": "Unknown", "raw_make": "Intel
+        Corp.", "raw_name": "Unknown", "resource_uri": "/api/v1/certifiedmodeldevices/sound:Unknown/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103},
+        {"bus": "pci", "canonical_id": "201906-27091", "category": "CARDREADER", "identifier":
+        "10ec:525a", "make": "Realtek Semiconductor Co., Ltd.", "name": "RTS525A PCI
+        Express Card Reader", "raw_make": "Realtek Semiconductor Co., Ltd.", "raw_name":
+        "RTS525A PCI Express Card Reader", "resource_uri": "/api/v1/certifiedmodeldevices/10ec:525a/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 286},
+        {"bus": "scsi", "canonical_id": "201906-27091", "category": "CDROM", "identifier":
+        "scsi:PLDSDVD+/-RWDU-8A5LH", "make": "Union Memory (Shenzhen)", "name": "PLDS
+        DVD+/-RW DU-8A5LH", "raw_make": "Union Memory (Shenzhen)", "raw_name": "PLDS
+        DVD+/-RW DU-8A5LH", "resource_uri": "/api/v1/certifiedmodeldevices/scsi:PLDSDVD+/-RWDU-8A5LH/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "scsi", "canonical_id": "201906-27091", "category": "DISK", "identifier":
+        "scsi:TOSHIBAMQ01ACF050", "make": "Union Memory (Shenzhen)", "name": "TOSHIBA
+        MQ01ACF050", "raw_make": "Union Memory (Shenzhen)", "raw_name": "TOSHIBA MQ01ACF050",
+        "resource_uri": "/api/v1/certifiedmodeldevices/scsi:TOSHIBAMQ01ACF050/", "subproduct_name":
+        "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313}, {"bus": "usb",
+        "canonical_id": "201906-27091", "category": "KEYBOARD", "identifier": "04b3:3025",
+        "make": "ILI Technology Corp.", "name": "NetVista Full Width Keyboard", "raw_make":
+        "ILI Technology Corp.", "raw_name": "NetVista Full Width Keyboard", "resource_uri":
+        "/api/v1/certifiedmodeldevices/04b3:3025/", "subproduct_name": "", "subsystem":
+        "", "subvendor_id": "", "vendor_id": 3663}, {"bus": "usb", "canonical_id":
+        "201906-27091", "category": "MOUSE", "identifier": "03f0:094a", "make": "HP",
+        "name": "Optical Mouse [672662-001]", "raw_make": "HP", "raw_name": "Optical
+        Mouse [672662-001]", "resource_uri": "/api/v1/certifiedmodeldevices/03f0:094a/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4113},
+        {"bus": "pci", "canonical_id": "201906-27091", "category": "NETWORK", "identifier":
+        "1d6a:d108", "make": "Aquantia Corp.", "name": "AQC108 NBase-T/IEEE 802.3bz
+        Ethernet Controller [AQtion]", "raw_make": "Aquantia Corp.", "raw_name": "AQC108
+        NBase-T/IEEE 802.3bz Ethernet Controller [AQtion]", "resource_uri": "/api/v1/certifiedmodeldevices/1d6a:d108/",
+        "subproduct_name": "", "subsystem": "1d6a:0001", "subvendor_id": "", "vendor_id":
+        5483}, {"bus": "pci", "canonical_id": "201906-27091", "category": "NETWORK",
+        "identifier": "8086:15bb", "make": "Intel Corp.", "name": "Intel(R) Ethernet
+        Connection (7) I219-LM", "raw_make": "Intel Corp.", "raw_name": "Intel(R)
+        Ethernet Connection (7) I219-LM", "resource_uri": "/api/v1/certifiedmodeldevices/8086:15bb/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:DellAIOWMIhotkeys", "make": "Union Memory (Shenzhen)", "name": "Dell
+        AIO WMI hotkeys", "raw_make": "Union Memory (Shenzhen)", "raw_name": "Dell
+        AIO WMI hotkeys", "resource_uri": "/api/v1/certifiedmodeldevices/input:DellAIOWMIhotkeys/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:DellWMIhotkeys", "make": "Union Memory (Shenzhen)", "name": "Dell WMI
+        hotkeys", "raw_make": "Union Memory (Shenzhen)", "raw_name": "Dell WMI hotkeys",
+        "resource_uri": "/api/v1/certifiedmodeldevices/input:DellWMIhotkeys/", "subproduct_name":
+        "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313}, {"bus": "input",
+        "canonical_id": "201906-27091", "category": "OTHER", "identifier": "input:HDAIntelPCHHDMI/DP,pcm=10",
+        "make": "Union Memory (Shenzhen)", "name": "HDA Intel PCH HDMI/DP,pcm=10",
+        "raw_make": "Union Memory (Shenzhen)", "raw_name": "HDA Intel PCH HDMI/DP,pcm=10",
+        "resource_uri": "/api/v1/certifiedmodeldevices/input:HDAIntelPCHHDMI/DP,pcm=10/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:HDAIntelPCHHDMI/DP,pcm=3", "make": "Union Memory (Shenzhen)", "name":
+        "HDA Intel PCH HDMI/DP,pcm=3", "raw_make": "Union Memory (Shenzhen)", "raw_name":
+        "HDA Intel PCH HDMI/DP,pcm=3", "resource_uri": "/api/v1/certifiedmodeldevices/input:HDAIntelPCHHDMI/DP,pcm=3/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:HDAIntelPCHHDMI/DP,pcm=7", "make": "Union Memory (Shenzhen)", "name":
+        "HDA Intel PCH HDMI/DP,pcm=7", "raw_make": "Union Memory (Shenzhen)", "raw_name":
+        "HDA Intel PCH HDMI/DP,pcm=7", "resource_uri": "/api/v1/certifiedmodeldevices/input:HDAIntelPCHHDMI/DP,pcm=7/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:HDAIntelPCHHDMI/DP,pcm=8", "make": "Union Memory (Shenzhen)", "name":
+        "HDA Intel PCH HDMI/DP,pcm=8", "raw_make": "Union Memory (Shenzhen)", "raw_name":
+        "HDA Intel PCH HDMI/DP,pcm=8", "resource_uri": "/api/v1/certifiedmodeldevices/input:HDAIntelPCHHDMI/DP,pcm=8/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:HDAIntelPCHHDMI/DP,pcm=9", "make": "Union Memory (Shenzhen)", "name":
+        "HDA Intel PCH HDMI/DP,pcm=9", "raw_make": "Union Memory (Shenzhen)", "raw_name":
+        "HDA Intel PCH HDMI/DP,pcm=9", "resource_uri": "/api/v1/certifiedmodeldevices/input:HDAIntelPCHHDMI/DP,pcm=9/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:HDAIntelPCHHeadphoneMic", "make": "Union Memory (Shenzhen)", "name":
+        "HDA Intel PCH Headphone Mic", "raw_make": "Union Memory (Shenzhen)", "raw_name":
+        "HDA Intel PCH Headphone Mic", "resource_uri": "/api/v1/certifiedmodeldevices/input:HDAIntelPCHHeadphoneMic/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:HDAIntelPCHLineOut", "make": "Union Memory (Shenzhen)", "name": "HDA
+        Intel PCH Line Out", "raw_make": "Union Memory (Shenzhen)", "raw_name": "HDA
+        Intel PCH Line Out", "resource_uri": "/api/v1/certifiedmodeldevices/input:HDAIntelPCHLineOut/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:PowerButton", "make": "Union Memory (Shenzhen)", "name": "Power Button",
+        "raw_make": "Union Memory (Shenzhen)", "raw_name": "Power Button", "resource_uri":
+        "/api/v1/certifiedmodeldevices/input:PowerButton/", "subproduct_name": "",
+        "subsystem": "", "subvendor_id": "", "vendor_id": 5313}, {"bus": "input",
+        "canonical_id": "201906-27091", "category": "OTHER", "identifier": "input:SleepButton",
+        "make": "Union Memory (Shenzhen)", "name": "Sleep Button", "raw_make": "Union
+        Memory (Shenzhen)", "raw_name": "Sleep Button", "resource_uri": "/api/v1/certifiedmodeldevices/input:SleepButton/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5313},
+        {"bus": "input", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "input:VideoBus", "make": "Union Memory (Shenzhen)", "name": "Video Bus",
+        "raw_make": "Union Memory (Shenzhen)", "raw_name": "Video Bus", "resource_uri":
+        "/api/v1/certifiedmodeldevices/input:VideoBus/", "subproduct_name": "", "subsystem":
+        "", "subvendor_id": "", "vendor_id": 5313}, {"bus": "pci", "canonical_id":
+        "201906-27091", "category": "OTHER", "identifier": "104c:8240", "make": "Texas
+        Instruments", "name": "XIO2001 PCI Express-to-PCI Bridge", "raw_make": "Texas
+        Instruments", "raw_name": "XIO2001 PCI Express-to-PCI Bridge", "resource_uri":
+        "/api/v1/certifiedmodeldevices/104c:8240/", "subproduct_name": "", "subsystem":
+        "", "subvendor_id": "", "vendor_id": 129}, {"bus": "pci", "canonical_id":
+        "201906-27091", "category": "OTHER", "identifier": "1fd4:1999", "make": "SUNIX
+        Co., Ltd.", "name": "Multiport serial controller", "raw_make": "SUNIX Co.,
+        Ltd.", "raw_name": "Multiport serial controller", "resource_uri": "/api/v1/certifiedmodeldevices/1fd4:1999/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 1787},
+        {"bus": "pci", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "8086:1901", "make": "Intel Corp.", "name": "Sky Lake PCIe Controller (x16)",
+        "raw_make": "Intel Corp.", "raw_name": "Sky Lake PCIe Controller (x16)", "resource_uri":
+        "/api/v1/certifiedmodeldevices/8086:1901/", "subproduct_name": "", "subsystem":
+        "", "subvendor_id": "", "vendor_id": 4103}, {"bus": "pci", "canonical_id":
+        "201906-27091", "category": "OTHER", "identifier": "8086:1911", "make": "Intel
+        Corp.", "name": "Sky Lake Gaussian Mixture Model", "raw_make": "Intel Corp.",
+        "raw_name": "Sky Lake Gaussian Mixture Model", "resource_uri": "/api/v1/certifiedmodeldevices/8086:1911/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103},
+        {"bus": "tty", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "tty:Multiportserialcontroller", "make": "SUNIX Co., Ltd.", "name": "Multiport
+        serial controller", "raw_make": "SUNIX Co., Ltd.", "raw_name": "Multiport
+        serial controller", "resource_uri": "/api/v1/certifiedmodeldevices/tty:Multiportserialcontroller/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 1787},
+        {"bus": "tty", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "tty:Unknown", "make": "Intel Corp.", "name": "Unknown", "raw_make": "Intel
+        Corp.", "raw_name": "Unknown", "resource_uri": "/api/v1/certifiedmodeldevices/tty:Unknown/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103},
+        {"bus": "usb", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "1d6b:0002", "make": "The Linux Foundation", "name": "2.0 root hub", "raw_make":
+        "The Linux Foundation", "raw_name": "2.0 root hub", "resource_uri": "/api/v1/certifiedmodeldevices/1d6b:0002/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5209},
+        {"bus": "usb", "canonical_id": "201906-27091", "category": "OTHER", "identifier":
+        "1d6b:0003", "make": "The Linux Foundation", "name": "3.0 root hub", "raw_make":
+        "The Linux Foundation", "raw_name": "3.0 root hub", "resource_uri": "/api/v1/certifiedmodeldevices/1d6b:0003/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 5209},
+        {"bus": "dmi", "canonical_id": "201906-27091", "category": "PROCESSOR", "identifier":
+        "dmi:Intel(R)Core(TM)i9-9900KCPU@3.60GHz", "make": "Intel Corp.", "name":
+        "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz", "raw_make": "Intel Corp.", "raw_name":
+        "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz", "resource_uri": "/api/v1/certifiedmodeldevices/dmi:Intel(R)Core(TM)i9-9900KCPU@3.60GHz/",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103},
+        {"bus": "pci", "canonical_id": "201906-27091", "category": "USB", "identifier":
+        "8086:a36d", "make": "Intel Corp.", "name": "Cannon Lake PCH USB 3.1 xHCI
+        Host Controller", "raw_make": "Intel Corp.", "raw_name": "Cannon Lake PCH
+        USB 3.1 xHCI Host Controller", "resource_uri": "/api/v1/certifiedmodeldevices/8086:a36d/",
+        "subproduct_name": "", "subsystem": "1028:094b", "subvendor_id": "", "vendor_id":
+        4103}, {"bus": "pci", "canonical_id": "201906-27091", "category": "VIDEO",
+        "identifier": "8086:3e98", "make": "Intel Corp.", "name": "UHD Graphics 630
+        (Desktop 9 Series)", "raw_make": "Intel Corp.", "raw_name": "UHD Graphics
+        630 (Desktop 9 Series)", "resource_uri": "/api/v1/certifiedmodeldevices/8086:3e98/",
+        "subproduct_name": "", "subsystem": "1028:094b", "subvendor_id": "", "vendor_id":
+        4103}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '12783'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 15 Jun 2021 13:59:45 GMT
+      Keep-Alive:
+      - timeout=5, max=98
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+    status:
+      code: 200
+      message: OK
+version: 1

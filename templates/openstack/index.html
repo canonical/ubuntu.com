@@ -7,6 +7,83 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1eqHK0hc9v7Mn-XV36QRyNkJenTXgBQR_-RULKm5rZ5o/edit{% endblock meta_copydoc %}
 
 {% block content %}
+<style>
+
+  .bar-chart-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative; /* to position separator */
+  }
+
+  .bar-chart-container > .bar-chart:first-child::after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    border-right: 1px dotted #d2d2d2;
+    top: 0;
+    right: 50%;
+  }
+
+  .bar-chart {
+    width: 200px;
+  }
+
+  .bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 150px;
+    margin: 1rem;
+  }
+
+  .bar {
+    width: 50px;
+    height: 150px;
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  .bar.ex-bar {
+    background-color: #bdcddd;
+    border: 1px solid #3d6c6c;
+  }
+
+  .bar.tco-bar {
+    background-color: #b6dabc;
+    border:1px solid #64b070;
+  }
+
+  #hours__range {
+    width: 400px;
+  }
+
+  .js-cloud-price-slider {
+    position: relative;
+    padding: 1rem;
+    margin-top: 0.1rem;
+    background-color: #f5f5f5;
+    border: 1px dotted #d2d2d2;
+  }
+
+  .js-cloud-price-slider::before {
+    content: "Low";
+    position: absolute;
+    left: 10px;
+    top: 18px;
+    font-size: 12px;
+  }
+
+  .js-cloud-price-slider::after {
+    content: "High";
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    font-size: 12px;
+  }
+
+
+</style>
 <section class="p-strip--suru-bottomed">
   <div class="row u-equal-height">
     <div class="col-8">
@@ -255,15 +332,64 @@
 <section class="p-strip">
   <div class="row u-vertically-center">
     <div class="col-6 u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/ba7bf5ff-Openstack-cloud-optimisation.svg",
-        alt="",
-        width="390",
-        height="174",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+      <div class="bar-chart-container">
+        <div class="bar-chart">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+          alt="",
+          width="100",
+          height="70",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <h4>Public Cloud</h4>
+        <div class="bars">
+          <div>
+            <div id="public-capex" class="bar ex-bar"></div>
+            <div>CapEx</div>
+          </div>
+          <div>
+            <div id="public-opex" class="bar ex-bar"></div>
+            <div>OpEx</div>
+          </div>
+          <div>
+            <div id="public-tco" class="bar tco-bar"></div>
+            <div>TCO</div>
+          </div>
+        </div>
+        </div>
+        <div class="bar-chart">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/f25ccac7-Private+Cloud.svg",
+          alt="",
+          width="100",
+          height="70",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <h4>Private Cloud</h4>
+        <div class="bars">
+          <div>
+            <div id="private-capex" class="bar ex-bar"></div>
+            <div>CapEx</div>
+          </div>
+          <div>
+            <div id="private-opex" class="bar ex-bar"></div>
+            <div>OpEx</div>
+          </div>
+          <div>
+            <div id="private-tco" class="bar tco-bar"></div>
+            <div>TCO</div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="js-cloud-price-slider">
+        <input type="range" id="hours__range" min="1" max="150" value="96" step="1" aria-label="Cost of public cloud versus private cloud">
+        <div>VM hours</div>
+      </div>
     </div>
     <div class="col-6">
       <h2>Maximum multi-cloud cost optimisation</h2>
@@ -724,12 +850,12 @@
     </div>
   </section>
 
+  <script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
+
   {% with first_item="_openstack_next_step", second_item="_cloud_newsletter", third_item="_openstack_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=foundation-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
-
-
 
   {% endblock content %}

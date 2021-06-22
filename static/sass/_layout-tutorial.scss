@@ -1,6 +1,7 @@
 @mixin layout-tutorial {
   .l-tutorial {
     @extend .row;
+
     display: flex;
     flex-direction: column;
 
@@ -167,6 +168,10 @@
     }
   }
 
+  .l-tutorial__feedback-icon {
+    cursor: pointer;
+  }
+
   .l-tutorial__feedback-options {
     .p-inline-list__item {
       .has-color {
@@ -183,9 +188,5 @@
         }
       }
     }
-  }
-
-  .l-tutorial__feedback-icon {
-    cursor: pointer;
   }
 }

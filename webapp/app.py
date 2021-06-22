@@ -109,6 +109,13 @@ from webapp.security.views import (
     cves_sitemap,
 )
 
+from webapp.certified.views import (
+    certified_home,
+    certified_model_details,
+    certified_hardware_details,
+    certified_component_details,
+)
+
 
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
@@ -762,6 +769,20 @@ app.add_url_rule(
 )
 
 openstack_docs.init_app(app)
+
+app.add_url_rule("/certified", view_func=certified_home)
+app.add_url_rule(
+    "/certified/<canonical_id>",
+    view_func=certified_model_details,
+)
+app.add_url_rule(
+    "/certified/<canonical_id>/<release>",
+    view_func=certified_hardware_details,
+)
+app.add_url_rule(
+    "/certified/component/<component_id>",
+    view_func=certified_component_details,
+)
 
 
 @app.before_request

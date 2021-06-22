@@ -185,11 +185,6 @@
 }
 
 @mixin ubuntu-p-ordered-legal-list {
-  div > .p-list--ordered-legal {
-    margin-left: 0;
-    padding-left: 0;
-  }
-
   .p-list--ordered-legal {
     counter-reset: item;
     list-style-type: none;
@@ -217,15 +212,15 @@
       padding-left: $sp-medium;
     }
 
-    & > .p-list__item > h4:first-child {
-      margin-left: 0;
-      padding-left: 0;
-    }
-
     & > .p-list__item > h3,
     & > .p-list__item > h4,
     & > .p-list__item > h5 {
       display: inline-block;
+    }
+
+    & > .p-list__item > h4:first-child {
+      margin-left: 0;
+      padding-left: 0;
     }
 
     & > li > ol > .p-list__item::before {
@@ -238,12 +233,26 @@
       display: inline-block;
     }
   }
+
+  div > .p-list--ordered-legal {
+    margin-left: 0;
+    padding-left: 0;
+  }
 }
 
 // small text has bigger padding top, so requires this to be factored into
 // the dot position top
 @mixin ubuntu-p-inline-list-middot {
   .p-inline-list--middot {
+    .p-inline-list__item {
+      &::after {
+        bottom: 0;
+        height: 0;
+        right: -0.85em;
+        top: 0;
+      }
+    }
+
     &.is-x-dense {
       margin-bottom: $sp-unit - $nudge--small;
 
@@ -255,21 +264,13 @@
         }
       }
     }
-
-    .p-inline-list__item {
-      &::after {
-        bottom: 0;
-        height: 0;
-        right: -0.85em;
-        top: 0;
-      }
-    }
   }
 }
 
 @mixin ubuntu-p-list-small {
   .p-text-list--small {
     @extend %small-text-fixed;
+
     margin-bottom: $spv-outer--scaleable - $nudge--small + 1 * $sp-unit;
     margin-left: 0;
     padding-left: 0;
@@ -296,11 +297,9 @@
         margin-bottom: 0.25rem;
 
         &:not(:last-child) {
-          padding-bottom: 0.25rem;
-        }
-
-        &:not(:last-child) {
           @extend %vf-pseudo-border--bottom;
+
+          padding-bottom: 0.25rem;
 
           &::after {
             background-color: transparentize($color-mid-light, 0.5);
