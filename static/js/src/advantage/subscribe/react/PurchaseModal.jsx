@@ -13,7 +13,6 @@ import PaymentMethodForm from "./components/PaymentMethodForm";
 import Summary from "./components/Summary";
 import { Formik } from "formik";
 import useProduct from "./APICalls/useProduct";
-import usePurchase from "./APICalls/usePurchase";
 import usePendingPurchase from "./APICalls/usePendingPurchase";
 import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
@@ -21,6 +20,7 @@ import usePreview from "./APICalls/usePreview";
 import TotalSection from "./components/TotalSection";
 import FreeTrialRadio from "./components/FreeTrialRadio";
 import TermsCheckBox from "./components/TermsCheckBox";
+import PositiveButton from "./components/PositiveButton";
 
 const getUserInfoFromVariables = (data, variables) => {
   return {
@@ -61,15 +61,9 @@ const PurchaseModal = () => {
   const [step, setStep] = useState(window.accountId ? 2 : 1);
   const queryClient = useQueryClient();
 
-  const {
-    data: pendingPurchase,
-    setPendingPurchaseID,
-    error: purchaseError,
-    isLoading: isPendingPurchaseLoading,
-  } = usePendingPurchase();
+  const { data: pendingPurchase, error: purchaseError } = usePendingPurchase();
 
   const paymentMethodMutation = registerPaymentMethod();
-  const purchaseMutation = usePurchase();
   const { product } = useProduct();
 
   const initialValues = {
@@ -187,41 +181,13 @@ const PurchaseModal = () => {
     });
   };
 
-  const onPayClick = () => {
-    purchaseMutation.mutate("", {
-      onSuccess: (data) => {
-        //start polling
-        setPendingPurchaseID(data);
-      },
-      onError: (error) => {
-        if (error.message.includes("can only make one purchase at a time")) {
-          setError(
-            <>
-              You already have a pending purchase. Please go to{" "}
-              <a href="/advantage/payment-methods">payment methods</a> to retry.
-            </>
-          );
-        } else {
-          setError(
-            <>
-              Sorry, there was an unknown error with with the payment. Check the
-              details and try again. Contact{" "}
-              <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
-              problem persists.
-            </>
-          );
-        }
-      },
-    });
-  };
-
   return (
     <Formik
       initialValues={initialValues}
       enableReinitialize={true}
       onSubmit={onSubmit}
     >
-      {({ isValid, dirty, submitForm, isSubmitting, values }) => (
+      {() => (
         <>
           <header className="p-modal__header">
             <h2 className="p-modal__title u-no-margin--bottom" id="modal-title">
@@ -246,7 +212,7 @@ const PurchaseModal = () => {
                   </Notification>
                 )}
 
-                <FreeTrialRadio />
+                {product?.canBeTrialled ? <FreeTrialRadio /> : null}
 
                 {step === 1 ? (
                   <PaymentMethodForm setCardValid={setCardValid} />
@@ -265,40 +231,18 @@ const PurchaseModal = () => {
                 appearance="neutral"
                 aria-controls="purchase-modal"
                 style={{ textAlign: "center" }}
+                onClick={() => {
+                  setError(null);
+                }}
               >
                 Cancel
               </ActionButton>
 
-              {step === 1 ? (
-                <ActionButton
-                  disabled={
-                    (!userInfo && !dirty) ||
-                    !isValid ||
-                    (!isCardValid && values.freeTrial === "payNow") ||
-                    (values.freeTrial === "useFreeTrial" && !values.terms)
-                  }
-                  appearance="positive"
-                  className="col-small-2 col-medium-2 col-3 u-no-margin"
-                  style={{ textAlign: "center" }}
-                  onClick={submitForm}
-                  loading={isSubmitting}
-                >
-                  Continue
-                </ActionButton>
-              ) : (
-                <ActionButton
-                  className="col-small-2 col-medium-2 col-3 u-no-margin"
-                  appearance="positive"
-                  style={{ textAlign: "center" }}
-                  disabled={!values.terms}
-                  onClick={onPayClick}
-                  loading={
-                    purchaseMutation.isLoading || isPendingPurchaseLoading
-                  }
-                >
-                  Pay
-                </ActionButton>
-              )}
+              <PositiveButton
+                step={step}
+                isCardValid={isCardValid}
+                setError={setError}
+              />
             </Row>
           </footer>
         </>
