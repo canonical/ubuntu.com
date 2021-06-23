@@ -3,7 +3,6 @@ import {
   Row,
   Col,
   ActionButton,
-  CheckboxInput,
   Notification,
   Spinner,
 } from "@canonical/react-components";
@@ -19,6 +18,9 @@ import usePendingPurchase from "./APICalls/usePendingPurchase";
 import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
 import usePreview from "./APICalls/usePreview";
+import TotalSection from "./components/TotalSection";
+import FreeTrialRadio from "./components/FreeTrialRadio";
+import TermsCheckBox from "./components/TermsCheckBox";
 
 const getUserInfoFromVariables = (data, variables) => {
   return {
@@ -49,7 +51,6 @@ const getUserInfoFromVariables = (data, variables) => {
 
 const PurchaseModal = () => {
   const [error, setError] = useState(null);
-  const [areTermsChecked, setTermsChecked] = useState(false);
   const [isCardValid, setCardValid] = useState(false);
   const {
     data: userInfo,
@@ -71,8 +72,10 @@ const PurchaseModal = () => {
 
   const paymentMethodMutation = registerPaymentMethod();
   const purchaseMutation = usePurchase();
+  const { product } = useProduct();
 
   const initialValues = {
+    freeTrial: product?.canBeTrialled ? "useFreeTrial" : "payNow",
     email: userInfo?.customerInfo?.email ?? "",
     name: userInfo?.customerInfo?.name ?? "",
     buyingFor:
@@ -87,6 +90,7 @@ const PurchaseModal = () => {
     usState: userInfo?.customerInfo?.address?.state ?? "",
     caProvince: userInfo?.customerInfo?.address?.state ?? "",
     VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
+    terms: false,
   };
 
   useEffect(() => {
@@ -148,7 +152,7 @@ const PurchaseModal = () => {
     paymentMethodMutation.mutate(values, {
       onSuccess: (data, variables) => {
         window.accountId = data.accountId;
-        setTermsChecked(false);
+        actions.setValues({ terms: false });
         setStep(2);
         queryClient.setQueryData(
           "userInfo",
@@ -219,7 +223,7 @@ const PurchaseModal = () => {
       enableReinitialize={true}
       onSubmit={onSubmit}
     >
-      {({ isValid, dirty, submitForm, isSubmitting }) => (
+      {({ isValid, dirty, submitForm, isSubmitting, values }) => (
         <>
           <header className="p-modal__header">
             <h2 className="p-modal__title u-no-margin--bottom" id="modal-title">
@@ -243,35 +247,16 @@ const PurchaseModal = () => {
                     {error}
                   </Notification>
                 )}
+
+                <FreeTrialRadio />
+
                 {step === 1 ? (
                   <PaymentMethodForm setCardValid={setCardValid} />
                 ) : (
                   <PaymentMethodSummary setStep={setStep} />
                 )}
-                {step === 1 ? null : (
-                  <Row className="u-no-padding">
-                    <Col size="12">
-                      <CheckboxInput
-                        name="TermsCheckbox"
-                        onChange={(e) => {
-                          setTermsChecked(e.target.checked);
-                        }}
-                        label={
-                          <>
-                            I agree to the{" "}
-                            <a
-                              href="/legal/ubuntu-advantage-service-terms"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Ubuntu Advantage service terms
-                            </a>
-                          </>
-                        }
-                      />
-                    </Col>
-                  </Row>
-                )}
+                <TotalSection />
+                <TermsCheckBox step={step} />
               </>
             )}
           </div>
@@ -288,7 +273,12 @@ const PurchaseModal = () => {
 
               {step === 1 ? (
                 <ActionButton
-                  disabled={(!userInfo && !dirty) || !isValid || !isCardValid}
+                  disabled={
+                    (!userInfo && !dirty) ||
+                    !isValid ||
+                    (!isCardValid && values.freeTrial === "payNow") ||
+                    (values.freeTrial === "useFreeTrial" && !values.terms)
+                  }
                   appearance="positive"
                   className="col-small-2 col-medium-2 col-3 u-no-margin"
                   style={{ textAlign: "center" }}
@@ -302,7 +292,7 @@ const PurchaseModal = () => {
                   className="col-small-2 col-medium-2 col-3 u-no-margin"
                   appearance="positive"
                   style={{ textAlign: "center" }}
-                  disabled={!areTermsChecked}
+                  disabled={!values.terms}
                   onClick={onPayClick}
                   loading={
                     purchaseMutation.isLoading || isPendingPurchaseLoading

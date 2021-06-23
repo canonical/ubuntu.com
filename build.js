@@ -31,7 +31,7 @@ for (const [key, value] of Object.entries(entries)) {
     sourcemap: true,
     outfile: "static/js/dist/" + key + ".js",
     target: ["chrome58", "firefox57", "safari11", "edge16"],
-    define: { "process.env.NODE_ENV": '"production"' },
+    define: { "process.env.NODE_ENV": '"dev"' },
   };
 
   esbuild.build(options).then((result) => {
