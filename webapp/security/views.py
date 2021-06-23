@@ -47,6 +47,9 @@ def notice(notice_id):
             release_version = releases[codename]
             release_packages[release_version] = {}
             for package in pkgs:
+                if not package.get("is_visible", True):
+                    continue
+
                 name = package["name"]
                 if not package["is_source"]:
                     release_packages[release_version][name] = package

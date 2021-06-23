@@ -46,7 +46,7 @@
   </div>
 </section>
 
-<form class="js-shop-form" style="padding-top: 4rem;">
+<form class="js-shop-form" style="padding-top: 4rem">
   <div class="row">
     <ol class="p-stepped-list col-12">
 
@@ -113,7 +113,9 @@
           <strong class="js-summary-cost">${cost} /year</strong>
         </span>
         <button
-          class="p-button--positive u-no-margin--bottom u-float-right js-ua-shop-cta"
+          class="p-button--positive u-no-margin--bottom u-float-right"
+          id="buy-now-button"
+          aria-controls="purchase-modal"
         >
           Buy now
         </button>
@@ -122,9 +124,13 @@
   </section>
 </form>
 
-{% with type="purchase" %} 
-{% include 'advantage/_stripe-modal.html' %} 
-{% endwith %}
+<script
+  src="{{ versioned_static('js/dist/uaSubscribe.js') }}"
+  type="module"
+  defer
+></script>
+
+{% include '/advantage/subscribe/_purchase-modal.html' %}
 
 <script src="/static/js/dist/productSelector.js" type="module"></script>
 <script defer>
@@ -141,12 +147,15 @@
   };
 
   var accountId = "{% if account %}{{ account.id }}{% endif %}";
+  var isGuest = {% if account %}false{% else %}true{% endif %};
   var accountName = "{% if account %}{{ account.name }}{% endif %}";
   var previousPurchaseIds = {
     {% for period, id in previous_purchase_ids.items() %}
       "{{ period }}": "{{ id }}",
     {% endfor %}
   }
+
+  window.stripePublishableKey = "{{ stripe_publishable_key }}";
 </script>
 
 {% endblock %}

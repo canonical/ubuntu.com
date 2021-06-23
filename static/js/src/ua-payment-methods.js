@@ -1,4 +1,8 @@
-import { setPaymentMethod } from "./advantage/contracts-api.js";
+import {
+  getPurchase,
+  postInvoiceID,
+  setPaymentMethod,
+} from "./advantage/contracts-api.js";
 
 // initialise Stripe
 const stripe = window.Stripe(window.stripePublishableKey);
@@ -44,6 +48,9 @@ card.on("change", (event) => {
     updateButton.disabled = false;
     updateButton.focus();
     cardErrorElement.classList.add("u-hide");
+    paymentErrorElement.classList.add("u-hide");
+    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
+      "";
   } else {
     cardErrorElement.classList.add("u-hide");
   }
@@ -57,25 +64,33 @@ const previewSection = document.getElementById(
 );
 const editSection = document.getElementById("edit-payment-method-section");
 const cardErrorElement = document.getElementById("card-errors");
+const paymentErrorElement = document.getElementById("payment-errors");
+const paymentWarningElement = document.getElementById("payment-warnings");
+const paymentSuccessElement = document.getElementById("payment-success");
+const tryAgainButton = document.getElementById("try-again-button");
+const tryAgainSpinner = document.getElementById("try-again-spinner");
+
+if (window.pendingPurchaseId) {
+  paymentWarningElement.classList.remove("u-hide");
+
+  tryAgainButton.addEventListener("click", function () {
+    paymentErrorElement.classList.add("u-hide");
+    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
+      "";
+
+    tryAgainSpinner.classList.remove("u-hide");
+    this.disabled = true;
+
+    retryPayment(tryAgainSpinner);
+  });
+}
 
 editButton.addEventListener("click", () => {
   previewSection.classList.add("u-hide");
   editSection.classList.remove("u-hide");
+  paymentErrorElement.classList.add("u-hide");
+  paymentErrorElement.querySelector(".p-notification__message").innerHTML = "";
 });
-
-if (cancelButton)
-  cancelButton.addEventListener("click", () => {
-    previewSection.classList.remove("u-hide");
-    editSection.classList.add("u-hide");
-  });
-
-const handleError = (error) => {
-  console.error(error);
-  updateButton.classList.remove("is-processing");
-  updateButton.innerHTML = "Update";
-  updateButton.disabled = false;
-  if (cancelButton) cancelButton.disabled = false;
-};
 
 updateButton.addEventListener("click", function () {
   this.classList.add("is-processing");
@@ -89,15 +104,148 @@ updateButton.addEventListener("click", function () {
       card: card,
     })
     .then((result) => {
-      if (result.paymentMethod) {
-        setPaymentMethod(window.accountId, result.paymentMethod.id).then(() => {
-          location.reload();
-        });
-      } else {
-        handleError(result.error);
+      if (!result.paymentMethod) {
+        handleError();
+        return;
       }
+
+      handlePaymentMethod(result);
     })
-    .catch((error) => {
-      handleError(error);
+    .catch(() => {
+      handleError();
     });
 });
+
+if (cancelButton)
+  cancelButton.addEventListener("click", () => {
+    previewSection.classList.remove("u-hide");
+    editSection.classList.add("u-hide");
+    paymentErrorElement.classList.add("u-hide");
+    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
+      "";
+  });
+
+const handleSuccess = (message) => {
+  paymentErrorElement.classList.add("u-hide");
+  paymentWarningElement.classList.add("u-hide");
+  paymentSuccessElement.classList.remove("u-hide");
+  paymentSuccessElement.querySelector(
+    ".p-notification__message"
+  ).innerHTML = `${message}. Reloading page...`;
+};
+
+const handleError = () => {
+  updateButton.classList.remove("is-processing");
+  updateButton.innerHTML = "Update";
+  updateButton.disabled = false;
+  if (cancelButton) cancelButton.disabled = false;
+};
+
+const handlePaymentMethodErrors = (message) => {
+  paymentErrorElement.querySelector(
+    ".p-notification__message"
+  ).innerHTML = `<strong>${message}</strong> Check the details and try again. Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.`;
+  paymentErrorElement.classList.remove("u-hide");
+};
+
+const handlePaymentMethod = (result) => {
+  setPaymentMethod(window.accountId, result.paymentMethod.id).then((data) => {
+    if (data.errors) {
+      handlePaymentMethodErrors("There was an error with your card.");
+      handleError();
+
+      return;
+    }
+
+    if (!window.pendingPurchaseId) {
+      handleSuccess("Card updated");
+      setTimeout(function () {
+        location.reload();
+      }, 2000);
+
+      return;
+    }
+
+    retryPayment(updateButton);
+  });
+};
+
+const requiresAuthentication = (invoice) => {
+  if (invoice.pi_decline_code === "authentication_required") {
+    return true;
+  }
+
+  if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
+    return true;
+  }
+
+  return false;
+};
+
+const postInvoice = (invoice, element) => {
+  postInvoiceID("purchase", window.pendingPurchaseId, invoice.id).then(
+    (data) => {
+      resetElement(element);
+
+      if (data.errors) {
+        handlePaymentMethodErrors("There was an error with the payment.");
+      } else {
+        handleSuccess("Payment successful");
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
+      }
+    }
+  );
+};
+
+const authenticate_3ds = (invoice, element) => {
+  stripe.confirmCardPayment(invoice.pi_secret).then(function (data) {
+    resetElement(element);
+
+    if (data.error) {
+      handlePaymentMethodErrors("There was an error with the payment.");
+    } else {
+      handleSuccess("Payment successful");
+      setTimeout(function () {
+        location.reload();
+      }, 2000);
+    }
+  });
+};
+
+const retryPayment = (element) => {
+  getPurchase(window.pendingPurchaseId).then((purchase) => {
+    let invoice;
+
+    if (purchase.stripeInvoices && purchase.stripeInvoices.length > 0) {
+      invoice = purchase.stripeInvoices[0];
+    }
+
+    if (!invoice) {
+      handlePaymentMethodErrors("There was an error with the payment.");
+      return;
+    }
+
+    if (invoice.pi_status === "requires_payment_method") {
+      postInvoice(invoice, element);
+      return;
+    }
+
+    if (requiresAuthentication(invoice)) {
+      authenticate_3ds(invoice, element);
+      return;
+    }
+
+    handlePaymentMethodErrors("There was an error with the payment.");
+  });
+};
+
+const resetElement = (element) => {
+  if (element.tagName === "BUTTON") {
+    handleError();
+    return;
+  }
+
+  element.classList.add("u-hide");
+};

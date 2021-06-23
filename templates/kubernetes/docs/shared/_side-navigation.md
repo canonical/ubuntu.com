@@ -18,6 +18,7 @@
 - [Azure integration](/kubernetes/docs/azure-integration)
 - [GCP integration](/kubernetes/docs/gcp-integration)
 - [OpenStack integration](/kubernetes/docs/openstack-integration)
+- [vSphere integration](/kubernetes/docs/vsphere-integration)
 - [LXD](/kubernetes/docs/install-local)
 
 ## Networking

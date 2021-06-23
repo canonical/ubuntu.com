@@ -164,6 +164,9 @@ openstack:
       path: /openstack/tco-calculator
     - title: Install
       path: /openstack/install
+    - title: Docs
+      path: /openstack/docs
+      persist: True
     - title: Thank you
       path: /openstack/newsletter-thank-you
       hidden: True
@@ -296,8 +299,6 @@ ai:
       path: /ai
     - title: What is Kubeflow
       path: /ai/what-is-kubeflow
-    - title: Install Kubeflow
-      path: /ai/install-kubeflow
     - title: Services
       path: /ai/services
 
@@ -357,6 +358,9 @@ kubernetes:
           hidden: True
         - title: Azure integration
           path: /kubernetes/docs/azure-integration
+          hidden: True
+        - title: vSphere integration
+          path: /kubernetes/docs/vsphere-integration
           hidden: True
         - title: CNI overview
           path: /kubernetes/docs/cni-overview
@@ -1556,8 +1560,8 @@ robotics:
   children:
     - title: Overview
       path: /robotics
-    - title: ESM
-      path: /robotics/esm
+    - title: ROS ESM
+      path: /robotics/ros-esm
     - title: What is ROS
       path: /robotics/what-is-ros
     - title: Community
@@ -1570,8 +1574,13 @@ cube:
   children:
     - title: Overview
       path: /cube
+
     - title: Microcerts
       path: /cube/microcerts
+
+    - title: Study
+      path: /cube/study
+      persist: True
 
     - title: Contact us
       path: /cube/contact-us
@@ -1611,3 +1620,32 @@ ubuntu1604:
       path: /16-04
     - title: Azure
       path: /16-04/azure
+
+telco:
+  title: Telco
+  path: /telco
+
+  children:
+    - title: Overview
+      path: /telco
+    - title: Onboarding Network Functions
+      path: /telco/osm/onboarding-network-functions
+
+certification:
+  title: Hardware
+  path: /certified
+  persist: True
+
+  children:
+    - title: Overview
+      path: /certified
+    - title: Laptops
+      path: /certified/laptops
+    - title: Desktops
+      path: /certified/desktops
+    - title: Servers
+      path: /certified/servers
+    - title: Devices
+      path: /certified/devices
+    - title: SoCs
+      path: /certified/socs

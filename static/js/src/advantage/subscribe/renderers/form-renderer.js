@@ -1,6 +1,6 @@
 import versionDetails from "./version-details";
 
-const formatter = new Intl.NumberFormat("en-US", {
+export const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
@@ -41,20 +41,29 @@ function renderPublicClouds(state, sections) {
   const type = state.type;
   const awsSection = form.querySelector("#aws-public-cloud");
   const azureSection = form.querySelector("#azure-public-cloud");
+  const gcpSection = form.querySelector("#gcp-public-cloud");
+
   // Show the public cloud section
   if (type === "aws") {
     awsSection.classList.remove("u-hide");
     azureSection.classList.add("u-hide");
+    gcpSection.classList.add("u-hide");
   } else if (type === "azure") {
-    awsSection.classList.add("u-hide");
     azureSection.classList.remove("u-hide");
+    awsSection.classList.add("u-hide");
+    gcpSection.classList.add("u-hide");
+  } else if (type === "gcp") {
+    gcpSection.classList.remove("u-hide");
+    awsSection.classList.add("u-hide");
+    azureSection.classList.add("u-hide");
   } else {
     awsSection.classList.add("u-hide");
     azureSection.classList.add("u-hide");
+    gcpSection.classList.add("u-hide");
   }
 
   // Disable the rest of the form
-  if (type === "aws" || type === "azure") {
+  if (type === "aws" || type === "azure" || type === "gcp") {
     sections.forEach((section) => {
       if (section.dataset.step !== "type") {
         section.classList.add("u-disable");
@@ -152,7 +161,7 @@ function renderSummary(state) {
   const saveMessage = summarySection.querySelector("#summary-save-with-annual");
   const billingSection = summarySection.querySelector(".js-summary-billing");
   const billingSelect = summarySection.querySelector("select#billing-period");
-  const buyButton = summarySection.querySelector(".js-ua-shop-cta");
+  const buyButton = summarySection.querySelector("#buy-now-button");
 
   if (!state.product.ok || quantity <= 0) {
     summarySection.classList.add("p-shop-cart--hidden");
@@ -180,9 +189,9 @@ function renderSummary(state) {
     // We add the data to the button so the modal can pick it up
     buyButton.classList.remove("u-disable");
     const productObject = JSON.stringify(state.product);
-    buyButton.dataset.cart = `[{"listingID": "${state.product.id}", "product": ${productObject}, "quantity": ${quantity}}]`;
+    buyButton.dataset.product = productObject;
+    buyButton.dataset.quantity = quantity;
     buyButton.dataset.accountId = window.accountId;
-    buyButton.dataset.subtotal = price * quantity;
     buyButton.dataset.previousPurchaseId = previous_purchase_id;
   }
 

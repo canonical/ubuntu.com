@@ -14,7 +14,7 @@
   <div class="row p-takeover-animation" id="takeover-animaition">
     <div class="col-7 u-vertically-center">
       <h1 id="takeover-title">What's new in<br>Ubuntu {{ releases.latest.short_version }}?</h1>
-      <h4 id="takeover-subtitle">Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.</h4>
+      <p class="p-heading--four" id="takeover-subtitle">Introducing the Ubuntu Desktop for Raspberry Pi, the latest desktop features and micro clouds.</p>
       <div id="takeover-ctas">
         <p><a id="takeover-primary-url" href="/download" class="p-button--positive">Get Ubuntu {{ releases.latest.short_version }}</a></p>
         <p>
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="col-5 u-vertically-center u-align--center u-align--left-medium u-hide--small">
-      <img id="takeover-image" src="" width="200" alt="" />
+      <img id="takeover-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width="200" alt="" />
     </div>
   </div>
 </section>
@@ -34,8 +34,8 @@
   <div class="row">
     <div class="p-heading-icon">
       <div class="p-heading-icon__header">
-        <img src="https://assets.ubuntu.com/v1/89451f56-centos.png" alt="CentOS users, 6 things to know when considering a migration to Ubuntu LTS" class="p-heading-icon__img" >
-        <h4 class="p-heading-icon__title" style="padding-top:0.4rem"><a href="/blog/migrating-to-ubuntu-lts-six-facts-for-centos-users">CentOS users, 6 things to know when considering a migration to Ubuntu LTS&nbsp;&rsaquo;</a></h4>
+        <img src="https://assets.ubuntu.com/v1/89451f56-centos.png" alt="" class="p-heading-icon__img" >
+        <p class="p-heading--four p-heading-icon__title" style="padding-top:0.4rem"><a href="/blog/migrating-to-ubuntu-lts-six-facts-for-centos-users">CentOS users, 6 things to know when considering a migration to Ubuntu LTS&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </div>
@@ -116,7 +116,7 @@
     <div class="col-4 u-vertically-center u-align--left u-hide--small">
       <div>
         <p>
-          <a class="p-link--external" href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">
+          <a class="p-link--external" href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" aria-label="Visit the PDF file for 2020 HackerEarth Developer Survey">
             The 2020 HackerEarth Developer Survey
           </a>
         </p>
@@ -1479,8 +1479,12 @@
     takeover.className += classNameString;
 
     // Set language attributes
-    takeover.setAttribute("lang", selectedTakeover.lang);
-    takeover.setAttribute("lang-skip", selectedTakeover.lang_skip);
+    if (selectedTakeover.lang) {
+      takeover.setAttribute("lang", selectedTakeover.lang);
+    }
+    if (selectedTakeover.lang_skip) {
+      takeover.setAttribute("lang-skip", selectedTakeover.lang_skip);
+    }
 
     // Set takeover content
     title.textContent = selectedTakeover.title;
@@ -1519,10 +1523,6 @@
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/general" data-form-id="1257" data-lp-id="2154" data-return-url="https://www.ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
-
-<style media="screen">
-  .p-inline-images__item { margin: 1.5rem; }
-</style>
 
 {% endblock content %}
 {% endblock outer_content %}

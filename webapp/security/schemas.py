@@ -78,6 +78,7 @@ class NoticePackage(Schema):
     version = String(required=True)
     description = String()
     is_source = Boolean(required=True)
+    is_visible = Boolean()
     source_link = String(allow_none=True)
     version_link = String(allow_none=True)
     pocket = Pocket(required=False)

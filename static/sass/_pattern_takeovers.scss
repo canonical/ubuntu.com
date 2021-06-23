@@ -4,19 +4,18 @@
   .p-takeover--#{$name} {
     @extend %vf-strip;
 
-    background-blend-mode: multiply, multiply, normal, normal;
-
     @content;
 
+    align-items: center;
+    background-blend-mode: multiply, multiply, normal, normal;
     background-position: top right, top left, right bottom -1px, left top;
     background-repeat: no-repeat;
     background-size: 74% 99.83%, 68% 91%, 103.8% 20.26%, 100% 99.8%;
-    margin: 0;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
     // 9 + 6 + 20em (default takeover)
     height: 35rem;
+    justify-content: flex-start;
+    margin: 0;
 
     @media (max-width: $breakpoint-medium) {
       background-position: top right, top left, right bottom -1px, left top;
@@ -28,10 +27,6 @@
 
     h1 {
       padding-top: 0;
-    }
-
-    p:last-of-type {
-      margin-bottom: 0 !important;
     }
 
     .u-align--left-medium {

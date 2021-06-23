@@ -64,15 +64,23 @@
 
 @mixin ubuntu-card-radio {
   .radio-wrapper--staggering {
+    column-gap: 1.5rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 1.5rem;
 
     @media only screen and (min-width: $breakpoint-medium) {
       display: flex;
+
       > div {
-        flex-grow: 1;
+        display: flex;
         flex-basis: 0;
+        flex-direction: column;
+        flex-grow: 1;
+
+        > .image-wrapper {
+          height: 48px;
+          margin-bottom: 2.4rem;
+        }
       }
     }
   }
@@ -82,9 +90,32 @@
     flex-direction: column;
 
     @media only screen and (min-width: $breakpoint-medium) {
+      column-gap: 1.5rem;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      column-gap: 1.5rem;
+    }
+  }
+
+  .p-card--radio--support {
+    @extend .p-card--radio;
+
+    > label {
+      font-weight: 400;
+
+      > small {
+        font-weight: normal;
+      }
+    }
+
+    > img {
+      height: 60px;
+      margin: 0 auto;
+      max-height: none;
+      width: 60px;
+    }
+
+    > p {
+      text-align: center;
     }
   }
 
@@ -104,25 +135,25 @@
 
     .p-card__title {
       &--is-new {
+        align-items: center;
         display: flex;
         justify-content: space-between;
-        align-items: center;
 
         &::after {
-          content: "New";
-          font-size: 1rem;
-          display: inline-block;
-          padding: 0 0.5rem;
-          color: white;
-          border-radius: 2px;
           background-color: #0e8420;
+          border-radius: 2px;
+          color: white;
+          content: "New";
+          display: inline-block;
+          font-size: 1rem;
+          padding: 0 0.5rem;
         }
       }
     }
 
     img {
       display: block;
-      margin: 1.2rem auto 2.4rem;
+      margin: 1.2rem auto 0;
       max-height: 48px;
       max-width: 100%;
       pointer-events: none;
@@ -134,14 +165,14 @@
 
       & + label {
         background-color: transparent;
-        margin: 0;
         display: flex;
         flex-direction: column;
+        margin: 0;
+        max-width: none;
         padding: 0;
         position: initial;
         text-align: center;
         width: 100%;
-        max-width: none;
       }
 
       & + label::after {
@@ -170,6 +201,7 @@
 
   .p-card--radio--version {
     @extend .p-card--radio;
+
     padding: 3rem 1rem;
 
     h4 {
@@ -178,24 +210,24 @@
 
     &.is-selected {
       background-color: $color-light;
-      position: relative;
       overflow: visible;
+      position: relative;
 
       // Arrow
       @media (min-width: $breakpoint-medium) {
         &::after {
-          content: "";
-          display: block;
-          position: absolute;
-          height: 2rem;
-          width: 2rem;
-          left: calc(50% - 1rem);
-          bottom: -41px;
           background: $color-light;
           border-left: solid 1px $color-mid-light;
           border-top: solid 1px $color-mid-light;
+          bottom: -41px;
+          content: "";
+          display: block;
+          height: 2rem;
+          left: calc(50% - 1rem);
           pointer-events: none;
+          position: absolute;
           transform: rotate(45deg) skew(-10deg, -10deg);
+          width: 2rem;
           z-index: 5;
         }
       }
@@ -212,37 +244,36 @@
 
     [type="radio"] {
       & + label {
-        text-align: left;
         height: 100%;
+        text-align: left;
       }
     }
 
     span {
-      position: relative;
-      padding-left: 2rem;
       margin-top: auto;
+      padding-left: 2rem;
+      position: relative;
 
       &::before,
       &::after {
-        position: absolute;
+        background: white;
+        border-radius: 50%;
         content: "";
+        position: absolute;
         transition-duration: 0.333s;
         transition-property: background-color, border-color;
         transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-        position: absolute;
-        border-radius: 50%;
-        background: white;
       }
 
       &::before {
-        height: 1rem;
-        width: 1rem;
-        margin-right: 1rem;
-        border-radius: 50%;
         border: solid 1px #0000008f;
+        border-radius: 50%;
+        height: 1rem;
         left: 0;
+        margin-right: 1rem;
         outline-offset: 1px;
         top: 0.2rem;
+        width: 1rem;
       }
       &::after {
         height: 0.375rem;
@@ -255,29 +286,6 @@
     &.is-selected span::before {
       background-color: #06c;
       border-color: #06c;
-    }
-  }
-
-  .p-card--radio--support {
-    @extend .p-card--radio;
-
-    > label {
-      font-weight: 400;
-
-      > small {
-        font-weight: normal;
-      }
-    }
-
-    > img {
-      margin: 0 auto;
-      max-height: none;
-      height: 60px;
-      width: 60px;
-    }
-
-    > p {
-      text-align: center;
     }
   }
 }

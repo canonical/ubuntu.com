@@ -56,7 +56,7 @@ def advantage_view(**kwargs):
     personal_account = None
     new_subscription_id = None
     new_subscription_start_date = None
-    payment_method_warning = None
+    pending_purchase_id = None
 
     enterprise_contracts = {}
     previous_purchase_ids = {"monthly": "", "yearly": ""}
@@ -95,9 +95,8 @@ def advantage_view(**kwargs):
             if status not in ["active", "locked"]:
                 continue
 
-            # If there are any pending purchase for a sub (active or locked)
-            # we show the payment method warning.
-            payment_method_warning = subscription.get("pendingPurchases")
+            if subscription.get("pendingPurchases"):
+                pending_purchase_id = subscription.get("pendingPurchases")[0]
 
             previous_purchase_ids[period] = subscription.get("lastPurchaseID")
 
@@ -216,7 +215,16 @@ def advantage_view(**kwargs):
 
             contract["productID"] = product_name
             contract["is_detached"] = False
-            contract["machineCount"] = "-"
+            contract["machineCount"] = 0
+            contract["rowMachineCount"] = 0
+
+            allowances = contract_info.get("allowances")
+            if (
+                allowances
+                and len(allowances) > 0
+                and allowances[0]["metric"] == "units"
+            ):
+                contract["rowMachineCount"] = allowances[0]["value"]
 
             if product_name in yearly_purchased_products:
                 purchased_product = yearly_purchased_products[product_name]
@@ -279,7 +287,7 @@ def advantage_view(**kwargs):
         accounts=accounts,
         monthly_information=monthly_info,
         total_enterprise_contracts=total_enterprise_contracts,
-        payment_method_warning=payment_method_warning,
+        pending_purchase_id=pending_purchase_id,
         enterprise_contracts=enterprise_contracts,
         previous_purchase_ids=previous_purchase_ids,
         personal_account=personal_account,
@@ -388,6 +396,18 @@ def advantage_payment_methods_view(**kwargs):
     except UAContractsUserHasNoAccount as error:
         raise UAContractsAPIErrorView(error)
 
+    subscriptions = advantage.get_account_subscriptions(
+        account_id=account["id"],
+        marketplace="canonical-ua",
+        filters={"status": "locked"},
+    )
+
+    pending_purchase_id = ""
+    for subscription in subscriptions:
+        if subscription.get("pendingPurchases"):
+            pending_purchase_id = subscription.get("pendingPurchases")[0]
+            break
+
     account_info = advantage.get_customer_info(account["id"])
     customer_info = account_info["customerInfo"]
     default_payment_method = customer_info.get("defaultPaymentMethod")
@@ -397,6 +417,7 @@ def advantage_payment_methods_view(**kwargs):
         stripe_publishable_key=stripe_publishable_key,
         is_test_backend=is_test_backend,
         default_payment_method=default_payment_method,
+        pending_purchase_id=pending_purchase_id,
         account_id=account["id"],
     )
 
@@ -507,7 +528,7 @@ def cancel_advantage_subscriptions(**kwargs):
     )
 
     if not monthly_subscriptions:
-        return flask.jsonify({"error": "no monthly subscriptions found"}), 400
+        return flask.jsonify({"errors": "no monthly subscriptions found"}), 400
 
     monthly_subscription = monthly_subscriptions[0]
 
@@ -548,6 +569,7 @@ def post_anonymised_customer_info(**kwargs):
     token = kwargs.get("token")
     token_type = kwargs.get("token_type")
     account_id = kwargs.get("account_id")
+    name = kwargs.get("name")
     address = kwargs.get("address")
     tax_id = kwargs.get("tax_id")
 
@@ -555,7 +577,9 @@ def post_anonymised_customer_info(**kwargs):
         session, token, token_type=token_type, api_url=api_url
     )
 
-    return advantage.put_anonymous_customer_info(account_id, address, tax_id)
+    return advantage.put_anonymous_customer_info(
+        account_id, name, address, tax_id
+    )
 
 
 @advantage_checks(check_list=["need_user"])
@@ -653,7 +677,12 @@ def post_stripe_invoice_id(tx_type, tx_id, invoice_id, **kwargs):
         session, token, token_type=token_type, api_url=api_url
     )
 
-    return advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
+    response = advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
+
+    if response is None:
+        return flask.jsonify({"message": "invoice updated"})
+
+    return response
 
 
 @advantage_checks(check_list=["need_user_or_guest"])
@@ -841,40 +870,28 @@ def save_guest_trial(**kwargs):
 
 
 def _prepare_monthly_info(monthly_info, subscription, advantage):
-    purchased_products = subscription["purchasedProductListings"]
-    purchased_products_no = len(purchased_products)
+    purchased_products = subscription.get("purchasedProductListings")
+    subscription_info = subscription.get("subscription")
+    subscription_id = subscription_info.get("id")
+    is_renewing = subscription_info.get("autoRenew", False)
 
-    monthly_info["total_subscriptions"] += purchased_products_no
+    monthly_info["total_subscriptions"] += len(purchased_products)
     monthly_info["has_monthly"] = True
-    monthly_info["id"] = subscription["subscription"]["id"]
-    monthly_info["is_auto_renewal_enabled"] = subscription["subscription"].get(
-        "autoRenew", False
-    )
+    monthly_info["id"] = subscription_id
+    monthly_info["is_auto_renewal_enabled"] = is_renewing
 
-    last_purchase_id = subscription["lastPurchaseID"]
-    last_purchase = advantage.get_purchase(last_purchase_id)
+    if is_renewing:
+        renewal_info = advantage.get_subscription_auto_renewal(subscription_id)
+        last_renewal = parse(renewal_info["subscriptionStartOfCycle"])
+        next_renewal = parse(renewal_info["subscriptionEndOfCycle"])
+        total = renewal_info["total"] / 100
+        currency = renewal_info["currency"]
 
-    monthly_info["last_payment_date"] = parse(
-        last_purchase["createdAt"]
-    ).strftime("%d %B %Y")
-    monthly_info["next_payment"]["date"] = parse(
-        subscription["subscription"]["endOfCycle"]
-    ).strftime("%d %B %Y")
-    monthly_info["next_payment"]["ammount"] = _get_subscription_payment_total(
-        subscription["purchasedProductListings"]
-    )
-
-
-def _get_subscription_payment_total(products_listings):
-    total = 0
-
-    for listing in products_listings:
-        total += listing["productListing"]["price"]["value"] * listing["value"]
-
-    return (
-        f"{total / 100} "
-        f'{products_listings[0]["productListing"]["price"]["currency"]}'
-    )
+        monthly_info["last_payment_date"] = last_renewal.strftime("%d %B %Y")
+        monthly_info["next_payment"] = {
+            "date": next_renewal.strftime("%d %B %Y"),
+            "amount": f"{total} {currency}",
+        }
 
 
 def _make_renewal(advantage, contract_info):
@@ -884,7 +901,7 @@ def _make_renewal(advantage, contract_info):
         return None
 
     sorted_renewals = sorted(
-        (r for r in renewals if r["status"] != "closed"),
+        (r for r in renewals if r["status"] not in ["lost", "closed"]),
         key=lambda renewal: parse(renewal["start"]),
     )
 

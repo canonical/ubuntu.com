@@ -40,7 +40,10 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_buttons";
 @import "pattern_calculator";
 @import "pattern_card";
+@import "pattern_certification-results";
 @import "pattern_chart";
+@import "pattern_component-details-table";
+@import "pattern_component-table";
 @import "pattern_contact-modal";
 @import "pattern_contextual-footer";
 @import "pattern_cube-animation";
@@ -53,6 +56,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_gaming";
 @import "pattern_grid";
 @import "pattern_footer";
+@import "pattern_hardware-details-table";
 @import "pattern_heading-icon";
 @import "pattern_icons";
 @import "pattern_inline-images";
@@ -91,6 +95,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-buttons;
 @include ubuntu-p-calculator;
 @include ubuntu-p-cards;
+@include ubuntu-p-certification-results;
 @include ubuntu-p-contact-modal;
 @include ubuntu-p-contextual-footer;
 @include ubuntu-p-cube-animation;
@@ -337,17 +342,23 @@ summary {
   }
 }
 
+.u-inline--child {
+  display: inline;
+
+  > * {
+    display: inline;
+  }
+}
+
 .p-table-expanding__panel {
   @extend %vf-card;
   @extend %vf-is-bordered;
   @extend %vf-has-round-corners;
 
   background-color: $color-light;
-
   border-left: none;
   border-right: none;
   border-top-color: $color-mid-x-light;
-
   margin-bottom: 0;
   padding: 3rem 0 !important;
 
@@ -371,9 +382,9 @@ summary {
     display: flex;
 
     > input {
+      margin-right: 1rem;
       min-width: 0;
       width: 4rem;
-      margin-right: 1rem;
     }
   }
 }
@@ -391,29 +402,28 @@ summary {
 }
 
 .advantage-table-instruction {
-  margin: 1rem 0;
-
   display: grid;
-  grid-template-columns: 1fr 2fr;
   grid-column-gap: 2rem;
   grid-row-gap: 0.5rem;
+  grid-template-columns: 1fr 2fr;
+  margin: 1rem 0;
 
   > span {
-    grid-column: 1;
     color: $color-mid-dark;
+    grid-column: 1;
   }
 
   > code,
   > a,
   > p {
-    grid-column: 2;
     align-self: flex-start;
+    grid-column: 2;
     padding-left: 0;
   }
 
   > p {
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
   > hr {
@@ -556,10 +566,10 @@ summary {
   .p-table-title {
     @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
       &::after {
-        display: block;
-        content: "";
         align-self: center;
         border-right: 1px solid $color-mid-light;
+        content: "";
+        display: block;
         height: calc(100% - (2 * 0.5rem));
       }
     }
@@ -726,14 +736,6 @@ summary {
 
 .u-inline {
   display: inline;
-}
-
-.u-inline--child {
-  display: inline;
-
-  > * {
-    display: inline;
-  }
 }
 
 // XXX Steve: workaround for image template wrapping image in `div`
@@ -984,6 +986,37 @@ body {
   opacity: 0.33;
 }
 
+#payment-modal-form {
+  > .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #card-element {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.56);
+    border-radius: 0;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 12%);
+    padding: calc(0.4rem - 1px) 0.5rem;
+
+    &.StripeElement--focus {
+      outline: 0.1875rem solid #2e96ff;
+      outline-offset: -0.1875rem;
+
+      &.StripeElement--invalid {
+        outline-color: $color-negative;
+      }
+    }
+
+    &.StripeElement--invalid {
+      background-image: url("#{$assets-path}4b0cd7fc-icon-error.svg");
+      background-position: calc(100% - 0.5rem) 50%;
+      background-repeat: no-repeat;
+      border-color: $color-negative;
+    }
+  }
+}
+
 .card-management-section {
   height: 600px;
 
@@ -996,8 +1029,8 @@ body {
   }
 
   .current-payment-method {
-    display: flex;
     align-items: center;
+    display: flex;
     margin-bottom: 1.1rem;
 
     > p {
@@ -1007,11 +1040,11 @@ body {
   }
 
   .payment-card-logo {
-    height: 1.7rem;
-    margin-right: 0.5rem;
     background-color: $color-x-light;
     border: 1px solid $color-mid-light;
     border-radius: 2px;
+    height: 1.7rem;
+    margin-right: 0.5rem;
   }
 }
 

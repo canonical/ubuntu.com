@@ -18,8 +18,8 @@ let entries = {
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
   productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
-  "ua-entitlements-callout":
-    "./static/js/src/advantage/entitlements-callout.js",
+  uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
+  "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
 };
 
 for (const [key, value] of Object.entries(entries)) {

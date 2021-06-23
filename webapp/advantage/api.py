@@ -63,13 +63,14 @@ class UAContractsAPI:
                 method="get", path=f"v1/accounts/{account_id}/contracts"
             )
         except HTTPError as error:
-            if self.is_for_view:
-                if error.response.status_code == 401:
+            if error.response.status_code == 401:
+                if self.is_for_view:
                     raise UAContractsAPIAuthErrorView(error)
                 raise UAContractsAPIAuthError(error)
 
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
+
             raise UAContractsAPIError(error)
 
         return response.json().get("contracts", [])
@@ -82,13 +83,14 @@ class UAContractsAPI:
                 json={},
             )
         except HTTPError as error:
-            if self.is_for_view:
-                if error.response.status_code == 401:
+            if error.response.status_code == 401:
+                if self.is_for_view:
                     raise UAContractsAPIAuthErrorView(error)
                 raise UAContractsAPIAuthError(error)
 
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
+
             raise UAContractsAPIError(error)
 
         return response.json().get("contractToken")
@@ -115,7 +117,12 @@ class UAContractsAPI:
             )
         except HTTPError as error:
             if error.response.status_code == 401:
+                if self.is_for_view:
+                    raise UAContractsAPIAuthErrorView(error)
                 raise UAContractsAPIAuthError(error)
+
+            if self.is_for_view:
+                raise UAContractsAPIErrorView(error)
 
             raise UAContractsAPIError(error)
 
@@ -150,12 +157,12 @@ class UAContractsAPI:
 
         return response.json()
 
-    def put_anonymous_customer_info(self, account_id, address, tax_id):
+    def put_anonymous_customer_info(self, account_id, name, address, tax_id):
         try:
             response = self._request(
                 method="put",
                 path=f"v1/accounts/{account_id}/customer-info/stripe",
-                json={"address": address, "taxID": tax_id},
+                json={"address": address, "name": name, "taxID": tax_id},
             )
         except HTTPError as error:
             if error.response.status_code == 401:
@@ -194,7 +201,7 @@ class UAContractsAPI:
 
             raise UAContractsAPIError(error)
 
-        return response.json()
+        return response.json() if response.status_code != 200 else None
 
     def get_renewal(self, renewal_id):
         try:
@@ -288,13 +295,15 @@ class UAContractsAPI:
                 method="get", path=f"v1/purchase/{purchase_id}"
             )
         except HTTPError as error:
-            if self.is_for_view:
-                if error.response.status_code == 401:
+            if error.response.status_code == 401:
+                if self.is_for_view:
                     raise UAContractsAPIAuthErrorView(error)
-                raise UAContractsAPIAuthError(error)
+                else:
+                    raise UAContractsAPIAuthError(error)
 
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
+
             raise UAContractsAPIError(error)
 
         return response.json()
@@ -404,6 +413,24 @@ class UAContractsAPI:
             raise UAContractsAPIError(error)
 
         return response.json() if response.status_code != 200 else None
+
+    def get_subscription_auto_renewal(self, subscription_id: str) -> dict:
+        try:
+            response = self._request(
+                method="get",
+                path=f"v1/subscription/{subscription_id}/auto-renewal",
+            )
+        except HTTPError as error:
+            if error.response.status_code == 401:
+                if self.is_for_view:
+                    raise UAContractsAPIAuthErrorView(error)
+                raise UAContractsAPIAuthError(error)
+
+            if self.is_for_view:
+                raise UAContractsAPIErrorView(error)
+            raise UAContractsAPIError(error)
+
+        return response.json()
 
     def post_subscription_auto_renewal(
         self, subscription_id: str, should_auto_renew: bool

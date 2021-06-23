@@ -7,6 +7,83 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1eqHK0hc9v7Mn-XV36QRyNkJenTXgBQR_-RULKm5rZ5o/edit{% endblock meta_copydoc %}
 
 {% block content %}
+<style>
+
+  .bar-chart-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative; /* to position separator */
+  }
+
+  .bar-chart-container > .bar-chart:first-child::after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    border-right: 1px dotted #d2d2d2;
+    top: 0;
+    right: 50%;
+  }
+
+  .bar-chart {
+    width: 200px;
+  }
+
+  .bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 150px;
+    margin: 1rem;
+  }
+
+  .bar {
+    width: 50px;
+    height: 150px;
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  .bar.ex-bar {
+    background-color: #bdcddd;
+    border: 1px solid #3d6c6c;
+  }
+
+  .bar.tco-bar {
+    background-color: #b6dabc;
+    border:1px solid #64b070;
+  }
+
+  #hours__range {
+    width: 400px;
+  }
+
+  .js-cloud-price-slider {
+    position: relative;
+    padding: 1rem;
+    margin-top: 0.1rem;
+    background-color: #f5f5f5;
+    border: 1px dotted #d2d2d2;
+  }
+
+  .js-cloud-price-slider::before {
+    content: "Low";
+    position: absolute;
+    left: 10px;
+    top: 18px;
+    font-size: 12px;
+  }
+
+  .js-cloud-price-slider::after {
+    content: "High";
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    font-size: 12px;
+  }
+
+
+</style>
 <section class="p-strip--suru-bottomed">
   <div class="row u-equal-height">
     <div class="col-8">
@@ -19,8 +96,8 @@
         </a>
       </p>
       <p>
-        <a href="/engage/redhat-openstack-comparison-whitepaper">
-          Read the whitepaper &mdash; "Comparing Red Hat OpenStack Platform and Canonical's Charmed OpenStack"&nbsp;&rsaquo;
+        <a href="/engage/multi-cloud-business-guide">
+          Read the whitepaper &mdash; "A business guide to multi-cloud"&nbsp;&rsaquo;
         </a>
       </p>
     </div>
@@ -140,12 +217,11 @@
       </li>
       <li class="p-inline-images__item">
         {{ image (
-          url="https://assets.ubuntu.com/v1/cf1920c8-1200px-University_of_Cape_Town_logo.svg.png",
-          alt="University of capetown",
-          width="130",
-          height="131",
+          url="https://assets.ubuntu.com/v1/2d2e1ab2-king-abdullah-university-of-science-kaust-logo.png",
+          alt="",
+          width="160",
+          height="81",
           hi_def=True,
-          attrs={"class": "p-inline-images__logo"},
           loading="auto"
           ) | safe
         }}
@@ -256,15 +332,64 @@
 <section class="p-strip">
   <div class="row u-vertically-center">
     <div class="col-6 u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/ba7bf5ff-Openstack-cloud-optimisation.svg",
-        alt="",
-        width="390",
-        height="174",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+      <div class="bar-chart-container">
+        <div class="bar-chart">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+          alt="",
+          width="100",
+          height="70",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <h4>Public Cloud</h4>
+        <div class="bars">
+          <div>
+            <div id="public-capex" class="bar ex-bar"></div>
+            <div>CapEx</div>
+          </div>
+          <div>
+            <div id="public-opex" class="bar ex-bar"></div>
+            <div>OpEx</div>
+          </div>
+          <div>
+            <div id="public-tco" class="bar tco-bar"></div>
+            <div>TCO</div>
+          </div>
+        </div>
+        </div>
+        <div class="bar-chart">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/f25ccac7-Private+Cloud.svg",
+          alt="",
+          width="100",
+          height="70",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <h4>Private Cloud</h4>
+        <div class="bars">
+          <div>
+            <div id="private-capex" class="bar ex-bar"></div>
+            <div>CapEx</div>
+          </div>
+          <div>
+            <div id="private-opex" class="bar ex-bar"></div>
+            <div>OpEx</div>
+          </div>
+          <div>
+            <div id="private-tco" class="bar tco-bar"></div>
+            <div>TCO</div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="js-cloud-price-slider">
+        <input type="range" id="hours__range" min="1" max="150" value="96" step="1" aria-label="Cost of public cloud versus private cloud">
+        <div>VM hours</div>
+      </div>
     </div>
     <div class="col-6">
       <h2>Maximum multi-cloud cost optimisation</h2>
@@ -435,57 +560,10 @@
 </section>
 
 <section class="p-strip--light">
+
+  {% include "shared/pricing/_openstack-packages.html" %}
+
   <div class="u-fixed-width">
-    <h2>Fixed-price delivery</h2>
-    <p class="p-heading--4">Consulting packages tailored to your needs</p>
-    <p>No hidden costs. No surprises. Everything is clear from the beginning. We design the cloud. We build the cloud.</p>
-    <p>Choose your package:</p>
-  </div>
-  <div class="row">
-    <div class="col-6 p-card">
-      <h2 class="p-heading--four">Private Cloud Build</h2>
-      <p><span class="p-heading--two">$75,000</span> fixed price</p>
-      <hr class="u-sv1">
-      <p>Design and deployment of a baseline OpenStack cloud based on the reference architecture.</p>
-      <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Hardware guidance and sizing</li>
-        <li class="p-list__item is-ticked">Reference architecture</li>
-        <li class="p-list__item is-ticked">Simplified networking</li>
-        <li class="p-list__item is-ticked">Hyper-converged or Converged</li>
-        <li class="p-list__item is-ticked">Containerised control plane</li>
-        <li class="p-list__item is-ticked">Observability stack</li>
-        <li class="p-list__item is-ticked">Block and object storage</li>
-        <li class="p-list__item is-ticked">High availability</li>
-      </ul>
-      <p>Design and delivery on certified hardware.</p>
-      <p><a href="/openstack/consulting">Get OpenStack&nbsp;›</a></p>
-    </div>
-    <div class="col-6 p-card">
-      <h2 class="p-heading--four">Private Cloud Build Plus</h2>
-      <p><span class="p-heading--two">$150,000</span> fixed price</p>
-      <hr class="u-sv1">
-      <p>Design and deployment of a carrier-grade, feature-rich OpenStack cloud based on a custom architecture.</p>
-      <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
-      <p>Everything in Private Cloud Build, plus:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Custom architecture</li>
-        <li class="p-list__item is-ticked">Containerised or isolated control plane</li>
-        <li class="p-list__item is-ticked">Complex networking</li>
-        <li class="p-list__item is-ticked">LDAP or Active Directory integration</li>
-        <li class="p-list__item is-ticked">Regulatory compliance</li>
-        <li class="p-list__item is-ticked">Encryption in flight and at rest</li>
-        <li class="p-list__item is-ticked">EPA tuning options</li>
-        <li class="p-list__item is-ticked">Block, object and file storage</li>
-        <li class="p-list__item is-ticked">Layer&ndash;7 load balancer</li>
-        <li class="p-list__item is-ticked">Secrets management</li>
-      </ul>
-      <p>Workshops determine the optimal architecture for your workloads and integration requirements.</p>
-      <p><a href="/openstack/consulting">Migrate from VMware&nbsp;›</a></p>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <p id="os-footnote">* Additional features, functionality and integrations are available via add-ons</p>
     <p>
       <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-button--neutral">
         Download the datasheet
@@ -772,12 +850,12 @@
     </div>
   </section>
 
+  <script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
+
   {% with first_item="_openstack_next_step", second_item="_cloud_newsletter", third_item="_openstack_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you?product=foundation-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
-
-
 
   {% endblock content %}

@@ -31,7 +31,28 @@
   <section class="p-strip card-management-section">
     <div class="row">
       <div class="col-12">
+
+        <div id="payment-success" class="p-notification--positive u-hide">
+          <p class="p-notification__response">
+            <span class="p-notification__message"></span>
+          </p>
+        </div>
+
+        <div id="payment-errors" class="p-notification--negative u-hide">
+          <p class="p-notification__response">
+            <span class="p-notification__message"></span>
+          </p>
+        </div>
+
+        <div id="payment-warnings" class="p-notification--caution u-hide">
+          <p class="p-notification__response">
+            <span class="p-notification__message">
+              You have one or more pending payments. Use your saved card to <a class="p-notification__action" id="try-again-button">retry payment</a>. <i id="try-again-spinner" class="p-icon--spinner u-animation--spin is-dark u-hide"></i></span>
+          </p>
+        </div>
+
         <h2>Payment methods</h2>
+
         <div id="default-payment-method-section" class="row {% if not default_payment_method["id"] %}u-hide{% endif %}" style="margin-top: 2rem;">
           <div class="col-4 current-payment-method">
             {% with brand=default_payment_method["brand"] %}
@@ -93,6 +114,7 @@
 <script>
   window.stripePublishableKey = "{{ stripe_publishable_key }}";
   window.accountId = "{{ account_id }}";
+  window.pendingPurchaseId = "{{ pending_purchase_id }}";
 </script>
 <script src="{{ versioned_static('js/dist/ua-payment-methods.js') }}" type="module" defer></script>
 

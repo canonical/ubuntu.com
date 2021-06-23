@@ -1,3 +1,5 @@
+from urllib.parse import quote_plus
+
 # Packages
 from flask import template_rendered
 from vcr_unittest import VCRTestCase
@@ -72,12 +74,9 @@ class TestCube(VCRTestCase):
             self.assertEqual(module["status"], expected_module[module["id"]])
             self.assertTrue(
                 module["take_url"].endswith(
-                    f"{module['id']}/courseware/2020/start/?child=first"
-                )
-            )
-            self.assertTrue(
-                module["prepare_url"].endswith(
-                    "/course-v1:CUBE+study_labs_2020+alpha/course/"
+                    quote_plus(
+                        f"{module['id']}/courseware/2020/start/?child=first"
+                    )
                 )
             )
 

@@ -16,6 +16,7 @@ $p-small-lh-diff: map-get($line-heights, default-text) -
 
 %small-text--vertically-condensed {
   @extend %small-text-base;
+
   margin-bottom: map-get($sp-after, small) + $p-small-lh-diff - $nudge--small;
 }
 
@@ -40,6 +41,7 @@ h4,
 
 .p-muted-heading--small {
   @extend %smallest-text;
+
   text-transform: uppercase;
 }
 

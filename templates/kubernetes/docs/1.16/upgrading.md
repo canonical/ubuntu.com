@@ -3,7 +3,7 @@ wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "Upgrading"
+  title: "Upgrading to 1.16"
   description: How to upgrade your version of Charmed Kubernetes.
 keywords: juju, upgrading, track, version
 tags: [operating]
@@ -12,6 +12,10 @@ permalink: 1.16/upgrading.html
 layout: [base, ubuntu-com]
 toc: False
 ---
+
+<!-- UPGRADE VERSIONS -->
+
+<!-- END OF UPGRADE VERSIONS-->
 
 It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Kubernetes**. Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
 
@@ -348,7 +352,7 @@ non-default admission control plugins is specified has changed. The old
 parameter was `--admission-control`; the new parameter is
 `--enable-admission-plugins`.
 
-For example, prior to 1.16, The 'PodSecurityPolicy' admission plugin could be
+For example, prior to 1.16, The ‘PodSecurityPolicy’ admission plugin could be
 applied like this:
 
 ```bash

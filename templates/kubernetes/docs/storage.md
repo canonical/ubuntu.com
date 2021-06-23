@@ -277,7 +277,7 @@ There is no requirement that these additional units should have the same amount 
 
 [kubernetes-storage-docs]: https://kubernetes.io/docs/concepts/storage/
 [ceph-home]: https://ceph.com/
-[ceph-charm]: https://jujucharms.com/ceph-osd/
+[ceph-charm]: https://charmhub.io/ceph-osd
 [juju-storage]: https://docs.jujucharms.com/stable/en/charms-storage
 [juju-cmr]: https://docs.jujucharms.com/stable/en/models-cmr
 

@@ -125,6 +125,11 @@
         text-align: right;
       }
     }
+    .col-4 {
+      @media (min-width: $breakpoint-medium) {
+        text-align: right;
+      }
+    }
 
     #card-element {
       background: $color-x-light;
@@ -143,7 +148,7 @@
       }
 
       &.StripeElement--invalid {
-        background-image: url("#{$assets-path}/v1/4b0cd7fc-icon-error.svg");
+        background-image: url("#{$assets-path}/4b0cd7fc-icon-error.svg");
         background-position: calc(100% - 0.5rem) 50%;
         background-repeat: no-repeat;
         border-color: $color-negative;
@@ -176,12 +181,6 @@
       @media (min-width: $breakpoint-medium) {
         margin-bottom: 0;
       }
-    }
-
-    input,
-    select,
-    textarea {
-      margin-bottom: 0;
     }
 
     img {

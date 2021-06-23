@@ -93,6 +93,7 @@ extraHosts:
   - domain: developer.ubuntu.com
   - domain: buy.ubuntu.com
   - domain: core.docs.ubuntu.com
+  - domain: certification.ubuntu.com
 
 # Overrides for production
 production:
@@ -191,7 +192,7 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/api/.*]
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
 
   nginxConfigurationSnippet: |
@@ -233,6 +234,9 @@ production:
     }
     if ($host = 'ubuntuserver.org' ) {
       rewrite ^ https://ubuntu.com/server$request_uri? permanent;
+    }
+    if ($host = 'certification.ubuntu.com' ) {
+      rewrite ^ https://ubuntu.com/certified$request_uri? permanent;
     }
     if ($host = 'core.docs.ubuntu.com' ) {
       rewrite ^(\/en)?(\/.*)$ https://ubuntu.com/core/docs$2? permanent;
@@ -350,7 +354,7 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/api/.*]
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
 
   nginxConfigurationSnippet: |
@@ -365,6 +369,9 @@ staging:
     }
     if ($host = 'insights.staging.ubuntu.com' ) {
       rewrite ^ https://staging.ubuntu.com/blog$request_uri? permanent;
+    }
+    if ($host = 'certification.staging.ubuntu.com' ) {
+      rewrite ^ https://staging.ubuntu.com/certified$request_uri? permanent;
     }
     if ($host = 'core.docs.staging.ubuntu.com' ) {
       rewrite ^(\/en)?(\/.*)$ https://staging.ubuntu.com/core/docs$2? permanent;

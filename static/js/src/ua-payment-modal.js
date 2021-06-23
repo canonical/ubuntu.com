@@ -14,7 +14,7 @@ import {
 } from "./advantage/contracts-api.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
-import { vatCountries } from "./advantage/vat-countries.js";
+import { vatCountries } from "./advantage/countries-and-states.js";
 
 import {
   setOrderInformation,
@@ -51,6 +51,7 @@ const cardErrorElement = document.getElementById("card-errors");
 const paymentErrorElement = document.getElementById("payment-errors");
 
 const forMyselfRadio = document.getElementById("buying_for_myself");
+
 const forOrganisationRadio = document.getElementById(
   "buying_for_an_organisation"
 );
@@ -382,6 +383,7 @@ function applyLoggedInPurchaseTotals() {
 
     postCustomerInfoForPurchasePreview(
       currentTransaction.accountId,
+      customerInfo.name,
       address,
       taxObject
     )
@@ -401,14 +403,39 @@ function applyLoggedInPurchaseTotals() {
           currentTransaction.accountId,
           currentTransaction.products,
           currentTransaction.previousPurchaseId
-        ).then((purchasePreview) => {
-          currentTransaction.total = purchasePreview.total;
-          currentTransaction.tax = purchasePreview.taxAmount;
-          modal.classList.remove("is-processing");
-          setOrderTotals(country, vatApplicable, purchasePreview, modal);
-        });
+        )
+          .then((purchasePreview) => {
+            currentTransaction.total = purchasePreview.total;
+            currentTransaction.tax = purchasePreview.taxAmount;
+            modal.classList.remove("is-processing");
+            if (purchasePreview.errors) {
+              setOrderTotals(
+                null,
+                false,
+                {
+                  total: currentTransaction.subtotal,
+                },
+                modal
+              );
+            } else {
+              setOrderTotals(country, vatApplicable, purchasePreview, modal);
+            }
+          })
+          .catch((error) => {
+            modal.classList.remove("is-processing");
+            setOrderTotals(
+              null,
+              false,
+              {
+                total: currentTransaction.subtotal,
+              },
+              modal
+            );
+            console.error(error);
+          });
       })
       .catch((error) => {
+        modal.classList.remove("is-processing");
         console.error(error);
       });
   }

@@ -1,4 +1,44 @@
 @mixin ubuntu-p-tabs {
+  .p-tab {
+    color: $color-mid-dark;
+
+    &:hover {
+      background-color: $color-light;
+      text-decoration: none;
+    }
+
+    &.active {
+      background-color: $color-light;
+      overflow: visible;
+      position: relative;
+      text-decoration: none;
+
+      // Arrow
+      @media (min-width: $breakpoint-medium) {
+        &::after {
+          background: #f7f7f7;
+          border-left: solid 1px $color-mid-light;
+          border-top: solid 1px $color-mid-light;
+          bottom: -41px;
+          content: "";
+          display: block;
+          height: 2rem;
+          left: calc(50% - 1rem);
+          pointer-events: none;
+          position: absolute;
+          transform: rotate(45deg) skew(-10deg, -10deg);
+          width: 2rem;
+          z-index: 5;
+        }
+      }
+      @media (min-width: $breakpoint-x-large) {
+        &::after {
+          bottom: -46px;
+        }
+      }
+    }
+  }
+
   .p-tabs--vertical {
     grid-gap: 0;
 

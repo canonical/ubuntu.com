@@ -232,7 +232,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
-| 1.21.x    | [charmed-kubernetes-632](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-632/archive/bundle.yaml) |
+| 1.21.x    | [charmed-kubernetes-679](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-679/archive/bundle.yaml) |
 | 1.20.x    | [charmed-kubernetes-596](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-596/archive/bundle.yaml) |
 | 1.19.x    | [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml) |
 | 1.18.x    | [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml) |
@@ -443,16 +443,16 @@ Now you have a cluster up and running, check out the
 <!-- LINKS -->
 
 [jaas]: https://jaas.ai/
-[juju-docs]: https://docs.jujucharms.com/reference-install
-[controller-config]: https://docs.jujucharms.com/controllers-config
-[credentials]: https://docs.jujucharms.com/
+[juju-docs]: https://juju.is/docs/olm/installing-juju
+[controller-config]: https://juju.is/docs/olm/create-controllers
+[credentials]: https://juju.is/docs/olm/credentials
 [quickstart]: /kubernetes/docs/quickstart
-[juju-bundle]: https://docs.jujucharms.com/stable/en/charms-bundles
-[juju-gui]: https://docs.jujucharms.com/stable/en/controllers-gui
-[juju-constraints]: https://docs.jujucharms.com/stable/en/reference-constraints
+[juju-bundle]: https://juju.is/docs/sdk/bundles
+[juju-gui]: https://juju.is/docs/olm/accessing-juju%E2%80%99s-web-interface
+[juju-constraints]: https://juju.is/docs/olm/constraints
 [asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/aws-overlay.yaml
 [latest-bundle-file]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes/archive/bundle.yaml?channel=stable
-[charm-kworker]: https://jujucharms.com/u/containers/kubernetes-worker/#configuration
+[charm-kworker]: https://charmhub.io/containers-kubernetes-worker
 [snaps]: https://docs.snapcraft.io/snap-documentation
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [aws-docs]: /kubernetes/docs/aws-integration

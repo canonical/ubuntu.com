@@ -113,8 +113,8 @@
   <div class="row">
     <div class="col-5" style="margin-top: 3rem;">
       <h2>Refresh your knowledge</h2>
-      <p><strong>Be prepared for every exam</strong></p>
-      <p class="u-sv2">Brush up on your Ubuntu skills with preparatory materials that cover every microcert.</p>
+      <p><strong>Be prepared for every microcert</strong></p>
+      <p class="u-sv2">Check your baseline understanding of Ubuntu fundamentals and preview the exam experience in a practice environment.</p>
       {% if has_prepare_material %}
       <a href="{{ prepare_material_url }}" class="p-button--positive">Prepare</a>
       {% else %}
@@ -210,17 +210,18 @@
             </div>
           </td>
           <td class="p-table--cube__badge-column" aria-label="Badge">
-              <img
-                class="p-table--cube__badge"
-                src="{{ module.badge.url }}"
-                alt="Badge for {{ module.name }}"
-                {% if module.status == 'passed' %}
-                style="margin-left: -0.2rem;"
-                {% endif %}
-              />
+            <img
+              class="p-table--cube__badge"
+              src="{{ module.badge.url }}"
+              alt="Badge for {{ module.name }}"
+              {% if module.status == 'passed' %}
+              style="margin-left: -0.2rem;"
+              {% endif %}
+            />
           </td>
           <td aria-label="Module">
-            <div class="p-table--cube__contents">
+            <!-- inline style here and line 230 can be removed when this is fixed https://github.com/canonical-web-and-design/vanilla-framework/issues/3754 -->
+            <div class="p-table--cube__contents" style="white-space: normal">
               <h5>{{ module.name }}</h5>
             </div>
             <p class="u-text--muted u-hide--small">
@@ -229,7 +230,7 @@
           </td>
           <td aria-label="Topics">
             <div class="p-table--cube__contents">
-              <ul class="p-list u-no-margin">
+              <ul class="p-list u-no-margin" style="white-space: normal">
                 {% for topic in module.topics %}
                 <li class="p-list__item">{{ topic }}</li>
                 {% endfor %}
@@ -280,7 +281,7 @@
           <td>
             <div class="p-table--cube__contents u-align--right">
               {% if has_prepare_material %}
-              <a class="p-button--neutral u-no-margin--right" href="{{ module.prepare_url }}">Prepare</a>
+              <a class="p-button--neutral u-no-margin--right" href="{{ prepare_material_url }}">Prepare</a>
               {% endif %}
               <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.take_url }}">Take</a>
             </div>

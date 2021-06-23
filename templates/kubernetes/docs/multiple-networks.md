@@ -87,9 +87,6 @@ applications:
   kubernetes-worker:
     bindings:
       "": control
-  kubernetes-worker:
-    bindings:
-      "": control
   containerd:
     bindings:
       "": control

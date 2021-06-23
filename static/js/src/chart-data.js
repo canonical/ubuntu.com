@@ -2,25 +2,25 @@ export var smallReleases = [
   {
     startDate: new Date("2020-04-01T00:00:00"),
     endDate: new Date("2022-10-01T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS (v5.4)",
+    taskName: "Ubuntu 20.04 LTS",
     status: "HARDWARE_AND_MAINTENANCE_UPDATES",
   },
   {
     startDate: new Date("2022-10-01T00:00:00"),
     endDate: new Date("2025-04-02T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS (v5.4)",
+    taskName: "Ubuntu 20.04 LTS",
     status: "MAINTENANCE_UPDATES",
   },
   {
     startDate: new Date("2025-04-02T00:00:00"),
     endDate: new Date("2030-04-02T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS (v5.4)",
+    taskName: "Ubuntu 20.04 LTS",
     status: "ESM",
   },
   {
     startDate: new Date("2020-10-01T00:00:00"),
     endDate: new Date("2021-07-07T00:00:00"),
-    taskName: "Ubuntu 20.10 (v5.8)",
+    taskName: "Ubuntu 20.10",
     status: "INTERIM_RELEASE",
   },
   {
@@ -114,25 +114,25 @@ export var serverAndDesktopReleases = [
   {
     startDate: new Date("2020-04-01T00:00:00"),
     endDate: new Date("2022-10-01T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS (v5.4)",
+    taskName: "Ubuntu 20.04 LTS",
     status: "HARDWARE_AND_MAINTENANCE_UPDATES",
   },
   {
     startDate: new Date("2022-10-01T00:00:00"),
     endDate: new Date("2025-04-02T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS (v5.4)",
+    taskName: "Ubuntu 20.04 LTS",
     status: "MAINTENANCE_UPDATES",
   },
   {
     startDate: new Date("2025-04-02T00:00:00"),
     endDate: new Date("2030-04-02T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS (v5.4)",
+    taskName: "Ubuntu 20.04 LTS",
     status: "ESM",
   },
   {
     startDate: new Date("2020-10-01T00:00:00"),
     endDate: new Date("2021-07-07T00:00:00"),
-    taskName: "Ubuntu 20.10 (v5.8)",
+    taskName: "Ubuntu 20.10",
     status: "INTERIM_RELEASE",
   },
   {
@@ -1127,7 +1127,7 @@ export var openStackReleases = [
   {
     startDate: new Date("2021-10-01T00:00:00"),
     endDate: new Date("2023-04-01T00:00:00"),
-    taskName: "OpenStack X",
+    taskName: "OpenStack Xena",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
@@ -1169,13 +1169,13 @@ export var openStackReleases = [
   {
     startDate: new Date("2020-04-01T00:00:00"),
     endDate: new Date("2025-04-01T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS (v5.4)",
+    taskName: "Ubuntu 20.04 LTS",
     status: "LTS",
   },
   {
     startDate: new Date("2025-04-01T00:00:00"),
     endDate: new Date("2030-04-01T00:00:00"),
-    taskName: "Ubuntu 20.04 LTS (v5.4)",
+    taskName: "Ubuntu 20.04 LTS",
     status: "ESM",
   },
   {
@@ -1337,6 +1337,7 @@ export var kernelStatusLTS = {
   LTS: "chart__bar--orange",
   CVE: "chart__bar--grey",
 };
+
 export var kernelStatusALL = {
   LTS: "chart__bar--orange",
   INTERIM_RELEASE: "chart__bar--grey",
@@ -1360,16 +1361,16 @@ export var smallReleaseNames = [
   "Ubuntu 22.04 LTS",
   "Ubuntu 21.10",
   "Ubuntu 21.04",
-  "Ubuntu 20.10 (v5.8)",
-  "Ubuntu 20.04 LTS (v5.4)",
+  "Ubuntu 20.10",
+  "Ubuntu 20.04 LTS",
 ];
 
 export var desktopServerReleaseNames = [
   "Ubuntu 22.04 LTS",
   "Ubuntu 21.10",
   "Ubuntu 21.04",
-  "Ubuntu 20.10 (v5.8)",
-  "Ubuntu 20.04 LTS (v5.4)",
+  "Ubuntu 20.10",
+  "Ubuntu 20.04 LTS",
   "Ubuntu 18.04 LTS",
   "Ubuntu 16.04 LTS",
   "Ubuntu 14.04 LTS",
@@ -1402,7 +1403,7 @@ export var kernelVersionNames = [
   "",
   "21.10 kernel",
   "",
-  "21.04 kernel",
+  "5.11 kernel",
   "",
   "5.8 kernel",
   "",
@@ -1513,11 +1514,11 @@ export var openStackReleaseNames = [
   "OpenStack Y LTS",
   "Ubuntu 22.04 LTS",
   "OpenStack Y",
-  "OpenStack X",
+  "OpenStack Xena",
   "OpenStack Wallaby",
   "OpenStack Victoria",
   "OpenStack Ussuri LTS",
-  "Ubuntu 20.04 LTS (v5.4)",
+  "Ubuntu 20.04 LTS",
   "OpenStack Ussuri",
   "OpenStack Train",
   "OpenStack Stein",

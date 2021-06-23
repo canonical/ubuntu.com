@@ -46,7 +46,17 @@
     </div>
   </section>
 
-  <hr class="p-separator" />   
+  <hr class="p-separator" />
+
+  {% if pending_purchase_id %}
+  <div class="row">
+    <div class="p-notification--caution">
+      <p class="p-notification__response" role="status">
+        <span class="p-notification__status">Payment method:</span>You need to <a href="/advantage/payment-methods{% if is_test_backend %}?test_backend=true{% endif %}">update your payment methods</a> to ensure there is no interruption to your Ubuntu Advantage subscriptions
+      </p>
+    </div>
+  </div>
+  {% endif %}
 
   {% if enterprise_contracts %}
     <section class="p-strip is-shallow" style="overflow: visible;">
@@ -55,19 +65,12 @@
           <h2>Your {% if total_enterprise_contracts > 1 %}{{total_enterprise_contracts}} {% endif %}paid subscription{% if total_enterprise_contracts == 1 %}{% else %}s{% endif %}</h2>
         </div>
       </div>
-      {% if payment_method_warning %}
-        <div class="row">
-          <div class="p-notification--caution">
-            <p class="p-notification__response" role="status">
-              <span class="p-notification__status">Payment method:</span>You need to <a href="/advantage/payment-methods{% if is_test_backend %}?test_backend=true{% endif %}">update your payment methods</a> to ensure there is no interruption to your Ubuntu Advantage subscriptions
-            </p>
-          </div>
-        </div>
-      {% endif %}
       {% if monthly_information['has_monthly'] %}
         <div class="row">
           <div class="col-8 col-medium-3">
-            <p class="u-no-margin--bottom">Your next recurring payment of <strong><span class="js-format-price">{{monthly_information["next_payment"]["ammount"]}}</span></strong> will be taken on <strong>{{monthly_information["next_payment"]["date"]}}</strong>.</p>
+            {% if monthly_information['is_auto_renewal_enabled'] %}
+            <p class="u-no-margin--bottom">Your next recurring payment of <strong><span class="js-format-price">{{monthly_information["next_payment"]["amount"]}}</span></strong> will be taken on <strong>{{monthly_information["next_payment"]["date"]}}</strong>.</p>
+            {% endif %}
           </div>
           <div class="col-4 col-medium-3 u-align--right">
             <div id="reveal-renewal-options">
@@ -78,7 +81,7 @@
               <div class="row">
                 <div class="row col-start-large-2 col-10">
                   <h5>{{monthly_information['total_subscriptions']}} monthly subscription{% if monthly_information['total_subscriptions'] > 1 %}s are {% else %} is {% endif %}affected by auto-renewal settings.</h5>
-                  <hr class="p-separator" />
+                  <hr />
                   <div> 
                     <label class="p-radio">
                       <input id="auto-renewal-on" type="radio" class="p-radio__input" name="auto-renewal"  {% if monthly_information["is_auto_renewal_enabled"] %}checked=""{% endif %} aria-labelledby="enable" value="on">
@@ -130,7 +133,7 @@
                   {% include "advantage/table/_manage-monthly.html" %}
 
                 {% else %}
-                
+
                   {% include "advantage/table/_manage-yearly.html" %}
 
                 {% endif %}
@@ -207,9 +210,9 @@
           {% endfor %}
           {% endfor %}
         </div>
-          <a 
-            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" 
-            class="p-button--positive"   
+          <a
+            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}"
+            class="p-button--positive"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',
@@ -258,9 +261,8 @@
                       <td class="spacer"></td>
                       <td class="plan" style="text-transform: capitalize;"><span class="u-truncate" style="padding-top: 0.35rem;">{{ contract['supportLevel'] }}</span></td>
                       <td class="u-align--right machines {% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}">
-                        <span class="u-hide">{{ contract }}</span>
                         <button class="u-toggle" aria-controls="#expanded-row-token-{{ outer_loop.index }}-{{ loop.index }}" aria-expanded="{% if new_subscription_id == contract['contractInfo']['id'] %} p-table--open{% endif %}" data-shown-text="Hide" data-hidden-text="Show">
-                          {{ contract['machineCount'] }}&nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
+                          {{ contract['rowMachineCount'] }}&nbsp;<i class="p-icon--contextual-menu {% if default_open_cell %}u-rotate{% endif %}">Open</i>
                         </button>
                       </td>
                       <td class="spacer"></td>
@@ -316,7 +318,7 @@
                             {% include "advantage/table/_manage-monthly.html" %}
 
                           {% else %}
-                          
+
                             {% include "advantage/table/_manage-yearly.html" %}
 
                           {% endif %}
@@ -342,9 +344,9 @@
           {% endfor %}
         </div>
         <div class="col-12 u-align--right">
-          <a 
-            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}" 
-            class="p-button--positive u-align--right"   
+          <a
+            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}"
+            class="p-button--positive u-align--right"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
               'eventCategory' : 'Advantage',
@@ -368,7 +370,7 @@
       </div>
 
       <div class="col-12 u-hide--small">
-        <p>Anyone can use UA Infrastructure Essential for free on up to 3 machines (limitations apply). And if you're a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it's free on up to 50 machines.</p>      <p>Initially, this free subscription is available for Ubuntu 14.04 LTS only.</p>
+        <p>Anyone can use UA Infra Essential for free on up to 3 machines. And if you're a recognised <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">Ubuntu community member</a>, it's free on up to 50 machines.</p>      <p>Initially, this free subscription is available for Ubuntu 14.04 ESM and 16.04 ESM.</p>
 
         <span class="p-contextual-menu--left p-contextual-menu--advantage">
           <a href="#" class="p-contextual-menu__toggle p-button--neutral" data-trigger="click" aria-controls="#free-sub" aria-expanded="false" aria-haspopup="true">Get your free token&nbsp;<i class="p-icon--contextual-menu">Open</i></a>
@@ -507,6 +509,10 @@
 
     price.innerText = formatter.format(ammount)
   });
+</script>
+
+<script>
+  window.pendingPurchaseId = "{{ pending_purchase_id }}";
 </script>
 
 <script src="{{ versioned_static('js/src/advantage/auto-renewal.js') }}" type="module" defer></script>
