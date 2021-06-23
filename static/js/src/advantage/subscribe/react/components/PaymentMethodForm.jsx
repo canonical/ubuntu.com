@@ -1,19 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 
-import {
-  Row,
-  Col,
-  Input,
-  Select,
-  RadioInput,
-} from "@canonical/react-components";
+import { Input, Select, RadioInput } from "@canonical/react-components";
 import { CardElement } from "@stripe/react-stripe-js";
 import { debounce } from "lodash";
 
-import { formatter } from "../../renderers/form-renderer";
-import usePreview from "../APICalls/usePreview";
-import useProduct from "../APICalls/useProduct";
 import FormRow from "./FormRow";
 import {
   caProvinces,
@@ -28,8 +19,6 @@ import { useQueryClient } from "react-query";
 import usePostCustomerInfoAnon from "../APICalls/usePostCustomerInfoAnon";
 
 function PaymentMethodForm({ setCardValid }) {
-  const { product, quantity } = useProduct();
-  const { data: preview } = usePreview();
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
   const mutation = usePostCustomerInfoAnon();
@@ -123,6 +112,7 @@ function PaymentMethodForm({ setCardValid }) {
       <FormRow
         label="Payment card:"
         error={getErrorMessage(cardFieldError ?? {})}
+        disabled={values.freeTrial === "useFreeTrial"}
       >
         <div
           id="card-element"
@@ -297,28 +287,6 @@ function PaymentMethodForm({ setCardValid }) {
           error={touched?.VATNumber && errors?.VATNumber}
         />
       )}
-
-      <Row className="u-no-padding u-sv1">
-        <Col size="4">
-          <div className="u-text-light">Total:</div>
-        </Col>
-        <Col size="8">
-          <div>
-            <strong>
-              {formatter.format(
-                preview
-                  ? preview.total / 100
-                  : (product?.price?.value * quantity) / 100
-              )}
-            </strong>
-          </div>
-        </Col>
-        {preview?.taxAmount ? null : (
-          <Col size="8" emptyLarge="5">
-            <div className="u-text-light">Excluding VAT</div>
-          </Col>
-        )}
-      </Row>
     </Form>
   );
 }
