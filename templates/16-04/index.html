@@ -10,18 +10,18 @@
     <div class="col-7">
       <div class="rad-element snap-3-0-ui deb-3-0-ui"><p>Hello!!!</p></div>
 
-      <div class="p-code-snippet">
+      <div class="rad-mdropdown-element p-code-snippet">
         <div class="p-code-snippet__header">
           <h5 class="p-code-snippet__title">Installing Thunderbird as a snap</h5>
 
           <div class="p-code-snippet__dropdowns">
-            <select class="version-dropdown p-code-snippet__dropdown" name="version">
+            <select class="rad-dropdown-version p-code-snippet__dropdown" name="version">
               <option value="snap-3-0">snap 3.0</option>
               <option value="deb-3-0">deb 3.0</option>
               <option value="snap-2-9">snap 2.9</option>
               <option value="deb-2-9">deb 2.9</option>
             </select>
-            <select class="view-dropdown p-code-snippet__dropdown" name="view">
+            <select class="rad-dropdown-view p-code-snippet__dropdown" name="view">
               <option value="ui">UI</option>
               <option value="cli">CLI</option>
             </select>
@@ -38,18 +38,18 @@
         <div class="p-code-snippet__block--icon deb-2-9-cli u-hide" aria-hidden="true"><p>v1 snap 2.9 CLI</p></div>
 
       </div>
-      <div class="p-code-snippet">
+      <div class="rad-mdropdown-element p-code-snippet">
         <div class="p-code-snippet__header">
           <h5 class="p-code-snippet__title">Installing Thunderbird as a snap</h5>
 
           <div class="p-code-snippet__dropdowns">
-            <select class="version-dropdown p-code-snippet__dropdown" name="version">
+            <select class="rad-dropdown-version p-code-snippet__dropdown" name="version">
               <option value="snap-3-0">snap 3.0</option>
               <option value="deb-3-0">deb 3.0</option>
               <option value="snap-2-9">snap 2.9</option>
               <option value="deb-2-9">deb 2.9</option>
             </select>
-            <select class="view-dropdown p-code-snippet__dropdown" name="view">
+            <select class="rad-dropdown-view p-code-snippet__dropdown" name="view">
               <option value="ui">UI</option>
               <option value="cli">CLI</option>
             </select>
@@ -77,7 +77,7 @@ function attachDropdownEvents(dropdownType, dropdown) {
 
     const currentActiveElements = document.querySelectorAll(currentActiveClass);
     const newActiveElements = document.querySelectorAll(newActiveClass);
-    const dropdowns = document.querySelectorAll(`.${dropdownType}-dropdown`);
+    const dropdowns = document.querySelectorAll(`.rad-dropdown-${dropdownType}`);
 
     currentActiveElements.forEach(function (element) {
       element.classList.add('u-hide');
@@ -98,7 +98,7 @@ function attachDropdownEvents(dropdownType, dropdown) {
 function setupDropdowns(dropdownSelectorType, defaultValue) {
   localStorage.setItem(dropdownSelectorType, defaultValue);
 
-  const dropdowns = document.querySelectorAll(`.${dropdownSelectorType}-dropdown`);
+  const dropdowns = document.querySelectorAll(`.rad-dropdown-${dropdownSelectorType}`);
 
   dropdowns.forEach(function (dropdown) {
     attachDropdownEvents(dropdownSelectorType, dropdown);
