@@ -13,7 +13,8 @@ export function loadState(stateName, slice, defaultState) {
     if (serializedState === null) {
       return defaultState;
     }
-    return JSON.parse(serializedState)[slice];
+    const localState = JSON.parse(serializedState)[slice];
+    return { ...defaultState, ...localState };
   } catch (err) {
     return defaultState;
   }
