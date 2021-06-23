@@ -1,7 +1,7 @@
-import RenderForm from "./form-renderer";
-import RenderUI from "./UI-renderer";
+import renderForm from "./form-renderer";
+import renderUI from "./UI-renderer";
 
 export default function render(state) {
-  RenderForm(state.form);
-  RenderUI(state.ui);
+  renderForm(state.form);
+  renderUI(state.ui);
 }

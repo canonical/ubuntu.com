@@ -340,6 +340,7 @@ def advantage_shop_view(**kwargs):
             continue
 
         listing["product"] = products[listing["productID"]]
+
         website_listing.append(listing)
 
     return flask.render_template(

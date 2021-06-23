@@ -5,6 +5,9 @@ const initialUIState = {
   otherVersionsModal: {
     show: false,
   },
+  purchaseModal: {
+    show: false,
+  },
 };
 
 const UISlice = createSlice({
@@ -14,12 +17,15 @@ const UISlice = createSlice({
     toggleOtherVersionsModal(state) {
       state.otherVersionsModal.show = !state.otherVersionsModal.show;
     },
+    togglePurchaseModal(state) {
+      state.purchaseModal.show = !state.purchaseModal.show;
+    },
   },
 });
 
 // Extract the action creators object and the reducer
 const { actions, reducer } = UISlice;
 
-export const { toggleOtherVersionsModal } = actions;
+export const { toggleOtherVersionsModal, togglePurchaseModal } = actions;
 
 export default reducer;
