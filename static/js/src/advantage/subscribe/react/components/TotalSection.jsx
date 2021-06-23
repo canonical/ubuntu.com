@@ -15,7 +15,7 @@ const TotalSection = () => {
     preview ? preview.total / 100 : (product?.price?.value * quantity) / 100
   );
 
-  if (isMonthly || true) {
+  if (isMonthly) {
     return (
       <>
         <Row className="u-no-padding u-sv1">
@@ -59,7 +59,9 @@ const TotalSection = () => {
 
           <Col size="8">
             <strong>
-              {format(new Date(preview?.subscriptionEndOfCycle), DATE_FORMAT)}
+              {preview
+                ? format(new Date(preview?.subscriptionEndOfCycle), DATE_FORMAT)
+                : null}
             </strong>
             <br />
             <small>
