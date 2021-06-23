@@ -275,18 +275,19 @@ function PaymentMethodForm({ setCardValid }) {
           error={touched?.caProvince && errors?.caProvince}
         />
       )}
-      {vatCountries.includes(values.country) && (
-        <Field
-          as={Input}
-          type="text"
-          id="VATNumber"
-          name="VATNumber"
-          label="VAT number:"
-          stacked
-          help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
-          error={touched?.VATNumber && errors?.VATNumber}
-        />
-      )}
+      {vatCountries.includes(values.country) &&
+        values.freeTrial !== "useFreeTrial" && (
+          <Field
+            as={Input}
+            type="text"
+            id="VATNumber"
+            name="VATNumber"
+            label="VAT number:"
+            stacked
+            help="e.g. GB 123 1234 12 123 or GB 123 4567 89 1234"
+            error={touched?.VATNumber && errors?.VATNumber}
+          />
+        )}
     </Form>
   );
 }

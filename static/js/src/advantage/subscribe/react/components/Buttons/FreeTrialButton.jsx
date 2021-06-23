@@ -35,8 +35,8 @@ const FreeTrialButton = ({ setError }) => {
         } else {
           setError(
             <>
-              Sorry, there was an unknown error with with the free trial. Check
-              the details and try again. Contact{" "}
+              Sorry, there was an unknown error with the free trial. Check the
+              details and try again. Contact{" "}
               <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
               problem persists.
             </>

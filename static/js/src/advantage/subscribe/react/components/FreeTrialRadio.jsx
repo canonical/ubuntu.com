@@ -5,6 +5,10 @@ import FormRow from "./FormRow";
 
 const FreeTrialRadio = () => {
   const { values } = useFormikContext();
+
+  console.log(values.freeTrial);
+  console.log(values.freeTrial === "useFreeTrial");
+  console.log(values.freeTrial === "payNow");
   return (
     <FormRow label="Free Trial:">
       <div className="u-sv3 p-form p-form--inline" role="group">
@@ -13,14 +17,13 @@ const FreeTrialRadio = () => {
           name="freeTrial"
           value="useFreeTrial"
           label="Use free trial month"
-          defaultChecked={values.freeTrial === "useFreeTrial"}
+          defaultChecked={true}
         />
         <Field
           as={RadioInput}
           name="freeTrial"
           value="payNow"
           label="Pay now"
-          defaultChecked={values.freeTrial === "payNow"}
         />
       </div>
     </FormRow>
