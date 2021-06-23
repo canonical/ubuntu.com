@@ -750,6 +750,12 @@ def marketo_submit():
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")
     honeypots["website"] = flask.request.form.get("website")
+
+    # There is logically difference between None and empty string here.
+    # 1. The first if check, we are working with a form that contains honeypots
+    # or the legacy ones using recaptcha.
+    # 2. The second that checks for empty string is actually testing if the
+    # honeypots have been triggered
     if honeypots["name"] != None and honeypots["website"] != None:
         if honeypots["name"] != "" and honeypots["website"] != "":
             raise BadRequest("Unexpected honeypot fields (name, website)")
