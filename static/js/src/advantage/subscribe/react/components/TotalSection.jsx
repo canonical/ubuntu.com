@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "@canonical/react-components";
 import { formatter } from "../../renderers/form-renderer";
-import { format } from "date-fns";
+import { format, add } from "date-fns";
 import usePreview from "../APICalls/usePreview";
 import useProduct from "../APICalls/useProduct";
 import { DATE_FORMAT } from "./Summary";
@@ -43,10 +43,17 @@ const TotalSection = () => {
                 $0 today -{" "}
                 <strong>
                   {total} on{" "}
-                  {format(
-                    new Date(preview?.subscriptionEndOfCycle),
-                    DATE_FORMAT
-                  )}
+                  {preview?.subscriptionEndOfCycle
+                    ? format(
+                        new Date(preview?.subscriptionEndOfCycle),
+                        DATE_FORMAT
+                      )
+                    : format(
+                        add(new Date(), {
+                          months: 1,
+                        }),
+                        DATE_FORMAT
+                      )}
                 </strong>
               </div>
             </Col>
@@ -59,7 +66,7 @@ const TotalSection = () => {
 
           <Col size="8">
             <strong>
-              {preview
+              {preview?.subscriptionEndOfCycle
                 ? format(new Date(preview?.subscriptionEndOfCycle), DATE_FORMAT)
                 : null}
             </strong>
