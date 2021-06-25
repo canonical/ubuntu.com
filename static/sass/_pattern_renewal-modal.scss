@@ -125,6 +125,11 @@
         text-align: right;
       }
     }
+    .col-4 {
+      @media (min-width: $breakpoint-medium) {
+        text-align: right;
+      }
+    }
 
     #card-element {
       background: $color-x-light;
@@ -176,12 +181,6 @@
       @media (min-width: $breakpoint-medium) {
         margin-bottom: 0;
       }
-    }
-
-    input,
-    select,
-    textarea {
-      margin-bottom: 0;
     }
 
     img {

@@ -1,6 +1,6 @@
 import versionDetails from "./version-details";
 
-const formatter = new Intl.NumberFormat("en-US", {
+export const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
@@ -161,7 +161,7 @@ function renderSummary(state) {
   const saveMessage = summarySection.querySelector("#summary-save-with-annual");
   const billingSection = summarySection.querySelector(".js-summary-billing");
   const billingSelect = summarySection.querySelector("select#billing-period");
-  const buyButton = summarySection.querySelector(".js-ua-shop-cta");
+  const buyButton = summarySection.querySelector("#buy-now-button");
 
   if (!state.product.ok || quantity <= 0) {
     summarySection.classList.add("p-shop-cart--hidden");
@@ -189,9 +189,9 @@ function renderSummary(state) {
     // We add the data to the button so the modal can pick it up
     buyButton.classList.remove("u-disable");
     const productObject = JSON.stringify(state.product);
-    buyButton.dataset.cart = `[{"listingID": "${state.product.id}", "product": ${productObject}, "quantity": ${quantity}}]`;
+    buyButton.dataset.product = productObject;
+    buyButton.dataset.quantity = quantity;
     buyButton.dataset.accountId = window.accountId;
-    buyButton.dataset.subtotal = price * quantity;
     buyButton.dataset.previousPurchaseId = previous_purchase_id;
   }
 

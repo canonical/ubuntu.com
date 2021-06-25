@@ -9,6 +9,7 @@ module.exports = {
     "eslint:recommended",
     "eslint-config-prettier",
     "plugin:cypress/recommended",
+    "plugin:react/recommended",
   ],
   globals: {
     Atomics: "readonly",
@@ -20,9 +21,13 @@ module.exports = {
     grecaptcha: "readonly",
     serialize: "readonly",
   },
+  parser: "@babel/eslint-parser",
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
+    babelOptions: {
+      plugins: ["@babel/plugin-syntax-jsx"],
+    },
   },
   rules: {
     semi: ["error", "always"],

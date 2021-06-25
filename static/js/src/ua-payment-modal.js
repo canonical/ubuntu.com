@@ -14,7 +14,7 @@ import {
 } from "./advantage/contracts-api.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
-import { vatCountries } from "./advantage/vat-countries.js";
+import { vatCountries } from "./advantage/countries-and-states.js";
 
 import {
   setOrderInformation,
@@ -51,6 +51,7 @@ const cardErrorElement = document.getElementById("card-errors");
 const paymentErrorElement = document.getElementById("payment-errors");
 
 const forMyselfRadio = document.getElementById("buying_for_myself");
+
 const forOrganisationRadio = document.getElementById(
   "buying_for_an_organisation"
 );

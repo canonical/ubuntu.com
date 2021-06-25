@@ -16,6 +16,17 @@
     {% include "shared/_cloud-contact-us-form.html" %}
   {% endwith %}
 
+{% elif product == 'blender-support' %}
+
+    {% with h1="Let's get in touch",
+      intro_text="Blender has partnered with Canonical to offer enterprise-grade support for the Blender LTS application suite. We can help you unleash more capabilities and supply the right level of support you need to have the best, hassle-free experience.",
+      formid="4052",
+      lpId="",
+      returnURL="https://ubuntu.com/contact-us/form/thank-you?product=blender-support" %}
+      {% include "shared/_cloud-contact-us-form.html" %}
+    {% endwith %}
+
+
 {% elif product == 'ossa' %}
 
   {% with h1="Contact us about the Open Source Security Assessment",

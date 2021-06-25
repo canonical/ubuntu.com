@@ -19,4 +19,29 @@ For additional practise, enroll in Canonical’s Study Labs. The labs feature vi
 
 A single purchase grants 90 days of access to the full set of Study Labs.
 
-<a class="p-button--positive">Purchase Study Lab access</a>
+<a class="p-button--positive js-study-button u-hide"></a>
+<div class="p-notification--negative js-study-notification u-hide">
+  <p class="p-notification__response" role="status">
+    <span class="p-notification__status">Error:</span>We could not verify if you have access to the study labs.
+  </p>
+</div>
+
+<script>
+  const button = document.querySelector(".js-study-button");
+  const notification = document.querySelector(".js-study-notification");
+  fetch("/cube/study/labs")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Response was not ok');
+      }
+      return response.json()
+    })
+    .then((json) => {
+      button.href = json.redirect_url;
+      button.text = json.text;
+      button.classList.toggle("u-hide")
+    })
+    .catch(() => {
+      notification.classList.toggle("u-hide")
+    });
+</script>

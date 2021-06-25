@@ -1,15 +1,24 @@
 const form = document.querySelector(".js-shop-form");
 
-function renderModal(state) {
-  const modal = form.querySelector("#other-versions-modal");
+function renderModals(state) {
+  const otherVersionsModal = form.querySelector("#other-versions-modal");
+  const purchaseModal = document.querySelector("#purchase-modal");
+
   if (state.otherVersionsModal.show) {
-    modal.style.display = "flex";
-    modal.focus();
+    otherVersionsModal.style.display = "flex";
+    otherVersionsModal.focus();
   } else {
-    modal.style.display = "none";
+    otherVersionsModal.style.display = "none";
+  }
+
+  if (state.purchaseModal.show) {
+    purchaseModal.style.display = "flex";
+    purchaseModal.focus();
+  } else {
+    purchaseModal.style.display = "none";
   }
 }
 
 export default function render(state) {
-  renderModal(state);
+  renderModals(state);
 }
