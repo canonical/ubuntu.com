@@ -290,14 +290,21 @@
                       </td>
                       <td id="expanded-details-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if open_subscription == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
                         <div class="row">
-                          {% if contract["period"] == "monthly" %}
+                          {% if contract['is_trialled'] %}
 
-                            {% include "advantage/table/_manage-monthly.html" %}
+                            {% include "advantage/table/_free-trial.html" %}
 
                           {% else %}
 
-                            {% include "advantage/table/_manage-yearly.html" %}
+                            {% if contract["period"] == "monthly" %}
 
+                              {% include "advantage/table/_manage-monthly.html" %}
+
+                            {% else %}
+
+                              {% include "advantage/table/_manage-yearly.html" %}
+
+                            {% endif %}
                           {% endif %}
                         </div>
                       </td>
