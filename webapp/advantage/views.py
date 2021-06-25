@@ -184,21 +184,22 @@ def advantage_view(**kwargs):
 
             effective_to = parse(contract_info["effectiveTo"])
             format_effective = effective_to.strftime("%d %B %Y")
-            contract["contractInfo"]["effectiveToFormatted"] = format_effective
+            contract_info["effectiveToFormatted"] = format_effective
 
             if effective_to < time_now:
-                contract["contractInfo"]["status"] = "expired"
+                contract_info["status"] = "expired"
+                grace_period = effective_to + timedelta(days=14)
+                format_grace_period = grace_period.strftime("%d %B %Y")
+                contract_info["grace_period_end"] = format_grace_period
                 restart_date = time_now - timedelta(days=1)
-                contract["contractInfo"]["expired_restart_date"] = restart_date
+                contract_info["expired_restart_date"] = restart_date
 
             date_difference = effective_to - time_now
             contract["expiring"] = date_difference.days <= 30
-            contract["contractInfo"]["daysTillExpiry"] = date_difference.days
+            contract_info["daysTillExpiry"] = date_difference.days
 
             try:
-                contract["renewal"] = _make_renewal(
-                    advantage, contract["contractInfo"]
-                )
+                contract["renewal"] = _make_renewal(advantage, contract_info)
             except KeyError:
                 flask.current_app.extensions["sentry"].captureException()
                 contract["renewal"] = None
