@@ -3,11 +3,8 @@ fetch("/static/js/data/openstack-commit-stats.json")
   .then((data) => {
     data = data.stats.slice(0, 10);
     drawChart(data);
+    drawTable(data);
   });
-
-window.onresize(() => {
-  console.log("yooo");
-});
 
 function drawChart(data) {
   var totals = d3.sum(data, function (d) {
@@ -19,7 +16,8 @@ function drawChart(data) {
   data.reverse();
 
   var aspectRatio = 0.55;
-  var viewWidth = +d3.select("#bar-chart").style("width").slice(0, -2);
+  var viewWidth =
+    +d3.select("#openstack-bar-chart").style("width").slice(0, -2) * 0.8;
   var viewHeight = viewWidth * aspectRatio;
   var margin = { top: 20, right: 20, bottom: 20, left: 130 };
   var percentagePosition = viewWidth / 37;
@@ -29,7 +27,7 @@ function drawChart(data) {
   var fontSize = viewWidth / 52;
 
   var svg = d3
-    .select("#bar-chart")
+    .select("#openstack-bar-chart")
     .append("svg")
     .attr("class", "svg")
     .attr("width", viewWidth)
@@ -81,4 +79,24 @@ function drawChart(data) {
     .text((d) => d.percentage + "%");
 
   svg.selectAll("text").style("font-size", fontSize);
+}
+
+function drawTable(data) {
+  const tableHeadings = `
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Commits</th>
+      </tr>
+    </thead>`;
+  let tableContent = ``;
+  for (let i = 0; i < data.length; i++) {
+    tableContent += `<tr>
+        <td>${data[i].name}</td>
+        <td>${data[i].metric}</td>
+      </tr>`;
+  }
+
+  const tableContainer = document.getElementById("openstack-table");
+  tableContainer.innerHTML = `<TABLE> ${tableHeadings} <tbody> ${tableContent} </tbody> </TABLE>`;
 }
