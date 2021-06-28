@@ -7,6 +7,8 @@ const isSmallVP =
 
 const productsArray = Object.entries(window.productList);
 
+const params = new URLSearchParams(window.location.search);
+
 const initialFormState = {
   type: "physical",
   version: "18.04",
@@ -113,9 +115,48 @@ function getProduct(state) {
   };
 }
 
+const getFreeTrialState = () => {
+  const productId = params.get("free_trial");
+  const quantity = params.get("quantity");
+
+  var freeTrialState = initialFormState;
+
+  freeTrialState.quantity = quantity;
+
+  if (productId.includes("virtual")) {
+    freeTrialState.type = "virtual";
+  } else if (productId.includes("desktop")) {
+    freeTrialState.type = "desktop";
+  } else {
+    freeTrialState.type = "physical";
+  }
+
+  if (productId.includes("uaia")) {
+    freeTrialState.feature = "infra+apps";
+  } else if (productId.includes("uaa")) {
+    freeTrialState.feature = "apps";
+  } else {
+    freeTrialState.feature = "infra";
+  }
+
+  if (productId.includes("essential")) {
+    freeTrialState.support = "essential";
+  } else if (productId.includes("standard")) {
+    freeTrialState.support = "standard";
+  } else {
+    freeTrialState.support = "advanced";
+  }
+
+  freeTrialState.product = getProduct(freeTrialState);
+
+  return freeTrialState;
+};
+
 const formSlice = createSlice({
   name: "form",
-  initialState: loadState("ua-subscribe-state", "form", initialFormState),
+  initialState: params.has("free_trial")
+    ? getFreeTrialState()
+    : loadState("ua-subscribe-state", "form", initialFormState),
   reducers: {
     changeType(state, action) {
       state.type = action.payload;
