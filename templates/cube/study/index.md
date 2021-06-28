@@ -15,7 +15,7 @@ Note that these study materials are not intended as a training program. Rather, 
 
 ## Further preparation
 
-For additional practise, enroll in Canonical’s Study Labs. The labs feature virtual Ubuntu terminals for a hands-on study experience that simulates working with the real thing.
+For additional practise, enroll in Canonical’s Study Labs. The labs enhance the free study materials, adding new interactive exercises that feature virtual Ubuntu terminals. They offer a hands-on study experience that simulates working with the real thing.
 
 A single purchase grants 90 days of access to the full set of Study Labs.
 
