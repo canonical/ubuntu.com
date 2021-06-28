@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import PropTypes from "prop-types";
 
 import { Input, Select, RadioInput } from "@canonical/react-components";
@@ -23,6 +23,7 @@ function PaymentMethodForm({ setCardValid }) {
   const [cardFieldError, setCardFieldError] = useState(null);
   const mutation = usePostCustomerInfoAnon();
   const queryClient = useQueryClient();
+  const emailRef = useRef();
 
   const { errors, touched, values, setTouched, setErrors } = useFormikContext();
 
@@ -144,7 +145,11 @@ function PaymentMethodForm({ setCardValid }) {
               },
             }}
             onFocus={() => {
-              setCardFieldFocus(true);
+              if (values.freeTrial === "useFreeTrial") {
+                emailRef.current.focus();
+              } else {
+                setCardFieldFocus(true);
+              }
             }}
             onBlur={() => {
               setCardFieldFocus(false);
@@ -160,6 +165,8 @@ function PaymentMethodForm({ setCardValid }) {
           />
         </div>
       </FormRow>
+
+      <div ref={emailRef} tabIndex="0" />
 
       <Field
         as={Input}
