@@ -1,14 +1,9 @@
 import { RadioInput } from "@canonical/react-components";
-import { Field, useFormikContext } from "formik";
+import { Field } from "formik";
 import React from "react";
 import FormRow from "./FormRow";
 
 const FreeTrialRadio = () => {
-  const { values } = useFormikContext();
-
-  console.log(values.freeTrial);
-  console.log(values.freeTrial === "useFreeTrial");
-  console.log(values.freeTrial === "payNow");
   return (
     <FormRow label="Free Trial:">
       <div className="u-sv3 p-form p-form--inline" role="group">
