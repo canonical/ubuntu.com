@@ -6,40 +6,36 @@ fetch("/static/js/data/openstack-commit-stats.json")
     drawTable(data);
   });
 
-function drawChart(data) {
-  var totals = d3.sum(data, function (d) {
-    return d.metric;
-  });
-  data.forEach(function (d) {
+const drawChart = (data) => {
+  const totals = d3.sum(data, (d) => d.metric);
+  data.forEach((d) => {
     d.percentage = Math.round(100 * (d.metric / totals) * 10) / 10;
   });
   data.reverse();
 
-  var aspectRatio = 0.55;
-  var viewWidth =
+  const aspectRatio = 0.55;
+  const viewWidth =
     +d3.select("#openstack-bar-chart").style("width").slice(0, -2) * 0.8;
-  var viewHeight = viewWidth * aspectRatio;
-  var margin = { top: 20, right: 20, bottom: 20, left: 130 };
-  var percentagePosition = viewWidth / 37;
-  console.log(percentagePosition, viewWidth);
-  var chartWidth = viewWidth - margin.left - margin.right;
-  var chartHeight = viewHeight - margin.top - margin.bottom;
-  var fontSize = viewWidth / 52;
+  const viewHeight = viewWidth * aspectRatio;
+  const margin = { top: 20, right: 20, bottom: 20, left: 130 };
+  const percentagePosition = viewWidth / 37;
+  const chartWidth = viewWidth - margin.left - margin.right;
+  const chartHeight = viewHeight - margin.top - margin.bottom;
+  const fontSize = viewWidth / 52;
 
-  var svg = d3
+  const svg = d3
     .select("#openstack-bar-chart")
     .append("svg")
     .attr("class", "svg")
     .attr("width", viewWidth)
     .attr("height", viewHeight);
-  // .attr("viewbox", "0 0" + viewWidth + viewHeight);
 
-  var y = d3
+  const y = d3
     .scaleBand()
     .range([chartHeight + margin.top, margin.top])
     .padding(0.2);
 
-  var x = d3.scaleLinear().range([margin.left, chartWidth + margin.left]);
+  const x = d3.scaleLinear().range([margin.left, chartWidth + margin.left]);
 
   y.domain(data.map((d) => d.name));
   x.domain([0, d3.max(data, (d) => +d.metric)]);
@@ -79,9 +75,9 @@ function drawChart(data) {
     .text((d) => d.percentage + "%");
 
   svg.selectAll("text").style("font-size", fontSize);
-}
+};
 
-function drawTable(data) {
+const drawTable = (data) => {
   const tableHeadings = `
     <thead>
       <tr>
@@ -90,13 +86,13 @@ function drawTable(data) {
       </tr>
     </thead>`;
   let tableContent = ``;
-  for (let i = 0; i < data.length; i++) {
+  data.forEach((d) => {
     tableContent += `<tr>
-        <td>${data[i].name}</td>
-        <td>${data[i].metric}</td>
+        <td>${d.name}</td>
+        <td>${d.metric}</td>
       </tr>`;
-  }
+  });
 
   const tableContainer = document.getElementById("openstack-table");
   tableContainer.innerHTML = `<TABLE> ${tableHeadings} <tbody> ${tableContent} </tbody> </TABLE>`;
-}
+};
