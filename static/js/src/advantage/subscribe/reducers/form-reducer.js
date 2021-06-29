@@ -121,7 +121,7 @@ const getFreeTrialState = () => {
 
   var freeTrialState = initialFormState;
 
-  freeTrialState.quantity = quantity;
+  freeTrialState.quantity = Math.min(Math.max(1, quantity), 1000);
 
   if (productId.includes("virtual")) {
     freeTrialState.type = "virtual";
