@@ -117,7 +117,7 @@ function getProduct(state) {
 
 const getFreeTrialState = () => {
   const productId = params.get("free_trial");
-  const quantity = params.get("quantity");
+  const quantity = Number(params.get("quantity")) || 1;
 
   var freeTrialState = initialFormState;
 
