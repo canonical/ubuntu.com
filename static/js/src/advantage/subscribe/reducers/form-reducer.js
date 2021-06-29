@@ -139,12 +139,12 @@ const getFreeTrialState = () => {
     freeTrialState.feature = "infra";
   }
 
-  if (productId.includes("essential")) {
-    freeTrialState.support = "essential";
+  if (productId.includes("advanced")) {
+    freeTrialState.support = "advanced";
   } else if (productId.includes("standard")) {
     freeTrialState.support = "standard";
   } else {
-    freeTrialState.support = "advanced";
+    freeTrialState.support = "essential";
   }
 
   freeTrialState.product = getProduct(freeTrialState);
