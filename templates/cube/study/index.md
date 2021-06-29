@@ -15,9 +15,11 @@ Note that these study materials are not intended as a training program. Rather, 
 
 ## Further preparation
 
-For additional practise, enroll in Canonical’s Study Labs. The labs enhance the free study materials, adding new interactive exercises that feature virtual Ubuntu terminals. They offer a hands-on study experience that simulates working with the real thing.
+For additional practise, enroll in Canonical’s Study Labs. The labs enhance the free study materials, adding new interactive exercises that feature virtual Ubuntu terminals. They offer a hands-on study experience that simulates working with the real thing. No more worrying about experimenting on your personal computer; use our simulated ones to avoid altering your own files. 
 
-A single purchase grants 90 days of access to the full set of Study Labs.
+Our study labs provide terminal access via your browser and are formatted similarly to what you will see during exams.
+
+A single purchase grants 90 days of access to the full set of Study Labs for every microcertification.
 
 <a class="p-button--positive js-study-button u-hide"></a>
 <div class="p-notification--negative js-study-notification u-hide">
