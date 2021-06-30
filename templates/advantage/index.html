@@ -105,14 +105,21 @@
             <div class="row">
               {% with mobile="true" %}
 
-                {% if contract["period"] == "monthly" %}
+                {% if contract['is_trialled'] %}
 
-                  {% include "advantage/table/_manage-monthly.html" %}
+                  {% include "advantage/table/_free-trial.html" %}
 
                 {% else %}
 
-                  {% include "advantage/table/_manage-yearly.html" %}
+                  {% if contract["period"] == "monthly" %}
 
+                    {% include "advantage/table/_manage-monthly.html" %}
+
+                  {% else %}
+
+                    {% include "advantage/table/_manage-yearly.html" %}
+
+                  {% endif %}
                 {% endif %}
 
               {% endwith %}
