@@ -82,14 +82,16 @@ const drawTable = (data) => {
     <thead>
       <tr>
         <th>Company</th>
-        <th>Commits</th>
+        <th class="u-align--right">Commits</th>
+        <th colspan="2"></th>
       </tr>
     </thead>`;
   let tableContent = ``;
   data.forEach((d) => {
     tableContent += `<tr>
         <td>${d.name}</td>
-        <td class="">${d.metric}</td>
+        <td class="u-align--right">${d.metric}</td>
+        <td colspan="2"></td>
       </tr>`;
   });
 
