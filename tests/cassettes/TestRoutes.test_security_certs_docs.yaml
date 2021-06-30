@@ -1,0 +1,152 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://discourse.ubuntu.com/t/22810.json
+  response:
+    body:
+      string: "{\"post_stream\":{\"posts\":[{\"id\":61313,\"name\":\"Carlos Wu Fei\",\"username\":\"carkod\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\",\"created_at\":\"2021-06-23T10:29:48.034Z\",\"cooked\":\"\\u003ch1\\u003eUbuntu
+        Security Certifications\\u003c/h1\\u003e\\n\\u003cp\\u003eCanonical\u2019s
+        security certifications offerings are available to Ubuntu Advantage customers.
+        For further information, please contact a member of the \\u003ca href=\\\"https://www.ubuntu.com/support/contact-us\\\"\\u003eCanonical
+        Sales team\\u003c/a\\u003e.\\u003c/p\\u003e\\n\\u003ch2\\u003eFIPS\\u003c/h2\\u003e\\n\\u003cp\\u003eFederal
+        Information Processing Standards Publications (FIPS) are issued by the National
+        Institute of Standards and Technology (NIST). FIPS 140-2 specifies the security
+        requirements for cryptographic modules. These requirements address the areas
+        of secure design and implementation.\\u003c/p\\u003e\\n\\u003cp\\u003eUbuntu
+        16.04 LTS (Xenial) and Ubuntu 18.04 LTS (Bionic) have certified FIPS packages.
+        Future Ubuntu LTS releases will also be put through the certification process.
+        Visit the NIST Computer Security Resource Center\u2019s \\u003ca href=\\\"https://csrc.nist.gov/Projects/cryptographic-module-validation-program/Modules-In-Process/Modules-In-Process-List\\\"\\u003eModules
+        In Process List\\u003c/a\\u003e to see current Canonical modules in the certification
+        process.\\u003c/p\\u003e\\n\\u003ch4\\u003eCertified use of FIPS packages\\u003c/h4\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca
+        href=\\\"/security/certifications/docs/fips\\\"\\u003eFIPS for Ubuntu 16.04
+        and Ubuntu 18.04 Information and Installation Guide\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch4\\u003eNon-Certified
+        use of FIPS packages\\u003c/h4\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\u003ca
+        href=\\\"/security/certifications/docs/fips#heading--updates-to-fips\\\"\\u003eSecurity/Bugfix
+        updates to FIPS packages\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003cli\\u003e\\u003ca
+        href=\\\"/security/certifications/docs/fips-cloud-containers\\\"\\u003eInstallation
+        Instructions for clouds and containers\\u003c/a\\u003e\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch2\\u003eCC\\u003c/h2\\u003e\\n\\u003cp\\u003eCommon
+        Criteria for Information Technology Security Evaluation (CC) is an international
+        standard. The CC provides a common set of requirements for the security functionality
+        of IT products and for assurance measures applied to these IT products during
+        a security evaluation.\\u003c/p\\u003e\\n\\u003cp\\u003eThe evaluation process
+        establishes a level of confidence that the security functionality of these
+        IT products and the assurance measures applied to these IT products meet these
+        requirements:\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf\\\"\\u003eCommon
+        Criteria for Information Technology Security Evaluation, April 2017\\u003c/a\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca
+        href=\\\"/security/certifications/docs/cc\\\"\\u003eCC EAL2 Configuration
+        for Ubuntu Information and Installation Guide\\u003c/a\\u003e\\u003c/p\\u003e\\n\\u003ch2\\u003eCIS\\u003c/h2\\u003e\\n\\u003cp\\u003eUbuntu
+        18.04 and Ubuntu 16.04 have compliance benchmark documents developed by the
+        Center for Internet Security (CIS), \\u003ca href=\\\"https://www.cisecurity.org/cis-benchmarks/\\\"\\u003eavailable
+        on their website\\u003c/a\\u003e. Canonical has developed a tool to assist
+        in hardening an Ubuntu 18.04 or an Ubuntu 16.04 system based off of the published
+        CIS benchmarks.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"/security/certifications/docs/cis\\\"\\u003eCanonical
+        CIS Benchmark Hardening Tool Installation\\u003c/a\\u003e\\u003c/p\\u003e\\n\\u003ch2\\u003eNavigation\\u003c/h2\\u003e\\n\\u003cdetails\\u003e\\n\\u003csummary\\u003e\\nNavigation\\u003c/summary\\u003e\\n\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eLevel\\u003c/th\\u003e\\n\\u003cth\\u003ePath\\u003c/th\\u003e\\n\\u003cth\\u003eNavlink\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/about-the-documentation-category/22810\\\"\\u003eSecurity
+        Certifications\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003efips\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814\\\"\\u003e FIPS
+        for Ubuntu\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003efips-cloud-containers\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/latest-xenial-kernels/22815\\\"\\u003eFIPS
+        for clouds annd containers\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003efips-faq\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/ubuntu-fips-140-2-modules-faq/22816\\\"\\u003eFIPS
+        FAQ\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003ecc\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817\\\"\\u003eCommon
+        Criteria for Ubuntu\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003ecis\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818\\\"\\u003eCenter
+        for Internet Security (CIS) Compliance for Ubuntu\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003ecis-manual-requirements\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu-required-manual-configuration/22819\\\"\\u003eRequired
+        Manual Configuration\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003ecis-juju\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/cis-benchmark-via-juju/22820\\\"\\u003eHardening
+        via Juju\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003ecis-ruleset-params\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu-ruleset-params-conf-parameter-information/22821\\\"\\u003eruleset-params.conf
+        Parameter Information\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003ecis-audit\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"https://discourse.ubuntu.com/t/auditing-a-cis-hardened-ubuntu-system/22822\\\"\\u003eAuditing
+        a CIS-Hardened Ubuntu System\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003c/details\\u003e\",\"post_number\":1,\"post_type\":1,\"updated_at\":\"2021-06-29T09:11:33.993Z\",\"reply_count\":0,\"reply_to_post_number\":null,\"quote_count\":0,\"incoming_link_count\":7,\"reads\":6,\"readers_count\":5,\"score\":36.2,\"yours\":false,\"topic_id\":22810,\"topic_slug\":\"about-the-documentation-category\",\"display_username\":\"Carlos
+        Wu Fei\",\"primary_group_name\":\"Canonical\",\"primary_group_flair_url\":\"/uploads/short-url/paWz8RxxmKxiYXUmH2ABvqKp0Gg.png\",\"primary_group_flair_bg_color\":\"\",\"primary_group_flair_color\":\"\",\"version\":11,\"can_edit\":false,\"can_delete\":false,\"can_recover\":false,\"can_wiki\":false,\"link_counts\":[{\"url\":\"/security/certifications/docs/fips#heading--updates-to-fips\",\"internal\":false,\"reflection\":false,\"clicks\":0},{\"url\":\"/security/certifications/docs/cis\",\"internal\":false,\"reflection\":false,\"clicks\":0},{\"url\":\"/security/certifications/docs/cc\",\"internal\":false,\"reflection\":false,\"clicks\":0},{\"url\":\"/security/certifications/docs/fips-cloud-containers\",\"internal\":false,\"reflection\":false,\"clicks\":0},{\"url\":\"/security/certifications/docs/fips\",\"internal\":false,\"reflection\":false,\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/auditing-a-cis-hardened-ubuntu-system/22822\",\"internal\":true,\"reflection\":false,\"title\":\"Auditing
+        a CIS-Hardened Ubuntu System\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu-ruleset-params-conf-parameter-information/22821\",\"internal\":true,\"reflection\":false,\"title\":\"CIS
+        Compliance for Ubuntu: ruleset-params.conf Parameter Information\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/cis-benchmark-via-juju/22820\",\"internal\":true,\"reflection\":false,\"title\":\"CIS
+        Benchmark via Juju\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu-required-manual-configuration/22819\",\"internal\":true,\"reflection\":false,\"title\":\"CIS
+        Compliance for Ubuntu: Required Manual Configuration\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/cis-compliance-for-ubuntu/22818\",\"internal\":true,\"reflection\":false,\"title\":\"CIS
+        Compliance for Ubuntu\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/common-criteria-for-ubuntu/22817\",\"internal\":true,\"reflection\":false,\"title\":\"Common
+        Criteria for Ubuntu\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/ubuntu-fips-140-2-modules-faq/22816\",\"internal\":true,\"reflection\":false,\"title\":\"Ubuntu
+        FIPS 140-2 Modules FAQ\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/latest-xenial-kernels/22815\",\"internal\":true,\"reflection\":false,\"title\":\"Latest
+        Xenial Kernels\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/fips-for-ubuntu/22814\",\"internal\":true,\"reflection\":false,\"title\":\"FIPS
+        for Ubuntu\",\"clicks\":0},{\"url\":\"https://www.ubuntu.com/support/contact-us\",\"internal\":false,\"reflection\":false,\"clicks\":0},{\"url\":\"https://www.cisecurity.org/cis-benchmarks/\",\"internal\":false,\"reflection\":false,\"clicks\":0},{\"url\":\"https://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf\",\"internal\":false,\"reflection\":false,\"clicks\":0},{\"url\":\"https://csrc.nist.gov/Projects/cryptographic-module-validation-program/Modules-In-Process/Modules-In-Process-List\",\"internal\":false,\"reflection\":false,\"clicks\":0}],\"read\":true,\"user_title\":null,\"bookmarked\":false,\"actions_summary\":[],\"moderator\":false,\"admin\":true,\"staff\":true,\"user_id\":9642,\"hidden\":false,\"trust_level\":3,\"deleted_at\":null,\"user_deleted\":false,\"edit_reason\":null,\"can_view_edit_history\":true,\"wiki\":false,\"can_accept_answer\":false,\"can_unaccept_answer\":false,\"accepted_answer\":false}],\"stream\":[61313]},\"timeline_lookup\":[[1,6]],\"suggested_topics\":[{\"id\":22816,\"title\":\"Ubuntu
+        FIPS 140-2 Modules FAQ\",\"fancy_title\":\"Ubuntu FIPS 140-2 Modules FAQ\",\"slug\":\"ubuntu-fips-140-2-modules-faq\",\"posts_count\":1,\"reply_count\":0,\"highest_post_number\":1,\"image_url\":null,\"created_at\":\"2021-06-23T14:28:40.775Z\",\"last_posted_at\":\"2021-06-23T14:28:41.016Z\",\"bumped\":true,\"bumped_at\":\"2021-06-24T13:29:44.807Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"like_count\":0,\"views\":35,\"category_id\":87,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest
+        single\",\"description\":\"Original Poster, Most Recent Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
+        Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]},{\"id\":22817,\"title\":\"Common
+        Criteria for Ubuntu\",\"fancy_title\":\"Common Criteria for Ubuntu\",\"slug\":\"common-criteria-for-ubuntu\",\"posts_count\":1,\"reply_count\":0,\"highest_post_number\":1,\"image_url\":null,\"created_at\":\"2021-06-23T14:30:52.171Z\",\"last_posted_at\":\"2021-06-23T14:30:52.381Z\",\"bumped\":true,\"bumped_at\":\"2021-06-24T14:03:05.515Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"like_count\":0,\"views\":45,\"category_id\":87,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest
+        single\",\"description\":\"Original Poster, Most Recent Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
+        Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]},{\"id\":22822,\"title\":\"Auditing
+        a CIS-Hardened Ubuntu System\",\"fancy_title\":\"Auditing a CIS-Hardened Ubuntu
+        System\",\"slug\":\"auditing-a-cis-hardened-ubuntu-system\",\"posts_count\":1,\"reply_count\":0,\"highest_post_number\":1,\"image_url\":null,\"created_at\":\"2021-06-23T15:12:04.364Z\",\"last_posted_at\":\"2021-06-23T15:12:04.549Z\",\"bumped\":true,\"bumped_at\":\"2021-06-29T09:50:37.402Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"like_count\":0,\"views\":47,\"category_id\":87,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest
+        single\",\"description\":\"Original Poster, Most Recent Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
+        Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]},{\"id\":22814,\"title\":\"FIPS
+        for Ubuntu\",\"fancy_title\":\"FIPS for Ubuntu\",\"slug\":\"fips-for-ubuntu\",\"posts_count\":1,\"reply_count\":0,\"highest_post_number\":1,\"image_url\":null,\"created_at\":\"2021-06-23T14:21:20.022Z\",\"last_posted_at\":\"2021-06-23T14:21:20.225Z\",\"bumped\":true,\"bumped_at\":\"2021-06-29T09:38:07.111Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"like_count\":0,\"views\":43,\"category_id\":87,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest
+        single\",\"description\":\"Original Poster, Most Recent Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
+        Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]},{\"id\":22820,\"title\":\"CIS
+        Benchmark via Juju\",\"fancy_title\":\"CIS Benchmark via Juju\",\"slug\":\"cis-benchmark-via-juju\",\"posts_count\":1,\"reply_count\":0,\"highest_post_number\":1,\"image_url\":null,\"created_at\":\"2021-06-23T14:49:41.582Z\",\"last_posted_at\":\"2021-06-23T14:49:41.794Z\",\"bumped\":true,\"bumped_at\":\"2021-06-24T14:25:14.944Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"like_count\":0,\"views\":36,\"category_id\":87,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest
+        single\",\"description\":\"Original Poster, Most Recent Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
+        Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]}],\"tags\":[],\"id\":22810,\"title\":\"About
+        the Documentation category\",\"fancy_title\":\"About the Documentation category\",\"posts_count\":1,\"created_at\":\"2021-06-23T10:29:48.019Z\",\"views\":45,\"reply_count\":0,\"like_count\":0,\"last_posted_at\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"has_summary\":false,\"archetype\":\"regular\",\"slug\":\"about-the-documentation-category\",\"category_id\":87,\"word_count\":541,\"deleted_at\":null,\"user_id\":9642,\"featured_link\":null,\"pinned_globally\":false,\"pinned_at\":\"2021-06-23T10:29:48.014Z\",\"pinned_until\":null,\"image_url\":null,\"slow_mode_seconds\":0,\"draft\":null,\"draft_key\":\"topic_22810\",\"draft_sequence\":null,\"unpinned\":null,\"pinned\":true,\"current_post_number\":1,\"highest_post_number\":1,\"deleted_by\":null,\"actions_summary\":[{\"id\":4,\"count\":0,\"hidden\":false,\"can_act\":false},{\"id\":8,\"count\":0,\"hidden\":false,\"can_act\":false},{\"id\":7,\"count\":0,\"hidden\":false,\"can_act\":false}],\"chunk_size\":20,\"bookmarked\":false,\"topic_timer\":null,\"message_bus_last_id\":25,\"participant_count\":1,\"show_read_indicator\":false,\"thumbnails\":null,\"details\":{\"notification_level\":1,\"participants\":[{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
+        Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\",\"post_count\":1,\"primary_group_name\":\"Canonical\",\"primary_group_flair_url\":\"/uploads/short-url/paWz8RxxmKxiYXUmH2ABvqKp0Gg.png\",\"primary_group_flair_color\":\"\",\"primary_group_flair_bg_color\":\"\"}],\"created_by\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
+        Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"},\"last_poster\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
+        Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}}"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Content-Type, Cache-Control, X-Requested-With, X-CSRF-Token, Discourse-Present,
+        User-Api-Key, User-Api-Client-Id, Authorization
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - https://didrocks.fr
+      Cache-Control:
+      - no-cache, no-store
+      Connection:
+      - Keep-Alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 29 Jun 2021 12:50:48 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - Apache/2.4.18 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Discourse-Cached:
+      - skip
+      X-Discourse-Route:
+      - topics/show
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Request-Id:
+      - fb8c766d-26a3-4cde-a209-e591e5032fec
+      X-Runtime:
+      - '0.114866'
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

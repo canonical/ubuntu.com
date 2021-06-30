@@ -776,6 +776,31 @@ app.add_url_rule(
 
 openstack_docs.init_app(app)
 
+# Security Certifications docs
+security_certs_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=22810,
+        url_prefix="/security/certifications/docs",
+    ),
+    document_template="/security/certifications/docs/document.html",
+    url_prefix="/security/certifications/docs",
+    blueprint_name="security-certs-docs",
+)
+
+# Security Certifications search
+app.add_url_rule(
+    "/security/certifications/docs/search",
+    "security-certs-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/security/certifications/docs",
+        template_path="/security/certifications/docs/search-results.html",
+    ),
+)
+
+security_certs_docs.init_app(app)
+
 app.add_url_rule("/certified", view_func=certified_home)
 app.add_url_rule(
     "/certified/<canonical_id>",
