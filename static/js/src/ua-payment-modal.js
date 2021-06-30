@@ -198,13 +198,13 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
     };
   }
 
-  postCustomerInfoToStripeAccount(
-    paymentMethod.id,
-    currentTransaction.accountId,
-    customerInfo.address,
-    customerInfo.name,
-    stripeTaxObject
-  )
+  postCustomerInfoToStripeAccount({
+    paymentMethodID: paymentMethod.id,
+    accountID: currentTransaction.accountId,
+    address: customerInfo.address,
+    name: customerInfo.name,
+    taxID: stripeTaxObject,
+  })
     .then((data) => {
       applyLoggedInPurchaseTotals();
       handleCustomerInfoResponse(paymentMethod, data);
@@ -773,12 +773,12 @@ function handleGuestPaymentMethodResponse(data) {
   // purchases with and then continue
   const paymentMethod = data.paymentMethod;
 
-  ensurePurchaseAccount(
-    customerInfo.email,
-    customerInfo.accountName,
-    paymentMethod.id,
-    customerInfo.address.country
-  ).then((data) => {
+  ensurePurchaseAccount({
+    email: customerInfo.email,
+    accountName: customerInfo.accountName,
+    paymentMethodID: paymentMethod.id,
+    country: customerInfo.address.country,
+  }).then((data) => {
     if (data.code) {
       // an error was returned, most likely cause
       // is that the user is trying to make a purchase
