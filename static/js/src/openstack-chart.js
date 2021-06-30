@@ -14,14 +14,12 @@ const drawChart = (data) => {
   data.reverse();
 
   const aspectRatio = 0.55;
-  const viewWidth =
-    +d3.select("#openstack-bar-chart").style("width").slice(0, -2) * 0.8;
+  const viewWidth = 686;
   const viewHeight = viewWidth * aspectRatio;
   const margin = { top: 20, right: 20, bottom: 20, left: 130 };
-  const percentagePosition = viewWidth / 37;
+  const percentagePosition = viewWidth / 38;
   const chartWidth = viewWidth - margin.left - margin.right;
   const chartHeight = viewHeight - margin.top - margin.bottom;
-  const fontSize = viewWidth / 52;
 
   const svg = d3
     .select("#openstack-bar-chart")
@@ -33,7 +31,7 @@ const drawChart = (data) => {
   const y = d3
     .scaleBand()
     .range([chartHeight + margin.top, margin.top])
-    .padding(0.2);
+    .padding(0.25);
 
   const x = d3.scaleLinear().range([margin.left, chartWidth + margin.left]);
 
@@ -50,7 +48,8 @@ const drawChart = (data) => {
     .attr("x", margin.left)
     .attr("height", y.bandwidth())
     .attr("width", (d) => x(d.metric) - margin.left)
-    .style("fill", "#5E2750");
+    .attr("rx", "2")
+    .style("fill", "#772953");
 
   svg
     .append("g")
@@ -58,6 +57,8 @@ const drawChart = (data) => {
     .attr("transform", "translate(" + (margin.left - 10) + ",0)")
     .call(d3.axisLeft(y).tickSize(0))
     .call((g) => g.select(".domain").remove());
+
+  svg.selectAll("text").style("font-size", "1rem");
 
   svg
     .append("g")
@@ -72,9 +73,8 @@ const drawChart = (data) => {
     .attr("dy", percentagePosition)
     .attr("dx", -5)
     .attr("fill", "white")
+    .style("font-size", "0.875rem")
     .text((d) => d.percentage + "%");
-
-  svg.selectAll("text").style("font-size", fontSize);
 };
 
 const drawTable = (data) => {
@@ -89,7 +89,7 @@ const drawTable = (data) => {
   data.forEach((d) => {
     tableContent += `<tr>
         <td>${d.name}</td>
-        <td>${d.metric}</td>
+        <td class="">${d.metric}</td>
       </tr>`;
   });
 
