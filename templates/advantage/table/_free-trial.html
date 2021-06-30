@@ -1,4 +1,7 @@
 <div class="col-start-large-2 col-10">
+  {% if mobile %}
+    <hr class="p-separator" />
+  {% endif %}
   <div class="row">
     {% if contract['contractInfo']['status'] == "expired" %}
 
