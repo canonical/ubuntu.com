@@ -67,7 +67,10 @@ const PurchaseModal = () => {
   const { product } = useProduct();
 
   const initialValues = {
-    freeTrial: product?.canBeTrialled ? "useFreeTrial" : "payNow",
+    freeTrial:
+      product?.canBeTrialled && !(step === 2 && window.isGuest)
+        ? "useFreeTrial"
+        : "payNow",
     email: userInfo?.customerInfo?.email ?? "",
     name: userInfo?.customerInfo?.name ?? "",
     buyingFor:
@@ -212,7 +215,7 @@ const PurchaseModal = () => {
                   </Notification>
                 )}
 
-                {product?.canBeTrialled ? <FreeTrialRadio /> : null}
+                {product?.canBeTrialled ? <FreeTrialRadio step={step} /> : null}
 
                 {step === 1 ? (
                   <PaymentMethodForm setCardValid={setCardValid} />
