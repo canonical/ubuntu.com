@@ -12,7 +12,7 @@ const TermsCheckBox = ({ step }) => {
 
   const purchaseLabel = (
     <>
-      I agree to the {step}
+      I agree to the{" "}
       <a
         href="/legal/ubuntu-advantage-service-terms"
         target="_blank"

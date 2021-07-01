@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useFormikContext } from "formik";
 import { ActionButton } from "@canonical/react-components";
-import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
 import useFreeTrial from "../../APICalls/useFreeTrial";
 
-const FreeTrialButton = ({ setError }) => {
+const FreeTrialButton = ({ setError, userInfo }) => {
   const { values, isSubmitting, dirty, isValid } = useFormikContext();
-  const { data: userInfo } = useStripeCustomerInfo();
   const mutation = useFreeTrial();
 
   const onStartTrialClick = () => {
@@ -62,6 +60,7 @@ const FreeTrialButton = ({ setError }) => {
 
 FreeTrialButton.propTypes = {
   setError: PropTypes.func.isRequired,
+  userInfo: PropTypes.object.isRequired,
 };
 
 export default FreeTrialButton;

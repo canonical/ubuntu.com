@@ -244,6 +244,7 @@ const PurchaseModal = () => {
                 step={step}
                 isCardValid={isCardValid}
                 setError={setError}
+                userInfo={userInfo}
               />
             </Row>
           </footer>
