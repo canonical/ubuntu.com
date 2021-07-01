@@ -2,11 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useFormikContext } from "formik";
 import { ActionButton } from "@canonical/react-components";
-import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
 
-const PaymentMethodFormButton = ({ isCardValid }) => {
+const PaymentMethodFormButton = ({ isCardValid, userInfo }) => {
   const { isSubmitting, dirty, isValid, submitForm } = useFormikContext();
-  const { data: userInfo } = useStripeCustomerInfo();
 
   return (
     <ActionButton
@@ -24,6 +22,7 @@ const PaymentMethodFormButton = ({ isCardValid }) => {
 
 PaymentMethodFormButton.propTypes = {
   isCardValid: PropTypes.bool.isRequired,
+  userInfo: PropTypes.object.isRequired,
 };
 
 export default PaymentMethodFormButton;
