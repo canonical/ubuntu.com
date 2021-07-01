@@ -1,17 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Field, useFormikContext } from "formik";
 import { Row, Col, CheckboxInput } from "@canonical/react-components";
 
-const TermsCheckBox = (step) => {
+const TermsCheckBox = ({ step }) => {
   const { values } = useFormikContext();
 
-  if (step === 2 && values.freeTrial === "payNow") {
+  if (step === 1 && values.freeTrial !== "useFreeTrial") {
     return null;
   }
 
   const purchaseLabel = (
     <>
-      I agree to the{" "}
+      I agree to the {step}
       <a
         href="/legal/ubuntu-advantage-service-terms"
         target="_blank"
@@ -61,6 +62,10 @@ const TermsCheckBox = (step) => {
       </Col>
     </Row>
   );
+};
+
+TermsCheckBox.propTypes = {
+  step: PropTypes.number,
 };
 
 export default TermsCheckBox;
