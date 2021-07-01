@@ -802,7 +802,7 @@ def post_trial(**kwargs):
 @use_kwargs(post_guest_trial, location="json")
 def post_guest_trial(**kwargs):
     flask.session["guest_trial"] = {
-        "is_test_backend": kwargs.get("is_test_backend"),
+        "test_backend": kwargs.get("test_backend"),
         "api_url": kwargs.get("api_url"),
         "email": kwargs.get("email"),
         "account_name": kwargs.get("account_name"),
@@ -818,7 +818,7 @@ def post_guest_trial(**kwargs):
 def save_guest_trial(**kwargs):
     token = kwargs.get("token")
     session_values = flask.session.get("guest_trial")
-    is_test_backend = session_values.get("test_backend")
+    test_backend = session_values.get("test_backend")
     api_url = session_values.get("api_url")
     email = session_values.get("email")
     account_name = session_values.get("account_name")
@@ -864,7 +864,7 @@ def save_guest_trial(**kwargs):
         },
     )
 
-    if is_test_backend:
+    if test_backend:
         return flask.redirect("/advantage?test_backend=true")
 
     return flask.redirect("/advantage")
