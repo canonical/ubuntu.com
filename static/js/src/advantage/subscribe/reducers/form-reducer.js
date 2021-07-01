@@ -177,6 +177,8 @@ const formSlice = createSlice({
       state.version = action.payload;
     },
     changeFeature(state, action) {
+      state.feature = action.payload;
+
       if (
         action.payload === "apps" &&
         state.type === "desktop" &&

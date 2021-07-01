@@ -82,8 +82,6 @@ function renderFeature(state) {
   );
   const radios = featureSection.querySelectorAll(".js-radio");
 
-  featureSection.classList.remove("u-hide");
-
   // Disable infra + apps if desktop is selected
   if (state.type === "desktop") {
     radios.forEach((radio) => {
