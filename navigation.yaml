@@ -1443,6 +1443,12 @@ security:
       path: /security/certifications#cis
     - title: Certifications
       path: /security/certifications
+      persist: True
+
+      children:
+        - title: Docs
+          path: /security/certifications/docs
+
     - title: CVEs
       path: /security/cve
     - title: Notices

@@ -230,6 +230,17 @@ class TestRoutes(VCRTestCase):
             soup.find("meta", {"name": "robots", "content": "nofollow"})
         )
 
+    def test_security_certs_docs(self):
+        """
+        When given the Security certs docs URL,
+        we should return a 200 status code
+        """
+        response = self.client.get("/security/certifications/docs")
+        self.assertEqual(response.status_code, 200)
+
+        soup = BeautifulSoup(response.data, "html.parser")
+        self.assertIsNotNone(soup.find("meta", {"name": "description"}))
+
 
 if __name__ == "__main__":
     unittest.main()
