@@ -54,7 +54,7 @@ const drawChart = (data) => {
     .attr("width", (d) => x(d.metric) - margin.left)
     .attr("rx", "2")
     .style("fill", (d) => {
-      if (d.displayName !== "Canonical") return "#333333";
+      if (d.displayName !== "Canonical") return "#666666";
       else return "#772953";
     });
 
