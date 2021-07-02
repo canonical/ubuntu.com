@@ -2,17 +2,21 @@ fetch("/static/js/data/openstack-commit-stats.json")
   .then((response) => response.json())
   .then((data) => {
     data = data.stats.slice(0, 10);
-    drawChart(data);
+    const totals = d3.sum(data, (d) => d.metric);
+    let count = 1;
+    data.forEach((d) => {
+      d.percentage = Math.round(100 * (d.metric / totals) * 10) / 10;
+      if (d.name !== "Canonical") {
+        d.displayName = "Contributor " + count;
+        count++;
+      } else d.displayName = d.name;
+    });
+    const chartData = [...data].reverse();
+    drawChart(chartData);
     drawTable(data);
   });
 
 const drawChart = (data) => {
-  const totals = d3.sum(data, (d) => d.metric);
-  data.forEach((d) => {
-    d.percentage = Math.round(100 * (d.metric / totals) * 10) / 10;
-  });
-  data.reverse();
-
   const aspectRatio = 0.55;
   const viewWidth = 686;
   const viewHeight = viewWidth * aspectRatio;
@@ -35,7 +39,7 @@ const drawChart = (data) => {
 
   const x = d3.scaleLinear().range([margin.left, chartWidth + margin.left]);
 
-  y.domain(data.map((d) => d.name));
+  y.domain(data.map((d) => d.displayName));
   x.domain([0, d3.max(data, (d) => +d.metric)]);
 
   svg
@@ -44,12 +48,15 @@ const drawChart = (data) => {
     .data(data)
     .enter()
     .append("rect")
-    .attr("y", (d) => y(d.name))
+    .attr("y", (d) => y(d.displayName))
     .attr("x", margin.left)
     .attr("height", y.bandwidth())
     .attr("width", (d) => x(d.metric) - margin.left)
     .attr("rx", "2")
-    .style("fill", "#772953");
+    .style("fill", (d) => {
+      if (d.displayName !== "Canonical") return "#333333";
+      else return "#772953";
+    });
 
   svg
     .append("g")
@@ -67,7 +74,7 @@ const drawChart = (data) => {
     .enter()
     .append("text")
     .attr("class", "label-bar")
-    .attr("y", (d) => y(d.name))
+    .attr("y", (d) => y(d.displayName))
     .attr("x", (d) => x(d.metric))
     .attr("text-anchor", "end")
     .attr("dy", percentagePosition)
@@ -88,8 +95,9 @@ const drawTable = (data) => {
     </thead>`;
   let tableContent = ``;
   data.forEach((d) => {
+    console.log(d);
     tableContent += `<tr>
-        <td>${d.name}</td>
+        <td>${d.displayName}</td>
         <td class="u-align--right">${d.metric}</td>
         <td colspan="2"></td>
       </tr>`;

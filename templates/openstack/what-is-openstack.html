@@ -348,14 +348,20 @@ endblock meta_copydoc %} {% block content %}
         >
         and one of the biggest contributors to OpenStack all the time:
       </p>
+      <div class="u-hide--small">
+        <div id="openstack-bar-chart"></div>
+      </div>
+      <div class="u-hide--medium u-hide--large">
+        <div id="openstack-table"></div>
+      </div>
+      <p>
+        <small>
+          <a class="p-link--external" href="https://www.stackalytics.io/?release=all&metric=commits">Source</a>
+        </small>
+      </p>
     </div>
   </div>
-  <div class="u-fixed-width u-hide--small">
-    <div id="openstack-bar-chart"></div>
-  </div>
-  <div class="u-fixed-width u-hide--medium u-hide--large">
-    <div id="openstack-table"></div>
-  </div>
+
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="{{ versioned_static('js/dist/openstackChart.js') }}"></script>
 </section>
@@ -720,18 +726,6 @@ endblock meta_copydoc %} {% block content %}
           </p>
         </div>
       </li>
-      <li class="p-matrix__item">
-        <div class="p-matix__content">
-          <h5>100% open source</h5>
-          <p>
-            From the Ubuntu OS to the delivery mechanisms, the entire platform
-            is 100% open source which helps to stay closer to the upstream and
-            avoid &ldquo;vendor lock-in&rdquo;.
-          </p>
-        </div>
-      </li>
-      <li class="p-matrix__item"></li>
-      <li class="p-matrix__item"></li>
     </ul>
     <p>
       <a href="/openstack" class="p-button--positive">Continue reading</a>
