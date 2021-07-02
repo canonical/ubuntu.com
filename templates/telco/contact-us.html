@@ -1,0 +1,13 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}Contact us | Telco {% endblock %}
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+{% with h1="Open source in telecom networks",
+  formid="4048",
+  lpId="",
+  returnURL="" %}
+  {% include "shared/_telco-contact-us-form.html" %}
+{% endwith %}
+{% endblock content %}
