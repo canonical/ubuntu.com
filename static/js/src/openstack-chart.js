@@ -60,12 +60,19 @@ const drawChart = (data) => {
 
   svg
     .append("g")
+    .data(data)
     .attr("class", "axis")
     .attr("transform", "translate(" + (margin.left - 10) + ",0)")
     .call(d3.axisLeft(y).tickSize(0))
     .call((g) => g.select(".domain").remove());
 
-  svg.selectAll("text").style("font-size", "1rem");
+  svg
+    .selectAll("text")
+    .style("font-size", "1rem")
+    .style("font-weight", (d) => {
+      if (d !== "Canonical") return "300";
+      else return "400";
+    });
 
   svg
     .append("g")
@@ -95,7 +102,6 @@ const drawTable = (data) => {
     </thead>`;
   let tableContent = ``;
   data.forEach((d) => {
-    console.log(d);
     tableContent += `<tr>
         <td>${d.displayName}</td>
         <td class="u-align--right">${d.metric}</td>
