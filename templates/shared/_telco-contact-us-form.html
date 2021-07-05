@@ -41,21 +41,121 @@
             </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
-          <h3>What are the priority use cases you want to talk about</h3>
+          <h3>What are the priority use cases you want to talk about?</h3>
             <ul class="p-list">
               <li class="mktFormReq mktField p-list__item">
-                <label for="TelecomOperator" class="mktoLabel">Telecom operator</label>
-                <input required id="TelecomOperator" name="TelecomOperator" type="radio" class="mktoField mktoRequired" />
+                <label for="KubernetesInfrastructure" class="mktoLabel">Kubernetes infrastructure</label>
+                <input required id="KubernetesInfrastructure" name="KubernetesInfrastructure" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Edge-MEC" class="mktoLabel">Edge / MEC</label>
+                <input required id="Edge-MEC" name="Edge-MEC" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="5G" class="mktoLabel">5G</label>
+                <input required id="5G" name="5G" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="RAN-ORAN" class="mktoLabel">RAN / ORAN</label>
+                <input required id="RAN-ORAN" name="RAN-ORAN" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="PrivateLTE" class="mktoLabel">Private LTE / 5G network</label>
+                <input required id="PrivateLTE" name="PrivateLTE" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="IMS" class="mktoLabel">IMS</label>
+                <input required id="IMS" name="IMS" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="PacketCore" class="mktoLabel">Packet core</label>
+                <input required id="PacketCore" name="PacketCore" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="SubscriberDataManagement" class="mktoLabel">Subscriber data management</label>
+                <input required id="SubscriberDataManagement" name="SubscriberDataManagement" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="OSS-BSS" class="mktoLabel">OSS/BSS</label>
+                <input required id="OSS-BSS" name="OSS-BSS" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="GeneralIT" class="mktoLabel">General IT use case</label>
+                <input required id="GeneralIT" name="GeneralIT" type="radio" class="mktoField mktoRequired" />
+              </li>
+              <li class="mktFormReq mktField p-list__item">
+                <label for="Other" class="mktoLabel">Other</label>
+                <input required id="Other" name="Other" type="radio" class="mktoField mktoRequired" />
               </li>
             </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
           <h3>Tell us about you and your team (Optional)</h3>
+          <div class="mktFormReq mktField">
+            <input required id="AboutYourTeam" name="AboutYourTeam" maxlength="255" type="text" class="mktoField mktoRequired" />
+          </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
           <h3>How should we get in touch?</h3>
+          <ul class="p-list">
+            <li class="mktFormReq mktField p-list__item">
+              <label for="FirstName" class="mktoLabel">First name:</label>
+              <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="LastName" class="mktoLabel">Last name:</label>
+              <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Email" class="mktoLabel">Work email:</label>
+              <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+            </li>
+            <li class="mktFormReq mktField p-list__item">
+              <label for="Email" class="mktoLabel">Mobile / cell phone number:</label>
+              <input required id="Mobile" name="Mobile" maxlength="255" type="tel" class="mktoField mktoRequired" />
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom">
+          <ul class="p-list">
+            <li class="mktField p-list__item">
+              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+              <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+            </li>
+            <li class="p-list__item">
+              In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+            </li>
+          </ul>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+            </li>
+          </ul>
+          <ul class="p-list">
+            <li class="mktField p-list__item">
+              <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
+            </li>
+          </ul>
+          <!-- hidden fields -->
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="{{formid}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formVid" class="mktoField" value="{{formid}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="{{lpId}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/Cloud-contact-us.html?cr={creative}&amp;kw={keyword}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{returnURL}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="{{returnURL}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="return_url" value="{{returnURL}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="gclid" class="mktoField" id="gclid" value="" />
         </fieldset>
       </form>
     </div>
   </div>
-</div>
+</section>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>
