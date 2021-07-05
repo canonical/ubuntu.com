@@ -57,7 +57,9 @@ const PurchaseModal = () => {
   } = useStripeCustomerInfo();
   const { isLoading: isPreviewLoading } = usePreview();
   const { isLoading: isProductLoading } = useProduct();
-  const [step, setStep] = useState(window.accountId ? 2 : 1);
+  const [step, setStep] = useState(
+    userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
+  );
   const queryClient = useQueryClient();
 
   const {
