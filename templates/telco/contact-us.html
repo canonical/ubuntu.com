@@ -1,4 +1,4 @@
-{% extends "templates/one-column.html" %}
+{% extends "telco/base_telco.html" %}
 
 {% block title %}Contact us | Telco {% endblock %}
 {% block meta_copydoc %}{% endblock meta_copydoc %}
@@ -7,7 +7,7 @@
 {% with h1="Open source in telecom networks",
   formid="4048",
   lpId="",
-  returnURL="" %}
+  returnURL="https://ubuntu.com/telco/thank-you" %}
   {% include "shared/_telco-contact-us-form.html" %}
 {% endwith %}
 {% endblock content %}
