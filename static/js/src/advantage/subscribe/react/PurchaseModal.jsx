@@ -19,7 +19,7 @@ import usePendingPurchase from "./APICalls/usePendingPurchase";
 import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
 import usePreview from "./APICalls/usePreview";
-import { checkoutEvent } from "../../ecom-events";
+import { checkoutEvent, purchaseEvent } from "../../ecom-events";
 
 const getUserInfoFromVariables = (data, variables) => {
   return {
@@ -135,6 +135,15 @@ const PurchaseModal = () => {
 
   useEffect(() => {
     if (pendingPurchase?.status === "done") {
+      const purchaseInfo = {
+        id: pendingPurchase?.id,
+        origin: "UA Shop",
+        total: pendingPurchase?.invoice?.total / 100,
+        tax: pendingPurchase?.invoice?.taxAmount / 100,
+      };
+
+      purchaseEvent(purchaseInfo, GAFriendlyProduct);
+
       // The state of the product selector is stored in the local storage
       // if a purchase is successful we empty it so the customer will see
       // the default values pre-selected instead of what they just bought.
