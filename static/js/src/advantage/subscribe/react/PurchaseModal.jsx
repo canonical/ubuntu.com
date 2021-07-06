@@ -19,6 +19,7 @@ import usePendingPurchase from "./APICalls/usePendingPurchase";
 import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
 import usePreview from "./APICalls/usePreview";
+import { checkoutEvent } from "../../ecom-events";
 
 const getUserInfoFromVariables = (data, variables) => {
   return {
@@ -56,7 +57,7 @@ const PurchaseModal = () => {
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
   const { isLoading: isPreviewLoading } = usePreview();
-  const { isLoading: isProductLoading } = useProduct();
+  const { isLoading: isProductLoading, product, quantity } = useProduct();
   const [step, setStep] = useState(
     userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
   );
@@ -94,6 +95,13 @@ const PurchaseModal = () => {
       setStep(2);
     }
   }, [userInfo]);
+
+  const GAFriendlyProduct = {
+    id: product?.id,
+    name: product?.name,
+    price: product?.price?.value / 100,
+    quantity: quantity,
+  };
 
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the purchase status
@@ -145,6 +153,7 @@ const PurchaseModal = () => {
 
   const onSubmit = (values, actions) => {
     setError(null);
+    checkoutEvent(GAFriendlyProduct, 2);
     paymentMethodMutation.mutate(values, {
       onSuccess: (data, variables) => {
         window.accountId = data.accountId;
@@ -186,6 +195,7 @@ const PurchaseModal = () => {
   };
 
   const onPayClick = () => {
+    checkoutEvent(GAFriendlyProduct, 3);
     purchaseMutation.mutate("", {
       onSuccess: (data) => {
         //start polling
