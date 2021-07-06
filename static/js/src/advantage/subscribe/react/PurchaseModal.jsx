@@ -20,6 +20,7 @@ import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
 import usePreview from "./APICalls/usePreview";
 import { checkoutEvent, purchaseEvent } from "../../ecom-events";
+import { getSessionData } from "../../../utils/getSessionData";
 
 const getUserInfoFromVariables = (data, variables) => {
   return {
@@ -149,14 +150,36 @@ const PurchaseModal = () => {
       // the default values pre-selected instead of what they just bought.
       localStorage.removeItem("ua-subscribe-state");
 
-      //redirect
-      if (window.isGuest) {
-        location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
-          pendingPurchase?.invoice?.customerEmail
-        )}`;
-      } else {
-        location.pathname = "/advantage";
-      }
+      let request = new XMLHttpRequest();
+      let formData = new FormData();
+      formData.append("munchkinId", "066-EOV-335");
+      formData.append("formid", 3756);
+      formData.append("formVid", 3756);
+      formData.append("Email", userInfo?.customerInfo?.email);
+      formData.append("Consent_to_Processing__c", "yes");
+      formData.append("GCLID__c", getSessionData("gclid"));
+      formData.append("utm_campaign", getSessionData("utm_campaign"));
+      formData.append("utm_source", getSessionData("utm_source"));
+      formData.append("utm_medium", getSessionData("utm_medium"));
+
+      request.open(
+        "POST",
+        "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+      );
+      request.send(formData);
+
+      request.onreadystatechange = () => {
+        if (request.readyState === 4) {
+          //redirect
+          if (window.isGuest) {
+            location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
+              pendingPurchase?.invoice?.customerEmail
+            )}`;
+          } else {
+            location.pathname = "/advantage";
+          }
+        }
+      };
     }
   }, [pendingPurchase]);
 

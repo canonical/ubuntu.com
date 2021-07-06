@@ -23,6 +23,7 @@ import {
   setRenewalInformation,
 } from "./advantage/set-modal-info.js";
 import { checkoutEvent, purchaseEvent } from "./advantage/ecom-events.js";
+import { getSessionData } from "./utils/getSessionData.js";
 
 const modal = document.getElementById("ua-payment-modal");
 
@@ -621,23 +622,6 @@ function analyticsFriendlyProducts() {
   return products;
 }
 
-function getSessionData(key) {
-  const keyValue = localStorage.getItem(key);
-
-  if (keyValue) {
-    if (key === "gclid") {
-      const gclid = JSON.parse(keyValue);
-      const isGclidValid = new Date().getTime() < gclid.expiryDate;
-      if (gclid && isGclidValid) {
-        return gclid.value;
-      }
-    } else {
-      return keyValue;
-    }
-  }
-  return;
-}
-
 function handleCountryInput() {
   const stateSelect = statesContainer.querySelector("select");
   const provinceSelect = provincesContainer.querySelector("select");
@@ -1104,7 +1088,6 @@ function showPayMode() {
 function submitMarketoForm() {
   let request = new XMLHttpRequest();
   let formData = new FormData();
-
   formData.append("munchkinId", "066-EOV-335");
   formData.append("formid", 3756);
   formData.append("formVid", 3756);
