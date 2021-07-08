@@ -2,16 +2,23 @@
 
 {% block title %}Your account{% endblock %}
 
+{% block head_extra %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
 {% block outer_content %}
-<section class="p-strip is-deep">
-  <div class="row">
-    <div class="col-8">
-      <h1>Account</h1>
+
+  <section class="p-strip--suru-topped">
+    <div class="row">
+      <div class="col-12">
+        <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
+
+        <p>You are signed in as {{email}}
+          <span class="u-hide--large u-hide--medium"><br/></br/></span>
+          <a href="/logout?return_to={{ request.host_url }}" class="p-button--neutral is-inline is-dense u-no-margin--bottom">Sign out</a>
+        </p>
+      </div>
     </div>
-    <div class="col-12">
-      <p>You are signed in as {{email}}. <a href='/logout'>Sign out</a>.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
 {% endblock %}
