@@ -64,6 +64,13 @@ def _build_mirror_list():
 
     return mirror_list
 
+def account_view():
+    email = "howDoIGetTheEmail@PlsAlbert.com"
+    if email == None:
+        return flask.render_template("index.html",)
+        
+    return flask.render_template("account/index.html", email=email,)
+
 
 def sixteen_zero_four():
     host = "https://ubuntu.com"

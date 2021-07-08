@@ -70,6 +70,7 @@ from webapp.views import (
     sitemap_index,
     account_query,
     sixteen_zero_four,
+    account_view,
 )
 
 from webapp.advantage.views import (
@@ -813,6 +814,10 @@ app.add_url_rule(
 app.add_url_rule(
     "/certified/component/<component_id>",
     view_func=certified_component_details,
+)
+app.add_url_rule(
+    "/account",
+    view_func=account_view,
 )
 
 

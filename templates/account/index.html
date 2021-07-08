@@ -1,0 +1,17 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Your account{% endblock %}
+
+{% block outer_content %}
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h1>Account</h1>
+    </div>
+    <div class="col-12">
+      <p>You are signed in as {{email}}. <a href='/logout'>Sign out</a>.</p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
