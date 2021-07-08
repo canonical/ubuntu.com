@@ -282,9 +282,7 @@ app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
-app.add_url_rule(
-    "/account/payment-methods", view_func=payment_methods_view
-)
+app.add_url_rule("/account/payment-methods", view_func=payment_methods_view)
 app.add_url_rule(
     "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
 )
