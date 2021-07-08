@@ -70,7 +70,6 @@ from webapp.views import (
     sitemap_index,
     account_query,
     sixteen_zero_four,
-    account_view,
 )
 
 from webapp.advantage.views import (
@@ -90,6 +89,7 @@ from webapp.advantage.views import (
     post_customer_info,
     post_stripe_invoice_id,
     cancel_advantage_subscriptions,
+    account_view,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -354,6 +354,8 @@ app.add_url_rule(
     view_func=accept_renewal,
     methods=["POST"],
 )
+
+app.add_url_rule("/account", view_func=account_view)
 
 app.add_url_rule(
     (
@@ -814,10 +816,6 @@ app.add_url_rule(
 app.add_url_rule(
     "/certified/component/<component_id>",
     view_func=certified_component_details,
-)
-app.add_url_rule(
-    "/account",
-    view_func=account_view,
 )
 
 
