@@ -120,6 +120,7 @@ let progressTimer3;
 let progressTimer4;
 
 let isCustomerInfoSet = false;
+let isCustomerInfoSetFailed = false;
 
 function attachCTAevents() {
   document.addEventListener("click", (e) => {
@@ -136,7 +137,12 @@ function attachCTAevents() {
       }
     }
 
-    if (currentTransaction.accountId && !isCustomerInfoSet && !guestPurchase) {
+    if (
+      currentTransaction.accountId &&
+      !isCustomerInfoSet &&
+      !isCustomerInfoSetFailed &&
+      !guestPurchase
+    ) {
       fetchCustomerInfo(currentTransaction.accountId);
     }
 
@@ -474,8 +480,12 @@ function fetchCustomerInfo(accountId) {
       customerInfo = { ...res.customerInfo, name, address };
       setFormElements();
       isCustomerInfoSet = true;
+      isCustomerInfoSetFailed = false;
     })
-    .catch((e) => console.error(e));
+    .catch((e) => {
+      isCustomerInfoSetFailed = true;
+      console.error(e);
+    });
 }
 
 function setFormElements() {
