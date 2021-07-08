@@ -1,4 +1,4 @@
-{% extends "templates/one-column.html" %}
+{% extends "telco/_base_telco.html" %}
 
 {% block title %}Open source NFV platform for 5G{% endblock %}
 
@@ -20,7 +20,7 @@
       Scale and complexity brings similar challenges, big or small. Hybrid cloud, public cloud, on-prem only large datacenter or highly distributed infrastructure - Canonical Open Source technology building blocks provide a unified approach to enabling Service Providers to meet any current or future use-cases, from OpenRAN, next generation Core (5G and beyond) or AI at the edge.
       </p>
       <p>
-        <a href="/telco/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+        <a class="p-button--positive js-invoke-modal">Contact us</a>
       </p>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--small">
@@ -734,9 +734,5 @@
     </div>
   </div>
 </section>
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/_telco-contact-us-form" data-form-id="4048" data-lp-id="" data-return-url="/telco/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
 
 {% endblock content %}
