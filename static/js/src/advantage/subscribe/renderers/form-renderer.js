@@ -152,11 +152,11 @@ function renderSummary(state) {
   const saveMessage = summarySection.querySelector("#summary-save-with-annual");
   const billingSection = summarySection.querySelector(".js-summary-billing");
   const billingSelect = summarySection.querySelector("select#billing-period");
-  const buyButton = summarySection.querySelector("#buy-now-button");
+  const nextStepButton = summarySection.querySelector("#next-step-button");
 
   if (!state.product.ok || quantity <= 0) {
     summarySection.classList.add("p-shop-cart--hidden");
-    buyButton.classList.add("u-disable");
+    nextStepButton.classList.add("u-disable");
   } else {
     // if the selection matches a product we populate the 'cart' section and show it
     const image = summarySection.querySelector("#summary-plan-image");
@@ -178,12 +178,12 @@ function renderSummary(state) {
     const previous_purchase_id = window.previousPurchaseIds[billing];
 
     // We add the data to the button so the modal can pick it up
-    buyButton.classList.remove("u-disable");
+    nextStepButton.classList.remove("u-disable");
     const productObject = JSON.stringify(state.product);
-    buyButton.dataset.product = productObject;
-    buyButton.dataset.quantity = quantity;
-    buyButton.dataset.accountId = window.accountId;
-    buyButton.dataset.previousPurchaseId = previous_purchase_id;
+    nextStepButton.dataset.product = productObject;
+    nextStepButton.dataset.quantity = quantity;
+    nextStepButton.dataset.accountId = window.accountId;
+    nextStepButton.dataset.previousPurchaseId = previous_purchase_id;
   }
 
   if (periods.length > 1) {
