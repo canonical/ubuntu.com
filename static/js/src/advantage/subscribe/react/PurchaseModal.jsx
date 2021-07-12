@@ -238,7 +238,7 @@ const PurchaseModal = () => {
           setError(
             <>
               You already have a pending purchase. Please go to{" "}
-              <a href="/advantage/payment-methods">payment methods</a> to retry.
+              <a href="/account/payment-methods">payment methods</a> to retry.
             </>
           );
         } else {
