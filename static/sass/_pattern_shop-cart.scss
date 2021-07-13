@@ -12,15 +12,19 @@
       display: flex;
       flex-wrap: wrap;
 
+      > .p-label {
+        margin-top: 0.5rem;
+        align-self: center;
+      }
+
       @media (min-width: $breakpoint-x-small) {
         flex-wrap: nowrap;
         > div {
           margin-left: 2.5rem;
         }
-      }
-
-      > .p-label {
-        align-self: center;
+        > .p-label {
+          margin-top: 0rem;
+        }
       }
 
       > img {
