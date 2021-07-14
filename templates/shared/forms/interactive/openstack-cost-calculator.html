@@ -6,86 +6,86 @@
     </header>
     <div class="js-pagination js-pagination--1">
       <p>Tell us more about your needs here and we will send you a detailed report including the required number of nodes for your private cloud and estimated private cloud pricing, including initial CapEx and recurring OpEx costs. We will also help you find the cloud architecture that best suits your requirements.</p>
+      <h3 class="p-heading--four">Instance type</h3>
       <div class="row u-no-padding">
-        <div class="js-formfield">
-          <h3 class="p-heading--five">Instance type</h3>
-          <div class="row u-no-padding">
-            <div class="col-4 u-sv3">
-            <label for="instance-type-vcpus">vCPUs</label>
-              <input type="number" id="instance-type-vcpus" min="1" max="116" value="2">
-              <label for="instance-type-ram">RAM [GB]</label>
-              <input type="number" id="instance-type-ram" min="1" max="1824" value="8">
-            </div>
-            <div class="col-4 u-sv3">
-              <label for="instance-type-emepheral-storage">Emepheral storage [GB]</label>
-              <input type="number" id="instance-type-emepheral-storage" min="4" max="144" value="8">
-              <label for="instance-type-persistent-storage">Persistent storage [GB]</label>
-              <input type="number" id="instance-type-persistent-storage" min="0" max="221" value="80">
-            </div>
-            <div class="col-4 u-sv3">
-              <label for="instance-type-number-of-instances">Number of instances</label>
-              <input type="number" id="instance-type-number-of-instances" min="1" max="1000000" value="1000">
-            </div>
-            <div class="row u-no-padding">
-              <div class="col-6">
-                <h3 class="p-heading--five">Add another instance type?</h3>
-              </div>
-            </div>
-            <div class="row u-no-padding">
-              <div class="col-4 u-sv3">
-                <input type="radio" id="add-another-instance-type" name="add-instance-type" value="Yes">
-                <label for="add-another-instance-type">Yes</label>
-              </div>
-              <div class="col-4 u-sv3">
-                <input type="radio" id="add-another-instance-type" name="add-instance-type" value="No">
-                <label for="add-another-instance-type">No</label>
-              </div>
-              <div class="pagination">
-                <a class="p-button--positive pagination__link--next" href="">Next</a>
-              </div>
-            </div>
+        <div class="col-4 u-sv3">
+          <div class="js-formfield">
+            <h3 class="p-heading--five">vCPUs</h3>
+            <input type="number" id="instance-type-vcpus" min="1" max="116" value="2" aria-label="Instance type: vCPUs">
           </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--five">RAM [GB]</h3>
+            <input type="number" id="instance-type-ram" min="1" max="1824" value="8" aria-label="Instance type: RAM [GB]">
+          </div>
+        </div>
+        <div class="col-4 u-sv3">
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Ephemeral storage [GB]</h3>
+            <input type="number" id="instance-type-ephemeral-storage" min="4" max="144" value="8" aria-label="Instance type: Ephemeral storage">
+          </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Persistent storage [GB]</h3>
+            <input type="number" id="instance-type-persistent-storage" min="0" max="221" value="80" aria-label="Instance type: Persistent storage">
+          </div>
+        </div>
+        <div class="col-4 u-sv3">
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Number of instances</h3>
+            <input type="number" id="instance-type-number-of-instances" min="1" max="1000000" value="1000" aria-label="Instance type: Number of instances">
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="p-button--positive pagination__link--next" href="">Next</a>
         </div>
       </div>
     </div>
 
     <div class="js-pagination js-pagination--2 u-hide">
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Support level</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="radio" id="support-level-fully-managed" name="support-level" value="fully-managed" checked>
+            <label for="support-level-fully-managed">Fully managed</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="radio" id="support-level-supported" name="support-level" value="supported">
+            <label for="support-level-supported">Supported</label>
+          </div>
+        </div>
+      </div>
       <div class="row u-no-padding">
+        <div class="col-4 u-sv3">
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Operations team size [FTEs]</h3>
+            <input type="number" id="operations-team-size" min="0" max="1000" value="12" aria-label="Operations team Size [FTEs]">
+          </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Operations team average annual staff salary [USD]</h3>
+            <input type="number" id="operations-team-annual-staff-salary" min="0" max="1000000" value="125000">
+          </div>
+        </div>
+        <div class="col-4 u-sv3">
+          <div class="js-formfield">
+            <h3 class="p-heading--five"> CPU overcommitment ratio</h3>
+            <input type="number" id="cpu-overcommitment-ratio" min="1" max="16" value="2" aria-label="CPU overcommitment ratio">
+          </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--five">RAM overcommitment ratio</h3>
+            <input type="number" id="ram-overcommitment-ratio" min="1" max="1.5" value="1" aria-label="RAM overcommitment ratio">
+          </div>
+        </div>
+        <div class="col-4 u-sv3">
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Storage replication factor</h3>
+            <input type="number" id="storage-replication-factor" min="1" max="5" value="3" aria-label="Storage replication factor">
+          </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Desired cloud utilisation ratio [%]</h3>
+            <input type="number" id="desired-cloud-utilised-ratio" min="1" max="100" value="75" aria-label="Desired cloud utilisation ratio [%]">
+          </div>
+        </div>
         <div class="js-formfield">
-          <h3 class="p-heading--five">Support level</h3>
-          <div class="row u-no-padding">
-            <div class="col-4 u-sv3">
-              <input type="radio" id="support-level-fully-managed" name="support-level" value="fully-managed" checked>
-              <label for="support-level-fully-managed">Fully managed</label>
-            </div>
-            <div class="col-4 u-sv3">
-              <input type="radio" id="support-level-supported" name="support-level" value="supported">
-              <label for="support-level-supported">Supported</label>
-            </div>
-          </div>
-          <div class="row u-no-padding">
-            <div class="col-4 u-sv3">
-              <h3 class="p-heading--five">Operations team</h3>
-              <label for="operations-team-size">Size [FTEs]</label>
-              <input type="number" id="operations-team-size" min="0" max="1000" value="12">
-              <label for="operations-team-annual-staff-salary">Average annual staff salary [USD]</label>
-              <input type="number" id="operations-team-annual-staff-salary" min="0" max="1000000" value="125000">
-            </div>
-            <div class="col-4 u-sv3">
-              <h3 class="p-heading--five">Overcommitment ratios</h3>
-              <label for="overcommitment-ratio-cpu">CPU</label>
-              <input type="number" id="overcommitment-ratio-cpu" min="1" max="16" value="2">
-              <label for="overcommitment-ratio-ram">RAM</label>
-              <input type="number" id="overcommitment-ratio-ram" min="1" max="1.5" value="1">
-            </div>
-            <div class="col-4 u-sv3">
-              <h3 class="p-heading--five">Other</h3>
-              <label for="storage-replication-factor">Storage replication factor</label>
-              <input type="number" id="storage-replication-factor" min="1" max="5" value="3">
-              <label for="desired-cloud-utilised-ratio">Desired cloud utilisation ratio [%]</label>
-              <input type="number" id="desired-cloud-utilised-ratio" min="1" max="100" value="75">
-            </div>
-          </div>
           <h3 class="p-heading--five">Cloud architecture</h3>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
@@ -107,28 +107,33 @@
 
     <div class="js-pagination js-pagination--3 u-hide">
       <div class="row u-no-padding">
-        <div class="js-formfield">
-          <h3 class="p-heading--five">Other</h3>
-          <div class="row u-no-padding">
-            <div class="col-4 u-sv3">
-              <label for="hardware-renewal-period">Hardware renewal period [years]</label>
-              <input type="number" id="hardware-renewal-period" min="1" max="5" value="3">
-              <label for="annual-per-node-hosting-rent-and-electricity-cost">Annual per-node hosting rent and electricity cost [USD]</label>
-              <input type="number" id="annual-per-node-hosting-rent-and-electricity-cost" min="0" max="1000000" value="4500">
-              <label for="annual-per-node-hardware-installation-and-maintencance-cost">Annual per-node hardware installation and maintenance cost [USD]</label>
-              <input type="number" id="annual-per-node-hardware-installation-and-maintencance-cost" min="1" max="1000000" value="1000">
-            </div>
-            <div class="col-4 u-sv3">
-              <label for="external-network-bandwidth">External network bandwidth</label>
-              <input type="number" id="external-network-bandwidth" min="0" max="1000000" value="125000">
-              <label for="annual-per-gbps-hosting-external-network-cost">Annual per-Gbps hosting external network cost</label>
-              <input type="number" id="annual-per-gbps-hosting-external-network-cost" min="0" max="1000000" value="6000">
-            </div>
-            <div class="pagination">
-              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
-              <a class="p-button--positive pagination__link--next" href="">Next</a>
-            </div>
+        <div class="col-4 u-sv3">
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Hardware renewal period [years]</h3>
+            <input type="number" id="hardware-renewal-period" min="1" max="5" value="3" aria-label="Hardware renewal period [years]">
           </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Annual per-node hosting rent and electricity cost [USD]</h3>
+            <input type="number" id="annual-per-node-hosting-rent-and-electricity-cost" min="0" max="1000000" value="4500" aria-label="Annual per-node hosting rent and electricity cost [USD]">
+          </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Annual per-node hardware installation and maintenance cost [USD]</h3>
+            <input type="number" id="annual-per-node-hardware-installation-and-maintencance-cost" min="1" max="1000000" value="1000" aria-label="Annual per-node hardware installation and maintenance cost [USD]">
+          </div>
+        </div>
+        <div class="col-4 u-sv3">
+          <div class="js-formfield">
+            <h3 class="p-heading--five">External network bandwidth</h3>
+            <input type="number" id="external-network-bandwidth" min="0" max="1000000" value="125000" aria-label="External network bandwidth">
+          </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--five">Annual per-Gbps hosting external network cost</h3>
+            <input type="number" id="annual-per-gbps-hosting-external-network-cost" min="0" max="1000000" value="6000" aria-label="Annual per-Gbps hosting external network cost">
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+          <a class="p-button--positive pagination__link--next" href="">Next</a>
         </div>
       </div>
     </div>

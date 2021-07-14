@@ -321,19 +321,19 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
                 }
                 break;
               case "text":
-                if (
-                  !input.classList.contains("mktoField") &&
-                  input.value !== ""
-                ) {
+                if (input.value !== "") {
+                  message += comma + input.value;
+                  comma = ", ";
+                }
+                break;
+              case "number":
+                if (input.value !== "") {
                   message += comma + input.value;
                   comma = ", ";
                 }
                 break;
               case "textarea":
-                if (
-                  !input.classList.contains("mktoField") &&
-                  input.value !== ""
-                ) {
+                if (input.value !== "") {
                   message += comma + input.value;
                   comma = ", ";
                 }
