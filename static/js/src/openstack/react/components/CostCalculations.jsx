@@ -7,7 +7,7 @@ import TCO_CONSTANTS from "../utils/constants";
 const CostCalculations = ({
   instances,
   vcpus,
-  emepheralStorage,
+  ephemeralStorage,
   ram,
   persistentStorage,
   supportLevel,
@@ -49,8 +49,8 @@ const CostCalculations = ({
     requiredNoOfCpus / TCO_CONSTANTS.counts.numberOfCpusPerNode
   );
 
-  //Emepheral Storage
-  const amountOfESInCloud = instances.value * emepheralStorage.value;
+  //Ephemeral Storage
+  const amountOfESInCloud = instances.value * ephemeralStorage.value;
 
   const amountOfESInFullyUtilizedCloud =
     (amountOfESInCloud * 100) /
@@ -228,7 +228,7 @@ const CostCalculations = ({
 
   const numberOfAwsEc2VmsBasedOnES = calculateNumberOfAWSVMs(
     amountOfESInCloud,
-    TCO_CONSTANTS.storage.awsEc2InstanceEmepheralStorage
+    TCO_CONSTANTS.storage.awsEc2InstanceEphemeralStorage
   );
 
   const numberOfAwsEc2VmsBasedOnPS = calculateNumberOfAWSVMs(
@@ -265,12 +265,14 @@ const CostCalculations = ({
     currency: "USD",
   });
 
+  const totalSavingsSplit = formatter.format(totalSavings).split(".");
+
   //error check
   let error = false;
   if (
     instances.error ||
     vcpus.error ||
-    emepheralStorage.error ||
+    ephemeralStorage.error ||
     ram.error ||
     persistentStorage.error
   ) {
@@ -290,7 +292,7 @@ const CostCalculations = ({
           <p className="p-heading--4">Hourly cost per instance:</p>
         </Col>
         <Col size="2" className="u-align--right">
-          <p className="p-heading--4" id="hourly-cost">
+          <p className="p-heading--3" id="hourly-cost">
             {!error ? `$${hourlyCostPerInstance.toFixed(4)}` : "-"}
           </p>
         </Col>
@@ -302,16 +304,9 @@ const CostCalculations = ({
           </p>
         </Col>
         <Col size="2" className="u-align--right">
-          <p className="p-heading--4" id="total-savings">
-            {!error ? formatter.format(totalSavings) : "-"}
+          <p className="p-heading--3" id="total-savings">
+            {!error ? totalSavingsSplit[0] : "-"}
           </p>
-        </Col>
-      </Row>
-      <Row>
-        <Col size="12" className="u-align--right">
-          <a className="js-invoke-modal p-button--positive">
-            Email me those estimates
-          </a>
         </Col>
       </Row>
     </>
@@ -327,7 +322,7 @@ CostCalculations.propTypes = {
     value: PropTypes.number.isRequired,
     error: PropTypes.string,
   }),
-  emepheralStorage: PropTypes.shape({
+  ephemeralStorage: PropTypes.shape({
     value: PropTypes.number.isRequired,
     error: PropTypes.string,
   }),

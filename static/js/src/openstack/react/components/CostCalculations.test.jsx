@@ -13,7 +13,7 @@ describe("Hourly cost and total savings calculations", function () {
       <CostCalculations
         instances={{ value: 1000, error: "" }}
         vcpus={{ value: 2, error: "" }}
-        emepheralStorage={{ value: 8, error: "" }}
+        ephemeralStorage={{ value: 8, error: "" }}
         ram={{ value: 8, error: "" }}
         persistentStorage={{ value: 80, error: "" }}
         supportLevel="fully-managed"
@@ -28,7 +28,7 @@ describe("Hourly cost and total savings calculations", function () {
   it("checks totals are correct with default values", () => {
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0407");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$907,656.00"
+      "$907,656"
     );
   });
 
@@ -37,7 +37,7 @@ describe("Hourly cost and total savings calculations", function () {
       <CostCalculations
         instances={{ value: 2000, error: "" }}
         vcpus={{ value: 8, error: "" }}
-        emepheralStorage={{ value: 16, error: "" }}
+        ephemeralStorage={{ value: 16, error: "" }}
         ram={{ value: 32, error: "" }}
         persistentStorage={{ value: 120, error: "" }}
         supportLevel="supported"
@@ -45,7 +45,7 @@ describe("Hourly cost and total savings calculations", function () {
     );
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.1496");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$7,949,548.00"
+      "$7,949,548"
     );
   });
 
@@ -54,7 +54,7 @@ describe("Hourly cost and total savings calculations", function () {
       <CostCalculations
         instances={{ value: 9000, error: "" }}
         vcpus={{ value: 32, error: "" }}
-        emepheralStorage={{ value: 64, error: "" }}
+        ephemeralStorage={{ value: 64, error: "" }}
         ram={{ value: 8, error: "" }}
         persistentStorage={{ value: 210, error: "" }}
         supportLevel="fully-managed"
@@ -62,7 +62,7 @@ describe("Hourly cost and total savings calculations", function () {
     );
     expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.2756");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$219,403,189.00"
+      "$219,403,189"
     );
   });
 
@@ -82,12 +82,12 @@ describe("Hourly cost and total savings calculations", function () {
     expect(formWrapper.find("#vcpus").props().value).toEqual(6);
   });
 
-  it("checks emepheral storage prop value updates onChange", () => {
+  it("checks ephemeral storage prop value updates onChange", () => {
     formWrapper
-      .find("#emepheral-storage")
-      .simulate("change", { target: { value: 12, name: "emepheralStorage" } });
+      .find("#ephemeral-storage")
+      .simulate("change", { target: { value: 12, name: "ephemeralStorage" } });
 
-    expect(formWrapper.find("#emepheral-storage").props().value).toEqual(12);
+    expect(formWrapper.find("#ephemeral-storage").props().value).toEqual(12);
   });
 
   it("checks ram prop value updates onChange", () => {
@@ -122,9 +122,9 @@ describe("Hourly cost and total savings calculations", function () {
     expect(formWrapper.find(".p-form-validation__message")).toBeTruthy();
   });
 
-  it("checks error message exists when emepheral storage value is out of range", () => {
-    formWrapper.find("#emepheral-storage").simulate("change", {
-      target: { value: "", name: "emepheralStorage" },
+  it("checks error message exists when ephemeral storage value is out of range", () => {
+    formWrapper.find("#ephemeral-storage").simulate("change", {
+      target: { value: "", name: "ephemeralStorage" },
     });
 
     expect(formWrapper.find(".p-form-validation__message")).toBeTruthy();

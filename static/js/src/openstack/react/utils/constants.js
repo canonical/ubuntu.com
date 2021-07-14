@@ -26,7 +26,7 @@ const TCO_CONSTANTS = {
     amountOfPersistentStoragePerNode: 72,
     awsEc2InstanceVcpus: 2,
     awsEc2InstanceRam: 8,
-    awsEc2InstanceEmepheralStorage: 8,
+    awsEc2InstanceEphemeralStorage: 8,
     awsEc2InstancePersistentStorage: 0,
   },
   price: {

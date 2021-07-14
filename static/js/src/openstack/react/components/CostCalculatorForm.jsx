@@ -15,7 +15,7 @@ const CostCalculatorForm = () => {
   const [formState, setFormState] = useState({
     instances: { value: 1000, error: "" },
     vcpus: { value: 2, error: "" },
-    emepheralStorage: { value: 8, error: "" },
+    ephemeralStorage: { value: 8, error: "" },
     ram: { value: 8, error: "" },
     persistentStorage: { value: 80, error: "" },
     supportLevel: "fully-managed",
@@ -45,7 +45,7 @@ const CostCalculatorForm = () => {
       <Form>
         <Row>
           <Col size="6">
-            <h3>
+            <h3 class="p-heading--4">
               Number of instances
               <Tooltip
                 position="top-right"
@@ -67,7 +67,7 @@ const CostCalculatorForm = () => {
               ariaLabel="Number of instances"
               required
             />
-            <h3>
+            <h3 class="p-heading--4" style={{ marginTop: "2rem" }}>
               Instance type
               <Tooltip
                 position="top-right"
@@ -102,20 +102,20 @@ const CostCalculatorForm = () => {
               <Col size="3">
                 <Row>
                   <Col size="3">
-                    <p>Emepheral storage [GB]</p>
+                    <p>Ephemeral storage [GB]</p>
                   </Col>
                   <Col size="2">
                     <Input
-                      id="emepheral-storage"
-                      ariaLabel="Emepheral storage"
+                      id="ephemeral-storage"
+                      ariaLabel="ephemeral storage"
                       mdxType="Input"
                       onChange={onChangeHandler}
                       type="number"
                       min="4"
                       max="114"
-                      name="emepheralStorage"
-                      value={formState.emepheralStorage.value}
-                      error={formState.emepheralStorage.error}
+                      name="ephemeralStorage"
+                      value={formState.ephemeralStorage.value}
+                      error={formState.ephemeralStorage.error}
                       required
                     ></Input>
                   </Col>
@@ -172,7 +172,7 @@ const CostCalculatorForm = () => {
           <Col size="6">
             <Row>
               <Col size="5" emptyLarge="2">
-                <h3>
+                <h3 class="p-heading--4">
                   Support level
                   <Tooltip
                     position="top-right"
