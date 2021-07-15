@@ -12,93 +12,110 @@ const CostCalculations = ({
   persistentStorage,
   supportLevel,
 }) => {
-  //RAM
+  //Amount in cloud
   const amountOfRamInCloud = instances.value * ram.value;
-
-  const amountOfRamInFullyUtilizedCloud =
-    (amountOfRamInCloud * 100) /
-    TCO_CONSTANTS.ratios.desiredCloudUtilisationRatio;
-
-  const requiredAmountOfRam =
-    amountOfRamInFullyUtilizedCloud /
-    TCO_CONSTANTS.ratios.ramOvercommitmentRatio;
-
-  const requiredNumberCloudNodesBasedOnRam = Math.ceil(
-    requiredAmountOfRam /
-      (TCO_CONSTANTS.storage.amountOfRamPerNode -
-        TCO_CONSTANTS.storage.reservedAmountOfRamPerNode)
-  );
-
-  //vCPUs
   const numberOfVcpusInCloud = instances.value * vcpus.value;
-
-  const numberOfVcpusInFullyUtilizedCloud =
-    (numberOfVcpusInCloud * 100) /
-    TCO_CONSTANTS.ratios.desiredCloudUtilisationRatio;
-
-  const requiredNumberOfVcpus =
-    numberOfVcpusInFullyUtilizedCloud /
-    TCO_CONSTANTS.ratios.cpuOvercommitmentRatio;
-
-  const requiredNoOfCpus =
-    requiredNumberOfVcpus /
-    (TCO_CONSTANTS.counts.numberOfThreadsPerCpu -
-      TCO_CONSTANTS.counts.reservedNumberOfThreadsPerNode);
-
-  const requiredNumberCloudNodesBasedOnCpu = Math.ceil(
-    requiredNoOfCpus / TCO_CONSTANTS.counts.numberOfCpusPerNode
-  );
-
-  //Ephemeral Storage
   const amountOfESInCloud = instances.value * ephemeralStorage.value;
-
-  const amountOfESInFullyUtilizedCloud =
-    (amountOfESInCloud * 100) /
-    TCO_CONSTANTS.ratios.desiredCloudUtilisationRatio;
-
-  const requiredAmountOfES = amountOfESInFullyUtilizedCloud;
-
-  const requiredNumberCloudNodesBasedOnES = Math.ceil(
-    requiredAmountOfES /
-      (TCO_CONSTANTS.storage.amountOfEphemeralStoragePerNode * 1024 -
-        TCO_CONSTANTS.storage.reservedAmountOfEphemeralStoragePerNode)
-  );
-
-  //Persistent storage
   const amountOfPSInCloud = instances.value * persistentStorage.value;
 
-  const amountOfPSInFullyUtilizedCloud =
-    (amountOfPSInCloud * 100) /
-    TCO_CONSTANTS.ratios.desiredCloudUtilisationRatio;
+  //RAM
+  const calculateRequiredNumberCloudNodesBasedOnRam = () => {
+    const amountOfRamInFullyUtilizedCloud =
+      (amountOfRamInCloud * 100) /
+      TCO_CONSTANTS.ratios.desiredCloudUtilisationRatio;
 
-  const requiredAmountOfPS =
-    amountOfPSInFullyUtilizedCloud *
-    TCO_CONSTANTS.ratios.persistentStorageReplicationFactor;
+    const requiredAmountOfRam =
+      amountOfRamInFullyUtilizedCloud /
+      TCO_CONSTANTS.ratios.ramOvercommitmentRatio;
 
-  let requiredNumberCloudNodesBasedOnPS;
-  TCO_CONSTANTS.storage.amountOfPersistentStoragePerNode > 0
-    ? (requiredNumberCloudNodesBasedOnPS = Math.ceil(
-        requiredAmountOfPS /
-          1024 /
-          TCO_CONSTANTS.storage.amountOfPersistentStoragePerNode
-      ))
-    : (requiredNumberCloudNodesBasedOnPS =
-        TCO_CONSTANTS.storage.amountOfPersistentStoragePerNode);
+    const requiredNumberCloudNodesBasedOnRam = Math.ceil(
+      requiredAmountOfRam /
+        (TCO_CONSTANTS.storage.amountOfRamPerNode -
+          TCO_CONSTANTS.storage.reservedAmountOfRamPerNode)
+    );
+    return requiredNumberCloudNodesBasedOnRam;
+  };
+
+  //vCPUs
+  const calculateRequiredNumberCloudNodesBasedOnCpu = () => {
+    const numberOfVcpusInFullyUtilizedCloud =
+      (numberOfVcpusInCloud * 100) /
+      TCO_CONSTANTS.ratios.desiredCloudUtilisationRatio;
+
+    const requiredNumberOfVcpus =
+      numberOfVcpusInFullyUtilizedCloud /
+      TCO_CONSTANTS.ratios.cpuOvercommitmentRatio;
+
+    const requiredNoOfCpus =
+      requiredNumberOfVcpus /
+      (TCO_CONSTANTS.counts.numberOfThreadsPerCpu -
+        TCO_CONSTANTS.counts.reservedNumberOfThreadsPerNode);
+
+    const requiredNumberCloudNodesBasedOnCpu = Math.ceil(
+      requiredNoOfCpus / TCO_CONSTANTS.counts.numberOfCpusPerNode
+    );
+    return requiredNumberCloudNodesBasedOnCpu;
+  };
+
+  //Ephemeral Storage
+  const calculateRequiredNumberCloudNodesBasedOnES = () => {
+    const amountOfESInFullyUtilizedCloud =
+      (amountOfESInCloud * 100) /
+      TCO_CONSTANTS.ratios.desiredCloudUtilisationRatio;
+
+    const requiredAmountOfES = amountOfESInFullyUtilizedCloud;
+
+    const requiredNumberCloudNodesBasedOnES = Math.ceil(
+      requiredAmountOfES /
+        (TCO_CONSTANTS.storage.amountOfEphemeralStoragePerNode * 1024 -
+          TCO_CONSTANTS.storage.reservedAmountOfEphemeralStoragePerNode)
+    );
+    return requiredNumberCloudNodesBasedOnES;
+  };
+
+  //Persistent storage
+  const calculateRequiredNumberCloudNodesBasedOnPS = () => {
+    const amountOfPSInFullyUtilizedCloud =
+      (amountOfPSInCloud * 100) /
+      TCO_CONSTANTS.ratios.desiredCloudUtilisationRatio;
+
+    const requiredAmountOfPS =
+      amountOfPSInFullyUtilizedCloud *
+      TCO_CONSTANTS.ratios.persistentStorageReplicationFactor;
+
+    let requiredNumberCloudNodesBasedOnPS;
+    TCO_CONSTANTS.storage.amountOfPersistentStoragePerNode > 0
+      ? (requiredNumberCloudNodesBasedOnPS = Math.ceil(
+          requiredAmountOfPS /
+            1024 /
+            TCO_CONSTANTS.storage.amountOfPersistentStoragePerNode
+        ))
+      : (requiredNumberCloudNodesBasedOnPS =
+          TCO_CONSTANTS.storage.amountOfPersistentStoragePerNode);
+
+    return requiredNumberCloudNodesBasedOnPS;
+  };
 
   //total
-  const requiredNumberOfCloudNodes = Math.max(
-    requiredNumberCloudNodesBasedOnCpu,
-    requiredNumberCloudNodesBasedOnRam,
-    requiredNumberCloudNodesBasedOnES,
-    requiredNumberCloudNodesBasedOnPS
-  );
+  const calculateNumberOfCloudNodes = () => {
+    const requiredNumberOfCloudNodes = Math.max(
+      calculateRequiredNumberCloudNodesBasedOnCpu(),
+      calculateRequiredNumberCloudNodesBasedOnRam(),
+      calculateRequiredNumberCloudNodesBasedOnES(),
+      calculateRequiredNumberCloudNodesBasedOnPS()
+    );
 
-  const numberOfCloudNodes = Math.max(
-    requiredNumberOfCloudNodes,
-    TCO_CONSTANTS.counts.minimumNumberOfCloudNodes
-  );
+    const numberOfCloudNodes = Math.max(
+      requiredNumberOfCloudNodes,
+      TCO_CONSTANTS.counts.minimumNumberOfCloudNodes
+    );
+    return numberOfCloudNodes;
+  };
+
+  const numberOfCloudNodes = calculateNumberOfCloudNodes();
 
   //counts
+
   const numberOfRacks = Math.ceil(
     Math.max(
       numberOfCloudNodes / TCO_CONSTANTS.counts.maximumNumberOfCloudNodesInRack,
@@ -125,159 +142,195 @@ const CostCalculations = ({
     TCO_CONSTANTS.counts.numberOfInfraNodes +
     numberOfRackControllerNodes;
 
-  //costs
+  //costs calculations
 
-  const calculatePriceOfNodes = (nodeCount, price) => {
-    return nodeCount * price;
+  const calculateTotalHardwareCost = () => {
+    const calculatePriceOfNodes = (nodeCount, price) => {
+      return nodeCount * price;
+    };
+
+    const cloudNodesCost = calculatePriceOfNodes(
+      numberOfCloudNodes,
+      TCO_CONSTANTS.price.pricePerCloudNode
+    );
+
+    const infraNodesCost = calculatePriceOfNodes(
+      TCO_CONSTANTS.counts.numberOfInfraNodes,
+      TCO_CONSTANTS.price.pricePerInfraNode
+    );
+
+    const rackControllerNodesCost = calculatePriceOfNodes(
+      numberOfRackControllerNodes,
+      TCO_CONSTANTS.price.pricePerRackController
+    );
+
+    const spineSwitchesCost = calculatePriceOfNodes(
+      numberOfSpineSwitches,
+      TCO_CONSTANTS.price.pricePerSpineSwitch
+    );
+
+    const leafSwitchesCost = calculatePriceOfNodes(
+      numberOfLeafSwitches,
+      TCO_CONSTANTS.price.pricePerLeafSwitch
+    );
+
+    const managementSwitchesCost = calculatePriceOfNodes(
+      numberOfManagementSwitches,
+      TCO_CONSTANTS.price.pricePerManagementSwitch
+    );
+
+    const totalHardwareCost =
+      cloudNodesCost +
+      infraNodesCost +
+      rackControllerNodesCost +
+      spineSwitchesCost +
+      leafSwitchesCost +
+      managementSwitchesCost;
+
+    return totalHardwareCost;
   };
 
-  const cloudNodesCost = calculatePriceOfNodes(
-    numberOfCloudNodes,
-    TCO_CONSTANTS.price.pricePerCloudNode
-  );
+  const calculateOpexCost = () => {
+    const totalInstallationAndMaintenanceCost =
+      TCO_CONSTANTS.price.annualPerNodeHardwareInstallationAndMaintenanceCost *
+      numberOfNodes;
 
-  const infraNodesCost = calculatePriceOfNodes(
-    TCO_CONSTANTS.counts.numberOfInfraNodes,
-    TCO_CONSTANTS.price.pricePerInfraNode
-  );
+    const totalHostingRentElectricityCost =
+      TCO_CONSTANTS.price.annualPerNodeHostingRentAndElectricityCost *
+      numberOfNodes;
 
-  const rackControllerNodesCost = calculatePriceOfNodes(
-    numberOfRackControllerNodes,
-    TCO_CONSTANTS.price.pricePerRackController
-  );
+    const totalHostingNetworkCost =
+      2 *
+      TCO_CONSTANTS.price.annualPerGbpsHostingExternalNetworkCost *
+      TCO_CONSTANTS.operations.externalNetworkBandwidth;
 
-  const spineSwitchesCost = calculatePriceOfNodes(
-    numberOfSpineSwitches,
-    TCO_CONSTANTS.price.pricePerSpineSwitch
-  );
+    let totalSubscriptionCost;
+    supportLevel === "fully-managed"
+      ? (totalSubscriptionCost =
+          numberOfNodes * TCO_CONSTANTS.operations.fullyManaged)
+      : (totalSubscriptionCost =
+          numberOfNodes * TCO_CONSTANTS.operations.supported);
 
-  const leafSwitchesCost = calculatePriceOfNodes(
-    numberOfLeafSwitches,
-    TCO_CONSTANTS.price.pricePerLeafSwitch
-  );
+    const totalStaffSalaryCost =
+      TCO_CONSTANTS.operations.operationsTeamSize *
+      TCO_CONSTANTS.price.operationsTeamAvarageAnnualStaffSalary;
 
-  const managementSwitchesCost = calculatePriceOfNodes(
-    numberOfManagementSwitches,
-    TCO_CONSTANTS.price.pricePerManagementSwitch
-  );
+    let totalOperationsCost;
+    supportLevel === "fully-managed"
+      ? (totalOperationsCost = totalSubscriptionCost)
+      : (totalOperationsCost = totalSubscriptionCost + totalStaffSalaryCost);
 
-  const totalHardwareCost =
-    cloudNodesCost +
-    infraNodesCost +
-    rackControllerNodesCost +
-    spineSwitchesCost +
-    leafSwitchesCost +
-    managementSwitchesCost;
+    const totalOpexCost =
+      totalInstallationAndMaintenanceCost +
+      totalHostingRentElectricityCost +
+      totalHostingNetworkCost +
+      totalOperationsCost +
+      TCO_CONSTANTS.price.annualLicenseCost;
 
-  const capExCost = totalHardwareCost + TCO_CONSTANTS.price.deliveryCost;
+    return totalOpexCost;
+  };
 
-  const totalInstallationAndMaintenanceCost =
-    TCO_CONSTANTS.price.annualPerNodeHardwareInstallationAndMaintenanceCost *
-    numberOfNodes;
+  const calculateCharmedOpenstackTco = () => {
+    const capExCost = totalHardwareCost + TCO_CONSTANTS.price.deliveryCost;
+    const charmedOpenstackTco =
+      capExCost + TCO_CONSTANTS.operations.hardWareRenewalPeriod * opexCost;
 
-  const totalHostingRentElectricityCost =
-    TCO_CONSTANTS.price.annualPerNodeHostingRentAndElectricityCost *
-    numberOfNodes;
+    return charmedOpenstackTco;
+  };
 
-  const totalHostingNetworkCost =
-    2 *
-    TCO_CONSTANTS.price.annualPerGbpsHostingExternalNetworkCost *
-    TCO_CONSTANTS.operations.externalNetworkBandwidth;
-
-  let totalSubscriptionCost;
-  supportLevel === "fully-managed"
-    ? (totalSubscriptionCost =
-        numberOfNodes * TCO_CONSTANTS.operations.fullyManaged)
-    : (totalSubscriptionCost =
-        numberOfNodes * TCO_CONSTANTS.operations.supported);
-
-  const totalStaffSalaryCost =
-    TCO_CONSTANTS.operations.operationsTeamSize *
-    TCO_CONSTANTS.price.operationsTeamAvarageAnnualStaffSalary;
-
-  let totalOperationsCost;
-  supportLevel === "fully-managed"
-    ? (totalOperationsCost = totalSubscriptionCost)
-    : (totalOperationsCost = totalSubscriptionCost + totalStaffSalaryCost);
-
-  const opexCost =
-    totalInstallationAndMaintenanceCost +
-    totalHostingRentElectricityCost +
-    totalHostingNetworkCost +
-    totalOperationsCost +
-    TCO_CONSTANTS.price.annualLicenseCost;
-
-  const charmedOpenstackTco =
-    capExCost + TCO_CONSTANTS.operations.hardWareRenewalPeriod * opexCost;
+  const totalHardwareCost = calculateTotalHardwareCost();
+  const opexCost = calculateOpexCost();
+  const charmedOpenstackTco = calculateCharmedOpenstackTco();
 
   //Number of AWS EC2 VMs
 
-  const calculateNumberOfAWSVMs = (numberInCloud, storage) => {
-    return storage === 0 ? 0 : Math.floor(numberInCloud / storage);
+  const calculateAwsTco = () => {
+    const calculateNumberOfAwsVMs = (numberInCloud, storage) => {
+      return storage === 0 ? 0 : Math.floor(numberInCloud / storage);
+    };
+
+    const numberOfAwsEc2VmsBasedOnCpu = calculateNumberOfAwsVMs(
+      numberOfVcpusInCloud,
+      TCO_CONSTANTS.storage.awsEc2InstanceVcpus
+    );
+
+    const numberOfAwsEc2VmsBasedOnRam = calculateNumberOfAwsVMs(
+      amountOfRamInCloud,
+      TCO_CONSTANTS.storage.awsEc2InstanceRam
+    );
+
+    const numberOfAwsEc2VmsBasedOnES = calculateNumberOfAwsVMs(
+      amountOfESInCloud,
+      TCO_CONSTANTS.storage.awsEc2InstanceEphemeralStorage
+    );
+
+    const numberOfAwsEc2VmsBasedOnPS = calculateNumberOfAwsVMs(
+      amountOfPSInCloud,
+      TCO_CONSTANTS.storage.awsEc2InstancePersistentStorage
+    );
+
+    const numberOfAwsEc2Vms = Math.max(
+      numberOfAwsEc2VmsBasedOnCpu,
+      numberOfAwsEc2VmsBasedOnRam,
+      numberOfAwsEc2VmsBasedOnES,
+      numberOfAwsEc2VmsBasedOnPS
+    );
+
+    const awsTco = Math.floor(
+      Math.floor(
+        numberOfAwsEc2Vms *
+          8760 *
+          TCO_CONSTANTS.price.awsEc2T3aLargeHourlyInstanceCost
+      ) * TCO_CONSTANTS.operations.hardWareRenewalPeriod
+    );
+
+    return awsTco;
   };
 
-  const numberOfAwsEc2VmsBasedOnCpu = calculateNumberOfAWSVMs(
-    numberOfVcpusInCloud,
-    TCO_CONSTANTS.storage.awsEc2InstanceVcpus
-  );
+  const awsTco = calculateAwsTco();
 
-  const numberOfAwsEc2VmsBasedOnRam = calculateNumberOfAWSVMs(
-    amountOfRamInCloud,
-    TCO_CONSTANTS.storage.awsEc2InstanceRam
-  );
+  const calculateHourlyCostPerInstance = () => {
+    const hourlyCostPerInstance =
+      charmedOpenstackTco /
+      instances.value /
+      (8760 * TCO_CONSTANTS.operations.hardWareRenewalPeriod);
 
-  const numberOfAwsEc2VmsBasedOnES = calculateNumberOfAWSVMs(
-    amountOfESInCloud,
-    TCO_CONSTANTS.storage.awsEc2InstanceEphemeralStorage
-  );
+    return hourlyCostPerInstance;
+  };
 
-  const numberOfAwsEc2VmsBasedOnPS = calculateNumberOfAWSVMs(
-    amountOfPSInCloud,
-    TCO_CONSTANTS.storage.awsEc2InstancePersistentStorage
-  );
+  const calculateTotalSavings = () => {
+    const totalSavings =
+      awsTco - charmedOpenstackTco > 0 ? awsTco - charmedOpenstackTco : 0;
 
-  const numberOfAwsEc2Vms = Math.max(
-    numberOfAwsEc2VmsBasedOnCpu,
-    numberOfAwsEc2VmsBasedOnRam,
-    numberOfAwsEc2VmsBasedOnES,
-    numberOfAwsEc2VmsBasedOnPS
-  );
+    const formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
 
-  const awsTco = Math.floor(
-    Math.floor(
-      numberOfAwsEc2Vms *
-        8760 *
-        TCO_CONSTANTS.price.awsEc2T3aLargeHourlyInstanceCost
-    ) * TCO_CONSTANTS.operations.hardWareRenewalPeriod
-  );
+    const totalSavingsSplit = formatter.format(totalSavings).split(".");
+
+    return totalSavingsSplit;
+  };
 
   //final calculations to display
-  const hourlyCostPerInstance =
-    charmedOpenstackTco /
-    instances.value /
-    (8760 * TCO_CONSTANTS.operations.hardWareRenewalPeriod);
+  const hourlyCostPerInstance = calculateHourlyCostPerInstance();
+  const totalSavings = calculateTotalSavings();
 
-  const totalSavings =
-    awsTco - charmedOpenstackTco > 0 ? awsTco - charmedOpenstackTco : 0;
+  const errorCheck = () => {
+    let error = false;
+    if (
+      instances.error ||
+      vcpus.error ||
+      ephemeralStorage.error ||
+      ram.error ||
+      persistentStorage.error
+    ) {
+      error = true;
+    }
+    return error;
+  };
 
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-
-  const totalSavingsSplit = formatter.format(totalSavings).split(".");
-
-  //error check
-  let error = false;
-  if (
-    instances.error ||
-    vcpus.error ||
-    ephemeralStorage.error ||
-    ram.error ||
-    persistentStorage.error
-  ) {
-    error = true;
-  }
+  const error = errorCheck();
 
   return (
     <>
@@ -305,7 +358,7 @@ const CostCalculations = ({
         </Col>
         <Col size="2" className="u-align--right">
           <p className="p-heading--3" id="total-savings">
-            {!error ? totalSavingsSplit[0] : "-"}
+            {!error ? totalSavings[0] : "-"}
           </p>
         </Col>
       </Row>
