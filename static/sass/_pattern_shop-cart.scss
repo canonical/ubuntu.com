@@ -15,6 +15,7 @@
       > .p-label {
         align-self: center;
         margin-top: 0.5rem;
+        margin-left: 0.5rem;
       }
 
       @media (min-width: $breakpoint-x-small) {
@@ -23,7 +24,9 @@
           margin-left: 2.5rem;
         }
         > .p-label {
-          margin-top: 0;
+          align-self: flex-start;
+          margin-top: calc(0.4rem - 1px);
+          margin-left: 1rem;
         }
       }
 
