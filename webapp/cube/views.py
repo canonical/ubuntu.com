@@ -174,10 +174,10 @@ def cube_study_labs_button():
     text = "Purchase study labs access"
     redirect_url = "/cube/microcerts"
 
-    if CUBE_CONTENT["prepare-course"] in enrollments:
+    if CUBE_CONTENT["study-labs"] in enrollments:
         text = "Access study labs"
         prepare_materials_path = quote_plus(
-            f"/courses/{CUBE_CONTENT['prepare-course']}/course/"
+            f"/courses/{CUBE_CONTENT['study-labs']}/course/"
         )
         redirect_url = (
             f"{edx_api.base_url}/auth/login/tpa-saml/"
