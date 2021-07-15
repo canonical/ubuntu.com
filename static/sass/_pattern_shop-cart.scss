@@ -14,6 +14,10 @@
 
       > .p-label {
         align-self: center;
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      select {
         margin-top: 0.5rem;
       }
 
@@ -23,6 +27,11 @@
           margin-left: 2.5rem;
         }
         > .p-label {
+          align-self: flex-start;
+          margin-left: 1rem;
+          margin-top: calc(0.4rem - 1px);
+        }
+        select {
           margin-top: 0;
         }
       }
