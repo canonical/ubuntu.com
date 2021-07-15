@@ -78,140 +78,116 @@ const CostCalculatorForm = () => {
             </h3>
             <Row>
               <Col size="3">
-                <Row>
-                  <Col size="3">
-                    <p>vCPUs</p>
-                  </Col>
-                  <Col size="2">
-                    <Input
-                      id="vcpus"
-                      ariaLabel="vCPUs"
-                      mdxType="Input"
-                      onChange={onChangeHandler}
-                      type="number"
-                      min="1"
-                      max="116"
-                      name="vcpus"
-                      value={formState.vcpus.value}
-                      error={formState.vcpus.error}
-                      required
-                    ></Input>
-                  </Col>
-                </Row>
+                <p>vCPUs</p>
+                <Input
+                  id="vcpus"
+                  className="tco-input"
+                  ariaLabel="vCPUs"
+                  mdxType="Input"
+                  onChange={onChangeHandler}
+                  type="number"
+                  min="1"
+                  max="116"
+                  name="vcpus"
+                  value={formState.vcpus.value}
+                  error={formState.vcpus.error}
+                  required
+                ></Input>
               </Col>
               <Col size="3">
-                <Row>
-                  <Col size="3">
-                    <p>Ephemeral storage [GB]</p>
-                  </Col>
-                  <Col size="2">
-                    <Input
-                      id="ephemeral-storage"
-                      ariaLabel="ephemeral storage"
-                      mdxType="Input"
-                      onChange={onChangeHandler}
-                      type="number"
-                      min="4"
-                      max="114"
-                      name="ephemeralStorage"
-                      value={formState.ephemeralStorage.value}
-                      error={formState.ephemeralStorage.error}
-                      required
-                    ></Input>
-                  </Col>
-                </Row>
+                <p>Ephemeral storage [GB]</p>
+                <Input
+                  id="ephemeral-storage"
+                  className="tco-input"
+                  ariaLabel="ephemeral storage"
+                  mdxType="Input"
+                  onChange={onChangeHandler}
+                  type="number"
+                  min="4"
+                  max="114"
+                  name="ephemeralStorage"
+                  value={formState.ephemeralStorage.value}
+                  error={formState.ephemeralStorage.error}
+                  required
+                ></Input>
               </Col>
             </Row>
             <Row>
               <Col size="3">
-                <Row>
-                  <Col size="3">
-                    <p>RAM [GB]</p>
-                  </Col>
-                  <Col size="2">
-                    <Input
-                      id="ram"
-                      ariaLabel="RAM [GB]"
-                      mdxType="Input"
-                      onChange={onChangeHandler}
-                      type="number"
-                      min="1"
-                      max="1824"
-                      name="ram"
-                      value={formState.ram.value}
-                      error={formState.ram.error}
-                      required
-                    ></Input>
-                  </Col>
-                </Row>
+                <p>RAM [GB]</p>
+                <Input
+                  id="ram"
+                  className="tco-input"
+                  ariaLabel="RAM [GB]"
+                  mdxType="Input"
+                  onChange={onChangeHandler}
+                  type="number"
+                  min="1"
+                  max="1824"
+                  name="ram"
+                  value={formState.ram.value}
+                  error={formState.ram.error}
+                  required
+                ></Input>
               </Col>
               <Col size="3">
-                <Row>
-                  <Col size="3">
-                    <p>Persistent storage [GB]</p>
-                  </Col>
-                  <Col size="2">
-                    <Input
-                      id="persistent-storage"
-                      ariaLabel="Persistent storage [GB]"
-                      mdxType="Input"
-                      onChange={onChangeHandler}
-                      type="number"
-                      min="0"
-                      max="221"
-                      name="persistentStorage"
-                      value={formState.persistentStorage.value}
-                      error={formState.persistentStorage.error}
-                      required
-                    ></Input>
-                  </Col>
-                </Row>
+                <p>Persistent storage [GB]</p>
+                <Input
+                  id="persistent-storage"
+                  className="tco-input"
+                  ariaLabel="Persistent storage [GB]"
+                  mdxType="Input"
+                  onChange={onChangeHandler}
+                  type="number"
+                  min="0"
+                  max="221"
+                  name="persistentStorage"
+                  value={formState.persistentStorage.value}
+                  error={formState.persistentStorage.error}
+                  required
+                ></Input>
               </Col>
             </Row>
           </Col>
-          <Col size="6">
-            <Row>
-              <Col size="5" emptyLarge="2">
-                <h3 class="p-heading--4">
-                  Support level
-                  <Tooltip
-                    position="top-right"
-                    message=" Average virtual machine resources configuration."
-                  >
-                    <Icon name="help" className="tco-tooltip" />
-                  </Tooltip>
-                </h3>
-                <Input
-                  label="Fully-managed"
-                  type="radio"
-                  id="fully-managed"
-                  value="fully-managed"
-                  name="supportLevel"
-                  onChange={onChangeHandler}
-                  checked={formState.supportLevel === "fully-managed"}
-                  default
-                />
-                <p>
-                  Canonical deploys the cloud and provides 24/7 maintenance and
-                  operations of the cloud. The more economical option for
-                  small-scale deployments.
-                </p>
-                <Input
-                  label="Supported"
-                  type="radio"
-                  id="supported"
-                  value="supported"
-                  name="supportLevel"
-                  onChange={onChangeHandler}
-                  checked={formState.supportLevel === "supported"}
-                />
-                <p>
-                  Canonical deploys the cloud and provides 24/7 phone and ticket
-                  support for your operations team. The more economical option
-                  for large-scale deployments.
-                </p>
-              </Col>
-            </Row>
+          <Col size="5" emptyLarge="8">
+            <h3 class="p-heading--4">
+              Support level
+              <Tooltip
+                position="top-right"
+                message=" Average virtual machine resources configuration."
+              >
+                <Icon name="help" className="tco-tooltip" />
+              </Tooltip>
+            </h3>
+            <Input
+              label="Fully-managed"
+              type="radio"
+              id="fully-managed"
+              value="fully-managed"
+              name="supportLevel"
+              onChange={onChangeHandler}
+              checked={formState.supportLevel === "fully-managed"}
+              default
+            />
+            <p>
+              Canonical deploys the cloud and provides 24/7 maintenance and
+              operations of the cloud. The more economical option for
+              small-scale deployments.
+            </p>
+            <Input
+              label="Supported"
+              type="radio"
+              id="supported"
+              value="supported"
+              name="supportLevel"
+              onChange={onChangeHandler}
+              checked={formState.supportLevel === "supported"}
+            />
+            <p>
+              Canonical deploys the cloud and provides 24/7 phone and ticket
+              support for your operations team. The more economical option for
+              large-scale deployments.
+            </p>
           </Col>
         </Row>
       </Form>
