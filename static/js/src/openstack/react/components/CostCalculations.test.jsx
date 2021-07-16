@@ -32,27 +32,110 @@ describe("Hourly cost and total savings calculations", function () {
     );
   });
 
-  it("checks totals are correct with updated values", () => {
+  it("checks totals are correct when instances value is updated", () => {
     calculationsWrapper = shallow(
       <CostCalculations
         instances={{ value: 2000, error: "" }}
-        vcpus={{ value: 8, error: "" }}
-        ephemeralStorage={{ value: 16, error: "" }}
-        ram={{ value: 32, error: "" }}
-        persistentStorage={{ value: 120, error: "" }}
-        supportLevel="supported"
+        vcpus={{ value: 2, error: "" }}
+        ephemeralStorage={{ value: 8, error: "" }}
+        ram={{ value: 8, error: "" }}
+        persistentStorage={{ value: 80, error: "" }}
+        supportLevel="fully-managed"
       />
     );
-    expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.1496");
+    expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0243");
     expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$7,949,548"
+      "$2,675,637"
     );
   });
 
-  it("checks totals are correct with more updated values", () => {
+  it("checks totals are correct when vcpus value is updated", () => {
     calculationsWrapper = shallow(
       <CostCalculations
-        instances={{ value: 9000, error: "" }}
+        instances={{ value: 1000, error: "" }}
+        vcpus={{ value: 8, error: "" }}
+        ephemeralStorage={{ value: 8, error: "" }}
+        ram={{ value: 8, error: "" }}
+        persistentStorage={{ value: 80, error: "" }}
+        supportLevel="fully-managed"
+      />
+    );
+    expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0792");
+    expect(calculationsWrapper.find("#total-savings").text()).toEqual(
+      "$5,824,474"
+    );
+  });
+
+  it("checks totals are correct when Ephemeral storage value is updated", () => {
+    calculationsWrapper = shallow(
+      <CostCalculations
+        instances={{ value: 1000, error: "" }}
+        vcpus={{ value: 2, error: "" }}
+        ephemeralStorage={{ value: 16, error: "" }}
+        ram={{ value: 8, error: "" }}
+        persistentStorage={{ value: 80, error: "" }}
+        supportLevel="fully-managed"
+      />
+    );
+    expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0407");
+    expect(calculationsWrapper.find("#total-savings").text()).toEqual(
+      "$2,883,912"
+    );
+  });
+
+  it("checks totals are correct when ram value is updated", () => {
+    calculationsWrapper = shallow(
+      <CostCalculations
+        instances={{ value: 1000, error: "" }}
+        vcpus={{ value: 2, error: "" }}
+        ephemeralStorage={{ value: 8, error: "" }}
+        ram={{ value: 32, error: "" }}
+        persistentStorage={{ value: 80, error: "" }}
+        supportLevel="fully-managed"
+      />
+    );
+    expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0818");
+    expect(calculationsWrapper.find("#total-savings").text()).toEqual(
+      "$5,755,049"
+    );
+  });
+
+  it("checks totals are correct when persistent storage value is updated", () => {
+    calculationsWrapper = shallow(
+      <CostCalculations
+        instances={{ value: 1000, error: "" }}
+        vcpus={{ value: 2, error: "" }}
+        ephemeralStorage={{ value: 8, error: "" }}
+        ram={{ value: 8, error: "" }}
+        persistentStorage={{ value: 210, error: "" }}
+        supportLevel="fully-managed"
+      />
+    );
+    expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.0486");
+    expect(calculationsWrapper.find("#total-savings").text()).toEqual(
+      "$699,381"
+    );
+  });
+
+  it("checks totals are correct when support level checkbox is changed", () => {
+    calculationsWrapper = shallow(
+      <CostCalculations
+        instances={{ value: 1000, error: "" }}
+        vcpus={{ value: 2, error: "" }}
+        ephemeralStorage={{ value: 8, error: "" }}
+        ram={{ value: 8, error: "" }}
+        persistentStorage={{ value: 80, error: "" }}
+        supportLevel="supported"
+      />
+    );
+    expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.2064");
+    expect(calculationsWrapper.find("#total-savings").text()).toEqual("$0");
+  });
+
+  it("check no value is shown in totals if error message is present", () => {
+    calculationsWrapper = shallow(
+      <CostCalculations
+        instances={{ value: 0, error: "Number out of range" }}
         vcpus={{ value: 32, error: "" }}
         ephemeralStorage={{ value: 64, error: "" }}
         ram={{ value: 8, error: "" }}
@@ -60,50 +143,8 @@ describe("Hourly cost and total savings calculations", function () {
         supportLevel="fully-managed"
       />
     );
-    expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("$0.2756");
-    expect(calculationsWrapper.find("#total-savings").text()).toEqual(
-      "$219,403,189"
-    );
-  });
-
-  it("checks instances prop value updates onChange", () => {
-    formWrapper
-      .find("#instances")
-      .simulate("change", { target: { value: 2000, name: "instances" } });
-
-    expect(formWrapper.find("#instances").props().value).toEqual(2000);
-  });
-
-  it("checks vcupus prop value updates onChange", () => {
-    formWrapper
-      .find("#vcpus")
-      .simulate("change", { target: { value: 6, name: "vcpus" } });
-
-    expect(formWrapper.find("#vcpus").props().value).toEqual(6);
-  });
-
-  it("checks ephemeral storage prop value updates onChange", () => {
-    formWrapper
-      .find("#ephemeral-storage")
-      .simulate("change", { target: { value: 12, name: "ephemeralStorage" } });
-
-    expect(formWrapper.find("#ephemeral-storage").props().value).toEqual(12);
-  });
-
-  it("checks ram prop value updates onChange", () => {
-    formWrapper
-      .find("#ram")
-      .simulate("change", { target: { value: 12, name: "ram" } });
-
-    expect(formWrapper.find("#ram").props().value).toEqual(12);
-  });
-
-  it("checks persistent storage prop value updates onChange", () => {
-    formWrapper
-      .find("#persistent-storage")
-      .simulate("change", { target: { value: 90, name: "persistentStorage" } });
-
-    expect(formWrapper.find("#persistent-storage").props().value).toEqual(90);
+    expect(calculationsWrapper.find("#hourly-cost").text()).toEqual("-");
+    expect(calculationsWrapper.find("#total-savings").text()).toEqual("-");
   });
 
   it("checks error message exists when instances value is out of range", () => {
