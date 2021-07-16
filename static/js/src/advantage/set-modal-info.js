@@ -189,8 +189,14 @@ export function getPaymentInformation(paymentMethod) {
 }
 
 export function getRenewalInformation(data) {
-  const startDate = new Date(data.renewalStart);
-  const endDate = new Date(data.renewalEnd);
+  const current = new Date();
+  let startDate = current;
+
+  if (current > startDate) {
+    startDate = new Date(data.newContractStart);
+  }
+
+  const endDate = add(startDate, { years: 1 });
 
   return {
     items: [
