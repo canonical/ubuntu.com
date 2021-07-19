@@ -44,7 +44,7 @@ describe("getRenewalInformation", () => {
           {
             end: {
               label: "Ends:",
-              value: "18 August 2020",
+              value: "18 April 2031",
               extraClasses: "js-end-date",
             },
             plan: {
@@ -57,13 +57,26 @@ describe("getRenewalInformation", () => {
             },
             start: {
               label: "Continues from:",
-              value: "18 April 2020",
+              value: "18 April 2030",
             },
           },
         ],
         subtotal: "$125",
         total: "$125",
         vat: "$0",
+      });
+    });
+    it("should set start date to current", () => {
+      renewalData.advancedDesktop.renewalNewContractStart =
+        "2021-06-30T13:25:32.375Z";
+
+      const data = getRenewalInformation(renewalData.advancedDesktop);
+      const startDateData = data.items[0].start;
+      const expectedDate = format(new Date(), "dd MMMM yyyy");
+
+      expect(startDateData).toEqual({
+        label: "Continues from:",
+        value: expectedDate,
       });
     });
   });
