@@ -321,19 +321,19 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
                 }
                 break;
               case "text":
-                if (
-                  !input.classList.contains("mktoField") &&
-                  input.value !== ""
-                ) {
+                if (input.value !== "") {
+                  message += comma + input.value;
+                  comma = ", ";
+                }
+                break;
+              case "number":
+                if (input.value !== "") {
                   message += comma + input.value;
                   comma = ", ";
                 }
                 break;
               case "textarea":
-                if (
-                  !input.classList.contains("mktoField") &&
-                  input.value !== ""
-                ) {
+                if (input.value !== "") {
                   message += comma + input.value;
                   comma = ", ";
                 }
@@ -424,6 +424,13 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
 
       // Assign listeners to forms added after initial DOM render
       assignMarketoBackgroundSubmit();
+
+      function fireLoadedEvent() {
+        var event = new CustomEvent("contactModalLoaded");
+        document.dispatchEvent(event);
+      }
+
+      fireLoadedEvent();
     }
 
     // Opens the form when the initial hash matches the trigger

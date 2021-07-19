@@ -1051,3 +1051,15 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+//tco calculatior
+.tco-tooltip {
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.tco-input {
+  @media (min-width: $breakpoint-medium) {
+    max-width: 10rem;
+  }
+}
