@@ -424,6 +424,13 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
 
       // Assign listeners to forms added after initial DOM render
       assignMarketoBackgroundSubmit();
+
+      function fireLoadedEvent() {
+        var event = new CustomEvent("contactModalLoaded");
+        document.dispatchEvent(event);
+      }
+
+      fireLoadedEvent();
     }
 
     // Opens the form when the initial hash matches the trigger

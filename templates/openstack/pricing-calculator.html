@@ -96,12 +96,39 @@
   </div>
 </section>
 
-
-
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack-cost-calculator" data-form-id="4062" data-lp-id="" data-return-url="https://www.ubuntu.com/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
 <script src="{{ versioned_static('js/dist/costCalculator.js') }}" type="module" defer></script>
+
+<script>
+
+const updateFormFields = () => {
+  document.addEventListener("contactModalLoaded", (event) => {
+    const container = document.querySelector(`#cost-calculator-section`);
+    const vcpusValue = container.querySelector("#vcpus").value;
+    const ramValue = container.querySelector("#ram").value;
+    const ESValue = container.querySelector("#ephemeral-storage").value;
+    const PSValue = container.querySelector("#persistent-storage").value;
+    const instancesValue = container.querySelector("#instances").value;
+
+    const contactModal = document.querySelector("#contact-modal");
+    contactModal.querySelector("#instance-type-vcpus").value = vcpusValue;
+    contactModal.querySelector("#instance-type-ram").value = ramValue;
+    contactModal.querySelector(
+      "#instance-type-ephemeral-storage"
+    ).value = ESValue;
+    contactModal.querySelector(
+      "#instance-type-persistent-storage"
+    ).value = PSValue;
+    contactModal.querySelector(
+      "#instance-type-number-of-instances"
+    ).value = instancesValue;
+  });
+};
+updateFormFields();
+
+</script> 
 
 {% endblock content %}
