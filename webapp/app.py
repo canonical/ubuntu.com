@@ -45,7 +45,6 @@ from webapp.cube.views import (
     cube_home,
     cube_microcerts,
     cube_study_labs_button,
-    is_authorized,
 )
 
 from webapp.views import (
@@ -823,9 +822,6 @@ def cube_require_login_cube_study():
         user = user_info(flask.session)
         if not user:
             return flask.redirect("/login?next=" + flask.request.path)
-
-        if not is_authorized(user):
-            flask.abort(403)
 
 
 @app.after_request
