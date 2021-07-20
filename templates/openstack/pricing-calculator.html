@@ -103,7 +103,6 @@
 <script src="{{ versioned_static('js/dist/costCalculator.js') }}" type="module" defer></script>
 
 <script>
-
 const updateFormFields = () => {
   document.addEventListener("contactModalLoaded", (event) => {
     const container = document.querySelector(`#cost-calculator-section`);
@@ -129,6 +128,27 @@ const updateFormFields = () => {
 };
 updateFormFields();
 
+const addAnotherInstance = () => {
+  document.addEventListener("contactModalLoaded", (event) => {
+    const button = document.querySelector("#add-another-instance");
+    button.addEventListener("click", () => {
+      const instanceTypes = Array.from(
+        document.querySelectorAll("#instance-type")
+      );
+      const length = instanceTypes.length;
+      for (let i = 0; i < length; i++) {
+        if (instanceTypes[i].classList.contains("u-hide")) {
+          instanceTypes[i].classList.remove("u-hide");
+          if (i === length - 1) {
+            button.setAttribute("disabled", "true")
+          }
+          return;
+        }
+      }
+    });
+  });
+};
+addAnotherInstance();
 </script> 
 
 {% endblock content %}

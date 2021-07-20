@@ -6,35 +6,133 @@
     </header>
     <div class="js-pagination js-pagination--1">
       <p>Tell us more about your needs here and we will send you a detailed report including the required number of nodes for your private cloud and estimated private cloud pricing, including initial CapEx and recurring OpEx costs. We will also help you find the cloud architecture that best suits your requirements.</p>
-      <h3 class="p-heading--four">Instance type</h3>
+      <div id="instance-type">
+        <h3 class="p-heading--four">Instance type 1</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">vCPUs</h3>
+              <input type="number" id="instance-type-vcpus" min="1" max="116" value="2" aria-label="Instance type: vCPUs">
+            </div>
+            <div class="js-formfield">
+              <h3 class="p-heading--five">RAM [GB]</h3>
+              <input type="number" id="instance-type-ram" min="1" max="1824" value="8" aria-label="Instance type: RAM [GB]">
+            </div>
+          </div>
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Ephemeral storage [GB]</h3>
+              <input type="number" id="instance-type-ephemeral-storage" min="4" max="144" value="8" aria-label="Instance type: Ephemeral storage">
+            </div>
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Persistent storage [GB]</h3>
+              <input type="number" id="instance-type-persistent-storage" min="0" max="221" value="80" aria-label="Instance type: Persistent storage">
+            </div>
+          </div>
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Number of instances</h3>
+              <input type="number" id="instance-type-number-of-instances" min="1" max="1000000" value="1000" aria-label="Instance type: Number of instances">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-hide" id="instance-type">
+        <h3 class="p-heading--four">Instance type 2</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">vCPUs</h3>
+              <input type="number" id="instance-type-vcpus" min="1" max="116" aria-label="Instance type: vCPUs">
+            </div>
+            <div class="js-formfield">
+              <h3 class="p-heading--five">RAM [GB]</h3>
+              <input type="number" id="instance-type-ram" min="1" max="1824"  aria-label="Instance type: RAM [GB]">
+            </div>
+          </div>
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Ephemeral storage [GB]</h3>
+              <input type="number" id="instance-type-ephemeral-storage" min="4" max="144" aria-label="Instance type: Ephemeral storage">
+            </div>
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Persistent storage [GB]</h3>
+              <input type="number" id="instance-type-persistent-storage" min="0" max="221" aria-label="Instance type: Persistent storage">
+            </div>
+          </div>
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Number of instances</h3>
+              <input type="number" id="instance-type-number-of-instances" min="1" max="1000000" aria-label="Instance type: Number of instances">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-hide" id="instance-type">
+        <h3 class="p-heading--four">Instance type 3</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">vCPUs</h3>
+              <input type="number" id="instance-type-vcpus" min="1" max="116" aria-label="Instance type: vCPUs">
+            </div>
+            <div class="js-formfield">
+              <h3 class="p-heading--five">RAM [GB]</h3>
+              <input type="number" id="instance-type-ram" min="1" max="1824" aria-label="Instance type: RAM [GB]">
+            </div>
+          </div>
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Ephemeral storage [GB]</h3>
+              <input type="number" id="instance-type-ephemeral-storage" min="4" max="144" aria-label="Instance type: Ephemeral storage">
+            </div>
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Persistent storage [GB]</h3>
+              <input type="number" id="instance-type-persistent-storage" min="0" max="221" aria-label="Instance type: Persistent storage">
+            </div>
+          </div>
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Number of instances</h3>
+              <input type="number" id="instance-type-number-of-instances" min="1" max="1000000" aria-label="Instance type: Number of instances">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-hide" id="instance-type">
+        <h3 class="p-heading--four">Instance type 4</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">vCPUs</h3>
+              <input type="number" id="instance-type-vcpus" min="1" max="116"  aria-label="Instance type: vCPUs">
+            </div>
+            <div class="js-formfield">
+              <h3 class="p-heading--five">RAM [GB]</h3>
+              <input type="number" id="instance-type-ram" min="1" max="1824"  aria-label="Instance type: RAM [GB]">
+            </div>
+          </div>
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Ephemeral storage [GB]</h3>
+              <input type="number" id="instance-type-ephemeral-storage" min="4" max="144"  aria-label="Instance type: Ephemeral storage">
+            </div>
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Persistent storage [GB]</h3>
+              <input type="number" id="instance-type-persistent-storage" min="0" max="221" aria-label="Instance type: Persistent storage">
+            </div>
+          </div>
+          <div class="col-4 u-sv3">
+            <div class="js-formfield">
+              <h3 class="p-heading--five">Number of instances</h3>
+              <input type="number" id="instance-type-number-of-instances" min="1" max="1000000" aria-label="Instance type: Number of instances">
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row u-no-padding">
-        <div class="col-4 u-sv3">
-          <div class="js-formfield">
-            <h3 class="p-heading--five">vCPUs</h3>
-            <input type="number" id="instance-type-vcpus" min="1" max="116" value="2" aria-label="Instance type: vCPUs">
-          </div>
-          <div class="js-formfield">
-            <h3 class="p-heading--five">RAM [GB]</h3>
-            <input type="number" id="instance-type-ram" min="1" max="1824" value="8" aria-label="Instance type: RAM [GB]">
-          </div>
-        </div>
-        <div class="col-4 u-sv3">
-          <div class="js-formfield">
-            <h3 class="p-heading--five">Ephemeral storage [GB]</h3>
-            <input type="number" id="instance-type-ephemeral-storage" min="4" max="144" value="8" aria-label="Instance type: Ephemeral storage">
-          </div>
-          <div class="js-formfield">
-            <h3 class="p-heading--five">Persistent storage [GB]</h3>
-            <input type="number" id="instance-type-persistent-storage" min="0" max="221" value="80" aria-label="Instance type: Persistent storage">
-          </div>
-        </div>
-        <div class="col-4 u-sv3">
-          <div class="js-formfield">
-            <h3 class="p-heading--five">Number of instances</h3>
-            <input type="number" id="instance-type-number-of-instances" min="1" max="1000000" value="1000" aria-label="Instance type: Number of instances">
-          </div>
-        </div>
         <div class="pagination">
+          <button class="p-button--netural" id="add-another-instance">Add another instance</button>
           <a class="p-button--positive pagination__link--next" href="">Next</a>
         </div>
       </div>
@@ -240,3 +338,5 @@
     </div>
   </div>
 </div>
+
+<script>console.log("hello")</script>
