@@ -19,12 +19,6 @@ CUBE_CONTENT = yaml.load(
     Path("webapp/cube/content/cube.yaml").read_text(), Loader=yaml.Loader
 )
 
-AUTHORIZED_USERS = (
-    os.getenv("CUBE_AUTHORIZED_USERS").strip(" ,").split(",")
-    if os.getenv("CUBE_AUTHORIZED_USERS")
-    else []
-)
-
 badgr_session = Session()
 talisker.requests.configure(badgr_session),
 badgr_api = BadgrAPI(
@@ -52,14 +46,6 @@ edx_api = EdxAPI(
 )
 
 
-def is_authorized(user):
-    email_domain = user["email"].split("@")[1]
-    return (
-        email_domain.lower() == "canonical.com"
-        or user["email"].lower() in AUTHORIZED_USERS
-    )
-
-
 @login_required
 def cube_microcerts():
     assertions = {}
@@ -67,8 +53,6 @@ def cube_microcerts():
     passed_courses = 0
 
     sso_user = user_info(flask.session)
-    if not is_authorized(sso_user):
-        flask.abort(403)
 
     edx_url = (
         f"{edx_api.base_url}/auth/login/tpa-saml/"
@@ -149,20 +133,13 @@ def cube_microcerts():
     )
 
 
-@login_required
 def cube_home():
-    sso_user = user_info(flask.session)
-    if not is_authorized(sso_user):
-        flask.abort(403)
-
     return flask.render_template("cube/index.html")
 
 
 @login_required
 def cube_study_labs_button():
     sso_user = user_info(flask.session)
-    if not is_authorized(sso_user):
-        return flask.jsonify({}), 403
 
     edx_user = edx_api.get_user(sso_user["email"])
     enrollments = [

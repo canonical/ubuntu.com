@@ -86,43 +86,10 @@ class TestCube(VCRTestCase):
             "no-store",
         )
 
-    def test_microcerts_403_authenticated_non_canonical_user(self):
-        with self.client.session_transaction() as session:
-            session["authentication_token"] = "test_token"
-            session["openid"] = {
-                "fullname": "Cube Engineer",
-                "email": "cube@ubuntu.com",
-            }
-
+    def test_microcerts_login_required(self):
         response = self.client.get("/cube/microcerts")
-        self.assertEqual(response.status_code, 403)
-
-    def test_home_login_required(self):
-        response = self.client.get("/cube")
         self.assertEqual(response.status_code, 302)
 
-    def test_home_authenticated(self):
-        with self.client.session_transaction() as session:
-            session["authentication_token"] = "test_token"
-            session["openid"] = {
-                "fullname": "Cube Engineer",
-                "email": "cube@canonical.com",
-            }
-
-        response = self.client.get("/cube")
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.headers.get("Cache-Control"),
-            "no-store",
-        )
-
-    def test_home_403_non_canonical_user(self):
-        with self.client.session_transaction() as session:
-            session["authentication_token"] = "test_token"
-            session["openid"] = {
-                "fullname": "Cube Engineer",
-                "email": "cube@ubuntu.com",
-            }
-
-        response = self.client.get("/cube")
-        self.assertEqual(response.status_code, 403)
+    def test_study_login_required(self):
+        response = self.client.get("/cube/study")
+        self.assertEqual(response.status_code, 302)

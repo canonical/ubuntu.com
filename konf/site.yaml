@@ -64,12 +64,6 @@ env:
       key: client-secret
       name: cube-edx
 
-  - name: CUBE_AUTHORIZED_USERS
-    configMapKeyRef:
-      key: cube-authorized-users
-      name: ubuntu-com
-      optional: true
-
   - name: SENTRY_DSN
     value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
@@ -166,12 +160,6 @@ production:
           secretKeyRef:
             key: client-secret
             name: cube-edx
-
-        - name: CUBE_AUTHORIZED_USERS
-          configMapKeyRef:
-            key: cube-authorized-users
-            name: ubuntu-com
-            optional: true
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -331,12 +319,6 @@ staging:
           secretKeyRef:
             key: client-secret
             name: cube-edx
-
-        - name: CUBE_AUTHORIZED_USERS
-          configMapKeyRef:
-            key: cube-authorized-users
-            name: ubuntu-com
-            optional: true
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
