@@ -38,60 +38,86 @@
 </section>
 
 <section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Single-node, multi-node or large scale?</h2>
-      <p><strong>Choose the OpenStack installation option that suits you best:</strong></p>
+  <div class="u-fixed-width">
+    <h2>Single-node, multi-node or large-scale cluster?</h2>
+    <p><strong>Choose the OpenStack installation option that suits you best:</strong></p>
+    <div class="p-tabs">
+      <div class="p-tabs__list" role="tablist" aria-label="openstack-deployment">
+        <div class="p-tabs__item">
+          <button style="background-color: transparent;" class="p-tabs__link" role="tab" aria-selected="true" aria-controls="single-node-deployment" id="single-node-deployment-tab">Single&dash;node deployment</button>
+        </div>
+        <div class="p-tabs__item">
+          <button style="background-color: transparent;" class="p-tabs__link" role="tab" aria-selected="false" aria-controls="multi-node-deployment" id="multi-node-deployment-tab" tabindex="-1">Multi&dash;node deployment</button>
+        </div>
+        <div class="p-tabs__item">
+          <button style="background-color: transparent;" class="p-tabs__link" role="tab" aria-selected="false" aria-controls="large-scale-deployment" id="large-scale-deployment-tab" tabindex="-1">Large-scale deployment</button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row u-equal-height">
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">Single&dash;node deployment</h3>
-      <p class="p-card__content">Suitable for testing and development use cases:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">One physical machine needed</li>
-        <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
-        <li class="p-list__item is-ticked">Core services included</li>
-        <li class="p-list__item is-ticked">All services on a single node</li>
-        <li class="p-list__item is-ticked">Opinionated OpenStack</li>
-        <li class="p-list__item is-ticked">Straightforward installation</li>
-        <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
-      </ul>
-      <p><a href="#single-node-deployment">Single-node installation instructions &rsaquo; Deploy OpenStack on a single node&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-card">
-      <h3 class="p-card__title">Multi&dash;node deployment</h3>
-      <p class="p-card__content">Suitable for micro cloud, edge cloud and IoT use cases:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">At least two physical machines needed</li>
-        <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
-        <li class="p-list__item is-ticked">Core services included</li>
-        <li class="p-list__item is-ticked">One control node, many compute/storage nodes</li>
-        <li class="p-list__item is-ticked">Opinionated OpenStack</li>
-        <li class="p-list__item is-ticked">Straightforward installation</li>
-        <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
-      </ul>
-        <p><a href="#multi-node-deployment">Multi-node installation instructions&nbsp;&rsaquo;</a></p>
+  <div class="u-fixed-width">
+    <div tabindex="0" role="tabpanel" id="single-node-deployment" aria-labelledby="single-node-deployment">
+      <div class="row">
+        <div class="col-6">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">One physical machine needed</li>
+            <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
+            <li class="p-list__item is-ticked">Core services included</li>
+            <li class="p-list__item is-ticked">All services on a single node</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Opinionated OpenStack</li>
+            <li class="p-list__item is-ticked">Straightforward installation</li>
+            <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
+          </ul>
+        </div>
       </div>
-      <div class="col-4 p-card">
-        <h3 class="p-card__title">Large-scale deployment</h3>
-        <p class="p-card__content">Suitable for production-grade data centre use cases:</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">At least six physical machines needed</li>
-          <li class="p-list__item is-ticked">Uses <a href="https://docs.openstack.org/charm-guide/latest/" class="p-link--external">OpenStack Charms</a></li>
-          <li class="p-list__item is-ticked">Core and additional services included</li>
-          <li class="p-list__item is-ticked">Architectural freedom, full HA option</li>
-          <li class="p-list__item is-ticked">Composable OpenStack</li>
-          <li class="p-list__item is-ticked">Fully automated installation and day-2 operations</li>
-          <li class="p-list__item is-ticked">Enterprise private cloud</li>
-        </ul>
-        <p><a href="#large-scale-deployment">Large-scale installation instructions&nbsp;&rsaquo;</a></p>
+    </div>
+    <div tabindex="0" role="tabpanel" id="multi-node-deployment" aria-labelledby="multi-node-deployment" hidden="true">
+      <div class="row">
+        <div class="col-6">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">At least two physical machines needed</li>
+            <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
+            <li class="p-list__item is-ticked">Core services included</li>
+            <li class="p-list__item is-ticked">One control node, many compute/storage nodes</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Opinionated OpenStack</li>
+            <li class="p-list__item is-ticked">Straightforward installation</li>
+            <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      <div tabindex="0" role="tabpanel" id="large-scale-deployment" aria-labelledby="large-scale-deployment" hidden="true">
+        <div class="row">
+          <div class="col-6">
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">At least six physical machines needed</li>
+              <li class="p-list__item is-ticked">Uses <a href="https://docs.openstack.org/charm-guide/latest/" class="p-link--external">OpenStack Charms</a></li>
+              <li class="p-list__item is-ticked">Core and additional services included</li>
+              <li class="p-list__item is-ticked">Architectural freedom, full HA option</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Composable OpenStack</li>
+              <li class="p-list__item is-ticked">Fully automated installation and day-2 operations</li>
+              <li class="p-list__item is-ticked">Enterprise private cloud</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
 <section class="p-strip is-bordered" id="single-node-deployment">
-  <div class="row u-equal-height">
+  <div class="u-fixed-width">
     <h2>Single-node OpenStack deployment</h2>
     <p class="u-sv3">These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a> &dash; OpenStack in a snap, MicroStack is a pure upstream OpenStack distribution designed for small scale and edge deployments, that can be installed and maintained with a minimal effort.</p>
     <div class="p-notification">
@@ -99,14 +125,15 @@
         <span class="p-notification__status">NOTE:</span> MicroStack is in a beta state. We encourage you to test it, give us your <a class="p-link--external" href="https://bugs.launchpad.net/microstack">feedback</a> and <a class="p-link--external" href="https://discourse.juju.is/search?q=microstack">ask questions</a>.
       </p>
     </div>
-    <h3>Installation instructions</h3>
-    <p>Find the MicroStack single-node installation instructions at <a href="https://microstack.run/docs/single-node" class="p-link--external">https://microstack.run/docs/single-node</a>.</p>
+      
+      {{single_node | safe}}
+
     <p>To learn more about MicroStack, visit <a href="https://microstack.run" class="p-link--external">https://microstack.run</a>.</p>
   </div>
 </section>
 
-<section class="p-strip--light is-bordered" id="multi-node-deployment">
-  <div class="row u-equal-height">
+<section class="p-strip is-bordered" id="multi-node-deployment" hidden="true">
+  <div class="u-fixed-width">
     <h2>Multi-node OpenStack deployment</h2>
     <p>These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a> &dash; in a snap. MicroStack is a pure upstream OpenStack distribution, designed for small scale and edge deployments, that can be installed and maintained with a minimal effort.</p>
     <div class="p-notification">
@@ -114,29 +141,32 @@
         <span class="p-notification__status">NOTE:</span> MicroStack is in a beta state. We encourage you to test it, give us your <a class="p-link--external" href="https://bugs.launchpad.net/microstack">feedback</a> and <a class="p-link--external" href="https://discourse.juju.is/search?q=microstack">ask questions</a>.
       </p>
     </div>
-  <h3>Installation instructions</h3>
-  <p>Find the MicroStack multi-node installation instructions at <a href="https://microstack.run/docs/multi-node">https://microstack.run/docs/multi-node</a>.</p>
+    
+    {{multi_node | safe}}
+
   <p>To learn more about MicroStack, visit <a href="https://microstack.run" class="p-link--external">https://microstack.run</a>.</p>
 </section>
 
-<section class="p-strip is-bordered" id="large-scale-deployment">
-  <div class="row u-equal-height">
-    <h2>Large-scale deployment</h2>
-    <p>
-      These instructions use <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a>. OpenStack Charms are the foundation of Canonical’s <a href="https://ubuntu.com/openstack">Charmed OpenStack</a> distribution which is an enterprise private cloud, designed to run mission-critical workloads.
-    </p>
-    <p class="u-sv3"><a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/" class="p-link--external">OpenStack Charms Deployment Guide</a>.</p>
-    <div class="p-notification">
-      <p class="p-notification__response">
-        <span class="p-notification__status">NOTE:</span> In order to qualify for the <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-link--external">Private Cloud Build (PCB)</a> service, <a href="https://assets.ubuntu.com/v1/1a8fb1b3-UA-I_datasheet_2019-Oct.pdf" class="p-link--external">Ubuntu Advantage for Infrastructure (UA-I)</a> support subscription and <a href="https://assets.ubuntu.com/v1/a797f6f9-Datasheet_Openstack_05.10.20+%281%29.pdf" class="p-link--external">Managed OpenStack</a>, at least 12 nodes are required for Charmed OpenStack. Please contact your Canonical sales representative for detailed information on minimum hardware requirements.
+<section class="p-strip is-bordered" id="large-scale-deployment" hidden="true">
+  <div class="u-fixed-width">
+    <div tabindex="0" role="tabpanel" id="large-scale-deployment" aria-labelledby="large-scale-deployment" hidden="hidden">
+      <h2>Large-scale deployment</h2>
+      <p>
+        These instructions use <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a>. OpenStack Charms are the foundation of Canonical’s <a href="https://ubuntu.com/openstack">Charmed OpenStack</a> distribution which is an enterprise private cloud, designed to run mission-critical workloads.
       </p>
+      <p class="u-sv3">Find the documentation for "Installation" of<a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/" class="p-link--external">OpenStack Charms Deployment Guide here</a>.</p>
+      <div class="p-notification">
+        <p class="p-notification__response">
+          <span class="p-notification__status">NOTE:</span> In order to qualify for the <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-link--external">Private Cloud Build (PCB)</a> service, <a href="https://assets.ubuntu.com/v1/1a8fb1b3-UA-I_datasheet_2019-Oct.pdf" class="p-link--external">Ubuntu Advantage for Infrastructure (UA-I)</a> support subscription and <a href="https://assets.ubuntu.com/v1/a797f6f9-Datasheet_Openstack_05.10.20+%281%29.pdf" class="p-link--external">Managed OpenStack</a>, at least 12 nodes are required for Charmed OpenStack. Please contact your Canonical sales representative for detailed information on minimum hardware requirements
+        </p>
+      </div>
+      <p>To learn more about OpenStack Charms, visit <a class="p-link--external" href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/">OpenStack Charms Deployment Guide</a>.</p>
     </div>
-    <p>To learn more about OpenStack Charms, visit <a class="p-link--external" href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/">OpenStack Charms Deployment Guide</a>.</p>
   </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="row u-equal-height">
+  <div class="u-fixed-width">
     <div class="col-4 u-align--center u-hide--small u-vertically-center">
       {{
         image(
@@ -162,5 +192,140 @@
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1251" data-lp-id="2086" data-return-url="https://ubuntu.com/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
+
+
+<script type="text/javascript">
+  (function () {
+
+    var keys = {
+      left: 'ArrowLeft',
+      right: 'ArrowRight',
+    };
+
+    var direction = {
+      ArrowLeft: -1,
+      ArrowRight: 1,
+    };
+
+    // IE11 doesn't support event.code, but event.keyCode is
+    // deprecated in most modern browsers, so we should support
+    // both for the time being.
+    var IEKeys = {
+      left: 37,
+      right: 39,
+    };
+
+    var IEDirection = {
+      37: direction['ArrowLeft'],
+      39: direction['ArrowRight'],
+    };
+
+    /**
+      Determine which tab to show when an arrow key is pressed
+      @param {KeyboardEvent} event
+      @param {Array} tabs an array of tabs within a container
+    */
+    function switchTabOnArrowPress(event, tabs) {
+      var compatibleKeys = IEKeys;
+      var compatibleDirection = IEDirection;
+      var pressed = event.keyCode;
+
+      if (event.code) {
+        compatibleKeys = keys;
+        compatibleDirection = direction;
+        pressed = event.code;
+      }
+
+      if (compatibleDirection[pressed]) {
+        var target = event.target;
+        if (target.index !== undefined) {
+          if (tabs[target.index + compatibleDirection[pressed]]) {
+            tabs[target.index + compatibleDirection[pressed]].focus();
+          } else if (pressed === compatibleKeys.left) {
+            tabs[tabs.length - 1].focus();
+          } else if (pressed === compatibleKeys.right) {
+            tabs[0].focus();
+          }
+        }
+      }
+    }
+
+    /**
+      Attaches a number of events that each trigger
+      the reveal of the chosen tab content
+      @param {Array} tabs an array of tabs within a container
+    */
+    function attachEvents(tabs) {
+      tabs.forEach(function (tab, index) {
+
+        tab.addEventListener('keyup', function (e) {
+          var compatibleKeys = IEKeys;
+          var key = e.keyCode;
+
+          if (e.code) {
+            compatibleKeys = keys;
+            key = e.code;
+          }
+
+          if (key === compatibleKeys.left || key === compatibleKeys.right) {
+            switchTabOnArrowPress(e, tabs);
+          }
+        });
+
+        tab.addEventListener('click', function (e) {
+          e.preventDefault();
+          setActiveTab(tab, tabs);
+        });
+
+        tab.addEventListener('focus', function () {
+          setActiveTab(tab, tabs);
+        });
+
+        tab.index = index;
+      });
+    }
+
+    /**
+      Cycles through an array of tab elements and ensures 
+      only the target tab and its content are selected
+      @param {HTMLElement} tab the tab whose content will be shown
+      @param {Array} tabs an array of tabs within a container
+    */
+    function setActiveTab(tab, tabs) {
+      tabs.forEach(function (tabElement) {
+        var tabContent = document.querySelectorAll("#" + tabElement.getAttribute('aria-controls'));
+        tabContent.forEach(function (content) {
+          if (tabElement === tab) {
+            tabElement.setAttribute('aria-selected', true);
+            content.removeAttribute('hidden');
+          } else {
+            tabElement.setAttribute('aria-selected', false);
+            content.setAttribute('hidden', true);
+          }
+        })
+      });
+    }
+
+    /**
+      Attaches events to tab links within a given parent element,
+      and sets the active tab if the current hash matches the id
+      of an element controlled by a tab link
+      @param {String} selector class name of the element 
+      containing the tabs we want to attach events to
+    */
+    function initTabs(selector) {
+      var tabContainers = [].slice.call(document.querySelectorAll(selector));
+
+      tabContainers.forEach(function (tabContainer) {
+        var tabs = [].slice.call(tabContainer.querySelectorAll('[aria-controls]'));
+        attachEvents(tabs);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      initTabs('[role="tablist"]');
+    });
+  })();
+</script>
 
 {% endblock content %}
