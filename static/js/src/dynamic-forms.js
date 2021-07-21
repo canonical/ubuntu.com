@@ -293,58 +293,55 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
           }
 
           inputs.forEach(function (input) {
-            if (input.value) {
-              switch (input.type) {
-                case "radio":
-                  if (input.checked) {
-                    message += comma + input.value;
-                    comma = ", ";
+            switch (input.type) {
+              case "radio":
+                if (input.checked) {
+                  message += comma + input.value + "\r\n\r\n";
+                  comma = ", ";
+                }
+                break;
+              case "checkbox":
+                if (input.checked) {
+                  var subSectionText = "";
+                  var subSection = input
+                    .closest('[class*="col-"]')
+                    .querySelector(".js-sub-section");
+                  if (subSection) {
+                    subSectionText = subSection.innerText + ": ";
                   }
-                  break;
-                case "checkbox":
-                  if (input.checked) {
-                    var subSectionText = "";
-                    var subSection = input
-                      .closest('[class*="col-"]')
-                      .querySelector(".js-sub-section");
-                    if (subSection) {
-                      subSectionText = subSection.innerText + ": ";
-                    }
 
-                    var label = formField.querySelector(
-                      "label[for=" + input.id + "]"
-                    );
-                    if (label) {
-                      label = subSectionText + label.innerText;
-                    } else {
-                      label = input.id;
-                    }
-                    message += comma + label;
-                    comma = ", ";
+                  var label = formField.querySelector(
+                    "label[for=" + input.id + "]"
+                  );
+                  if (label) {
+                    label = subSectionText + label.innerText;
+                  } else {
+                    label = input.id;
                   }
-                  break;
-                case "text":
-                  if (input.value !== "") {
-                    message += comma + input.value;
-                    comma = ", ";
-                  }
-                  break;
-                case "number":
-                  if (input.value !== "") {
-                    message += comma + input.value;
-                    comma = ", ";
-                  }
-                  break;
-                case "textarea":
-                  if (input.value !== "") {
-                    message += comma + input.value;
-                    comma = ", ";
-                  }
-                  break;
-              }
+                  message += comma + label + "\r\n\r\n";
+                  comma = ", ";
+                }
+                break;
+              case "text":
+                if (input.value !== "") {
+                  message += comma + input.value + "\r\n\r\n";
+                  comma = ", ";
+                }
+                break;
+              case "number":
+                if (input.value !== "") {
+                  message += comma + input.value + "\r\n\r\n";
+                  comma = ", ";
+                }
+                break;
+              case "textarea":
+                if (input.value !== "") {
+                  message += comma + input.value + "\r\n\r\n";
+                  comma = ", ";
+                }
+                break;
             }
           });
-          message += "\r\n\r\n";
         });
 
         return message;

@@ -133,18 +133,16 @@ const addAnotherInstance = () => {
     const button = document.querySelector("#add-another-instance");
     button.addEventListener("click", () => {
       const instanceTypes = Array.from(
-        document.querySelectorAll("#instance-type")
+        document.querySelectorAll(".js-instance-type") 
       );
       const length = instanceTypes.length;
       for (let i = 0; i < length; i++) {
         if (instanceTypes[i].classList.contains("u-hide")) {
           instanceTypes[i].classList.remove("u-hide");
           //when new instance is added add p-heading--five class to h3s for inputs only to capture values in comment.
-          const inputTitles = instanceTypes[i].querySelectorAll("h3")
+          const inputTitles = instanceTypes[i].querySelectorAll("h4")
           inputTitles.forEach(inputTitle => {
-            if(!inputTitle.classList.contains("p-heading--four")) {
-              inputTitle.classList.add("p-heading--five")
-            }
+            inputTitle.classList.add("p-heading--five")
           })
           if (i === length - 1) {
             button.setAttribute("disabled", "true")
