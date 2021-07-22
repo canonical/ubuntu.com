@@ -1,0 +1,21 @@
+@mixin ubuntu-p-expandable-section {
+  .p-expandable-section {
+    @extend .p-accordion;
+  }
+
+  .p-expandable-section__list {
+    @extend .p-accordion__list;
+  }
+
+  .p-expandable-section__group {
+    @extend .p-accordion__group;
+  }
+
+  .p-expandable-section__tab {
+    @extend .p-accordion__tab;
+  }
+
+  .p-expandable-section__panel {
+    @extend .p-accordion__panel;
+  }
+}

@@ -11,3 +11,4 @@ import "./form-access.js";
 import "./bg-form-submit.js";
 import "./scratch.js";
 import "./smartquotes.js";
+import "./expandable-section.js";

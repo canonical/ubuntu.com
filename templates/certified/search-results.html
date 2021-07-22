@@ -36,13 +36,13 @@
            </a>
          </div>
          <div>
-           <aside class="p-accordion">
-             <ul class="p-accordion__list">
-               <li class="p-accordion__group">
-                 <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">Category</button>
+           <aside class="p-expandable-section">
+             <ul class="p-expandable-section__list">
+               <li class="p-expandable-section__group">
+                 <div role="heading">
+                   <button type="button" class="p-expandable-section__tab" aria-expanded="true">Category</button>
                  </div>
-                 <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
+                 <section class="p-expandable-section__panel" style="padding-left: 1rem;" aria-hidden="false">
                    {% for category_filter in category_filters %}
                    <label class="p-checkbox">
                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input" id="category_filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
@@ -53,11 +53,11 @@
                    {% endfor %}
                  </section>
                </li>
-               <li class="p-accordion__group">
-                 <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="false">Certified Ubuntu release</button>
+               <li class="p-expandable-section__group">
+                 <div role="heading">
+                   <button type="button" class="p-expandable-section__tab" aria-expanded="true">Certified Ubuntu release</button>
                  </div>
-                 <section class="p-accordion__panel" id="tab2-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab2">
+                 <section class="p-expandable-section__panel" style="padding-left: 1rem;" aria-hidden="false">
                    {% for release_filter in release_filters %}
                    <label class="p-checkbox">
                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
@@ -68,11 +68,11 @@
                    {% endfor %}
                  </section>
                </li>
-               <li class="p-accordion__group">
-                 <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">Vendor</button>
+               <li class="p-expandable-section__group">
+                 <div role="heading">
+                   <button type="button" class="p-expandable-section__tab" aria-expanded="false">Vendor</button>
                  </div>
-                 <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab3">
+                 <section class="p-expandable-section__panel" style="padding-left: 1rem;" aria-hidden="true">
                    {% for vendor_filter in vendor_filters %}
                    <label class="p-checkbox">
                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
