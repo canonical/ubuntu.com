@@ -10,12 +10,12 @@
       <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{formid}}">
 
         <fieldset class="u-no-margin--bottom">
-          <h3>Tell us about your project and what problem(s) you’re looking to solve.</h3>
-          <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+          <label for="CommentsAboutProject" class="p-heading--three">Tell us about your project and what problem(s) you’re looking to solve.</label>
+          <input required id="CommentsAboutProject" name="CommentsAboutProject" maxlength="255" type="textarea" class="mktoField mktoRequired" />
         </fieldset>
 
         <fieldset class="u-no-margin--bottom">
-          <h3>How should we get in touch?</h3>
+          <p class="p-heading--three">How should we get in touch?</p>
           <ul class="p-list">
             <li class="mktFormReq mktField p-list__item">
               <label for="FirstName" class="mktoLabel">First name:</label>
@@ -52,7 +52,7 @@
                 <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
             </li>
             <li class="mktField p-list__item">
-              <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Let's discuss</button>
+              <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'blender contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Let's discuss</button>
             </li>
           </ul>
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
@@ -61,7 +61,6 @@
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="{{lpId}}" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/things-contact-us.html?cr={creative}&amp;kw={keyword}" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
