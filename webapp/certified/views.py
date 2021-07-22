@@ -214,14 +214,20 @@ def certified_home():
 
     # Search results filters
     all_releases = []
+    release_filters = []
     all_vendors = []
+    vendor_filters = []
 
     for release in certified_releases:
         version = release["release"]
 
         if release not in all_releases:
-            all_releases.append(version)
-            all_releases = sorted(all_releases, reverse=True)
+            # UX improvement: selected filter on top
+            if version not in request.args.getlist("release"):
+                all_releases.append(version)
+                all_releases = sorted(all_releases, reverse=True)
+            else:
+                release_filters.append(version)
 
         if int(release["laptops"]) > 0:
             laptop_releases.append(release)
@@ -239,8 +245,12 @@ def certified_home():
         make = vendor["make"]
 
         if make not in all_vendors:
-            all_vendors.append(make)
-            all_vendors = sorted(all_vendors)
+            # UX improvement: selected filter on top
+            if make not in request.args.getlist("vendor"):
+                all_vendors.append(make)
+                all_vendors = sorted(all_vendors)
+            else:
+                vendor_filters.append(make)
 
         if int(vendor["laptops"]) > 0:
             laptop_vendors.append(vendor)
@@ -325,8 +335,20 @@ def certified_home():
 
         results = models_response["objects"]
 
-        # Populate filter numbers
-        category_filters = ["Laptop", "Desktop", "Server", "Device", "SoC"]
+        # UX improvement: selected filter on top
+        vendor_filters.extend(all_vendors)
+        release_filters.extend(all_releases)
+        all_categories = ["Laptop", "Desktop", "Server", "Device", "SoC"]
+        category_filters = []
+        if len(request.args.getlist("category")) > 0:
+            for item in all_categories:
+                if item in request.args.getlist("category"):
+                    category_filters.insert(0, item)
+                else:
+                    category_filters.append(item)
+        else:
+            category_filters = all_categories
+
         for index, model in enumerate(results):
             # Replace "Ubuntu Core" with "Device"
             if model["category"] == "Ubuntu Core":
@@ -342,8 +364,8 @@ def certified_home():
             category=",".join(request.args.getlist("category")),
             releases=releases,
             category_filters=category_filters,
-            release_filters=all_releases,
-            vendor_filters=all_vendors,
+            release_filters=release_filters,
+            vendor_filters=vendor_filters,
             vendors=vendors,
             total_results=total_results,
             total_pages=math.ceil(total_results / limit),
