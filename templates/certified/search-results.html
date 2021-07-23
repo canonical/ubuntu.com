@@ -36,7 +36,7 @@
            </a>
          </div>
          <div>
-           <aside class="p-accordion">
+           <aside class="p-accordion" data-multiple-expanded="true">
              <ul class="p-accordion__list">
                <li class="p-accordion__group">
                  <div role="heading" aria-level="2" class="p-accordion__heading">
@@ -55,9 +55,9 @@
                </li>
                <li class="p-accordion__group">
                  <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="false">Certified Ubuntu release</button>
+                   <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="true">Certified Ubuntu release</button>
                  </div>
-                 <section class="p-accordion__panel" id="tab2-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab2">
+                 <section class="p-accordion__panel" id="tab2-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab2">
                    {% for release_filter in release_filters %}
                    <label class="p-checkbox">
                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
