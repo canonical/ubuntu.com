@@ -1,5 +1,5 @@
 # Standard library
-import urllib.request
+from urllib.request import Request, urlopen
 from datetime import datetime, timedelta, timezone
 
 # Packages
@@ -850,7 +850,11 @@ def download_invoice(period, purchase_id, **kwargs):
     file_name = _get_download_file_name(purchase, period)
     download_link = purchase["invoice"]["url"]
 
-    response = urllib.request.urlopen(download_link)
+    request = Request(download_link)
+    request.add_header(
+        "Authorization", flask.session.get("authentication_token")
+    )
+    response = urlopen(request)
 
     return flask.Response(
         response.read(),
