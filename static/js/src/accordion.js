@@ -33,6 +33,9 @@ function setupAccordion(accordionContainer) {
   // and removed and events do not need to be managed separately.
   accordionContainer.addEventListener("click", function (event) {
     var target = event.target;
+    var multipleAccordionsOpen = accordionContainer.getAttribute(
+      "data-multiple-expanded"
+    );
 
     if (target.closest) {
       target = target.closest('[class*="p-accordion__tab"]');
@@ -49,7 +52,9 @@ function setupAccordion(accordionContainer) {
 
     if (target) {
       var isTargetOpen = target.getAttribute("aria-expanded") === "true";
-      closeAllPanels();
+      if (!multipleAccordionsOpen) {
+        closeAllPanels();
+      }
 
       // Toggle visibility of the target panel.
       toggleExpanded(target, !isTargetOpen);
