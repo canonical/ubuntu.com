@@ -1,5 +1,4 @@
 # Standard library
-from urllib.request import Request, urlopen
 from datetime import datetime, timedelta, timezone
 
 # Packages
@@ -795,7 +794,7 @@ def invoices_view(**kwargs):
             payment_marketplace = raw_payment["marketplace"]
             created_at = raw_payment["createdAt"]
 
-            total = "-"
+            total = None
             if raw_payment.get("invoice"):
                 cost = raw_payment["invoice"]["total"] / 100
                 currency = raw_payment["invoice"]["currency"]
@@ -809,10 +808,8 @@ def invoices_view(**kwargs):
 
                     break
 
-            file_name = ""
             download_link = ""
             if raw_payment.get("invoice"):
-                file_name = _get_download_file_name(raw_payment, period)
                 download_link = f"invoices/download/{period}/{payment_id}"
 
             total_payments.append(
@@ -822,7 +819,7 @@ def invoices_view(**kwargs):
                     "period": "Monthly" if period == "monthly" else "Annual",
                     "date": parse(created_at).strftime("%d %B, %Y"),
                     "total": total,
-                    "download_file_name": file_name,
+                    "download_file_name": "Download",
                     "download_link": download_link,
                 }
             )
@@ -838,7 +835,7 @@ def invoices_view(**kwargs):
 
 
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
-def download_invoice(period, purchase_id, **kwargs):
+def download_invoice(purchase_id, **kwargs):
     token = kwargs.get("token")
     api_url = kwargs.get("api_url")
 
@@ -847,43 +844,9 @@ def download_invoice(period, purchase_id, **kwargs):
     )
 
     purchase = advantage.get_purchase(purchase_id)
-    file_name = _get_download_file_name(purchase, period)
     download_link = purchase["invoice"]["url"]
 
-    request = Request(download_link)
-    request.add_header(
-        "Authorization", flask.session.get("authentication_token")
-    )
-    response = urlopen(request)
-
-    return flask.Response(
-        response.read(),
-        mimetype="application/pdf",
-        headers={"Content-Disposition": f"attachment;filename={file_name}"},
-    )
-
-
-def _get_download_file_name(payment, period):
-    payment_marketplace = payment["marketplace"]
-    created_at = payment["createdAt"]
-
-    file_name_elements = [SERVICES[payment_marketplace]["short"]]
-
-    if period == "monthly" or payment_marketplace == "canonical-cube":
-        formatted_date = parse(created_at).strftime("%d%b%y").lower()
-        file_name_elements.append(formatted_date)
-
-    if period == "yearly":
-        formatted_current_date = parse(created_at).strftime("%y")
-        formatted_next_date = str(int(formatted_current_date) + 1)
-
-        file_name_elements.append("annual")
-        file_name_elements.append(formatted_current_date)
-        file_name_elements.append(formatted_next_date)
-
-    file_name = "-".join(file_name_elements)
-
-    return f"{file_name}.pdf"
+    return flask.redirect(download_link)
 
 
 def _prepare_monthly_info(monthly_info, subscription, advantage):

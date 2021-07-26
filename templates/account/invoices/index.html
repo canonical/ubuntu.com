@@ -42,7 +42,15 @@
               <tr>
                 <td aria-label="Service">{{ invoice.service }} ({{ invoice.period }})</td>
                 <td aria-label="Date">{{ invoice.date }}</td>
-                <td class="u-align--right" aria-label="Total" style="padding-right: 15%"><span class="js-format-price">{{ invoice.total }}</span></td>
+                <td class="u-align--right" aria-label="Total" style="padding-right: 15%">
+                  {% if invoice.total %}
+                    <span class="js-format-price">
+                      {{ invoice.total }}
+                    </span>
+                  {% else %}
+                    -
+                  {% endif %}
+                </td>
                 <td aria-label="Download PDF">
                   {% if invoice.download_link %}
                     <a href="{{ invoice.download_link }}{% if is_test_backend %}?test_backend=true{% endif %}" target="_blank">{{ invoice.download_file_name }}</a>
