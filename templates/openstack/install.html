@@ -1,6 +1,5 @@
 {% extends "openstack/_base_openstack.html" %}
 
-
 {% block title %}Install OpenStack yourself on Ubuntu.{% endblock %}
 {% block meta_description %}A step-by-step guide to OpenStack installation. You only need your workstation to get started.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1eQ16jzv6YRGzG_k_C-tUnhM06k6_Ic6fZM-x_ARMzuc/edit{% endblock meta_copydoc %}
@@ -126,7 +125,7 @@
     <p>
       These instructions use <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a>. OpenStack Charms are the foundation of Canonical’s <a href="https://ubuntu.com/openstack">Charmed OpenStack</a> distribution which is an enterprise private cloud, designed to run mission-critical workloads.
     </p>
-    <p class="u-sv3"><a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/" class="p-link--external">OpenStack Charms Deployment Guide here</a>.</p>
+    <p class="u-sv3"><a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/" class="p-link--external">OpenStack Charms Deployment Guide</a>.</p>
     <div class="p-notification">
       <p class="p-notification__response">
         <span class="p-notification__status">NOTE:</span> In order to qualify for the <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-link--external">Private Cloud Build (PCB)</a> service, <a href="https://assets.ubuntu.com/v1/1a8fb1b3-UA-I_datasheet_2019-Oct.pdf" class="p-link--external">Ubuntu Advantage for Infrastructure (UA-I)</a> support subscription and <a href="https://assets.ubuntu.com/v1/a797f6f9-Datasheet_Openstack_05.10.20+%281%29.pdf" class="p-link--external">Managed OpenStack</a>, at least 12 nodes are required for Charmed OpenStack. Please contact your Canonical sales representative for detailed information on minimum hardware requirements.
@@ -158,12 +157,10 @@
   </div>
 </section>
 
-
 {% with first_item="_openstack_install", second_item="_openstack_install_newsletter", third_item="_openstack_install_documentation" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1251" data-lp-id="2086" data-return-url="https://ubuntu.com/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
-
 
 {% endblock content %}
