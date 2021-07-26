@@ -38,41 +38,28 @@
          <div>
            <aside class="p-accordion" data-multiple-expanded="true">
              <ul class="p-accordion__list">
-               <li class="p-accordion__group">
+               <li class="p-accordion__group--certified">
                  <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">Category</button>
+                   <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true" ><span class="p-certification-header">Category</span></button>
                  </div>
-                 <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab1">
+                 <hr>
+                 <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
                    {% for category_filter in category_filters %}
-                   <label class="p-checkbox">
-                     <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input" id="category_filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
-                     <div class="p-checkbox__label" id="{{ category_filter }}">
-                       <span>{{ category_filter }}</span>
-                     </div>
-                   </label>
+                    <label class="p-checkbox">
+                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input" id="category_filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
+                      <div class="p-checkbox__label" id="{{ category_filter }}">
+                        <span>{{ category_filter }}</span>
+                      </div>
+                    </label>
                    {% endfor %}
                  </section>
                </li>
-               <li class="p-accordion__group">
+               <li class="p-accordion__group--certified" id="vendor-section">
                  <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="true">Certified Ubuntu release</button>
+                   <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="true"><span class="p-certification-header">Vendor</span></button>
                  </div>
-                 <section class="p-accordion__panel" id="tab2-section" aria-hidden="false" style="padding-left: 1rem;" aria-labelledby="tab2">
-                   {% for release_filter in release_filters %}
-                   <label class="p-checkbox">
-                     <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
-                     <div class="p-checkbox__label" id="{{ release_filter }}">
-                       <span>{{ release_filter }}</span>
-                     </div>
-                   </label>
-                   {% endfor %}
-                 </section>
-               </li>
-               <li class="p-accordion__group">
-                 <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">Vendor</button>
-                 </div>
-                 <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" style="padding-left: 1rem;" aria-labelledby="tab3">
+                 <hr>
+                 <section class="p-accordion__panel is-collapsed__vendors is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
                    {% for vendor_filter in vendor_filters %}
                    <label class="p-checkbox">
                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
@@ -83,6 +70,30 @@
                    </label>
                    {% endfor %}
                  </section>
+                 <span class="js-toggle-links">
+                  <p class="p-reveal-vendors is-dense"><a>Show all vendors ({{ vendor_filters|length - 5}})</a></p>
+                  <p class="p-reveal-vendors is-dense u-hide"><a>Show fewer</a></p>
+                </span>
+               </li>
+               <li class="p-accordion__group--certified" id="version-section">
+                 <div role="heading" aria-level="2" class="p-accordion__heading">
+                   <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true"><span class="p-certification-header">Certified Ubuntu release</span></button>
+                 </div>
+                 <hr>
+                 <section class="p-accordion__panel is-collapsed__versions is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
+                   {% for release_filter in release_filters %}
+                   <label class="p-checkbox">
+                     <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
+                     <div class="p-checkbox__label" id="{{ release_filter }}">
+                       <span>{{ release_filter }}</span>
+                     </div>
+                   </label>
+                   {% endfor %}
+                 </section>
+                 <span class="js-toggle-links">
+                  <p class="p-reveal-versions is-dense"><a> Show all versions ({{release_filters|length - 5}})</a></p>
+                  <p class="p-reveal-versions is-dense u-hide"><a>Show fewer</a></p>
+                </span>
                </li>
              </ul>
            </aside>
@@ -96,6 +107,7 @@
          <thead>
            <tr>
              <th>
+               <span class="p-certification-header">
                {% if total_results and total_results > 1 %}
                  {{ offset + 1 }}
                  &ndash;
@@ -107,9 +119,10 @@
                  of
                {% endif %}
                {{ total_results }} result{% if total_results != 1 %}s{% endif %}
+              </span>
              </th>
-             <th>Vendor</th>
-             <th>Category</th>
+             <th><span class="p-certification-header">Vendor</span></th>
+             <th><span class="p-certification-header">Category</span></th>
            </tr>
          </thead>
          <tbody>
@@ -146,6 +159,54 @@
 </form>
 
 <script>
+
+  function toggleVendorsList() {
+    const vendorSection = document.querySelector("#vendor-section");
+    const vendorPanel = vendorSection.querySelector(".p-accordion__panel");
+    const toggleVendorButtons = document.querySelectorAll(".p-reveal-vendors");
+    toggleVendorButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        window.scrollTo(0, 360);
+        vendorPanel.classList.toggle("is-collapsed__vendors");
+        toggleVendorButtons.forEach((button) => {
+          button.classList.toggle("u-hide");
+        });
+      });
+    });
+  }
+  toggleVendorsList();
+  
+  function toggleVersionsList() {
+    const versionSection = document.querySelector("#version-section");
+    const versionPanel = versionSection.querySelector(".p-accordion__panel");
+    const toggleVersionButtons = document.querySelectorAll(".p-reveal-versions");
+    toggleVersionButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        versionPanel.classList.toggle("is-collapsed__versions");
+        toggleVersionButtons.forEach((button) => {
+          button.classList.toggle("u-hide");
+        });
+      });
+    });
+  }
+  toggleVersionsList();
+  
+  //hides "show all .." and "show fewer" links when the accordion is closed
+  function toggleLinks() {
+    const filterSections = document.querySelectorAll(
+      ".p-accordion__group--certified"
+    );
+    filterSections.forEach((filterSection) => {
+      const tab = filterSection.querySelector(".p-accordion__tab");
+      tab.addEventListener("click", () => {
+        const links = filterSection.querySelector(".js-toggle-links");
+        if (links) {
+          links.classList.toggle("u-hide");
+        }
+      });
+    });
+  }
+  toggleLinks();
 
 function toggleDrawer(sideNavigation, show) {
   if (sideNavigation) {
