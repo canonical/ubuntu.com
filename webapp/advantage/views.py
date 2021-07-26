@@ -2,6 +2,7 @@
 from datetime import datetime, timedelta, timezone
 
 # Packages
+import requests
 from dateutil.parser import parse
 import flask
 import talisker.requests
@@ -808,8 +809,10 @@ def invoices_view(**kwargs):
 
                     break
 
+            file_name = ""
             download_link = ""
             if raw_payment.get("invoice"):
+                file_name = _get_download_file_name(raw_payment, period)
                 download_link = f"invoices/download/{period}/{payment_id}"
 
             total_payments.append(
@@ -819,7 +822,7 @@ def invoices_view(**kwargs):
                     "period": "Monthly" if period == "monthly" else "Annual",
                     "date": parse(created_at).strftime("%d %B, %Y"),
                     "total": total,
-                    "download_file_name": "Download",
+                    "download_file_name": file_name,
                     "download_link": download_link,
                 }
             )
@@ -835,7 +838,7 @@ def invoices_view(**kwargs):
 
 
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
-def download_invoice(purchase_id, **kwargs):
+def download_invoice(period, purchase_id, **kwargs):
     token = kwargs.get("token")
     api_url = kwargs.get("api_url")
 
@@ -844,9 +847,41 @@ def download_invoice(purchase_id, **kwargs):
     )
 
     purchase = advantage.get_purchase(purchase_id)
+    file_name = _get_download_file_name(purchase, period)
     download_link = purchase["invoice"]["url"]
 
-    return flask.redirect(download_link)
+    response = requests.get(url=download_link, stream=True)
+
+    return flask.Response(
+        response.iter_content(chunk_size=10 * 1024),
+        response.status_code,
+        content_type=response.headers["Content-type"],
+        headers={"Content-Disposition": f"attachment;filename={file_name}"},
+        mimetype="application/pdf",
+    )
+
+
+def _get_download_file_name(payment, period):
+    payment_marketplace = payment["marketplace"]
+    created_at = payment["createdAt"]
+
+    file_name_elements = [SERVICES[payment_marketplace]["short"]]
+
+    if period == "monthly" or payment_marketplace == "canonical-cube":
+        formatted_date = parse(created_at).strftime("%d%b%y").lower()
+        file_name_elements.append(formatted_date)
+
+    if period == "yearly":
+        formatted_current_date = parse(created_at).strftime("%y")
+        formatted_next_date = str(int(formatted_current_date) + 1)
+
+        file_name_elements.append("annual")
+        file_name_elements.append(formatted_current_date)
+        file_name_elements.append(formatted_next_date)
+
+    file_name = "-".join(file_name_elements)
+
+    return f"{file_name}.pdf"
 
 
 def _prepare_monthly_info(monthly_info, subscription, advantage):
