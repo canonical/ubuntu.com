@@ -13,6 +13,7 @@ const registerPaymentMethod = () => {
     const {
       name,
       organisation,
+      buyingFor,
       email,
       address,
       city,
@@ -51,7 +52,7 @@ const registerPaymentMethod = () => {
     if (!accountRes.accountID) {
       accountRes = await ensurePurchaseAccount({
         email: email,
-        accountName: organisation || name,
+        accountName: buyingFor === "myself" ? name : organisation,
         paymentMethodID: paymentMethod.id,
         country,
       });
