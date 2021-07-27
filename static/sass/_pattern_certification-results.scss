@@ -6,6 +6,9 @@
   }
 
   .p-certification-results {
+    th {
+      padding-top: 0.6rem;
+    }
     th,
     td {
       &:nth-child(1) {
@@ -28,5 +31,38 @@
   .p-update-results {
     margin-left: 0.5rem;
     width: fit-content;
+  }
+
+  //hide <hr> after each group - moved to after each tab title
+  .p-accordion__group--certified {
+    &::after {
+      display: none;
+    }
+  }
+
+  .p-certification-header {
+    font-size: 0.863rem;
+    font-weight: 400;
+    line-height: 1rem;
+    text-transform: uppercase;
+  }
+
+  .is-dense {
+    padding-left: 1rem;
+  }
+
+  .is-collapsed {
+    overflow: hidden;
+    &__vendors {
+      @extend .is-collapsed;
+
+      max-height: 11.5rem;
+    }
+
+    &__versions {
+      @extend .is-collapsed;
+
+      max-height: 10rem;
+    }
   }
 }
