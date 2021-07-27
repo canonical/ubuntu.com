@@ -12,8 +12,8 @@ const registerPaymentMethod = () => {
   const mutation = useMutation(async (formData) => {
     const {
       name,
-      organisation,
       buyingFor,
+      organisationName,
       email,
       address,
       city,
@@ -52,7 +52,7 @@ const registerPaymentMethod = () => {
     if (!accountRes.accountID) {
       accountRes = await ensurePurchaseAccount({
         email: email,
-        accountName: buyingFor === "myself" ? name : organisation,
+        accountName: buyingFor === "myself" ? name : organisationName,
         paymentMethodID: paymentMethod.id,
         country,
       });
