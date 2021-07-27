@@ -20,12 +20,9 @@
       }
 
       &:nth-child(3) {
-        width: 8%;
-        @media only screen and (max-width: $breakpoint-medium) {
-          width: 10%;
-        }
+        width: 10%;
         @media only screen and (max-width: $breakpoint-small) {
-          width: 13%;
+          width: 20%;
         }
       }
     }
@@ -67,5 +64,10 @@
 
       max-height: 10rem;
     }
+  }
+
+  .p-results-per-page {
+    max-width: 5.3rem;
+    min-width: 5.3rem;
   }
 }
