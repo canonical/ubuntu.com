@@ -104,7 +104,7 @@ const CostCalculatorForm = () => {
                   onChange={onChangeHandler}
                   type="number"
                   min="4"
-                  max="114"
+                  max="6114"
                   name="ephemeralStorage"
                   value={formState.ephemeralStorage.value}
                   error={formState.ephemeralStorage.error}
@@ -140,7 +140,7 @@ const CostCalculatorForm = () => {
                   onChange={onChangeHandler}
                   type="number"
                   min="0"
-                  max="221"
+                  max="221184"
                   name="persistentStorage"
                   value={formState.persistentStorage.value}
                   error={formState.persistentStorage.error}
