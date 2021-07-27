@@ -102,12 +102,52 @@ jobs:
         run: yarn install --immutable
 
       - name: Install python dependencies
-        run: | 
+        run: |
           python3 -m pip install --upgrade pip
           sudo pip3 install flake8 black
 
       - name: Lint python
         run: yarn lint-python
+
+  run-cypress:
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: pw
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    if: github.repository == 'canonical-web-and-design/ubuntu.com'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install python dependencies
+        run: pip3 install -r requirements.txt
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          build: yarn run build
+          start: yarn run serve
+          wait-on: "http://0.0.0.0:8001/_status/check"
+          wait-on-timeout: 180
+          browser: chrome
+          config-file: tests/cypress/cypress.json
+          config: baseUrl=http://0.0.0.0:8001
 
   validate-deploy:
     runs-on: ubuntu-latest
