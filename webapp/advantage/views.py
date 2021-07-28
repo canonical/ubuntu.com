@@ -54,7 +54,6 @@ SERVICES = {
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
 @use_kwargs({"subscription": String(), "email": String()}, location="query")
 def advantage_view(**kwargs):
-    is_test_backend = kwargs.get("test_backend")
     api_url = kwargs.get("api_url")
     stripe_publishable_key = kwargs["stripe_publishable_key"]
     token = kwargs.get("token")
@@ -296,13 +295,11 @@ def advantage_view(**kwargs):
         open_subscription=open_subscription,
         new_subscription_id=new_subscription_id,
         stripe_publishable_key=stripe_publishable_key,
-        is_test_backend=is_test_backend,
     )
 
 
 @advantage_checks(check_list=["is_maintenance"])
 def advantage_shop_view(**kwargs):
-    is_test_backend = kwargs.get("test_backend")
     api_url = kwargs.get("api_url")
     stripe_publishable_key = kwargs.get("stripe_publishable_key")
     token = kwargs.get("token")
@@ -361,7 +358,6 @@ def advantage_shop_view(**kwargs):
 
     return flask.render_template(
         "advantage/subscribe/index.html",
-        is_test_backend=is_test_backend,
         stripe_publishable_key=stripe_publishable_key,
         account=account,
         previous_purchase_ids=previous_purchase_ids,
@@ -371,7 +367,6 @@ def advantage_shop_view(**kwargs):
 
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
 def payment_methods_view(**kwargs):
-    is_test_backend = kwargs.get("test_backend")
     stripe_publishable_key = kwargs["stripe_publishable_key"]
     api_url = kwargs.get("api_url")
     token = kwargs.get("token")
@@ -404,7 +399,6 @@ def payment_methods_view(**kwargs):
     return flask.render_template(
         "account/payment-methods/index.html",
         stripe_publishable_key=stripe_publishable_key,
-        is_test_backend=is_test_backend,
         default_payment_method=default_payment_method,
         pending_purchase_id=pending_purchase_id,
         account_id=account["id"],
@@ -417,7 +411,6 @@ def advantage_thanks_view(**kwargs):
     return flask.render_template(
         "advantage/subscribe/thank-you.html",
         email=kwargs.get("email"),
-        is_test_backend=kwargs.get("test_backend"),
     )
 
 

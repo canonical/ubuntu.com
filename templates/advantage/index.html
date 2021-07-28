@@ -29,7 +29,7 @@
   <div class="row">
     <div class="p-notification--caution">
       <p class="p-notification__response" role="status">
-        <span class="p-notification__status">Payment method:</span>You need to <a href="/account/payment-methods{% if is_test_backend %}?test_backend=true{% endif %}">update your payment methods</a> to ensure there is no interruption to your Ubuntu Advantage subscriptions
+        <span class="p-notification__status">Payment method:</span>You need to <a href="/account/payment-methods{% if get_test_backend %}?test_backend=true{% endif %}">update your payment methods</a> to ensure there is no interruption to your Ubuntu Advantage subscriptions
       </p>
     </div>
   </div>
@@ -188,7 +188,7 @@
           {% endfor %}
         </div>
           <a
-            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}"
+            href="/advantage/subscribe{% if get_test_backend %}?test_backend=true{% endif %}"
             class="p-button--positive"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
@@ -322,7 +322,7 @@
         </div>
         <div class="col-12 u-align--right">
           <a
-            href="/advantage/subscribe{% if is_test_backend %}?test_backend=true{% endif %}"
+            href="/advantage/subscribe{% if get_test_backend %}?test_backend=true{% endif %}"
             class="p-button--positive u-align--right"
             onclick="dataLayer.push({
               'event' : 'GAEvent',
