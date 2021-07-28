@@ -259,6 +259,7 @@ def context():
         "month_name": month_name,
         "months_list": months_list,
         "get_navigation": get_navigation,
+        "get_test_backend": flask.request.args.get("test_backend", ""),
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),

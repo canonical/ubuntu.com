@@ -411,17 +411,13 @@ def payment_methods_view(**kwargs):
     )
 
 
-@advantage_checks(check_list=["is_maintenance"])
+@advantage_checks(check_list=["is_maintenance", "view_need_guest"])
 @use_kwargs({"email": String()}, location="query")
 def advantage_thanks_view(**kwargs):
-    email = kwargs.get("email")
-
-    if user_info(flask.session):
-        return flask.redirect("/advantage")
-
     return flask.render_template(
         "advantage/subscribe/thank-you.html",
-        email=email,
+        email=kwargs.get("email"),
+        is_test_backend=kwargs.get("test_backend"),
     )
 
 
