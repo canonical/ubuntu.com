@@ -21,15 +21,6 @@ const queryClient = new QueryClient({
   },
 });
 
-/*
- *
- * This app is using react query (https://react-query.tanstack.com/overview) to manage data from the API
- * This library has built in devtools which are really helpful.
- * To enable them you need to replace "production" by "development" in "/build.js"
- * If you do so, please make sure to revert the change before you merge your changes.
- *
- */
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
