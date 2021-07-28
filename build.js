@@ -20,6 +20,7 @@ let entries = {
   productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
   openstackChart: "./static/js/src/openstack-chart.js",
   uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
+  uaSubscriptions: "./static/js/src/advantage/react/app.tsx",
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
   "certified-search-results": "./static/js/src/certified-search-results.js",
 };
