@@ -32,8 +32,11 @@
             <label for="infrastructure-preferences-vmware">VMware</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="infrastructure-preferences-other" name="infrastructure-preferences">
-            <label for="infrastructure-preferences-other">Other</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="infrastructure-preferences-other">
+              <label for="infrastructure-preferences-other">Other</label>
+              <input type="text" id="infrastructure-preferences-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other infrastructure preferences">
+            </div>
           </div>
         </div>
       </div>
@@ -74,8 +77,11 @@
             <label for="priority-cases-general-it-use-case">General IT use case</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="priority-cases-other" name="priority-cases" value="Other">
-            <label for="priority-cases-other">Other</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="priority-cases-other">
+              <label for="priority-cases-other">Other</label>
+              <input type="text" id="priority-cases-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other priority cases">
+            </div>
           </div>
         </div>
       </div>
@@ -114,11 +120,11 @@
         <h3 class="p-heading--five">Do you want automated deployment of your network functions? (Optional)</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="automated-deployment-yes" name="automated-deployment">
+            <input type="radio" id="automated-deployment-yes" name="automated-deployment">
             <label for="automated-deployment-yes">Yes</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="automated-deployment-no" name="automated-deployment">
+            <input type="radio" id="automated-deployment-no" name="automated-deployment">
             <label for="automated-deployment-no">No</label>
           </div>
         </div>
@@ -126,32 +132,33 @@
 
       <div class="u-sv3 js-formfield">
         <h3 class="p-heading--five">Tell us about your network function and team? (Optional)</h3>
-        <textarea id="tell-us-more" aria-label="Tell us about your network function and team?" rows="3" maxlength="2000" placeholder="What are the features of your network function? Where do you want to use your network function? How it is beneficial for telcos or any other information.."></textarea>
+        <textarea id="network-functions-team" aria-label="Tell us about your network function and team?" rows="3" placeholder="What are the features of your network function, where do you want to use your network function, how it is beneficial for telcos or any other information.."></textarea>
       </div>
 
       <div class="js-formfield">
         <h3 class="p-heading--five">Which orchestration capabilities are important for your network function? (Optional)</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="orchestration-capabilities-day-0" name="orchestration-capabilities">
+            <input type="radio" id="orchestration-capabilities-day-0" name="orchestration-capabilities">
             <label for="orchestration-capabilities-day-0">Day 0</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="orchestration-capabilities-day-1" name="orchestration-capabilities">
+            <input type="radio" id="orchestration-capabilities-day-1" name="orchestration-capabilities">
             <label for="orchestration-capabilities-day-1">Day 1</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="orchestration-capabilities-day-2" name="orchestration-capabilities">
+            <input type="radio" id="orchestration-capabilities-day-2" name="orchestration-capabilities">
             <label for="orchestration-capabilities-day-2">Day 2</label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="orchestration-capabilities-all-of-them" name="orchestration-capabilities">
+            <input type="radio" id="orchestration-capabilities-all-of-them" name="orchestration-capabilities">
             <label for="orchestration-capabilities-all-of-them">All of them</label>
           </div>
         </div>
       </div>
 
       <div class="pagination">
+        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
         <a class="pagination__link--next p-button--positive" href="">Next</a>
       </div>
     </div>
@@ -201,7 +208,6 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="%% formid %%" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formVid" class="mktoField" value="%% formid %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="%% lpId %%" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="%% lpurl %%?cr={creative}&amp;kw={keyword}" />
