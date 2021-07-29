@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import { useLoadWindowData } from "./hooks";
+import Subscriptions from "./components/Subscriptions";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -22,13 +23,7 @@ export const App = () => {
   useLoadWindowData(queryClient);
   return (
     <QueryClientProvider client={queryClient}>
-      <section className="p-strip is-shallow">
-        <div className="row">
-          <div className="col-12" data-test="subscriptions-app">
-            Content
-          </div>
-        </div>
-      </section>
+      <Subscriptions />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
