@@ -17,7 +17,7 @@
         {% endif %}
         {% if breadcrumbs %}
         <h5 class="p-navigation--secondary__logo u-hide--nav-threshold-up">
-          <a class="p-navigation--secondary__banner" href="{{ breadcrumbs.section.path }}">
+          <a class="p-navigation--secondary__banner" href="{{ breadcrumbs.section.path }}{% if get_test_backend %}?test_backend=true{% endif %}">
             {{ breadcrumbs.section.title }}
           </a>
         </h5>
@@ -92,7 +92,7 @@
 <nav class="p-navigation--secondary">
   <div class="row">
     <div class="col-12 u-equal-height">
-      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}">
+      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}{% if get_test_backend %}?test_backend=true{% endif %}">
         <h5 class="p-navigation--secondary__logo">
           {{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}
         </h5>
