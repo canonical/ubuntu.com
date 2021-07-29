@@ -331,6 +331,7 @@ def certified_home():
             vendor=vendors,
             query=query,
             offset=offset,
+            limit=limit,
         )
 
         results = models_response["objects"]

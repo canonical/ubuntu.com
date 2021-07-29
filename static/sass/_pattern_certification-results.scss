@@ -12,18 +12,18 @@
     th,
     td {
       &:nth-child(1) {
-        width: 70%;
-        @media only screen and (max-width: $breakpoint-small) {
-          width: 60%;
-        }
+        width: 20%;
       }
 
       &:nth-child(2) {
-        width: 15%;
+        width: 35%;
       }
 
       &:nth-child(3) {
-        width: 15%;
+        width: 10%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 20%;
+        }
       }
     }
   }
@@ -64,5 +64,10 @@
 
       max-height: 10rem;
     }
+  }
+
+  .p-results-per-page {
+    max-width: 5.3rem;
+    min-width: 5.3rem;
   }
 }
