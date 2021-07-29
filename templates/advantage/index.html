@@ -38,6 +38,11 @@
   <div id="react-root"><i class="p-icon--spinner u-animation--spin"></i> Loading...</div>
 {% endif %}
 
+<script>
+  window.enterpriseContracts = {{ enterprise_contracts|tojson }};
+  window.pendingPurchaseId = "{{ pending_purchase_id }}";
+  window.personalAccount = {{ personal_account|tojson }};
+</script>
 
 <script
   src="{{ versioned_static('js/dist/uaSubscriptions.js') }}"

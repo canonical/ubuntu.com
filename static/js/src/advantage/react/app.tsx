@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
+import { useLoadWindowData } from "./hooks";
+
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,15 +18,23 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <section className="p-strip is-shallow">
-      <div className="row">
-        <div className="col-12">Content</div>
-      </div>
-    </section>
-    <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>
-);
+export const App = () => {
+  useLoadWindowData(queryClient);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <section className="p-strip is-shallow">
+        <div className="row">
+          <div className="col-12" data-test="subscriptions-app">
+            Content
+          </div>
+        </div>
+      </section>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
+};
 
-ReactDOM.render(<App />, document.getElementById("react-root"));
+const appRoot = document.getElementById("react-root");
+if (appRoot) {
+  ReactDOM.render(<App />, appRoot);
+}
