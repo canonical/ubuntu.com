@@ -6,6 +6,6 @@ import { App } from "./app";
 describe("Subscriptions app", () => {
   it("renders", () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find("[data-test='subscriptions-app']").exists()).toBe(true);
+    expect(wrapper.find("Subscriptions").exists()).toBe(true);
   });
 });
