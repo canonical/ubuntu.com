@@ -972,14 +972,19 @@ function processStripePayment() {
 }
 
 function reloadPage() {
+  const queryString = window.location.search;
+  const testBackend = queryString.includes("test_backend=true")
+    ? "&test_backend=true"
+    : "";
+
   if (currentTransaction.type === "renewal") {
-    location.search = `?subscription=${currentTransaction.contractId}`;
+    location.search = `?subscription=${currentTransaction.contractId}${testBackend}`;
   } else if (currentTransaction.type === "purchase" && !guestPurchase) {
     location.pathname = "/advantage";
   } else if (currentTransaction.type === "purchase" && guestPurchase) {
     location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
       customerInfo.email
-    )}`;
+    )}${testBackend}`;
   }
 }
 

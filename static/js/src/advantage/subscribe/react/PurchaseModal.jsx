@@ -172,9 +172,13 @@ const PurchaseModal = () => {
         if (request.readyState === 4) {
           //redirect
           if (window.isGuest) {
+            const queryString = window.location.search;
+            const testBackend = queryString.includes("test_backend=true")
+              ? "&test_backend=true"
+              : "";
             location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
               pendingPurchase?.invoice?.customerEmail
-            )}`;
+            )}${testBackend}`;
           } else {
             location.pathname = "/advantage";
           }

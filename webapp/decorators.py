@@ -62,12 +62,25 @@ def advantage_checks(check_list=None):
 
             if "view_need_user" in check_list and not user_info(flask.session):
                 if flask.request.path != "/advantage":
-                    return flask.redirect("/advantage")
+                    go_to = (
+                        "/advantage?test_backend=true"
+                        if is_test_backend
+                        else "/advantage"
+                    )
+                    return flask.redirect(go_to)
 
                 return flask.render_template(
                     "advantage/index-no-login.html",
                     is_test_backend=is_test_backend,
                 )
+
+            if "view_need_guest" in check_list and user_info(flask.session):
+                go_to = (
+                    "/advantage?test_backend=true"
+                    if is_test_backend
+                    else "/advantage"
+                )
+                return flask.redirect(go_to)
 
             if "need_user" in check_list:
                 if not user_info(flask.session):
