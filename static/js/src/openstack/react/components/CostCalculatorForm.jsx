@@ -30,7 +30,7 @@ const CostCalculatorForm = () => {
       parseInt(e.target.value) > parseInt(e.target.max) ||
       e.target.value === ""
         ? `Please enter a value between ${e.target.min} and ${e.target.max}`
-        : false;
+        : null;
 
     e.target.name !== "supportLevel"
       ? setFormState({
