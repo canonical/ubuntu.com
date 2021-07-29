@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Row, Col, Button } from "@canonical/react-components";
-import useStripeCustomerInfo from "../APICalls/useStripeCustomerInfo";
+import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
 
-const cardImageMap = {
+export const cardImageMap = {
   visa: "https://assets.ubuntu.com/v1/2060e728-VBM_COF.png",
   mastercard: "https://assets.ubuntu.com/v1/f42c6739-mc_symbol.svg",
   amex: "https://assets.ubuntu.com/v1/5f4f3f7b-Amex_logo_color.svg",
@@ -21,7 +21,7 @@ function PaymentMethodSummary({ setStep }) {
         </Col>
 
         <Col size="8">
-          <p>{userInfo?.customerInfo?.email}</p>
+          <p data-test="email">{userInfo?.customerInfo?.email}</p>
         </Col>
       </Row>
 
@@ -32,7 +32,7 @@ function PaymentMethodSummary({ setStep }) {
 
         <Col size="6" className="u-align--right">
           <Button
-            className="p-button js-change-payment-method"
+            className="p-button"
             onClick={() => {
               setStep(1);
             }}
@@ -54,9 +54,9 @@ function PaymentMethodSummary({ setStep }) {
             />
           </Col>
           <Col size="8" small="3">
-            <span>{userInfo?.customerInfo?.name}</span>
+            <span data-test="name">{userInfo?.customerInfo?.name}</span>
             <br />
-            <span>
+            <span data-test="card">
               <span style={{ textTransform: "capitalize" }}>
                 {userInfo?.customerInfo?.defaultPaymentMethod?.brand}
               </span>{" "}
@@ -66,7 +66,7 @@ function PaymentMethodSummary({ setStep }) {
           <Col size="2" small="3" emptySmall="2">
             <span className="u-text-light">Expires:</span>
             <br />
-            <span>
+            <span data-test="expiry-date">
               {userInfo?.customerInfo?.defaultPaymentMethod?.expMonth
                 ?.toString()
                 ?.padStart(2, "0")}
