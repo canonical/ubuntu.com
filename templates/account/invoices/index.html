@@ -53,7 +53,7 @@
                 </td>
                 <td aria-label="Download PDF">
                   {% if invoice.download_link %}
-                    <a href="{{ invoice.download_link }}{% if is_test_backend %}?test_backend=true{% endif %}" target="_blank">{{ invoice.download_file_name }}</a>
+                    <a href="{{ invoice.download_link }}{% if get_test_backend %}?test_backend=true{% endif %}" target="_blank">{{ invoice.download_file_name }}</a>
                   {% else %}
                     No invoice available
                   {% endif %}

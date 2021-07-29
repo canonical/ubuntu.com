@@ -755,7 +755,6 @@ def account_view(**kwargs):
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
 @use_kwargs(invoice_view, location="query")
 def invoices_view(**kwargs):
-    is_test_backend = kwargs.get("test_backend")
     token = kwargs.get("token")
     api_url = kwargs.get("api_url")
     email = kwargs.get("email", "").strip()
@@ -819,7 +818,6 @@ def invoices_view(**kwargs):
         "account/invoices/index.html",
         invoices=total_payments,
         marketplace=marketplace,
-        is_test_backend=is_test_backend,
     )
 
 
