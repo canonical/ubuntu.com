@@ -83,7 +83,7 @@
                  <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
                    {% for category_filter in category_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input" id="category_filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
+                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input js-enable-apply-filters" id="category_filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
                       <div class="p-checkbox__label" id="{{ category_filter }}">
                         <span>{{ category_filter }}</span>
                       </div>
@@ -99,7 +99,7 @@
                  <section class="p-accordion__panel is-collapsed__vendors is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
                    {% for vendor_filter in vendor_filters %}
                    <label class="p-checkbox">
-                     <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
+                     <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
                      <div class="p-checkbox__label" id="{{ vendor_filter }}">
                        <span>{{ vendor_filter }}</span>
                        </p>
@@ -120,7 +120,7 @@
                  <section class="p-accordion__panel is-collapsed__versions is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
                    {% for release_filter in release_filters %}
                    <label class="p-checkbox">
-                     <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
+                     <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input js-enable-apply-filters" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
                      <div class="p-checkbox__label" id="{{ release_filter }}">
                        <span>{{ release_filter }}</span>
                      </div>
@@ -134,7 +134,7 @@
                </li>
              </ul>
            </aside>
-           <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
+           <button href="#" class="p-button--positive p-update-results" id="apply-filters" type=submit disabled>Apply filters</button>
          </div>
        </nav>
      </div>
@@ -201,6 +201,28 @@
 </form>
 
 <script>
+
+  function enableApplyFilters() {
+    const filtersSelected = [];
+    const filters = document.querySelectorAll(".js-enable-apply-filters")
+    filters.forEach(filter => {
+      filter.addEventListener("change", () => {
+        if(!filtersSelected.includes(filter.value)) {
+          filtersSelected.push(filter.value)
+        } else {
+          const index = filtersSelected.indexOf(filter.value)
+          filtersSelected.splice(index, 1)
+        }
+        if(filtersSelected.length) {
+          document.querySelector("#apply-filters").removeAttribute("disabled")
+        } else {
+          document.querySelector("#apply-filters").disabled = true
+        }
+      })
+    })
+  }
+
+  enableApplyFilters()
   //function to ensure only the option which has been changed is appended to the URL
   function updateResultsPerPage() {
     let resultsDropdowns = document.querySelectorAll(".p-results-per-page");
