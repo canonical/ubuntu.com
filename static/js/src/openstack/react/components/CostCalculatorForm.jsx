@@ -45,7 +45,7 @@ const CostCalculatorForm = () => {
       <Form>
         <Row>
           <Col size="6">
-            <h3 class="p-heading--4">
+            <h3 className="p-heading--4">
               Number of instances
               <Tooltip
                 position="top-right"
@@ -67,7 +67,7 @@ const CostCalculatorForm = () => {
               ariaLabel="Number of instances"
               required
             />
-            <h3 class="p-heading--4" style={{ marginTop: "2rem" }}>
+            <h3 className="p-heading--4" style={{ marginTop: "2rem" }}>
               Instance type
               <Tooltip
                 position="top-right"
@@ -150,7 +150,7 @@ const CostCalculatorForm = () => {
             </Row>
           </Col>
           <Col size="5" emptyLarge="8">
-            <h3 class="p-heading--4">
+            <h3 className="p-heading--4">
               Support level
               <Tooltip
                 position="top-right"
