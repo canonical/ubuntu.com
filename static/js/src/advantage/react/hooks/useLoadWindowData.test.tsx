@@ -1,6 +1,5 @@
 import React from "react";
 import type { ReactNode } from "react";
-import { shallow } from "enzyme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { renderHook } from "@testing-library/react-hooks";
 
