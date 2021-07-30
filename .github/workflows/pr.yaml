@@ -187,3 +187,16 @@ jobs:
         run: |
           yarn test-js
           bash <(curl -s https://codecov.io/bash) -cF javascript
+
+  lint-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Lint JS
+        run: |
+          yarn lint-js

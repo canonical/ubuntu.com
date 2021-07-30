@@ -3,13 +3,13 @@ module.exports = {
     node: true,
     browser: true,
     es6: true,
-    jest: true,
+    jest: true
   },
   extends: [
     "eslint:recommended",
     "eslint-config-prettier",
     "plugin:cypress/recommended",
-    "plugin:react/recommended",
+    "plugin:react/recommended"
   ],
   globals: {
     Atomics: "readonly",
@@ -19,7 +19,7 @@ module.exports = {
     topojson: "readonly",
     ga: "readonly",
     grecaptcha: "readonly",
-    serialize: "readonly",
+    serialize: "readonly"
   },
   parser: "@babel/eslint-parser",
   parserOptions: {
@@ -27,11 +27,12 @@ module.exports = {
     sourceType: "module",
     requireConfigFile: false,
     babelOptions: {
-      plugins: ["@babel/plugin-syntax-jsx", "@babel/preset-react"],
-    },
+      plugins: ["@babel/plugin-syntax-jsx"],
+      presets: ["@babel/preset-react"]
+    }
   },
   rules: {
     semi: ["error", "always"],
-    "no-prototype-builtins": "off",
-  },
+    "no-prototype-builtins": "off"
+  }
 };
