@@ -1,7 +1,7 @@
 import {
   cancelContract,
   getPurchase,
-  resizeContract
+  resizeContract,
 } from "./api/contracts.js";
 
 const stripe = window.Stripe(window.stripePublishableKey);
@@ -21,7 +21,7 @@ const getMessage = (code, default_message) => {
     pending_purchase:
       "<strong>Error:</strong> You already have a pending purchase. Please go to <a href='/account/payment-methods'>payment methods</a> to retry.",
     unknown_error:
-      "<strong>Unknown error:</strong> Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists."
+      "<strong>Unknown error:</strong> Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
   };
 
   if (map[code]) {
@@ -137,7 +137,7 @@ const handleUpdateClick = (id, VPSize) => {
     accountId,
     productListingId,
     previousPurchaseId,
-    billingPeriod
+    billingPeriod,
   } = updateButton.dataset;
 
   const successNotificationElements = document.querySelectorAll(
@@ -150,10 +150,10 @@ const handleUpdateClick = (id, VPSize) => {
   const elements = {
     button: {
       html: updateButton,
-      text: "Save changes"
+      text: "Save changes",
     },
     success: successNotificationElements,
-    caution: cautionNotificationElements
+    caution: cautionNotificationElements,
   };
 
   dataLayer.push({
@@ -161,7 +161,7 @@ const handleUpdateClick = (id, VPSize) => {
     eventCategory: "Advantage",
     eventAction: "update-subscription",
     eventLabel: "Save changes",
-    eventValue: undefined
+    eventValue: undefined,
   });
 
   updateButton.classList.add("is-processing");
@@ -199,7 +199,7 @@ const cancelSubscription = (id, VPSize) => {
   const {
     accountId,
     productListingId,
-    previousPurchaseId
+    previousPurchaseId,
   } = cancelSubscriptionButton.dataset;
   const confirmCancelButton = document.querySelector(`#confirmCancelButton`);
 
@@ -213,10 +213,10 @@ const cancelSubscription = (id, VPSize) => {
   const elements = {
     button: {
       html: confirmCancelButton,
-      text: "Cancel subscription"
+      text: "Cancel subscription",
     },
     success: successNotificationElements,
-    caution: cautionNotificationElements
+    caution: cautionNotificationElements,
   };
 
   dataLayer.push({
@@ -224,7 +224,7 @@ const cancelSubscription = (id, VPSize) => {
     eventCategory: "Advantage",
     eventAction: "cancel-subscription",
     eventLabel: "Cancel subscription",
-    eventValue: undefined
+    eventValue: undefined,
   });
 
   confirmCancelButton.classList.add("is-processing");
@@ -383,7 +383,7 @@ const handleChange = (e, id, VPSize) => {
 
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD"
+    currency: "USD",
   });
 
   const resizeSummary = document.querySelector(
@@ -523,7 +523,7 @@ function handleChangeClick() {
     eventCategory: "Advantage",
     eventAction: "show-subscription-options",
     eventLabel: "Change subscription",
-    eventValue: undefined
+    eventValue: undefined,
   });
 }
 

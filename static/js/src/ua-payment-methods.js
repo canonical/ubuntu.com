@@ -1,7 +1,7 @@
 import {
   getPurchase,
   postInvoiceID,
-  setPaymentMethod
+  setPaymentMethod,
 } from "./advantage/api/contracts.js";
 
 // initialise Stripe
@@ -18,21 +18,21 @@ const style = {
     fontSmoothing: "antialiased",
     fontSize: "16px",
     "::placeholder": {
-      color: "#666"
+      color: "#666",
     },
     ":-webkit-autofill": {
-      color: "#666"
-    }
-  }
+      color: "#666",
+    },
+  },
 };
 
 // create the Stripe card input, and apply the style to it
 const elements = stripe.elements({
   fonts: [
     {
-      family: "Ubuntu"
-    }
-  ]
+      family: "Ubuntu",
+    },
+  ],
 });
 
 const card = elements.create("card", { style });
@@ -101,7 +101,7 @@ updateButton.addEventListener("click", function () {
   stripe
     .createPaymentMethod({
       type: "card",
-      card: card
+      card: card,
     })
     .then((result) => {
       if (!result.paymentMethod) {
