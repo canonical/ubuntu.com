@@ -29,7 +29,7 @@ function confirmChanges() {
           ? "toggle-auto-renewal-on"
           : "toggle-auto-renewal-off",
         eventLabel: "Save changes",
-        eventValue: undefined
+        eventValue: undefined,
       });
       if (data.errors) {
         console.error(data.errors);
