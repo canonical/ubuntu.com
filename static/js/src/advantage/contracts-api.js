@@ -269,7 +269,7 @@ export async function postCustomerInfoForPurchasePreview(
 export async function setPaymentMethod(accountID, paymentMethodId) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
-  let response = await fetch(`/advantage/payment-method${queryString}`, {
+  let response = await fetch(`/account/payment-methods${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",

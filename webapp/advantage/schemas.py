@@ -51,7 +51,7 @@ post_anonymised_customer_info = {
     "tax_id": Nested(TaxIdSchema, allow_none=True),
 }
 
-post_payment_method = {
+post_payment_methods = {
     "account_id": String(required=True),
     "payment_method_id": String(required=True),
 }
