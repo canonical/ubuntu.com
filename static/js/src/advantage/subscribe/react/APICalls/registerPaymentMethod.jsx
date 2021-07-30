@@ -3,7 +3,7 @@ import { useMutation } from "react-query";
 import {
   ensurePurchaseAccount,
   postCustomerInfoToStripeAccount,
-} from "../../../contracts-api";
+} from "../../../api/contracts";
 
 const registerPaymentMethod = () => {
   const stripe = useStripe();

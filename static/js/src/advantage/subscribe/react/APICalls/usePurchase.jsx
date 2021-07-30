@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { postPurchaseData } from "../../../contracts-api";
+import { postPurchaseData } from "../../../api/contracts";
 import useProduct from "./useProduct";
 
 const usePurchase = () => {
