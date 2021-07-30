@@ -10,7 +10,7 @@ import {
   postCustomerInfoForPurchasePreview,
   postRenewalIDToProcessPayment,
   postPurchaseData,
-  postPurchasePreviewData
+  postPurchasePreviewData,
 } from "./advantage/api/contracts.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
@@ -20,7 +20,7 @@ import {
   setOrderInformation,
   setOrderTotals,
   setPaymentInformation,
-  setRenewalInformation
+  setRenewalInformation,
 } from "./advantage/set-modal-info.js";
 import { checkoutEvent, purchaseEvent } from "./advantage/ecom-events.js";
 import { getSessionData } from "./utils/getSessionData.js";
@@ -73,21 +73,21 @@ const style = {
     fontSmoothing: "antialiased",
     fontSize: "16px",
     "::placeholder": {
-      color: "#666"
+      color: "#666",
     },
     ":-webkit-autofill": {
-      color: "#666"
-    }
-  }
+      color: "#666",
+    },
+  },
 };
 
 // create the Stripe card input, and apply the style to it
 const elements = stripe.elements({
   fonts: [
     {
-      family: "Ubuntu"
-    }
-  ]
+      family: "Ubuntu",
+    },
+  ],
 });
 
 const card = elements.create("card", { style });
@@ -97,7 +97,7 @@ const currentTransaction = {
   transactionId: null,
   contractId: null,
   products: [],
-  type: null
+  type: null,
 };
 
 let customerInfo = {
@@ -105,7 +105,7 @@ let customerInfo = {
   name: null,
   accountName: null,
   address: null,
-  tax: null
+  tax: null,
 };
 
 let cardValid = false;
@@ -177,7 +177,7 @@ function attachCTAevents() {
           price: item.product.price.value,
           product_listing_id: item.listingID,
           quantity: parseInt(item.quantity),
-          period: item.product.period
+          period: item.product.period,
         });
       });
 
@@ -201,7 +201,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
   if (customerInfo.tax) {
     stripeTaxObject = {
       value: customerInfo.tax,
-      type: "eu_vat"
+      type: "eu_vat",
     };
   }
 
@@ -210,7 +210,7 @@ function attachCustomerInfoToStripeAccount(paymentMethod) {
     accountID: currentTransaction.accountId,
     address: customerInfo.address,
     name: customerInfo.name,
-    taxID: stripeTaxObject
+    taxID: stripeTaxObject,
   })
     .then((data) => {
       applyLoggedInPurchaseTotals();
@@ -380,7 +380,7 @@ function applyLoggedInPurchaseTotals() {
     const taxObject = formData.get("tax")
       ? {
           value: formData.get("tax"),
-          type: "eu_vat"
+          type: "eu_vat",
         }
       : null;
 
@@ -420,7 +420,7 @@ function applyLoggedInPurchaseTotals() {
                 null,
                 false,
                 {
-                  total: currentTransaction.subtotal
+                  total: currentTransaction.subtotal,
                 },
                 modal
               );
@@ -434,7 +434,7 @@ function applyLoggedInPurchaseTotals() {
               null,
               false,
               {
-                total: currentTransaction.subtotal
+                total: currentTransaction.subtotal,
               },
               modal
             );
@@ -450,7 +450,7 @@ function applyLoggedInPurchaseTotals() {
 
 function applyGuestPurchaseTotals() {
   const purchaseTotals = {
-    total: currentTransaction.subtotal
+    total: currentTransaction.subtotal,
   };
   guestPurchase = true;
   modal.classList.remove("is-processing");
@@ -464,7 +464,7 @@ function applyGuestPurchaseTotals() {
 
 function applyRenewalTotals() {
   const renewalTotals = {
-    total: currentTransaction.total
+    total: currentTransaction.total,
   };
 
   // the API doesn't allow simulated purchases
@@ -537,8 +537,8 @@ function createPaymentMethod() {
       card: card,
       billing_details: {
         name: customerInfo.name,
-        email: customerInfo.email
-      }
+        email: customerInfo.email,
+      },
     })
     .then((result) => {
       handlePaymentMethodResponse(result);
@@ -608,7 +608,7 @@ function enableProcessingState(mode) {
             presentError({
               message:
                 "Sorry, your payment method can’t be set up at the moment. Try again in a few minutes.",
-              type: "dialog"
+              type: "dialog",
             });
           }
         }, 45000);
@@ -625,7 +625,7 @@ function analyticsFriendlyProducts() {
       id: product.product_listing_id,
       name: product.name,
       price: product.price / 100,
-      quantity: product.quantity
+      quantity: product.quantity,
     });
   });
 
@@ -771,7 +771,7 @@ function handleGuestPaymentMethodResponse(data) {
     email: customerInfo.email,
     accountName: customerInfo.accountName,
     paymentMethodID: paymentMethod.id,
-    country: customerInfo.address.country
+    country: customerInfo.address.country,
   }).then((data) => {
     if (data.code) {
       // an error was returned, most likely cause
@@ -793,7 +793,7 @@ function handle3DSresponse(data) {
   if (data.error) {
     presentError({
       message: data.error.message,
-      type: "notification"
+      type: "notification",
     });
     submitted3DS = false;
   } else {
@@ -846,7 +846,7 @@ function handleSuccessfulPayment(transaction) {
       id: transaction.id,
       origin: "UA Shop",
       total: currentTransaction.total / 100,
-      tax: currentTransaction.tax / 100
+      tax: currentTransaction.tax / 100,
     };
 
     const products = analyticsFriendlyProducts();
@@ -909,7 +909,7 @@ function presentError(errorObject) {
     errorObject = {
       message:
         "Sorry, there was an unknown error with the payment. Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.",
-      type: "notification"
+      type: "notification",
     };
   }
 
@@ -1023,7 +1023,7 @@ function sendGAEvent(label) {
       eventCategory: "advantage",
       eventAction: currentTransaction.type,
       eventLabel: label,
-      eventValue: undefined
+      eventValue: undefined,
     });
   }
 }
@@ -1045,9 +1045,9 @@ function setCustomerInfo() {
       state:
         formData.get("Country") === "US"
           ? formData.get("us_state")
-          : formData.get("ca_province")
+          : formData.get("ca_province"),
     },
-    tax: formData.get("tax")
+    tax: formData.get("tax"),
   };
 }
 
