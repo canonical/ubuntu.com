@@ -1,7 +1,7 @@
 import { useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { getPurchase, postInvoiceID } from "../../../contracts-api";
+import { getPurchase, postInvoiceID } from "../../../api/contracts";
 
 const requires3DSCheck = (pi_decline_code, pi_status, pi_secret) => {
   return (
