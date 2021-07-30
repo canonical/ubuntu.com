@@ -21,7 +21,7 @@
    </div>
    <div class="u-fixed-width">
      <div class="p-search-box">
-       <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}">
+       <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}" placeholder="Search hardware">
        <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
      </div>
    </div>
@@ -135,6 +135,7 @@
              </ul>
            </aside>
            <button href="#" class="p-button--positive p-update-results" id="apply-filters" type=submit disabled>Apply filters</button>
+           <button class="p-button--neutral p-update-results" onclick="return clearFilters()">Clear filters</button>
          </div>
        </nav>
      </div>
@@ -201,6 +202,11 @@
 </form>
 
 <script>
+
+ function clearFilters() {
+  location.assign(`/certified?q=`)
+   return false
+ }
 
   function enableApplyFilters() {
     const filtersSelected = [];
