@@ -450,65 +450,77 @@
 </section>
 
 <section class="p-strip u-no-padding--top">
-  <div class="u-fixed-width">
-    <ul class="p-matrix">
-      <li class="p-matrix__item">
-        <img class="p-matrix__img" src="https://assets.ubuntu.com/v1/7de21966-snapshot.svg" alt="">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Regain focus</h3>
-          <div class="p-matrix__desc u-fixed-width">
-            <ul>
-              <li>You drive the business, we maintain the monitoring tools</li>
-              <li>Put DevOps on-rails with high quality observability</li>
-              <li>Expand globally, without needing a global team</li>
-            </ul>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <img class="p-matrix__img" src="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg" alt="">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Reliable and robust</h3>
-          <div class="p-matrix__desc">
-            <ul>
-              <li>Reduce human-error</li>
-              <li>Automated at scale</li>
-              <li>Powered by <a class="p-link--external" href="https://juju.is/">Juju</a></li>
-              <li>Managed by app-specific experts</li>
-            </ul>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <img class="p-matrix__img" src="https://assets.ubuntu.com/v1/c0e765e4-save-time-money-icon-lrg.svg" alt="">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Predictable pricing</h3>
-          <div class="p-matrix__desc">
-            <ul>
-              <li>Per-machine price</li>
-              <li>Multiple portfolio apps, no extra cost</li>
-              <li>Unlimited usage</li>
-              <li>Transfer management back on request</li>
-            </ul>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <img class="p-matrix__img" src="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg" alt="">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Open source, simplified</h3>
-          <div class="p-matrix__desc">
-            <ul>
-              <li>Bring your own cloud</li>
-              <li>The latest open source dashboards and tools, today, without hiring delays</li>
-              <li>Offload resource-intensive operations to our specialist team</li>
-            </ul>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item"></li>
-      <li class="p-matrix__item"></li>
-    </ul>
+  <div class="row">
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",
+        alt="",
+        width="50",
+        height="50",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <h3>Regain focus</h3>
+      <ul>
+        <li>You drive the business, we maintain the monitoring tools</li>
+        <li>Put DevOps on-rails with high quality observability</li>
+        <li>Expand globally, without needing a global team</li>
+      </ul>
+    </div>
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
+        alt="",
+        width="50",
+        height="50",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <h3>Reliable and robust</h3>
+      <ul>
+        <li>Reduce human-error</li>
+        <li>Automated at scale</li>
+        <li>Powered by <a class="p-link--external" href="https://juju.is/">Juju</a></li>
+        <li>Managed by app-specific experts</li>
+      </ul>
+    </div>
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c0e765e4-save-time-money-icon-lrg.svg",
+        alt="",
+        width="55",
+        height="50",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <h3>Predictable pricing</h3>
+      <ul>
+        <li>Per-machine price</li>
+        <li>Multiple portfolio apps, no extra cost</li>
+        <li>Unlimited usage</li>
+        <li>Transfer management back on request</li>
+      </ul>
+    </div>
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
+        alt="",
+        width="50",
+        height="50",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <h3>Open source, simplified</h3>
+      <ul>
+        <li>Bring your own cloud</li>
+        <li>The latest open source dashboards and tools, today, without hiring delays</li>
+        <li>Offload resource-intensive operations to our specialist team</li>
+      </ul>
+    </div>
   </div>
 </section>
 
