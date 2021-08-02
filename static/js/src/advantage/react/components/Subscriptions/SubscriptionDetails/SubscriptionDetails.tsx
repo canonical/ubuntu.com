@@ -3,7 +3,7 @@ import React from "react";
 import SubscriptionEdit from "../SubscriptionEdit";
 
 const SubscriptionDetails = () => (
-  <div className="p-subscribe__details">
+  <div className="p-subscriptions__details">
     <p>Details</p>
     <p>Details</p>
     <p>Details</p>

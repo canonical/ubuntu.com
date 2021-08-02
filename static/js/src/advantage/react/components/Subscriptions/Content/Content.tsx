@@ -5,7 +5,7 @@ import SubscriptionDetails from "../SubscriptionDetails";
 import SubscriptionList from "../SubscriptionList";
 
 const Content = () => (
-  <Card className="u-no-margin--bottom u-no-padding p-subscribe__card">
+  <Card className="u-no-margin--bottom u-no-padding p-subscriptions__card">
     <SubscriptionList />
     <SubscriptionDetails />
   </Card>
