@@ -4,7 +4,7 @@
 
 {% block meta_description %}Enterprise-class open source observability with long-term support for Prometheus, Alertmanager, Grafana and more.{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1NxJdT3BD6EWnpsu-eathNyranQVImnDGhuCjzsIWh4s/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1NxJdT3BD6EWnpsu-eathNyranQVImnDGhuCjzsIWh4s/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -45,7 +45,7 @@
 <section class="p-strip u-hide--small">
   <div class="u-fixed-width">
     <div class="p-logo-section u-sv3">
-      <h2 class="u-align--center p-logo-section__title">A SELECTION OF SUPPORTED OPEN SOURCE MONITORING TOOLS AND DASHBOARDS</h2>
+      <h2 class="u-align--center p-logo-section__title">A selection of supported open source monitoring tools and dashboards</h2>
     </div>
   </div>
   <div class="row p-divider">
@@ -369,118 +369,90 @@
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top u-no-padding--bottom">
-  <div class="u-fixed-width">
-    <ul class="p-matrix">
-      <li class="p-matrix__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/3b176ef1-managed-private-cloud.svg",
-          alt="",
-          width="150",
-          height="150",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-matrix__img"}
-          ) | safe
-        }}
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">99.99% uptime</h3>
-          <div class="p-matrix__desc">
-            <p>Monitoring tools with strong SLAs to build on</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
+<section class="p-strip u-no-padding--top">
+  <div class="row u-equal-height">
+    <div class="col-4">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/3b176ef1-managed-private-cloud.svg",
+        alt="",
+        width="50",
+        height="50",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+      <h3>99.99% uptime</h3>
+      <p>Monitoring tools with strong SLAs to build on</p>
+    </div>
+    <div class="col-4">
         {{ image (
           url="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg",
           alt="",
-          width="150",
-          height="150",
+          width="50",
+          height="50",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-matrix__img"}
           ) | safe
         }}
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">24/7 monitoring</h3>
-          <div class="p-matrix__desc">
-            <p>Active management and break/fix response by Canonical engineers</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
-          alt="",
-          width="150",
-          height="150",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-matrix__img"}
-          ) | safe
-        }}
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">High availability</h3>
-          <div class="p-matrix__desc">
-            <p>Fault tolerant and ready for real-world challenges</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/a43d61ae-update+control.svg",
-          alt="",
-          width="150",
-          height="150",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-matrix__img"}
-          ) | safe
-        }}
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Patching and updates</h3>
-          <div class="p-matrix__desc">
-            <p>All updates and security patches included</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
+      <h3>24/7 monitoring</h3>
+      <p>Active management and break/fix response by Canonical engineers</p>
+    </div>
+    <div class="col-4">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
+        alt="",
+        width="50",
+        height="50",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+      <h3>High availability</h3>
+      <p>Fault tolerant and ready for real-world challenges</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a43d61ae-update+control.svg",
+        alt="",
+        width="50",
+        height="50",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+      <h3>Patching and updates</h3>
+      <p>All updates and security patches included</p>
+    </div>
+    <div class="col-4">
         {{ image (
           url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
           alt="",
-          width="228",
-          height="150",
+          width="76",
+          height="50",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-matrix__img"}
           ) | safe
         }}
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Transparency</h3>
-          <div class="p-matrix__desc">
-            <p>Dashboard with key metrics for each deployment</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item">
+      <h3>Transparency</h3>
+      <p>Dashboard with key metrics for each deployment</p>
+    </div>
+    <div class="col-4">
         {{ image (
           url="https://assets.ubuntu.com/v1/69aaa876-compliance.svg",
           alt="",
-          width="150",
-          height="150",
+          width="50",
+          height="50",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-matrix__img"}
           ) | safe
         }}
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title">Security and certifications</h3>
-          <div class="p-matrix__desc">
-            <p>ISO 27000, GDPR complaint, SOC2 Type 2</p>
-          </div>
-        </div>
-      </li>
-    </ul>
+      <h3>Security and certifications</h3>
+      <p>ISO 27000, GDPR complaint, SOC2 Type 2</p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
     <hr class="p-separator" />
   </div>
 </section>
@@ -606,10 +578,10 @@
         ) | safe
       }}
       <h3>Regain focus</h3>
-      <ul>
-        <li>You drive the business, we maintain the monitoring tools</li>
-        <li>Put DevOps on-rails with high quality observability</li>
-        <li>Expand globally, without needing a global team</li>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">You drive the business, we maintain the monitoring tools</li>
+        <li class="p-list__item is-ticked">Put DevOps on-rails with high quality observability</li>
+        <li class="p-list__item is-ticked">Expand globally, without needing a global team</li>
       </ul>
     </div>
     <div class="col-3">
@@ -623,11 +595,11 @@
         ) | safe
       }}
       <h3>Reliable and robust</h3>
-      <ul>
-        <li>Reduce human-error</li>
-        <li>Automated at scale</li>
-        <li>Powered by <a class="p-link--external" href="https://juju.is/">Juju</a></li>
-        <li>Managed by app-specific experts</li>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Reduce human-error</li>
+        <li class="p-list__item is-ticked">Automated at scale</li>
+        <li class="p-list__item is-ticked">Powered by <a class="p-link--external" href="https://juju.is/">Juju</a></li>
+        <li class="p-list__item is-ticked">Managed by app-specific experts</li>
       </ul>
     </div>
     <div class="col-3">
@@ -641,11 +613,11 @@
         ) | safe
       }}
       <h3>Predictable pricing</h3>
-      <ul>
-        <li>Per-machine price</li>
-        <li>Multiple portfolio apps, no extra cost</li>
-        <li>Unlimited usage</li>
-        <li>Transfer management back on request</li>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Per-machine price</li>
+        <li class="p-list__item is-ticked">Multiple portfolio apps, no extra cost</li>
+        <li class="p-list__item is-ticked">Unlimited usage</li>
+        <li class="p-list__item is-ticked">Transfer management back on request</li>
       </ul>
     </div>
     <div class="col-3">
@@ -659,10 +631,10 @@
         ) | safe
       }}
       <h3>Open source, simplified</h3>
-      <ul>
-        <li>Bring your own cloud</li>
-        <li>The latest open source dashboards and tools, today, without hiring delays</li>
-        <li>Offload resource-intensive operations to our specialist team</li>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Bring your own cloud</li>
+        <li class="p-list__item is-ticked">The latest open source dashboards and tools, today, without hiring delays</li>
+        <li class="p-list__item is-ticked">Offload resource-intensive operations to our specialist team</li>
       </ul>
     </div>
   </div>
