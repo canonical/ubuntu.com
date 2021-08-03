@@ -83,4 +83,30 @@
       padding: 1.5rem;
     }
   }
+
+  // Override the highlighted tab colour for pages that need to use the brand
+  // colour.
+  .p-tabs--brand .p-tabs__link {
+    $color-tabs-active-bar: $color-brand;
+
+    %focus-visible {
+      // Display the highlight when focussing (in combination with the parent
+      // states) in modern browsers that support focus-visible.
+      &:focus:not(:focus-visible) {
+        @include vf-highlight-bar($color-tabs-active-bar, bottom, false);
+      }
+    }
+
+    &:active,
+    &[aria-selected="true"] {
+      @include vf-highlight-bar($color-tabs-active-bar, bottom, false);
+      @extend %focus-visible;
+    }
+
+    // Display the highlight when focussing in modern browsers that support
+    // focus-visible.
+    &:focus:not(:focus-visible) {
+      @include vf-highlight-bar($color-tabs-active-bar, bottom, false);
+    }
+  }
 }
