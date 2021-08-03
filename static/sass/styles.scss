@@ -30,6 +30,7 @@ $font-base-family: '"UbtuOverride", -apple-system, "Segoe UI", "Roboto", "Oxygen
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
+@import "pattern_accordion";
 @import "pattern_active-reveal";
 @import "pattern_blog-featured";
 @import "pattern_blog-list";
@@ -93,6 +94,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include blog-p-strips-suru;
 @include blog-u-crop;
 @include blog-p-topic;
+@include ubuntu-p-accordion;
 @include ubuntu-p-active-reveal;
 @include ubuntu-p-buttons;
 @include ubuntu-p-calculator;

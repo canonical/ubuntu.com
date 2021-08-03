@@ -47,25 +47,6 @@
     text-transform: uppercase;
   }
 
-  .is-dense {
-    padding-left: 1rem;
-  }
-
-  .is-collapsed {
-    overflow: hidden;
-    &__vendors {
-      @extend .is-collapsed;
-
-      max-height: 11.5rem;
-    }
-
-    &__versions {
-      @extend .is-collapsed;
-
-      max-height: 10rem;
-    }
-  }
-
   .p-results-per-page {
     max-width: 5.3rem;
     min-width: 5.3rem;

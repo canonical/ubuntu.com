@@ -96,13 +96,12 @@
                    <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="true"><span class="p-certification-header">Vendor</span></button>
                  </div>
                  <hr>
-                 <section class="p-accordion__panel is-collapsed__vendors is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
+                 <section class="p-accordion__panel is-collapsed is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
                    {% for vendor_filter in vendor_filters %}
                    <label class="p-checkbox">
                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
                      <div class="p-checkbox__label" id="{{ vendor_filter }}">
                        <span>{{ vendor_filter }}</span>
-                       </p>
                      </div>
                    </label>
                    {% endfor %}
@@ -117,7 +116,7 @@
                    <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true"><span class="p-certification-header">Certified Ubuntu release</span></button>
                  </div>
                  <hr>
-                 <section class="p-accordion__panel is-collapsed__versions is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
+                 <section class="p-accordion__panel is-collapsed is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
                    {% for release_filter in release_filters %}
                    <label class="p-checkbox">
                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input js-enable-apply-filters" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
@@ -252,7 +251,7 @@
     toggleVendorButtons.forEach((button) => {
       button.addEventListener("click", () => {
         window.scrollTo(0, 360);
-        vendorPanel.classList.toggle("is-collapsed__vendors");
+        vendorPanel.classList.toggle("is-collapsed");
         toggleVendorButtons.forEach((button) => {
           button.classList.toggle("u-hide");
         });
@@ -267,7 +266,7 @@
     const toggleVersionButtons = document.querySelectorAll(".p-reveal-versions");
     toggleVersionButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        versionPanel.classList.toggle("is-collapsed__versions");
+        versionPanel.classList.toggle("is-collapsed");
         toggleVersionButtons.forEach((button) => {
           button.classList.toggle("u-hide");
         });
