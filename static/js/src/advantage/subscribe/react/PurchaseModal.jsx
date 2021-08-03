@@ -285,7 +285,7 @@ const PurchaseModal = () => {
               <>
                 <Summary />
                 {error && (
-                  <Notification severity="negative" title="Error:">
+                  <Notification severity="negative" title="Error:" inline>
                     {error}
                   </Notification>
                 )}
