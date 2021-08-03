@@ -9,15 +9,7 @@
 <form name="searchResults">
  <section class="p-strip--suru-topped">
    <div class="u-fixed-width">
-     <h1 class="u-sv3">Ubuntu certified
-       {% if category == "Desktop" %} desktops
-       {% elif category == "Laptop" %} laptops
-       {% elif category == "Device" %} devices
-       {% elif category == "Server" %} servers
-       {% elif category == "SoC" %} SoCs
-       {% else %} hardware {% endif %}
-       {% if vendors and vendors|length == 1 %} from {{ vendors [0] }} {% endif %}
-     </h1>
+     <h1 class="u-sv3">Ubuntu certified hardware</h1>
    </div>
    <div class="u-fixed-width">
      <div class="p-search-box">
@@ -73,17 +65,22 @@
            </a>
          </div>
          <div>
-           <aside class="p-accordion" data-multiple-expanded="true">
+           <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
              <ul class="p-accordion__list">
                <li class="p-accordion__group--certified">
-                 <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true" ><span class="p-certification-header">Category</span></button>
+                 <div role="heading" aria-level="2">
+                  <button type="button" class="p-accordion__tab u-no-padding--right" id="tab1" aria-controls="tab1-section" aria-expanded="true">
+                    <span class="p-certification-header">Category</span>
+                    <div class="p-round-chip u-hide">
+                      <span class="p-chip__value" id="category-count"></span>
+                    </div>
+                  </button>
                  </div>
                  <hr>
                  <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
                    {% for category_filter in category_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input js-enable-apply-filters" id="category_filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
+                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input js-enable-apply-filters" id="category-filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
                       <div class="p-checkbox__label" id="{{ category_filter }}">
                         <span>{{ category_filter }}</span>
                       </div>
@@ -92,8 +89,13 @@
                  </section>
                </li>
                <li class="p-accordion__group--certified" id="vendor-section">
-                 <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="true"><span class="p-certification-header">Vendor</span></button>
+                 <div role="heading" aria-level="2">
+                   <button type="button" class="p-accordion__tab u-no-padding--right" id="tab2" aria-controls="tab2-section" aria-expanded="true">
+                     <span class="p-certification-header">Vendor</span>
+                     <div class="p-round-chip u-hide">
+                      <span class="p-chip__value" id="vendor-count">1</span>
+                    </div>
+                    </button>
                  </div>
                  <hr>
                  <section class="p-accordion__panel is-collapsed is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
@@ -107,13 +109,18 @@
                    {% endfor %}
                  </section>
                  <span class="js-toggle-links">
-                  <p class="p-reveal-vendors is-dense"><a>Show all vendors ({{ vendor_filters|length - 5}})</a></p>
-                  <p class="p-reveal-vendors is-dense u-hide"><a>Show fewer</a></p>
+                  <p class="js-reveal-vendors is-dense"><a>Show all vendors ({{ vendor_filters|length - 5}})</a></p>
+                  <p class="js-reveal-vendors is-dense u-hide"><a>Show fewer</a></p>
                 </span>
                </li>
                <li class="p-accordion__group--certified" id="version-section">
-                 <div role="heading" aria-level="2" class="p-accordion__heading">
-                   <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true"><span class="p-certification-header">Certified Ubuntu release</span></button>
+                 <div role="heading" aria-level="2">
+                   <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true">
+                     <span class="p-certification-header">Certified Ubuntu release</span>
+                     <div class="p-round-chip u-hide">
+                      <span class="p-chip__value" id="release-count">1</span>
+                    </div>
+                    </button>
                  </div>
                  <hr>
                  <section class="p-accordion__panel is-collapsed is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
@@ -127,8 +134,8 @@
                    {% endfor %}
                  </section>
                  <span class="js-toggle-links">
-                  <p class="p-reveal-versions is-dense"><a> Show all versions ({{release_filters|length - 5}})</a></p>
-                  <p class="p-reveal-versions is-dense u-hide"><a>Show fewer</a></p>
+                  <p class="js-reveal-versions is-dense"><a> Show all versions ({{release_filters|length - 5}})</a></p>
+                  <p class="js-reveal-versions is-dense u-hide"><a>Show fewer</a></p>
                 </span>
                </li>
              </ul>
@@ -212,22 +219,71 @@
     const filters = document.querySelectorAll(".js-enable-apply-filters")
     filters.forEach(filter => {
       filter.addEventListener("change", () => {
-        if(!filtersSelected.includes(filter.value)) {
-          filtersSelected.push(filter.value)
+        if(!filtersSelected.includes(filter)) {
+          filtersSelected.push(filter)
         } else {
-          const index = filtersSelected.indexOf(filter.value)
+          const index = filtersSelected.indexOf(filter)
           filtersSelected.splice(index, 1)
         }
+        const button = document.querySelector("#apply-filters");
         if(filtersSelected.length) {
-          document.querySelector("#apply-filters").removeAttribute("disabled")
+          button.removeAttribute("disabled")
         } else {
-          document.querySelector("#apply-filters").disabled = true
+          button.disabled = true
         }
       })
     })
+  
+    function displayFilterCount() {
+      const accordion = document.querySelector(".js-filter-count")
+      const accordionTabs = accordion.querySelectorAll(".p-accordion__tab")
+      accordionTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          let vendorFilterCount = 0; 
+          let categoryFilterCount = 0;
+          let releaseFilterCount = 0;
+          filtersSelected.forEach(filter => {
+            if(filter.id === "vendor-filter") {
+              vendorFilterCount++;
+            } else if (filter.id === "category-filter") {
+              categoryFilterCount++;
+            } else {
+              releaseFilterCount++;
+            }
+          })
+          const chip = tab.querySelector(".p-round-chip")
+          chip.classList.toggle("u-hide")
+          
+          const categoryChipValue = tab.querySelector("#category-count")
+          if(categoryChipValue) {
+            categoryChipValue.innerHTML = categoryFilterCount
+          }
+          const vendorChipValue = tab.querySelector("#vendor-count")
+          if(vendorChipValue) {
+            vendorChipValue.innerHTML = vendorFilterCount
+          }
+          const releaseChipValue = tab.querySelector("#release-count")
+          if(releaseChipValue) {
+            releaseChipValue.innerHTML = releaseFilterCount
+          }
+          
+          // Add line break in title to keep chip on same line
+          const header = tab.querySelector(".p-certification-header")
+          if(header.innerHTML.includes("Certified")) {
+            if(!chip.classList.contains("u-hide")) {
+              header.innerHTML = "Certified Ubuntu <br> release"
+            } else {
+              header.innerHTML = "Certified Ubuntu release"
+            }
+          }
+        })
+      })
+    }
+    displayFilterCount()
   }
 
   enableApplyFilters()
+
   //function to ensure only the option which has been changed is appended to the URL
   function updateResultsPerPage() {
     let resultsDropdowns = document.querySelectorAll(".p-results-per-page");
@@ -247,7 +303,7 @@
   function toggleVendorsList() {
     const vendorSection = document.querySelector("#vendor-section");
     const vendorPanel = vendorSection.querySelector(".p-accordion__panel");
-    const toggleVendorButtons = document.querySelectorAll(".p-reveal-vendors");
+    const toggleVendorButtons = document.querySelectorAll(".js-reveal-vendors");
     toggleVendorButtons.forEach((button) => {
       button.addEventListener("click", () => {
         window.scrollTo(0, 360);
@@ -263,7 +319,7 @@
   function toggleVersionsList() {
     const versionSection = document.querySelector("#version-section");
     const versionPanel = versionSection.querySelector(".p-accordion__panel");
-    const toggleVersionButtons = document.querySelectorAll(".p-reveal-versions");
+    const toggleVersionButtons = document.querySelectorAll(".js-reveal-versions");
     toggleVersionButtons.forEach((button) => {
       button.addEventListener("click", () => {
         versionPanel.classList.toggle("is-collapsed");
@@ -276,7 +332,7 @@
   toggleVersionsList();
   
   //hides "show all .." and "show fewer" links when the accordion is closed
-  function toggleLinks() {
+  function toggleShowAllLinks() {
     const filterSections = document.querySelectorAll(
       ".p-accordion__group--certified"
     );
@@ -290,7 +346,7 @@
       });
     });
   }
-  toggleLinks();
+  toggleShowAllLinks();
 
 function toggleDrawer(sideNavigation, show) {
   if (sideNavigation) {
