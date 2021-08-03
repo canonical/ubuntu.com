@@ -388,3 +388,106 @@ def certified_home():
             soc_releases=soc_releases,
             soc_vendors=soc_vendors,
         )
+
+
+def certified_desktops():
+
+    certified_releases = api.certified_releases(limit="0")["objects"]
+    certified_makes = api.certified_makes(limit="0")["objects"]
+
+    # Search results filters
+    all_releases = []
+    release_filters = []
+    all_vendors = []
+    vendor_filters = []
+
+    for release in certified_releases:
+        version = release["release"]
+
+        if release not in all_releases:
+            # UX improvement: selected filter on top
+            if version not in request.args.getlist("release"):
+                all_releases.append(version)
+                all_releases = sorted(all_releases, reverse=True)
+            else:
+                release_filters.append(version)
+
+    for vendor in certified_makes:
+        make = vendor["make"]
+
+        if make not in all_vendors:
+            # UX improvement: selected filter on top
+            if make not in request.args.getlist("vendor"):
+                all_vendors.append(make)
+                all_vendors = sorted(all_vendors)
+            else:
+                vendor_filters.append(make)
+
+    query = request.args.get("q", default=None, type=str)
+
+    # Old site replacements
+    if set(request.args) & set(["query", "vendors"]):
+        # Convert ImmutableMultiDict into normal dict
+        parameters = request.args.to_dict()
+        # Do the replacements
+        if "query" in parameters:
+            parameters["q"] = parameters["query"]
+            del parameters["query"]
+
+        if "vendors" in parameters:
+            parameters["vendor"] = parameters["vendors"]
+            del parameters["vendors"]
+
+        # Convert back into query string and redirect
+        return redirect(f"/certified?{urlencode(parameters)}", 301)
+
+    limit = request.args.get("limit", default=20, type=int)
+    offset = request.args.get("offset", default=0, type=int)
+
+    releases = (
+        ",".join(request.args.getlist("release"))
+        if request.args.getlist("release")
+        else None
+    )
+    vendors = (
+        request.args.getlist("vendor")
+        if request.args.getlist("vendor")
+        else None
+    )
+
+    models_response = api.certified_models(
+        category__in="Desktop",
+        major_release__in=releases,
+        vendor=vendors,
+        query=query,
+        offset=offset,
+        limit=limit,
+    )
+
+    results = models_response["objects"]
+
+    # UX improvement: selected filter on top
+    vendor_filters.extend(all_vendors)
+    release_filters.extend(all_releases)
+
+    for index, model in enumerate(results):
+        # Replace "Ubuntu Core" with "Device"
+        if model["category"] == "Ubuntu Core":
+            results[index]["category"] = "Device"
+
+    # Pagination
+    total_results = models_response["meta"]["total_count"]
+
+    return render_template(
+        "certified/desktops-search-results.html",
+        results=results,
+        query=query,
+        releases=releases,
+        release_filters=release_filters,
+        vendor_filters=vendor_filters,
+        vendors=vendors,
+        total_results=total_results,
+        total_pages=math.ceil(total_results / limit),
+        offset=offset,
+        limit=limit,
+    )
