@@ -38,15 +38,15 @@ along with the following overlay file ([download it here][monitoring-pgt-overlay
 applications:
   prometheus:
     series: bionic
-    charm: cs:prometheus2-11
+    charm: cs:prometheus2
     constraints: "mem=4G root-disk=16G"
     num_units: 1
   grafana:
-    charm: cs:grafana-37
+    charm: cs:grafana
     expose: true
     num_units: 1
   telegraf:
-    charm: cs:telegraf-36
+    charm: cs:telegraf
 relations:
   - [prometheus:grafana-source, grafana:grafana-source]
   - [telegraf:prometheus-client, prometheus:target]
@@ -182,7 +182,7 @@ install time, and can be retrieved by running:
 juju ssh nagios/0 sudo cat /var/lib/juju/nagios.passwd
 ```
 
-![nagios dashboard image][https://assets.ubuntu.com/v1/4b109895-CDK-nagios.png]
+![nagios dashboard image](https://assets.ubuntu.com/v1/4b109895-CDK-nagios.png)
 
 ### Using an existing Nagios service
 
