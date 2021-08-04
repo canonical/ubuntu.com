@@ -40,14 +40,23 @@ function enableApplyFilters() {
 
         const categoryChipValue = tab.querySelector("#category-count");
         if (categoryChipValue) {
+          if (categoryFilterCount === 0) {
+            chip.classList.toggle("u-hide");
+          }
           categoryChipValue.innerHTML = categoryFilterCount;
         }
         const vendorChipValue = tab.querySelector("#vendor-count");
         if (vendorChipValue) {
+          if (vendorFilterCount === 0) {
+            chip.classList.toggle("u-hide");
+          }
           vendorChipValue.innerHTML = vendorFilterCount;
         }
         const releaseChipValue = tab.querySelector("#release-count");
         if (releaseChipValue) {
+          if (releaseFilterCount === 0) {
+            chip.classList.toggle("u-hide");
+          }
           releaseChipValue.innerHTML = releaseFilterCount;
         }
 
