@@ -50,7 +50,7 @@ const DetailsContent = () => {
           },
         ])}
       </Row>
-      <h5 className="u-no-padding--top p-subscribe__details-small-title">
+      <h5 className="u-no-padding--top p-subscription__details-small-title">
         Subscription
       </h5>
       <CodeSnippet
