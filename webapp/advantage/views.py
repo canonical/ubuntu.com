@@ -551,6 +551,10 @@ def post_anonymised_customer_info(**kwargs):
     address = kwargs.get("address")
     tax_id = kwargs.get("tax_id")
 
+    tax_id["value"] = tax_id["value"].replace(" ", "")
+    if tax_id["value"] == "":
+        tax_id["delete"] = True
+
     advantage = UAContractsAPI(
         session, token, token_type=token_type, api_url=api_url
     )
@@ -635,6 +639,10 @@ def post_customer_info(**kwargs):
     address = kwargs.get("address")
     name = kwargs.get("name")
     tax_id = kwargs.get("tax_id")
+
+    tax_id["value"] = tax_id["value"].replace(" ", "")
+    if tax_id["value"] == "":
+        tax_id["delete"] = True
 
     advantage = UAContractsAPI(
         session, token, token_type=token_type, api_url=api_url
