@@ -1,5 +1,7 @@
 import React from "react";
 
+import SubscriptionEdit from "../SubscriptionEdit";
+
 const SubscriptionDetails = () => (
   <div className="p-subscribe__details">
     <p>Details</p>
@@ -12,6 +14,7 @@ const SubscriptionDetails = () => (
     <p>Details</p>
     <p>Details</p>
     <p>Details</p>
+    <SubscriptionEdit />
   </div>
 );
 
