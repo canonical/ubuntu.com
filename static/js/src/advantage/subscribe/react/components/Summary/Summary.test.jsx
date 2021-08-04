@@ -1,11 +1,14 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { add, format } from "date-fns";
 import Summary from "./Summary";
 import * as useProduct from "../../APICalls/useProduct";
 import * as usePreview from "../../APICalls/usePreview";
 
 import { product, preview } from "../../utils/test/Mocks";
+
+const DATE_FORMAT = "dd MMMM yyyy";
 
 describe("Summary", () => {
   it("renders correctly with no preview", () => {
@@ -24,10 +27,15 @@ describe("Summary", () => {
       "3 x $100.00"
     );
     expect(wrapper.find("[data-test='start-date']").text()).toEqual(
-      "29 July 2021"
+      format(new Date(), DATE_FORMAT)
     );
     expect(wrapper.find("[data-test='end-date']").text()).toEqual(
-      "29 July 2022"
+      format(
+        add(new Date(), {
+          years: 1,
+        }),
+        DATE_FORMAT
+      )
     );
     expect(wrapper.find("[data-test='subtotal']").text()).toEqual("$300.00");
   });
@@ -42,10 +50,15 @@ describe("Summary", () => {
     const wrapper = shallow(<Summary />);
 
     expect(wrapper.find("[data-test='start-date']").text()).toEqual(
-      "29 July 2021"
+      format(new Date(), DATE_FORMAT)
     );
     expect(wrapper.find("[data-test='end-date']").text()).toEqual(
-      "29 August 2021"
+      format(
+        add(new Date(), {
+          months: 1,
+        }),
+        DATE_FORMAT
+      )
     );
   });
 
