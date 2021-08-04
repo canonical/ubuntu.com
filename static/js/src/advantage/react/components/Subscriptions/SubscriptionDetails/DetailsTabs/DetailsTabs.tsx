@@ -16,7 +16,7 @@ type ListItem = {
 
 const generateList = (title: string, items: ListItem[]) => (
   <>
-    <h5 className="u-no-padding--top p-subscribe__details-small-title">
+    <h5 className="u-no-padding--top p-subscription__details-small-title">
       {title}
     </h5>
     <List
