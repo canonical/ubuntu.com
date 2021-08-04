@@ -29,4 +29,10 @@
   .p-subscribe__details {
     padding: $card-padding;
   }
+
+  .p-subscriptions__sticky-footer-modal .p-modal__dialog {
+    display: grid;
+    // Push the modal actions to the bottom of the modal.
+    grid-template-rows: auto 1fr auto;
+  }
 }
