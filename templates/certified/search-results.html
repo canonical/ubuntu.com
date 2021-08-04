@@ -140,7 +140,7 @@
                </li>
              </ul>
            </aside>
-           <button href="#" class="p-button--positive p-update-results js-apply-filters" type=submit disabled>Apply filters</button>
+           <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply filters</button>
            <button class="p-button--neutral p-update-results" onclick="return clearFilters()">Clear filters</button>
          </div>
        </nav>
@@ -207,16 +207,6 @@
  </section>
 </form>
 
-
-<script>
-
- function clearFilters() {
-  location.assign(`/certified?q=`)
-   return false
- }
-
-</script>
-
-<script src="{{ versioned_static('js/src/certification-results.js') }}" type="module" defer></script>
+<script src="{{ versioned_static('js/src/certified-search-results.js') }}" defer></script>
 
 {% endblock content %}

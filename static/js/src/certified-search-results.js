@@ -1,3 +1,8 @@
+function clearFilters() {
+  location.assign(`/certified?q=`);
+  return false;
+}
+
 function enableApplyFilters() {
   const filtersSelected = [];
   const filters = document.querySelectorAll(".js-enable-apply-filters");
@@ -75,8 +80,6 @@ function enableApplyFilters() {
   displayFilterCount();
 }
 
-enableApplyFilters();
-
 //function to ensure only the option which has been changed is appended to the URL
 function updateResultsPerPage() {
   let resultsDropdowns = document.querySelectorAll(".p-results-per-page");
@@ -107,7 +110,6 @@ function toggleVendorsList() {
     });
   });
 }
-toggleVendorsList();
 
 function toggleVersionsList() {
   const versionSection = document.querySelector("#version-section");
@@ -122,7 +124,6 @@ function toggleVersionsList() {
     });
   });
 }
-toggleVersionsList();
 
 //hides "show all .." and "show fewer" links when the accordion is closed
 function toggleShowAllLinks() {
@@ -139,4 +140,8 @@ function toggleShowAllLinks() {
     });
   });
 }
+
+enableApplyFilters();
+toggleVersionsList();
+toggleVendorsList();
 toggleShowAllLinks();
