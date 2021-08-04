@@ -4,7 +4,6 @@ import FormRow from "./FormRow";
 
 describe("FormRow", () => {
   it("renders correctly", () => {
-    // const children = <input type="text" id="test-input">Test</input>;
     const wrapper = shallow(
       <FormRow label="test-label">
         <input type="text">test-input</input>
