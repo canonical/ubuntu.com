@@ -19,8 +19,13 @@
     </script>
 
     <div class="row">
-      <div class="col-12">
-        <h1>Your subscriptions</h1>
+      <div class="col-12 p-subscriptions__header">
+        <h1 class="u-no-margin--bottom">Your subscriptions</h1>
+        <div class="p-subscriptions__header-buttons">
+          <a class="p-button--positive" href="/advantage/subscribe{% if get_test_backend %}?test_backend=true{% endif %}">Buy new subscription</a>
+          <a class="p-button--neutral" href="/account/invoices{% if get_test_backend %}?test_backend=true{% endif %}">Invoices</a>
+          <a class="p-button--neutral" href="/account/payment-methods{% if get_test_backend %}?test_backend=true{% endif %}">Payment methods</a>
+        </div>
       </div>
     </div>
   </section>
