@@ -1,4 +1,7 @@
-import { Notification, notificationTypes } from "@canonical/react-components";
+import {
+  Notification,
+  NotificationSeverity,
+} from "@canonical/react-components";
 import React from "react";
 
 import { useURLs } from "../../../hooks";
@@ -15,21 +18,21 @@ const Notifications = () => {
           subscriptions
         </>
       ),
-      status: "Payment method:",
-      type: notificationTypes.CAUTION,
+      title: "Payment method:",
+      severity: NotificationSeverity.CAUTION,
     },
     {
       children:
         'Select a subscripton, then "Renew subscription..." to renew it.',
-      status: "Your subscription is about to expire.",
-      type: notificationTypes.CAUTION,
+      title: "Your subscription is about to expire.",
+      severity: NotificationSeverity.CAUTION,
     },
   ];
 
   return (
     <>
       {notifications.map((props, i) => (
-        <Notification {...props} key={`notification-${i}`} />
+        <Notification inline {...props} key={`notification-${i}`} />
       ))}
     </>
   );
