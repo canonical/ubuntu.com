@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useUsingTestBackend } from "./useUsingTestBackend";
 
 export type URLs = {
   [path: string]: URLs | string;
@@ -46,7 +46,7 @@ const appendTestBackend = <U extends URLs>(urls: U): U => {
  * it should be present.
  */
 export const useURLs = () => {
-  const { data: usingTestBackend } = useQuery("usingTestBackend");
+  const { usingTestBackend } = useUsingTestBackend();
   const urls = getURLs();
   return usingTestBackend ? appendTestBackend(urls) : urls;
 };
