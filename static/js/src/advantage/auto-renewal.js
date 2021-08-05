@@ -1,4 +1,4 @@
-import { setAutoRenewal } from "./contracts-api.js";
+import { setAutoRenewal } from "./api/contracts.js";
 
 const autoRenewalButton = document.querySelector(".js-reveal-renewal-options");
 const chevron = autoRenewalButton.querySelector(".p-icon--contextual-menu");

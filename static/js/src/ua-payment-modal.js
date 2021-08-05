@@ -11,7 +11,7 @@ import {
   postRenewalIDToProcessPayment,
   postPurchaseData,
   postPurchasePreviewData,
-} from "./advantage/contracts-api.js";
+} from "./advantage/api/contracts.js";
 
 import { parseForErrorObject } from "./advantage/error-handler.js";
 import { vatCountries } from "./advantage/countries-and-states.js";

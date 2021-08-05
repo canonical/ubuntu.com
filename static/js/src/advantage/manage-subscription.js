@@ -2,7 +2,7 @@ import {
   cancelContract,
   getPurchase,
   resizeContract,
-} from "./contracts-api.js";
+} from "./api/contracts.js";
 
 const stripe = window.Stripe(window.stripePublishableKey);
 

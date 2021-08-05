@@ -2,7 +2,7 @@ import {
   getPurchase,
   postInvoiceID,
   setPaymentMethod,
-} from "./advantage/contracts-api.js";
+} from "./advantage/api/contracts.js";
 
 // initialise Stripe
 const stripe = window.Stripe(window.stripePublishableKey);
