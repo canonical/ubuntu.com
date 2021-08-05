@@ -2,6 +2,14 @@
   // The default card padding.
   $card-padding: calc(#{$spv-inner--large} - 1px);
 
+  .p-subscriptions__header-title {
+    margin-bottom: $sp-xx-large;
+
+    @media only screen and (max-width: $breakpoint-medium) {
+      margin-bottom: $spv-outer--medium;
+    }
+  }
+
   // Apply the grid to the direct parent of the list and details elements.
   .p-subscriptions__card > .p-card__content {
     // Use grid to set the columns as we don't want the gutter between columns
