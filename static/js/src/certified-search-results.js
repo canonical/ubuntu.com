@@ -64,32 +64,20 @@ function enableApplyFilters() {
           }
           releaseChipValue.innerHTML = releaseFilterCount;
         }
-
-        // Add line break in title to keep chip on same line
-        const header = tab.querySelector(".p-certification-header");
-        if (header.innerHTML.includes("Certified")) {
-          if (!chip.classList.contains("u-hide")) {
-            header.innerHTML = "Certified Ubuntu <br> release";
-          } else {
-            header.innerHTML = "Certified Ubuntu release";
-          }
-        }
       });
     });
   }
   displayFilterCount();
 }
 
-//function to ensure only the option which has been changed is appended to the URL
+// function to ensure only the option which has been changed is appended to the URL
 function updateResultsPerPage() {
+  const searchResults = document.querySelector(".js-search-results");
   let resultsDropdowns = document.querySelectorAll(".p-results-per-page");
   resultsDropdowns.forEach((resultsDropdown) => {
     const options = resultsDropdown.querySelectorAll("option");
     options.forEach((option) => {
       if (option.selected) {
-        if (option.value === resultsDropdown.dataset.limit) {
-          resultsDropdown.name = "";
-        }
         searchResults.submit();
       }
     });
@@ -99,11 +87,11 @@ function updateResultsPerPage() {
 function toggleVendorsList() {
   const vendorSection = document.querySelector("#vendor-section");
   const vendorPanel = vendorSection.querySelector(".p-accordion__panel");
-  const toggleVendorButtons = document.querySelectorAll(".js-reveal-vendors");
+  const toggleVendorButtons = document.querySelectorAll(".p-reveal-vendors");
   toggleVendorButtons.forEach((button) => {
     button.addEventListener("click", () => {
       window.scrollTo(0, 360);
-      vendorPanel.classList.toggle("is-collapsed__vendors");
+      vendorPanel.classList.toggle("is-collapsed");
       toggleVendorButtons.forEach((button) => {
         button.classList.toggle("u-hide");
       });
@@ -114,10 +102,10 @@ function toggleVendorsList() {
 function toggleVersionsList() {
   const versionSection = document.querySelector("#version-section");
   const versionPanel = versionSection.querySelector(".p-accordion__panel");
-  const toggleVersionButtons = document.querySelectorAll(".js-reveal-versions");
+  const toggleVersionButtons = document.querySelectorAll(".p-reveal-versions");
   toggleVersionButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      versionPanel.classList.toggle("is-collapsed__versions");
+      versionPanel.classList.toggle("is-collapsed");
       toggleVersionButtons.forEach((button) => {
         button.classList.toggle("u-hide");
       });
