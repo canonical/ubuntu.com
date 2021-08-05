@@ -991,37 +991,6 @@ body {
   opacity: 0.33;
 }
 
-#payment-modal-form {
-  > .row {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  #card-element {
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.56);
-    border-radius: 0;
-    box-shadow: inset 0 1px 1px rgb(0 0 0 / 12%);
-    padding: calc(0.4rem - 1px) 0.5rem;
-
-    &.StripeElement--focus {
-      outline: 0.1875rem solid #2e96ff;
-      outline-offset: -0.1875rem;
-
-      &.StripeElement--invalid {
-        outline-color: $color-negative;
-      }
-    }
-
-    &.StripeElement--invalid {
-      background-image: url("#{$assets-path}4b0cd7fc-icon-error.svg");
-      background-position: calc(100% - 0.5rem) 50%;
-      background-repeat: no-repeat;
-      border-color: $color-negative;
-    }
-  }
-}
-
 .card-management-section {
   height: 600px;
   @media (max-width: $breakpoint-small) {
@@ -1053,6 +1022,37 @@ body {
 
   #card-element {
     margin: 0.5rem 0;
+  }
+}
+
+#payment-modal-form {
+  > .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #card-element {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.56);
+    border-radius: 0;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 12%);
+    padding: calc(0.4rem - 1px) 0.5rem;
+
+    &.StripeElement--focus {
+      outline: 0.1875rem solid #2e96ff;
+      outline-offset: -0.1875rem;
+
+      &.StripeElement--invalid {
+        outline-color: $color-negative;
+      }
+    }
+
+    &.StripeElement--invalid {
+      background-image: url("#{$assets-path}4b0cd7fc-icon-error.svg");
+      background-position: calc(100% - 0.5rem) 50%;
+      background-repeat: no-repeat;
+      border-color: $color-negative;
+    }
   }
 }
 
