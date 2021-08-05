@@ -3,13 +3,14 @@ module.exports = {
     node: true,
     browser: true,
     es6: true,
-    jest: true
+    jest: true,
   },
   extends: [
     "eslint:recommended",
     "eslint-config-prettier",
     "plugin:cypress/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
   globals: {
     Atomics: "readonly",
@@ -19,20 +20,24 @@ module.exports = {
     topojson: "readonly",
     ga: "readonly",
     grecaptcha: "readonly",
-    serialize: "readonly"
+    serialize: "readonly",
   },
-  parser: "@babel/eslint-parser",
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
     requireConfigFile: false,
     babelOptions: {
-      plugins: ["@babel/plugin-syntax-jsx"],
-      presets: ["@babel/preset-react"]
-    }
+      plugins: ["@babel/plugin-syntax-jsx", "@typescript-eslint"],
+      presets: ["@babel/preset-react"],
+    },
   },
   rules: {
     semi: ["error", "always"],
-    "no-prototype-builtins": "off"
-  }
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-this-alias": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "no-prototype-builtins": "off",
+  },
 };
