@@ -6,7 +6,7 @@ type Props = {
   expires: string;
   features: string[];
   machines: number;
-  period: string;
+  label: string;
   title: string;
 };
 
@@ -15,14 +15,14 @@ const ListCard = ({
   expires,
   features,
   machines,
-  period,
+  label,
   title,
 }: Props): JSX.Element => (
   <Card>
     <div className="p-subscriptions__list-card-title">
       <h5 className="u-no-padding--top u-no-margin--bottom">{title}</h5>
       <span className="p-text--x-small-capitalised u-text--muted p-subscriptions__list-card-period">
-        {period}
+        {label}
       </span>
     </div>
     <Row>

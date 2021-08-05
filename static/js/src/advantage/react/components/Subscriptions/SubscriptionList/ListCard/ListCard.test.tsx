@@ -11,7 +11,7 @@ describe("ListCard", () => {
         expires="23.04.2022"
         features={["ESM Infra", "livepatch", "24/5 support"]}
         machines={10}
-        period="Annual"
+        label="Annual"
         title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       />
     );
