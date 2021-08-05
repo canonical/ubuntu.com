@@ -5,7 +5,7 @@ import Content from "./Content";
 import Notifications from "./Notifications";
 
 const Subscriptions = () => (
-  <Strip>
+  <Strip className="u-no-padding--top">
     <Notifications />
     <Content />
   </Strip>
