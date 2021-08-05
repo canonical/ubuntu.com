@@ -803,13 +803,27 @@ def marketo_submit():
     }
 
     try:
-        response = marketo_api.submit_form(payload)
-        data = response.json()
-        if data["result"][0]["status"] == "skipped":
+        data = marketo_api.submit_form(payload).json()
+
+        if "result" not in data:
             flask.current_app.extensions["sentry"].captureMessage(
-                f"Markerto form {payload['formId']} failed to submit",
+                "Marketo form API Issue",
                 extra={"payload": payload, "response": data},
             )
+
+            return (
+                flask.jsonify(
+                    {"error": "There was an issue submitting the form."}
+                ),
+                400,
+            )
+
+        if data["result"][0]["status"] == "skipped":
+            flask.current_app.extensions["sentry"].captureMessage(
+                f"Marketo form {payload['formId']} failed to submit",
+                extra={"payload": payload, "response": data},
+            )
+
     except Exception:
         flask.current_app.extensions["sentry"].captureException(
             extra={"payload": payload}
