@@ -32,16 +32,6 @@
     </div>
   </section>
 
-  {% if pending_purchase_id %}
-  <div class="row">
-    <div class="p-notification--caution">
-      <p class="p-notification__response" role="status">
-        <span class="p-notification__status">Payment method:</span>You need to <a href="/account/payment-methods{% if get_test_backend %}?test_backend=true{% endif %}">update your payment methods</a> to ensure there is no interruption to your Ubuntu Advantage subscriptions
-      </p>
-    </div>
-  </div>
-  {% endif %}
-
   <div id="react-root">
     <section class="p-strip u-no-padding--top">
       <div class="row">
