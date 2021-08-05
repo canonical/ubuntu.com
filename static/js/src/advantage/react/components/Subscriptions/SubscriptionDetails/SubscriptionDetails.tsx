@@ -1,11 +1,11 @@
 import { Button } from "@canonical/react-components";
 import React from "react";
 
-import DetailsContent from "./DetailsTabs";
+import DetailsContent from "./DetailsContent";
 
 const SubscriptionDetails = () => {
   return (
-    <div className="p-subscribe__details">
+    <div className="p-subscriptions__details">
       <h4>UA Infra Essential (Virtual)</h4>
       <div className="u-sv4">
         <Button
