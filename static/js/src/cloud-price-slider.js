@@ -56,10 +56,6 @@ window.addEventListener("DOMContentLoaded", () => {
     hrsRange.addEventListener(isIE ? "change" : "input", function (e) {
       var vmHours = e.target.value;
 
-      // Slider color fill
-      if (!hrsRange.value) {
-        input.value = 0;
-      }
       renderSlider(hrsRange);
 
       publicOpexValue = parseInt(vmHours);
