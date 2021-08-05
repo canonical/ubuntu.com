@@ -8,7 +8,7 @@ describe("SubscriptionCancel", () => {
   it("handles closing the modal", () => {
     const onClose = jest.fn();
     const wrapper = shallow(<SubscriptionCancel onClose={onClose} />);
-    wrapper.find(Modal).invoke("close")();
+    wrapper.find(Modal).invoke("close")!();
     expect(onClose).toHaveBeenCalled();
   });
 });

@@ -1,11 +1,16 @@
-import { Button, CodeSnippet, Col, Row } from "@canonical/react-components";
-import { CodeSnippetBlockAppearance } from "@canonical/react-components/dist/components/CodeSnippet";
+import {
+  CodeSnippet,
+  CodeSnippetBlockAppearance,
+  Col,
+  ColProps,
+  Row,
+} from "@canonical/react-components";
 import React from "react";
 
 import DetailsTabs from "../DetailsTabs";
 
 type Feature = {
-  size?: number;
+  size?: ColProps["size"];
   title: string;
   value: string | number;
 };
@@ -50,7 +55,7 @@ const DetailsContent = () => {
           },
         ])}
       </Row>
-      <h5 className="u-no-padding--top p-subscription__details-small-title">
+      <h5 className="u-no-padding--top p-subscriptions__details-small-title">
         Subscription
       </h5>
       <CodeSnippet
