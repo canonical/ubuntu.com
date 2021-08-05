@@ -69,6 +69,8 @@ from webapp.views import (
     sitemap_index,
     account_query,
     sixteen_zero_four,
+    openstack_install,
+    marketo_submit,
 )
 
 from webapp.advantage.views import (
@@ -89,6 +91,8 @@ from webapp.advantage.views import (
     post_stripe_invoice_id,
     cancel_advantage_subscriptions,
     account_view,
+    invoices_view,
+    download_invoice,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -119,6 +123,7 @@ from webapp.certified.views import (
     certified_model_details,
     certified_hardware_details,
     certified_component_details,
+    certified_desktops,
 )
 
 
@@ -257,11 +262,13 @@ def context():
         "month_name": month_name,
         "months_list": months_list,
         "get_navigation": get_navigation,
+        "get_test_backend": flask.request.args.get("test_backend", ""),
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),
         "user_info": user_info(flask.session),
         "utm_campaign": flask.request.args.get("utm_campaign", ""),
+        "utm_content": flask.request.args.get("utm_content", ""),
         "utm_medium": flask.request.args.get("utm_medium", ""),
         "utm_source": flask.request.args.get("utm_source", ""),
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
@@ -280,9 +287,15 @@ def utility_processor():
 # Simple routes
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
+app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/account/payment-methods", view_func=payment_methods_view)
+app.add_url_rule("/account/invoices", view_func=invoices_view)
+app.add_url_rule(
+    "/account/invoices/download/<period>/<purchase_id>",
+    view_func=download_invoice,
+)
 app.add_url_rule(
     "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
 )
@@ -813,6 +826,16 @@ app.add_url_rule(
 app.add_url_rule(
     "/certified/component/<component_id>",
     view_func=certified_component_details,
+)
+app.add_url_rule(
+    "/certified/desktops",
+    view_func=certified_desktops,
+)
+
+# Override openstack/install
+app.add_url_rule(
+    "/openstack/install",
+    view_func=openstack_install,
 )
 
 

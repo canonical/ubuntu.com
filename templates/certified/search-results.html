@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<form class="form">
+<form name="searchResults">
  <section class="p-strip--suru-topped">
    <div class="u-fixed-width">
      <h1 class="u-sv3">Ubuntu certified
@@ -21,9 +21,46 @@
    </div>
    <div class="u-fixed-width">
      <div class="p-search-box">
-       <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}">
+       <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}" placeholder="Search hardware">
        <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
      </div>
+   </div>
+   <div class="row">
+     <div class="col-3">
+       <h2 class="p-heading--4">Filter</h2>
+     </div>
+     <div class="col-4">
+      <h2 class="p-heading--4">
+        {% if total_results %}
+        {% if total_results and total_results > 1 %}
+        {{ offset + 1 }}
+        &ndash;
+        {% if offset + limit > total_results %}
+          {{ total_results }}
+        {% else %}
+          {{ offset + limit }}
+        {% endif %}
+        of
+      {% endif %}
+      {{ total_results }} result{% if total_results != 1 %}s{% endif %}
+      {% endif %}
+      </h2>
+    </div>
+    <div class="col-5 u-align--right">
+    {% if total_results > 0 %}
+    <p style="display: inline-block; padding-right: 0.5rem;">Results per page</p>
+      <select class="p-results-per-page" name="limit" aria-label="Results per page" style="max-width: 5.3rem; min-width: 5.3rem;" onchange="updateResultsPerPage()" data-limit="{{ limit }}">
+        <option value="20"{% if limit == 20 %}selected{% endif %}>20</option>
+        {% if total_results > 20 %}
+        <option value="40"{% if limit == 40 %}selected{% endif %}>40</option>
+        {% endif %}
+        {% if total_results > 40 %}
+        <option value="60"{% if limit == 60 %}selected{% endif %}>60</option>
+        {% endif %}
+        <option value="{{ total_results }}" {% if limit == total_results %}selected{% endif %}>All</option>
+      </select>
+    {% endif %}
+    </div>
    </div>
    <div class="row">
      <div class="col-3 p-side-navigation" id="drawer">
@@ -46,7 +83,7 @@
                  <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
                    {% for category_filter in category_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input" id="category_filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
+                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input js-enable-apply-filters" id="category_filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
                       <div class="p-checkbox__label" id="{{ category_filter }}">
                         <span>{{ category_filter }}</span>
                       </div>
@@ -59,13 +96,12 @@
                    <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="true"><span class="p-certification-header">Vendor</span></button>
                  </div>
                  <hr>
-                 <section class="p-accordion__panel is-collapsed__vendors is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
+                 <section class="p-accordion__panel is-collapsed is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
                    {% for vendor_filter in vendor_filters %}
                    <label class="p-checkbox">
-                     <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
+                     <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
                      <div class="p-checkbox__label" id="{{ vendor_filter }}">
                        <span>{{ vendor_filter }}</span>
-                       </p>
                      </div>
                    </label>
                    {% endfor %}
@@ -80,10 +116,10 @@
                    <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true"><span class="p-certification-header">Certified Ubuntu release</span></button>
                  </div>
                  <hr>
-                 <section class="p-accordion__panel is-collapsed__versions is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
+                 <section class="p-accordion__panel is-collapsed is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
                    {% for release_filter in release_filters %}
                    <label class="p-checkbox">
-                     <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
+                     <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input js-enable-apply-filters" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
                      <div class="p-checkbox__label" id="{{ release_filter }}">
                        <span>{{ release_filter }}</span>
                      </div>
@@ -97,7 +133,8 @@
                </li>
              </ul>
            </aside>
-           <button href="#" class="p-button--positive p-update-results" type=submit>Update</button>
+           <button href="#" class="p-button--positive p-update-results" id="apply-filters" type=submit disabled>Apply filters</button>
+           <button class="p-button--neutral p-update-results" onclick="return clearFilters()">Clear filters</button>
          </div>
        </nav>
      </div>
@@ -106,42 +143,47 @@
        <table class="p-certification-results">
          <thead>
            <tr>
-             <th>
-               <span class="p-certification-header">
-               {% if total_results and total_results > 1 %}
-                 {{ offset + 1 }}
-                 &ndash;
-                 {% if offset + limit > total_results %}
-                   {{ total_results }}
-                 {% else %}
-                   {{ offset + limit }}
-                 {% endif %}
-                 of
-               {% endif %}
-               {{ total_results }} result{% if total_results != 1 %}s{% endif %}
-              </span>
-             </th>
              <th><span class="p-certification-header">Vendor</span></th>
+             <th><span class="p-certification-header">Model</span></th>
              <th><span class="p-certification-header">Category</span></th>
            </tr>
          </thead>
          <tbody>
            {% for result in results %}
            <tr>
-             <td><a href="/certified/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
              <td><a href="/certified?vendor={{ result.make }}">{{ result.make }}</a></td>
+             <td><a href="/certified/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
              <td>{{ result.category }}</td>
            </tr>
            {% endfor %}
          </tbody>
        </table>
-       {% with total_results=total_results, total_pages=total_pages, offset=offset, limit=limit, align="u-align--left"%}
-       {% include "security/cve/_pagination.html" %}
-       {% endwith %}
+       <div class="row">
+         <div class="col-5">
+          {% with total_results=total_results, total_pages=total_pages, offset=offset, limit=limit, align="u-align--left"%}
+          {% include "security/cve/_pagination.html" %}
+          {% endwith %}
+         </div>
+         <div class="col-4 u-align--right">
+          {% if total_results > 0 %}
+          <p style="display: inline-block; padding-right: 0.5rem;">Results per page</p>
+          <select class="p-results-per-page" name="limit" aria-label="Results per page" style="max-width: 5.3rem; min-width: 5.3rem;" onchange=updateResultsPerPage() data-limit="{{ limit }}">
+            <option value="20" {% if limit == 20 %}selected{% endif %}>20</option>
+            {% if total_results > 20 %}
+            <option value="40" {% if limit == 40 %}selected{% endif %}>40</option>
+            {% endif %}
+            {% if total_results > 40 %}
+            <option value="60" {% if limit == 60 %}selected{% endif %}>60</option>
+            {% endif %}
+            <option value="{{ total_results }}" name="all">All</option>
+          </select>
+        {% endif %}
+         </div>
+       </div>
      </div>
      {% else %}
-     <div class="col-5">
-       <h3>Why not try widening your search?</h3>
+     <div class="col-9">
+       <h3 class="p-heading--4">No results - why not try widening your search?</h3>
        <p>You can do this by:</p>
        <ul class="p-list">
          <li class="p-list__item is-ticked u-sv1">
@@ -160,6 +202,48 @@
 
 <script>
 
+ function clearFilters() {
+  location.assign(`/certified?q=`)
+   return false
+ }
+
+  function enableApplyFilters() {
+    const filtersSelected = [];
+    const filters = document.querySelectorAll(".js-enable-apply-filters")
+    filters.forEach(filter => {
+      filter.addEventListener("change", () => {
+        if(!filtersSelected.includes(filter.value)) {
+          filtersSelected.push(filter.value)
+        } else {
+          const index = filtersSelected.indexOf(filter.value)
+          filtersSelected.splice(index, 1)
+        }
+        if(filtersSelected.length) {
+          document.querySelector("#apply-filters").removeAttribute("disabled")
+        } else {
+          document.querySelector("#apply-filters").disabled = true
+        }
+      })
+    })
+  }
+
+  enableApplyFilters()
+  //function to ensure only the option which has been changed is appended to the URL
+  function updateResultsPerPage() {
+    let resultsDropdowns = document.querySelectorAll(".p-results-per-page");
+    resultsDropdowns.forEach((resultsDropdown) => {
+      const options = resultsDropdown.querySelectorAll("option");
+      options.forEach((option) => {
+        if (option.selected) {
+          if (option.value === resultsDropdown.dataset.limit) {
+            resultsDropdown.name = "";
+          }
+          searchResults.submit();
+        }
+      });
+    });
+  }
+
   function toggleVendorsList() {
     const vendorSection = document.querySelector("#vendor-section");
     const vendorPanel = vendorSection.querySelector(".p-accordion__panel");
@@ -167,7 +251,7 @@
     toggleVendorButtons.forEach((button) => {
       button.addEventListener("click", () => {
         window.scrollTo(0, 360);
-        vendorPanel.classList.toggle("is-collapsed__vendors");
+        vendorPanel.classList.toggle("is-collapsed");
         toggleVendorButtons.forEach((button) => {
           button.classList.toggle("u-hide");
         });
@@ -182,7 +266,7 @@
     const toggleVersionButtons = document.querySelectorAll(".p-reveal-versions");
     toggleVersionButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        versionPanel.classList.toggle("is-collapsed__versions");
+        versionPanel.classList.toggle("is-collapsed");
         toggleVersionButtons.forEach((button) => {
           button.classList.toggle("u-hide");
         });

@@ -29,16 +29,31 @@ from webapp.advantage.schemas import (
     post_customer_info,
     ensure_purchase_account,
     post_payment_method,
+    invoice_view,
 )
 
 
 session = talisker.requests.get_session()
 
+SERVICES = {
+    "canonical-ua": {
+        "short": "ua",
+        "name": "Canonical UA",
+    },
+    "canonical-blender": {
+        "short": "blender",
+        "name": "Blender Support",
+    },
+    "canonical-cube": {
+        "short": "cube",
+        "name": "Canonical CUBE",
+    },
+}
+
 
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
 @use_kwargs({"subscription": String(), "email": String()}, location="query")
 def advantage_view(**kwargs):
-    is_test_backend = kwargs.get("test_backend")
     api_url = kwargs.get("api_url")
     stripe_publishable_key = kwargs["stripe_publishable_key"]
     token = kwargs.get("token")
@@ -280,13 +295,11 @@ def advantage_view(**kwargs):
         open_subscription=open_subscription,
         new_subscription_id=new_subscription_id,
         stripe_publishable_key=stripe_publishable_key,
-        is_test_backend=is_test_backend,
     )
 
 
 @advantage_checks(check_list=["is_maintenance"])
 def advantage_shop_view(**kwargs):
-    is_test_backend = kwargs.get("test_backend")
     api_url = kwargs.get("api_url")
     stripe_publishable_key = kwargs.get("stripe_publishable_key")
     token = kwargs.get("token")
@@ -345,7 +358,6 @@ def advantage_shop_view(**kwargs):
 
     return flask.render_template(
         "advantage/subscribe/index.html",
-        is_test_backend=is_test_backend,
         stripe_publishable_key=stripe_publishable_key,
         account=account,
         previous_purchase_ids=previous_purchase_ids,
@@ -355,7 +367,6 @@ def advantage_shop_view(**kwargs):
 
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
 def payment_methods_view(**kwargs):
-    is_test_backend = kwargs.get("test_backend")
     stripe_publishable_key = kwargs["stripe_publishable_key"]
     api_url = kwargs.get("api_url")
     token = kwargs.get("token")
@@ -388,24 +399,18 @@ def payment_methods_view(**kwargs):
     return flask.render_template(
         "account/payment-methods/index.html",
         stripe_publishable_key=stripe_publishable_key,
-        is_test_backend=is_test_backend,
         default_payment_method=default_payment_method,
         pending_purchase_id=pending_purchase_id,
         account_id=account["id"],
     )
 
 
-@advantage_checks(check_list=["is_maintenance"])
+@advantage_checks(check_list=["is_maintenance", "view_need_guest"])
 @use_kwargs({"email": String()}, location="query")
 def advantage_thanks_view(**kwargs):
-    email = kwargs.get("email")
-
-    if user_info(flask.session):
-        return flask.redirect("/advantage")
-
     return flask.render_template(
         "advantage/subscribe/thank-you.html",
-        email=email,
+        email=kwargs.get("email"),
     )
 
 
@@ -546,6 +551,10 @@ def post_anonymised_customer_info(**kwargs):
     address = kwargs.get("address")
     tax_id = kwargs.get("tax_id")
 
+    tax_id["value"] = tax_id["value"].replace(" ", "")
+    if tax_id["value"] == "":
+        tax_id["delete"] = True
+
     advantage = UAContractsAPI(
         session, token, token_type=token_type, api_url=api_url
     )
@@ -630,6 +639,10 @@ def post_customer_info(**kwargs):
     address = kwargs.get("address")
     name = kwargs.get("name")
     tax_id = kwargs.get("tax_id")
+
+    tax_id["value"] = tax_id["value"].replace(" ", "")
+    if tax_id["value"] == "":
+        tax_id["delete"] = True
 
     advantage = UAContractsAPI(
         session, token, token_type=token_type, api_url=api_url
@@ -745,6 +758,90 @@ def account_view(**kwargs):
         "account/index.html",
         email=email,
     )
+
+
+@advantage_checks(check_list=["is_maintenance", "view_need_user"])
+@use_kwargs(invoice_view, location="query")
+def invoices_view(**kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
+    email = kwargs.get("email", "").strip()
+    marketplace = kwargs.get("marketplace")
+
+    advantage = UAContractsAPI(
+        session, token, api_url=api_url, is_for_view=True
+    )
+
+    accounts = advantage.get_accounts(email=email)
+
+    total_payments = []
+    for account in accounts:
+        raw_payments = advantage.get_account_purchases(
+            account_id=account["id"],
+            filters={"marketplace": marketplace},
+        )
+
+        if not raw_payments:
+            continue
+
+        product_listings = raw_payments["productListings"]
+        for raw_payment in raw_payments["purchases"]:
+            payment_id = raw_payment["id"]
+            payment_marketplace = raw_payment["marketplace"]
+            created_at = raw_payment["createdAt"]
+
+            total = None
+            if raw_payment.get("invoice"):
+                cost = raw_payment["invoice"]["total"] / 100
+                currency = raw_payment["invoice"]["currency"]
+                total = f"{cost} {currency}"
+
+            listing_id = raw_payment["purchaseItems"][0]["productListingID"]
+            period = None
+            for product_listing in product_listings:
+                if product_listing["id"] == listing_id:
+                    period = product_listing["period"]
+
+                    break
+
+            download_link = ""
+            if raw_payment.get("invoice"):
+                download_link = f"invoices/download/{period}/{payment_id}"
+
+            total_payments.append(
+                {
+                    "created_at": created_at,
+                    "service": SERVICES[payment_marketplace]["name"],
+                    "period": "Monthly" if period == "monthly" else "Annual",
+                    "date": parse(created_at).strftime("%d %B, %Y"),
+                    "total": total,
+                    "download_file_name": "Download",
+                    "download_link": download_link,
+                }
+            )
+
+    total_payments.sort(key=lambda item: item["created_at"], reverse=True)
+
+    return flask.render_template(
+        "account/invoices/index.html",
+        invoices=total_payments,
+        marketplace=marketplace,
+    )
+
+
+@advantage_checks(check_list=["is_maintenance", "view_need_user"])
+def download_invoice(purchase_id, **kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
+
+    advantage = UAContractsAPI(
+        session, token, api_url=api_url, is_for_view=True
+    )
+
+    purchase = advantage.get_purchase(purchase_id)
+    download_link = purchase["invoice"]["url"]
+
+    return flask.redirect(download_link)
 
 
 def _prepare_monthly_info(monthly_info, subscription, advantage):

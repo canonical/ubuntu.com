@@ -18,18 +18,34 @@ from ubuntu_release_info.data import Data
 from canonicalwebteam.store_api.stores.snapstore import SnapStore
 from canonicalwebteam.launchpad import Launchpad
 from geolite2 import geolite2
+from requests import Session
 from requests.exceptions import HTTPError
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
-
+from bs4 import BeautifulSoup
+from canonicalwebteam.discourse import (
+    DiscourseAPI,
+    Docs,
+    DocParser,
+)
 
 # Local
 from webapp.login import user_info
+from webapp.marketo import MarketoAPI
 
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
 store_api = SnapStore(session=talisker.requests.get_session())
+
+marketo_session = Session()
+talisker.requests.configure(marketo_session)
+marketo_api = MarketoAPI(
+    "https://066-EOV-335.mktorest.com",
+    os.getenv("MARKETO_API_CLIENT"),
+    os.getenv("MARKETO_API_SECRET"),
+    marketo_session,
+)
 
 
 def _build_mirror_list():
@@ -242,9 +258,9 @@ def post_build():
     """
 
     opt_in = flask.request.values.get("canonicalUpdatesOptIn")
-    full_name = flask.request.values.get("FullName")
+    full_name = flask.request.values.get("fullName")
     names = full_name.split(" ")
-    email = flask.request.values.get("Email")
+    email = flask.request.values.get("email")
     board = flask.request.values.get("board")
     system = flask.request.values.get("system")
     snaps = flask.request.values.get("snaps", "").split(",")
@@ -264,19 +280,22 @@ def post_build():
     context = {}
 
     # Submit user to marketo
-    session.post(
-        "https://pages.ubuntu.com/index.php/leadCapture/save",
-        data={
-            "canonicalUpdatesOptIn": opt_in,
-            "FirstName": " ".join(names[:-1]),
-            "LastName": names[-1] if len(names) > 1 else "",
-            "Email": email,
-            "formid": "3546",
-            "lpId": "2154",
-            "subId": "30",
-            "munchkinId": "066-EOV-335",
-            "imageBuilderStatus": "NULL",
-        },
+    marketo_api.submit_form(
+        {
+            "formId": "3546",
+            "input": [
+                {
+                    "leadFormFields": {
+                        "canonicalUpdatesOptIn": opt_in,
+                        "firstName": " ".join(names[:-1]),
+                        "lastName": names[-1] if len(names) > 1 else "",
+                        "email": email,
+                        "formid": "3546",
+                        "imageBuilderStatus": "NULL",
+                    }
+                }
+            ],
+        }
     )
 
     # Ensure webhook is created
@@ -399,25 +418,28 @@ def notify_build():
             f"{build_url}?ws.op=getFileUrls"
         ).json()[0]
 
-    session.post(
-        "https://pages.ubuntu.com/index.php/leadCapture/save",
-        data={
-            "FirstName": " ".join(names[:-1]),
-            "LastName": names[-1] if len(names) > 1 else "",
-            "Email": email,
-            "formid": "3546",
-            "lpId": "2154",
-            "subId": "30",
-            "munchkinId": "066-EOV-335",
-            "imageBuilderVersion": version,
-            "imageBuilderArchitecture": arch,
-            "imageBuilderBoard": board,
-            "imageBuilderSnaps": snaps,
-            "imageBuilderID": build_id,
-            "imageBuilderBuildlink": build_link,
-            "imageBuilderStatus": status,
-            "imageBuilderDownloadlink": download_url,
-        },
+    marketo_api.submit_form(
+        {
+            "formId": "3546",
+            "input": [
+                {
+                    "leadFormFields": {
+                        "firstName": " ".join(names[:-1]),
+                        "lastName": names[-1] if len(names) > 1 else "",
+                        "email": email,
+                        "formid": "3546",
+                        "imageBuilderVersion": version,
+                        "imageBuilderArchitecture": arch,
+                        "imageBuilderBoard": board,
+                        "imageBuilderSnaps": snaps,
+                        "imageBuilderID": build_id,
+                        "imageBuilderBuildlink": build_link,
+                        "imageBuilderStatus": status,
+                        "imageBuilderDownloadlink": download_url,
+                    }
+                }
+            ],
+        }
     )
 
     return "Submitted\n", 202
@@ -637,6 +659,53 @@ def engage_thank_you(engage_pages):
     return render_template
 
 
+def openstack_install():
+    """
+    Openstack install docs
+    Instructions for openstack installation pulled from Discourse
+    """
+    discourse_api = DiscourseAPI(
+        base_url="https://discourse.ubuntu.com/", session=session
+    )
+    openstack_install_parser = DocParser(
+        api=discourse_api,
+        index_topic_id=23346,
+        url_prefix="/openstack/install",
+    )
+    openstack_install_docs = Docs(
+        parser=openstack_install_parser,
+        document_template="/openstack/install.html",
+        url_prefix="/openstack/install",
+        blueprint_name="openstack-install-docs",
+    )
+
+    singlenode_topic = openstack_install_docs.parser.api.get_topic(21427)
+    singlenode_topic_soup = BeautifulSoup(
+        singlenode_topic["post_stream"]["posts"][0]["cooked"],
+        features="html.parser",
+    )
+    singlenode_content = openstack_install_parser._process_topic_soup(
+        singlenode_topic_soup
+    )
+    openstack_install_docs.parser._replace_lightbox(singlenode_topic_soup)
+
+    multinode_topic = openstack_install_docs.parser.api.get_topic(18259)
+    multinode_topic_soup = BeautifulSoup(
+        multinode_topic["post_stream"]["posts"][0]["cooked"],
+        features="html.parser",
+    )
+    multinode_content = openstack_install_docs.parser._process_topic_soup(
+        multinode_topic_soup
+    )
+    openstack_install_docs.parser._replace_lightbox(multinode_topic_soup)
+
+    return flask.render_template(
+        "openstack/install.html",
+        single_node=str(singlenode_content),
+        multi_node=str(multinode_content),
+    )
+
+
 # Blog
 # ===
 class BlogView(flask.views.View):
@@ -716,3 +785,44 @@ def sitemap_index():
 
     response.headers["Content-Type"] = "application/xml"
     return response
+
+
+def marketo_submit():
+    form_fields = {}
+    for key, value in flask.request.form.items():
+        if value:
+            form_fields[key] = value
+
+    form_fields.pop("thankyoumessage", None)
+    form_fields.pop("g-recaptcha-response", None)
+    return_url = form_fields.pop("returnURL", None)
+
+    payload = {
+        "formId": form_fields.pop("formid"),
+        "input": [{"leadFormFields": form_fields}],
+    }
+
+    try:
+        response = marketo_api.submit_form(payload)
+        data = response.json()
+        if data["result"][0]["status"] == "skipped":
+            flask.current_app.extensions["sentry"].captureMessage(
+                f"Markerto form {payload['formId']} failed to submit",
+                extra={"payload": payload, "response": data},
+            )
+    except Exception:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"payload": payload}
+        )
+
+        return (
+            flask.jsonify(
+                {"error": "There was an issue submitting the form."}
+            ),
+            400,
+        )
+
+    if return_url:
+        return flask.redirect(return_url)
+
+    return flask.jsonify({"message": "Form submitted."})

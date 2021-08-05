@@ -1165,6 +1165,8 @@ account:
   children:
     - title: Overview
       path: /account
+    - title: Invoices
+      path: /account/invoices
     - title: Payment methods
       path: /account/payment-methods
 
@@ -1654,8 +1656,13 @@ telco:
       path: /telco/openran
     - title: Magma
       path: /telco/magma
-    - title: Onboarding Network Functions
-      path: /telco/osm/onboarding-network-functions
+    - title: OSM
+      path: /telco/osm
+      persist: True
+
+      children:
+        - title: Onboarding Network Functions
+          path: /telco/osm/onboarding-network-functions
 
 certification:
   title: Hardware

@@ -197,24 +197,28 @@ if (accountContainer && accountContainerSmall) {
   fetch("/account.json")
     .then((response) => response.json())
     .then((data) => {
+      const queryString = window.location.search.includes("test_backend=true")
+        ? "?test_backend=true"
+        : "";
+
       if (data.account === null) {
-        accountContainerSmall.innerHTML =
-          '<a href="/login" class="p-navigation__link-anchor">Sign in</a>';
-        accountContainer.innerHTML =
-          '<a href="/login" class="p-navigation__link-anchor" style="padding-right: 1rem;">Sign in</a>';
+        accountContainerSmall.innerHTML = `<a href="/login${queryString}" class="p-navigation__link-anchor">Sign in</a>`;
+        accountContainer.innerHTML = `<a href="/login${queryString}" class="p-navigation__link-anchor" style="padding-right: 1rem;">Sign in</a>`;
       } else {
-        accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor">${data.account.fullname} (<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
+        accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor">${data.account.fullname} (<a href="/logout${queryString}" class="p-link--inverted">logout</a>)</span>`;
         accountContainer.innerHTML = `<div class="p-navigation__dropdown-link p-subnav">
             <a href="" class="p-navigation__link-anchor p-subnav__toggle" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
             <ul class="p-subnav__items--right" id="user-menu" aria-hidden="true">
-              <li><a href="/advantage" class="p-subnav__item">UA subscriptions</a></li>
-              <li><a href="/account/payment-methods" class="p-subnav__item">Payment methods</a></li>
+              <li><a href="/advantage${queryString}" class="p-subnav__item">UA subscriptions</a></li>
               <li>
                 <hr class="u-no-margin--bottom">
+                <a href="/account/invoices${queryString}" class="p-subnav__item">Invoices & Payments</a>
+              </li>
+              <li>
                 <a href="https://login.ubuntu.com/" class="p-subnav__item p-link--external">Account settings</a>
               </li>
               <li>
-                <a href="/logout" class="p-subnav__item">Logout</a>
+                <a href="/logout${queryString}" class="p-subnav__item">Logout</a>
               </li>
             </ul>
           </div>`;

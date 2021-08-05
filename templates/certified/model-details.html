@@ -156,9 +156,8 @@
         {% for component in components%}
         <tr>
           <th aria-label="Component"><a href="/certified/component/{{ component.id }}">{{ component.vendor_name }} {{ component.model }}</a></th>
-          {% for lts_release, details in component.lts_releases.items() %}
-            {% if lts_release == '14.04 ESM' %}
-              {% if details[0].third_party_driver == True %}
+            {% if '14.04 ESM' in component.lts_releases %}
+              {% if component.lts_releases['14.04 ESM'][0].third_party_driver %}
               <td aria-label="14.04 ESM">
                 {{ image (
                   url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",
@@ -170,16 +169,16 @@
                   ) | safe
                 }}
               </td>
-              {% elif details[0].status == 'inprogress' %}
+              {% elif component.lts_releases['14.04 ESM'][0].status == 'inprogress' %}
               <td aria-label="14.04 ESM"><i class="p-icon--help">In progress</i></td>
-              {% elif details[0].status == 'certified' %}
+              {% elif component.lts_releases['14.04 ESM'][0].status == 'certified' %}
               <td aria-label="14.04 ESM"><i class="p-icon--success">Supported</i></td>
               {% endif %}
             {% else %}
              <td aria-label="14.04 ESM"></td>
             {% endif %}
-            {% if lts_release == '16.04 LTS' %}
-              {% if details[0].third_party_driver == True %}
+            {% if '16.04 LTS' in component.lts_releases %}
+              {% if component.lts_releases['16.04 LTS'][0].third_party_driver %}
               <td aria-label="16.04 LTS">
                 {{ image (
                   url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",
@@ -192,16 +191,16 @@
                   ) | safe
                 }}
               </td>
-              {% elif details[0].status == 'inprogress' %}
+              {% elif component.lts_releases['16.04 LTS'][0].status == 'inprogress' %}
               <td aria-label="16.04 ESM"><i class="p-icon--help">Untested</i></td>
-              {% elif details[0].status == 'certified'%}
+              {% elif component.lts_releases['16.04 LTS'][0].status == 'certified'%}
               <td aria-label="16.04 LTS"><i class="p-icon--success">Supported</i></td>
               {% endif %}
             {% else %}
              <td aria-label="16.04 LTS"></td>
             {% endif %}
-            {% if lts_release == '18.04 LTS' %}
-              {% if details[0].third_party_driver == True %}
+            {% if '18.04 LTS' in component.lts_releases %}
+              {% if component.lts_releases['18.04 LTS'][0].third_party_driver %}
               <td aria-label="18.04 LTS">
                 {{ image (
                   url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",
@@ -214,16 +213,16 @@
                   ) | safe
                 }}
               </td>
-              {% elif details[0].status == 'inprogress' %}
+              {% elif component.lts_releases['18.04 LTS'][0].status == 'inprogress' %}
               <td aria-label="18.04 ESM"><i class="p-icon--help">In progress</i></td>
-              {% elif details[0].status == 'certified'%}
+              {% elif component.lts_releases['18.04 LTS'][0].status == 'certified'%}
               <td aria-label="18.04 LTS"><i class="p-icon--success">Supported</i></td>
               {% endif %}
             {% else %}
              <td aria-label="18.04 LTS"></td>
             {% endif %}
-            {% if lts_release == '20.04 LTS' %}
-              {% if details[0].third_party_driver == True %}
+            {% if '20.04 LTS' in component.lts_releases %}
+              {% if component.lts_releases['20.04 LTS'][0].third_party_driver %}
               <td aria-label="20.04 LTS">
                 {{ image (
                   url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",
@@ -236,15 +235,14 @@
                   ) | safe
                 }}
               </td>
-              {% elif details[0].status == 'inprogress' %}
+              {% elif component.lts_releases['20.04 LTS'][0].status == 'inprogress' %}
               <td aria-label="20.04 ESM"><i class="p-icon--help">In progress</i></td>
-              {% elif details[0].status == 'certified' %}
+              {% elif component.lts_releases['20.04 LTS'][0].status == 'certified' %}
               <td aria-label="20.04 LTS"><i class="p-icon--success">Supported</i></td>
               {% endif %}
             {% else %}
              <td aria-label="20.04 LTS"></td>
             {% endif %}
-          {% endfor %}
           <td aria-label="Comments" >{{ component.note }}</td>
         </tr>
         {% endfor %}

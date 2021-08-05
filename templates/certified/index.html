@@ -33,7 +33,7 @@
       <div class="col-12" style="margin-top: 1rem;">
         <div class="p-form__group">
           <div class="p-search-box">
-            <input class="p-search-box__input" type="text" name="q" id="text" value="{{ query or '' }}" required>
+            <input class="p-search-box__input" type="text" name="q" id="text" value="{{ query or '' }}" placeholder="Search hardware" required>
             <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
             <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
           </div>
@@ -74,7 +74,7 @@
         </li>
         {% endfor %}
       </ul>
-      <p><a href="/certified?category=Desktop" class="p-button--positive">See all</a></p>
+      <p><a href="/certified/desktops" class="p-button--positive">See all</a></p>
     </div>
     <div class="col-6 p-card">
       {{ image (

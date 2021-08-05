@@ -1,0 +1,483 @@
+{% extends "telco/base_telco.html" %}
+
+{% block title %}OSM{% endblock %}
+
+{% block meta_description %}Canonical Charmed OSM, open source,carrier grade and supported orchestrator for telecommunication service providers.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1LQim0WRVdDZE9-ToFKSD52O7kgurMoytrgDDAPYnug8/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-topped">
+    <div class="row u-equal-height u-vertically-center">
+      <div class="col-7">
+        <h1>
+          NFV Orchestration with Open Source MANO
+        </h1>
+        <p>
+          Automate deployment and operations of network functions, and benefit from reduced operational costs, by using an open source implementation of ETSI NFV MANO. As a key contributor to the Open Source MANO project, we are excited to help you on your NFV journey.
+        </p>
+        <p>
+          <a href="/telco/osm/contact-us" class="p-button--positive js-invoke-modal">Contact us to migrate today</a>
+        </p>
+      </div>
+      <div class="col-5 u-align--center u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/a2e4b89f-opensource-MANO.svg",
+          alt="",
+          width="370",
+          height="133",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered no-padding--bottom">
+  <div class="row">
+    <div class="col-6">
+      <h2>OSM</h2>
+      <h4>Open-source implementation of ETSI NFV MANO stack</h4>
+      <p>Allows Telecommunications Service Providers (TSPs) to move from traditional, legacy networking services to cloud-native network functions.</p>
+      <p>Fully aligned with ETSI NFV Information Models.</p>
+      <p>
+        <a href="/engage/telco-network-functions-whitepaper">Download the whitepaper&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/95819cbd-OSM-1.svg",
+        alt="",
+        width="514",
+        height="360",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/371e19a9-OSM-3.svg",
+        alt="",
+        width="524",
+        height="300",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h2>Charmed OSM</h2>
+      <p>To improve the stability of deployments and provide telcos with a production-grade platform, Canonical delivers a pure upstream OSM distribution - <a class="p-link--external" href="https://osm.etsi.org/docs/user-guide/03-installing-osm.html#charmed-installation">Charmed OSM</a>.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Simplified deployment and operations</li>
+        <li class="p-list__item is-ticked">Highly available and resistant against failure</li>
+        <li class="p-list__item is-ticked">Predictable release cadence and upgrade path</li>
+      </ul>
+      <p>
+        <a class="p-link--external" href="https://charmed-osm.com/">Read more</a>
+      </p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h2>Network functions onboarding</h2>
+      <h4>Workload diversity</h4>
+      <p>OSM supports onboarding of virtualized network functions (VNFs), cloud-native network functions (CNFs) and physical network functions (PNFs) and reduces the complexity of day1 and day2 operations.</p>
+      <p>
+        <a href="/telco/osm/onboarding-network-functions">Onboarding Network Functions&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/77ecfc9e-OSM-2.svg",
+        alt="",
+        width="544",
+        height="300",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ef4506f8-OSM-4-2.svg",
+        alt="",
+        width="400",
+        height="373",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h2>Integration Management</h2>
+      <h4>Network functions are not alone</h4>
+      <p>Juju in OSM integrates network functions with other non-functional requirements like monitoring, logging, auditing and scaling. <a class="p-link--external" href="https://osm.etsi.org/wikipub/index.php/Creating_your_VNF_Charm">Charmed operators</a> automate application management by codifying business intentions.</p>
+      <p>
+        <a class="p-link--external" href="https://juju.is/docs/sdk">Understand Juju and charms</a>
+      </p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h2>Flexible VIM options</h2>
+      <p>OSM supports all the major VIMs (virtualized infrastructure manager) in the ecosystem.</p>
+      <p>A single OSM instance can deploy network functions on OpenStack, AWS, VMware and k8s clusters.
+      </p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e5c5a65d-Flexible-VIM-logo-cloud.svg",
+        alt="",
+        width="498",
+        height="300",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/9f21a863-OSM-5.svg",
+        alt="",
+        width="450",
+        height="134",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h2>Enterprise support</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Charmed OSM design and delivery</li>
+        <li class="p-list__item is-ticked">MANO stack enterprise support</li>
+        <li class="p-list__item is-ticked">Fully managed OSM</li>
+        <li class="p-list__item is-ticked">Onboarding network functions</li>
+      </ul>
+      <p>
+        <a href="/legal/ubuntu-advantage-service-description">Ubuntu Support&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered is-deep">
+  <div class="u-fixed-width">
+    <h2>Interesting OSM Resources</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+              alt="",
+              height="28",
+              width="32",
+              hi_def=True,
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+              loading="lazy",
+            ) | safe
+          }}
+          <div class="p-heading-icon__title">WEBINAR</div>
+        </div>
+        <h3 class="p-heading--four">
+          <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/477398?utm_source=brighttalk-recommend&utm_campaign=network_weekly_email&utm_medium=email&utm_content=collab&utm_term=162021">Model-driven Audit Trail Logs infrastructure for Telco VNFs</a>
+        </h3>
+      </div>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+              alt="",
+              height="28",
+              width="32",
+              hi_def=True,
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+              loading="lazy",
+            ) | safe
+          }}
+          <div class="p-heading-icon__title">WEBINAR</div>
+        </div>
+        <h3 class="p-heading--four">
+          <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/458500?utm_source=brighttalk-portal&utm_medium=web&utm_content=osm&utm_term=search-result-4&utm_campaign=webcasts-search-results-feed">Canonical's OSM for Telcos</a>
+        </h3>
+        <h3 class="p-heading--four">
+          <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/421898?utm_source=brighttalk-portal&utm_medium=web&utm_content=osm&utm_term=search-result-7&utm_campaign=webcasts-search-results-feed">NFV, cloud-native networking and OSM: everything you need to know</a>
+        </h3>
+      </div>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/75902002-news-feed-strip-stock_ebook.svg",
+              alt="",
+              height="28",
+              width="32",
+              hi_def=True,
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+              loading="lazy",
+            ) | safe
+          }}
+          <div class="p-heading-icon__title">WHITEPAPER</div>
+        </div>
+        <h3 class="p-heading--four">
+          <a href="/engage/telco-network-functions-whitepaper">Building and orchestrating network functions&nbsp;&rsaquo;</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered u-hide--small">
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <h3 class="p-logo-section__title p-muted-heading u-align--center">
+        Trusted by leading service providers, globally
+      </h3>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg",
+            alt="",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/eaf98009-Bell_Blue_large_transparent.png",
+            alt="Bell Canada",
+            height="55",
+            width="83",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/ac2000c4-Charter+Communications.svg",
+            alt="Charter Communications",
+            height="33",
+            width="97",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/5a9dfd45-Liberty-Global-Logo.png",
+            alt="Liberty Global",
+            height="160",
+            width="160",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/03a06060-logo-deutschetelekom.svg",
+            alt="Deutshe Telekom",
+            height="29",
+            width="130",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg",
+            alt="BT",
+            height="64",
+            width="64",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/88730cec-Telefonica.png",
+            alt="Telefonica",
+            height="75",
+            width="100",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/25de1877-Tele2.svg",
+            alt="Tele2",
+            height="30",
+            width="80",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/73135672-ntt-logo.svg",
+            alt="NTT",
+            height="40",
+            width="100",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/481063cd-pccw.svg",
+            alt="PCCW",
+            height="50",
+            width="144",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/57eb4484-NTT_DoCoMo_logo.svg",
+            alt="Docomo",
+            height="28",
+            width="100",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/3218bf54-Verizon_2015_logo_-vector.svg",
+            alt="Verizon",
+            height="27",
+            width="100",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d2bfbb2b-MTS_logo_%282016%29.svg",
+            alt="MTS",
+            width="114",
+            height="42",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/1459d379-tmn_logo.png",
+            alt="tmn",
+            width="159",
+            height="70",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logo"},
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-vertically-aligned">
+    <div class="col-7">
+    <h3>Innovate in telecommunications with Canonical</h3>
+    <p>The experts in open source operations, from cloud to devices are waiting to help you on your journey.</p>
+    <p>
+      <a href="/telco/osm/contact-us" class="p-button--positive js-invoke-modal">Let's talk</a>
+    </p>
+    </div>
+    <div class="col-5 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+        alt="",
+        width="211",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/osm-contact-us" data-form-id="3471" data-lp-id="" data-return-url="https://ubuntu.com/telco/osm/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+
+{% endblock content %}

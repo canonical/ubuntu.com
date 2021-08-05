@@ -30,7 +30,7 @@ const CostCalculatorForm = () => {
       parseInt(e.target.value) > parseInt(e.target.max) ||
       e.target.value === ""
         ? `Please enter a value between ${e.target.min} and ${e.target.max}`
-        : false;
+        : null;
 
     e.target.name !== "supportLevel"
       ? setFormState({
@@ -45,7 +45,7 @@ const CostCalculatorForm = () => {
       <Form>
         <Row>
           <Col size="6">
-            <h3 class="p-heading--4">
+            <h3 className="p-heading--4">
               Number of instances
               <Tooltip
                 position="top-right"
@@ -67,7 +67,7 @@ const CostCalculatorForm = () => {
               ariaLabel="Number of instances"
               required
             />
-            <h3 class="p-heading--4" style={{ marginTop: "2rem" }}>
+            <h3 className="p-heading--4" style={{ marginTop: "2rem" }}>
               Instance type
               <Tooltip
                 position="top-right"
@@ -104,7 +104,7 @@ const CostCalculatorForm = () => {
                   onChange={onChangeHandler}
                   type="number"
                   min="4"
-                  max="114"
+                  max="6114"
                   name="ephemeralStorage"
                   value={formState.ephemeralStorage.value}
                   error={formState.ephemeralStorage.error}
@@ -140,7 +140,7 @@ const CostCalculatorForm = () => {
                   onChange={onChangeHandler}
                   type="number"
                   min="0"
-                  max="221"
+                  max="221184"
                   name="persistentStorage"
                   value={formState.persistentStorage.value}
                   error={formState.persistentStorage.error}
@@ -150,7 +150,7 @@ const CostCalculatorForm = () => {
             </Row>
           </Col>
           <Col size="5" emptyLarge="8">
-            <h3 class="p-heading--4">
+            <h3 className="p-heading--4">
               Support level
               <Tooltip
                 position="top-right"
