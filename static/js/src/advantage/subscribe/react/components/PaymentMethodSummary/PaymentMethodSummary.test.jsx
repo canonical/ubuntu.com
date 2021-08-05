@@ -1,7 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { QueryClient, QueryClientProvider } from "react-query";
-import PaymentMethodSummary, { cardImageMap } from "./PaymentMethodSummary";
+import PaymentMethodSummary from "./PaymentMethodSummary";
 import * as useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
 
 import { userInfo } from "../../utils/test/Mocks";

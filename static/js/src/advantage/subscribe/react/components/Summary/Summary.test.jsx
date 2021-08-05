@@ -1,6 +1,5 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { add, format } from "date-fns";
 import Summary from "./Summary";
 import * as useProduct from "../../APICalls/useProduct";
