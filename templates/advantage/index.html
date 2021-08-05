@@ -18,9 +18,16 @@
       });
     </script>
 
-    <div class="row">
-      <div class="col-12">
-        <h1>Your subscriptions</h1>
+    <div class="row u-equal-height u-sv3">
+      <div class="col-5 u-vertically-center">
+        <h1 class="p-subscriptions__header-title">Your subscriptions</h1>
+      </div>
+      <div class="col-7 u-vertically-center u-align--right">
+        <div>
+          <a class="p-button--positive" href="/advantage/subscribe{% if get_test_backend %}?test_backend=true{% endif %}">Buy new subscription</a>
+          <a class="p-button--neutral" href="/account/invoices{% if get_test_backend %}?test_backend=true{% endif %}">Invoices</a>
+          <a class="p-button--neutral" href="/account/payment-methods{% if get_test_backend %}?test_backend=true{% endif %}">Payment methods</a>
+        </div>
       </div>
     </div>
   </section>
@@ -36,7 +43,7 @@
   {% endif %}
 
   <div id="react-root">
-    <section class="p-strip">
+    <section class="p-strip u-no-padding--top">
       <div class="row">
         <div class="col-12"><i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;</div>
       </div>
