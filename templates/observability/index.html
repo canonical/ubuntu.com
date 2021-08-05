@@ -33,24 +33,16 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width u-sv3">
     <h2>Reliable monitoring tools you can count on</h2>
     <p>Future-proof your open source observability with Ubuntu Advantage: a single, per-node package of the most comprehensive enterprise security and support for open source infrastructure and applications, including a variety of best-in-class monitoring tools and monitoring dashboards.</p>
     <a href="/advantage/subscribe" class="p-button--positive">Buy Ubuntu Advantage</a>
     <a href="/support">What is Ubuntu Advantage?</a>
   </div>
-</section>
-
-<section class="p-strip u-hide--small">
-  <div class="u-fixed-width">
-    <div class="p-logo-section">
-      <h2 class="u-align--center p-logo-section__title u-sv3">A selection of supported open source monitoring tools and dashboards</h2>
-    </div>
-  </div>
   <div class="row p-divider">
     <div class="col-3 p-divider__block">
-      <h3>Metrics</h3>
+      <h3 class="p-heading--four">Metrics</h3>
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
           {{ image (
@@ -63,7 +55,7 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">Prometheus</p>
+          <p class="p-heading-icon__title p-heading--five">Prometheus</p>
         </div>
       </div>
       <div class="p-heading-icon--small">
@@ -78,7 +70,7 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">InfluxDB</p>
+          <p class="p-heading-icon__title p-heading--five">InfluxDB</p>
         </div>
       </div>
       <div class="p-heading-icon--small">
@@ -93,12 +85,12 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">Telegraf</p>
+          <p class="p-heading-icon__title p-heading--five">Telegraf</p>
         </div>
       </div>
     </div>
     <div class="col-3 p-divider__block">
-      <h3>Distributed Tracing</h3>
+      <h3 class="p-heading--four">Distributed Tracing</h3>
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
           {{ image (
@@ -111,12 +103,12 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">Jaeger</p>
+          <p class="p-heading-icon__title p-heading--five">Jaeger</p>
         </div>
       </div>
     </div>
     <div class="col-3 p-divider__block">
-      <h3>Logs</h3>
+      <h3 class="p-heading--four">Logs</h3>
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
           {{ image (
@@ -129,7 +121,7 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">Elasticsearch</p>
+          <p class="p-heading-icon__title p-heading--five">Elasticsearch</p>
         </div>
       </div>
       <div class="p-heading-icon--small">
@@ -144,7 +136,7 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">Graylog</p>
+          <p class="p-heading-icon__title p-heading--five">Graylog</p>
         </div>
       </div>
       <div class="p-heading-icon--small">
@@ -159,12 +151,12 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">Filebeat</p>
+          <p class="p-heading-icon__title p-heading--five">Filebeat</p>
         </div>
       </div>
     </div>
     <div class="col-3 p-divider__block">
-      <h3>Dashboards and Alerting</h3>
+      <h3 class="p-heading--four">Dashboards and Alerting</h3>
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
           {{ image (
@@ -177,7 +169,7 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">Grafana</p>
+          <p class="p-heading-icon__title p-heading--five">Grafana</p>
         </div>
       </div>
       <div class="p-heading-icon--small">
@@ -192,7 +184,7 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">Kibana</p>
+          <p class="p-heading-icon__title p-heading--five">Kibana</p>
         </div>
       </div>
       <div class="p-heading-icon--small">
@@ -207,16 +199,12 @@
             attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <p class="p-heading-icon__title p-heading--four">Alertmanager</p>
+          <p class="p-heading-icon__title p-heading--five">Alertmanager</p>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<div class="u-fixed-width">
-  <hr />
-</div>
 
 <section class="p-strip is-bordered u-hide-small">
   <div class="u-fixed-width">
@@ -226,7 +214,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/bafeea04-logo-tele2.svg",
-            alt="",
+            alt="tele 2 logo",
             width="144",
             height="144",
             hi_def=True,
@@ -237,7 +225,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/caf603f5-Deutsche+Telekom.png",
-            alt="",
+            alt="deutche telekom logo",
             width="292",
             height="290",
             hi_def=True,
@@ -248,7 +236,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/5b20f1f1-2018-logo-PCCW.svg",
-            alt="",
+            alt="pccw logo",
             width="145",
             height="145",
             hi_def=True,
@@ -259,7 +247,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/bb4ee6fb-2018-logo-bnp-paribas.svg",
-            alt="",
+            alt="bnp paribas",
             width="146",
             height="146",
             hi_def=True,
@@ -270,7 +258,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/c2220484-logo-BT.svg",
-            alt="",
+            alt="bt logo",
             width="144",
             height="144",
             hi_def=True,
@@ -281,7 +269,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/cb930e58-2018-logo-cogeco.svg",
-            alt="",
+            alt="cogeco logo",
             width="145",
             height="145",
             hi_def=True,
@@ -292,7 +280,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/a2e4ca92-logo-rabobank.svg",
-            alt="",
+            alt="radobank logo",
             width="144",
             height="144",
             hi_def=True,
@@ -303,7 +291,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/52df407b-2018-logo-fibernet.svg",
-            alt="",
+            alt="fibernet direct logo",
             width="145",
             height="145",
             hi_def=True,
@@ -314,7 +302,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/99d78ec1-2018-logo-biznet-giocloud.svg",
-            alt="",
+            alt="biznet giocloud logo",
             width="145",
             height="145",
             hi_def=True,
@@ -325,7 +313,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/3e7e40cd-2018-logo-mimedia.svg",
-            alt="",
+            alt="mimedia logo",
             width="145",
             height="145",
             hi_def=True,
@@ -336,7 +324,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/8fe23d60-2018-logo-voidbridge.svg",
-            alt="",
+            alt="voidbridge logo",
             width="145",
             height="145",
             hi_def=True,
@@ -347,7 +335,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/f853c09b-2018-logo-uct.svg",
-            alt="",
+            alt="uct logo",
             width="145",
             height="145",
             hi_def=True,
@@ -365,15 +353,8 @@
     <h2>Managed monitoring tools, anywhere</h2>
     <p class="p-heading--four">You focus on your apps, we run the tools for you</p>
     <p>Great monitoring tools enable you to greatly improve your applications, but are hard and time-consuming to run reliably and at scale. Let us run the best open source monitoring tools for you, so you can leverage them to continuously improve your own applications.</p>
-    <p><a href="/managed/contact-us" class="p-button--positive">Request a free deployment assessment</a></p>
+    <p class="u-sv3"><a href="/managed/contact-us" class="p-button--positive">Request a free deployment assessment</a></p>
   </div>
-</section>
-
-<div class="u-fixed-width">
-  <hr />
-</div>
-
-<section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-4">
       {{ image (
@@ -462,27 +443,21 @@
   <hr />
 </div>
 
-<section class="p-strip">
+<section class="p-strip u-no-padding--bottom">
   <div class="u-fixed-width">
     <h2 class="p-heading--four">We run your monitoring tools anywhere</h2>
     <p>Your monitoring tools and monitoring dashboards, run by Canonical, wherever your applications are.</p>
     <p><a href="/managed/contact-us" class="p-button--positive">Request a free deployment assessment</a></p>
   </div>
-</section>
-
-<div class="u-fixed-width">
-  <hr />
-</div>
-
-<section class="p-strip u-no-padding--bottom u-hide-small">
   <div class="u-fixed-width">
     <div class="p-logo-section">
-      <p class="p-logo-section__title u-align--center">Optimise your open source observability</p>
+      <h3 class="p-logo-section__title u-align--center">Optimise your open source observability</h3>
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/57e46e3b-google-logo.svg",
-            alt="",
+            alt="google logo
+            ",
             width="146",
             height="144",
             hi_def=True,
@@ -493,7 +468,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/d789eb54-k8s-logo.svg",
-            alt="",
+            alt="k8s logo",
             width="145",
             height="144",
             hi_def=True,
@@ -504,7 +479,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/093f3200-aws-logo-white-spae.svg",
-            alt="",
+            alt="aws logo",
             width="145",
             height="145",
             hi_def=True,
@@ -515,7 +490,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/8607ec24-Azure-logo-2021.svg",
-            alt="",
+            alt="azure logo",
             width="144",
             height="144",
             hi_def=True,
@@ -526,7 +501,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/5a3b2944-Openstack-logo-2021.svg",
-            alt="",
+            alt="openstack logo",
             width="144",
             height="144",
             hi_def=True,
@@ -537,7 +512,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/bc0dcda4-vmware-logo.svg",
-            alt="",
+            alt="vmware logo",
             width="145",
             height="144",
             hi_def=True,
@@ -548,7 +523,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/62c0c762-oracle-logo.svg",
-            alt="",
+            alt="oracle logo",
             width="145",
             height="144",
             hi_def=True,
@@ -559,7 +534,7 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/8dc96822-maas-logo.svg",
-            alt="",
+            alt="maas logo",
             width="145",
             height="144",
             hi_def=True,
@@ -578,6 +553,9 @@
 
 <section class="p-strip">
   <div class="row">
+  <div class="p-logo-section">
+    <h2 class="p-logo-section__title u-align--center u-sv3">Open source monitoring you can lean on</h2>
+  </div>
     <div class="col-3">
       {{ image (
         url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",

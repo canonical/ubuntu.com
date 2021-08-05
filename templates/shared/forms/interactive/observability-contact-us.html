@@ -2,6 +2,7 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Let’s talk about open source enterprise observability</h2>
     </header>
 
     <div class="js-pagination js-pagination--1">
@@ -10,31 +11,17 @@
       <div class="js-formfield">
         <h3 class="p-heading--five">Why do you need observability for your applications?</h3>
         <div class="row u-no-padding">
-          <div class="col-6 u-sv3">
+          <div class="col-6">
             <input type="checkbox" id="why-observability-i-want-to-measure-and-improve-our-slis-slos-slas" name="why-observability">
             <label for="why-observability-i-want-to-measure-and-improve-our-slis-slos-slas">I want to measure and improve our SLIs, SLOs, SLAs</label>
-          </div>
-        </div>
-        <div class="row u-no-padding">
-          <div class="col-6 u-sv3">
             <input type="checkbox" id="why-observability-when-my-apps-are-down-we-lose-tons-of-money" name="why-observability">
             <label for="why-observability-when-my-apps-are-down-we-lose-tons-of-money">When my apps are down, we lose tons of money</label>
-          </div>
-        </div>
-        <div class="row u-no-padding">
-          <div class="col-6 u-sv3">
             <input type="checkbox" id="why-observability-i-want-to-sleep-soundly-at-night-when-i-am-on-call" name="why-observability">
             <label for="why-observability-i-want-to-sleep-soundly-at-night-when-i-am-on-call"> I want to sleep soundly at night when I am on call</label>
           </div>
-        </div>
-        <div class="row u-no-padding">
-          <div class="col-6 u-sv3">
+          <div class="col-6">
             <input type="checkbox" id="why-observability-i-want-to-know-who-is-impacted-and-how-badly-when-my-apps-have-problems" name="why-observability">
             <label for="why-observability-i-want-to-know-who-is-impacted-and-how-badly-when-my-apps-have-problems">I want to know who is impacted and how badly when my apps have problems</label>
-          </div>
-        </div>
-        <div class="row u-no-padding">
-          <div class="col-6 u-sv3">
             <input type="checkbox" id="why-observability-observability-helps-us-continuously-improving-the-user-experience" name="why-observability">
             <label for="why-observability-observability-helps-us-continuously-improving-the-user-experience">Observability helps us continuously improving the user experience</label>
           </div>
@@ -47,92 +34,75 @@
           <div class="col-3 u-sv3">
             <input type="checkbox" id="which-monitoring-tools-prometheus" name="which-monitoring-tools">
             <label for="which-monitoring-tools-prometheus">Prometheus</label>
-          </div>
-          <div class="col-3 u-sv3">
             <input type="checkbox" id="which-monitoring-tools-prometheus-alertmanager" name="which-monitoring-tools">
+
             <label for="which-monitoring-tools-prometheus-alertmanager">Prometheus Alertmanager</label>
-          </div>
-          <div class="col-3 u-sv3">
             <input type="checkbox" id="which-monitoring-tools-cortex" name="which-monitoring-tools">
             <label for="which-monitoring-tools-cortex">Cortex</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-thanos" name="which-monitoring-tools">
             <label for="which-monitoring-tools-thanos">Thanos</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-grafana" name="which-monitoring-tools">
             <label for="which-monitoring-tools-grafana">Grafana</label>
           </div>
           <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-grafana-loki" name="which-monitoring-tools">
             <label for="which-monitoring-tools-grafana-loki">Grafana Loki</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-grafana-tempo" name="which-monitoring-tools">
             <label for="which-monitoring-tools-grafana-tempo">Grafana Tempo</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-elasticsearch" name="which-monitoring-tools">
             <label for="which-monitoring-tools-elasticsearch">Elasticsearch</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-logstash" name="which-monitoring-tools">
             <label for="which-monitoring-tools-logstash">Logstash</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-kibana" name="which-monitoring-tools">
             <label for="which-monitoring-tools-kibana">Kibana</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-graylog" name="which-monitoring-tools">
             <label for="which-monitoring-tools-graylog">Graylog</label>
           </div>
           <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-jaeger" name="which-monitoring-tools">
             <label for="which-monitoring-tools-jaeger">Jaeger</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-opentracing" name="which-monitoring-tools">
             <label for="which-monitoring-tools-opentracing">OpenTracing</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-opencensus" name="which-monitoring-tools">
             <label for="which-monitoring-tools-opencensus">OpenCensus</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-opentelemetry" name="which-monitoring-tools">
             <label for="which-monitoring-tools-opentelemetry">OpenTelemetry</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-influxdb" name="which-monitoring-tools">
             <label for="which-monitoring-tools-influxdb">InfluxDB</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-fluentd" name="which-monitoring-tools">
             <label for="which-monitoring-tools-fluentd">FluentD</label>
           </div>
           <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-graphite" name="which-monitoring-tools">
             <label for="which-monitoring-tools-graphite">Graphite</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-proprietary-apm-tools-datadog-new-relic-dynatrace-instana-appdynamics-etc" name="which-monitoring-tools">
             <label for="which-monitoring-tools-proprietary-apm-tools-datadog-new-relic-dynatrace-instana-appdynamics-etc">Proprietary APM</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-aws-cloudwatch" name="which-monitoring-tools">
             <label for="which-monitoring-tools-aws-cloudwatch">AWS CloudWatch</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-azure-monitor" name="which-monitoring-tools">
             <label for="which-monitoring-tools-azure-monitor">Azure Monitor</label>
-          </div>
-          <div class="col-3 u-sv3">
+
             <input type="checkbox" id="which-monitoring-tools-google-stackdriver" name="which-monitoring-tools">
             <label for="which-monitoring-tools-google-stackdriver">Google Stackdriver</label>
-          </div>
-          <div class="col-4 u-sv3">
+
             <div class="js-other-container">
               <input type="checkbox" class="js-other-container__checkbox" id="which-monitoring-tools-other">
               <label for="which-monitoring-tools-other">Other</label>
@@ -188,7 +158,11 @@
             </div>
           </div>
         </div>
+      </div>
 
+      <div class="u-sv3 js-formfield">
+        <h3 class="p-heading--five">Have we missed something?</h3>
+        <textarea id="network-functions-team" aria-label="Have we missed something?" rows="3" placeholder="Anything extra you’d like to communicate about your needs or interests?"></textarea>
       </div>
 
       <div class="pagination">
@@ -199,11 +173,6 @@
 
 
     <div class="js-pagination js-pagination--3 u-hide">
-
-      <div class="u-sv3 js-formfield">
-        <h3 class="p-heading--five">Have we missed something?</h3>
-        <textarea id="network-functions-team" aria-label="Have we missed something?" rows="3" placeholder="Anything extra you’d like to communicate about your needs or interests?"></textarea>
-      </div>
 
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
