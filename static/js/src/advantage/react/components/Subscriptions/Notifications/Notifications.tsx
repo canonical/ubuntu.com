@@ -3,13 +3,12 @@ import {
   NotificationSeverity,
 } from "@canonical/react-components";
 import React from "react";
-import { useQuery } from "react-query";
 
-import { useURLs } from "../../../hooks";
+import { usePendingPurchaseId, useURLs } from "../../../hooks";
 
 const Notifications = () => {
   const urls = useURLs();
-  const { data: pendingPurchaseId } = useQuery("pendingPurchaseId");
+  const { pendingPurchaseId } = usePendingPurchaseId();
   const notifications = [
     {
       children:
