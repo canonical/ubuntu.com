@@ -38,6 +38,7 @@ class CertificationAPI:
         laptops__gte=None,
         smart_core__gte=None,
         soc__gte=None,
+        servers__gte=None,
         make__iexact=None,
     ):
         return self._get(
@@ -49,6 +50,7 @@ class CertificationAPI:
                 "laptops__gte": laptops__gte,
                 "smart_core__gte": smart_core__gte,
                 "soc__gte": soc__gte,
+                "servers__gte": servers__gte,
                 "make__iexact": make__iexact,
             },
         ).json()
@@ -145,15 +147,25 @@ class CertificationAPI:
         ).json()
 
     def certified_releases(
-        self, limit=None, offset=None, smart_core__gte=None, soc__gte=None
+        self,
+        limit=None,
+        offset=None,
+        desktops__gte=None,
+        laptops__gte=None,
+        smart_core__gte=None,
+        soc__gte=None,
+        servers__gte=None,
     ):
         return self._get(
             "certifiedreleases",
             params={
                 "limit": limit,
                 "offset": offset,
+                "desktops__gte": desktops__gte,
+                "laptops__gte": laptops__gte,
                 "smart_core__gte": smart_core__gte,
                 "soc__gte": soc__gte,
+                "servers__gte": servers__gte,
             },
         ).json()
 
