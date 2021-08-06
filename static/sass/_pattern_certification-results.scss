@@ -51,4 +51,26 @@
     max-width: 5.3rem;
     min-width: 5.3rem;
   }
+
+  .p-round-chip {
+    @extend .p-chip;
+
+    float: right;
+    margin-top: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .p-accordion__tab {
+    &:hover {
+      .p-round-chip {
+        $base-background-opacity-amount: 0.1;
+        $color-background-base: adjust-color(
+          $color-x-dark,
+          $lightness: 100% * (1 - $base-background-opacity-amount)
+        );
+
+        background-color: $color-background-base;
+      }
+    }
+  }
 }
