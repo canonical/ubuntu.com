@@ -16,7 +16,7 @@
       <p>Ubuntu Advantage is a single, per-node package of the most comprehensive enterprise security and support for open source infrastructure and applications, with managed service offerings available.</p>
       <p>
         <a href="/support/contact-us?product=support-overview" class="p-button--positive js-invoke-modal">Contact us</a>
-        <a href="/advantage" class="p-button--neutral">Buy Ubuntu Advantage</a>
+        <a href="/advantage" class="p-button--neutral">Buy online</a>
       </p>
     </div>
     <div class="col-4 u-hide--small u-vertically-center u-align--center">
@@ -187,7 +187,7 @@
       <ul class="p-list">
         <li class="p-list__item is-ticked">Security patching for more than 2,500 packages in Ubuntu Main repository (after 5 years of free LTS security patching)</li>
         <li class="p-list__item is-ticked">Up to 10 years of Linux support for Ubuntu LTS releases</li>
-        <li class="p-list__item is-ticked">Technical support for OpenStack, KVM, MAAS</li>
+        <li class="p-list__item is-ticked">Technical support for <a href="/openstack">OpenStack</a>, KVM, MAAS</li>
       </ul>
     </div>
   </div>
@@ -1047,21 +1047,20 @@
 
 <section class="p-strip is-deep" id="get-ua">
   <div class="u-fixed-width">
-    <h2>Support for AWS and Azure with Ubuntu Pro</h2>
+    <h2>Support for AWS, Azure and GCP with Ubuntu Pro</h2>
     <p class="u-sv3">On Amazon AWS and Microsoft Azure, you can purchase Ubuntu Pro with the most comprehensive security and compliance features included by default.</p>
   </div>
   <div class="row p-divider u-equal-height u-vertically-center u-sv3">
-    <div class="col-6">
-      <div class="u-sv2">
+    <div class="col-4">
+      <div class="u-sv2 u-align--center">
       {{
           image(
               url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
               alt="AWS",
-              width="130",
-              height="80",
+              width="126",
+              height="75",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "u-align--center", "id": ""},
           ) | safe
         }}
       </div>
@@ -1069,22 +1068,37 @@
         <a href="/aws">Learn more about Ubuntu Pro on AWS&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-6">
-      <div class="u-sv2">
+    <div class="col-4">
+      <div class="u-sv2 u-align--center">
       {{
           image(
               url="https://assets.ubuntu.com/v1/22fd6473-MicrosoftAzure_logo.svg",
               alt="Microsoft Azure",
-              width="250",
+              width="256",
               height="75",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "u-align--center", "id": ""},
           ) | safe
         }}
       </div>
       <p>
         <a href="/azure">Learn more about Ubuntu Pro on Azure&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv2 u-align--center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
+          alt="Google cloud",
+          width="91",
+          height="75",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p>
+        <a href="/gcp">Learn more about Ubuntu Pro on GCP&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
