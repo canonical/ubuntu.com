@@ -4,12 +4,22 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { renderHook } from "@testing-library/react-hooks";
 
 import { useLoadWindowData } from "./useLoadWindowData";
+import {
+  enterpriseContractsFactory,
+  personalAccountFactory,
+} from "../../tests/factories/api";
+import { EnterpriseContracts, PersonalAccount } from "advantage/api/types";
 
 describe("useLoadWindowData", () => {
+  let enterpriseContracts: EnterpriseContracts;
+  let personalAccount: PersonalAccount;
+
   beforeEach(() => {
-    window.enterpriseContracts = { enterprise: "contracts" };
+    enterpriseContracts = enterpriseContractsFactory.build();
+    personalAccount = personalAccountFactory.build();
+    window.enterpriseContracts = enterpriseContracts;
     window.pendingPurchaseId = "12345";
-    window.personalAccount = { personal: "account" };
+    window.personalAccount = personalAccount;
   });
 
   afterEach(() => {
@@ -26,12 +36,12 @@ describe("useLoadWindowData", () => {
     renderHook(() => useLoadWindowData(queryClient), {
       wrapper,
     });
-    expect(queryClient.getQueryData("enterpriseContracts")).toStrictEqual({
-      enterprise: "contracts",
-    });
+    expect(queryClient.getQueryData("enterpriseContracts")).toStrictEqual(
+      enterpriseContracts
+    );
     expect(queryClient.getQueryData("pendingPurchaseId")).toBe("12345");
-    expect(queryClient.getQueryData("personalAccount")).toStrictEqual({
-      personal: "account",
-    });
+    expect(queryClient.getQueryData("personalAccount")).toStrictEqual(
+      personalAccount
+    );
   });
 });

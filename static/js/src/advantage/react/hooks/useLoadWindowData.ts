@@ -1,10 +1,15 @@
+import {
+  EnterpriseContracts,
+  PendingPurchaseId,
+  PersonalAccount,
+} from "advantage/api/types";
 import type { QueryClient } from "react-query";
 
 declare global {
   interface Window {
-    enterpriseContracts?: unknown;
-    pendingPurchaseId?: string;
-    personalAccount?: unknown;
+    enterpriseContracts?: EnterpriseContracts;
+    pendingPurchaseId?: PendingPurchaseId;
+    personalAccount?: PersonalAccount;
   }
 }
 

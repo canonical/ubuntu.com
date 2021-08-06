@@ -4,6 +4,7 @@ import {
   AffordancesSupport,
   AllowanceInfo,
   ContractInfo,
+  Entitlement,
   GetContractTokenResponse,
   ProductListing,
   Renewal,
@@ -21,10 +22,7 @@ export type EnterpriseContractInfo = ContractInfo & {
   status: string;
 };
 
-export type EnterpriseContractEntitlements = {
-  // `entitlementType` corresponds to Entitlement["type"].
-  [entitlementType: string]: true;
-};
+export type EnterpriseContractEntitlements = Record<Entitlement["type"], true>;
 export type EnterpriseContractRenewal = Renewal & {
   recently_renewed: boolean;
   renewable: boolean;
@@ -45,10 +43,10 @@ export type EnterpriseContract = Omit<ContractWithToken, "contractInfo"> & {
   supportLevel: AffordancesSupport["supportLevel"];
 };
 
-export type EnterpriseContracts = {
-  // `name` corresponds to AccountInfo["name"].
-  [name: string]: EnterpriseContract;
-};
+export type EnterpriseContracts = Record<
+  AccountInfo["name"],
+  EnterpriseContract
+>;
 
 export type PendingPurchaseId = string;
 
