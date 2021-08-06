@@ -30,13 +30,20 @@ class MarketoAPI:
             self._authenticate()
 
         params = urlencode(url_args)
-        url = f"{self.base_url}{url}?access_token={self.token}&{params}"
-        response = self.session.request(method=method, url=url, json=json)
+        response = self.session.request(
+            method=method,
+            url=f"{self.base_url}{url}?access_token={self.token}&{params}",
+            json=json,
+        )
 
         errors = response.json().get("errors")
         if errors and errors[0]["code"] in ["601", "602"]:
             self._authenticate()
-            response = self.session.request(method=method, url=url, json=json)
+            response = self.session.request(
+                method=method,
+                url=f"{self.base_url}{url}?access_token={self.token}&{params}",
+                json=json,
+            )
 
         return response
 
