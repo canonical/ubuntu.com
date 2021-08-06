@@ -624,6 +624,8 @@ def build_engage_index(engage_docs):
                         new_metadata.append(item)
                     elif language == "en" and item["language"] == "":
                         new_metadata.append(item)
+                else:
+                    break
             metadata = new_metadata
         total_pages = math.ceil(len(metadata) / posts_per_page)
 
