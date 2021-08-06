@@ -1,3 +1,4 @@
+from urllib.parse import quote
 from requests import Session
 
 
@@ -121,8 +122,9 @@ class EdxAPI:
         ).json()
 
     def get_user(self, email: str):
+        safe_email = quote(email)
         response = self.make_request(
-            "GET", f"/api/user/v1/accounts?email={email}"
+            "GET", f"/api/user/v1/accounts?email={safe_email}"
         )
 
         if not response.ok:
