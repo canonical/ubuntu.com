@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
 import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -10,12 +10,13 @@ describe("useUsingTestBackend", () => {
 
   beforeEach(() => {
     queryClient = new QueryClient();
-    wrapper = ({ children }) => (
+    const Wrapper = ({ children }: PropsWithChildren<ReactNode>) => (
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     );
+    wrapper = Wrapper;
   });
 
-  it("can return the pending purchase id from the store", async () => {
+  it("can return the test backend flag from the store", async () => {
     queryClient.setQueryData("usingTestBackend", true);
     const { result, waitForNextUpdate } = renderHook(
       () => useUsingTestBackend(),
