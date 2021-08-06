@@ -2,6 +2,7 @@ import {
   EnterpriseContracts,
   PendingPurchaseId,
   PersonalAccount,
+  UsingTestBackend,
 } from "advantage/api/types";
 import type { QueryClient } from "react-query";
 
@@ -10,7 +11,7 @@ declare global {
     enterpriseContracts?: EnterpriseContracts;
     pendingPurchaseId?: PendingPurchaseId;
     personalAccount?: PersonalAccount;
-    usingTestBackend?: boolean;
+    usingTestBackend?: UsingTestBackend;
   }
 }
 
