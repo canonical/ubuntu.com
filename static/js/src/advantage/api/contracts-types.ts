@@ -894,9 +894,13 @@ export type MachineTokenInfo = {
  * For example, a machine may be obligated to enable a resource by default
  * if it is available, when that machine is associated with the contract.
  */
-export type Obligations = {
-  enableByDefault: boolean;
-} & { [key: string]: string };
+export type Obligations =
+  | {
+      enableByDefault: boolean;
+    }
+  | ({
+      enableByDefault: boolean;
+    } & { [key: string]: string });
 export type ODMCertificate = {
   /** ID of the certificate (10 characters long). */
   id?: string;
