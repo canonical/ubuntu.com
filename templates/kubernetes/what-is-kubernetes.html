@@ -295,16 +295,16 @@
         Kubernetes works by joining a group of physical or virtual host machines referred to as "nodes", into a cluster to manage containers. This creates a "supercomputer" that has greater processing speed, more storage capacity and increased network capabilities than any single machine would have on its own. The nodes include all necessary services to run "pods", which in turn run single or multiple containers. A pod corresponds to a single instance of an application in Kubernetes.
       </p>
       <p>
-        One (or more for larger clusters, or High Availability) node of the cluster is designated as the "master". The master node then assumes responsibility for the cluster as the orchestration layer - scheduling and allocating tasks to the other "worker" nodes in a way which maximises the resources of the cluster. All operator interaction with the cluster goes through this master node, whether that is changes to the configuration, executing or terminating workloads, or controlling ingress and egress on the network.
+        One (or more for larger clusters, or High Availability) node of the cluster is designated as the "control plane". The control plane node then assumes responsibility for the cluster as the orchestration layer - scheduling and allocating tasks to the other "worker" nodes in a way which maximises the resources of the cluster. All operator interaction with the cluster goes through this master node, whether that is changes to the configuration, executing or terminating workloads, or controlling ingress and egress on the network.
       </p>
       <p>
-        The master node is also responsible for monitoring all aspects of the cluster, enabling it to perform additional useful functions such as automatically reallocating workloads in case of failure, scaling up tasks which need more resources and otherwise ensuring that the assigned workloads are always operating correctly.
+        The control plane is also responsible for monitoring all aspects of the cluster, enabling it to perform additional useful functions such as automatically reallocating workloads in case of failure, scaling up tasks which need more resources and otherwise ensuring that the assigned workloads are always operating correctly.
       </p>
       <p>
         <a href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Download Enterprise Kubernetes datasheet&nbsp;&rsaquo;</a>
       </p>
       <p>
-        <img class="u-hide--small" src="https://assets.ubuntu.com/v1/0d625653-K8s_Architecture.svg" alt="">
+        <img class="u-hide--small" src="https://assets.ubuntu.com/v1/fa6db665-K8s_Architecture_updated.svg" alt="">
       </p>
     </div>
   </div>
@@ -340,10 +340,9 @@
         <li class="p-matrix__item">
           <div class="p-matrix__content">
             <h3 class="p-matrix__title">
-              Master node
+              Control plane node
             </h3>
             <p class="p-matrix__desc">
-              <em>a.k.a. control plane</em><br />
               The orchestration layer that provides interfaces to define, deploy, and manage the lifecycle of containers.
             </p>
           </div>
@@ -351,7 +350,7 @@
         <li class="p-matrix__item">
           <div class="p-matrix__content">
             <h3 class="p-matrix__title">
-              Worker Node
+              Worker node
             </h3>
             <p class="p-matrix__desc">
               Every worker node can host applications as containers. A Kubernetes cluster usually has multiple worker nodes (at least one).
