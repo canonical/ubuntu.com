@@ -604,10 +604,16 @@ def build_engage_index(engage_docs):
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
         language = flask.request.args.get("language", default=None, type=str)
+        resource = flask.request.args.get("resource", default=None, type=str)
         preview = flask.request.args.get("preview")
         posts_per_page = 15
         engage_docs.parser.parse()
         metadata = engage_docs.parser.metadata
+
+        resource_types = []
+        for item in metadata:
+            if item["type"] not in resource_types:
+                resource_types.append(item["type"])
 
         if preview is None:
             metadata = [
@@ -627,6 +633,14 @@ def build_engage_index(engage_docs):
                 else:
                     break
             metadata = new_metadata
+
+        if resource:
+            metadata = [
+                item
+                for item in metadata
+                if "type" in item and item["type"] == resource
+            ]
+
         total_pages = math.ceil(len(metadata) / posts_per_page)
 
         return flask.render_template(
@@ -634,8 +648,10 @@ def build_engage_index(engage_docs):
             forum_url=engage_docs.parser.api.base_url,
             metadata=metadata,
             page=page,
-            language=language,
             preview=preview,
+            language=language,
+            resource=resource,
+            resource_types=sorted(resource_types),
             posts_per_page=posts_per_page,
             total_pages=total_pages,
         )
