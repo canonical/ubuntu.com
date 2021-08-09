@@ -19,8 +19,6 @@
     <div class="col-6">
       <h1>Engage pages</h1>
       <p>Ubuntu case studies, whitepapers and webinars.</p>
-      <a class="p-button--positive p-link--external" href="https://discourse.ubuntu.com/t/engage-pages-and-takeovers/17229">Add new engage pages</a>
-      <a class="p-button--neutral p-link--external" href="https://discourse.ubuntu.com/t/how-to-add-engage-pages/18185">How to add engage pages</a>
     </div>
   </div>
 </section>
@@ -35,7 +33,7 @@
             <option value="all">All languages</option>
             <option value="de">Deutsch</option>
             <option value="en">English</option>
-            <option value="es">Espa&nacute;ol</option>
+            <option value="es">Espa&ntilde;ol</option>
             <option value="fr">Fran&ccedil;ais</option>
             <option value="it">Italiano</option>
             <option value="pt">Portugu&ecirc;s</option>
@@ -43,6 +41,21 @@
         </form>
       </div>
     </div>
+    {% if resource_types %}
+    <div class="col-4">
+      <div class="p-form__group">
+        <form action="/">
+          <label for="resource-selector">Select resource type:</label>
+          <select name="resource-selector" id="resource-selector" class="u-no-margin--bottom">
+            <option value="all">All resource types</option>
+            {% for resource in resource_types %}
+              <option value="{{ resource }}">{{ resource | capitalize }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      </div>
+    </div>
+    {% endif %}
   </div>
 </section>
 
@@ -59,13 +72,12 @@
       {% include "engage/_article-card.html" %}
       {% endwith %}
     {% endfor %}
-
   </div>
-
 </section>
 <script>
 (function() {
   const languageSelector = document.getElementById("language-selector");
+  const resourceSelector = document.getElementById("resource-selector");
   const urlObj = new URL(window.location);
 
   function handleFilter(key, el, url) {
@@ -91,6 +103,7 @@
     });
   }
   handleFilter("language", languageSelector, urlObj);
+  handleFilter("resource", resourceSelector, urlObj);
 })()
 </script>
 {% endblock content %}
