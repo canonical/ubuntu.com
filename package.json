@@ -7,7 +7,7 @@
     "format-js": "prettier -w 'static/js/src/**/*.{js,jsx,ts,tsx}'",
     "lint-scss": "stylelint 'static/sass/**/*.scss'",
     "lint-js": "eslint static/js/src/**/*.{js,jsx,ts,tsx}",
-    "test-js": "NODE_ICU_DATA=node_modules/full-icu jest",
+    "test-js": "TZ=UTC NODE_ICU_DATA=node_modules/full-icu jest",
     "test-links": "./entrypoint 0.0.0.0:${PORT} && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --ignore-url /server/docs --no-warnings http://127.0.0.1:8000",
     "build-cookie-policy": "cp node_modules/@canonical/cookie-policy/build/js/cookie-policy.js static/js/dist/",
     "build-global-nav": "cp node_modules/@canonical/global-nav/dist/global-nav.js static/js/dist/",
