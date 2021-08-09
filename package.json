@@ -15,7 +15,7 @@
     "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
     "build-js": "node build.js && yarn run build-global-nav && yarn run build-cookie-policy && yarn run build-latest-news",
     "build": "yarn run build-css && yarn run build-js && yarn build-global-nav",
-    "watch": "yarn run watch-css && yarn run watch-js",
+    "watch": "concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js'",
     "watch-css": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/**/*.scss' -c 'yarn run build-css'",
     "watch-js": "watch -p 'static/js/src/**/*.{js,jsx,ts,tsx}' -p 'static/js/data/**/*.js' -p 'static/js/third-party/**/*.js' -c 'yarn run build-js && tsc -noEmit'",
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle static/js/dist etc/",
