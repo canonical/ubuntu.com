@@ -329,7 +329,23 @@ window.renderImageBuilder = function () {
     step2.classList.add("u-disable");
     step3.classList.add("u-disable");
     step4.classList.add("u-disable");
+
     if (state.get("board") && state.get("board")[0]) {
+      const board = state.get("board")[0];
+      document.getElementById("amd64").disabled = false;
+      document.getElementById("arm64").disabled = false;
+      document.getElementById("armhf").disabled = false;
+      if (board == "intelnuc") {
+        document.getElementById("armhf").disabled = true;
+        document.getElementById("arm64").disabled = true;
+      } 
+      if (board == "raspberrypi3" || board == "raspberrypi4") {
+        document.getElementById("amd64").disabled = true;
+      }
+      if( board == "raspberrypi2") {
+        document.getElementById("amd64").disabled = true;
+        document.getElementById("arm64").disabled = true;
+      }
       step2.classList.remove("u-disable");
     }
     if (state.get("os") && state.get("os")[0]) {
