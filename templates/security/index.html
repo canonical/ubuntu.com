@@ -49,7 +49,7 @@
 
 <section class="p-strip--light">
   <div class="row u-equal-height">
-    <div class="col-7">
+    <div class="col-6">
       <h2>
         FIPS certification and CIS compliance with Ubuntu
       </h2>
@@ -57,20 +57,16 @@
         Learn about Ubuntu CIS and FIPS certified components to enable operating under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered in our upcoming webinar to ensure you and your team are, and remain, compliant.
       </p>
       <p>
-        <a class="p-button p-link--external" href="https://www.brighttalk.com/webcast/6793/432536">Watch the webinar</a>
+        <a class="p-button js-invoke-modal" href="/security/contact-us">Contact us</a>
       </p>
     </div>
-    <div class="col-5 u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
-          alt="",
-          height="143",
-          width="250",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+    <div class="col-6 u-hide--small u-align--center">
+      <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;">
+        <script class="jsBrightTALKEmbedConfig" type="application/json">
+          { "channelId" : 6793, "language": "en-US", "commId" : 432536, "displayMode" : "standalone", "height" : "250" }
+        </script>
+        <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
+      </div>
     </div>
   </div>
 </section>
@@ -161,19 +157,19 @@
       <li class="p-matrix__item">
         <div>
           <h3 class="p-matrix__title p-heading--four">Livepatch</h3>
-          <p class="p-matrix__desc">The Canonical Livepatch Service enables live automatic security fixes to the kernel without rebooting. This service reduces planned or unplanned downtime while maintaining compliance and security.</p>
+          <p class="p-matrix__desc">The Canonical Livepatch Service enables live automatic security fixes to the kernel without rebooting. This service reduces unplanned downtime while maintaining compliance and security.</p>
         </div>
       </li>
       <li class="p-matrix__item">
         <div>
-          <h3 class="p-matrix__title p-heading--four">5 years of support guaranteed</h3>
-          <p class="p-matrix__desc">A new LTS (Long Term Support) version of Ubuntu is released every two years, for desktop and server. Both versions are supported for five years.</p>
+          <h3 class="p-matrix__title p-heading--four">10 years of support</h3>
+          <p class="p-matrix__desc">A new LTS (Long Term Support) version of Ubuntu is released every two years, for desktop and server. Both versions receive updates and are supported for up to ten years.</p>
         </div>
       </li>
       <li class="p-matrix__item">
         <div>
           <h3 class="p-matrix__title p-heading--four">Extended security</h3>
-          <p class="p-matrix__desc">For users of Ubuntu 14.04 LTS, Canonical offers Extended Security Maintenance (ESM) to provide ongoing kernel security fixes through a secure and private archive.</p>
+          <p class="p-matrix__desc">For users of Ubuntu 14.04 and 16.04 LTS, Canonical offers Extended Security Maintenance (ESM) to provide vulnerability fixes and livepatches through a secure and private archive.</p>
         </div>
       </li>
       <li class="p-matrix__item">
@@ -336,8 +332,7 @@
     <div class="col-7">
       <h2>Find out why the UK Government puts Ubuntu in first place for security</h2>
       <p><abbr title="Communications-Electronics Security Group">CESG</abbr>, the security arm of the UK government rated Ubuntu as the most secure operating system of the 11 they tested.</p>
-      <p>For the first time, both a <abbr title="Defence Industry Security Association">DISA</abbr> approved <abbr title="Security Technical Implementation Guide">STIG</abbr> and a <abbr title="Center for Internet Security">CIS</abbr> Benchmark are available for Ubuntu 16.04 LTS. This is in addition to the CIS Benchmark already available for 14.04 LTS.</p>
-      <a class="p-button--neutral" href="/blog/ubuntu-scores-highest-in-uk-gov-security-assessment"><span class="p-link--external">Read the <span class="u-off-screen">UK Gov Report Summary </span>case study</span></a>
+      <p><a class="p-button--neutral" href="/blog/ubuntu-scores-highest-in-uk-gov-security-assessment"><span class="p-link--external">Read the <span class="u-off-screen">UK Gov Report Summary </span>case study</span></a></p>
     </div>
     <div class="col-5 u-align--center u-vertically-center">
       {{
@@ -348,7 +343,7 @@
           width="200",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "u-hide--small u-hide--medium"}
+          attrs={"class": "u-hide--small"}
         ) | safe
       }}
     </div>
@@ -417,10 +412,10 @@
               attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
             ) | safe
           }}
-          <h4 class='p-heading-icon__title'>FAQ</h4>
+          <h4 class='p-heading-icon__title'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a class='p-link--external' href='/blog/faqs-ensuring-the-ongoing-security-compliance-of-ubuntu/' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'gateways - right', 'eventLabel' : 'FAQ - Ensuring the ongoing security compliance of Ubuntu', 'eventValue' : '1' });'>Ensuring the ongoing security compliance of Ubuntu</a></h3>
+      <h3 class='p-heading--four'><a href='/engage/a-small-to-medium-size-business-guide-to-cybersecurity' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'gateways - right', 'eventLabel' : 'A small to medium-size business guide to cybersecurity', 'eventValue' : '1' });'>A small to medium-size business guide to cybersecurity</a></h3>
       <!-- rtp section end -->
     </div>
   </div>
@@ -435,28 +430,40 @@
   </div>
   <div class="row u-equal-height">
     <div class="col-6 p-card">
-      <h3>Critical security fixes with zero downtime</h3>
-      <p>The Canonical Livepatch Service lets you apply kernel fixes in seconds, without restarting your Ubuntu 18.04 LTS, 16.04 LTS or 14.04 ESM systems. Fewer reboots removes the operational burden associated planned downtimes for upgrades. It also means improved service availability and systems that are more compliant and secure.</p>
-      <p><a href="/livepatch">Learn more about Canonical's Livepatch Service&nbsp;&rsaquo;</a></p>
+      <h3>Reduce downtime and unplanned work</h3>
+      <p>The Canonical Livepatch service eliminates the need for unplanned maintenance windows for high and critical severity kernel vulnerabilities by patching the Linux kernel while the system runs. Reduce fire drills while keeping uninterrupted service with Canonical Livepatch service for up to ten years.</p>
+      <p>
+        <a href="/security/livepatch">
+          Learn more about Canonical's Livepatch Service&nbsp;&rsaquo;
+        </a>
+      </p>
     </div>
     <div class="col-6 p-card">
       <h3>Be compliant and FIPS certified</h3>
-      <p>Canonical has received FIPS 140-2, Level 1 certification for cryptographic modules in Ubuntu 18.04 LTS and Ubuntu 16.04 LTS and Common Criteria EAL2 certification for Ubuntu 16.04 LTS. These certifications, alongside further security measures and achievements, enable organisations to meet compliance requirements within regulated industries.</p>
-      <p><a href="https://ubuntu.com/security/certifications">Learn more about Ubuntu certifications&nbsp;&rsaquo;</a></p>
+      <p>Developing and running workloads for high security and government regulated environments requires a long and expensive validation process. Reduce your accreditation timeline and pass on your validation costs with the FIPS 140 and Common Criteria certifications available with Ubuntu Advantage and Pro.</p>
+      <p>
+        <a href="/security/certifications">
+          Learn more about Ubuntu certifications&nbsp;&rsaquo;
+        </a>
+      </p>
     </div>
   </div>
   <div class="row u-equal-height">
     <div class="col-6 p-card">
       <h3>Manage security updates with Landscape</h3>
       <p>Landscape is the leading management tool to deploy, monitor and manage your Ubuntu servers and desktops. Landscape gives the ability to centrally view and manage the security updates that have been applied to their systems and, critically, the security updates which have not yet been applied.</p>
-      <p><a class="p-link--external" href="https://landscape.canonical.com">Get Landscape</a></p>
+      <p>
+        <a class="p-link--external" href="https://landscape.canonical.com">
+          Get Landscape
+        </a>
+      </p>
     </div>
     <div class="col-6 p-card">
-      <h3>Extend your Ubuntu 14.04 LTS security maintenance</h3>
-      <p>Following the end-of-life of Ubuntu 14.04 LTS in April 2019, Canonical began offering Ubuntu 14.04 ESM (Extended Security Maintenance), to Ubuntu Advantage customers to provide important security fixes for the kernel and essential user space packages. These updates are delivered via a secure, private archive exclusively available to Ubuntu Advantage customers.</p>
+      <h3>Extend your Ubuntu security maintenance</h3>
+      <p>Following the end-of-life of Ubuntu 14.04 LTS and Ubuntu 16.04 LTS, Canonical offers Extended Security Maintenance (ESM), to Ubuntu Advantage and Pro customers to provide important security fixes for the kernel and essential user space packages. These updates are delivered via a secure, private archive exclusively available to Canonical customers.</p>
       <p>
         <a href="/engage/14-04-esm">
-          Watch our security compliance webinar now
+          Watch our security compliance webinar now&nbsp;&rsaquo;
         </a>
       </p>
     </div>
@@ -477,7 +484,7 @@
         <li class="p-list__item is-ticked">Knowledge Base: a private archive of expert-written articles and tutorials</li>
         <li class="p-list__item is-ticked">Support: phone and web-based support at multiple service levels</li>
       </ul>
-      <p><a href="/advantage" class="p-button--neutral">Purchase Ubuntu Advantage</a></p>
+      <p><a href="/advantage" class="p-button--positive">Purchase Ubuntu Advantage</a></p>
       <p><a href="/support/contact-us" class="js-invoke-modal">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
     </div>
   </div>
