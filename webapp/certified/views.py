@@ -390,8 +390,15 @@ def certified_home():
         )
 
 
-def certified_desktops():
+def create_category_views(category, template_path):
+    """
+    Helper function to create multiple /certified/<page> category views
 
+    Keyword arguments:
+    category -- must be categories accepted by API (Desktop, Laptop, SoC, \
+    Server, Ubuntu Core, Server SoC)
+    template_path -- full template path (e.g. certified/search-results.html)
+    """
     certified_releases = api.certified_releases(limit="0")["objects"]
     certified_makes = api.certified_makes(limit="0")["objects"]
 
@@ -456,7 +463,7 @@ def certified_desktops():
     )
 
     models_response = api.certified_models(
-        category__in="Desktop",
+        category__in=category,
         major_release__in=releases,
         vendor=vendors,
         query=query,
@@ -479,7 +486,7 @@ def certified_desktops():
     total_results = models_response["meta"]["total_count"]
 
     return render_template(
-        "certified/desktops-search-results.html",
+        template_path,
         results=results,
         query=query,
         releases=releases,
@@ -491,3 +498,30 @@ def certified_desktops():
         offset=offset,
         limit=limit,
     )
+
+
+# View functions must be unique
+# so must create one for each
+def certified_desktops():
+    view = create_category_views("Desktop", "certified/desktops.html")
+    return view
+
+
+def certified_laptops():
+    view = create_category_views("Laptop", "certified/laptops.html")
+    return view
+
+
+def certified_servers():
+    view = create_category_views("Server", "certified/servers.html")
+    return view
+
+
+def certified_socs():
+    view = create_category_views("Server SoC", "certified/socs.html")
+    return view
+
+
+def certified_devices():
+    view = create_category_views("Ubuntu Core", "certified/devices.html")
+    return view

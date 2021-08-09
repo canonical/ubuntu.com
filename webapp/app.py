@@ -124,6 +124,10 @@ from webapp.certified.views import (
     certified_hardware_details,
     certified_component_details,
     certified_desktops,
+    certified_laptops,
+    certified_servers,
+    certified_devices,
+    certified_socs,
 )
 
 
@@ -830,6 +834,22 @@ app.add_url_rule(
 app.add_url_rule(
     "/certified/desktops",
     view_func=certified_desktops,
+)
+app.add_url_rule(
+    "/certified/laptops",
+    view_func=certified_laptops,
+)
+app.add_url_rule(
+    "/certified/servers",
+    view_func=certified_servers,
+)
+app.add_url_rule(
+    "/certified/devices",
+    view_func=certified_devices,
+)
+app.add_url_rule(
+    "/certified/socs",
+    view_func=certified_socs,
 )
 
 # Override openstack/install
