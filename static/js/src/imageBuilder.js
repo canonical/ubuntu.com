@@ -338,11 +338,11 @@ window.renderImageBuilder = function () {
       if (board == "intelnuc") {
         document.getElementById("armhf").disabled = true;
         document.getElementById("arm64").disabled = true;
-      } 
+      }
       if (board == "raspberrypi3" || board == "raspberrypi4") {
         document.getElementById("amd64").disabled = true;
       }
-      if( board == "raspberrypi2") {
+      if (board == "raspberrypi2") {
         document.getElementById("amd64").disabled = true;
         document.getElementById("arm64").disabled = true;
       }
