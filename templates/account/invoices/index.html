@@ -9,24 +9,20 @@
 
 {% block content %}
 
-<section class="p-strip--suru-topped u-no-padding--bottom">
+<section class="p-strip--suru-topped p-strip-account-page">
   <div class="row">
     <div class="col-12">
       <h1>Invoices</h1>
     </div>
   </div>
-</section>
-<section class="p-strip is-shallow">
   <div class="row">
-    <div class="col-3">
+    <div class="col-3" style="padding: 0.75rem 0">
       <select name="marketplace" id="marketplace-dropdown">
         <option value="">All invoices</option>
         <option value="canonical-ua" {% if marketplace == 'canonical-ua' %}selected{% endif %}>Canonical UA</option>
       </select>
     </div>
   </div>
-</section>
-<section class="p-strip is-deep u-no-padding--top">
   <div class="row">
     <div class="col-12">
       {% if invoices %}

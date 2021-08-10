@@ -85,7 +85,7 @@ from webapp.advantage.views import (
     get_renewal,
     post_advantage_subscriptions,
     post_anonymised_customer_info,
-    post_payment_method,
+    post_payment_methods,
     post_auto_renewal_settings,
     post_customer_info,
     post_stripe_invoice_id,
@@ -295,6 +295,11 @@ app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/account/payment-methods", view_func=payment_methods_view)
+app.add_url_rule(
+    "/account/payment-methods",
+    view_func=post_payment_methods,
+    methods=["POST"],
+)
 app.add_url_rule("/account/invoices", view_func=invoices_view)
 app.add_url_rule(
     "/account/invoices/download/<period>/<purchase_id>",
@@ -326,11 +331,6 @@ app.add_url_rule(
 app.add_url_rule(
     "/advantage/customer-info-anon",
     view_func=post_anonymised_customer_info,
-    methods=["POST"],
-)
-app.add_url_rule(
-    "/advantage/payment-method",
-    view_func=post_payment_method,
     methods=["POST"],
 )
 app.add_url_rule(

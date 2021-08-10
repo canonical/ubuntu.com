@@ -993,6 +993,45 @@ body {
   opacity: 0.33;
 }
 
+.p-strip-account-page {
+  height: 600px;
+
+  @media (max-width: $breakpoint-small) {
+    height: auto;
+  }
+}
+
+.card-management-section {
+  @media (max-width: $breakpoint-small) {
+    #card-element {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .current-payment-method {
+    align-items: center;
+    display: flex;
+    margin-bottom: 1.1rem;
+
+    > p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .payment-card-logo {
+    background-color: $color-x-light;
+    border: 1px solid $color-mid-light;
+    border-radius: 2px;
+    height: 1.7rem;
+    margin-right: 0.5rem;
+  }
+
+  #card-element {
+    margin: 0.5rem 0;
+  }
+}
+
 #payment-modal-form {
   > .row {
     padding-left: 0;
@@ -1021,37 +1060,6 @@ body {
       background-repeat: no-repeat;
       border-color: $color-negative;
     }
-  }
-}
-
-.card-management-section {
-  height: 600px;
-
-  @media (max-width: $breakpoint-small) {
-    height: auto;
-
-    #card-element {
-      margin-bottom: 1rem;
-    }
-  }
-
-  .current-payment-method {
-    align-items: center;
-    display: flex;
-    margin-bottom: 1.1rem;
-
-    > p {
-      margin: 0;
-      padding: 0;
-    }
-  }
-
-  .payment-card-logo {
-    background-color: $color-x-light;
-    border: 1px solid $color-mid-light;
-    border-radius: 2px;
-    height: 1.7rem;
-    margin-right: 0.5rem;
   }
 }
 
