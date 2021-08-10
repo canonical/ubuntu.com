@@ -991,11 +991,16 @@ body {
   opacity: 0.33;
 }
 
-.card-management-section {
+.p-strip-account-page {
   height: 600px;
+
   @media (max-width: $breakpoint-small) {
     height: auto;
+  }
+}
 
+.card-management-section {
+  @media (max-width: $breakpoint-small) {
     #card-element {
       margin-bottom: 1rem;
     }
