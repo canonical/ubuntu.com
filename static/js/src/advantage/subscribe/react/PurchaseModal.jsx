@@ -220,7 +220,7 @@ const PurchaseModal = () => {
           });
 
           // Tries to match the error with a known error code and defaults to a generic error if it fails
-          if (!!errorMessage) {
+          if (errorMessage) {
             setError(errorMessage);
           } else {
             Sentry.captureException(error);
