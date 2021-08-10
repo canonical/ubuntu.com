@@ -1,7 +1,3 @@
-{% if section.children|length < 3 %}
-<li class="p-footer-list--margin p-footer-list-single-child">
-  <a class="p-link--soft" href="{{ section.path }}">{{ section.title }}</a>
-{% else %}
 <li class="p-footer__item">
   <h2 class="p-footer__title">
     <a class="p-link--soft" href="{{ section.path }}">{{ section.title }}</a>
@@ -16,5 +12,4 @@
       {% endif %}
     {% endfor %}
   </ul>
-  {% endif %}
 </li>
