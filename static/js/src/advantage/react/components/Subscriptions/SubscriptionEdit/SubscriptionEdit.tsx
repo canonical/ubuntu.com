@@ -49,7 +49,7 @@ const SubscriptionEdit = ({ onClose }: Props) => {
                 />
               </div>
               <div className="u-align--right">
-                <Button appearance="base" onClick={onClose}>
+                <Button appearance="base" onClick={onClose} type="button">
                   Cancel
                 </Button>
                 <ActionButton appearance="positive">Resize</ActionButton>
