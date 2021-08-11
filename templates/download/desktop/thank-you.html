@@ -281,14 +281,13 @@
   <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
   <script defer>
     var architecture = '{{ architecture }}';
-    var mirrors = {{ mirror_list | safe }};
     var version = '{{ version }}';
 
     if (version && architecture && architecture != 'amd64+mac') {
       var GAlabel = version + '-desktop-' + architecture;
       var imagePath = version + '/ubuntu-' + version + '-desktop-' + architecture + '.iso';
 
-      window.initImageDownload(mirrors, imagePath, GAlabel);
+      window.initImageDownload(imagePath, GAlabel);
     }
   </script>
 {% endif %}

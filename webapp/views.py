@@ -171,7 +171,7 @@ def download_server_steps():
         if not version:
             flask.abort(400)
 
-        context = {"version": version, "mirror_list": _build_mirror_list()}
+        context = {"version": version}
 
     return flask.render_template(templates[step], **context)
 
@@ -188,7 +188,6 @@ def download_thank_you(category):
             f"download/{category}/thank-you.html",
             version=version,
             architecture=architecture,
-            mirror_list=_build_mirror_list(),
         ),
         {"Cache-Control": "no-cache"},
     )
