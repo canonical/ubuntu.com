@@ -60,7 +60,7 @@
     // Space the context menu to the right of the container.
     justify-content: space-between;
     // Provide space before the first card.
-    padding-bottom: $spv-inner--large;
+    margin-bottom: $spv-inner--large;
   }
 
   .p-subscriptions__list-card-title {
@@ -95,5 +95,10 @@
     // Manually set the size of the resize input.
     min-width: unset;
     width: 6rem;
+  }
+
+  .p-subscription__renewal-dropdown {
+    // The dropdown does not have any padding by default.
+    padding: $card-padding;
   }
 }
