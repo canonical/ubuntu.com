@@ -42,6 +42,14 @@ class TestRoutes(VCRTestCase):
 
         self.assertEqual(self.client.get("/").status_code, 200)
 
+    def test_mirrors(self):
+        """
+        When given the mirrors.json endpoint URL,
+        we should return a 200 status code
+        """
+
+        self.assertEqual(self.client.get("/mirrors.json").status_code, 200)
+
     def test_blog(self):
         """
         Check blog pages work.
