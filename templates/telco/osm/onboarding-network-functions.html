@@ -46,7 +46,7 @@
   <div class="row">
     <div class="col-8">
       <h2>3 easy steps to onboard your network function</h2>
-      <p>Onboarding is all about configuring the day 0, day 1 and day 2 operations. All the life cycle stages can be achieved by defining these operations properly in the OSM packages for the network functions. The <a href="https://osm.etsi.org/docs/vnf-onboarding-guidelines/" class="p-link--external">process</a> includes:</p>
+      <p>Onboarding is all about configuring the day 0, day 1, and day 2 operations. All the life cycle stages can be achieved by defining these operations properly in the OSM packages for the network functions. The <a href="https://osm.etsi.org/docs/vnf-onboarding-guidelines/" class="p-link--external">process</a> includes:</p>
     </div>
     <hr class="p-separator" />
   </div>
@@ -110,7 +110,7 @@
   <div class="row u-vertically-center">
     <div class="col-12">
       <h2>Lifecycle management</h2>
-      <p>The goal of onboarding is to create a package which can fulfil the stages to manage the lifecycle of network services. The package should  include network function instantiation, scaling in/out, healing or recovery, updating, operating and termination.</p>
+      <p>The goal of onboarding is to create a package that can fulfill the stages to manage the lifecycle of network services. The package should include network function instantiation, scaling in/out, healing or recovery, updating, operating and termination.</p>
     </div>
 		<hr class="p-separator" />
 		<div class="col-12 u-hide--small u-align--center">
@@ -129,8 +129,9 @@
 <section class="p-strip is-bordered">
   <div class="row">
     <div class="col-12">
-			<h2>VNF onboarding in OSM Hackfests</h2>
-      <p>Canonical regularly participates in the <a href="https://osm.etsi.org/wikipub/index.php/Past_OSM_Hackfests" class="p-link--external">events</a> organized by the OSM community and ETSI’s Centre for Testing and Interoperability. For events like Hackfests and NFV Plugtests Canonical also offers a partner cloud where multiple VNF vendors can deploy and test the interoperability of their Telco network functions. It is also available if VNF vendors want to test their network functions individually before migrating to production environments.</p>
+      <h2>Network function VNF onboarding in OSM Hackfests</h2>
+      <h4><a href="https://osm.etsi.org/wikipub/index.php/OSM-MR10_Hackfest" class="p-link--external">Hackfest MR-10</a></h4>
+      <p>Canonical regularly participates in the <a href="https://osm.etsi.org/wikipub/index.php/Past_OSM_Hackfests" class="p-link--external">events organized by the OSM community</a> and ETSI’s Centre for Testing and Interoperability. For events like Hackfests and NFV Plugtests Canonical also offers a partner cloud where multiple VNF vendors can deploy and test the interoperability of their Telco network functions. It is also available if VNF vendors want to test their network functions individually before migrating to production environments.</p>
       <h4>52 Participants, More than 100 Network Functions onboarded</h4>
     </div>
     <div class="col-12">
@@ -144,10 +145,39 @@
         attrs={"class": "p-image--bordered"},
         ) | safe
       }}
+    </div>
+    <hr class="p-separator" />
+    <div class="col-12">
+      <h4><a href="https://osm.etsi.org/wikipub/index.php/OSM11_Hackfest" class="p-link--external">Hackfest 11</a></h4>
+      <p>The OSM#11 Hackfest was fully dedicated to Network Function onboarding to OSM release NINE and TEN bringing a new challenge to OSM users. Canonical members participated as mentors and helped the participants to deploy and onboard their network functions throughout the week (31st May - 4th June 2021). The hackfest challenged the participants and VNF vendors to build a package using NFV standardized descriptors, instantiation and Day-1, Day-2 operations. The following list of VNFs and CNFs were successfully onboarded:
+      <ul>
+        <li>Asterisk</li>
+        <li>CoreDNS VNF</li>
+        <li>FreeRadiusCNF</li>
+        <li>FreeRadiusVNF</li>
+        <li>NetNumber VNF</li>
+        <li>OPC UA</li>
+        <li>PowerDNS CNF</li>
+        <li>VyOS</li>
+        <li>NTNU</li>
+      </ul>
+      </p>
+    </div>
+    <hr class="p-separator" />
+    <div class="col-12">
+      <h4><a href="https://osm.etsi.org/wikipub/index.php/OSM-MR11_Hackfest" class="p-link--external">Hackfest MR 11</a></h4>
+      <p>This upcoming hackfest (13th -17th September 2021) is bringing another exciting challenge to participate and improve your onboarding expertise. It will be remote and followed the same agenda from the <a href="https://osm.etsi.org/wikipub/index.php/OSM11_Hackfest" class="p-link--external">previous hackfest</a> and Canonical OSM experts will be there as mentors. This time, ETSI OSM and Open Air Interface are collaborating to show interoperability between open source 5G workload and OSM. It will include the onboarding of the following network functions
+      </p>
+      <ul>
+        <li>Access and Mobility Management Function (<a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf/-/wikis/home" class="p-link--external">AMF</a>)</li>
+        <li>Session Management Function (<a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-smf/-/wikis/home" class="p-link--external">SMF</a>)</li>
+        <li>User Plane Function (<a href="https://github.com/OPENAIRINTERFACE/openair-spgwu-tiny/tree/nrf_fqdn" class="p-link--external">UPF</a>)</li>
+        <li>Network Repository Function (<a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/wikis/home" class="p-link--external">NRF</a>)</li>
+        <li><a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed/-/blob/master/docs/DEPLOY_HOME.md" class="p-link--external">Deployment of OAI 5G Core network functions</a></li>
+      </ul>
+      <p><a href="https://osm.etsi.org/wikipub/index.php/OSM-MR11_Hackfest" class="p-link--external">Register today</a> to get a hands-on experience with the deployment of 5G core network functions.</p>
       <p>
-        <a href="https://charmed-osm.com/osm-hackfests" class="p-link--external">
-          Discover our contributions&nbsp;&rsaquo;
-        </a>
+        Follow this <a href="https://charmed-osm.com/osm-hackfests" class="p-link--external">link</a> to discover our contributions in the previous hackfests.
       </p>
     </div>
   </div>
@@ -167,7 +197,7 @@
 
 <section class="p-strip">
   <div class="u-fixed-width">
-    <h2>Let us help you in onboarding</h2>
+    <h2>Let us help you with onboarding</h2>
   </div>
   <div class="row u-equal-height">
     <div class="col-6 p-card">
