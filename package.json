@@ -98,6 +98,10 @@
     "minimatch": "3.0.4"
   },
   "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setupTests.js"
     ],

@@ -3,18 +3,21 @@ import {
   AccountContractInfo,
   AccountInfo,
   AffordancesAptRepository,
+  AffordancesSupport,
   AllowanceInfo,
   BillingInfo,
   ContractInfo,
   ContractItem,
   DirectivesAptRepository,
   EntitlementAptRepository,
+  EntitlementSupport,
   ExternalIDs,
   Obligations,
   Price,
   Renewal,
   RenewalItem,
 } from "advantage/api/contracts-types";
+import { EntitlementType, SupportLevel } from "advantage/api/enum";
 
 export const externalIDsFactory = Factory.define<ExternalIDs>(
   ({ sequence }) => ({
@@ -88,6 +91,21 @@ export const entitlementAptRepositoryFactory = Factory.define<EntitlementAptRepo
         obligations: obligationsFactory.build(),
       },
     },
+  })
+);
+
+export const affordancesSupportFactory = Factory.define<AffordancesSupport>(
+  () => ({
+    supportLevel: SupportLevel.STANDARD,
+  })
+);
+
+export const entitlementSupportFactory = Factory.define<EntitlementSupport>(
+  () => ({
+    affordances: affordancesSupportFactory.build(),
+    entitled: true,
+    obligations: obligationsFactory.build(),
+    type: EntitlementType.SUPPORT,
   })
 );
 

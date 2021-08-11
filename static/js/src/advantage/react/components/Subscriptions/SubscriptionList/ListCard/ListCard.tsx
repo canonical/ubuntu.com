@@ -1,13 +1,24 @@
 import { Card, Col, List, Row } from "@canonical/react-components";
 import React from "react";
+import { format, parseJSON } from "date-fns";
 
 type Props = {
   created: string;
-  expires: string;
+  expires?: string | null;
   features: string[];
   machines: number;
   label: string;
   title: string;
+};
+
+const DATE_FORMAT = "dd.MM.yyyy";
+
+const formatDate = (date: string) => {
+  try {
+    return format(parseJSON(date), DATE_FORMAT);
+  } catch (error) {
+    return date;
+  }
 };
 
 const ListCard = ({
@@ -32,11 +43,11 @@ const ListCard = ({
       </Col>
       <Col size={4}>
         <p className="u-text--muted u-no-margin--bottom">Created</p>
-        {created}
+        {formatDate(created)}
       </Col>
       <Col size={4}>
         <p className="u-text--muted u-no-margin--bottom">Expires</p>
-        {expires}
+        {expires ? formatDate(expires) : "Never"}
       </Col>
     </Row>
     <List
