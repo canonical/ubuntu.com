@@ -500,7 +500,10 @@ def mirrors_query():
     """
     all = flask.request.args.get("all", default=False, type=bool)
 
-    return flask.jsonify(_build_mirror_list(all))
+    return (
+        flask.jsonify(_build_mirror_list(all)),
+        {"Cache-Control": "private"},
+    )
 
 
 def build_tutorials_index(session, tutorials_docs):
