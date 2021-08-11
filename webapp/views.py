@@ -48,7 +48,7 @@ marketo_api = MarketoAPI(
 )
 
 
-def _build_mirror_list():
+def _build_mirror_list(all=False):
     # Build mirror list
     mirrors = []
     mirror_list = []
@@ -64,7 +64,15 @@ def _build_mirror_list():
         flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
     )
 
-    if ip_location and "country" in ip_location:
+    if all:
+        for mirror in mirrors:
+            mirror_list.append(
+                {
+                    "link": mirror["link"],
+                    "bandwidth": mirror["mirror_bandwidth"],
+                }
+            )
+    elif ip_location and "country" in ip_location:
         country_code = ip_location["country"]["iso_code"]
 
         for mirror in mirrors:
@@ -490,8 +498,9 @@ def mirrors_query():
     """
     A JSON endpoint to request list of Ubuntu mirrors
     """
+    all = flask.request.args.get("all", default=False, type=bool)
 
-    return flask.jsonify(_build_mirror_list())
+    return flask.jsonify(_build_mirror_list(all))
 
 
 def build_tutorials_index(session, tutorials_docs):
