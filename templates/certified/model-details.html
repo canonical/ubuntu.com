@@ -116,7 +116,7 @@
                 <tbody>
                 {% for hardware_subtitle, values in release_details["components"].items() %}
                   <tr>
-                    <th colspan="2" class="p-muted-text">{{ hardware_subtitle }}</th>
+                    <th colspan="2" class="u-text--muted">{{ hardware_subtitle }}</th>
                     <td colspan="8">{% for value in values %} 
                       <p style="margin-bottom: 0.5rem;">{{ value.name }} {{ value.bus }}({{ value.identifier }})</p>
                       {% endfor %}
