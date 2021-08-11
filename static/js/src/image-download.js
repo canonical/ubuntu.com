@@ -7,7 +7,7 @@ function initImageDownload(imagePath, GAlabel) {
     eventValue: undefined,
   });
 
-  fetch("/mirrors.json")
+  fetch("/mirrors.json?local=True")
     .then((response) => response.json())
     .then((mirrors) => {
       startDownload(mirrors, imagePath);

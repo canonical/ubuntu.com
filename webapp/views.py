@@ -48,7 +48,7 @@ marketo_api = MarketoAPI(
 )
 
 
-def _build_mirror_list(all=False):
+def _build_mirror_list(local=False):
     # Build mirror list
     mirrors = []
     mirror_list = []
@@ -64,7 +64,7 @@ def _build_mirror_list(all=False):
         flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
     )
 
-    if all:
+    if not local:
         for mirror in mirrors:
             mirror_list.append(
                 {
@@ -498,10 +498,10 @@ def mirrors_query():
     """
     A JSON endpoint to request list of Ubuntu mirrors
     """
-    all = flask.request.args.get("all", default=False, type=bool)
+    local = flask.request.args.get("local", default=False, type=bool)
 
     return (
-        flask.jsonify(_build_mirror_list(all)),
+        flask.jsonify(_build_mirror_list(local)),
         {"Cache-Control": "private"},
     )
 
