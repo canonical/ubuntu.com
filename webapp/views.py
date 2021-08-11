@@ -575,8 +575,7 @@ def build_tutorials_index(session, tutorials_docs):
 def build_engage_index(engage_docs):
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
-        topic = flask.request.args.get("topic", default=None, type=str)
-        sort = flask.request.args.get("sort", default=None, type=str)
+        language = flask.request.args.get("language", default=None, type=str)
         preview = flask.request.args.get("preview")
         posts_per_page = 15
         engage_docs.parser.parse()
@@ -589,6 +588,15 @@ def build_engage_index(engage_docs):
                 if "active" in item and item["active"] == "true"
             ]
 
+        if language:
+            new_metadata = []
+            for item in metadata:
+                if "language" in item:
+                    if item["language"] == language:
+                        new_metadata.append(item)
+                    elif language == "en" and item["language"] == "":
+                        new_metadata.append(item)
+            metadata = new_metadata
         total_pages = math.ceil(len(metadata) / posts_per_page)
 
         return flask.render_template(
@@ -596,8 +604,7 @@ def build_engage_index(engage_docs):
             forum_url=engage_docs.parser.api.base_url,
             metadata=metadata,
             page=page,
-            topic=topic,
-            sort=sort,
+            language=language,
             preview=preview,
             posts_per_page=posts_per_page,
             total_pages=total_pages,
