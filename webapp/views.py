@@ -487,6 +487,14 @@ def account_query():
     )
 
 
+def mirrors_query():
+    """
+    A JSON endpoint to request list of Ubuntu mirrors
+    """
+
+    return flask.jsonify(_build_mirror_list())
+
+
 def build_tutorials_index(session, tutorials_docs):
     def tutorials_index():
         page = flask.request.args.get("page", default=1, type=int)
