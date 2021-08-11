@@ -2,6 +2,7 @@ import {
   EnterpriseContracts,
   PendingPurchaseId,
   PersonalAccount,
+  UsingTestBackend,
 } from "advantage/api/types";
 import type { QueryClient } from "react-query";
 
@@ -10,6 +11,7 @@ declare global {
     enterpriseContracts?: EnterpriseContracts;
     pendingPurchaseId?: PendingPurchaseId;
     personalAccount?: PersonalAccount;
+    usingTestBackend?: UsingTestBackend;
   }
 }
 
@@ -18,6 +20,7 @@ const getWindowData = () => ({
   pendingPurchaseId:
     window.pendingPurchaseId === "None" ? null : window.pendingPurchaseId,
   personalAccount: window.personalAccount,
+  usingTestBackend: window.usingTestBackend,
 });
 
 export const useLoadWindowData = (queryClient: QueryClient) => {
@@ -25,9 +28,11 @@ export const useLoadWindowData = (queryClient: QueryClient) => {
     enterpriseContracts,
     pendingPurchaseId,
     personalAccount,
+    usingTestBackend,
   } = getWindowData();
   // Insert the data from the template into the react-query store.
   queryClient.setQueryData("enterpriseContracts", enterpriseContracts);
   queryClient.setQueryData("pendingPurchaseId", pendingPurchaseId);
   queryClient.setQueryData("personalAccount", personalAccount);
+  queryClient.setQueryData("usingTestBackend", usingTestBackend);
 };

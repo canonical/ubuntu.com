@@ -1,3 +1,5 @@
+import { useUsingTestBackend } from "./useUsingTestBackend";
+
 export type URLs = {
   [path: string]: URLs | string;
 };
@@ -23,8 +25,11 @@ const appendTestBackend = <U extends URLs>(urls: U): U => {
     ([key, pathOrSection]: [keyof U, URLs | string]) => {
       let updatedPathOrSection = pathOrSection;
       if (typeof pathOrSection === "string") {
-        const querySeparator = pathOrSection.includes("?") ? "&" : "?";
-        updatedPathOrSection = `${pathOrSection}${querySeparator}test_backend=true`;
+        // Only append the flag it doesn't already exist.
+        if (!pathOrSection.includes("test_backend=true")) {
+          const querySeparator = pathOrSection.includes("?") ? "&" : "?";
+          updatedPathOrSection = `${pathOrSection}${querySeparator}test_backend=true`;
+        }
       } else {
         // This is an object of URLs, so append the flag to the children of this
         // section.
@@ -40,9 +45,8 @@ const appendTestBackend = <U extends URLs>(urls: U): U => {
  * This hook creates the URLS for the app with the test backend flag applied if
  * it should be present.
  */
-export const useURLs = (usingTestBackend = false) => {
+export const useURLs = () => {
+  const { usingTestBackend } = useUsingTestBackend();
   const urls = getURLs();
-  // TODO: Update this to fetch `usingTestBackend` from the React Query store.
-  // https://github.com/canonical-web-and-design/commercial-squad/issues/136
   return usingTestBackend ? appendTestBackend(urls) : urls;
 };

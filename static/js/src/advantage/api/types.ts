@@ -54,3 +54,5 @@ export type PersonalAccount = AccountInfo & {
   contracts: ContractWithToken[];
   free_token: GetContractTokenResponse["contractToken"];
 };
+
+export type UsingTestBackend = boolean;
