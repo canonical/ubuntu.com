@@ -1,11 +1,49 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import SubscriptionList from "./SubscriptionList";
+import {
+  contractWithTokenFactory,
+  personalAccountFactory,
+} from "advantage/tests/factories/api";
+import {
+  contractInfoFactory,
+  contractItemFactory,
+  entitlementSupportFactory,
+} from "advantage/tests/factories/contracts";
 
 describe("SubscriptionList", () => {
-  it("renders", () => {
-    const wrapper = shallow(<SubscriptionList />);
-    expect(wrapper.find(".p-subscriptions__list").exists()).toBe(true);
+  it("displays a free token", () => {
+    const personalAccount = personalAccountFactory.build({
+      contracts: [
+        contractWithTokenFactory.build({
+          contractInfo: contractInfoFactory.build({
+            items: [
+              contractItemFactory.build({
+                metric: "units",
+                value: 2,
+              }),
+            ],
+            resourceEntitlements: [entitlementSupportFactory.build()],
+          }),
+          token: "free-token",
+        }),
+      ],
+      free_token: "free-token",
+    });
+    const queryClient = new QueryClient();
+    queryClient.setQueryData("personalAccount", personalAccount);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList />
+      </QueryClientProvider>
+    );
+    const token = wrapper.find("[data-test='free-token']");
+    expect(token.exists()).toBe(true);
+    expect(token.prop("created")).toBe(personalAccount.createdAt);
+    expect(token.prop("expires")).toBe(null);
+    expect(token.prop("features")).toStrictEqual(["24/5 Support"]);
+    expect(token.prop("machines")).toBe(2);
   });
 });
