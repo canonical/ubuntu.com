@@ -1,3 +1,3 @@
-var smartquotes = require("smartquotes");
+// var smartquotes = require("smartquotes");
 
-smartquotes(document.getElementById("main-content"));
+// smartquotes(document.getElementById("main-content"));
