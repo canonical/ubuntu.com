@@ -48,7 +48,7 @@ marketo_api = MarketoAPI(
 )
 
 
-def _build_mirror_list():
+def _build_mirror_list(local=False):
     # Build mirror list
     mirrors = []
     mirror_list = []
@@ -59,18 +59,30 @@ def _build_mirror_list():
     except IOError:
         pass
 
-    country_code = "NO_COUNTRY_CODE"
     ip_location = ip_reader.get(
         flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
     )
 
+    # get all mirrors
+    if not local:
+        for mirror in mirrors:
+            mirror_list.append(
+                {
+                    "link": mirror["link"],
+                    "bandwidth": mirror["mirror_bandwidth"],
+                }
+            )
+        return mirror_list
+
+    # get local mirrors based on IP location
     if ip_location and "country" in ip_location:
         country_code = ip_location["country"]["iso_code"]
 
         for mirror in mirrors:
-            if mirror["mirror_countrycode"] == country_code and mirror[
-                "link"
-            ].startswith("https"):
+            is_local_mirror = mirror["mirror_countrycode"] == country_code
+            is_https = mirror["link"].startswith("https")
+
+            if is_local_mirror and is_https:
                 mirror_list.append(
                     {
                         "link": mirror["link"],
@@ -171,7 +183,7 @@ def download_server_steps():
         if not version:
             flask.abort(400)
 
-        context = {"version": version, "mirror_list": _build_mirror_list()}
+        context = {"version": version}
 
     return flask.render_template(templates[step], **context)
 
@@ -188,7 +200,6 @@ def download_thank_you(category):
             f"download/{category}/thank-you.html",
             version=version,
             architecture=architecture,
-            mirror_list=_build_mirror_list(),
         ),
         {"Cache-Control": "no-cache"},
     )
@@ -484,6 +495,23 @@ def account_query():
         {
             "account": user_info(flask.session),
         }
+    )
+
+
+def mirrors_query():
+    """
+    A JSON endpoint to request list of Ubuntu mirrors
+    """
+    local = flask.request.args.get("local", default=False)
+
+    if not local or local.lower() != "true":
+        local = False
+    else:
+        local = True
+
+    return (
+        flask.jsonify(_build_mirror_list(local)),
+        {"Cache-Control": "private"},
     )
 
 
