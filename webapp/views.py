@@ -504,7 +504,7 @@ def mirrors_query():
     """
     local = flask.request.args.get("local", default=False)
 
-    if not local or local == "false" or local == "False" or local == "no":
+    if not local or local.lower() != "true":
         local = False
     else:
         local = True
