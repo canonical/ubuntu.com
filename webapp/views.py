@@ -59,11 +59,11 @@ def _build_mirror_list(local=False):
     except IOError:
         pass
 
-    country_code = "NO_COUNTRY_CODE"
     ip_location = ip_reader.get(
         flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
     )
 
+    # get all mirrors
     if not local:
         for mirror in mirrors:
             mirror_list.append(
@@ -72,13 +72,17 @@ def _build_mirror_list(local=False):
                     "bandwidth": mirror["mirror_bandwidth"],
                 }
             )
-    elif ip_location and "country" in ip_location:
+        return mirror_list
+
+    # get local mirrors based on IP location
+    if ip_location and "country" in ip_location:
         country_code = ip_location["country"]["iso_code"]
 
         for mirror in mirrors:
-            if mirror["mirror_countrycode"] == country_code and mirror[
-                "link"
-            ].startswith("https"):
+            is_local_mirror = mirror["mirror_countrycode"] == country_code
+            is_https = mirror["link"].startswith("https")
+
+            if is_local_mirror and is_https:
                 mirror_list.append(
                     {
                         "link": mirror["link"],
