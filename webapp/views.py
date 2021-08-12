@@ -603,17 +603,26 @@ def build_tutorials_index(session, tutorials_docs):
 def build_engage_index(engage_docs):
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
+        preview = flask.request.args.get("preview")
         language = flask.request.args.get("language", default=None, type=str)
         resource = flask.request.args.get("resource", default=None, type=str)
-        preview = flask.request.args.get("preview")
+        tag = flask.request.args.get("tag", default=None, type=str)
         posts_per_page = 15
         engage_docs.parser.parse()
         metadata = engage_docs.parser.metadata
 
         resource_types = []
+        tags_list = set()
         for item in metadata:
-            if item["type"] not in resource_types:
+            if "type" in item and item["type"] not in resource_types:
                 resource_types.append(item["type"])
+            if "tags" in item and item["tags"] != "":
+                # Join 2 lists of tags without duplicates
+                tags_list = tags_list | set(
+                    item["tags"].replace(" ", "").split(",")
+                )
+
+        tags_list = sorted(list(tags_list))
 
         if preview is None:
             metadata = [
@@ -641,6 +650,14 @@ def build_engage_index(engage_docs):
                 if "type" in item and item["type"] == resource
             ]
 
+        if tag:
+            metadata = [
+                element
+                for element in metadata
+                if "tags" in element
+                and tag in element["tags"].replace(" ", "").split(",")
+            ]
+
         total_pages = math.ceil(len(metadata) / posts_per_page)
 
         return flask.render_template(
@@ -652,6 +669,7 @@ def build_engage_index(engage_docs):
             language=language,
             resource=resource,
             resource_types=sorted(resource_types),
+            tags=tags_list,
             posts_per_page=posts_per_page,
             total_pages=total_pages,
         )
