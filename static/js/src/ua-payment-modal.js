@@ -376,7 +376,7 @@ function applyLoggedInPurchaseTotals() {
 
   if (currentTransaction.type == "purchase") {
     const formData = new FormData(form);
-    const country = formData.get("Country");
+    const country = formData.get("country");
     const taxObject = formData.get("tax")
       ? {
           value: formData.get("tax"),
@@ -478,7 +478,7 @@ function fetchCustomerInfo(accountId) {
     .then((res) => {
       const name = res.data.accountInfo.name;
       const address = res.data.customerInfo.address;
-      customerInfo = { ...res.customerInfo, name, address };
+      customerInfo = { ...res.data.customerInfo, name, address };
       setFormElements();
       isCustomerInfoSet = true;
       isCustomerInfoSetFailed = false;
@@ -501,7 +501,7 @@ function setFormElements() {
   if (tax) form.elements["tax"].value = tax;
 
   if (address) {
-    form.elements["Country"].value = address.country;
+    form.elements["country"].value = address.country;
     handleCountryInput();
     form.elements["address"].value = address.line1;
     form.elements["city"].value = address.city;
@@ -1039,11 +1039,11 @@ function setCustomerInfo() {
       formData.get("name"),
     address: {
       city: formData.get("city"),
-      country: formData.get("Country"),
+      country: formData.get("country"),
       line1: formData.get("address"),
       postal_code: formData.get("postal_code"),
       state:
-        formData.get("Country") === "US"
+        formData.get("country") === "US"
           ? formData.get("us_state")
           : formData.get("ca_province"),
     },
