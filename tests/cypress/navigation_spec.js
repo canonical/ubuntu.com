@@ -2,6 +2,7 @@
 
 context("Navigation", () => {
   beforeEach(() => {
+    cy.setCookie("_cookies_accepted", "all");
     cy.visit("/");
   });
 
