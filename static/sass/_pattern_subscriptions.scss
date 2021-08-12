@@ -10,28 +10,39 @@
     }
   }
 
-  // Apply the grid to the direct parent of the list and details elements.
-  .p-subscriptions__card > .p-card__content {
-    // Use grid to set the columns as we don't want the gutter between columns
-    // so that we have room to display the scrollbar in the list.
-    display: grid;
-    grid-template-columns: 5fr 7fr;
+  @media only screen and (max-width: $breakpoint-small) {
+    .p-subscriptions__card {
+      // Don't display the card border when on small screens.
+      border: none;
+    }
+  }
+
+  // At small screens the list and details will be displayed one at a time,
+  // however for larger screens we need to display them side by side.
+  @media only screen and (min-width: $breakpoint-small) {
+    // Apply the grid to the direct parent of the list and details elements.
+    .p-subscriptions__card > .p-card__content {
+      // Use grid to set the columns as we don't want the gutter between columns
+      // so that we have room to display the scrollbar in the list.
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+    }
+
+    .p-subscriptions__list-scroll {
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: $card-padding;
+      // Position the card absolutely so that its height matches the height of the
+      // details panel.
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 
   .p-subscriptions__list {
     position: relative;
-  }
-
-  .p-subscriptions__list-scroll {
-    bottom: 0;
-    left: 0;
-    overflow-y: auto;
-    padding: $card-padding;
-    // Position the card absolutely so that its height matches the height of the
-    // details panel.
-    position: absolute;
-    right: 0;
-    top: 0;
   }
 
   .p-subscriptions__details {
