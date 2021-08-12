@@ -498,7 +498,12 @@ def mirrors_query():
     """
     A JSON endpoint to request list of Ubuntu mirrors
     """
-    local = flask.request.args.get("local", default=False, type=bool)
+    local = flask.request.args.get("local", default=False)
+
+    if not local or local == "false" or local == "False" or local == "no":
+        local = False
+    else:
+        local = True
 
     return (
         flask.jsonify(_build_mirror_list(local)),
