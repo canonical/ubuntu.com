@@ -33,7 +33,7 @@
     <div class="col-10 col-start-large-2">
       <blockquote class="p-pull-quote">
         <p class="p-pull-quote__quote u-no-max-width">
-            Livepatch is a perfect fit for our needs. There’s no other solution like it, and it’s highly cost-effective. Manually migrating virtual machines, applying kernel updates, and rebooting took an average of 32 hours per server. Multiplied by 80 servers, that was more than 2,500 hours of work.
+          Livepatch is a perfect fit for our needs. There’s no other solution like it, and it’s highly cost-effective. Manually migrating virtual machines, applying kernel updates, and rebooting took an average of 32 hours per server. Multiplied by 80 servers, that was more than 2,500 hours of work.
         </p>
         <cite class="p-pull-quote__citation">Shinya Tsunematsu, Senior Engineering Lead of Tech Division, GMO Pepabo</cite>
       </blockquote>
@@ -57,166 +57,167 @@
 </section>
 
 <section class="p-strip--suru-accent is-dark">
-    <div class="row">
-      <div class="col-3 p-card u-hide--small u-vertically-center">
-        {{ image (
-            url="https://assets.ubuntu.com/v1/c830d547-GMO-Pepabo-logo.svg",
+  <div class="row">
+    <div class="col-3 p-card u-hide--small u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c830d547-GMO-Pepabo-logo.svg",
+        alt="",
+        width="572",
+        height="132",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8 col-start-large-5">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
             alt="",
-            width="572",
-            height="132",
+            width="32",
+            height="32",
             hi_def=True,
-            loading="auto"
+            attrs={"class":"p-heading-icon__img"},
+            loading="lazy"
             ) | safe
           }}
-      </div>
-      <div class="col-8 col-start-large-5">
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
-              alt="",
-              width="32",
-              height="32",
-              hi_def=True,
-              attrs={"class":"p-heading-icon__img"},
-              loading="lazy"
-              ) | safe
-            }}
-            <p class="p-muted-heading u-sv3" style="color: #fff; line-height: 1.5rem;">Case study</p>
-          </div>
-          <h2 class="p-heading--4">GMO Pepabo cuts OPEX costs with live kernel patching</h2>
-          <p>As a leading provider of consumer-facing internet services, GMO Pepabo cannot afford downtime to its mission-critical workloads. To minimise OPEX costs, it needed a way to apply kernel updates without rebooting servers.</p>
-          <p><a href="https://pages.ubuntu.com/rs/066-EOV-335/images/GMO%20Pepabo%20Case%20study%208.pdf" class="p-button--neutral">Read more in the case study</a></p>
+          <p class="p-muted-heading u-sv3" style="color: #fff; line-height: 1.5rem;">Case study</p>
         </div>
+        <h2 class="p-heading--4">GMO Pepabo cuts OPEX costs with live kernel patching</h2>
+        <p>As a leading provider of consumer-facing internet services, GMO Pepabo cannot afford downtime to its mission-critical workloads. To minimise OPEX costs, it needed a way to apply kernel updates without rebooting servers.</p>
+        <p><a href="https://pages.ubuntu.com/rs/066-EOV-335/images/GMO%20Pepabo%20Case%20study%208.pdf" class="p-button--neutral">Read more in the case study</a></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 {% with colour="white", bordered="true" %}{% include "shared/_call-sales.html" %}{% endwith %}
 
 <section class="p-strip">
-<div class="u-fixed-width">
-  <div class="p-logo-section">
-    <p class="p-logo-section__title u-align--center">
-      Livepatch is used by
-    </p>
-   <div class="p-logo-section__items">
-      <div class="p-logo-section__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/9ae8ff55-2018-logo-bloomberg.svg",
-          alt="Bloomberg",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"},
-          ) | safe
-        }}
-      </div>
-      <div class="p-logo-section__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg",
-          alt="AT&T",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"},
-          ) | safe
-        }}
-      </div>
-      <div class="p-logo-section__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/ff209af1-2018-logo-walmart.svg",
-          alt="Walmart",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"},
-          ) | safe
-        }}
-      </div>
-      <div class="p-logo-section__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/d199354d-2018-logo-deutsche-telekom.svg",
-          alt="Deutcshe Telecom",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"},
-          ) | safe
-        }}
-      </div>
-      <div class="p-logo-section__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/675af314-2018-logo-eBay.svg",
-          alt="eBay",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"},
-          ) | safe
-        }}
-      </div>
-      <div class="p-logo-section__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/8a4d26de-2018-logo-cisco.svg",
-          alt="Cisco",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"},
-          ) | safe
-        }}
-      </div>
-      <div class="p-logo-section__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/94da9f2a-2018-logo-NTT.svg",
-          alt="NTT",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"},
-          ) | safe
-        }}
-      </div>
-      <div class="p-logo-section__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/dcde7628-2018-logo-best-buy.svg",
-          alt="Best Buy",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"},
-          ) | safe
-        }}
-      </div>
-      <div class="p-logo-section__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/9f7bc2d4-2018-logo-paypal.svg",
-          alt="PayPal",
-          width="145",
-          height="145",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-logo-section__logo"},
-          ) | safe
-        }}
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <p class="p-logo-section__title u-align--center">
+        Livepatch is used by
+      </p>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/9ae8ff55-2018-logo-bloomberg.svg",
+            alt="Bloomberg",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg",
+            alt="AT&T",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/ff209af1-2018-logo-walmart.svg",
+            alt="Walmart",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/d199354d-2018-logo-deutsche-telekom.svg",
+            alt="Deutcshe Telecom",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/675af314-2018-logo-eBay.svg",
+            alt="eBay",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/8a4d26de-2018-logo-cisco.svg",
+            alt="Cisco",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/94da9f2a-2018-logo-NTT.svg",
+            alt="NTT",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/dcde7628-2018-logo-best-buy.svg",
+            alt="Best Buy",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/9f7bc2d4-2018-logo-paypal.svg",
+            alt="PayPal",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
       </div>
     </div>
   </div>
@@ -296,29 +297,29 @@
 </section>
 
 <section class="p-strip is-deep is-bordered">
-    <div class="row u-equal-height">
-      <div class="col-3 u-vertically-center u-hide--small">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/0326ac7d-dena-logo.png",
-          alt="Dena",
-          width="144",
-          height="59",
-          hi_def=True,
-          loading="auto",
-          ) | safe
-        }}
-      </div>
-      <div class="col-8 col-start-large-5">
-        <blockquote class="p-pull-quote">
-          <p class="p-pull-quote__quote u-no-max-width">
-            Livepatch is like a dream come true, both from a technical and a business standpoint. Our Ubuntu systems now rarely or never have to be rebooted. Service is continuous. That makes a big difference for user and customer satisfaction and loyalty.
-          </p>
-          <cite class="p-pull-quote__citation">Masaaki Hirose, IT Platform Department, DeNA</cite>
-        </blockquote>
-      </div>
+  <div class="row u-equal-height">
+    <div class="col-3 u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/0326ac7d-dena-logo.png",
+        alt="Dena",
+        width="144",
+        height="59",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
     </div>
-  </section>
+    <div class="col-8 col-start-large-5">
+      <blockquote class="p-pull-quote">
+        <p class="p-pull-quote__quote u-no-max-width">
+          Livepatch is like a dream come true, both from a technical and a business standpoint. Our Ubuntu systems now rarely or never have to be rebooted. Service is continuous. That makes a big difference for user and customer satisfaction and loyalty.
+        </p>
+        <cite class="p-pull-quote__citation">Masaaki Hirose, IT Platform Department, DeNA</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
 
 <section class="p-strip--light">
   <div class="row u-equal-height">
