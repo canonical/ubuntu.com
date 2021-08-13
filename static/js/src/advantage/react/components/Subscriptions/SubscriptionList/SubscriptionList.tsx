@@ -1,5 +1,6 @@
 import type { PersonalAccount } from "advantage/api/types";
 import { usePersonalAccount } from "advantage/react/hooks";
+import { selectFreeContract } from "advantage/react/hooks/usePersonalAccount";
 import { getFeaturesDisplay } from "advantage/react/utils";
 import React from "react";
 
@@ -7,18 +8,11 @@ import ListCard from "./ListCard";
 import ListGroup from "./ListGroup";
 
 /**
- * Find the contract that matches the free token.
- */
-const getFreeContract = (personalAccount?: PersonalAccount) =>
-  personalAccount?.contracts.find(
-    ({ token }) => token === personalAccount.free_token
-  ) || null;
-
-/**
  * Get the data to display in the card for the free token.
  */
-const getFreeContractData = (personalAccount?: PersonalAccount) => {
-  const freeContract = getFreeContract(personalAccount);
+const getFreeContractData = (
+  freeContract?: PersonalAccount["contracts"][0] | null
+) => {
   if (!freeContract) {
     return null;
   }
@@ -34,9 +28,10 @@ const getFreeContractData = (personalAccount?: PersonalAccount) => {
 };
 
 const SubscriptionList = () => {
-  const { personalAccount } = usePersonalAccount();
-  const freeContract = getFreeContractData(personalAccount);
-
+  const { data: freeContractData } = usePersonalAccount({
+    select: selectFreeContract,
+  });
+  const freeContract = getFreeContractData(freeContractData);
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
