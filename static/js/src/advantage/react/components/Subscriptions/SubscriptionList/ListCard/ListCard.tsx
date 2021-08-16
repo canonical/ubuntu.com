@@ -1,13 +1,17 @@
 import { Card, Col, List, Row } from "@canonical/react-components";
 import React from "react";
 import { format, parseJSON } from "date-fns";
+import classNames from "classnames";
+import { makeInteractiveProps } from "advantage/react/utils";
 
 type Props = {
   created: string;
   expires?: string | null;
   features: string[];
-  machines: number;
+  isSelected?: boolean;
   label: string;
+  machines: number;
+  onClick: () => void;
   title: string;
 };
 
@@ -25,11 +29,18 @@ const ListCard = ({
   created,
   expires,
   features,
+  isSelected,
   machines,
   label,
+  onClick,
   title,
 }: Props): JSX.Element => (
-  <Card>
+  <Card
+    className={classNames("p-subscriptions__list-card", {
+      "is-active": isSelected,
+    })}
+    {...makeInteractiveProps(onClick)}
+  >
     <div className="p-subscriptions__list-card-title">
       <h5 className="u-no-padding--top u-no-margin--bottom">{title}</h5>
       <span className="p-text--x-small-capitalised u-text--muted p-subscriptions__list-card-period">

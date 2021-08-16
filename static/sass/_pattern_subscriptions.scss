@@ -10,6 +10,29 @@
     }
   }
 
+  .p-subscriptions__list-card:not(.is-active) {
+    cursor: pointer;
+  }
+
+  .p-subscriptions__list-card.is-active {
+    // Display the active stripe on the left.
+    @include vf-highlight-bar($color-brand, left, true);
+    @include vf-animation(#{background-color, border-color}, snap, in);
+
+    background-color: $color-light;
+    // Show the overflow so that the stripe can cover the border.
+    overflow: visible;
+
+    &::before {
+      @include vf-animation(#{background-color, border-color}, snap, in);
+
+      // Make the stripe match the border radius of the card.
+      border-radius: $border-radius 0 0 $border-radius;
+      // Move the stripe over the outer border of the card.
+      left: -1px;
+    }
+  }
+
   // Apply the grid to the direct parent of the list and details elements.
   .p-subscriptions__card > .p-card__content {
     // Use grid to set the columns as we don't want the gutter between columns
