@@ -155,6 +155,7 @@
           <div class="col-4 u-align--right">
             {% if total_results > 0 %}
             <p style="display: inline-block; padding-right: 0.5rem;">Results per page</p>
+
             <select id="page-size-bottom" class="p-results-per-page" aria-label="Results per page" style="max-width: 5.3rem; min-width: 5.3rem;" data-limit="{{ limit }}">
               <option value="20" {% if limit == 20 %}selected{% endif %}>20</option>
               {% if total_results > 20 %}
