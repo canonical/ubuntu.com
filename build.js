@@ -22,7 +22,7 @@ let entries = {
   uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
   uaSubscriptions: "./static/js/src/advantage/react/app.tsx",
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
-  "certified-search-results": "./static/js/src/certified-search-results.js",
+  "certified-search-results": "./static/js/src/certified-search-results.js"
 };
 
 for (const [key, value] of Object.entries(entries)) {
@@ -39,11 +39,14 @@ for (const [key, value] of Object.entries(entries)) {
         // 'production' in all other cases.
         process && process.env && process.env.NODE_ENV === "development"
           ? '"development"'
-          : '"production"',
-    },
+          : '"production"'
+    }
   };
 
-  esbuild.build(options).then((result) => {
-    console.log("Built " + key + ".js");
-  });
+  esbuild
+    .build(options)
+    .then((result) => {
+      console.log("Built " + key + ".js");
+    })
+    .catch(() => process.exit(1));
 }
