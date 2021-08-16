@@ -1,4 +1,5 @@
 let esbuild = require("esbuild");
+const path = require("path");
 
 let entries = {
   contributions: "./static/js/src/contributions.js",
@@ -30,6 +31,7 @@ for (const [key, value] of Object.entries(entries)) {
     entryPoints: [value],
     bundle: true,
     minify: true,
+    nodePaths: [path.resolve(__dirname, "./static/js/src")],
     sourcemap: true,
     outfile: "static/js/dist/" + key + ".js",
     target: ["chrome58", "firefox57", "safari11", "edge16"],
