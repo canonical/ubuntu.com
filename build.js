@@ -50,5 +50,6 @@ for (const [key, value] of Object.entries(entries)) {
     .then((result) => {
       console.log("Built " + key + ".js");
     })
+    // Fail the build if there are errors.
     .catch(() => process.exit(1));
 }

@@ -19,7 +19,6 @@ from webapp.advantage.api import (
     UnauthorizedError,
     UAContractsUserHasNoAccount,
     UAContractsAPIError,
-    UAContractsAPIErrorView,
 )
 
 from webapp.advantage.schemas import (
@@ -28,8 +27,8 @@ from webapp.advantage.schemas import (
     cancel_advantage_subscriptions,
     post_customer_info,
     ensure_purchase_account,
-    post_payment_method,
     invoice_view,
+    post_payment_methods,
 )
 
 
@@ -370,6 +369,10 @@ def payment_methods_view(**kwargs):
     stripe_publishable_key = kwargs["stripe_publishable_key"]
     api_url = kwargs.get("api_url")
     token = kwargs.get("token")
+    account = None
+    default_payment_method = None
+    account_id = ""
+    pending_purchase_id = ""
 
     advantage = UAContractsAPI(
         session, token, api_url=api_url, is_for_view=True
@@ -377,31 +380,40 @@ def payment_methods_view(**kwargs):
 
     try:
         account = advantage.get_purchase_account()
-    except UAContractsUserHasNoAccount as error:
-        raise UAContractsAPIErrorView(error)
+    except UAContractsUserHasNoAccount:
+        # No Stripe account
 
-    subscriptions = advantage.get_account_subscriptions(
-        account_id=account["id"],
-        marketplace="canonical-ua",
-        filters={"status": "locked"},
-    )
+        pass
 
-    pending_purchase_id = ""
-    for subscription in subscriptions:
-        if subscription.get("pendingPurchases"):
-            pending_purchase_id = subscription.get("pendingPurchases")[0]
-            break
+    if account:
+        account_id = account["id"]
 
-    account_info = advantage.get_customer_info(account["id"])
-    customer_info = account_info["customerInfo"]
-    default_payment_method = customer_info.get("defaultPaymentMethod")
+        subscriptions = advantage.get_account_subscriptions(
+            account_id=account_id,
+            marketplace="canonical-ua",
+            filters={"status": "locked"},
+        )
+
+        for subscription in subscriptions:
+            if subscription.get("pendingPurchases"):
+                pending_purchase_id = subscription.get("pendingPurchases")[0]
+                break
+
+        try:
+            account_info = advantage.get_customer_info(account_id)
+            customer_info = account_info["customerInfo"]
+            default_payment_method = customer_info.get("defaultPaymentMethod")
+        except UAContractsUserHasNoAccount:
+            # User has no stripe account
+
+            pass
 
     return flask.render_template(
         "account/payment-methods/index.html",
         stripe_publishable_key=stripe_publishable_key,
         default_payment_method=default_payment_method,
         pending_purchase_id=pending_purchase_id,
-        account_id=account["id"],
+        account_id=account_id,
     )
 
 
@@ -551,9 +563,11 @@ def post_anonymised_customer_info(**kwargs):
     address = kwargs.get("address")
     tax_id = kwargs.get("tax_id")
 
-    tax_id["value"] = tax_id["value"].replace(" ", "")
-    if tax_id["value"] == "":
-        tax_id["delete"] = True
+    if tax_id:
+        tax_id["value"] = tax_id["value"].replace(" ", "")
+
+        if tax_id["value"] == "":
+            tax_id["delete"] = True
 
     advantage = UAContractsAPI(
         session, token, token_type=token_type, api_url=api_url
@@ -565,8 +579,8 @@ def post_anonymised_customer_info(**kwargs):
 
 
 @advantage_checks(check_list=["need_user"])
-@use_kwargs(post_payment_method, location="json")
-def post_payment_method(**kwargs):
+@use_kwargs(post_payment_methods, location="json")
+def post_payment_methods(**kwargs):
     api_url = kwargs.get("api_url")
     token = kwargs.get("token")
     account_id = kwargs.get("account_id")
@@ -574,7 +588,16 @@ def post_payment_method(**kwargs):
 
     advantage = UAContractsAPI(session, token, api_url=api_url)
 
-    return advantage.put_payment_method(account_id, payment_method_id)
+    try:
+        response = advantage.put_payment_method(account_id, payment_method_id)
+    except UAContractsUserHasNoAccount:
+        name = flask.session["openid"]["fullname"]
+
+        response = advantage.put_customer_info(
+            account_id, payment_method_id, None, name, None
+        )
+
+    return response
 
 
 @advantage_checks(check_list=["need_user"])
@@ -640,9 +663,11 @@ def post_customer_info(**kwargs):
     name = kwargs.get("name")
     tax_id = kwargs.get("tax_id")
 
-    tax_id["value"] = tax_id["value"].replace(" ", "")
-    if tax_id["value"] == "":
-        tax_id["delete"] = True
+    if tax_id:
+        tax_id["value"] = tax_id["value"].replace(" ", "")
+
+        if tax_id["value"] == "":
+            tax_id["delete"] = True
 
     advantage = UAContractsAPI(
         session, token, token_type=token_type, api_url=api_url

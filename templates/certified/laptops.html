@@ -85,10 +85,12 @@
                     </label>
                     {% endfor %}
                   </section>
+                  {% if vendor_filters | length > 5 %}
                   <span class="js-toggle-links">
                     <p class="p-reveal-vendors is-dense"><a>Show all vendors ({{ vendor_filters|length - 5}})</a></p>
                     <p class="p-reveal-vendors is-dense u-hide"><a>Show fewer</a></p>
                   </span>
+                  {% endif %}
                 </li>
                 <li class="p-accordion__group--certified" id="version-section">
                   <div role="heading" aria-level="2">
@@ -110,10 +112,12 @@
                     </label>
                     {% endfor %}
                   </section>
+                  {% if release_filters | length > 5 %}
                   <span class="js-toggle-links">
                     <p class="p-reveal-versions is-dense"><a> Show all versions ({{release_filters|length - 5}})</a></p>
                     <p class="p-reveal-versions is-dense u-hide"><a>Show fewer</a></p>
                   </span>
+                  {% endif %}
                 </li>
               </ul>
             </aside>

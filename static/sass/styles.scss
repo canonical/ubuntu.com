@@ -80,6 +80,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_takeovers";
 @import "pattern_table-of-contents";
 @import "pattern_table";
+@import "pattern_tco-calculator";
 @import "pattern_ubuntu_intro";
 @import "takeovers/financial-services";
 @import "utility_animations";
@@ -133,6 +134,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-tables;
 @include ubuntu-p-takeunders;
 @include ubuntu-p-takeovers;
+@include ubuntu-p-tco-calculator;
 @include ubuntu-p-engage-banner;
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-tabs;
@@ -288,20 +290,6 @@ h5.u-align--center,
 h6.u-align--center,
 p.u-align--center {
   max-width: none;
-}
-
-/// XXX Caleb: abbr hotfix - to be fixed in Vanilla
-// https://github.com/vanilla-framework/vanilla-framework/issues/1962
-abbr[title] {
-  border-bottom: 0.1em dotted;
-  cursor: help;
-  text-decoration: none;
-}
-
-// XXX Ant: is-bordered hotfix - to be removed when the following is resolved:
-// https://github.com/vanilla-framework/vanilla-framework/issues/2045
-[class^="p-strip"].is-bordered {
-  margin-bottom: 0;
 }
 
 // Override for wordpress use of <figure>
@@ -775,19 +763,6 @@ summary {
   padding: 0.25rem 0.85rem;
 }
 
-// Keep font weight 300 for copyable code snippets
-// Bug https://github.com/canonical-web-and-design/vanilla-framework/issues/3564
-
-.p-code-copyable__input {
-  font-weight: 300;
-}
-
-// XXX: Align accordion icons top instead of center
-// Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/2926
-.p-accordion__tab {
-  background-position: top $spv-inner--medium left $sph-inner;
-}
-
 td.p-accordion {
   padding-top: 0;
 }
@@ -795,26 +770,6 @@ td.p-accordion {
 // Local override for custom table
 .p-accordion.is-compact .p-accordion__panel {
   padding-left: $sph-inner--small;
-}
-
-// XXX: 14.05.2020 remove when this is fixed: https://github.com/canonical-web-and-design/vanilla-framework/issues/3066
-h4.p-stepped-list__title + .p-stepped-list__content {
-  @media (min-width: $breakpoint-large) {
-    margin-left: 0;
-  }
-}
-
-// XXX: Muted text patterm - will be added to Vanilla
-// Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/3063
-.p-muted-text {
-  color: $color-mid-dark;
-}
-
-// XXX: 14.05.2020 remove when this is fixed https://github.com/canonical-web-and-design/vanilla-framework/issues/3066
-@media (min-width: $breakpoint-large) {
-  h4.p-stepped-list__title + .p-stepped-list__content {
-    margin-left: 0;
-  }
 }
 
 .is-bordered--top {
@@ -995,6 +950,45 @@ body {
   opacity: 0.33;
 }
 
+.p-strip-account-page {
+  height: 600px;
+
+  @media (max-width: $breakpoint-small) {
+    height: auto;
+  }
+}
+
+.card-management-section {
+  @media (max-width: $breakpoint-small) {
+    #card-element {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .current-payment-method {
+    align-items: center;
+    display: flex;
+    margin-bottom: 1.1rem;
+
+    > p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .payment-card-logo {
+    background-color: $color-x-light;
+    border: 1px solid $color-mid-light;
+    border-radius: 2px;
+    height: 1.7rem;
+    margin-right: 0.5rem;
+  }
+
+  #card-element {
+    margin: 0.5rem 0;
+  }
+}
+
 #payment-modal-form {
   > .row {
     padding-left: 0;
@@ -1026,49 +1020,6 @@ body {
   }
 }
 
-.card-management-section {
-  height: 600px;
-
-  @media (max-width: $breakpoint-small) {
-    height: auto;
-
-    #card-element {
-      margin-bottom: 1rem;
-    }
-  }
-
-  .current-payment-method {
-    align-items: center;
-    display: flex;
-    margin-bottom: 1.1rem;
-
-    > p {
-      margin: 0;
-      padding: 0;
-    }
-  }
-
-  .payment-card-logo {
-    background-color: $color-x-light;
-    border: 1px solid $color-mid-light;
-    border-radius: 2px;
-    height: 1.7rem;
-    margin-right: 0.5rem;
-  }
-}
-
 html {
   scroll-behavior: smooth;
-}
-
-//tco calculatior
-.tco-tooltip {
-  margin-bottom: 0.5rem;
-  margin-left: 0.5rem;
-}
-
-.tco-input {
-  @media (min-width: $breakpoint-medium) {
-    max-width: 10rem;
-  }
 }

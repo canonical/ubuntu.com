@@ -207,15 +207,15 @@
           </div>
         </li>
         <li class="p-matrix__item">
-          <strong style="height: 80px; margin-bottom: .6rem; margin-top: .6rem;">
-            MongoDB Community Edition<br />
-            (non SSPL)
-          </strong>
-          <div class="p-matrix__content">
-            <div class="p-matrix__desc">
-              <p class="p-muted-heading">NOCONSTRAINT DATABASE</p>
+            <strong style="height: 80px; margin-bottom: .6rem; margin-top: .6rem;">
+              MongoDB Community Edition<br />
+              (non SSPL)
+            </strong>
+            <div class="p-matrix__content">
+              <div class="p-matrix__desc">
+                <p class="p-muted-heading">NOCONSTRAINT DATABASE</p>
+              </div>
             </div>
-          </div>
         </li>
         <li class="p-matrix__item">
           {{
@@ -235,6 +235,26 @@
             </div>
           </div>
         </li>
+        <li class="p-matrix__item"></li>
+        <li class="p-matrix__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/8f81db2a-mariadb-logo-vert_blue-transparent.png",
+            alt="elastic search",
+            width="144",
+            height="117",
+            hi_def=True,
+            loading="lazy",
+            attrs={"style": "height: 80px; width: auto; margin-bottom: 1rem;"},
+            ) | safe
+          }}
+          <div class="p-matrix__content">
+            <div class="p-matrix__desc">
+              <p class="p-muted-heading">SCALABLE RELATIONAL DATABASE</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item"></li>
       </ul>
     </div>
 
@@ -265,7 +285,7 @@
             attrs={"style":"height: 60px;width: auto;"},
             ) | safe
           }}
-          <h3>99.99% uptime</h3>
+          <h3>99.9% uptime</h3>
           <p>Backed by an SLA</p>
         </div>
 

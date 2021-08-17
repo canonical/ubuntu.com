@@ -395,12 +395,46 @@ def create_category_views(category, template_path):
     Helper function to create multiple /certified/<page> category views
 
     Keyword arguments:
-    category -- must be categories accepted by API (Desktop, Laptop, SoC, \
+    category -- must be categories accepted by API (Desktop, Laptop, \
     Server, Ubuntu Core, Server SoC)
     template_path -- full template path (e.g. certified/search-results.html)
     """
-    certified_releases = api.certified_releases(limit="0")["objects"]
-    certified_makes = api.certified_makes(limit="0")["objects"]
+    if category == "Desktop":
+        certified_releases = api.certified_releases(
+            limit="0", desktops__gte=1
+        )["objects"]
+        certified_makes = api.certified_makes(limit="0", desktops__gte=1)[
+            "objects"
+        ]
+    elif category == "Laptop":
+        certified_releases = api.certified_releases(limit="0", laptops__gte=1)[
+            "objects"
+        ]
+        certified_makes = api.certified_makes(limit="0", laptops__gte=1)[
+            "objects"
+        ]
+    elif category == "Server SoC":
+        certified_releases = api.certified_releases(limit="0", soc__gte=1)[
+            "objects"
+        ]
+        certified_makes = api.certified_makes(limit="0", soc__gte=1)["objects"]
+    elif category == "Ubuntu Core":
+        certified_releases = api.certified_releases(
+            limit="0", smart_core__gte=1
+        )["objects"]
+        certified_makes = api.certified_makes(limit="0", smart_core__gte=1)[
+            "objects"
+        ]
+    elif category == "Server":
+        certified_releases = api.certified_releases(limit="0", servers__gte=1)[
+            "objects"
+        ]
+        certified_makes = api.certified_makes(limit="0", servers__gte=1)[
+            "objects"
+        ]
+    else:
+        certified_releases = api.certified_releases(limit="0")["objects"]
+        certified_makes = api.certified_makes(limit="0")["objects"]
 
     # Search results filters
     all_releases = []
