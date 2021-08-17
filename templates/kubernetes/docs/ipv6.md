@@ -45,8 +45,7 @@ enabled.
 <a id='example'> </a>
 ### Example deployment
 
-You can use the following overlay file ([download it here][asset-ipv4-ipv6-overlay])
-along with [the Calico overlay][asset-calico-overlay] to enable IPv4-preferred
+You can use the following overlay file along with [the Calico overlay][asset-calico-overlay] to enable IPv4-preferred
 dual-stack:
 
 ```yaml
@@ -66,8 +65,7 @@ You can deploy all of that with:
 juju deploy cs:charmed-kubernetes --overlay ./calico-overlay.yaml --overlay ipv4-ipv6-overlay.yaml
 ```
 
-Once that is deployed, you can use the following spec ([download it
-here][asset-nginx-dual-stack]) to run a dual-stack enabled nginx pod with an
+Once that is deployed, you can use the following spec to run a dual-stack enabled nginx pod with an
 IPv6 service in front of it:
 
 ```yaml
@@ -175,5 +173,3 @@ No additional issues with IPv6 on MAAS are known at this time.
 [dual-stack]: https://kubernetes.io/docs/concepts/services-networking/dual-stack/
 [ip-family]: https://kubernetes.io/docs/concepts/services-networking/dual-stack/#services
 [asset-calico-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/calico-overlay.yaml
-[asset-ipv4-ipv6-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/ipv4-ipv6-overlay.yaml
-[asset-nginx-dual-stack]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/specs/nginx-dual-stack.yaml

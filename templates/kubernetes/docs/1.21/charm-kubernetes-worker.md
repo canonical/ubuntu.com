@@ -597,5 +597,5 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 
 
 <!-- LINKS -->
-[charm-kubernetes-master]: /charm-kubernetes-master
+[charm-kubernetes-master]: /kubernetes/docs/1.21/charm-kubernetes-master
 [kubelet-docs]: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
