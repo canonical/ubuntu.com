@@ -36,7 +36,7 @@ describe("SubscriptionList", () => {
     queryClient.setQueryData("personalAccount", personalAccount);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionList />
+        <SubscriptionList setSelectedToken={jest.fn()} />
       </QueryClientProvider>
     );
     const token = wrapper.find("[data-test='free-token']");
@@ -45,5 +45,29 @@ describe("SubscriptionList", () => {
     expect(token.prop("expires")).toBe(null);
     expect(token.prop("features")).toStrictEqual(["24/5 Support"]);
     expect(token.prop("machines")).toBe(2);
+  });
+
+  it("can display the free token as selected", () => {
+    const personalAccount = personalAccountFactory.build({
+      contracts: [
+        contractWithTokenFactory.build({
+          token: "free-token",
+        }),
+      ],
+      free_token: "free-token",
+    });
+    const queryClient = new QueryClient();
+    queryClient.setQueryData("personalAccount", personalAccount);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList
+          selectedToken="free-token"
+          setSelectedToken={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("[data-test='free-token']").prop("isSelected")).toBe(
+      true
+    );
   });
 });
