@@ -10,22 +10,31 @@
     }
   }
 
-  .p-subscriptions__list-card:not(.is-active) {
-    cursor: pointer;
+  .p-subscriptions__list-card {
+    // Include the active stripe on the left, but make it transparent. This is
+    // so the background colour can be animated when it becomes active.
+    @include vf-highlight-bar(transparent, left, true);
+
+    &::before {
+      // Set up the animation on the active stripe.
+      @include vf-animation(background-color, snap, in);
+    }
+
+    // Only show the pointer on inactive cards.
+    &:not(.is-active) {
+      cursor: pointer;
+    }
   }
 
   .p-subscriptions__list-card.is-active {
-    // Display the active stripe on the left.
+    // Update the active stripe to use the brand colour.
     @include vf-highlight-bar($color-brand, left, true);
-    @include vf-animation(#{background-color, border-color}, snap, in);
 
     background-color: $color-light;
     // Show the overflow so that the stripe can cover the border.
     overflow: visible;
 
     &::before {
-      @include vf-animation(#{background-color, border-color}, snap, in);
-
       // Make the stripe match the border radius of the card.
       border-radius: $border-radius 0 0 $border-radius;
       // Move the stripe over the outer border of the card.
