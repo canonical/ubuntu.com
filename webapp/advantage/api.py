@@ -121,6 +121,9 @@ class UAContractsAPI:
                     raise UAContractsAPIAuthErrorView(error)
                 raise UAContractsAPIAuthError(error)
 
+            if error.response.status_code == 404:
+                raise UAContractsUserHasNoAccount(error)
+
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
 

@@ -145,12 +145,12 @@
   <div class="js-os">
     <div class="row  js-selection-container">
       <div class="col-3">
-        <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3 intelnuc">
+        <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3 raspberrypi4 intelnuc">
           <span class="js-name" data-value="core16">Core 16</span>
         </button>
       </div>
       <div class="col-9">
-        <p>Use if your apps or existing devices require it.</p>
+        <p>Ubuntu Core 16 is not a recommended platform.</p>
       </div>
     </div>
     <div class="row  js-selection-container">
@@ -160,7 +160,17 @@
         </button>
       </div>
       <div class="col-9">
-        <p>Recommended for the most advanced security.</p>
+        <p>Use this if your system requires this version.</p>
+      </div>
+    </div>
+    <div class="row  js-selection-container">
+      <div class="col-3">
+        <button class="p-button is-wide js-selection" data-supports="raspberrypi2 raspberrypi3 raspberrypi4 intelnuc">
+          <span class="js-name" data-value="core20">Core 20</span>
+        </button>
+      </div>
+      <div class="col-9">
+        <p>Recommended for the most advanced security</p>
       </div>
     </div>
   </div>
@@ -175,15 +185,22 @@
   <div class="js-arch">
     <div class="row  js-selection-container">
       <div class="col-3">
-        <button class="p-button is-wide js-selection">
+        <button id="amd64" class="p-button is-wide js-selection">
           <span class="js-name" data-value="amd64">amd64</span>
         </button>
       </div>
     </div>
     <div class="row  js-selection-container">
       <div class="col-3">
-        <button class="p-button is-wide js-selection">
+        <button id="armhf" class="p-button is-wide js-selection">
           <span class="js-name" data-value="armhf">armhf</span>
+        </button>
+      </div>
+    </div>
+    <div class="row  js-selection-container">
+      <div class="col-3">
+        <button id="arm64" class="p-button is-wide js-selection">
+          <span class="js-name" data-value="arm64">arm64</span>
         </button>
       </div>
     </div>

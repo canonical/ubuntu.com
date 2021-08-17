@@ -120,12 +120,11 @@
   <script src="{{ versioned_static('js/dist/image-download.js') }}"></script>
 
   <script defer>
-    var mirrors = {{ mirror_list | tojson }};
     var version = '{{ version }}';
 
     var GAlabel = version + '-server-amd64';
     var imagePath = version + '/ubuntu-' + version + '-live-server-amd64.iso';
 
-    window.initImageDownload(mirrors, imagePath, GAlabel);
+    window.initImageDownload(imagePath, GAlabel);
   </script>
 {% endblock footer_extra %}

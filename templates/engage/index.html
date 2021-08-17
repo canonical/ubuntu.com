@@ -14,10 +14,36 @@
 {% endblock %}
 
 {% block content %}
-
-<section class="p-strip u-no-padding--bottom">
+<section class="p-strip--suru-blog-header is-dark">
   <div class="row">
-    <h1>Ubuntu case studies, whitepapers and webinars</h1>
+    <div class="col-6">
+      <h1>Engage pages</h1>
+      <p>Ubuntu case studies, whitepapers and webinars.</p>
+      <a class="p-button--positive p-link--external" href="https://discourse.ubuntu.com/t/engage-pages-and-takeovers/17229">Add new engage pages</a>
+      <a class="p-button--neutral p-link--external" href="https://discourse.ubuntu.com/t/how-to-add-engage-pages/18185">How to add engage pages</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip is-shallow">
+  <div class="row">
+    <div class="col-4">
+      <div class="p-form__group">
+        <form action="/">
+          <label for="language-selector">Select language:</label>
+          <select name="language-selector" id="language-selector" class="u-no-margin--bottom">
+            <option value="all">All languages</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="es">Espa&nacute;ol</option>
+            <option value="fr">Fran&ccedil;ais</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Portugu&ecirc;s</option>
+          </select>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -38,4 +64,34 @@
   </div>
 
 </section>
+<script>
+(function() {
+  const languageSelector = document.getElementById("language-selector");
+  const urlObj = new URL(window.location);
+
+  function handleFilter(key, el, url) {
+    if (!el) {
+      return;
+    }
+
+    if (url.searchParams.has(key)) {
+      el.value = url.searchParams.get(key);
+    }
+
+    el.addEventListener("change", function(e) {
+      const value = e.target.value;
+
+      if (url.searchParams.has(key)) {
+        url.searchParams.delete(key);
+      }
+      if (value !== "all") {
+        url.searchParams.append(key, value);
+      }
+      
+      window.location = url;
+    });
+  }
+  handleFilter("language", languageSelector, urlObj);
+})()
+</script>
 {% endblock content %}

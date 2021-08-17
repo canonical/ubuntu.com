@@ -1,4 +1,4 @@
-function initImageDownload(mirrors, imagePath, GAlabel) {
+function initImageDownload(imagePath, GAlabel) {
   dataLayer.push({
     event: "GAEvent",
     eventCategory: "Download",
@@ -7,7 +7,15 @@ function initImageDownload(mirrors, imagePath, GAlabel) {
     eventValue: undefined,
   });
 
-  startDownload(mirrors, imagePath);
+  fetch("/mirrors.json?local=True")
+    .then((response) => response.json())
+    .then((mirrors) => {
+      startDownload(mirrors, imagePath);
+    })
+    .catch(() => {
+      // in case of error just download the default image
+      startDownload([], imagePath);
+    });
 }
 
 function startDownload(mirrors, imagePath) {
