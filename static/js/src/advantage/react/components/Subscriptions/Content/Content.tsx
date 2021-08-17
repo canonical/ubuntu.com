@@ -1,22 +1,18 @@
 import { Card } from "@canonical/react-components";
-import React from "react";
-import { useMediaQuery } from "react-responsive";
+import React, { useState } from "react";
 
 import SubscriptionDetails from "../SubscriptionDetails";
 import SubscriptionList from "../SubscriptionList";
 
-enum Breakpoint {
-  SMALL = "620px",
-}
-
 const Content = () => {
-  const isSmallScreen = useMediaQuery({
-    query: `(max-width: ${Breakpoint.SMALL})`,
-  });
+  // TODO: toggle the details modal visibility when the details are made to be
+  // responsive:
+  // https://github.com/canonical-web-and-design/commercial-squad/issues/111
+  const [modalActive] = useState(false);
   return (
     <Card className="u-no-margin--bottom u-no-padding p-subscriptions__card">
       <SubscriptionList />
-      {isSmallScreen ? null : <SubscriptionDetails />}
+      <SubscriptionDetails modalActive={modalActive} />
     </Card>
   );
 };

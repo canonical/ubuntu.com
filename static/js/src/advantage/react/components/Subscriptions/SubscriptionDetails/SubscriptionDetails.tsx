@@ -1,13 +1,22 @@
 import { Button } from "@canonical/react-components";
 import React, { useState } from "react";
+import classNames from "classnames";
 
 import DetailsContent from "./DetailsContent";
 import SubscriptionEdit from "../SubscriptionEdit";
 
-const SubscriptionDetails = () => {
+type Props = {
+  modalActive?: boolean;
+};
+
+const SubscriptionDetails = ({ modalActive }: Props) => {
   const [editing, setEditing] = useState(false);
   return (
-    <div className="p-subscriptions__details">
+    <div
+      className={classNames("p-subscriptions__details", {
+        "is-active": modalActive,
+      })}
+    >
       <h4>UA Infra Essential (Virtual)</h4>
       <div className="u-sv4">
         <Button

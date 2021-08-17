@@ -47,6 +47,14 @@
 
   .p-subscriptions__details {
     padding: $card-padding;
+
+    @media only screen and (max-width: $breakpoint-small) {
+      display: none;
+
+      &.is-active {
+        display: flex;
+      }
+    }
   }
 
   .p-subscriptions__details-small-title {
