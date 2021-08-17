@@ -10,11 +10,49 @@
     }
   }
 
-  @media only screen and (max-width: $breakpoint-small) {
-    .p-subscriptions__card {
+  .p-subscriptions__list-card {
+    // Include the active stripe on the left, but make it transparent. This is
+    // so the background colour can be animated when it becomes active.
+    @include vf-highlight-bar(transparent, left, true);
+
+    @media only screen and (max-width: $breakpoint-small) {
       // Don't display the card border when on small screens.
       border: none;
     }
+
+    &::before {
+      // Set up the animation on the active stripe.
+      @include vf-animation(background-color, snap, in);
+    }
+
+    // Only show the pointer on inactive cards.
+    &:not(.is-active) {
+      cursor: pointer;
+    }
+  }
+
+  .p-subscriptions__list-card.is-active {
+    // Update the active stripe to use the brand colour.
+    @include vf-highlight-bar($color-brand, left, true);
+
+    background-color: $color-light;
+    // Show the overflow so that the stripe can cover the border.
+    overflow: visible;
+
+    &::before {
+      // Make the stripe match the border radius of the card.
+      border-radius: $border-radius 0 0 $border-radius;
+      // Move the stripe over the outer border of the card.
+      left: -1px;
+    }
+  }
+
+  // Apply the grid to the direct parent of the list and details elements.
+  .p-subscriptions__card > .p-card__content {
+    // Use grid to set the columns as we don't want the gutter between columns
+    // so that we have room to display the scrollbar in the list.
+    display: grid;
+    grid-template-columns: 5fr 7fr;
   }
 
   // At small screens the list and details will be displayed one at a time,

@@ -11,8 +11,10 @@ import {
   Subscription,
 } from "./contracts-types";
 
+export type ContractToken = GetContractTokenResponse["contractToken"];
+
 export type ContractWithToken = AccountContractInfo & {
-  token: GetContractTokenResponse["contractToken"];
+  token: ContractToken;
 };
 
 export type EnterpriseContractInfo = ContractInfo & {
@@ -52,7 +54,7 @@ export type PendingPurchaseId = string;
 
 export type PersonalAccount = AccountInfo & {
   contracts: ContractWithToken[];
-  free_token: GetContractTokenResponse["contractToken"];
+  free_token: ContractToken;
 };
 
 export type UsingTestBackend = boolean;
