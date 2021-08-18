@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 function clearFilters() {
   location.assign(`/certified?q=`);
   return false;
@@ -73,14 +75,19 @@ function enableApplyFilters() {
 // function to ensure only the option which has been changed is appended to the URL
 function updateResultsPerPage() {
   const searchResults = document.querySelector(".js-search-results");
-  let resultsDropdowns = document.querySelectorAll(".p-results-per-page");
-  resultsDropdowns.forEach((resultsDropdown) => {
-    const options = resultsDropdown.querySelectorAll("option");
-    options.forEach((option) => {
-      if (option.selected) {
-        searchResults.submit();
-      }
-    });
+  const pageSizeTop = document.getElementById("page-size-top");
+  const pageSizeBottom = document.getElementById("page-size-bottom");
+
+  pageSizeTop.addEventListener("change", (e) => {
+    // Needs to be set because the other dropdown is a dummy
+    searchResults.submit();
+  });
+
+  pageSizeBottom.addEventListener("change", (e) => {
+    // Avoids submitting 2 redundant fields
+    let pageSizeTopChange = new Event("change");
+    pageSizeTop.value = e.target.value;
+    pageSizeTop.dispatchEvent(pageSizeTopChange);
   });
 }
 
@@ -133,3 +140,4 @@ enableApplyFilters();
 toggleVersionsList();
 toggleVendorsList();
 toggleShowAllLinks();
+updateResultsPerPage();
