@@ -1,19 +1,11 @@
-{% extends "templates/base.html" %}
-
-{% block title %}Certified hardware{% endblock %}
-
-{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
-
-{% block outer_content %}
-
 <form class="js-search-results">
-  <section class="p-strip--suru-topped">
+  <section class="p-strip">
     <div class="u-fixed-width">
-      <h1 class="u-sv3">Ubuntu certified hardware</h1>
+      <h2>{{ title }}</h2>
     </div>
     <div class="u-fixed-width">
       <div class="p-search-box">
-        <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}" placeholder="Search hardware">
+        <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}" placeholder="{{ placeholder or '' }}">
         <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
       </div>
     </div>
@@ -67,25 +59,6 @@
           <div>
             <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
               <ul class="p-accordion__list">
-                <li class="p-accordion__group--certified">
-                  <div role="heading" aria-level="2">
-                    <button type="button" class="p-accordion__tab u-no-padding--right" id="tab1" aria-controls="tab1-section" aria-expanded="true">
-                      <span class="p-certification-header">Category</span>
-                      <div class="p-round-chip u-hide">
-                        <span class="p-chip__value" id="category-count"></span>
-                      </div>
-                    </button>
-                  </div>
-                  <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
-                    {% for category_filter in category_filters %}
-                    <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input js-enable-apply-filters" id="category-filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ category_filter }}">{{ category_filter }}</span>
-                    </label>
-                    {% endfor %}
-                  </section>
-                </li>
                 <li class="p-accordion__group--certified" id="vendor-section">
                   <div role="heading" aria-level="2">
                     <button type="button" class="p-accordion__tab u-no-padding--right" id="tab2" aria-controls="tab2-section" aria-expanded="true">
@@ -96,7 +69,7 @@
                     </button>
                   </div>
                   <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel is-collapsed is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
+                  <section class="p-accordion__panel {% if vendor_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
                     {% for vendor_filter in vendor_filters %}
                     <label class="p-checkbox">
                       <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
@@ -104,10 +77,12 @@
                     </label>
                     {% endfor %}
                   </section>
+                  {% if vendor_filters | length > 5 %}
                   <span class="js-toggle-links">
                     <p class="p-reveal-vendors is-dense"><a>Show all vendors ({{ vendor_filters|length - 5}})</a></p>
                     <p class="p-reveal-vendors is-dense u-hide"><a>Show fewer</a></p>
                   </span>
+                  {% endif %}
                 </li>
                 <li class="p-accordion__group--certified" id="version-section">
                   <div role="heading" aria-level="2">
@@ -121,7 +96,7 @@
                     </button>
                   </div>
                   <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel is-collapsed is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
+                  <section class="p-accordion__panel {% if vendor_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
                     {% for release_filter in release_filters %}
                     <label class="p-checkbox">
                       <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input js-enable-apply-filters" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
@@ -129,10 +104,12 @@
                     </label>
                     {% endfor %}
                   </section>
+                  {% if release_filters | length > 5 %}
                   <span class="js-toggle-links">
                     <p class="p-reveal-versions is-dense"><a> Show all versions ({{release_filters|length - 5}})</a></p>
                     <p class="p-reveal-versions is-dense u-hide"><a>Show fewer</a></p>
                   </span>
+                  {% endif %}
                 </li>
               </ul>
             </aside>
@@ -174,10 +151,11 @@
               <option value="20" {% if limit == 20 %}selected{% endif %}>20</option>
               {% if total_results > 20 %}
               <option value="40" {% if limit == 40 %}selected{% endif %}>40</option>
-              {% elif total_results > 40 %}
+              {% endif %}
+              {% if total_results > 40 %}
               <option value="60" {% if limit == 60 %}selected{% endif %}>60</option>
               {% endif %}
-              <option value="{{ total_results }}" {% if limit == total_results %}selected{% endif %}>All</option>
+              <option value="{{ total_results }}"  {% if limit == total_results %}selected{% endif %}>All</option>
             </select>
             {% endif %}
           </div>
@@ -185,16 +163,18 @@
       </div>
       {% else %}
       <div class="col-9">
-        <h3 class="p-heading--4">No results - why not try widening your search?</h3>
+        <h3 class="p-heading--4">Sorry we found no results matching your criteria. Please try and wide your search.</h3>
         <p>You can do this by:</p>
         <ul class="p-list">
-          <li class="p-list__item is-ticked u-sv1">
-            Adding alternative words or phrases
+          <li class="p-list__item is-ticked">
+            <p>Adding alternative words or phrases</p>
           </li>
-          <li class="p-list__item is-ticked  u-sv1">
-            Using individual words instead of phrases
+          <li class="p-list__item is-ticked">
+            <p>Using individual words instead of phrases</p>
           </li>
-          <li class="p-list__item is-ticked">Trying a different spelling</li>
+          <li class="p-list__item is-ticked">
+            <p>Trying a different spelling</p>
+          </li>
         </ul>
       </div>
       {% endif %}
@@ -203,5 +183,3 @@
 </form>
 
 <script src="{{ versioned_static('js/src/certified-search-results.js') }}" defer></script>
-
-{% endblock %}

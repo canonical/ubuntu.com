@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 function clearFilters() {
-  location.assign(`/certified?q=`);
+  let objUrl = new URL(window.location);
+  objUrl.search = "";
+  window.location.assign(objUrl);
   return false;
 }
 
