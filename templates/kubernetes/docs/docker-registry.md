@@ -13,8 +13,8 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The [docker-registry][registry-charm] charm deploys a local image registry 
-for your cluster, taking care of the storage and distribution of 
+The [docker-registry][registry-charm] charm deploys a local image registry
+for your cluster, taking care of the storage and distribution of
 container images. There are a few reasons why this may be a useful option
 for your cluster:
 
@@ -23,9 +23,9 @@ for your cluster:
    is controlled, expensive or otherwise problematic).
 -  Providing images required by workloads running on the cluster.
 
-When deployed and related to the cluster as described below, this 
+When deployed and related to the cluster as described below, this
 registry will be checked first for any image requests, so it can be used
-in addition to public registries. For more details of the mechanics of 
+in addition to public registries. For more details of the mechanics of
 the Docker Registry, see the
 [upstream documentation at https://docs.docker.com/registry][upstream-registry].
 
@@ -143,7 +143,7 @@ the [container-images.txt][container-images-txt] document. This is a
 comprehensive list sorted by release; not all images are required for all
 deployments. Take note of the images required by your deployment that will
 need to be hosted in your private registry. A list of images required by
-a specific release is also included on the 'components' page in the 
+a specific release is also included on the 'components' page in the
 documentation, for example, the list for the 1.20 release is located on the
 [1.20 components page][1.20]
 
@@ -181,7 +181,7 @@ juju config kubernetes-master image-registry=$REGISTRY
 
 <!-- LINKS -->
 
-[registry-charm]: http://jujucharms.com/u/containers/docker-registry
+[registry-charm]: /kubernetes/docs/charm-docker-registry
 [upstream-registry]: https://docs.docker.com/registry/
 [quickstart]: /kubernetes/docs/quickstart
 [container-runtime]: /kubernetes/docs/container-runtime

@@ -99,7 +99,7 @@ To test your cluster, please see the
 
 [cis-benchmark]: https://www.cisecurity.org/benchmark/kubernetes/
 [Kubernetes Security documentation]: https://kubernetes.io/docs/concepts/security/overview/
-[Machine auth]: https://juju.is/docs/machine-auth
+[Machine auth]: https://juju.is/docs/olm/accessing-individual-machines-with-ssh
 [juju-users]: https://juju.is/docs/working-with-multiple-users
 [juju-user-types]: https://juju.is/docs/user-types-and-abilities
 [CIS compliance]: /kubernetes/docs/cis-compliance
