@@ -36,7 +36,7 @@
           <tbody>
             {% for invoice in invoices %}
               <tr>
-                <td aria-label="Service">{{ invoice.service }} ({{ invoice.period }})</td>
+                <td aria-label="Service">{{ invoice.service }}{% if invoice.period %} ({{ invoice.period }}){% endif %}</td>
                 <td aria-label="Date">{{ invoice.date }}</td>
                 <td class="u-align--right" aria-label="Total" style="padding-right: 15%">
                   {% if invoice.total %}

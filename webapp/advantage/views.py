@@ -816,18 +816,21 @@ def invoices_view(**kwargs):
             created_at = raw_payment["createdAt"]
 
             total = None
-            if raw_payment.get("invoice"):
-                cost = raw_payment["invoice"]["total"] / 100
-                currency = raw_payment["invoice"]["currency"]
+            invoice = raw_payment.get("invoice")
+            if invoice and invoice.get("total"):
+                cost = invoice.get("total") / 100
+                currency = invoice.get("currency")
                 total = f"{cost} {currency}"
 
-            listing_id = raw_payment["purchaseItems"][0]["productListingID"]
             period = None
-            for product_listing in product_listings:
-                if product_listing["id"] == listing_id:
-                    period = product_listing["period"]
+            listing_id = raw_payment["purchaseItems"][0]["productListingID"]
+            if payment_marketplace != "canonical-cube":
+                for product_listing in product_listings:
+                    if product_listing["id"] == listing_id:
+                        period = product_listing["period"]
 
-                    break
+                        break
+                period = "Monthly" if period == "monthly" else "Annual"
 
             download_link = ""
             if raw_payment.get("invoice"):
@@ -837,7 +840,7 @@ def invoices_view(**kwargs):
                 {
                     "created_at": created_at,
                     "service": SERVICES[payment_marketplace]["name"],
-                    "period": "Monthly" if period == "monthly" else "Annual",
+                    "period": period,
                     "date": parse(created_at).strftime("%d %B, %Y"),
                     "total": total,
                     "download_file_name": "Download",
