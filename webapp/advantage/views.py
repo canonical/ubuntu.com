@@ -816,9 +816,10 @@ def invoices_view(**kwargs):
             created_at = raw_payment["createdAt"]
 
             total = None
-            if raw_payment.get("invoice"):
-                cost = raw_payment["invoice"]["total"] / 100
-                currency = raw_payment["invoice"]["currency"]
+            invoice = raw_payment.get("invoice")
+            if invoice and invoice.get("total"):
+                cost = invoice.get("total") / 100
+                currency = invoice.get("currency")
                 total = f"{cost} {currency}"
 
             listing_id = raw_payment["purchaseItems"][0]["productListingID"]
