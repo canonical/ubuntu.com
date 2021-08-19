@@ -1,5 +1,12 @@
 from requests.exceptions import HTTPError
 
+from webapp.advantage.ua_contracts.parsers import (
+    parse_contracts,
+    parse_subscriptions,
+    parse_product_listings,
+    parse_accounts,
+)
+
 
 class UAContractsAPI:
     def __init__(
@@ -9,6 +16,7 @@ class UAContractsAPI:
         token_type="Macaroon",
         api_url="https://contracts.canonical.com",
         is_for_view=False,
+        convert_response=False,
     ):
         """
         Expects a Talisker session in most circumstances,
@@ -20,6 +28,7 @@ class UAContractsAPI:
         self.token_type = token_type
         self.api_url = api_url.rstrip("/")
         self.is_for_view = is_for_view
+        self.convert_response = convert_response
 
     def _request(self, method, path, json=None, params=None):
         headers = {
@@ -55,7 +64,10 @@ class UAContractsAPI:
                 raise UAContractsAPIErrorView(error)
             raise UAContractsAPIError(error)
 
-        return response.json().get("accounts", [])
+        if not self.convert_response:
+            return response.json().get("accounts", [])
+
+        return parse_accounts(response.json().get("accounts", []))
 
     def get_account_contracts(self, account_id: str):
         try:
@@ -77,7 +89,10 @@ class UAContractsAPI:
 
             raise UAContractsAPIError(error)
 
-        return response.json().get("contracts", [])
+        if not self.convert_response:
+            return response.json().get("contracts", [])
+
+        return parse_contracts(response.json().get("contracts", []))
 
     def get_contract_token(self, contract_id: str):
         try:
@@ -232,7 +247,7 @@ class UAContractsAPI:
 
         return {}
 
-    def get_product_listings(self, marketplace: str) -> dict:
+    def get_product_listings(self, marketplace: str):
         try:
             response = self._request(
                 method="get",
@@ -244,11 +259,17 @@ class UAContractsAPI:
             else:
                 raise UAContractsAPIError(error)
 
-        return response.json()
+        if not self.convert_response:
+            return response.json()
+
+        return parse_product_listings(
+            response.json().get("productListings", []),
+            response.json().get("products", []),
+        )
 
     def get_account_subscriptions(
         self, account_id: str, marketplace: str, filters=None
-    ) -> dict:
+    ):
         if filters:
             filters = "&".join(
                 "{}={}".format(key, value) for key, value in filters.items()
@@ -275,7 +296,10 @@ class UAContractsAPI:
 
             raise UAContractsAPIError(error)
 
-        return response.json().get("subscriptions", [])
+        if not self.convert_response:
+            return response.json().get("subscriptions", [])
+
+        return parse_subscriptions(response.json().get("subscriptions", []))
 
     def get_account_purchases(self, account_id: str, filters=None) -> dict:
         if filters:
