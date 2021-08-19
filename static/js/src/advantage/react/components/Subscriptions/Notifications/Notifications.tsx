@@ -12,7 +12,7 @@ const Notifications = () => {
   const notifications = [
     {
       children:
-        'Select a subscripton, then "Renew subscription..." to renew it.',
+        'Select a subscription, then "Renew subscription..." to renew it.',
       title: "Your subscription is about to expire.",
       severity: NotificationSeverity.CAUTION,
     },
