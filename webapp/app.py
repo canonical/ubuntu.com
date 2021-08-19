@@ -40,7 +40,7 @@ from webapp.context import (
     releases,
 )
 
-from webapp.advantage.parser import UAContractsValidationError
+from webapp.advantage.flaskparser import UAContractsValidationError
 from webapp.cube.views import (
     cube_home,
     cube_microcerts,
