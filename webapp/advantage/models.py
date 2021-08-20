@@ -23,7 +23,7 @@ class Listing:
         price: int,
         currency: str,
         status: str,
-        trial_days: int,
+        trial_days: int = None,
         period: str = None,
     ):
         self.id = id
