@@ -1,6 +1,16 @@
 from typing import List
 
-from webapp.advantage.models import Entitlement
+
+class Entitlement:
+    def __init__(
+        self,
+        type: str,
+        enabled_by_default: bool,
+        support_level: str = None,
+    ):
+        self.type = type
+        self.support_level = support_level
+        self.enabled_by_default = enabled_by_default
 
 
 class Product:
@@ -22,9 +32,9 @@ class ContractItem:
         end_date: str,
         reason: str,
         value: int,
-        product_listing_id: str,
-        purchase_id: str,
-        trial_id: str,
+        product_listing_id: str = None,
+        purchase_id: str = None,
+        trial_id: str = None,
     ):
         self.contract_id = contract_id
         self.created_at = created_at

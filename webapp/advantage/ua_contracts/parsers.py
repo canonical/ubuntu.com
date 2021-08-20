@@ -19,21 +19,13 @@ def parse_product(raw_product: dict) -> Product:
     )
 
 
-def parse_products(raw_products: dict) -> List[Product]:
-    return [parse_product(product) for product in raw_products]
-
-
 def parse_product_listing(
     raw_product_listing: dict, raw_products: dict
 ) -> Listing:
     product = None
     for raw_product in raw_products:
-        if raw_product["id"] == raw_product_listing.get("productID"):
-            product = Product(
-                id=raw_product["id"],
-                name=raw_product.get("name"),
-            )
-
+        if raw_product.get("id") == raw_product_listing.get("productID"):
+            product = parse_product(raw_product)
             break
 
     return Listing(
@@ -50,14 +42,14 @@ def parse_product_listing(
 
 
 def parse_product_listings(
-    raw_product_listing: dict,
+    raw_product_listings: dict,
     raw_products: dict,
 ) -> Dict[str, Listing]:
     return {
         product_listing.get("id"): parse_product_listing(
             product_listing, raw_products
         )
-        for product_listing in raw_product_listing
+        for product_listing in raw_product_listings
     }
 
 
@@ -80,7 +72,7 @@ def parse_entitlements(raw_entitlements: dict) -> List[Entitlement]:
 
         support_level = None
         if affordances:
-            support_level = affordances.get("support_level")
+            support_level = affordances.get("supportLevel")
 
         entitlement = Entitlement(
             type=raw_entitlement.get("type"),
@@ -105,7 +97,7 @@ def parse_contract_items(raw_items: dict) -> List[ContractItem]:
             value=raw_item.get("value"),
             product_listing_id=raw_item.get("productListingID"),
             purchase_id=raw_item.get("purchaseID"),
-            trial_id=raw_item.get("trial_id"),
+            trial_id=raw_item.get("trialID"),
         )
 
         items.append(item)

@@ -1,0 +1,68 @@
+[
+    {
+        "accountInfo": {
+            "createdAt": "2017-01-01T10:00:00Z",
+            "externalAccountIDs": [
+                {"IDs": ["randomExternalID"], "origin": "Salesforce"},
+                {"IDs": ["randomExternalID2"], "origin": "Stripe"}
+            ],
+            "id": "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+            "name": "Account Name"
+        },
+        "contractInfo": {
+            "allowances": [{"metric": "units", "value": 2}],
+            "createdAt": "2017-01-02T10:00:00Z",
+            "createdBy": "canonical.Handler",
+            "effectiveFrom": "2017-01-02T10:00:00Z",
+            "effectiveTo": "2018-01-02T10:00:00Z",
+            "externalAssetIDs": {
+                "IDs": ["randomExternalID3"],
+                "origin": "Salesforce"
+            },
+            "id": "cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+            "items": [
+                {
+                    "contractID": "cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+                    "created": "2017-01-02T10:00:00Z",
+                    "effectiveFrom": "2017-01-02T10:00:00Z",
+                    "effectiveTo": "2018-01-02T10:00:00Z",
+                    "externalIDs": [
+                        {
+                            "IDs": [
+                                "tAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+                                "lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP"
+                            ],
+                            "origin": "Shop"
+                        }
+                    ],
+                    "id": 10,
+                    "lastModified": "2017-01-02T10:00:00Z",
+                    "metric": "units",
+                    "productListingID": "lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+                    "reason": "trial_started",
+                    "trialID": "tAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+                    "value": 1
+                }
+            ],
+            "name": "Product Name 2",
+            "products": ["product-id-2"],
+            "resourceEntitlements": [
+                {
+                    "type": "entitlement-type",
+                    "entitled": true,
+                    "affordances": {
+                        "architectures": ["abc123b"],
+                        "series": ["focal"]
+                    },
+                    "directives": {
+                        "aptKey": "123123123",
+                        "aptURL": "https://url",
+                        "suites": ["focal"]
+                    },
+                    "obligations": {"enableByDefault": true},
+                    "series": {"focal": {"directives": {"suites": ["focal"]}}}
+                }
+            ]
+        }
+    }
+]
