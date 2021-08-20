@@ -22,7 +22,7 @@ from canonicalwebteam.discourse import (
 )
 
 # Local
-from webapp.advantage.api import (
+from webapp.advantage.ua_contracts.api import (
     UAContractsAPIAuthError,
     UAContractsAPIError,
     UAContractsAPIErrorView,
