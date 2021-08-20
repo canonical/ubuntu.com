@@ -13,7 +13,7 @@ from webargs.fields import String, Boolean
 from webapp.decorators import advantage_checks
 from webapp.login import user_info
 from webapp.advantage.flaskparser import use_kwargs
-from webapp.advantage.api import (
+from webapp.advantage.ua_contracts.api import (
     UAContractsAPI,
     CannotCancelLastContractError,
     UnauthorizedError,

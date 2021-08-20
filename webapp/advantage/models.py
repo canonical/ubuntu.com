@@ -1,6 +1,16 @@
 from typing import List
 
-from webapp.advantage.primitives import Product, Entitlement
+
+class Entitlement:
+    def __init__(
+        self,
+        type: str,
+        support_level: str,
+        enabled_by_default: bool,
+    ):
+        self.type = type
+        self.support_level = support_level
+        self.enabled_by_default = enabled_by_default
 
 
 class Listing:
@@ -9,7 +19,7 @@ class Listing:
         id: str,
         name: str,
         marketplace: str,
-        product: Product,
+        product_name: str,
         price: int,
         currency: str,
         status: str,
@@ -19,7 +29,7 @@ class Listing:
         self.id = id
         self.name = name
         self.marketplace = marketplace
-        self.product = product
+        self.product_name = product_name
         self.price = price
         self.currency = currency
         self.status = status
