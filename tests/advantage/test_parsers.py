@@ -2,9 +2,15 @@ import unittest
 from typing import List, Dict
 
 from tests.advantage.helpers import get_fixture
+<<<<<<< HEAD
 from webapp.advantage.ua_contracts.helpers import to_dict
 from webapp.advantage.models import Listing, Entitlement
 from webapp.advantage.ua_contracts.parsers import (
+=======
+from webapp.advantage.helpers import to_dict
+from webapp.advantage.models import Listing
+from webapp.advantage.parsers import (
+>>>>>>> 67a3114a6 (Add parsers and api tests)
     parse_account,
     parse_accounts,
     parse_subscription_items,
@@ -18,11 +24,19 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_contract,
     parse_contracts,
 )
+<<<<<<< HEAD
 from webapp.advantage.ua_contracts.primitives import (
+=======
+from webapp.advantage.primitives import (
+>>>>>>> 67a3114a6 (Add parsers and api tests)
     Account,
     Subscription,
     SubscriptionItem,
     Product,
+<<<<<<< HEAD
+=======
+    Entitlement,
+>>>>>>> 67a3114a6 (Add parsers and api tests)
     ContractItem,
     Contract,
 )
@@ -163,7 +177,14 @@ class TestParsers(unittest.TestCase):
             id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
             name="product-id",
             marketplace="canonical-ua",
+<<<<<<< HEAD
             product_name="Product Name",
+=======
+            product=Product(
+                id="product-id",
+                name="Product Name",
+            ),
+>>>>>>> 67a3114a6 (Add parsers and api tests)
             price=1000,
             currency="USD",
             status="active",
@@ -188,7 +209,14 @@ class TestParsers(unittest.TestCase):
                 id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 name="product-id-2",
                 marketplace="canonical-ua",
+<<<<<<< HEAD
                 product_name="Product Name 2",
+=======
+                product=Product(
+                    id="product-id-2",
+                    name="Product Name 2",
+                ),
+>>>>>>> 67a3114a6 (Add parsers and api tests)
                 price=1000,
                 currency="USD",
                 status="active",
