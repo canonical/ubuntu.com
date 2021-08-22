@@ -48,15 +48,15 @@ const ListCard = ({
       </span>
     </div>
     <Row>
-      <Col size={3}>
+      <Col size={3} small={1}>
         <p className="u-text--muted u-no-margin--bottom">Machines</p>
         {machines}
       </Col>
-      <Col size={4}>
+      <Col size={4} small={1}>
         <p className="u-text--muted u-no-margin--bottom">Created</p>
         {formatDate(created)}
       </Col>
-      <Col size={4}>
+      <Col size={4} small={1}>
         <p className="u-text--muted u-no-margin--bottom">Expires</p>
         {expires ? formatDate(expires) : "Never"}
       </Col>
