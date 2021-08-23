@@ -2,7 +2,7 @@ import json
 import pathlib
 from requests.exceptions import HTTPError
 
-from webapp.advantage.api import UAContractsAPI
+from webapp.advantage.ua_contracts.api import UAContractsAPI
 
 
 class Response:

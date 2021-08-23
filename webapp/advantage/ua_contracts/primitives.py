@@ -1,16 +1,6 @@
 from typing import List
 
-
-class Entitlement:
-    def __init__(
-        self,
-        type: str,
-        enabled_by_default: bool,
-        support_level: str = None,
-    ):
-        self.type = type
-        self.support_level = support_level
-        self.enabled_by_default = enabled_by_default
+from webapp.advantage.models import Entitlement
 
 
 class Product:

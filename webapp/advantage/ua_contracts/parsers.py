@@ -1,7 +1,6 @@
 from typing import List, Dict
 
 from webapp.advantage.ua_contracts.primitives import (
-    Entitlement,
     Contract,
     ContractItem,
     Subscription,
@@ -9,7 +8,7 @@ from webapp.advantage.ua_contracts.primitives import (
     Product,
     Account,
 )
-from webapp.advantage.models import Listing
+from webapp.advantage.models import Listing, Entitlement
 
 
 def parse_product(raw_product: dict) -> Product:
@@ -32,7 +31,7 @@ def parse_product_listing(
         id=raw_product_listing.get("id"),
         name=raw_product_listing.get("name"),
         marketplace=raw_product_listing.get("marketplace"),
-        product=product,
+        product_name=product.name,
         price=raw_product_listing.get("price").get("value"),
         currency=raw_product_listing.get("price").get("currency"),
         status=raw_product_listing.get("status"),
