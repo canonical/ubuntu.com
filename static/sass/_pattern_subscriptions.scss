@@ -84,10 +84,47 @@
     padding: $card-padding;
 
     @media only screen and (max-width: $breakpoint-small) {
+      // On small screens the details are hidden when not active.
       display: none;
 
+      // Show the modal when the details are active.
       &.is-active {
         display: flex;
+      }
+    }
+
+    // Remove modal classes on large screens.
+    @media only screen and (min-width: $breakpoint-small) {
+      &,
+      &.is-active {
+        background: unset;
+        display: block;
+        height: unset;
+        padding: 0;
+        position: relative;
+        width: unset;
+
+        .p-modal__dialog {
+          box-shadow: unset;
+          max-height: unset;
+          max-width: unset;
+          overflow: unset;
+          position: unset;
+        }
+
+        .p-modal__header {
+          margin-bottom: 0;
+
+          &::after {
+            // Remove the bottom border from the title.
+            display: none;
+          }
+        }
+
+        // Don't display the modal close button on large screens.
+        .p-modal__close {
+          display: none;
+        }
       }
     }
   }

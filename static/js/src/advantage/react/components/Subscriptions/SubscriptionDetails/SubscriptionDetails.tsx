@@ -7,43 +7,49 @@ import SubscriptionEdit from "../SubscriptionEdit";
 
 type Props = {
   modalActive?: boolean;
+  onCloseModal: () => void;
 };
 
-const SubscriptionDetails = ({ modalActive }: Props) => {
+const SubscriptionDetails = ({ modalActive, onCloseModal }: Props) => {
   const [editing, setEditing] = useState(false);
   return (
     <div
-      className={classNames("p-subscriptions__details", {
+      className={classNames("p-modal p-subscriptions__details", {
         "is-active": modalActive,
       })}
     >
-      <h4>UA Infra Essential (Virtual)</h4>
-      <div className="u-sv4">
-        <Button
-          appearance="positive"
-          className="u-no-margin--bottom"
-          data-test="cancel-button"
-          disabled={editing}
-          element="a"
-          href="https://support.canonical.com/"
-        >
-          Support portal
-        </Button>
-        <Button
-          appearance="neutral"
-          className="u-no-margin--bottom"
-          data-test="edit-button"
-          disabled={editing}
-          onClick={() => setEditing(true)}
-        >
-          Edit subscription&hellip;
-        </Button>
-      </div>
-      {editing ? (
-        <SubscriptionEdit onClose={() => setEditing(false)} />
-      ) : (
-        <DetailsContent />
-      )}
+      <section className="p-modal__dialog">
+        <header className="p-modal__header">
+          <h2 className="p-modal__title">UA Infra Essential (Virtual)</h2>
+          <button className="p-modal__close" onClick={() => onCloseModal()}>
+            Close
+          </button>
+        </header>
+        <div className="u-sv2">
+          <Button
+            appearance="positive"
+            data-test="cancel-button"
+            disabled={editing}
+            element="a"
+            href="https://support.canonical.com/"
+          >
+            Support portal
+          </Button>
+          <Button
+            appearance="neutral"
+            data-test="edit-button"
+            disabled={editing}
+            onClick={() => setEditing(true)}
+          >
+            Edit subscription&hellip;
+          </Button>
+        </div>
+        {editing ? (
+          <SubscriptionEdit onClose={() => setEditing(false)} />
+        ) : (
+          <DetailsContent />
+        )}
+      </section>
     </div>
   );
 };
