@@ -5,8 +5,8 @@ class Entitlement:
     def __init__(
         self,
         type: str,
-        support_level: str,
         enabled_by_default: bool,
+        support_level: str = None,
     ):
         self.type = type
         self.support_level = support_level
