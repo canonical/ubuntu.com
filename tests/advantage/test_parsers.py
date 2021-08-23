@@ -2,9 +2,9 @@ import unittest
 from typing import List, Dict
 
 from tests.advantage.helpers import get_fixture
-from webapp.advantage.helpers import to_dict
-from webapp.advantage.models import Listing
-from webapp.advantage.parsers import (
+from webapp.advantage.ua_contracts.helpers import to_dict
+from webapp.advantage.models import Listing, Entitlement
+from webapp.advantage.ua_contracts.parsers import (
     parse_account,
     parse_accounts,
     parse_subscription_items,
@@ -18,12 +18,11 @@ from webapp.advantage.parsers import (
     parse_contract,
     parse_contracts,
 )
-from webapp.advantage.primitives import (
+from webapp.advantage.ua_contracts.primitives import (
     Account,
     Subscription,
     SubscriptionItem,
     Product,
-    Entitlement,
     ContractItem,
     Contract,
 )
@@ -164,10 +163,7 @@ class TestParsers(unittest.TestCase):
             id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
             name="product-id",
             marketplace="canonical-ua",
-            product=Product(
-                id="product-id",
-                name="Product Name",
-            ),
+            product_name="Product Name",
             price=1000,
             currency="USD",
             status="active",
@@ -192,10 +188,7 @@ class TestParsers(unittest.TestCase):
                 id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 name="product-id-2",
                 marketplace="canonical-ua",
-                product=Product(
-                    id="product-id-2",
-                    name="Product Name 2",
-                ),
+                product_name="Product Name 2",
                 price=1000,
                 currency="USD",
                 status="active",

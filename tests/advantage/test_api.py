@@ -2,14 +2,14 @@ import unittest
 from typing import List, Dict
 
 from tests.advantage.helpers import Session, Response, make_client, get_fixture
-from webapp.advantage.api import (
+from webapp.advantage.ua_contracts.api import (
     UAContractsAPIAuthError,
     UAContractsAPIAuthErrorView,
     UAContractsAPIError,
     UAContractsAPIErrorView,
 )
 from webapp.advantage.models import Listing
-from webapp.advantage.primitives import Account, Contract
+from webapp.advantage.ua_contracts.primitives import Account, Contract
 
 
 class TestAPIErrorResponses(unittest.TestCase):
@@ -42,6 +42,15 @@ class TestAPIErrorResponses(unittest.TestCase):
                     (500, True, UAContractsAPIErrorView),
                 ],
             },
+            {
+                "endpoint": "get_account_subscriptions",
+                "cases": [
+                    (401, False, UAContractsAPIAuthError),
+                    (401, True, UAContractsAPIAuthErrorView),
+                    (500, False, UAContractsAPIError),
+                    (500, True, UAContractsAPIErrorView),
+                ],
+            },
         ]
 
         for api_test in api_error_tests:
@@ -65,6 +74,10 @@ class TestAPIErrorResponses(unittest.TestCase):
                         client.get_account_contracts(account_id="aABbCcdD")
                     if api_endpoint == "get_product_listings":
                         client.get_product_listings(marketplace="canonical-ua")
+                    if api_endpoint == "get_product_listings":
+                        client.get_account_subscriptions(
+                            account_id="aABbCcdD", marketplace="canonical-ua"
+                        )
 
                 self.assertEqual(
                     error.exception.response.json(), response_content
