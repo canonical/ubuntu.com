@@ -115,7 +115,9 @@ function PaymentMethodForm({ setCardValid }) {
   }, [values.country]);
 
   useEffect(() => {
-    checkVATDebounced(values);
+    if (vatCountries.includes(values.country) && values.VATNumber) {
+      checkVATDebounced(values);
+    }
   }, [values.country, values.VATNumber]);
 
   return (
