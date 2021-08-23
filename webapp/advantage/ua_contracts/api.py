@@ -226,7 +226,7 @@ class UAContractsAPI:
         response = self._request(
             method="get",
             path=f"v1/marketplace/{marketplace}/product-listings",
-            error_rules=["default"]
+            error_rules=["default"],
         )
 
         if self.convert_response:
@@ -240,36 +240,29 @@ class UAContractsAPI:
     def get_account_subscriptions(
         self, account_id: str, marketplace: str, filters=None
     ):
+        url_filters = ""
         if filters:
             filters = "&".join(
                 "{}={}".format(key, value) for key, value in filters.items()
             )
+            url_filters = f"?{filters}"
 
-        try:
-            response = self._request(
-                method="get",
-                path=(
-                    f"v1/accounts/{account_id}"
-                    f"/marketplace/{marketplace}"
-                    f"/subscriptions?{filters}"
-                ),
-            )
-        except HTTPError as error:
-            if error.response.status_code == 401:
-                if self.is_for_view:
-                    raise UAContractsAPIAuthErrorView(error)
-                else:
-                    raise UAContractsAPIAuthError(error)
+        response = self._request(
+            method="get",
+            path=(
+                f"v1/accounts/{account_id}"
+                f"/marketplace/{marketplace}"
+                f"/subscriptions{url_filters}"
+            ),
+            error_rules=["default", "auth"],
+        )
 
-            if self.is_for_view:
-                raise UAContractsAPIErrorView(error)
+        subscriptions = response.json().get("subscriptions", [])
 
-            raise UAContractsAPIError(error)
+        if self.convert_response:
+            return parse_subscriptions(raw_subscriptions=subscriptions)
 
-        if not self.convert_response:
-            return response.json().get("subscriptions", [])
-
-        return parse_subscriptions(response.json().get("subscriptions", []))
+        return subscriptions
 
     def get_account_purchases(self, account_id: str, filters=None) -> dict:
         if filters:
@@ -452,7 +445,10 @@ class UAContractsAPI:
 
         return response.json() if response.status_code != 200 else None
 
-    def handle_error(self, error, error_rules=[]):
+    def handle_error(self, error, error_rules=None):
+        if not error_rules:
+            return
+
         status_code = error.response.status_code
 
         if "auth" in error_rules and status_code == 401:

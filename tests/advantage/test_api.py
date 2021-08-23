@@ -9,82 +9,33 @@ from webapp.advantage.ua_contracts.api import (
     UAContractsAPIErrorView,
 )
 from webapp.advantage.models import Listing
-from webapp.advantage.ua_contracts.primitives import Account, Contract
-
-
-class TestAPIErrorResponses(unittest.TestCase):
-    def test_errors(self):
-        api_error_tests = [
-            {
-                "endpoint": "get_accounts",
-                "cases": [
-                    (401, False, UAContractsAPIAuthError),
-                    (401, True, UAContractsAPIAuthErrorView),
-                    (500, False, UAContractsAPIError),
-                    (500, True, UAContractsAPIErrorView),
-                ],
-            },
-            {
-                "endpoint": "get_account_contracts",
-                "cases": [
-                    (401, False, UAContractsAPIAuthError),
-                    (401, True, UAContractsAPIAuthErrorView),
-                    (500, False, UAContractsAPIError),
-                    (500, True, UAContractsAPIErrorView),
-                ],
-            },
-            {
-                "endpoint": "get_product_listings",
-                "cases": [
-                    (401, False, UAContractsAPIError),
-                    (401, True, UAContractsAPIErrorView),
-                    (500, False, UAContractsAPIError),
-                    (500, True, UAContractsAPIErrorView),
-                ],
-            },
-            {
-                "endpoint": "get_account_subscriptions",
-                "cases": [
-                    (401, False, UAContractsAPIAuthError),
-                    (401, True, UAContractsAPIAuthErrorView),
-                    (500, False, UAContractsAPIError),
-                    (500, True, UAContractsAPIErrorView),
-                ],
-            },
-        ]
-
-        for api_test in api_error_tests:
-            self.try_endpoint(
-                api_endpoint=api_test["endpoint"],
-                test_cases=api_test["cases"],
-            )
-
-    def try_endpoint(self, api_endpoint: str, test_cases: List):
-        for code, is_for_view, expected_error in test_cases:
-            with self.subTest(code=code, is_for_view=is_for_view):
-                response_content = {"code": "expected error"}
-                response = Response(status_code=code, content=response_content)
-                session = Session(response=response)
-                client = make_client(session, is_for_view=is_for_view)
-
-                with self.assertRaises(expected_error) as error:
-                    if api_endpoint == "get_accounts":
-                        client.get_accounts()
-                    if api_endpoint == "get_account_contracts":
-                        client.get_account_contracts(account_id="aABbCcdD")
-                    if api_endpoint == "get_product_listings":
-                        client.get_product_listings(marketplace="canonical-ua")
-                    if api_endpoint == "get_product_listings":
-                        client.get_account_subscriptions(
-                            account_id="aABbCcdD", marketplace="canonical-ua"
-                        )
-
-                self.assertEqual(
-                    error.exception.response.json(), response_content
-                )
+from webapp.advantage.ua_contracts.primitives import (
+    Account,
+    Contract,
+    Subscription,
+)
 
 
 class TestGetAccounts(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIAuthError),
+            (401, True, UAContractsAPIAuthErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_accounts()
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
     def test_success(self):
         json_accounts = get_fixture("accounts")
         session = Session(
@@ -159,6 +110,25 @@ class TestGetAccounts(unittest.TestCase):
 
 
 class TestGetAccountContracts(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIAuthError),
+            (401, True, UAContractsAPIAuthErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_account_contracts(account_id="aABbCcdD")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
     def test_success(self):
         json_contracts = get_fixture("contracts")
         session = Session(
@@ -210,6 +180,25 @@ class TestGetAccountContracts(unittest.TestCase):
 
 
 class TestGetProductListings(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_product_listings(marketplace="canonical-ua")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
     def test_success(self):
         json_listings = {
             "productListings": get_fixture("product-listings"),
@@ -269,5 +258,121 @@ class TestGetProductListings(unittest.TestCase):
         self.assertIsInstance(response, Dict)
         for listing in response.values():
             self.assertIsInstance(listing, Listing)
+
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestGetAccountSubscriptions(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIAuthError),
+            (401, True, UAContractsAPIAuthErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_account_subscriptions(
+                    account_id="aABbCcdD", marketplace="canonical-ua"
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_subscriptions = get_fixture("subscriptions")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={"subscriptions": json_subscriptions},
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_account_subscriptions(
+            account_id="aABbCcdD", marketplace="canonical-ua"
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1/accounts/aABbCcdD"
+                "/marketplace/canonical-ua/subscriptions"
+            ),
+        }
+
+        self.assertEqual(response, json_subscriptions)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+    def test_account_subscriptions_filters(self):
+        json_subscriptions = get_fixture("subscriptions")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={"subscriptions": json_subscriptions},
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_account_subscriptions(
+            account_id="aABbCcdD",
+            marketplace="canonical-ua",
+            filters={"status": "active", "period": "monthly"},
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1/accounts/aABbCcdD"
+                "/marketplace/canonical-ua/subscriptions"
+                "?status=active&period=monthly"
+            ),
+        }
+
+        self.assertEqual(response, json_subscriptions)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+    def test_convert_response_returns_list_of_subscriptions(self):
+        json_subscriptions = get_fixture("subscriptions")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={"subscriptions": json_subscriptions},
+            )
+        )
+        client = make_client(session, convert_response=True)
+
+        response = client.get_account_subscriptions(
+            account_id="aABbCcdD",
+            marketplace="canonical-ua",
+            filters={"status": "active", "period": "monthly"},
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1/accounts/aABbCcdD"
+                "/marketplace/canonical-ua/subscriptions"
+                "?status=active&period=monthly"
+            ),
+        }
+
+        self.assertIsInstance(response, List)
+        for item in response:
+            self.assertIsInstance(item, Subscription)
 
         self.assertEqual(session.request_kwargs, expected_args)
