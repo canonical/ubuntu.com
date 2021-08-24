@@ -868,9 +868,18 @@ def marketo_submit():
     form_fields.pop("g-recaptcha-response", None)
     return_url = form_fields.pop("returnURL", None)
 
+    visitor_data = {
+        "leadClientIpAddress": flask.request.headers.get(
+            "X-Real-IP", flask.request.remote_addr
+        ),
+        "userAgentString": flask.request.headers.get("User-Agent"),
+    }
+
     payload = {
         "formId": form_fields.pop("formid"),
-        "input": [{"leadFormFields": form_fields}],
+        "input": [
+            {"leadFormFields": form_fields, "visitorData": visitor_data}
+        ],
     }
 
     try:
