@@ -44,13 +44,13 @@ class UserSubscription:
         product_name: str,
         type: str,
         start_date: str,
-        end_date: str,
         number_of_machines: int,
         machine_type: str,
         marketplace: str,
         price_per_unit: int,
         entitlements: List[Entitlement],
         statuses: dict,
+        end_date: str = None,
     ):
         self.account_id = account_id
         self.product_name = product_name

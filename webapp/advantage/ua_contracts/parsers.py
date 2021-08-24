@@ -1,8 +1,5 @@
-from typing import List
+from typing import List, Dict
 
-<<<<<<< HEAD
-from webapp.advantage.ua_contracts.primitives import Contract
-=======
 from webapp.advantage.ua_contracts.primitives import (
     Entitlement,
     Contract,
@@ -35,7 +32,7 @@ def parse_product_listing(
         id=raw_product_listing.get("id"),
         name=raw_product_listing.get("name"),
         marketplace=raw_product_listing.get("marketplace"),
-        product=product,
+        product_name=product.name,
         price=raw_product_listing.get("price").get("value"),
         currency=raw_product_listing.get("price").get("currency"),
         status=raw_product_listing.get("status"),
@@ -124,8 +121,47 @@ def parse_contract(raw_contract: dict) -> Contract:
         entitlements=entitlements,
         items=items,
     )
->>>>>>> 67a3114a6 (Add parsers and api tests)
 
 
 def parse_contracts(raw_contracts: dict) -> List[Contract]:
-    pass
+    return [parse_contract(raw_contract) for raw_contract in raw_contracts]
+
+
+def parse_subscription_items(
+    subscription_id: str,
+    raw_items: dict,
+) -> List[SubscriptionItem]:
+    subscription_items = []
+    for raw_item in raw_items:
+        subscription_item = SubscriptionItem(
+            subscription_id=subscription_id,
+            product_listing_id=raw_item.get("productListing").get("id"),
+            value=raw_item.get("value"),
+        )
+
+        subscription_items.append(subscription_item)
+
+    return subscription_items
+
+
+def parse_subscription(raw_subscription: dict) -> Subscription:
+    subscription_id = raw_subscription.get("subscription").get("id")
+    raw_items = raw_subscription.get("purchasedProductListings")
+
+    return Subscription(
+        id=subscription_id,
+        account_id=raw_subscription.get("subscription").get("accountID"),
+        marketplace=raw_subscription.get("subscription").get("marketplace"),
+        period=raw_subscription.get("subscription").get("period"),
+        status=raw_subscription.get("subscription").get("status"),
+        last_purchase_id=raw_subscription.get("lastPurchaseID"),
+        pending_purchases=raw_subscription.get("pendingPurchases"),
+        items=parse_subscription_items(subscription_id, raw_items),
+    )
+
+
+def parse_subscriptions(raw_subscriptions: dict) -> List[Subscription]:
+    return [
+        parse_subscription(raw_subscription)
+        for raw_subscription in raw_subscriptions
+    ]

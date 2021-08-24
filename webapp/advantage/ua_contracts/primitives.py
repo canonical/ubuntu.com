@@ -55,7 +55,7 @@ class Contract:
         name: str,
         product_id: str,
         entitlements: List[Entitlement],
-        items: List[ContractItem],
+        items: List[ContractItem] = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -83,10 +83,11 @@ class Subscription:
         id: str,
         account_id: str,
         marketplace: str,
-        period: str,
         status: str,
-        last_purchase_id: str,
-        items: List[SubscriptionItem],
+        period: str = None,
+        items: List[SubscriptionItem] = None,
+        last_purchase_id: str = None,
+        pending_purchases: List[str] = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -94,6 +95,7 @@ class Subscription:
         self.period = period
         self.status = status
         self.last_purchase_id = last_purchase_id
+        self.pending_purchases = pending_purchases
         self.items = items
 
 
