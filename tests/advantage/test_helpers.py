@@ -231,7 +231,7 @@ class TestHelpers(unittest.TestCase):
         freeze_datetime = "2020-09-01T00:00:00Z"
         scenarios = {
             "date_is_31_days_before_expiry": {
-                "date": "2020-08-01T00:00:00Z",
+                "date": "2020-10-02T00:00:00Z",
                 "expectations": {
                     "is_expiring": False,
                     "is_in_grace_period": False,
@@ -239,7 +239,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_30_days_and_one_second_before_expiry_start": {
-                "date": "2020-08-01T00:00:01Z",
+                "date": "2020-10-01T00:00:00Z",
                 "expectations": {
                     "is_expiring": False,
                     "is_in_grace_period": False,
@@ -247,7 +247,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_30_days_before_expiry": {
-                "date": "2020-08-02T00:00:01Z",
+                "date": "2020-09-30T23:59:59Z",
                 "expectations": {
                     "is_expiring": True,
                     "is_in_grace_period": False,
@@ -255,7 +255,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_one_second_before_expiry": {
-                "date": "2020-08-31T23:59:59Z",
+                "date": "2020-09-01T00:00:01Z",
                 "expectations": {
                     "is_expiring": True,
                     "is_in_grace_period": False,
@@ -271,7 +271,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_one_second_in_grace_period": {
-                "date": "2020-09-01T00:00:01Z",
+                "date": "2020-08-31T23:59:59Z",
                 "expectations": {
                     "is_expiring": False,
                     "is_in_grace_period": True,
@@ -279,15 +279,15 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_one_second_before_grace_period_end": {
-                "date": "2020-09-14T23:59:59Z",
+                "date": "2020-08-18T00:00:00Z",
                 "expectations": {
                     "is_expiring": False,
                     "is_in_grace_period": True,
                     "is_expired": False,
                 },
             },
-            "date_is_after_grace_period_end": {
-                "date": "2020-09-15T00:00:01Z",
+            "date_is_one_second_after_grace_period_end": {
+                "date": "2020-08-17T23:59:59Z",
                 "expectations": {
                     "is_expiring": False,
                     "is_in_grace_period": False,
@@ -306,11 +306,13 @@ class TestHelpers(unittest.TestCase):
                     self.assertEqual(date_statuses, scenario["expectations"])
 
     def test_get_user_subscription_statuses(self):
+        freeze_datetime = "2020-09-01T00:00:00Z"
+
         scenarios = {
             "test_free_user_subscription": {
                 "parameters": {
                     "type": "free",
-                    "end_date": "2020-09-14T23:59:59Z",
+                    "end_date": "2020-08-31T23:59:59Z",
                     "subscriptions": None,
                     "listing": None,
                 },
@@ -320,7 +322,7 @@ class TestHelpers(unittest.TestCase):
                     "is_cancellable": False,
                     "is_cancelled": False,
                     "is_expiring": False,
-                    "is_within_grace_period": True,
+                    "is_in_grace_period": False,
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
@@ -329,7 +331,7 @@ class TestHelpers(unittest.TestCase):
             "test_yearly_user_subscription": {
                 "parameters": {
                     "type": "yearly",
-                    "end_date": "2020-08-02T00:00:01Z",
+                    "end_date": "2020-08-31T23:59:59Z",
                     "subscriptions": None,
                     "listing": None,
                 },
@@ -338,8 +340,8 @@ class TestHelpers(unittest.TestCase):
                     "is_downsizeable": False,
                     "is_cancellable": False,
                     "is_cancelled": False,
-                    "is_expiring": True,
-                    "is_within_grace_period": False,
+                    "is_expiring": False,
+                    "is_in_grace_period": True,
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
@@ -348,7 +350,7 @@ class TestHelpers(unittest.TestCase):
             "test_monthly_user_subscription": {
                 "parameters": {
                     "type": "monthly",
-                    "end_date": "2020-09-01T00:00:01Z",
+                    "end_date": "2020-09-01T00:00:00Z",
                     "subscriptions": [
                         make_subscription(
                             items=[
@@ -365,8 +367,8 @@ class TestHelpers(unittest.TestCase):
                     "is_downsizeable": True,
                     "is_cancellable": True,
                     "is_cancelled": False,
-                    "is_expiring": False,
-                    "is_within_grace_period": True,
+                    "is_expiring": True,
+                    "is_in_grace_period": False,
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
@@ -375,7 +377,7 @@ class TestHelpers(unittest.TestCase):
             "test_cancelled_user_subscription": {
                 "parameters": {
                     "type": "monthly",
-                    "end_date": "2020-08-15T00:00:00Z",
+                    "end_date": "2020-09-05T00:00:00Z",
                     "subscriptions": [
                         make_subscription(
                             items=[
@@ -393,7 +395,7 @@ class TestHelpers(unittest.TestCase):
                     "is_cancellable": False,
                     "is_cancelled": True,
                     "is_expiring": True,
-                    "is_within_grace_period": False,
+                    "is_in_grace_period": False,
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
@@ -402,7 +404,7 @@ class TestHelpers(unittest.TestCase):
             "test_expired_user_subscription": {
                 "parameters": {
                     "type": "monthly",
-                    "end_date": "2020-09-15T00:00:01Z",
+                    "end_date": "2020-08-01T00:00:00Z",
                     "subscriptions": None,
                     "listing": None,
                 },
@@ -412,7 +414,7 @@ class TestHelpers(unittest.TestCase):
                     "is_cancellable": False,
                     "is_cancelled": False,
                     "is_expiring": False,
-                    "is_within_grace_period": False,
+                    "is_in_grace_period": False,
                     "is_expired": True,
                     "is_trialled": False,
                     "is_renewable": False,
@@ -421,7 +423,7 @@ class TestHelpers(unittest.TestCase):
             "test_trial_user_subscription": {
                 "parameters": {
                     "type": "trial",
-                    "end_date": "2020-09-01T00:00:01Z",
+                    "end_date": "2020-08-18T00:00:00Z",
                     "subscriptions": None,
                     "listing": None,
                 },
@@ -431,7 +433,7 @@ class TestHelpers(unittest.TestCase):
                     "is_cancellable": False,
                     "is_cancelled": False,
                     "is_expiring": False,
-                    "is_within_grace_period": True,
+                    "is_in_grace_period": True,
                     "is_expired": False,
                     "is_trialled": True,
                     "is_renewable": False,
@@ -440,7 +442,7 @@ class TestHelpers(unittest.TestCase):
             "test_pending_purchases_user_subscription": {
                 "parameters": {
                     "type": "trial",
-                    "end_date": "2020-08-02T00:00:01Z",
+                    "end_date": "2020-09-30T23:59:59Z",
                     "subscriptions": [
                         make_subscription(
                             pending_purchases=["pAaBbCcDdEeFfgG"]
@@ -454,7 +456,7 @@ class TestHelpers(unittest.TestCase):
                     "is_cancellable": False,
                     "is_cancelled": False,
                     "is_expiring": True,
-                    "is_within_grace_period": False,
+                    "is_in_grace_period": False,
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
@@ -462,7 +464,6 @@ class TestHelpers(unittest.TestCase):
             },
         }
 
-        freeze_datetime = "2020-09-01T00:00:00Z"
         with freeze_time(freeze_datetime):
             for case, scenario in scenarios.items():
                 with self.subTest(msg=f"{case}", scenario=scenario):

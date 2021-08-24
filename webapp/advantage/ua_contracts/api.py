@@ -69,14 +69,10 @@ class UAContractsAPI:
     def get_account_contracts(self, account_id: str):
         response = self._request(
             method="get",
-<<<<<<< HEAD
             path=(
                 f"v1/accounts/{account_id}/contracts"
                 f"?productTags=ua&productTags=classic&productTags=pro"
             ),
-=======
-            path=f"v1/accounts/{account_id}/contracts",
->>>>>>> 67a3114a6 (Add parsers and api tests)
             error_rules=["default", "auth"],
         )
 
@@ -230,11 +226,7 @@ class UAContractsAPI:
         response = self._request(
             method="get",
             path=f"v1/marketplace/{marketplace}/product-listings",
-<<<<<<< HEAD
             error_rules=["default"],
-=======
-            error_rules=["default"]
->>>>>>> 67a3114a6 (Add parsers and api tests)
         )
 
         if self.convert_response:
@@ -453,14 +445,10 @@ class UAContractsAPI:
 
         return response.json() if response.status_code != 200 else None
 
-<<<<<<< HEAD
     def handle_error(self, error, error_rules=None):
         if not error_rules:
             return
 
-=======
-    def handle_error(self, error, error_rules=[]):
->>>>>>> 67a3114a6 (Add parsers and api tests)
         status_code = error.response.status_code
 
         if "auth" in error_rules and status_code == 401:
