@@ -90,7 +90,7 @@ function PaymentMethodForm({ setCardValid }) {
     }
   }, [values.buyingFor]);
 
-  const checkVAT = (formValues) => {
+  const updateCustomerInfoForPurchasePreview = (formValues) => {
     mutation.mutate(formValues, {
       onError: (error) => {
         if (error.message === "tax_id_invalid") {
@@ -100,12 +100,15 @@ function PaymentMethodForm({ setCardValid }) {
           });
         }
       },
-      onSettled: () => {
+      onSuccess: () => {
         queryClient.invalidateQueries("preview");
       },
     });
   };
-  const checkVATDebounced = useMemo(() => debounce(checkVAT, 250), []);
+  const updateCustomerInfoForPurchasePreviewDebounced = useMemo(
+    () => debounce(updateCustomerInfoForPurchasePreview, 250),
+    []
+  );
 
   useEffect(() => {
     if (!vatCountries.includes(values.country)) {
@@ -115,7 +118,9 @@ function PaymentMethodForm({ setCardValid }) {
   }, [values.country]);
 
   useEffect(() => {
-    checkVATDebounced(values);
+    if (window.accountId) {
+      updateCustomerInfoForPurchasePreviewDebounced(values);
+    }
   }, [values.country, values.VATNumber]);
 
   return (
