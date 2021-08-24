@@ -25,14 +25,14 @@ import { getErrorMessage } from "../../../error-handler";
 import { Field, Form, useFormikContext } from "formik";
 import { useQueryClient } from "react-query";
 
-import usePostCustomerInfoAnon from "../APICalls/usePostCustomerInfoAnon";
+import usePostCustomerInfoForPurchasePreview from "../APICalls/usePostCustomerInfoForPurchasePreview";
 
 function PaymentMethodForm({ setCardValid }) {
   const { product, quantity } = useProduct();
   const { data: preview } = usePreview();
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
-  const mutation = usePostCustomerInfoAnon();
+  const mutation = usePostCustomerInfoForPurchasePreview();
   const queryClient = useQueryClient();
 
   const { errors, touched, values, setTouched, setErrors } = useFormikContext();
@@ -92,9 +92,6 @@ function PaymentMethodForm({ setCardValid }) {
 
   const checkVAT = (formValues) => {
     mutation.mutate(formValues, {
-      onSuccess: () => {
-        queryClient.invalidateQueries("preview");
-      },
       onError: (error) => {
         if (error.message === "tax_id_invalid") {
           setErrors({
@@ -102,6 +99,9 @@ function PaymentMethodForm({ setCardValid }) {
               "That VAT number is invalid. Check the number and try again.",
           });
         }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("preview");
       },
     });
   };
