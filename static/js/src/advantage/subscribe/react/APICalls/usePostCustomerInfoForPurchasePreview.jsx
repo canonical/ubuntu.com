@@ -22,23 +22,31 @@ const usePostCustomerInfoForPurchasePreview = () => {
       state: country === "US" ? usState : caProvince,
     };
 
-    const res = await postCustomerInfoForPurchasePreview(
-      window.accountId,
-      name,
-      addressObject,
-      {
-        type: "eu_vat",
-        value: VATNumber,
+    if (window.accountId) {
+      const res = await postCustomerInfoForPurchasePreview(
+        window.accountId,
+        name,
+        addressObject,
+        {
+          type: "eu_vat",
+          value: VATNumber,
+        }
+      );
+
+      if (res.errors) {
+        let error = "";
+        try {
+          error = JSON.parse(res.errors).code;
+        } catch (e) {
+          error = res.errors;
+        }
+        throw new Error(error);
       }
-    );
 
-    if (res.errors) {
-      throw new Error(JSON.parse(res.errors).code);
-    } else if (res.error) {
-      throw new Error(res.error);
+      return res;
+    } else {
+      throw new Error("missing accountId");
     }
-
-    return res;
   });
 
   return mutation;
