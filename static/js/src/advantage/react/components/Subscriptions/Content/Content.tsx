@@ -1,5 +1,5 @@
 import { Card } from "@canonical/react-components";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import SubscriptionDetails from "../SubscriptionDetails";
 import SubscriptionList from "../SubscriptionList";
@@ -19,6 +19,18 @@ const Content = () => {
     },
     [setSelectedToken]
   );
+
+  // Select a token on the first load.
+  useEffect(() => {
+    if (!selectedToken) {
+      // TODO: this should select the "most recently-started" or free token by default:
+      // https://github.com/canonical-web-and-design/commercial-squad/issues/101
+      // This only sets the selected token and does not set the modal to active
+      // to prevent the modal appearing on first load on mobile.
+      setSelectedToken("ua-sub-123");
+    }
+  }, [selectedToken, setSelectedToken]);
+
   return (
     <Card className="u-no-margin--bottom u-no-padding p-subscriptions__card">
       <SubscriptionList

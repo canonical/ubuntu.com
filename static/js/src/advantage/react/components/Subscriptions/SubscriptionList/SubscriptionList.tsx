@@ -2,7 +2,7 @@ import type { PersonalAccount } from "advantage/api/types";
 import { usePersonalAccount } from "advantage/react/hooks";
 import { selectFreeContract } from "advantage/react/hooks/usePersonalAccount";
 import { getFeaturesDisplay } from "advantage/react/utils";
-import React, { useEffect } from "react";
+import React from "react";
 import { SelectedToken } from "../Content/types";
 
 import ListCard from "./ListCard";
@@ -38,14 +38,6 @@ const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
     select: selectFreeContract,
   });
   const freeContract = getFreeContractData(freeContractData);
-  // Select a token on the first load.
-  useEffect(() => {
-    if (!selectedToken) {
-      // TODO: this should select the "most recently-started" or free token by default:
-      // https://github.com/canonical-web-and-design/commercial-squad/issues/101
-      onSetActive("ua-sub-123");
-    }
-  }, [selectedToken, onSetActive]);
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
