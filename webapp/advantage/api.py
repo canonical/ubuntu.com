@@ -60,7 +60,11 @@ class UAContractsAPI:
     def get_account_contracts(self, account_id: str):
         try:
             response = self._request(
-                method="get", path=f"v1/accounts/{account_id}/contracts"
+                method="get",
+                path=(
+                    f"v1/accounts/{account_id}/contracts"
+                    f"?productTags=ua&productTags=classic&productTags=pro"
+                ),
             )
         except HTTPError as error:
             if error.response.status_code == 401:
