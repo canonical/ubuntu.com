@@ -146,7 +146,10 @@ class TestGetAccountContracts(unittest.TestCase):
             "json": None,
             "method": "get",
             "params": None,
-            "url": "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts",
+            "url": (
+                "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
+                "?productTags=ua&productTags=classic&productTags=pro"
+            ),
         }
 
         self.assertEqual(response, json_contracts)
@@ -169,7 +172,10 @@ class TestGetAccountContracts(unittest.TestCase):
             "json": None,
             "method": "get",
             "params": None,
-            "url": "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts",
+            "url": (
+                "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
+                "?productTags=ua&productTags=classic&productTags=pro"
+            ),
         }
 
         self.assertIsInstance(response, List)

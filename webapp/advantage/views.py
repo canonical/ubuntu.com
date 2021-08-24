@@ -332,9 +332,9 @@ def get_user_subscriptions(**kwargs):
             }
         )
 
-    return flask.jsonify(
-        to_dict(build_user_subscriptions(user_summary, listings))
-    )
+    user_subscriptions = build_user_subscriptions(user_summary, listings)
+
+    return flask.jsonify(to_dict(user_subscriptions))
 
 
 @advantage_checks(check_list=["is_maintenance"])

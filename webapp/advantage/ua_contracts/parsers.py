@@ -87,6 +87,7 @@ def parse_entitlements(raw_entitlements: dict) -> List[Entitlement]:
 
 def parse_contract_items(raw_items: dict) -> List[ContractItem]:
     items = []
+    raw_items = raw_items or []
     for raw_item in raw_items:
         item = ContractItem(
             contract_id=raw_item.get("contractID"),

@@ -124,7 +124,7 @@ def get_user_subscription_statuses(
 def get_date_statuses(end_date: str) -> dict:
     parsed_end_date = parse(end_date)
     time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
-    delta_till_expiry = time_now - parsed_end_date
+    delta_till_expiry = parsed_end_date - time_now
     days_till_expiry = delta_till_expiry.days
 
     is_expiring_start = 30
@@ -133,7 +133,7 @@ def get_date_statuses(end_date: str) -> dict:
 
     is_expiring = is_expiring_start > days_till_expiry >= is_expiring_end
     is_in_grace_period = is_expiring_end > days_till_expiry >= grace_period_end
-    is_expired = grace_period_end < days_till_expiry
+    is_expired = grace_period_end > days_till_expiry
 
     return {
         "is_expiring": is_expiring,
