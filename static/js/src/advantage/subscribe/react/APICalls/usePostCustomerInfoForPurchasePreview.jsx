@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { postCustomerInfoForPurchasePreview } from "../../../contracts-api";
 
-const usePostCustomerInfoAnon = () => {
+const usePostCustomerInfoForPurchasePreview = () => {
   const mutation = useMutation(async (formData) => {
     const {
       name,
@@ -22,28 +22,24 @@ const usePostCustomerInfoAnon = () => {
       state: country === "US" ? usState : caProvince,
     };
 
-    if (VATNumber) {
-      const res = await postCustomerInfoForPurchasePreview(
-        window.accountId,
-        name,
-        addressObject,
-        {
-          type: "eu_vat",
-          value: VATNumber,
-        }
-      );
-
-      if (res.errors) {
-        throw new Error(JSON.parse(res.errors).code);
+    const res = await postCustomerInfoForPurchasePreview(
+      window.accountId,
+      name,
+      addressObject,
+      {
+        type: "eu_vat",
+        value: VATNumber,
       }
+    );
 
-      return res;
+    if (res.errors) {
+      throw new Error(JSON.parse(res.errors).code);
     }
 
-    throw new Error("VAT is missing");
+    return res;
   });
 
   return mutation;
 };
 
-export default usePostCustomerInfoAnon;
+export default usePostCustomerInfoForPurchasePreview;
