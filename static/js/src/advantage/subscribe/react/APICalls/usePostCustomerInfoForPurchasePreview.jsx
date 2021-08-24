@@ -34,6 +34,8 @@ const usePostCustomerInfoForPurchasePreview = () => {
 
     if (res.errors) {
       throw new Error(JSON.parse(res.errors).code);
+    } else if (res.error) {
+      throw new Error(res.error);
     }
 
     return res;
