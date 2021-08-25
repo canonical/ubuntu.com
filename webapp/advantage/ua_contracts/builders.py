@@ -19,60 +19,77 @@ from webapp.advantage.models import Listing, UserSubscription
 def build_user_subscriptions(
     user_summary: List, listings: Dict[str, Listing]
 ) -> List[UserSubscription]:
-    grouped_items = build_initial_user_subscriptions(
-        user_summary=user_summary,
-        listings=listings,
-    )
+    grouped_items = build_initial_user_subscriptions(user_summary, listings)
+    user_subscriptions = build_final_user_subscriptions(grouped_items)
 
-    return build_final_user_subscriptions(grouped_items)
+    return user_subscriptions
 
 
 def build_initial_user_subscriptions(
     user_summary: List, listings: Dict[str, Listing]
 ) -> List:
-    free_groups = []
-    shop_groups = []
+    free_groups = build_free_item_groups(user_summary)
+    shop_groups = build_shop_item_groups(user_summary, listings)
     legacy_groups = []
+
+    return free_groups + shop_groups + legacy_groups
+
+
+def build_free_item_groups(user_summary: List) -> List:
+    free_item_groups = []
     for user_details in user_summary:
         contracts: List[Contract] = user_details.get("contracts")
-        account: Account = user_details.get("account")
-        subscriptions: List[Subscription] = user_details.get("subscriptions")
 
         for contract in contracts:
-            # Free user subscriptions
             if contract.product_id == "free":
-                free_groups.append(
+                free_item_groups.append(
                     {
-                        "account": account,
+                        "account": user_details.get("account"),
                         "contract": contract,
-                        "listing": None,
-                        "subscriptions": subscriptions,
                         "items": contract.items,
+                        "listing": None,
+                        "subscriptions": user_details.get("subscriptions"),
                         "type": "free",
                     }
                 )
 
+    return free_item_groups
+
+
+def build_shop_item_groups(
+    user_summary: List, listings: Dict[str, Listing]
+) -> List:
+    shop_item_groups = []
+    for user_details in user_summary:
+        contracts: List[Contract] = user_details.get("contracts")
+
+        for contract in contracts:
+            # skip free contracts
+            if contract.product_id == "free":
                 continue
 
-            # Shop user subscriptions
+            # skip contracts without items
+            if contract.items is None:
+                continue
+
             raw_shop_groups = group_items_by_listing(items=contract.items)
             for listing_id in raw_shop_groups:
                 listing: Listing = listings[listing_id]
                 items: List[ContractItem] = raw_shop_groups[listing_id]
                 is_trialled = is_trialling_user_subscription(items=items)
 
-                shop_groups.append(
+                shop_item_groups.append(
                     {
-                        "account": account,
+                        "account": user_details.get("account"),
                         "contract": contract,
-                        "listing": listing,
-                        "subscriptions": subscriptions,
                         "items": items,
+                        "listing": listing,
+                        "subscriptions": user_details.get("subscriptions"),
                         "type": listing.period if not is_trialled else "trial",
                     }
                 )
 
-    return free_groups + shop_groups + legacy_groups
+    return shop_item_groups
 
 
 def build_final_user_subscriptions(
