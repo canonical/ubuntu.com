@@ -201,19 +201,17 @@ jobs:
         run: |
           yarn lint-js
 
-  linter_name:
-    name: runner / woke
+  inclusive-naming-check:
+    name: woke
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: get-woke/woke-action-reviewdog@v0
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: woke
+        uses: petesfrench/inclusive-naming-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          # Change reviewdog reporter if you need [github-pr-check,github-check,github-pr-review].
-          reporter: github-pr-review
-          # Change reporter level if you need.
-          # GitHub Status Check won't become failure with warning.
-          level: warning
-          # Enable this to fail the check when violations are found
-          # fail-on-error: true
+          reporter: github-pr-check
+          fail-on-error: true
 
