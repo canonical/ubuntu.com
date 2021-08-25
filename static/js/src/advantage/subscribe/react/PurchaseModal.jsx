@@ -41,7 +41,7 @@ const getUserInfoFromVariables = (data, variables) => {
         expMonth: data.paymentMethod.exp_month,
         expYear: data.paymentMethod.exp_year,
       },
-      taxID: { value: variables.VATNumber.value },
+      taxID: { value: variables.VATNumber },
     },
     accountInfo: {
       name: variables.organisationName,
