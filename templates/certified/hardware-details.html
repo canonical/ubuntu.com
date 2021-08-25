@@ -1,10 +1,10 @@
-{% extends "certified/base_certification.html" %}
+{% extends "templates/base.html" %}
 
 {% block title %} {{ vendor }} {{ model }} certified with Ubuntu {{ release }}{% endblock %}
 
 {% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
 
-{% block content %}
+{% block outer_content %}
 
 <section class="p-strip--suru-topped">
   <div class="row u-sv3">
@@ -89,4 +89,4 @@
   </div>
 </section>
 
-{% endblock content %}
+{% endblock %}

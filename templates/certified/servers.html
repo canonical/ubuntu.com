@@ -1,195 +1,49 @@
-{% extends "certified/base_certification.html" %}
+{% extends "templates/base.html" %}
 
 {% block title %}Certified servers{% endblock %}
-
 {% block meta_description %}Servers that have been certified for use with Ubuntu.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1TN2UKhUSB6-kXbLyDM4al2ufB4cgx-W6BsIUOBLP8vU/edit{% endblock meta_copydoc %}
 
-{% block content %}
+{% block outer_content %}
 
-<form class="js-search-results">
-  <section class="p-strip--suru-topped">
-    <div class="u-fixed-width">
-      <h1 class="u-sv3">Ubuntu certified servers</h1>
+<section class="p-strip--suru-topped is-bordered">
+  <div class="u-fixed-width">
+    <a href="/certified?q=">&lsaquo; Certified hardware</a>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-8">
+      <h1>Ubuntu certified servers</h1>
+      <p>Using Ubuntu Server speeds up the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
+      <p>Deploying on certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-center environments.</p>
     </div>
-    <div class="u-fixed-width">
-      <div class="p-search-box">
-        <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}" placeholder="Search hardware">
-        <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
-      </div>
+    <div class="col-4 u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+        alt="",
+        width="136",
+        height="153",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
     </div>
-    <div class="row">
-      <div class="col-3">
-        <h2 class="p-heading--4">Filter</h2>
-      </div>
-      <div class="col-4">
-        <h2 class="p-heading--4">
-          {% if total_results %}
-          {% if total_results and total_results > 1 %}
-          {{ offset + 1 }}
-          &ndash;
-          {% if offset + limit > total_results %}
-          {{ total_results }}
-          {% else %}
-          {{ offset + limit }}
-          {% endif %}
-          of
-          {% endif %}
-          {{ total_results }} result{% if total_results != 1 %}s{% endif %}
-          {% endif %}
-        </h2>
-      </div>
-      <div class="col-5 u-align--right">
-        {% if total_results > 0 %}
-        <p style="display: inline-block; padding-right: 0.5rem;">Results per page</p>
-        <select id="page-size-top" class="p-results-per-page" name="limit" aria-label="Results per page" style="max-width: 5.3rem; min-width: 5.3rem;" data-limit="{{ limit }}">
-          <option value="20"{% if limit == 20 %}selected{% endif %}>20</option>
-          {% if total_results > 20 %}
-          <option value="40"{% if limit == 40 %}selected{% endif %}>40</option>
-          {% endif %}
-          {% if total_results > 40 %}
-          <option value="60"{% if limit == 60 %}selected{% endif %}>60</option>
-          {% endif %}
-          <option value="{{ total_results }}" {% if limit == total_results %}selected{% endif %}>All</option>
-        </select>
-        {% endif %}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3 p-side-navigation" id="drawer">
-        <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">Toggle filters</a>
-        <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
-        <nav class="p-side-navigation__drawer" aria-label="Example side navigation">
-          <div class="p-side-navigation__drawer-header">
-            <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
-              Toggle filters
-            </a>
-          </div>
-          <div>
-            <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
-              <ul class="p-accordion__list">
-                <li class="p-accordion__group--certified" id="vendor-section">
-                  <div role="heading" aria-level="2">
-                    <button type="button" class="p-accordion__tab u-no-padding--right" id="tab2" aria-controls="tab2-section" aria-expanded="true">
-                      <span class="p-certification-header">Vendor</span>
-                      <div class="p-round-chip u-hide">
-                        <span class="p-chip__value" id="vendor-count">1</span>
-                      </div>
-                    </button>
-                  </div>
-                  <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel is-collapsed is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
-                    {% for vendor_filter in vendor_filters %}
-                    <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ vendor_filter }}">{{ vendor_filter }}</span>
-                    </label>
-                    {% endfor %}
-                  </section>
-                  {% if vendor_filters | length > 5 %}
-                  <span class="js-toggle-links">
-                    <p class="p-reveal-vendors is-dense"><a>Show all vendors ({{ vendor_filters|length - 5}})</a></p>
-                    <p class="p-reveal-vendors is-dense u-hide"><a>Show fewer</a></p>
-                  </span>
-                  {% endif %}
-                </li>
-                <li class="p-accordion__group--certified" id="version-section">
-                  <div role="heading" aria-level="2">
-                    <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true">
-                      <span class="p-certification-header">Certified Ubuntu
-                        <div class="p-round-chip u-hide">
-                          <span class="p-chip__value" id="release-count">1</span>
-                        </div>
-                        <br> release
-                      </span>
-                    </button>
-                  </div>
-                  <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel is-collapsed is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
-                    {% for release_filter in release_filters %}
-                    <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input js-enable-apply-filters" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ release_filter }}">{{ release_filter }}</span>
-                    </label>
-                    {% endfor %}
-                  </section>
-                  {% if release_filters | length > 5 %}
-                  <span class="js-toggle-links">
-                    <p class="p-reveal-versions is-dense"><a> Show all versions ({{release_filters|length - 5}})</a></p>
-                    <p class="p-reveal-versions is-dense u-hide"><a>Show fewer</a></p>
-                  </span>
-                  {% endif %}
-                </li>
-              </ul>
-            </aside>
-            <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply filters</button>
-            <button class="p-button--neutral p-update-results" onclick="return clearFilters()">Clear filters</button>
-          </div>
-        </nav>
-      </div>
-      {% if total_results > 0 %}
-      <div class="col-9">
-        <table class="p-certification-results">
-          <thead>
-            <tr>
-              <th><span class="p-certification-header">Vendor</span></th>
-              <th><span class="p-certification-header">Model</span></th>
-              <th><span class="p-certification-header">Category</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for result in results %}
-            <tr>
-              <td><a href="/certified?vendor={{ result.make }}">{{ result.make }}</a></td>
-              <td><a href="/certified/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
-              <td>{{ result.category }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        <div class="row">
-          <div class="col-5">
-            {% with total_results=total_results, total_pages=total_pages, offset=offset, limit=limit, align="u-align--left"%}
-            {% include "security/cve/_pagination.html" %}
-            {% endwith %}
-          </div>
-          <div class="col-4 u-align--right">
-            {% if total_results > 0 %}
-            <p style="display: inline-block; padding-right: 0.5rem;">Results per page</p>
-            <select id="page-size-bottom" class="p-results-per-page" aria-label="Results per page" style="max-width: 5.3rem; min-width: 5.3rem;" data-limit="{{ limit }}">
-              <option value="20" {% if limit == 20 %}selected{% endif %}>20</option>
-              {% if total_results > 20 %}
-              <option value="40" {% if limit == 40 %}selected{% endif %}>40</option>
-              {% endif %}
-              {% if total_results > 40 %}
-              <option value="60" {% if limit == 60 %}selected{% endif %}>60</option>
-              {% endif %}
-              <option value="{{ total_results }}"  {% if limit == total_results %}selected{% endif %}>All</option>
-            </select>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      {% else %}
-      <div class="col-9">
-        <h3 class="p-heading--4">Sorry we found no results matching your criteria. Please try and wide your search.</h3>
-        <p>You can do this by:</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">
-            <p>Adding alternative words or phrases</p>
-          </li>
-          <li class="p-list__item is-ticked">
-            <p>Using individual words instead of phrases</p>
-          </li>
-          <li class="p-list__item is-ticked">
-            <p>Trying a different spelling</p>
-          </li>
-        </ul>
-      </div>
-      {% endif %}
-    </div>
-  </section>
-</form>
+  </div>
+</section>
 
-<script src="{{ versioned_static('js/src/certified-search-results.js') }}" defer></script>
+{% with
+  title="All certified servers",
+  query=query,
+  placeholder="Search in certified servers",
+  total_results=total_results,
+  total_pages=total_pages,
+  offset=offset,
+  limit=limit,
+  vendor_filters=vendor_filters,
+  release_filters=release_filters,
+  results=results
+%}
+  {% include "certified/shared/category-search-results.html" %}
+{% endwith %}
 
-{% endblock content %}
+{% endblock %}
