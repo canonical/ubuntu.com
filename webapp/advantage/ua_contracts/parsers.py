@@ -130,9 +130,10 @@ def parse_contracts(raw_contracts: dict) -> List[Contract]:
 
 def parse_subscription_items(
     subscription_id: str,
-    raw_items: dict,
+    raw_items: dict = None,
 ) -> List[SubscriptionItem]:
     subscription_items = []
+    raw_items = raw_items or []
     for raw_item in raw_items:
         subscription_item = SubscriptionItem(
             subscription_id=subscription_id,
