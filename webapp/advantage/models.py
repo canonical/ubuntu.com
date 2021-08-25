@@ -51,6 +51,8 @@ class UserSubscription:
         entitlements: List[Entitlement],
         statuses: dict,
         end_date: str = None,
+        period: str = None,
+        listing_id: str = None,
     ):
         self.account_id = account_id
         self.product_name = product_name
@@ -63,3 +65,5 @@ class UserSubscription:
         self.price_per_unit = price_per_unit
         self.entitlements = entitlements
         self.statuses = statuses
+        self.period = period
+        self.listing_id = listing_id

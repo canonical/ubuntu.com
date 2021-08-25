@@ -48,6 +48,7 @@ def build_free_item_groups(user_summary: List) -> List:
                         "contract": contract,
                         "items": contract.items,
                         "listing": None,
+                        "marketplace": "free",
                         "subscriptions": user_details.get("subscriptions"),
                         "type": "free",
                     }
@@ -84,6 +85,9 @@ def build_shop_item_groups(
                         "contract": contract,
                         "items": items,
                         "listing": listing,
+                        "marketplace": (
+                            listing.marketplace if listing else None
+                        ),
                         "subscriptions": user_details.get("subscriptions"),
                         "type": listing.period if not is_trialled else "trial",
                     }
@@ -112,9 +116,11 @@ def build_final_user_subscriptions(
             end_date=aggregated_values.get("end_date"),
             number_of_machines=aggregated_values.get("number_of_machines"),
             product_name=listing.product_name if listing else None,
-            marketplace=listing.marketplace if listing else None,
+            marketplace=group.get("marketplace"),
             price_per_unit=listing.price if listing else None,
             machine_type=get_machine_type(contract.product_id),
+            listing_id=listing.id if listing else None,
+            period=listing.period if listing else None,
             statuses=get_user_subscription_statuses(
                 type=group.get("type"),
                 end_date=aggregated_values.get("end_date"),
