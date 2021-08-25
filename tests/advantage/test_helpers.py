@@ -137,7 +137,7 @@ class TestHelpers(unittest.TestCase):
         self.assertEqual(machine_type, "desktop")
 
         machine_type = get_machine_type(random_product_id)
-        self.assertEqual(machine_type, None)
+        self.assertEqual(machine_type, "physical")
 
     def test_is_trialling_user_subscription(self):
         free_trial_contract = make_free_trial_contract()
