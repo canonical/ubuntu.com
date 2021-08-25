@@ -51,7 +51,7 @@ def make_client(session: Session, **kwargs):
     )
 
 
-def get_fixture(file: str) -> dict:
+def get_fixture(file: str):
     current_path = pathlib.Path(__file__).parent.absolute()
     with open(f"{current_path}/./fixtures/{file}.json") as json_data:
         file_data = json_data.read()

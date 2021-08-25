@@ -84,6 +84,20 @@ class TestParsers(unittest.TestCase):
             to_dict(expectation), to_dict(parsed_subscription_items)
         )
 
+    def test_parse_no_subscription_items(self):
+        subscription_id = "random-id"
+        parsed_subscription_items = parse_subscription_items(
+            subscription_id, None
+        )
+        self.assertIsInstance(parsed_subscription_items, List)
+        self.assertEqual([], to_dict(parsed_subscription_items))
+
+        parsed_subscription_items = parse_subscription_items(
+            subscription_id, []
+        )
+        self.assertIsInstance(parsed_subscription_items, List)
+        self.assertEqual([], to_dict(parsed_subscription_items))
+
     def test_parse_subscription(self):
         raw_subscription = get_fixture("subscription")
 
@@ -172,7 +186,31 @@ class TestParsers(unittest.TestCase):
             period=None,
         )
 
-        self.assertIsInstance(expectation, Listing)
+        self.assertIsInstance(parsed_listing, Listing)
+        self.assertEqual(to_dict(expectation), to_dict(parsed_listing))
+
+    def test_parse_listing_with_no_product(self):
+        raw_products = []
+        raw_product_listing = get_fixture("product-listing")
+
+        parsed_listing = parse_product_listing(
+            raw_product_listing=raw_product_listing,
+            raw_products=raw_products,
+        )
+
+        expectation = Listing(
+            id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+            name="product-id",
+            marketplace="canonical-ua",
+            product_name="",
+            price=1000,
+            currency="USD",
+            status="active",
+            trial_days=20,
+            period=None,
+        )
+
+        self.assertIsInstance(parsed_listing, Listing)
         self.assertEqual(to_dict(expectation), to_dict(parsed_listing))
 
     def test_parse_listings(self):
@@ -198,8 +236,20 @@ class TestParsers(unittest.TestCase):
             )
         }
 
-        self.assertIsInstance(expectation, Dict)
+        self.assertIsInstance(parsed_listings, Dict)
         self.assertEqual(to_dict(expectation), to_dict(parsed_listings))
+
+    def test_parse_listings_with_no_listings(self):
+        raw_products = None
+        raw_product_listings = None
+
+        parsed_listings = parse_product_listings(
+            raw_product_listings=raw_product_listings,
+            raw_products=raw_products,
+        )
+
+        self.assertIsInstance(parsed_listings, Dict)
+        self.assertEqual({}, to_dict(parsed_listings))
 
     def test_parse_entitlements(self):
         raw_entitlements = get_fixture("entitlements")
@@ -227,6 +277,15 @@ class TestParsers(unittest.TestCase):
 
         self.assertIsInstance(parsed_entitlements, List)
         self.assertEqual(to_dict(expectation), to_dict(parsed_entitlements))
+
+    def test_parse_no_entitlements(self):
+        parsed_entitlements = parse_entitlements(None)
+        self.assertIsInstance(parsed_entitlements, List)
+        self.assertEqual([], to_dict(parsed_entitlements))
+
+        parsed_entitlements = parse_entitlements([])
+        self.assertIsInstance(parsed_entitlements, List)
+        self.assertEqual([], to_dict(parsed_entitlements))
 
     def test_parse_contract_items(self):
         raw_contract_items = get_fixture("contract-items")
@@ -293,8 +352,17 @@ class TestParsers(unittest.TestCase):
             ),
         ]
 
-        self.assertIsInstance(expectation, List)
+        self.assertIsInstance(parsed_contract_items, List)
         self.assertEqual(to_dict(expectation), to_dict(parsed_contract_items))
+
+    def test_parse_no_contract_items(self):
+        parsed_contract_items = parse_contract_items(None)
+        self.assertIsInstance(parsed_contract_items, List)
+        self.assertEqual([], to_dict(parsed_contract_items))
+
+        parsed_contract_items = parse_contract_items([])
+        self.assertIsInstance(parsed_contract_items, List)
+        self.assertEqual([], to_dict(parsed_contract_items))
 
     def test_parse_contract(self):
         raw_contract = get_fixture("contract")

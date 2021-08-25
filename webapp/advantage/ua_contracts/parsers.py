@@ -12,7 +12,7 @@ from webapp.advantage.ua_contracts.primitives import (
 from webapp.advantage.models import Listing
 
 
-def parse_product(raw_product: dict) -> Product:
+def parse_product(raw_product: Dict) -> Product:
     return Product(
         id=raw_product.get("id"),
         name=raw_product.get("name"),
@@ -20,9 +20,10 @@ def parse_product(raw_product: dict) -> Product:
 
 
 def parse_product_listing(
-    raw_product_listing: dict, raw_products: dict
+    raw_product_listing: Dict, raw_products: List[Dict]
 ) -> Listing:
     product = None
+    raw_products = raw_products or []
     for raw_product in raw_products:
         if raw_product.get("id") == raw_product_listing.get("productID"):
             product = parse_product(raw_product)
@@ -32,7 +33,7 @@ def parse_product_listing(
         id=raw_product_listing.get("id"),
         name=raw_product_listing.get("name"),
         marketplace=raw_product_listing.get("marketplace"),
-        product_name=product.name,
+        product_name=product.name if product else "",
         price=raw_product_listing.get("price").get("value"),
         currency=raw_product_listing.get("price").get("currency"),
         status=raw_product_listing.get("status"),
@@ -42,9 +43,11 @@ def parse_product_listing(
 
 
 def parse_product_listings(
-    raw_product_listings: dict,
-    raw_products: dict,
+    raw_product_listings: List[Dict] = None,
+    raw_products: List[Dict] = None,
 ) -> Dict[str, Listing]:
+    raw_product_listings = raw_product_listings or {}
+
     return {
         product_listing.get("id"): parse_product_listing(
             product_listing, raw_products
@@ -53,19 +56,22 @@ def parse_product_listings(
     }
 
 
-def parse_account(raw_account: dict) -> Account:
+def parse_account(raw_account: Dict) -> Account:
     return Account(
         id=raw_account.get("id"),
         name=raw_account.get("name"),
     )
 
 
-def parse_accounts(raw_accounts: dict) -> List[Account]:
+def parse_accounts(raw_accounts: List[Dict]) -> List[Account]:
     return [parse_account(raw_account) for raw_account in raw_accounts]
 
 
-def parse_entitlements(raw_entitlements: dict) -> List[Entitlement]:
+def parse_entitlements(
+    raw_entitlements: List[Dict] = None,
+) -> List[Entitlement]:
     entitlements = []
+    raw_entitlements = raw_entitlements or []
     for raw_entitlement in raw_entitlements:
         affordances = raw_entitlement.get("affordances")
         obligations = raw_entitlement.get("obligations")
@@ -85,7 +91,7 @@ def parse_entitlements(raw_entitlements: dict) -> List[Entitlement]:
     return entitlements
 
 
-def parse_contract_items(raw_items: dict) -> List[ContractItem]:
+def parse_contract_items(raw_items: List[Dict] = None) -> List[ContractItem]:
     items = []
     raw_items = raw_items or []
     for raw_item in raw_items:
@@ -106,7 +112,7 @@ def parse_contract_items(raw_items: dict) -> List[ContractItem]:
     return items
 
 
-def parse_contract(raw_contract: dict) -> Contract:
+def parse_contract(raw_contract: Dict) -> Contract:
     account_info = raw_contract.get("accountInfo")
     contract_info = raw_contract.get("contractInfo")
     raw_entitlements = contract_info.get("resourceEntitlements")
@@ -124,13 +130,13 @@ def parse_contract(raw_contract: dict) -> Contract:
     )
 
 
-def parse_contracts(raw_contracts: dict) -> List[Contract]:
+def parse_contracts(raw_contracts: Dict) -> List[Contract]:
     return [parse_contract(raw_contract) for raw_contract in raw_contracts]
 
 
 def parse_subscription_items(
     subscription_id: str,
-    raw_items: dict = None,
+    raw_items: List[Dict] = None,
 ) -> List[SubscriptionItem]:
     subscription_items = []
     raw_items = raw_items or []
@@ -146,7 +152,7 @@ def parse_subscription_items(
     return subscription_items
 
 
-def parse_subscription(raw_subscription: dict) -> Subscription:
+def parse_subscription(raw_subscription: Dict) -> Subscription:
     subscription_id = raw_subscription.get("subscription").get("id")
     raw_items = raw_subscription.get("purchasedProductListings")
 
@@ -162,7 +168,7 @@ def parse_subscription(raw_subscription: dict) -> Subscription:
     )
 
 
-def parse_subscriptions(raw_subscriptions: dict) -> List[Subscription]:
+def parse_subscriptions(raw_subscriptions: Dict) -> List[Subscription]:
     return [
         parse_subscription(raw_subscription)
         for raw_subscription in raw_subscriptions
