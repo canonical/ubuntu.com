@@ -66,7 +66,9 @@ def get_machine_type(product_id: str) -> Optional[str]:
     if "desktop" in product_id:
         return "desktop"
 
-    return None
+    # some product ids don't mention the machine type
+    # those products are all "physical", so I set it as default
+    return "physical"
 
 
 def is_trialling_user_subscription(items: List[ContractItem]) -> bool:
