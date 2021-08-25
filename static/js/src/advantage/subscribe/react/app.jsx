@@ -11,6 +11,7 @@ import PurchaseModal from "./PurchaseModal";
 Sentry.init({
   dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
   integrations: [new Integrations.BrowserTracing()],
+  allowUrls: ["https://ubuntu.com/advantage/subscribe"],
 
   // We recommend adjusting this value in production, or using tracesSampler
   // for finer control
