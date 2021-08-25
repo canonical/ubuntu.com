@@ -304,7 +304,7 @@ def advantage_view(**kwargs):
 def get_user_subscriptions(**kwargs):
     token = kwargs.get("token")
     api_url = kwargs.get("api_url")
-    email = kwargs.get("email", "")
+    email = kwargs.get("email")
 
     advantage = UAContractsAPI(
         session,
@@ -315,9 +315,10 @@ def get_user_subscriptions(**kwargs):
     )
 
     listings = advantage.get_product_listings("canonical-ua")
+    accounts = advantage.get_accounts(email=email)
 
     user_summary = []
-    for account in advantage.get_accounts(email=email):
+    for account in accounts:
         contracts = advantage.get_account_contracts(account_id=account.id)
         subscriptions = advantage.get_account_subscriptions(
             account_id=account.id,
