@@ -7,6 +7,8 @@ import {
   Notification,
   Spinner,
 } from "@canonical/react-components";
+import * as Sentry from "@sentry/react";
+
 import useStripeCustomerInfo from "./APICalls/useStripeCustomerInfo";
 import registerPaymentMethod from "./APICalls/registerPaymentMethod";
 import PaymentMethodSummary from "./components/PaymentMethodSummary";
@@ -212,17 +214,25 @@ const PurchaseModal = () => {
             </>
           );
         } else {
+          const errorMessage = getErrorMessage({
+            message: "",
+            code: error.message,
+          });
+
           // Tries to match the error with a known error code and defaults to a generic error if it fails
-          setError(
-            getErrorMessage({ message: "", code: error.message }) ?? (
+          if (errorMessage) {
+            setError(errorMessage);
+          } else {
+            Sentry.captureException(error);
+            setError(
               <>
                 Sorry, there was an unknown error with your credit card. Check
                 the details and try again. Contact{" "}
                 <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
                 the problem persists.
               </>
-            )
-          );
+            );
+          }
         }
 
         actions.setSubmitting(false);
@@ -246,6 +256,7 @@ const PurchaseModal = () => {
             </>
           );
         } else {
+          Sentry.captureException(error);
           setError(
             <>
               Sorry, there was an unknown error with with the payment. Check the
