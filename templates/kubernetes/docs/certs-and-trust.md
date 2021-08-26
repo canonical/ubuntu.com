@@ -142,8 +142,8 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [CN]: https://knowledge.digicert.com/solution/SO7239.html
 [SANs]: https://en.wikipedia.org/wiki/Subject_Alternative_Name
 [network primitives]: https://juju.is/docs/olm/quick-reference
-[kubernetes-master]: /docs/kubernetes/charm-kubernetes-master
-[`extra_sans`]:  /docs/kubernetes/charm-kubernetes-master#extra_sans
+[kubernetes-master]: /kubernetes/docs/charm-kubernetes-master
+[`extra_sans`]:  /kubernetes/docs/charm-kubernetes-master#extra_sans
 [HA]: https://en.wikipedia.org/wiki/High_availability
 [vault-cdk]: /kubernetes/docs/using-vault
 

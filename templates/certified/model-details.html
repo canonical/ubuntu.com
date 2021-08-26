@@ -1,10 +1,10 @@
-{% extends "certified/base_certification.html" %}
+{% extends "templates/base.html" %}
 
 {% block title %} {{ vendor }} {{ model }} certified with Ubuntu{% endblock %}
 
 {% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
 
-{% block content %}
+{% block outer_content %}
 
 <section class="p-strip--suru-topped u-no-margin--bottom">
   <div class="row u-sv3">
@@ -118,7 +118,7 @@
                   <tr>
                     <th colspan="2" class="u-text--muted">{{ hardware_subtitle }}</th>
                     <td colspan="8">{% for value in values %} 
-                      <p style="margin-bottom: 0.5rem;">{{ value.name }} {{ value.bus }}({{ value.identifier }})</p>
+                      <p style="margin-bottom: 0.5rem;">{{ value.name }}{% if value.bus in ["usb", "pci"] %} {{ value.bus }} ({{ value.identifier }}){% endif %}</p>
                       {% endfor %}
                     </td>
                   </tr>
@@ -267,4 +267,4 @@
   </div>
 </section>
 
-{% endblock content %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{
+  "externalBillingIDs": [
+    {
+      "IDs": [
+        "externalID1"
+      ],
+      "origin": "Stripe"
+    }
+  ],
+  "externalMarketplaceIDs": {
+    "IDs": [
+      "externalID2"
+    ],
+    "origin": "Salesforce"
+  },
+  "id": "product-id",
+  "name": "Product Name",
+  "resourceEntitlements": [
+    {
+      "type": "entitlement-type",
+      "entitled": true,
+      "affordances": {
+        "architectures": [
+          "abc123"
+        ],
+        "series": [
+          "bionic"
+        ]
+      },
+      "directives": {
+        "aptKey": "123123123",
+        "aptURL": "https://url",
+        "suites": [
+          "bionic"
+        ]
+      },
+      "obligations": {
+        "enableByDefault": true
+      },
+      "series": {
+        "bionic": {
+          "directives": {
+            "suites": [
+              "bionic"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -135,13 +135,20 @@ managedapps:
   children:
     - title: Overview
       path: /managed
-    - title: Kafka
-      path: /managed/kafka
-    - title: Cassandra
-      path: /managed/cassandra
+    - title: OpenStack
+      path: /openstack/managed
+    - title: Kubernetes
+      path: /kubernetes/managed
     - title: Contact us
       path: /managed/contact-us
       hidden: True
+    - title: Apps
+      path: /managed/apps
+      children:
+        - title: Kafka
+          path: /managed/apps/kafka
+        - title: Cassandra
+          path: /managed/apps/cassandra
 
 openstack:
   title: OpenStack
@@ -1441,7 +1448,7 @@ legal:
 observability:
   title: Observability
   path: /observability
-  
+
   children:
     - title: Overview
       path: /observability
@@ -1615,6 +1622,9 @@ cube:
     - title: Study
       path: /cube/study
       persist: True
+
+    - title: FAQ
+      path: /cube/faq
 
     - title: Contact us
       path: /cube/contact-us

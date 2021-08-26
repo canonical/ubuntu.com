@@ -1,10 +1,9 @@
-{% extends "certified/base_certification.html" %}
+{% extends "templates/base.html" %}
 
 {% block title %}Certified hardware{% endblock %}
-
 {% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
 
-{% block content %}
+{% block outer_content %}
 
 <section class="p-strip--suru-bottomed">
   <div class="row u-vertically-center">
@@ -45,7 +44,7 @@
 
 <section class="p-strip">
   <div class="row u-equal-height">
-<div class="col-6 p-card">
+    <div class="col-6 p-card">
       {{ image (
         url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
         alt="",
@@ -211,7 +210,7 @@
   <div class="row u-vertically-center">
     <div class="col-7">
       <h2>Become Ubuntu certified!</h2>
-      <p>Work with us to test that your hardware works fine with Ubuntu and join the OEM market leaders in the list of Ubuntu Certified hardware.</p>
+      <p>Work with us to test that your hardware works fine with Ubuntu and join the OEM market leaders in the list of Ubuntu certified hardware.</p>
       <a href="https://canonical.com/partners/become-a-partner">Learn more&nbsp;&rsaquo;</a>
     </div>
     <div class="col-5 u-align--center">
@@ -228,4 +227,4 @@
   </div>
 </section>
 
-{% endblock content%}
+{% endblock %}

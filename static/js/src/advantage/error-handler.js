@@ -186,25 +186,35 @@ export function getErrorMessage(error) {
     message?.includes("Your card has insufficient funds")
   ) {
     return "That card doesn’t have enough funds to make this payment. Please contact your card issuer, or try a different card.";
-  } else if (INCORRECT_NUMBER_CODES.includes(code)) {
+  }
+  if (INCORRECT_NUMBER_CODES.includes(code)) {
     return "That card number is incorrect. Check the number and try again.";
-  } else if (INCORRECT_CVC_CODES.includes(code)) {
+  }
+  if (INCORRECT_CVC_CODES.includes(code)) {
     return "That CVC number is incorrect. Check the number and try again.";
-  } else if (INCORRECT_ZIP_CODES.includes(code)) {
+  }
+  if (INCORRECT_ZIP_CODES.includes(code)) {
     return "That ZIP/postal code is incorrect. Check the code and try again.";
-  } else if (INCORRECT_EXPIRY_CODES.includes(code)) {
+  }
+  if (INCORRECT_EXPIRY_CODES.includes(code)) {
     return "That expiry date is incorrect. Check the date and try again.";
-  } else if (INCORRECT_VAT_CODES.includes(code)) {
+  }
+  if (INCORRECT_VAT_CODES.includes(code)) {
     return "That VAT number is invalid. Check the number and try again.";
-  } else if (code === "card_not_supported") {
+  }
+  if (code === "card_not_supported") {
     return "That card doesn’t allow this kind of payment. Please contact your card issuer, or try a different card.";
-  } else if (code === "currency_not_supported") {
+  }
+  if (code === "currency_not_supported") {
     return "That card doesn’t allow payments in this currency. Please contact your card issuer, or try a different card.";
-  } else if (code === "expired_card") {
+  }
+  if (code === "expired_card") {
     return "That card has expired. Try a different card.";
-  } else if (code === "testmode_decline") {
+  }
+  if (code === "testmode_decline") {
     return "Test completed.";
-  } else if (CARD_DECLINED_CODES.includes(code)) {
+  }
+  if (CARD_DECLINED_CODES.includes(code)) {
     return "Your card has been declined. Please contact your card issuer, or try a different card.";
   }
 }

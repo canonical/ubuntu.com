@@ -50,7 +50,7 @@ So, for example, to deploy three `ceph-osd` storage nodes, using the default sto
 
 <div class="p-notification--positive"><p markdown="1" class="p-notification__response">
 <span class="p-notification__status">Note:</span>
-For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://docs.jujucharms.com/stable/en/charms-storage">Juju documentation</a>.
+For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://juju.is/docs/olm/defining-and-using-persistent-storage">Juju documentation</a>.
 </p></div>
 
 Note that actually deploying these charms with storage may take some time, but you can continue to run other Juju commands in the meantime.
@@ -279,7 +279,7 @@ There is no requirement that these additional units should have the same amount 
 [ceph-home]: https://ceph.com/
 [ceph-charm]: https://charmhub.io/ceph-osd
 [juju-storage]: https://docs.jujucharms.com/stable/en/charms-storage
-[juju-cmr]: https://docs.jujucharms.com/stable/en/models-cmr
+[juju-cmr]: https://juju.is/docs/olm/cross-model-relations
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

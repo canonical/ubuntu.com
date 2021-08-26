@@ -73,7 +73,7 @@ storage pool, or even full-disk-encryption on the host machine.
 [HashiCorp's Vault]: https://www.vaultproject.io/
 [VaultLocker]: https://github.com/openstack-charmers/vaultlocker
 [Vault charm]: https://charmhub.io/vault
-[unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#initialize-and-unseal-vault
+[unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/victoria/app-vault.html#initialize-and-unseal-vault
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
