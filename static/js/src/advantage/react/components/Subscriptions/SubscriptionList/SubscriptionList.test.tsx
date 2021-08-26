@@ -36,7 +36,7 @@ describe("SubscriptionList", () => {
     queryClient.setQueryData("personalAccount", personalAccount);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionList setSelectedToken={jest.fn()} />
+        <SubscriptionList onSetActive={jest.fn()} />
       </QueryClientProvider>
     );
     const token = wrapper.find("[data-test='free-token']");
@@ -60,10 +60,7 @@ describe("SubscriptionList", () => {
     queryClient.setQueryData("personalAccount", personalAccount);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionList
-          selectedToken="free-token"
-          setSelectedToken={jest.fn()}
-        />
+        <SubscriptionList selectedToken="free-token" onSetActive={jest.fn()} />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='free-token']").prop("isSelected")).toBe(

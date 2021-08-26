@@ -17,9 +17,9 @@ type Feature = {
 
 const generateFeatures = (features: Feature[]) =>
   features.map(({ size = 3, title, value }) => (
-    <Col key={title} size={size}>
+    <Col key={title} medium={2} size={size} small={2}>
       <p className="u-text--muted u-no-margin--bottom">{title}</p>
-      {value}
+      <p className="u-no-margin--bottom u-sv1">{value}</p>
     </Col>
   ));
 

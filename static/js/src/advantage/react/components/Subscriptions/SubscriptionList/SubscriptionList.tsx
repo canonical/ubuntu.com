@@ -3,14 +3,14 @@ import { usePersonalAccount } from "advantage/react/hooks";
 import { selectFreeContract } from "advantage/react/hooks/usePersonalAccount";
 import { getFeaturesDisplay } from "advantage/react/utils";
 import React from "react";
-import { SelectedToken, SetSelectedToken } from "../Content/types";
+import { SelectedToken } from "../Content/types";
 
 import ListCard from "./ListCard";
 import ListGroup from "./ListGroup";
 
 type Props = {
   selectedToken?: SelectedToken;
-  setSelectedToken: SetSelectedToken;
+  onSetActive: (token: SelectedToken) => void;
 };
 
 /**
@@ -33,7 +33,7 @@ const getFreeContractData = (
   };
 };
 
-const SubscriptionList = ({ selectedToken, setSelectedToken }: Props) => {
+const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
   const { data: freeContractData } = usePersonalAccount({
     select: selectFreeContract,
   });
@@ -46,11 +46,11 @@ const SubscriptionList = ({ selectedToken, setSelectedToken }: Props) => {
             created="2021-07-09T07:14:56Z"
             expires="2021-07-09T07:14:56Z"
             features={["ESM Infra", "livepatch", "24/5 support"]}
-            isSelected={!selectedToken}
+            isSelected={selectedToken === "ua-sub-123"}
             label="Annual"
             machines={10}
             onClick={() => {
-              setSelectedToken(null);
+              onSetActive("ua-sub-123");
             }}
             title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
           />
@@ -62,12 +62,12 @@ const SubscriptionList = ({ selectedToken, setSelectedToken }: Props) => {
               data-test="free-token"
               expires={freeContract.expires}
               features={freeContract.features.included}
-              isSelected={freeContractData?.token === selectedToken}
+              isSelected={selectedToken === freeContractData?.token}
               label="Free"
               machines={freeContract.machines}
               onClick={() => {
                 if (freeContractData?.token) {
-                  setSelectedToken(freeContractData.token);
+                  onSetActive(freeContractData.token);
                 }
               }}
               title="Free Personal Token"
