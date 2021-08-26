@@ -13,7 +13,7 @@
 </section>
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2>Ubuntu {{ releases.lts.full_version_desktop }} LTS</h2>
+    <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
     <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
       <div class="col-8 p-divider__block">
         <p class="u-no-padding--top">Download the latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years, until {{ releases.lts.eol }}, of free security and maintenance updates, guaranteed.</p>
@@ -29,7 +29,7 @@
       </div>
       <div class="col-4">
         <p>
-          <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.lts.full_version_desktop }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download</a>
+          <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download</a>
           <script>performance.mark("Download (Desktop) button rendered")</script>
         </p>
         <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
