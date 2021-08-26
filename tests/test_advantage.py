@@ -2,7 +2,7 @@ import unittest
 
 from requests.exceptions import HTTPError
 
-from webapp.advantage.api import (
+from webapp.advantage.ua_contracts.api import (
     UAContractsAPI,
     UAContractsAPIAuthError,
     UAContractsAPIAuthErrorView,

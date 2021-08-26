@@ -12,8 +12,10 @@ from webargs.fields import String, Boolean
 # Local
 from webapp.decorators import advantage_checks
 from webapp.login import user_info
-from webapp.advantage.parser import use_kwargs
-from webapp.advantage.api import (
+from webapp.advantage.flaskparser import use_kwargs
+from webapp.advantage.ua_contracts.builders import build_user_subscriptions
+from webapp.advantage.ua_contracts.helpers import to_dict
+from webapp.advantage.ua_contracts.api import (
     UAContractsAPI,
     CannotCancelLastContractError,
     UnauthorizedError,
@@ -295,6 +297,45 @@ def advantage_view(**kwargs):
         new_subscription_id=new_subscription_id,
         stripe_publishable_key=stripe_publishable_key,
     )
+
+
+@advantage_checks(check_list=["need_user"])
+@use_kwargs({"email": String()}, location="query")
+def get_user_subscriptions(**kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
+    email = kwargs.get("email")
+
+    advantage = UAContractsAPI(
+        session,
+        token,
+        api_url=api_url,
+        is_for_view=True,
+        convert_response=True,
+    )
+
+    listings = advantage.get_product_listings("canonical-ua")
+    accounts = advantage.get_accounts(email=email)
+
+    user_summary = []
+    for account in accounts:
+        contracts = advantage.get_account_contracts(account_id=account.id)
+        subscriptions = advantage.get_account_subscriptions(
+            account_id=account.id,
+            marketplace="canonical-ua",
+        )
+
+        user_summary.append(
+            {
+                "account": account,
+                "contracts": contracts,
+                "subscriptions": subscriptions,
+            }
+        )
+
+    user_subscriptions = build_user_subscriptions(user_summary, listings)
+
+    return flask.jsonify(to_dict(user_subscriptions))
 
 
 @advantage_checks(check_list=["is_maintenance"])
