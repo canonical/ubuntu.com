@@ -26,6 +26,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   .p-navigation {
     background-color: $nav-bg-color;
     flex-direction: column;
+    position: static;
     z-index: 40;
 
     &__items {
@@ -395,6 +396,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       .p-search-box {
         margin-left: 1rem;
         max-width: none;
+        z-index: 50;
 
         .p-search-box__button {
           display: none;
@@ -417,7 +419,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     top: 0;
     transition: opacity 0.5s ease-in-out;
     width: 100%;
-    z-index: 38;
+    z-index: 40;
   }
 
   .dropdown-window {
