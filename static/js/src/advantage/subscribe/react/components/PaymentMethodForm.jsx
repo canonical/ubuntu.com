@@ -30,10 +30,10 @@ import usePostCustomerInfoForPurchasePreview from "../APICalls/usePostCustomerIn
 function PaymentMethodForm({ setCardValid }) {
   const { product, quantity } = useProduct();
   const { data: preview } = usePreview();
+  const queryClient = useQueryClient();
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
-  const mutation = usePostCustomerInfoForPurchasePreview();
-  const queryClient = useQueryClient();
+  const customerInfoForPreviewMutation = usePostCustomerInfoForPurchasePreview();
 
   const { errors, touched, values, setTouched, setErrors } = useFormikContext();
 
@@ -91,7 +91,7 @@ function PaymentMethodForm({ setCardValid }) {
   }, [values.buyingFor]);
 
   const updateCustomerInfoForPurchasePreview = (formValues) => {
-    mutation.mutate(formValues, {
+    customerInfoForPreviewMutation.mutate(formValues, {
       onError: (error) => {
         if (error.message === "tax_id_invalid") {
           setErrors({
@@ -118,7 +118,12 @@ function PaymentMethodForm({ setCardValid }) {
   }, [values.country]);
 
   useEffect(() => {
-    if (window.accountId) {
+    const userInfo = queryClient.getQueryData("userInfo");
+    const shouldUpdatePreview =
+      userInfo?.customerInfo?.taxID.value !== values?.VATNumber ||
+      userInfo?.customerInfo?.address?.country !== values?.country;
+
+    if (window.accountId && shouldUpdatePreview) {
       updateCustomerInfoForPurchasePreviewDebounced(values);
     }
   }, [values.country, values.VATNumber]);
