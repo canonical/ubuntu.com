@@ -2,99 +2,151 @@
 
 {% block title %}Canonical Livepatch Service | Security{% endblock %}
 
-{% block meta_description %}Automatic Linux kernel updates for Ubuntu 16.04, 18.04 and 20.04 LTS. Apply critical patches without rebooting and keep your systems secure and compliant.{% endblock %}
+{% block meta_description %}Automatic Linux kernel updates for Ubuntu 16.04, 18.04 and 20.04 LTS. Apply critical patches
+without rebooting and keep your systems secure and compliant.{% endblock %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1Ofw9bQ4I40gy9hDIjuDMApz6sDK8qSdHI03-oY7xs-A/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1Ofw9bQ4I40gy9hDIjuDMApz6sDK8qSdHI03-oY7xs-A/edit{% endblock
+meta_copydoc %}
 
 {% block content %}
 <section class="p-strip u-no-padding--top u-no-padding--bottom is-bordered">
   <div class="p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-7">
-        <h1>Canonical Livepatch Service</h1>
-        <h2 class="p-heading--four">Apply critical kernel patches without rebooting.</h2>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Linux kernel fixes are applied automatically, without restarting your <br />system</li>
-          <li class="p-list__item is-ticked">Reduces downtime, keeping your Ubuntu LTS systems secure<br />and compliant</li>
-          <li class="p-list__item is-ticked">Included as part of all Ubuntu Advantage for Infrastructure<br />support packages</li>
-        </ul>
+        <h1>Livepatch Service</h1>
+        <h2 class="p-heading--four">Reduce downtime and unplanned work</h2>
+        <p>Livepatch eliminates the need for unplanned maintenance windows for high and critical severity kernel
+          vulnerabilities by patching the Linux kernel while the system runs. Reduce fire drills while keeping
+          uninterrupted service with the Canonical Livepatch service for up to 10 years.</p>
+        <p>Livepatch is included in <a href="/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a>
+        </p>
+        <p><a class="p-button--positive" href="/advantage#livepatch">Get Ubuntu Advantage</a></p>
       </div>
       <div class="col-5 u-vertically-center">
         <div class="u-embedded-media">
-          <iframe class="u-embedded-media__element" width="772" height="426" src="https://player.vimeo.com/video/225445183" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/IOLQQZVYbbg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-deep">
-  <div class="row u-equal-height">
-    <div class="col-10 col-start-large-2">
-      <blockquote class="p-pull-quote">
-        <p class="p-pull-quote__quote u-no-max-width">
-          Livepatch is a perfect fit for our needs. There’s no other solution like it, and it’s highly cost-effective. Manually migrating virtual machines, applying kernel updates, and rebooting took an average of 32 hours per server. Multiplied by 80 servers, that was more than 2,500 hours of work.
-        </p>
-        <cite class="p-pull-quote__citation">Shinya Tsunematsu, Senior Engineering Lead of Tech Division, GMO Pepabo</cite>
-      </blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-6">
-      <h2>Free for personal use</h2>
-      <p>All you need is an Ubuntu One account. Free for 3 machines.</p>
-      <p><a class="p-button--positive"  href="/advantage">Get Livepatch now</a></p>
-    </div>
-    <div class="col-6">
-      <h2>Part of Ubuntu Advantage</h2>
-      <p>Buy as part of Ubuntu Advantage from Canonical. Buy online.</p>
-      <p><a class="p-button--positive"  href="/advantage">Get Ubuntu Advantage</a></p>
     </div>
   </div>
 </section>
 
 <section class="p-strip--suru-accent is-dark">
-  <div class="row">
-    <div class="col-3 p-card u-hide--small u-vertically-center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/c830d547-GMO-Pepabo-logo.svg",
-        alt="",
-        width="572",
-        height="132",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-    <div class="col-8 col-start-large-5">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
-            alt="",
-            width="32",
-            height="32",
-            hi_def=True,
-            attrs={"class":"p-heading-icon__img"},
-            loading="lazy"
-            ) | safe
-          }}
-          <p class="p-muted-heading u-sv3" style="color: #fff; line-height: 1.5rem;">Case study</p>
-        </div>
-        <h2 class="p-heading--4">GMO Pepabo cuts OPEX costs with live kernel patching</h2>
-        <p>As a leading provider of consumer-facing internet services, GMO Pepabo cannot afford downtime to its mission-critical workloads. To minimise OPEX costs, it needed a way to apply kernel updates without rebooting servers.</p>
-        <p><a href="https://pages.ubuntu.com/rs/066-EOV-335/images/GMO%20Pepabo%20Case%20study%208.pdf" class="p-button--neutral">Read more in the case study</a></p>
-      </div>
+  <div class="row u-equal-height">
+    <div class="col-10 col-start-large-2">
+      <blockquote class="p-pull-quote">
+        <p class="p-pull-quote__quote u-no-max-width">
+          Livepatch is a perfect fit for our needs. There’s no other solution like it, and it’s highly cost-effective.
+          Manually migrating virtual machines, applying kernel updates, and rebooting took an average of 32 hours per
+          server. Multiplied by 80 servers, that was more than 2,500 hours of work.
+        </p>
+        <cite class="p-pull-quote__citation">Shinya Tsunematsu, Senior Engineering Lead of Tech Division, GMO
+          Pepabo</cite>
+      </blockquote>
+      <a href="/engage/case-study-gmo-pepabo">Read the GMO Pepabo case study<span>&#62;</span></a>
     </div>
   </div>
 </section>
 
-{% with colour="white", bordered="true" %}{% include "shared/_call-sales.html" %}{% endwith %}
+<section class="p-strip">
+  <div class="row">
+    <div class="p-card col-4">
+      <h3 class="p-card__title">Spend less time on unplanned work</h3>
+      <hr>
+      <p>According to a study of <a href="https://www.pagerduty.com/resources/reports/unplanned-work/"
+          class="p-link--external">Dimensional research</a> 64% of IT professionals spend more than 100 hours per year
+        on unplanned work. That’s work that eliminates focus and distracts from one’s goals and business objectives.
+        With <a href="/blog/what-lies-after-lts-two-years-of-ubuntu-14-04-in-esm">40% of high and critical severity
+          vulnerabilities</a> affecting the Linux kernel, the number of interruptions can be significant. Livepatch
+        reduces the unplanned work that comes from Linux kernel vulnerabilities, making you more effective when managing
+        Ubuntu systems.</p>
+    </div>
+    <div class="p-card col-4">
+      <h3 class="p-card__title">Reduce downtime</h3>
+      <hr>
+      <p>Downtime is one of the major pains of every service provider. That is however unavoidable when deploying
+        vulnerability fixes on the Linux kernel the traditional way. That’s because the updated system needs to be
+        rebooted to apply the changes irrespective of your deployment strategy (<a href="/kubernetes">Kubernetes</a>, <a
+          href="/openstack">OpenStack</a> or <a href="https://maas.io/" class="p-link--external">bare-metal</a>).
+        Industry leaders achieve high uptime by livepatching and scheduled maintenance.
+      </p>
+    </div>
+    <div class="p-card col-4">
+      <h3 class="p-card__title">Follow organisational policy</h3>
+      <hr>
+      <p>Livepatch on-prem allows you to define your rollout policy and remain in full control of which machines will
+        get updated and when, as well as provide updates to isolated network environments. To keep your machines
+        up-to-date, the Livepatch on-prem server regularly syncs with Canonical Livepatch service and obtains the latest
+        patches. It then applies the policy for releasing patches gradually in as many stages as needed.</p>
+    </div>
+    <p><a class="p-button--positive" href="/security/livepatch#get-in-touch">Get in touch</a></p>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr>
+</div>
+
 
 <section class="p-strip">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h2>Kernel livepatching at a glance</h2>
+      <p>When a high or critical Linux kernel vulnerability is detected a livepatch along with a <a
+          href="/security/notices">Livepatch Security Notice</a> are issued. Systems that are entitled and enable the
+        livepatch client will receive and apply the patch, after it is made available. The livepatch will provide new
+        kernel code replacing the vulnerable one, and will update the rest of the kernel to use the new code.
+      </p>
+      <div class="row u-vertically-center">
+        <div class="col-6">
+          <a href="/blog/linux-kernel-livepatching" class="p-button">Read more</a> 
+          <span><a href="https://wiki.ubuntu.com/Kernel/Livepatch" class="p-link--external">Livepatch coverage</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/72bfe690-Livepatching+at-a-glance-diagram.svg",
+        alt="Livepatching diagram",
+        width="500",
+        height="200",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+        }}
+    </div>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr>
+</div>
+
+<section class="p-strip">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h2>Livepatch on-prem overview</h2>
+      <p>Livepatch on-prem is designed for complex Enterprise environments that follow their own rollout policy and remain in control of which machines will get updated and when. Livepatch on-prem regularly syncs with the Canonical Livepatch service and obtains the latest patches. It then deploys the livepatches gradually in as many stages as required.</p>
+      <a href="https://discourse.ubuntu.com/t/livepatch-on-prem/22723" class="p-button">Read more</a>
+    </div>
+    <div class="col-6">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/0fe5fa1d-Livepatch+on-prem+overview-diagram.svg",
+        alt="Livepatching on prem diagram",
+        width="500",
+        height="250",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+        }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <div class="p-logo-section">
       <p class="p-logo-section__title u-align--center">
@@ -103,123 +155,142 @@
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/9ae8ff55-2018-logo-bloomberg.svg",
-            alt="Bloomberg",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/9ae8ff55-2018-logo-bloomberg.svg",
+          alt="Bloomberg",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"},
+          ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg",
-            alt="AT&T",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/d8f890fb-logo-at%26t.svg",
+          alt="AT&T",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"},
+          ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/ff209af1-2018-logo-walmart.svg",
-            alt="Walmart",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/ff209af1-2018-logo-walmart.svg",
+          alt="Walmart",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"},
+          ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/d199354d-2018-logo-deutsche-telekom.svg",
-            alt="Deutcshe Telecom",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/d199354d-2018-logo-deutsche-telekom.svg",
+          alt="Deutcshe Telecom",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"},
+          ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/675af314-2018-logo-eBay.svg",
-            alt="eBay",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/675af314-2018-logo-eBay.svg",
+          alt="eBay",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"},
+          ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/8a4d26de-2018-logo-cisco.svg",
-            alt="Cisco",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/8a4d26de-2018-logo-cisco.svg",
+          alt="Cisco",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"},
+          ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/94da9f2a-2018-logo-NTT.svg",
-            alt="NTT",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/94da9f2a-2018-logo-NTT.svg",
+          alt="NTT",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"},
+          ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/dcde7628-2018-logo-best-buy.svg",
-            alt="Best Buy",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/dcde7628-2018-logo-best-buy.svg",
+          alt="Best Buy",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"},
+          ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/9f7bc2d4-2018-logo-paypal.svg",
-            alt="PayPal",
-            width="145",
-            height="145",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
+          image(
+          url="https://assets.ubuntu.com/v1/9f7bc2d4-2018-logo-paypal.svg",
+          alt="PayPal",
+          width="145",
+          height="145",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"},
+          ) | safe
           }}
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+      <h2>Get Livepatch now!</h2>
+      <div class="p-card col-6">
+        <h3 class="p-card__title">Free for personal use</h3>
+        <hr>
+        <p>All you need is an Ubuntu One Account. Free for up to 3 machines.</p>
+        <br>
+        <a href="/advantage" class="p-button--positive">Get your free subscription</a>
+      </div>
+      <div class="p-card col-6">
+        <h3 class="p-card__title">Part of Ubuntu Pro and Advantage</h3>
+        <hr>
+        <p>Get Livepatch with Ubuntu Pro or your Ubuntu Advantage subscription from Canonical.</p>
+        <a href="/advantage#livepatch" class="p-button--positive">Get your free subscription</a>
+      </div>
   </div>
 </section>
 
@@ -235,26 +306,21 @@
       <ol class="p-stepped-list">
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">
-            Generate your credentials
+            Attach your subscription
           </h3>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="sudo ua attach [TOKEN]" readonly="readonly">
             <button class="p-code-copyable__action">Copy to clipboard</button>
           </div>
-          <p>Via the <a class="p-link--external" href="https://auth.livepatch.canonical.com/">Ubuntu Advantage portal</a>.</p>
-        </li>
-        <li class="p-stepped-list__item">
-          <h3 class="p-stepped-list__title">
-            Install the livepatch daemon
-          </h3>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="sudo snap install canonical-livepatch" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
+          <div class="p-notification--information">
+            <div class="p-notification__content">
+              <p class="p-notification__message">Note: obtain the subscription token via the <a href="/advantage" class="p-link--external">Ubuntu Advantage portal</a>. This step is not necessary on Ubuntu Pro.</p>
+            </div>
           </div>
         </li>
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">
-            Enable it on your system
+            Enable Livepatch on your system
           </h3>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="sudo ua enable livepatch" readonly="readonly">
@@ -264,20 +330,20 @@
       </ol>
     </div>
     <div class="col-5 col-start-large-8">
-      <br/>
+      <br />
       <div class="p-card">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
             {{
-              image(
-              url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
+            image(
+            url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+            ) | safe
             }}
             <h4 class="p-heading-icon__title">Datasheet</h4>
           </div>
@@ -289,7 +355,9 @@
           <li class="p-list__item is-ticked">Answers to frequently asked questions</li>
         </ul>
         <p>
-          <a class="p-button" href="https://assets.ubuntu.com/v1/3d74ba23-Livepatch_Datasheet.pdf" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Livepatch datasheet', 'eventLabel' : 'from ubuntu.com/security/livepatch', 'eventValue' : undefined });"><span class="p-link--external">Download the datasheet</span></a>
+          <a class="p-button" href="https://assets.ubuntu.com/v1/11394935-Livepatch+Datasheet_24.08.21.pdf"
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Livepatch datasheet', 'eventLabel' : 'from ubuntu.com/security/livepatch', 'eventValue' : undefined });"><span
+              class="p-link--external">Download the datasheet</span></a>
         </p>
       </div>
     </div>
@@ -300,20 +368,22 @@
   <div class="row u-equal-height">
     <div class="col-3 u-vertically-center u-hide--small">
       {{
-        image(
-        url="https://assets.ubuntu.com/v1/0326ac7d-dena-logo.png",
-        alt="Dena",
-        width="144",
-        height="59",
-        hi_def=True,
-        loading="auto",
-        ) | safe
+      image(
+      url="https://assets.ubuntu.com/v1/0326ac7d-dena-logo.png",
+      alt="Dena",
+      width="144",
+      height="59",
+      hi_def=True,
+      loading="auto",
+      ) | safe
       }}
     </div>
     <div class="col-8 col-start-large-5">
       <blockquote class="p-pull-quote">
         <p class="p-pull-quote__quote u-no-max-width">
-          Livepatch is like a dream come true, both from a technical and a business standpoint. Our Ubuntu systems now rarely or never have to be rebooted. Service is continuous. That makes a big difference for user and customer satisfaction and loyalty.
+          Livepatch is like a dream come true, both from a technical and a business standpoint. Our Ubuntu systems now
+          rarely or never have to be rebooted. Service is continuous. That makes a big difference for user and customer
+          satisfaction and loyalty.
         </p>
         <cite class="p-pull-quote__citation">Masaaki Hirose, IT Platform Department, DeNA</cite>
       </blockquote>
@@ -325,30 +395,35 @@
   <div class="row u-equal-height">
     <div class="col-5 u-align--center u-hide--small">
       {{
-        image(
-        url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-        alt="",
-        width="281",
-        height="200",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
+      image(
+      url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+      alt="",
+      width="281",
+      height="200",
+      hi_def=True,
+      loading="lazy",
+      ) | safe
       }}
     </div>
     <div class="col-7 u-vertically-center">
       <div>
         <h2>Get started with Livepatch today</h2>
-        <p>Livepatch is free to use on your own PC or server. To discuss whether Livepatch is right for your business, talk to our team.</p>
-        <p class="u-no-margin--bottom"><a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+        <p>Livepatch is free to use on your own PC or server. To discuss whether Livepatch is right for your business,
+          talk to our team.</p>
+        <p class="u-no-margin--bottom"><a href="/security/livepatch#get-in-touch" class="p-button--positive js-invoke-modal">Get in
+            touch</a></p>
       </div>
     </div>
   </div>
 </section>
 
-{% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{%
+include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1240" data-lp-id="2065" data-return-url="https://ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support"
+  data-form-id="1240" data-lp-id="2065" data-return-url="https://ubuntu.com/support/thank-you"
+  data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
 {% endblock content %}
