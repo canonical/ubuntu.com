@@ -26,6 +26,7 @@ import { Field, Form, useFormikContext } from "formik";
 import { useQueryClient } from "react-query";
 
 import usePostCustomerInfoForPurchasePreview from "../APICalls/usePostCustomerInfoForPurchasePreview";
+import { getUserInfoFromVariables } from "../utils/utils";
 
 function PaymentMethodForm({ setCardValid }) {
   const { product, quantity } = useProduct();
@@ -101,6 +102,10 @@ function PaymentMethodForm({ setCardValid }) {
         }
       },
       onSuccess: () => {
+        queryClient.setQueryData(
+          "userInfo",
+          getUserInfoFromVariables(variables)
+        );
         queryClient.invalidateQueries("preview");
       },
     });

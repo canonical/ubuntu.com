@@ -158,7 +158,7 @@ const PurchaseModal = () => {
         setStep(2);
         queryClient.setQueryData(
           "userInfo",
-          getUserInfoFromVariables(data, variables)
+          getUserInfoFromVariables(variables, data)
         );
         queryClient.invalidateQueries("preview");
 

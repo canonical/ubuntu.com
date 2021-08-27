@@ -37,7 +37,7 @@ interface FormValues {
   VATNumber?: string;
 }
 
-function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
+function getUserInfoFromVariables(variables: FormValues, data: Data): UserInfo {
   return {
     customerInfo: {
       email: variables.email,
@@ -51,10 +51,10 @@ function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
           variables.country === "US" ? variables.usState : variables.caProvince,
       },
       defaultPaymentMethod: {
-        brand: data.paymentMethod.brand,
-        last4: data.paymentMethod.last4,
-        expMonth: data.paymentMethod.exp_month,
-        expYear: data.paymentMethod.exp_year,
+        brand: data?.paymentMethod?.brand,
+        last4: data?.paymentMethod?.last4,
+        expMonth: data?.paymentMethod?.exp_month,
+        expYear: data?.paymentMethod?.exp_year,
       },
       taxID: { value: variables.VATNumber },
     },
