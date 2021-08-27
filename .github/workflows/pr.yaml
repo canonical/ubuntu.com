@@ -102,7 +102,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Install python dependencies
-        run: | 
+        run: |
           python3 -m pip install --upgrade pip
           sudo pip3 install flake8 black
 
@@ -200,3 +200,17 @@ jobs:
       - name: Lint JS
         run: |
           yarn lint-js
+
+  inclusive-naming-check:
+    name: Inclusive-naming-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: woke
+        uses: petesfrench/inclusive-naming-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-check
+          fail-on-error: true
