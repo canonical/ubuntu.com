@@ -37,7 +37,7 @@ interface FormValues {
   VATNumber?: string;
 }
 
-function getUserInfoFromVariables(variables: FormValues, data: Data): UserInfo {
+function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
   return {
     customerInfo: {
       email: variables.email,

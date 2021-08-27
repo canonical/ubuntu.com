@@ -31,10 +31,10 @@ import { getUserInfoFromVariables } from "../utils/utils";
 function PaymentMethodForm({ setCardValid }) {
   const { product, quantity } = useProduct();
   const { data: preview } = usePreview();
-  const queryClient = useQueryClient();
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
   const customerInfoForPreviewMutation = usePostCustomerInfoForPurchasePreview();
+  const queryClient = useQueryClient();
 
   const { errors, touched, values, setTouched, setErrors } = useFormikContext();
 
@@ -104,7 +104,7 @@ function PaymentMethodForm({ setCardValid }) {
       onSuccess: () => {
         queryClient.setQueryData(
           "userInfo",
-          getUserInfoFromVariables(variables)
+          getUserInfoFromVariables(undefined, variables)
         );
         queryClient.invalidateQueries("preview");
       },
