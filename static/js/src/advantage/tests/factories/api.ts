@@ -1,20 +1,12 @@
 import { Factory } from "fishery";
 import {
   ContractWithToken,
-  EnterpriseContract,
-  EnterpriseContractEntitlements,
-  EnterpriseContractInfo,
-  EnterpriseContractRenewal,
-  EnterpriseContracts,
   PersonalAccount,
+  UserSubscription,
+  UserSubscriptionStatuses,
+  UserSubscriptionType,
 } from "advantage/api/types";
-import {
-  accountContractInfoFactory,
-  accountInfoFactory,
-  contractInfoFactory,
-  priceFactory,
-  renewalFactory,
-} from "./contracts";
+import { accountContractInfoFactory, accountInfoFactory } from "./contracts";
 
 export const contractWithTokenFactory = Factory.define<ContractWithToken>(
   () => ({
@@ -23,51 +15,53 @@ export const contractWithTokenFactory = Factory.define<ContractWithToken>(
   })
 );
 
-export const enterpriseContractInfoFactory = Factory.define<EnterpriseContractInfo>(
+export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionStatuses>(
   () => ({
-    ...contractInfoFactory.build(),
-    createdAtFormatted: "09 July 2021",
-    daysTillExpiry: 337,
-    effectiveToFormatted: "09 July 2022",
-    status: "active",
+    is_cancellable: false,
+    is_cancelled: false,
+    is_downsizeable: false,
+    is_expired: false,
+    is_expiring: false,
+    is_in_grace_period: false,
+    is_renewable: false,
+    is_trialled: false,
+    is_upsizeable: false,
   })
 );
 
-export const enterpriseContractEntitlementsFactory = Factory.define<EnterpriseContractEntitlements>(
-  () => ({
-    livepatch: true,
-  })
-);
-
-export const enterpriseContractRenewalFactory = Factory.define<EnterpriseContractRenewal>(
-  () => ({
-    ...renewalFactory.build(),
-    recently_renewed: true,
-    renewable: false,
-  })
-);
-
-export const enterpriseContractFactory = Factory.define<EnterpriseContract>(
+export const userSubscriptionFactory = Factory.define<UserSubscription>(
   ({ sequence }) => ({
-    ...contractWithTokenFactory.build(),
-    contractInfo: enterpriseContractInfoFactory.build(),
-    entitlements: enterpriseContractEntitlementsFactory.build(),
-    expiring: true,
-    is_detached: false,
-    machineCount: 7,
-    period: "monthly",
-    price_per_unit: priceFactory.build(),
-    productID: "free",
-    product_listing_id: `bAcm01ApqtkhOTCxCG2un1t4iKYi91hD8Vj0-nlLQiD${sequence}`,
-    renewal: enterpriseContractRenewalFactory.build(),
-    rowMachineCount: 5,
-    supportLevel: "standard",
+    account_id: `aBWF0x8vv5S684ZTeXMnJmUuVO7AyCYZzvjY3J${sequence}`,
+    end_date: new Date("2022-07-09T07:21:21Z"),
+    entitlements: [],
+    listing_id: `lADzAkHCZRIASpBZ8YiAiCT2XbDpBSyER7j9vj${sequence}`,
+    machine_type: "physical",
+    marketplace: "canonical-ua",
+    number_of_machines: 1,
+    period: "yearly",
+    price_per_unit: 150000,
+    product_name: "UA Applications - Standard (Physical)",
+    start_date: new Date("2021-08-11T02:56:54Z"),
+    statuses: userSubscriptionStatusesFactory.build(),
+    type: UserSubscriptionType.Yearly,
   })
 );
 
-export const enterpriseContractsFactory = Factory.define<EnterpriseContracts>(
-  () => ({
-    test: enterpriseContractFactory.build(),
+export const freeSubscriptionFactory = Factory.define<UserSubscription>(
+  ({ sequence }) => ({
+    account_id: `F9sf54ZfJt59AMwynubzPyaGE9Z4D${sequence}`,
+    end_date: null,
+    entitlements: [],
+    listing_id: null,
+    machine_type: "physical",
+    marketplace: "free",
+    number_of_machines: 3,
+    period: null,
+    price_per_unit: null,
+    product_name: null,
+    start_date: new Date("2021-07-09T07:14:56Z"),
+    statuses: userSubscriptionStatusesFactory.build(),
+    type: UserSubscriptionType.Free,
   })
 );
 

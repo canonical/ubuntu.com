@@ -1,14 +1,7 @@
 import {
   AccountContractInfo,
   AccountInfo,
-  AffordancesSupport,
-  AllowanceInfo,
-  ContractInfo,
-  Entitlement,
   GetContractTokenResponse,
-  ProductListing,
-  Renewal,
-  Subscription,
 } from "./contracts-types";
 
 export type ContractToken = GetContractTokenResponse["contractToken"];
@@ -16,39 +9,6 @@ export type ContractToken = GetContractTokenResponse["contractToken"];
 export type ContractWithToken = AccountContractInfo & {
   token: ContractToken;
 };
-
-export type EnterpriseContractInfo = ContractInfo & {
-  createdAtFormatted: string;
-  daysTillExpiry: number;
-  effectiveToFormatted: string;
-  status: string;
-};
-
-export type EnterpriseContractEntitlements = Record<Entitlement["type"], true>;
-export type EnterpriseContractRenewal = Renewal & {
-  recently_renewed: boolean;
-  renewable: boolean;
-};
-
-export type EnterpriseContract = Omit<ContractWithToken, "contractInfo"> & {
-  contractInfo: EnterpriseContractInfo;
-  entitlements: EnterpriseContractEntitlements;
-  expiring: boolean;
-  is_detached: boolean;
-  machineCount: number;
-  period: Subscription["period"];
-  price_per_unit: ProductListing["price"];
-  productID: NonNullable<ContractInfo["products"]>[0];
-  product_listing_id: ProductListing["id"];
-  renewal: EnterpriseContractRenewal | null;
-  rowMachineCount: AllowanceInfo["value"];
-  supportLevel: AffordancesSupport["supportLevel"];
-};
-
-export type EnterpriseContracts = Record<
-  AccountInfo["name"],
-  EnterpriseContract
->;
 
 export type PendingPurchaseId = string;
 
@@ -58,3 +18,45 @@ export type PersonalAccount = AccountInfo & {
 };
 
 export type UsingTestBackend = boolean;
+
+export type UserSubscriptionEntitlement = {
+  enabled_by_default: boolean;
+  support_level: "essential" | "advanced" | "standard" | null;
+  type: string;
+};
+
+export type UserSubscriptionStatuses = {
+  is_cancellable: boolean;
+  is_cancelled: boolean;
+  is_downsizeable: boolean;
+  is_expired: boolean;
+  is_expiring: boolean;
+  is_in_grace_period: boolean;
+  is_renewable: boolean;
+  is_trialled: boolean;
+  is_upsizeable: boolean;
+};
+
+export enum UserSubscriptionType {
+  Free = "free",
+  Yearly = "yearly",
+  Monthly = "monthly",
+  Trial = "trial",
+  Legacy = "legacy",
+}
+
+export type UserSubscription = {
+  account_id: string;
+  end_date: Date | null;
+  entitlements: UserSubscriptionEntitlement[];
+  listing_id: string | null;
+  machine_type: string;
+  marketplace: string;
+  number_of_machines: number;
+  period: string | null;
+  price_per_unit: number | null;
+  product_name: string | null;
+  start_date: Date;
+  statuses: UserSubscriptionStatuses;
+  type: UserSubscriptionType;
+};

@@ -4,54 +4,75 @@ import {
   Col,
   ColProps,
   Row,
+  Spinner,
 } from "@canonical/react-components";
-import React from "react";
+import classNames from "classnames";
+import { UserSubscriptionType } from "advantage/api/types";
+import { useUserSubscriptions } from "advantage/react/hooks";
+import { selectFreeSubscription } from "advantage/react/hooks/useUserSubscriptions";
+import { formatDate } from "advantage/react/utils";
+import React, { ReactNode } from "react";
 
 import DetailsTabs from "../DetailsTabs";
 
 type Feature = {
+  valueClassName?: string;
   size?: ColProps["size"];
   title: string;
-  value: string | number;
+  value: ReactNode;
 };
 
 const generateFeatures = (features: Feature[]) =>
-  features.map(({ size = 3, title, value }) => (
+  features.map(({ size = 3, title, value, valueClassName }) => (
     <Col key={title} medium={2} size={size} small={2}>
       <p className="u-text--muted u-no-margin--bottom">{title}</p>
-      <p className="u-no-margin--bottom u-sv1">{value}</p>
+      <p
+        className={classNames("u-no-margin--bottom u-sv1", valueClassName)}
+        data-test={`${title.toLowerCase().replace(" ", "-")}-col`}
+      >
+        {value}
+      </p>
     </Col>
   ));
 
 const DetailsContent = () => {
+  const { data: subscription, isLoading } = useUserSubscriptions({
+    // TODO: Get the selected subscription once the subscription token is available.
+    select: selectFreeSubscription,
+  });
+  const isFreeSubscription = subscription?.type === UserSubscriptionType.Free;
+  if (isLoading || !subscription) {
+    return <Spinner />;
+  }
   return (
     <>
       <Row className="u-sv4">
         {generateFeatures([
           {
             title: "Created",
-            value: "12.02.2021",
+            value: formatDate(subscription.start_date),
           },
           {
             title: "Expires",
-            value: "23.04.2022",
+            value: isFreeSubscription ? "Never" : null,
           },
           {
             size: 2,
             title: "Billing",
-            value: "Annual",
+            value: isFreeSubscription ? "None" : null,
           },
           {
             title: "Cost",
-            value: "$25,000 USD/yr",
+            value: isFreeSubscription ? "Free" : null,
           },
           {
             title: "Machine type",
-            value: "Virtual",
+            value: subscription.machine_type,
+            valueClassName: "u-text--capitalise-first",
           },
           {
             title: "Machines",
-            value: "10",
+            value: subscription.number_of_machines,
           },
         ])}
       </Row>
@@ -62,7 +83,8 @@ const DetailsContent = () => {
         blocks={[
           {
             appearance: CodeSnippetBlockAppearance.URL,
-            code: "C2439dskds4efni0923u22q4234",
+            // TODO: display the token when it is available from the API.
+            code: "abc123",
           },
         ]}
         className="u-sv4 u-no-margin--bottom"
