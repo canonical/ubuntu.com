@@ -174,6 +174,19 @@ def is_user_subscription_cancelled(
     return is_cancelled
 
 
+def extract_last_purchase_ids(subscriptions: List[Subscription]) -> Dict:
+    last_purchase_ids = {
+        "monthly": None,
+        "yearly": None,
+    }
+
+    for subscription in subscriptions:
+        period = subscription.period
+        last_purchase_ids[period] = subscription.last_purchase_id
+
+    return last_purchase_ids
+
+
 def to_dict(structure, class_key=None):
     """Converts structure to dictionary
 
