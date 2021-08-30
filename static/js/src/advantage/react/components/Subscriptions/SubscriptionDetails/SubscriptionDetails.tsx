@@ -12,10 +12,13 @@ type Props = {
 
 const SubscriptionDetails = ({ modalActive, onCloseModal }: Props) => {
   const [editing, setEditing] = useState(false);
+  const [showingCancel, setShowingCancel] = useState(false);
   return (
     <div
       className={classNames("p-modal p-subscriptions__details", {
-        "is-active": modalActive,
+        // Don't show the modal as active when the cancel modal is visible so
+        // that we don't have two modals on top of each other.
+        "is-active": modalActive && !showingCancel,
       })}
     >
       <section className="p-modal__dialog">
@@ -45,7 +48,10 @@ const SubscriptionDetails = ({ modalActive, onCloseModal }: Props) => {
           </Button>
         </div>
         {editing ? (
-          <SubscriptionEdit onClose={() => setEditing(false)} />
+          <SubscriptionEdit
+            setShowingCancel={setShowingCancel}
+            onClose={() => setEditing(false)}
+          />
         ) : (
           <DetailsContent />
         )}

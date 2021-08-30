@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import SubscriptionDetails from "./SubscriptionDetails";
+import SubscriptionEdit from "../SubscriptionEdit";
 
 describe("SubscriptionDetails", () => {
   it("initially shows the content", () => {
@@ -41,5 +42,17 @@ describe("SubscriptionDetails", () => {
     );
     wrapper.find(".p-modal__close").simulate("click");
     expect(onCloseModal).toHaveBeenCalled();
+  });
+
+  it("does not set the modal to active when the cancel modal is visible", () => {
+    const onCloseModal = jest.fn();
+    const wrapper = shallow(
+      <SubscriptionDetails modalActive={true} onCloseModal={onCloseModal} />
+    );
+    // Open the edit modal:
+    wrapper.find("[data-test='edit-button']").simulate("click");
+    expect(wrapper.hasClass("is-active")).toBe(true);
+    wrapper.find(SubscriptionEdit).invoke("setShowingCancel")(true);
+    expect(wrapper.hasClass("is-active")).toBe(false);
   });
 });
