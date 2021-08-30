@@ -12,10 +12,21 @@
       display: flex;
       flex-wrap: wrap;
 
+      > .p-label {
+        align-self: center;
+        margin-top: 0.5rem;
+        margin-left: 0.5rem;
+      }
+
       @media (min-width: $breakpoint-x-small) {
         flex-wrap: nowrap;
         > div {
           margin-left: 2.5rem;
+        }
+        > .p-label {
+          align-self: flex-start;
+          margin-top: calc(0.4rem - 1px);
+          margin-left: 1rem;
         }
       }
 
