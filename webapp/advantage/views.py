@@ -67,7 +67,6 @@ SERVICES = {
 @use_kwargs({"subscription": String(), "email": String()}, location="query")
 def advantage_view(**kwargs):
     api_url = kwargs.get("api_url")
-    stripe_publishable_key = kwargs["stripe_publishable_key"]
     token = kwargs.get("token")
     open_subscription = kwargs.get("subscription", None)
 
@@ -306,7 +305,6 @@ def advantage_view(**kwargs):
         personal_account=personal_account,
         open_subscription=open_subscription,
         new_subscription_id=new_subscription_id,
-        stripe_publishable_key=stripe_publishable_key,
     )
 
 
@@ -426,7 +424,6 @@ def get_user_info(**kwargs):
 @advantage_checks(check_list=["is_maintenance"])
 def advantage_shop_view(**kwargs):
     api_url = kwargs.get("api_url")
-    stripe_publishable_key = kwargs.get("stripe_publishable_key")
     token = kwargs.get("token")
 
     account = None
@@ -483,7 +480,6 @@ def advantage_shop_view(**kwargs):
 
     return flask.render_template(
         "advantage/subscribe/index.html",
-        stripe_publishable_key=stripe_publishable_key,
         account=account,
         previous_purchase_ids=previous_purchase_ids,
         product_listings=website_listing,
@@ -497,7 +493,6 @@ def advantage_account_users_view(**kwargs):
 
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
 def payment_methods_view(**kwargs):
-    stripe_publishable_key = kwargs["stripe_publishable_key"]
     api_url = kwargs.get("api_url")
     token = kwargs.get("token")
     account = None
@@ -541,7 +536,6 @@ def payment_methods_view(**kwargs):
 
     return flask.render_template(
         "account/payment-methods/index.html",
-        stripe_publishable_key=stripe_publishable_key,
         default_payment_method=default_payment_method,
         pending_purchase_id=pending_purchase_id,
         account_id=account_id,
