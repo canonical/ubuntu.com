@@ -90,6 +90,47 @@
       // Show the modal when the details are active.
       &.is-active {
         display: flex;
+
+        .p-modal__dialog {
+          display: grid;
+          // Make the modal content take up the full height.
+          grid-template-rows: auto 1fr;
+        }
+
+        .p-subscription__edit {
+          display: grid;
+          grid-template-areas:
+            "header"
+            "content"
+            "footer";
+          // Push the modal actions to the bottom of the modal.
+          grid-template-rows: auto auto 1fr;
+
+          .p-subscription__resize-actions {
+            // Move the actions down to the bottom of the container.
+            align-self: end;
+            border-top: 1px solid $colors--light-theme--border-default;
+            column-gap: $sp-medium;
+            display: grid;
+            // Move the actions down to the footer area.
+            grid-area: footer;
+            // Make the buttons side-by-side instead of stacked.
+            grid-template-columns: 1fr 1fr;
+            padding-top: $sp-medium;
+
+            &::after {
+              // Remove the extra space that was needed when the buttons were in
+              // the content area.
+              display: none;
+            }
+          }
+
+          .p-subscription__resize-action {
+            // Remove the button margin from the buttons that was needed when
+            // they were in the content area.
+            margin-bottom: 0;
+          }
+        }
       }
     }
 

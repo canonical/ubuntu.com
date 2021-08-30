@@ -22,13 +22,13 @@ const SubscriptionDetails = ({ modalActive, onCloseModal }: Props) => {
       })}
     >
       <section className="p-modal__dialog">
-        <header className="p-modal__header">
-          <h2 className="p-modal__title">UA Infra Essential (Virtual)</h2>
-          <button className="p-modal__close" onClick={() => onCloseModal()}>
-            Close
-          </button>
-        </header>
         <div className="u-sv2">
+          <header className="p-modal__header">
+            <h2 className="p-modal__title">UA Infra Essential (Virtual)</h2>
+            <button className="p-modal__close" onClick={() => onCloseModal()}>
+              Close
+            </button>
+          </header>
           <Button
             appearance="positive"
             data-test="cancel-button"

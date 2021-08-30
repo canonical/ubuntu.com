@@ -25,7 +25,7 @@ const generateFeatures = (features: Feature[]) =>
 
 const DetailsContent = () => {
   return (
-    <>
+    <div>
       <Row className="u-sv4">
         {generateFeatures([
           {
@@ -68,7 +68,7 @@ const DetailsContent = () => {
         className="u-sv4 u-no-margin--bottom"
       />
       <DetailsTabs />
-    </>
+    </div>
   );
 };
 
