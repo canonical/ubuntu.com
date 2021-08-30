@@ -22,6 +22,7 @@ from canonicalwebteam.discourse import (
 )
 
 # Local
+from webapp.advantage.context import get_stripe_publishable_key
 from webapp.advantage.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
@@ -251,6 +252,7 @@ def context():
         "months_list": months_list,
         "get_navigation": get_navigation,
         "get_test_backend": flask.request.args.get("test_backend", ""),
+        "get_stripe_publishable_key": get_stripe_publishable_key(),
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),

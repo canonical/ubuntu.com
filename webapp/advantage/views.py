@@ -8,11 +8,13 @@ from dateutil.parser import parse
 import flask
 import talisker.requests
 import pytz
+from flask import g
 from requests.exceptions import HTTPError
 from webargs.fields import String, Boolean
 
 # Local
 from webapp.advantage.ua_contracts.primitives import Subscription
+from webapp.advantage.decorators import advantage_decorator
 from webapp.decorators import advantage_checks
 from webapp.login import user_info
 from webapp.advantage.flaskparser import use_kwargs
@@ -346,20 +348,12 @@ def get_user_subscriptions(**kwargs):
     return flask.jsonify(to_dict(user_subscriptions))
 
 
-@advantage_checks(["need_user"])
+@advantage_decorator(permission="need_user")
 @use_kwargs({"account_id": String()}, location="query")
-def get_last_purchase_ids(account_id, **kwargs):
-    token = kwargs.get("token")
-    api_url = kwargs.get("api_url")
+def get_last_purchase_ids(account_id):
+    g.api.set_convert_response(True)
 
-    advantage = UAContractsAPI(
-        session,
-        token,
-        api_url=api_url,
-        convert_response=True,
-    )
-
-    subscriptions = advantage.get_account_subscriptions(
+    subscriptions = g.api.get_account_subscriptions(
         account_id=account_id,
         marketplace="canonical-ua",
     )
