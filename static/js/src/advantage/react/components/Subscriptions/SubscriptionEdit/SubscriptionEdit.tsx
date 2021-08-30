@@ -1,5 +1,5 @@
 import { ActionButton, Button } from "@canonical/react-components";
-import React from "react";
+import React, { useCallback } from "react";
 import usePortal from "react-useportal";
 import { Formik } from "formik";
 
@@ -7,11 +7,29 @@ import SubscriptionCancel from "../SubscriptionCancel";
 import FormikField from "../../FormikField";
 
 type Props = {
+  setShowingCancel: (showingCancel: boolean) => void;
   onClose: () => void;
 };
 
-const SubscriptionEdit = ({ onClose }: Props) => {
+const SubscriptionEdit = ({ setShowingCancel, onClose }: Props) => {
   const { openPortal, closePortal, isOpen, Portal } = usePortal();
+
+  const showPortal = useCallback(
+    (show: boolean) => {
+      // Programatically opening portals currently has an unresolved issue so we
+      // need to provide a fake event:
+      // https://github.com/alex-cory/react-useportal/issues/36
+      const NULL_EVENT = { currentTarget: { contains: () => false } };
+      if (show) {
+        openPortal(NULL_EVENT);
+      } else {
+        closePortal(NULL_EVENT);
+      }
+      setShowingCancel(show);
+    },
+    [setShowingCancel]
+  );
+
   return (
     <>
       <Formik
@@ -59,13 +77,13 @@ const SubscriptionEdit = ({ onClose }: Props) => {
             <Button
               appearance="link"
               data-test="cancel-button"
-              onClick={openPortal}
+              onClick={() => showPortal(true)}
             >
               You can cancel this subscription online or contact us.
             </Button>
             {isOpen && (
               <Portal>
-                <SubscriptionCancel onClose={closePortal} />
+                <SubscriptionCancel onClose={() => showPortal(false)} />
               </Portal>
             )}
           </>
