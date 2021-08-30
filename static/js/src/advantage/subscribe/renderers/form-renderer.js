@@ -24,7 +24,7 @@ function renderRadios(state, sections) {
 }
 
 function renderVersionDetails(state) {
-  const details = versionDetails[state.version];
+  const details = versionDetails[state.version] ?? versionDetails["20.04"];
   const container = form.querySelector("#version-details");
   const versionNumber = form.querySelector("#version-number");
   var innerHTML = "";
@@ -85,7 +85,7 @@ function renderFeature(state) {
   const urlParams = new URLSearchParams(window.location.search);
   const isAppsEnabled = urlParams.get("esm_apps") === "true";
 
-  if (isAppsEnabled) {
+  if (state.isAppsEnabled) {
     featureSection.classList.remove("u-hide");
   } else {
     featureSection.classList.add("u-hide");
