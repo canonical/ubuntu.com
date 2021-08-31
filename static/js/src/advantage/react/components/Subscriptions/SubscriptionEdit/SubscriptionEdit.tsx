@@ -43,52 +43,65 @@ const SubscriptionEdit = ({ setShowingCancel, onClose }: Props) => {
         }}
       >
         {({ handleSubmit }) => (
-          <>
-            <div className="u-sv3">
-              <hr />
-            </div>
-            <form className="u-sv2" onSubmit={handleSubmit}>
+          <form className="p-subscription__edit" onSubmit={handleSubmit}>
+            <div className="u-sv2">
+              <div className="u-sv3 u-hide--small">
+                <hr />
+              </div>
               <h5>Resize subscription</h5>
-              <div className="u-sv3">
-                <FormikField
-                  className="p-subscription__resize"
-                  help={
-                    <>
-                      You can resize your subscriptions to as many machines as
-                      needed.
-                      <br />
-                      Your next billing period will reflect the changes
-                      accordingly.
-                    </>
-                  }
-                  label="Number of machines"
-                  name="size"
-                  type="number"
-                />
-              </div>
-              <div className="u-align--right">
-                <Button appearance="base" onClick={onClose} type="button">
-                  Cancel
-                </Button>
-                <ActionButton appearance="positive">Resize</ActionButton>
-              </div>
-            </form>
-            <hr />
-            <Button
-              appearance="link"
-              data-test="cancel-button"
-              onClick={() => showPortal(true)}
-            >
-              You can cancel this subscription online or contact us.
-            </Button>
-            {isOpen && (
-              <Portal>
-                <SubscriptionCancel onClose={() => showPortal(false)} />
-              </Portal>
-            )}
-          </>
+              <FormikField
+                className="p-subscription__resize"
+                help={
+                  <>
+                    You can resize your subscriptions to as many machines as
+                    needed.
+                    <br />
+                    Your next billing period will reflect the changes
+                    accordingly.
+                  </>
+                }
+                label="Number of machines"
+                name="size"
+                type="number"
+                wrapperClassName="u-sv3"
+              />
+            </div>
+            <div className="p-subscription__resize-actions u-align--right u-sv3">
+              <Button
+                appearance="base"
+                className="p-subscription__resize-action"
+                onClick={onClose}
+                type="button"
+              >
+                Cancel
+              </Button>
+              <ActionButton
+                appearance="positive"
+                className="p-subscription__resize-action"
+              >
+                Resize
+              </ActionButton>
+            </div>
+            <div>
+              <hr />
+              <Button
+                appearance="link"
+                className="u-align-text--left"
+                data-test="cancel-button"
+                onClick={() => showPortal(true)}
+                type="button"
+              >
+                You can cancel this subscription online or contact us.
+              </Button>
+            </div>
+          </form>
         )}
       </Formik>
+      {isOpen && (
+        <Portal>
+          <SubscriptionCancel onClose={() => showPortal(false)} />
+        </Portal>
+      )}
     </>
   );
 };
