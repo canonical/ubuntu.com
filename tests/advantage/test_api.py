@@ -3,8 +3,6 @@ from typing import List, Dict
 
 from tests.advantage.helpers import Session, Response, make_client, get_fixture
 from webapp.advantage.ua_contracts.api import (
-    UAContractsAPIAuthError,
-    UAContractsAPIAuthErrorView,
     UAContractsAPIError,
     UAContractsAPIErrorView,
 )
@@ -19,8 +17,8 @@ from webapp.advantage.ua_contracts.primitives import (
 class TestGetAccounts(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIAuthError),
-            (401, True, UAContractsAPIAuthErrorView),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
         ]
@@ -112,8 +110,8 @@ class TestGetAccounts(unittest.TestCase):
 class TestGetAccountContracts(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIAuthError),
-            (401, True, UAContractsAPIAuthErrorView),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
         ]
@@ -271,8 +269,8 @@ class TestGetProductListings(unittest.TestCase):
 class TestGetAccountSubscriptions(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIAuthError),
-            (401, True, UAContractsAPIAuthErrorView),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
         ]

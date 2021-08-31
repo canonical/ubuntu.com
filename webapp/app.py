@@ -23,10 +23,8 @@ from canonicalwebteam.discourse import (
 
 # Local
 from webapp.advantage.ua_contracts.api import (
-    UAContractsAPIAuthError,
     UAContractsAPIError,
     UAContractsAPIErrorView,
-    UAContractsAPIAuthErrorView,
 )
 from webapp.context import (
     current_year,

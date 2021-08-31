@@ -4,8 +4,6 @@ from requests.exceptions import HTTPError
 
 from webapp.advantage.ua_contracts.api import (
     UAContractsAPI,
-    UAContractsAPIAuthError,
-    UAContractsAPIAuthErrorView,
     UAContractsAPIError,
     UAContractsAPIErrorView,
     UnauthorizedError,
@@ -56,8 +54,8 @@ class TestGetAccounts(unittest.TestCase):
         for code, is_for_view, want_error in (
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
-            (401, False, UAContractsAPIAuthError),
-            (401, True, UAContractsAPIAuthErrorView),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
         ):
             with self.subTest(code=code, is_for_view=is_for_view):
                 session = Session(Response(code, {"code": "bad wolf"}))
