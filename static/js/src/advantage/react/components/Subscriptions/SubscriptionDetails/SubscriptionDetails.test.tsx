@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { freeSubscriptionFactory } from "advantage/tests/factories/api";
 import SubscriptionDetails from "./SubscriptionDetails";
 import { UserSubscription } from "advantage/api/types";
+import SubscriptionEdit from "../SubscriptionEdit";
 
 describe("SubscriptionDetails", () => {
   let queryClient: QueryClient;
@@ -39,6 +40,8 @@ describe("SubscriptionDetails", () => {
     expect(wrapper.find("DetailsContent").exists()).toBe(false);
   });
 
+  // TODO: remove skip from these tests when the subscription details can load
+  // non-free subscriptions.
   it.skip("disables the buttons when showing the edit form", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -84,5 +87,21 @@ describe("SubscriptionDetails", () => {
     );
     wrapper.find(".p-modal__close").simulate("click");
     expect(onCloseModal).toHaveBeenCalled();
+  });
+
+  // TODO: remove skip from these tests when the subscription details can load
+  // non-free subscriptions.
+  it.skip("does not set the modal to active when the cancel modal is visible", () => {
+    const onCloseModal = jest.fn();
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails modalActive={true} onCloseModal={onCloseModal} />
+      </QueryClientProvider>
+    );
+    // Open the edit modal:
+    wrapper.find("[data-test='edit-button']").simulate("click");
+    expect(wrapper.hasClass("is-active")).toBe(true);
+    wrapper.find(SubscriptionEdit).invoke("setShowingCancel")(true);
+    expect(wrapper.hasClass("is-active")).toBe(false);
   });
 });
