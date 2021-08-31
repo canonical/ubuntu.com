@@ -5,8 +5,8 @@ import classNames from "classnames";
 import DetailsContent from "./DetailsContent";
 import SubscriptionEdit from "../SubscriptionEdit";
 import { useUserSubscriptions } from "advantage/react/hooks";
-import { UserSubscriptionType } from "advantage/api/types";
 import { selectFreeSubscription } from "advantage/react/hooks/useUserSubscriptions";
+import { isFreeSubscription } from "advantage/react/utils";
 
 type Props = {
   modalActive?: boolean;
@@ -17,10 +17,12 @@ const SubscriptionDetails = ({ modalActive, onCloseModal }: Props) => {
   const [editing, setEditing] = useState(false);
   const [showingCancel, setShowingCancel] = useState(false);
   const { data: subscription, isLoading } = useUserSubscriptions({
-    // TODO: Get the selected subscription once the subscription token is available.
+    // TODO: Get the selected subscription once the subscription token is
+    // available.
+    // https://github.com/canonical-web-and-design/commercial-squad/issues/210
     select: selectFreeSubscription,
   });
-  const isFreeSubscription = subscription?.type === UserSubscriptionType.Free;
+  const isFree = isFreeSubscription(subscription);
   if (isLoading || !subscription) {
     return <Spinner />;
   }
@@ -36,15 +38,13 @@ const SubscriptionDetails = ({ modalActive, onCloseModal }: Props) => {
         <div className="u-sv2">
           <header className="p-modal__header">
             <h2 className="p-modal__title">
-              {isFreeSubscription
-                ? "Free Personal Token"
-                : subscription.product_name}
+              {isFree ? "Free Personal Token" : subscription.product_name}
             </h2>
             <button className="p-modal__close" onClick={() => onCloseModal()}>
               Close
             </button>
           </header>
-          {isFreeSubscription ? null : (
+          {isFree ? null : (
             <>
               <Button
                 appearance="positive"

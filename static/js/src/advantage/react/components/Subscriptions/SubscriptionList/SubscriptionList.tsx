@@ -1,7 +1,6 @@
-import type { PersonalAccount } from "advantage/api/types";
-import { usePersonalAccount } from "advantage/react/hooks";
-import { selectFreeContract } from "advantage/react/hooks/usePersonalAccount";
-import { getFeaturesDisplay } from "advantage/react/utils";
+import { Spinner } from "@canonical/react-components";
+import { useUserSubscriptions } from "advantage/react/hooks";
+import { selectFreeSubscription } from "advantage/react/hooks/useUserSubscriptions";
 import React from "react";
 import { SelectedToken } from "../Content/types";
 
@@ -13,64 +12,43 @@ type Props = {
   onSetActive: (token: SelectedToken) => void;
 };
 
-/**
- * Get the data to display in the card for the free token.
- */
-const getFreeContractData = (
-  freeContract?: PersonalAccount["contracts"][0] | null
-) => {
-  if (!freeContract) {
-    return null;
-  }
-  const { contractInfo } = freeContract;
-  const machines =
-    contractInfo.items?.find(({ metric }) => metric === "units")?.value || 0;
-  return {
-    created: contractInfo.createdAt,
-    expires: null,
-    features: getFeaturesDisplay(contractInfo),
-    machines,
-  };
-};
-
 const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
-  const { data: freeContractData } = usePersonalAccount({
-    select: selectFreeContract,
+  const {
+    data: freeSubscription,
+    isLoading: isLoadingFree,
+  } = useUserSubscriptions({
+    select: selectFreeSubscription,
   });
-  const freeContract = getFreeContractData(freeContractData);
+  if (isLoadingFree || !freeSubscription) {
+    return <Spinner />;
+  }
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
         <ListGroup title="Ubuntu Advantage">
           <ListCard
-            created="2021-07-09T07:14:56Z"
-            expires="2021-07-09T07:14:56Z"
-            features={["ESM Infra", "livepatch", "24/5 support"]}
             isSelected={selectedToken === "ua-sub-123"}
-            label="Annual"
-            machines={10}
             onClick={() => {
               onSetActive("ua-sub-123");
             }}
-            title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            subscription={freeSubscription}
           />
         </ListGroup>
-        {freeContract ? (
+        {freeSubscription ? (
           <ListGroup title="Free personal token">
             <ListCard
-              created={freeContract.created}
               data-test="free-token"
-              expires={freeContract.expires}
-              features={freeContract.features.included}
-              isSelected={selectedToken === freeContractData?.token}
-              label="Free"
-              machines={freeContract.machines}
+              isSelected={
+                // TODO: update this to use the sub token when it is available.
+                // https://github.com/canonical-web-and-design/commercial-squad/issues/210
+                selectedToken === "free-token"
+              }
               onClick={() => {
-                if (freeContractData?.token) {
-                  onSetActive(freeContractData.token);
-                }
+                // TODO: update this to use the sub token when it is available.
+                // https://github.com/canonical-web-and-design/commercial-squad/issues/210
+                onSetActive("free-token");
               }}
-              title="Free Personal Token"
+              subscription={freeSubscription}
             />
           </ListGroup>
         ) : null}
