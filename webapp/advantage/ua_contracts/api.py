@@ -58,7 +58,7 @@ class UAContractsAPI:
             method="get",
             path="v1/accounts",
             params={"email": email} if email else None,
-            error_rules=["default", "auth"],
+            error_rules=["default"],
         )
 
         accounts = response.json().get("accounts", [])
@@ -75,7 +75,7 @@ class UAContractsAPI:
                 f"v1/accounts/{account_id}/contracts"
                 f"?productTags=ua&productTags=classic&productTags=pro"
             ),
-            error_rules=["default", "auth"],
+            error_rules=["default"],
         )
 
         contracts = response.json().get("contracts", [])
@@ -90,7 +90,7 @@ class UAContractsAPI:
             method="post",
             path=f"v1/contracts/{contract_id}/token",
             json={},
-            error_rules=["default", "auth"],
+            error_rules=["default"],
         )
 
         return response.json().get("contractToken")
@@ -102,17 +102,11 @@ class UAContractsAPI:
                 path=f"v1/accounts/{account_id}/customer-info/stripe",
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                if self.is_for_view:
-                    raise UAContractsAPIAuthErrorView(error)
-                raise UAContractsAPIAuthError(error)
-
             if error.response.status_code == 404:
                 raise UAContractsUserHasNoAccount(error)
 
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
-
             raise UAContractsAPIError(error)
 
         return response.json()
@@ -133,9 +127,6 @@ class UAContractsAPI:
                 },
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                raise UAContractsAPIAuthError(error)
-
             raise UAContractsAPIError(error)
 
         return response.json()
@@ -148,9 +139,6 @@ class UAContractsAPI:
                 json={"address": address, "name": name, "taxID": tax_id},
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                raise UAContractsAPIAuthError(error)
-
             raise UAContractsAPIError(error)
 
         return response.json()
@@ -165,9 +153,6 @@ class UAContractsAPI:
                 },
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                raise UAContractsAPIAuthError(error)
-
             raise UAContractsAPIError(error)
 
         return response.json()
@@ -179,9 +164,6 @@ class UAContractsAPI:
                 path=f"v1/{tx_type}/{tx_id}/payment/stripe/{invoice_id}",
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                raise UAContractsAPIAuthError(error)
-
             raise UAContractsAPIError(error)
 
         return response.json() if response.status_code != 200 else None
@@ -192,9 +174,6 @@ class UAContractsAPI:
                 method="get", path=f"v1/renewals/{renewal_id}"
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                raise UAContractsAPIAuthError(error)
-
             raise UAContractsAPIError(error)
 
         return response.json()
@@ -205,8 +184,6 @@ class UAContractsAPI:
                 method="post", path=f"v1/renewals/{renewal_id}/acceptance"
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                raise UAContractsAPIAuthError(error)
             if error.response.status_code == 500:
                 return response.json()
             else:
@@ -246,7 +223,7 @@ class UAContractsAPI:
                 f"/marketplace/{marketplace}"
                 f"/subscriptions{url_filters}"
             ),
-            error_rules=["default", "auth"],
+            error_rules=["default"],
         )
 
         subscriptions = response.json().get("subscriptions", [])
@@ -270,9 +247,6 @@ class UAContractsAPI:
                 path=f"v1/accounts/{account_id}/purchases?{filters}",
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                raise UAContractsAPIAuthError(error)
-
             raise UAContractsAPIError(error)
 
         return response.json().get("purchases", [])
@@ -283,15 +257,8 @@ class UAContractsAPI:
                 method="get", path=f"v1/purchase/{purchase_id}"
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                if self.is_for_view:
-                    raise UAContractsAPIAuthErrorView(error)
-                else:
-                    raise UAContractsAPIAuthError(error)
-
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
-
             raise UAContractsAPIError(error)
 
         return response.json()
@@ -327,11 +294,6 @@ class UAContractsAPI:
         try:
             response = self._request(method="get", path="v1/purchase-account")
         except HTTPError as error:
-            if error.response.status_code == 401:
-                if self.is_for_view:
-                    raise UAContractsAPIAuthErrorView(error)
-                raise UAContractsAPIAuthError(error)
-
             if error.response.status_code == 404:
                 raise UAContractsUserHasNoAccount(error)
 
@@ -352,9 +314,6 @@ class UAContractsAPI:
                 json=purchase_request,
             )
         except HTTPError as http_error:
-            if http_error.response.status_code == 401:
-                raise UAContractsAPIAuthError(http_error)
-
             if (
                 "cannot remove all subscription items"
                 in http_error.response.json()["message"]
@@ -375,9 +334,6 @@ class UAContractsAPI:
                 json=purchase_request,
             )
         except HTTPError as http_error:
-            if http_error.response.status_code == 401:
-                raise UAContractsAPIAuthError(http_error)
-
             if (
                 "cannot remove all subscription items"
                 in http_error.response.json()["message"]
@@ -395,9 +351,6 @@ class UAContractsAPI:
                 path=f"v1/subscriptions/{subscription_id}",
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                raise UAContractsAPIAuthError(error)
-
             raise UAContractsAPIError(error)
 
         return response.json() if response.status_code != 200 else None
@@ -409,11 +362,6 @@ class UAContractsAPI:
                 path=f"v1/subscription/{subscription_id}/auto-renewal",
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                if self.is_for_view:
-                    raise UAContractsAPIAuthErrorView(error)
-                raise UAContractsAPIAuthError(error)
-
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
             raise UAContractsAPIError(error)
@@ -430,9 +378,6 @@ class UAContractsAPI:
                 json={"shouldAutoRenew": should_auto_renew},
             )
         except HTTPError as error:
-            if error.response.status_code == 401:
-                raise UAContractsAPIAuthError(error)
-
             raise UAContractsAPIError(error)
 
         return response.json() if response.status_code != 200 else None
@@ -443,10 +388,8 @@ class UAContractsAPI:
 
         status_code = error.response.status_code
 
-        if "auth" in error_rules and status_code == 401:
-            if self.is_for_view:
-                raise UAContractsAPIAuthErrorView(error)
-            raise UAContractsAPIAuthError(error)
+        if "no-found" in error_rules and status_code == 404:
+            raise UAContractsUserHasNoAccount(error)
 
         if "default" in error_rules:
             if self.is_for_view:
@@ -478,17 +421,7 @@ class UAContractsAPIError(HTTPError):
         super().__init__(request=error.request, response=error.response)
 
 
-class UAContractsAPIAuthError(HTTPError):
-    def __init__(self, error: HTTPError):
-        super().__init__(request=error.request, response=error.response)
-
-
 class UAContractsAPIErrorView(HTTPError):
-    def __init__(self, error: HTTPError):
-        super().__init__(request=error.request, response=error.response)
-
-
-class UAContractsAPIAuthErrorView(HTTPError):
     def __init__(self, error: HTTPError):
         super().__init__(request=error.request, response=error.response)
 

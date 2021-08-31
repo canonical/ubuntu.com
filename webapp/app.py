@@ -155,6 +155,8 @@ app = FlaskBase(
     static_folder="../static",
 )
 
+sentry = app.extensions["sentry"]
+
 # Settings
 app.config["CONTRACTS_LIVE_API_URL"] = os.getenv(
     "CONTRACTS_LIVE_API_URL", "https://contracts.canonical.com"
@@ -183,22 +185,30 @@ def bad_request_error(error):
 
 @app.errorhandler(UAContractsValidationError)
 def ua_contracts_validation_error(error):
-    return flask.jsonify({"errors": str(error)}), 422
+    sentry.captureException(
+        extra={
+            "request_url": error.request.url,
+            "request_body": error.request.json,
+            "response_body": error.response.messages,
+        }
+    )
+
+    return flask.jsonify({"errors": error.response.messages}), 422
 
 
 @app.errorhandler(UAContractsAPIError)
 def ua_contracts_api_error(error):
-    flask.current_app.extensions["sentry"].captureException(
+    sentry.captureException(
         extra={
-            "session_keys": flask.session.keys(),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
             "response_body": error.response.json(),
-            "response_code": error.response.json()["code"],
-            "response_message": error.response.json()["message"],
         }
     )
+
+    if error.response.status_code == 401:
+        empty_session(flask.session)
 
     return (
         flask.jsonify({"errors": error.response.json()["message"]}),
@@ -208,57 +218,21 @@ def ua_contracts_api_error(error):
 
 @app.errorhandler(UAContractsAPIErrorView)
 def ua_contracts_api_error_view(error):
-    flask.current_app.extensions["sentry"].captureException(
+    sentry.captureException(
         extra={
-            "session_keys": flask.session.keys(),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
             "response_body": error.response.json(),
-            "response_code": error.response.json()["code"],
-            "response_message": error.response.json()["message"],
         }
     )
+
+    if error.response.status_code == 401:
+        empty_session(flask.session)
+
+        return flask.redirect(flask.request.url)
 
     return flask.render_template("500.html"), 500
-
-
-@app.errorhandler(UAContractsAPIAuthError)
-def ua_contracts_api_authentication_error(error):
-    flask.current_app.extensions["sentry"].captureException(
-        extra={
-            "session_keys": flask.session.keys(),
-            "request_url": error.request.url,
-            "request_headers": error.request.headers,
-            "response_headers": error.response.headers,
-            "response_body": error.response.json(),
-            "response_code": error.response.json()["code"],
-            "response_message": error.response.json()["message"],
-        }
-    )
-
-    empty_session(flask.session)
-
-    return flask.jsonify({"errors": error.response.json()["message"]}), 401
-
-
-@app.errorhandler(UAContractsAPIAuthErrorView)
-def ua_contracts_api_authentication_error_view(error):
-    flask.current_app.extensions["sentry"].captureException(
-        extra={
-            "session_keys": flask.session.keys(),
-            "request_url": error.request.url,
-            "request_headers": error.request.headers,
-            "response_headers": error.response.headers,
-            "response_body": error.response.json(),
-            "response_code": error.response.json()["code"],
-            "response_message": error.response.json()["message"],
-        }
-    )
-
-    empty_session(flask.session)
-
-    return flask.redirect(flask.request.url)
 
 
 @app.errorhandler(410)
