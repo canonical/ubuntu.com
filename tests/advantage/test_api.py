@@ -387,8 +387,8 @@ class TestGetAccountSubscriptions(unittest.TestCase):
 class TestGetContractToken(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIAuthError),
-            (401, True, UAContractsAPIAuthErrorView),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
             (404, False, UAContractsAPIError),
             (404, True, UAContractsAPIErrorView),
             (500, False, UAContractsAPIError),
