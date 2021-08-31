@@ -96,6 +96,7 @@ from webapp.advantage.views import (
     download_invoice,
     get_user_subscriptions,
     get_last_purchase_ids,
+    get_contract_token,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -303,6 +304,9 @@ app.add_url_rule(
 app.add_url_rule(
     "/advantage/last-purchase-ids/<account_id>",
     view_func=get_last_purchase_ids,
+)
+app.add_url_rule(
+    "/advantage/contracts/<contract_id>/token", view_func=get_contract_token
 )
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/account/payment-methods", view_func=payment_methods_view)

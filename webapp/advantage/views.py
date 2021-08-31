@@ -363,6 +363,24 @@ def get_last_purchase_ids(account_id, **kwargs):
     return flask.jsonify(last_purchase_ids)
 
 
+@advantage_checks(["need_user"])
+@use_kwargs({"contract_id": String()}, location="query")
+def get_contract_token(contract_id, **kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
+
+    advantage = UAContractsAPI(
+        session,
+        token,
+        api_url=api_url,
+        convert_response=True,
+    )
+
+    contract_token = advantage.get_contract_token(contract_id)
+
+    return flask.jsonify({"contract_token": contract_token})
+
+
 @advantage_checks(check_list=["is_maintenance"])
 def advantage_shop_view(**kwargs):
     api_url = kwargs.get("api_url")
