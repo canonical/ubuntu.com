@@ -64,7 +64,7 @@
             width="120",
             height="45",
             hi_def=True,
-            loading="lazy",
+            loading="auto",
           ) | safe
         }}
         <p>
@@ -79,11 +79,25 @@
             width="63",
             height="45",
             hi_def=True,
-            loading="lazy",
+            loading="auto",
           ) | safe
         }}
         <p>
           <a href="/download/intel-nuc-desktop">Install Ubuntu Server&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+      <div class="col-3">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/8a8c250f-xilinx-logo.svg",
+          alt="",
+          width="163",
+          height="45",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+        <p>
+          <a href="/download/xilinx">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -132,9 +146,19 @@
           <img src="https://assets.ubuntu.com/v1/db577ec7-tank-logo.svg" width="163" height="45" alt="Intel IEI TANK 870">
           <p><a href="/download/intel-iei-tank-870">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
         </div>
+      </div>
+      <div class="row">
         <div class="col-3">
           <img src="https://assets.ubuntu.com/v1/2a6d29c9-snapdragon.svg" width="139" height="45" alt="Qualcomm Snapdragon">
           <p><a href="/download/qualcomm-dragonboard-410c">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="col-3">
+          <img src="https://assets.ubuntu.com/v1/8a8c250f-xilinx-logo.svg" width="163" height="45" alt="Xilinx">
+          <p><a href="/download/xilinx">Install Ubuntu Core 20&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="col-3">
+          <p>Can't find your board of choice?</p>
+          <a class="p-button--positive" href="">Get in touch</a>
         </div>
       </div>
       <div class="u-fixed-width" style="margin-top: 2rem;">
