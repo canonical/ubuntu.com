@@ -139,103 +139,13 @@
 
 <section class="p-strip">
   <div class="u-fixed-width">
-    <h3>Broad compatibility with development boards</h3>
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="p-card col-5">
-      <h3>Raspberry Pi</h3>
-      <hr class="u-sv1" />
-      <div class="p-card__content">
-        <a href="/download/raspberry-pi">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/37373e4d-raspberry-pi.png",
-            alt="",
-            height="202",
-            width="293",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style": "padding-top: 1rem;"}
-            ) | safe
-          }}
-        </a>
-      </div>
-    </div>
-    <div class="p-card col-5">
-      <h3>NVIDIA Jetson</h3>
-      <hr class="u-sv1" />
-      <div class="p-card__content">
-        <a href="/blog/porting-ubuntu-core-18-to-nvidia-jetson-tx1-developer-kit">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/ec75aaca-NVIDIA-Jetson.png",
-            alt="",
-            height="241",
-            width="293",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style": "padding-top: 1rem;"}
-            ) | safe
-          }}
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="p-card col-5">
-      <h3>Xilinx Kria SOMs</h3>
-      <hr class="u-sv1" />
-      <div class="p-card__content">
-        <a href="https://www.xilinx.com/applications/industrial/robotics.html?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=iot_robotics&utm_term=kria_soms">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/a64b7ee2-dragonboard.png",
-            alt="",
-            height="197",
-            width="293",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style": "padding-top: 1rem;"}
-            ) | safe
-          }}
-        </a>
-      </div>
-    </div>
-    <div class="p-card col-5">
-      <h3>Dragonboard</h3>
-      <hr class="u-sv1" />
-      <div class="p-card__content">
-        <a href="/download/qualcomm-dragonboard-410c">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/a64b7ee2-dragonboard.png",
-            alt="",
-            height="197",
-            width="293",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style": "padding-top: 1rem;"}
-            ) | safe
-          }}
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <p><a href="https://ubuntu.com/blog/porting-ubuntu-core-18-to-nvidia-jetson-tx1-developer-kit">Read more about building Ubuntu Core for NVIDIA Jetson&nbsp;&rsaquo;</a></p>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="u-fixed-width">
     <p class="p-heading--two">Enhanced security for mission-critical robots</p>
     <p>Several layers of security are stacked in Ubuntu Core to keep potential surfaces of attack as low as possible for your product deployed in the field.</p>
     <a href="/engage/securing-ros-on-robotics-platforms-whitepaper">Read the Securing ROS on robotics platforms whitepaper&nbsp;&rsaquo;</a>
   </div>
 </section>
 
-<section class='p-strip--light'>
+<section class='p-strip'>
   <div class="row">
     <div class="col-6">
       <h3>System integrity: assured</h3>
@@ -297,7 +207,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Catalyses new business models </h2>
     <p>Improve the return on investment for your robotic assets.</p>
@@ -305,7 +215,7 @@
   </div>
 </section>
 
-<section class='p-strip--light'>
+<section class='p-strip'>
   <div class="row">
     <div class="col-6">
       <h3>New avenues for monetisation</h3>
@@ -349,7 +259,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Ready for all boards, frameworks and applications</h2>
     <p>We want to minimise your startup costs and time to market. That's why we have made Ubuntu compatible with the most popular frameworks and silicon.</p>
@@ -376,11 +286,96 @@
   <div class="u-fixed-width u-sv3">
     <a class="p-link--external" href="https://snapcraft.io/blog/your-first-robot-a-beginners-guide-to-ros-and-ubuntu-core-1-5">Build your robot with ROS on Ubuntu Core</a>
   </div>
+
+  <div class="u-fixed-width">
+    <h3>Broad support for development boards</h3>
+  </div>
+
+  <div class="row u-equal-height">
+    <div class="p-card col-3">
+      <h3>Raspberry Pi</h3>
+      <hr class="u-sv1" />
+      <div class="p-card__content">
+        <a href="/download/raspberry-pi ">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/37373e4d-raspberry-pi.png",
+            alt="",
+            height="202",
+            width="293",
+            hi_def=True,
+            loading="lazy",
+            attrs={"style": "padding-top: 1rem;"}
+            ) | safe
+          }}
+        </a>
+      </div>
+    </div>
+    <div class="p-card col-3">
+      <h3>NVIDIA Jetson</h3>
+      <hr class="u-sv1" />
+      <div class="p-card__content">
+        <a href="/blog/porting-ubuntu-core-18-to-nvidia-jetson-tx1-developer-kit">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/ec75aaca-NVIDIA-Jetson.png",
+            alt="",
+            height="241",
+            width="293",
+            hi_def=True,
+            loading="lazy",
+            attrs={"style": "padding-top: 1rem;"}
+            ) | safe
+          }}
+        </a>
+      </div>
+    </div>
+    <div class="p-card col-3">
+      <h3>Xilinx Kria SOMs</h3>
+      <hr class="u-sv1" />
+      <div class="p-card__content">
+        <a href="https://www.xilinx.com/applications/industrial/robotics.html?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=iot_robotics&utm_term=kria_soms">
+          {{
+            image (
+            url="https://assets.ubuntu.com/v1/4ede62b5-Xilinx-board.png",
+            alt="",
+            width="330",
+            height="291",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+        </a>
+      </div>
+    </div>
+    <div class="p-card col-3">
+      <h3>Dragonboard</h3>
+      <hr class="u-sv1" />
+      <div class="p-card__content">
+        <a href="/download/qualcomm-dragonboard-410c">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/a64b7ee2-dragonboard.png",
+            alt="",
+            height="197",
+            width="293",
+            hi_def=True,
+            loading="lazy",
+            attrs={"style": "padding-top: 1rem;"}
+            ) | safe
+          }}
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p><a href="https://ubuntu.com/blog/porting-ubuntu-core-18-to-nvidia-jetson-tx1-developer-kit">Read more about building Ubuntu Core for NVIDIA Jetson&nbsp;&rsaquo;</a></p>
+  </div>
 </section>
 
 {% include "robotics/shared/_learn-more-about-robotics.html" %}
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <p class="p-heading--two">Bootstrap for production-grade robots</p>
     <p>This is how you can get started today:</p>
@@ -427,7 +422,7 @@
 
 {% include "robotics/shared/_download-make-strip.html" %}
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-4 u-align--left u-hide--small">
       {{
