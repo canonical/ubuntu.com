@@ -176,8 +176,8 @@ def is_user_subscription_cancelled(
 
 def extract_last_purchase_ids(subscriptions: List[Subscription]) -> Dict:
     last_purchase_ids = {
-        "monthly": None,
-        "yearly": None,
+        "monthly": "",
+        "yearly": "",
     }
 
     for subscription in subscriptions:

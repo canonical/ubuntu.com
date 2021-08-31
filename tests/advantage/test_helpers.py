@@ -501,7 +501,7 @@ class TestHelpers(unittest.TestCase):
 
         expectation = {
             "monthly": "pABC1",
-            "yearly": None,
+            "yearly": "",
         }
 
         self.assertEqual(last_purchase_ids, expectation)
