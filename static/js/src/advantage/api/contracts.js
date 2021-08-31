@@ -65,6 +65,14 @@ export async function getCustomerInfo(accountId) {
   return data;
 }
 
+export async function getUserSubscriptions() {
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const response = await fetch(`/advantage/user-subscriptions${queryString}`, {
+    cache: "no-store",
+  });
+  return await response.json();
+}
+
 export async function postInvoiceID(transactionType, transactionID, invoiceID) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
