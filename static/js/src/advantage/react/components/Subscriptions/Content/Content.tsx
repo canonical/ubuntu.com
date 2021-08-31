@@ -1,4 +1,5 @@
 import { Card } from "@canonical/react-components";
+import { useScrollIntoView } from "advantage/react/hooks/useScrollIntoView";
 import React, { useCallback, useEffect, useState } from "react";
 
 import SubscriptionDetails from "../SubscriptionDetails";
@@ -8,12 +9,16 @@ import { SelectedToken } from "./types";
 const Content = () => {
   const [modalActive, setModalActive] = useState(false);
   const [selectedToken, setSelectedToken] = useState<SelectedToken>(null);
+  const [scrollTargetRef, scrollIntoView] = useScrollIntoView<HTMLDivElement>(
+    20
+  );
   const onSetActive = useCallback(
     (token: SelectedToken) => {
       // Only set the token if it has changed to another token. The selected
       // token is always needed for large screens.
       if (token) {
         setSelectedToken(token);
+        scrollIntoView();
       }
       setModalActive(!!token);
     },
@@ -42,6 +47,7 @@ const Content = () => {
         onCloseModal={() => {
           onSetActive(null);
         }}
+        ref={scrollTargetRef}
       />
     </Card>
   );
