@@ -6,7 +6,6 @@ from typing import Optional
 
 from dateutil.parser import parse
 import flask
-import talisker.requests
 import pytz
 from flask import g
 from requests.exceptions import HTTPError
@@ -15,7 +14,6 @@ from webargs.fields import String, Boolean
 # Local
 from webapp.advantage.ua_contracts.primitives import Subscription
 from webapp.advantage.decorators import advantage_decorator
-from webapp.decorators import advantage_checks
 from webapp.login import user_info
 from webapp.advantage.flaskparser import use_kwargs
 from webapp.advantage.ua_contracts.builders import (
@@ -27,7 +25,6 @@ from webapp.advantage.ua_contracts.helpers import (
     extract_last_purchase_ids,
 )
 from webapp.advantage.ua_contracts.api import (
-    UAContractsAPI,
     CannotCancelLastContractError,
     UnauthorizedError,
     UAContractsUserHasNoAccount,
@@ -629,9 +626,7 @@ def post_anonymised_customer_info(**kwargs):
         if tax_id["value"] == "":
             tax_id["delete"] = True
 
-    return g.api.put_anonymous_customer_info(
-        account_id, name, address, tax_id
-    )
+    return g.api.put_anonymous_customer_info(account_id, name, address, tax_id)
 
 
 @advantage_decorator(permission="user", response="json")
