@@ -3,15 +3,24 @@ import {
   ContractWithToken,
   PersonalAccount,
   UserSubscription,
+  UserSubscriptionEntitlement,
   UserSubscriptionStatuses,
-  UserSubscriptionType,
 } from "advantage/api/types";
 import { accountContractInfoFactory, accountInfoFactory } from "./contracts";
+import { EntitlementType, UserSubscriptionType } from "advantage/api/enum";
 
 export const contractWithTokenFactory = Factory.define<ContractWithToken>(
   () => ({
     ...accountContractInfoFactory.build(),
     token: "B13sf54ZfJt51AMwynubzPyaGE9ZA2",
+  })
+);
+
+export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptionEntitlement>(
+  () => ({
+    enabled_by_default: true,
+    support_level: null,
+    type: EntitlementType.EsmApps,
   })
 );
 

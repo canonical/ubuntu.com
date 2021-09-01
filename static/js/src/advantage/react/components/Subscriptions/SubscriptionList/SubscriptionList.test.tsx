@@ -3,37 +3,20 @@ import { mount } from "enzyme";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import SubscriptionList from "./SubscriptionList";
-import {
-  contractWithTokenFactory,
-  personalAccountFactory,
-} from "advantage/tests/factories/api";
-import {
-  contractInfoFactory,
-  contractItemFactory,
-  entitlementSupportFactory,
-} from "advantage/tests/factories/contracts";
+import { freeSubscriptionFactory } from "advantage/tests/factories/api";
+import { UserSubscription } from "advantage/api/types";
 
 describe("SubscriptionList", () => {
+  let queryClient: QueryClient;
+  let freeSubscription: UserSubscription;
+
+  beforeEach(async () => {
+    queryClient = new QueryClient();
+    freeSubscription = freeSubscriptionFactory.build();
+    queryClient.setQueryData("userSubscriptions", [freeSubscription]);
+  });
+
   it("displays a free token", () => {
-    const personalAccount = personalAccountFactory.build({
-      contracts: [
-        contractWithTokenFactory.build({
-          contractInfo: contractInfoFactory.build({
-            items: [
-              contractItemFactory.build({
-                metric: "units",
-                value: 2,
-              }),
-            ],
-            resourceEntitlements: [entitlementSupportFactory.build()],
-          }),
-          token: "free-token",
-        }),
-      ],
-      free_token: "free-token",
-    });
-    const queryClient = new QueryClient();
-    queryClient.setQueryData("personalAccount", personalAccount);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList onSetActive={jest.fn()} />
@@ -41,23 +24,10 @@ describe("SubscriptionList", () => {
     );
     const token = wrapper.find("[data-test='free-token']");
     expect(token.exists()).toBe(true);
-    expect(token.prop("created")).toBe(personalAccount.createdAt);
-    expect(token.prop("expires")).toBe(null);
-    expect(token.prop("features")).toStrictEqual(["24/5 Support"]);
-    expect(token.prop("machines")).toBe(2);
+    expect(token.prop("subscription")).toStrictEqual(freeSubscription);
   });
 
   it("can display the free token as selected", () => {
-    const personalAccount = personalAccountFactory.build({
-      contracts: [
-        contractWithTokenFactory.build({
-          token: "free-token",
-        }),
-      ],
-      free_token: "free-token",
-    });
-    const queryClient = new QueryClient();
-    queryClient.setQueryData("personalAccount", personalAccount);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList selectedToken="free-token" onSetActive={jest.fn()} />
