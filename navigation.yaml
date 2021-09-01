@@ -1154,6 +1154,12 @@ support:
     - title: Your subscriptions
       path: /advantage
       persist: True
+
+      children:
+        - title: Account users
+          path: /advantage/users
+          hidden: True
+
     - title: Community support
       path: /support/community-support
     - title: Contact us
