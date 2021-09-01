@@ -96,98 +96,78 @@ class UAContractsAPI:
         return response.json().get("contractToken")
 
     def get_customer_info(self, account_id):
-        try:
-            response = self._request(
-                method="get",
-                path=f"v1/accounts/{account_id}/customer-info/stripe",
-            )
-        except HTTPError as error:
-            if error.response.status_code == 404:
-                raise UAContractsUserHasNoAccount(error)
-
-            if self.is_for_view:
-                raise UAContractsAPIErrorView(error)
-            raise UAContractsAPIError(error)
+        response = self._request(
+            method="get",
+            path=f"v1/accounts/{account_id}/customer-info/stripe",
+            error_rules=["default", "no-found"],
+        )
 
         return response.json()
 
     def put_customer_info(
         self, account_id, payment_method_id, address, name, tax_id
     ):
-        try:
-            response = self._request(
-                method="put",
-                path=f"v1/accounts/{account_id}/customer-info/stripe",
-                json={
-                    "defaultPaymentMethod": {"Id": payment_method_id},
-                    "paymentMethodID": payment_method_id,
-                    "address": address,
-                    "name": name,
-                    "taxID": tax_id,
-                },
-            )
-        except HTTPError as error:
-            raise UAContractsAPIError(error)
+        response = self._request(
+            method="put",
+            path=f"v1/accounts/{account_id}/customer-info/stripe",
+            json={
+                "defaultPaymentMethod": {"Id": payment_method_id},
+                "paymentMethodID": payment_method_id,
+                "address": address,
+                "name": name,
+                "taxID": tax_id,
+            },
+            error_rules=["default"],
+        )
 
         return response.json()
 
     def put_anonymous_customer_info(self, account_id, name, address, tax_id):
-        try:
-            response = self._request(
-                method="put",
-                path=f"v1/accounts/{account_id}/customer-info/stripe",
-                json={"address": address, "name": name, "taxID": tax_id},
-            )
-        except HTTPError as error:
-            raise UAContractsAPIError(error)
+        response = self._request(
+            method="put",
+            path=f"v1/accounts/{account_id}/customer-info/stripe",
+            json={"address": address, "name": name, "taxID": tax_id},
+            error_rules=["default"],
+        )
 
         return response.json()
 
     def put_payment_method(self, account_id, payment_method_id):
-        try:
-            response = self._request(
-                method="put",
-                path=f"v1/accounts/{account_id}/customer-info/stripe",
-                json={
-                    "defaultPaymentMethod": {"Id": payment_method_id},
-                },
-            )
-        except HTTPError as error:
-            raise UAContractsAPIError(error)
+        response = self._request(
+            method="put",
+            path=f"v1/accounts/{account_id}/customer-info/stripe",
+            json={
+                "defaultPaymentMethod": {"Id": payment_method_id},
+            },
+            error_rules=["default"],
+        )
 
         return response.json()
 
     def post_stripe_invoice_id(self, tx_type, tx_id, invoice_id):
-        try:
-            response = self._request(
-                method="post",
-                path=f"v1/{tx_type}/{tx_id}/payment/stripe/{invoice_id}",
-            )
-        except HTTPError as error:
-            raise UAContractsAPIError(error)
+        self._request(
+            method="post",
+            path=f"v1/{tx_type}/{tx_id}/payment/stripe/{invoice_id}",
+            error_rules=["default"],
+        )
 
-        return response.json() if response.status_code != 200 else None
+        return {}
 
     def get_renewal(self, renewal_id):
-        try:
-            response = self._request(
-                method="get", path=f"v1/renewals/{renewal_id}"
-            )
-        except HTTPError as error:
-            raise UAContractsAPIError(error)
+        response = self._request(
+            method="get",
+            path=f"v1/renewals/{renewal_id}",
+            error_rules=["default"],
+        )
 
         return response.json()
 
     def accept_renewal(self, renewal_id):
-        try:
-            response = self._request(
-                method="post", path=f"v1/renewals/{renewal_id}/acceptance"
-            )
-        except HTTPError as error:
-            if error.response.status_code == 500:
-                return response.json()
-            else:
-                raise error
+        self._request(
+            method="post",
+            path=f"v1/renewals/{renewal_id}/acceptance",
+            error_rules=["default"],
+        )
 
         return {}
 
@@ -234,32 +214,27 @@ class UAContractsAPI:
         return subscriptions
 
     def get_account_purchases(self, account_id: str, filters=None) -> dict:
+        url_filters = ""
         if filters:
             filters = "&".join(
-                "{}={}".format(key, value)
-                for key, value in filters.items()
-                if value is not None
+                "{}={}".format(key, value) for key, value in filters.items()
             )
+            url_filters = f"?{filters}"
 
-        try:
-            response = self._request(
-                method="get",
-                path=f"v1/accounts/{account_id}/purchases?{filters}",
-            )
-        except HTTPError as error:
-            raise UAContractsAPIError(error)
+        response = self._request(
+            method="get",
+            path=f"v1/accounts/{account_id}/purchases{url_filters}",
+            error_rules=["default"],
+        )
 
         return response.json().get("purchases", [])
 
-    def get_purchase(self, purchase_id: str) -> dict:
-        try:
-            response = self._request(
-                method="get", path=f"v1/purchase/{purchase_id}"
-            )
-        except HTTPError as error:
-            if self.is_for_view:
-                raise UAContractsAPIErrorView(error)
-            raise UAContractsAPIError(error)
+    def get_purchase(self, purchase_id: str):
+        response = self._request(
+            method="get",
+            path=f"v1/purchase/{purchase_id}",
+            error_rules=["default"],
+        )
 
         return response.json()
 
@@ -290,103 +265,79 @@ class UAContractsAPI:
             raise
         return response.json()
 
-    def get_purchase_account(self) -> dict:
-        try:
-            response = self._request(method="get", path="v1/purchase-account")
-        except HTTPError as error:
-            if error.response.status_code == 404:
-                raise UAContractsUserHasNoAccount(error)
-
-            if self.is_for_view:
-                raise UAContractsAPIErrorView(error)
-
-            raise UAContractsAPIError(error)
+    def get_purchase_account(self):
+        response = self._request(
+            method="get",
+            path="v1/purchase-account",
+            error_rules=["default", "no-found"],
+        )
 
         return response.json()
 
     def purchase_from_marketplace(
         self, marketplace: str, purchase_request: dict
-    ) -> dict:
-        try:
-            response = self._request(
-                method="post",
-                path=f"v1/marketplace/{marketplace}/purchase",
-                json=purchase_request,
-            )
-        except HTTPError as http_error:
-            if (
-                "cannot remove all subscription items"
-                in http_error.response.json()["message"]
-            ):
-                raise CannotCancelLastContractError(http_error)
-
-            raise UAContractsAPIError(http_error)
+    ):
+        response = self._request(
+            method="post",
+            path=f"v1/marketplace/{marketplace}/purchase",
+            json=purchase_request,
+            error_rules=["default", "cancel-subscription"],
+        )
 
         return response.json()
 
     def preview_purchase_from_marketplace(
         self, marketplace: str, purchase_request: dict
-    ) -> dict:
-        try:
-            response = self._request(
-                method="post",
-                path=f"v1/marketplace/{marketplace}/purchase/preview",
-                json=purchase_request,
-            )
-        except HTTPError as http_error:
-            if (
-                "cannot remove all subscription items"
-                in http_error.response.json()["message"]
-            ):
-                raise CannotCancelLastContractError(http_error)
-
-            raise UAContractsAPIError(http_error)
+    ):
+        response = self._request(
+            method="post",
+            path=f"v1/marketplace/{marketplace}/purchase/preview",
+            json=purchase_request,
+            error_rules=["default", "cancel-subscription"],
+        )
 
         return response.json()
 
-    def cancel_subscription(self, subscription_id: str) -> dict:
-        try:
-            response = self._request(
-                method="delete",
-                path=f"v1/subscriptions/{subscription_id}",
-            )
-        except HTTPError as error:
-            raise UAContractsAPIError(error)
+    def cancel_subscription(self, subscription_id: str):
+        self._request(
+            method="delete",
+            path=f"v1/subscriptions/{subscription_id}",
+            error_rules=["default"],
+        )
 
-        return response.json() if response.status_code != 200 else None
+        return {}
 
-    def get_subscription_auto_renewal(self, subscription_id: str) -> dict:
-        try:
-            response = self._request(
-                method="get",
-                path=f"v1/subscription/{subscription_id}/auto-renewal",
-            )
-        except HTTPError as error:
-            if self.is_for_view:
-                raise UAContractsAPIErrorView(error)
-            raise UAContractsAPIError(error)
+    def get_subscription_auto_renewal(self, subscription_id: str):
+        response = self._request(
+            method="get",
+            path=f"v1/subscription/{subscription_id}/auto-renewal",
+            error_rules=["default"],
+        )
 
         return response.json()
 
     def post_subscription_auto_renewal(
         self, subscription_id: str, should_auto_renew: bool
-    ) -> dict:
-        try:
-            response = self._request(
-                method="post",
-                path=f"v1/subscription/{subscription_id}/auto-renewal",
-                json={"shouldAutoRenew": should_auto_renew},
-            )
-        except HTTPError as error:
-            raise UAContractsAPIError(error)
+    ):
+        self._request(
+            method="post",
+            path=f"v1/subscription/{subscription_id}/auto-renewal",
+            json={"shouldAutoRenew": should_auto_renew},
+            error_rules=["default"],
+        )
 
-        return response.json() if response.status_code != 200 else None
+        return {}
 
     def handle_error(self, error, error_rules=None):
         if not error_rules:
             return
 
         status_code = error.response.status_code
+        message = error.response.json().get("message")
+
+        if "cancel-subscription" in error_rules and status_code == 400:
+            if "cannot remove all subscription items" in message:
+                raise CannotCancelLastContractError(error)
 
         if "no-found" in error_rules and status_code == 404:
             raise UAContractsUserHasNoAccount(error)

@@ -825,12 +825,7 @@ def post_stripe_invoice_id(tx_type, tx_id, invoice_id, **kwargs):
         session, token, token_type=token_type, api_url=api_url
     )
 
-    response = advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
-
-    if response is None:
-        return flask.jsonify({"message": "invoice updated"})
-
-    return response
+    return advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
 
 
 @advantage_checks(check_list=["need_user_or_guest"])
@@ -937,10 +932,11 @@ def invoices_view(**kwargs):
     accounts = advantage.get_accounts(email=email)
 
     total_payments = []
+    filters = {"marketplace": marketplace} if marketplace else None
     for account in accounts:
         raw_payments = advantage.get_account_purchases(
             account_id=account["id"],
-            filters={"marketplace": marketplace},
+            filters=filters,
         )
 
         if not raw_payments:

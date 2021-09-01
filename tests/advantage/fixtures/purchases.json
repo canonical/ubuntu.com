@@ -1,0 +1,90 @@
+{
+  "purchases": {
+    "productListings": [
+      {
+        "allowanceMetric": "units",
+        "bundleQuantity": 1,
+        "createdAt": "2020-01-01T10:00:00Z",
+        "externalIDs": [
+          {
+            "IDs": [
+              "randomID"
+            ],
+            "origin": "Salesforce"
+          }
+        ],
+        "externalMarketplaceIDs": {
+          "IDs": [
+            "randomId2"
+          ],
+          "origin": "Salesforce"
+        },
+        "externalPricingID": {
+          "IDs": [
+            "randomId3"
+          ],
+          "origin": "Stripe"
+        },
+        "id": "lAaBbCcDdEeFfGg",
+        "lastModifiedAt": "2020-01-01T10:00:00Z",
+        "marketplace": "canonical-ua",
+        "name": "product-name",
+        "period": "yearly",
+        "price": {
+          "currency": "USD",
+          "value": 1000
+        },
+        "productID": "product-id",
+        "status": "active",
+        "trialDays": 30
+      }
+    ],
+    "purchases": [
+      {
+        "accountID": "aAaBbCcDdEeFfGg",
+        "createdAt": "2020-01-01T10:00:00Z",
+        "createdBy": "abcdef",
+        "id": "pAaBbCcDdEeFfGg",
+        "invoice": {
+          "amountDue": 1000,
+          "amountPaid": 1000,
+          "currency": "usd",
+          "id": {
+            "IDs": [
+              "invoice_id"
+            ],
+            "origin": "Stripe"
+          },
+          "reason": "subscription_update",
+          "status": "paid",
+          "subscriptionID": {
+            "IDs": [
+              "randomId4"
+            ],
+            "origin": "Stripe"
+          },
+          "taxAmount": 200,
+          "total": 1000
+        },
+        "lastModified": "2021-07-21T12:18:43.057Z",
+        "marketplace": "canonical-ua",
+        "purchaseItems": [
+          {
+            "productListingID": "lAaBbCcDdEeFfGg",
+            "value": 1
+          }
+        ],
+        "status": "done",
+        "stripeInvoices": [
+          {
+            "id": "invoice_id",
+            "last_update": "2020-01-01T10:00:00Z",
+            "pi_status": "succeeded",
+            "subscription_status": "active"
+          }
+        ],
+        "subscriptionID": "sAaBbCcDdEeFfGg"
+      }
+    ]
+  }
+}

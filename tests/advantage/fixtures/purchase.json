@@ -1,0 +1,60 @@
+{
+    "accountID": "aAaBbCcDdEeFfGg",
+    "createdAt": "2020-01-01T10:00:00Z",
+    "createdBy": "abcdef",
+    "id": "pAaBbCcDd",
+    "invoice": {
+        "amountDue": 1000,
+        "currency": "usd",
+        "customerAddress": {
+            "city": "Lone Done",
+            "country": "GB",
+            "line1": "Road Street",
+            "line2": "",
+            "postal_code": "333111",
+            "state": ""
+        },
+        "customerEmail": "email@url",
+        "customerName": "Joe Doe",
+        "id": {"IDs": ["in_abcdef"], "origin": "Stripe"},
+        "identifier": "identifier",
+        "lineItems": [
+            {
+                "currency": "usd",
+                "description": "Description",
+                "planID": {"IDs": ["randonID1"], "origin": "Stripe"},
+                "proRatedAmount": 1000,
+                "quantity": 1
+            }
+        ],
+        "paymentStatus": {
+            "lastPaymentError": "generic_decline",
+            "status": "need_another_payment_method"
+        },
+        "reason": "subscription_update",
+        "status": "open",
+        "subscriptionID": {"IDs": ["randomID2"], "origin": "Stripe"},
+        "taxAmount": 200,
+        "total": 1200,
+        "url": "invoice.url"
+    },
+    "lastModified": "2020-01-01T10:00:00Z",
+    "marketplace": "canonical-ua",
+    "purchaseItems": [
+        {
+            "productListingID": "lAaBbCcDdEeFfGg",
+            "value": 1
+        }
+    ],
+    "status": "processing",
+    "stripeInvoices": [
+        {
+            "id": "in_abcdef",
+            "last_update": "2020-01-01T10:00:00Z",
+            "pi_decline_code": "generic_decline",
+            "pi_status": "requires_payment_method",
+            "subscription_status": "active"
+        }
+    ],
+    "subscriptionID": "sAaBbCcDdEeFfGg"
+}
