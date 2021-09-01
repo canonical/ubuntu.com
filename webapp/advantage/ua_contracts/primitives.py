@@ -87,6 +87,7 @@ class Subscription:
         period: str = None,
         items: List[SubscriptionItem] = None,
         last_purchase_id: str = None,
+        is_renewing: bool = None,
         pending_purchases: List[str] = None,
     ):
         self.id = id
@@ -96,6 +97,7 @@ class Subscription:
         self.status = status
         self.last_purchase_id = last_purchase_id
         self.pending_purchases = pending_purchases
+        self.is_renewing = is_renewing
         self.items = items
 
 
