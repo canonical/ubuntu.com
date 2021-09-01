@@ -1,10 +1,8 @@
 {% extends "core/base_core.html" %}
 
 {% block title %}Ubuntu Core{% endblock %}
-{% block meta_description %}Ubuntu Core is Ubuntu for embedded environments, optimised for security and reliable
-updates. Run snaps in a high-security confined sandbox with bulletproof upgrades.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1QoM0Yqx4JfDJ2G3OPt5bds-ximG1jASmU_PWX4iff3E/edit{% endblock
-meta_copydoc %}
+{% block meta_description %}Ubuntu Core is Ubuntu for embedded environments, optimised for security and reliable updates. Run snaps in a high-security confined sandbox with bulletproof upgrades.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1QoM0Yqx4JfDJ2G3OPt5bds-ximG1jASmU_PWX4iff3E/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -217,6 +215,7 @@ meta_copydoc %}
         width="128",
         height="40",
         hi_def=True,
+        loading= "lazy",
         ) | safe
         }}
       </li>
@@ -227,6 +226,7 @@ meta_copydoc %}
         width="128",
         height="50",
         hi_def=True,
+        loading="lazy"
         ) | safe
         }}
       </li>
@@ -237,7 +237,7 @@ meta_copydoc %}
           width="150",
           height="150",
           hi_def=True,
-          loading="auto|lazy"
+          loading="lazy"
           ) | safe
         }}
       </li>
@@ -248,6 +248,7 @@ meta_copydoc %}
         width="200",
         height="80",
         hi_def=True,
+        loading="lazy"
         ) | safe
         }}
       </li>
@@ -267,7 +268,7 @@ meta_copydoc %}
         width="512",
         height="288",
         hi_def=True,
-        loading="auto|lazy"
+        loading="lazy"
         ) | safe
         }}
       </div>
@@ -427,8 +428,7 @@ meta_copydoc %}
       <h4>Tamper-resistant and hardened against corruption</h4>
       <p class='p-heading--five'>Every aspect of the system is checked and verified.</p>
       <p>You need to know your software is pristine; not just for installation, but for the lifetime of the device.</p>
-      <p>Immutable packages and persistent digital signatures mean Ubuntu Core can verify any software component at any
-        time, to guard against corruption and attack.</p>
+      <p>Immutable packages and persistent digital signatures mean Ubuntu Core can verify any software component at any time, to guard against corruption and attack.</p>
       <p>
         <a href="/core/features/full-disk-encryption">Learn more about full disk encryption&nbsp;&rsaquo;</a>
       </p>
@@ -467,8 +467,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Strict confinement everywhere</h4>
       <p class='p-heading--five'>Keep a bad app in its box</p>
-      <p>You trust your developers, but anybody can make a mistake. We created and integrated a whole new armoury of
-        Linux security capabilities to ensure applications stay confined to their own data.</p>
+      <p>You trust your developers, but anybody can make a mistake. We created and integrated a whole new armoury of Linux security capabilities to ensure applications stay confined to their own data.</p>
       <p><a class="p-link--external" href="https://snapcraft.io/docs/snap-confinement">Learn more about confinement</a>
       </p>
     </div>
@@ -482,8 +481,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>10 year security update commitment</h4>
       <p class='p-heading--five'>That's a decade of sleeping soundly</p>
-      <p>Ubuntu Core gets 10 years of Canonical maintenance.<br /> Your smallest devices are now as secure as your
-        servers.<br /> No other embedded Linux comes close.</p>
+      <p>Ubuntu Core gets 10 years of Canonical maintenance.<br /> Your smallest devices are now as secure as your servers.<br /> No other embedded Linux comes close.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -519,8 +517,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Minimal core, minimal risk, minimal bugs</h4>
       <p class='p-heading--five'>We stripped Ubuntu Core down to bare essentials</p>
-      <p>Fewer packages to attack, fewer bugs to fix, fewer forced changes. We reduced the OS to reduce the attack
-        surface. That leaves more disk for your applications and data.</p>
+      <p>Fewer packages to attack, fewer bugs to fix, fewer forced changes. We reduced the OS to reduce the attack surface. That leaves more disk for your applications and data.</p>
     </div>
   </div>
 
@@ -532,8 +529,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Vulnerability scanning</h4>
       <p class='p-heading--five'>We check for known weaknesses or risks</p>
-      <p>Automatic scanning of all snaps for vulnerable libraries and problematic code keeps the Ubuntu Core ecosystem
-        clean and healthy.</p>
+      <p>Automatic scanning of all snaps for vulnerable libraries and problematic code keeps the Ubuntu Core ecosystem clean and healthy.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -568,8 +564,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Secure boot</h4>
       <p class='p-heading--five'>System integrity with hardware trust</p>
-      <p>Guarantee your entire fleet of devices runs the system software you select, and resist low-level boot attacks
-        on X86 and ARM.</p>
+      <p>Guarantee your entire fleet of devices runs the system software you select, and resist low-level boot attacks on X86 and ARM.</p>
       <p>
         <a href="/core/features/secure-boot">Learn more about secure boot&nbsp;&rsaquo;</a>
       </p>
@@ -584,8 +579,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Full disk encryption</h4>
       <p class='p-heading--five'>Protect sensitive customer data</p>
-      <p>Lock data to devices with hardware keys in TPM or TEE, and unlock disks for your system software only, to block
-        a physical attack on sensitive information.</p>
+      <p>Lock data to devices with hardware keys in TPM or TEE, and unlock disks for your system software only, to block a physical attack on sensitive information.</p>
       <p>
         <a href="/core/features/full-disk-encryption">Learn more about full disk encryption&nbsp;&rsaquo;</a>
       </p>
@@ -618,8 +612,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Manufacturer update control</h4>
       <p class='p-heading--five'>Decide which updates go to your devices.</p>
-      <p>As a device manufacturer or a snap publisher, you decide which updates are signed, certified and delivered to
-        your devices, when they happen and to which devices.</p>
+      <p>As a device manufacturer or a snap publisher, you decide which updates are signed, certified and delivered to your devices, when they happen and to which devices.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -655,8 +648,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>App store included</h4>
       <p class='p-heading--five'>Your own app store and software curation</p>
-      <p>Every device built with Ubuntu Core has a secure app store. Use the global store for access to all the standard
-        apps, or curate your own collection.</p>
+      <p>Every device built with Ubuntu Core has a secure app store. Use the global store for access to all the standard apps, or curate your own collection.</p>
       <p><a class="p-button--neutral is-inline" href="/internet-of-things/appstore" style="margin-left: 0;"><span
             class="p-link--external">See what an app store can do for your things</span></a></p>
     </div>
@@ -670,8 +662,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Enterprise management</h4>
       <p class='p-heading--five'>Absolute control over every device in the building.</p>
-      <p>Enterprises gain complete control over every app on every device on the network, regardless of manufacturer.
-        Know exactly which kernel version and which apps are running.</p>
+      <p>Enterprises gain complete control over every app on every device on the network, regardless of manufacturer. Know exactly which kernel version and which apps are running.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center u-vertically-center">
       {{
@@ -707,8 +698,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>License compliance</h4>
       <p class='p-heading--five'>Keep track of the licenses you depend on</p>
-      <p>Standard license metadata simplifies compliance. Ubuntu Core uses open source packages from the world’s most
-        widely deployed Linux, and we track licenses in each system component, so you don’t have to.</p>
+      <p>Standard license metadata simplifies compliance. Ubuntu Core uses open source packages from the world’s most widely deployed Linux, and we track licenses in each system component, so you don’t have to.</p>
     </div>
   </div>
 
@@ -720,10 +710,8 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Software ecosystem, ready to go</h4>
       <p class='p-heading--five'>Thousands of applications built to work across devices</p>
-      <p>A standard platform helps publishers support multiple devices without recompiling. Everybody wants to support
-        Ubuntu - it’s the most widely deployed Linux in the world.</p>
-      <p><a class="p-button--neutral is-inline" href="https://snapcraft.io/store" style="margin-left: 0;"><span
-            class="p-link--external">Visit the Snap Store</span></a></p>
+      <p>A standard platform helps publishers support multiple devices without recompiling. Everybody wants to support Ubuntu - it’s the most widely deployed Linux in the world.</p>
+      <p><a class="p-button--neutral is-inline" href="https://snapcraft.io/store" style="margin-left: 0;"><span class="p-link--external">Visit the Snap Store</span></a></p>
     </div>
     <div class="col-6 u-align--center u-hide--small">
       {{
@@ -760,8 +748,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Mission critical support</h4>
       <p class='p-heading--five'>Canonical supports Ubuntu Core devices</p>
-      <p>World class support - for product teams and enterprise customers. Get to the heart of a problem faster, get
-        fixes straight from the source.</p>
+      <p>World class support - for product teams and enterprise customers. Get to the heart of a problem faster, get fixes straight from the source.</p>
       <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-modal">Contact us</a></p>
     </div>
   </div>
@@ -792,10 +779,8 @@ meta_copydoc %}
     <div class="col-6">
       <h4>One platform from cloud to device</h4>
       <p class='p-heading--five'>Bring apps from Ubuntu Server to Ubuntu Core</p>
-      <p>Snaps run on Ubuntu Server, Desktop and Core. One platform, one process. Your developer workstation, your build
-        farm, your cloud and servers all use snaps. Your appliances can too, with extra security.</p>
-      <p><a class="p-button--neutral" href="https://snapcraft.io/"><span class="p-link--external">Build your IoT
-            application with Snapcraft</span></a></p>
+      <p>Snaps run on Ubuntu Server, Desktop and Core. One platform, one process. Your developer workstation, your build farm, your cloud and servers all use snaps. Your appliances can too, with extra security.</p>
+      <p><a class="p-button--neutral" href="https://snapcraft.io/"><span class="p-link--external">Build your IoT application with Snapcraft</span></a></p>
     </div>
     <div class="col-6 u-align--center u-hide--small">
       {{
@@ -831,8 +816,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Embedded Linux is easy on Ubuntu</h4>
       <p class='p-heading--five'>We handle the board, you handle the apps</p>
-      <p>No bad BSPs. No maintenance nightmares. No integration delays. Just develop on Ubuntu. Embedded, but not as you
-        knew it.</p>
+      <p>No bad BSPs. No maintenance nightmares. No integration delays. Just develop on Ubuntu. Embedded, but not as you knew it.</p>
     </div>
   </div>
 
@@ -844,11 +828,9 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Deploy to devices as fast as the cloud</h4>
       <p class='p-heading--five'>Continuous deployment on devices</p>
-      <p>Put your devices on rails for rapid iteration with continuous deployment pipelines, beta testing and canary
-        updates. Featuring Travis integration and a multi-arch build service.</p>
+      <p>Put your devices on rails for rapid iteration with continuous deployment pipelines, beta testing and canary updates. Featuring Travis integration and a multi-arch build service.</p>
       <p>
-        <a href="https://snapcraft.io/build" class="p-button--neutral"><span class="p-link--external">More about CI/CD
-            with Snapcraft</span></a>
+        <a href="https://snapcraft.io/build" class="p-button--neutral"><span class="p-link--external">More about CI/CD with Snapcraft</span></a>
       </p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
@@ -885,8 +867,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Harness all things open source</h4>
       <p class='p-heading--five'>From GitHub to Ubuntu Core in minutes.</p>
-      <p>Ride the open source wave, or build your own community. Open source projects default to Ubuntu, so building is
-        easy.</p>
+      <p>Ride the open source wave, or build your own community. Open source projects default to Ubuntu, so building is easy.</p>
       <p><a href="/core/contact-us?product=core-overview" class="p-button--positive js-invoke-modal">Contact us</a></p>
     </div>
   </div>
@@ -908,8 +889,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Transactional updates everywhere</h4>
       <p class='p-heading--five'>Preserve data, and rollback on error automatically</p>
-      <p>Your power supply may not be reliable. Your devices will be. Resilience to adversity saves money and
-        reputations. Bank on Ubuntu Core to deliver your updates safely.</p>
+      <p>Your power supply may not be reliable. Your devices will be. Resilience to adversity saves money and reputations. Bank on Ubuntu Core to deliver your updates safely.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -945,8 +925,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Backup boot paths</h4>
       <p class='p-heading--five'>Low-level updates preserve the prior boot path.</p>
-      <p>When you have to update the kernel or the operating system you want to know you can go back if needed. Ubuntu
-        Core keeps the last working boot so you always have a safety net.</p>
+      <p>When you have to update the kernel or the operating system you want to know you can go back if needed. Ubuntu Core keeps the last working boot so you always have a safety net.</p>
     </div>
   </div>
 
@@ -958,8 +937,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Snapshots for application data</h4>
       <p class='p-heading--five'>Standard mechanisms for application data management.</p>
-      <p>Every device has apps which keep track of critical data. We make sure you can manage the data which matters to
-        you, consistently, across all your Ubuntu Core devices. Backup and restore anything, anywhere.</p>
+      <p>Every device has apps which keep track of critical data. We make sure you can manage the data which matters to you, consistently, across all your Ubuntu Core devices. Backup and restore anything, anywhere.</p>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
@@ -1005,8 +983,7 @@ meta_copydoc %}
     <div class='col-8'>
       <h2>Reduce the cost of Linux</h2>
       <p class="p-heading--four">Use Ubuntu Core for free. Pay only for extra services.</p>
-      <p>The reference images of Ubuntu Core are free to redistribute. Engage Canonical for enablement and custom
-        service levels. We'll get you to market faster.</p>
+      <p>The reference images of Ubuntu Core are free to redistribute. Engage Canonical for enablement and custom service levels. We'll get you to market faster.</p>
     </div>
   </div>
 </section>
@@ -1052,8 +1029,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Ubuntu board support by Canonical</h4>
       <p class='p-heading--five'>First class enablement for widely used boards and silicon</p>
-      <p>Low-level development is a distraction in the race to market. Focus all your effort on differentiation, not
-        Linux. Pre-certified boards keep you out of the weeds.</p>
+      <p>Low-level development is a distraction in the race to market. Focus all your effort on differentiation, not Linux. Pre-certified boards keep you out of the weeds.</p>
       <p><a href="/download/iot#core">See our supported boards&nbsp;&rsaquo;</a></p>
     </div>
   </div>
@@ -1066,8 +1042,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Right-size your silicon</h4>
       <p class='p-heading--five'>Finish your apps, then choose your chips.</p>
-      <p>A standard platform means you can develop your software and polish your industrial design first, then choose
-        the right size chips for your experience based on real code and data.</p>
+      <p>A standard platform means you can develop your software and polish your industrial design first, then choose the right size chips for your experience based on real code and data.</p>
       <p>Get the best deal when you're ready to ship.</p>
     </div>
     <div class="col-6 u-align--center u-vertically-center u-hide--small">
@@ -1104,8 +1079,7 @@ meta_copydoc %}
     <div class="col-6">
       <h4>Choice of ARM or x86</h4>
       <p class='p-heading--five'>Unified application build experience</p>
-      <p>We support both 32-bit and 64-bit apps on both architectures. If it doesn’t compile and run the same, we’ll fix
-        it.</p>
+      <p>We support both 32-bit and 64-bit apps on both architectures. If it doesn't compile and run the same, we'll fix it.</p>
     </div>
   </div>
 </section>
@@ -1136,9 +1110,7 @@ meta_copydoc %}
           <h4 class='p-heading-icon__title'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='/engage/embedded-linux-make-or-buy/' onclick='dataLayer.push({' event'
-          : 'GAEvent' , 'eventCategory' : 'product page' , 'eventAction' : 'core - left' , 'eventLabel'
-          : 'Whitepaper - Embedded Linux ' , 'eventValue' : '1' });'>Embedded Linux: make or buy?&nbsp;&rsaquo;</a></h3>
+      <h3 class='p-heading--four'><a href='/engage/embedded-linux-make-or-buy/' onclick='dataLayer.push({' event'  : 'GAEvent' , 'eventCategory' : 'product page' , 'eventAction' : 'core - left' , 'eventLabel' : 'Whitepaper - Embedded Linux ' , 'eventValue' : '1' });'>Embedded Linux: make or buy?&nbsp;&rsaquo;</a></h3>
       <!-- rtp section left end -->
     </div>
     <div class="col-4 p-divider__block">
@@ -1159,10 +1131,7 @@ meta_copydoc %}
           <h4 class='p-heading-icon__title'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='/engage/ubuntu-core-security-audit' onclick='dataLayer.push({' event'
-          : 'GAEvent' , 'eventCategory' : 'Independent security audit' , 'eventAction' : 'core - left' , 'eventLabel'
-          : 'Whitepaper - IMS Evolve ' , 'eventValue' : '1' });'>An independent security audit of Ubuntu
-          Core&nbsp;&rsaquo;</a></h3>
+      <h3 class='p-heading--four'><a href='/engage/ubuntu-core-security-audit' onclick='dataLayer.push({' event'  : 'GAEvent' , 'eventCategory' : 'Independent security audit' , 'eventAction' : 'core - left' , 'eventLabel' : 'Whitepaper - IMS Evolve ' , 'eventValue' : '1' });'>An independent security audit of Ubuntu Core&nbsp;&rsaquo;</a></h3>
       <!-- rtp section left end -->
     </div>
     <div class="col-4 p-divider__block u-no-padding--bottom">
@@ -1183,10 +1152,7 @@ meta_copydoc %}
           <h4 class='p-heading-icon__title'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='engage/ubuntu-core-and-kura' onclick='dataLayer.push({' event' : 'GAEvent'
-          , 'eventCategory' : 'product page' , 'eventAction' : 'core - center' , 'eventLabel'
-          : 'Whitepaper - Ubuntu Core and Kura - a framework for IoT gateways' , 'eventValue' : '1' });'>Ubuntu Core and
-          Kura &mdash; a framework for IoT gateways&nbsp;&rsaquo;</a></h3>
+      <h3 class='p-heading--four'><a href='engage/ubuntu-core-and-kura' onclick='dataLayer.push({' event' : 'GAEvent', 'eventCategory' : 'product page' , 'eventAction' : 'core - center' , 'eventLabel' : 'Whitepaper - Ubuntu Core and Kura - a framework for IoT gateways' , 'eventValue' : '1' });'>Ubuntu Core and Kura &mdash; a framework for IoT gateways&nbsp;&rsaquo;</a></h3>
       <!-- rtp section center end -->
     </div>
   </div>
@@ -1212,10 +1178,7 @@ meta_copydoc %}
           <h4 class='p-heading-icon__title'>Webinar</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='/engage/ubuntu-core-20-webinar' onclick='dataLayer.push({' event' : 'GAEvent'
-          , 'eventCategory' : 'product page' , 'eventAction' : 'core - left' , 'eventLabel'
-          : 'Webinar - Introuction to Ubuntu Core 20 ' , 'eventValue' : '1' });'>Introduction to Ubuntu Core
-          20&nbsp;&rsaquo;</a></h3>
+      <h3 class='p-heading--four'><a href='/engage/ubuntu-core-20-webinar' onclick='dataLayer.push({' event' : 'GAEvent', 'eventCategory' : 'product page' , 'eventAction' : 'core - left' , 'eventLabel' : 'Webinar - Introuction to Ubuntu Core 20 ' , 'eventValue' : '1' });'>Introduction to Ubuntu Core 20&nbsp;&rsaquo;</a></h3>
       <!-- rtp section left end -->
     </div>
     <div class="col-4 p-divider__block">
@@ -1234,11 +1197,7 @@ meta_copydoc %}
           <h4 class='p-heading-icon__title'>Webinar</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a class="p-link--external"
-          href='https://www.brighttalk.com/webcast/6793/402503/ubuntu-core-a-cybersecurity-analysis'
-          onclick='dataLayer.push({' event' : 'GAEvent' , 'eventCategory' : 'Independent security audit' , 'eventAction'
-          : 'core - left' , 'eventLabel' : 'Webinar - a cybersecurity analysis' , 'eventValue' : '1' });'>Ubuntu Core: a
-          cybersecurity analysis</a></h3>
+      <h3 class='p-heading--four'><a class="p-link--external" href='https://www.brighttalk.com/webcast/6793/402503/ubuntu-core-a-cybersecurity-analysis' onclick='dataLayer.push({' event' : 'GAEvent' , 'eventCategory' : 'Independent security audit' , 'eventAction' : 'core - left' , 'eventLabel' : 'Webinar - a cybersecurity analysis' , 'eventValue' : '1' });'>Ubuntu Core: a cybersecurity analysis</a></h3>
       <!-- rtp section left end -->
     </div>
     <div class="col-4 p-divider__block">
@@ -1257,10 +1216,7 @@ meta_copydoc %}
           <h4 class='p-heading-icon__title'>Webinar</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a class="p-link--external"
-          href='https://www.brighttalk.com/webcast/6793/373030/migrating-to-ubuntu-core' onclick='dataLayer.push({'
-          event' : 'GAEvent' , 'eventCategory' : 'product page' , 'eventAction' : 'core - center' , 'eventLabel'
-          : 'Webinar - Migrating to Ubuntu Core' , 'eventValue' : '1' });'>Migrating to Ubuntu Core</a></h3>
+      <h3 class='p-heading--four'><a class="p-link--external" href='https://www.brighttalk.com/webcast/6793/373030/migrating-to-ubuntu-core' onclick='dataLayer.push({'event' : 'GAEvent' , 'eventCategory' : 'product page' , 'eventAction' : 'core - center' , 'eventLabel' : 'Webinar - Migrating to Ubuntu Core' , 'eventValue' : '1' });'>Migrating to Ubuntu Core</a></h3>
       <!-- rtp section center end -->
     </div>
   </div>
@@ -1280,8 +1236,7 @@ meta_copydoc %}
     <div class="col-4 p-divider__block">
       <h4>Download Ubuntu Core</h4>
       <p>Try Ubuntu Core 20 on one of a popular development board</p>
-      <p><a class="p-button--neutral p-link--external"
-          href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/">Download and install Ubuntu Core 20</a></p>
+      <p><a class="p-button--neutral p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/">Download and install Ubuntu Core 20</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h4>Make your own Ubuntu Core device</h4>
@@ -1344,13 +1299,10 @@ meta_copydoc %}
   }
 </style>
 
-{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include
-"shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things"
-  data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/core/thank-you"
-  data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
 
