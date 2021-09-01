@@ -95,6 +95,7 @@ from webapp.advantage.views import (
     invoices_view,
     download_invoice,
     get_user_subscriptions,
+    get_last_purchase_ids,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -298,6 +299,10 @@ app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
     "/advantage/user-subscriptions", view_func=get_user_subscriptions
+)
+app.add_url_rule(
+    "/advantage/last-purchase-ids/<account_id>",
+    view_func=get_last_purchase_ids,
 )
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/account/payment-methods", view_func=payment_methods_view)

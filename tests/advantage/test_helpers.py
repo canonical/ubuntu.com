@@ -20,6 +20,7 @@ from webapp.advantage.ua_contracts.helpers import (
     is_user_subscription_cancelled,
     get_date_statuses,
     get_user_subscription_statuses,
+    extract_last_purchase_ids,
 )
 
 
@@ -476,3 +477,31 @@ class TestHelpers(unittest.TestCase):
                     )
 
                     self.assertEqual(statuses, scenario["expectations"])
+
+    def test_extract_last_purchase_ids(self):
+        subscriptions = [
+            make_subscription(period="monthly", last_purchase_id="pABC1"),
+            make_subscription(period="yearly", last_purchase_id="pABC2"),
+        ]
+
+        last_purchase_ids = extract_last_purchase_ids(subscriptions)
+
+        expectation = {
+            "monthly": "pABC1",
+            "yearly": "pABC2",
+        }
+
+        self.assertEqual(last_purchase_ids, expectation)
+
+        subscriptions = [
+            make_subscription(period="monthly", last_purchase_id="pABC1"),
+        ]
+
+        last_purchase_ids = extract_last_purchase_ids(subscriptions)
+
+        expectation = {
+            "monthly": "pABC1",
+            "yearly": "",
+        }
+
+        self.assertEqual(last_purchase_ids, expectation)

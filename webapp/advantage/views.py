@@ -14,7 +14,10 @@ from webapp.decorators import advantage_checks
 from webapp.login import user_info
 from webapp.advantage.flaskparser import use_kwargs
 from webapp.advantage.ua_contracts.builders import build_user_subscriptions
-from webapp.advantage.ua_contracts.helpers import to_dict
+from webapp.advantage.ua_contracts.helpers import (
+    to_dict,
+    extract_last_purchase_ids,
+)
 from webapp.advantage.ua_contracts.api import (
     UAContractsAPI,
     CannotCancelLastContractError,
@@ -310,7 +313,6 @@ def get_user_subscriptions(**kwargs):
         session,
         token,
         api_url=api_url,
-        is_for_view=True,
         convert_response=True,
     )
 
@@ -336,6 +338,29 @@ def get_user_subscriptions(**kwargs):
     user_subscriptions = build_user_subscriptions(user_summary, listings)
 
     return flask.jsonify(to_dict(user_subscriptions))
+
+
+@advantage_checks(["need_user"])
+@use_kwargs({"account_id": String()}, location="query")
+def get_last_purchase_ids(account_id, **kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
+
+    advantage = UAContractsAPI(
+        session,
+        token,
+        api_url=api_url,
+        convert_response=True,
+    )
+
+    subscriptions = advantage.get_account_subscriptions(
+        account_id=account_id,
+        marketplace="canonical-ua",
+    )
+
+    last_purchase_ids = extract_last_purchase_ids(subscriptions)
+
+    return flask.jsonify(last_purchase_ids)
 
 
 @advantage_checks(check_list=["is_maintenance"])
