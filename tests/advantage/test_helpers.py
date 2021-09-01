@@ -478,7 +478,7 @@ class TestHelpers(unittest.TestCase):
 
                     self.assertEqual(statuses, scenario["expectations"])
 
-    def test_get_last_purchase_ids(self):
+    def test_extract_last_purchase_ids(self):
         subscriptions = [
             make_subscription(period="monthly", last_purchase_id="pABC1"),
             make_subscription(period="yearly", last_purchase_id="pABC2"),
