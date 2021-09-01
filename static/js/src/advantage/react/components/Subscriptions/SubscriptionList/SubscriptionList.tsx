@@ -38,23 +38,25 @@ const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
     select: selectFreeContract,
   });
   const freeContract = getFreeContractData(freeContractData);
+  const uaSubscriptions = [...Array(20)].map((_, i) => (
+    <ListCard
+      created="2021-07-09T07:14:56Z"
+      expires="2021-07-09T07:14:56Z"
+      features={["ESM Infra", "livepatch", "24/5 support"]}
+      isSelected={selectedToken === `ua-sub-${i}`}
+      key={i}
+      label="Annual"
+      machines={10}
+      onClick={() => {
+        onSetActive(`ua-sub-${i}`);
+      }}
+      title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    />
+  ));
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
-        <ListGroup title="Ubuntu Advantage">
-          <ListCard
-            created="2021-07-09T07:14:56Z"
-            expires="2021-07-09T07:14:56Z"
-            features={["ESM Infra", "livepatch", "24/5 support"]}
-            isSelected={selectedToken === "ua-sub-123"}
-            label="Annual"
-            machines={10}
-            onClick={() => {
-              onSetActive("ua-sub-123");
-            }}
-            title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-          />
-        </ListGroup>
+        <ListGroup title="Ubuntu Advantage">{uaSubscriptions}</ListGroup>
         {freeContract ? (
           <ListGroup title="Free personal token">
             <ListCard

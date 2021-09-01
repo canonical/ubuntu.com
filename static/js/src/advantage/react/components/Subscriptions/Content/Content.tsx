@@ -32,7 +32,7 @@ const Content = () => {
       // https://github.com/canonical-web-and-design/commercial-squad/issues/101
       // This only sets the selected token and does not set the modal to active
       // to prevent the modal appearing on first load on mobile.
-      setSelectedToken("ua-sub-123");
+      setSelectedToken("ua-sub-0");
     }
   }, [selectedToken, setSelectedToken]);
 
