@@ -245,24 +245,18 @@ class UAContractsAPI:
         payment_method_id: str = "",
         country: str = "",
     ) -> dict:
-        try:
-            response = self._request(
-                method="post",
-                path="v1/purchase-account",
-                json={
-                    "email": email,
-                    "name": account_name,
-                    "defaultPaymentMethod": {"Id": payment_method_id},
-                    "address": {"country": country},
-                },
-            )
-        except HTTPError as err:
-            # Raise an UnauthorizedError in case of unauthorized response.
-            if email and payment_method_id and err.response.status_code == 401:
-                resp = err.response.json()
-                raise UnauthorizedError(resp["code"], resp["message"])
-            # Re-raise the same error otherwise.
-            raise
+        response = self._request(
+            method="post",
+            path="v1/purchase-account",
+            json={
+                "email": email,
+                "name": account_name,
+                "defaultPaymentMethod": {"Id": payment_method_id},
+                "address": {"country": country},
+            },
+            error_rules=["default", "ensure-purchase-account"]
+        )
+
         return response.json()
 
     def get_purchase_account(self):
@@ -339,6 +333,9 @@ class UAContractsAPI:
             if "cannot remove all subscription items" in message:
                 raise CannotCancelLastContractError(error)
 
+        if "ensure-purchase-account" in error_rules and status_code == 401:
+            raise UnauthorizedError(error)
+
         if "no-found" in error_rules and status_code == 404:
             raise UAContractsUserHasNoAccount(error)
 
@@ -348,18 +345,9 @@ class UAContractsAPI:
             raise UAContractsAPIError(error)
 
 
-class UnauthorizedError(Exception):
-    """An error representing an unauthorized request."""
-
-    def __init__(self, code, message):
-        self.code = code
-        self.message = message
-
-    def __str__(self):
-        return f"unauthorized error: {self.code}: {self.message}"
-
-    def asdict(self):
-        return self.__dict__
+class UnauthorizedError(HTTPError):
+    def __init__(self, error: HTTPError):
+        super().__init__(request=error.request, response=error.response)
 
 
 class CannotCancelLastContractError(HTTPError):

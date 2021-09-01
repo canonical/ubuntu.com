@@ -7,6 +7,7 @@ from webapp.advantage.ua_contracts.api import (
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
     CannotCancelLastContractError,
+    UnauthorizedError,
 )
 from webapp.advantage.models import Listing
 from webapp.advantage.ua_contracts.primitives import (
@@ -1264,4 +1265,63 @@ class TestPostSubscriptionAutoRenewal(unittest.TestCase):
         }
 
         self.assertEqual(response, {})
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestEnsurePurchaseAccount(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UnauthorizedError),
+            (401, True, UnauthorizedError),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "bad request"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.ensure_purchase_account(
+                    email="email@url",
+                    account_name="Joe Doe",
+                    payment_method_id="pm_abcdef",
+                    country="GB",
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_ensure_account = get_fixture("ensured-account")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_ensure_account,
+            )
+        )
+        client = make_client(session)
+
+        response = client.ensure_purchase_account(
+            email="email@url",
+            account_name="Joe Doe",
+            payment_method_id="pm_abcdef",
+            country="GB",
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {
+                "address": {"country": "GB"},
+                "defaultPaymentMethod": {"Id": "pm_abcdef"},
+                "email": "email@url",
+                "name": "Joe Doe",
+            },
+            "method": "post",
+            "params": None,
+            "url": "https://1.2.3.4/v1/purchase-account",
+        }
+
+        self.assertEqual(response, json_ensure_account)
         self.assertEqual(session.request_kwargs, expected_args)

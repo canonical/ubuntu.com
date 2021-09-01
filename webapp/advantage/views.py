@@ -870,12 +870,13 @@ def ensure_purchase_account(**kwargs):
             payment_method_id=payment_method_id,
             country=country,
         )
-    except UnauthorizedError as err:
-        # This kind of errors are handled js side.
-        return err.asdict(), 200
-    except HTTPError as err:
-        flask.current_app.extensions["sentry"].captureException()
-        return err.response.content, 500
+    except UnauthorizedError as error:
+        response = {
+            "code": error.response.json()["code"],
+            "message": error.response.json()["message"],
+        }
+
+        return flask.jsonify(response), 200
 
     # The guest authentication token is included in the response only when the
     # user is not logged in.
