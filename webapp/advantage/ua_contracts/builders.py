@@ -1,4 +1,6 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
+
+from dateutil.parser import parse
 
 from webapp.advantage.ua_contracts.helpers import (
     group_items_by_listing,
@@ -132,3 +134,21 @@ def build_final_user_subscriptions(
         user_subscriptions.append(user_subscription)
 
     return user_subscriptions
+
+
+def build_get_user_info(user_summary: dict = None) -> dict:
+    subscription: Optional[Subscription] = user_summary["subscription"]
+
+    if subscription is None:
+        return {"has_monthly_subscription": False}
+
+    renewal_info = user_summary["renewal_info"]
+
+    return {
+        "has_monthly_subscription": True,
+        "is_renewing": subscription.is_renewing,
+        "last_payment_date": renewal_info["subscriptionStartOfCycle"],
+        "next_payment_date": renewal_info["subscriptionEndOfCycle"],
+        "total": renewal_info["total"],
+        "currency": renewal_info["currency"],
+    }
