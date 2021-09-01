@@ -6,6 +6,17 @@
 
 {% block content %}
 
+<style>
+  .p-logo-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2.4rem;
+    padding-right: 2rem;
+    padding-top: 3rem;
+  }
+</style>
+
 <section class="p-strip--suru-bottomed">
   <div class="row u-equal-height">
     <div class="col-4">
@@ -363,46 +374,44 @@
 </section>
 
 <section class="p-strip">
-  <div class="row">
+  <div class="row u-sv2">
     <div class="col-6">
-      <ul class="p-inline-images u-hide--small u-no-margin--bottom" style=" margin-top: 20px;text-align: left;">
-        <li class="p-inline-images__item" style="margin: 1rem .75rem 1rem 0;">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/f6a59799-partner-logo-arm.svg",
-              alt="",
-              height="34",
-              width="112",
-              hi_def=True,
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item" style="margin: 1rem .75rem;">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
-              alt="",
-              height="324",
-              width="1701",
-              hi_def=True,
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item" style="margin: 1rem .75rem;">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg",
-              alt="",
-              height="225",
-              width="340",
-              hi_def=True,
-              attrs={"class": "p-inline-images__logo", "style": "max-height: 4rem;"},
-            ) | safe
-          }}
-        </li>
-      </ul>
+      <div class="p-logo-header u-hide--small">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/f6a59799-partner-logo-arm.svg",
+            alt="ARM",
+            height="17",
+            width="56",
+            hi_def=True,
+          ) | safe
+        }}    
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
+            alt="Nvidia",
+            height="26",
+            width="136",
+            hi_def=True,
+          ) | safe
+        }}        
+        {{ image (
+          url="https://assets.ubuntu.com/v1/ab843223-Intel.svg",
+          alt="Intel",
+          width="50",
+          height="33",
+          hi_def=True,
+          ) | safe
+        }}   
+        {{ image (
+          url="https://assets.ubuntu.com/v1/22011fee-Xilinx_logo.svg.png",
+          alt="Xilinx",
+          width="102",
+          height="21",
+          hi_def=True,
+          ) | safe
+        }}
+      </div>
       <h2 class="p-heading--five">ARM and X86</h2>
       <p class="p-heading--two">The right silicon for every subsystem</p>
       <p>We optimise Ubuntu for major silicon architectures, so you can choose the best ECU platform anywhere.</p>
@@ -416,6 +425,7 @@
           height="120",
           width="96",
           hi_def=True,
+          attrs={"class": "u-hide--small"},
         ) | safe
       }}
       <h2 class="p-heading--five">Open source 2.0</h2>
@@ -424,10 +434,7 @@
       <p>Develop on Ubuntu today and pick your platform later.</p>
     </div>
   </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
+  <div class="row u-sv2">
     <div class="col-6">
       {{
         image(
@@ -436,6 +443,7 @@
           height="120",
           width="201",
           hi_def=True,
+          attrs={"class": "u-hide--small"}
         ) | safe
       }}
       <h2 class="p-heading--five">Safety first</h2>
@@ -452,6 +460,7 @@
           height="120",
           width="120",
           hi_def=True,
+          attrs={"class": "u-hide--small"},
         ) | safe
       }}
       <h2 class="p-heading--five">Long term support</h2>
@@ -462,10 +471,7 @@
       <p>A new world of constant car improvement.</p>
     </div>
   </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
+  <div class="row u-sv2">
     <div class="col-6">
       {{
         image(
@@ -474,6 +480,7 @@
           height="120",
           width="198",
           hi_def=True,
+          attrs={"class": "u-hide--small"},
         ) | safe
       }}
       <h2 class="p-heading--five">Open source licensing</h2>
@@ -490,6 +497,7 @@
           height="120",
           width="210",
           hi_def=True,
+          attrs={"class": "u-hide--small"},
         ) | safe
       }}
       <h2 class="p-heading--five">Connected car security</h2>
