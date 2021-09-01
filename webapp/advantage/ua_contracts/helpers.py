@@ -91,6 +91,7 @@ def get_user_subscription_statuses(
         "is_expired": False,
         "is_trialled": False,
         "is_renewable": False,
+        "has_pending_purchases": False,
     }
 
     if type == "free":
@@ -101,8 +102,12 @@ def get_user_subscription_statuses(
     statuses["is_in_grace_period"] = date_statuses["is_in_grace_period"]
     statuses["is_expired"] = date_statuses["is_expired"]
 
+    if statuses["is_expired"]:
+        return statuses
+
     subscriptions = subscriptions or []
-    if has_pending_purchases(subscriptions) or statuses["is_expired"]:
+    if has_pending_purchases(subscriptions):
+        statuses["has_pending_purchases"] = True
         return statuses
 
     if type == "trial":
