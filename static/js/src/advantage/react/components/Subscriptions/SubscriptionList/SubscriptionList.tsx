@@ -22,18 +22,20 @@ const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
   if (isLoadingFree || !freeSubscription) {
     return <Spinner />;
   }
+  const uaSubscriptions = [...Array(20)].map((_, i) => (
+    <ListCard
+      isSelected={selectedToken === `ua-sub-${i}`}
+      key={i}
+      onClick={() => {
+        onSetActive(`ua-sub-${i}`);
+      }}
+      subscription={freeSubscription}
+    />
+  ));
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
-        <ListGroup title="Ubuntu Advantage">
-          <ListCard
-            isSelected={selectedToken === "ua-sub-123"}
-            onClick={() => {
-              onSetActive("ua-sub-123");
-            }}
-            subscription={freeSubscription}
-          />
-        </ListGroup>
+        <ListGroup title="Ubuntu Advantage">{uaSubscriptions}</ListGroup>
         {freeSubscription ? (
           <ListGroup title="Free personal token">
             <ListCard
