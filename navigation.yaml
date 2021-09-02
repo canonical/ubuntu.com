@@ -1478,9 +1478,11 @@ security:
       path: /security/esm
     - title: Livepatch
       path: /security/livepatch
+      persist: True
     - title: Certifications & Hardening
       path: /security/certifications
       persist: True
+
 
       children:
         - title: FIPS
