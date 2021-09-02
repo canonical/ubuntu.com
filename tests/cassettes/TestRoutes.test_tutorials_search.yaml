@@ -101,6 +101,1175 @@ interactions:
       code: 200
       message: OK
 - request:
+    body: params=%7B%22topics%22%3A%2223592%2C22471%2C22847%2C22119%2C22009%2C21809%2C21549%2C20118%2C19891%2C19539%2C21214%2C21284%2C20652%2C20653%2C19131%2C18925%2C18468%2C14000%2C18521%2C17847%2C17675%2C17919%2C17647%2C17214%2C16437%2C16699%2C16010%2C15153%2C14792%2C14660%2C14646%2C14304%2C13618%2C13996%2C13998%2C13982%2C13970%2C13981%2C13978%2C13967%2C13979%2C13973%2C13972%2C13968%2C13980%2C14015%2C14021%2C14008%2C14016%2C14011%2C14020%2C14018%2C14009%2C14010%2C14019%2C14013%2C14017%2C14014%2C14012%2C13995%2C13983%2C13990%2C13989%2C13992%2C13993%2C13991%2C13994%2C13988%2C14006%2C13985%2C13984%2C13965%2C13956%2C13964%2C13951%2C13945%2C13955%2C13952%2C13948%2C13959%2C13963%2C13950%2C13949%2C13958%2C13960%2C13957%2C13953%2C13961%2C13954%2C13947%2C14270%2C14271%2C14273%2C14306%22%7D
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - '783'
+      Content-Type:
+      - multipart/form-data;
+    method: POST
+    uri: https://discourse.ubuntu.com/admin/plugins/explorer/queries/2/run
+  response:
+    body:
+      string: "{\"success\":true,\"errors\":[],\"duration\":16.3,\"result_count\":94,\"params\":{\"topics\":\"23592,22471,22847,22119,22009,21809,21549,20118,19891,19539,21214,21284,20652,20653,19131,18925,18468,14000,18521,17847,17675,17919,17647,17214,16437,16699,16010,15153,14792,14660,14646,14304,13618,13996,13998,13982,13970,13981,13978,13967,13979,13973,13972,13968,13980,14015,14021,14008,14016,14011,14020,14018,14009,14010,14019,14013,14017,14014,14012,13995,13983,13990,13989,13992,13993,13991,13994,13988,14006,13985,13984,13965,13956,13964,13951,13945,13955,13952,13948,13959,13963,13950,13949,13958,13960,13957,13953,13961,13954,13947,14270,14271,14273,14306\"},\"columns\":[\"id\",\"title\",\"slug\",\"left\"],\"default_limit\":1000,\"relations\":{},\"colrender\":{},\"rows\":[[23592,\"Using
+        Azure AD to manage SSH logins to Ubuntu\",\"using-azure-ad-to-manage-ssh-logins-to-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        about managing SSH logins for Ubuntu virtual machines on Azure using Azure
+        Active Directory.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud,
+        azure\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAaron
+        Whitehouse \\u0026lt;\\u003ca href=\\\"mailto:aaron.whitehouse@canonical.com\\\"\\u003eaaron.whitehouse@canonical.com\\u003c/a\\u003e\\u0026gt;\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, you will learn how
+        to use Azure Active Directory (Azure AD) to manage SSH logins for Ubuntu virtual
+        machines (VMs) on Azure.\\u003c/p\\u003e\\n\\u003cp\\u003eWe will use \\u003ca
+        href=\\\"https://ubuntu.com/azure/pro\\\" rel=\\\"noopener nofollow ugc\\\"\\u003eUbuntu
+        Pro\\u003c/a\\u003e VMs, as these are normally the most appropriate starting
+        point for somebody who would be interested in managing their logins with Azure
+        AD, but what we will learn would also apply to Ubuntu Server LTS VMs.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        \"],[22471,\"Ubuntu Core: Preparing a virtual machine with graphics support\",\"ubuntu-core-preparing-a-virtual-machine-with-graphics-support\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eA
+        guide to setting up an Ubuntu Core virtual machine with support for hardware
+        graphics using qemu-virgil.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"mailto:alan.griffiths@canonical.com\\\"\\u003ealan.griffiths@canonical.com\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch1\\u003eUbuntu
+        Core: Preparing a virtual machine with graphics support\\u003c/h1\\u003e\\n\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:30\\u003c/p\\u003e\\n\\u003cp\\u003eWhen developing for Ubuntu Core it is
+        often convenient to work in a virtual machine [VM]. Unfortunately, the archive
+        build of qemu on Ubuntu doesn\u2019t support graphics passthrough. This is
+        a quick guide to setting up an Ubuntu Core VM using \\u003ca href=\\\"https://snapcraft.io/qemu-virgil\\\"\\u003eqemu-virgil\\u003c/a\\u003e.\\u003c/p\\u003e\\n\\u003ch2\\u003eSetup
+        qemu with graphics support\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration: 1:00\\u003c/p\\u003e\\n\\u003cp\\u003eAs
+        the default build of qemu on Ubuntu doesn\u2019t supp\"],[22847,\"Using the
+        UA Client to enable FIPS\",\"using-the-ua-client-to-enable-fips\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to use the UA client to enable FIPS cryptographic modules on Ubuntu.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver,
+        security\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCustomer
+        Success Team \\u003ca href=\\\"mailto:customersuccess@canonical.com\\\"\\u003ecustomersuccess@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat is FIPS?\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca
+        href=\\\"https://ubuntu.com/security/certifications#fips\\\" rel=\\\"noopener
+        nofollow ugc\\\"\\u003eFIPS 140-2\\u003c/a\\u003e is a US government computer
+        security standard. It defines security requirements related to the design
+        and implementation of cryptographic modules. It is a requirement for U.S.
+        Federal agencies to use FIPS 140-2 validated cryptography to protect sensitive
+        information. Canonical\u2019s FIPS 140-2 Certified Modules are available to
+        customers who have purchased qualifying\"],[22119,\"Using the UA client to
+        enable the CIS benchmarking tool\",\"using-the-ua-client-to-enable-the-cis-benchmarking-tool\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to use the UA client to access and enable the CIS benchmarking tool on Ubuntu
+        and Ubuntu Pro images.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver,
+        desktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAlyson
+        Richens \\u0026lt;alyson@richens@canonical.com\\u0026gt;\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat is the CIS benchmarking tool?\\u003c/h3\\u003e\\n\\u003cp\\u003eThe
+        \\u003ca href=\\\"https://ubuntu.com/security/certifications#cis\\\" rel=\\\"noopener
+        nofollow ugc\\\"\\u003eCenter for Internet Security\\u003c/a\\u003e (CIS)
+        has \\u003ca href=\\\"https://www.cisecurity.org/cis-benchmarks/\\\" rel=\\\"noopener
+        nofollow ugc\\\"\\u003epublished hardening benchmarks\\u003c/a\\u003e for
+        all Ubuntu LTS versions since Ubuntu 12.04 LTS. These hardening benchmarks
+        are meant to be best-practice security configurations. Canonical has developed
+        a tool that automates the process of hardening and auditing \"],[22009,\"How
+        to use Raspberry Pi GPIO pins with Ubuntu\",\"how-to-use-raspberry-pi-gpio-pins-with-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eTake
+        control of the GPIO pins of your Raspberry Pi. This tutorial will show you
+        ho to get started with the LGPIO library, including examples using basic GPIO
+        control, I\xB2C, PWM, and SPI.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eRhys
+        Davies \\u003ca href=\\\"mailto:rhys.davies@canonical.com\\\"\\u003erhys.davies@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8 This
+        tutorial originally appeared on \\u003ca href=\\\"https://blogjawn.stufftoread.com/lgpio-tutorial.html\\\"
+        rel=\\\"noopener nofollow ugc\\\"\\u003eWilliam Wilson\u2019s (jawn-smith)
+        blog\\u003c/a\\u003e and was contributed and modified here with permission.\\u003c/p\\u003e\\n\\u003c/blockquote\\u003e\\n\\u003cp\\u003eAs
+        of Linux kernel 5.11, the old methods of communicating with header pins on
+        the Raspberry Pi no longer work. This means packages such as RPi.GPIO n\"],[21809,\"Purchasing
+        and Applying 16.04 ESM from the Azure Marketplace\",\"purchasing-and-applying-16-04-esm-from-the-azure-marketplace\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to purchase Extended Security Maintenance from the Azure Marketplace and apply
+        this to your Ubuntu 16.04 Azure VMs.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud,
+        azure\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAaron
+        Whitehouse \\u0026lt;\\u003ca href=\\\"mailto:aaron.whitehouse@canonical.com\\\"\\u003eaaron.whitehouse@canonical.com\\u003c/a\\u003e\\u0026gt;\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eUbuntu 16.04 LTS Xenial Xerus has been
+        available since 2016, with many organisations adopting it for enterprise use
+        on Azure.\\u003c/p\\u003e\\n\\u003cp\\u003eIn April 2021, Ubuntu 16.04 LTS
+        will reach the end of its standard, five-year security maintenance period.
+        After this point, security patches for Ubuntu 16.04 LTS will only be available
+        under Canonical\u2019s Extended Security Maintenance (ESM) offering, with
+        security patches provided for an additional three year\"],[21549,\"Gitlab
+        CI/CD pipelines with MicroK8s\",\"gitlab-ci-cd-pipelines-with-microk8s\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eIn
+        this tutorial, you will learn how to integrate Gitlab with Microk8s and set
+        up a CI/CD pipeline in order to automatically build, test and deploy your
+        projects.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud,
+        containers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAlex
+        Chalkias \\u003ca href=\\\"mailto:alex.chalkias@canonical.com\\\"\\u003ealex.chalkias@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eSetting up a CI/CD pipeline can be a
+        difficult thing when you have multiple developer teams that want to maintain
+        their focus on the product. Luckily there is a way to integrate Gitlab with
+        Microk8s to automatically build, test and deploy your projects.\\u003cbr\\u003e\\nMicrok8s
+        is a lightweight, production-grade, conformant Kubernetes. Microk8s defaults
+        to the most widely used Kubernetes options, so it \u2018just works\u2019 wit\"],[21284,\"Deploy
+        Portainer on Charmed Kubernetes\",\"deploy-portainer-on-charmed-kubernetes\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eUsing
+        Portainer to manage Canonical Charmed Kubernetes\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud,
+        containers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e4\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003ePortainer\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eIf you feel intimidated by Kubernetes\u2019
+        complexity but still need to modernize your business applications with containers,
+        rest assured you\u2019re not the only one. The container orchestration platform
+        solves many problems but also creates new ones, so read on to find out about
+        a new approach that can help you get just the benefits.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eWhat
+        is Charmed Kubernetes?\\u003c/strong\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003eCharmed
+        Kubernetes is Canonical\u2019s pure upstream Kubernetes for datacenters. It
+        allows tailoring Kubernetes deployments as it supports multiple cloud infrastructures
+        and a large selection of the CNCF landscape to\"],[21214,\"Install Kubeflow
+        on Azure Kubernetes Service (AKS)\",\"install-kubeflow-on-azure-kubernetes-service-aks\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eGuide
+        to installing Kubeflow on Azure Kubernetes Service (AKS)\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud
+        , community , containers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"mailto:rui.vasconcelos@canonical.com\\\"\\u003erui.vasconcelos@canonical.com\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:40\\u003c/p\\u003e\\n\\u003cp\\u003eKubeflow is a novel open-source tool
+        for end-to-end Machine Learning on top Kubernetes. It has great powers, however,
+        as it is composed of 30+ microservices, it can be challenging to deploy and
+        operate.\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, we show how to
+        get started with Kubeflow on Azure Kubernetes Service (AKS) in a few simple
+        steps.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca
+        class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/9/9742a9134c7c6edf73bf9c069cdc171a42181773.png\\\"
+        data\"],[20653,\"How to boot Ubuntu Core in recovery mode\",\"how-to-boot-ubuntu-core-in-recovery-mode\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eUbuntu
+        Core can be booted into normal, recovery and reinstall modes. This tutorial
+        will show you how to make use of this feature for debugging production issues
+        and reverting a system to \u201Cfactory\u201D defaults.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"mailto:david.beamonte@canonical.com\\\"\\u003edavid.beamonte@canonical.com\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eIn
+        this tutorial we cover device recovery fundamentals on Ubuntu Core and show
+        you how to use the different recovery modes offered by Ubuntu Core for restoring
+        a device to a safe system.\\u003c/p\\u003e\\n\\u003cp\\u003eBear in mind,
+        Ubuntu Core is production-friendly, not necessarily developer-friendly. We
+        recommend you use Ubuntu Core for \u201Cfire and forget\u201D purposes where
+        you won\u2019t want to iterate on the software.\\u003c/p\\u003e\\n\\u003cp\\u003eWith
+        Ubuntu Cor\"],[20652,\"Enabling secure boot and full disk encryption on Ubuntu
+        Core\",\"enabling-secure-boot-and-full-disk-encryption-on-ubuntu-core\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to enable Full Disk Encryption (FDE) and Secure Boot on Ubuntu Core for
+        devices with Trusted Platform Module (TPM) support.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"mailto:david.beamonte@canonical.com\\\"\\u003edavid.beamonte@canonical.com\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, we will show the simplicity
+        of the process of enabling Full Disk Encryption (FDE) and Secure Boot on Ubuntu
+        Core on platforms with Trusted Platform Module (TPM) support. A quick introduction
+        for understanding the concepts and a simple walk through the process of preparing
+        and flashing an Intel NUC image, will be followed.\\u003c/p\\u003e\\n\\u003cp\\u003eFDE
+        and Secure Boot are key security features which have been incorporated into
+        Ubuntu Core 20 release, complementing\"],[20118,\"How to build a Ceph backed
+        Kubernetes cluster\",\"how-to-build-a-ceph-backed-kubernetes-cluster\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eIn
+        this tutorial, you will learn how to deploy a 3 node Charmed Kubernetes cluster
+        that uses Ceph storage. We will use Juju and MAAS to deploy our cluster.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud,
+        containers, server\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e5\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eSyed
+        Mohammad Adnan Karim \\u003ca href=\\\"mailto:syed.karim@canonical.com\\\"\\u003esyed.karim@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, you will learn how
+        to deploy a 3 node Charmed Kubernetes cluster that uses Ceph storage. We will
+        use Juju and MAAS to deploy our cluster.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        is Kubernetes?\\u003c/h3\\u003e\\n\\u003cp\\u003eKubernetes clusters host
+        containerised applications in a reliable and scalable way.  Having DevOps
+        in mind, Kubernetes makes maintenance tasks such as upgrades and security
+        patching simple.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat is Ceph?\"],[19891,\"How
+        to protect your real-time document co-editing with end-to-end encryption on
+        ONLYOFFICE Workspace\",\"how-to-protect-your-real-time-document-co-editing-with-end-to-end-encryption-on-onlyoffice-workspace\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eThis
+        guide will describe how to install and make operational all necessary elements
+        to enable end-to-end encrypted online document co-editing\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMaria
+        Pashkina \\u003ca href=\\\"mailto:maria.pashkina@gmail.com\\\"\\u003emaria.pashkina@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eThe full-featured self-hosted solution
+        (former ONLYOFFICE), presented in \\u003ca href=\\\"https://ubuntu.com/tutorials/install-onlyoffice-on-ubuntu1804#1-introduction\\\"\\u003ethis
+        article\\u003c/a\\u003e, gets a new name: it\u2019s called now ONLYOFFICE
+        Workspace. This open-source suite comprises:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003e\\n\\u003cem\\u003eONLYOFFICE
+        Docs\\u003c/em\\u003e - online editors for documents, spreadsheets, and presentations;\\u003c/li\\u003e\\n\\u003cli\\u003e\\n\\u003cem\\u003eONLYOFFICE
+        Groups\\u003c/em\\u003e - productivity apps for managing docume\"],[19539,\"How
+        to integrate Nuxeo with ONLYOFFICE Docs on Ubuntu\",\"how-to-integrate-nuxeo-with-onlyoffice-docs-on-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eIn
+        this tutorial, we will describe how to install the ONLYOFFICE integration
+        app for Nuxeo to connect these services and thus provide Nuxeo users with
+        self-hosted and feature-rich online document editors\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMaria
+        Pashkina \\u003ca href=\\\"mailto:maria.pashkina@gmail.com\\\"\\u003emaria.pashkina@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eWe continue a series of our handy tutorials
+        about the integration of an open-source office suite \\u003ca href=\\\"https://onlyoffice.com/office-suite.aspx\\\"\\u003eONLYOFFICE
+        Docs\\u003c/a\\u003e into third-party web services. Distributed under AGPLv.3
+        license, ONLYOFFICE Docs includes editors for text documents, spreadsheets,
+        and presentations that offer a full set of editing and formatting tools:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cl\"],[19131,\"How
+        to integrate Confluence with ONLYOFFICE Docs on Ubuntu\",\"how-to-integrate-confluence-with-onlyoffice-docs-on-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eIn
+        this tutorial, we will describe how you can enable ONLYOFFICE Docs in \\u003ca
+        href=\\\"https://www.atlassian.com/software/confluence\\\"\\u003eConfluence\\u003c/a\\u003e,
+        a collaborative software developed by Atlassian.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMaria
+        Pashkina \\u003ca href=\\\"mailto:maria.pashkina@gmail.com\\\"\\u003emaria.pashkina@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eWe continue our series of articles about
+        the integration of the ONLYOFFICE online editors into open-source web services.
+        This office suite has recently got a new name: it\u2019s called now \\u003ca
+        href=\\\"https://onlyoffice.com/office-suite.aspx\\\"\\u003eONLYOFFICE Docs\\u003c/a\\u003e.
+        In the previous articles, you have learned how to connect online editors to
+        \\u003ca href=\\\"https://ubuntu.com/tutorials/how-to-integrate-alfresco\"],[18925,\"How
+        to install Ubuntu Desktop on Raspberry Pi 4\",\"how-to-install-ubuntu-desktop-on-raspberry-pi-4\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eA
+        complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (4GB or 8GB).\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot,
+        desktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"mailto:rhys.davies@canonical.com\\\"\\u003erhys.davies@canonical.com\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, we walk you through
+        the process of installing Ubuntu Desktop on a Raspberry Pi. If you are looking
+        to\\u003ca href=\\\"https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview\\\"\\u003e
+        install Ubuntu Server on your Raspberry Pi, you can follow this link to that
+        tutorial\\u003c/a\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca
+        class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/2/2511fa286925ecffed668aa4580c518644f0fb01.jpeg\\\"
+        data-download-href=\\\"/uploads/short-\"],[18521,\"How to build a highly available
+        Kubernetes cluster with MicroK8s\",\"how-to-build-a-highly-available-kubernetes-cluster-with-microk8s\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to build and deploy a highly available Kubernetes cluster using the MicroK8s
+        HA feature\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eIn
+        this tutorial, you\u2019ll learn how to create a highly available Kubernetes
+        cluster using the MicroK8s HA feature. Instead of using several machines or
+        a public cloud to host the cluster, you\u2019ll learn how to use Multipass
+        as a basis for a local cloud.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat is Kubernetes?\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca
+        href=\\\"https://ubuntu.com/kubernetes/what-is-kubernetes\\\"\\u003eKubernetes\\u003c/a\\u003e
+        clusters host containerised applications in a reliable and scalable way. Having
+        DevOps in mind, Kubernetes makes maintenance tasks such as upgrades and security
+        patching \"],[18468,\"Install Istio on Charmed Distribution of Kubernetes\",\"install-istio-on-charmed-distribution-of-kubernetes\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eThis
+        tutorial will guide you on installing Istio on your Charmed Distribution of
+        Kubernetes (CDK).\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud,
+        containers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMarcelo
+        Marcal \\u003ca href=\\\"mailto:marcelo.marcal@canonical.com\\\"\\u003emarcelo.marcal@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIt is undeniable the advantages that
+        cloud computing offers to companies of all sizes but brings DevOps the duty
+        of maintaining and securing more complex deployments in a heterogeneous cloud
+        environment.\\u003c/p\\u003e\\n\\u003cp\\u003eThe opensource framework Istio
+        helps connect, monitor, and secure microservices, including services running
+        on Kubernetes Engine without requiring any service code changes.\\u003c/p\\u003e\\n\\u003cp\\u003eThis
+        tutorial will guide you on installing Istio on your Charmed Distribution of\"],[17919,\"How
+        to use the AdGuard Home Ubuntu Appliance\",\"how-to-use-the-adguard-home-ubuntu-appliance\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to install Adguard Home on a Raspberry Pi 2, 3 or 4, using an Ubuntu Appliance
+        for automated updates.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eRhys
+        Davies \\u003ca href=\\\"mailto:rhys.davies@canonical.com\\\"\\u003erhys.davies@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eIn
+        this tutorial, we walk you through the process of installing the AdGuard Home
+        Ubuntu Appliance on a Raspberry Pi, getting set up, and making the most of
+        AdGuard Home. For instructions on Windows or macOS, or instructions for the
+        Intel NUC or virtualisation you can follow the steps \\u003ca href=\\\"http://ubuntu.com/appliance/nextcloud\\\"\\u003eon
+        our website\\u003c/a\\u003e.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca
+        class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/d/dd7dbe1e710ba6c1ea6b9d64\"],[17847,\"Getting
+        Started with ROS 2\",\"getting-started-with-ros-2\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eGet
+        familiar with the Robot Operating System version 2 (ROS 2) on Ubuntu\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"mailto:robotics@lists.canonical.com\\\"\\u003erobotics@lists.canonical.com\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca
+        class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/c/cd3a87f3848f47f7ef7097648d6ee79f5793b341.jpeg\\\"
+        data-download-href=\\\"/uploads/short-url/thxhAnPdzzKIWXipopGO9rbZ7Hj.jpeg?dl=1\\\"
+        title=\\\"BlankChalkboard\\\"\\u003e\\u003cimg src=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/optimized/2X/c/cd3a87f3848f47f7ef7097648d6ee79f5793b341_2_690x478.jpeg\\\"
+        alt=\\\"BlankChalkboard\\\" data-base62-sha1=\\\"thxhAnPdzzKIWXipopGO9rbZ7Hj\\\"
+        width=\"],[17675,\"How to integrate ONLYOFFICE with Moodle on Ubuntu\",\"how-to-integrate-onlyoffice-with-moodle-on-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eThis
+        guide will describe how to connect ONLYOFFICE and Moodle instances to each
+        other via the integration app that enables multiple users to collaboratively
+        edit office documents from Moodle in real time using ONLYOFFICE Document Server,
+        and to save back those changes back to Moodle.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMaria
+        Pashkina \\u003ca href=\\\"mailto:maria.pashkina@gmail.com\\\"\\u003emaria.pashkina@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://www.onlyoffice.com\\\"\\u003eONLYOFFICE\\u003c/a\\u003e
+        is a free open-source office suite distributed under GNU AGPL v3.0. It comprises
+        web-based collaborative editors for text documents, spreadsheets, and presentations
+        for integration with multiple cloud storage services like Nextcloud (for more
+        details, \"],[17647,\"How to use the Nextcloud Ubuntu Appliance with Collabora
+        Online on an Intel NUC\",\"how-to-use-the-nextcloud-ubuntu-appliance-with-collabora-online-on-an-intel-nuc\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eA
+        guide to install the Nextcloud Ubuntu Appliance on an Intel NUC, getting set
+        up and being fully productive with Nextcloud and Collabora Online.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eRhys
+        Davies \\u003ca href=\\\"mailto:rhys.davies@canonical.com\\\"\\u003erhys.davies@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eIn
+        this tutorial,  we walk you through the process of installing the Nextcloud
+        Ubuntu Appliance image on an Intel NUC, getting set up and being fully productive
+        with Nextcloud.\\u003c/p\\u003e\\n\\u003cp\\u003eYou\u2019ll be able to have
+        \\u003cstrong\\u003evideo calls, share documents, and edit with others using
+        Collabora Online\\u003c/strong\\u003e. All on your own infrastructure with
+        nothing leaving your control. For installation instructions on Windows, macOS,
+        a Linux VM or on the Raspberry Pi, follow the \\u003ca href=\\\"\"],[17214,\"How
+        to integrate ONLYOFFICE with Nextcloud on Ubuntu\",\"how-to-integrate-onlyoffice-with-nextcloud-on-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eThis
+        guide will describe how to connect ONLYOFFICE and Nextcloud instances to each
+        other via the integration app that enables users to edit and co-edit office
+        documents from Nextcloud using ONLYOFFICE Document Server.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMaria
+        Pashkina \\u003ca href=\\\"mailto:maria.pashkina@gmail.com\\\"\\u003emaria.pashkina@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"http://onlyoffice.com/\\\"\\u003eONLYOFFICE\\u003c/a\\u003e
+        is an open-source office suite that features online editors for text documents,
+        spreadsheets and presentations. The editors are highly compatible with MS
+        Office formats (DOCX, XLSX, and PPTX) and equipped with numerous collaborative
+        tools - real-time co-editing, commenting, reviewing, and built-in chat (to
+        discover all av\"],[16699,\"Deploying F5 Big-IP Load Balancers with Charmed
+        Kubernetes\",\"deploying-f5-big-ip-load-balancers-with-charmed-kubernetes\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eA
+        complete guide to deploy, configure and manage F5 Big-IP Load Balancers on
+        AWS and Charmed Kubernetes\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch1\\u003eDeploying
+        F5 Big-IP Load Balancers with Charmed Kubernetes\\u003c/h1\\u003e\\n\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        3:00\\u003c/p\\u003e\\n\\u003cp\\u003eMost container orchestration environments
+        come \u201Cout of the box\u201D with proxies capable of vanilla scale. But
+        what if you have an environment where services are not differentiated based
+        on an IP address/port combination, but by HTTP layer characteristics \u2013
+        like API version, or URI, or host name?\\u003c/p\\u003e\\n\\u003cp\\u003eThat\u2019s
+        where ingress controllers enter the picture. These are the \u201Cload balancers\u201D
+        that dissect and direct ingress traf\"],[16437,\"How to integrate Alfresco
+        with ONLYOFFICE online editors on Ubuntu\",\"how-to-integrate-alfresco-with-onlyoffice-online-editors-on-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eThis
+        guide will describe how to install all necessary components and then connect
+        ONLYOFFICE document editors and Alfresco using the integration app.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMaria
+        Pashkina \\u003ca href=\\\"mailto:maria.pashkina@gmail.com\\\"\\u003emaria.pashkina@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch1\\u003eHow
+        to integrate Alfresco with ONLYOFFICE online editors on Ubuntu\\u003c/h1\\u003e\\n\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://www.onlyoffice.com\\\"\\u003eONLYOFFICE\\u003c/a\\u003e
+        is an open source office suite that comprises editors for text documents,
+        spreadsheets, and presentations. The suite allows extending the functionality
+        of third-party web apps with document editing components, thus being used
+        within their interface. In \\u003ca href=\\\"https://ubuntu.com/tutorials/how-to-install-onlyo\"],[16010,\"Deploy
+        Kubeflow on Ubuntu, Windows and MacOS\",\"deploy-kubeflow-on-ubuntu-windows-and-macos\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to deploy Kubeflow on Ubuntu, Windows and MacOS in a few minutes. Kubeflow
+        is a framework to deploy machine learning pipelines on top of Kubernetes.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eKubeflow
+        is a novel open source tool for Machine Learning workflow orchestration on
+        Kubernetes. It has great powers, but deploying it may not be so easy, depending
+        on how and where you deploy your Kubernetes.\\u003c/p\\u003e\\n\\u003cp\\u003eThis
+        tutorial will show you an easy way to deploy Kubeflow using MicroK8s, a lightweight
+        version of Kubernetes, in a few simple steps.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to deploy MicroK8s on Ubuntu, Windows or MacOS\\u003c/li\\u003e\\n\\u003cli\\u003eHow
+        \"],[15153,\"How to install Ubuntu Core on your Raspberry Pi\",\"how-to-install-ubuntu-core-on-your-raspberry-pi\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eA
+        complete guide to installing the latest version of Ubuntu Core on your Raspberry
+        Pi 4, 3 or 2.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, we walk you through
+        the process of installing Ubuntu Core on a Raspberry Pi, connecting it to
+        the internet and using it remotely.\\u003c/p\\u003e\\n\\u003cp\\u003eBear
+        in mind, Ubuntu Core is production-friendly, not necessarily developer-friendly.
+        We recommend you use Ubuntu Core for \u201Cfire and forget\u201D purposes
+        where you won\u2019t want to iterate on the software.\\u003c/p\\u003e\\n\\u003cp\\u003eWith
+        Ubuntu Core, you are able to execute remote updates and patches for your appliances
+        and devices, but for development and prototypin\"],[14792,\"How to build a
+        Raspberry Pi Kubernetes cluster using MicroK8s\",\"how-to-build-a-raspberry-pi-kubernetes-cluster-using-microk8s\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to deploy a multi-node Kubernetes cluster on your Raspberry Pi 4, 3 or 2.
+        At the end of this tutorial, you will have a production-grade K8s cluster,
+        easy to scale, running on top of MicroK8s.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eThis tutorial will be a brief walk through
+        the process of getting MicroK8s up and running on Raspberry Pi, and joining
+        multiple Pis to form a production-grade Kubernetes cluster.\\u003c/p\\u003e\\n\\u003cp\\u003eMicroK8s
+        is a lightweight, fast, enterprise-grade Kubernetes. Whether you\u2019re new
+        to K8s or a power user, MicroK8s will help you save time and space on any
+        embedded device or IoT projects.\\u003c/p\\u003e\\n\\u003cp\\u003eThis setup
+        can be\"],[14660,\"How to install Ubuntu Server on your Raspberry Pi\",\"how-to-install-ubuntu-server-on-your-raspberry-pi\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eA
+        complete guide to installing Ubuntu Server on your Raspberry Pi 4, 3 or 2
+        in a couple of minutes. In a headless setup or with a screen and with a Wi-Fi
+        or ethernet connection.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, we walk you through
+        the process of installing Ubuntu Server on a Raspberry Pi, connecting it to
+        the internet and using it remotely. There are two setup methods in this tutorial:
+        with an extra HDMI screen and USB keyboard for your Pi, or headless. Let\u2019s
+        start!\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca
+        class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/8/863a5a\"],[14646,\"How
+        to create an Ubuntu Server SDcard for Raspberry Pi\",\"how-to-create-an-ubuntu-server-sdcard-for-raspberry-pi\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eIn
+        this tutorial, you will learn how to flash Ubuntu Server on a microSD card
+        for Raspberry pi 2, 3 and 4\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, we will walk you through
+        creating a bootable Ubuntu microSD card for your Raspberry Pi.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to use the Raspberry Pi Imager\\u003c/li\\u003e\\n\\u003cli\\u003eHow to create
+        a bootable microSD card to run Ubuntu Server on your Raspberry Pi\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eA microSD
+        card (4GB minimum, 8GB recommended)\\u003c/li\\u003e\\n\\u003cli\\u003eA computer
+        with a microSD card drive\\u003c/li\\u003e\\n\\u003cli\\u003eA raspberry pi
+        2, 3 or 4\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\\u003cimg
+        src=\\\"https://d\"],[14306,\"How to install ONLYOFFICE for integration on
+        Ubuntu\",\"how-to-install-onlyoffice-for-integration-on-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eThis
+        guide will show you alternative ways to install ONLYOFFICE Document Server
+        and all the dependencies it needs for further integration, on Ubuntu\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMaria
+        Pashkina \\u003ca href=\\\"mailto:maria.pashkina@gmail.com\\\"\\u003emaria.pashkina@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch1\\u003eHow
+        to install ONLYOFFICE for integration on Ubuntu\\u003c/h1\\u003e\\n\\u003ch2\\u003eIntroduction\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"http://onlyoffice.com/\\\"\\u003eONLYOFFICE\\u003c/a\\u003e
+        \ is an open-source collaborative office suite. It contains three editors
+        for text documents, spreadsheets, and presentations, fully compatible with
+        Office Open XML formats and enabling collaborative editing in real time. It
+        can be integrated with: ONLYOFFICE collaboration platform that includes CRM,
+        projects, document managem\"],[14304,\"The Linux command line for beginners\",\"the-linux-command-line-for-beginners\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        about the Linux command line and some useful basic commands\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eThe Linux command line is a text interface
+        to your computer. Often referred to as the shell, terminal, console, prompt
+        or various other names, it can give the appearance of being complex and confusing
+        to use. Yet the ability to copy and paste commands from a website, combined
+        with the power and flexibility the command line offers, means that using it
+        may be essential when trying to follow instructions online, including many
+        on this very website!\\u003c/p\\u003e\\n\\u003cp\\u003eThis tutorial will
+        teach you a little of the history of the command\"],[14273,\"Create an Ubuntu
+        image for a Raspberry Pi on MacOS\",\"create-an-ubuntu-image-for-a-raspberry-pi-on-macos\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to create a bootable microSD card to run Ubuntu on your Raspberry Pi\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003ePeter
+        Mahnke \\u003ca href=\\\"mailto:peter.mahnke@canonical.com\\\"\\u003epeter.mahnke@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, we will walk you through
+        creating a bootable Ubuntu microSD card for your Raspberry Pi .\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cp\\u003eHow to create a bootable
+        microSD card to run Ubuntu on your Raspberry Pi\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eA microSD
+        card\\u003c/li\\u003e\\n\\u003cli\\u003eAn \\u003ca href=\\\"http://ubuntu.com/download/raspberry-pi\\\"\\u003eUbuntu
+        Server image\\u003c/a\\u003e\\n\\u003c/li\\u003e\\n\\u003cli\\u003eA computer
+        with a microSD card drive\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\\u003cimg
+        src=\\\"https://discourse.ubuntu.com/images/emoji/emoji_one/warning.png?v=9\\\"
+        title=\\\":wa\"],[14271,\"Create an Ubuntu image for a Raspberry Pi on Windows\",\"create-an-ubuntu-image-for-a-raspberry-pi-on-windows\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to create a bootable microSD card to run Ubuntu on your Raspberry Pi\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003ePeter
+        Mahnke \\u003ca href=\\\"mailto:peter.mahnke@canonical.com\\\"\\u003epeter.mahnke@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial,  we will walk you
+        through creating a bootable Ubuntu microSD card for your Raspberry Pi .\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cp\\u003eHow to create a bootable
+        microSD card to run Ubuntu on your Raspberry Pi\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eA microSD
+        card\\u003c/li\\u003e\\n\\u003cli\\u003eAn Ubuntu Server image\\u003c/li\\u003e\\n\\u003cli\\u003eA
+        computer with a microSD card drive\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\\u003cimg
+        src=\\\"https://discourse.ubuntu.com/images/emoji/emoji_one/warning.png?v=9\\\"
+        title=\\\":warning:\\\" class=\\\"emoji\\\" alt=\\\":warning:\\\"\\u003e \\u003cstrong\\u003eWarning\"],[14270,\"Create
+        an Ubuntu image for a Raspberry Pi on Ubuntu\",\"create-an-ubuntu-image-for-a-raspberry-pi-on-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to create a bootable microSD card to run Ubuntu on your Raspberry Pi\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003ePeter
+        Mahnke \\u003ca href=\\\"mailto:peter.mahnke@canonical.com\\\"\\u003epeter.mahnke@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial,  we will walk you
+        through creating a bootable Ubuntu microSD card for your Raspberry Pi .\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cp\\u003eHow to create a bootable
+        microSD card to run Ubuntu on your Raspberry Pi\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eA microSD
+        card\\u003c/li\\u003e\\n\\u003cli\\u003eAn Ubuntu Server image\\u003c/li\\u003e\\n\\u003cli\\u003eA
+        computer with a microSD card drive\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\\u003cimg
+        src=\\\"https://discourse.ubuntu.com/images/emoji/emoji_one/warning.png?v=9\\\"
+        title=\\\":warning:\\\" class=\\\"emoji\\\" alt=\\\":warning:\\\"\\u003e \\u003cstrong\\u003eWarning\"],[14021,\"How
+        to burn a DVD on Ubuntu 16.04\",\"how-to-burn-a-dvd-on-ubuntu-16-04\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eInstructions
+        on how to burn an Ubuntu installation DVD on Ubuntu with Brasero\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eGetting
+        started\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration: 0:05\\u003c/p\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8
+        \ Before you begin, you need to \\u003ca href=\\\"https://www.ubuntu.com/download\\\"\\u003edownload
+        Ubuntu\\u003c/a\\u003e and, if you want, \\u003ca href=\\\"/tutorial/tutorial-how-to-verify-ubuntu\\\"\\u003everify
+        the download\\u003c/a\\u003e.\\u003c/p\\u003e\\n\\u003c/blockquote\\u003e\\n\\u003cp\\u003eOnce
+        you\u2019ve done so, you can create your installation DVD. The procedure may
+        differ slightly depending on which version of Ubuntu you are currently using.\\u003c/p\\u003e\\n\\u003ch2\\u003eBurn
+        a DVD\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration: 0:01\\u003c/p\\u003e\\n\\u003cp\\u003eInsert
+        a blank CD into your burner. A \u2018CD/DVD Creator\u2019, \u2018Choose Disc
+        Type\u2019 or \u2018\"],[14020,\"Create a bootable USB stick on Windows\",\"create-a-bootable-usb-stick-on-windows\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to write a USB stick with Windows.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eWith a bootable Ubuntu USB stick, you
+        can:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eInstall or upgrade
+        Ubuntu\\u003c/li\\u003e\\n\\u003cli\\u003eTest out the Ubuntu desktop experience
+        without touching your PC configuration\\u003c/li\\u003e\\n\\u003cli\\u003eBoot
+        into Ubuntu on a borrowed machine or from an internet cafe\\u003c/li\\u003e\\n\\u003cli\\u003eUse
+        tools installed by default on the USB stick to repair or fix a broken configuration\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cp\\u003eCreating
+        a bootable Ubuntu USB stick from Microsoft Windows is very simple and we\u2019re
+        going to cover the process in the next few steps.\\u003c/p\\u003e\\n\\u003cp\\u003eAlternatively,
+        we also have tutorials to help you create\"],[14019,\"Install the Java Runtime
+        Environment\",\"install-the-java-runtime-environment\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eInstallation
+        of Java Runtime Environment (JRE) on Ubuntu\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAden
+        Padilla \\u003ca href=\\\"mailto:adenpadilla@gmail.com\\\"\\u003eadenpadilla@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eThe Java Runtime Environment (JRE) is
+        required to run Java programs. Nowadays there are many JRE packages available
+        from a variety of projects and companies, but the two most popular on Ubuntu
+        are OpenJDK and Oracle HotSpot. Using one package over the other should not
+        create any functional difference in most applications; however, some prefer
+        OpenJDK over Oracle HotSpot as the former does not contain closed-source components,
+        has a much clearer licensing and support policy, and is maintained as part
+        of the Ubuntu archive, with easier\"],[14018,\"Firefox for web developers\",\"firefox-for-web-developers\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to access the Firefox web developer tools, and how to install Developer
+        Edition of the Firefox browser\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial you will learn how
+        to access the web development tools that are built into every copy of Firefox.
+        You will also learn how to install the Firefox Developer Edition alongside
+        your normal Firefox installation, allowing you to keep development work separate
+        from your normal day-to-day browsing.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to access the developer tools\\u003c/li\\u003e\\n\\u003cli\\u003eHow to use
+        the inspector and console tools\\u003c/li\\u003e\\n\\u003cli\\u003eHow to
+        configure the user interfa\"],[14017,\"Install Ubuntu on a Chromebook\",\"install-ubuntu-on-a-chromebook\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to install Ubuntu 16.04 LTS in a chroot on Chromebooks, using the third-party
+        crouton tool.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eToday we\u2019ll be installing Ubuntu
+        on your Chromebook, while preserving your original ChromeOS system.\\u003c/p\\u003e\\n\\u003cp\\u003eWe
+        will use a third-party script called crouton to install Ubuntu using a chroot,
+        giving Ubuntu its own \u201Cpretend\u201D root directory system on your machine.
+        This lets you run ChromeOS and Ubuntu side-by-side, being able to flip between
+        the two on-the-fly.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to put your Chromebook into developer mode\\u003c/li\\u003e\\n\\u003cli\\u003eHow
+        to install Ubuntu in a chroo\"],[14016,\"Create a bootable USB stick on macOS\",\"create-a-bootable-usb-stick-on-macos\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eHow
+        to write a USB stick with macOS.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eWith a bootable Ubuntu USB stick, you
+        can:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eInstall or upgrade
+        Ubuntu, even on a Mac\\u003c/li\\u003e\\n\\u003cli\\u003eTest out the Ubuntu
+        desktop experience without touching your PC configuration\\u003c/li\\u003e\\n\\u003cli\\u003eBoot
+        into Ubuntu on a borrowed machine or from an internet cafe\\u003c/li\\u003e\\n\\u003cli\\u003eUse
+        tools installed by default on the USB stick to repair or fix a broken configuration\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cp\\u003eCreating
+        a bootable USB stick is very simple, especially if you\u2019re going to use
+        the USB stick with a generic Windows or Linux PC. We\u2019re going to cover
+        the process in the next few steps.\"],[14015,\"How to burn a DVD on macOS\",\"how-to-burn-a-dvd-on-macos\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eInstructions
+        on how to burn an Ubuntu installation DVD on macOS.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eTo
+        create an Ubuntu installation DVD on macOS, you will need the following:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eAn
+        Ubuntu ISO file. Download the Ubuntu of your choice \\u003ca href=\\\"https://www.ubuntu.com/download\\\"\\u003efrom
+        here\\u003c/a\\u003e\\n\\u003c/li\\u003e\\n\\u003cli\\u003eA blank DVD\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8
+        \ \\u003cstrong\\u003eEnsuring the authenticity of an Ubuntu ISO\\u003c/strong\\u003e\\u003cbr\\u003e\\nThe
+        download can be \\u003ca href=\\\"/tutorial/tutorial-how-to-verify-ubuntu\\\"\\u003everified\\u003c/a\\u003e
+        to ensure the data integrity and authenticity of the file.\\u003c/p\\u003e\\n\\u003c/blockquote\\u003e\\n\\u003ch2\\u003eSelect
+        the Ubuntu ISO\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration: 1:00\\u003c/p\\u003e\\n\\u003cp\\u003eThe
+        easiest way\"],[14014,\"Try Ubuntu before you install it\",\"try-ubuntu-before-you-install-it\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eTest
+        out and use the wonderful Ubuntu desktop without installing anything on your
+        hardware.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eGetting
+        started\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration: 0:01\\u003c/p\\u003e\\n\\u003cp\\u003eRunning
+        Ubuntu directly from either a USB stick or a DVD is a quick and easy way to
+        experience how Ubuntu works for you, and how it works with your hardware.
+        Most importantly, it doesn\u2019t alter your computer\u2019s configuration
+        in any way, and a simple restart without the USB stick or DVD is all that\u2019s
+        needed to restore your machine to its previous state.\\u003c/p\\u003e\\n\\u003cp\\u003eWith
+        a \\u003cem\\u003elive\\u003c/em\\u003e Ubuntu, you can do almost anything
+        you can from an \\u003cem\\u003einstalled\\u003c/em\\u003e Ubuntu:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eSafely
+        browse the i\"],[14013,\"Install Ubuntu 16.04 desktop\",\"install-ubuntu-16-04-desktop\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eInstall
+        Ubuntu 16.04 (Xenial) onto your laptop or PC computer, from either a DVD or
+        a USB flash drive.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:05\\u003c/p\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8  This
+        tutorial covers the installation of a previous \\u003cem\\u003eLong Term Support\\u003c/em\\u003e
+        release (Ubuntu 16.04 LTS). Jump to \\u003ca href=\\\"https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop\\\"\\u003eInstall
+        Ubuntu 18.04 desktop\\u003c/a\\u003e if you wish to install the latest version.\\u003c/p\\u003e\\n\\u003c/blockquote\\u003e\\n\\u003cp\\u003eThe
+        Ubuntu desktop is easy to use, easy to install and includes everything you
+        need to run your organisation, school, home or enterprise. It\u2019s also
+        open source, secure, accessible\"],[14012,\"Upgrade Ubuntu desktop\",\"upgrade-ubuntu-desktop\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eIf
+        you\u2019re already running Ubuntu, you can upgrade in a few clicks from the
+        Software Updater.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eBefore
+        you start\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration: 1:00\\u003c/p\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8
+        \ We recommend that you back up your existing Ubuntu installation before you
+        update your computer.\\u003c/p\\u003e\\n\\u003c/blockquote\\u003e\\n\\u003cp\\u003eBeing
+        able to upgrade Ubuntu from one version to the next is one of Ubuntu\u2019s
+        best features. You benefit from getting the latest software, including new
+        security patches, and all the upgraded technology that comes with a new release
+        without having to resort to reinstalling and reconfiguring your system.\\u003c/p\\u003e\\n\\u003cp\\u003eBest
+        of all, upgrading Ubuntu to the latest \"],[14011,\"Create a bootable USB
+        stick on Ubuntu\",\"create-a-bootable-usb-stick-on-ubuntu\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eUse
+        your Ubuntu desktop to create a bootable USB stick that can be used to run
+        and install Ubuntu on any USB-equipped PC.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eWith a bootable Ubuntu USB stick, you
+        can:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eInstall or upgrade
+        Ubuntu\\u003c/li\\u003e\\n\\u003cli\\u003eTest out the Ubuntu desktop experience
+        without touching your PC configuration\\u003c/li\\u003e\\n\\u003cli\\u003eBoot
+        into Ubuntu on a borrowed machine or from an internet cafe\\u003c/li\\u003e\\n\\u003cli\\u003eUse
+        tools installed by default on the USB stick to repair or fix a broken configuration\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cp\\u003eCreating
+        a bootable Ubuntu USB stick is very simple, especially from Ubuntu itself,
+        and we\u2019re going to cover the pr\"],[14010,\"How to verify your Ubuntu
+        download\",\"how-to-verify-your-ubuntu-download\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eVerifying
+        your ISO helps insure the data integrity and authenticity of your download.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:02\\u003c/p\\u003e\\n\\u003cp\\u003eWhile we hope you can usually trust
+        your Ubuntu download, it is definitely reassuring to be able to verify that
+        the image you have downloaded is not corrupted in some way, and also that
+        it is an authentic image that hasn\u2019t been tampered with.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to use \\u003ccode\\u003egpg\\u003c/code\\u003e tools to verify the authenticity
+        of a file\\u003c/li\\u003e\\n\\u003cli\\u003eHow to use \\u003ccode\\u003esha256\\u003c/code\\u003e
+        tools to verify the integrity of a file\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eAccess
+        to the command li\"],[14009,\"How to Install ONLYOFFICE Desktop Editors on
+        Ubuntu 18.04\",\"how-to-install-onlyoffice-desktop-editors-on-ubuntu-18-04\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        3 main ways to install ONLYOFFICE Desktop Editors on Ubuntu 18.04\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMaria
+        Pashkina \\u003ca href=\\\"mailto:maria.pashkina@gmail.com\\\"\\u003emaria.pashkina@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eINTRODUCTION\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://www.onlyoffice.com/en/apps.aspx\\\"\\u003eONLYOFFICE
+        Desktop Editors\\u003c/a\\u003e is a free and open source office suite, distributed
+        under GNU AGPL v.3.0., available for Linux, Windows and Mac OS. It offers
+        three editors included in one package: for text documents, spreadsheets and
+        presentations.\\u003c/p\\u003e\\n\\u003cp\\u003eThe benefits offered by ONLYOFFICE
+        Desktop Editors run as follows:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003etab-based
+        user interface to deal with multiple files within one and the same window\\u003c/li\\u003e\\n\\u003cli\\u003ecompatibility
+        with MS Office and O\"],[14008,\"How to burn a DVD on Windows\",\"how-to-burn-a-dvd-on-windows\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eInstructions
+        on how to burn an Ubuntu installation DVD on Windows.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eTo
+        create an Ubuntu installation DVD on Windows, you will need the following:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eAn
+        Ubuntu ISO file. Download the Ubuntu release of your choice \\u003ca href=\\\"https://www.ubuntu.com/download\\\"\\u003efrom
+        here\\u003c/a\\u003e\\n\\u003c/li\\u003e\\n\\u003cli\\u003eA blank DVD\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8
+        \ \\u003cstrong\\u003eEnsuring the authenticity of an Ubuntu ISO\\u003c/strong\\u003e\\u003cbr\\u003e\\nThe
+        download can be \\u003ca href=\\\"/tutorial/tutorial-how-to-verify-ubuntu\\\"\\u003everified\\u003c/a\\u003e
+        to ensure the data integrity and authenticity of the file.\\u003c/p\\u003e\\n\\u003c/blockquote\\u003e\\n\\u003ch2\\u003eWindows
+        7 / 8 / 10 instructions\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration: 0:10\\u003c\"],[14006,\"Create
+        your first snap\",\"create-your-first-snap\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eWe
+        are going to use snapcraft to walk you through the creation of your first
+        snap and main snapcraft concepts.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003epackaging\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eA snap is a bundle of an app and its
+        dependencies that works without modification across many different Linux distributions.
+        Snaps are discoverable and installable from the \\u003ca href=\\\"https://snapcraft.io/store\\\"\\u003eSnap
+        Store\\u003c/a\\u003e, an app store with an audience of millions.\\u003c/p\\u003e\\n\\u003cp\\u003eSnapcraft
+        is a powerful and easy to use command line tool for building \\u003ca href=\\\"https://snapcraft.io/docs/getting-started\\\"\\u003esnaps\\u003c/a\\u003e.
+        It reads a simple, declarative file and runs the build for us.\\u003c/p\\u003e\\n\"],[14000,\"How
+        to write a tutorial\",\"how-to-write-a-tutorial\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to create, write and publish tutorials on \\u003ca href=\\\"http://ubuntu.com/tutorials\\\"\\u003eubuntu.com/tutorials\\u003c/a\\u003e,
+        reaching a wide audience of both beginner and advanced Linux users.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecommunity\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIn this tutorial, you will learn how
+        to write content for \\u003ca href=\\\"http://ubuntu.com/tutorials\\\"\\u003eubuntu.com/tutorials\\u003c/a\\u003e.
+        and reach a wide audience of both beginner Linux users and advanced users
+        such as developers and system administrators.\\u003c/p\\u003e\\n\\u003cp\\u003eWe
+        will start by looking at general guidelines, the structure of a tutorial and
+        go through the publication and review process.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h\"],[13998,\"Get started with MicroStack\",\"get-started-with-microstack\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eInstall
+        and run OpenStack on Linux in minutes. Made for developers, and great for
+        edge, IoT and appliances.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eTytus
+        Kurek \\u003ca href=\\\"mailto:tytus.kurek@canonical.com\\\"\\u003etytus.kurek@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat is OpenStack?\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca
+        href=\\\"https://www.openstack.org/\\\"\\u003eOpenStack\\u003c/a\\u003e is
+        a collection of open source projects designed to work together to form the
+        basis of a cloud. OpenStack can be used for both private and public clouds.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        is MicroStack?\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://microstack.run/\\\"\\u003eMicroStack\\u003c/a\\u003e
+        provides a single or multi-node OpenStack deployment which can run directly
+        on your workstation. Although made for developers to prototype and test, it
+        is also suita\"],[13996,\"Deploy a Redis cluster on Ubuntu Server at any scale\",\"deploy-a-redis-cluster-on-ubuntu-server-at-any-scale\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to quickly deploy a multi-node Redis cluster on Ubuntu Server\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003ecloud\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eTim
+        McNamara \\u003ca href=\\\"mailto:tsm@canonical.com\\\"\\u003etsm@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eWelcome\\u003c/h2\\u003e\\n\\u003cp\\u003e\\u003cdiv
+        class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/0/0b8f641e12197ea58982be7ba15cf9b66dfc5c63.png\\\"
+        data-download-href=\\\"/uploads/short-url/1EgsTTQ6AWf534KeSZoCYznQXBh.png?dl=1\\\"
+        title=\\\"\\\"\\u003e\\u003cimg src=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/optimized/2X/0/0b8f641e12197ea58982be7ba15cf9b66dfc5c63_2_690x388.png\\\"
+        alt=\\\"\\\" data-base62-sha1=\\\"1EgsTTQ6AWf534KeSZoCYznQXBh\\\" width=\\\"690\\\"
+        height=\\\"388\\\" srcset=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/optimized/2X/0/0b8f641\"],[13995,\"Configuration
+        de LXD sur Ubuntu 16.04\",\"configuration-de-lxd-sur-ubuntu-16-04\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLe
+        d\xE9ploiement de conteneurs rapides et l\xE9gers sur Ubuntu est facile avec
+        LXD. Nous vous montrerons comment configurer LXD et d\xE9ployer votre premier
+        conteneur en quelques minutes seulement.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAlberto
+        Donato \\u003ca href=\\\"mailto:alberto.donato@canonical.com\\\"\\u003ealberto.donato@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eAper\xE7u\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:01\\u003c/p\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8  Switch
+        language: FR | \\u003ca href=\\\"https://discourse.ubuntu.com/t/setting-up-lxd-on-ubuntu-16-04/13972\\\"\\u003eEN\\u003c/a\\u003e\\u003c/p\\u003e\\n\\u003c/blockquote\\u003e\\n\\u003cp\\u003e\\u003ca
+        href=\\\"https://linuxcontainers.org/lxd\\\"\\u003eLXD\\u003c/a\\u003e est
+        un hyperviseur de conteneur fournissant une API ReST pour g\xE9rer les conteneurs
+        LXC.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca
+        class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.ama\"],[13994,\"Make
+        a X11-based Kiosk Snap\",\"make-a-x11-based-kiosk-snap\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eCreate
+        graphical kiosk snaps for Ubuntu IoT devices using the legacy X11 protocol.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eGerry
+        Boland \\u003ca href=\\\"mailto:gerry.boland@canonical.com\\\"\\u003egerry.boland@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cp\\u003eIn
+        this tutorial we will create a snap of an X11 application to act as the graphical
+        user interface for an IoT or kiosk device. For the introduction to this tutorial
+        series and the Mir display server please visit \\u003ca href=\\\"/tutorial/secure-ubuntu-kiosk\\\"\\u003ehere\\u003c/a\\u003e.\\u003c/p\\u003e\\n\\u003cp\\u003eX11
+        is a legacy protocol, it is known to be insecure, so we need to take steps
+        to ensure it is secured correctly. To do this we shall embed an intermediary
+        X server based on Mir in the application snap and use \"],[13993,\"Make a
+        secure Ubuntu kiosk\",\"make-a-secure-ubuntu-kiosk\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eA
+        starting guide on building a kiosk or smart display on Ubuntu.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eGerry
+        Boland \\u003ca href=\\\"mailto:gerry.boland@canonical.com\\\"\\u003egerry.boland@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eA kiosk or smart display is a full-screen
+        application running on a secure device, with the sole purpose of driving that
+        display to provide specific information or a particular function at that location.\\u003c/p\\u003e\\n\\u003cp\\u003eUbuntu
+        is popular for these applications thanks to its excellent security track record
+        and widespread developer familiarity. We compiled this guide to a reference
+        kiosk architecture to enable anybody, anywhere to make a highly secure kiosk
+        using any of the popular application display frameworks - HTML5/web, X11,
+        o\"],[13992,\"Make a HTML5/Electron-based Kiosk Snap\",\"make-a-html5-electron-based-kiosk-snap\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eBuild
+        and deploy an Electron-based kiosk application as a snap.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eGerry
+        Boland \\u003ca href=\\\"mailto:gerry.boland@canonical.com\\\"\\u003egerry.boland@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cp\\u003eIn
+        this tutorial we will create a snap of a HTML5/Electron application to act
+        as the graphical user interface for an IoT or kiosk device. For the introduction
+        to this tutorial series and the Mir display server, please visit \\u003ca
+        href=\\\"/tutorial/secure-ubuntu-kiosk\\\"\\u003ehere\\u003c/a\\u003e.\\u003c/p\\u003e\\n\\u003cp\\u003eThis
+        tutorial assumes you are familiar with the material in \\u003ca href=\\\"/tutorial/x11-kiosk\\\"\\u003eMake
+        an X11-based Kiosk Snap\\u003c/a\\u003e.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eAn
+        Ubuntu desktop running any current release of Ubuntu\"],[13991,\"Make a Wayland-native
+        Kiosk snap\",\"make-a-wayland-native-kiosk-snap\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eCreate
+        graphical snaps for Ubuntu IoT devices. Learn how to build a digital signage
+        app for kiosks, advertising screens and other embedded displays.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eGerry
+        Boland \\u003ca href=\\\"mailto:gerry.boland@canonical.com\\\"\\u003egerry.boland@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cp\\u003eIn
+        this tutorial, we will create a snap of a Wayland-native application to act
+        as the graphical user interface (GUI) for an IoT or kiosk device. We will
+        walk through the process and solve some common problems along the way. For
+        the introduction to this tutorial series and the Mir display server please
+        visit \\u003ca href=\\\"/tutorial/secure-ubuntu-kiosk\\\"\\u003ehere\\u003c/a\\u003e.\\u003c/p\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8
+        \ The combination of Snap, the \u201Cmi\"],[13990,\"Install the Arduino IDE\",\"install-the-arduino-ide\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to install the Arduino IDE in order to write code for Arduino boards.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        01:00\\u003c/p\\u003e\\n\\u003cp\\u003eTo get us up and running with Arduino,
+        we are going to install the \\u003cstrong\\u003eArduino IDE\\u003c/strong\\u003e,
+        a program that will help us write code for the Arduino, and run our code on
+        the board.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to install the Arduino package from a tarball\\u003c/li\\u003e\\n\\u003cli\\u003eHow
+        to add a user to a group (here, the \\u003ccode\\u003edialout\\u003c/code\\u003e
+        group)\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eWhat you\u2019ll
+        need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eUbuntu 16.04 (and
+        above) Desktop\\u003c/li\\u003e\\n\\u003cli\\u003eAn Arduino board, and included
+        mini-USB cable\\u003c/li\\u003e\\n\\u003cli\\u003eSome basic command-\"],[13989,\"Setup
+        Intel Joule\",\"setup-intel-joule\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eIn
+        this codelab, we are going to setup Ubuntu Core on your Intel Joule. We\u2019ll
+        flash the sd card with an Ubuntu Core image and then configure it.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eDidier
+        Roche \\u003ca href=\\\"mailto:didier.roche@canonical.com\\\"\\u003edidier.roche@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eIntroduction\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        15:00\\u003c/p\\u003e\\n\\u003cp\\u003eWelcome to the world of Ubuntu Core!
+        We are going to show you how to flash your eMMC for your Intel Joule board,
+        and finally turn your Intel Joule into a Ubuntu Core 16 system.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv
+        class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/1/1269fb0972ad09a72b059b61e81a8e2853d8de83.png\\\"
+        data-download-href=\\\"/uploads/short-url/2CTEJ3RsaLGSkDAdKRBB2tos2af.png?dl=1\\\"
+        title=\\\"I\"],[13988,\"Using Intel RealSense SDK on the desktop\",\"using-intel-realsense-sdk-on-the-desktop\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eWe
+        are going to illustrate how to build some Intel RealSense SDK samples on an
+        ubuntu desktop. You will be able to hook up on your Intel Joule and build
+        the samples, explore some of the code and try them!\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eiot\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eWe are going to illustrate how to build
+        some \\u003ca href=\\\"http://www.intel.fr/content/www/fr/fr/architecture-and-technology/realsense-overview.html\\\"\\u003eIntel
+        RealSense\\u003c/a\\u003e SDK samples on an Ubuntu Core image using the classic
+        snap. You will be able to hook up on your \\u003ca href=\\\"https://software.intel.com/en-us/iot/hardware/joule/dev-kit\\\"\\u003eIntel
+        Joule\\u003c/a\\u003e and build the samples, explore some of the\"],[13985,\"Podstawy
+        korzystania ze snap\xF3w\",\"podstawy-korzystania-ze-snapow\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eW
+        tym poradniku zostan\u0105 poruszone podstawowe informacje dotycz\u0105ce
+        korzystania z pakiet\xF3w snap na Twojej dystrybucji oraz korzy\u015Bci wynikaj\u0105ce
+        z u\u017Cywania ich.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003epackaging\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eWprowadzenie\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8  Switch
+        language: PL | \\u003ca href=\\\"https://discourse.ubuntu.com/t/basic-snap-usage/14007\\\"\\u003eEN\\u003c/a\\u003e\\u003c/p\\u003e\\n\\u003c/blockquote\\u003e\\n\\u003cp\\u003eWitamy
+        w \u015Bwiecie snap\xF3w! W tym poradniku zostan\u0105 opisane podstawy korzystania
+        z pakiet\xF3w \\u003ca href=\\\"http://snapcraft.io/\\\"\\u003esnap\\u003c/a\\u003e
+        i Twojej dystrybucji Linuxa oraz poznasz korzy\u015Bci wynikaj\u0105ce z ich
+        dzia\u0142ania.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cimg src=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/0/0748\"],[13984,\"How
+        to create an AppArmor Profile\",\"how-to-create-an-apparmor-profile\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to create AppArmor profiles to confine your applications.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003esecurity\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eJamie
+        Strandboge \\u003ca href=\\\"mailto:jamie.strandboge@canonical.com\\\"\\u003ejamie.strandboge@canonical.com\\u003c/a\\u003e,
+        Emily Ratliff \\u003ca href=\\\"mailto:emily.ratliff@canonical.com\\\"\\u003eemily.ratliff@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eAppArmor is a Mandatory Access Control
+        (MAC) system which confines programs to a limited set of resources. AppArmor
+        confinement is provided via profiles loaded into the kernel. AppArmor can
+        be set to either enforce the profile or complain when profile rules are violated.\\u003c/p\\u003e\\n\\u003cp\\u003eFor
+        this tutorial, we will generate an AppArmor profile for certspotter. certspotter
+        is a new utility in Ubuntu as of 17.10 and no pro\"],[13983,\"Memasang Ubuntu
+        desktop\",\"memasang-ubuntu-desktop\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eTemukan
+        betapa mudahnya menginstal desktop Ubuntu ke komputer laptop atau PC Anda,
+        dari DVD atau flash drive USB.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003ePendahuluan\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:05\\u003c/p\\u003e\\n\\u003cp\\u003eUbuntu desktop sangat mudah digunakan,
+        mudah dipasang dan juga memuat apapun yang kamu butuhkan untuk organisasi,
+        sekolah, rumah, atau perusahaan. Serta lisensi terbuka, aman, mudah digunakan,
+        dan juga gratis diunduh.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca
+        class=\\\"lightbox\\\" href=\\\"https://assets.ubuntu.com/v1/8de0a986-ubuntu-desktop.png\\\"
+        title=\\\"screenshot\\\"\\u003e\\u003cimg src=\\\"https://assets.ubuntu.com/v1/8de0a986-ubuntu-desktop.png\\\"
+        alt=\\\"screenshot\\\" width=\\\"690\\\" height=\\\"520\\\"\\u003e\\u003cdiv
+        \"],[13982,\"Candid authentication for LXD\",\"candid-authentication-for-lxd\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eSetting
+        up network authentication for your LXD servers with Candid\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eSt\xE9phane
+        Graber \\u003ca href=\\\"mailto:stgraber@ubuntu.com\\\"\\u003estgraber@ubuntu.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        3:00\\u003c/p\\u003e\\n\\u003cp\\u003eAs you may know, \\u003ca href=\\\"https://www.ubuntu.com/containers/lxd\\\"\\u003eLXD\\u003c/a\\u003e
+        can both be used locally on your machine or remotely using its secure REST
+        API.\\u003c/p\\u003e\\n\\u003cp\\u003eIn that mode, the default authentication
+        method is an SSH-like private/public key exchange combined with an (optional)
+        trust password that\u2019s configured on the remote server to make adding
+        new trusted clients easier.\\u003c/p\\u003e\\n\\u003cp\\u003eAdding a trusted
+        client involves either an administrator providing its public key for LXD to
+        trust it or, more commonly, the administrator havin\"],[13981,\"Install a
+        local Kubernetes with MicroK8s\",\"install-a-local-kubernetes-with-microk8s\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eGet
+        a local Kubernetes on your workstation or edge device with microk8s. Possibly
+        the fastest path to this great open-source orchestration system, Kubernetes.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eKonstantinos
+        Tsakalozos \\u003ca href=\\\"mailto:kos.tsakalozos@canonical.com\\\"\\u003ekos.tsakalozos@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003ch3\\u003eWhat
+        is Kubernetes\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://kubernetes.io/\\\"\\u003eKubernetes\\u003c/a\\u003e
+        clusters host containerised applications in a reliable and scalable way. Having
+        DevOps in mind, Kubernetes makes maintenance tasks such as upgrades dead simple.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        is MicroK8s\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://microk8s.io/\\\"\\u003eMicroK8s\\u003c/a\\u003e
+        is a \\u003ca href=\\\"https://www.cncf.io/certification/software-conformance/\\\"\\u003eCNCF
+        certified\\u003c/a\\u003e upstream Kubernetes deploym\"],[13980,\"Run Linux
+        containers on Windows\",\"run-linux-containers-on-windows\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eRun
+        Ubuntu containers with Hyper-V isolation on Windows 10 and Windows Server.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e5\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMathieu
+        Trudel-Lapierre \\u003ca href=\\\"mailto:mathieu.trudel-lapierre@canonical.com\\\"\\u003emathieu.trudel-lapierre@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eIt is now possible to run Docker containers
+        on Windows 10 and Windows Server, leveraging Ubuntu as a hosting base.\\u003c/p\\u003e\\n\\u003cp\\u003eImagine
+        running your own Linux applications on Windows, using a Linux distribution
+        you are comfortable with: Ubuntu!\\u003c/p\\u003e\\n\\u003cp\\u003eIt is now
+        possible to do so using the power of Docker technology and Hyper-V virtualization
+        on Windows.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cimg src=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/5/588397314394568918d7bf3fcae69e01abf\"],[13979,\"Install
+        single-server OpenStack with conjure-up\",\"install-single-server-openstack-with-conjure-up\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to deploy OpenStack on a single machine using the conjure-up deployment
+        tool.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eKonrad
+        Krawiec \\u003ca href=\\\"mailto:konrad11901@gmail.com\\\"\\u003ekonrad11901@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://www.openstack.org\\\"\\u003eOpenStack\\u003c/a\\u003e
+        is a very popular software stack for creating private and public clouds.\\u003c/p\\u003e\\n\\u003cp\\u003eOpenStack
+        is an advanced platform and deploying it manually may not be an easy task.
+        Luckily, with \\u003ca href=\\\"https://conjure-up.io\\\"\\u003econjure-up\\u003c/a\\u003e,
+        it\u2019s very simple and straightforward.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to install OpenStack on your machine with conjure-up\\u003c/li\\u003e\\n\\u003cli\\u003eHow
+        to install and configure LXD\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eA w\"],[13978,\"Install
+        MicroK8s on a Mac\",\"install-microk8s-on-a-mac\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eGet
+        a local Kubernetes on MacOS with Microk8s and Multipass.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAmmar
+        Naqvi \\u003ca href=\\\"mailto:ammar.naqvi@canonical.com\\\"\\u003eammar.naqvi@canonical.com\\u003c/a\\u003e,
+        Konstantinos Tsakalozos \\u003ca href=\\\"mailto:kos.tsakalozos@canonical.com\\\"\\u003ekos.tsakalozos@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003ch3\\u003eWhat
+        is Kubernetes\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://kubernetes.io/\\\"\\u003eKubernetes\\u003c/a\\u003e
+        clusters host containerised applications\\u003cbr\\u003e\\nin a reliable and
+        scalable way. Having DevOps in mind, Kubernetes makes\\u003cbr\\u003e\\nmaintenance
+        tasks such as upgrades dead simple.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        is MicroK8s\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://microk8s.io/\\\"\\u003eMicroK8s\\u003c/a\\u003e
+        is a  \\u003ca href=\\\"https://www.cncf.io/certification/software-conformance/\\\"\\u003eCNCF
+        certified\\u003c/a\\u003e upstream Kubernetes deployment\"],[13973,\"Introduction
+        to LXD projects\",\"introduction-to-lxd-projects\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eAn
+        introduction to the projects feature in LXD\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eThomas
+        Parrott \\u003ca href=\\\"mailto:thomas.parrott@canonical.com\\\"\\u003ethomas.parrott@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://linuxcontainers.org/lxd\\\"\\u003eLXD\\u003c/a\\u003e
+        is a container hypervisor providing a REST API to manage LXC containers. It
+        provides a virtual machine like experience without incurring the overhead
+        of a traditional hypervisor.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca
+        class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/f/f59ab6926eb30b81af2eb9ca01d1a13ab40e1f3c.png\\\"
+        data-download-href=\\\"/uploads/short-url/z2Is0lfaLafmMfIjohpDk1pzfxG.png?dl=1\\\"
+        title=\\\"logo\\\"\\u003e\\u003cimg src=\\\"//ubuntucommunity.s3.du\"],[13972,\"Setting
+        up LXD on Ubuntu 16.04\",\"setting-up-lxd-on-ubuntu-16-04\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eDeploying
+        fast, lightweight containers on Ubuntu is easy with LXD. We\u2019ll show you
+        how to set up your LXD and deploy your first container in just a few minutes.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAlberto
+        Donato \\u003ca href=\\\"mailto:alberto.donato@canonical.com\\\"\\u003ealberto.donato@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:01\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://linuxcontainers.org/lxd\\\"\\u003eLXD\\u003c/a\\u003e
+        is a container hypervisor providing a ReST API to manage LXC containers.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv
+        class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca class=\\\"lightbox\\\" href=\\\"https://assets.ubuntu.com/v1/faaa0d70-containers.png\\\"
+        title=\\\"logo\\\"\\u003e\\u003cimg src=\\\"https://assets.ubuntu.com/v1/faaa0d70-containers.png\\\"
+        alt=\\\"logo\\\" width=\\\"690\\\" height=\\\"268\\\"\\u003e\\u003cdiv class=\\\"meta\\\"\\u003e\\u003csvg
+        class=\\\"fa d-icon d-icon-far-image svg-ico\"],[13970,\"Creating custom LXD
+        images\",\"creating-custom-lxd-images\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eCreate
+        custom Ubuntu or Debian LXD images to use locally or publish\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMarcin
+        Miko\u0142ajczak \\u003ca href=\\\"mailto:me@m4sk.in\\\"\\u003eme@m4sk.in\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://linuxcontainers.org/lxd\\\"\\u003eLXD\\u003c/a\\u003e
+        is a container hypervisor providing a ReST API to manage LXC containers.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv
+        class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/f/f59ab6926eb30b81af2eb9ca01d1a13ab40e1f3c.png\\\"
+        data-download-href=\\\"/uploads/short-url/z2Is0lfaLafmMfIjohpDk1pzfxG.png?dl=1\\\"
+        title=\\\"logo\\\"\\u003e\\u003cimg src=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/f/f59ab6926eb30b81af2eb9ca01d1a13ab40e1f3c.png\\\"
+        alt=\\\"logo\\\" data-base62-sh\"],[13968,\"GPU data processing inside LXD\",\"gpu-data-processing-inside-lxd\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eAccelerate
+        data processing within LXD containers by enabling direct access to your NVIDIA
+        GPU\u2019s CUDA engine.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e4\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eGraham
+        Morrison \\u003ca href=\\\"mailto:graham.morrison@canonical.com\\\"\\u003egraham.morrison@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        3:00\\u003c/p\\u003e\\n\\u003cp\\u003eHugely parallelised GPU data processing,
+        using either \\u003ca href=\\\"http://www.nvidia.com/object/cuda_home_new.html\\\"\\u003eCUDA\\u003c/a\\u003e
+        or \\u003ca href=\\\"https://www.khronos.org/opencl/\\\"\\u003eOpenCL\\u003c/a\\u003e,
+        is changing the shape of data science. It even has its own snappy acronym
+        - GPGPU - General-purpose computing on graphics processing units.\\u003c/p\\u003e\\n\\u003cp\\u003eIt\u2019s
+        no surprise, then, that flexible, scalable access to these GPU resources is
+        becoming a key requirement in many cloud deployments (see t\"],[13967,\"Install
+        MicroK8s on Windows\",\"install-microk8s-on-windows\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eGet
+        a local Kubernetes on Windows with Microk8s and Multipass.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003econtainers\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAmmar
+        Naqvi \\u003ca href=\\\"mailto:ammar.naqvi@canonical.com\\\"\\u003eammar.naqvi@canonical.com\\u003c/a\\u003e,
+        Konstantinos Tsakalozos \\u003ca href=\\\"mailto:kos.tsakalozos@canonical.com\\\"\\u003ekos.tsakalozos@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003ch3\\u003eWhat
+        is Kubernetes\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://kubernetes.io/\\\"\\u003eKubernetes\\u003c/a\\u003e
+        clusters host containerised applications in a reliable and scalable way. Having
+        DevOps in mind, Kubernetes makes maintenance tasks such as upgrades dead simple.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        is MicroK8s\\u003c/h3\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://microk8s.io/\\\"\\u003eMicroK8s\\u003c/a\\u003e
+        is a \\u003ca href=\\\"https://www.cncf.io/certification/software-conformance/\\\"\\u003eCNCF
+        certified\\u003c/a\\u003e upstream Kubernetes deployment that r\"],[13965,\"Access
+        a remote desktop\",\"access-a-remote-desktop\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eUse
+        Remmina and the VNC protocol to connect to your desktop from anywhere, or
+        access remotely shared desktops locally.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMarcin
+        Miko\u0142ajczak \\u003ca href=\\\"mailto:me@m4sk.in\\\"\\u003eme@m4sk.in\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eVirtual Network
+        Computing\\u003c/strong\\u003e (VNC) is a protocol commonly used to share
+        a graphical desktop over a network. Popular uses for VNC include technical
+        support and screen sharing.\\u003c/p\\u003e\\n\\u003cp\\u003eBy default, Ubuntu
+        comes with \\u003ca href=\\\"https://www.remmina.org/\\\"\\u003eRemmina\\u003c/a\\u003e
+        remote desktop client with support for VNC and RDP protocols. We will use
+        it to access remote server.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat you\u2019ll
+        need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eA computer running
+        Ubuntu 16.04 LTS or above\\u003c/li\\u003e\\n\\u003cli\\u003eA running VNC
+        server\\u003c/li\\u003e\\n\"],[13964,\"Apply kernel patches without rebooting\",\"apply-kernel-patches-without-rebooting\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to install and run Canonical\u2019s Livepatch service to get critical
+        kernel patches without rebooting.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eKonrad
+        Krawiec \\u003ca href=\\\"mailto:konrad11901@gmail.com\\\"\\u003ekonrad11901@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eThe \\u003ca href=\\\"https://www.ubuntu.com/server/livepatch\\\"\\u003eCanonical
+        Livepatch Service\\u003c/a\\u003e applies critical kernel security patches
+        without rebooting Ubuntu. This is especially useful on production environments
+        and services where any downtime could be disruptive.\\u003c/p\\u003e\\n\\u003cp\\u003eLivepatch
+        is free for up to 3 machines. It is also included in every \\u003ca href=\\\"https://buy.ubuntu.com\\\"\\u003eUbuntu
+        Advantage\\u003c/a\\u003e subscription.\\u003c/p\\u003e\\n\\u003cp\\u003eThis
+        tutorial will show you how to enable this service on your Ubuntu system\"],[13963,\"Run
+        your own IRC server\",\"run-your-own-irc-server\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to install, configure and run the fantastic InspIRCd IRC server, direct
+        from the latest source code.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e4\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eVarun
+        Patel \\u003ca href=\\\"mailto:varun-patel@live.com\\\"\\u003evarun-patel@live.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eDespite modern alternatives like Slack,
+        the ancient \\u003cem\\u003e\\u003ca href=\\\"https://en.wikipedia.org/wiki/Internet_Relay_Chat\\\"\\u003eIRC\\u003c/a\\u003e\\u003c/em\\u003e
+        is still hugely popular as an online interactive chat platform.\\u003c/p\\u003e\\n\\u003cp\\u003eThis
+        may be because there are IRC clients for almost every operating system and
+        device, from the Commodore Amiga to your smartphone, and the technology behind
+        IRC is reassuringly simplistic - it really is just raw text and a few control
+        characters being bumped around the network.\\u003c/p\\u003e\\n\\u003cp\\u003eO\"],[13961,\"Install
+        Ubuntu on Windows 10\",\"install-ubuntu-on-windows-10\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eGet
+        access to the unrivalled power of the Ubuntu terminal, including tools such
+        as SSH, apt and vim, directly on your Windows 10 computer.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eGraham
+        Morrison \\u003ca href=\\\"mailto:graham.morrison@canonical.com\\\"\\u003egraham.morrison@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cblockquote\\u003e\\n\\u003cp\\u003e\u24D8  Switch
+        language: EN | \\u003ca href=\\\"https://discourse.ubuntu.com/t/instalacion-de-ubuntu-en-windows-10/14949\\\"\\u003eES\\u003c/a\\u003e\\u003c/p\\u003e\\n\\u003c/blockquote\\u003e\\n\\u003cp\\u003eThe
+        wonderful Ubuntu terminal is \\u003ca href=\\\"https://www.microsoft.com/en-us/store/p/ubuntu/9nblggh4msv6\\\"\\u003efreely
+        available\\u003c/a\\u003e for Windows 10.\\u003c/p\\u003e\\n\\u003cp\\u003eAs
+        any Linux user knows, it\u2019s the command line terminal where the magic
+        happens. It\u2019s perfect for file management, development, remote administ\"],[13960,\"Setup
+        a ZFS storage pool\",\"setup-a-zfs-storage-pool\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eFind
+        out how to enable ZFS and create a storage pool on Ubuntu 16.04.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAden
+        Padilla \\u003ca href=\\\"mailto:adenpadilla@gmail.com\\\"\\u003eadenpadilla@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eZFS is a combined file system and logical
+        volume manager originally designed and implemented by a team at Sun Microsystems
+        led by Jeff Bonwick and Matthew Ahrens. Features of ZFS include protection
+        against data corruption, high storage capacity (256 ZiB), snapshots and copy-on-write
+        clones and continuous integrity checking to name but a few. If you are dealing
+        with large amounts of data, or providing a backing filesystem for virtualisation,
+        ZFS is a great choice.\\u003c/p\\u003e\\n\\u003cp\\u003eThis guide will go
+        through the process of installing\"],[13959,\"Install and configure WordPress\",\"install-and-configure-wordpress\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eInstall
+        and configure WordPress blog tool and CMS on Apache server and create your
+        first post.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMarcin
+        Miko\u0142ajczak \\u003ca href=\\\"mailto:me@m4sk.in\\\"\\u003eme@m4sk.in\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eWordPress is the most popular open-source
+        blogging system and CMS on the Web. It is based on PHP and MySQL. Its features
+        can be extended with thousands of free plugins and themes.\\u003c/p\\u003e\\n\\u003cp\\u003eIn
+        this tutorial we will install WordPress on Apache2 server and create our first
+        post.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to set up WordPress\\u003c/li\\u003e\\n\\u003cli\\u003eHow to configure WordPress\\u003c/li\\u003e\\n\\u003cli\\u003eHow
+        to create first post\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eA computer
+        running Ubuntu Server 20.04 LTS\\u003c/li\\u003e\\n\\u003cli\\u003eThis guide
+        \"],[13958,\"Setting up a RocketChat Server on Ubuntu\",\"setting-up-a-rocketchat-server-on-ubuntu\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to setup a RocketChat server on Ubuntu.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eIvan
+        Fonseca \\u003ca href=\\\"mailto:ivanfon@riseup.net\\\"\\u003eivanfon@riseup.net\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eRocketChat is an open-source team chat
+        client, similar to other team chat solutions such as Slack and Mattermost.
+        It can be self-hosted, supports voice \\u0026amp; video chat, and has apps
+        for all popular platforms (web, Windows, macOS, Linux, Android and iOS).\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cp\\u003eThis tutorial will teach
+        you how to setup and configure a RocketChat server on Ubuntu.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eUbuntu
+        Server 16.04 or greater\\u003c/li\\u003e\\n\\u003cli\\u003eBasic command-line
+        knowledge\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eHow will
+        you use this tutorial?\\u003c/h3\\u003e\\n\\u003cdiv class=\\\"poll\"],[13957,\"Generate
+        SSH Keys on Windows 10\",\"generate-ssh-keys-on-windows-10\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eUse
+        the Ubuntu command line or PuTTY running on Windows 10 to generate SSH keys
+        for use with SSH authentication and your own remote connections.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eGraham
+        Morrison \\u003ca href=\\\"mailto:graham.morrison@canonical.com\\\"\\u003egraham.morrison@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eSSH,
+        the secure shell, is often used to access remote Linux systems. But its authentication
+        mechanism, where a \\u003cem\\u003eprivate local key\\u003c/em\\u003e is paired
+        with a \\u003cem\\u003epublic remote key\\u003c/em\\u003e, is used to secure
+        all kinds of online services, from \\u003ca href=\\\"https://help.github.com/categories/authenticating-to-github/\\\"\\u003eGitHub\\u003c/a\\u003e
+        and \\u003ca href=\\\"https://help.launchpad.net/YourAccount/CreatingAnSSHKeyPair\\\"\\u003eLaunchpad\\u003c/a\\u003e
+        to Linux running on \\u003ca href\"],[13956,\"Configure SSH to use two-factor
+        authentication\",\"configure-ssh-to-use-two-factor-authentication\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eConfigure
+        SSH on Ubuntu server to require two-factor authentication.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMarcin
+        Miko\u0142ajczak \\u003ca href=\\\"mailto:me@m4sk.in\\\"\\u003eme@m4sk.in\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003eSSH, the secure shell, is often used
+        to access remote Linux systems. Because we often use it to connect with computers
+        containing important data, it\u2019s recommended to add another security layer.
+        Here comes the two factor authentication (\\u003cem\\u003e2FA\\u003c/em\\u003e).\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        is two-factor authentication\\u003c/h3\\u003e\\n\\u003cp\\u003eMulti-factor
+        authentication is a method of confirming your identity using at least two
+        different ways of authentication. The most common and easiest to implement
+        example of two-factor authentication uses a combination of \\u003cstrong\\u003epassphrase\\u003c/st\"],[13955,\"Install
+        and Configure Apache\",\"install-and-configure-apache\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eThis
+        tutorial covers the installation and configuration of an Apache web server\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAden
+        Padilla \\u003ca href=\\\"mailto:adenpadilla@gmail.com\\\"\\u003eadenpadilla@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eApache is an open source web server
+        that\u2019s available for Linux servers free of charge.\\u003c/p\\u003e\\n\\u003cp\\u003eIn
+        this tutorial we\u2019ll be going through the steps of setting up an Apache
+        server.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to set up Apache\\u003c/li\\u003e\\n\\u003cli\\u003eSome basic Apache configuration\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eUbuntu
+        Server 16.04 LTS\\u003c/li\\u003e\\n\\u003cli\\u003eSecure Shell (SSH) access
+        to your server\\u003c/li\\u003e\\n\\u003cli\\u003eBasic Linux command line
+        knowledge\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cp\\u003eGot everything
+        ready? Let\u2019s move on to the next step!\\u003c/p\\u003e\\n\\u003cp\\u003e\"],[13954,\"Using
+        ZFS Snapshots and Clones\",\"using-zfs-snapshots-and-clones\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to use snapshots and cloning in ZFS.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eIvan
+        Fonseca \\u003ca href=\\\"mailto:ivanfon@riseup.net\\\"\\u003eivanfon@riseup.net\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat we\u2019ll learn\\u003c/h3\\u003e\\n\\u003cp\\u003eIn
+        this tutorial we will learn about ZFS snapshots and ZFS clones, what they
+        are and how to use them.\\u003c/p\\u003e\\n\\u003ch3\\u003eSnapshots\\u003c/h3\\u003e\\n\\u003cp\\u003eA
+        snapshot is a read-only copy of a filesystem taken at a moment in time. Snapshots
+        only record differences between the snapshot and the current filesystem. This
+        means that, until you start making changes to the active filesystem, snapshots
+        won\u2019t take up any additional storage.\\u003c/p\\u003e\\n\\u003cp\\u003eA
+        snapshot can\u2019t be directly accessed; they are cloned, backed up and rolled
+        back to. They are persistent and consum\"],[13953,\"Running Ubuntu Desktop
+        on an AWS EC2 instance\",\"running-ubuntu-desktop-on-an-aws-ec2-instance\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to connect and run Ubuntu desktop on AWS EC2 Instance. Access GUI to manage
+        your machine more easily.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eSimran
+        Singh \\u003ca href=\\\"mailto:invincible.simran@gmail.com\\\"\\u003einvincible.simran@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:01\\u003c/p\\u003e\\n\\u003cp\\u003eThis tutorial will guide you through
+        the setup of running ubuntu desktop on an AWS EC2 instance using TightVNC
+        on a system running Ubuntu 16.04+.\\u003c/p\\u003e\\n\\u003cp\\u003eWhat you\u2019ll
+        need :\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eAccess to an AWS
+        EC2 instance using commandline - This tutorial assumes that you\u2019re logged
+        into the machine using SSH\\u003c/li\\u003e\\n\\u003cli\\u003eA machine running
+        ubuntu 16.04+\\u003c/li\\u003e\\n\\u003cli\\u003eRemmina Remote Desktop Client
+        (Pre-installed on 16.04+)\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cp\\u003e\\u003cem\\u003eOriginally
+        authored by Simran Singh.\\u003c/em\\u003e\\u003c/p\\u003e\\n\"],[13952,\"Install
+        and configure Nginx\",\"install-and-configure-nginx\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eThis
+        tutorial covers the installation and configuration of an Nginx web server\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMarcin
+        Miko\u0142ajczak \\u003ca href=\\\"mailto:me@m4sk.in\\\"\\u003eme@m4sk.in\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eNginx (pronounced as \u201CEngine-X\u201D)
+        is an open source web server that is often used as reverse proxy or HTTP cache.
+        It is available for Linux for free.\\u003c/p\\u003e\\n\\u003cp\\u003eIn this
+        tutorial we\u2019ll install Nginx and set up a basic site.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to set up Nginx\\u003c/li\\u003e\\n\\u003cli\\u003eSome basic Nginx configuration\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eA computer
+        running Ubuntu Server 16.04 LTS\\u003c/li\\u003e\\n\\u003cli\\u003eSome basic
+        knowledge of command line use\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cp\\u003e\\u003cem\\u003eOriginally
+        authored by Marcin Miko\u0142ajczak\\u003c/em\\u003e\\u003c/p\\u003e\\n\\u003ch2\\u003eInst\"],[13951,\"Get
+        started with Corda\",\"get-started-with-corda\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to get started with Corda, an open source permissioned blockchain platform.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e3\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eJonathan
+        Sphar \\u003ca href=\\\"mailto:Jonathan.Sphar@r3.com\\\"\\u003eJonathan.Sphar@r3.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eCorda is a blockchain platform built
+        for business. Corda removes costly friction in business transactions by enabling
+        businesses to transact directly. Using smart contract and blockchain technology,
+        Corda allows existing business networks to reduce transaction and record-keeping
+        costs and to streamline business operations.\\u003c/p\\u003e\\n\\u003cp\\u003eCorda
+        enables an interoperable, open network that empowers organisations to collaborate
+        and transfer value directly with trust. Corda achieves this with complete
+        privacy in a fr\"],[13950,\"Install Ubuntu Server 16.04\",\"install-ubuntu-server-16-04\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eTurn
+        your PC into a powerful server, capable of delivering anything from file sharing
+        and local backup, to fully fledged websites and beyond.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:01\\u003c/p\\u003e\\n\\u003cp\\u003eUbuntu Server is Ubuntu tailored for
+        networks and services, and it\u2019s just as capable sharing files on your
+        home network as it is running within a Hadoop cluster.\\u003c/p\\u003e\\n\\u003cp\\u003eUnlike
+        the installation of Ubuntu Desktop, Ubuntu Server does not include a graphical
+        installation program. Instead, it uses a console menu-based process. If you\u2019d
+        rather install the desktop version, take a look at our \\u003ca href=\\\"https://tutorials.ubuntu.com/tutorial/tutorial-insta\"],[13949,\"Install
+        Ubuntu Server\",\"install-ubuntu-server\",\"\\u003cdiv class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eTurn
+        your PC into a powerful server, capable of delivering anything from file sharing
+        and local backup, to fully fledged websites and beyond, using Ubuntu Server
+        18.04 LTS.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:01\\u003c/p\\u003e\\n\\u003cp\\u003eUbuntu Server is a variant of the standard
+        Ubuntu you already know, tailored for networks and services. It\u2019s just
+        as capable of running a simple file server as it is operating within a 50,000
+        node cloud.\\u003c/p\\u003e\\n\\u003cp\\u003eUnlike the installation of Ubuntu
+        Desktop, Ubuntu Server does not include a graphical installation program.
+        Instead, it uses a text menu-based process. If you\u2019d rather install the
+        desktop version, take a loo\"],[13948,\"Install and Configure Samba\",\"install-and-configure-samba\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eInstall
+        and configure Samba to share files across a network.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eAden
+        Padilla \\u003ca href=\\\"mailto:adenpadilla@gmail.com\\\"\\u003eadenpadilla@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eA Samba file server enables file sharing
+        across different operating systems over a network. It lets you access your
+        desktop files from a laptop and share files with Windows and macOS users.\\u003c/p\\u003e\\n\\u003cp\\u003eThis
+        guide covers the installation and configuration of Samba on Ubuntu.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eHow
+        to set up a Samba file server\\u003c/li\\u003e\\n\\u003cli\\u003eHow to share
+        files across a local network\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eUbuntu
+        16.04 LTS\\u003c/li\\u003e\\n\\u003cli\\u003eA Local Area Network (LAN) to
+        share files over\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cp\\u003eIf
+        you h\"],[13947,\"Viewing and monitoring log files\",\"viewing-and-monitoring-log-files\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eLearn
+        how to view and monitor log files using a GUI and the command-line.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eIvan
+        Fonseca \\u003ca href=\\\"mailto:ivanfon@riseup.net\\\"\\u003eivanfon@riseup.net\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        1:00\\u003c/p\\u003e\\n\\u003cp\\u003eThe Linux operating system, and many
+        applications that run on it, do a lot of logging. These logs are invaluable
+        for monitoring and troubleshooting your system.\\u003c/p\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll learn\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eViewing
+        logs with a simple GUI tool\\u003c/li\\u003e\\n\\u003cli\\u003eBasic command-line
+        commands for working with log files\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003ch3\\u003eWhat
+        you\u2019ll need\\u003c/h3\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eUbuntu
+        Desktop or Server\\u003c/li\\u003e\\n\\u003cli\\u003eVery basic command-line
+        knowledge (\\u003ccode\\u003ecd\\u003c/code\\u003e, \\u003ccode\\u003els\\u003c/code\\u003e,
+        etc.)\\u003c/li\\u003e\\n\\u003c/ul\\u003e\\n\\u003cp\\u003e\\u003cem\\u003eOriginally
+        authored by Ivan Fonseca.\\u003c/em\\u003e\\u003c/p\\u003e\\n\\u003ch3\\u003eHow
+        w\"],[13945,\"How to Install ONLYOFFICE on Ubuntu 18.04\",\"how-to-install-onlyoffice-on-ubuntu-18-04\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eAlternative
+        ways to install ONLYOFFICE on Ubuntu 18.04 using the provided script.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003eserver\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eMaria
+        Pashkina \\u003ca href=\\\"mailto:maria.pashkina@gmail.com\\\"\\u003emaria.pashkina@gmail.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eINTRODUCTION\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        2:00\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003ca href=\\\"https://www.onlyoffice.com/en/\\\"\\u003eONLYOFFICE\\u003c/a\\u003e
+        is an open source office suite that includes online editors and the range
+        of productivity and collaboration tools such as, documents and projects management,
+        CRM system and calendar, chat and email, all in one place.\\u003c/p\\u003e\\n\\u003cp\\u003eONLYOFFICE
+        Community Edition, distributed under GNU AGPL v.3, is composed of three servers:\\u003c/p\\u003e\\n\\u003cul\\u003e\\n\\u003cli\\u003eDocument
+        Server: comprises online editors for text documents, spreadsheets and presentations.
+        You can create, edit and\"],[13618,\"Install Ubuntu desktop\",\"install-ubuntu-desktop\",\"\\u003cdiv
+        class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eKey\\u003c/th\\u003e\\n\\u003cth\\u003eValue\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eSummary\\u003c/td\\u003e\\n\\u003ctd\\u003eDiscover
+        how easy it is to install Ubuntu desktop onto your laptop or PC computer,
+        from either a DVD or a USB flash drive.\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eCategories\\u003c/td\\u003e\\n\\u003ctd\\u003edesktop\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eDifficulty\\u003c/td\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003eAuthor\\u003c/td\\u003e\\n\\u003ctd\\u003eCanonical
+        Web Team \\u003ca href=\\\"mailto:webteam@canonical.com\\\"\\u003ewebteam@canonical.com\\u003c/a\\u003e\\n\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003ch2\\u003eOverview\\u003c/h2\\u003e\\n\\u003cp\\u003eDuration:
+        0:05\\u003c/p\\u003e\\n\\u003cp\\u003eThe Ubuntu desktop is easy to use, easy
+        to install and includes everything you need to run your organisation, school,
+        home or enterprise. It\u2019s also open source, secure, accessible and free
+        to download.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca
+        class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3-us-east-2.amazonaws.com/original/2X/4/43a6f9ad883ac86ecc11a8170b69b895d8b42e0e.png\\\"
+        data-download-href=\\\"/uploads/short-url/9EtJtpTh6Ob5ejGuVTDSwhti9MG.png?dl=1\\\"
+        title=\\\"Bionic deskto\"]]}"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Content-Type, Cache-Control, X-Requested-With, X-CSRF-Token, Discourse-Present,
+        User-Api-Key, User-Api-Client-Id, Authorization
+      Access-Control-Allow-Methods:
+      - POST, PUT, GET, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - https://didrocks.fr
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 02 Sep 2021 21:33:15 GMT
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - Apache/2.4.18 (Ubuntu)
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      X-Discourse-Route:
+      - query/run
+      X-Discourse-Username:
+      - system
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Request-Id:
+      - 8b30d4b8-b3f1-4e40-b2f6-9914cb17539e
+      X-Runtime:
+      - '0.060815'
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
     body: null
     headers:
       Accept:
