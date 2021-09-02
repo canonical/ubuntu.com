@@ -1,7 +1,5 @@
 from typing import List, Dict, Optional
 
-from dateutil.parser import parse
-
 from webapp.advantage.ua_contracts.helpers import (
     group_items_by_listing,
     get_items_aggregated_values,
