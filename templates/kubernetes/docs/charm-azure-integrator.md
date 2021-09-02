@@ -177,13 +177,30 @@ relations:
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
+
 | <a id="table-credentials"> </a> credentials | string |  | [See notes](#credentials-description) |
+
 | <a id="table-extra_packages"> </a> extra_packages | string |  | Space separated list of extra deb packages to install. |
+
 | <a id="table-install_keys"> </a> install_keys | string | [See notes](#install_keys-default) | [See notes](#install_keys-description) |
+
 | <a id="table-install_sources"> </a> install_sources | string | [See notes](#install_sources-default) | [See notes](#install_sources-description) |
+
 | <a id="table-package_status"> </a> package_status | string | install | The status of service-affecting packages will be set to this value in the dpkg database. Valid values are "install" and "hold". |
 
+| <a id="table-subnetName"> </a> subnetName | string | juju-internal-subnet | Vnet's subnet to be used by azure cloud-integration. This config must be set at deployment and cannot be changed later. |
+
+| <a id="table-vnetName"> </a> vnetName | string | [See notes](#vnetName-default) | VnetName to be passed via cloud-integration. This config must be set at deployment and cannot be changed later. |
+
+| <a id="table-vnetResourceGroup"> </a> vnetResourceGroup | string |  | Vnet's resource group to be passed via cloud-integration. This config must be set at deployment and cannot be changed later. |
+
+| <a id="table-vnetSecurityGroup"> </a> vnetSecurityGroup | string | juju-internal-nsg | Default network sec group (NSG) to be used by azure cloud integration. This config must be set at deployment and cannot be changed later. |
+
+| <a id="table-vnetSecurityGroupResourceGroup"> </a> vnetSecurityGroupResourceGroup | string |  | Default network sec group (NSG) to be used by azure cloud integration. This config must be set at deployment and cannot be changed later. |
+
+
 ---
+
 
 ### credentials
 
@@ -193,8 +210,9 @@ relations:
 **Description:**
 
 The base64-encoded JSON credentials data, which must include the 'application-id',
-'application-password', and the 'subscription-id'.  These values can be retrieved
-from Juju using the 'credentials' command and extracting the value of the 'details'
+'application-password', and the 'subscription-id'. Optionally can include managed-identity (default true) 
+and tenant-id (default '').
+These values can be retrieved from Juju using the 'credentials' command and extracting the value of the 'details'
 key for the appropriate credential. For example, using 'jq', replace '<credential-name>'
 in the following:
 
@@ -205,7 +223,7 @@ in the following:
 
 
 This can be used from bundles with 'include-base64://' (see
-https://discourse.charmhub.io/t/bundle-reference/1158),
+https://jujucharms.com/docs/stable/charms-bundles#setting-charm-configurations-options-in-a-bundle),
 or from the command-line with 'juju config aws credentials="$(base64 /path/to/file)"'.
 
 This option will take precedence over the individual config options, if set.
@@ -272,7 +290,7 @@ List of signing keys for install_sources package sources, per charmhelpers stand
 **Default:**
 
 ```
-- deb https://packages.microsoft.com/repos/azure-cli/ xenial main
+- deb https://packages.microsoft.com/repos/azure-cli/ {series} main
 
 ```
 
@@ -291,10 +309,23 @@ List of extra apt sources, per charm-helpers standard format (a yaml list of str
 
 
 
+### vnetName
+
+
+
+<a id="vnetName-default"> </a>
+**Default:**
+
+```
+juju-internal-network
+```
+
+
+[Back to table](#table-vnetName)
+
+
 
 <!-- CONFIG ENDS -->
-
-
 
 
 [asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml

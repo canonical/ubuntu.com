@@ -41,7 +41,7 @@ examples of complete models of Kubernetes clusters.
 
 # Resources
 
-The kubernetes-master charm takes advantage of the [Juju Resources](https://jaas.ai/docs/juju-resources)
+The kubernetes-master charm takes advantage of the [Juju Resources](https://juju.is/docs/sdk/resources)
 feature to deliver the Kubernetes software.
 
 In deployments on public clouds the Charm Store provides the resource to the
@@ -94,65 +94,91 @@ section on [configuring K8s services](#k8s-services).
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-| <a id="table-addons-registry"> </a> addons-registry | string |  | [See notes](#addons-registry-description)  |
-| <a id="table-allow-privileged"> </a> allow-privileged | string | auto | [See notes](#allow-privileged-description)  |
-| <a id="table-api-extra-args"> </a> api-extra-args | string |  | [See notes](#api-extra-args-description)  |
-| <a id="table-audit-policy"> </a> audit-policy | string | [See notes](#audit-policy-default) | Audit policy passed to kube-apiserver via --audit-policy-file. For more info, please refer to the upstream documentation at https://kubernetes.io/docs/tasks/debug-application-cluster/audit/  |
-| <a id="table-audit-webhook-config"> </a> audit-webhook-config | string |  | Audit webhook config passed to kube-apiserver via --audit-webhook-config-file. For more info, please refer to the upstream documentation at https://kubernetes.io/docs/tasks/debug-application-cluster/audit/  |
-| <a id="table-authorization-mode"> </a> authorization-mode | string | AlwaysAllow | Comma separated authorization modes. Allowed values are "RBAC", "Node", "Webhook", "ABAC", "AlwaysDeny" and "AlwaysAllow".  |
-| <a id="table-channel"> </a> channel | string | 1.17/stable | Snap channel to install Kubernetes master services from  |
-| <a id="table-client_password"> </a> client_password | string |  | Password to be used for admin user (leave empty for random password).  |
-| <a id="table-controller-manager-extra-args"> </a> controller-manager-extra-args | string |  | [See notes](#controller-manager-extra-args-description)  |
-| <a id="table-dashboard-auth"> </a> dashboard-auth | string | auto | [See notes](#dashboard-auth-description)  |
-| <a id="table-default-storage"> </a> default-storage | string | auto | The storage class to make the default storage class. Allowed values are "auto", "none", "ceph-xfs", "ceph-ext4". Note: Only works in Kubernetes >= 1.10  |
-| <a id="table-dns-provider"> </a> dns-provider | string | auto | [See notes](#dns-provider-description)  |
-| <a id="table-dns_domain"> </a> dns_domain | string | cluster.local | The local domain for cluster dns  |
-| <a id="table-enable-dashboard-addons"> </a> enable-dashboard-addons | boolean | True | Deploy the Kubernetes Dashboard and Heapster addons  |
-| <a id="table-enable-keystone-authorization"> </a> enable-keystone-authorization | boolean | False | If true and the Keystone charm is related, users will authorize against the Keystone server. Note that if related, users will always authenticate against Keystone.  |
-| <a id="table-enable-metrics"> </a> enable-metrics | boolean | True | If true the metrics server for Kubernetes will be deployed onto the cluster.  |
-| <a id="table-enable-nvidia-plugin"> </a> enable-nvidia-plugin | string | auto | Load the nvidia device plugin daemonset. Supported values are "auto" and "false". When "auto", the daemonset will be loaded only if GPUs are detected. When "false" the nvidia device plugin will not be loaded.  |
-| <a id="table-extra_packages"> </a> extra_packages | string |  | Space separated list of extra deb packages to install.  |
-| <a id="table-extra_sans"> </a> extra_sans | string |  | Space-separated list of extra SAN entries to add to the x509 certificate created for the master nodes.  |
-| <a id="table-ha-cluster-dns"> </a> ha-cluster-dns | string |  | DNS entry to use with the HA Cluster subordinate charm. Mutually exclusive with ha-cluster-vip.  |
-| <a id="table-ha-cluster-vip"> </a> ha-cluster-vip | string |  | Virtual IP for the charm to use with the HA Cluster subordinate charm Mutually exclusive with ha-cluster-dns. Multiple virtual IPs are separated by spaces.  |
-| <a id="table-image-registry"> </a> image-registry | string | [See notes](#image-registry-default) | Container image registry to use for CDK. This includes addons like the Kubernetes dashboard, metrics server, ingress, and dns along with non-addon images including the pause container and default backend image.  |
-| <a id="table-install_keys"> </a> install_keys | string |  | [See notes](#install_keys-description)  |
-| <a id="table-install_sources"> </a> install_sources | string |  | [See notes](#install_sources-description)  |
-| <a id="table-keystone-policy"> </a> keystone-policy | string | [See notes](#keystone-policy-default) | Policy for Keystone authorization. This is used when a Keystone charm is related to kubernetes-master in order to provide authorization for Keystone users on the Kubernetes cluster.  |
-| <a id="table-keystone-ssl-ca"> </a> keystone-ssl-ca | string |  | Keystone certificate authority encoded in base64 for securing communications to Keystone. For example: `juju config kubernetes-master keystone-ssl-ca=$(base64 /path/to/ca.crt)`  |
-| <a id="table-loadbalancer-ips"> </a> loadbalancer-ips | string |  | [See notes](#loadbalancer-ips-description)  |
-| <a id="table-monitoring-storage"> </a> monitoring-storage | string | [See notes](#monitoring-storage-default) | [See notes](#monitoring-storage-description)  |
-| <a id="table-nagios_context"> </a> nagios_context | string | juju | [See notes](#nagios_context-description)  |
-| <a id="table-nagios_servicegroups"> </a> nagios_servicegroups | string |  | A comma-separated list of nagios servicegroups. If left empty, the nagios_context will be used as the servicegroup  |
-| <a id="table-package_status"> </a> package_status | string | install | The status of service-affecting packages will be set to this value in the dpkg database. Valid values are "install" and "hold".  |
-| <a id="table-proxy-extra-args"> </a> proxy-extra-args | string |  | [See notes](#proxy-extra-args-description)  |
-| <a id="table-require-manual-upgrade"> </a> require-manual-upgrade | boolean | True | When true, master nodes will not be upgraded until the user triggers it manually by running the upgrade action.  |
-| <a id="table-scheduler-extra-args"> </a> scheduler-extra-args | string |  | [See notes](#scheduler-extra-args-description)  |
-| <a id="table-service-cidr"> </a> service-cidr | string | 10.152.183.0/24 | CIDR to user for Kubernetes services. Cannot be changed after deployment.  |
-| <a id="table-snap_proxy"> </a> snap_proxy | string |  | DEPRECATED. Use snap-http-proxy and snap-https-proxy model configuration settings. HTTP/HTTPS web proxy for Snappy to use when accessing the snap store.  |
-| <a id="table-snap_proxy_url"> </a> snap_proxy_url | string |  | DEPRECATED. Use snap-store-proxy model configuration setting. The address of a Snap Store Proxy to use for snaps e.g. http://snap-proxy.example.com  |
-| <a id="table-snapd_refresh"> </a> snapd_refresh | string | max | [See notes](#snapd_refresh-description)  |
-| <a id="table-storage-backend"> </a> storage-backend | string | auto | The storage backend for kube-apiserver persistence. Can be "etcd2", "etcd3", or "auto". Auto mode will select etcd3 on new installations, or etcd2 on upgrades.  |
-| <a id="table-sysctl"> </a> sysctl | string | [See notes](#sysctl-default) | [See notes](#sysctl-description)  |
+
+| <a id="table-allow-privileged"> </a> allow-privileged | string | auto | [See notes](#allow-privileged-description) |
+
+| <a id="table-api-extra-args"> </a> api-extra-args | string |  | [See notes](#api-extra-args-description) |
+
+| <a id="table-audit-policy"> </a> audit-policy | string | [See notes](#audit-policy-default) | Audit policy passed to kube-apiserver via --audit-policy-file. For more info, please refer to the upstream documentation at https://kubernetes.io/docs/tasks/debug-application-cluster/audit/ |
+
+| <a id="table-audit-webhook-config"> </a> audit-webhook-config | string |  | Audit webhook config passed to kube-apiserver via --audit-webhook-config-file. For more info, please refer to the upstream documentation at https://kubernetes.io/docs/tasks/debug-application-cluster/audit/ |
+
+| <a id="table-authn-webhook-endpoint"> </a> authn-webhook-endpoint | string |  | [See notes](#authn-webhook-endpoint-description) |
+
+| <a id="table-authorization-mode"> </a> authorization-mode | string | Node,RBAC | Comma separated authorization modes. Allowed values are "RBAC", "Node", "Webhook", "ABAC", "AlwaysDeny" and "AlwaysAllow". |
+
+| <a id="table-cephfs-mounter"> </a> cephfs-mounter | string | default | The client driver used for cephfs based storage. Options are "fuse", "kernel" and "default". |
+
+| <a id="table-channel"> </a> channel | string | 1.22/stable | Snap channel to install Kubernetes master services from |
+
+| <a id="table-client_password"> </a> client_password | string |  | Password to be used for admin user (leave empty for random password). |
+
+| <a id="table-controller-manager-extra-args"> </a> controller-manager-extra-args | string |  | [See notes](#controller-manager-extra-args-description) |
+
+| <a id="table-dashboard-auth"> </a> dashboard-auth | string | auto | [See notes](#dashboard-auth-description) |
+
+| <a id="table-default-cni"> </a> default-cni | string |  | [See notes](#default-cni-description) |
+
+| <a id="table-default-storage"> </a> default-storage | string | auto | The storage class to make the default storage class. Allowed values are "auto", "none", "ceph-xfs", "ceph-ext4", "cephfs". Note: Only works in Kubernetes >= 1.10 |
+
+| <a id="table-dns-provider"> </a> dns-provider | string | auto | [See notes](#dns-provider-description) |
+
+| <a id="table-dns_domain"> </a> dns_domain | string | cluster.local | The local domain for cluster dns |
+
+| <a id="table-enable-dashboard-addons"> </a> enable-dashboard-addons | boolean | True | Deploy the Kubernetes Dashboard |
+
+| <a id="table-enable-keystone-authorization"> </a> enable-keystone-authorization | boolean | False | If true and the Keystone charm is related, users will authorize against the Keystone server. Note that if related, users will always authenticate against Keystone. |
+
+| <a id="table-enable-metrics"> </a> enable-metrics | boolean | True | If true the metrics server for Kubernetes will be deployed onto the cluster. |
+
+| <a id="table-enable-nvidia-plugin"> </a> enable-nvidia-plugin | string | auto | Load the nvidia device plugin daemonset. Supported values are "auto" and "false". When "auto", the daemonset will be loaded only if GPUs are detected. When "false" the nvidia device plugin will not be loaded. |
+
+| <a id="table-extra_packages"> </a> extra_packages | string |  | Space separated list of extra deb packages to install. |
+
+| <a id="table-extra_sans"> </a> extra_sans | string |  | Space-separated list of extra SAN entries to add to the x509 certificate created for the master nodes. |
+
+| <a id="table-ha-cluster-dns"> </a> ha-cluster-dns | string |  | DNS entry to use with the HA Cluster subordinate charm. Mutually exclusive with ha-cluster-vip. |
+
+| <a id="table-ha-cluster-vip"> </a> ha-cluster-vip | string |  | Virtual IP for the charm to use with the HA Cluster subordinate charm Mutually exclusive with ha-cluster-dns. Multiple virtual IPs are separated by spaces. |
+
+| <a id="table-image-registry"> </a> image-registry | string | [See notes](#image-registry-default) | Container image registry to use for CDK. This includes addons like the Kubernetes dashboard, metrics server, ingress, and dns along with non-addon images including the pause container and default backend image. |
+
+| <a id="table-install_keys"> </a> install_keys | string |  | [See notes](#install_keys-description) |
+
+| <a id="table-install_sources"> </a> install_sources | string |  | [See notes](#install_sources-description) |
+
+| <a id="table-keystone-policy"> </a> keystone-policy | string | [See notes](#keystone-policy-default) | Policy for Keystone authorization. This is used when a Keystone charm is related to kubernetes-master in order to provide authorization for Keystone users on the Kubernetes cluster. |
+
+| <a id="table-keystone-ssl-ca"> </a> keystone-ssl-ca | string |  | Keystone certificate authority encoded in base64 for securing communications to Keystone. For example: `juju config kubernetes-master keystone-ssl-ca=$(base64 /path/to/ca.crt)` |
+
+| <a id="table-loadbalancer-ips"> </a> loadbalancer-ips | string |  | [See notes](#loadbalancer-ips-description) |
+
+| <a id="table-nagios_context"> </a> nagios_context | string | juju | [See notes](#nagios_context-description) |
+
+| <a id="table-nagios_servicegroups"> </a> nagios_servicegroups | string |  | A comma-separated list of nagios servicegroups. If left empty, the nagios_context will be used as the servicegroup |
+
+| <a id="table-package_status"> </a> package_status | string | install | The status of service-affecting packages will be set to this value in the dpkg database. Valid values are "install" and "hold". |
+
+| <a id="table-proxy-extra-args"> </a> proxy-extra-args | string |  | [See notes](#proxy-extra-args-description) |
+
+| <a id="table-require-manual-upgrade"> </a> require-manual-upgrade | boolean | True | When true, master nodes will not be upgraded until the user triggers it manually by running the upgrade action. |
+
+| <a id="table-scheduler-extra-args"> </a> scheduler-extra-args | string |  | [See notes](#scheduler-extra-args-description) |
+
+| <a id="table-service-cidr"> </a> service-cidr | string | 10.152.183.0/24 | CIDR to use for Kubernetes services. After deployment it is only possible to increase the size of the IP range. It is not possible to change or shrink the address range after deployment. |
+
+| <a id="table-snapd_refresh"> </a> snapd_refresh | string | max | [See notes](#snapd_refresh-description) |
+
+| <a id="table-storage-backend"> </a> storage-backend | string | auto | The storage backend for kube-apiserver persistence. Can be "etcd2", "etcd3", or "auto". Auto mode will select etcd3 on new installations, or etcd2 on upgrades. |
+
+| <a id="table-sysctl"> </a> sysctl | string | [See notes](#sysctl-default) | [See notes](#sysctl-description) |
+
 
 ---
 
-### addons-registry
-
-
-<a id="addons-registry-description"> </a>
-**Description:**
-
-Specify the docker registry to use when applying addons.
-
-DEPRECATED in 1.15: Use the broader 'image-registry' config option instead. If both
-options are set, 'addons-registry' will be used to configure the cdk-addons snap until
-v1.17 is released. After that, the 'addons-registry' option will have no effect.
-
-[Back to table](#table-addons-registry)
-
 
 ### allow-privileged
+
 
 
 <a id="allow-privileged-description"> </a>
@@ -168,7 +194,10 @@ detected on a worker node.
 [Back to table](#table-allow-privileged)
 
 
+
+
 ### api-extra-args
+
 
 
 <a id="api-extra-args-description"> </a>
@@ -187,14 +216,17 @@ will result in kube-apiserver being run with the following options:
 [Back to table](#table-api-extra-args)
 
 
+
+
 ### audit-policy
+
 
 
 <a id="audit-policy-default"> </a>
 **Default:**
 
 ```
-apiVersion: audit.k8s.io/v1beta1
+apiVersion: audit.k8s.io/v1
 kind: Policy
 rules:
 # Don't log read-only requests from the apiserver
@@ -231,7 +263,32 @@ rules:
 [Back to table](#table-audit-policy)
 
 
+
+
+### authn-webhook-endpoint
+
+
+
+<a id="authn-webhook-endpoint-description"> </a>
+**Description:**
+
+Custom endpoint to check when authenticating kube-apiserver requests.
+This must be an https url accessible by the k8s-master units. For example:
+
+https://your.server:8443/authenticate
+
+When a JSON-serialized TokenReview object is POSTed to this endpoint, it must
+respond with appropriate authentication details. For more info, please refer
+to the upstream documentation at
+https://kubernetes.io/docs/reference/access-authn-authz/authentication/#webhook-token-authentication
+
+[Back to table](#table-authn-webhook-endpoint)
+
+
+
+
 ### controller-manager-extra-args
+
 
 
 <a id="controller-manager-extra-args-description"> </a>
@@ -250,7 +307,10 @@ will result in kube-controller-manager being run with the following options:
 [Back to table](#table-controller-manager-extra-args)
 
 
+
+
 ### dashboard-auth
+
 
 
 <a id="dashboard-auth-description"> </a>
@@ -260,10 +320,36 @@ Method of authentication for the Kubernetes dashboard. Allowed values are "auto"
 "basic", and "token". If set to "auto", basic auth is used unless Keystone is
 related to kubernetes-master, in which case token auth is used.
 
+DEPRECATED: this option has no effect on Kubernetes 1.19 and above.
+
 [Back to table](#table-dashboard-auth)
 
 
+
+
+### default-cni
+
+
+
+<a id="default-cni-description"> </a>
+**Description:**
+
+Default CNI network to use when multiple CNI subordinates are related.
+
+The value of this config should be the application name of a related CNI
+subordinate. For example:
+
+juju config kubernetes-master default-cni=flannel
+
+If unspecified, then the default CNI network is chosen alphabetically.
+
+[Back to table](#table-default-cni)
+
+
+
+
 ### dns-provider
+
 
 
 <a id="dns-provider-description"> </a>
@@ -275,15 +361,18 @@ DNS provider addon to use. Can be "auto", "core-dns", "kube-dns", or
 CoreDNS is only supported on Kubernetes 1.14+.
 
 When set to "auto", the behavior is as follows:
--   New deployments of Kubernetes 1.14+ will use CoreDNS
--   New deployments of Kubernetes 1.13 or older will use KubeDNS
--   Upgraded deployments will continue to use whichever provider was
+- New deployments of Kubernetes 1.14+ will use CoreDNS
+- New deployments of Kubernetes 1.13 or older will use KubeDNS
+- Upgraded deployments will continue to use whichever provider was
 previously used.
 
 [Back to table](#table-dns-provider)
 
 
+
+
 ### image-registry
+
 
 
 <a id="image-registry-default"> </a>
@@ -297,7 +386,10 @@ rocks.canonical.com:443/cdk
 [Back to table](#table-image-registry)
 
 
+
+
 ### install_keys
+
 
 
 <a id="install_keys-description"> </a>
@@ -308,7 +400,10 @@ List of signing keys for install_sources package sources, per charmhelpers stand
 [Back to table](#table-install_keys)
 
 
+
+
 ### install_sources
+
 
 
 <a id="install_sources-description"> </a>
@@ -319,7 +414,10 @@ List of extra apt sources, per charm-helpers standard format (a yaml list of str
 [Back to table](#table-install_sources)
 
 
+
+
 ### keystone-policy
+
 
 
 <a id="keystone-policy-default"> </a>
@@ -398,7 +496,10 @@ data:
 [Back to table](#table-keystone-policy)
 
 
+
+
 ### loadbalancer-ips
+
 
 
 <a id="loadbalancer-ips-description"> </a>
@@ -416,50 +517,10 @@ loadbalancer-ips configuration variable on the kubeapi-load-balancer charm.
 [Back to table](#table-loadbalancer-ips)
 
 
-### monitoring-storage
-
-
-<a id="monitoring-storage-default"> </a>
-**Default:**
-
-```
-influxdb:
-  emptyDir: {}
-grafana:
-  emptyDir: {}
-
-```
-
-
-[Back to table](#table-monitoring-storage)
-
-
-<a id="monitoring-storage-description"> </a>
-**Description:**
-
-Configuration to set up volume for influxdb/grafana.
-e.g
-influxdb:
-
-```
-  hostPath:
-    path: /influxdb
-    type: Directory
-```
-
-grafana:
-
-```
-  hostPath:
-    path: /grafana
-```
-
-    type: Directory
-
-[Back to table](#table-monitoring-storage)
 
 
 ### nagios_context
+
 
 
 <a id="nagios_context-description"> </a>
@@ -479,7 +540,10 @@ this allows you to differentiate between them.
 [Back to table](#table-nagios_context)
 
 
+
+
 ### proxy-extra-args
+
 
 
 <a id="proxy-extra-args-description"> </a>
@@ -498,7 +562,10 @@ will result in kube-apiserver being run with the following options:
 [Back to table](#table-proxy-extra-args)
 
 
+
+
 ### scheduler-extra-args
+
 
 
 <a id="scheduler-extra-args-description"> </a>
@@ -517,7 +584,10 @@ will result in kube-scheduler being run with the following options:
 [Back to table](#table-scheduler-extra-args)
 
 
+
+
 ### snapd_refresh
+
 
 
 <a id="snapd_refresh-description"> </a>
@@ -527,23 +597,34 @@ How often snapd handles updates for installed snaps. Setting an empty
 string will check 4x per day. Set to "max" to delay the refresh as long
 as possible. You may also set a custom string as described in the
 'refresh.timer' section here:
+
+```
   https://forum.snapcraft.io/t/system-options/87
+```
+
+
+DEPRECATED in 1.19: Manage installed snap versions with the snap-store-proxy model config.
+See: https://snapcraft.io/snap-store-proxy and https://juju.is/docs/offline-mode-strategies#heading--snap-specific-proxy
 
 [Back to table](#table-snapd_refresh)
 
 
+
+
 ### sysctl
+
 
 
 <a id="sysctl-default"> </a>
 **Default:**
 
 ```
-{ net.ipv4.conf.all.forwarding : 1, net.ipv4.neigh.default.gc_thresh1 : 128, net.ipv4.neigh.default.gc_thresh2 : 28672, net.ipv4.neigh.default.gc_thresh3 : 32768, net.ipv6.neigh.default.gc_thresh1 : 128, net.ipv6.neigh.default.gc_thresh2 : 28672, net.ipv6.neigh.default.gc_thresh3 : 32768, fs.inotify.max_user_instances : 8192, fs.inotify.max_user_watches: 1048576 }
+{ net.ipv4.conf.all.forwarding : 1, net.ipv4.neigh.default.gc_thresh1 : 128, net.ipv4.neigh.default.gc_thresh2 : 28672, net.ipv4.neigh.default.gc_thresh3 : 32768, net.ipv6.neigh.default.gc_thresh1 : 128, net.ipv6.neigh.default.gc_thresh2 : 28672, net.ipv6.neigh.default.gc_thresh3 : 32768, fs.inotify.max_user_instances : 8192, fs.inotify.max_user_watches : 1048576, kernel.panic : 10, kernel.panic_on_oops: 1, vm.overcommit_memory : 1 }
 ```
 
 
 [Back to table](#table-sysctl)
+
 
 
 <a id="sysctl-description"> </a>
@@ -568,6 +649,7 @@ the setting of conntrack-max-per-core vs nf_conntrack_max.
 
 
 <!-- CONFIG ENDS -->
+
 
 <a id="k8s-services"> </a>
 # Configuring K8s services

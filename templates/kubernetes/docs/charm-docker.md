@@ -64,26 +64,47 @@ principal charm.
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-| <a id="table-apt-key-server"> </a> apt-key-server | string | [See notes](#apt-key-server-default) | APT Key Server  |
-| <a id="table-cuda_repo"> </a> cuda_repo | string | 10.0.130-1 | The cuda-repo package version to install.  |
-| <a id="table-disable-juju-proxy"> </a> disable-juju-proxy | boolean | False | Ignore juju-http(s) proxy settings on this charm. If set to true, all juju https proxy settings will be ignored  |
-| <a id="table-docker-ce-package"> </a> docker-ce-package | string | [See notes](#docker-ce-package-default) | The pinned version of docker-ce package installed with nvidia-docker.  |
-| <a id="table-docker-logins"> </a> docker-logins | string | [] | [See notes](#docker-logins-description)  |
-| <a id="table-docker-opts"> </a> docker-opts | string |  | Extra options to pass to the Docker daemon. e.g. --insecure-registry.  |
-| <a id="table-docker_runtime"> </a> docker_runtime | string | auto | [See notes](#docker_runtime-description)  |
-| <a id="table-docker_runtime_key_url"> </a> docker_runtime_key_url | string |  | Custom Docker repository validation key URL.  |
-| <a id="table-docker_runtime_package"> </a> docker_runtime_package | string |  | Custom Docker repository package name.  |
-| <a id="table-docker_runtime_repo"> </a> docker_runtime_repo | string |  | [See notes](#docker_runtime_repo-description)  |
-| <a id="table-enable-cgroups"> </a> enable-cgroups | boolean | False | Enable GRUB cgroup overrides cgroup_enable=memory swapaccount=1. WARNING changing this option will reboot the host - use with caution on production services.  |
-| <a id="table-http_proxy"> </a> http_proxy | string |  | URL to use for HTTP_PROXY to be used by Docker. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images.  |
-| <a id="table-https_proxy"> </a> https_proxy | string |  | URL to use for HTTPS_PROXY to be used by Docker. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images.  |
-| <a id="table-no_proxy"> </a> no_proxy | string |  | [See notes](#no_proxy-description)  |
-| <a id="table-nvidia-container-runtime-package"> </a> nvidia-container-runtime-package | string | [See notes](#nvidia-container-runtime-package-default) | The pinned version of nvidia-container-runtime package.  |
-| <a id="table-nvidia-docker-package"> </a> nvidia-docker-package | string | [See notes](#nvidia-docker-package-default) | The pinned version of nvidia-docker2 package.  |
+
+| <a id="table-apt-key-server"> </a> apt-key-server | string | [See notes](#apt-key-server-default) | APT Key Server |
+
+| <a id="table-cuda_repo"> </a> cuda_repo | string | 10.0.130-1 | The cuda-repo package version to install. |
+
+| <a id="table-custom-registry-ca"> </a> custom-registry-ca | string |  | Base64 encoded Certificate Authority (CA) bundle. Setting this config allows container runtimes to pull images from registries with TLS certificates signed by an external CA. |
+
+| <a id="table-disable-juju-proxy"> </a> disable-juju-proxy | boolean | False | Ignore juju-http(s) proxy settings on this charm. If set to true, all juju https proxy settings will be ignored |
+
+| <a id="table-docker-ce-package"> </a> docker-ce-package | string | [See notes](#docker-ce-package-default) | The pinned version of docker-ce package installed with nvidia-docker. |
+
+| <a id="table-docker-logins"> </a> docker-logins | string | [] | [See notes](#docker-logins-description) |
+
+| <a id="table-docker-opts"> </a> docker-opts | string |  | Extra options to pass to the Docker daemon. e.g. --insecure-registry. |
+
+| <a id="table-docker_runtime"> </a> docker_runtime | string | auto | [See notes](#docker_runtime-description) |
+
+| <a id="table-docker_runtime_key_url"> </a> docker_runtime_key_url | string |  | Custom Docker repository validation key URL. |
+
+| <a id="table-docker_runtime_package"> </a> docker_runtime_package | string |  | Custom Docker repository package name. |
+
+| <a id="table-docker_runtime_repo"> </a> docker_runtime_repo | string |  | [See notes](#docker_runtime_repo-description) |
+
+| <a id="table-enable-cgroups"> </a> enable-cgroups | boolean | False | Enable GRUB cgroup overrides cgroup_enable=memory swapaccount=1. WARNING changing this option will reboot the host - use with caution on production services. |
+
+| <a id="table-http_proxy"> </a> http_proxy | string |  | URL to use for HTTP_PROXY to be used by Docker. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images. |
+
+| <a id="table-https_proxy"> </a> https_proxy | string |  | URL to use for HTTPS_PROXY to be used by Docker. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images. |
+
+| <a id="table-no_proxy"> </a> no_proxy | string |  | [See notes](#no_proxy-description) |
+
+| <a id="table-nvidia-container-runtime-package"> </a> nvidia-container-runtime-package | string | [See notes](#nvidia-container-runtime-package-default) | The pinned version of nvidia-container-runtime package. |
+
+| <a id="table-nvidia-docker-package"> </a> nvidia-docker-package | string | [See notes](#nvidia-docker-package-default) | The pinned version of nvidia-docker2 package. |
+
 
 ---
 
+
 ### apt-key-server
+
 
 
 <a id="apt-key-server-default"> </a>
@@ -97,7 +118,10 @@ hkp://keyserver.ubuntu.com:80
 [Back to table](#table-apt-key-server)
 
 
+
+
 ### docker-ce-package
+
 
 
 <a id="docker-ce-package-default"> </a>
@@ -111,7 +135,10 @@ docker-ce=5:18.09.1~3-0~ubuntu-bionic
 [Back to table](#table-docker-ce-package)
 
 
+
+
 ### docker-logins
+
 
 
 <a id="docker-logins-description"> </a>
@@ -126,7 +153,10 @@ The value for this config must be a JSON array of credential objects, like this:
 [Back to table](#table-docker-logins)
 
 
+
+
 ### docker_runtime
+
 
 
 <a id="docker_runtime-description"> </a>
@@ -140,7 +170,10 @@ or "custom" (must have set `docker_runtime_repo` URL, `docker_runtime_key_url` U
 [Back to table](#table-docker_runtime)
 
 
+
+
 ### docker_runtime_repo
+
 
 
 <a id="docker_runtime_repo-description"> </a>
@@ -153,7 +186,10 @@ runtime.  Use `{CODE}` to set release codename.  E.g.
 [Back to table](#table-docker_runtime_repo)
 
 
+
+
 ### no_proxy
+
 
 
 <a id="no_proxy-description"> </a>
@@ -167,7 +203,10 @@ the proxy defined in http_proxy or https_proxy. Must be less than
 [Back to table](#table-no_proxy)
 
 
+
+
 ### nvidia-container-runtime-package
+
 
 
 <a id="nvidia-container-runtime-package-default"> </a>
@@ -181,7 +220,10 @@ nvidia-container-runtime=2.0.0+docker18.09.1-1
 [Back to table](#table-nvidia-container-runtime-package)
 
 
+
+
 ### nvidia-docker-package
+
 
 
 <a id="nvidia-docker-package-default"> </a>
@@ -197,18 +239,6 @@ nvidia-docker2=2.0.3+docker18.09.1-1
 
 
 <!-- CONFIG ENDS -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Docker Compose
 
