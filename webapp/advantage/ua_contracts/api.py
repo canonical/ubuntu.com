@@ -1,3 +1,5 @@
+from typing import Optional
+
 from requests.exceptions import HTTPError
 
 from webapp.advantage.ua_contracts.parsers import (
@@ -83,23 +85,13 @@ class UAContractsAPI:
 
         return contracts
 
-    def get_contract_token(self, contract_id: str):
-        try:
-            response = self._request(
-                method="post",
-                path=f"v1/contracts/{contract_id}/token",
-                json={},
-            )
-        except HTTPError as error:
-            if error.response.status_code == 401:
-                if self.is_for_view:
-                    raise UAContractsAPIAuthErrorView(error)
-                raise UAContractsAPIAuthError(error)
-
-            if self.is_for_view:
-                raise UAContractsAPIErrorView(error)
-
-            raise UAContractsAPIError(error)
+    def get_contract_token(self, contract_id: str) -> Optional[str]:
+        response = self._request(
+            method="post",
+            path=f"v1/contracts/{contract_id}/token",
+            json={},
+            error_rules=["default", "auth"],
+        )
 
         return response.json().get("contractToken")
 
