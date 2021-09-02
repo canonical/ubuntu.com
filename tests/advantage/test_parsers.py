@@ -3,7 +3,7 @@ from typing import List, Dict
 
 from tests.advantage.helpers import get_fixture
 from webapp.advantage.ua_contracts.helpers import to_dict
-from webapp.advantage.models import Listing, Entitlement
+from webapp.advantage.models import Listing, Entitlement, Product
 from webapp.advantage.ua_contracts.parsers import (
     parse_account,
     parse_accounts,
@@ -17,14 +17,15 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_contract_items,
     parse_contract,
     parse_contracts,
+    parse_renewal,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Account,
     Subscription,
     SubscriptionItem,
-    Product,
     ContractItem,
     Contract,
+    Renewal,
 )
 
 
@@ -179,7 +180,10 @@ class TestParsers(unittest.TestCase):
             id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
             name="product-id",
             marketplace="canonical-ua",
-            product_name="Product Name",
+            product=Product(
+                name="Product Name",
+                id="product-id",
+            ),
             price=1000,
             currency="USD",
             status="active",
@@ -203,7 +207,7 @@ class TestParsers(unittest.TestCase):
             id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
             name="product-id",
             marketplace="canonical-ua",
-            product_name="",
+            product=None,
             price=1000,
             currency="USD",
             status="active",
@@ -228,10 +232,13 @@ class TestParsers(unittest.TestCase):
                 id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 name="product-id-2",
                 marketplace="canonical-ua",
-                product_name="Product Name 2",
+                status="active",
+                product=Product(
+                    name="Product Name 2",
+                    id="product-id-2",
+                ),
                 price=1000,
                 currency="USD",
-                status="active",
                 trial_days=None,
                 period=None,
             )
@@ -288,8 +295,74 @@ class TestParsers(unittest.TestCase):
         self.assertIsInstance(parsed_entitlements, List)
         self.assertEqual([], to_dict(parsed_entitlements))
 
-    def test_parse_contract_items(self):
-        raw_contract_items = get_fixture("contract-items")
+    def test_parse_renewal(self):
+        raw_renewal = get_fixture("renewal")
+        parsed_renewal = parse_renewal(raw_renewal=raw_renewal)
+
+        expectation = Renewal(
+            id="rAaBbCcDdEeFf",
+            contract_id="cAaBbCcDdEeFf",
+            actionable=False,
+            start_date="2020-11-01T00:00:00Z",
+            end_date="2021-01-01T00:00:00Z",
+            status="done",
+            new_contract_start="2021-01-01T00:00:00Z",
+            price=11000,
+            currency="USD",
+        )
+
+        self.assertEqual(to_dict(expectation), to_dict(parsed_renewal))
+
+    def test_parse_trial_contract_items(self):
+        raw_contract_items = [get_fixture("contract-item-trial")]
+
+        parsed_contract_items = parse_contract_items(
+            raw_items=raw_contract_items
+        )
+
+        expectation = [
+            ContractItem(
+                contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+                created_at="2014-06-01T10:00:00Z",
+                start_date="2014-06-01T10:00:00Z",
+                end_date="2015-07-01T00:00:00Z",
+                reason="trial_started",
+                value=1,
+                product_listing_id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP23",
+                purchase_id=None,
+                trial_id="tAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+            )
+        ]
+
+        self.assertIsInstance(parsed_contract_items, List)
+        self.assertEqual(to_dict(expectation), to_dict(parsed_contract_items))
+
+    def test_parse_purchase_contract_items(self):
+        raw_contract_items = [get_fixture("contract-item-shop")]
+
+        parsed_contract_items = parse_contract_items(
+            raw_items=raw_contract_items
+        )
+
+        expectation = [
+            ContractItem(
+                contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+                created_at="2014-02-01T10:00:00Z",
+                start_date="2014-03-01T10:00:00Z",
+                end_date="2015-03-01T00:00:00Z",
+                reason="purchase_made",
+                value=1,
+                product_listing_id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+                purchase_id="pAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+                trial_id=None,
+            ),
+        ]
+
+        self.assertIsInstance(parsed_contract_items, List)
+        self.assertEqual(to_dict(expectation), to_dict(parsed_contract_items))
+
+    def test_parse_legacy_contract_items(self):
+        raw_contract_items = [get_fixture("contract-item-legacy")]
 
         parsed_contract_items = parse_contract_items(
             raw_items=raw_contract_items
@@ -306,50 +379,17 @@ class TestParsers(unittest.TestCase):
                 product_listing_id=None,
                 purchase_id=None,
                 trial_id=None,
-            ),
-            ContractItem(
-                contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
-                created_at="2014-02-01T10:00:00Z",
-                start_date="2014-02-01T10:00:00Z",
-                end_date="2015-02-01T00:00:00Z",
-                reason="extend_contract_by_renewal",
-                value=0,
-                product_listing_id=None,
-                purchase_id=None,
-                trial_id=None,
-            ),
-            ContractItem(
-                contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
-                created_at="2014-02-01T10:00:00Z",
-                start_date="2014-03-01T10:00:00Z",
-                end_date="2015-03-01T00:00:00Z",
-                reason="purchase_made",
-                value=1,
-                product_listing_id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
-                purchase_id="pAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
-                trial_id=None,
-            ),
-            ContractItem(
-                contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
-                created_at="2014-03-01T10:00:00Z",
-                start_date="2014-04-01T10:00:00Z",
-                end_date="2015-04-01T00:00:00Z",
-                reason="purchase_made",
-                value=-2,
-                product_listing_id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
-                purchase_id="pAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
-                trial_id=None,
-            ),
-            ContractItem(
-                contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
-                created_at="2014-06-01T10:00:00Z",
-                start_date="2014-06-01T10:00:00Z",
-                end_date="2015-07-01T00:00:00Z",
-                reason="trial_started",
-                value=1,
-                product_listing_id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP23",
-                purchase_id=None,
-                trial_id="tAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+                renewal=Renewal(
+                    id="rAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+                    contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+                    actionable=True,
+                    start_date="2014-11-01T00:00:00Z",
+                    end_date="2015-01-01T00:00:00Z",
+                    status="pending",
+                    new_contract_start="2015-01-01T00:00:00Z",
+                    price=5000,
+                    currency="USD",
+                ),
             ),
         ]
 

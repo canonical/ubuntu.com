@@ -4,7 +4,7 @@ from typing import List
 
 from requests.exceptions import HTTPError
 
-from webapp.advantage.models import Listing, Entitlement
+from webapp.advantage.models import Listing, Entitlement, Product
 from webapp.advantage.ua_contracts.api import UAContractsAPI
 from webapp.advantage.ua_contracts.primitives import (
     Subscription,
@@ -98,18 +98,23 @@ def make_listing(
     id: str = None,
     name: str = None,
     marketplace: str = None,
-    product_name: str = None,
+    product: Product = None,
     price: int = None,
     currency: str = None,
     status: str = None,
     trial_days: int = None,
     period: str = None,
 ) -> Listing:
+    default_product = Product(
+        id="product-id",
+        name="product-name",
+    )
+
     return Listing(
         id=id or "lAaBbCcDdEeFfGg",
         name=name or "Listing Name",
         marketplace=marketplace or "canonical-ua",
-        product_name=product_name or "Product Name",
+        product=product or default_product,
         price=price or 1000,
         currency=currency or "USD",
         status=status or "active",

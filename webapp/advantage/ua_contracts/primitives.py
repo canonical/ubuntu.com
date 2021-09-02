@@ -1,26 +1,30 @@
 from typing import List
 
-
-class Entitlement:
-    def __init__(
-        self,
-        type: str,
-        enabled_by_default: bool,
-        support_level: str = None,
-    ):
-        self.type = type
-        self.support_level = support_level
-        self.enabled_by_default = enabled_by_default
+from webapp.advantage.models import Entitlement
 
 
-class Product:
+class Renewal:
     def __init__(
         self,
         id: str,
-        name: str,
+        contract_id: str,
+        actionable: bool,
+        status: str,
+        start_date: str,
+        end_date: str,
+        new_contract_start: str,
+        price: int,
+        currency: str
     ):
         self.id = id
-        self.name = name
+        self.contract_id = contract_id
+        self.actionable = actionable
+        self.status = status
+        self.start_date = start_date
+        self.end_date = end_date
+        self.price = price
+        self.currency = currency
+        self.new_contract_start = new_contract_start
 
 
 class ContractItem:
@@ -35,6 +39,7 @@ class ContractItem:
         product_listing_id: str = None,
         purchase_id: str = None,
         trial_id: str = None,
+        renewal: Renewal = None,
     ):
         self.contract_id = contract_id
         self.created_at = created_at
@@ -45,6 +50,7 @@ class ContractItem:
         self.product_listing_id = product_listing_id
         self.purchase_id = purchase_id
         self.trial_id = trial_id
+        self.renewal = renewal
 
 
 class Contract:

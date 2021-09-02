@@ -108,6 +108,10 @@ def build_final_user_subscriptions(
         items: List[ContractItem] = group.get("items")
         aggregated_values = get_items_aggregated_values(items)
 
+        price = None
+        if listing:
+            price = aggregated_values.get("number_of_machines") * listing.price
+
         user_subscription = UserSubscription(
             type=group.get("type"),
             account_id=account.id,
@@ -115,9 +119,10 @@ def build_final_user_subscriptions(
             start_date=aggregated_values.get("start_date"),
             end_date=aggregated_values.get("end_date"),
             number_of_machines=aggregated_values.get("number_of_machines"),
-            product_name=listing.product_name if listing else None,
+            product_name=listing.product.name if listing else None,
             marketplace=group.get("marketplace"),
-            price_per_unit=listing.price if listing else None,
+            price=price,
+            currency=listing.currency if listing else None,
             machine_type=get_machine_type(contract.product_id),
             listing_id=listing.id if listing else None,
             period=listing.period if listing else None,
