@@ -449,6 +449,11 @@ def advantage_shop_view(**kwargs):
 
 
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])
+def advantage_account_users_view(**kwargs):
+    return flask.render_template("advantage/users/index.html")
+
+
+@advantage_checks(check_list=["is_maintenance", "view_need_user"])
 def payment_methods_view(**kwargs):
     stripe_publishable_key = kwargs["stripe_publishable_key"]
     api_url = kwargs.get("api_url")
