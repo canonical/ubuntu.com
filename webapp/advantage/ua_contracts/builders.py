@@ -146,9 +146,9 @@ def build_get_user_info(user_summary: dict = None) -> dict:
 
     return {
         "has_monthly_subscription": True,
-        "is_renewing": subscription.is_renewing,
+        "is_auto_renewing": subscription.is_auto_renewing,
         "last_payment_date": renewal_info["subscriptionStartOfCycle"],
         "next_payment_date": renewal_info["subscriptionEndOfCycle"],
         "total": renewal_info["total"],
-        "currency": renewal_info["currency"],
+        "currency": renewal_info["currency"].upper(),
     }

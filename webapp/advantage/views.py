@@ -416,7 +416,7 @@ def get_user_info(**kwargs):
     )
 
     renewal_info = None
-    if monthly_subscription and monthly_subscription.is_renewing:
+    if monthly_subscription and monthly_subscription.is_auto_renewing:
         renewal_info = advantage.get_subscription_auto_renewal(
             monthly_subscription.id
         )
@@ -426,9 +426,7 @@ def get_user_info(**kwargs):
         "renewal_info": renewal_info,
     }
 
-    user_info = build_get_user_info(user_summary)
-
-    return user_info
+    return build_get_user_info(user_summary)
 
 
 @advantage_checks(check_list=["is_maintenance"])
