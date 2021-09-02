@@ -23,6 +23,9 @@
       // Include the active stripe on the left, but make it transparent. This is
       // so the background colour can be animated when it becomes active.
       @include vf-highlight-bar(transparent, left, true);
+      // Show the overflow so that the stripe can cover the border and doesn't
+      // cause scrollbars to appear.
+      overflow: visible;
 
       &::before {
         // Set up the animation on the active stripe.
@@ -39,8 +42,6 @@
         @include vf-highlight-bar($color-brand, left, true);
 
         background-color: $color-light;
-        // Show the overflow so that the stripe can cover the border.
-        overflow: visible;
 
         &::before {
           // Make the stripe match the border radius of the card.

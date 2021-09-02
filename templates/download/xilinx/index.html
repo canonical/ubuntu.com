@@ -1,0 +1,103 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Install Ubuntu on Xilinx{% endblock %}}
+
+{% block meta_description %}Use Ubuntu on Xilinx for the familiar developer experience and an accelerated path to production.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1DZxf-ZbJtyS69XQBslJry3Ien1FSHYLB2Qt78iRkhOs/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h1>Install Ubuntu on Xilinx</h1>
+      <p>Run Ubuntu on your Xilinx Zynq UltraScale+ MPSoC-based evaluation boards and Kria production SOMs. </p>
+      <p>Pick the OS  image to match your hardware, flash it onto SD/microSD card, load it onto your board and away you go.</p>
+    </div>
+    <div class="col-6 u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/8a8c250f-xilinx-logo.svg",
+        alt="",
+        width="326",
+        height="90",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h2>Download Ubuntu Desktop</h2>
+      <h3 class="p-heading--4">Ubuntu Desktop {{ releases.lts.full_version }} LTS</h3>
+      <p class="u-sv1">The version of Ubuntu with up to 10 years of long term support, until April 2030.</p>
+      <p>
+        <a class="p-button--positive" href="https://people.canonical.com/~platform/images/limerick/iot-limerick-classic-desktop-2004-x07-20210728-85.img.xz">Download 64-bit</a>
+      </p>
+      <p>Works on:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Xilinx ZCU102</li>
+        <li class="p-list__item is-ticked">Xilinx ZCU104</li>
+        <li class="p-list__item is-ticked">Xilinx ZCU106</li>
+        <li class="p-list__item is-ticked">Xilinx Kria KV260 Vision AI Starter Kit&nbsp;&nbsp;<div class="p-label">Coming soon</div></li>
+      </ul>
+    </div>
+    <div class="col-6 u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/24e23fbe-zcu106-evaluation-board.png",
+        alt="",
+        width="400",
+        height="273",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h3 class="p-heading--4">First time installing Ubuntu on Xilinx?</h3>
+      <p>Please see the <a class="p-link--external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2037317633/Getting+Started+with+Certified+Ubuntu+20.04+LTS+for+Xilinx+Devices?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=download&utm_term=desktop_image">Xilinx Getting Started Guide</a> for more information.</p>
+      <p><strong>Xilinx Ubuntu Software Development Kit</strong></p>
+      <p>Ubuntu Developers targeting Xilinx Zynq UltraScale+ MPSoC devices may also want to download the following files:</p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <table aria-label="Xilinx Ubuntu Software Development Kit table">
+      <thead>
+        <tr>
+          <th>Image name</th>
+          <th colspan="2">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><a href="https://people.canonical.com/~platform/images/limerick/iot-limerick-classic-desktop-2004-x07-20210728-85-sysroot.tar.xz">iot-classic-desktop-2004-x07-20210728-85-sysroot.tar.xz</a></th>
+          <td colspan="2">Sysroot for cross-compilation</td>
+        </tr>
+        <tr>
+          <th><a href="https://people.canonical.com/~platform/images/limerick/rootfs.ext4.xz">roofts.ext4.xz</a></th>
+          <td colspan="2">EXT4 formatted partition containing entire raw rootfs</td>
+        </tr>
+        <tr>
+          <th><a href="https://people.canonical.com/~platform/images/limerick/rootfs.tar.gz">rootfs.tar.gz</a></th>
+          <td colspan="2">Raw Root filesystem</td>
+        </tr>
+        <tr>
+          <th><a href="https://people.canonical.com/~platform/images/limerick/system-boot.tar.gz">system-boot.tar.gz</a></th>
+          <td colspan="2">FAT Partition Contents</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+{% endblock content %}

@@ -91,6 +91,7 @@ def get_user_subscription_statuses(
         "is_expired": False,
         "is_trialled": False,
         "is_renewable": False,
+        "has_pending_purchases": False,
     }
 
     if type == "free":
@@ -101,8 +102,12 @@ def get_user_subscription_statuses(
     statuses["is_in_grace_period"] = date_statuses["is_in_grace_period"]
     statuses["is_expired"] = date_statuses["is_expired"]
 
+    if statuses["is_expired"]:
+        return statuses
+
     subscriptions = subscriptions or []
-    if has_pending_purchases(subscriptions) or statuses["is_expired"]:
+    if has_pending_purchases(subscriptions):
+        statuses["has_pending_purchases"] = True
         return statuses
 
     if type == "trial":
@@ -172,6 +177,19 @@ def is_user_subscription_cancelled(
     is_cancelled = True if not listing_found else False
 
     return is_cancelled
+
+
+def extract_last_purchase_ids(subscriptions: List[Subscription]) -> Dict:
+    last_purchase_ids = {
+        "monthly": "",
+        "yearly": "",
+    }
+
+    for subscription in subscriptions:
+        period = subscription.period
+        last_purchase_ids[period] = subscription.last_purchase_id
+
+    return last_purchase_ids
 
 
 def to_dict(structure, class_key=None):

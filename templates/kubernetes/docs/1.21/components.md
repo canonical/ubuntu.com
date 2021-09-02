@@ -62,7 +62,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-aws-iam">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/charm-aws-iam"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/aws-iam/63"> 63 </a></td>
+  <td> <a href="https://jaas.ai/u/containers/aws-iam/69"> 69 </a></td>
   <td> -- </td>
 </tr>
 <tr>
@@ -71,7 +71,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-aws-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-aws-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/aws-integrator/103"> 103 </a></td>
+  <td> <a href="https://jaas.ai/u/containers/aws-integrator/126"> 126 </a></td>
   <td> -- </td>
 </tr>
 <tr>
@@ -80,7 +80,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-azure-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-azure-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/azure-integrator/86"> 86 </a> </td>
+  <td> <a href="https://jaas.ai/u/containers/azure-integrator/111"> 111 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -89,7 +89,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-calico">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/layer-calico"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/calico/785"> 785 </a> </td>
+  <td> <a href="https://jaas.ai/u/containers/calico/812"> 812 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -98,7 +98,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-canal">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/layer-canal"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/canal/785"> 785</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/canal/810"> 810</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -107,7 +107,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-containerd">docs</a> </td>
   <td> <a href=""> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/containerd/119"> 119</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/containerd/146"> 146</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -116,7 +116,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-docker">docs</a> </td>
   <td> <a href=""> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/docker/93"> 93</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/docker/100"> 100</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -125,7 +125,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-docker-registry">docs</a> </td>
   <td> <a href="https://github.com/CanonicalLtd/docker-registry-charm"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/docker-registry/175"> 175</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/docker-registry/188"> 188</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -134,7 +134,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-easyrsa">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/layer-easyrsa"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/easyrsa/373"> 373</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/easyrsa/395"> 395</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -143,7 +143,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-etcd">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/layer-etcd"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/etcd/583"> 583</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/etcd/607"> 607</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -152,7 +152,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-flannel">docs</a> </td>
   <td> <a href="https://github.com/coreos/flannel"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/flannel/547"> 547</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/flannel/571"> 571</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -161,7 +161,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-gcp-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-gcp-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/gcp-integrator/95"> 95</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/gcp-integrator/118"> 118</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -170,7 +170,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-kata">docs</a> </td>
   <td> <a href=""> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kata/83"> 83</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kata/108"> 108</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -179,7 +179,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-keepalived">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-keepalived"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/keepalived/64"> 64</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/keepalived/85"> 85</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -188,7 +188,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-kubeapi-load-balancer">docs</a> </td>
   <td> <a href="https://nginx.org/en/"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubeapi-load-balancer/786"> 786</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kubeapi-load-balancer/814"> 814</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -197,7 +197,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-kubernetes-master">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-master"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubernetes-master/990"> 990</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kubernetes-master/1034"> 1034</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -206,7 +206,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-kubernetes-worker">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-worker"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubernetes-worker/757"> 757</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kubernetes-worker/788"> 788</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -215,7 +215,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-openstack-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-openstack-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/openstack-integrator/130"> 130</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/openstack-integrator/153"> 153</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -224,7 +224,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-tigera-secure-ee">docs</a> </td>
   <td> <a href=""> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/tigera-secure-ee/183"> 183</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/tigera-secure-ee/205"> 205</a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -233,7 +233,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.21/charm-vsphere-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-vsphere-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/vsphere-integrator/78"> 78</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/vsphere-integrator/98"> 98</a> </td>
   <td> -- </td>
 </tr>
 </tbody>

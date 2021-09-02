@@ -2,6 +2,8 @@
 from datetime import datetime, timedelta, timezone
 
 # Packages
+from typing import Optional
+
 from dateutil.parser import parse
 import flask
 import talisker.requests
@@ -10,11 +12,18 @@ from requests.exceptions import HTTPError
 from webargs.fields import String, Boolean
 
 # Local
+from webapp.advantage.ua_contracts.primitives import Subscription
 from webapp.decorators import advantage_checks
 from webapp.login import user_info
 from webapp.advantage.flaskparser import use_kwargs
-from webapp.advantage.ua_contracts.builders import build_user_subscriptions
-from webapp.advantage.ua_contracts.helpers import to_dict
+from webapp.advantage.ua_contracts.builders import (
+    build_user_subscriptions,
+    build_get_user_info,
+)
+from webapp.advantage.ua_contracts.helpers import (
+    to_dict,
+    extract_last_purchase_ids,
+)
 from webapp.advantage.ua_contracts.api import (
     UAContractsAPI,
     CannotCancelLastContractError,
@@ -310,7 +319,6 @@ def get_user_subscriptions(**kwargs):
         session,
         token,
         api_url=api_url,
-        is_for_view=True,
         convert_response=True,
     )
 
@@ -336,6 +344,89 @@ def get_user_subscriptions(**kwargs):
     user_subscriptions = build_user_subscriptions(user_summary, listings)
 
     return flask.jsonify(to_dict(user_subscriptions))
+
+
+@advantage_checks(["need_user"])
+@use_kwargs({"account_id": String()}, location="query")
+def get_last_purchase_ids(account_id, **kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
+
+    advantage = UAContractsAPI(
+        session,
+        token,
+        api_url=api_url,
+        convert_response=True,
+    )
+
+    subscriptions = advantage.get_account_subscriptions(
+        account_id=account_id,
+        marketplace="canonical-ua",
+    )
+
+    last_purchase_ids = extract_last_purchase_ids(subscriptions)
+
+    return flask.jsonify(last_purchase_ids)
+
+
+@advantage_checks(["need_user"])
+@use_kwargs({"contract_id": String()}, location="query")
+def get_contract_token(contract_id, **kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
+
+    advantage = UAContractsAPI(
+        session,
+        token,
+        api_url=api_url,
+        convert_response=True,
+    )
+
+    contract_token = advantage.get_contract_token(contract_id)
+
+    return flask.jsonify({"contract_token": contract_token})
+
+
+@advantage_checks(["need_user"])
+def get_user_info(**kwargs):
+    token = kwargs.get("token")
+    api_url = kwargs.get("api_url")
+
+    advantage = UAContractsAPI(
+        session,
+        token,
+        api_url=api_url,
+        convert_response=True,
+    )
+
+    try:
+        account = advantage.get_purchase_account()
+    except UAContractsUserHasNoAccount as error:
+        # if no account throw 404
+        raise UAContractsAPIError(error)
+
+    subscriptions = advantage.get_account_subscriptions(
+        account_id=account["id"],
+        marketplace="canonical-ua",
+        filters={"status": "active", "period": "monthly"},
+    )
+
+    monthly_subscription: Optional[Subscription] = (
+        subscriptions[0] if len(subscriptions) > 0 else None
+    )
+
+    renewal_info = None
+    if monthly_subscription and monthly_subscription.is_auto_renewing:
+        renewal_info = advantage.get_subscription_auto_renewal(
+            monthly_subscription.id
+        )
+
+    user_summary = {
+        "subscription": monthly_subscription,
+        "renewal_info": renewal_info,
+    }
+
+    return build_get_user_info(user_summary)
 
 
 @advantage_checks(check_list=["is_maintenance"])
@@ -403,6 +494,11 @@ def advantage_shop_view(**kwargs):
         previous_purchase_ids=previous_purchase_ids,
         product_listings=website_listing,
     )
+
+
+@advantage_checks(check_list=["is_maintenance", "view_need_user"])
+def advantage_account_users_view(**kwargs):
+    return flask.render_template("advantage/users/index.html")
 
 
 @advantage_checks(check_list=["is_maintenance", "view_need_user"])

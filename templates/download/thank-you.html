@@ -1,0 +1,40 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Thank you | Download{% endblock %}
+{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+{% block meta_description %}Download Ubuntu desktop, Ubuntu Server, Ubuntu for Raspberry Pi and IoT devices, Ubuntu Core and all the Ubuntu flavours.  Ubuntu is an open-source software platform that runs everywhere from the PC to the server and the cloud.{% endblock %}
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% if product == 'supported-platforms' %}
+
+  {% with thanks_context="contacting us about supported platforms" %}{% include "shared/_thank_you.html" %}{% endwith %}
+
+{% else %}
+
+  {% with thanks_context="contacting us about Ubuntu downloads" %}{% include "shared/_thank_you.html" %}{% endwith %}
+
+{% endif %}
+
+{% endblock content %}
+{% block footer_extra %}
+<!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
+<script>
+  /* <![CDATA[ */
+  var google_conversion_id = 1012391776;
+  var google_conversion_language = "en";
+  var google_conversion_format = "3";
+  var google_conversion_color = "ffffff";
+  var google_conversion_label = "utP4CMDOwQMQ4L7f4gM";
+  var google_conversion_value = 0;
+  /* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+  <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=utP4CMDOwQMQ4L7f4gM&amp;guid=ON&amp;script=0"/>
+  </div>
+</noscript>
+{% endblock footer_extra %}
