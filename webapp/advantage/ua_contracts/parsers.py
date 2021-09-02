@@ -164,6 +164,7 @@ def parse_subscription(raw_subscription: Dict) -> Subscription:
         status=raw_subscription.get("subscription").get("status"),
         last_purchase_id=raw_subscription.get("lastPurchaseID"),
         pending_purchases=raw_subscription.get("pendingPurchases"),
+        is_auto_renewing=raw_subscription.get("subscription").get("autoRenew"),
         items=parse_subscription_items(subscription_id, raw_items),
     )
 

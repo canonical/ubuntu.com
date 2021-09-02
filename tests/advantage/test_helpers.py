@@ -327,6 +327,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_yearly_user_subscription": {
@@ -346,6 +347,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_monthly_user_subscription": {
@@ -373,6 +375,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_cancelled_user_subscription": {
@@ -400,6 +403,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_expired_user_subscription": {
@@ -419,6 +423,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": True,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_trial_user_subscription": {
@@ -438,6 +443,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": True,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_pending_purchases_user_subscription": {
@@ -461,6 +467,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": True,
                 },
             },
         }
