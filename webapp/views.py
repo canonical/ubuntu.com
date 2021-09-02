@@ -548,12 +548,13 @@ def build_tutorials_index(session, tutorials_docs):
             )
 
         tutorials_docs.parser.parse()
+        tutorials_docs.parser.parse_topic(tutorials_docs.parser.index_topic)
         if not topic:
-            metadata = tutorials_docs.parser.metadata
+            tutorials = tutorials_docs.parser.tutorials
         else:
-            metadata = [
+            tutorials = [
                 doc
-                for doc in tutorials_docs.parser.metadata
+                for doc in tutorials_docs.parser.tutorials
                 if topic in doc["categories"]
             ]
 
@@ -565,29 +566,28 @@ def build_tutorials_index(session, tutorials_docs):
                     end = len(result["link"])
                     identifier = result["link"][start:end]
                     if start != -1:
-                        for doc in metadata:
+                        for doc in tutorials:
                             if identifier in doc["topic"]:
                                 temp_metadata.append(doc)
-            metadata = temp_metadata
+            tutorials = temp_metadata
 
         if sort == "difficulty-desc":
-            metadata = sorted(
-                metadata, key=lambda k: k["difficulty"], reverse=True
+            tutorials = sorted(
+                tutorials, key=lambda k: k["difficulty"], reverse=True
             )
 
         if sort == "difficulty-asc" or not sort:
-            metadata = sorted(
-                metadata, key=lambda k: k["difficulty"], reverse=False
+            tutorials = sorted(
+                tutorials, key=lambda k: k["difficulty"], reverse=False
             )
 
-        total_results = len(metadata)
+        total_results = len(tutorials)
         total_pages = math.ceil(total_results / posts_per_page)
 
         return flask.render_template(
             "tutorials/index.html",
-            navigation=tutorials_docs.parser.navigation,
             forum_url=tutorials_docs.parser.api.base_url,
-            metadata=metadata,
+            tutorials=tutorials,
             page=page,
             topic=topic,
             sort=sort,
