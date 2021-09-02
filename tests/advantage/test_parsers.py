@@ -140,6 +140,7 @@ class TestParsers(unittest.TestCase):
                 period="monthly",
                 status="active",
                 last_purchase_id="pAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+                is_auto_renewing=True,
                 items=[
                     SubscriptionItem(
                         subscription_id="sAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",

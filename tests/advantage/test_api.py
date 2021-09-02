@@ -382,3 +382,70 @@ class TestGetAccountSubscriptions(unittest.TestCase):
             self.assertIsInstance(item, Subscription)
 
         self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestGetContractToken(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIAuthError),
+            (401, True, UAContractsAPIAuthErrorView),
+            (404, False, UAContractsAPIError),
+            (404, True, UAContractsAPIErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_contract_token(contract_id="cABbCcdD")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={"contractToken": "token"},
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_contract_token(contract_id="cABbCcdD")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {},
+            "method": "post",
+            "params": None,
+            "url": "https://1.2.3.4/v1/contracts/cABbCcdD/token",
+        }
+
+        self.assertEqual(response, "token")
+        self.assertEqual(session.request_kwargs, expected_args)
+
+    def test_success_returns_none(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={"no-token": ""},
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_contract_token(contract_id="cABbCcdD")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {},
+            "method": "post",
+            "params": None,
+            "url": "https://1.2.3.4/v1/contracts/cABbCcdD/token",
+        }
+
+        self.assertEqual(response, None)
+        self.assertEqual(session.request_kwargs, expected_args)

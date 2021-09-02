@@ -20,6 +20,7 @@ from webapp.advantage.ua_contracts.helpers import (
     is_user_subscription_cancelled,
     get_date_statuses,
     get_user_subscription_statuses,
+    extract_last_purchase_ids,
 )
 
 
@@ -326,6 +327,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_yearly_user_subscription": {
@@ -345,6 +347,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_monthly_user_subscription": {
@@ -372,6 +375,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_cancelled_user_subscription": {
@@ -399,6 +403,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_expired_user_subscription": {
@@ -418,6 +423,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": True,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_trial_user_subscription": {
@@ -437,6 +443,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": True,
                     "is_renewable": False,
+                    "has_pending_purchases": False,
                 },
             },
             "test_pending_purchases_user_subscription": {
@@ -460,6 +467,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "has_pending_purchases": True,
                 },
             },
         }
@@ -476,3 +484,31 @@ class TestHelpers(unittest.TestCase):
                     )
 
                     self.assertEqual(statuses, scenario["expectations"])
+
+    def test_extract_last_purchase_ids(self):
+        subscriptions = [
+            make_subscription(period="monthly", last_purchase_id="pABC1"),
+            make_subscription(period="yearly", last_purchase_id="pABC2"),
+        ]
+
+        last_purchase_ids = extract_last_purchase_ids(subscriptions)
+
+        expectation = {
+            "monthly": "pABC1",
+            "yearly": "pABC2",
+        }
+
+        self.assertEqual(last_purchase_ids, expectation)
+
+        subscriptions = [
+            make_subscription(period="monthly", last_purchase_id="pABC1"),
+        ]
+
+        last_purchase_ids = extract_last_purchase_ids(subscriptions)
+
+        expectation = {
+            "monthly": "pABC1",
+            "yearly": "",
+        }
+
+        self.assertEqual(last_purchase_ids, expectation)

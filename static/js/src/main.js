@@ -10,4 +10,4 @@ import "./navigation.js";
 import "./form-access.js";
 import "./bg-form-submit.js";
 import "./scratch.js";
-import "./smartquotes.js";
+import "./smart-quotes.js";
