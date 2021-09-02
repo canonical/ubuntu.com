@@ -419,6 +419,9 @@ Please see [this page][historic] for release notes of earlier versions.
 [cis-benchmark]: https://www.cisecurity.org/benchmark/kubernetes/
 [heapster-deprecation]: https://github.com/kubernetes-retired/heapster/blob/master/docs/deprecation.md
 [dashboard]: /kubernetes/docs/cdk-addons#kubernetes-dashboard
+[calico-service-ip-advertisement]: /kubernetes/docs/cni-calico#service-ip-advertisement
+[upstream-changelog]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.22.md#deprecation
+[cephcsi-upgrade]: https://github.com/ceph/ceph-csi/blob/devel/docs/ceph-csi-upgrade.md
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
