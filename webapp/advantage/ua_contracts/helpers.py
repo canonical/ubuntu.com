@@ -5,7 +5,11 @@ import pytz
 from dateutil.parser import parse
 
 from webapp.advantage.models import Listing
-from webapp.advantage.ua_contracts.primitives import Subscription, ContractItem
+from webapp.advantage.ua_contracts.primitives import (
+    Subscription,
+    ContractItem,
+    Renewal,
+)
 
 
 def group_items_by_listing(
@@ -58,6 +62,32 @@ def get_items_aggregated_values(
     }
 
 
+def get_price_info(
+    number_of_machines: int = None,
+    items: List[ContractItem] = None,
+    listing: Listing = None,
+) -> Dict:
+    price_info = {
+        "price": None,
+        "currency": "USD",
+    }
+
+    if listing and number_of_machines:
+        price_info["price"] = number_of_machines * listing.price
+        price_info["currency"] = listing.currency
+
+        return price_info
+
+    if items and len(items) == 1 and items[0].renewal:
+        legacy_item = items[0]
+        price_info["price"] = legacy_item.renewal.price
+        price_info["currency"] = legacy_item.renewal.currency
+
+        return price_info
+
+    return price_info
+
+
 def get_machine_type(product_id: str) -> Optional[str]:
     if "virtual" in product_id:
         return "virtual"
@@ -78,6 +108,7 @@ def is_trialling_user_subscription(items: List[ContractItem]) -> bool:
 def get_user_subscription_statuses(
     type: str,
     end_date: str = None,
+    renewal: Renewal = None,
     subscriptions: List[Subscription] = None,
     listing: Listing = None,
 ) -> dict:
@@ -91,6 +122,7 @@ def get_user_subscription_statuses(
         "is_expired": False,
         "is_trialled": False,
         "is_renewable": False,
+        "is_renewal_actionable": False,
         "has_pending_purchases": False,
     }
 
@@ -124,6 +156,16 @@ def get_user_subscription_statuses(
             statuses["is_upsizeable"] = True
             statuses["is_downsizeable"] = True
             statuses["is_cancellable"] = True
+
+    if type == "legacy":
+        statuses["is_renewal_actionable"] = renewal.actionable
+
+        if renewal.actionable and renewal.status == "pending":
+            start = parse(renewal.start_date)
+            end = parse(renewal.end_date)
+            time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+            if start <= time_now <= end:
+                statuses["is_renewable"] = True
 
     return statuses
 

@@ -6,6 +6,7 @@ from webapp.advantage.ua_contracts.helpers import (
     get_machine_type,
     is_trialling_user_subscription,
     get_user_subscription_statuses,
+    get_price_info,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Contract,
@@ -30,7 +31,7 @@ def build_initial_user_subscriptions(
 ) -> List:
     free_groups = build_free_item_groups(user_summary)
     shop_groups = build_shop_item_groups(user_summary, listings)
-    legacy_groups = []
+    legacy_groups = build_legacy_item_groups(user_summary)
 
     return free_groups + shop_groups + legacy_groups
 
@@ -96,6 +97,37 @@ def build_shop_item_groups(
     return shop_item_groups
 
 
+def build_legacy_item_groups(user_summary: List) -> List:
+    legacy_item_groups = []
+    for user_details in user_summary:
+        contracts: List[Contract] = user_details.get("contracts")
+
+        for contract in contracts:
+            # skip free contracts
+            if contract.product_id == "free":
+                continue
+
+            # skip contracts without items
+            if contract.items is None:
+                continue
+
+            for item in contract.items:
+                if item.renewal is not None:
+                    legacy_item_groups.append(
+                        {
+                            "account": user_details.get("account"),
+                            "contract": contract,
+                            "items": [item],
+                            "listing": None,
+                            "marketplace": "canonical-ua",
+                            "subscriptions": user_details.get("subscriptions"),
+                            "type": "legacy",
+                        }
+                    )
+
+    return legacy_item_groups
+
+
 def build_final_user_subscriptions(
     grouped_items: List,
 ) -> List[UserSubscription]:
@@ -107,28 +139,33 @@ def build_final_user_subscriptions(
         subscriptions: List[Subscription] = group.get("subscriptions")
         items: List[ContractItem] = group.get("items")
         aggregated_values = get_items_aggregated_values(items)
-
-        price = None
-        if listing:
-            price = aggregated_values.get("number_of_machines") * listing.price
+        type = group.get("type")
+        number_of_machines = aggregated_values.get("number_of_machines")
+        price_info = get_price_info(number_of_machines, items, listing)
+        renewal = items[0].renewal if type == "legacy" else None
+        product_name = (
+            contract.name if type != "free" else "Free Personal Token"
+        )
 
         user_subscription = UserSubscription(
-            type=group.get("type"),
+            type=type,
             account_id=account.id,
             entitlements=contract.entitlements,
             start_date=aggregated_values.get("start_date"),
             end_date=aggregated_values.get("end_date"),
-            number_of_machines=aggregated_values.get("number_of_machines"),
-            product_name=listing.product.name if listing else None,
+            number_of_machines=number_of_machines,
+            product_name=product_name,
             marketplace=group.get("marketplace"),
-            price=price,
-            currency=listing.currency if listing else None,
+            price=price_info.get("price"),
+            currency=price_info.get("currency"),
             machine_type=get_machine_type(contract.product_id),
             listing_id=listing.id if listing else None,
             period=listing.period if listing else None,
+            renewal_id=renewal.id if renewal else None,
             statuses=get_user_subscription_statuses(
-                type=group.get("type"),
+                type=type,
                 end_date=aggregated_values.get("end_date"),
+                renewal=renewal,
                 subscriptions=subscriptions or [],
                 listing=listing or None,
             ),

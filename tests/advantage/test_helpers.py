@@ -9,6 +9,8 @@ from tests.advantage.helpers import (
     make_free_trial_contract,
     make_shop_contract,
     make_subscription_item,
+    make_legacy_contract_item,
+    make_renewal,
 )
 from webapp.advantage.ua_contracts.helpers import (
     group_items_by_listing,
@@ -21,6 +23,7 @@ from webapp.advantage.ua_contracts.helpers import (
     get_date_statuses,
     get_user_subscription_statuses,
     extract_last_purchase_ids,
+    get_price_info,
 )
 
 
@@ -121,6 +124,28 @@ class TestHelpers(unittest.TestCase):
             user_subscription_values["end_date"],
             expected_end_date,
         )
+
+    def test_get_price_info_for_shop(self):
+        listing = make_listing(price=100, currency="USD")
+
+        price_info = get_price_info(number_of_machines=5, listing=listing)
+
+        expectation = {"price": 500, "currency": "USD"}
+
+        self.assertEqual(price_info, expectation)
+
+    def test_get_price_info_for_legacy(self):
+        renewal = make_renewal(price=10000, currency="Silver Coins")
+        items = [make_legacy_contract_item(renewal=renewal)]
+
+        price_info = get_price_info(items=items)
+
+        expectation = {
+            "price": 10000,
+            "currency": "Silver Coins",
+        }
+
+        self.assertEqual(price_info, expectation)
 
     def test_get_machine_type(self):
         virtual_product_id = "uai-advanced-virtual"
@@ -327,6 +352,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "is_renewal_actionable": False,
                     "has_pending_purchases": False,
                 },
             },
@@ -347,6 +373,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "is_renewal_actionable": False,
                     "has_pending_purchases": False,
                 },
             },
@@ -375,6 +402,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "is_renewal_actionable": False,
                     "has_pending_purchases": False,
                 },
             },
@@ -403,6 +431,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "is_renewal_actionable": False,
                     "has_pending_purchases": False,
                 },
             },
@@ -423,6 +452,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": True,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "is_renewal_actionable": False,
                     "has_pending_purchases": False,
                 },
             },
@@ -443,6 +473,7 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": True,
                     "is_renewable": False,
+                    "is_renewal_actionable": False,
                     "has_pending_purchases": False,
                 },
             },
@@ -467,7 +498,53 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
+                    "is_renewal_actionable": False,
                     "has_pending_purchases": True,
+                },
+            },
+            "test_legacy_user_subscription": {
+                "parameters": {
+                    "type": "legacy",
+                    "end_date": "2020-10-01T10:00:00Z",
+                    "renewal": make_renewal(
+                        actionable=True,
+                        status="pending",
+                        start_date="2020-08-01T10:00:00Z",
+                        end_date="2020-10-01T10:00:00Z",
+                    ),
+                },
+                "expectations": {
+                    "is_upsizeable": False,
+                    "is_downsizeable": False,
+                    "is_cancellable": False,
+                    "is_cancelled": False,
+                    "is_expiring": False,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                    "is_trialled": False,
+                    "is_renewable": True,
+                    "is_renewal_actionable": True,
+                    "has_pending_purchases": False,
+                },
+            },
+            "test_non_actionable_legacy_user_subscription": {
+                "parameters": {
+                    "type": "legacy",
+                    "end_date": "2020-10-01T10:00:00Z",
+                    "renewal": make_renewal(actionable=False),
+                },
+                "expectations": {
+                    "is_upsizeable": False,
+                    "is_downsizeable": False,
+                    "is_cancellable": False,
+                    "is_cancelled": False,
+                    "is_expiring": False,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                    "is_trialled": False,
+                    "is_renewable": True,
+                    "is_renewal_actionable": True,
+                    "has_pending_purchases": False,
                 },
             },
         }
@@ -477,10 +554,11 @@ class TestHelpers(unittest.TestCase):
                 with self.subTest(msg=f"{case}", scenario=scenario):
                     parameters = scenario["parameters"]
                     statuses = get_user_subscription_statuses(
-                        type=parameters["type"],
-                        end_date=parameters["end_date"],
-                        subscriptions=parameters["subscriptions"],
-                        listing=parameters["listing"],
+                        type=parameters.get("type"),
+                        end_date=parameters.get("end_date"),
+                        renewal=parameters.get("renewal"),
+                        subscriptions=parameters.get("subscriptions"),
+                        listing=parameters.get("listing"),
                     )
 
                     self.assertEqual(statuses, scenario["expectations"])
