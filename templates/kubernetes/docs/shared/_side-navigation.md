@@ -3,9 +3,9 @@
 - [Overview](/kubernetes/docs/overview)
 
 ## Supported versions
+- [1.22](/kubernetes/docs/1.22/components)
 - [1.21](/kubernetes/docs/1.21/components)
 - [1.20](/kubernetes/docs/1.20/components)
-- [1.19](/kubernetes/docs/1.19/components)
 - [Version info](/kubernetes/docs/supported-versions)
 
 ## Install
@@ -50,6 +50,7 @@
 - [Security](/kubernetes/docs/security)
 - [Authentication with LDAP](/kubernetes/docs/ldap)
 - [Private Docker Registry](/kubernetes/docs/docker-registry)
+- [Configuring proxies](/kubernetes/docs/proxy-settings)
 - [Using GPU workers](/kubernetes/docs/gpu-workers)
 - [Audit Logging](/kubernetes/docs/audit-logging)
 - [Troubleshooting](/kubernetes/docs/troubleshooting)
