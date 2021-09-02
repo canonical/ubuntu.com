@@ -7,10 +7,9 @@ import {
   Spinner,
 } from "@canonical/react-components";
 import classNames from "classnames";
-import { UserSubscriptionType } from "advantage/api/types";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectFreeSubscription } from "advantage/react/hooks/useUserSubscriptions";
-import { formatDate } from "advantage/react/utils";
+import { formatDate, isFreeSubscription } from "advantage/react/utils";
 import React, { ReactNode } from "react";
 
 import DetailsTabs from "../DetailsTabs";
@@ -37,10 +36,12 @@ const generateFeatures = (features: Feature[]) =>
 
 const DetailsContent = () => {
   const { data: subscription, isLoading } = useUserSubscriptions({
-    // TODO: Get the selected subscription once the subscription token is available.
+    // TODO: Get the selected subscription once the subscription token is
+    // available.
+    // https://github.com/canonical-web-and-design/commercial-squad/issues/210
     select: selectFreeSubscription,
   });
-  const isFreeSubscription = subscription?.type === UserSubscriptionType.Free;
+  const isFree = isFreeSubscription(subscription);
   if (isLoading || !subscription) {
     return <Spinner />;
   }
@@ -54,16 +55,16 @@ const DetailsContent = () => {
           },
           {
             title: "Expires",
-            value: isFreeSubscription ? "Never" : null,
+            value: isFree ? "Never" : null,
           },
           {
             size: 2,
             title: "Billing",
-            value: isFreeSubscription ? "None" : null,
+            value: isFree ? "None" : null,
           },
           {
             title: "Cost",
-            value: isFreeSubscription ? "Free" : null,
+            value: isFree ? "Free" : null,
           },
           {
             title: "Machine type",

@@ -1,5 +1,6 @@
 import { getUserSubscriptions } from "advantage/api/contracts";
-import { UserSubscription, UserSubscriptionType } from "advantage/api/types";
+import { UserSubscriptionType } from "advantage/api/enum";
+import { UserSubscription } from "advantage/api/types";
 import { useQuery, UseQueryOptions } from "react-query";
 
 /**

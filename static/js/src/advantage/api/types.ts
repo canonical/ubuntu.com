@@ -3,6 +3,7 @@ import {
   AccountInfo,
   GetContractTokenResponse,
 } from "./contracts-types";
+import { EntitlementType, SupportLevel, UserSubscriptionType } from "./enum";
 
 export type ContractToken = GetContractTokenResponse["contractToken"];
 
@@ -21,8 +22,8 @@ export type UsingTestBackend = boolean;
 
 export type UserSubscriptionEntitlement = {
   enabled_by_default: boolean;
-  support_level: "essential" | "advanced" | "standard" | null;
-  type: string;
+  support_level: SupportLevel | null;
+  type: EntitlementType | string;
 };
 
 export type UserSubscriptionStatuses = {
@@ -36,14 +37,6 @@ export type UserSubscriptionStatuses = {
   is_trialled: boolean;
   is_upsizeable: boolean;
 };
-
-export enum UserSubscriptionType {
-  Free = "free",
-  Yearly = "yearly",
-  Monthly = "monthly",
-  Trial = "trial",
-  Legacy = "legacy",
-}
 
 export type UserSubscription = {
   account_id: string;
