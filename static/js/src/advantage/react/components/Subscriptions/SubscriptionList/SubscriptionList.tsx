@@ -1,6 +1,9 @@
 import { Spinner } from "@canonical/react-components";
 import { useUserSubscriptions } from "advantage/react/hooks";
-import { selectFreeSubscription } from "advantage/react/hooks/useUserSubscriptions";
+import {
+  selectFreeSubscription,
+  selectUASubscriptions,
+} from "advantage/react/hooks/useUserSubscriptions";
 import React from "react";
 import { SelectedToken } from "../Content/types";
 
@@ -19,19 +22,29 @@ const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
   } = useUserSubscriptions({
     select: selectFreeSubscription,
   });
-  if (isLoadingFree || !freeSubscription) {
+  const {
+    data: uaSubscriptionsData = [],
+    isLoading: isLoadingUA,
+  } = useUserSubscriptions({
+    select: selectUASubscriptions,
+  });
+  if (isLoadingFree || isLoadingUA) {
     return <Spinner />;
   }
-  const uaSubscriptions = [...Array(20)].map((_, i) => (
+  const uaSubscriptions = uaSubscriptionsData.map((subscription, i) => (
     <ListCard
+      data-test="ua-subscription"
       isSelected={selectedToken === `ua-sub-${i}`}
       key={i}
       onClick={() => {
+        // TODO: update this to use the sub token when it is available.
+        // https://github.com/canonical-web-and-design/commercial-squad/issues/210
         onSetActive(`ua-sub-${i}`);
       }}
-      subscription={freeSubscription}
+      subscription={subscription}
     />
   ));
+
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
@@ -39,16 +52,16 @@ const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
         {freeSubscription ? (
           <ListGroup title="Free personal token">
             <ListCard
-              data-test="free-token"
+              data-test="free-subscription"
               isSelected={
                 // TODO: update this to use the sub token when it is available.
                 // https://github.com/canonical-web-and-design/commercial-squad/issues/210
-                selectedToken === "free-token"
+                selectedToken === "free-subscription"
               }
               onClick={() => {
                 // TODO: update this to use the sub token when it is available.
                 // https://github.com/canonical-web-and-design/commercial-squad/issues/210
-                onSetActive("free-token");
+                onSetActive("free-subscription");
               }}
               subscription={freeSubscription}
             />

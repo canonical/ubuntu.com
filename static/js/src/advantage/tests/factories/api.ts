@@ -7,7 +7,11 @@ import {
   UserSubscriptionStatuses,
 } from "advantage/api/types";
 import { accountContractInfoFactory, accountInfoFactory } from "./contracts";
-import { EntitlementType, UserSubscriptionType } from "advantage/api/enum";
+import {
+  EntitlementType,
+  UserSubscriptionMarketplace,
+  UserSubscriptionType,
+} from "advantage/api/enum";
 
 export const contractWithTokenFactory = Factory.define<ContractWithToken>(
   () => ({
@@ -45,7 +49,7 @@ export const userSubscriptionFactory = Factory.define<UserSubscription>(
     entitlements: [],
     listing_id: `lADzAkHCZRIASpBZ8YiAiCT2XbDpBSyER7j9vj${sequence}`,
     machine_type: "physical",
-    marketplace: "canonical-ua",
+    marketplace: UserSubscriptionMarketplace.CanonicalUA,
     number_of_machines: 1,
     period: "yearly",
     price_per_unit: 150000,
@@ -63,7 +67,7 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     entitlements: [],
     listing_id: null,
     machine_type: "physical",
-    marketplace: "free",
+    marketplace: UserSubscriptionMarketplace.Free,
     number_of_machines: 3,
     period: null,
     price_per_unit: null,
