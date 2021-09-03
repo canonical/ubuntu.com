@@ -362,7 +362,7 @@ def get_user_info():
         raise UAContractsAPIError(error)
 
     subscriptions = g.api.get_account_subscriptions(
-        account_id=account["id"],
+        account_id=account.id,
         marketplace="canonical-ua",
         filters={"status": "active", "period": "monthly"},
     )
@@ -387,8 +387,10 @@ def get_user_info():
 
 @advantage_decorator(response="html")
 def advantage_shop_view():
+    g.api.set_convert_response(True)
+
     account = None
-    previous_purchase_ids = {"monthly": "", "yearly": ""}
+    subscriptions = []
 
     if user_info(flask.session):
         if flask.session.get("guest_authentication_token"):
@@ -400,7 +402,6 @@ def advantage_shop_view():
             # There is no purchase account yet for this user.
             # One will need to be created later, but this is an expected
             # condition.
-
             pass
 
         if account:
@@ -410,10 +411,7 @@ def advantage_shop_view():
                 filters={"status": "active"},
             )
 
-            for subscription in subscriptions:
-                period = subscription["subscription"]["period"]
-                previous_purchase_ids[period] = subscription["lastPurchaseID"]
-
+    previous_purchase_ids = extract_last_purchase_ids(subscriptions)
     listings = g.api.get_product_listings("canonical-ua")
     product_listings = listings.get("productListings")
     if not product_listings:

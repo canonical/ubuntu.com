@@ -592,6 +592,15 @@ class TestHelpers(unittest.TestCase):
 
         self.assertEqual(last_purchase_ids, expectation)
 
+        last_purchase_ids = extract_last_purchase_ids([])
+
+        expectation = {
+            "monthly": "",
+            "yearly": "",
+        }
+
+        self.assertEqual(last_purchase_ids, expectation)
+
     def test_get_subscription_by_period(self):
         subscriptions = [
             make_subscription(id="yearly_sub", period="yearly"),

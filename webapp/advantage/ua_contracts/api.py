@@ -7,6 +7,7 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_subscriptions,
     parse_product_listings,
     parse_accounts,
+    parse_account,
 )
 
 
@@ -271,6 +272,9 @@ class UAContractsAPI:
             path="v1/purchase-account",
             error_rules=["default", "no-found"],
         )
+
+        if self.convert_response:
+            return parse_account(response.json())
 
         return response.json()
 
