@@ -48,6 +48,7 @@ const Content = () => {
           onSetActive(null);
         }}
         ref={scrollTargetRef}
+        selectedToken={selectedToken}
       />
     </Card>
   );

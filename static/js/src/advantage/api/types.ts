@@ -3,7 +3,13 @@ import {
   AccountInfo,
   GetContractTokenResponse,
 } from "./contracts-types";
-import { EntitlementType, SupportLevel, UserSubscriptionType } from "./enum";
+import {
+  EntitlementType,
+  SupportLevel,
+  UserSubscriptionMachineType,
+  UserSubscriptionPeriod,
+  UserSubscriptionType,
+} from "./enum";
 
 export type ContractToken = GetContractTokenResponse["contractToken"];
 
@@ -43,10 +49,10 @@ export type UserSubscription = {
   end_date: Date | null;
   entitlements: UserSubscriptionEntitlement[];
   listing_id: string | null;
-  machine_type: string;
+  machine_type: UserSubscriptionMachineType;
   marketplace: string;
   number_of_machines: number;
-  period: string | null;
+  period: UserSubscriptionPeriod | null;
   price_per_unit: number | null;
   product_name: string | null;
   start_date: Date;
