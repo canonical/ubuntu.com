@@ -1,21 +1,21 @@
 ---
-charm_name: kubernetes-worker
-charm_revision: '0'
-context:
-  description: Etcd Charm reference
-  title: kubernetes-worker charm
-keywords: kubernetes-worker, charm, config
-layout:
-- base
-- ubuntu-com
+wrapper_template: templates/docs/markdown.html
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
-permalink: charm-kubernetes-worker.html
-sidebar: k8smain-sidebar
+context:
+  title: 'Kubernetes-worker charm '
+  description: The workload bearing units of a kubernetes cluster
+keywords: component, charms, versions, release
 tags:
-- reference
+    - reference
+sidebar: k8smain-sidebar
+permalink: 1.22/charm-kubernetes-worker.html
+layout:
+    - base
+    - ubuntu-com
 toc: false
-wrapper_template: "templates/docs/markdown.html"
+charm_revision: '801'
+bundle_release: '1.22'
 ---
 
 This charm deploys a container runtime and the Kubernetes
@@ -93,102 +93,28 @@ for other settings relating to Kubernetes services.
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-
-| <a id="table-channel"> </a> channel | string | 1.22/stable | Snap channel to install Kubernetes worker services from |
-
-| <a id="table-default-backend-image"> </a> default-backend-image | string | auto | Docker image to use for the default backend. Auto will select an image based on architecture. |
-
-| <a id="table-ingress"> </a> ingress | boolean | True | [See notes](#ingress-description) |
-
-| <a id="table-ingress-default-ssl-certificate"> </a> ingress-default-ssl-certificate | string |  | [See notes](#ingress-default-ssl-certificate-description) |
-
-| <a id="table-ingress-default-ssl-key"> </a> ingress-default-ssl-key | string |  | [See notes](#ingress-default-ssl-key-description) |
-
-| <a id="table-ingress-ssl-chain-completion"> </a> ingress-ssl-chain-completion | boolean | False | [See notes](#ingress-ssl-chain-completion-description) |
-
-| <a id="table-ingress-ssl-passthrough"> </a> ingress-ssl-passthrough | boolean | False | Enable ssl passthrough on ingress server. This allows passing the ssl connection through to the workloads and not terminating it at the ingress controller. |
-
-| <a id="table-ingress-use-forwarded-headers"> </a> ingress-use-forwarded-headers | boolean | False | [See notes](#ingress-use-forwarded-headers-description) |
-
-| <a id="table-kubelet-extra-args"> </a> kubelet-extra-args | string |  | [See notes](#kubelet-extra-args-description) |
-
-| <a id="table-kubelet-extra-config"> </a> kubelet-extra-config | string | {} | [See notes](#kubelet-extra-config-description) |
-
-| <a id="table-labels"> </a> labels | string |  | Labels can be used to organize and to select subsets of nodes in the cluster. Declare node labels in key=value format, separated by spaces. |
-
-| <a id="table-nagios_context"> </a> nagios_context | string | juju | [See notes](#nagios_context-description) |
-
-| <a id="table-nagios_servicegroups"> </a> nagios_servicegroups | string |  | A comma-separated list of nagios servicegroups. If left empty, the nagios_context will be used as the servicegroup |
-
-| <a id="table-nginx-image"> </a> nginx-image | string | auto | [See notes](#nginx-image-description) |
-
-| <a id="table-proxy-extra-args"> </a> proxy-extra-args | string |  | [See notes](#proxy-extra-args-description) |
-
-| <a id="table-require-manual-upgrade"> </a> require-manual-upgrade | boolean | True | When true, worker services will not be upgraded until the user triggers it manually by running the upgrade action. |
-
-| <a id="table-snapd_refresh"> </a> snapd_refresh | string | max | [See notes](#snapd_refresh-description) |
-
-| <a id="table-sysctl"> </a> sysctl | string | [See notes](#sysctl-default) | [See notes](#sysctl-description) |
-
+| <a id="table-allow-privileged"> </a> allow-privileged | string | true | This option is now deprecated and has no effect.  |
+| <a id="table-channel"> </a> channel | string | 1.17/stable | Snap channel to install Kubernetes worker services from  |
+| <a id="table-default-backend-image"> </a> default-backend-image | string | auto | Docker image to use for the default backend. Auto will select an image based on architecture.  |
+| <a id="table-ingress"> </a> ingress | boolean | True | Deploy the default http backend and ingress controller to handle ingress requests.  |
+| <a id="table-ingress-ssl-chain-completion"> </a> ingress-ssl-chain-completion | boolean | False | [See notes](#ingress-ssl-chain-completion-description)  |
+| <a id="table-ingress-ssl-passthrough"> </a> ingress-ssl-passthrough | boolean | False | Enable ssl passthrough on ingress server. This allows passing the ssl connection through to the workloads and not terminating it at the ingress controller.  |
+| <a id="table-kubelet-extra-args"> </a> kubelet-extra-args | string |  | [See notes](#kubelet-extra-args-description)  |
+| <a id="table-kubelet-extra-config"> </a> kubelet-extra-config | string | {} | [See notes](#kubelet-extra-config-description)  |
+| <a id="table-labels"> </a> labels | string |  | Labels can be used to organize and to select subsets of nodes in the cluster. Declare node labels in key=value format, separated by spaces.  |
+| <a id="table-nagios_context"> </a> nagios_context | string | juju | [See notes](#nagios_context-description)  |
+| <a id="table-nagios_servicegroups"> </a> nagios_servicegroups | string |  | A comma-separated list of nagios servicegroups. If left empty, the nagios_context will be used as the servicegroup  |
+| <a id="table-nginx-image"> </a> nginx-image | string | auto | Docker image to use for the nginx ingress controller. Auto will select an image based on architecture.  |
+| <a id="table-proxy-extra-args"> </a> proxy-extra-args | string |  | [See notes](#proxy-extra-args-description)  |
+| <a id="table-require-manual-upgrade"> </a> require-manual-upgrade | boolean | True | When true, worker services will not be upgraded until the user triggers it manually by running the upgrade action.  |
+| <a id="table-snap_proxy"> </a> snap_proxy | string |  | DEPRECATED. Use snap-http-proxy and snap-https-proxy model configuration settings. HTTP/HTTPS web proxy for Snappy to use when accessing the snap store.  |
+| <a id="table-snap_proxy_url"> </a> snap_proxy_url | string |  | DEPRECATED. Use snap-store-proxy model configuration setting. The address of a Snap Store Proxy to use for snaps e.g. http://snap-proxy.example.com  |
+| <a id="table-snapd_refresh"> </a> snapd_refresh | string | max | [See notes](#snapd_refresh-description)  |
+| <a id="table-sysctl"> </a> sysctl | string | [See notes](#sysctl-default) | [See notes](#sysctl-description)  |
 
 ---
 
-
-### ingress
-
-
-
-<a id="ingress-description"> </a>
-**Description:**
-
-Deploy the default http backend and ingress controller to handle
-ingress requests.
-
-Set to false if deploying an alternate ingress controller, and note
-that you may need to manually open ports 80 and 443 on the nodes:
-  juju run --application kubernetes-worker -- open-port 80 && open-port 443
-
-[Back to table](#table-ingress)
-
-
-
-
-### ingress-default-ssl-certificate
-
-
-
-<a id="ingress-default-ssl-certificate-description"> </a>
-**Description:**
-
-SSL certificate to be used by the default HTTPS server. If one of the
-flag ingress-default-ssl-certificate or ingress-default-ssl-key is not
-provided ingress will use a self-signed certificate. This parameter is
-specific to nginx-ingress-controller.
-
-[Back to table](#table-ingress-default-ssl-certificate)
-
-
-
-
-### ingress-default-ssl-key
-
-
-
-<a id="ingress-default-ssl-key-description"> </a>
-**Description:**
-
-Private key to be used by the default HTTPS server. If one of the flag
-ingress-default-ssl-certificate or ingress-default-ssl-key is not
-provided ingress will use a self-signed certificate. This parameter is
-specific to nginx-ingress-controller.
-
-[Back to table](#table-ingress-default-ssl-key)
-
-
-
-
 ### ingress-ssl-chain-completion
-
 
 
 <a id="ingress-ssl-chain-completion-description"> </a>
@@ -203,34 +129,7 @@ any environment which does not have outbound Internet access.
 [Back to table](#table-ingress-ssl-chain-completion)
 
 
-
-
-### ingress-use-forwarded-headers
-
-
-
-<a id="ingress-use-forwarded-headers-description"> </a>
-**Description:**
-
-If true, NGINX passes the incoming X-Forwarded-* headers to upstreams. Use this
-option when NGINX is behind another L7 proxy / load balancer that is setting
-these headers.
-
-If false, NGINX ignores incoming X-Forwarded-* headers, filling them with the
-request information it sees. Use this option if NGINX is exposed directly to
-the internet, or it's behind a L3/packet-based load balancer that doesn't alter
-the source IP in the packets.
-
-Reference: https://github.com/kubernetes/ingress-nginx/blob/a9c706be12a8be418c49ab1f60a02f52f9b14e55/
-docs/user-guide/nginx-configuration/configmap.md#use-forwarded-headers.
-
-[Back to table](#table-ingress-use-forwarded-headers)
-
-
-
-
 ### kubelet-extra-args
-
 
 
 <a id="kubelet-extra-args-description"> </a>
@@ -255,10 +154,7 @@ be set with kubelet-extra-config instead.
 [Back to table](#table-kubelet-extra-args)
 
 
-
-
 ### kubelet-extra-config
-
 
 
 <a id="kubelet-extra-config-description"> </a>
@@ -285,10 +181,7 @@ https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/
 [Back to table](#table-kubelet-extra-config)
 
 
-
-
 ### nagios_context
-
 
 
 <a id="nagios_context-description"> </a>
@@ -308,28 +201,7 @@ this allows you to differentiate between them.
 [Back to table](#table-nagios_context)
 
 
-
-
-### nginx-image
-
-
-
-<a id="nginx-image-description"> </a>
-**Description:**
-
-Docker image to use for the nginx ingress controller. Using "auto" will select
-an image based on architecture.
-
-Example:
-  quay.io/kubernetes-ingress-controller/nginx-ingress-controller-amd64:0.32.0
-
-[Back to table](#table-nginx-image)
-
-
-
-
 ### proxy-extra-args
-
 
 
 <a id="proxy-extra-args-description"> </a>
@@ -348,10 +220,7 @@ will result in kube-apiserver being run with the following options:
 [Back to table](#table-proxy-extra-args)
 
 
-
-
 ### snapd_refresh
-
 
 
 <a id="snapd_refresh-description"> </a>
@@ -366,22 +235,18 @@ as possible. You may also set a custom string as described in the
 [Back to table](#table-snapd_refresh)
 
 
-
-
 ### sysctl
-
 
 
 <a id="sysctl-default"> </a>
 **Default:**
 
 ```
-{ net.ipv4.conf.all.forwarding : 1, net.ipv4.neigh.default.gc_thresh1 : 128, net.ipv4.neigh.default.gc_thresh2 : 28672, net.ipv4.neigh.default.gc_thresh3 : 32768, net.ipv6.neigh.default.gc_thresh1 : 128, net.ipv6.neigh.default.gc_thresh2 : 28672, net.ipv6.neigh.default.gc_thresh3 : 32768, fs.inotify.max_user_instances : 8192, fs.inotify.max_user_watches : 1048576, kernel.panic : 10, kernel.panic_on_oops: 1, vm.overcommit_memory : 1 }
+{ net.ipv4.conf.all.forwarding : 1, net.ipv4.neigh.default.gc_thresh1 : 128, net.ipv4.neigh.default.gc_thresh2 : 28672, net.ipv4.neigh.default.gc_thresh3 : 32768, net.ipv6.neigh.default.gc_thresh1 : 128, net.ipv6.neigh.default.gc_thresh2 : 28672, net.ipv6.neigh.default.gc_thresh3 : 32768, fs.inotify.max_user_instances : 8192, fs.inotify.max_user_watches: 1048576 }
 ```
 
 
 [Back to table](#table-sysctl)
-
 
 
 <a id="sysctl-description"> </a>
@@ -402,6 +267,8 @@ kube-proxy's settings and use the sysctl settings instead. Note the fundamental 
 the setting of conntrack-max-per-core vs nf_conntrack_max.
 
 [Back to table](#table-sysctl)
+
+
 
 <!-- CONFIG ENDS -->
 
