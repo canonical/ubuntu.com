@@ -1,4 +1,3 @@
-import React from "react";
 import { Row, Col } from "@canonical/react-components";
 
 const formRow = ({ label, children, error }) => {

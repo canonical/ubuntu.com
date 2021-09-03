@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { Row, Col, Button } from "@canonical/react-components";
 import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";

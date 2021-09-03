@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import React from "react";
 import { Row, Col } from "@canonical/react-components";
 
 import TCO_CONSTANTS from "../utils/constants";
