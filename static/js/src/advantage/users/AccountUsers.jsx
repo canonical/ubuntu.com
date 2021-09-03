@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import Organisation from "./components/Organisation";
 
 const AccountUsers = ({ organisationName }) => {
@@ -20,6 +22,10 @@ const AccountUsers = ({ organisationName }) => {
       </section>
     </div>
   );
+};
+
+AccountUsers.propTypes = {
+  organisationName: PropTypes.string.isRequired,
 };
 
 export default AccountUsers;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Organisation = ({ name }) => (
   <>
@@ -6,5 +7,9 @@ const Organisation = ({ name }) => (
     <p className="p-heading--3 u-no-padding--top">{name}</p>
   </>
 );
+
+Organisation.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default Organisation;
