@@ -87,10 +87,11 @@
                 <li class="p-accordion__group--certified" id="version-section">
                   <div role="heading" aria-level="2">
                     <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true">
-                      Certified ubuntu release
+                      Certified ubuntu
                         <div class="p-round-chip u-hide">
                           <span class="p-chip__value" id="release-count">1</span>
                         </div>
+                        release
                     </button>
                   </div>
                   <hr class="u-no-margin--bottom">
@@ -110,9 +111,12 @@
                   {% endif %}
                 </li>
               </ul>
+              <hr style="margin-bottom: 1rem;">
             </aside>
-            <button class="p-button--neutral p-update-results" onclick="return clearFilters()">Clear</button>
-            <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply</button>
+            <div class="u-align--right">
+              <button class="p-button--neutral p-update-results u-no-margin--right" onclick="return clearFilters()">Clear</button>
+              <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply</button>
+            </div>
           </div>
         </nav>
       </div>
