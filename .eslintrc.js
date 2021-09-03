@@ -11,6 +11,7 @@ module.exports = {
     "plugin:cypress/recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:react/jsx-runtime",
   ],
   globals: {
     Atomics: "readonly",

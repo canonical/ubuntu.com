@@ -39,8 +39,11 @@ for (const [key, value] of Object.entries(entries)) {
         // 'production' in all other cases.
         process && process.env && process.env.NODE_ENV === "development"
           ? '"development"'
-          : '"production"'
-    }
+          : '"production"',
+    },
+    inject: value.match(/^.*\.(jsx|tsx)$/) ? [
+      "./react-shim.js"
+    ]: [],
   };
 
   esbuild
