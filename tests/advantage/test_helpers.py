@@ -24,6 +24,7 @@ from webapp.advantage.ua_contracts.helpers import (
     get_user_subscription_statuses,
     extract_last_purchase_ids,
     get_price_info,
+    get_subscription_by_period,
 )
 
 
@@ -590,3 +591,38 @@ class TestHelpers(unittest.TestCase):
         }
 
         self.assertEqual(last_purchase_ids, expectation)
+
+    def test_get_subscription_by_period(self):
+        subscriptions = [
+            make_subscription(id="yearly_sub", period="yearly"),
+            make_subscription(id="monthly_sub", period="monthly"),
+        ]
+        listing = make_listing(period="monthly")
+
+        subscription = get_subscription_by_period(subscriptions, listing)
+
+        self.assertEqual(subscription.id, "monthly_sub")
+
+    def test_get_subscription_by_period_has_no_subscription(self):
+        subscriptions = [
+            make_subscription(id="yearly_sub", period="yearly"),
+        ]
+
+        listing = make_listing(period="monthly")
+
+        subscription = get_subscription_by_period(subscriptions, listing)
+
+        self.assertEqual(subscription, None)
+
+    def test_get_subscription_by_period_with_listing_without_period(self):
+        subscriptions = [
+            make_subscription(id="yearly_sub", period="yearly"),
+            make_subscription(id="monthly_sub", period="monthly"),
+        ]
+
+        listing = make_listing()
+        listing.period = None
+
+        subscription = get_subscription_by_period(subscriptions, listing)
+
+        self.assertEqual(subscription, None)

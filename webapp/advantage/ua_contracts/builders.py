@@ -7,6 +7,7 @@ from webapp.advantage.ua_contracts.helpers import (
     is_trialling_user_subscription,
     get_user_subscription_statuses,
     get_price_info,
+    get_subscription_by_period,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Contract,
@@ -139,12 +140,20 @@ def build_final_user_subscriptions(
         subscriptions: List[Subscription] = group.get("subscriptions")
         items: List[ContractItem] = group.get("items")
         aggregated_values = get_items_aggregated_values(items)
+        subscription = get_subscription_by_period(subscriptions, listing)
         type = group.get("type")
         number_of_machines = aggregated_values.get("number_of_machines")
         price_info = get_price_info(number_of_machines, items, listing)
         renewal = items[0].renewal if type == "legacy" else None
         product_name = (
             contract.name if type != "free" else "Free Personal Token"
+        )
+        statuses = get_user_subscription_statuses(
+            type=type,
+            end_date=aggregated_values.get("end_date"),
+            renewal=renewal,
+            subscriptions=subscriptions or [],
+            listing=listing or None,
         )
 
         user_subscription = UserSubscription(
@@ -159,16 +168,12 @@ def build_final_user_subscriptions(
             price=price_info.get("price"),
             currency=price_info.get("currency"),
             machine_type=get_machine_type(contract.product_id),
+            contract_id=contract.id,
+            subscription_id=subscription.id if subscription else None,
             listing_id=listing.id if listing else None,
             period=listing.period if listing else None,
             renewal_id=renewal.id if renewal else None,
-            statuses=get_user_subscription_statuses(
-                type=type,
-                end_date=aggregated_values.get("end_date"),
-                renewal=renewal,
-                subscriptions=subscriptions or [],
-                listing=listing or None,
-            ),
+            statuses=statuses,
         )
 
         user_subscriptions.append(user_subscription)

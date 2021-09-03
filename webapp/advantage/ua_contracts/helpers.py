@@ -234,6 +234,18 @@ def extract_last_purchase_ids(subscriptions: List[Subscription]) -> Dict:
     return last_purchase_ids
 
 
+def get_subscription_by_period(
+    subscriptions: List[Subscription], listing: Listing
+) -> Optional[Subscription]:
+    filtered_subscriptions = [
+        subscription
+        for subscription in subscriptions
+        if subscription.period == listing.period
+    ]
+
+    return filtered_subscriptions[0] if filtered_subscriptions else None
+
+
 def to_dict(structure, class_key=None):
     """Converts structure to dictionary
 

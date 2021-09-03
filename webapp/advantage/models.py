@@ -61,6 +61,8 @@ class UserSubscription:
         currency: str,
         entitlements: List[Entitlement],
         statuses: dict,
+        contract_id: str,
+        subscription_id: str = None,
         end_date: str = None,
         period: str = None,
         listing_id: str = None,
@@ -79,5 +81,7 @@ class UserSubscription:
         self.entitlements = entitlements
         self.statuses = statuses
         self.period = period
+        self.subscription_id = subscription_id
+        self.contract_id = contract_id
         self.listing_id = listing_id
         self.renewal_id = renewal_id
