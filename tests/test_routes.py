@@ -21,7 +21,12 @@ class TestRoutes(VCRTestCase):
         from VCR so we don't record auth parameters
         """
         return {
-            "filter_headers": ["Authorization", "Cookie"],
+            "filter_headers": [
+                "Authorization",
+                "Cookie",
+                "Api-Key",
+                "Api-Username",
+            ],
             "filter_query_parameters": ["key"],
         }
 

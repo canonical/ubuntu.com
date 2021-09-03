@@ -140,6 +140,8 @@ from webapp.certified.views import (
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
 )
+DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
+DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
 # Set up application
 # ===
@@ -165,7 +167,11 @@ app.config["CANONICAL_LOGIN_URL"] = os.getenv(
 )
 session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
-    base_url="https://discourse.ubuntu.com/", session=session
+    base_url="https://discourse.ubuntu.com/",
+    session=session,
+    api_key=DISCOURSE_API_KEY,
+    api_username=DISCOURSE_API_USERNAME,
+    get_topics_query_id=2,
 )
 
 
@@ -626,7 +632,6 @@ tutorials_path = "/tutorials"
 tutorials_docs = Tutorials(
     parser=TutorialParser(
         api=discourse_api,
-        category_id=34,
         index_topic_id=13611,
         url_prefix=tutorials_path,
     ),
