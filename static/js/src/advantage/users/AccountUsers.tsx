@@ -1,9 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Organisation from "./components/Organisation";
 
-const AccountUsers = ({ organisationName }) => {
+const AccountUsers = ({ organisationName }: { organisationName: string }) => {
   return (
     <div>
       <div className="p-strip">
@@ -22,10 +21,6 @@ const AccountUsers = ({ organisationName }) => {
       </section>
     </div>
   );
-};
-
-AccountUsers.propTypes = {
-  organisationName: PropTypes.string.isRequired,
 };
 
 export default AccountUsers;
