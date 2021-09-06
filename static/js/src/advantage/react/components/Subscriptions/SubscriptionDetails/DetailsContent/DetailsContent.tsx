@@ -8,11 +8,22 @@ import {
 } from "@canonical/react-components";
 import classNames from "classnames";
 import { useUserSubscriptions } from "advantage/react/hooks";
-import { selectFreeSubscription } from "advantage/react/hooks/useUserSubscriptions";
-import { formatDate, isFreeSubscription } from "advantage/react/utils";
+import { selectSubscriptionByToken } from "advantage/react/hooks/useUserSubscriptions";
+import {
+  formatDate,
+  getMachineTypeDisplay,
+  getPeriodDisplay,
+  getSubscriptionCost,
+  isFreeSubscription,
+} from "advantage/react/utils";
 import React, { ReactNode } from "react";
 
 import DetailsTabs from "../DetailsTabs";
+import { SelectedToken } from "../../Content/types";
+
+type Props = {
+  selectedToken?: SelectedToken;
+};
 
 type Feature = {
   valueClassName?: string;
@@ -34,12 +45,9 @@ const generateFeatures = (features: Feature[]) =>
     </Col>
   ));
 
-const DetailsContent = () => {
+const DetailsContent = ({ selectedToken }: Props) => {
   const { data: subscription, isLoading } = useUserSubscriptions({
-    // TODO: Get the selected subscription once the subscription token is
-    // available.
-    // https://github.com/canonical-web-and-design/commercial-squad/issues/210
-    select: selectFreeSubscription,
+    select: selectSubscriptionByToken(selectedToken),
   });
   const isFree = isFreeSubscription(subscription);
   if (isLoading || !subscription) {
@@ -55,21 +63,22 @@ const DetailsContent = () => {
           },
           {
             title: "Expires",
-            value: isFree ? "Never" : null,
+            value: subscription.end_date
+              ? formatDate(subscription.end_date)
+              : "Never",
           },
           {
             size: 2,
             title: "Billing",
-            value: isFree ? "None" : null,
+            value: isFree ? "None" : getPeriodDisplay(subscription.period),
           },
           {
             title: "Cost",
-            value: isFree ? "Free" : null,
+            value: getSubscriptionCost(subscription),
           },
           {
             title: "Machine type",
-            value: subscription.machine_type,
-            valueClassName: "u-text--capitalise-first",
+            value: getMachineTypeDisplay(subscription.machine_type),
           },
           {
             title: "Machines",

@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import {
   selectFreeSubscription,
   selectStatusesSummary,
+  selectSubscriptionByToken,
+  selectUASubscriptions,
   useUserSubscriptions,
 } from "./useUserSubscriptions";
 
@@ -13,6 +15,7 @@ import {
   userSubscriptionFactory,
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 describe("useUserSubscriptions", () => {
   let queryClient: QueryClient;
@@ -87,5 +90,49 @@ describe("useUserSubscriptions", () => {
       is_trialled: false,
       is_upsizeable: true,
     });
+  });
+
+  it("can get a subscription by its token", async () => {
+    // TODO: Get the matching subscription once the subscription token is
+    // available. For now this gets the subscription by the position provided by
+    // the fake token.
+    // https://github.com/canonical-web-and-design/commercial-squad/issues/210
+    const subscriptions = [
+      userSubscriptionFactory.build(),
+      userSubscriptionFactory.build(),
+      userSubscriptionFactory.build(),
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
+    const { result, waitForNextUpdate } = renderHook(
+      () =>
+        useUserSubscriptions({ select: selectSubscriptionByToken("ua-sub-1") }),
+      { wrapper }
+    );
+    await waitForNextUpdate();
+    expect(result.current.data).toStrictEqual(subscriptions[1]);
+  });
+
+  it("can return ua subscriptions", async () => {
+    const subscriptions = [
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+      }),
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.Free,
+      }),
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+      }),
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
+    const { result, waitForNextUpdate } = renderHook(
+      () => useUserSubscriptions({ select: selectUASubscriptions }),
+      { wrapper }
+    );
+    await waitForNextUpdate();
+    expect(result.current.data).toStrictEqual([
+      subscriptions[0],
+      subscriptions[2],
+    ]);
   });
 });

@@ -1,20 +1,16 @@
 import { Factory } from "fishery";
 import {
-  ContractWithToken,
-  PersonalAccount,
   UserSubscription,
   UserSubscriptionEntitlement,
   UserSubscriptionStatuses,
 } from "advantage/api/types";
-import { accountContractInfoFactory, accountInfoFactory } from "./contracts";
-import { EntitlementType, UserSubscriptionType } from "advantage/api/enum";
-
-export const contractWithTokenFactory = Factory.define<ContractWithToken>(
-  () => ({
-    ...accountContractInfoFactory.build(),
-    token: "B13sf54ZfJt51AMwynubzPyaGE9ZA2",
-  })
-);
+import {
+  EntitlementType,
+  UserSubscriptionMachineType,
+  UserSubscriptionPeriod,
+  UserSubscriptionMarketplace,
+  UserSubscriptionType,
+} from "advantage/api/enum";
 
 export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptionEntitlement>(
   () => ({
@@ -44,10 +40,10 @@ export const userSubscriptionFactory = Factory.define<UserSubscription>(
     end_date: new Date("2022-07-09T07:21:21Z"),
     entitlements: [],
     listing_id: `lADzAkHCZRIASpBZ8YiAiCT2XbDpBSyER7j9vj${sequence}`,
-    machine_type: "physical",
-    marketplace: "canonical-ua",
+    marketplace: UserSubscriptionMarketplace.CanonicalUA,
+    machine_type: UserSubscriptionMachineType.Physical,
     number_of_machines: 1,
-    period: "yearly",
+    period: UserSubscriptionPeriod.Yearly,
     price_per_unit: 150000,
     product_name: "UA Applications - Standard (Physical)",
     start_date: new Date("2021-08-11T02:56:54Z"),
@@ -62,8 +58,8 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     end_date: null,
     entitlements: [],
     listing_id: null,
-    machine_type: "physical",
-    marketplace: "free",
+    marketplace: UserSubscriptionMarketplace.Free,
+    machine_type: UserSubscriptionMachineType.Physical,
     number_of_machines: 3,
     period: null,
     price_per_unit: null,
@@ -71,13 +67,5 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     start_date: new Date("2021-07-09T07:14:56Z"),
     statuses: userSubscriptionStatusesFactory.build(),
     type: UserSubscriptionType.Free,
-  })
-);
-
-export const personalAccountFactory = Factory.define<PersonalAccount>(
-  ({ sequence }) => ({
-    ...accountInfoFactory.build(),
-    contracts: contractWithTokenFactory.buildList(2),
-    free_token: `F9sf54ZfJt59AMwynubzPyaGE9Z4D${sequence}`,
   })
 );

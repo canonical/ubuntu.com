@@ -1,22 +1,13 @@
 import {
-  AccountContractInfo,
-  AccountInfo,
-  GetContractTokenResponse,
-} from "./contracts-types";
-import { EntitlementType, SupportLevel, UserSubscriptionType } from "./enum";
-
-export type ContractToken = GetContractTokenResponse["contractToken"];
-
-export type ContractWithToken = AccountContractInfo & {
-  token: ContractToken;
-};
+  EntitlementType,
+  SupportLevel,
+  UserSubscriptionMachineType,
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+  UserSubscriptionType,
+} from "./enum";
 
 export type PendingPurchaseId = string;
-
-export type PersonalAccount = AccountInfo & {
-  contracts: ContractWithToken[];
-  free_token: ContractToken;
-};
 
 export type UsingTestBackend = boolean;
 
@@ -43,10 +34,10 @@ export type UserSubscription = {
   end_date: Date | null;
   entitlements: UserSubscriptionEntitlement[];
   listing_id: string | null;
-  machine_type: string;
-  marketplace: string;
+  marketplace: UserSubscriptionMarketplace;
+  machine_type: UserSubscriptionMachineType;
   number_of_machines: number;
-  period: string | null;
+  period: UserSubscriptionPeriod | null;
   price_per_unit: number | null;
   product_name: string | null;
   start_date: Date;

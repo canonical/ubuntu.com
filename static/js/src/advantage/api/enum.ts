@@ -18,10 +18,26 @@ export enum EntitlementType {
   Support = "support",
 }
 
+export enum UserSubscriptionMarketplace {
+  Free = "free",
+  CanonicalUA = "canonical-ua",
+}
+
 export enum UserSubscriptionType {
   Free = "free",
   Yearly = "yearly",
   Monthly = "monthly",
   Trial = "trial",
   Legacy = "legacy",
+}
+
+export enum UserSubscriptionMachineType {
+  Virtual = "virtual",
+  Physical = "physical",
+  Desktop = "desktop",
+}
+
+export enum UserSubscriptionPeriod {
+  Yearly = "yearly",
+  Monthly = "monthly",
 }
