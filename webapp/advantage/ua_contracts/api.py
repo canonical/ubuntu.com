@@ -254,7 +254,7 @@ class UAContractsAPI:
                 "defaultPaymentMethod": {"Id": payment_method_id},
                 "address": {"country": country},
             },
-            error_rules=["default", "ensure-purchase-account"]
+            error_rules=["default", "ensure-purchase-account"],
         )
 
         return response.json()
