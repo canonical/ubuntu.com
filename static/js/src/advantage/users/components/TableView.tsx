@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import MainTable from "@canonical/react-components/dist/components/MainTable";
 import Button from "@canonical/react-components/dist/components/Button";
 
-import { Users } from "../app";
+import { Users } from "../types";
 
 const DATE_FORMAT = "dd/MM/yyyy";
 
