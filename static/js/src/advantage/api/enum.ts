@@ -30,3 +30,14 @@ export enum UserSubscriptionType {
   Trial = "trial",
   Legacy = "legacy",
 }
+
+export enum UserSubscriptionMachineType {
+  Virtual = "virtual",
+  Physical = "physical",
+  Desktop = "desktop",
+}
+
+export enum UserSubscriptionPeriod {
+  Yearly = "yearly",
+  Monthly = "monthly",
+}
