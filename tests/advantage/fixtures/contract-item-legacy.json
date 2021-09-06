@@ -1,0 +1,42 @@
+{
+    "contractID": "cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+    "created": "2014-01-01T10:00:00Z",
+    "effectiveFrom": "2014-01-01T10:00:00Z",
+    "effectiveTo": "2015-01-01T00:00:00Z",
+    "externalIDs": [
+        {"IDs": ["randomExternalID1"], "origin": "Salesforce"}
+    ],
+    "id": 6,
+    "lastModified": "2014-01-01T10:00:00Z",
+    "metric": "units",
+    "reason": "contract_created",
+    "renewal": {
+        "actionable": true,
+        "billing": {
+            "createdBy": "",
+            "customerID": "",
+            "origin": "",
+            "planID": "",
+            "subscriptionID": ""
+        },
+        "contractID": "cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+        "createdAt": "2014-01-01T10:00:00Z",
+        "createdBy": "abcdef",
+        "end": "2015-01-01T00:00:00Z",
+        "externalAccountID": {"IDs": ["randomId103"], "origin": "Salesforce"},
+        "externalAssetIDs": {"IDs": ["randomId104"], "origin": "Salesforce"},
+        "id": "rAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+        "lastModified": "2014-01-01T10:00:00Z",
+        "newContractStart": "2015-01-01T00:00:00Z",
+        "renewalItems": [
+            {
+                "allowance": {"metric": "units", "value": 5},
+                "pricePerUnit": {"currency": "USD", "value": 1000},
+                "priceTotal": {"currency": "USD", "value": 5000}
+            }
+        ],
+        "start": "2014-11-01T00:00:00Z",
+        "status": "pending"
+    },
+    "value": 5
+}

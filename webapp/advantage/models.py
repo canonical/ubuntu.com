@@ -13,23 +13,33 @@ class Entitlement:
         self.enabled_by_default = enabled_by_default
 
 
+class Product:
+    def __init__(
+        self,
+        id: str,
+        name: str,
+    ):
+        self.id = id
+        self.name = name
+
+
 class Listing:
     def __init__(
         self,
         id: str,
         name: str,
         marketplace: str,
-        product_name: str,
         price: int,
         currency: str,
         status: str,
+        product: Product = None,
         trial_days: int = None,
         period: str = None,
     ):
         self.id = id
         self.name = name
         self.marketplace = marketplace
-        self.product_name = product_name
+        self.product = product
         self.price = price
         self.currency = currency
         self.status = status
@@ -47,12 +57,16 @@ class UserSubscription:
         number_of_machines: int,
         machine_type: str,
         marketplace: str,
-        price_per_unit: int,
+        price: int,
+        currency: str,
         entitlements: List[Entitlement],
         statuses: dict,
+        contract_id: str,
+        subscription_id: str = None,
         end_date: str = None,
         period: str = None,
         listing_id: str = None,
+        renewal_id: str = None,
     ):
         self.account_id = account_id
         self.product_name = product_name
@@ -62,8 +76,12 @@ class UserSubscription:
         self.number_of_machines = number_of_machines
         self.machine_type = machine_type
         self.marketplace = marketplace
-        self.price_per_unit = price_per_unit
+        self.price = price
+        self.currency = currency
         self.entitlements = entitlements
         self.statuses = statuses
         self.period = period
+        self.subscription_id = subscription_id
+        self.contract_id = contract_id
         self.listing_id = listing_id
+        self.renewal_id = renewal_id

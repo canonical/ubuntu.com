@@ -4,13 +4,14 @@ from typing import List
 
 from requests.exceptions import HTTPError
 
-from webapp.advantage.models import Listing, Entitlement
+from webapp.advantage.models import Listing, Entitlement, Product
 from webapp.advantage.ua_contracts.api import UAContractsAPI
 from webapp.advantage.ua_contracts.primitives import (
     Subscription,
     SubscriptionItem,
     ContractItem,
     Contract,
+    Renewal,
 )
 
 
@@ -98,18 +99,23 @@ def make_listing(
     id: str = None,
     name: str = None,
     marketplace: str = None,
-    product_name: str = None,
+    product: Product = None,
     price: int = None,
     currency: str = None,
     status: str = None,
     trial_days: int = None,
     period: str = None,
 ) -> Listing:
+    default_product = Product(
+        id="product-id",
+        name="product-name",
+    )
+
     return Listing(
         id=id or "lAaBbCcDdEeFfGg",
         name=name or "Listing Name",
         marketplace=marketplace or "canonical-ua",
-        product_name=product_name or "Product Name",
+        product=product or default_product,
         price=price or 1000,
         currency=currency or "USD",
         status=status or "active",
@@ -128,7 +134,9 @@ def make_contract_item(
     product_listing_id: str = None,
     purchase_id: str = None,
     trial_id: str = None,
+    renewal: Renewal = None,
 ) -> ContractItem:
+
     return ContractItem(
         contract_id=contract_id or "cAaBbCcDdEeFfGg",
         created_at=created_at or "2020-01-01T00:00:00Z",
@@ -139,6 +147,63 @@ def make_contract_item(
         product_listing_id=product_listing_id or "lAaBbCcDdEeFfGg",
         purchase_id=purchase_id or "pAaBbCcDdEeFfGg",
         trial_id=trial_id or None,
+        renewal=renewal or None,
+    )
+
+
+def make_renewal(
+    id: str = None,
+    contract_id: str = None,
+    actionable: bool = None,
+    status: str = None,
+    start_date: str = None,
+    end_date: str = None,
+    new_contract_start: str = None,
+    price: int = None,
+    currency: str = None,
+) -> Renewal:
+    return Renewal(
+        id=id or "rAaBbCcDdEeFfGg",
+        contract_id=contract_id or "cAaBbCcDdEeFfGg",
+        actionable=actionable or True,
+        status=status or "pending",
+        start_date=start_date or "2020-01-01T10:00:00Z",
+        end_date=end_date or "2021-01-01T10:00:00Z",
+        new_contract_start=new_contract_start or "2020-01-01T10:00:00Z",
+        price=price or 10000,
+        currency=currency or "USD",
+    )
+
+
+def make_legacy_contract_item(
+    contract_id: str = None,
+    created_at: str = None,
+    start_date: str = None,
+    end_date: str = None,
+    reason: str = None,
+    value: int = None,
+    renewal: Renewal = None,
+) -> ContractItem:
+    default_renewal = Renewal(
+        id="rAaBbCcDdEeFfGg",
+        contract_id="cAaBbCcDdEeFfGg",
+        actionable=True,
+        status="pending",
+        start_date="2020-01-01T10:00:00Z",
+        end_date="2021-01-01T10:00:00Z",
+        new_contract_start="2020-01-01T10:00:00Z",
+        price=10000,
+        currency="USD",
+    )
+
+    return ContractItem(
+        contract_id=contract_id or "cAaBbCcDdEeFfGg",
+        created_at=created_at or "2020-01-01T00:00:00Z",
+        start_date=start_date or "2020-01-01T00:00:00Z",
+        end_date=end_date or "2020-03-01T00:00:00Z",
+        reason=reason or "contract_created",
+        value=value or 5,
+        renewal=renewal or default_renewal,
     )
 
 
