@@ -4,12 +4,14 @@ import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import {
   selectFreeSubscription,
+  selectStatusesSummary,
   useUserSubscriptions,
 } from "./useUserSubscriptions";
 
 import {
   freeSubscriptionFactory,
   userSubscriptionFactory,
+  userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
 
 describe("useUserSubscriptions", () => {
@@ -48,5 +50,42 @@ describe("useUserSubscriptions", () => {
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(freeContract);
+  });
+
+  it("can return a summary of subscription statuses", async () => {
+    const contracts = [
+      userSubscriptionFactory.build({
+        statuses: userSubscriptionStatusesFactory.build({
+          is_expired: true,
+        }),
+      }),
+      userSubscriptionFactory.build({
+        statuses: userSubscriptionStatusesFactory.build({
+          is_upsizeable: true,
+        }),
+      }),
+      userSubscriptionFactory.build({
+        statuses: userSubscriptionStatusesFactory.build({
+          is_cancelled: true,
+        }),
+      }),
+    ];
+    queryClient.setQueryData("userSubscriptions", contracts);
+    const { result, waitForNextUpdate } = renderHook(
+      () => useUserSubscriptions({ select: selectStatusesSummary }),
+      { wrapper }
+    );
+    await waitForNextUpdate();
+    expect(result.current.data).toStrictEqual({
+      is_cancellable: false,
+      is_cancelled: true,
+      is_downsizeable: false,
+      is_expired: true,
+      is_expiring: false,
+      is_in_grace_period: false,
+      is_renewable: false,
+      is_trialled: false,
+      is_upsizeable: true,
+    });
   });
 });
