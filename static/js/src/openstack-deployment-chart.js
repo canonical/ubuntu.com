@@ -16,16 +16,18 @@ const drawChart = (data) => {
   const svg = d3
     .select("#openstack-pie-chart")
     .append("svg")
-    .attr("width", 500)
-    .attr("height", 500)
+    .attr("width", 400)
+    .attr("height", 400)
     .append("g")
-    .attr("transform", "translate(230,230)");
+    .attr("transform", "translate(200,200)");
 
   const tooltip = d3
-    .select("#openstack-pie-chart")
+    .select("body")
     .append("div")
     .style("visibility", "hidden")
     .style("position", "absolute")
+    .style("z-index", "11")
+    .style("pointer-events", "none")
     .style("background-color", "#111")
     .style("color", "#fff")
     .style("border-radius", "0.125rem")
@@ -48,7 +50,7 @@ const drawChart = (data) => {
     .on("mousemove", (e, d) => {
       tooltip
         .style("top", e.pageY - 50 + "px")
-        .style("left", e.pageX - 50 + "px");
+        .style("left", e.pageX - 10 + "px");
     })
     .on("mouseout", () => {
       tooltip.style("visibility", "hidden");
