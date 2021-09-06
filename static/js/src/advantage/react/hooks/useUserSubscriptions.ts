@@ -1,5 +1,8 @@
 import { getUserSubscriptions } from "advantage/api/contracts";
-import { UserSubscriptionType } from "advantage/api/enum";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionType,
+} from "advantage/api/enum";
 import { UserSubscription } from "advantage/api/types";
 import { useQuery, UseQueryOptions } from "react-query";
 
@@ -26,6 +29,14 @@ export const selectFreeSubscription = (subscriptions: UserSubscription[]) =>
   subscriptions.find(
     (subscription) => subscription.type === UserSubscriptionType.Free
   ) || null;
+
+/**
+ * Find the UA subscriptions.
+ */
+export const selectUASubscriptions = (subscriptions: UserSubscription[]) =>
+  subscriptions.filter(
+    ({ marketplace }) => marketplace === UserSubscriptionMarketplace.CanonicalUA
+  );
 
 export const useUserSubscriptions = <D = UserSubscription[]>(
   options?: UseQueryOptions<UserSubscription[], unknown, D>

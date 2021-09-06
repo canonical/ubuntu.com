@@ -8,6 +8,7 @@ import {
   EntitlementType,
   UserSubscriptionMachineType,
   UserSubscriptionPeriod,
+  UserSubscriptionMarketplace,
   UserSubscriptionType,
 } from "advantage/api/enum";
 
@@ -39,8 +40,8 @@ export const userSubscriptionFactory = Factory.define<UserSubscription>(
     end_date: new Date("2022-07-09T07:21:21Z"),
     entitlements: [],
     listing_id: `lADzAkHCZRIASpBZ8YiAiCT2XbDpBSyER7j9vj${sequence}`,
+    marketplace: UserSubscriptionMarketplace.CanonicalUA,
     machine_type: UserSubscriptionMachineType.Physical,
-    marketplace: "canonical-ua",
     number_of_machines: 1,
     period: UserSubscriptionPeriod.Yearly,
     price_per_unit: 150000,
@@ -57,8 +58,8 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     end_date: null,
     entitlements: [],
     listing_id: null,
+    marketplace: UserSubscriptionMarketplace.Free,
     machine_type: UserSubscriptionMachineType.Physical,
-    marketplace: "free",
     number_of_machines: 3,
     period: null,
     price_per_unit: null,

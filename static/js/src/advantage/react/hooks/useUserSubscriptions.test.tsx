@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import {
   selectFreeSubscription,
   selectSubscriptionByToken,
+  selectUASubscriptions,
   useUserSubscriptions,
 } from "./useUserSubscriptions";
 
@@ -12,6 +13,7 @@ import {
   freeSubscriptionFactory,
   userSubscriptionFactory,
 } from "advantage/tests/factories/api";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 describe("useUserSubscriptions", () => {
   let queryClient: QueryClient;
@@ -69,5 +71,29 @@ describe("useUserSubscriptions", () => {
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(subscriptions[1]);
+  });
+
+  it("can return ua subscriptions", async () => {
+    const subscriptions = [
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+      }),
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.Free,
+      }),
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+      }),
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
+    const { result, waitForNextUpdate } = renderHook(
+      () => useUserSubscriptions({ select: selectUASubscriptions }),
+      { wrapper }
+    );
+    await waitForNextUpdate();
+    expect(result.current.data).toStrictEqual([
+      subscriptions[0],
+      subscriptions[2],
+    ]);
   });
 });

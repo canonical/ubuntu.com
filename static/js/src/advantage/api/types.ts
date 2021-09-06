@@ -2,6 +2,7 @@ import {
   EntitlementType,
   SupportLevel,
   UserSubscriptionMachineType,
+  UserSubscriptionMarketplace,
   UserSubscriptionPeriod,
   UserSubscriptionType,
 } from "./enum";
@@ -33,8 +34,8 @@ export type UserSubscription = {
   end_date: Date | null;
   entitlements: UserSubscriptionEntitlement[];
   listing_id: string | null;
+  marketplace: UserSubscriptionMarketplace;
   machine_type: UserSubscriptionMachineType;
-  marketplace: string;
   number_of_machines: number;
   period: UserSubscriptionPeriod | null;
   price_per_unit: number | null;
