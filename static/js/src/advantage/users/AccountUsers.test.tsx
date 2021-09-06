@@ -12,6 +12,7 @@ it("displays organisation name", () => {
 
 it("displays user details in a correct format", () => {
   const testUser: User = {
+    id: "1",
     email: "user@ecorp.com",
     role: "Admin",
     createdAt: "2020-01-10T10:00:00Z",
