@@ -186,6 +186,7 @@ def bad_request_error(error):
 def ua_contracts_validation_error(error):
     sentry.captureException(
         extra={
+            "user_info": user_info(flask.session),
             "request_url": error.request.url,
             "request_body": error.request.json,
             "response_body": error.response.messages,
@@ -199,6 +200,7 @@ def ua_contracts_validation_error(error):
 def ua_contracts_api_error(error):
     sentry.captureException(
         extra={
+            "user_info": user_info(flask.session),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
@@ -219,6 +221,7 @@ def ua_contracts_api_error(error):
 def ua_contracts_api_error_view(error):
     sentry.captureException(
         extra={
+            "user_info": user_info(flask.session),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
