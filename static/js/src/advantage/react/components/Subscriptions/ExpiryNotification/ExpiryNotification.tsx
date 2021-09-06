@@ -10,7 +10,6 @@ import { UserSubscriptionStatuses } from "advantage/api/types";
 
 export enum ExpiryNotificationSize {
   Small = "small",
-  Medium = "medium",
   Large = "large",
 }
 
@@ -43,8 +42,7 @@ const STATUS_KEYS = [
 
 /**
  * A definition of the expiry notification messages.
- * Large is displayed in the subscriptions header.
- * Medium is used in the subscription details.
+ * Large is displayed in the subscriptions header and details panel.
  * Small is used in the subscription list.
  */
 const MESSAGES: Messages = {
@@ -60,10 +58,6 @@ const MESSAGES: Messages = {
   },
   [StatusKey.IsExpired]: {
     [ExpiryNotificationSize.Large]: {
-      message: "It will be removed within 14 days if it's not renewed.",
-      title: "Your subscription has expired.",
-    },
-    [ExpiryNotificationSize.Medium]: {
       message: (
         <>
           Please <a href="/contact-us">contact us</a>.
@@ -86,19 +80,6 @@ const MESSAGES: Messages = {
   },
 };
 
-const getNotification = (
-  statusKey: StatusKey,
-  size: ExpiryNotificationSize
-) => {
-  const status = MESSAGES[statusKey];
-  // When there is no medium message defined then use the large one.
-  const useSize =
-    size === ExpiryNotificationSize.Medium && !(size in status)
-      ? ExpiryNotificationSize.Large
-      : size;
-  return status[useSize];
-};
-
 const ExpiryNotification = ({
   multiple = false,
   size,
@@ -117,11 +98,11 @@ const ExpiryNotification = ({
     statusesToShow = [highestStatus];
   }
   const notifications = statusesToShow.map((statusKey) => {
-    const notification = getNotification(statusKey, size);
+    const notification = MESSAGES[statusKey][size];
     return {
       children: notification?.message,
       key: `${statusKey}-${size}`,
-      // Display a title for medium and large notifications.
+      // Display a title for large notifications.
       title:
         notification &&
         size !== ExpiryNotificationSize.Small &&

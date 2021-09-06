@@ -104,35 +104,4 @@ describe("ExpiryNotification", () => {
     );
     expect(wrapper.find("[data-test='is_expired-small']").exists()).toBe(true);
   });
-
-  it("can show a medium notification", () => {
-    const statuses = userSubscriptionStatusesFactory.build({
-      is_expired: true,
-    });
-    const wrapper = mount(
-      <ExpiryNotification
-        size={ExpiryNotificationSize.Medium}
-        statuses={statuses}
-      />
-    );
-    expect(wrapper.find("[data-test='is_expired-medium']").exists()).toBe(true);
-  });
-
-  it("can show a large message if there is nothing defined for medium", () => {
-    const statuses = userSubscriptionStatusesFactory.build({
-      is_expiring: true,
-    });
-    const wrapper = mount(
-      <ExpiryNotification
-        size={ExpiryNotificationSize.Medium}
-        statuses={statuses}
-      />
-    );
-    expect(wrapper.find("[data-test='is_expiring-medium']").exists()).toBe(
-      true
-    );
-    expect(wrapper.find(Notification).prop("children")).toBe(
-      'Select a subscription, then "Renew subscription..." to renew it.'
-    );
-  });
 });
