@@ -3,13 +3,6 @@
 import { getTestURL } from "./utils";
 
 context("Advantage", () => {
-  beforeEach(() => {
-    // A workaround for `pt is not a function` uncaught error that seems to be coming from smartquotes.
-    cy.on("uncaught:exception", () => {
-      return false;
-    });
-  });
-
   it("should display the modal when pressing 'Buy now'", () => {
     cy.visit(getTestURL("/advantage/subscribe"));
     cy.findByText("Accept all and visit site").click();
