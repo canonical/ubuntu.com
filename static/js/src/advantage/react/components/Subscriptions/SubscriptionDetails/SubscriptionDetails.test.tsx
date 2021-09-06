@@ -65,7 +65,7 @@ describe("SubscriptionDetails", () => {
 
   it("does not display the buttons for a free contract", () => {
     const account = freeSubscriptionFactory.build();
-    queryClient.setQueryData("personalAccount", account);
+    queryClient.setQueryData("userSubscriptions", [account]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails onCloseModal={jest.fn()} />
@@ -78,7 +78,7 @@ describe("SubscriptionDetails", () => {
 
   it("can close the modal", () => {
     const account = freeSubscriptionFactory.build();
-    queryClient.setQueryData("personalAccount", account);
+    queryClient.setQueryData("userSubscriptions", [account]);
     const onCloseModal = jest.fn();
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>

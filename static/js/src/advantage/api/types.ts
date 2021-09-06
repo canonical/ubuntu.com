@@ -1,9 +1,4 @@
 import {
-  AccountContractInfo,
-  AccountInfo,
-  GetContractTokenResponse,
-} from "./contracts-types";
-import {
   EntitlementType,
   SupportLevel,
   UserSubscriptionMachineType,
@@ -11,18 +6,7 @@ import {
   UserSubscriptionType,
 } from "./enum";
 
-export type ContractToken = GetContractTokenResponse["contractToken"];
-
-export type ContractWithToken = AccountContractInfo & {
-  token: ContractToken;
-};
-
 export type PendingPurchaseId = string;
-
-export type PersonalAccount = AccountInfo & {
-  contracts: ContractWithToken[];
-  free_token: ContractToken;
-};
 
 export type UsingTestBackend = boolean;
 

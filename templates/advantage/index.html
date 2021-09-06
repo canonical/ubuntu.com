@@ -43,7 +43,6 @@
 
 <script>
   window.pendingPurchaseId = "{{ pending_purchase_id }}";
-  window.personalAccount = {{ personal_account|tojson }};
   window.usingTestBackend = {% if get_test_backend %}true{% else %}false{% endif %};
 </script>
 

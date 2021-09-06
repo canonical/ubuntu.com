@@ -1,25 +1,15 @@
 import { Factory } from "fishery";
 import {
-  ContractWithToken,
-  PersonalAccount,
   UserSubscription,
   UserSubscriptionEntitlement,
   UserSubscriptionStatuses,
 } from "advantage/api/types";
-import { accountContractInfoFactory, accountInfoFactory } from "./contracts";
 import {
   EntitlementType,
   UserSubscriptionMachineType,
   UserSubscriptionPeriod,
   UserSubscriptionType,
 } from "advantage/api/enum";
-
-export const contractWithTokenFactory = Factory.define<ContractWithToken>(
-  () => ({
-    ...accountContractInfoFactory.build(),
-    token: "B13sf54ZfJt51AMwynubzPyaGE9ZA2",
-  })
-);
 
 export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptionEntitlement>(
   () => ({
@@ -76,13 +66,5 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     start_date: new Date("2021-07-09T07:14:56Z"),
     statuses: userSubscriptionStatusesFactory.build(),
     type: UserSubscriptionType.Free,
-  })
-);
-
-export const personalAccountFactory = Factory.define<PersonalAccount>(
-  ({ sequence }) => ({
-    ...accountInfoFactory.build(),
-    contracts: contractWithTokenFactory.buildList(2),
-    free_token: `F9sf54ZfJt59AMwynubzPyaGE9Z4D${sequence}`,
   })
 );
