@@ -239,7 +239,7 @@ const PurchaseModal = () => {
         <>
           <header className="p-modal__header">
             <h2 className="p-modal__title u-no-margin--bottom" id="modal-title">
-              Complete purchase {status}
+              Your details
             </h2>
           </header>
           <div id="modal-description" className="p-modal__body">
