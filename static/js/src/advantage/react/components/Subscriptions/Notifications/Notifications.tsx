@@ -1,12 +1,11 @@
-import {
-  Notification,
-  NotificationSeverity,
-} from "@canonical/react-components";
+import { Notification } from "@canonical/react-components";
 import React from "react";
 
 import { usePendingPurchaseId, useURLs } from "../../../hooks";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectStatusesSummary } from "advantage/react/hooks/useUserSubscriptions";
+import ExpiryNotification from "../ExpiryNotification";
+import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 
 const Notifications = () => {
   const urls = useURLs();
@@ -17,25 +16,6 @@ const Notifications = () => {
     // https://github.com/canonical-web-and-design/commercial-squad/issues/210
     select: selectStatusesSummary,
   });
-
-  const notifications = [];
-  if (statusesSummary?.is_expiring) {
-    notifications.push({
-      children:
-        'Select a subscription, then "Renew subscription..." to renew it.',
-      "data-test": "is-expiring",
-      title: "Your subscription is about to expire.",
-      severity: NotificationSeverity.CAUTION,
-    });
-  }
-  if (statusesSummary?.is_expired || statusesSummary?.is_in_grace_period) {
-    notifications.push({
-      children: "It will be removed within 14 days if it's not renewed.",
-      "data-test": "is-expired",
-      title: "Your subscription has expired. ",
-      severity: NotificationSeverity.CAUTION,
-    });
-  }
 
   return (
     <>
@@ -52,9 +32,13 @@ const Notifications = () => {
           subscriptions
         </Notification>
       ) : null}
-      {notifications.map((props, i) => (
-        <Notification inline {...props} key={`notification-${i}`} />
-      ))}
+      {statusesSummary ? (
+        <ExpiryNotification
+          multiple
+          size={ExpiryNotificationSize.Large}
+          statuses={statusesSummary}
+        />
+      ) : null}
     </>
   );
 };

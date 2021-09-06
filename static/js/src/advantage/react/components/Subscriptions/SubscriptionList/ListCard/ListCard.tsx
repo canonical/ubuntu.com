@@ -8,6 +8,8 @@ import {
   makeInteractiveProps,
 } from "advantage/react/utils";
 import { UserSubscription } from "advantage/api/types";
+import ExpiryNotification from "../../ExpiryNotification";
+import { ExpiryNotificationSize } from "../../ExpiryNotification/ExpiryNotification";
 
 type Props = {
   isSelected?: boolean;
@@ -28,6 +30,11 @@ const ListCard = ({
       })}
       {...makeInteractiveProps(onClick)}
     >
+      <ExpiryNotification
+        className="p-subscriptions__list-card-notification is-dense"
+        size={ExpiryNotificationSize.Small}
+        statuses={subscription.statuses}
+      />
       <div className="p-subscriptions__list-card-title">
         <h5
           className="u-no-padding--top u-no-margin--bottom"
