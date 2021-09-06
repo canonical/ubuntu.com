@@ -18,6 +18,11 @@ export enum EntitlementType {
   Support = "support",
 }
 
+export enum UserSubscriptionMarketplace {
+  Free = "free",
+  CanonicalUA = "canonical-ua",
+}
+
 export enum UserSubscriptionType {
   Free = "free",
   Yearly = "yearly",
