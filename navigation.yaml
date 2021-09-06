@@ -1550,6 +1550,12 @@ security:
       path: /security/esm
     - title: Livepatch
       path: /security/livepatch
+      persist: True
+
+      children:
+        - title: Security Livepatch Docs
+          path: /security/livepatch/docs
+
     - title: Certifications & Hardening
       path: /security/certifications
       persist: True

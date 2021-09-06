@@ -789,6 +789,31 @@ app.add_url_rule(
 
 openstack_docs.init_app(app)
 
+# Security Livepatch docs
+security_livepatch_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=22723,
+        url_prefix="/security/livepatch/docs",
+    ),
+    document_template="/security/livepatch/docs/document.html",
+    url_prefix="/security/livepatch/docs",
+    blueprint_name="security-livepatch-docs",
+)
+
+# Security Livepatch search
+app.add_url_rule(
+    "/security/livepatch/docs/search",
+    "security-livepatch-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/security/livepatch/docs",
+        template_path="/security/livepatch/docs/search-results.html",
+    ),
+)
+
+security_livepatch_docs.init_app(app)
+
 # Security Certifications docs
 security_certs_docs = Docs(
     parser=DocParser(
