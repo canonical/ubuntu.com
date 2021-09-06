@@ -14,7 +14,7 @@ class Renewal:
         end_date: str,
         new_contract_start: str,
         price: int,
-        currency: str
+        currency: str,
     ):
         self.id = id
         self.contract_id = contract_id
