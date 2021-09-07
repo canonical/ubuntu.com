@@ -235,8 +235,11 @@ def extract_last_purchase_ids(subscriptions: List[Subscription]) -> Dict:
 
 
 def get_subscription_by_period(
-    subscriptions: List[Subscription], listing: Listing
+    subscriptions: List[Subscription] = None, listing: Listing = None
 ) -> Optional[Subscription]:
+    if not listing or not subscriptions:
+        return None
+
     filtered_subscriptions = [
         subscription
         for subscription in subscriptions

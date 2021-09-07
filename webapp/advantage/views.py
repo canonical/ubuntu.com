@@ -298,6 +298,8 @@ def advantage_view(**kwargs):
 @advantage_decorator(permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
 def get_user_subscriptions(**kwargs):
+    g.api.set_convert_response(True)
+
     email = kwargs.get("email")
 
     listings = g.api.get_product_listings("canonical-ua")
