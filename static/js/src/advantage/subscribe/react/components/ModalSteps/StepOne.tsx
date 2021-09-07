@@ -47,7 +47,7 @@ function StepOne({ error, closeModal }: StepOneProps) {
           onClick={submitForm}
           loading={isSubmitting}
         >
-          Continue
+          Next step
         </ActionButton>
       </ModalFooter>
     </>
