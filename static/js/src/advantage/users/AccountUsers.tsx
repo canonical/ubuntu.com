@@ -1,8 +1,13 @@
 import React from "react";
 
+import { Users, OrganisationName } from "./types";
 import Organisation from "./components/Organisation";
+import TableView from "./components/TableView";
 
-const AccountUsers = ({ organisationName }: { organisationName: string }) => {
+const AccountUsers: React.FC<{
+  organisationName: OrganisationName;
+  users: Users;
+}> = ({ organisationName, users }) => {
   return (
     <div>
       <div className="p-strip">
@@ -16,6 +21,11 @@ const AccountUsers = ({ organisationName }: { organisationName: string }) => {
         <div className="row">
           <div className="col-6">
             <Organisation name={organisationName} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <TableView users={users} />
           </div>
         </div>
       </section>
