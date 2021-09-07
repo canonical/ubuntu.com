@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as Sentry from "@sentry/react";
-
+import { ActionButton } from "@canonical/react-components";
 import useStripeCustomerInfo from "./APICalls/useStripeCustomerInfo";
 import registerPaymentMethod from "./APICalls/registerPaymentMethod";
 import { Formik } from "formik";
@@ -19,6 +19,7 @@ const PurchaseModal = () => {
   const [step, setStep] = useState(
     userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
   );
+  const buttonRef = useRef(null);
   const queryClient = useQueryClient();
 
   const paymentMethodMutation = registerPaymentMethod();
@@ -88,17 +89,37 @@ const PurchaseModal = () => {
     });
   };
 
+  const closeModal = () => {
+    console.log(buttonRef.current);
+    buttonRef.current.click();
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       enableReinitialize={true}
       onSubmit={onSubmit}
     >
-      {step === 1 ? (
-        <StepOne error={error} />
-      ) : (
-        <StepTwo setStep={setStep} error={error} setError={setError} />
-      )}
+      <>
+        {step === 1 ? (
+          <StepOne error={error} closeModal={closeModal} />
+        ) : (
+          <StepTwo
+            setStep={setStep}
+            error={error}
+            setError={setError}
+            closeModal={closeModal}
+          />
+        )}
+        <button
+          ref={buttonRef}
+          aria-controls="purchase-modal"
+          aria-hidden="true"
+          style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+        >
+          Cancel
+        </button>
+      </>
     </Formik>
   );
 };

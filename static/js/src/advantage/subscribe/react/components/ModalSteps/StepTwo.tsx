@@ -15,7 +15,7 @@ import usePurchase from "../../APICalls/usePurchase";
 import usePendingPurchase from "../../APICalls/usePendingPurchase";
 import ModalHeader from "../ModalParts/ModalHeader";
 import ModalBody from "../ModalParts/ModalBody";
-import ModalFooter from "../ModalParts/ModalBody";
+import ModalFooter from "../ModalParts/ModalFooter";
 import Summary from "../../components/Summary";
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 import { getSessionData } from "../../../../../utils/getSessionData";
@@ -24,9 +24,10 @@ type StepOneProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   error: React.ReactNode | null;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  closeModal: () => void;
 };
 
-function StepOne({ setStep, error, setError }: StepOneProps) {
+function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
   const [areTermsChecked, setTermsChecked] = useState(false);
   const {
     data: userInfo,
@@ -201,7 +202,7 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
         </>
       </ModalBody>
 
-      <ModalFooter>
+      <ModalFooter closeModal={ closeModal }>
         <ActionButton
           className="col-small-2 col-medium-2 col-3 u-no-margin"
           appearance="positive"
