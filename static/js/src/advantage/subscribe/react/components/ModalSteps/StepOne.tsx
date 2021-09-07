@@ -1,7 +1,5 @@
-import React, {useState} from "react";
-import {
-  ActionButton,
-} from "@canonical/react-components";
+import React, { useState } from "react";
+import { ActionButton } from "@canonical/react-components";
 import { useFormikContext } from "formik";
 
 import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";

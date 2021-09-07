@@ -144,7 +144,10 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
         setPendingPurchaseID(data);
       },
       onError: (error) => {
-        if (error instanceof Error && error.message.includes("can only make one purchase at a time")) {
+        if (
+          error instanceof Error &&
+          error.message.includes("can only make one purchase at a time")
+        ) {
           setError(
             <>
               You already have a pending purchase. Please go to{" "}
@@ -202,7 +205,7 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
         </>
       </ModalBody>
 
-      <ModalFooter closeModal={ closeModal }>
+      <ModalFooter closeModal={closeModal}>
         <ActionButton
           className="col-small-2 col-medium-2 col-3 u-no-margin"
           appearance="positive"
