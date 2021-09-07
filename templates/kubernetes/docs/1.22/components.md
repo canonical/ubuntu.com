@@ -349,44 +349,43 @@ These are the container images used by this release:
 
 <!-- GENERATED CONTAINER IMAGES -->
  
-cdkbot/microbot-amd64:latest
-cdkbot/microbot-arm64:latest
-cdkbot/microbot-s390x:latest
-cephcsi/cephcsi:v3.3.1
-coredns/coredns:1.8.3
-coreos/kube-state-metrics:v1.9.8
-defaultbackend-amd64:1.5
-defaultbackend-arm64:1.5
-defaultbackend-ppc64le:1.5
-defaultbackend-s390x:1.4
-dns/k8s-dns-dnsmasq-nanny:1.17.3
-dns/k8s-dns-kube-dns:1.17.3
-dns/k8s-dns-sidecar:1.17.3
-external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
-k8s-artifacts-prod/ingress-nginx/controller:v1.0.0-beta.3
-k8scloudprovider/cinder-csi-plugin:v1.20.0
-k8scloudprovider/k8s-keystone-auth:v1.20.0
-k8scloudprovider/openstack-cloud-controller-manager:v1.20.0
-kubernetes-ingress-controller/nginx-ingress-controller-ppc64le:0.20.0
-kubernetesui/dashboard:v2.2.0
-kubernetesui/metrics-scraper:v1.0.6
-metrics-server/metrics-server:v0.5.0
-nvidia/k8s-device-plugin:v0.9.0
-pause:3.4.1
-rancher/rancher:latest
-sig-storage/csi-attacher:v2.2.1
-sig-storage/csi-attacher:v3.0.2
-sig-storage/csi-node-driver-registrar:v1.3.0
-sig-storage/csi-node-driver-registrar:v2.0.1
-sig-storage/csi-provisioner:v1.6.1
-sig-storage/csi-provisioner:v2.0.4
-sig-storage/csi-resizer:v0.5.1
-sig-storage/csi-resizer:v1.0.1
-sig-storage/csi-snapshotter:v2.1.3
-sig-storage/csi-snapshotter:v4.0.0
-sig-storage/livenessprobe:v2.1.0
-sonatype/nexus3:latest
-
+- cdkbot/microbot-amd64:latest
+- cdkbot/microbot-arm64:latest
+- cdkbot/microbot-s390x:latest
+- cephcsi/cephcsi:v3.3.1
+- coredns/coredns:1.8.3
+- coreos/kube-state-metrics:v1.9.8
+- defaultbackend-amd64:1.5
+- defaultbackend-arm64:1.5
+- defaultbackend-ppc64le:1.5
+- defaultbackend-s390x:1.4
+- dns/k8s-dns-dnsmasq-nanny:1.17.3
+- dns/k8s-dns-kube-dns:1.17.3
+- dns/k8s-dns-sidecar:1.17.3
+- external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
+- k8s-artifacts-prod/ingress-nginx/controller:v1.0.0-beta.3
+- k8scloudprovider/cinder-csi-plugin:v1.20.0
+- k8scloudprovider/k8s-keystone-auth:v1.20.0
+- k8scloudprovider/openstack-cloud-controller-manager:v1.20.0
+- kubernetes-ingress-controller/nginx-ingress-controller-ppc64le:0.20.0
+- kubernetesui/dashboard:v2.2.0
+- kubernetesui/metrics-scraper:v1.0.6
+- metrics-server/metrics-server:v0.5.0
+- nvidia/k8s-device-plugin:v0.9.0
+- pause:3.4.1
+- rancher/rancher:latest
+- sig-storage/csi-attacher:v2.2.1
+- sig-storage/csi-attacher:v3.0.2
+- sig-storage/csi-node-driver-registrar:v1.3.0
+- sig-storage/csi-node-driver-registrar:v2.0.1
+- sig-storage/csi-provisioner:v1.6.1
+- sig-storage/csi-provisioner:v2.0.4
+- sig-storage/csi-resizer:v0.5.1
+- sig-storage/csi-resizer:v1.0.1
+- sig-storage/csi-snapshotter:v2.1.3
+- sig-storage/csi-snapshotter:v4.0.0
+- sig-storage/livenessprobe:v2.1.0
+- sonatype/nexus3:latest
 
 <!-- CONTAINER IMAGES END -->
 
