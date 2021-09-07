@@ -45,6 +45,11 @@ class Listing:
         self.status = status
         self.trial_days = trial_days
         self.period = period
+        self.can_be_trialled = None
+
+    def set_can_be_trialled(self, can_be_trialled):
+        self.can_be_trialled = can_be_trialled
+
 
 
 class UserSubscription:
