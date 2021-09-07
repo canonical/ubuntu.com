@@ -30,6 +30,7 @@ const UserActions: React.FC<{
       onClick={() => handleEditOpen(user.id)}
       disabled={isDisabled}
       aria-label={`Edit user ${user.email}`}
+      style={{ transitionProperty: "background-color, border-color, opacity" }}
     >
       Edit
     </Button>
@@ -52,7 +53,12 @@ const UserActions: React.FC<{
 
 const UserDelete = ({ isEditing, handleDelete, isDisabled }: any) => {
   return isEditing ? (
-    <button className="p-button--base u-no-margin--bottom">
+    <button
+      className="p-button--base u-no-margin--bottom"
+      style={{
+        marginLeft: "0.1rem",
+      }}
+    >
       <i className="p-icon--delete" aria-label="delete"></i>
     </button>
   ) : null;
@@ -69,9 +75,7 @@ const UserRole: React.FC<{
   return (
     <>
       {!isEditing ? (
-        <span className={isDisabled ? "u-text--muted" : undefined}>
-          {user.role}
-        </span>
+        user.role
       ) : (
         <Select
           defaultValue={user.role}
@@ -124,58 +128,70 @@ const TableView: React.FC<{ users: Users }> = ({ users }) => {
           content: "actions",
         },
       ]}
-      rows={users.map((user, index) => ({
-        key: index,
-        columns: [
-          {
-            content: (
-              <div style={{ display: "flex", alignItems: "center" }}>
-                {user.email}
-                <UserDelete isEditing={getIsEditing(user.id)} user={user} />
-              </div>
-            ),
-            role: "rowheader",
-            className: getIsDisabled(user.id) ? "u-text--muted" : undefined,
-            style: { verticalAlign: "middle" },
+      rows={users.map((user, index) => {
+        return {
+          key: index,
+          ["aria-hidden"]: !getIsEditing(user.id),
+          style: {
+            transition: "opacity 250ms",
+            opacity: getIsDisabled(user.id) ? 0.5 : 1,
           },
-          {
-            content: (
-              <UserRole
-                user={user}
-                isDisabled={getIsDisabled(user.id)}
-                isEditing={getIsEditing(user.id)}
-                handleEditSubmit={dismissEditMode}
-                handleEditOpen={setUserInEditMode}
-                handleCancel={dismissEditMode}
-              />
-            ),
-            style: { verticalAlign: "middle" },
-          },
-          {
-            content: format(new Date(user.createdAt), DATE_FORMAT),
-            className: getIsDisabled(user.id) ? "u-text--muted" : undefined,
-            style: { verticalAlign: "middle" },
-          },
-          {
-            content: format(new Date(user.lastLoginAt), DATE_FORMAT),
-            className: getIsDisabled(user.id) ? "u-text--muted" : undefined,
-            style: { verticalAlign: "middle" },
-          },
-          {
-            content: (
-              <UserActions
-                isDisabled={getIsDisabled(user.id)}
-                user={user}
-                isEditing={getIsEditing(user.id)}
-                handleEditOpen={setUserInEditMode}
-                handleCancel={dismissEditMode}
-                handleEditSubmit={dismissEditMode}
-              />
-            ),
-            style: { verticalAlign: "middle" },
-          },
-        ],
-      }))}
+          columns: [
+            {
+              content: (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {user.email}
+                  <UserDelete isEditing={getIsEditing(user.id)} user={user} />
+                </div>
+              ),
+              role: "rowheader",
+              style: {
+                verticalAlign: "middle",
+              },
+            },
+            {
+              content: (
+                <UserRole
+                  user={user}
+                  isDisabled={getIsDisabled(user.id)}
+                  isEditing={getIsEditing(user.id)}
+                  handleEditSubmit={dismissEditMode}
+                  handleEditOpen={setUserInEditMode}
+                  handleCancel={dismissEditMode}
+                />
+              ),
+              style: {
+                verticalAlign: "middle",
+              },
+            },
+            {
+              content: format(new Date(user.createdAt), DATE_FORMAT),
+              style: {
+                verticalAlign: "middle",
+              },
+            },
+            {
+              content: format(new Date(user.lastLoginAt), DATE_FORMAT),
+              style: {
+                verticalAlign: "middle",
+              },
+            },
+            {
+              content: (
+                <UserActions
+                  isDisabled={getIsDisabled(user.id)}
+                  user={user}
+                  isEditing={getIsEditing(user.id)}
+                  handleEditOpen={setUserInEditMode}
+                  handleCancel={dismissEditMode}
+                  handleEditSubmit={dismissEditMode}
+                />
+              ),
+              style: { verticalAlign: "middle", padding: 0 },
+            },
+          ],
+        };
+      })}
     />
   );
 };
