@@ -32,6 +32,12 @@ class UAContractsAPI:
         self.is_for_view = is_for_view
         self.convert_response = convert_response
 
+    def set_is_for_view(self, is_for_view):
+        self.is_for_view = is_for_view
+
+    def set_convert_response(self, convert_response):
+        self.convert_response = convert_response
+
     def _request(self, method, path, json=None, params=None, error_rules=None):
         authorization = f"{self.token_type} {self.authentication_token}"
 

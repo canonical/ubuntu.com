@@ -22,6 +22,7 @@ from canonicalwebteam.discourse import (
 )
 
 # Local
+from webapp.advantage.context import get_stripe_publishable_key
 from webapp.advantage.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
@@ -185,6 +186,7 @@ def bad_request_error(error):
 def ua_contracts_validation_error(error):
     sentry.captureException(
         extra={
+            "user_info": user_info(flask.session),
             "request_url": error.request.url,
             "request_body": error.request.json,
             "response_body": error.response.messages,
@@ -198,6 +200,7 @@ def ua_contracts_validation_error(error):
 def ua_contracts_api_error(error):
     sentry.captureException(
         extra={
+            "user_info": user_info(flask.session),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
@@ -218,6 +221,7 @@ def ua_contracts_api_error(error):
 def ua_contracts_api_error_view(error):
     sentry.captureException(
         extra={
+            "user_info": user_info(flask.session),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
@@ -251,6 +255,7 @@ def context():
         "months_list": months_list,
         "get_navigation": get_navigation,
         "get_test_backend": flask.request.args.get("test_backend", ""),
+        "get_stripe_publishable_key": get_stripe_publishable_key(),
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),

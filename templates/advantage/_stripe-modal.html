@@ -298,6 +298,6 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-  window.stripePublishableKey = "{{ stripe_publishable_key }}";
+  window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
 </script>
 <script src="{{ versioned_static('js/dist/ua-payment-modal.js') }}" type="module" defer></script>
