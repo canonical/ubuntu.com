@@ -626,3 +626,11 @@ class TestHelpers(unittest.TestCase):
         subscription = get_subscription_by_period(subscriptions, listing)
 
         self.assertEqual(subscription, None)
+
+    def test_get_subscription_by_period_with_no_listing(self):
+        subscriptions = None
+        listing = None
+
+        subscription = get_subscription_by_period(subscriptions, listing)
+
+        self.assertEqual(subscription, None)
