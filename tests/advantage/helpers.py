@@ -68,6 +68,7 @@ def make_subscription(
     period: str = None,
     status: str = None,
     last_purchase_id: str = None,
+    started_with_trial: bool = None,
     pending_purchases: List[str] = None,
     items: List[SubscriptionItem] = None,
 ) -> Subscription:
@@ -80,6 +81,7 @@ def make_subscription(
         last_purchase_id=last_purchase_id or "pAaBbCcDdEeFfGg",
         pending_purchases=pending_purchases or [],
         items=items or [],
+        started_with_trial=started_with_trial,
     )
 
 

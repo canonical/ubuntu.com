@@ -25,6 +25,7 @@ from webapp.advantage.ua_contracts.helpers import (
     extract_last_purchase_ids,
     get_price_info,
     get_subscription_by_period,
+    set_listings_trial_status,
 )
 
 
@@ -643,3 +644,58 @@ class TestHelpers(unittest.TestCase):
         subscription = get_subscription_by_period(subscriptions, listing)
 
         self.assertEqual(subscription, None)
+
+    def test_set_listings_trial_status_to_true(self):
+        subscriptions = [
+            make_subscription(started_with_trial=False, status="deactivated"),
+        ]
+
+        listings = {
+            "lAbcABC": make_listing(trial_days=30),
+            "lBcdBCD": make_listing(trial_days=1)
+        }
+
+        set_listings_trial_status(listings, subscriptions)
+
+        for listing in listings.values():
+            self.assertEqual(listing.can_be_trialled, True)
+
+    def test_set_listings_trial_status_to_false_because_of_subscriptions(self):
+        subscriptions = [make_subscription(started_with_trial=True)]
+
+        listings = {
+            "lAbcABC": make_listing(trial_days=30),
+            "lBcdBCD": make_listing(trial_days=1)
+        }
+
+        set_listings_trial_status(listings, subscriptions)
+
+        for listing in listings.values():
+            self.assertEqual(listing.can_be_trialled, False)
+
+        subscriptions = [make_subscription()]
+
+        listings = {
+            "lAbcABC": make_listing(trial_days=30),
+            "lBcdBCD": make_listing(trial_days=1)
+        }
+
+        set_listings_trial_status(listings, subscriptions)
+
+        for listing in listings.values():
+            self.assertEqual(listing.can_be_trialled, False)
+
+    def test_set_listings_trial_status_to_false_due_to_listings(self):
+        subscriptions = [
+            make_subscription(started_with_trial=False, status="deactivated")
+        ]
+
+        listings = {
+            "lAbcABC": make_listing(trial_days=0),
+            "lBcdBCD": make_listing(trial_days=0)
+        }
+
+        set_listings_trial_status(listings, subscriptions)
+
+        for listing in listings.values():
+            self.assertEqual(listing.can_be_trialled, False)
