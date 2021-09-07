@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -9,11 +9,7 @@ import {
   RadioInput,
 } from "@canonical/react-components";
 import { CardElement } from "@stripe/react-stripe-js";
-import { debounce } from "lodash";
 
-import { formatter } from "../../renderers/form-renderer";
-import usePreview from "../APICalls/usePreview";
-import useProduct from "../APICalls/useProduct";
 import FormRow from "./FormRow";
 import {
   caProvinces,
@@ -23,19 +19,11 @@ import {
 } from "../../../countries-and-states";
 import { getErrorMessage } from "../../../error-handler";
 import { Field, Form, useFormikContext } from "formik";
-import { useQueryClient } from "react-query";
-
-import usePostCustomerInfoForPurchasePreview from "../APICalls/usePostCustomerInfoForPurchasePreview";
-
 function PaymentMethodForm({ setCardValid }) {
-  const { product, quantity } = useProduct();
-  const { data: preview } = usePreview();
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
-  const mutation = usePostCustomerInfoForPurchasePreview();
-  const queryClient = useQueryClient();
 
-  const { errors, touched, values, setTouched, setErrors } = useFormikContext();
+  const { errors, touched, values, setTouched } = useFormikContext();
 
   const validateEmail = (value) => {
     let errorMessage;
@@ -90,38 +78,12 @@ function PaymentMethodForm({ setCardValid }) {
     }
   }, [values.buyingFor]);
 
-  const updateCustomerInfoForPurchasePreview = (formValues) => {
-    mutation.mutate(formValues, {
-      onError: (error) => {
-        if (error.message === "tax_id_invalid") {
-          setErrors({
-            VATNumber:
-              "That VAT number is invalid. Check the number and try again.",
-          });
-        }
-      },
-      onSuccess: () => {
-        queryClient.invalidateQueries("preview");
-      },
-    });
-  };
-  const updateCustomerInfoForPurchasePreviewDebounced = useMemo(
-    () => debounce(updateCustomerInfoForPurchasePreview, 250),
-    []
-  );
-
   useEffect(() => {
     if (!vatCountries.includes(values.country)) {
-      setTouched({ organisationName: false });
+      setTouched({ VATNumber: false });
       values.VATNumber = "";
     }
   }, [values.country]);
-
-  useEffect(() => {
-    if (window.accountId) {
-      updateCustomerInfoForPurchasePreviewDebounced(values);
-    }
-  }, [values.country, values.VATNumber]);
 
   return (
     <Form className="u-sv3 p-form p-form--stacked" id="payment-modal-form">
@@ -304,25 +266,9 @@ function PaymentMethodForm({ setCardValid }) {
       )}
 
       <Row className="u-no-padding u-sv1">
-        <Col size="4">
-          <div className="u-text-light">Total:</div>
+        <Col size="8" emptyLarge="5">
+          <p>You will have a chance to review on the next step...</p>
         </Col>
-        <Col size="8">
-          <div>
-            <strong>
-              {formatter.format(
-                preview
-                  ? preview.total / 100
-                  : (product?.price?.value * quantity) / 100
-              )}
-            </strong>
-          </div>
-        </Col>
-        {preview?.taxAmount ? null : (
-          <Col size="8" emptyLarge="5">
-            <div className="u-text-light">Excluding VAT</div>
-          </Col>
-        )}
       </Row>
     </Form>
   );
