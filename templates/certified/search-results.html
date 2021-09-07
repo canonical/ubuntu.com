@@ -70,7 +70,7 @@
                 <li class="p-accordion__group--certified">
                   <div role="heading" aria-level="2">
                     <button type="button" class="p-accordion__tab u-no-padding--right" id="tab1" aria-controls="tab1-section" aria-expanded="true">
-                      <span class="p-certification-header">Category</span>
+                      <span>Category</span>
                       <div class="p-round-chip u-hide">
                         <span class="p-chip__value" id="category-count"></span>
                       </div>
@@ -89,7 +89,7 @@
                 <li class="p-accordion__group--certified" id="vendor-section">
                   <div role="heading" aria-level="2">
                     <button type="button" class="p-accordion__tab u-no-padding--right" id="tab2" aria-controls="tab2-section" aria-expanded="true">
-                      <span class="p-certification-header">Vendor</span>
+                      Vendor
                       <div class="p-round-chip u-hide">
                         <span class="p-chip__value" id="vendor-count">1</span>
                       </div>
@@ -112,12 +112,11 @@
                 <li class="p-accordion__group--certified" id="version-section">
                   <div role="heading" aria-level="2">
                     <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true">
-                      <span class="p-certification-header">Certified Ubuntu
+                      Certified Ubuntu
                         <div class="p-round-chip u-hide">
                           <span class="p-chip__value" id="release-count">1</span>
                         </div>
-                        <br> release
-                      </span>
+                        release
                     </button>
                   </div>
                   <hr class="u-no-margin--bottom">
@@ -135,9 +134,12 @@
                   </span>
                 </li>
               </ul>
+              <hr style="margin-bottom: 1rem;">
             </aside>
-            <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply filters</button>
-            <button class="p-button--neutral p-update-results" onclick="return clearFilters()">Clear filters</button>
+            <div class="u-align--right">
+              <button class="p-button--neutral p-update-results u-no-margin--right" onclick="return clearFilters()">Clear</button>
+              <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply</button>
+            </div>
           </div>
         </nav>
       </div>
@@ -146,9 +148,9 @@
         <table class="p-certification-results">
           <thead>
             <tr>
-              <th><span class="p-certification-header">Vendor</span></th>
-              <th><span class="p-certification-header">Model</span></th>
-              <th><span class="p-certification-header">Category</span></th>
+              <th>Vendor</th>
+              <th>Model</th>
+              <th>Category</th>
             </tr>
           </thead>
           <tbody>
