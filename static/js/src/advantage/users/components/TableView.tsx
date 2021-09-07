@@ -29,6 +29,7 @@ const UserActions: React.FC<{
       dense
       onClick={() => handleEditOpen(user.id)}
       disabled={isDisabled}
+      aria-label={`Edit user ${user.email}`}
     >
       Edit
     </Button>
@@ -96,10 +97,11 @@ const UserRole: React.FC<{
 };
 
 const TableView: React.FC<{ users: Users }> = ({ users }) => {
-  const [editingUserId, setEditingUserId] = useState<string | null>(null);
-  const getIsEditing = (userId: string) => userId === editingUserId;
+  const [userInEditMode, setUserInEditMode] = useState<string | null>(null);
+  const dismissEditMode = () => setUserInEditMode(null);
+  const getIsEditing = (userId: string) => userId === userInEditMode;
   const getIsDisabled = (userId: string) =>
-    editingUserId ? userId !== editingUserId : false;
+    userInEditMode ? userId !== userInEditMode : false;
 
   return (
     <MainTable
@@ -140,9 +142,9 @@ const TableView: React.FC<{ users: Users }> = ({ users }) => {
                 user={user}
                 isDisabled={getIsDisabled(user.id)}
                 isEditing={getIsEditing(user.id)}
-                handleEditSubmit={() => setEditingUserId(null)}
-                handleEditOpen={setEditingUserId}
-                handleCancel={() => setEditingUserId(null)}
+                handleEditSubmit={dismissEditMode}
+                handleEditOpen={setUserInEditMode}
+                handleCancel={dismissEditMode}
               />
             ),
           },
@@ -160,9 +162,9 @@ const TableView: React.FC<{ users: Users }> = ({ users }) => {
                 isDisabled={getIsDisabled(user.id)}
                 user={user}
                 isEditing={getIsEditing(user.id)}
-                handleEditOpen={setEditingUserId}
-                handleCancel={() => setEditingUserId(null)}
-                handleEditSubmit={() => setEditingUserId(null)}
+                handleEditOpen={setUserInEditMode}
+                handleCancel={dismissEditMode}
+                handleEditSubmit={dismissEditMode}
               />
             ),
           },

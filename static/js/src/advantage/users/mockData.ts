@@ -12,5 +12,9 @@ const organisationName = "ECorp";
 
 export const mockData: AccountUsersData = {
   organisationName,
-  users: [mockUser, { ...mockUser, id: "2" }],
+  users: [
+    mockUser,
+    { ...mockUser, id: "2", email: "karen@ecorp.com", role: "Billing" },
+    { ...mockUser, id: "3", email: "angela@ecorp.com", role: "Technical" },
+  ],
 };
