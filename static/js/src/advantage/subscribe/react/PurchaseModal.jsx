@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as Sentry from "@sentry/react";
-import { ActionButton } from "@canonical/react-components";
 import useStripeCustomerInfo from "./APICalls/useStripeCustomerInfo";
 import registerPaymentMethod from "./APICalls/registerPaymentMethod";
 import { Formik } from "formik";
