@@ -15,8 +15,8 @@ const getIframeBody = () => {
 context("Marketo forms", () => {
   beforeEach(() => {
     cy.intercept(
-      { method: "POST", url: "/marketo/submit",},
-      { 
+      { method: "POST", url: "/marketo/submit", },
+      {
           headers: {
           "Client Id": Cypress.env("Client Id"),
           "Client Secret": Cypress.env("Client Secret"),
@@ -38,26 +38,22 @@ context("Marketo forms", () => {
   it("should successfully complete contact form and submit to Marketo", () => {
     cy.visit("/core/contact-us");
 
-    cy.get('input[name="firstName"]').type("Test");
-    cy.get('input[name="lastName"]').type("Test");
-    cy.get('input[name="email"]').type("test@test.com");
-    cy.get('input[name="phone"]').type("000000000");
-    cy.get('select[name="country"]').select("Colombia");
-    cy.get('input[name="company"]').type("Test");
-    cy.get('input[name="title"]').type("Test");
-    cy.get('textarea[name="Comments_from_lead__c"]').type(
-      "Test test test test"
-    );
-    cy.get('label[for="canonicalUpdatesOptIn"]').click();
+    cy.findByLabelText(/First name:/).type("Test");
+    cy.findByLabelText(/Last name:/).type("Test");
+    cy.findByLabelText(/Email address:/).type("test@test.com");
+    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+    cy.findByLabelText(/Country:/).select("Colombia");
+    cy.findByLabelText(/Company:/).type("Test");
+    cy.findByLabelText(/Job title:/).type("Test");
+    cy.findByLabelText(/What would you like to talk to us about?/).type("Test test test test");
+    cy.findByLabelText(/I agree to receive information/).click({
+      force: true,
+    });
 
     getIframeBody().find(".rc-anchor-content").click();
 
     cy.wait(3000); // eslint-disable-line
-    cy.get("#mktoForm_1266")
-      .submit()
-      .should((page) => {
-        expect(page[0].action).to.include("marketo/submit");
-      });
+    cy.findByText(/Submit/).click();
     cy.findByText("Thank you").should("be.visible");
   });
 
@@ -68,63 +64,57 @@ context("Marketo forms", () => {
     });
     cy.visit("/engage/anbox-cloud-gaming-whitepaper");
 
-    cy.get('input[name="firstName"]').type("Test");
-    cy.get('input[name="lastName"]').type("Test");
-    cy.get('input[name="company"]').type("Test");
-    cy.get('input[name="title"]').type("Test");
-    cy.get('input[name="email"]').type("test@test.com");
-    cy.get('input[name="phone"]').type("000000000");
+    cy.findByLabelText(/First Name:/).type("Test");
+    cy.findByLabelText(/Last Name:/).type("Test");
+    cy.findByLabelText(/Work email:/).type("test@test.com");
+    cy.findByLabelText(/Company Name:/).type("Test");
+    cy.findByLabelText(/Job Title/).type("Test");
+    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
 
     getIframeBody().find(".rc-anchor-content").click();
 
     cy.wait(3000); // eslint-disable-line
-    cy.get("#mktoForm_3494")
-      .submit()
-      .should((page) => {
-        expect(page[0].action).to.include("/marketo/submit");
-      });
-
-    cy.findByText("Thank you").should("be.visible");
+    cy.findByText(/Download the whitepaper/).click();
+    cy.findByText(/Thank you/).should("be.visible");
   });
 
   it("should open pop up model and successfully complete contact form then submit to Marketo", () => {
     cy.intercept("POST", "/marketo/submit").as("captureLead");
     cy.visit("/openstack#get-in-touch");
-    cy.get(
-      ".p-modal__dialog .js-pagination--1 .pagination__link--next"
-    ).click();
-    cy.get(
-      ".p-modal__dialog .js-pagination--2 .pagination__link--next"
-    ).click();
+    cy.scrollTo("bottom");
+    cy.findByRole('link', {name: /Next/i}).click();
+    cy.findByRole('link', {name: /Next/i}).click();
 
-    cy.get('input[name="firstName"]').type("Test");
-    cy.get('input[name="lastName"]').type("Test");
-    cy.get('input[name="email"]').type("test@test.com");
-    cy.get('label[for="canonicalUpdatesOptIn"]').click();
+    cy.findByLabelText(/First name:/).type("Test");
+    cy.findByLabelText(/Last name:/).type("Test");
+    cy.findByLabelText(/Work email:/).type("test@test.com");
+    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+    cy.findByLabelText(/I agree to receive information/).click({
+      force: true,
+    });
 
     getIframeBody().find(".rc-anchor-content").click();
 
     cy.wait(3000); // eslint-disable-line
-    cy.get("#mktoForm_1251")
-      .submit()
-      .should((page) => {
-        expect(page[0].action).to.include("/marketo/submit");
-      });
-    cy.get(".p-modal__close").click();
+    cy.findByText(/Let's discuss/).click();
+    cy.findByText(/Thank you/).should("be.visible");
+    cy.findByLabelText("Close active modal").click();
   });
 
   it("should successfully complete download server", () => {
     cy.visit("/download/server/s390x");
 
-    cy.get('input[name="firstName"]').type("Test");
-    cy.get('input[name="lastName"]').type("Test");
-    cy.get('input[name="company"]').type("Test");
-    cy.get('input[name="email"]').type("test@test.com");
-    cy.get('input[name="phone"]').type("07777777777");
+    cy.findByLabelText(/First name:/).type("Test");
+    cy.findByLabelText(/Last name: /).type("Test");
+    cy.findByLabelText(/Company name: /).type("Test");
+    cy.findByLabelText(/Email address:/).type("test@test.com");
+    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
 
     getIframeBody().find(".rc-anchor-content").click();
 
     cy.wait(3000); // eslint-disable-line
-    cy.get("#mktoForm_1400").submit();
+    cy.findByText(/Accept terms and download/).click();
+    cy.findByText(/Accept all and visit site/).click();
+    cy.findAllByText(/Download Ubuntu Server/).should("be.visible");
   });
 });
