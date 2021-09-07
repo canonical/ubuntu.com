@@ -22,7 +22,7 @@
           We asked Devs, DevOps and businesses to tell us how they are using Kubernetes, and it is a fascinating read.
         </p>
         <p>
-          <a class="p-link--external" href="http://juju.is/cloud-native-kubernetes-usage-report-2021">Read our findings&nbsp;&rsaquo;</a>
+          <a class="p-link--external" href="http://juju.is/cloud-native-kubernetes-usage-report-2021">Read our findings</a>
           <a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us">Get in touch</a>
         </p>
       </div>
@@ -575,20 +575,17 @@
     </div>
   </section>
 
-  <section class="p-strip is-deep">
-    <div class="u-fixed-width">
-      <h3>
-        Kubernetes resources
-      </h3>
+  <section class="p-strip--suru">
+    <div class="row">
+      <h2>Kubernetes resources</h2>
     </div>
-
     <div class="row p-divider">
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
             {{
               image(
-              url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
+              url="https://assets.ubuntu.com/v1/271921af-Datasheet+-+white.svg",
               alt="",
               width="32",
               height="28",
@@ -597,21 +594,36 @@
               attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
               ) | safe
             }}
-            <h4 class="p-heading-icon__title">Data sheet</h4>
+            <h4 class="p-heading-icon__title" style="color: #fff;">Data sheet</h4>
           </div>
         </div>
-        <h3 class="p-heading--four">
-          <a href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">
-            Kubernetes for the enterprise
-          </a>
-        </h3>
+        <p><a class="p-link--inverted p-link--external"href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Kubernetes for the enterprise</a></p>
+      </div>
+      <div class="col-4 p-divider__block">
+        <div class="p-heading-icon--muted">
+          <div class="p-heading-icon__header"> 
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
+              alt="",
+              width="32",
+              height="28",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+              ) | safe
+            }}
+            <h4 class="p-heading-icon__title" style="color: #fff;">Webinar</h4>
+          </div>
+        </div>
+        <p><a class="p-link--external p-link--inverted" href="https://www.brighttalk.com/webcast/6793/362200">Kubernetes at the edge: Why use Kubernetes as part of your edge strategy?</a></p>
       </div>
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
               alt="",
               width="32",
               height="28",
@@ -620,48 +632,35 @@
               attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
               ) | safe
             }}
-            <h4 class="p-heading-icon__title">Webinar</h4>
+            <h4 class="p-heading-icon__title" style="color: #fff;">Whitepaper</h4>
           </div>
         </div>
-        <h3 class="p-heading--four">
-          <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/362200">
-            Kubernetes at the edge: Why use Kubernetes as part of your edge strategy?
-          </a>
-        </h3>
-      </div>
-      <div class="col-4 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Whitepaper</h4>
-          </div>
-        </div>
-        <h3 class="p-heading--four">
-          <a href="/engage/kubernetes-deployment-enterprise-whitepaper">
-            Five strategies to accelerate Kubernetes deployment in the enterprise
-          </a>
-        </h3>
+        <p><a href="/engage/kubernetes-deployment-enterprise-whitepaper" class="p-link--inverted">Five strategies to accelerate Kubernetes deployment in the enterprise</a></p>
       </div>
     </div>
-    <div class="u-fixed-width">
-      <p>
-        We're here to revolutionise the way you think about Kubernetes clusters.
-      </p>
-      <p>
-        <a href="/kubernetes/contact-us">
-          Schedule a Kubernetes demo &nbsp;&rsaquo;
-        </a>
-      </p>
+  </section>
+
+  <section class="p-strip">
+    <div class="row u-vertically-center">
+      <div class="col-8">
+        <h1 class="p-heading--3">Get your K8s questions answered today</h1>
+        <p>
+          <a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us">Contact us</a>
+        </p>
+      </div>
+      <div class="col-4 u-hide--small">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
+          alt="",
+          width="240",
+          height="171",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-inline-images__logos"},
+          ) | safe
+        }}
+      </div>
     </div>
   </section>
 
