@@ -54,7 +54,7 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
 
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the purchase status
-    if (purchaseError) {
+    if (purchaseError instanceof Error) {
       if (
         purchaseError.message.includes(
           "We are unable to authenticate your payment method"
@@ -138,13 +138,13 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
 
   const onPayClick = () => {
     checkoutEvent(GAFriendlyProduct, "3");
-    purchaseMutation.mutate(null, {
+    purchaseMutation.mutate(undefined, {
       onSuccess: (data) => {
         //start polling
         setPendingPurchaseID(data);
       },
       onError: (error) => {
-        if (error.message.includes("can only make one purchase at a time")) {
+        if (error instanceof Error && error.message.includes("can only make one purchase at a time")) {
           setError(
             <>
               You already have a pending purchase. Please go to{" "}
