@@ -21,7 +21,7 @@ export enum StatusKey {
 
 type Props = PropsWithSpread<
   {
-    multiple?: boolean;
+    showMultiple?: boolean;
     size: ExpiryNotificationSize;
     statuses: UserSubscriptionStatuses;
   },
@@ -34,7 +34,7 @@ type Messages = Record<
 >;
 
 // The expiry status keys in priority order.
-const STATUS_KEYS = [
+const ORDERED_STATUS_KEYS = [
   StatusKey.IsExpired,
   StatusKey.IsInGracePeriod,
   StatusKey.IsExpiring,
@@ -81,17 +81,17 @@ const MESSAGES: Messages = {
 };
 
 const ExpiryNotification = ({
-  multiple = false,
+  showMultiple = false,
   size,
   statuses,
   ...notificationProps
 }: Props) => {
   let statusesToShow: StatusKey[] = [];
-  const highestStatus = STATUS_KEYS.find((status) => statuses[status]);
-  if (multiple) {
+  const highestStatus = ORDERED_STATUS_KEYS.find((status) => statuses[status]);
+  if (showMultiple) {
     // When displaying multiple notifications then find all the statuses that
     // are true.
-    statusesToShow = STATUS_KEYS.filter((status) => statuses[status]);
+    statusesToShow = ORDERED_STATUS_KEYS.filter((status) => statuses[status]);
   } else if (highestStatus) {
     // When displaying a single status then just show the highest priority
     // status.
@@ -103,19 +103,14 @@ const ExpiryNotification = ({
       children: notification?.message,
       key: `${statusKey}-${size}`,
       // Display a title for large notifications.
-      title:
-        notification &&
-        size !== ExpiryNotificationSize.Small &&
-        "title" in notification
-          ? notification.title
-          : null,
-      borderless: size !== ExpiryNotificationSize.Large,
+      title: size === ExpiryNotificationSize.Large ? notification?.title : null,
+      borderless: size === ExpiryNotificationSize.Small,
     };
   });
 
   return (
     <>
-      {notifications.map(({ key, ...props }, i) => (
+      {notifications.map(({ key, ...props }) => (
         <Notification
           data-test={key}
           inline
