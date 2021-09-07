@@ -23,10 +23,8 @@ from canonicalwebteam.discourse import (
 
 # Local
 from webapp.advantage.ua_contracts.api import (
-    UAContractsAPIAuthError,
     UAContractsAPIError,
     UAContractsAPIErrorView,
-    UAContractsAPIAuthErrorView,
 )
 from webapp.context import (
     current_year,
@@ -140,6 +138,8 @@ from webapp.certified.views import (
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
 )
+DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
+DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
 # Set up application
 # ===
@@ -153,6 +153,8 @@ app = FlaskBase(
     static_folder="../static",
 )
 
+sentry = app.extensions["sentry"]
+
 # Settings
 app.config["CONTRACTS_LIVE_API_URL"] = os.getenv(
     "CONTRACTS_LIVE_API_URL", "https://contracts.canonical.com"
@@ -165,7 +167,11 @@ app.config["CANONICAL_LOGIN_URL"] = os.getenv(
 )
 session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
-    base_url="https://discourse.ubuntu.com/", session=session
+    base_url="https://discourse.ubuntu.com/",
+    session=session,
+    api_key=DISCOURSE_API_KEY,
+    api_username=DISCOURSE_API_USERNAME,
+    get_topics_query_id=2,
 )
 
 
@@ -177,22 +183,30 @@ def bad_request_error(error):
 
 @app.errorhandler(UAContractsValidationError)
 def ua_contracts_validation_error(error):
-    return flask.jsonify({"errors": str(error)}), 422
+    sentry.captureException(
+        extra={
+            "request_url": error.request.url,
+            "request_body": error.request.json,
+            "response_body": error.response.messages,
+        }
+    )
+
+    return flask.jsonify({"errors": error.response.messages}), 422
 
 
 @app.errorhandler(UAContractsAPIError)
 def ua_contracts_api_error(error):
-    flask.current_app.extensions["sentry"].captureException(
+    sentry.captureException(
         extra={
-            "session_keys": flask.session.keys(),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
             "response_body": error.response.json(),
-            "response_code": error.response.json()["code"],
-            "response_message": error.response.json()["message"],
         }
     )
+
+    if error.response.status_code == 401:
+        empty_session(flask.session)
 
     return (
         flask.jsonify({"errors": error.response.json()["message"]}),
@@ -202,57 +216,21 @@ def ua_contracts_api_error(error):
 
 @app.errorhandler(UAContractsAPIErrorView)
 def ua_contracts_api_error_view(error):
-    flask.current_app.extensions["sentry"].captureException(
+    sentry.captureException(
         extra={
-            "session_keys": flask.session.keys(),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
             "response_body": error.response.json(),
-            "response_code": error.response.json()["code"],
-            "response_message": error.response.json()["message"],
         }
     )
+
+    if error.response.status_code == 401:
+        empty_session(flask.session)
+
+        return flask.redirect(flask.request.url)
 
     return flask.render_template("500.html"), 500
-
-
-@app.errorhandler(UAContractsAPIAuthError)
-def ua_contracts_api_authentication_error(error):
-    flask.current_app.extensions["sentry"].captureException(
-        extra={
-            "session_keys": flask.session.keys(),
-            "request_url": error.request.url,
-            "request_headers": error.request.headers,
-            "response_headers": error.response.headers,
-            "response_body": error.response.json(),
-            "response_code": error.response.json()["code"],
-            "response_message": error.response.json()["message"],
-        }
-    )
-
-    empty_session(flask.session)
-
-    return flask.jsonify({"errors": error.response.json()["message"]}), 401
-
-
-@app.errorhandler(UAContractsAPIAuthErrorView)
-def ua_contracts_api_authentication_error_view(error):
-    flask.current_app.extensions["sentry"].captureException(
-        extra={
-            "session_keys": flask.session.keys(),
-            "request_url": error.request.url,
-            "request_headers": error.request.headers,
-            "response_headers": error.response.headers,
-            "response_body": error.response.json(),
-            "response_code": error.response.json()["code"],
-            "response_message": error.response.json()["message"],
-        }
-    )
-
-    empty_session(flask.session)
-
-    return flask.redirect(flask.request.url)
 
 
 @app.errorhandler(410)
@@ -626,7 +604,6 @@ tutorials_path = "/tutorials"
 tutorials_docs = Tutorials(
     parser=TutorialParser(
         api=discourse_api,
-        category_id=34,
         index_topic_id=13611,
         url_prefix=tutorials_path,
     ),
@@ -811,6 +788,31 @@ app.add_url_rule(
 )
 
 openstack_docs.init_app(app)
+
+# Security Livepatch docs
+security_livepatch_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=22723,
+        url_prefix="/security/livepatch/docs",
+    ),
+    document_template="/security/livepatch/docs/document.html",
+    url_prefix="/security/livepatch/docs",
+    blueprint_name="security-livepatch-docs",
+)
+
+# Security Livepatch search
+app.add_url_rule(
+    "/security/livepatch/docs/search",
+    "security-livepatch-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/security/livepatch/docs",
+        template_path="/security/livepatch/docs/search-results.html",
+    ),
+)
+
+security_livepatch_docs.init_app(app)
 
 # Security Certifications docs
 security_certs_docs = Docs(

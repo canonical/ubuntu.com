@@ -1,0 +1,47 @@
+{
+  "amountDue": 1000,
+  "currency": "usd",
+  "customerAddress": {
+    "city": "Lone Done",
+    "country": "GB",
+    "line1": "Road Street",
+    "line2": "",
+    "postal_code": "111222",
+    "state": ""
+  },
+  "customerEmail": "email@url",
+  "customerName": "Joe Doe",
+  "id": {
+    "IDs": [
+      "randomId"
+    ],
+    "origin": "Stripe"
+  },
+  "identifier": "abcdef",
+  "lineItems": [
+    {
+      "currency": "usd",
+      "description": "Description",
+      "planID": {
+        "IDs": [
+          "randomId2"
+        ],
+        "origin": "Stripe"
+      },
+      "proRatedAmount": 1000,
+      "quantity": 1
+    }
+  ],
+  "reason": "upcoming",
+  "status": "draft",
+  "subscriptionEndOfCycle": "2020-10-01T10:00:00Z",
+  "subscriptionID": {
+    "IDs": [
+      "randomId3"
+    ],
+    "origin": "Stripe"
+  },
+  "subscriptionStartOfCycle": "2020-09-01T10:00:00Z",
+  "taxAmount": 200,
+  "total": 1000
+}

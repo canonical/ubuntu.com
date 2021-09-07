@@ -11,6 +11,9 @@ function enableApplyFilters() {
   const filtersSelected = [];
   const filters = document.querySelectorAll(".js-enable-apply-filters");
   filters.forEach((filter) => {
+    if (filter.checked) {
+      filtersSelected.push(filter);
+    }
     filter.addEventListener("change", () => {
       if (!filtersSelected.includes(filter)) {
         filtersSelected.push(filter);

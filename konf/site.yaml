@@ -18,6 +18,16 @@ env:
       key: google-custom-search-key
       name: google-api
 
+  - name: DISCOURSE_API_KEY
+    secretKeyRef:
+      key: ubuntu-api-key
+      name: discourse-api
+
+  - name: DISCOURSE_API_USERNAME
+    secretKeyRef:
+      key: ubuntu-api-username
+      name: discourse-api
+
   - name: LAUNCHPAD_IMAGE_BUILD_USER
     secretKeyRef:
       key: user
@@ -188,6 +198,16 @@ production:
             key: google-custom-search-key
             name: google-api
 
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
@@ -346,6 +366,16 @@ staging:
           secretKeyRef:
             key: google-custom-search-key
             name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13

@@ -3,10 +3,11 @@ from typing import List, Dict
 
 from tests.advantage.helpers import Session, Response, make_client, get_fixture
 from webapp.advantage.ua_contracts.api import (
-    UAContractsAPIAuthError,
-    UAContractsAPIAuthErrorView,
     UAContractsAPIError,
     UAContractsAPIErrorView,
+    UAContractsUserHasNoAccount,
+    CannotCancelLastContractError,
+    UnauthorizedError,
 )
 from webapp.advantage.models import Listing
 from webapp.advantage.ua_contracts.primitives import (
@@ -19,8 +20,8 @@ from webapp.advantage.ua_contracts.primitives import (
 class TestGetAccounts(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIAuthError),
-            (401, True, UAContractsAPIAuthErrorView),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
         ]
@@ -112,8 +113,8 @@ class TestGetAccounts(unittest.TestCase):
 class TestGetAccountContracts(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIAuthError),
-            (401, True, UAContractsAPIAuthErrorView),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
         ]
@@ -271,8 +272,8 @@ class TestGetProductListings(unittest.TestCase):
 class TestGetAccountSubscriptions(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIAuthError),
-            (401, True, UAContractsAPIAuthErrorView),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
         ]
@@ -387,8 +388,8 @@ class TestGetAccountSubscriptions(unittest.TestCase):
 class TestGetContractToken(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIAuthError),
-            (401, True, UAContractsAPIAuthErrorView),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
             (404, False, UAContractsAPIError),
             (404, True, UAContractsAPIErrorView),
             (500, False, UAContractsAPIError),
@@ -448,4 +449,879 @@ class TestGetContractToken(unittest.TestCase):
         }
 
         self.assertEqual(response, None)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestGetCustomerInfo(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (404, False, UAContractsUserHasNoAccount),
+            (404, True, UAContractsUserHasNoAccount),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_customer_info(account_id="aABbCcdD")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_customer_info = get_fixture("customer-info")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_customer_info,
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_customer_info(account_id="aAaBbCcDdEeFfGg")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1"
+                "/accounts/aAaBbCcDdEeFfGg/customer-info/stripe"
+            ),
+        }
+
+        self.assertEqual(response, json_customer_info)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestPutCustomerInfo(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            address = {
+                "city": "Lone Done",
+                "country": "GB",
+                "line1": "Road Street",
+                "postal_code": "111000",
+                "state": "",
+            }
+
+            tax_id = {"type": "eu_vat", "value": "GB 123 1234 14"}
+
+            with self.assertRaises(expected_error) as error:
+                client.put_customer_info(
+                    account_id="aAaBbCcDdEeFfGg",
+                    payment_method_id="pm_abcdef",
+                    address=address,
+                    name="Joe Doe",
+                    tax_id=tax_id,
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_account = get_fixture("account")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_account,
+            )
+        )
+        client = make_client(session)
+
+        address = {
+            "city": "Lone Done",
+            "country": "GB",
+            "line1": "Road Street",
+            "postal_code": "111000",
+            "state": "",
+        }
+
+        tax_id = {"type": "eu_vat", "value": "GB 123 1234 14"}
+
+        response = client.put_customer_info(
+            account_id="aAaBbCcDdEeFfGg",
+            payment_method_id="pm_abcdef",
+            address=address,
+            name="Joe Doe",
+            tax_id=tax_id,
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {
+                "defaultPaymentMethod": {"Id": "pm_abcdef"},
+                "paymentMethodID": "pm_abcdef",
+                "address": address,
+                "name": "Joe Doe",
+                "taxID": tax_id,
+            },
+            "method": "put",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1"
+                "/accounts/aAaBbCcDdEeFfGg/customer-info/stripe"
+            ),
+        }
+
+        self.assertEqual(response, json_account)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestAnonymousCustomerInfo(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            address = {
+                "city": "Lone Done",
+                "country": "GB",
+                "line1": "Road Street",
+                "postal_code": "111000",
+                "state": "",
+            }
+
+            tax_id = {"type": "eu_vat", "value": "GB 123 1234 14"}
+
+            with self.assertRaises(expected_error) as error:
+                client.put_anonymous_customer_info(
+                    account_id="aAaBbCcDdEeFfGg",
+                    address=address,
+                    name="Joe Doe",
+                    tax_id=tax_id,
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_account = get_fixture("account")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_account,
+            )
+        )
+        client = make_client(session)
+
+        address = {
+            "city": "Lone Done",
+            "country": "GB",
+            "line1": "Road Street",
+            "postal_code": "111000",
+            "state": "",
+        }
+
+        tax_id = {"type": "eu_vat", "value": "GB 123 1234 14"}
+
+        response = client.put_anonymous_customer_info(
+            account_id="aAaBbCcDdEeFfGg",
+            address=address,
+            name="Joe Doe",
+            tax_id=tax_id,
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {
+                "address": address,
+                "name": "Joe Doe",
+                "taxID": tax_id,
+            },
+            "method": "put",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1"
+                "/accounts/aAaBbCcDdEeFfGg/customer-info/stripe"
+            ),
+        }
+
+        self.assertEqual(response, json_account)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestPutPaymentMethod(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.put_payment_method(
+                    account_id="aAaBbCcDdEeFfGg",
+                    payment_method_id="pm_abcdef",
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_account = get_fixture("account")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_account,
+            )
+        )
+        client = make_client(session)
+
+        response = client.put_payment_method(
+            account_id="aAaBbCcDdEeFfGg",
+            payment_method_id="pm_abcdef",
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {
+                "defaultPaymentMethod": {"Id": "pm_abcdef"},
+            },
+            "method": "put",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1"
+                "/accounts/aAaBbCcDdEeFfGg/customer-info/stripe"
+            ),
+        }
+
+        self.assertEqual(response, json_account)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestPostStripeInvoiceId(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.post_stripe_invoice_id(
+                    tx_type="purchase",
+                    tx_id="pAaBbCcDdEeFfGg",
+                    invoice_id="in_aAbBbCcDdEe",
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={},
+            )
+        )
+        client = make_client(session)
+
+        response = client.post_stripe_invoice_id(
+            tx_type="purchase",
+            tx_id="pAaBbCcDdEeFfGg",
+            invoice_id="in_aAbBbCcDdEe",
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "post",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1"
+                "/purchase/pAaBbCcDdEeFfGg/payment/stripe/in_aAbBbCcDdEe"
+            ),
+        }
+
+        self.assertEqual(response, {})
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestGetAccountPurchases(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_account_purchases(account_id="aABbCcdD")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_purchases = get_fixture("purchases")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_purchases,
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_account_purchases(account_id="aABbCcdD")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": "https://1.2.3.4/v1/accounts/aABbCcdD/purchases",
+        }
+
+        self.assertEqual(response, json_purchases.get("purchases"))
+        self.assertEqual(session.request_kwargs, expected_args)
+
+    def test_account_purchases_filters(self):
+        json_purchases = get_fixture("purchases")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_purchases,
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_account_purchases(
+            account_id="aABbCcdD",
+            filters={"marketplace": "canonical-ua"},
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1/accounts/aABbCcdD"
+                "/purchases?marketplace=canonical-ua"
+            ),
+        }
+
+        self.assertEqual(response, json_purchases.get("purchases"))
+        self.assertEqual(session.request_kwargs, expected_args)
+
+    def test_account_purchases_filters_none_values(self):
+        json_purchases = get_fixture("purchases")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_purchases,
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_account_purchases(
+            account_id="aABbCcdD",
+            filters=None,
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": "https://1.2.3.4/v1/accounts/aABbCcdD/purchases",
+        }
+
+        self.assertEqual(response, json_purchases.get("purchases"))
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestGetPurchase(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_purchase(purchase_id="pAaAbBbCcDdEe")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_purchase = get_fixture("purchase")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_purchase,
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_purchase(purchase_id="pAaAbBbCcDdEe")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": "https://1.2.3.4/v1/purchase/pAaAbBbCcDdEe",
+        }
+
+        self.assertEqual(response, json_purchase)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestGetPurchaseAccount(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (404, False, UAContractsUserHasNoAccount),
+            (404, True, UAContractsUserHasNoAccount),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_purchase_account()
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_account = get_fixture("account")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_account,
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_purchase_account()
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": "https://1.2.3.4/v1/purchase-account",
+        }
+
+        self.assertEqual(response, json_account)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestPurchaseFromMarketplace(unittest.TestCase):
+    def test_errors(self):
+        default_response_content = {"code": "expected error"}
+        cancel_subscription = {
+            "code": "bad request",
+            "message": (
+                "cannot remove all subscription items; "
+                "please cancel subscription instead"
+            ),
+        }
+        cases = [
+            (400, False, CannotCancelLastContractError, cancel_subscription),
+            (400, True, CannotCancelLastContractError, cancel_subscription),
+            (401, False, UAContractsAPIError, default_response_content),
+            (401, True, UAContractsAPIErrorView, default_response_content),
+            (500, False, UAContractsAPIError, default_response_content),
+            (500, True, UAContractsAPIErrorView, default_response_content),
+        ]
+
+        for code, is_for_view, expected_error, response_content in cases:
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            purchase_request = {
+                "accountID": "aAaBbCcDdEeFfGg",
+                "purchaseItems": [
+                    {
+                        "productListingID": "lAaBbCcDdEeFfGg",
+                        "metric": "active-machines",
+                        "value": 5,
+                    }
+                ],
+                "previousPurchaseID": "pAaBbCcDdEeFfGg",
+            }
+
+            with self.assertRaises(expected_error) as error:
+                client.purchase_from_marketplace(
+                    marketplace="canonical-ua",
+                    purchase_request=purchase_request,
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_purchase = get_fixture("purchase")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_purchase,
+            )
+        )
+        client = make_client(session)
+
+        purchase_request = {
+            "accountID": "aAaBbCcDdEeFfGg",
+            "purchaseItems": [
+                {
+                    "productListingID": "lAaBbCcDdEeFfGg",
+                    "metric": "active-machines",
+                    "value": 5,
+                }
+            ],
+            "previousPurchaseID": "pAaBbCcDdEeFfGg",
+        }
+
+        response = client.purchase_from_marketplace(
+            marketplace="canonical-ua",
+            purchase_request=purchase_request,
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": purchase_request,
+            "method": "post",
+            "params": None,
+            "url": "https://1.2.3.4/v1/marketplace/canonical-ua/purchase",
+        }
+
+        self.assertEqual(response, json_purchase)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestPreviewPurchaseFromMarketplace(unittest.TestCase):
+    def test_errors(self):
+        default_response_content = {"code": "expected error"}
+        cancel_subscription = {
+            "code": "bad request",
+            "message": (
+                "cannot remove all subscription items; "
+                "please cancel subscription instead"
+            ),
+        }
+        cases = [
+            (400, False, CannotCancelLastContractError, cancel_subscription),
+            (400, True, CannotCancelLastContractError, cancel_subscription),
+            (401, False, UAContractsAPIError, default_response_content),
+            (401, True, UAContractsAPIErrorView, default_response_content),
+            (500, False, UAContractsAPIError, default_response_content),
+            (500, True, UAContractsAPIErrorView, default_response_content),
+        ]
+
+        for code, is_for_view, expected_error, response_content in cases:
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            purchase_request = {
+                "accountID": "aAaBbCcDdEeFfGg",
+                "purchaseItems": [
+                    {
+                        "productListingID": "lAaBbCcDdEeFfGg",
+                        "metric": "active-machines",
+                        "value": 5,
+                    }
+                ],
+                "previousPurchaseID": "pAaBbCcDdEeFfGg",
+            }
+
+            with self.assertRaises(expected_error) as error:
+                client.preview_purchase_from_marketplace(
+                    marketplace="canonical-ua",
+                    purchase_request=purchase_request,
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_purchase = get_fixture("purchase")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_purchase,
+            )
+        )
+        client = make_client(session)
+
+        purchase_request = {
+            "accountID": "aAaBbCcDdEeFfGg",
+            "purchaseItems": [
+                {
+                    "productListingID": "lAaBbCcDdEeFfGg",
+                    "metric": "active-machines",
+                    "value": 5,
+                }
+            ],
+            "previousPurchaseID": "pAaBbCcDdEeFfGg",
+        }
+
+        response = client.preview_purchase_from_marketplace(
+            marketplace="canonical-ua",
+            purchase_request=purchase_request,
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": purchase_request,
+            "method": "post",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1"
+                "/marketplace/canonical-ua/purchase/preview"
+            ),
+        }
+
+        self.assertEqual(response, json_purchase)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestCancelSubscription(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "bad request"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.cancel_subscription(subscription_id="sAaBbCcDdEeFfGg")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={},
+            )
+        )
+        client = make_client(session)
+
+        response = client.cancel_subscription(
+            subscription_id="sAaBbCcDdEeFfGg"
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "delete",
+            "params": None,
+            "url": "https://1.2.3.4/v1/subscriptions/sAaBbCcDdEeFfGg",
+        }
+
+        self.assertEqual(response, {})
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestGetSubscriptionAutoRenewal(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "bad request"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_subscription_auto_renewal(
+                    subscription_id="sAaBbCcDdEeFfGg"
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_subscription = get_fixture("subscription-auto-renewal")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_subscription,
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_subscription_auto_renewal(
+            subscription_id="sAaBbCcDdEeFfGg"
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1"
+                "/subscription/sAaBbCcDdEeFfGg/auto-renewal"
+            ),
+        }
+
+        self.assertEqual(response, json_subscription)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestPostSubscriptionAutoRenewal(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "bad request"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.post_subscription_auto_renewal(
+                    subscription_id="sAaBbCcDdEeFfGg",
+                    should_auto_renew=True,
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={},
+            )
+        )
+        client = make_client(session)
+
+        response = client.post_subscription_auto_renewal(
+            subscription_id="sAaBbCcDdEeFfGg",
+            should_auto_renew=True,
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {"shouldAutoRenew": True},
+            "method": "post",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1"
+                "/subscription/sAaBbCcDdEeFfGg/auto-renewal"
+            ),
+        }
+
+        self.assertEqual(response, {})
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestEnsurePurchaseAccount(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UnauthorizedError),
+            (401, True, UnauthorizedError),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "bad request"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.ensure_purchase_account(
+                    email="email@url",
+                    account_name="Joe Doe",
+                    payment_method_id="pm_abcdef",
+                    country="GB",
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_ensure_account = get_fixture("ensured-account")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_ensure_account,
+            )
+        )
+        client = make_client(session)
+
+        response = client.ensure_purchase_account(
+            email="email@url",
+            account_name="Joe Doe",
+            payment_method_id="pm_abcdef",
+            country="GB",
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {
+                "address": {"country": "GB"},
+                "defaultPaymentMethod": {"Id": "pm_abcdef"},
+                "email": "email@url",
+                "name": "Joe Doe",
+            },
+            "method": "post",
+            "params": None,
+            "url": "https://1.2.3.4/v1/purchase-account",
+        }
+
+        self.assertEqual(response, json_ensure_account)
         self.assertEqual(session.request_kwargs, expected_args)

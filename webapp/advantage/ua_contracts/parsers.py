@@ -6,10 +6,10 @@ from webapp.advantage.ua_contracts.primitives import (
     ContractItem,
     Subscription,
     SubscriptionItem,
-    Product,
     Account,
+    Renewal,
 )
-from webapp.advantage.models import Listing
+from webapp.advantage.models import Listing, Product
 
 
 def parse_product(raw_product: Dict) -> Product:
@@ -33,7 +33,7 @@ def parse_product_listing(
         id=raw_product_listing.get("id"),
         name=raw_product_listing.get("name"),
         marketplace=raw_product_listing.get("marketplace"),
-        product_name=product.name if product else "",
+        product=product,
         price=raw_product_listing.get("price").get("value"),
         currency=raw_product_listing.get("price").get("currency"),
         status=raw_product_listing.get("status"),
@@ -91,10 +91,33 @@ def parse_entitlements(
     return entitlements
 
 
+def parse_renewal(raw_renewal: Dict = None) -> Renewal:
+    renewal_items = raw_renewal.get("renewalItems")
+    price = 0
+    currency = "usd"
+    for item in renewal_items:
+        price = price + item.get("priceTotal").get("value")
+        currency = item.get("priceTotal").get("currency")
+
+    return Renewal(
+        id=raw_renewal.get("id"),
+        contract_id=raw_renewal.get("contractID"),
+        actionable=raw_renewal.get("actionable"),
+        status=raw_renewal.get("status"),
+        start_date=raw_renewal.get("start"),
+        end_date=raw_renewal.get("end"),
+        new_contract_start=raw_renewal.get("newContractStart"),
+        price=price,
+        currency=currency,
+    )
+
+
 def parse_contract_items(raw_items: List[Dict] = None) -> List[ContractItem]:
     items = []
     raw_items = raw_items or []
     for raw_item in raw_items:
+        raw_renewal = raw_item.get("renewal")
+
         item = ContractItem(
             contract_id=raw_item.get("contractID"),
             created_at=raw_item.get("created"),
@@ -105,6 +128,7 @@ def parse_contract_items(raw_items: List[Dict] = None) -> List[ContractItem]:
             product_listing_id=raw_item.get("productListingID"),
             purchase_id=raw_item.get("purchaseID"),
             trial_id=raw_item.get("trialID"),
+            renewal=parse_renewal(raw_renewal) if raw_renewal else None,
         )
 
         items.append(item)

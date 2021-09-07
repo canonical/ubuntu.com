@@ -16,9 +16,9 @@ toc: False
 Charmed Kubernetes officially supports the most recent three (3) minor releases
 of Kubernetes.
 
-Current Release: **1.21**
+Current Release: **1.22**
 
-Supported releases: **1.21.x,1.20.x, 1.19.x**
+Supported releases: **1.22.x,1.21.x, 1.20.x**
 
 ## Charmed Kubernetes bundle versions
 
@@ -26,7 +26,7 @@ The **Juju Charm Store** hosts the **Charmed Kubernetes** bundles as well as
 individual charms. To deploy the latest, stable bundle, run the command:
 
 ```bash
-juju deploy charmed-kubernetes
+juju deploy cs:charmed-kubernetes
 ```
 
 It is also possible to deploy a specific version of the bundle by including the
@@ -57,6 +57,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
+| 1.22.x    | [charmed-kubernetes-761](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-761/archive/bundle.yaml) |
 | 1.21.x    | [charmed-kubernetes-733](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-733/archive/bundle.yaml) |
 | 1.20.x    | [charmed-kubernetes-596](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-596/archive/bundle.yaml) |
 | 1.19.x    | [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml) |
