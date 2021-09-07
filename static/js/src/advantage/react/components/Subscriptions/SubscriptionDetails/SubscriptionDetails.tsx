@@ -7,6 +7,8 @@ import SubscriptionEdit from "../SubscriptionEdit";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionByToken } from "advantage/react/hooks/useUserSubscriptions";
 import { isFreeSubscription } from "advantage/react/utils";
+import ExpiryNotification from "../ExpiryNotification";
+import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 import { SelectedToken } from "../Content/types";
 
 type Props = {
@@ -36,20 +38,25 @@ const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
         ref={ref}
       >
         <section className="p-modal__dialog">
-          <div className="u-sv2">
-            <header className="p-modal__header">
-              <h2 className="p-modal__title">
+          <div className="u-sv1">
+            <header className="p-modal__header p-subscriptions__details-header">
+              <h2 className="p-modal__title p-subscriptions__details-title">
                 {isFree ? "Free Personal Token" : subscription.product_name}
               </h2>
               <button className="p-modal__close" onClick={() => onCloseModal()}>
                 Close
               </button>
             </header>
+            <ExpiryNotification
+              className="p-subscriptions__details-notification"
+              size={ExpiryNotificationSize.Large}
+              statuses={subscription.statuses}
+            />
             {isFree ? null : (
               <>
                 <Button
                   appearance="positive"
-                  className="u-no-margin--bottom"
+                  className="p-subscriptions__details-action"
                   data-test="support-button"
                   disabled={editing}
                   element="a"
@@ -59,6 +66,7 @@ const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                 </Button>
                 <Button
                   appearance="neutral"
+                  className="p-subscriptions__details-action"
                   data-test="edit-button"
                   disabled={editing}
                   onClick={() => setEditing(true)}

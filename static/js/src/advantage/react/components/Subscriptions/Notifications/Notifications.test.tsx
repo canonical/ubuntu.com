@@ -21,7 +21,7 @@ describe("Notifications", () => {
     expect(wrapper.find("[data-test='pendingPurchase']").exists()).toBe(true);
   });
 
-  it("does not diplay a pending purchase notification when there is no id", () => {
+  it("does not display a pending purchase notification when there is no id", () => {
     queryClient.setQueryData("pendingPurchaseId", null);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>

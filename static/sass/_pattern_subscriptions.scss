@@ -171,6 +171,38 @@
     }
   }
 
+  // Remove the extra space between the top of the card and the title and
+  // between the icon and the message.
+  .p-subscriptions__list-card-notification.is-dense {
+    background-position-y: center;
+    margin-bottom: 0;
+    padding-left: $sph-inner--large;
+
+    .p-notification__content {
+      padding-top: 0;
+    }
+  }
+
+  .p-subscriptions__details-title {
+    margin-bottom: $sp-unit;
+  }
+
+  // Remove the extra space between the notification and the title.
+  .p-subscriptions__details-notification.is-borderless.is-inline {
+    background-position-y: 0.3rem;
+    margin-bottom: $sp-unit * 2;
+
+    .p-notification__content {
+      padding-top: 0;
+    }
+  }
+
+  // Add extra space between the details header and the actions when there is no
+  // notification.
+  .p-subscriptions__details-header + .p-subscriptions__details-action {
+    margin-top: $spv-outer--small;
+  }
+
   .p-subscriptions__details-small-title {
     margin-bottom: $spv-outer--small;
   }

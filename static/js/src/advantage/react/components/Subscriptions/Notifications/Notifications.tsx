@@ -1,22 +1,21 @@
-import {
-  Notification,
-  NotificationSeverity,
-} from "@canonical/react-components";
+import { Notification } from "@canonical/react-components";
 import React from "react";
 
 import { usePendingPurchaseId, useURLs } from "../../../hooks";
+import { useUserSubscriptions } from "advantage/react/hooks";
+import { selectStatusesSummary } from "advantage/react/hooks/useUserSubscriptions";
+import ExpiryNotification from "../ExpiryNotification";
+import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 
 const Notifications = () => {
   const urls = useURLs();
   const { pendingPurchaseId } = usePendingPurchaseId();
-  const notifications = [
-    {
-      children:
-        'Select a subscription, then "Renew subscription..." to renew it.',
-      title: "Your subscription is about to expire.",
-      severity: NotificationSeverity.CAUTION,
-    },
-  ];
+  const { data: statusesSummary } = useUserSubscriptions({
+    // TODO: Get the selected subscription once the subscription token is
+    // available.
+    // https://github.com/canonical-web-and-design/commercial-squad/issues/210
+    select: selectStatusesSummary,
+  });
 
   return (
     <>
@@ -33,9 +32,13 @@ const Notifications = () => {
           subscriptions
         </Notification>
       ) : null}
-      {notifications.map((props, i) => (
-        <Notification inline {...props} key={`notification-${i}`} />
-      ))}
+      {statusesSummary ? (
+        <ExpiryNotification
+          multiple
+          size={ExpiryNotificationSize.Large}
+          statuses={statusesSummary}
+        />
+      ) : null}
     </>
   );
 };
