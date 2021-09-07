@@ -62,6 +62,9 @@ describe("SubscriptionDetails", () => {
     wrapper.find("Button[data-test='edit-button']").simulate("click");
     expect(wrapper.find("SubscriptionEdit").exists()).toBe(true);
     expect(wrapper.find("DetailsContent").exists()).toBe(false);
+    // The selected token state is handled in a parent component so update the
+    // component with a different selected token to make the component rerender
+    // with a new subscription:
     wrapper.setProps({ selectedToken: "1" });
     wrapper.update();
     expect(wrapper.find("SubscriptionEdit").exists()).toBe(false);
