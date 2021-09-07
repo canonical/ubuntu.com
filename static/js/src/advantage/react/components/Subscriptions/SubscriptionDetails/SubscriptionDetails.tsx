@@ -1,5 +1,5 @@
 import { Button, Spinner } from "@canonical/react-components";
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import classNames from "classnames";
 
 import DetailsContent from "./DetailsContent";
@@ -17,7 +17,7 @@ type Props = {
   selectedToken?: SelectedToken;
 };
 
-const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
+export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
   ({ modalActive, onCloseModal, selectedToken }: Props, ref) => {
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
@@ -25,6 +25,11 @@ const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
       select: selectSubscriptionByToken(selectedToken),
     });
     const isFree = isFreeSubscription(subscription);
+
+    useEffect(() => {
+      setEditing(false);
+    }, [selectedToken, modalActive]);
+
     if (isLoading || !subscription) {
       return <Spinner />;
     }
