@@ -121,6 +121,7 @@ class TestParsers(unittest.TestCase):
                     value=3,
                 ),
             ],
+            started_with_trial=True,
         )
 
         self.assertIsInstance(parsed_subscription, Subscription)
@@ -149,7 +150,8 @@ class TestParsers(unittest.TestCase):
                         value=3,
                     ),
                 ],
-            )
+                started_with_trial=None,
+            ),
         ]
 
         self.assertIsInstance(parsed_subscriptions, List)
