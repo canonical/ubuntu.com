@@ -52,7 +52,7 @@ const UserActions: React.FC<{
 
 const UserDelete = ({ isEditing, handleDelete, isDisabled }: any) => {
   return isEditing ? (
-    <button className="p-button--base">
+    <button className="p-button--base u-no-margin--bottom">
       <i className="p-icon--delete" aria-label="delete"></i>
     </button>
   ) : null;
@@ -76,6 +76,7 @@ const UserRole: React.FC<{
         <Select
           defaultValue={user.role}
           name="user-role"
+          className="u-no-margin--bottom"
           options={[
             {
               label: "Admin",
@@ -128,13 +129,14 @@ const TableView: React.FC<{ users: Users }> = ({ users }) => {
         columns: [
           {
             content: (
-              <>
+              <div style={{ display: "flex", alignItems: "center" }}>
                 {user.email}
                 <UserDelete isEditing={getIsEditing(user.id)} user={user} />
-              </>
+              </div>
             ),
             role: "rowheader",
             className: getIsDisabled(user.id) ? "u-text--muted" : undefined,
+            style: { verticalAlign: "middle" },
           },
           {
             content: (
@@ -147,14 +149,17 @@ const TableView: React.FC<{ users: Users }> = ({ users }) => {
                 handleCancel={dismissEditMode}
               />
             ),
+            style: { verticalAlign: "middle" },
           },
           {
             content: format(new Date(user.createdAt), DATE_FORMAT),
             className: getIsDisabled(user.id) ? "u-text--muted" : undefined,
+            style: { verticalAlign: "middle" },
           },
           {
             content: format(new Date(user.lastLoginAt), DATE_FORMAT),
             className: getIsDisabled(user.id) ? "u-text--muted" : undefined,
+            style: { verticalAlign: "middle" },
           },
           {
             content: (
@@ -167,6 +172,7 @@ const TableView: React.FC<{ users: Users }> = ({ users }) => {
                 handleEditSubmit={dismissEditMode}
               />
             ),
+            style: { verticalAlign: "middle" },
           },
         ],
       }))}
