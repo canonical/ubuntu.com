@@ -2,6 +2,7 @@ import React from "react";
 
 import { Users, OrganisationName } from "./types";
 import Organisation from "./components/Organisation";
+import AddNewUser from "./components/AddNewUser";
 import TableView from "./components/TableView/TableView";
 
 const AccountUsers: React.FC<{
@@ -21,6 +22,11 @@ const AccountUsers: React.FC<{
         <div className="row">
           <div className="col-6">
             <Organisation name={organisationName} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6">
+            <AddNewUser />
           </div>
         </div>
         <div className="row">
