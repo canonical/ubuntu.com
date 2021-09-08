@@ -51,7 +51,6 @@ class Listing:
         self.can_be_trialled = can_be_trialled
 
 
-
 class UserSubscription:
     def __init__(
         self,

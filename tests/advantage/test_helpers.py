@@ -652,7 +652,7 @@ class TestHelpers(unittest.TestCase):
 
         listings = {
             "lAbcABC": make_listing(trial_days=30),
-            "lBcdBCD": make_listing(trial_days=1)
+            "lBcdBCD": make_listing(trial_days=1),
         }
 
         set_listings_trial_status(listings, subscriptions)
@@ -665,7 +665,7 @@ class TestHelpers(unittest.TestCase):
 
         listings = {
             "lAbcABC": make_listing(trial_days=30),
-            "lBcdBCD": make_listing(trial_days=1)
+            "lBcdBCD": make_listing(trial_days=1),
         }
 
         set_listings_trial_status(listings, subscriptions)
@@ -677,7 +677,7 @@ class TestHelpers(unittest.TestCase):
 
         listings = {
             "lAbcABC": make_listing(trial_days=30),
-            "lBcdBCD": make_listing(trial_days=1)
+            "lBcdBCD": make_listing(trial_days=1),
         }
 
         set_listings_trial_status(listings, subscriptions)
@@ -692,7 +692,7 @@ class TestHelpers(unittest.TestCase):
 
         listings = {
             "lAbcABC": make_listing(trial_days=0),
-            "lBcdBCD": make_listing(trial_days=0)
+            "lBcdBCD": make_listing(trial_days=0),
         }
 
         set_listings_trial_status(listings, subscriptions)
