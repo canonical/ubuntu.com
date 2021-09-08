@@ -4,7 +4,6 @@ from webapp.advantage.ua_contracts.helpers import (
     group_items_by_listing,
     get_items_aggregated_values,
     get_machine_type,
-    is_trialling_user_subscription,
     get_user_subscription_statuses,
     get_price_info,
     get_subscription_by_period,
