@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 function clearFilters() {
+  hideDrawerPageReload();
   let objUrl = new URL(window.location);
   objUrl.search = "";
   window.location.assign(objUrl);
@@ -139,6 +140,13 @@ function toggleShowAllLinks() {
       }
     });
   });
+}
+
+function hideDrawerPageReload() {
+  const closeDrawerButton = document.querySelector(
+    ".p-side-navigation__toggle--in-drawer"
+  );
+  closeDrawerButton.click();
 }
 
 enableApplyFilters();
