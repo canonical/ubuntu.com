@@ -24,7 +24,8 @@ let entries = {
   uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
   uaSubscriptions: "./static/js/src/advantage/react/app.tsx",
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
-  "certified-search-results": "./static/js/src/certified-search-results.js"
+  "certified-search-results": "./static/js/src/certified-search-results.js",
+  openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
 };
 
 for (const [key, value] of Object.entries(entries)) {

@@ -30,8 +30,8 @@
         <h3 class="p-heading--five">What are your priority workloads and use cases?</h3>
         <div class="row u-no-padding">
           <div class="col-3 u-sv3">
-            <input type="checkbox" id="priority-workloads-Telco NFV">
-            <label for="priority-workloads-Telco NFV">Telco NFV</label>
+            <input type="checkbox" id="priority-workloads-Telco-NFV">
+            <label for="priority-workloads-Telco-NFV">Telco NFV</label>
             <input type="checkbox" id="priority-workloads-Kubernetes">
             <label for="priority-workloads-Kubernetes">Kubernetes</label>
             <input type="checkbox" id="priority-workloads-Serverless">
@@ -107,7 +107,7 @@
             <input type="checkbox" id="platform-preferences-Servers-Cisco">
             <label for="platform-preferences-Servers-Cisco">Cisco</label>
             <input type="checkbox" id="platform-preferences-Servers-Undecided">
-            <label for="platform-preferences-Servers-Intel-Undecided">Undecided</label>
+            <label for="platform-preferences-Servers-Undecided">Undecided</label>
             <div class="js-other-container">
               <input type="checkbox" class="js-other-container__checkbox" id="platform-preferences-servers-other">
               <label for="platform-preferences-servers-other">Other</label>
@@ -157,15 +157,15 @@
           </div>
           <div class="col-3">
             <input type="checkbox" id="platform-preferences-Architecture-Converged">
-            <label for="platform-preferences-Architecture-Hyper-Converged">Converged</label>
+            <label for="platform-preferences-Architecture-Converged">Converged</label>
           </div>
           <div class="col-3">
             <input type="checkbox" id="platform-preferences-Architecture-Fully-Disaggregated">
-            <label for="platform-preferences-Architecture-Hyper-Fully-Disaggregated">Fully Disaggregated</label>
+            <label for="platform-preferences-Architecture-Fully-Disaggregated">Fully Disaggregated</label>
           </div>
           <div class="col-3">
             <input type="checkbox" id="platform-preferences-Architecture-Undecided">
-            <label for="platform-preferences-Architecture-Hyper-Undecided">Undecided</label>
+            <label for="platform-preferences-Architecture-Undecided">Undecided</label>
           </div>
         </div>
       </div>
@@ -267,11 +267,10 @@
             <label for="most-helpful-Disaster-recovery-plans">Disaster recovery plans</label>
             <input type="checkbox" id="most-helpful-Observability-stack">
             <label for="most-helpful-Observability-stack">Observability stack</label>
-            <input type="checkbox" id="most-helpful-Workload-migration">
-            <label for="most-helpful-OpenStack-training">OpenStack training</label>
-            <input type="checkbox" id="most-helpful-Skills-certification">
-            <label for="most-helpful-Workload-migration">Workload migration</label>
             <input type="checkbox" id="most-helpful-OpenStack-training">
+            <label for="most-helpful-OpenStack-training">OpenStack training</label>
+            <input type="checkbox" id="most-helpful-Workload-migration">
+            <label for="most-helpful-Workload-migration">Workload migration</label>
           </div>
           <div class="col-4 u-sv3">
             <input type="checkbox" id="most-helpful-Upgrade-to-new-version">
@@ -302,9 +301,9 @@
 
     <div class="js-pagination js-pagination--3 u-hide">
       <h3 class="p-heading--five">How should we get in touch?</h3>
-      <div class="row u-no-padding">
-        <div class="col-6">
-          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
+      <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
+        <div class="row u-no-padding">
+          <div class="col-6">
             <ul class="p-list">
               <li class="mktFormReq mktField p-list__item">
                 <label for="firstName" class="mktoLabel">First name:</label>
@@ -349,16 +348,18 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" class="mktoField" id="utm_term" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" class="mktoField" id="GCLID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" class="mktoField" id="FBLID__c" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
             </div>
-
+          </div>
+        </div>
+        <div class="row u-no-padding">
+          <div class="col-12">
             <div class="pagination">
               <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
-              <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</button>
+              <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss your requirements</button>
             </div>
-          </form>
-        </div>
-      </div>
+          </div>
+        </div> 
+      </form>  
     </div>
 
     <div class="js-pagination js-pagination--4 u-hide">

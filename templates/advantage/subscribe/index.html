@@ -138,7 +138,7 @@
     {% endfor %}
   }
 
-  window.stripePublishableKey = "{{ stripe_publishable_key }}";
+  window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
 </script>
 
 {% endblock %}
