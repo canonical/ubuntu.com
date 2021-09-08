@@ -7,7 +7,6 @@ import {
   Select,
 } from "@canonical/react-components";
 
-import FocusTrap from "../FocusTrap";
 import { userRoleOptions } from "../../constants";
 
 const AddNewUser: React.FC = () => {
@@ -24,39 +23,37 @@ const AddNewUser: React.FC = () => {
         <span>Add new user</span>
       </Button>
       {isModalOpen ? (
-        <FocusTrap>
-          <Modal
-            close={() => setIsModalOpen(false)}
-            title="Add a new user to this organisation"
-            buttonRow={
-              <>
-                <Button
-                  className="u-no-margin--bottom"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  className="u-no-margin--bottom"
-                  appearance="positive"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Add new user
-                </Button>
-              </>
-            }
-          >
-            <Input id="user-email" type="text" label="Users’ email address" />
-            <Select
-              id="user-role"
-              label="Role"
-              defaultValue="admin"
-              name="user-role"
-              options={userRoleOptions}
-            />
-            <CheckboxInput label="Send invite email" />
-          </Modal>
-        </FocusTrap>
+        <Modal
+          close={() => setIsModalOpen(false)}
+          title="Add a new user to this organisation"
+          buttonRow={
+            <>
+              <Button
+                className="u-no-margin--bottom"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="u-no-margin--bottom"
+                appearance="positive"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Add new user
+              </Button>
+            </>
+          }
+        >
+          <Input id="user-email" type="text" label="Users’ email address" />
+          <Select
+            id="user-role"
+            label="Role"
+            defaultValue="admin"
+            name="user-role"
+            options={userRoleOptions}
+          />
+          <CheckboxInput label="Send invite email" />
+        </Modal>
       ) : null}
     </>
   );
