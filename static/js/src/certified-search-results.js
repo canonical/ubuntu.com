@@ -143,10 +143,10 @@ function toggleShowAllLinks() {
 }
 
 function hideDrawerPageReload() {
-  const closeDrawerButton = document.querySelector(
-    ".p-side-navigation__toggle--in-drawer"
-  );
-  closeDrawerButton.click();
+  if (window.location.href.includes("drawer")) {
+    const closeDrawerButton = document.querySelector("#toggle-filters");
+    closeDrawerButton.click();
+  }
 }
 
 enableApplyFilters();
@@ -154,3 +154,4 @@ toggleVersionsList();
 toggleVendorsList();
 toggleShowAllLinks();
 updateResultsPerPage();
+hideDrawerPageReload();
