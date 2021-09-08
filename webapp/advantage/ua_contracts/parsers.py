@@ -179,16 +179,18 @@ def parse_subscription_items(
 def parse_subscription(raw_subscription: Dict) -> Subscription:
     subscription_id = raw_subscription.get("subscription").get("id")
     raw_items = raw_subscription.get("purchasedProductListings")
+    subscription = raw_subscription.get("subscription")
 
     return Subscription(
         id=subscription_id,
-        account_id=raw_subscription.get("subscription").get("accountID"),
-        marketplace=raw_subscription.get("subscription").get("marketplace"),
-        period=raw_subscription.get("subscription").get("period"),
-        status=raw_subscription.get("subscription").get("status"),
+        account_id=subscription.get("accountID"),
+        marketplace=subscription.get("marketplace"),
+        period=subscription.get("period"),
+        status=subscription.get("status"),
         last_purchase_id=raw_subscription.get("lastPurchaseID"),
         pending_purchases=raw_subscription.get("pendingPurchases"),
-        is_auto_renewing=raw_subscription.get("subscription").get("autoRenew"),
+        is_auto_renewing=subscription.get("autoRenew"),
+        started_with_trial=subscription.get("startedWithTrial"),
         items=parse_subscription_items(subscription_id, raw_items),
     )
 

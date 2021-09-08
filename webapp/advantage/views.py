@@ -23,6 +23,7 @@ from webapp.advantage.ua_contracts.builders import (
 from webapp.advantage.ua_contracts.helpers import (
     to_dict,
     extract_last_purchase_ids,
+    set_listings_trial_status,
 )
 from webapp.advantage.ua_contracts.api import (
     CannotCancelLastContractError,
@@ -362,7 +363,7 @@ def get_user_info():
         raise UAContractsAPIError(error)
 
     subscriptions = g.api.get_account_subscriptions(
-        account_id=account["id"],
+        account_id=account.id,
         marketplace="canonical-ua",
         filters={"status": "active", "period": "monthly"},
     )
@@ -387,56 +388,40 @@ def get_user_info():
 
 @advantage_decorator(response="html")
 def advantage_shop_view():
+    g.api.set_convert_response(True)
+
     account = None
-    previous_purchase_ids = {"monthly": "", "yearly": ""}
-
     if user_info(flask.session):
-        if flask.session.get("guest_authentication_token"):
-            flask.session.pop("guest_authentication_token")
-
         try:
             account = g.api.get_purchase_account()
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
-            # One will need to be created later, but this is an expected
-            # condition.
-
+            # One will need to be created later; expected condition.
             pass
 
-        if account:
-            subscriptions = g.api.get_account_subscriptions(
-                account_id=account["id"],
-                marketplace="canonical-ua",
-                filters={"status": "active"},
-            )
+    all_subscriptions = []
+    if account:
+        all_subscriptions = g.api.get_account_subscriptions(
+            account_id=account.id,
+            marketplace="canonical-ua",
+        )
 
-            for subscription in subscriptions:
-                period = subscription["subscription"]["period"]
-                previous_purchase_ids[period] = subscription["lastPurchaseID"]
+    current_subscriptions = [
+        subscription
+        for subscription in all_subscriptions
+        if subscription.status in ["active", "locked"]
+    ]
 
     listings = g.api.get_product_listings("canonical-ua")
-    product_listings = listings.get("productListings")
-    if not product_listings:
-        # For the time being, no product listings means the shop has not been
-        # activated, so fallback to shopify. This should become an error later.
-        return flask.redirect("https://buy.ubuntu.com/")
 
-    products = {product["id"]: product for product in listings["products"]}
-
-    website_listing = []
-    for listing in product_listings:
-        if "price" not in listing:
-            continue
-
-        listing["product"] = products[listing["productID"]]
-
-        website_listing.append(listing)
+    previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
+    user_listings = set_listings_trial_status(listings, all_subscriptions)
 
     return flask.render_template(
         "advantage/subscribe/index.html",
         account=account,
         previous_purchase_ids=previous_purchase_ids,
-        product_listings=website_listing,
+        product_listings=user_listings,
     )
 
 
