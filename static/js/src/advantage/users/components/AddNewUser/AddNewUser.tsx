@@ -7,8 +7,8 @@ import {
   Select,
 } from "@canonical/react-components";
 
-import FocusTrap from "./FocusTrap";
-import { userRoleOptions } from "../constants";
+import FocusTrap from "../FocusTrap";
+import { userRoleOptions } from "../../constants";
 
 const AddNewUser: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,8 +46,9 @@ const AddNewUser: React.FC = () => {
               </>
             }
           >
-            <Input type="text" label="Users’ email address" />
+            <Input id="user-email" type="text" label="Users’ email address" />
             <Select
+              id="user-role"
               label="Role"
               defaultValue="admin"
               name="user-role"

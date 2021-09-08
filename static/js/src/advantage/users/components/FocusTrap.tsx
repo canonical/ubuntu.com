@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from "react";
-import { createFocusTrap, FocusTrap } from "focus-trap";
+import { createFocusTrap, FocusTrap as FocusTrapType } from "focus-trap";
 
 const FocusTrap: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const trapRef = useRef(null);
-  const focusTrap = useRef<FocusTrap | null>(null);
+  const focusTrap = useRef<FocusTrapType | null>(null);
 
   useEffect(() => {
     if (trapRef.current) {

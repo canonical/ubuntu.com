@@ -2,7 +2,7 @@ import React from "react";
 
 import { Users, OrganisationName } from "./types";
 import Organisation from "./components/Organisation";
-import AddNewUser from "./components/AddNewUser";
+import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
 
 const AccountUsers: React.FC<{
