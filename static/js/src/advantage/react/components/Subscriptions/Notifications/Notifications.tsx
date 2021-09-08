@@ -11,9 +11,6 @@ const Notifications = () => {
   const urls = useURLs();
   const { pendingPurchaseId } = usePendingPurchaseId();
   const { data: statusesSummary } = useUserSubscriptions({
-    // TODO: Get the selected subscription once the subscription token is
-    // available.
-    // https://github.com/canonical-web-and-design/commercial-squad/issues/210
     select: selectStatusesSummary,
   });
 

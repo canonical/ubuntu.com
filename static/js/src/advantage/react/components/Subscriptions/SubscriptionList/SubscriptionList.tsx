@@ -5,17 +5,17 @@ import {
   selectUASubscriptions,
 } from "advantage/react/hooks/useUserSubscriptions";
 import React from "react";
-import { SelectedToken } from "../Content/types";
+import { SelectedId } from "../Content/types";
 
 import ListCard from "./ListCard";
 import ListGroup from "./ListGroup";
 
 type Props = {
-  selectedToken?: SelectedToken;
-  onSetActive: (token: SelectedToken) => void;
+  selectedId?: SelectedId;
+  onSetActive: (token: SelectedId) => void;
 };
 
-const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
+const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   const {
     data: freeSubscription,
     isLoading: isLoadingFree,
@@ -34,12 +34,10 @@ const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
   const uaSubscriptions = uaSubscriptionsData.map((subscription, i) => (
     <ListCard
       data-test="ua-subscription"
-      isSelected={selectedToken === `ua-sub-${i}`}
+      isSelected={selectedId === subscription.contract_id}
       key={i}
       onClick={() => {
-        // TODO: update this to use the sub token when it is available.
-        // https://github.com/canonical-web-and-design/commercial-squad/issues/210
-        onSetActive(`ua-sub-${i}`);
+        onSetActive(subscription.contract_id);
       }}
       subscription={subscription}
     />
@@ -53,15 +51,9 @@ const SubscriptionList = ({ selectedToken, onSetActive }: Props) => {
           <ListGroup title="Free personal token">
             <ListCard
               data-test="free-subscription"
-              isSelected={
-                // TODO: update this to use the sub token when it is available.
-                // https://github.com/canonical-web-and-design/commercial-squad/issues/210
-                selectedToken === "free-subscription"
-              }
+              isSelected={selectedId === freeSubscription.contract_id}
               onClick={() => {
-                // TODO: update this to use the sub token when it is available.
-                // https://github.com/canonical-web-and-design/commercial-squad/issues/210
-                onSetActive("free-subscription");
+                onSetActive(freeSubscription.contract_id);
               }}
               subscription={freeSubscription}
             />

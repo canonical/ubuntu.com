@@ -14,8 +14,8 @@ describe("getSubscriptionCost", () => {
     expect(
       getSubscriptionCost(
         userSubscriptionFactory.build({
-          number_of_machines: 2,
-          price_per_unit: 1000,
+          currency: "USD",
+          price: 2000,
           period: UserSubscriptionPeriod.Yearly,
         })
       )
@@ -26,8 +26,8 @@ describe("getSubscriptionCost", () => {
     expect(
       getSubscriptionCost(
         userSubscriptionFactory.build({
-          number_of_machines: 2,
-          price_per_unit: 1000,
+          currency: "USD",
+          price: 2000,
           period: UserSubscriptionPeriod.Monthly,
         })
       )
