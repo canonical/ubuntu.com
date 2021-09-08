@@ -1,12 +1,12 @@
 import React from "react";
 import { format } from "date-fns";
 
-import Button from "@canonical/react-components/dist/components/Button";
-import Select from "@canonical/react-components/dist/components/Select";
+import { Button, Select } from "@canonical/react-components";
 import { MainTableRow } from "@canonical/react-components/dist/components/MainTable/MainTable";
 
 import { User } from "../../types";
 import { UserRowVariant } from "./TableView";
+import { userRoleOptions } from "../../constants";
 
 const DATE_FORMAT = "dd/MM/yyyy";
 
@@ -78,20 +78,7 @@ const UserRole: React.FC<{
           defaultValue={user.role}
           name="user-role"
           className="u-no-margin--bottom"
-          options={[
-            {
-              label: "Admin",
-              value: "admin",
-            },
-            {
-              label: "Technical",
-              value: "technical",
-            },
-            {
-              label: "Billing",
-              value: "billing",
-            },
-          ]}
+          options={userRoleOptions}
         />
       )}
     </>
