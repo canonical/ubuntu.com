@@ -45,6 +45,38 @@ describe("SubscriptionList", () => {
     );
   });
 
+  it("sorts the UA subscriptions by most recently started", () => {
+    const subscriptions = [
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+        start_date: new Date("2020-08-11T02:56:54Z"),
+      }),
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+        start_date: new Date("2021-08-11T02:56:54Z"),
+      }),
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+        start_date: new Date("1999-08-11T02:56:54Z"),
+      }),
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList onSetActive={jest.fn()} />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find(ListCard).at(0).prop("subscription")).toStrictEqual(
+      subscriptions[1]
+    );
+    expect(wrapper.find(ListCard).at(1).prop("subscription")).toStrictEqual(
+      subscriptions[0]
+    );
+    expect(wrapper.find(ListCard).at(2).prop("subscription")).toStrictEqual(
+      subscriptions[2]
+    );
+  });
+
   it("displays a free subscription", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
