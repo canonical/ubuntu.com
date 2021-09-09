@@ -1,7 +1,9 @@
+export type UserRole = "admin" | "technical" | "billing";
+
 export type User = {
   id: string;
   email: string;
-  role: "Admin" | "Technical" | "Billing";
+  role: UserRole;
   createdAt: string;
   lastLoginAt: string;
 };
