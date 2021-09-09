@@ -9,7 +9,7 @@ import {
 
 import { userRoleOptions } from "../../constants";
 
-const AddNewUser: React.FC = () => {
+const AddNewUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
