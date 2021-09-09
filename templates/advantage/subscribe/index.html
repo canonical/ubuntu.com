@@ -118,14 +118,18 @@
 <script src="/static/js/dist/productSelector.js" type="module"></script>
 <script defer>
   var productList = {
-    {% for listing in product_listings %}
-    "{{ listing.id }}": {
-      name: "{{ listing.product.name }}",
-      price: {{ listing.price|tojson }},
-      period: "{{ listing.period }}",
-      productID: "{{ listing.product.id }}",
-      private: "{{ listing.privateForAccount }}"
-    },
+    {% for listing_id, listing in product_listings.items() %}
+      "{{ listing.id }}": {
+        name: "{{ listing.product.name }}",
+        price: {
+          value: "{{ listing.price }}",
+          currency: "{{ listing.currency }}"
+        },
+        period: "{{ listing.period }}",
+        productID: "{{ listing.product.id }}",
+        can_be_trialled: "{{ listing.can_be_trialled }}",
+        private: false,
+      },
     {% endfor %}
   };
 

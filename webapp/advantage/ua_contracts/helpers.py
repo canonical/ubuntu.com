@@ -249,6 +249,25 @@ def get_subscription_by_period(
     return filtered_subscriptions[0] if filtered_subscriptions else None
 
 
+def set_listings_trial_status(
+    listings: Dict[str, Listing], subscriptions: List[Subscription]
+) -> Dict[str, Listing]:
+    user_can_trial = True
+    for subscription in subscriptions:
+        stated_with_trial = subscription.started_with_trial
+        status = subscription.status
+        if stated_with_trial or status in ["active", "locked"]:
+            user_can_trial = False
+
+            break
+
+    for listing_id, listing in listings.items():
+        listing_can_be_trialled = listing.trial_days and listing.trial_days > 0
+        listing.set_can_be_trialled(listing_can_be_trialled and user_can_trial)
+
+    return listings
+
+
 def to_dict(structure, class_key=None):
     """Converts structure to dictionary
 

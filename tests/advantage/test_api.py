@@ -956,6 +956,29 @@ class TestGetPurchaseAccount(unittest.TestCase):
         self.assertEqual(response, json_account)
         self.assertEqual(session.request_kwargs, expected_args)
 
+    def test_convert_response(self):
+        json_account = get_fixture("account")
+        session = Session(
+            Response(
+                status_code=200,
+                content=json_account,
+            )
+        )
+        client = make_client(session, convert_response=True)
+
+        response = client.get_purchase_account()
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": "https://1.2.3.4/v1/purchase-account",
+        }
+
+        self.assertIsInstance(response, Account)
+        self.assertEqual(session.request_kwargs, expected_args)
+
 
 class TestPurchaseFromMarketplace(unittest.TestCase):
     def test_errors(self):
