@@ -21,7 +21,7 @@ Then to learn about `dotrun`'s options, type:
 dotrun --help
 ```
 
-### Running the site with native python
+### Running the site with core python
 
 Since the site is basically a Flask app, you can also run the site in the traditional way using [python 3](https://docs.python.org/3/) and [venv](https://docs.python.org/3/library/venv.html?highlight=venv#module-venv):
 

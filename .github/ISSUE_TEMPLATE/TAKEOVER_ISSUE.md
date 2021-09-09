@@ -16,7 +16,7 @@ assignees: '@SirSamTumless'
     - [ ] [engage page copy]()
     - [ ] social media requirements
     - [ ] twitter card requirements
-- [ ] dates and language updated on the [master content tracker](https://docs.google.com/spreadsheets/d/1MaFd-ZHWpRVjIP9Sj_dOCIGOtl-GJYbrXewt5EG4m80/edit#gid=564832475)
+- [ ] dates and language updated on the [main content tracker](https://docs.google.com/spreadsheets/d/1MaFd-ZHWpRVjIP9Sj_dOCIGOtl-GJYbrXewt5EG4m80/edit#gid=564832475)
 
 ## Issue to be created
 

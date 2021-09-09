@@ -420,7 +420,7 @@ packages:
    about the host and guest systems.
 
 The user that creates VMs must be a member of the `libvirt` group.
-You can verify this with the `groups` command: 
+You can verify this with the `groups` command:
 
 ```
 $ groups
@@ -747,7 +747,7 @@ $ sudo virsh vol-create-as ubuntu volume.qcow2  2G
 ```
 
 We created a QCOW2 volume of 2 GiB. QCOW2 stands for QEMU Copy-On-Write.
-It is the native storage format for QEMU emulated disks.
+It is the core storage format for QEMU emulated disks.
 
 We can confirm that the volume exists:
 

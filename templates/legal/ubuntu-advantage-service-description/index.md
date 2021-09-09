@@ -30,22 +30,22 @@ As an Essential customer, you are entitled to the following:
 1. <span id="uasd-esm">Extended Security Maintenance (ESM)<span>
     1. ESM provides available High and Critical CVE fixes for a number of packages, as specified below
     2. ESM is only included for 64-bit x86 AMD/Intel installations
-    3. Both UA Infra and UA Apps cover packages in the Ubuntu Main repository between [End of Standard Support and End of Life](https://wiki.ubuntu.com/Releases) 
+    3. Both UA Infra and UA Apps cover packages in the Ubuntu Main repository between [End of Standard Support and End of Life](https://wiki.ubuntu.com/Releases)
     4. UA Apps also covers packages in the Ubuntu Universe repository between the [Release date and End of Life](https://wiki.ubuntu.com/Releases)
     5. ESM does not provide:
         1. Bug fixes, unless a bug was created by an ESM security fix
         2. Security fixes for CVEs that are not High or Critical
         3. A guarantee to fix all High or Critical CVEs
 2. Other security fixes
-    6. For  UA Infra only: security fixes for OpenStack, Ceph, MAAS 
+    6. For  UA Infra only: security fixes for OpenStack, Ceph, MAAS
     7. The scope of security fixes for each of those products is described in their respective sections below
 3. <a id="uasd-certified" href="/security/certifications">Certified components for compliance, hardening and audit</a>
     8. Essential customers are entitled to access the following components
         4. FIPS 140-2 Level 1 certified modules for Ubuntu 20.04 LTS, 18.04 LTS and 16.04 LTS
         5. Common Criteria EAL2 for Ubuntu 18.04 LTS and 16.04 LTS
-        6. Access to certified CIS Benchmark tooling Level 1 and 2 for Ubuntu 20.04 LTS, 18.04 LTS and 16.04 LTS 
+        6. Access to certified CIS Benchmark tooling Level 1 and 2 for Ubuntu 20.04 LTS, 18.04 LTS and 16.04 LTS
 4. <a id="uasd-landscape" class="p-link--external" href="https://landscape.canonical.com/">Landscape</a>[]() and knowledge base access
-    9. Access to Canonical’s Landscape systems management and the knowledge base 
+    9. Access to Canonical’s Landscape systems management and the knowledge base
 5. <a id="uasd-livepatch" class="p-link--external" href="/livepatch">Kernel Livepatch</a>
     10. Access to Canonical’s kernel livepatch client and security livepatches for selected High and Critical kernel CVEs
     11. Kernel Livepatch may provide non-security bug fixes as kernel livepatches
@@ -59,7 +59,7 @@ As an Essential customer, you are entitled to the following:
 As a Standard or Advanced customer, you are entitled to all of the benefits of the Essential customer plus:
 
 1. <span id="uasd-support-levels">Support levels</span>:
-    1. Standard: 24x5 phone and ticket support, or 
+    1. Standard: 24x5 phone and ticket support, or
     2. Advanced: 24x7 phone and ticket support
 2. <span id="uasd-infra-and-apps">Support - UA Infra and UA Apps</span>:
     3. <span id="uasd-ubuntu-releases">Ubuntu Releases</span>
@@ -72,13 +72,13 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
         5. Packages in the Ubuntu Cloud Archive
         6. Canonical maintained Snap packages and Charms
         7. This service is not provided for any packages that have been modified from the supported version
-        8. [Supported Kernels](https://ubuntu.com/about/release-cycle#Ubuntu%20kernel%20release%20cycle) 
-        9. Landscape 
+        8. [Supported Kernels](https://ubuntu.com/about/release-cycle#Ubuntu%20kernel%20release%20cycle)
+        9. Landscape
     6. <span id="uasd-kubernetes">Kubernetes</span>
         10. <span id="uasd-kubernetes-cluster">Kubernetes cluster Full-Stack Support requirements</span>:
-            1. Deployment of: 
-                1. Charmed Kubernetes in at least the minimum deployment configuration, or 
-                2. a kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS validated by Canonical, or  
+            1. Deployment of:
+                1. Charmed Kubernetes in at least the minimum deployment configuration, or
+                2. a kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS validated by Canonical, or
                 3. [MicroK8s](https://microk8s.io/)
             2. Highly-Available control plane either deployed using Charms in the Charmed Kubernetes reference architecture or in a similar fashion using kubeadm
             3. Support must be purchased for all Nodes in the supported Kubernetes cluster
@@ -117,7 +117,7 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
             15. Support for Guest Instances other than Cloud Guests
     8. <span id="uasd-charms-support">Charms support</span>
         18. Each Charm version is supported for one year from the release date
-        19. Canonical will not provide support for any Charms that have been modified from the [supported version](https://wiki.ubuntu.com/OpenStack/OpenStackCharms ) 
+        19. Canonical will not provide support for any Charms that have been modified from the [supported version](https://wiki.ubuntu.com/OpenStack/OpenStackCharms )
     9. <span id="uasd-storage-support">Storage support</span>
         20. Canonical will provide support for 72TB of raw storage per storage node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. Please note that only storage Nodes count towards the 72TB free tier of raw storage per node
         21. If the Node allowance is exceeded, [additional Storage Support](https://ubuntu.com/pricing/infra) needs to be acquired
@@ -157,7 +157,7 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
 
 1. Managed Services are an add-on to UA Infra Advanced or UA Apps Advanced customers. When added on, Canonical will manage the Environment as described below. Guests Instance running in the Environment receive the Ubuntu Advantage subscriptions and support
 2. Following Canonical’s building and initialising of the Environment (subject to separate service engagement), the Managed Service will re-deploy the Environment to reset credentials and validate the deployment process. The Managed Service will also provide documentation providing further detail on the working relationship with Canonical. Additional services can be offered subject to purchasing Professional Support Services (as listed in the section below)
-3. The Managed Service will remotely operate, monitor, and manage the Environment. Concrete examples include: 
+3. The Managed Service will remotely operate, monitor, and manage the Environment. Concrete examples include:
     1. backing up and restoring of the management infrastructure suite
     2. hardware and software failure monitoring and alerting
     3. capacity and performance reporting
@@ -254,7 +254,7 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
         12. Manage support escalations and prioritization in accordance with Canonical's standard support response definitions and customer needs
         13. Participate in regular review calls addressing the customer's operational issues
         14. Organise multi-vendor issue coordination through TSANet or Canonical's direct partnerships where applicable. When the root cause is identified, the DSE will work with the vendor for that sub-system, working to resolve the case through their normal support process
-        15. Attend applicable Canonical internal training and development activities 
+        15. Attend applicable Canonical internal training and development activities
     10. Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement
     11. The DSE is available to respond to support cases during the DSE’s working hours. Outside of Business Hours, support will be provided per the UA Support Process
     12. If a DSE is on leave for longer than five consecutive business days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DSE leave
@@ -263,66 +263,17 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
 
 <h2 id="uasd-support-services-process">UA Support Services Process</h2>
 
-1. Service initiation
-    1. Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal, and the online knowledge base
-    2. The customer, through their initial technical representative, may select their chosen technical representatives who act as primary points of contact for support requests. The customer will receive up to 5 dedicated, personalised credentials for technical representatives per every 500 Nodes under UA support, but not more than a total of 15 credentials
-    3. The customer may change their specified technical representatives at any time by submitting a support request via the support portal
-2. Submitting support requests
-    4. The customer may open a support request once the customer account has been provisioned within the support portal
-    5. The customer may submit support cases through the support portal or by contacting the support team by telephone, unless otherwise noted
-    6. A support case should consist of a single discrete problem, issue, or request
-    7. Cases are assigned a ticket number and responded to automatically. All correspondence not entered directly into the case, including emails and telephone calls, will be logged into the case with a timestamp for quality assurance
-    8. When reporting a case, the customer should provide an impact statement to help Canonical determine the appropriate severity level. Customers with multiple concurrent support cases may be asked to prioritize cases according to severity of business impact
-    9. The customer is expected to provide all information requested by Canonical as we work to resolve the case
-    10. Canonical will keep a record of each case within the support portal enabling the customer to track and respond to all current cases and allowing for review of historical cases
-3. Support severity levels
-    11. Once a support request is opened, a Canonical support engineer will validate the case information and determine the severity level, working with the customer to assess the urgency of the case
-    12. Canonical will work 24/7 or during the applicable Business Hours as described below to provide the customer with a work-around or permanent solution following the severity levels as described below.  As soon as core functionality is available, the severity level will be lowered to the new appropriate severity level. 
-    13. Canonical will use reasonable efforts to respond to support requests made by the customer within the initial response times set forth below, based on the applicable service and severity level, but cannot guarantee a work-around, resolution or resolution time:
-      <table class="p-table" style="width: auto;">
-        <thead>
-          <tr>
-            <th>Severity Level</th>
-            <th>Description</th>
-            <th>Standard initial response time</th>
-            <th>Advanced initial response time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Core functionality critical impact/Service down</td>
-            <td>4 hours, excluding weekends and holidays</td>
-            <td>1 hour</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Core functionality severely degraded</td>
-            <td>8 Business Hours</td>
-            <td>2 hours</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Standard support request</td>
-            <td>12 Business Hours</td>
-            <td>6 hours</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Non-urgent requests, including cosmetic, informational and feature requests.</td>
-            <td>24 Business Hours</td>
-            <td>12 hours</td>
-          </tr>
-        </tbody>
-      </table>
-4. Customer assistance. Continuous effort support is dependent on the customer being available at all times to assist Canonical, otherwise Canonical may need to reduce the severity level and its ability to respond
-5. Hotfixes. To temporarily resolve critical support cases, Canonical may provide a version of the affected software (e.g. package) that applies a patch. Such versions are referred to as “hotfixes”. Hotfixes provided by Canonical are supported for 90 days after the corresponding patch has been incorporated into a release of the software in the Ubuntu Archives. However, if a patch is rejected by the applicable upstream project, the hotfix will no longer be supported and the case will remain open
-6. Support language. Canonical will provide the support in English, unless specified otherwise
-7. Remote sessions. At the discretion of a Canonical engineer, a remote access service might be offered to access a supported system. In such a case, Canonical will determine which remote access service to use. Canonical engineers do not perform any remote actions on a supported system
-8. Ask for a Peer Review. As a normal business practice, Canonical performs peer reviews on a percentage of all cases. Customers can specifically request a peer review on a case within the case comments or by calling the phone number listed in the support portal. An impartial engineer will be assigned to review the case and provide feedback
-9. Management escalation. The customer may escalate support issues following the escalation process:
-    14. Non-urgent needs. Request a management escalation within the case itself. A manager will be contacted to review the case and post a response within 1 business day
-    15. Urgent needs can be escalated to Canonical’s Support & Technical Services Manager by emailing [support-manager@canonical.com](mailto:support-manager@canonical.com). If you require further escalation, email Canonical’s Support & Technical Services Director at [operations-director@canonical.com](mailto:operations-director@canonical.com)
+1. The Ubuntu Advantage for Infrastructure, Virtual services match those of the applicable Ubuntu Advantage for Infrastructure offering, subject to the exceptions listed below.
+2. The Ubuntu Advantage Infrastructure, Virtual services are provided for Ubuntu Server when installed and running as a guest in a virtualised environment either (1) in an Ubuntu certified Public Cloud partner's environment, or (2) on a physical host, provided the guest is running on a [Covered Hypervisor](#term-hypervisor).<br /><br />
+   Note: Only underlying technology is listed. These can be provided via a cloud like OpenStack. If hypervisor vendor provides a specific list of supported Ubuntu versions only those will be eligible for Ubuntu Advantage for Infrastructure, Virtual service.<br /><br />
+3. Certified Public Cloud partners can be found in the Ubuntu partner listing: [ubuntu.com/public-cloud](https://ubuntu.com/public-cloud)
+4. Kubernetes support is included as per definitions in the application section of Ubuntu Advantage for Infrastructure above.
+5. The Ubuntu Advantage for Infrastructure, Virtual service does not provide:
+6. Hypervisor support.
+7. OpenStack support.
+8. MAAS support.
+9. Providing built-in images for a chosen hypervisor.
+10. Additional exclusions match those of the applicable Ubuntu Advantage for Infrastructure service offering.
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
@@ -376,7 +327,7 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
 
 **Region:** a discrete OpenStack environment with dedicated API endpoints that typically shares only the Identity (Keystone) service with other Regions. An OpenStack Region must be contained within a single datacenter.
 
-**Release date: **the general availability release date of an Ubuntu version as found at [https://ubuntu.com/about/release-cycle](https://ubuntu.com/about/release-cycle) 
+**Release date: **the general availability release date of an Ubuntu version as found at [https://ubuntu.com/about/release-cycle](https://ubuntu.com/about/release-cycle)
 
 **Swift Cluster:** a single Swift installation in a single physical data center and specified by a unique identifier
 

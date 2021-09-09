@@ -18,7 +18,7 @@ assignees: ''
 
 ### Takeover
 
-- [ ] Check the [master content tracker](https://docs.google.com/spreadsheets/d/1MaFd-ZHWpRVjIP9Sj_dOCIGOtl-GJYbrXewt5EG4m80/edit#gid=564832475) that the takeover should go live, if not, add a 'Blocked' label
+- [ ] Check the [main content tracker](https://docs.google.com/spreadsheets/d/1MaFd-ZHWpRVjIP9Sj_dOCIGOtl-GJYbrXewt5EG4m80/edit#gid=564832475) that the takeover should go live, if not, add a 'Blocked' label
 - [ ] Check the copy against the [brief]()
 - [ ] Check that it works for the correct language
 - [ ] Check the [design]() against the desktop viewport
