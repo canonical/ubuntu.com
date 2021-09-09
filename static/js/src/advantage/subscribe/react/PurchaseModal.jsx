@@ -89,6 +89,8 @@ const PurchaseModal = () => {
   };
 
   const closeModal = () => {
+    // I have no idea what's going on here, but without it the modal won't close for guest users. ¯\_(ツ)_/¯
+    buttonRef.current.click();
     buttonRef.current.click();
   };
 
