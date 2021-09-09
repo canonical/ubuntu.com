@@ -4,10 +4,12 @@ import { Users, OrganisationName } from "./types";
 import Organisation from "./components/Organisation";
 import TableView from "./components/TableView/TableView";
 
-const AccountUsers: React.FC<{
+type Props = {
   organisationName: OrganisationName;
   users: Users;
-}> = ({ organisationName, users }) => {
+};
+
+const AccountUsers = ({ organisationName, users }: Props) => {
   return (
     <div>
       <div className="p-strip">
