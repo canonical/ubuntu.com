@@ -16,7 +16,8 @@ it("displays user details in a correct format", () => {
   render(<TableView users={[testUser]} />);
 
   expect(screen.getByText("user@ecorp.com")).toBeInTheDocument();
-  expect(screen.getByText("Admin")).toBeInTheDocument();
+  expect(screen.getByText("Admin", { ignore: "option" })).toBeInTheDocument();
+  expect(screen.getByText("Admin", { selector: "option" })).not.toBeVisible();
   expect(screen.getByText("10/01/2020")).toBeInTheDocument();
   expect(screen.getByText("15/02/2021")).toBeInTheDocument();
 });

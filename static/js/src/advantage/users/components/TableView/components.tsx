@@ -1,5 +1,6 @@
 import React from "react";
 import { format } from "date-fns";
+import CSS from "csstype";
 
 import Button from "@canonical/react-components/dist/components/Button";
 import Select from "@canonical/react-components/dist/components/Select";
@@ -77,12 +78,31 @@ const UserEmail = ({ user, variant }: UserEmailProps) => {
 
 type UserRoleProps = UserVariantProps;
 
+const getVisibilityStyles = (isVisible: boolean): CSS.Properties => ({
+  display: "flex",
+  alignItems: "center",
+  height: "100%",
+  visibility: isVisible ? "visible" : "hidden",
+  opacity: isVisible ? 1 : 0,
+});
+
 const UserRole = ({ user, variant }: UserRoleProps) => {
   return (
-    <>
-      {variant !== "editing" ? (
-        user.role
-      ) : (
+    <div style={{ position: "relative" }}>
+      <div
+        style={{
+          ...getVisibilityStyles(variant !== "editing"),
+          position: "absolute",
+        }}
+      >
+        <span>{user.role}</span>
+      </div>
+      <div
+        style={{
+          ...getVisibilityStyles(variant === "editing"),
+          position: "static",
+        }}
+      >
         <Select
           defaultValue={user.role}
           name="user-role"
@@ -102,8 +122,8 @@ const UserRole = ({ user, variant }: UserRoleProps) => {
             },
           ]}
         />
-      )}
-    </>
+      </div>
+    </div>
   );
 };
 
