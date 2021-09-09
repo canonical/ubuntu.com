@@ -2,7 +2,7 @@ import React from "react";
 import { Row, ActionButton } from "@canonical/react-components";
 
 type ModalFooter = {
-  children: React.ReactChild;
+  children: React.ReactNode;
   closeModal: () => void;
 };
 

@@ -11,7 +11,7 @@ import ModalBody from "../ModalParts/ModalBody";
 import ModalFooter from "../ModalParts/ModalFooter";
 
 type StepOneProps = {
-  error: React.ReactNode | null;
+  error: React.ReactNode;
   closeModal: () => void;
 };
 

@@ -3,7 +3,7 @@ import { Col, Notification, Spinner } from "@canonical/react-components";
 
 type ModalBody = {
   error?: React.ReactNode;
-  children: React.ReactChild;
+  children: React.ReactNode;
   isLoading: boolean;
 };
 
