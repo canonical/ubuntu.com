@@ -2,6 +2,7 @@ import React from "react";
 
 import { Users, OrganisationName } from "./types";
 import Organisation from "./components/Organisation";
+import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
 
 type Props = {
@@ -23,6 +24,11 @@ const AccountUsers = ({ organisationName, users }: Props) => {
         <div className="row">
           <div className="col-6">
             <Organisation name={organisationName} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6">
+            <AddNewUser />
           </div>
         </div>
         <div className="row">
