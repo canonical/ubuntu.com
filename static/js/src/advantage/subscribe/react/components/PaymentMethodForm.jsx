@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -9,7 +9,9 @@ import {
   RadioInput,
 } from "@canonical/react-components";
 import { CardElement } from "@stripe/react-stripe-js";
+import { debounce } from "lodash";
 
+import usePostCustomerInfoForPurchasePreview from "../APICalls/usePostCustomerInfoForPurchasePreview";
 import FormRow from "./FormRow";
 import {
   caProvinces,
@@ -22,8 +24,16 @@ import { Field, Form, useFormikContext } from "formik";
 function PaymentMethodForm({ setCardValid }) {
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
+  const mutation = usePostCustomerInfoForPurchasePreview();
 
-  const { errors, touched, values, setTouched } = useFormikContext();
+  const {
+    errors,
+    touched,
+    values,
+    setTouched,
+    setErrors,
+    setSubmitting,
+  } = useFormikContext();
 
   const validateEmail = (value) => {
     let errorMessage;
@@ -78,12 +88,39 @@ function PaymentMethodForm({ setCardValid }) {
     }
   }, [values.buyingFor]);
 
+  const updateCustomerInfoForPurchasePreview = (formValues) => {
+    setSubmitting(true);
+    mutation.mutate(formValues, {
+      onError: (error) => {
+        if (error.message === "tax_id_invalid") {
+          setErrors({
+            VATNumber:
+              "That VAT number is invalid. Check the number and try again.",
+          });
+        }
+      },
+      onSettled: () => {
+        setSubmitting(false);
+      },
+    });
+  };
+  const updateCustomerInfoForPurchasePreviewDebounced = useMemo(
+    () => debounce(updateCustomerInfoForPurchasePreview, 250),
+    []
+  );
+
   useEffect(() => {
     if (!vatCountries.includes(values.country)) {
-      setTouched({ VATNumber: false });
+      setTouched({ organisationName: false });
       values.VATNumber = "";
     }
   }, [values.country]);
+
+  useEffect(() => {
+    if (window.accountId) {
+      updateCustomerInfoForPurchasePreviewDebounced(values);
+    }
+  }, [values.country, values.VATNumber]);
 
   return (
     <Form className="u-sv3 p-form p-form--stacked" id="payment-modal-form">
