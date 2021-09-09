@@ -19,7 +19,11 @@ const getVariant = (userId: UserId, userInEditMode: UserInEditMode) => {
   }
 };
 
-const TableView: React.FC<{ users: Users }> = ({ users }) => {
+type Props = {
+  users: Users;
+}
+
+const TableView = ({ users }: Props) => {
   const [userInEditMode, setUserInEditMode] = useState<string | null>(null);
   const dismissEditMode = () => setUserInEditMode(null);
 
