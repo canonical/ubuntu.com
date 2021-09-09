@@ -1,5 +1,3 @@
-import { useUsingTestBackend } from "./useUsingTestBackend";
-
 export type URLs = {
   [path: string]: URLs | string;
 };
@@ -25,7 +23,7 @@ const appendTestBackend = <U extends URLs>(urls: U): U => {
     ([key, pathOrSection]: [keyof U, URLs | string]) => {
       let updatedPathOrSection = pathOrSection;
       if (typeof pathOrSection === "string") {
-        // Only append the flag it doesn't already exist.
+        // Only append the flag if it doesn't already exist.
         if (!pathOrSection.includes("test_backend=true")) {
           const querySeparator = pathOrSection.includes("?") ? "&" : "?";
           updatedPathOrSection = `${pathOrSection}${querySeparator}test_backend=true`;
@@ -46,7 +44,8 @@ const appendTestBackend = <U extends URLs>(urls: U): U => {
  * it should be present.
  */
 export const useURLs = () => {
-  const { usingTestBackend } = useUsingTestBackend();
+  const params = new URLSearchParams(window.location.search);
+  const usingTestBackend = params.get("test_backend") === "true";
   const urls = getURLs();
   return usingTestBackend ? appendTestBackend(urls) : urls;
 };
