@@ -1,5 +1,6 @@
 import { Factory } from "fishery";
 import {
+  ContractToken,
   UserSubscription,
   UserSubscriptionEntitlement,
   UserSubscriptionStatuses,
@@ -37,6 +38,7 @@ export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionSt
 export const userSubscriptionFactory = Factory.define<UserSubscription>(
   ({ sequence }) => ({
     account_id: `aBWF0x8vv5S684ZTeXMnJmUuVO7AyCYZzvjY3J${sequence}`,
+    contract_id: `mUuVO7AyCYZzvjY3JaBWF0x8vv5S684ZTeXMnJ${sequence}`,
     end_date: new Date("2022-07-09T07:21:21Z"),
     entitlements: [],
     listing_id: `lADzAkHCZRIASpBZ8YiAiCT2XbDpBSyER7j9vj${sequence}`,
@@ -55,6 +57,7 @@ export const userSubscriptionFactory = Factory.define<UserSubscription>(
 export const freeSubscriptionFactory = Factory.define<UserSubscription>(
   ({ sequence }) => ({
     account_id: `F9sf54ZfJt59AMwynubzPyaGE9Z4D${sequence}`,
+    contract_id: `mUuVO7AyCYZzvjY3JaBWF0x8vv5S684ZTeXMnJ${sequence}`,
     end_date: null,
     entitlements: [],
     listing_id: null,
@@ -67,5 +70,11 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     start_date: new Date("2021-07-09T07:14:56Z"),
     statuses: userSubscriptionStatusesFactory.build(),
     type: UserSubscriptionType.Free,
+  })
+);
+
+export const contractTokenFactory = Factory.define<ContractToken>(
+  ({ sequence }) => ({
+    contract_token: `zPyaGE9Z4DF9sf54ZfJt59AMwynub${sequence}`,
   })
 );

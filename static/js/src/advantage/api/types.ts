@@ -31,6 +31,7 @@ export type UserSubscriptionStatuses = {
 
 export type UserSubscription = {
   account_id: string;
+  contract_id: string;
   end_date: Date | null;
   entitlements: UserSubscriptionEntitlement[];
   listing_id: string | null;
@@ -43,4 +44,8 @@ export type UserSubscription = {
   start_date: Date;
   statuses: UserSubscriptionStatuses;
   type: UserSubscriptionType;
+};
+
+export type ContractToken = {
+  contract_token: string;
 };
