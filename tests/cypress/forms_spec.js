@@ -12,97 +12,109 @@ const getIframeBody = () => {
     .then(cy.wrap);
 };
 
-context("Marketo form", () => {
+context("Marketo forms", () => {
   beforeEach(() => {
-    cy.server();
-    cy.route("POST", "/marketo/submit").as("captureLead");
+    cy.intercept(
+      { method: "POST", url: "/marketo/submit", },
+      {
+          headers: {
+          "Client Id": Cypress.env("Client Id"),
+          "Client Secret": Cypress.env("Client Secret"),
+          "Authorized User": Cypress.env("Authorized User"),
+          "Token": Cypress.env("Token"),
+        },
+      }
+    ).as("captureLead");
+    cy.setCookie("_cookies_accepted", "all");
   });
 
-  // afterEach(() => {
-  //   cy.wait("@captureLead").should((xhr) => {
-  //     expect(xhr.method).to.equal("POST");
-  //     expect(xhr.status).to.equal(200);
-  //   });
-  // });
-
-  it("/download/server/thank-you", () => {
-    cy.visit("/download/server/thank-you");
-
-    cy.get('input[name="firstName"]').type("Test");
-    cy.get('input[name="lastName"]').type("Test");
-    cy.get('input[name="company"]').type("Test");
-    cy.get('input[name="title"]').type("Test");
-    cy.get('input[name="email"]').type("test@test.com");
-
-    getIframeBody().find(".rc-anchor-content").click();
-
-    cy.wait(10000); // eslint-disable-line
-    cy.get("#mktoForm_3485").submit();
+  afterEach(() => {
+    cy.wait("@captureLead").then(({ request, response }) => {
+      expect(request.method).to.equal("POST");
+      expect(response.statusCode).to.equal(200);
+    });
   });
 
-  it("/core/contact-us", () => {
+  it("should successfully complete contact form and submit to Marketo", () => {
     cy.visit("/core/contact-us");
 
-    cy.get('input[name="firstName"]').type("Test");
-    cy.get('input[name="lastName"]').type("Test");
-    cy.get('input[name="email"]').type("test@test.com");
-    cy.get('input[name="phone"]').type("000000000");
-    cy.get('select[name="Country"]').select("Colombia");
-    cy.get('input[name="company"]').type("Test");
-    cy.get('input[name="title"]').type("Test");
-    cy.get('textarea[name="Comments_from_lead__c"]').type(
-      "Test test test test"
-    );
-    cy.get('label[for="canonicalUpdatesOptIn"]').click();
+    cy.findByLabelText(/First name:/).type("Test");
+    cy.findByLabelText(/Last name:/).type("Test");
+    cy.findByLabelText(/Email address:/).type("test@test.com");
+    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+    cy.findByLabelText(/Country:/).select("Colombia");
+    cy.findByLabelText(/Company:/).type("Test");
+    cy.findByLabelText(/Job title:/).type("Test");
+    cy.findByLabelText(/What would you like to talk to us about?/).type("Test test test test");
+    cy.findByLabelText(/I agree to receive information/).click({
+      force: true,
+    });
 
     getIframeBody().find(".rc-anchor-content").click();
 
-    cy.wait(10000); // eslint-disable-line
-    cy.get("#mktoForm_1266").submit();
+    cy.wait(3000); // eslint-disable-line
+    cy.findByText(/Submit/).click();
+    cy.findByText("Thank you").should("be.visible");
   });
 
   it("/engage/anbox-cloud-gaming-whitepaper", () => {
+    //This exception can be removed when this issue is resolved: https://github.com/canonical-web-and-design/web-squad/issues/4345
+    cy.on("uncaught:exception", () => {
+      return false;
+    });
     cy.visit("/engage/anbox-cloud-gaming-whitepaper");
 
-    cy.get('input[name="firstName"]').type("Test");
-    cy.get('input[name="lastName"]').type("Test");
-    cy.get('input[name="company"]').type("Test");
-    cy.get('input[name="title"]').type("Test");
-    cy.get('input[name="email"]').type("test@test.com");
-    cy.get('input[name="phone"]').type("000000000");
+    cy.findByLabelText(/First Name:/).type("Test");
+    cy.findByLabelText(/Last Name:/).type("Test");
+    cy.findByLabelText(/Work email:/).type("test@test.com");
+    cy.findByLabelText(/Company Name:/).type("Test");
+    cy.findByLabelText(/Job Title/).type("Test");
+    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
 
     getIframeBody().find(".rc-anchor-content").click();
 
-    cy.wait(10000); // eslint-disable-line
-    cy.get("#mktoForm_3494").submit();
+    cy.wait(3000); // eslint-disable-line
+    cy.findByText(/Download the whitepaper/).click();
+    cy.findByText(/Thank you/).should("be.visible");
   });
-});
 
-context("Marketo dynamic form", () => {
-  it("/openstack#get-in-touch", () => {
+  it("should open pop up model and successfully complete contact form then submit to Marketo", () => {
+    cy.intercept("POST", "/marketo/submit").as("captureLead");
     cy.visit("/openstack#get-in-touch");
+    cy.scrollTo("bottom");
+    cy.findByRole('link', {name: /Next/i}).click();
+    cy.findByRole('link', {name: /Next/i}).click();
 
-    cy.get(".cookie-policy .p-notification__close").click();
-
-    cy.get(
-      ".p-modal__dialog .js-pagination--1 .pagination__link--next"
-    ).click();
-    cy.get(
-      ".p-modal__dialog .js-pagination--2 .pagination__link--next"
-    ).click();
-
-    cy.get('input[name="firstName"]').type("Test");
-    cy.get('input[name="lastName"]').type("Test");
-    cy.get('input[name="email"]').type("test@test.com");
-    cy.get('label[for="canonicalUpdatesOptIn"]').click();
+    cy.findByLabelText(/First name:/).type("Test");
+    cy.findByLabelText(/Last name:/).type("Test");
+    cy.findByLabelText(/Work email:/).type("test@test.com");
+    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+    cy.findByLabelText(/I agree to receive information/).click({
+      force: true,
+    });
 
     getIframeBody().find(".rc-anchor-content").click();
 
-    cy.wait(10000); // eslint-disable-line
-    cy.get("#mktoForm_1251")
-      .submit()
-      .should((page) => {
-        expect(page[0].action).to.equal("/marketo/submit");
-      });
+    cy.wait(3000); // eslint-disable-line
+    cy.findByText(/Let's discuss/).click();
+    cy.findByText(/Thank you/).should("be.visible");
+    cy.findByLabelText("Close active modal").click();
+  });
+
+  it("should successfully complete download server", () => {
+    cy.visit("/download/server/s390x");
+
+    cy.findByLabelText(/First name:/).type("Test");
+    cy.findByLabelText(/Last name: /).type("Test");
+    cy.findByLabelText(/Company name: /).type("Test");
+    cy.findByLabelText(/Email address:/).type("test@test.com");
+    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+
+    getIframeBody().find(".rc-anchor-content").click();
+
+    cy.wait(3000); // eslint-disable-line
+    cy.findByText(/Accept terms and download/).click();
+    cy.findByText(/Accept all and visit site/).click();
+    cy.findAllByText(/Download Ubuntu Server/).should("be.visible");
   });
 });
