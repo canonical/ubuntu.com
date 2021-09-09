@@ -5,10 +5,12 @@ import Organisation from "./components/Organisation";
 import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
 
-const AccountUsers: React.FC<{
+type Props = {
   organisationName: OrganisationName;
   users: Users;
-}> = ({ organisationName, users }) => {
+};
+
+const AccountUsers = ({ organisationName, users }: Props) => {
   return (
     <div>
       <div className="p-strip">

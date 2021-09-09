@@ -1,5 +1,6 @@
 import React from "react";
 import { format } from "date-fns";
+import CSS from "csstype";
 
 import { Button, Select } from "@canonical/react-components";
 import { MainTableRow } from "@canonical/react-components/dist/components/MainTable/MainTable";
@@ -10,13 +11,24 @@ import { userRoleOptions } from "../../constants";
 
 const DATE_FORMAT = "dd/MM/yyyy";
 
-const UserActions: React.FC<{
-  variant: UserRowVariant;
+type UserVariantProps = {
   user: User;
+  variant: UserRowVariant;
+};
+
+type UserActionsProps = {
   handleEditOpen: (id: string) => void;
   handleEditSubmit: (id: string) => void;
   handleCancel: () => void;
-}> = ({ user, variant, handleEditOpen, handleEditSubmit, handleCancel }) => {
+} & UserVariantProps;
+
+const UserActions = ({
+  user,
+  variant,
+  handleEditOpen,
+  handleEditSubmit,
+  handleCancel,
+}: UserActionsProps) => {
   return variant !== "editing" ? (
     <Button
       small
@@ -44,10 +56,9 @@ const UserActions: React.FC<{
   );
 };
 
-const UserEmail: React.FC<{ user: User; variant: UserRowVariant }> = ({
-  user,
-  variant,
-}) => {
+type UserEmailProps = UserVariantProps;
+
+const UserEmail = ({ user, variant }: UserEmailProps) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       {user.email}
@@ -65,23 +76,41 @@ const UserEmail: React.FC<{ user: User; variant: UserRowVariant }> = ({
   );
 };
 
-const UserRole: React.FC<{
-  user: User;
-  variant: UserRowVariant;
-}> = ({ user, variant }) => {
+type UserRoleProps = UserVariantProps;
+
+const getVisibilityStyles = (isVisible: boolean): CSS.Properties => ({
+  display: "flex",
+  alignItems: "center",
+  height: "100%",
+  visibility: isVisible ? "visible" : "hidden",
+  opacity: isVisible ? 1 : 0,
+});
+
+const UserRole = ({ user, variant }: UserRoleProps) => {
   return (
-    <>
-      {variant !== "editing" ? (
-        user.role
-      ) : (
+    <div style={{ position: "relative" }}>
+      <div
+        style={{
+          ...getVisibilityStyles(variant !== "editing"),
+          position: "absolute",
+        }}
+      >
+        <span>{user.role}</span>
+      </div>
+      <div
+        style={{
+          ...getVisibilityStyles(variant === "editing"),
+          position: "static",
+        }}
+      >
         <Select
           defaultValue={user.role}
           name="user-role"
           className="u-no-margin--bottom"
           options={userRoleOptions}
         />
-      )}
-    </>
+      </div>
+    </div>
   );
 };
 
@@ -91,12 +120,10 @@ const FormattedDate = ({ dateISO }: { dateISO: string }) => (
   </time>
 );
 
-interface UserRowProps {
-  variant: UserRowVariant;
-  user: User;
+type UserRowProps = {
   setUserInEditMode: (id: string) => void;
   dismissEditMode: () => void;
-}
+} & UserVariantProps;
 
 const tdStyle = {
   verticalAlign: "middle",
