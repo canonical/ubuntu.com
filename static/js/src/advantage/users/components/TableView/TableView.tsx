@@ -21,7 +21,7 @@ const getVariant = (userId: UserId, userInEditMode: UserInEditMode) => {
 
 type Props = {
   users: Users;
-}
+};
 
 const TableView = ({ users }: Props) => {
   const [userInEditMode, setUserInEditMode] = useState<string | null>(null);

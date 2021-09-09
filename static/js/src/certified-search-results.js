@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 function clearFilters() {
+  hideDrawerPageReload();
   let objUrl = new URL(window.location);
   objUrl.search = "";
   window.location.assign(objUrl);
@@ -141,8 +142,16 @@ function toggleShowAllLinks() {
   });
 }
 
+function hideDrawerPageReload() {
+  if (window.location.href.includes("drawer")) {
+    const closeDrawerButton = document.querySelector("#toggle-filters");
+    closeDrawerButton.click();
+  }
+}
+
 enableApplyFilters();
 toggleVersionsList();
 toggleVendorsList();
 toggleShowAllLinks();
 updateResultsPerPage();
+hideDrawerPageReload();
