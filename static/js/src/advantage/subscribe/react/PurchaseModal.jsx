@@ -89,7 +89,6 @@ const PurchaseModal = () => {
   };
 
   const closeModal = () => {
-    console.log(buttonRef.current);
     buttonRef.current.click();
   };
 
