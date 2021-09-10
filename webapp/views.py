@@ -567,7 +567,7 @@ def build_tutorials_index(session, tutorials_docs):
                     identifier = result["link"][start:end]
                     if start != -1:
                         for doc in tutorials:
-                            if identifier in doc["topic"]:
+                            if identifier in doc["link"]:
                                 temp_metadata.append(doc)
             tutorials = temp_metadata
 
