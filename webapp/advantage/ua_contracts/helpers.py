@@ -23,6 +23,9 @@ def group_items_by_listing(
         if not listing_id:
             continue
 
+        if item.reason == "trial_started":
+            continue
+
         item_groups[listing_id] = item_groups.get(listing_id, [])
         item_groups[listing_id].append(item)
 
@@ -235,8 +238,11 @@ def extract_last_purchase_ids(subscriptions: List[Subscription]) -> Dict:
 
 
 def get_subscription_by_period(
-    subscriptions: List[Subscription], listing: Listing
+    subscriptions: List[Subscription] = None, listing: Listing = None
 ) -> Optional[Subscription]:
+    if not listing or not subscriptions:
+        return None
+
     filtered_subscriptions = [
         subscription
         for subscription in subscriptions
@@ -244,6 +250,25 @@ def get_subscription_by_period(
     ]
 
     return filtered_subscriptions[0] if filtered_subscriptions else None
+
+
+def set_listings_trial_status(
+    listings: Dict[str, Listing], subscriptions: List[Subscription]
+) -> Dict[str, Listing]:
+    user_can_trial = True
+    for subscription in subscriptions:
+        stated_with_trial = subscription.started_with_trial
+        status = subscription.status
+        if stated_with_trial or status in ["active", "locked"]:
+            user_can_trial = False
+
+            break
+
+    for listing_id, listing in listings.items():
+        listing_can_be_trialled = listing.trial_days and listing.trial_days > 0
+        listing.set_can_be_trialled(listing_can_be_trialled and user_can_trial)
+
+    return listings
 
 
 def to_dict(structure, class_key=None):
