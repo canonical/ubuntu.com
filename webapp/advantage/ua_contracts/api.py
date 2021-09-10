@@ -7,6 +7,7 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_subscriptions,
     parse_product_listings,
     parse_accounts,
+    parse_account,
 )
 
 
@@ -30,6 +31,12 @@ class UAContractsAPI:
         self.token_type = token_type
         self.api_url = api_url.rstrip("/")
         self.is_for_view = is_for_view
+        self.convert_response = convert_response
+
+    def set_is_for_view(self, is_for_view):
+        self.is_for_view = is_for_view
+
+    def set_convert_response(self, convert_response):
         self.convert_response = convert_response
 
     def _request(self, method, path, json=None, params=None, error_rules=None):
@@ -265,6 +272,9 @@ class UAContractsAPI:
             path="v1/purchase-account",
             error_rules=["default", "no-found"],
         )
+
+        if self.convert_response:
+            return parse_account(response.json())
 
         return response.json()
 

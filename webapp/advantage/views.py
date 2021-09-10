@@ -2,18 +2,18 @@
 from datetime import datetime, timedelta, timezone
 
 # Packages
-from typing import Optional
+from typing import Optional, List
 
 from dateutil.parser import parse
 import flask
-import talisker.requests
 import pytz
+from flask import g
 from requests.exceptions import HTTPError
 from webargs.fields import String, Boolean
 
 # Local
 from webapp.advantage.ua_contracts.primitives import Subscription
-from webapp.decorators import advantage_checks
+from webapp.advantage.decorators import advantage_decorator
 from webapp.login import user_info
 from webapp.advantage.flaskparser import use_kwargs
 from webapp.advantage.ua_contracts.builders import (
@@ -23,9 +23,9 @@ from webapp.advantage.ua_contracts.builders import (
 from webapp.advantage.ua_contracts.helpers import (
     to_dict,
     extract_last_purchase_ids,
+    set_listings_trial_status,
 )
 from webapp.advantage.ua_contracts.api import (
-    UAContractsAPI,
     CannotCancelLastContractError,
     UnauthorizedError,
     UAContractsUserHasNoAccount,
@@ -43,8 +43,6 @@ from webapp.advantage.schemas import (
 )
 
 
-session = talisker.requests.get_session()
-
 SERVICES = {
     "canonical-ua": {
         "short": "ua",
@@ -61,12 +59,9 @@ SERVICES = {
 }
 
 
-@advantage_checks(check_list=["is_maintenance", "view_need_user"])
+@advantage_decorator(permission="user", response="html")
 @use_kwargs({"subscription": String(), "email": String()}, location="query")
 def advantage_view(**kwargs):
-    api_url = kwargs.get("api_url")
-    stripe_publishable_key = kwargs["stripe_publishable_key"]
-    token = kwargs.get("token")
     open_subscription = kwargs.get("subscription", None)
 
     personal_account = None
@@ -84,20 +79,16 @@ def advantage_view(**kwargs):
         "next_payment": {},
     }
 
-    advantage = UAContractsAPI(
-        session, token, api_url=api_url, is_for_view=True
-    )
-
     # Support admin "view as" functionality.
     email = kwargs.get("email", "").strip()
-    accounts = advantage.get_accounts(email=email)
+    accounts = g.api.get_accounts(email=email)
 
     for account in accounts:
         monthly_purchased_products = {}
         yearly_purchased_products = {}
-        account["contracts"] = advantage.get_account_contracts(account["id"])
+        account["contracts"] = g.api.get_account_contracts(account["id"])
 
-        all_subscriptions = advantage.get_account_subscriptions(
+        all_subscriptions = g.api.get_account_subscriptions(
             account_id=account["id"],
             marketplace="canonical-ua",
         )
@@ -137,7 +128,7 @@ def advantage_view(**kwargs):
                     "product_listing_id": product_listing["id"],
                 }
 
-            _prepare_monthly_info(monthly_info, subscription, advantage)
+            _prepare_monthly_info(monthly_info, subscription)
 
         for subscription in yearly_subscriptions:
             purchased_products = subscription.get("purchasedProductListings")
@@ -156,13 +147,14 @@ def advantage_view(**kwargs):
 
         for contract in account["contracts"]:
             contract_info = contract["contractInfo"]
-            if not contract_info.get("items"):
+            items = contract_info.get("items")
+            if not items:
                 # TODO(frankban): clean up existing contracts with no items in
                 # production.
                 continue
 
             contract_id = contract_info["id"]
-            contract["token"] = advantage.get_contract_token(contract_id)
+            contract["token"] = g.api.get_contract_token(contract_id)
 
             if contract_info.get("origin", "") == "free":
                 personal_account = account
@@ -211,9 +203,7 @@ def advantage_view(**kwargs):
             contract["contractInfo"]["daysTillExpiry"] = date_difference.days
 
             try:
-                contract["renewal"] = _make_renewal(
-                    advantage, contract["contractInfo"]
-                )
+                contract["renewal"] = _make_renewal(contract["contractInfo"])
             except KeyError:
                 flask.current_app.extensions["sentry"].captureException()
                 contract["renewal"] = None
@@ -229,6 +219,42 @@ def advantage_view(**kwargs):
             contract["machineCount"] = 0
             contract["rowMachineCount"] = 0
 
+            has_trial = False
+            trial_contract_item = None
+            for item in items:
+                reason = item.get("reason")
+                if reason == "trial_started":
+                    has_trial = True
+                    trial_contract_item = item
+
+                    break
+
+            is_trialled = has_trial and date_difference.days > 0
+            if is_trialled:
+                trial_contract = contract.copy()
+                trial_contract["is_detached"] = True
+                trial_contract["is_trialled"] = True
+                trial_contract["machineCount"] = trial_contract_item["value"]
+                trial_contract["rowMachineCount"] = trial_contract_item[
+                    "value"
+                ]
+
+                if trial_contract["contractInfo"]["id"] == open_subscription:
+                    enterprise_contract.insert(0, trial_contract)
+                elif (
+                    trial_contract["contractInfo"]["id"] == new_subscription_id
+                ):
+                    enterprise_contract.insert(0, trial_contract)
+                else:
+                    enterprise_contract.append(trial_contract)
+
+                total_enterprise_contracts += 1
+
+            if is_trialled and len(items) == 1:
+                continue
+
+            contract["is_trialled"] = False
+
             allowances = contract_info.get("allowances")
             if (
                 allowances
@@ -236,6 +262,11 @@ def advantage_view(**kwargs):
                 and allowances[0]["metric"] == "units"
             ):
                 contract["rowMachineCount"] = allowances[0]["value"]
+                if trial_contract_item:
+                    contract["rowMachineCount"] = (
+                        contract["rowMachineCount"]
+                        - trial_contract_item["value"]
+                    )
 
             if product_name in yearly_purchased_products:
                 purchased_product = yearly_purchased_products[product_name]
@@ -304,31 +335,23 @@ def advantage_view(**kwargs):
         personal_account=personal_account,
         open_subscription=open_subscription,
         new_subscription_id=new_subscription_id,
-        stripe_publishable_key=stripe_publishable_key,
     )
 
 
-@advantage_checks(check_list=["need_user"])
+@advantage_decorator(permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
 def get_user_subscriptions(**kwargs):
-    token = kwargs.get("token")
-    api_url = kwargs.get("api_url")
+    g.api.set_convert_response(True)
+
     email = kwargs.get("email")
 
-    advantage = UAContractsAPI(
-        session,
-        token,
-        api_url=api_url,
-        convert_response=True,
-    )
-
-    listings = advantage.get_product_listings("canonical-ua")
-    accounts = advantage.get_accounts(email=email)
+    listings = g.api.get_product_listings("canonical-ua")
+    accounts = g.api.get_accounts(email=email)
 
     user_summary = []
     for account in accounts:
-        contracts = advantage.get_account_contracts(account_id=account.id)
-        subscriptions = advantage.get_account_subscriptions(
+        contracts = g.api.get_account_contracts(account_id=account.id)
+        subscriptions = g.api.get_account_subscriptions(
             account_id=account.id,
             marketplace="canonical-ua",
         )
@@ -346,20 +369,12 @@ def get_user_subscriptions(**kwargs):
     return flask.jsonify(to_dict(user_subscriptions))
 
 
-@advantage_checks(["need_user"])
+@advantage_decorator(permission="user", response="json")
 @use_kwargs({"account_id": String()}, location="query")
-def get_last_purchase_ids(account_id, **kwargs):
-    token = kwargs.get("token")
-    api_url = kwargs.get("api_url")
+def get_last_purchase_ids(account_id):
+    g.api.set_convert_response(True)
 
-    advantage = UAContractsAPI(
-        session,
-        token,
-        api_url=api_url,
-        convert_response=True,
-    )
-
-    subscriptions = advantage.get_account_subscriptions(
+    subscriptions = g.api.get_account_subscriptions(
         account_id=account_id,
         marketplace="canonical-ua",
     )
@@ -369,44 +384,28 @@ def get_last_purchase_ids(account_id, **kwargs):
     return flask.jsonify(last_purchase_ids)
 
 
-@advantage_checks(["need_user"])
+@advantage_decorator(permission="user", response="json")
 @use_kwargs({"contract_id": String()}, location="query")
-def get_contract_token(contract_id, **kwargs):
-    token = kwargs.get("token")
-    api_url = kwargs.get("api_url")
+def get_contract_token(contract_id):
+    g.api.set_convert_response(True)
 
-    advantage = UAContractsAPI(
-        session,
-        token,
-        api_url=api_url,
-        convert_response=True,
-    )
-
-    contract_token = advantage.get_contract_token(contract_id)
+    contract_token = g.api.get_contract_token(contract_id)
 
     return flask.jsonify({"contract_token": contract_token})
 
 
-@advantage_checks(["need_user"])
-def get_user_info(**kwargs):
-    token = kwargs.get("token")
-    api_url = kwargs.get("api_url")
-
-    advantage = UAContractsAPI(
-        session,
-        token,
-        api_url=api_url,
-        convert_response=True,
-    )
+@advantage_decorator(permission="user", response="json")
+def get_user_info():
+    g.api.set_convert_response(True)
 
     try:
-        account = advantage.get_purchase_account()
+        account = g.api.get_purchase_account()
     except UAContractsUserHasNoAccount as error:
         # if no account throw 404
         raise UAContractsAPIError(error)
 
-    subscriptions = advantage.get_account_subscriptions(
-        account_id=account["id"],
+    subscriptions = g.api.get_account_subscriptions(
+        account_id=account.id,
         marketplace="canonical-ua",
         filters={"status": "active", "period": "monthly"},
     )
@@ -417,7 +416,7 @@ def get_user_info(**kwargs):
 
     renewal_info = None
     if monthly_subscription and monthly_subscription.is_auto_renewing:
-        renewal_info = advantage.get_subscription_auto_renewal(
+        renewal_info = g.api.get_subscription_auto_renewal(
             monthly_subscription.id
         )
 
@@ -429,94 +428,59 @@ def get_user_info(**kwargs):
     return build_get_user_info(user_summary)
 
 
-@advantage_checks(check_list=["is_maintenance"])
-def advantage_shop_view(**kwargs):
-    api_url = kwargs.get("api_url")
-    stripe_publishable_key = kwargs.get("stripe_publishable_key")
-    token = kwargs.get("token")
+@advantage_decorator(response="html")
+def advantage_shop_view():
+    g.api.set_convert_response(True)
 
     account = None
-    previous_purchase_ids = {"monthly": "", "yearly": ""}
-    advantage = UAContractsAPI(
-        session, None, api_url=api_url, is_for_view=True
-    )
-
     if user_info(flask.session):
-        advantage = UAContractsAPI(
-            session, token, api_url=api_url, is_for_view=True
-        )
-
-        if flask.session.get("guest_authentication_token"):
-            flask.session.pop("guest_authentication_token")
-
         try:
-            account = advantage.get_purchase_account()
+            account = g.api.get_purchase_account()
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
-            # One will need to be created later, but this is an expected
-            # condition.
-
+            # One will need to be created later; expected condition.
             pass
 
-        if account:
-            subscriptions = advantage.get_account_subscriptions(
-                account_id=account["id"],
-                marketplace="canonical-ua",
-                filters={"status": "active"},
-            )
+    all_subscriptions = []
+    if account:
+        all_subscriptions = g.api.get_account_subscriptions(
+            account_id=account.id,
+            marketplace="canonical-ua",
+        )
 
-            for subscription in subscriptions:
-                period = subscription["subscription"]["period"]
-                previous_purchase_ids[period] = subscription["lastPurchaseID"]
+    current_subscriptions = [
+        subscription
+        for subscription in all_subscriptions
+        if subscription.status in ["active", "locked"]
+    ]
 
-    listings = advantage.get_product_listings("canonical-ua")
-    product_listings = listings.get("productListings")
-    if not product_listings:
-        # For the time being, no product listings means the shop has not been
-        # activated, so fallback to shopify. This should become an error later.
-        return flask.redirect("https://buy.ubuntu.com/")
+    listings = g.api.get_product_listings("canonical-ua")
 
-    products = {product["id"]: product for product in listings["products"]}
-
-    website_listing = []
-    for listing in product_listings:
-        if "price" not in listing:
-            continue
-
-        listing["product"] = products[listing["productID"]]
-
-        website_listing.append(listing)
+    previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
+    user_listings = set_listings_trial_status(listings, all_subscriptions)
 
     return flask.render_template(
         "advantage/subscribe/index.html",
-        stripe_publishable_key=stripe_publishable_key,
         account=account,
         previous_purchase_ids=previous_purchase_ids,
-        product_listings=website_listing,
+        product_listings=user_listings,
     )
 
 
-@advantage_checks(check_list=["is_maintenance", "view_need_user"])
-def advantage_account_users_view(**kwargs):
+@advantage_decorator(permission="user", response="html")
+def advantage_account_users_view():
     return flask.render_template("advantage/users/index.html")
 
 
-@advantage_checks(check_list=["is_maintenance", "view_need_user"])
-def payment_methods_view(**kwargs):
-    stripe_publishable_key = kwargs["stripe_publishable_key"]
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
+@advantage_decorator(permission="user", response="html")
+def payment_methods_view():
     account = None
     default_payment_method = None
     account_id = ""
     pending_purchase_id = ""
 
-    advantage = UAContractsAPI(
-        session, token, api_url=api_url, is_for_view=True
-    )
-
     try:
-        account = advantage.get_purchase_account()
+        account = g.api.get_purchase_account()
     except UAContractsUserHasNoAccount:
         # No Stripe account
 
@@ -525,7 +489,7 @@ def payment_methods_view(**kwargs):
     if account:
         account_id = account["id"]
 
-        subscriptions = advantage.get_account_subscriptions(
+        subscriptions = g.api.get_account_subscriptions(
             account_id=account_id,
             marketplace="canonical-ua",
             filters={"status": "locked"},
@@ -537,7 +501,7 @@ def payment_methods_view(**kwargs):
                 break
 
         try:
-            account_info = advantage.get_customer_info(account_id)
+            account_info = g.api.get_customer_info(account_id)
             customer_info = account_info["customerInfo"]
             default_payment_method = customer_info.get("defaultPaymentMethod")
         except UAContractsUserHasNoAccount:
@@ -547,14 +511,13 @@ def payment_methods_view(**kwargs):
 
     return flask.render_template(
         "account/payment-methods/index.html",
-        stripe_publishable_key=stripe_publishable_key,
         default_payment_method=default_payment_method,
         pending_purchase_id=pending_purchase_id,
         account_id=account_id,
     )
 
 
-@advantage_checks(check_list=["is_maintenance", "view_need_guest"])
+@advantage_decorator(response="html")
 @use_kwargs({"email": String()}, location="query")
 def advantage_thanks_view(**kwargs):
     return flask.render_template(
@@ -563,25 +526,19 @@ def advantage_thanks_view(**kwargs):
     )
 
 
-@advantage_checks(check_list=["need_user_or_guest"])
+@advantage_decorator(permission="user_or_guest", response="json")
 @use_kwargs(post_advantage_subscriptions, location="json")
 def post_advantage_subscriptions(preview, **kwargs):
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
-    token_type = kwargs.get("token_type")
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
     period = kwargs.get("period")
     products = kwargs.get("products")
     resizing = kwargs.get("resizing", False)
-
-    advantage = UAContractsAPI(
-        session, token, token_type=token_type, api_url=api_url
-    )
+    trailling = kwargs.get("trailling", False)
 
     current_subscription = {}
     if user_info(flask.session):
-        subscriptions = advantage.get_account_subscriptions(
+        subscriptions = g.api.get_account_subscriptions(
             account_id=account_id,
             marketplace="canonical-ua",
             filters={"status": "active"},
@@ -622,13 +579,16 @@ def post_advantage_subscriptions(preview, **kwargs):
         "previousPurchaseID": previous_purchase_id,
     }
 
+    if trailling:
+        purchase_request["inTrial"] = True
+
     try:
         if not preview:
-            purchase = advantage.purchase_from_marketplace(
+            purchase = g.api.purchase_from_marketplace(
                 marketplace="canonical-ua", purchase_request=purchase_request
             )
         else:
-            purchase = advantage.preview_purchase_from_marketplace(
+            purchase = g.api.preview_purchase_from_marketplace(
                 marketplace="canonical-ua", purchase_request=purchase_request
             )
     except CannotCancelLastContractError as error:
@@ -637,18 +597,14 @@ def post_advantage_subscriptions(preview, **kwargs):
     return flask.jsonify(purchase), 200
 
 
-@advantage_checks(check_list=["need_user"])
+@advantage_decorator(permission="user", response="json")
 @use_kwargs(cancel_advantage_subscriptions, location="json")
 def cancel_advantage_subscriptions(**kwargs):
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
     product_listing_id = kwargs.get("product_listing_id")
 
-    advantage = UAContractsAPI(session, token, api_url=api_url)
-
-    monthly_subscriptions = advantage.get_account_subscriptions(
+    monthly_subscriptions = g.api.get_account_subscriptions(
         account_id=account_id,
         marketplace="canonical-ua",
         filters={"status": "active", "period": "monthly"},
@@ -673,11 +629,11 @@ def cancel_advantage_subscriptions(**kwargs):
     }
 
     try:
-        purchase = advantage.purchase_from_marketplace(
+        purchase = g.api.purchase_from_marketplace(
             marketplace="canonical-ua", purchase_request=purchase_request
         )
     except CannotCancelLastContractError:
-        advantage.cancel_subscription(
+        g.api.cancel_subscription(
             subscription_id=monthly_subscription["subscription"]["id"]
         )
 
@@ -689,12 +645,9 @@ def cancel_advantage_subscriptions(**kwargs):
     return flask.jsonify(purchase), 200
 
 
-@advantage_checks(check_list=["need_user_or_guest"])
+@advantage_decorator(permission="user_or_guest", response="json")
 @use_kwargs(post_anonymised_customer_info, location="json")
 def post_anonymised_customer_info(**kwargs):
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
-    token_type = kwargs.get("token_type")
     account_id = kwargs.get("account_id")
     name = kwargs.get("name")
     address = kwargs.get("address")
@@ -706,56 +659,43 @@ def post_anonymised_customer_info(**kwargs):
         if tax_id["value"] == "":
             tax_id["delete"] = True
 
-    advantage = UAContractsAPI(
-        session, token, token_type=token_type, api_url=api_url
-    )
-
-    return advantage.put_anonymous_customer_info(
-        account_id, name, address, tax_id
-    )
+    return g.api.put_anonymous_customer_info(account_id, name, address, tax_id)
 
 
-@advantage_checks(check_list=["need_user"])
+@advantage_decorator(permission="user", response="json")
 @use_kwargs(post_payment_methods, location="json")
 def post_payment_methods(**kwargs):
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
     account_id = kwargs.get("account_id")
     payment_method_id = kwargs.get("payment_method_id")
 
-    advantage = UAContractsAPI(session, token, api_url=api_url)
-
     try:
-        response = advantage.put_payment_method(account_id, payment_method_id)
+        response = g.api.put_payment_method(account_id, payment_method_id)
     except UAContractsUserHasNoAccount:
         name = flask.session["openid"]["fullname"]
 
-        response = advantage.put_customer_info(
+        response = g.api.put_customer_info(
             account_id, payment_method_id, None, name, None
         )
 
     return response
 
 
-@advantage_checks(check_list=["need_user"])
+@advantage_decorator(permission="user", response="json")
 @use_kwargs({"should_auto_renew": Boolean()}, location="json")
 def post_auto_renewal_settings(**kwargs):
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
     should_auto_renew = kwargs.get("should_auto_renew", False)
 
-    advantage = UAContractsAPI(session, token, api_url=api_url)
-    accounts = advantage.get_accounts()
+    accounts = g.api.get_accounts()
 
     for account in accounts:
-        monthly_subscriptions = advantage.get_account_subscriptions(
+        monthly_subscriptions = g.api.get_account_subscriptions(
             account_id=account["id"],
             marketplace="canonical-ua",
             filters={"status": "active", "period": "monthly"},
         )
 
         for subscription in monthly_subscriptions:
-            advantage.post_subscription_auto_renewal(
+            g.api.post_subscription_auto_renewal(
                 subscription_id=subscription["subscription"]["id"],
                 should_auto_renew=should_auto_renew,
             )
@@ -766,16 +706,12 @@ def post_auto_renewal_settings(**kwargs):
     )
 
 
-@advantage_checks(check_list=["need_user"])
+@advantage_decorator(permission="user", response="json")
 def get_customer_info(account_id, **kwargs):
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
-
     response = {"success": False, "data": {}}
 
     try:
-        advantage = UAContractsAPI(session, token, api_url=api_url)
-        response["data"] = advantage.get_customer_info(account_id)
+        response["data"] = g.api.get_customer_info(account_id)
         response["success"] = True
     except HTTPError as error:
         if error.response.status_code == 404:
@@ -788,12 +724,9 @@ def get_customer_info(account_id, **kwargs):
     return response
 
 
-@advantage_checks(check_list=["need_user_or_guest"])
+@advantage_decorator(permission="user_or_guest", response="json")
 @use_kwargs(post_customer_info, location="json")
 def post_customer_info(**kwargs):
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
-    token_type = kwargs.get("token_type")
     payment_method_id = kwargs.get("payment_method_id")
     account_id = kwargs.get("account_id")
     address = kwargs.get("address")
@@ -806,42 +739,22 @@ def post_customer_info(**kwargs):
         if tax_id["value"] == "":
             tax_id["delete"] = True
 
-    advantage = UAContractsAPI(
-        session, token, token_type=token_type, api_url=api_url
-    )
-
-    return advantage.put_customer_info(
+    return g.api.put_customer_info(
         account_id, payment_method_id, address, name, tax_id
     )
 
 
-@advantage_checks(check_list=["need_user_or_guest"])
-def post_stripe_invoice_id(tx_type, tx_id, invoice_id, **kwargs):
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
-    token_type = kwargs.get("token_type")
-
-    advantage = UAContractsAPI(
-        session, token, token_type=token_type, api_url=api_url
-    )
-
-    return advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
+@advantage_decorator(permission="user_or_guest", response="json")
+def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
+    return g.api.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
 
 
-@advantage_checks(check_list=["need_user_or_guest"])
-def get_purchase(purchase_id, **kwargs):
-    api_url = kwargs.get("api_url")
-    token = kwargs.get("token")
-    token_type = kwargs.get("token_type")
-
-    advantage = UAContractsAPI(
-        session, token, token_type=token_type, api_url=api_url
-    )
-
-    return advantage.get_purchase(purchase_id)
+@advantage_decorator(permission="user_or_guest", response="json")
+def get_purchase(purchase_id):
+    return g.api.get_purchase(purchase_id)
 
 
-@advantage_checks()
+@advantage_decorator()
 @use_kwargs(ensure_purchase_account, location="json")
 def ensure_purchase_account(**kwargs):
     """
@@ -851,20 +764,13 @@ def ensure_purchase_account(**kwargs):
     contract API.
     """
 
-    api_url = kwargs.get("api_url")
     email = kwargs.get("email")
     account_name = kwargs.get("account_name")
     payment_method_id = kwargs.get("payment_method_id")
     country = kwargs.get("country")
 
-    token = None
-    if user_info(flask.session):
-        token = flask.session["authentication_token"]
-
-    advantage = UAContractsAPI(session, token, api_url=api_url)
-
     try:
-        account = advantage.ensure_purchase_account(
+        account = g.api.ensure_purchase_account(
             email=email,
             account_name=account_name,
             payment_method_id=payment_method_id,
@@ -888,28 +794,39 @@ def ensure_purchase_account(**kwargs):
     return flask.jsonify(account), 200
 
 
-@advantage_checks(check_list=["need_user"])
-def get_renewal(renewal_id, **kwargs):
-    token = kwargs.get("token")
-    api_url = kwargs.get("api_url")
+@advantage_decorator(permission="user", response="json")
+def cancel_trial(account_id):
+    g.api.set_convert_response(True)
 
-    advantage = UAContractsAPI(session, token, api_url=api_url)
+    subscriptions: List[Subscription] = g.api.get_account_subscriptions(
+        account_id=account_id, marketplace="canonical-ua"
+    )
 
-    return advantage.get_renewal(renewal_id)
+    subscription_to_cancel = None
+    for subscription in subscriptions:
+        if subscription.started_with_trial and subscription.status == "active":
+            subscription_to_cancel = subscription
+
+            break
+
+    if not subscription_to_cancel:
+        return flask.jsonify({"errors": "no subscription in trial"}), 500
+
+    return g.api.cancel_subscription(subscription_id=subscription_to_cancel.id)
 
 
-@advantage_checks(check_list=["need_user"])
-def accept_renewal(renewal_id, **kwargs):
-    token = kwargs.get("token")
-    api_url = kwargs.get("api_url")
-
-    advantage = UAContractsAPI(session, token, api_url=api_url)
-
-    return advantage.accept_renewal(renewal_id)
+@advantage_decorator(permission="user", response="json")
+def get_renewal(renewal_id):
+    return g.api.get_renewal(renewal_id)
 
 
-@advantage_checks(check_list=["is_maintenance", "view_need_user"])
-def account_view(**kwargs):
+@advantage_decorator(permission="user", response="json")
+def accept_renewal(renewal_id):
+    return g.api.accept_renewal(renewal_id)
+
+
+@advantage_decorator(permission="user", response="html")
+def account_view():
     email = flask.session["openid"]["email"]
 
     return flask.render_template(
@@ -918,24 +835,18 @@ def account_view(**kwargs):
     )
 
 
-@advantage_checks(check_list=["is_maintenance", "view_need_user"])
+@advantage_decorator(permission="user", response="html")
 @use_kwargs(invoice_view, location="query")
 def invoices_view(**kwargs):
-    token = kwargs.get("token")
-    api_url = kwargs.get("api_url")
     email = kwargs.get("email", "").strip()
     marketplace = kwargs.get("marketplace")
 
-    advantage = UAContractsAPI(
-        session, token, api_url=api_url, is_for_view=True
-    )
-
-    accounts = advantage.get_accounts(email=email)
+    accounts = g.api.get_accounts(email=email)
 
     total_payments = []
     filters = {"marketplace": marketplace} if marketplace else None
     for account in accounts:
-        raw_payments = advantage.get_account_purchases(
+        raw_payments = g.api.get_account_purchases(
             account_id=account["id"],
             filters=filters,
         )
@@ -968,7 +879,7 @@ def invoices_view(**kwargs):
 
             download_link = ""
             if raw_payment.get("invoice"):
-                download_link = f"invoices/download/{period}/{payment_id}"
+                download_link = f"invoices/download/{payment_id}"
 
             total_payments.append(
                 {
@@ -991,22 +902,15 @@ def invoices_view(**kwargs):
     )
 
 
-@advantage_checks(check_list=["is_maintenance", "view_need_user"])
-def download_invoice(purchase_id, **kwargs):
-    token = kwargs.get("token")
-    api_url = kwargs.get("api_url")
-
-    advantage = UAContractsAPI(
-        session, token, api_url=api_url, is_for_view=True
-    )
-
-    purchase = advantage.get_purchase(purchase_id)
+@advantage_decorator(permission="user", response="html")
+def download_invoice(purchase_id):
+    purchase = g.api.get_purchase(purchase_id)
     download_link = purchase["invoice"]["url"]
 
     return flask.redirect(download_link)
 
 
-def _prepare_monthly_info(monthly_info, subscription, advantage):
+def _prepare_monthly_info(monthly_info, subscription):
     purchased_products = subscription.get("purchasedProductListings")
     subscription_info = subscription.get("subscription")
     subscription_id = subscription_info.get("id")
@@ -1018,7 +922,7 @@ def _prepare_monthly_info(monthly_info, subscription, advantage):
     monthly_info["is_auto_renewal_enabled"] = is_renewing
 
     if is_renewing:
-        renewal_info = advantage.get_subscription_auto_renewal(subscription_id)
+        renewal_info = g.api.get_subscription_auto_renewal(subscription_id)
         last_renewal = parse(renewal_info["subscriptionStartOfCycle"])
         next_renewal = parse(renewal_info["subscriptionEndOfCycle"])
         total = renewal_info["total"] / 100
@@ -1031,7 +935,7 @@ def _prepare_monthly_info(monthly_info, subscription, advantage):
         }
 
 
-def _make_renewal(advantage, contract_info):
+def _make_renewal(contract_info):
     """Return the renewal as present in the given info, or None."""
     renewals = contract_info.get("renewals")
     if not renewals:
@@ -1052,7 +956,7 @@ def _make_renewal(advantage, contract_info):
     # which is information only available in the fuller
     # renewal object get_renewal gives us.
     if renewal["status"] == "processing":
-        renewal = advantage.get_renewal(renewal["id"])
+        renewal = g.api.get_renewal(renewal["id"])
 
     renewal["renewable"] = False
 

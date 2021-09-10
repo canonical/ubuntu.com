@@ -36,6 +36,7 @@ post_advantage_subscriptions = {
     "previous_purchase_id": String(required=True),
     "products": List(Nested(ProductSchema), required=True),
     "resizing": Boolean(),
+    "trialling": Boolean(),
 }
 
 cancel_advantage_subscriptions = {

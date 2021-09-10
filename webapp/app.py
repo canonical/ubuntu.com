@@ -22,6 +22,7 @@ from canonicalwebteam.discourse import (
 )
 
 # Local
+from webapp.advantage.context import get_stripe_publishable_key
 from webapp.advantage.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
@@ -97,6 +98,7 @@ from webapp.advantage.views import (
     get_last_purchase_ids,
     get_contract_token,
     get_user_info,
+    cancel_trial,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -185,6 +187,7 @@ def bad_request_error(error):
 def ua_contracts_validation_error(error):
     sentry.captureException(
         extra={
+            "user_info": user_info(flask.session),
             "request_url": error.request.url,
             "request_body": error.request.json,
             "response_body": error.response.messages,
@@ -198,6 +201,7 @@ def ua_contracts_validation_error(error):
 def ua_contracts_api_error(error):
     sentry.captureException(
         extra={
+            "user_info": user_info(flask.session),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
@@ -218,6 +222,7 @@ def ua_contracts_api_error(error):
 def ua_contracts_api_error_view(error):
     sentry.captureException(
         extra={
+            "user_info": user_info(flask.session),
             "request_url": error.request.url,
             "request_headers": error.request.headers,
             "response_headers": error.response.headers,
@@ -251,6 +256,7 @@ def context():
         "months_list": months_list,
         "get_navigation": get_navigation,
         "get_test_backend": flask.request.args.get("test_backend", ""),
+        "get_stripe_publishable_key": get_stripe_publishable_key(),
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),
@@ -299,7 +305,7 @@ app.add_url_rule(
 )
 app.add_url_rule("/account/invoices", view_func=invoices_view)
 app.add_url_rule(
-    "/account/invoices/download/<period>/<purchase_id>",
+    "/account/invoices/download/<purchase_id>",
     view_func=download_invoice,
 )
 app.add_url_rule(
@@ -353,7 +359,11 @@ app.add_url_rule(
 app.add_url_rule(
     "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
 )
-
+app.add_url_rule(
+    "/advantage/trial/<subscription_id>",
+    view_func=cancel_trial,
+    methods=["DELETE"],
+)
 app.add_url_rule(
     "/advantage/customer-info/<account_id>",
     view_func=get_customer_info,
