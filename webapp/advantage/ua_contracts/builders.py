@@ -4,7 +4,6 @@ from webapp.advantage.ua_contracts.helpers import (
     group_items_by_listing,
     get_items_aggregated_values,
     get_machine_type,
-    is_trialling_user_subscription,
     get_user_subscription_statuses,
     get_price_info,
     get_subscription_by_period,
@@ -31,10 +30,11 @@ def build_initial_user_subscriptions(
     user_summary: List, listings: Dict[str, Listing]
 ) -> List:
     free_groups = build_free_item_groups(user_summary)
+    trial_groups = build_trial_item_groups(user_summary, listings)
     shop_groups = build_shop_item_groups(user_summary, listings)
     legacy_groups = build_legacy_item_groups(user_summary)
 
-    return free_groups + shop_groups + legacy_groups
+    return free_groups + trial_groups + shop_groups + legacy_groups
 
 
 def build_free_item_groups(user_summary: List) -> List:
@@ -59,6 +59,32 @@ def build_free_item_groups(user_summary: List) -> List:
     return free_item_groups
 
 
+def build_trial_item_groups(
+    user_summary: List, listings: Dict[str, Listing]
+) -> List:
+    trial_item_groups = []
+    for user_details in user_summary:
+        contracts: List[Contract] = user_details.get("contracts")
+
+        for contract in contracts:
+            for item in contract.items:
+                if item.reason == "trial_started":
+                    listing = listings[item.product_listing_id]
+                    trial_item_groups.append(
+                        {
+                            "account": user_details.get("account"),
+                            "contract": contract,
+                            "items": [item],
+                            "listing": listing,
+                            "marketplace": listing.marketplace,
+                            "subscriptions": user_details.get("subscriptions"),
+                            "type": "trial",
+                        }
+                    )
+
+    return trial_item_groups
+
+
 def build_shop_item_groups(
     user_summary: List, listings: Dict[str, Listing]
 ) -> List:
@@ -79,7 +105,6 @@ def build_shop_item_groups(
             for listing_id in raw_shop_groups:
                 listing: Listing = listings[listing_id]
                 items: List[ContractItem] = raw_shop_groups[listing_id]
-                is_trialled = is_trialling_user_subscription(items=items)
 
                 shop_item_groups.append(
                     {
@@ -91,7 +116,7 @@ def build_shop_item_groups(
                             listing.marketplace if listing else None
                         ),
                         "subscriptions": user_details.get("subscriptions"),
-                        "type": listing.period if not is_trialled else "trial",
+                        "type": listing.period,
                     }
                 )
 

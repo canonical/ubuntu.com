@@ -23,6 +23,9 @@ def group_items_by_listing(
         if not listing_id:
             continue
 
+        if item.reason == "trial_started":
+            continue
+
         item_groups[listing_id] = item_groups.get(listing_id, [])
         item_groups[listing_id].append(item)
 
