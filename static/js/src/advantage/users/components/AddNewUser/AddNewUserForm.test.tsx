@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, within, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import AddNewUserForm from "./AddNewUserForm";
@@ -35,7 +35,6 @@ it("calls handleClose modal handler after successful submission", async () => {
       handleSubmit={mockHandleSubmit}
     />
   );
-
   userEvent.type(
     screen.getByLabelText("Users’ email address"),
     "angela@ecorp.com"
@@ -53,10 +52,29 @@ it("calls handleClose modal handler after successful submission", async () => {
       })
     )
   );
+  expect(mockHandleSubmit).toHaveBeenCalledTimes(1);
   expect(mockHandleClose).toHaveBeenCalled();
 });
 
-it("displays an error message on submission failure", async () => {
+it("submits the form on pressing the Enter key", async () => {
+  const mockHandleSubmit = jest.fn();
+  const mockHandleClose = jest.fn();
+
+  render(
+    <AddNewUserForm
+      handleClose={mockHandleClose}
+      handleSubmit={mockHandleSubmit}
+    />
+  );
+  userEvent.type(
+    screen.getByLabelText("Users’ email address"),
+    "angela@ecorp.com"
+  );
+  userEvent.keyboard("{enter}");
+  await waitFor(() => expect(mockHandleSubmit).toHaveBeenCalledTimes(1));
+});
+
+it("displays an alert message on submission failure", async () => {
   const mockHandleSubmit = () =>
     Promise.reject(new Error("Failed to add user"));
   const mockHandleClose = jest.fn();
@@ -76,8 +94,10 @@ it("displays an error message on submission failure", async () => {
   userEvent.click(screen.getByLabelText("Send invite email"));
   userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
-  await waitFor(() =>
-    expect(screen.getByText(/An unknown error has occurred./)).toBeVisible()
+  await waitFor(() => screen.getByRole("alert"));
+
+  expect(screen.getByRole("alert")).toHaveTextContent(
+    /An unknown error has occurred./
   );
   expect(mockHandleClose).not.toHaveBeenCalled();
 });
