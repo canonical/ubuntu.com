@@ -2,7 +2,7 @@
 from datetime import datetime, timedelta, timezone
 
 # Packages
-from typing import Optional
+from typing import Optional, List
 
 from dateutil.parser import parse
 import flask
@@ -492,6 +492,7 @@ def post_advantage_subscriptions(preview, **kwargs):
     period = kwargs.get("period")
     products = kwargs.get("products")
     resizing = kwargs.get("resizing", False)
+    trailling = kwargs.get("trailling", False)
 
     current_subscription = {}
     if user_info(flask.session):
@@ -535,6 +536,9 @@ def post_advantage_subscriptions(preview, **kwargs):
         "purchaseItems": purchase_items,
         "previousPurchaseID": previous_purchase_id,
     }
+
+    if trailling:
+        purchase_request["inTrial"] = True
 
     try:
         if not preview:
@@ -746,6 +750,27 @@ def ensure_purchase_account(**kwargs):
         flask.session["guest_authentication_token"] = token
 
     return flask.jsonify(account), 200
+
+
+@advantage_decorator(permission="user", response="json")
+def cancel_trial(account_id):
+    g.api.set_convert_response(True)
+
+    subscriptions: List[Subscription] = g.api.get_account_subscriptions(
+        account_id=account_id, marketplace="canonical-ua"
+    )
+
+    subscription_to_cancel = None
+    for subscription in subscriptions:
+        if subscription.started_with_trial and subscription.status == "active":
+            subscription_to_cancel = subscription
+
+            break
+
+    if not subscription_to_cancel:
+        return flask.jsonify({"errors": "no subscription in trial"}), 500
+
+    return g.api.cancel_subscription(subscription_id=subscription_to_cancel.id)
 
 
 @advantage_decorator(permission="user", response="json")
