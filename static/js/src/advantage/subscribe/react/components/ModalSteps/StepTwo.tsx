@@ -36,13 +36,13 @@ type StepOneProps = {
 function StepOne({ setStep, error, setError }: StepOneProps) {
   const { values } = useFormikContext<FormValues>();
   const [areTermsChecked, setTermsChecked] = useState(false);
-  const [isUsingFreeTrial, setIsUsingFreeTrial] = useState(true);
   const {
     data: userInfo,
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
   const { isLoading: isPreviewLoading } = usePreview();
   const { isLoading: isProductLoading, product, quantity } = useProduct();
+  const [isUsingFreeTrial, setIsUsingFreeTrial] = useState(product?.canBeTrialled);
 
   const purchaseMutation = usePurchase();
   const freeTrialMutation = useFreeTrial();
@@ -226,7 +226,7 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
       >
         <>
           <Summary />
-          {!product?.canBeTrialled && (
+          {product?.canBeTrialled && (
             <FreeTrialRadio
               isUsingFreeTrial={isUsingFreeTrial}
               setIsUsingFreeTrial={setIsUsingFreeTrial}
