@@ -147,7 +147,8 @@ def advantage_view(**kwargs):
 
         for contract in account["contracts"]:
             contract_info = contract["contractInfo"]
-            if not contract_info.get("items"):
+            items = contract_info.get("items")
+            if not items:
                 # TODO(frankban): clean up existing contracts with no items in
                 # production.
                 continue
@@ -218,6 +219,42 @@ def advantage_view(**kwargs):
             contract["machineCount"] = 0
             contract["rowMachineCount"] = 0
 
+            has_trial = False
+            trial_contract_item = None
+            for item in items:
+                reason = item.get("reason")
+                if reason == "trial_started":
+                    has_trial = True
+                    trial_contract_item = item
+
+                    break
+
+            is_trialled = has_trial and date_difference.days > 0
+            if is_trialled:
+                trial_contract = contract.copy()
+                trial_contract["is_detached"] = True
+                trial_contract["is_trialled"] = True
+                trial_contract["machineCount"] = trial_contract_item["value"]
+                trial_contract["rowMachineCount"] = trial_contract_item[
+                    "value"
+                ]
+
+                if trial_contract["contractInfo"]["id"] == open_subscription:
+                    enterprise_contract.insert(0, trial_contract)
+                elif (
+                    trial_contract["contractInfo"]["id"] == new_subscription_id
+                ):
+                    enterprise_contract.insert(0, trial_contract)
+                else:
+                    enterprise_contract.append(trial_contract)
+
+                total_enterprise_contracts += 1
+
+            if is_trialled and len(items) == 1:
+                continue
+
+            contract["is_trialled"] = False
+
             allowances = contract_info.get("allowances")
             if (
                 allowances
@@ -225,6 +262,11 @@ def advantage_view(**kwargs):
                 and allowances[0]["metric"] == "units"
             ):
                 contract["rowMachineCount"] = allowances[0]["value"]
+                if trial_contract_item:
+                    contract["rowMachineCount"] = (
+                        contract["rowMachineCount"]
+                        - trial_contract_item["value"]
+                    )
 
             if product_name in yearly_purchased_products:
                 purchased_product = yearly_purchased_products[product_name]
