@@ -812,7 +812,7 @@ def invoices_view(**kwargs):
 
             download_link = ""
             if raw_payment.get("invoice"):
-                download_link = f"invoices/download/{period}/{payment_id}"
+                download_link = f"invoices/download/{payment_id}"
 
             total_payments.append(
                 {

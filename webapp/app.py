@@ -304,7 +304,7 @@ app.add_url_rule(
 )
 app.add_url_rule("/account/invoices", view_func=invoices_view)
 app.add_url_rule(
-    "/account/invoices/download/<period>/<purchase_id>",
+    "/account/invoices/download/<purchase_id>",
     view_func=download_invoice,
 )
 app.add_url_rule(
