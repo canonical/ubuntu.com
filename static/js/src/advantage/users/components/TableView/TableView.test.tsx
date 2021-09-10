@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { User } from "../../types";
 import TableView from "./TableView";
@@ -8,7 +9,7 @@ it("displays user details in a correct format", () => {
   const testUser: User = {
     id: "1",
     email: "user@ecorp.com",
-    role: "Admin",
+    role: "admin",
     createdAt: "2020-01-10T10:00:00Z",
     lastLoginAt: "2021-02-15T13:45:00Z",
   };
@@ -28,8 +29,8 @@ it("allows to edit only a single user at a time", async () => {
     lastLoginAt: "2021-06-10T09:05:00Z",
   };
   const users: User[] = [
-    { ...mockUserBase, id: "1", email: "karen@ecorp.com", role: "Billing" },
-    { ...mockUserBase, id: "3", email: "angela@ecorp.com", role: "Technical" },
+    { ...mockUserBase, id: "1", email: "karen@ecorp.com", role: "billing" },
+    { ...mockUserBase, id: "3", email: "angela@ecorp.com", role: "technical" },
   ];
 
   render(<TableView users={users} />);
@@ -41,10 +42,10 @@ it("allows to edit only a single user at a time", async () => {
     .getAllByRole("button", { name: /Edit/ })
     .forEach((button) => expect(button).toBeEnabled());
 
-  screen.getByLabelText(EDIT_KAREN).click();
+  userEvent.click(screen.getByLabelText(EDIT_KAREN));
   expect(screen.getByLabelText(EDIT_ANGELA)).toBeDisabled();
 
-  screen.getByRole("button", { name: "Cancel" }).click();
+  userEvent.click(screen.getByRole("button", { name: "Cancel" }));
 
   await waitFor(() => expect(screen.getByLabelText(EDIT_ANGELA)).toBeEnabled());
   expect(screen.getByLabelText(EDIT_KAREN)).toBeEnabled();
