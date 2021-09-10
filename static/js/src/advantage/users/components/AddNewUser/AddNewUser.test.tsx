@@ -1,11 +1,12 @@
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import AddNewUser from "./AddNewUser";
 
 it("opens 'Add new user' modal on click", () => {
   render(<AddNewUser />);
-  screen.getByText("Add new user").click();
+  userEvent.click(screen.getByText("Add new user"));
 
   const modal = screen.getByLabelText("Add a new user to this organisation");
 
