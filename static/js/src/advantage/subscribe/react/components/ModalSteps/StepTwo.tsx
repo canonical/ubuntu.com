@@ -5,6 +5,7 @@ import {
   ActionButton,
   CheckboxInput,
 } from "@canonical/react-components";
+import { useFormikContext } from "formik";
 import * as Sentry from "@sentry/react";
 
 import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
@@ -12,13 +13,17 @@ import PaymentMethodSummary from "../PaymentMethodSummary";
 import useProduct from "../../APICalls/useProduct";
 import usePreview from "../../APICalls/usePreview";
 import usePurchase from "../../APICalls/usePurchase";
+import useFreeTrial from "../../APICalls/useFreeTrial";
 import usePendingPurchase from "../../APICalls/usePendingPurchase";
 import ModalHeader from "../ModalParts/ModalHeader";
 import ModalBody from "../ModalParts/ModalBody";
 import ModalFooter from "../ModalParts/ModalFooter";
 import Summary from "../../components/Summary";
+import FreeTrialRadio from "../../components/FreeTrialRadio";
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 import { getSessionData } from "../../../../../utils/getSessionData";
+
+import { FormValues } from "../../utils/utils";
 
 type StepOneProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -28,7 +33,9 @@ type StepOneProps = {
 };
 
 function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
+  const { values } = useFormikContext<FormValues>();
   const [areTermsChecked, setTermsChecked] = useState(false);
+  const [isUsingFreeTrial, setIsUsingFreeTrial] = useState(true);
   const {
     data: userInfo,
     isLoading: isUserInfoLoading,
@@ -37,6 +44,7 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
   const { isLoading: isProductLoading, product, quantity } = useProduct();
 
   const purchaseMutation = usePurchase();
+  const freeTrialMutation = useFreeTrial();
 
   const {
     data: pendingPurchase,
@@ -169,6 +177,44 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
     });
   };
 
+  const onStartTrialClick = () => {
+    freeTrialMutation.mutate(values, {
+      onSuccess: () => {
+        // The state of the product selector is stored in the local storage
+        // if a purchase is successful we empty it so the customer will see
+        // the default values pre-selected instead of what they just bought.
+        localStorage.removeItem("ua-subscribe-state");
+
+        //redirect
+        if (window.isGuest) {
+          location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
+            values.email ?? ""
+          )}`;
+        } else {
+          location.pathname = "/advantage";
+        }
+      },
+      onError: (error) => {
+        if (
+          error instanceof Error &&
+          error.message.includes("account already had or has access to product")
+        ) {
+          setError(<>You already have trialled this product</>);
+        } else {
+          Sentry.captureException(error);
+          setError(
+            <>
+              Sorry, there was an unknown error with the free trial. Check the
+              details and try again. Contact{" "}
+              <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
+              problem persists.
+            </>
+          );
+        }
+      },
+    });
+  };
+
   return (
     <>
       <ModalHeader title="Your details" />
@@ -179,6 +225,12 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
       >
         <>
           <Summary />
+          {!product?.canBeTrialled && (
+            <FreeTrialRadio
+              isUsingFreeTrial={isUsingFreeTrial}
+              setIsUsingFreeTrial={setIsUsingFreeTrial}
+            />
+          )}
           <PaymentMethodSummary setStep={setStep} />
           <Row className="u-no-padding">
             <Col size={12}>
@@ -211,10 +263,14 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
           appearance="positive"
           style={{ textAlign: "center" }}
           disabled={!areTermsChecked}
-          onClick={onPayClick}
-          loading={purchaseMutation.isLoading || isPendingPurchaseLoading}
+          onClick={isUsingFreeTrial ? onStartTrialClick : onPayClick}
+          loading={
+            purchaseMutation.isLoading ||
+            freeTrialMutation.isLoading ||
+            isPendingPurchaseLoading
+          }
         >
-          Pay
+          Buy
         </ActionButton>
       </ModalFooter>
     </>
