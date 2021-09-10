@@ -95,7 +95,9 @@ const UserRole = ({ user, variant }: UserRoleProps) => {
           position: "absolute",
         }}
       >
-        <span>{user.role}</span>
+        <span>
+          {userRoleOptions.find((option) => option.value === user.role)?.label}
+        </span>
       </div>
       <div
         style={{
