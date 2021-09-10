@@ -38,9 +38,6 @@ const TableView = ({ users }: Props) => {
           content: "role",
         },
         {
-          content: "date added",
-        },
-        {
           content: "last sign in",
         },
         {

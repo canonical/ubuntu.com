@@ -10,7 +10,6 @@ it("displays user details in a correct format", () => {
     id: "1",
     email: "user@ecorp.com",
     role: "admin",
-    createdAt: "2020-01-10T10:00:00Z",
     lastLoginAt: "2021-02-15T13:45:00Z",
   };
 
@@ -19,13 +18,11 @@ it("displays user details in a correct format", () => {
   expect(screen.getByText("user@ecorp.com")).toBeInTheDocument();
   expect(screen.getByText("Admin", { ignore: "option" })).toBeInTheDocument();
   expect(screen.getByText("Admin", { selector: "option" })).not.toBeVisible();
-  expect(screen.getByText("10/01/2020")).toBeInTheDocument();
   expect(screen.getByText("15/02/2021")).toBeInTheDocument();
 });
 
 it("allows to edit only a single user at a time", async () => {
   const mockUserBase = {
-    createdAt: "2020-01-10T12:00:00Z",
     lastLoginAt: "2021-06-10T09:05:00Z",
   };
   const users: User[] = [

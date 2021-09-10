@@ -4,7 +4,6 @@ export const mockUser: User = {
   id: "1",
   email: "philip.p@ecorp.com",
   role: "admin",
-  createdAt: "2020-01-10T12:00:00Z",
   lastLoginAt: "2021-06-10T09:05:00Z",
 };
 

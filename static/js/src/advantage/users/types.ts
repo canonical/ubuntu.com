@@ -4,7 +4,6 @@ export type User = {
   id: string;
   email: string;
   role: UserRole;
-  createdAt: string;
   lastLoginAt: string;
 };
 

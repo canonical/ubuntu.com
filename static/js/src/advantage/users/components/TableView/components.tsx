@@ -153,10 +153,6 @@ const getUserRow = ({
         style: tdStyle,
       },
       {
-        content: <FormattedDate dateISO={user.createdAt} />,
-        style: tdStyle,
-      },
-      {
         content: <FormattedDate dateISO={user.lastLoginAt} />,
         style: tdStyle,
       },
