@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import MainTable from "@canonical/react-components/dist/components/MainTable";
 
-import { Users, User } from "../../types";
+import { Users } from "../../types";
 import { getUserRow } from "./components";
 
 export type UserRowVariant = "regular" | "editing" | "disabled";
