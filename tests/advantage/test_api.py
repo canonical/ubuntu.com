@@ -1432,3 +1432,58 @@ class TestGetAccountUsers(unittest.TestCase):
             self.assertIsInstance(item, User)
 
         self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestPutAccountUserRole(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "bad request"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.put_account_user_role(
+                    account_id="aAbBcCdD",
+                    user_role_request={},
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={},
+            )
+        )
+        client = make_client(session)
+
+        response = client.put_account_user_role(
+            account_id="aAbBcCdD",
+            user_role_request={
+                "email": "joe.doe@canonical.com",
+                "role": "admin",
+                "nameHint": "Joe",
+            },
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {
+                "email": "joe.doe@canonical.com",
+                "role": "admin",
+                "nameHint": "Joe",
+            },
+            "method": "put",
+            "params": None,
+            "url": "https://1.2.3.4/v1/accounts/aAbBcCdD/user-role",
+        }
+
+        self.assertEqual(response, {})
+        self.assertEqual(session.request_kwargs, expected_args)
