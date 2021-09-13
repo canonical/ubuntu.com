@@ -8,7 +8,7 @@ import {
 } from "@canonical/react-components";
 import { Formik, Form, Field } from "formik";
 
-import { UserRole } from "../../types";
+import { HandleNewUserSubmit, UserRole } from "../../types";
 import { userRoleOptions } from "../../constants";
 
 interface Values {
@@ -46,7 +46,7 @@ export const AddNewUserForm = ({
   handleSubmit,
 }: {
   handleClose: () => void;
-  handleSubmit: (string: string) => Promise<any>;
+  handleSubmit: HandleNewUserSubmit;
 }) => {
   const [
     formSubmissionError,

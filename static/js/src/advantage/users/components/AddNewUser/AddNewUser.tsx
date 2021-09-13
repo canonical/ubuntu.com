@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import { Button, Modal } from "@canonical/react-components";
 
 import AddNewUserForm from "./AddNewUserForm";
+import { HandleNewUserSubmit } from "../../types";
 
-const AddNewUser = () => {
+type AddNewUserProps = {
+  handleSubmit: HandleNewUserSubmit;
+  onAfterModalOpen?: () => void;
+};
+
+const AddNewUser = ({ handleSubmit, onAfterModalOpen }: AddNewUserProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [hasNewUserSuccessMessage, setHasNewUserSuccessMessage] = useState(
-    false
-  );
   const handleClose = () => setIsModalOpen(false);
-  const handleSubmit = (value: string) => {
-    setHasNewUserSuccessMessage(true);
-    return Promise.resolve(value);
-  };
 
   return (
     <>
@@ -20,7 +19,7 @@ const AddNewUser = () => {
         hasIcon
         onClick={() => {
           setIsModalOpen(true);
-          setHasNewUserSuccessMessage(false);
+          onAfterModalOpen?.();
         }}
         aria-label="Add new user..."
       >
@@ -34,16 +33,6 @@ const AddNewUser = () => {
             handleSubmit={handleSubmit}
           />
         </Modal>
-      ) : null}
-      {hasNewUserSuccessMessage ? (
-        <div className="p-notification--positive">
-          <div className="p-notification__content" aria-atomic="true">
-            <h5 className="p-notification__title">Success</h5>
-            <p className="p-notification__message" role="alert">
-              User added successfully
-            </p>
-          </div>
-        </div>
       ) : null}
     </>
   );

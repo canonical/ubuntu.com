@@ -15,3 +15,5 @@ export type AccountUsersData = {
   organisationName: OrganisationName;
   users: Users;
 };
+
+export type HandleNewUserSubmit = (string: string) => Promise<any>;
