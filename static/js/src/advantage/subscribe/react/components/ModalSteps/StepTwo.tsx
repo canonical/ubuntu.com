@@ -6,6 +6,7 @@ import {
   CheckboxInput,
 } from "@canonical/react-components";
 import { useFormikContext } from "formik";
+
 import * as Sentry from "@sentry/react";
 
 import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
@@ -14,6 +15,7 @@ import useProduct from "../../APICalls/useProduct";
 import usePreview from "../../APICalls/usePreview";
 import usePurchase from "../../APICalls/usePurchase";
 import useFreeTrial from "../../APICalls/useFreeTrial";
+
 import usePendingPurchase from "../../APICalls/usePendingPurchase";
 import ModalHeader from "../ModalParts/ModalHeader";
 import ModalBody from "../ModalParts/ModalBody";
@@ -29,10 +31,9 @@ type StepOneProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   error: React.ReactNode | null;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  closeModal: () => void;
 };
 
-function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
+function StepOne({ setStep, error, setError }: StepOneProps) {
   const { values } = useFormikContext<FormValues>();
   const [areTermsChecked, setTermsChecked] = useState(false);
   const [isUsingFreeTrial, setIsUsingFreeTrial] = useState(true);
@@ -257,7 +258,7 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
         </>
       </ModalBody>
 
-      <ModalFooter closeModal={closeModal}>
+      <ModalFooter>
         <ActionButton
           className="col-small-2 col-medium-2 col-3 u-no-margin"
           appearance="positive"
