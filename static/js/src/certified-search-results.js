@@ -2,8 +2,17 @@
 
 function clearFilters() {
   hideDrawerPageReload();
+
   let objUrl = new URL(window.location);
-  objUrl.search = "";
+  const href = window.location.href;
+  if (href.includes("q=") && !href.includes("q=&")) {
+    const startOfQuery = href.indexOf("q");
+    const endOfQuery = href.indexOf("&");
+    const searchQuery = href.substring(startOfQuery, endOfQuery);
+    objUrl.search = searchQuery;
+  } else {
+    objUrl.search = "";
+  }
   window.location.assign(objUrl);
   return false;
 }
