@@ -16,16 +16,15 @@ export default function initUIControls(store) {
     });
   });
 
-  // Find every "purchase-modal" control (buy button and cancel button)
-  // and make them toggle the display of the purchase modal when clicked
+  // Add close modal function to window object so the React modal can use it
+  window.handleTogglePurchaseModal = () => {
+    store.dispatch(togglePurchaseModal());
+  };
 
-  const purchaseModalToggles = document.querySelectorAll(
-    "[aria-controls='purchase-modal']"
-  );
-  purchaseModalToggles.forEach((toggle) => {
-    toggle.addEventListener("click", (e) => {
-      e.preventDefault();
-      store.dispatch(togglePurchaseModal());
-    });
+  const buyButton = document.querySelector("#buy-now-button");
+
+  buyButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    store.dispatch(togglePurchaseModal());
   });
 }
