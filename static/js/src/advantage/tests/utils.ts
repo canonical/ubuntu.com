@@ -1,15 +1,15 @@
-import { screen } from "@testing-library/react";
+import { screen, MatcherFunction } from "@testing-library/react";
 
-const getTextContentMatcher = (textMatch: string | RegExp) => (
-  content,
+const getTextContentMatcher = (textMatch: string | RegExp): MatcherFunction => (
+  _content,
   node
 ) => {
-  const hasText = (node) =>
-    node.textContent === textMatch || node.textContent.match(textMatch);
+  const hasText = (node: Element | null) =>
+    node?.textContent === textMatch || !!node?.textContent?.match(textMatch);
   const nodeHasText = hasText(node);
-  const childrenDontHaveText = Array.from(node.children).every(
-    (child) => !hasText(child)
-  );
+  const childrenDontHaveText = node?.children
+    ? Array.from(node.children).every((child) => !hasText(child))
+    : true;
 
   return nodeHasText && childrenDontHaveText;
 };
