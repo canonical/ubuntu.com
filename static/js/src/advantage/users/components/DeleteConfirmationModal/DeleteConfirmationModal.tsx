@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "@canonical/react-components";
 
 import { User } from "../../types";
+import { getErrorMessage, SubmissionErrorMessage } from "../../utils";
 
 type DeleteConfirmationModalProps = {
   user: User;
@@ -14,14 +15,17 @@ const DeleteConfirmationModal = ({
   handleConfirmDelete,
   handleClose,
 }: DeleteConfirmationModalProps) => {
-  const [hasError, setHasError] = useState(false);
+  const [
+    errorMessage,
+    setErrorMessage,
+  ] = useState<SubmissionErrorMessage | null>(null);
 
   const onSubmit = async () => {
     try {
       await handleConfirmDelete(user?.id);
       handleClose();
     } catch (error) {
-      setHasError(true);
+      setErrorMessage(getErrorMessage((error as any)?.message));
     }
   };
 
@@ -44,12 +48,12 @@ const DeleteConfirmationModal = ({
         </>
       }
     >
-      {hasError ? (
+      {errorMessage ? (
         <div className="p-notification--negative">
           <div className="p-notification__content" aria-atomic="true">
             <h5 className="p-notification__title">Error</h5>
             <p className="p-notification__message" role="alert">
-              An unknown error has occurred. Please try again later.
+              {errorMessage}
             </p>
           </div>
         </div>
