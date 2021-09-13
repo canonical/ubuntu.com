@@ -17,7 +17,7 @@ export default function initUIControls(store) {
   });
 
   // Add close modal function to window object so the React modal can use it
-  window.handleClosePurchaseModal = () => {
+  window.handleTogglePurchaseModal = () => {
     store.dispatch(togglePurchaseModal());
   };
 

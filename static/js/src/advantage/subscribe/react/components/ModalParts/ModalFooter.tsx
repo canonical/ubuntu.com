@@ -14,7 +14,7 @@ const ModalFooter = ({ children }: ModalFooter) => {
           appearance="neutral"
           aria-controls="purchase-modal"
           style={{ textAlign: "center" }}
-          onClick={window.handleClosePurchaseModal}
+          onClick={window.handleTogglePurchaseModal}
         >
           Cancel
         </ActionButton>
