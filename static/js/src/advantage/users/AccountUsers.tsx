@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Users, OrganisationName } from "./types";
 import Organisation from "./components/Organisation";
@@ -11,6 +11,14 @@ type Props = {
 };
 
 const AccountUsers = ({ organisationName, users }: Props) => {
+  const [hasNewUserSuccessMessage, setHasNewUserSuccessMessage] = useState(
+    false
+  );
+  const handleAddNewUser = (value: string) => {
+    return Promise.resolve(value).then(() => {
+      setHasNewUserSuccessMessage(true);
+    });
+  };
   return (
     <div>
       <div className="p-strip">
@@ -28,9 +36,27 @@ const AccountUsers = ({ organisationName, users }: Props) => {
         </div>
         <div className="row">
           <div className="col-6">
-            <AddNewUser />
+            <AddNewUser
+              handleSubmit={handleAddNewUser}
+              onAfterModalOpen={() => setHasNewUserSuccessMessage(false)}
+            />
           </div>
         </div>
+        {hasNewUserSuccessMessage ? (
+          <div className="row">
+            <div className="col-12">
+              <div className="p-notification--positive">
+                <div className="p-notification__content" aria-atomic="true">
+                  <h5 className="p-notification__title">Success</h5>
+                  <p className="p-notification__message" role="alert">
+                    User added successfully.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
         <div className="row">
           <div className="col-12">
             <TableView users={users} />
