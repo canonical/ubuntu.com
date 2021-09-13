@@ -8,6 +8,7 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_product_listings,
     parse_accounts,
     parse_account,
+    parse_users,
 )
 
 
@@ -91,6 +92,21 @@ class UAContractsAPI:
             return parse_contracts(contracts)
 
         return contracts
+
+    def get_account_users(self, account_id: str):
+        response = self._request(
+            method="get",
+            path=f"v1/accounts/{account_id}/users",
+            json={},
+            error_rules=["default"],
+        )
+
+        users = [user.get("userInfo") for user in response.json().get("users")]
+
+        if self.convert_response:
+            return parse_users(users)
+
+        return users
 
     def get_contract_token(self, contract_id: str) -> Optional[str]:
         response = self._request(
