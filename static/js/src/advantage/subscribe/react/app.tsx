@@ -14,7 +14,7 @@ declare global {
     isGuest?: boolean;
     accountId?: string;
     previousPurchaseIds?: string[];
-    closeModal?: () => void;
+    handleClosePurchaseModal?: () => void;
   }
 }
 
