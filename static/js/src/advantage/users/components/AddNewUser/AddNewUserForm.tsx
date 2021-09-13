@@ -3,7 +3,6 @@ import {
   Button,
   ActionButton,
   Input,
-  CheckboxInput,
   Select,
   ValueOf,
 } from "@canonical/react-components";
@@ -15,13 +14,15 @@ import { userRoleOptions } from "../../constants";
 interface Values {
   email: string;
   role: UserRole;
-  shouldSendInvite: boolean;
+  name: string;
 }
 
+const validateRequired = (value: string): string | undefined =>
+  !value ? "This field is required." : undefined;
+
 const validateEmail = (value: string): string | undefined =>
-  !value
-    ? "This field is required."
-    : !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+  validateRequired(value) ||
+  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
     ? "Must be a valid email."
     : undefined;
 
@@ -52,9 +53,9 @@ export const AddNewUserForm = ({
     setFormSubmissionError,
   ] = useState<SubmissionErrorMessage | null>(null);
   const initialValues: Values = {
+    name: "",
     email: "",
     role: "admin",
-    shouldSendInvite: false,
   };
 
   const onSubmit = async (values: Values) => {
@@ -83,6 +84,15 @@ export const AddNewUserForm = ({
           <Form>
             <Field
               as={Input}
+              name="name"
+              id="user-name"
+              type="text"
+              label="Name"
+              validate={validateRequired}
+              error={touched?.name && errors?.name}
+            />
+            <Field
+              as={Input}
               name="email"
               id="user-email"
               type="text"
@@ -96,11 +106,6 @@ export const AddNewUserForm = ({
               id="user-role"
               label="Role"
               options={userRoleOptions}
-            />
-            <Field
-              as={CheckboxInput}
-              name="shouldSendInvite"
-              label="Send invite email"
             />
             <div className="p-modal__footer">
               <Button className="u-no-margin--bottom" onClick={handleClose}>

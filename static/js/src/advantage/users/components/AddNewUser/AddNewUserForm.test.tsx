@@ -35,20 +35,20 @@ it("calls handleClose modal handler after successful submission", async () => {
       handleSubmit={mockHandleSubmit}
     />
   );
+  userEvent.type(screen.getByLabelText("Name"), "Angela");
   userEvent.type(
     screen.getByLabelText("Users’ email address"),
     "angela@ecorp.com"
   );
   userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
-  userEvent.click(screen.getByLabelText("Send invite email"));
   userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
   await waitFor(() =>
     expect(mockHandleSubmit).toHaveBeenCalledWith(
       JSON.stringify({
+        name: "Angela",
         email: "angela@ecorp.com",
         role: "technical",
-        shouldSendInvite: true,
       })
     )
   );
@@ -66,6 +66,7 @@ it("submits the form on pressing the Enter key", async () => {
       handleSubmit={mockHandleSubmit}
     />
   );
+  userEvent.type(screen.getByLabelText("Name"), "Angela");
   userEvent.type(
     screen.getByLabelText("Users’ email address"),
     "angela@ecorp.com"
@@ -86,12 +87,12 @@ it("displays an alert message on submission failure", async () => {
     />
   );
 
+  userEvent.type(screen.getByLabelText("Name"), "Angela");
   userEvent.type(
     screen.getByLabelText("Users’ email address"),
     "angela@ecorp.com"
   );
   userEvent.selectOptions(screen.getByLabelText("Role"), "technical");
-  userEvent.click(screen.getByLabelText("Send invite email"));
   userEvent.click(screen.getByRole("button", { name: "Add new user" }));
 
   await waitFor(() => screen.getByRole("alert"));

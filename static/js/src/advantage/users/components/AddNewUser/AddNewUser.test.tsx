@@ -10,9 +10,9 @@ it("opens 'Add new user' modal on click", () => {
 
   const modal = screen.getByLabelText("Add a new user to this organisation");
 
+  expect(within(modal).getByLabelText("Name")).toBeVisible();
   expect(within(modal).getByLabelText("Users’ email address")).toBeVisible();
   expect(within(modal).getByLabelText("Role")).toBeVisible();
-  expect(within(modal).getByLabelText("Send invite email")).toBeVisible();
   expect(
     within(modal).getByRole("button", { name: "Add new user" })
   ).toBeVisible();
