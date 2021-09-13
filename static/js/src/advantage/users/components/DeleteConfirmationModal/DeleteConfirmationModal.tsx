@@ -16,24 +16,26 @@ const DeleteConfirmationModal = ({
 }: DeleteConfirmationModalProps) => (
   <Modal
     close={handleClose}
-    title="Add a new user to this organisation"
+    title="Confirm"
     buttonRow={
       <>
         <Button className="u-no-margin--bottom" onClick={handleClose}>
-          Cancel
+          No, cancel
         </Button>
         <Button
           className="u-no-margin--bottom"
-          appearance="positive"
+          appearance="negative"
           onClick={() => handleConfirmDelete(user?.id)}
         >
-          Delete
+          Yes, remove user
         </Button>
       </>
     }
   >
-    Are you sure you want to remove <strong>{user?.name}</strong> from your
-    organisation?
+    <p>
+      Are you sure you want to remove <strong>{user?.email}</strong> from your
+      organisation?
+    </p>
   </Modal>
 );
 
