@@ -12,10 +12,9 @@ import ModalFooter from "../ModalParts/ModalFooter";
 
 type StepOneProps = {
   error: React.ReactNode;
-  closeModal: () => void;
 };
 
-function StepOne({ error, closeModal }: StepOneProps) {
+function StepOne({ error }: StepOneProps) {
   const [isCardValid, setCardValid] = useState(false);
   const { dirty, submitForm, isValid, isSubmitting } = useFormikContext();
   const {
@@ -36,7 +35,7 @@ function StepOne({ error, closeModal }: StepOneProps) {
         <PaymentMethodForm setCardValid={setCardValid} />
       </ModalBody>
 
-      <ModalFooter closeModal={closeModal}>
+      <ModalFooter>
         <ActionButton
           disabled={(!userInfo && !dirty) || !isValid || !isCardValid}
           appearance="positive"

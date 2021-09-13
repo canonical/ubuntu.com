@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "./APICalls/useStripeCustomerInfo";
 import registerPaymentMethod from "./APICalls/registerPaymentMethod";
@@ -18,7 +18,6 @@ const PurchaseModal = () => {
   const [step, setStep] = useState(
     userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
   );
-  const buttonRef = useRef(null);
   const queryClient = useQueryClient();
 
   const paymentMethodMutation = registerPaymentMethod();
@@ -88,12 +87,6 @@ const PurchaseModal = () => {
     });
   };
 
-  const closeModal = () => {
-    // I have no idea what's going on here, but without it the modal won't close for guest users. ¯\_(ツ)_/¯
-    buttonRef.current.click();
-    buttonRef.current.click();
-  };
-
   return (
     <Formik
       initialValues={initialValues}
@@ -102,23 +95,10 @@ const PurchaseModal = () => {
     >
       <>
         {step === 1 ? (
-          <StepOne error={error} closeModal={closeModal} />
+          <StepOne error={error} />
         ) : (
-          <StepTwo
-            setStep={setStep}
-            error={error}
-            setError={setError}
-            closeModal={closeModal}
-          />
+          <StepTwo setStep={setStep} error={error} setError={setError} />
         )}
-        <button
-          ref={buttonRef}
-          aria-controls="purchase-modal"
-          aria-hidden="true"
-          style={{ position: "absolute", left: "-9999px", opacity: 0 }}
-        >
-          Cancel
-        </button>
       </>
     </Formik>
   );

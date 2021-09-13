@@ -24,10 +24,9 @@ type StepOneProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   error: React.ReactNode | null;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  closeModal: () => void;
 };
 
-function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
+function StepOne({ setStep, error, setError }: StepOneProps) {
   const [areTermsChecked, setTermsChecked] = useState(false);
   const {
     data: userInfo,
@@ -205,7 +204,7 @@ function StepOne({ setStep, error, setError, closeModal }: StepOneProps) {
         </>
       </ModalBody>
 
-      <ModalFooter closeModal={closeModal}>
+      <ModalFooter>
         <ActionButton
           className="col-small-2 col-medium-2 col-3 u-no-margin"
           appearance="positive"
