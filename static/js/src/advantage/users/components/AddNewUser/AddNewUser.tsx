@@ -5,8 +5,12 @@ import AddNewUserForm from "./AddNewUserForm";
 
 const AddNewUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hasNewUserSuccessMessage, setHasNewUserSuccessMessage] = useState(
+    false
+  );
   const handleClose = () => setIsModalOpen(false);
   const handleSubmit = (value: string) => {
+    setHasNewUserSuccessMessage(true);
     return Promise.resolve(value);
   };
 
@@ -14,7 +18,10 @@ const AddNewUser = () => {
     <>
       <Button
         hasIcon
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => {
+          setIsModalOpen(true);
+          setHasNewUserSuccessMessage(false);
+        }}
         aria-label="Add new user..."
       >
         <i className="p-icon--plus"></i>
@@ -27,6 +34,16 @@ const AddNewUser = () => {
             handleSubmit={handleSubmit}
           />
         </Modal>
+      ) : null}
+      {hasNewUserSuccessMessage ? (
+        <div className="p-notification--positive">
+          <div className="p-notification__content" aria-atomic="true">
+            <h5 className="p-notification__title">Success</h5>
+            <p className="p-notification__message" role="alert">
+              User added successfully
+            </p>
+          </div>
+        </div>
       ) : null}
     </>
   );
