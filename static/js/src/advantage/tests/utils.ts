@@ -1,6 +1,9 @@
 import { screen } from "@testing-library/react";
 
-const getTextContentMatcher = (textMatch) => (content, node) => {
+const getTextContentMatcher = (textMatch: string | RegExp) => (
+  content,
+  node
+) => {
   const hasText = (node) =>
     node.textContent === textMatch || node.textContent.match(textMatch);
   const nodeHasText = hasText(node);
@@ -13,5 +16,5 @@ const getTextContentMatcher = (textMatch) => (content, node) => {
 
 // use only if a regular "getByText" query is not working, this is much slower
 // https://github.com/testing-library/dom-testing-library/issues/410#issuecomment-797486513
-export const getByTextContent = (text) =>
+export const getByTextContent = (text: string | RegExp) =>
   screen.getByText(getTextContentMatcher(text));
