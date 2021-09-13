@@ -93,17 +93,21 @@ function updateResultsPerPage() {
   const pageSizeTop = document.getElementById("page-size-top");
   const pageSizeBottom = document.getElementById("page-size-bottom");
 
-  pageSizeTop.addEventListener("change", (e) => {
-    // Needs to be set because the other dropdown is a dummy
-    searchResults.submit();
-  });
+  if (pageSizeTop) {
+    pageSizeTop.addEventListener("change", (e) => {
+      // Needs to be set because the other dropdown is a dummy
+      searchResults.submit();
+    });
+  }
 
-  pageSizeBottom.addEventListener("change", (e) => {
-    // Avoids submitting 2 redundant fields
-    let pageSizeTopChange = new Event("change");
-    pageSizeTop.value = e.target.value;
-    pageSizeTop.dispatchEvent(pageSizeTopChange);
-  });
+  if (pageSizeBottom) {
+    pageSizeBottom.addEventListener("change", (e) => {
+      // Avoids submitting 2 redundant fields
+      let pageSizeTopChange = new Event("change");
+      pageSizeTop.value = e.target.value;
+      pageSizeTop.dispatchEvent(pageSizeTopChange);
+    });
+  }
 }
 
 function toggleVendorsList() {
