@@ -15,6 +15,10 @@ const AccountUsers = ({ organisationName, users }: Props) => {
   const [hasNewUserSuccessMessage, setHasNewUserSuccessMessage] = useState(
     false
   );
+  const [
+    hasUserDeletedSuccessMessage,
+    setHasUserDeletedSuccessMessage,
+  ] = useState(false);
   const handleAddNewUser = (value: string) => {
     return Promise.resolve(value).then(() => {
       setHasNewUserSuccessMessage(true);
@@ -26,8 +30,8 @@ const AccountUsers = ({ organisationName, users }: Props) => {
   ] = useState(false);
   const handleDelete = (userId: string) =>
     Promise.resolve(userId).then(() => {
-      handleDeleteConfirmationModalClose();
       dismissEditMode();
+      setHasUserDeletedSuccessMessage(true);
     });
 
   const [userInEditModeById, setUserInEditModeById] = useState<string | null>(
@@ -68,14 +72,16 @@ const AccountUsers = ({ organisationName, users }: Props) => {
             />
           </div>
         </div>
-        {hasNewUserSuccessMessage ? (
+        {hasNewUserSuccessMessage || hasUserDeletedSuccessMessage ? (
           <div className="row">
             <div className="col-12">
               <div className="p-notification--positive">
                 <div className="p-notification__content" aria-atomic="true">
                   <h5 className="p-notification__title">Success</h5>
                   <p className="p-notification__message" role="alert">
-                    User added successfully.
+                    {hasNewUserSuccessMessage
+                      ? "User added successfully."
+                      : "User deleted successfully."}
                   </p>
                 </div>
               </div>
