@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
-import { Users, OrganisationName } from "./types";
+import { User, Users, OrganisationName } from "./types";
 import Organisation from "./components/Organisation";
 import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
+import DeleteConfirmationModal from "./components/DeleteConfirmationModal/DeleteConfirmationModal";
 
 type Props = {
   organisationName: OrganisationName;
@@ -19,6 +20,31 @@ const AccountUsers = ({ organisationName, users }: Props) => {
       setHasNewUserSuccessMessage(true);
     });
   };
+  const [
+    isDeleteConfirmationModalOpen,
+    setIsDeleteConfirmationModalOpen,
+  ] = useState(false);
+  const handleDelete = (userId: string) =>
+    Promise.resolve(userId).then(() => {
+      handleDeleteConfirmationModalClose();
+      dismissEditMode();
+    });
+
+  const [userInEditModeById, setUserInEditModeById] = useState<string | null>(
+    null
+  );
+  const userInEditMode: User | undefined =
+    typeof userInEditModeById === "string"
+      ? users.find((user) => user.id === userInEditModeById)
+      : undefined;
+
+  const dismissEditMode = () => setUserInEditModeById(null);
+  const handleDeleteConfirmationModalClose = () => {
+    setIsDeleteConfirmationModalOpen(false);
+  };
+  const handleDeleteConfirmationModalOpen = () =>
+    setIsDeleteConfirmationModalOpen(true);
+
   return (
     <div>
       <div className="p-strip">
@@ -57,9 +83,24 @@ const AccountUsers = ({ organisationName, users }: Props) => {
           </div>
         ) : null}
 
+        {isDeleteConfirmationModalOpen && userInEditMode ? (
+          <DeleteConfirmationModal
+            user={userInEditMode}
+            handleConfirmDelete={handleDelete}
+            handleClose={handleDeleteConfirmationModalClose}
+          />
+        ) : null}
         <div className="row">
           <div className="col-12">
-            <TableView users={users} />
+            <TableView
+              users={users}
+              userInEditModeById={userInEditModeById}
+              setUserInEditModeById={setUserInEditModeById}
+              dismissEditMode={dismissEditMode}
+              handleDeleteConfirmationModalOpen={
+                handleDeleteConfirmationModalOpen
+              }
+            />
           </div>
         </div>
       </section>
