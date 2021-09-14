@@ -2,160 +2,71 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="border-bottom: 0; display: block;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
-      <h2 class="p-modal__title u-sv1" id="modal-title">Let us take care of your Kubernetes</h2>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Let us manage your Kubernetes</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <div class="js-formfield">
-        <h3 class="p-heading--five"> What is the current status of your Kubernetes?</h3>
-        <div class="row u-no-padding">
-          <div class="col-12 u-sv3">
-            <input type="checkbox" id="current-status-kubernetes-deployment">
-            <label for="current-status-kubernetes-deployment">I'm considering a Kubernetes deployment</label>
-            <input type="checkbox" id="current-status-charmed-kubernetes-deployed-ubuntu">
-            <label for="current-status-charmed-kubernetes-deployed-ubuntu">I have a Charmed Kubernetes cluster deployed on Ubuntu</label>
-            <input type="checkbox" id="current-status-non-ubuntu-production-environment">
-            <label for="current-status-non-ubuntu-production-environment"> I have a non Ubuntu-based production Kubernetes environment</label>
-          </div>
-        </div>
-      </div>
-      <div class="js-formfield">
-        <h3 class="p-heading--five">Where do you want to use Kubernetes?</h3>
-        <div class="row u-no-padding">
-          <div class="col-12 u-sv3">
-            <input type="checkbox" id="use-kubernetes-own-data-centre">
-            <label for="use-kubernetes-own-data-centre">Your own data centre</label>
-            <input type="checkbox" id="use-kubernetes-public-cloud">
-            <label for="use-kubernetes-public-cloud">Public cloud</label>
-          </div>
-        </div>
-      </div>
-      <div class="pagination">
-        <a class="p-button--positive pagination__link--next" href="">Next</a>
-      </div>
-    </div>
-
-    <div class="js-pagination js-pagination--2 u-hide">
-      <div class="js-formfield">
-        <h3 class="p-heading--five">Which use cases are important to you?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4">
-            <input type="checkbox" id="important-to-you-CI-CD">
-            <label for="important-to-you-CI-CD">CI/CD</label>
-            <input type="checkbox" id="important-to-you-Re-platforming">
-            <label for="important-to-you-Re-platforming">Re-platforming</label>
-            <input type="checkbox" id="important-to-you-12-factor-apps">
-            <label for="important-to-you-12-factor-apps">12 factor apps</label>
-            <input type="checkbox" id="important-to-you-Microservices">
-            <label for="important-to-you-Microservices">Microservices</label>
-            <input type="checkbox" id="important-to-you-Stateful-Applications">
-            <label for="important-to-you-Stateful-Applications">Stateful Applications</label>
-          </div>
-          <div class="col-4">
-            <input type="checkbox" id="important-to-you-AI-ML">
-            <label for="important-to-you-AI-ML">AI/ML</label>
-            <input type="checkbox" id="important-to-you-Auto-scaling">
-            <label for="important-to-you-Auto-scaling">Auto-scaling</label>
-            <input type="checkbox" id="important-to-you-Docker-Migration">
-            <label for="important-to-you-Docker-Migration">Docker Migration</label>
-            <input type="checkbox" id="important-to-you-Mesos-Migration">
-            <label for="important-to-you-Mesos-Migration">Mesos Migration</label>
-            <input type="checkbox" id="important-to-you-OpenShift-Migration">
-            <label for="important-to-you-OpenShift-Migration">OpenShift Migration</label>
-          </div>
-          <div class="col-4">
-            <input type="checkbox" id="important-to-you-Big-Data">
-            <label for="important-to-you-Big-Data">Big Data</label>
-            <input type="checkbox" id="important-to-you-Multi-cloud-ingress">
-            <label for="important-to-you-Multi-cloud-ingress">Multi-cloud ingress</label>
-            <input type="checkbox" id="important-to-you-Enterprise-Java">
-            <label for="important-to-you-Enterprise-Java">Enterprise Java</label>
-            <input type="checkbox" id="important-to-you-SOA">
-            <label for="important-to-you-SOA">SOA</label>
-            <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="important-to-you-other">
-              <label for="important-to-you-other">Other</label>
-              <input type="text" id="important-to-you-other-specified" class="js-other-container__input" placeholder="Please specify" style="margin-top: .25rem; opacity: 0; " aria-label="Other architecture">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="js-formfield">
-        <h3 class="p-heading--five">What other applications are you using or planning to use?</h3>
-        <div class="row u-no-padding">
-          <div class="col-6">
-            <input type="checkbox" id="using-application-influxdb">
-            <label for="using-application-influxdb">InfluxDB</label>
-            <input type="checkbox" id="using-application-mongodb">
-            <label for="using-application-mongodb">MongoDB</label>
-            <input type="checkbox" id="using-application-mysql">
-            <label for="using-application-mysql">MySQL</label>
-            <input type="checkbox" id="using-application-cassandra">
-            <label for="using-application-cassandra">Cassandra</label>
-            <input type="checkbox" id="using-application-postgresql">
-            <label for="using-application-postgresql">PostgreSQL</label>
-            <input type="checkbox" id="using-application-elasticsearch">
-            <label for="using-application-elasticsearch">ElasticSearch</label>
-          </div>
-          <div class="col-6">
-            <input type="checkbox" id="using-application-prometheus">
-            <label for="using-application-prometheus">Prometheus</label>
-            <input type="checkbox" id="using-application-graylog">
-            <label for="using-application-graylog">Graylog</label>
-            <input type="checkbox" id="using-application-grafana">
-            <label for="using-application-grafana">Grafana</label>
-            <input type="checkbox" id="using-application-osm">
-            <label for="using-application-osm">OSM</label>
-            <input type="checkbox" id="using-application-kafka">
-            <label for="using-application-kafka">Kafka</label>
-            <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="using-application-other">
-              <label for="using-application-other">Other</label>
-              <input type="text" id="using-application-other" class="js-other-container__input" placeholder="Please specify" style="margin-top: .25rem; opacity: 0; " aria-label="Other architecture">
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="u-sv3 js-formfield">
-        <h3 class="p-heading--five">Have we missed something?</h3>
-        <textarea id="particular-sectors" aria-label="Have we missed something?" rows="3" placeholder="Anything extra you'd like to communicate about your needs or interests?"></textarea>
+        <h3 class="p-heading--five">Tell us more about your Kubernetes use case</h3>
+        <textarea id="particular-sectors" aria-label="Tell us more about your Kubernetes use case" rows="3" placeholder="Anything you’d like to communicate about your needs or interests?"></textarea>
       </div>
-      <div class="pagination">
-        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
-        <a class="pagination__link--next p-button--positive" href="">Next</a>
-      </div>
-    </div>
-
-    <div class="js-pagination js-pagination--3 u-hide">
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
-        <div class="col-6">
+        <div class="col-12">
           <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
-            <ul class="p-list">
-              <li class="mktFormReq mktField p-list__item">
+            
+            <div class="p-form__group row">
+              <div class="col-4">
                 <label for="firstName" class="mktoLabel">First name:</label>
-                <input required id="firstName" name="firstName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
-              </li>
-              <li class="mktFormReq mktField p-list__item">
+              </div>
+              <div class="col-8">
+                <div class="p-form__control">
+                  <input required id="firstName" name="firstName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+                </div>
+              </div>
+            </div>
+
+            <div class="p-form__group row">
+              <div class="col-4">
                 <label for="lastName" class="mktoLabel">Last name:</label>
-                <input required id="lastName" name="lastName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
-              </li>
-              <li class="mktFormReq mktField p-list__item">
+              </div>
+              <div class="col-8">
+                <div class="p-form__control">
+                  <input required id="lastName" name="lastName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+                </div>
+              </div>
+            </div>
+
+            <div class="p-form__group row">
+              <div class="col-4">
                 <label for="email" class="mktoLabel">Work email:</label>
-                <input required id="email" name="email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" required="required" />
-              </li>
-              <li class="mktFormReq mktField p-list__item">
-                <label for="phone" class="mktoLabel ">Mobile/cell phone number:</label>
-                <input required id="phone" name="phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" required="required" />
-              </li>
-              <li class="mktField p-list__item">
-                <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
-              </li>
-              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-              <li class="p-list__item">
-                <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
-              </li>
-            </ul>
+              </div>
+              <div class="col-8">
+                <div class="p-form__control">
+                  <input required id="email" name="email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" required="required" />
+                </div>
+              </div>
+            </div>
+
+            <div class="p-form__group row">
+              <div class="col-4">
+                <label for="phone" class="mktoLabel">Mobile/cell phone number:</label>
+              </div>
+              <div class="col-8">
+                <div class="p-form__control">
+                  <input required id="phone" name="phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" required="required" />
+                </div>
+              </div>
+            </div>
+
+            <label class="p-checkbox mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">
+              <input type="checkbox" class="p-checkbox__input mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn">
+              <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+            </label>
+
+            <div>
+              <p>In submitting this form, I confirm that I have read and agree to Canonical's <a href="/legal/terms-and-policies/privacy-policy">Privacy Notice</a></p>
+            </div>
+            <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
 
             <div class="u-hide">
               <h3>Your comments</h3>
@@ -179,7 +90,6 @@
             </div>
 
             <div class="pagination">
-              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</button>
             </div>
           </form>
@@ -187,7 +97,7 @@
       </div>
     </div>
 
-    <div class="js-pagination js-pagination--4 u-hide">
+    <div class="js-pagination js-pagination--2 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
           <div class="col-7">
