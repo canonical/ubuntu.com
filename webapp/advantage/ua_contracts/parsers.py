@@ -192,6 +192,7 @@ def parse_subscription(raw_subscription: Dict) -> Subscription:
         pending_purchases=raw_subscription.get("pendingPurchases"),
         is_auto_renewing=subscription.get("autoRenew"),
         started_with_trial=subscription.get("startedWithTrial"),
+        in_trial=subscription.get("inTrial"),
         items=parse_subscription_items(subscription_id, raw_items),
     )
 

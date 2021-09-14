@@ -125,6 +125,7 @@ class TestParsers(unittest.TestCase):
                 ),
             ],
             started_with_trial=True,
+            in_trial=True,
         )
 
         self.assertIsInstance(parsed_subscription, Subscription)

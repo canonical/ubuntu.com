@@ -474,6 +474,12 @@ def advantage_shop_view():
         if subscription.status in ["active", "locked"]
     ]
 
+    is_trialling = any(
+        subscription
+        for subscription in current_subscriptions
+        if subscription.in_trial
+    )
+
     listings = g.api.get_product_listings("canonical-ua")
 
     previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
@@ -484,6 +490,7 @@ def advantage_shop_view():
         account=account,
         previous_purchase_ids=previous_purchase_ids,
         product_listings=user_listings,
+        is_trialling=is_trialling,
     )
 
 
