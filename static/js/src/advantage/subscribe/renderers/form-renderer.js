@@ -185,21 +185,16 @@ function renderSummary(state) {
     title.innerHTML = state.product.name;
     if (state.product.canBeTrialled) {
       freeTrialLabel.classList.remove("u-hide");
+      trialUnavailableSection.classList.add("u-hide");
     } else {
       freeTrialLabel.classList.add("u-hide");
+      trialUnavailableSection.classList.remove("u-hide");
     }
     costElement.innerHTML = `${formatter.format((price / 100) * quantity)} / ${
       billing === "monthly" ? "month" : "year"
     }`;
 
     const previous_purchase_id = window.previousPurchaseIds[billing];
-
-    // Show a message if the product can't be trialled
-    if (state.product.canBeTrialled) {
-      trialUnavailableSection.classList.add("u-hide");
-    } else {
-      trialUnavailableSection.classList.remove("u-hide");
-    }
 
     // The button stays disabled if the users is already trialling a product.
     if (!window.isTrialling) {
