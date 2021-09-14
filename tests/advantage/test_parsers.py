@@ -507,8 +507,8 @@ class TestParsers(unittest.TestCase):
             name="joedoe2021",
             email="joe.doe@canonical.com",
             id="aAbBcCdD",
-            last_login="2021-09-10T12:00:00Z",
-            first_login="2021-09-10T12:00:00Z",
+            last_login_at="2021-09-10T12:00:00Z",
+            first_login_at="2021-09-10T12:00:00Z",
             verified=True,
         )
 
@@ -524,8 +524,8 @@ class TestParsers(unittest.TestCase):
             name="joedoe2021",
             email="joe.doe@canonical.com",
             id="aAbBcCdD",
-            last_login="2021-09-10T12:00:00Z",
-            first_login="2021-09-10T12:00:00Z",
+            last_login_at="2021-09-10T12:00:00Z",
+            first_login_at="2021-09-10T12:00:00Z",
             verified=True,
         )
         joe.set_user_role_on_account("admin")
@@ -537,8 +537,8 @@ class TestParsers(unittest.TestCase):
                 name="janedoe2021",
                 email="jane.doe@canonical.com",
                 id="aAbBcCdD2",
-                last_login="2021-09-10T12:00:00Z",
-                first_login="2021-09-10T12:00:00Z",
+                last_login_at="2021-09-10T12:00:00Z",
+                first_login_at="2021-09-10T12:00:00Z",
                 verified=False,
             ),
         ]

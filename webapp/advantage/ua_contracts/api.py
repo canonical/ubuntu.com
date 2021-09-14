@@ -108,6 +108,20 @@ class UAContractsAPI:
 
         return users
 
+    def put_account_user_role(
+        self,
+        account_id: str,
+        user_role_request: dict,
+    ):
+        self._request(
+            method="put",
+            path=f"v1/accounts/{account_id}/user-role",
+            json=user_role_request,
+            error_rules=["default"],
+        )
+
+        return {}
+
     def get_contract_token(self, contract_id: str) -> Optional[str]:
         response = self._request(
             method="post",

@@ -40,6 +40,9 @@ from webapp.advantage.schemas import (
     ensure_purchase_account,
     invoice_view,
     post_payment_methods,
+    post_account_user_role,
+    put_account_user_role,
+    delete_account_user_role,
 )
 
 
@@ -401,6 +404,54 @@ def get_account_users():
             "account_id": account.id,
             "users": to_dict(account_users),
         }
+    )
+
+
+@advantage_decorator(permission="user", response="json")
+@use_kwargs(post_account_user_role, location="json")
+def post_account_user_role(account_id, **kwargs):
+    g.api.set_convert_response(True)
+
+    account_users = g.api.get_account_users(account_id=account_id)
+
+    user_exists = any(
+        user for user in account_users if user.email == kwargs.get("email")
+    )
+
+    if user_exists:
+        return flask.jsonify({"error": "email already exists"}), 400
+
+    return g.api.put_account_user_role(
+        account_id=account_id,
+        user_role_request={
+            "email": kwargs.get("email"),
+            "nameHint": kwargs.get("name"),
+            "role": kwargs.get("role"),
+        },
+    )
+
+
+@advantage_decorator(permission="user", response="json")
+@use_kwargs(put_account_user_role, location="json")
+def put_account_user_role(account_id, **kwargs):
+    return g.api.put_account_user_role(
+        account_id=account_id,
+        user_role_request={
+            "email": kwargs.get("email"),
+            "role": kwargs.get("role"),
+        },
+    )
+
+
+@advantage_decorator(permission="user", response="json")
+@use_kwargs(delete_account_user_role, location="json")
+def delete_account_user_role(account_id, **kwargs):
+    return g.api.put_account_user_role(
+        account_id=account_id,
+        user_role_request={
+            "email": kwargs.get("email"),
+            "role": "none",
+        },
     )
 
 

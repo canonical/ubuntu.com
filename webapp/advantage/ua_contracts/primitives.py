@@ -128,12 +128,12 @@ class User:
         name: str,
         display_name: str,
         email: str,
-        last_login: str,
-        first_login: str,
+        last_login_at: str,
+        first_login_at: str,
         verified: bool,
     ):
-        self.first_login = first_login
-        self.last_login = last_login
+        self.first_login_at = first_login_at
+        self.last_login_at = last_login_at
         self.email = email
         self.id = id
         self.name = name
