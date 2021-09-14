@@ -92,7 +92,7 @@ describe("SubscriptionList", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList
-          selectedToken="free-subscription"
+          selectedId={freeSubscription.contract_id}
           onSetActive={jest.fn()}
         />
       </QueryClientProvider>

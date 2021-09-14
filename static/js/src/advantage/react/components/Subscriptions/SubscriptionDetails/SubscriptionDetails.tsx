@@ -5,30 +5,30 @@ import classNames from "classnames";
 import DetailsContent from "./DetailsContent";
 import SubscriptionEdit from "../SubscriptionEdit";
 import { useUserSubscriptions } from "advantage/react/hooks";
-import { selectSubscriptionByToken } from "advantage/react/hooks/useUserSubscriptions";
+import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import { isFreeSubscription } from "advantage/react/utils";
 import ExpiryNotification from "../ExpiryNotification";
 import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
-import { SelectedToken } from "../Content/types";
+import { SelectedId } from "../Content/types";
 
 type Props = {
   modalActive?: boolean;
   onCloseModal: () => void;
-  selectedToken?: SelectedToken;
+  selectedId?: SelectedId;
 };
 
 export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
-  ({ modalActive, onCloseModal, selectedToken }: Props, ref) => {
+  ({ modalActive, onCloseModal, selectedId }: Props, ref) => {
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
     const { data: subscription, isLoading } = useUserSubscriptions({
-      select: selectSubscriptionByToken(selectedToken),
+      select: selectSubscriptionById(selectedId),
     });
     const isFree = isFreeSubscription(subscription);
 
     useEffect(() => {
       setEditing(false);
-    }, [selectedToken, modalActive]);
+    }, [selectedId, modalActive]);
 
     if (isLoading || !subscription) {
       return <Spinner />;
@@ -87,7 +87,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               onClose={() => setEditing(false)}
             />
           ) : (
-            <DetailsContent selectedToken={selectedToken} />
+            <DetailsContent selectedId={selectedId} />
           )}
         </section>
       </div>

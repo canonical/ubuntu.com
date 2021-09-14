@@ -23,7 +23,10 @@ describe("SubscriptionDetails", () => {
   it("initially shows the content", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionDetails onCloseModal={jest.fn()} selectedToken="0" />
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.contract_id}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("DetailsContent").exists()).toBe(true);
@@ -33,7 +36,10 @@ describe("SubscriptionDetails", () => {
   it("can show the edit form", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionDetails onCloseModal={jest.fn()} selectedToken="0" />
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.contract_id}
+        />
       </QueryClientProvider>
     );
     wrapper.find("Button[data-test='edit-button']").simulate("click");
@@ -42,41 +48,36 @@ describe("SubscriptionDetails", () => {
   });
 
   it("closes the edit form when changing subscriptions", () => {
-    queryClient.setQueryData("userSubscriptions", [
+    const contracts = [
       userSubscriptionFactory.build(),
       userSubscriptionFactory.build(),
       freeSubscriptionFactory.build(),
-    ]);
+    ];
+    queryClient.setQueryData("userSubscriptions", contracts);
     // Create a wrapping component to pass props to the inner
     // SubscriptionDetails component. This is needed so that setProps will
     // update the inner component.
-    const ProxyComponent = ({ selectedToken }: { selectedToken: string }) => (
+    const ProxyComponent = ({ selectedId }: { selectedId: string }) => (
       <QueryClientProvider client={queryClient}>
-        <SubscriptionDetails
-          onCloseModal={jest.fn()}
-          selectedToken={selectedToken}
-        />
+        <SubscriptionDetails onCloseModal={jest.fn()} selectedId={selectedId} />
       </QueryClientProvider>
     );
-    const wrapper = mount(<ProxyComponent selectedToken="0" />);
+    const wrapper = mount(
+      <ProxyComponent selectedId={contracts[0].contract_id} />
+    );
     wrapper.find("Button[data-test='edit-button']").simulate("click");
     expect(wrapper.find("SubscriptionEdit").exists()).toBe(true);
     expect(wrapper.find("DetailsContent").exists()).toBe(false);
-    // The selected token state is handled in a parent component so update the
-    // component with a different selected token to make the component rerender
-    // with a new subscription:
-    wrapper.setProps({ selectedToken: "1" });
+    // The selected subscription state is handled in a parent component so
+    // update the component with a different selected id to make the component
+    // rerender with a new subscription:
+    wrapper.setProps({ selectedId: contracts[1].contract_id });
     wrapper.update();
     expect(wrapper.find("SubscriptionEdit").exists()).toBe(false);
     expect(wrapper.find("DetailsContent").exists()).toBe(true);
   });
 
   it("closes the edit form when closing the modal", () => {
-    queryClient.setQueryData("userSubscriptions", [
-      userSubscriptionFactory.build(),
-      userSubscriptionFactory.build(),
-      freeSubscriptionFactory.build(),
-    ]);
     // Create a wrapping component to pass props to the inner
     // SubscriptionDetails component. This is needed so that setProps will
     // update the inner component.
@@ -85,7 +86,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           modalActive={modalActive}
           onCloseModal={jest.fn()}
-          selectedToken="0"
+          selectedId={contract.contract_id}
         />
       </QueryClientProvider>
     );
@@ -102,7 +103,10 @@ describe("SubscriptionDetails", () => {
   it("disables the buttons when showing the edit form", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionDetails onCloseModal={jest.fn()} selectedToken="0" />
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.contract_id}
+        />
       </QueryClientProvider>
     );
     expect(
@@ -125,7 +129,10 @@ describe("SubscriptionDetails", () => {
     queryClient.setQueryData("userSubscriptions", [account]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionDetails onCloseModal={jest.fn()} selectedToken="0" />
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={account.contract_id}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("Button[data-test='edit-button']").exists()).toBe(
@@ -141,7 +148,10 @@ describe("SubscriptionDetails", () => {
     const onCloseModal = jest.fn();
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionDetails onCloseModal={onCloseModal} selectedToken="0" />
+        <SubscriptionDetails
+          onCloseModal={onCloseModal}
+          selectedId={account.contract_id}
+        />
       </QueryClientProvider>
     );
     wrapper.find(".p-modal__close").simulate("click");
@@ -155,7 +165,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           modalActive={true}
           onCloseModal={onCloseModal}
-          selectedToken="0"
+          selectedId={contract.contract_id}
         />
       </QueryClientProvider>
     );
