@@ -98,6 +98,7 @@ from webapp.advantage.views import (
     get_last_purchase_ids,
     get_contract_token,
     get_user_info,
+    cancel_trial,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -304,7 +305,7 @@ app.add_url_rule(
 )
 app.add_url_rule("/account/invoices", view_func=invoices_view)
 app.add_url_rule(
-    "/account/invoices/download/<period>/<purchase_id>",
+    "/account/invoices/download/<purchase_id>",
     view_func=download_invoice,
 )
 app.add_url_rule(
@@ -358,7 +359,11 @@ app.add_url_rule(
 app.add_url_rule(
     "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
 )
-
+app.add_url_rule(
+    "/advantage/trial/<subscription_id>",
+    view_func=cancel_trial,
+    methods=["DELETE"],
+)
 app.add_url_rule(
     "/advantage/customer-info/<account_id>",
     view_func=get_customer_info,

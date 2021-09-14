@@ -56,11 +56,11 @@
     </div>
     <div class="row">
       <div class="col-3 p-side-navigation" id="drawer">
-        <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">Toggle filters</a>
-        <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+        <a href="#drawer" class="p-side-navigation__toggle" aria-controls="drawer">Toggle filters</a>
+        <div class="p-side-navigation__overlay" aria-controls="drawer"></div>
         <nav class="p-side-navigation__drawer" aria-label="Example side navigation">
           <div class="p-side-navigation__drawer-header">
-            <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
+            <a href="#" class="p-side-navigation__toggle--in-drawer" aria-controls="drawer" id="toggle-filters">
               Toggle filters
             </a>
           </div>
@@ -136,7 +136,7 @@
               </ul>
               <hr style="margin-bottom: 1rem;">
             </aside>
-            <div class="u-align--right">
+            <div class="u-align--right" style="padding-right: 0.5rem">
               <button class="p-button--neutral p-update-results u-no-margin--right" onclick="return clearFilters()">Clear</button>
               <button class="p-button--positive p-update-results js-apply-filters" type="submit" disabled>Apply</button>
             </div>

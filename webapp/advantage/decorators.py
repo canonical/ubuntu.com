@@ -42,6 +42,11 @@ def advantage_decorator(permission=None, response="json"):
             if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
                 return flask.render_template("advantage/maintenance.html")
 
+            # if logged in, get rid of guest token
+            if user_info(flask.session):
+                if flask.session.get("guest_authentication_token"):
+                    flask.session.pop("guest_authentication_token")
+
             test_backend = flask.request.args.get("test_backend", "false")
             is_test_backend = strtobool(test_backend)
             user_token = flask.session.get("authentication_token")

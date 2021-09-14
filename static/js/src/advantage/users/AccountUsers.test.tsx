@@ -1,7 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-import { User } from "./types";
 import AccountUsers from "./AccountUsers";
 import { mockData } from "./mockData";
 
@@ -10,18 +10,23 @@ it("displays organisation name", () => {
   screen.getByText("Canonical");
 });
 
-it("displays user details in a correct format", () => {
-  const testUser: User = {
-    email: "user@ecorp.com",
-    role: "Admin",
-    createdAt: "2020-01-10T10:00:00Z",
-    lastLoginAt: "2021-02-15T13:45:00Z",
-  };
+it("displays a success message after adding a user", async () => {
+  render(<AccountUsers organisationName="Canonical" users={mockData.users} />);
 
-  render(<AccountUsers organisationName="Canonical" users={[testUser]} />);
+  userEvent.click(screen.getByText("Add new user"));
+  const modal = screen.getByLabelText("Add a new user to this organisation");
 
-  screen.getByText("user@ecorp.com");
-  screen.getByText("Admin");
-  screen.getByText("10/01/2020");
-  screen.getByText("15/02/2021");
+  userEvent.type(within(modal).getByLabelText("Name"), "Angela");
+  userEvent.type(
+    within(modal).getByLabelText("Users’ email address"),
+    "angela@ecorp.com"
+  );
+  userEvent.selectOptions(within(modal).getByLabelText("Role"), "technical");
+  userEvent.click(within(modal).getByRole("button", { name: "Add new user" }));
+
+  await waitFor(() => screen.getByRole("alert"));
+
+  expect(screen.getByRole("alert")).toHaveTextContent(
+    /User added successfully/
+  );
 });

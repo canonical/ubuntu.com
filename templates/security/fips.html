@@ -2,7 +2,7 @@
 
 
 {% block title %}Canonical fips certifications | Security{% endblock %}
-{% block meta_description %}Technical details on the FIPS security certification for Ubuntu Advantage subscribers.{% endblock %}
+{% block meta_description %}Details on the FIPS security certification for Ubuntu Advantage subscribers.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1moTJCAtFXKD7ZXrxB-EB7GPVyZRTSIdkP-0BhPZl69M/edit#{% endblock meta_copydoc %}
 
 {% block content %}
@@ -13,7 +13,11 @@
      <h1>FIPS 140</h1>
      <h2 class="p-heading--4">FIPS 140 validated cryptography for Linux workloads</h2>
      <p>Developing and running workloads for U.S. government regulated and high security environments requires a long and expensive validation process. Reduce your accreditation timeline and pass on your validation costs with the FIPS 140 certified cryptographic packages of <a href="/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a>.</p>
-     <p><a class="p-button--positive js-invoke-modal" href="/security/certifications">Get Ubuntu with the FIPS140 validated modules</a></p>
+     <p>
+      <a href="/security/certifications#get-in-touch" class="p-button--positive js-invoke-modal">Contact us</a>
+      <a href="/advantage" class="p-button--neutral">Get Ubuntu Advantage</a>
+     </p>
+
    </div>
    <div class="col-4 u-hide--small u-align--center">
       {{ image (
@@ -55,7 +59,7 @@
   </div>
   <div class="u-fixed-width">
     <p>
-      <a class="p-button--neutral" href="/security/certifications/docs/fips">Read more about the FIPS certification</a>
+      <a class="p-button--neutral" href="/security/certifications/docs/fips">Read more about FIPS</a>
       <a class="p-button--positive js-invoke-modal" href="/security/certifications">Contact us</a>
     </p>
   </div>
@@ -69,7 +73,7 @@
     <hr class="p-separator">
 
     <h2>Access FIPS images on the public cloud</h2>
-    <p class="u-sv3">We make available Ubuntu Pro FIPS cloud images preconfigured with FIPS 140 certified packages, on popular clouds. You can quickly navigate on the marketplace images below.</p>
+    <p class="u-sv3">FIPS can be enabled on Ubuntu Pro cloud images, while Ubuntu Pro FIPS cloud images simplify the experience as they come preconfigured with FIPS 140 certified packages optimized for the cloud. You can quickly navigate on the marketplace FIPS-enabled images below.</p>
   </div>
   <div class="row">
     <div class="col-3">
@@ -100,7 +104,7 @@
       <p>Ubuntu Pro FIPS 20.04</p>
       <hr>
       <div style="padding-top: 1rem;">
-        <a class="p-link--external" style="padding-top: 1rem;" href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/modules-in-process/Modules-In-Process-List">In progress</a>
+        In progress
       </div>
     </div>
   </div>
@@ -139,7 +143,7 @@
       </thead>
       <tbody>
         <tr>
-          <th>Linux Kernel Crypto API</th>
+          <th>Linux Kernel (GA) Crypto API</th>
           <td>
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/2962">#2962</a>, 
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3724">#3724</a>
@@ -182,6 +186,7 @@
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3725">#3725</a>
           </td>
           <td>
+            <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3622">#3622</a>,
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3980">#3980</a>
           </td>
           <td>
@@ -213,7 +218,7 @@
       </tbody>
     </table>
     <a class="p-button--neutral js-invoke-modal" href="/security/certifications/docs/fips">Read more about the FIPS certification</a>
-    <a class="p-button--positive js-invoke-modal" href="/support/contact-us">Access the FIPS140 validated modules</a>
+    <a class="p-button--positive" href="/advantage">Access the FIPS140 validated modules</a>
   </div>
 </section>
 
@@ -221,7 +226,7 @@
   <div class="u-fixed-width">
     <h2>Canonical patches vulnerabilities</h2>
     <p>Each FIPS 140 certificate is valid for 5 years, however vulnerabilities happen, and it is our intention to publish fixed packages quickly, irrespective of their certification status. We therefore provide two alternative options. An option to remain with the certified cryptographic packages (called the 'fips' option), and an option to use the certified packages but include security fixes (called the 'fips-updates' option) when available. Check <a class="p-link--external" href="https://security-certs.docs.ubuntu.com/en/fips">our security pages on how to enable these options</a>.</p>
-    <p>We recommend enabling the 'fips-updates' option that includes the security fixes. The packages from 'fips-updates' option are updated to include high and critical security fixes during the whole product lifecycle including the <a href="/security/esm">Extended Security Maintenance phase</a>.</p>
+    <p>We recommend enabling the 'fips-updates' option that includes the security fixes. The packages from 'fips-updates' option are updated to include high and critical security fixes during the whole product lifecycle including the <a href="/security/esm">Extended Security Maintenance (ESM)</a> phase.</p>
   </div>
 </section>
 
@@ -237,7 +242,7 @@
 <section class="p-strip">
   <div class="u-fixed-width">
     <h2>FIPS 140-3 and Ubuntu</h2>
-    <p class="u-sv3">In September 2021 NIST is phasing out FIPS 140. Certifications under FIPS 140 remain valid until September 2026, and new products are expected to be certified <a class="p-link--external" href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/fips-140-3-standards">under FIPS 140-3</a>. FIPS 140-3 is a combined effort of NIST and ISO with the Security and Testing requirements for cryptographic modules being published as ISO/IEC 19790 and ISO/IEC 24759. Canonical is preparing Ubuntu for the new certification, and intends to provide FIPS 140-3 certified cryptographic packages on a future LTS release of Ubuntu.</p>
+    <p class="u-sv3">In September 2021 NIST is phasing out FIPS 140-2. Certifications under FIPS 140-2 remain valid no longer than September 2026, and new products are expected to be certified <a class="p-link--external" href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/fips-140-3-standards">under FIPS 140-3</a>. FIPS 140-3 is a combined effort of NIST and ISO with the Security and Testing requirements for cryptographic modules being published as ISO/IEC 19790 and ISO/IEC 24759. Canonical is preparing Ubuntu for the new certification, and intends to provide FIPS 140-3 certified cryptographic packages on a future LTS release of Ubuntu.</p>
   </div>
 </section>
 

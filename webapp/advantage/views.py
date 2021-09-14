@@ -2,7 +2,7 @@
 from datetime import datetime, timedelta, timezone
 
 # Packages
-from typing import Optional
+from typing import Optional, List
 
 from dateutil.parser import parse
 import flask
@@ -23,6 +23,7 @@ from webapp.advantage.ua_contracts.builders import (
 from webapp.advantage.ua_contracts.helpers import (
     to_dict,
     extract_last_purchase_ids,
+    set_listings_trial_status,
 )
 from webapp.advantage.ua_contracts.api import (
     CannotCancelLastContractError,
@@ -146,7 +147,8 @@ def advantage_view(**kwargs):
 
         for contract in account["contracts"]:
             contract_info = contract["contractInfo"]
-            if not contract_info.get("items"):
+            items = contract_info.get("items")
+            if not items:
                 # TODO(frankban): clean up existing contracts with no items in
                 # production.
                 continue
@@ -217,6 +219,42 @@ def advantage_view(**kwargs):
             contract["machineCount"] = 0
             contract["rowMachineCount"] = 0
 
+            has_trial = False
+            trial_contract_item = None
+            for item in items:
+                reason = item.get("reason")
+                if reason == "trial_started":
+                    has_trial = True
+                    trial_contract_item = item
+
+                    break
+
+            is_trialled = has_trial and date_difference.days > 0
+            if is_trialled:
+                trial_contract = contract.copy()
+                trial_contract["is_detached"] = True
+                trial_contract["is_trialled"] = True
+                trial_contract["machineCount"] = trial_contract_item["value"]
+                trial_contract["rowMachineCount"] = trial_contract_item[
+                    "value"
+                ]
+
+                if trial_contract["contractInfo"]["id"] == open_subscription:
+                    enterprise_contract.insert(0, trial_contract)
+                elif (
+                    trial_contract["contractInfo"]["id"] == new_subscription_id
+                ):
+                    enterprise_contract.insert(0, trial_contract)
+                else:
+                    enterprise_contract.append(trial_contract)
+
+                total_enterprise_contracts += 1
+
+            if is_trialled and len(items) == 1:
+                continue
+
+            contract["is_trialled"] = False
+
             allowances = contract_info.get("allowances")
             if (
                 allowances
@@ -224,6 +262,11 @@ def advantage_view(**kwargs):
                 and allowances[0]["metric"] == "units"
             ):
                 contract["rowMachineCount"] = allowances[0]["value"]
+                if trial_contract_item:
+                    contract["rowMachineCount"] = (
+                        contract["rowMachineCount"]
+                        - trial_contract_item["value"]
+                    )
 
             if product_name in yearly_purchased_products:
                 purchased_product = yearly_purchased_products[product_name]
@@ -362,7 +405,7 @@ def get_user_info():
         raise UAContractsAPIError(error)
 
     subscriptions = g.api.get_account_subscriptions(
-        account_id=account["id"],
+        account_id=account.id,
         marketplace="canonical-ua",
         filters={"status": "active", "period": "monthly"},
     )
@@ -387,56 +430,40 @@ def get_user_info():
 
 @advantage_decorator(response="html")
 def advantage_shop_view():
+    g.api.set_convert_response(True)
+
     account = None
-    previous_purchase_ids = {"monthly": "", "yearly": ""}
-
     if user_info(flask.session):
-        if flask.session.get("guest_authentication_token"):
-            flask.session.pop("guest_authentication_token")
-
         try:
             account = g.api.get_purchase_account()
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
-            # One will need to be created later, but this is an expected
-            # condition.
-
+            # One will need to be created later; expected condition.
             pass
 
-        if account:
-            subscriptions = g.api.get_account_subscriptions(
-                account_id=account["id"],
-                marketplace="canonical-ua",
-                filters={"status": "active"},
-            )
+    all_subscriptions = []
+    if account:
+        all_subscriptions = g.api.get_account_subscriptions(
+            account_id=account.id,
+            marketplace="canonical-ua",
+        )
 
-            for subscription in subscriptions:
-                period = subscription["subscription"]["period"]
-                previous_purchase_ids[period] = subscription["lastPurchaseID"]
+    current_subscriptions = [
+        subscription
+        for subscription in all_subscriptions
+        if subscription.status in ["active", "locked"]
+    ]
 
     listings = g.api.get_product_listings("canonical-ua")
-    product_listings = listings.get("productListings")
-    if not product_listings:
-        # For the time being, no product listings means the shop has not been
-        # activated, so fallback to shopify. This should become an error later.
-        return flask.redirect("https://buy.ubuntu.com/")
 
-    products = {product["id"]: product for product in listings["products"]}
-
-    website_listing = []
-    for listing in product_listings:
-        if "price" not in listing:
-            continue
-
-        listing["product"] = products[listing["productID"]]
-
-        website_listing.append(listing)
+    previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
+    user_listings = set_listings_trial_status(listings, all_subscriptions)
 
     return flask.render_template(
         "advantage/subscribe/index.html",
         account=account,
         previous_purchase_ids=previous_purchase_ids,
-        product_listings=website_listing,
+        product_listings=user_listings,
     )
 
 
@@ -507,6 +534,7 @@ def post_advantage_subscriptions(preview, **kwargs):
     period = kwargs.get("period")
     products = kwargs.get("products")
     resizing = kwargs.get("resizing", False)
+    trailling = kwargs.get("trailling", False)
 
     current_subscription = {}
     if user_info(flask.session):
@@ -550,6 +578,9 @@ def post_advantage_subscriptions(preview, **kwargs):
         "purchaseItems": purchase_items,
         "previousPurchaseID": previous_purchase_id,
     }
+
+    if trailling:
+        purchase_request["inTrial"] = True
 
     try:
         if not preview:
@@ -764,6 +795,27 @@ def ensure_purchase_account(**kwargs):
 
 
 @advantage_decorator(permission="user", response="json")
+def cancel_trial(account_id):
+    g.api.set_convert_response(True)
+
+    subscriptions: List[Subscription] = g.api.get_account_subscriptions(
+        account_id=account_id, marketplace="canonical-ua"
+    )
+
+    subscription_to_cancel = None
+    for subscription in subscriptions:
+        if subscription.started_with_trial and subscription.status == "active":
+            subscription_to_cancel = subscription
+
+            break
+
+    if not subscription_to_cancel:
+        return flask.jsonify({"errors": "no subscription in trial"}), 500
+
+    return g.api.cancel_subscription(subscription_id=subscription_to_cancel.id)
+
+
+@advantage_decorator(permission="user", response="json")
 def get_renewal(renewal_id):
     return g.api.get_renewal(renewal_id)
 
@@ -827,7 +879,7 @@ def invoices_view(**kwargs):
 
             download_link = ""
             if raw_payment.get("invoice"):
-                download_link = f"invoices/download/{period}/{payment_id}"
+                download_link = f"invoices/download/{payment_id}"
 
             total_payments.append(
                 {

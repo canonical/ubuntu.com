@@ -1,0 +1,76 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Download Ubuntu for Intel IoT platforms | Download{% endblock %}
+{% block meta_description %}​​Canonical and Intel have partnered to provide Ubuntu Desktop and Ubuntu Core on Intel's IoT platforms: Atom&reg; X6000E Series, Intel&reg; Pentium&reg; and Celeron&reg; N and J Series and 11th Gen Intel&reg; Core&trade; processors.{% endblock meta_description %}
+{% block meta_image %}https://assets.ubuntu.com/v1/2e046626-Intel_IoT_grad+_+en+_+800x418.jpeg{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1hxKzPs6e6JQaa9tBqfZ55GAXrVnEryEWBja8HlXy-lc/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h1>Download Ubuntu for Intel IoT platforms</h1>
+      <p class="p-heading--4">Ubuntu &mdash; now optimized for Intel's IOTG platforms</p>
+      <p>Ubuntu Core 20 and Ubuntu Desktop 20.04 based images for Intel IoT platforms will be released on October 14th and are currently available as a private alpha.</p>
+      <div class="p-notification--information">
+        <div class="p-notification__content">
+          <p class="p-notification__message">Send an email to sales-iotg {@} canonical.com with the subject line of 'Ubuntu Core 20 private alpha for Elkhart Lake and Tiger Lake' to register interest in early access.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-5 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ab843223-Intel.svg",
+        alt="",
+        width="200",
+        height="132",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Ubuntu on Intel IoT platforms</h2>
+    <p>Intel's portfolio of edge-ready compute and connectivity technologies make it easy to deploy edge applications quickly. Enhanced for IoT, they enable processing at the edge to get critical insights and business value from your data with compute resources where you need them most.</p>
+    <p><strong>Supported processors:</strong></p>
+    <ul class="p-list">
+      <li class="p-list__item is-ticked">
+        Intel Atom&reg; X6000E Series and Intel&reg; Pentium&reg; and Celeron&reg; N and J Series Processors
+      </li>
+      <li class="p-list__item is-ticked">
+        Intel 11th Gen Intel&reg; Core&trade; processors
+      </li>
+    </ul>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h3>Learn more about Intel Atom&reg; X6000E Series and Intel&reg; Pentium&reg; and Celeron&reg; N and J Series Processors</h3>
+      <p>To support the next generation of IoT edge devices, Intel has developed a new line of processors enhanced for IoT—The Intel Atom x6000E Series, Intel Pentium, and Intel Celeron N and J Series processors (formerly known as Elkhart Lake &mdash; EHL). These processors build on new levels of CPU, and graphics performances with integrated IoT features, real-time performance, manageability, security, and functional safety.</p>
+      <a class="p-link--external" href="https://www.intel.com/content/www/us/en/products/docs/processors/embedded/enhanced-for-iot-platform-brief.html">Read the platform brief</a>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h3>Learn more about Intel 11th Gen Intel Core&trade; processors</h3>
+      <p>11th Gen Intel&reg; Core&trade; processors (formerly known as Tiger Lake &mdash; TGL) deliver a balance of performance and responsiveness in a low-power platform built on our third-generation 10nm process technology. Engineered to deliver for IoT markets, these processors can support low-latency and time-sensitive applications, and have the power to run multiple workloads including AI and deep learning applications on a single platform.</p>
+      <a class="p-link--external" href="https://www.intel.com/content/www/us/en/products/docs/processors/core/11th-gen-core-enhanced-for-iot-brief.html">Read the platform brief</a>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h3>Hardware Certification Program</h3>
+    <p>Canonical partners with leading device manufacturers to validate the same Ubuntu image across a wide variety of boards offering a great out-of-the-box experience for your customised needs. Stay tuned for more features coming soon!</p>
+    <a href="/certified/devices">Further information on Ubuntu certified devices&nbsp;&rsaquo;</a>
+  </div>
+</section>
+{% endblock content %}

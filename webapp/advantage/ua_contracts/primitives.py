@@ -95,6 +95,7 @@ class Subscription:
         last_purchase_id: str = None,
         is_auto_renewing: bool = None,
         pending_purchases: List[str] = None,
+        started_with_trial: bool = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -105,6 +106,7 @@ class Subscription:
         self.pending_purchases = pending_purchases
         self.is_auto_renewing = is_auto_renewing
         self.items = items
+        self.started_with_trial = started_with_trial
 
 
 class Account:
