@@ -402,6 +402,7 @@ def get_account_users():
     return flask.jsonify(
         {
             "account_id": account.id,
+            "name": account.name,
             "users": to_dict(account_users),
         }
     )
