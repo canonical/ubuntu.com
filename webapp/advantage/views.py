@@ -410,6 +410,17 @@ def get_account_users():
 @advantage_decorator(permission="user", response="json")
 @use_kwargs(post_account_user_role, location="json")
 def post_account_user_role(account_id, **kwargs):
+    g.api.set_convert_response(True)
+
+    account_users = g.api.get_account_users(account_id=account_id)
+
+    user_exists = any(
+        user for user in account_users if user.email == kwargs.get("email")
+    )
+
+    if user_exists:
+        return flask.jsonify({"error": "email already exists"}), 400
+
     return g.api.put_account_user_role(
         account_id=account_id,
         user_role_request={
