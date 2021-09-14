@@ -17,6 +17,11 @@ describe("useURLs", () => {
   let getURLsSpy: jest.SpyInstance;
   let queryClient: QueryClient;
   let wrapper: WrapperComponent<ReactNode>;
+  let initialLocation: Location;
+
+  beforeAll(() => {
+    initialLocation = window.location;
+  });
 
   beforeEach(() => {
     jest.resetModules();
@@ -26,6 +31,10 @@ describe("useURLs", () => {
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     );
     wrapper = Wrapper;
+  });
+
+  afterEach(() => {
+    window.location = initialLocation;
   });
 
   afterAll(() => {
