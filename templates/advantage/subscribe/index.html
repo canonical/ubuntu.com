@@ -107,6 +107,11 @@
           Buy now
         </button>
       </div>
+      {% if is_trialling %}
+        <div class="col-8 col-start-large-4">
+          <p><strong>You cannot purchase a new subscription while a Free Trial is active.</strong></p>
+        </div>
+      {% endif %}
     </div>
   </section>
 </form>
@@ -139,6 +144,7 @@
 
   var accountId = "{% if account %}{{ account.id }}{% endif %}";
   var isGuest = {% if account %}false{% else %}true{% endif %};
+  var isTrialling = {% if is_trialling %}true{% else %}false{% endif %};
   var accountName = "{% if account %}{{ account.name }}{% endif %}";
   var previousPurchaseIds = {
     {% for period, id in previous_purchase_ids.items() %}

@@ -192,7 +192,12 @@ function renderSummary(state) {
     const previous_purchase_id = window.previousPurchaseIds[billing];
 
     // We add the data to the button so the modal can pick it up
-    buyButton.classList.remove("u-disable");
+    if (!window.isTrialling) {
+      buyButton.classList.remove("u-disable");
+    } else {
+      buyButton.classList.add("u-disable");
+    }
+
     const productObject = JSON.stringify(state.product);
     buyButton.dataset.product = productObject;
     buyButton.dataset.quantity = quantity;
