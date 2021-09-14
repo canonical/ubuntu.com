@@ -1,17 +1,25 @@
 import React, { useState } from "react";
-
-import { User, Users, OrganisationName } from "./types";
+import { useQueryClient, useMutation, useQuery } from "react-query";
+import {
+  User,
+  Users,
+  OrganisationName,
+  NewUserValues,
+  UserRole,
+} from "./types";
 import Organisation from "./components/Organisation";
 import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
 import DeleteConfirmationModal from "./components/DeleteConfirmationModal/DeleteConfirmationModal";
+import { requestAddUser, requestDeleteUser, requestUpdateUser } from "./api";
 
 type Props = {
   organisationName: OrganisationName;
+  accountId: string;
   users: Users;
 };
 
-const AccountUsers = ({ organisationName, users }: Props) => {
+const AccountUsers = ({ accountId, organisationName, users }: Props) => {
   const [hasNewUserSuccessMessage, setHasNewUserSuccessMessage] = useState(
     false
   );
@@ -19,17 +27,38 @@ const AccountUsers = ({ organisationName, users }: Props) => {
     hasUserDeletedSuccessMessage,
     setHasUserDeletedSuccessMessage,
   ] = useState(false);
-  const handleAddNewUser = (value: string) => {
-    return Promise.resolve(value).then(() => {
+
+  const queryClient = useQueryClient();
+
+  const userAddMutation = useMutation(
+    (user: NewUserValues) => requestAddUser({ accountId, ...user }),
+    { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
+  );
+
+  const userDeleteMutation = useMutation(
+    (email: string) => requestDeleteUser({ accountId, email }),
+    { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
+  );
+
+  const userUpdateMutation = useMutation(
+    ({ email, role }: { email: string; role: UserRole }) =>
+      requestUpdateUser({ accountId, email, role }),
+    {
+      onSuccess: () => queryClient.invalidateQueries("accountUsers"),
+    }
+  );
+
+  const handleAddNewUser = (user: NewUserValues) =>
+    userAddMutation.mutateAsync(user).then(() => {
       setHasNewUserSuccessMessage(true);
     });
-  };
+
   const [
     isDeleteConfirmationModalOpen,
     setIsDeleteConfirmationModalOpen,
   ] = useState(false);
   const handleDelete = (userId: string) =>
-    Promise.resolve(userId).then(() => {
+    userDeleteMutation.mutateAsync(userId).then(() => {
       dismissEditMode();
       setHasUserDeletedSuccessMessage(true);
     });
