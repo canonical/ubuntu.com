@@ -209,8 +209,8 @@ def parse_user(raw_user: Dict) -> User:
         name=raw_user.get("name"),
         email=raw_user.get("email"),
         id=raw_user.get("id"),
-        last_login=raw_user.get("lastLogin"),
-        first_login=raw_user.get("firstLogin"),
+        last_login_at=raw_user.get("lastLogin"),
+        first_login_at=raw_user.get("firstLogin"),
         verified=raw_user.get("verified"),
     )
 
