@@ -4,7 +4,7 @@ function clearFilters() {
   hideDrawerPageReload();
 
   let objUrl = new URL(window.location);
-  const href = window.location.href;
+  const { href } = window.location;
   if (href.includes("q=") && !href.includes("q=&")) {
     const startOfQuery = href.indexOf("q");
     const endOfQuery = href.indexOf("&");
@@ -103,7 +103,7 @@ function updateResultsPerPage() {
   if (pageSizeBottom) {
     pageSizeBottom.addEventListener("change", (e) => {
       // Avoids submitting 2 redundant fields
-      let pageSizeTopChange = new Event("change");
+      const pageSizeTopChange = new Event("change");
       pageSizeTop.value = e.target.value;
       pageSizeTop.dispatchEvent(pageSizeTopChange);
     });
