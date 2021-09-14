@@ -52,12 +52,11 @@ describe("DetailsContent", () => {
   });
 
   it("displays a spinner while loading the contract token", () => {
-    queryClient.setQueryData("userSubscriptions", [
-      userSubscriptionFactory.build(),
-    ]);
+    const contract = userSubscriptionFactory.build();
+    queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedToken="0" />
+        <DetailsContent selectedId={contract.contract_id} />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
@@ -75,7 +74,7 @@ describe("DetailsContent", () => {
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedToken="0" />
+        <DetailsContent selectedId={contract.contract_id} />
       </QueryClientProvider>
     );
     expect(wrapper.find("CodeSnippet").exists()).toBe(true);
