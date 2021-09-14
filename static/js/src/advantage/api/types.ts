@@ -48,3 +48,7 @@ export type UserSubscription = {
   subscription_id: string | null;
   type: UserSubscriptionType;
 };
+
+export type ContractToken = {
+  contract_token: string;
+};

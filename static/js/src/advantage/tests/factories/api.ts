@@ -1,5 +1,6 @@
 import { Factory } from "fishery";
 import {
+  ContractToken,
   UserSubscription,
   UserSubscriptionEntitlement,
   UserSubscriptionStatuses,
@@ -75,5 +76,11 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     statuses: userSubscriptionStatusesFactory.build(),
     subscription_id: null,
     type: UserSubscriptionType.Free,
+  })
+);
+
+export const contractTokenFactory = Factory.define<ContractToken>(
+  ({ sequence }) => ({
+    contract_token: `zPyaGE9Z4DF9sf54ZfJt59AMwynub${sequence}`,
   })
 );
