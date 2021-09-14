@@ -874,7 +874,7 @@ def marketo_submit():
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
-    if client_ip and ":" in client_ip:
+    if client_ip and not ":" in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
     payload = {
