@@ -29,16 +29,24 @@ export type UserSubscriptionStatuses = {
 
 export type UserSubscription = {
   account_id: string;
+  contract_id: string;
+  currency: string;
   end_date: Date | null;
   entitlements: UserSubscriptionEntitlement[];
   listing_id: string | null;
-  marketplace: UserSubscriptionMarketplace;
   machine_type: UserSubscriptionMachineType;
+  marketplace: UserSubscriptionMarketplace;
   number_of_machines: number;
   period: UserSubscriptionPeriod | null;
-  price_per_unit: number | null;
+  price: number | null;
   product_name: string | null;
+  renewal_id: string | null;
   start_date: Date;
   statuses: UserSubscriptionStatuses;
+  subscription_id: string | null;
   type: UserSubscriptionType;
+};
+
+export type ContractToken = {
+  contract_token: string;
 };

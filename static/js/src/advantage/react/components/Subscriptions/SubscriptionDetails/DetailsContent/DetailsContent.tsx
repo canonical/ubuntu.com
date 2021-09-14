@@ -7,8 +7,8 @@ import {
   Spinner,
 } from "@canonical/react-components";
 import classNames from "classnames";
-import { useUserSubscriptions } from "advantage/react/hooks";
-import { selectSubscriptionByToken } from "advantage/react/hooks/useUserSubscriptions";
+import { useContractToken, useUserSubscriptions } from "advantage/react/hooks";
+import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
   formatDate,
   getMachineTypeDisplay,
@@ -19,10 +19,10 @@ import {
 import React, { ReactNode } from "react";
 
 import DetailsTabs from "../DetailsTabs";
-import { SelectedToken } from "../../Content/types";
+import { SelectedId } from "../../Content/types";
 
 type Props = {
-  selectedToken?: SelectedToken;
+  selectedId?: SelectedId;
 };
 
 type Feature = {
@@ -45,14 +45,28 @@ const generateFeatures = (features: Feature[]) =>
     </Col>
   ));
 
-const DetailsContent = ({ selectedToken }: Props) => {
+const DetailsContent = ({ selectedId }: Props) => {
   const { data: subscription, isLoading } = useUserSubscriptions({
-    select: selectSubscriptionByToken(selectedToken),
+    select: selectSubscriptionById(selectedId),
   });
+  const { data: token, isLoading: isLoadingToken } = useContractToken(
+    subscription?.contract_id
+  );
   const isFree = isFreeSubscription(subscription);
   if (isLoading || !subscription) {
     return <Spinner />;
   }
+  const tokenBlock = token?.contract_token ? (
+    <CodeSnippet
+      blocks={[
+        {
+          appearance: CodeSnippetBlockAppearance.URL,
+          code: token?.contract_token,
+        },
+      ]}
+      className="u-sv4 u-no-margin--bottom"
+    />
+  ) : null;
   return (
     <div>
       <Row className="u-sv4">
@@ -89,16 +103,13 @@ const DetailsContent = ({ selectedToken }: Props) => {
       <h5 className="u-no-padding--top p-subscriptions__details-small-title">
         Subscription
       </h5>
-      <CodeSnippet
-        blocks={[
-          {
-            appearance: CodeSnippetBlockAppearance.URL,
-            // TODO: display the token when it is available from the API.
-            code: "abc123",
-          },
-        ]}
-        className="u-sv4 u-no-margin--bottom"
-      />
+      {isLoadingToken ? (
+        <div className="u-sv4" data-test="token-spinner">
+          <Spinner />
+        </div>
+      ) : (
+        tokenBlock
+      )}
       <DetailsTabs />
     </div>
   );
