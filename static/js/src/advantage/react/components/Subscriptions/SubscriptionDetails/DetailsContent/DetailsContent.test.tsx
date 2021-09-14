@@ -23,7 +23,7 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedToken="0" />
+        <DetailsContent selectedId={contract.contract_id} />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='expires-col']").text()).toBe("Never");
@@ -36,18 +36,18 @@ describe("DetailsContent", () => {
       end_date: new Date("2022-07-09T07:21:21Z"),
       number_of_machines: 2,
       period: UserSubscriptionPeriod.Yearly,
-      price_per_unit: 150000,
+      price: 150000,
     });
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedToken="0" />
+        <DetailsContent selectedId={contract.contract_id} />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='expires-col']").text()).toBe("09.07.2022");
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("Yearly");
     expect(wrapper.find("[data-test='cost-col']").text()).toBe(
-      "$300,000 USD/yr"
+      "$150,000 USD/yr"
     );
   });
 

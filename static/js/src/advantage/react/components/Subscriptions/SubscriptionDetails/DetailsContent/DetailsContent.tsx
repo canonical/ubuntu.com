@@ -8,7 +8,7 @@ import {
 } from "@canonical/react-components";
 import classNames from "classnames";
 import { useContractToken, useUserSubscriptions } from "advantage/react/hooks";
-import { selectSubscriptionByToken } from "advantage/react/hooks/useUserSubscriptions";
+import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
   formatDate,
   getMachineTypeDisplay,
@@ -19,10 +19,10 @@ import {
 import React, { ReactNode } from "react";
 
 import DetailsTabs from "../DetailsTabs";
-import { SelectedToken } from "../../Content/types";
+import { SelectedId } from "../../Content/types";
 
 type Props = {
-  selectedToken?: SelectedToken;
+  selectedId?: SelectedId;
 };
 
 type Feature = {
@@ -45,9 +45,9 @@ const generateFeatures = (features: Feature[]) =>
     </Col>
   ));
 
-const DetailsContent = ({ selectedToken }: Props) => {
+const DetailsContent = ({ selectedId }: Props) => {
   const { data: subscription, isLoading } = useUserSubscriptions({
-    select: selectSubscriptionByToken(selectedToken),
+    select: selectSubscriptionById(selectedId),
   });
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id
