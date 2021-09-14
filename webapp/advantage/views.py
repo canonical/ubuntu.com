@@ -385,6 +385,26 @@ def get_last_purchase_ids(account_id):
 
 
 @advantage_decorator(permission="user", response="json")
+def get_account_users():
+    g.api.set_convert_response(True)
+
+    try:
+        account = g.api.get_purchase_account()
+    except UAContractsUserHasNoAccount as error:
+        # if no account throw 404
+        raise UAContractsAPIError(error)
+
+    account_users = g.api.get_account_users(account_id=account.id)
+
+    return flask.jsonify(
+        {
+            "account_id": account.id,
+            "users": to_dict(account_users),
+        }
+    )
+
+
+@advantage_decorator(permission="user", response="json")
 @use_kwargs({"contract_id": String()}, location="query")
 def get_contract_token(contract_id):
     g.api.set_convert_response(True)

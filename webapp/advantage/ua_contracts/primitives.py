@@ -117,3 +117,27 @@ class Account:
     ):
         self.id = id
         self.name = name
+
+
+class User:
+    def __init__(
+        self,
+        id: str,
+        name: str,
+        display_name: str,
+        email: str,
+        last_login: str,
+        first_login: str,
+        verified: bool,
+    ):
+        self.first_login = first_login
+        self.last_login = last_login
+        self.email = email
+        self.id = id
+        self.name = name
+        self.display_name = display_name
+        self.verified = verified
+        self.user_role_on_account = None
+
+    def set_user_role_on_account(self, user_role_on_account):
+        self.user_role_on_account = user_role_on_account
