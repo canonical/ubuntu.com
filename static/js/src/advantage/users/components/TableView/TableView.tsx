@@ -42,12 +42,15 @@ const TableView = ({
         },
         {
           content: "role",
+          width: "20%",
         },
         {
           content: "last sign in",
+          width: "15%",
         },
         {
           content: "actions",
+          width: "20%",
         },
       ]}
       rows={users.map((user) =>
