@@ -2,6 +2,7 @@ import { UserRole, Users } from "./types";
 
 type AccountUsersReponse = {
   account_id: string;
+  name: string;
   users: {
     id: string;
     name: string;
@@ -13,6 +14,7 @@ type AccountUsersReponse = {
 
 type ParsedAccountUsersResponse = {
   accountId: string;
+  organisationName: string;
   users: Users;
 };
 
@@ -20,6 +22,7 @@ const parseAccountsResponse = (
   response: AccountUsersReponse
 ): ParsedAccountUsersResponse => ({
   accountId: response.account_id,
+  organisationName: response.name,
   users: response.users.map((user) => ({
     id: user.email,
     name: user.name,

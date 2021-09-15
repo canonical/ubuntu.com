@@ -13,13 +13,17 @@ import TableView from "./components/TableView/TableView";
 import DeleteConfirmationModal from "./components/DeleteConfirmationModal/DeleteConfirmationModal";
 import { requestAddUser, requestDeleteUser, requestUpdateUser } from "./api";
 
-type Props = {
+export type AccountUsersProps = {
   organisationName: OrganisationName;
   accountId: string;
   users: Users;
 };
 
-const AccountUsers = ({ accountId, organisationName, users }: Props) => {
+const AccountUsers = ({
+  accountId,
+  organisationName,
+  users,
+}: AccountUsersProps) => {
   const [hasNewUserSuccessMessage, setHasNewUserSuccessMessage] = useState(
     false
   );

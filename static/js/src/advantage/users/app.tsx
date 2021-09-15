@@ -24,7 +24,7 @@ const AccountUsersWithQuery = () => {
   });
   return isSuccess && data ? (
     <AccountUsers
-      organisationName={data.accountId}
+      organisationName={data.organisationName}
       users={data.users}
       accountId={data.accountId}
     />
