@@ -24,20 +24,10 @@ const AccountUsers = ({
   organisationName,
   users,
 }: AccountUsersProps) => {
-  const [hasNewUserSuccessMessage, setHasNewUserSuccessMessage] = useState(
-    false
-  );
-  const [
-    hasUserDeletedSuccessMessage,
-    setHasUserDeletedSuccessMessage,
-  ] = useState(false);
-  const [
-    hasUserUpdatedSuccessMessage,
-    setHasUserUpdatedSuccessMessage,
-  ] = useState(false);
-  const [hasUserUpdatedErrorMessage, setHasUserUpdatedErrorMessage] = useState(
-    false
-  );
+  const [notification, setNotification] = useState<{
+    severity: string;
+    message: string;
+  } | null>(null);
 
   const queryClient = useQueryClient();
 
@@ -69,16 +59,19 @@ const AccountUsers = ({
         .mutateAsync({ email: userInEditMode.email, role: newUserRole })
         .then(() => {
           dismissEditMode();
-          setHasUserUpdatedSuccessMessage(true);
+          setNotification({ severity: "positive", message: "User updated" });
         });
     } else {
-      setHasUserUpdatedErrorMessage(true);
+      setNotification({ severity: "negative", message: "User not updated" });
     }
   };
 
   const handleAddNewUser = (user: NewUserValues) =>
     userAddMutation.mutateAsync(user).then(() => {
-      setHasNewUserSuccessMessage(true);
+      setNotification({
+        severity: "positive",
+        message: "User added successfully",
+      });
     });
 
   const [
@@ -88,7 +81,7 @@ const AccountUsers = ({
   const handleDeleteUser = (userId: string) =>
     userDeleteMutation.mutateAsync(userId).then(() => {
       dismissEditMode();
-      setHasUserDeletedSuccessMessage(true);
+      setNotification({ severity: "positive", message: "User deleted" });
     });
 
   const [userInEditModeById, setUserInEditModeById] = useState<string | null>(
@@ -125,45 +118,26 @@ const AccountUsers = ({
           <div className="col-6">
             <AddNewUser
               handleSubmit={handleAddNewUser}
-              onAfterModalOpen={() => setHasNewUserSuccessMessage(false)}
+              onAfterModalOpen={() => setNotification(null)}
             />
           </div>
         </div>
-        {hasUserUpdatedErrorMessage ? (
+        {notification ? (
           <div className="row">
             <div className="col-12">
-              <div className="p-notification--negative">
+              <div className={`p-notification--${notification.severity}`}>
                 <div className="p-notification__content" aria-atomic="true">
-                  <h5 className="p-notification__title">Error</h5>
+                  <h5 className="p-notification__title">
+                    {notification.severity === "positive" ? "Success" : "Error"}
+                  </h5>
                   <p className="p-notification__message" role="alert">
-                    Something went wrong. Please try again.
+                    {notification.message}
                   </p>
                 </div>
               </div>
             </div>
           </div>
         ) : null}
-        {hasNewUserSuccessMessage ||
-        hasUserDeletedSuccessMessage ||
-        hasUserUpdatedSuccessMessage ? (
-          <div className="row">
-            <div className="col-12">
-              <div className="p-notification--positive">
-                <div className="p-notification__content" aria-atomic="true">
-                  <h5 className="p-notification__title">Success</h5>
-                  <p className="p-notification__message" role="alert">
-                    {hasUserUpdatedSuccessMessage
-                      ? "User updated successfully."
-                      : hasNewUserSuccessMessage
-                      ? "User added successfully."
-                      : "User deleted successfully."}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : null}
-
         {isDeleteConfirmationModalOpen && userInEditMode ? (
           <DeleteConfirmationModal
             user={userInEditMode}
