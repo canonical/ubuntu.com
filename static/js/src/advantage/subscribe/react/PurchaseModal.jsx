@@ -18,7 +18,6 @@ const PurchaseModal = () => {
   const [step, setStep] = useState(
     userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
   );
-  const buttonRef = useRef(null);
   const queryClient = useQueryClient();
 
   const paymentMethodMutation = registerPaymentMethod();
