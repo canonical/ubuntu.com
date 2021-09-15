@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQueryClient, useMutation, useQuery } from "react-query";
+import { useQueryClient, useMutation } from "react-query";
 import {
   User,
   Users,
@@ -31,6 +31,13 @@ const AccountUsers = ({
     hasUserDeletedSuccessMessage,
     setHasUserDeletedSuccessMessage,
   ] = useState(false);
+  const [
+    hasUserUpdatedSuccessMessage,
+    setHasUserUpdatedSuccessMessage,
+  ] = useState(false);
+  const [hasUserUpdatedErrorMessage, setHasUserUpdatedErrorMessage] = useState(
+    false
+  );
 
   const queryClient = useQueryClient();
 
@@ -46,11 +53,28 @@ const AccountUsers = ({
 
   const userUpdateMutation = useMutation(
     ({ email, role }: { email: string; role: UserRole }) =>
-      requestUpdateUser({ accountId, email, role }),
+      requestUpdateUser({
+        accountId,
+        email,
+        role,
+      }),
     {
       onSuccess: () => queryClient.invalidateQueries("accountUsers"),
     }
   );
+
+  const handleUpdateUser = ({ newUserRole }: { newUserRole: UserRole }) => {
+    if (userInEditMode) {
+      userUpdateMutation
+        .mutateAsync({ email: userInEditMode.email, role: newUserRole })
+        .then(() => {
+          dismissEditMode();
+          setHasUserUpdatedSuccessMessage(true);
+        });
+    } else {
+      setHasUserUpdatedErrorMessage(true);
+    }
+  };
 
   const handleAddNewUser = (user: NewUserValues) =>
     userAddMutation.mutateAsync(user).then(() => {
@@ -61,7 +85,7 @@ const AccountUsers = ({
     isDeleteConfirmationModalOpen,
     setIsDeleteConfirmationModalOpen,
   ] = useState(false);
-  const handleDelete = (userId: string) =>
+  const handleDeleteUser = (userId: string) =>
     userDeleteMutation.mutateAsync(userId).then(() => {
       dismissEditMode();
       setHasUserDeletedSuccessMessage(true);
@@ -105,14 +129,32 @@ const AccountUsers = ({
             />
           </div>
         </div>
-        {hasNewUserSuccessMessage || hasUserDeletedSuccessMessage ? (
+        {hasUserUpdatedErrorMessage ? (
+          <div className="row">
+            <div className="col-12">
+              <div className="p-notification--negative">
+                <div className="p-notification__content" aria-atomic="true">
+                  <h5 className="p-notification__title">Error</h5>
+                  <p className="p-notification__message" role="alert">
+                    Something went wrong. Please try again.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
+        {hasNewUserSuccessMessage ||
+        hasUserDeletedSuccessMessage ||
+        hasUserUpdatedSuccessMessage ? (
           <div className="row">
             <div className="col-12">
               <div className="p-notification--positive">
                 <div className="p-notification__content" aria-atomic="true">
                   <h5 className="p-notification__title">Success</h5>
                   <p className="p-notification__message" role="alert">
-                    {hasNewUserSuccessMessage
+                    {hasUserUpdatedSuccessMessage
+                      ? "User updated successfully."
+                      : hasNewUserSuccessMessage
                       ? "User added successfully."
                       : "User deleted successfully."}
                   </p>
@@ -125,7 +167,7 @@ const AccountUsers = ({
         {isDeleteConfirmationModalOpen && userInEditMode ? (
           <DeleteConfirmationModal
             user={userInEditMode}
-            handleConfirmDelete={handleDelete}
+            handleConfirmDelete={handleDeleteUser}
             handleClose={handleDeleteConfirmationModalClose}
           />
         ) : null}
@@ -133,9 +175,11 @@ const AccountUsers = ({
           <div className="col-12">
             <TableView
               users={users}
+              userInEditMode={userInEditMode}
               userInEditModeById={userInEditModeById}
               setUserInEditModeById={setUserInEditModeById}
               dismissEditMode={dismissEditMode}
+              handleEditSubmit={handleUpdateUser}
               handleDeleteConfirmationModalOpen={
                 handleDeleteConfirmationModalOpen
               }

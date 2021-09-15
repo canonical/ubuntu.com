@@ -1,7 +1,9 @@
 import React from "react";
+import { Formik } from "formik";
+
 import MainTable from "@canonical/react-components/dist/components/MainTable";
 
-import { Users } from "../../types";
+import { User, UserRole, Users } from "../../types";
 import { getUserRow } from "./components";
 
 export type UserRowVariant = "regular" | "editing" | "disabled";
@@ -20,49 +22,63 @@ const getVariant = (userId: UserId, userInEditMode: UserId | null) => {
 
 type Props = {
   users: Users;
+  userInEditMode?: User;
   userInEditModeById: UserId | null;
   setUserInEditModeById: (userId: UserId | null) => void;
   dismissEditMode: () => void;
+  handleEditSubmit: ({ newUserRole }: { newUserRole: UserRole }) => void;
   handleDeleteConfirmationModalOpen: () => void;
 };
 
 const TableView = ({
   users,
+  userInEditMode,
   userInEditModeById,
   setUserInEditModeById,
   dismissEditMode,
+  handleEditSubmit,
   handleDeleteConfirmationModalOpen,
 }: Props) => {
   return (
-    <MainTable
-      responsive
-      headers={[
-        {
-          content: "email",
-        },
-        {
-          content: "role",
-          width: "20%",
-        },
-        {
-          content: "last sign in",
-          width: "15%",
-        },
-        {
-          content: "actions",
-          width: "20%",
-        },
-      ]}
-      rows={users.map((user) =>
-        getUserRow({
-          user,
-          variant: getVariant(user.id, userInEditModeById),
-          setUserInEditModeById,
-          dismissEditMode,
-          handleDeleteConfirmationModalOpen,
-        })
+    <Formik
+      initialValues={{ newUserRole: userInEditMode?.role }}
+      onSubmit={(values) => {
+        handleEditSubmit(values);
+      }}
+    >
+      {({ handleSubmit }) => (
+        <MainTable
+          responsive
+          headers={[
+            {
+              content: "email",
+            },
+            {
+              content: "role",
+              width: "20%",
+            },
+            {
+              content: "last sign in",
+              width: "15%",
+            },
+            {
+              content: "actions",
+              width: "20%",
+            },
+          ]}
+          rows={users.map((user) =>
+            getUserRow({
+              user,
+              variant: getVariant(user.id, userInEditModeById),
+              setUserInEditModeById,
+              dismissEditMode,
+              handleEditSubmit: handleSubmit,
+              handleDeleteConfirmationModalOpen,
+            })
+          )}
+        />
       )}
-    />
+    </Formik>
   );
 };
 

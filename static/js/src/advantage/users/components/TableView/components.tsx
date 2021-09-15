@@ -8,6 +8,7 @@ import { MainTableRow } from "@canonical/react-components/dist/components/MainTa
 import { User } from "../../types";
 import { UserRowVariant } from "./TableView";
 import { userRoleOptions } from "../../constants";
+import { Field } from "formik";
 
 const DATE_FORMAT = "dd/MM/yyyy";
 
@@ -18,7 +19,7 @@ type UserVariantProps = {
 
 type UserActionsProps = {
   handleEditOpen: (id: string) => void;
-  handleEditSubmit: (id: string) => void;
+  handleEditSubmit: () => void;
   handleCancel: () => void;
 } & UserVariantProps;
 
@@ -44,12 +45,7 @@ const UserActions = ({
       <Button small dense onClick={handleCancel}>
         Cancel
       </Button>
-      <Button
-        small
-        dense
-        appearance="positive"
-        onClick={() => handleEditSubmit(user.id)}
-      >
+      <Button small dense appearance="positive" onClick={handleEditSubmit}>
         Save
       </Button>
     </>
@@ -120,12 +116,20 @@ const UserRole = ({ user, variant }: UserRoleProps) => {
           position: "static",
         }}
       >
-        <Select
-          defaultValue={user.role}
-          name="user-role"
-          className="u-no-margin--bottom"
-          options={userRoleOptions}
-        />
+        {/* display an empty <select /> to prevent layout shifting on toggle */}
+        {variant === "editing" ? (
+          <>
+            <Field
+              defaultValue={user.role}
+              as={Select}
+              name="newUserRole"
+              className="u-no-margin--bottom"
+              options={userRoleOptions}
+            />
+          </>
+        ) : (
+          <Select className="u-no-margin--bottom" />
+        )}
       </div>
     </div>
   );
@@ -152,6 +156,7 @@ const getUserRow = ({
   variant,
   setUserInEditModeById,
   dismissEditMode,
+  handleEditSubmit,
   handleDeleteConfirmationModalOpen,
 }: UserRowProps): MainTableRow => {
   return {
@@ -190,7 +195,7 @@ const getUserRow = ({
             user={user}
             handleEditOpen={setUserInEditModeById}
             handleCancel={dismissEditMode}
-            handleEditSubmit={dismissEditMode}
+            handleEditSubmit={handleEditSubmit}
           />
         ),
         style: tdStyle,
