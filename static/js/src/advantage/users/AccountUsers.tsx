@@ -12,6 +12,7 @@ import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
 import DeleteConfirmationModal from "./components/DeleteConfirmationModal/DeleteConfirmationModal";
 import { requestAddUser, requestDeleteUser, requestUpdateUser } from "./api";
+import { getErrorMessage } from "./utils";
 
 export type AccountUsersProps = {
   organisationName: OrganisationName;
@@ -60,6 +61,12 @@ const AccountUsers = ({
         .then(() => {
           dismissEditMode();
           setNotification({ severity: "positive", message: "User updated" });
+        })
+        .catch((error) => {
+          setNotification({
+            severity: "negative",
+            message: getErrorMessage((error as any)?.message),
+          });
         });
     } else {
       setNotification({ severity: "negative", message: "User not updated" });
