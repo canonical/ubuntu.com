@@ -18,17 +18,28 @@ const queryClient = new QueryClient({
 });
 
 const AccountUsersWithQuery = () => {
-  const { isSuccess, data } = useQuery("accountUsers", async () => {
+  const { status, data } = useQuery("accountUsers", async () => {
     const res = await requestAccountUsers();
     return res;
   });
-  return isSuccess && data ? (
-    <AccountUsers
-      organisationName={data.organisationName}
-      users={data.users}
-      accountId={data.accountId}
-    />
-  ) : null;
+  return (
+    <div>
+      <div className="p-strip">
+        <div className="row">
+          <div className="col-12">
+            <h1>Account users</h1>
+          </div>
+        </div>
+      </div>
+      {status === "success" && data ? (
+        <AccountUsers
+          organisationName={data.organisationName}
+          users={data.users}
+          accountId={data.accountId}
+        />
+      ) : null}
+    </div>
+  );
 };
 
 function App() {
