@@ -61,7 +61,7 @@
       <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
         {% for desktop_vendor in desktop_vendors %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Desktop&vendor={{ desktop_vendor.make }}">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.desktops }})</a>
+          <a href="/certified/desktops?vendor={{ desktop_vendor.make }}">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.desktops }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -69,7 +69,7 @@
       <ul class="p-inline-list--midline">
         {% for desktop_release in desktop_releases %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Desktop&release={{ desktop_release.release }}">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops }})</a>
+          <a href="/certified/desktops?release={{ desktop_release.release }}">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -92,7 +92,7 @@
       <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
         {% for laptop_vendor in laptop_vendors %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Laptop&vendor={{ laptop_vendor.make }}">{{ laptop_vendor.make }}&nbsp;({{ laptop_vendor.laptops }})</a>
+          <a href="/certified/laptops?vendor={{ laptop_vendor.make }}">{{ laptop_vendor.make }}&nbsp;({{ laptop_vendor.laptops }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -100,7 +100,7 @@
       <ul class="p-inline-list--midline">
         {% for laptop_release in laptop_releases %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Laptop&release={{ laptop_release.release }}">{{ laptop_release.release }}&nbsp;&nbsp;({{ laptop_release.laptops }})</a>
+          <a href="/certified/laptops?release={{ laptop_release.release }}">{{ laptop_release.release }}&nbsp;&nbsp;({{ laptop_release.laptops }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -126,7 +126,7 @@
       <ul class="p-inline-list--midline">
         {% for server_release, total in server_releases.items() %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Server&release={{ server_release }}">{{ server_release }}&nbsp;({{ total }})</a>
+          <a href="/certified/servers?release={{ server_release }}">{{ server_release }}&nbsp;({{ total }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -150,7 +150,7 @@
       <ul class="p-inline-list--midline">
         {% for iot_vendor in iot_vendors %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=Device&vendor={{ iot_vendor.make }}">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.smart_core }})</a>
+          <a href="/certified/devices?vendor={{ iot_vendor.make }}">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.smart_core }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -176,7 +176,7 @@
       <ul class="p-inline-list--midline">
         {% for soc_vendor in soc_vendors %}
         <li class="p-inline-list__item">
-          <a href="/certified?category=SoC&vendor={{ soc_vendor.make }}">{{ soc_vendor.make }} ({{ soc_vendor.soc }})</a>
+          <a href="/certified/socs?vendor={{ soc_vendor.make }}">{{ soc_vendor.make }} ({{ soc_vendor.soc }})</a>
         </li>
         {% endfor %}
       </ul>
