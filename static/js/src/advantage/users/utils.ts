@@ -3,6 +3,8 @@ import { ValueOf } from "@canonical/react-components";
 const errorMessages = {
   ["email already exists"]:
     "Cannot add user. User already exists in your organisation.",
+  ["cannot remove last verified admin from account"]:
+    "Cannot remove last verified admin from account",
   default: "An unknown error has occurred.",
 } as const;
 
@@ -12,9 +14,11 @@ export type SubmissionErrorMessage = ValueOf<typeof errorMessages>;
 export const getErrorMessage = (
   error: SubmissionErrorMessageKey | string = "default"
 ): SubmissionErrorMessage =>
-  Object.keys(errorMessages).includes(error)
-    ? errorMessages[error as SubmissionErrorMessageKey]
-    : errorMessages.default;
+  errorMessages[
+    Object.keys(errorMessages).find((message) =>
+      error.includes(message)
+    ) as SubmissionErrorMessageKey
+  ] || errorMessages.default;
 
 export const validateRequired = (value: string): string | undefined =>
   !value ? "This field is required." : undefined;
