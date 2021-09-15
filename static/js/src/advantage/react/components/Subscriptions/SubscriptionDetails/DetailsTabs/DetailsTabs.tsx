@@ -6,7 +6,7 @@ import {
   UserSubscription,
   UserSubscriptionEntitlement,
 } from "advantage/api/types";
-import { getFeaturesDisplay } from "advantage/react/utils";
+import { getFeaturesDisplay, isFreeSubscription } from "advantage/react/utils";
 import { EntitlementType } from "advantage/api/enum";
 
 enum ActiveTab {
@@ -58,45 +58,43 @@ const generateDocLinks = (
 ): DocsLink[] =>
   entitlements.reduce<DocsLink[]>((collection, entitlement) => {
     let link: DocsLink | null = null;
-    if (entitlement.enabled_by_default) {
-      switch (entitlement.type) {
-        case EntitlementType.EsmApps:
-        case EntitlementType.EsmInfra:
-          link = {
-            label: "ESM Infra & ESM Apps",
-            url:
-              "https://support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
-          };
-          break;
-        case EntitlementType.Livepatch:
-        case EntitlementType.LivepatchOnprem:
-          link = {
-            label: "Livepatch",
-            url: "https://ubuntu.com/security/livepatch/docs",
-          };
-          break;
-        case EntitlementType.Support:
-          link = { label: "Support", url: "https://support.canonical.com/" };
-          break;
-        case EntitlementType.Cis:
-          link = {
-            label: "CIS setup instructions",
-            url: "https://ubuntu.com/security/certifications/docs/cis",
-          };
-          break;
-        case EntitlementType.CcEal:
-          link = {
-            label: "CC-EAL2 setup instructions",
-            url: "https://ubuntu.com/security/certifications/docs/cc",
-          };
-          break;
-        case EntitlementType.Fips:
-          link = {
-            label: "FIPS setup instructions",
-            url: "https://ubuntu.com/security/certifications/docs/fips ",
-          };
-          break;
-      }
+    switch (entitlement.type) {
+      case EntitlementType.EsmApps:
+      case EntitlementType.EsmInfra:
+        link = {
+          label: "ESM Infra & ESM Apps",
+          url:
+            "https://support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
+        };
+        break;
+      case EntitlementType.Livepatch:
+      case EntitlementType.LivepatchOnprem:
+        link = {
+          label: "Livepatch",
+          url: "/security/livepatch/docs",
+        };
+        break;
+      case EntitlementType.Support:
+        link = { label: "Support", url: "https://support.canonical.com/" };
+        break;
+      case EntitlementType.Cis:
+        link = {
+          label: "CIS setup instructions",
+          url: "/security/certifications/docs/cis",
+        };
+        break;
+      case EntitlementType.CcEal:
+        link = {
+          label: "CC-EAL2 setup instructions",
+          url: "/security/certifications/docs/cc",
+        };
+        break;
+      case EntitlementType.Fips:
+        link = {
+          label: "FIPS setup instructions",
+          url: "/security/certifications/docs/fips ",
+        };
+        break;
     }
     if (link && !collection.find(({ label }) => label === link?.label)) {
       collection.push(link);
@@ -108,7 +106,9 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.FEATURES);
   let content: ReactNode | null;
   const features = getFeaturesDisplay(subscription.entitlements);
-  const docs = generateDocLinks(subscription.entitlements);
+  const isFree = isFreeSubscription(subscription);
+  // Don't display any docs links for the free subscription.
+  const docs = isFree ? [] : generateDocLinks(subscription.entitlements);
   switch (activeTab) {
     case ActiveTab.DOCUMENTATION:
       content = (
