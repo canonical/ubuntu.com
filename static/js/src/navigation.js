@@ -3,7 +3,6 @@ var navDropdowns = [].slice.call(
 );
 var dropdownWindow = document.querySelector(".dropdown-window");
 var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
-var mainContent= document.querySelector(".main-content");
 
 navDropdowns.forEach(function (dropdown) {
   dropdown.addEventListener("click", function (event) {
@@ -12,8 +11,8 @@ navDropdowns.forEach(function (dropdown) {
     var clickedDropdown = this;
 
     dropdownWindow.classList.remove("slide-animation");
-    mainContent.classList.remove("fade-animation");
-    
+    dropdownWindowOverlay.classList.remove("fade-animation");
+
     navDropdowns.forEach(function (dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
 
@@ -62,7 +61,7 @@ if (dropdownWindowOverlay) {
 function closeMenu(dropdown) {
   dropdown.classList.remove("is-selected");
   dropdownWindow.classList.add("slide-animation");
-  mainContent.classList.add("fade-animation");
+  dropdownWindowOverlay.classList.add("fade-animation");
   if (window.history.pushState) {
     window.history.pushState(null, null, window.location.href.split("#")[0]);
   }

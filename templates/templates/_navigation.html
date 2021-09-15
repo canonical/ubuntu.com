@@ -2,7 +2,6 @@
 
 <header id="navigation" class="p-navigation">
   {% block header_banner %}
-  <div class="dropdown-window-overlay fade-animation"></div>
   <div class="p-navigation__row">
     <div class="p-navigation__banner">
       <div class="p-navigation__logo">
@@ -78,7 +77,7 @@
   </div>
   {% endblock header_banner %}
 </header>
-<div class="main-content dropdown-window-overlay fade-animation"></div>
+<div class="dropdown-window-overlay fade-animation"></div>
 <div class="dropdown-window slide-animation">
   <div class="u-hide" id="enterprise-content"></div>
   <div class="u-hide" id="developer-content">  </div>
@@ -187,18 +186,20 @@
 
   function openSearch(e) {
     e.preventDefault();
-    var globalNav = document.querySelector('.global-nav__header');
-    var globalNavDropdown = document.querySelector('.global-nav__dropdown-content');
     var navigation = document.querySelector('.p-navigation__nav');
     var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+    var banner = document.querySelector(".p-navigation__banner");
+    var dropdownWindow = document.querySelector(".dropdown-window");
+    var navigationItems = document.querySelector('.p-navigation__items');
     var searchButton = document.querySelector('.js-search-button');
     var search = document.querySelector('.p-navigation__search');
     var searchInput = document.querySelector('.p-search-box__input');
     var searchActive = !search.classList.contains('u-hide');
     search.classList.remove('u-hide');
     searchButton.classList.add('u-hide');
-    globalNav.style= "opacity: 0.4; transition: opacity 0.5s ease-in-out;"
-    globalNavDropdown.style.marginBottom=".2rem"
+    banner.style= "opacity: 0.4; transition: opacity 0.5s ease-in-out;"
+    navigationItems.style= "opacity: 0.4; transition: opacity 0.5s ease-in-out;"
+    dropdownWindow.style="z-index: 37;"
     dropdownWindowOverlay.classList.remove("fade-animation");
     navigation.classList.add('has-active-search');
     searchInput.focus();
@@ -207,13 +208,17 @@
   }
 
   function closeSearch() {
-    var globalNav = document.querySelector('.global-nav__header');
     var navigation = document.querySelector('.p-navigation__nav');
+    var banner = document.querySelector(".p-navigation__banner")
+    var dropdownWindow = document.querySelector(".dropdown-window");
     var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+    var navigationItems = document.querySelector('.p-navigation__items');
     var searchButton = document.querySelector('.js-search-button');
     var search = document.querySelector('.p-navigation__search');
     search.classList.add('u-hide');
-    globalNav.style= "opacity: 1;"
+    banner.style= "opacity: 1;"
+    dropdownWindow.style="z-index: 39;"
+    navigationItems.style= "opacity: 1;"
     dropdownWindowOverlay.classList.add("fade-animation");
     navigation.classList.remove('has-active-search');
     searchButton.classList.remove('u-hide');
