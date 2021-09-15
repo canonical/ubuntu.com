@@ -67,7 +67,15 @@ const UserEmail = ({
 }: UserEmailProps) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      {user.email}
+      <span
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {user.email}
+      </span>
       {variant === "editing" ? (
         <button
           className="p-button--base u-no-margin--bottom"
