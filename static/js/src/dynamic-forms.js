@@ -45,7 +45,7 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
           formContainer.innerHTML = text
             .replace(/%% formid %%/g, formData.formId)
             .replace(/%% returnURL %%/g, formData.returnUrl);
-          
+
           if (formData.title) {
             const title = document.getElementById("modal-title");
             title.innerHTML = formData.title;
