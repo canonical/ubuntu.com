@@ -1,4 +1,9 @@
-import { Button, Spinner } from "@canonical/react-components";
+import {
+  Button,
+  Notification,
+  NotificationProps,
+  Spinner,
+} from "@canonical/react-components";
 import React, { forwardRef, useEffect, useState } from "react";
 import classNames from "classnames";
 
@@ -21,14 +26,21 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
   ({ modalActive, onCloseModal, selectedId }: Props, ref) => {
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
+    const [notification, setNotification] = useState<NotificationProps | null>(
+      null
+    );
     const { data: subscription, isLoading } = useUserSubscriptions({
       select: selectSubscriptionById(selectedId),
     });
     const isFree = isFreeSubscription(subscription);
 
     useEffect(() => {
-      setEditing(false);
-    }, [selectedId, modalActive]);
+      if (!modalActive) {
+        // Close the edit form when the modal is closed so that if the modal for
+        //the same subscription is opened then the edit form won't remain open.
+        setEditing(false);
+      }
+    }, [modalActive]);
 
     if (isLoading || !subscription) {
       return <Spinner />;
@@ -57,6 +69,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               size={ExpiryNotificationSize.Large}
               statuses={subscription.statuses}
             />
+            {notification ? <Notification {...notification} /> : null}
             {isFree ? null : (
               <>
                 <Button
@@ -83,8 +96,10 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
           </div>
           {editing ? (
             <SubscriptionEdit
-              setShowingCancel={setShowingCancel}
               onClose={() => setEditing(false)}
+              setNotification={setNotification}
+              selectedId={selectedId}
+              setShowingCancel={setShowingCancel}
             />
           ) : (
             <DetailsContent selectedId={selectedId} />

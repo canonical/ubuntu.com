@@ -1,57 +1,129 @@
 import {
-  Button,
+  ActionButton,
   ButtonAppearance,
-  Col,
-  Input,
   Modal,
-  Row,
+  Notification,
+  Spinner,
 } from "@canonical/react-components";
 import type { ModalProps } from "@canonical/react-components";
-import React from "react";
+import React, { useRef, useState } from "react";
+import * as Yup from "yup";
+import { useCancelContract, useUserSubscriptions } from "advantage/react/hooks";
+import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
+import { SelectedId } from "../Content/types";
+import { Formik, FormikProps } from "formik";
+import SubscriptionCancelFields from "./SubscriptionCancelFields";
+import { SubscriptionCancelValues } from "./SubscriptionCancelFields/SubscriptionCancelFields";
 
 type Props = {
-  onClose: ModalProps["close"];
+  selectedId?: SelectedId;
+  onCancelSuccess: () => void;
+  onClose: NonNullable<ModalProps["close"]>;
 };
 
-const SubscriptionCancel = ({ onClose }: Props) => {
+enum CancelError {
+  SubscriptionMissing = "subscription-missing",
+  Failed = "failed",
+}
+
+const CancelSchema = Yup.object().shape({
+  cancel: Yup.string()
+    .matches(/^cancel$/, "You must enter the correct confirmation text")
+    .required("The confirmation text is required"),
+});
+
+const generateError = (error: CancelError | null) => {
+  return (
+    <>
+      {error === CancelError.SubscriptionMissing ? (
+        <>
+          It could be that you have a pending payment that is blocking this
+          action.{" "}
+        </>
+      ) : null}
+      Contact{" "}
+      <a className="p-notification__action" href="/contact-us">
+        Canonical sales
+      </a>{" "}
+      if the problem persists.
+    </>
+  );
+};
+
+const SubscriptionCancel = ({
+  selectedId,
+  onCancelSuccess,
+  onClose,
+}: Props) => {
+  const [isValid, setIsValid] = useState(false);
+  const [error, setError] = useState<CancelError | null>(null);
+  const formRef = useRef<FormikProps<SubscriptionCancelValues> | null>(null);
+  const { data: subscription, isLoading } = useUserSubscriptions({
+    select: selectSubscriptionById(selectedId),
+  });
+  const cancelContract = useCancelContract(subscription);
+
   return (
     <div className="p-subscriptions__sticky-footer-modal">
       <Modal
         buttonRow={
-          <Button
+          <ActionButton
             appearance={ButtonAppearance.NEGATIVE}
             className="u-no-margin--bottom"
+            disabled={!isValid}
+            loading={cancelContract.isLoading}
+            success={cancelContract.isSuccess}
+            onClick={() => {
+              if (formRef.current) {
+                // Because this button appears outside of the form in the DOM
+                // this uses a ref to call the submit handler.
+                formRef.current.handleSubmit();
+              }
+            }}
+            type="button"
           >
             Yes, cancel subscription
-          </Button>
+          </ActionButton>
         }
         close={onClose}
-        title="Cancel subscription UA Infra (Virtual)"
+        title={<>Cancel subscription {subscription?.product_name}</>}
       >
-        <p>If you cancel this subscription:</p>
-        <ul>
-          <li>No additional charge will be incurred.</li>
-          <li>
-            The <strong>10 machines</strong> will stop receiving updates and
-            services at the end of the billing period.
-          </li>
-        </ul>
-        <p>
-          Want help or advice? <a href="/contact-us">Chat with us</a>.
-        </p>
-        <Row className="u-no-padding--left">
-          <Col size={8}>
-            <Input
-              label={
-                <>
-                  Please type <strong>cancel</strong> to confirm.
-                </>
-              }
-              placeholder="cancel"
-              type="text"
-            />
-          </Col>
-        </Row>
+        {isLoading ? (
+          <Spinner data-test="form-loading" />
+        ) : (
+          <Formik<SubscriptionCancelValues>
+            initialValues={{
+              cancel: "",
+            }}
+            innerRef={formRef}
+            onSubmit={() => {
+              cancelContract.mutate(null, {
+                onError: (error) =>
+                  setError(
+                    error.message.includes("no monthly subscription")
+                      ? CancelError.SubscriptionMissing
+                      : CancelError.Failed
+                  ),
+                onSuccess: () => onCancelSuccess(),
+              });
+            }}
+            validateOnMount
+            validationSchema={CancelSchema}
+          >
+            <>
+              {error ? (
+                <Notification
+                  data-test="cancel-error"
+                  severity="negative"
+                  title="Could not cancel subscription:"
+                >
+                  {generateError(error)}
+                </Notification>
+              ) : null}
+              <SubscriptionCancelFields setIsValid={setIsValid} />
+            </>
+          </Formik>
+        )}
       </Modal>
     </div>
   );
