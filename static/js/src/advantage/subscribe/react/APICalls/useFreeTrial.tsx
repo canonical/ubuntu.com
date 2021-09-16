@@ -7,7 +7,7 @@ import useProduct from "./useProduct";
 
 import { FormValues } from "../utils/utils";
 
-const FreeTrial = () => {
+const useFreeTrial = () => {
   const { product, quantity } = useProduct();
 
   const mutation = useMutation(async (formData: FormValues) => {
@@ -65,4 +65,4 @@ const FreeTrial = () => {
   return mutation;
 };
 
-export default FreeTrial;
+export default useFreeTrial;
