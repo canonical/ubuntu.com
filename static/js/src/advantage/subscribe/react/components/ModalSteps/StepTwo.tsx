@@ -6,7 +6,7 @@ import {
   CheckboxInput,
 } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
-import {useFormikContext} from "formik";
+import { useFormikContext } from "formik";
 
 import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
 import PaymentMethodSummary from "../PaymentMethodSummary";
