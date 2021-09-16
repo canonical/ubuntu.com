@@ -39,7 +39,7 @@ it("does not display the message if pay now is selected", () => {
   render(
     <FreeTrialRadio isUsingFreeTrial={false} setIsUsingFreeTrial={() => {}} />
   );
-  expect(screen.queryByText("Your free trial ends:")).toBeNull();
+  expect(screen.queryByText("Your free trial ends:")).not.toBeInTheDocument()
 });
 
 it("calls the setIsUsingFreeTrial function when the radio is clicked", () => {
