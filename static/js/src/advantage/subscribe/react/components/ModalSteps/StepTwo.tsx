@@ -6,6 +6,7 @@ import {
   CheckboxInput,
 } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
+import {useFormikContext} from "formik";
 
 import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
 import PaymentMethodSummary from "../PaymentMethodSummary";
@@ -22,6 +23,7 @@ import Summary from "../../components/Summary";
 import FreeTrialRadio from "../../components/FreeTrialRadio";
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 import { getSessionData } from "../../../../../utils/getSessionData";
+import { FormValues } from "../../utils/utils";
 
 type StepOneProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
