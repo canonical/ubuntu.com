@@ -1,8 +1,8 @@
 import React from "react";
 import { RadioInput, Row, Col } from "@canonical/react-components";
-import { formatter } from "../../renderers/form-renderer";
 import { add, format } from "date-fns";
-import usePreview from "../APICalls/usePreview";
+import { formatter } from "../../../renderers/form-renderer";
+import usePreview from "../../APICalls/usePreview";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
@@ -50,13 +50,13 @@ const FreeTrialRadio = ({ isUsingFreeTrial, setIsUsingFreeTrial }: Props) => {
             name="freeTrial"
             value="useFreeTrial"
             label="Use free trial month"
-            defaultChecked={true}
+            defaultChecked={isUsingFreeTrial}
           />
           <RadioInput
             name="freeTrial"
             value="payNow"
             label="Pay now"
-            defaultChecked={false}
+            defaultChecked={!isUsingFreeTrial}
           />
         </div>
       </Col>
