@@ -56,9 +56,15 @@ const UserActions = ({
   );
 };
 
-type UserEmailProps = UserVariantProps;
+type UserEmailProps = {
+  handleDeleteConfirmationModalOpen: () => void;
+} & UserVariantProps;
 
-const UserEmail = ({ user, variant }: UserEmailProps) => {
+const UserEmail = ({
+  user,
+  variant,
+  handleDeleteConfirmationModalOpen,
+}: UserEmailProps) => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       {user.email}
@@ -68,6 +74,7 @@ const UserEmail = ({ user, variant }: UserEmailProps) => {
           style={{
             marginLeft: "0.1rem",
           }}
+          onClick={handleDeleteConfirmationModalOpen}
         >
           <i className="p-icon--delete" aria-label="delete"></i>
         </button>
@@ -123,8 +130,9 @@ const FormattedDate = ({ dateISO }: { dateISO: string }) => (
 );
 
 type UserRowProps = {
-  setUserInEditMode: (id: string) => void;
+  setUserInEditModeById: (id: string) => void;
   dismissEditMode: () => void;
+  handleDeleteConfirmationModalOpen: () => void;
 } & UserVariantProps;
 
 const tdStyle = {
@@ -134,8 +142,9 @@ const tdStyle = {
 const getUserRow = ({
   user,
   variant,
-  setUserInEditMode,
+  setUserInEditModeById,
   dismissEditMode,
+  handleDeleteConfirmationModalOpen,
 }: UserRowProps): MainTableRow => {
   return {
     key: user.id,
@@ -146,7 +155,15 @@ const getUserRow = ({
     },
     columns: [
       {
-        content: <UserEmail user={user} variant={variant} />,
+        content: (
+          <UserEmail
+            user={user}
+            variant={variant}
+            handleDeleteConfirmationModalOpen={
+              handleDeleteConfirmationModalOpen
+            }
+          />
+        ),
         role: "rowheader",
         style: tdStyle,
       },
@@ -163,7 +180,7 @@ const getUserRow = ({
           <UserActions
             variant={variant}
             user={user}
-            handleEditOpen={setUserInEditMode}
+            handleEditOpen={setUserInEditModeById}
             handleCancel={dismissEditMode}
             handleEditSubmit={dismissEditMode}
           />

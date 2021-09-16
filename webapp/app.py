@@ -99,6 +99,10 @@ from webapp.advantage.views import (
     get_contract_token,
     get_user_info,
     cancel_trial,
+    get_account_users,
+    delete_account_user_role,
+    post_account_user_role,
+    put_account_user_role,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -296,6 +300,22 @@ app.add_url_rule(
 )
 app.add_url_rule("/advantage/users", view_func=advantage_account_users_view)
 app.add_url_rule("/advantage/user-info", view_func=get_user_info)
+app.add_url_rule("/advantage/account-users", view_func=get_account_users)
+app.add_url_rule(
+    "/advantage/accounts/<account_id>/user",
+    view_func=post_account_user_role,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/advantage/accounts/<account_id>/user",
+    view_func=put_account_user_role,
+    methods=["PUT"],
+)
+app.add_url_rule(
+    "/advantage/accounts/<account_id>/user",
+    view_func=delete_account_user_role,
+    methods=["DELETE"],
+)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/account/payment-methods", view_func=payment_methods_view)
 app.add_url_rule(

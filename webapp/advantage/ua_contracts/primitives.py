@@ -96,6 +96,7 @@ class Subscription:
         is_auto_renewing: bool = None,
         pending_purchases: List[str] = None,
         started_with_trial: bool = None,
+        in_trial: bool = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -107,6 +108,7 @@ class Subscription:
         self.is_auto_renewing = is_auto_renewing
         self.items = items
         self.started_with_trial = started_with_trial
+        self.in_trial = in_trial
 
 
 class Account:
@@ -117,3 +119,27 @@ class Account:
     ):
         self.id = id
         self.name = name
+
+
+class User:
+    def __init__(
+        self,
+        id: str,
+        name: str,
+        display_name: str,
+        email: str,
+        last_login_at: str,
+        first_login_at: str,
+        verified: bool,
+    ):
+        self.first_login_at = first_login_at
+        self.last_login_at = last_login_at
+        self.email = email
+        self.id = id
+        self.name = name
+        self.display_name = display_name
+        self.verified = verified
+        self.user_role_on_account = None
+
+    def set_user_role_on_account(self, user_role_on_account):
+        self.user_role_on_account = user_role_on_account
