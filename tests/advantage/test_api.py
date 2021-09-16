@@ -1530,9 +1530,7 @@ class TestPutContractEntitlements(unittest.TestCase):
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
-            "json": {
-                "entitlements": [{"type": "fips", "is_enabled": True}]
-            },
+            "json": {"entitlements": [{"type": "fips", "is_enabled": True}]},
             "method": "put",
             "params": None,
             "url": "https://1.2.3.4/v1/contracts/cAbBcCdD/defaultEnablement",
