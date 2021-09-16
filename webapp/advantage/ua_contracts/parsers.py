@@ -8,6 +8,7 @@ from webapp.advantage.ua_contracts.primitives import (
     SubscriptionItem,
     Account,
     Renewal,
+    User,
 )
 from webapp.advantage.models import Listing, Product
 
@@ -191,6 +192,7 @@ def parse_subscription(raw_subscription: Dict) -> Subscription:
         pending_purchases=raw_subscription.get("pendingPurchases"),
         is_auto_renewing=subscription.get("autoRenew"),
         started_with_trial=subscription.get("startedWithTrial"),
+        in_trial=subscription.get("inTrial"),
         items=parse_subscription_items(subscription_id, raw_items),
     )
 
@@ -200,3 +202,25 @@ def parse_subscriptions(raw_subscriptions: Dict) -> List[Subscription]:
         parse_subscription(raw_subscription)
         for raw_subscription in raw_subscriptions
     ]
+
+
+def parse_user(raw_user: Dict) -> User:
+    user = User(
+        display_name=raw_user.get("displayName"),
+        name=raw_user.get("name"),
+        email=raw_user.get("email"),
+        id=raw_user.get("id"),
+        last_login_at=raw_user.get("lastLogin"),
+        first_login_at=raw_user.get("firstLogin"),
+        verified=raw_user.get("verified"),
+    )
+
+    user_role_on_account = raw_user.get("userRoleOnAccount")
+    if user_role_on_account:
+        user.set_user_role_on_account(user_role_on_account)
+
+    return user
+
+
+def parse_users(raw_users: List) -> List[User]:
+    return [parse_user(raw_user) for raw_user in raw_users]

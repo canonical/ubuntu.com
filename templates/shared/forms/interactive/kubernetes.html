@@ -2,215 +2,17 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
-      <h2 class="p-modal__title u-sv1" id="modal-title">Get your kubernetes clusters running</h2>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Talk to our Kubernetes experts</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <div class="js-formfield">
-        <h3 class="p-heading--five">Where do you want to use K8s?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4">
-            <input type="checkbox" id="on-prem-k8s-VMware">
-            <label for="on-prem-k8s-VMware">VMware</label>
-            <input type="checkbox" id="on-prem-k8s-Bare-metal">
-            <label for="on-prem-k8s-Bare-metal">Bare metal</label>
-            <input type="checkbox" id="on-prem-k8s-OpenStack">
-            <label for="on-prem-k8s-OpenStack">OpenStack</label>
-            <input type="checkbox" id="on-prem-k8s-Workstations">
-            <label for="on-prem-k8s-Workstations">Workstations</label>
-            <input type="checkbox" id="on-prem-k8s-Embedded">
-            <label for="on-prem-k8s-Embedded">Embedded</label>
-            <input type="checkbox" id="on-prem-k8s-Edge">
-            <label for="on-prem-k8s-Edge">Edge</label>
-            <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="on-prem-k8s-other">
-              <label for="on-prem-k8s-other">Other</label>
-              <input type="text" id="on-prem-k8s-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
-            </div>
-          </div>
-          <div class="col-4">
-            <input type="checkbox" id="cloud-k8s-AWS">
-            <label for="cloud-k8s-AWS">Amazon Web Services</label>
-            <input type="checkbox" id="cloud-k8s-GCP">
-            <label for="cloud-k8s-GCP">Google Cloud Platform</label>
-            <input type="checkbox" id="cloud-k8s-IBM-Cloud">
-            <label for="cloud-k8s-IBM-Cloud">IBM Cloud</label>
-            <input type="checkbox" id="cloud-k8s-Microsoft-Azure">
-            <label for="cloud-k8s-Microsoft-Azure">Microsoft Azure</label>
-            <input type="checkbox" id="cloud-k8s-Oracle-Cloud">
-            <label for="cloud-k8s-Oracle-Cloud">Oracle Cloud</label>
-            <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="cloud-k8s-other">
-              <label for="cloud-k8s-other">Other</label>
-              <input type="text" id="cloud-k8s-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
-            </div>
-          </div>
-          <div class="col-4">
-            <input type="checkbox" id="architecture-k8s-x86">
-            <label for="architecture-k8s-x86">x86</label>
-            <input type="checkbox" id="architecture-k8s-ARM">
-            <label for="architecture-k8s-ARM">ARM</label>
-            <input type="checkbox" id="architecture-k8s-POWER">
-            <label for="architecture-k8s-POWER">POWER</label>
-            <input type="checkbox" id="architecture-k8s-Z">
-            <label for="architecture-k8s-Z">Z</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="js-formfield">
-        <h3 class="p-heading--five">Are any of these relevant for your operations?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="relevant-for-operations-Multi-cloud">
-            <label for="relevant-for-operations-Multi-cloud">Multi-cloud</label>
-            <input type="checkbox" id="relevant-for-operations-Upgrades">
-            <label for="relevant-for-operations-Upgrades">Upgrades</label>
-            <input type="checkbox" id="relevant-for-operations-Monitoring">
-            <label for="relevant-for-operations-Monitoring">Monitoring</label>
-            <input type="checkbox" id="relevant-for-operations-Training">
-            <label for="relevant-for-operations-Training">Training</label>
-            <input type="checkbox" id="relevant-for-operations-RBAC">
-            <label for="relevant-for-operations-RBAC">RBAC</label>
-            <input type="checkbox" id="relevant-for-operations-GPU">
-            <label for="relevant-for-operations-GPU">GPU</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="relevant-for-operations-Security">
-            <label for="relevant-for-operations-Security">Security</label>
-            <input type="checkbox" id="relevant-for-operations-Compliance">
-            <label for="relevant-for-operations-Compliance">Compliance</label>
-            <input type="checkbox" id="relevant-for-operations-Certification">
-            <label for="relevant-for-operations-Certification">Certification</label>
-            <input type="checkbox" id="relevant-for-operations-Federation">
-            <label for="relevant-for-operations-Federation">Federation</label>
-            <input type="checkbox" id="relevant-for-operations-LDAP-integration">
-            <label for="relevant-for-operations-LDAP-integration">LDAP integration</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="relevant-for-operations-Multi-tenancy">
-            <label for="relevant-for-operations-Multi-tenancy">Multi-tenancy</label>
-            <input type="checkbox" id="relevant-for-operations-Interoperability">
-            <label for="relevant-for-operations-Interoperability">Interoperability</label>
-            <input type="checkbox" id="relevant-for-operations-Performance">
-            <label for="relevant-for-operations-Performance">Performance</label>
-            <input type="checkbox" id="relevant-for-operations-Observability">
-            <label for="relevant-for-operations-Observability">Observability</label>
-            <input type="checkbox" id="relevant-for-operations-Tracing">
-            <label for="relevant-for-operations-Tracing">Tracing</label>
-          </div>
-        </div>
-      </div>
-      <div class="pagination">
-        <a class="p-button--positive pagination__link--next" href="">Next</a>
-      </div>
-    </div>
-
-    <div class="js-pagination js-pagination--2 u-hide">
-      <div class="js-formfield">
-        <h3 class="p-heading--five">Which use cases are important to you?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="important-to-you-CI-CD">
-            <label for="important-to-you-CI-CD">CI/CD</label>
-            <input type="checkbox" id="important-to-you-Re-platforming">
-            <label for="important-to-you-Re-platforming">Re-platforming</label>
-            <input type="checkbox" id="important-to-you-12-factor-apps">
-            <label for="important-to-you-12-factor-apps">12 factor apps</label>
-            <input type="checkbox" id="important-to-you-Microservices">
-            <label for="important-to-you-Microservices">Microservices</label>
-            <input type="checkbox" id="important-to-you-Stateful-Applications">
-            <label for="important-to-you-Stateful-Applications">Stateful Applications</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="important-to-you-AI-ML">
-            <label for="important-to-you-AI-ML">AI/ML</label>
-            <input type="checkbox" id="important-to-you-Auto-scaling">
-            <label for="important-to-you-Auto-scaling">Auto-scaling</label>
-            <input type="checkbox" id="important-to-you-Docker-Migration">
-            <label for="important-to-you-Docker-Migration">Docker Migration</label>
-            <input type="checkbox" id="important-to-you-Mesos-Migration">
-            <label for="important-to-you-Mesos-Migration">Mesos Migration</label>
-            <input type="checkbox" id="important-to-you-OpenShift-Migration">
-            <label for="important-to-you-OpenShift-Migration">OpenShift Migration</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="important-to-you-Big-Data">
-            <label for="important-to-you-Big-Data">Big Data</label>
-            <input type="checkbox" id="important-to-you-Multi-cloud-ingress">
-            <label for="important-to-you-Multi-cloud-ingress">Multi-cloud ingress</label>
-            <input type="checkbox" id="important-to-you-Enterprise-Java">
-            <label for="important-to-you-Enterprise-Java">Enterprise Java</label>
-            <input type="checkbox" id="important-to-you-SOA">
-            <label for="important-to-you-SOA">SOA</label>
-            <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="important-to-you-other">
-              <label for="important-to-you-other">Other</label>
-              <input type="text" id="important-to-you-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="js-formfield">
-        <h3 class="p-heading--five">Which cloud native projects are important to you?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="cloud-native-projects-Prometheus">
-            <label for="cloud-native-projects-Prometheus">Prometheus</label>
-            <input type="checkbox" id="cloud-native-projects-Istio">
-            <label for="cloud-native-projects-Istio">Istio</label>
-            <input type="checkbox" id="cloud-native-projects-Envoy">
-            <label for="cloud-native-projects-Envoy">Envoy</label>
-            <input type="checkbox" id="cloud-native-projects-gRPC">
-            <label for="cloud-native-projects-gRPC">gRPC</label>
-            <input type="checkbox" id="cloud-native-projects-Knative">
-            <label for="cloud-native-projects-Knative">Knative</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="cloud-native-projects-Linkerd">
-            <label for="cloud-native-projects-Linkerd">Linkerd</label>
-            <input type="checkbox" id="cloud-native-projects-Fluentd">
-            <label for="cloud-native-projects-Fluentd">Fluentd</label>
-            <input type="checkbox" id="cloud-native-projects-Jaeger">
-            <label for="cloud-native-projects-Jaeger">Jaeger</label>
-            <input type="checkbox" id="cloud-native-projects-OpenTracing">
-            <label for="cloud-native-projects-OpenTracing">OpenTracing</label>
-            <input type="checkbox" id="cloud-native-projects-NATS">
-            <label for="cloud-native-projects-NATS">NATS</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="cloud-native-projects-Rook">
-            <label for="cloud-native-projects-Rook">Rook</label>
-            <input type="checkbox" id="cloud-native-projects-Vitess">
-            <label for="cloud-native-projects-Vitess">Vitess</label>
-            <input type="checkbox" id="cloud-native-projects-etcd">
-            <label for="cloud-native-projects-etcd">etcd</label>
-            <input type="checkbox" id="cloud-native-projects-Notary">
-            <label for="cloud-native-projects-Notary">Notary</label>
-            <input type="checkbox" id="cloud-native-projects-Helm">
-            <label for="cloud-native-projects-Helm">Helm</label>
-            <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="cloud-native-projects-other">
-              <label for="cloud-native-projects-other">Other</label>
-              <input type="text" id="cloud-native-projects-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="pagination">
-        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
-        <a class="pagination__link--next p-button--positive" href="">Next</a>
-      </div>
-    </div>
-
-    <div class="js-pagination js-pagination--3 u-hide">
       <div class="u-sv3 js-formfield">
-        <h3 class="p-heading--five">Have we missed something?</h3>
-        <textarea id="particular-sectors" aria-label="Have we missed something?" rows="3" placeholder="Are there particular sectors which are important to you such as industrial, automotive, display, retail, home, office, data center, networking, robotics?"></textarea>
+        <h3 class="p-heading--five">Tell us more about your Kubernetes use case</h3>
+        <textarea id="particular-sectors" aria-label="Tell us more about your Kubernetes use case" rows="3" placeholder="Anything you'd like to communicate about your needs or interests?"></textarea>
       </div>
       <h3 class="p-heading--five">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6">
-          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
+          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form p-form p-form--stacked marketo-form">
             <ul class="p-list">
               <li class="mktFormReq mktField p-list__item">
                 <label for="firstName" class="mktoLabel">First name:</label>
@@ -232,7 +34,7 @@
                 <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
                 <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
               </li>
-              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to Canonical's <a href="/legal/terms-and-policies/privacy-policy">Privacy Policy</a>.</li>
               <li class="p-list__item">
                 <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
               </li>
@@ -259,7 +61,6 @@
             </div>
 
             <div class="pagination">
-              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</button>
             </div>
           </form>
@@ -267,7 +68,7 @@
       </div>
     </div>
 
-    <div class="js-pagination js-pagination--4 u-hide">
+    <div class="js-pagination js-pagination--2 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
           <div class="col-7">
