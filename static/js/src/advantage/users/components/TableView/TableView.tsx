@@ -1,10 +1,9 @@
 import React from "react";
-import { Formik } from "formik";
 
-import MainTable from "@canonical/react-components/dist/components/MainTable";
+import { Table, TableHeader, TableRow } from "@canonical/react-components";
 
-import { User, UserRole, Users } from "../../types";
-import { getUserRow } from "./components";
+import { UserRole, Users } from "../../types";
+import { UserRow } from "./components";
 
 export type UserRowVariant = "regular" | "editing" | "disabled";
 
@@ -22,7 +21,6 @@ const getVariant = (userId: UserId, userInEditMode: UserId | null) => {
 
 type Props = {
   users: Users;
-  userInEditMode?: User;
   userInEditModeById: UserId | null;
   setUserInEditModeById: (userId: UserId | null) => void;
   dismissEditMode: () => void;
@@ -32,7 +30,6 @@ type Props = {
 
 const TableView = ({
   users,
-  userInEditMode,
   userInEditModeById,
   setUserInEditModeById,
   dismissEditMode,
@@ -40,45 +37,31 @@ const TableView = ({
   handleDeleteConfirmationModalOpen,
 }: Props) => {
   return (
-    <Formik
-      initialValues={{ newUserRole: userInEditMode?.role }}
-      onSubmit={(values) => {
-        handleEditSubmit(values);
-      }}
-    >
-      {({ handleSubmit }) => (
-        <MainTable
-          responsive
-          headers={[
-            {
-              content: "email",
-            },
-            {
-              content: "role",
-              width: "20%",
-            },
-            {
-              content: "last sign in",
-              width: "15%",
-            },
-            {
-              content: "actions",
-              width: "20%",
-            },
-          ]}
-          rows={users.map((user) =>
-            getUserRow({
-              user,
-              variant: getVariant(user.id, userInEditModeById),
-              setUserInEditModeById,
-              dismissEditMode,
-              handleEditSubmit: handleSubmit,
-              handleDeleteConfirmationModalOpen,
-            })
-          )}
-        />
-      )}
-    </Formik>
+    <Table responsive={true}>
+      <thead>
+        <TableRow>
+          <TableHeader>email</TableHeader>
+          <TableHeader width="20%">role</TableHeader>
+          <TableHeader width="15%">last sign in</TableHeader>
+          <TableHeader width="20%">actions</TableHeader>
+        </TableRow>
+      </thead>
+      <tbody>
+        {users.map((user) => (
+          <UserRow
+            key={user.id}
+            user={user}
+            variant={getVariant(user.id, userInEditModeById)}
+            setUserInEditModeById={setUserInEditModeById}
+            dismissEditMode={dismissEditMode}
+            handleEditSubmit={handleEditSubmit}
+            handleDeleteConfirmationModalOpen={
+              handleDeleteConfirmationModalOpen
+            }
+          />
+        ))}
+      </tbody>
+    </Table>
   );
 };
 

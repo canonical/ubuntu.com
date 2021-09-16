@@ -1,14 +1,18 @@
 import React from "react";
 import { format } from "date-fns";
 import CSS from "csstype";
+import { Formik, Field } from "formik";
 
-import { Button, Select } from "@canonical/react-components";
-import { MainTableRow } from "@canonical/react-components/dist/components/MainTable/MainTable";
+import {
+  Button,
+  Select,
+  TableCell,
+  TableRow,
+} from "@canonical/react-components";
 
-import { User } from "../../types";
+import { User, UserRole } from "../../types";
 import { UserRowVariant } from "./TableView";
 import { userRoleOptions } from "../../constants";
-import { Field } from "formik";
 
 const DATE_FORMAT = "dd/MM/yyyy";
 
@@ -22,35 +26,6 @@ type UserActionsProps = {
   handleEditSubmit: () => void;
   handleCancel: () => void;
 } & UserVariantProps;
-
-const UserActions = ({
-  user,
-  variant,
-  handleEditOpen,
-  handleEditSubmit,
-  handleCancel,
-}: UserActionsProps) => {
-  return variant !== "editing" ? (
-    <Button
-      small
-      dense
-      onClick={() => handleEditOpen(user.id)}
-      disabled={variant === "disabled"}
-      aria-label={`Edit user ${user.email}`}
-    >
-      Edit
-    </Button>
-  ) : (
-    <>
-      <Button small dense onClick={handleCancel}>
-        Cancel
-      </Button>
-      <Button small dense appearance="positive" onClick={handleEditSubmit}>
-        Save
-      </Button>
-    </>
-  );
-};
 
 type UserEmailProps = {
   handleDeleteConfirmationModalOpen: () => void;
@@ -118,15 +93,12 @@ const UserRole = ({ user, variant }: UserRoleProps) => {
       >
         {/* display an empty <select /> to prevent layout shifting on toggle */}
         {variant === "editing" ? (
-          <>
-            <Field
-              defaultValue={user.role}
-              as={Select}
-              name="newUserRole"
-              className="u-no-margin--bottom"
-              options={userRoleOptions}
-            />
-          </>
+          <Field
+            as={Select}
+            name="newUserRole"
+            className="u-no-margin--bottom"
+            options={userRoleOptions}
+          />
         ) : (
           <Select className="u-no-margin--bottom" />
         )}
@@ -144,6 +116,7 @@ const FormattedDate = ({ dateISO }: { dateISO: string }) => (
 type UserRowProps = {
   setUserInEditModeById: (id: string) => void;
   dismissEditMode: () => void;
+  handleEditSubmit: ({ newUserRole }: { newUserRole: UserRole }) => void;
   handleDeleteConfirmationModalOpen: () => void;
 } & UserVariantProps;
 
@@ -151,57 +124,102 @@ const tdStyle = {
   verticalAlign: "middle",
 };
 
-const getUserRow = ({
+const UserRowEditable = ({
   user,
-  variant,
-  setUserInEditModeById,
   dismissEditMode,
   handleEditSubmit,
   handleDeleteConfirmationModalOpen,
-}: UserRowProps): MainTableRow => {
-  return {
-    key: user.id,
-    ["aria-hidden"]: variant === "disabled",
-    style: {
-      transition: "opacity 250ms",
-      opacity: variant === "disabled" ? 0.5 : 1,
-    },
-    columns: [
-      {
-        content: (
-          <UserEmail
-            user={user}
-            variant={variant}
-            handleDeleteConfirmationModalOpen={
-              handleDeleteConfirmationModalOpen
-            }
-          />
-        ),
-        role: "rowheader",
-        style: tdStyle,
-      },
-      {
-        content: <UserRole user={user} variant={variant} />,
-        style: tdStyle,
-      },
-      {
-        content: <FormattedDate dateISO={user.lastLoginAt} />,
-        style: tdStyle,
-      },
-      {
-        content: (
-          <UserActions
-            variant={variant}
-            user={user}
-            handleEditOpen={setUserInEditModeById}
-            handleCancel={dismissEditMode}
-            handleEditSubmit={handleEditSubmit}
-          />
-        ),
-        style: tdStyle,
-      },
-    ],
-  };
+}: UserRowProps) => {
+  return (
+    <Formik
+      initialValues={{ newUserRole: user?.role }}
+      onSubmit={(values) => {
+        handleEditSubmit(values);
+      }}
+    >
+      {({ handleSubmit }) => (
+        <TableRow>
+          <TableCell role="rowheader" style={tdStyle}>
+            <UserEmail
+              user={user}
+              variant="editing"
+              handleDeleteConfirmationModalOpen={
+                handleDeleteConfirmationModalOpen
+              }
+            />
+          </TableCell>
+          <TableCell style={tdStyle}>
+            <UserRole user={user} variant="editing" />
+          </TableCell>
+          <TableCell style={tdStyle}>
+            <FormattedDate dateISO={user.lastLoginAt} />
+          </TableCell>
+          <TableCell style={tdStyle}>
+            <Button small dense onClick={dismissEditMode}>
+              Cancel
+            </Button>
+            <Button
+              small
+              dense
+              appearance="positive"
+              onClick={() => handleSubmit()}
+            >
+              Save
+            </Button>
+          </TableCell>
+        </TableRow>
+      )}
+    </Formik>
+  );
 };
 
-export { getUserRow };
+const UserRowNonEditable = ({
+  user,
+  variant,
+  setUserInEditModeById,
+  handleDeleteConfirmationModalOpen,
+}: UserRowProps) => {
+  return (
+    <TableRow
+      aria-hidden={variant === "disabled"}
+      style={{
+        transition: "opacity 250ms",
+        opacity: variant === "disabled" ? 0.5 : 1,
+      }}
+    >
+      <TableCell role="rowheader" style={tdStyle}>
+        <UserEmail
+          user={user}
+          variant={variant}
+          handleDeleteConfirmationModalOpen={handleDeleteConfirmationModalOpen}
+        />
+      </TableCell>
+      <TableCell style={tdStyle}>
+        <UserRole user={user} variant={variant} />
+      </TableCell>
+      <TableCell style={tdStyle}>
+        <FormattedDate dateISO={user.lastLoginAt} />
+      </TableCell>
+      <TableCell style={tdStyle}>
+        <Button
+          small
+          dense
+          onClick={() => setUserInEditModeById(user.id)}
+          disabled={variant === "disabled"}
+          aria-label={`Edit user ${user.email}`}
+        >
+          Edit
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
+};
+
+const UserRow = (props: UserRowProps) =>
+  props.variant === "editing" ? (
+    <UserRowEditable {...props} />
+  ) : (
+    <UserRowNonEditable {...props} />
+  );
+
+export { UserRow };

@@ -156,7 +156,6 @@ const AccountUsers = ({
           <div className="col-12">
             <TableView
               users={users}
-              userInEditMode={userInEditMode}
               userInEditModeById={userInEditModeById}
               setUserInEditModeById={setUserInEditModeById}
               dismissEditMode={dismissEditMode}
