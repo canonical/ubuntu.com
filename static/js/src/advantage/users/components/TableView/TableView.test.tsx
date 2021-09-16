@@ -18,6 +18,7 @@ it("displays user details in a correct format", () => {
       users={[testUser]}
       userInEditModeById={null}
       setUserInEditModeById={jest.fn()}
+      handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
       handleDeleteConfirmationModalOpen={jest.fn()}
     />
@@ -25,6 +26,5 @@ it("displays user details in a correct format", () => {
 
   expect(screen.getByText("user@ecorp.com")).toBeInTheDocument();
   expect(screen.getByText("Admin", { ignore: "option" })).toBeInTheDocument();
-  expect(screen.getByText("Admin", { selector: "option" })).not.toBeVisible();
   expect(screen.getByText("15/02/2021")).toBeInTheDocument();
 });

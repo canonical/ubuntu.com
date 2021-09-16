@@ -3,7 +3,7 @@ import React from "react";
 import { Table, TableHeader, TableRow } from "@canonical/react-components";
 
 import { UserRole, Users } from "../../types";
-import { UserRow } from "./components";
+import UserRow from "./UserRow";
 
 export type UserRowVariant = "regular" | "editing" | "disabled";
 

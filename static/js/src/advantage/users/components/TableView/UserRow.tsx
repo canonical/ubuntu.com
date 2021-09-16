@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@canonical/react-components";
 
-import { User, UserRole } from "../../types";
+import { User, UserRole as UserRoleType } from "../../types";
 import { UserRowVariant } from "./TableView";
 import { userRoleOptions } from "../../constants";
 
@@ -49,13 +49,14 @@ const UserEmail = ({
       </span>
       {variant === "editing" ? (
         <button
+          aria-label="delete"
           className="p-button--base u-no-margin--bottom"
           style={{
             marginLeft: "0.1rem",
           }}
           onClick={handleDeleteConfirmationModalOpen}
         >
-          <i className="p-icon--delete" aria-label="delete"></i>
+          <i className="p-icon--delete"></i>
         </button>
       ) : null}
     </div>
@@ -91,7 +92,6 @@ const UserRole = ({ user, variant }: UserRoleProps) => {
           position: "static",
         }}
       >
-        {/* display an empty <select /> to prevent layout shifting on toggle */}
         {variant === "editing" ? (
           <Field
             as={Select}
@@ -100,7 +100,10 @@ const UserRole = ({ user, variant }: UserRoleProps) => {
             options={userRoleOptions}
           />
         ) : (
-          <Select className="u-no-margin--bottom" />
+          <Select
+            className="u-no-margin--bottom"
+            data-testid="hidden-select-to-prevent-layout-shifting"
+          />
         )}
       </div>
     </div>
@@ -116,7 +119,7 @@ const FormattedDate = ({ dateISO }: { dateISO: string }) => (
 type UserRowProps = {
   setUserInEditModeById: (id: string) => void;
   dismissEditMode: () => void;
-  handleEditSubmit: ({ newUserRole }: { newUserRole: UserRole }) => void;
+  handleEditSubmit: ({ newUserRole }: { newUserRole: UserRoleType }) => void;
   handleDeleteConfirmationModalOpen: () => void;
 } & UserVariantProps;
 
@@ -222,4 +225,4 @@ const UserRow = (props: UserRowProps) =>
     <UserRowNonEditable {...props} />
   );
 
-export { UserRow };
+export default UserRow;
