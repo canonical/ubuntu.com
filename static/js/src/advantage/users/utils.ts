@@ -1,7 +1,8 @@
 import { ValueOf } from "@canonical/react-components";
 
 const errorMessages = {
-  email_already_exists: "Account with this email address exists.",
+  ["email already exists"]:
+    "Cannot add user. User already exists in your organisation.",
   default: "An unknown error has occurred.",
 } as const;
 

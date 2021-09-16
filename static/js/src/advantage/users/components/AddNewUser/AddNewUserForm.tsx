@@ -7,7 +7,7 @@ import {
 } from "@canonical/react-components";
 import { Formik, Form, Field } from "formik";
 
-import { HandleNewUserSubmit, UserRole } from "../../types";
+import { HandleNewUserSubmit, NewUserValues } from "../../types";
 import { userRoleOptions } from "../../constants";
 import {
   getErrorMessage,
@@ -15,12 +15,6 @@ import {
   validateRequired,
   SubmissionErrorMessage,
 } from "../../utils";
-
-interface Values {
-  email: string;
-  role: UserRole;
-  name: string;
-}
 
 export const AddNewUserForm = ({
   handleClose,
@@ -33,15 +27,15 @@ export const AddNewUserForm = ({
     formSubmissionError,
     setFormSubmissionError,
   ] = useState<SubmissionErrorMessage | null>(null);
-  const initialValues: Values = {
+  const initialValues: NewUserValues = {
     name: "",
     email: "",
     role: "admin",
   };
 
-  const onSubmit = async (values: Values) => {
+  const onSubmit = async (values: NewUserValues) => {
     try {
-      await handleSubmit(JSON.stringify(values));
+      await handleSubmit(values);
       handleClose();
     } catch (error) {
       setFormSubmissionError(getErrorMessage((error as any)?.message));

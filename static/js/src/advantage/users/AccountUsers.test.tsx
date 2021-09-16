@@ -1,10 +1,25 @@
 import React from "react";
 import { render, screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import { User } from "./types";
-import AccountUsers from "./AccountUsers";
+import {
+  default as AccountUsersComponent,
+  AccountUsersProps,
+} from "./AccountUsers";
 import { mockData } from "./mockData";
+
+jest.mock("./api");
+const queryClient = new QueryClient();
+
+const AccountUsers = (
+  props: { accountId?: string } & Omit<AccountUsersProps, "accountId">
+) => (
+  <QueryClientProvider client={queryClient}>
+    <AccountUsersComponent accountId="account-id" {...props} />
+  </QueryClientProvider>
+);
 
 it("displays organisation name", () => {
   render(<AccountUsers organisationName="Canonical" users={mockData.users} />);
