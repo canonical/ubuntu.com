@@ -56,7 +56,7 @@ const getAccountUserRequestUrl = (accountId: string, urlParams: string) =>
   `/advantage/accounts/${accountId}/user${urlParams}`;
 
 type JSONResponse = {
-  data?: {};
+  data?: Record<string, unknown>;
   error?: string;
   errors?: string;
 };
