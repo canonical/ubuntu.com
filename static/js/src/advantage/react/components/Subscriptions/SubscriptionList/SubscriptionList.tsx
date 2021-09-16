@@ -1,11 +1,10 @@
 import { Spinner } from "@canonical/react-components";
-import { UserSubscription } from "advantage/api/types";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import {
   selectFreeSubscription,
   selectUASubscriptions,
 } from "advantage/react/hooks/useUserSubscriptions";
-import { parseJSON } from "date-fns";
+import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import React from "react";
 import { SelectedId } from "../Content/types";
 
@@ -16,12 +15,6 @@ type Props = {
   selectedId?: SelectedId;
   onSetActive: (token: SelectedId) => void;
 };
-
-const sortSubscriptions = (subscriptions: UserSubscription[]) =>
-  subscriptions.sort(
-    (a, b) =>
-      parseJSON(b.start_date).getTime() - parseJSON(a.start_date).getTime()
-  );
 
 const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   const {
@@ -40,7 +33,9 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
     return <Spinner />;
   }
   // Sort the subscriptions so that the most recently started subscription is first.
-  const sortedUASubscriptions = sortSubscriptions(uaSubscriptionsData);
+  const sortedUASubscriptions = sortSubscriptionsByStartDate(
+    uaSubscriptionsData
+  );
   const uaSubscriptions = sortedUASubscriptions.map((subscription, i) => (
     <ListCard
       data-test="ua-subscription"
