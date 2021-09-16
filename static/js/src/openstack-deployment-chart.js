@@ -11,15 +11,26 @@ const drawChart = (data) => {
 
   const arc = d3.arc().innerRadius(90).outerRadius(180);
 
-  const colors = d3.scaleOrdinal(["#E95520", "#77216F", "#AEA79F"]);
+  const colors = d3.scaleOrdinal([
+    "#E95420",
+    "#D6D6D6",
+    "#C2C2C2",
+    "#ADADAD",
+    "#999999",
+    "#858585",
+    "#707070",
+    "#5C5C5C",
+    "#474747",
+    "#333333",
+  ]);
 
   const svg = d3
     .select("#openstack-pie-chart")
     .append("svg")
-    .attr("width", 400)
-    .attr("height", 400)
+    .attr("width", 420)
+    .attr("height", 420)
     .append("g")
-    .attr("transform", "translate(200,200)");
+    .attr("transform", "translate(210,210)");
 
   const tooltip = d3
     .select("body")
@@ -33,6 +44,21 @@ const drawChart = (data) => {
     .style("border-radius", "0.125rem")
     .style("border", "0")
     .style("padding", "0.5rem 1rem");
+
+  svg
+    .append("circle")
+    .attr("cx", -200)
+    .attr("cy", -190)
+    .attr("r", 8)
+    .style("fill", "#E95420")
+    .attr("z-index", "12");
+  svg
+    .append("text")
+    .attr("x", -188)
+    .attr("y", -189)
+    .text("Ubuntu Server")
+    .style("font-size", "18px")
+    .attr("alignment-baseline", "middle");
 
   svg
     .append("g")
@@ -50,7 +76,7 @@ const drawChart = (data) => {
     .on("mousemove", (e, d) => {
       tooltip
         .style("top", e.pageY - 50 + "px")
-        .style("left", e.pageX - 10 + "px");
+        .style("left", e.pageX - 100 + "px");
     })
     .on("mouseout", () => {
       tooltip.style("visibility", "hidden");
