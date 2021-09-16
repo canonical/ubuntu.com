@@ -5,9 +5,8 @@ import {
   ActionButton,
   CheckboxInput,
 } from "@canonical/react-components";
-import { useFormikContext } from "formik";
-
 import * as Sentry from "@sentry/react";
+import {useFormikContext} from "formik";
 
 import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
 import PaymentMethodSummary from "../PaymentMethodSummary";
@@ -24,7 +23,6 @@ import Summary from "../../components/Summary";
 import FreeTrialRadio from "../../components/FreeTrialRadio";
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 import { getSessionData } from "../../../../../utils/getSessionData";
-
 import { FormValues } from "../../utils/utils";
 
 type StepOneProps = {
@@ -36,13 +34,15 @@ type StepOneProps = {
 function StepOne({ setStep, error, setError }: StepOneProps) {
   const { values } = useFormikContext<FormValues>();
   const [areTermsChecked, setTermsChecked] = useState(false);
-  const [isUsingFreeTrial, setIsUsingFreeTrial] = useState(true);
   const {
     data: userInfo,
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
   const { isLoading: isPreviewLoading } = usePreview();
   const { isLoading: isProductLoading, product, quantity } = useProduct();
+  const [isUsingFreeTrial, setIsUsingFreeTrial] = useState(
+    product?.canBeTrialled
+  );
 
   const purchaseMutation = usePurchase();
   const freeTrialMutation = useFreeTrial();
@@ -226,11 +226,23 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
       >
         <>
           <Summary />
-          {!product?.canBeTrialled && (
+          {product?.canBeTrialled ? (
             <FreeTrialRadio
               isUsingFreeTrial={isUsingFreeTrial}
               setIsUsingFreeTrial={setIsUsingFreeTrial}
             />
+          ) : (
+            <Row>
+              <Col size={10} emptyLarge={2}>
+                <p>
+                  <strong>
+                    Free Trial is not available for this account.{" "}
+                    <a href="/contact-us">Contact us</a> for further
+                    information.
+                  </strong>
+                </p>
+              </Col>
+            </Row>
           )}
           <PaymentMethodSummary setStep={setStep} />
           <Row className="u-no-padding">

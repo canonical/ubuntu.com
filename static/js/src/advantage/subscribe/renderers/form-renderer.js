@@ -157,6 +157,9 @@ function renderSummary(state) {
   const summarySection = form.querySelector("#summary-section");
   const saveMessage = summarySection.querySelector("#summary-save-with-annual");
   const billingSection = summarySection.querySelector(".js-summary-billing");
+  const trialUnavailableSection = summarySection.querySelector(
+    ".js-trial-unavailable"
+  );
   const billingSelect = summarySection.querySelector("select#billing-period");
   const buyButton = summarySection.querySelector("#buy-now-button");
 
@@ -182,8 +185,10 @@ function renderSummary(state) {
     title.innerHTML = state.product.name;
     if (state.product.canBeTrialled) {
       freeTrialLabel.classList.remove("u-hide");
+      trialUnavailableSection.classList.add("u-hide");
     } else {
       freeTrialLabel.classList.add("u-hide");
+      trialUnavailableSection.classList.remove("u-hide");
     }
     costElement.innerHTML = `${formatter.format((price / 100) * quantity)} / ${
       billing === "monthly" ? "month" : "year"
@@ -191,8 +196,14 @@ function renderSummary(state) {
 
     const previous_purchase_id = window.previousPurchaseIds[billing];
 
+    // The button stays disabled if the users is already trialling a product.
+    if (!window.isTrialling) {
+      buyButton.classList.remove("u-disable");
+    } else {
+      buyButton.classList.add("u-disable");
+    }
+
     // We add the data to the button so the modal can pick it up
-    buyButton.classList.remove("u-disable");
     const productObject = JSON.stringify(state.product);
     buyButton.dataset.product = productObject;
     buyButton.dataset.quantity = quantity;
