@@ -1,6 +1,6 @@
 {% extends "advantage/base_advantage.html" %}
 
-{% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
+{% block title %}{% if user_info %}Ubuntu Advantage Dashboard{% else %}Ubuntu Advantage for Infrastructure{% endif %}{% endblock %}
 {% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1So3n5HEpBX39xxEkkChnve09gKSr9TgYUcbfdOTCevk/edit{% endblock meta_copydoc %}
 
