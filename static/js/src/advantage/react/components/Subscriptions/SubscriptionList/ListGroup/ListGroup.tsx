@@ -5,10 +5,15 @@ import RenewalSettings from "../RenewalSettings";
 
 type Props = {
   children: ReactNode;
+  showRenewalSettings?: boolean;
   title: string;
 };
 
-const ListGroup = ({ children, title }: Props): JSX.Element => {
+const ListGroup = ({
+  children,
+  showRenewalSettings = true,
+  title,
+}: Props): JSX.Element => {
   const positionNode = useRef<HTMLDivElement | null>(null);
   const [, setRefReady] = useState(false);
   return (
@@ -25,7 +30,9 @@ const ListGroup = ({ children, title }: Props): JSX.Element => {
         <span className="p-text--x-small-capitalised u-align-text--small-to-default u-no-margin--bottom">
           {title}
         </span>
-        <RenewalSettings positionNodeRef={positionNode} />
+        {showRenewalSettings ? (
+          <RenewalSettings positionNodeRef={positionNode} />
+        ) : null}
       </div>
       {children}
     </div>

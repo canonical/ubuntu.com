@@ -110,7 +110,7 @@ const DetailsContent = ({ selectedId }: Props) => {
       ) : (
         tokenBlock
       )}
-      <DetailsTabs />
+      <DetailsTabs subscription={subscription} token={token} />
     </div>
   );
 };
