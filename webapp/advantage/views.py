@@ -613,7 +613,7 @@ def post_advantage_subscriptions(preview, **kwargs):
     period = kwargs.get("period")
     products = kwargs.get("products")
     resizing = kwargs.get("resizing", False)
-    trailling = kwargs.get("trailling", False)
+    trialling = kwargs.get("trialling", False)
 
     current_subscription = {}
     if user_info(flask.session):
@@ -658,7 +658,7 @@ def post_advantage_subscriptions(preview, **kwargs):
         "previousPurchaseID": previous_purchase_id,
     }
 
-    if trailling:
+    if trialling:
         purchase_request["inTrial"] = True
 
     try:
