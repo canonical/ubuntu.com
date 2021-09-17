@@ -21,12 +21,6 @@ type UserVariantProps = {
   variant: UserRowVariant;
 };
 
-type UserActionsProps = {
-  handleEditOpen: (id: string) => void;
-  handleEditSubmit: () => void;
-  handleCancel: () => void;
-} & UserVariantProps;
-
 type UserEmailProps = {
   handleDeleteConfirmationModalOpen: () => void;
 } & UserVariantProps;
