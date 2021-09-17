@@ -14,7 +14,6 @@ let entries = {
   "ua-payment-modal": "./static/js/src/ua-payment-modal.js",
   "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
   "sticky-nav": "./static/js/src/sticky-nav.js",
-  imageBuilder: "./static/js/src/imageBuilder.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
   productSelector: "./static/js/src/advantage/subscribe/product-selector.js",

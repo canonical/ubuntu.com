@@ -24,19 +24,6 @@
     @extend %p-card--highlighted;
     @include vf-highlight-bar(#ff8936);
   }
-
-  .p-card.is-selected {
-    background-color: $color-mid-x-light;
-    border-color: $color-mid-dark;
-  }
-
-  .p-card.has-limited-height {
-    height: 20rem;
-  }
-
-  .p-card.has-limited-height--large {
-    height: 23.5rem;
-  }
 }
 
 @mixin ubuntu-card-layout {
