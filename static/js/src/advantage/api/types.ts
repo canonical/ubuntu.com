@@ -50,3 +50,8 @@ export type UserSubscription = {
 export type ContractToken = {
   contract_token: string;
 };
+
+export type LastPurchaseIds = {
+  monthly: string;
+  yearly: string;
+};

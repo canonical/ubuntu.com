@@ -1,6 +1,7 @@
 import { Factory } from "fishery";
 import {
   ContractToken,
+  LastPurchaseIds,
   UserSubscription,
   UserSubscriptionEntitlement,
   UserSubscriptionStatuses,
@@ -82,5 +83,12 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
 export const contractTokenFactory = Factory.define<ContractToken>(
   ({ sequence }) => ({
     contract_token: `zPyaGE9Z4DF9sf54ZfJt59AMwynub${sequence}`,
+  })
+);
+
+export const lastPurchaseIdsFactory = Factory.define<LastPurchaseIds>(
+  ({ sequence }) => ({
+    monthly: `Jt59AzPyaGE9Z4DF9sf54ZfMwynub${sequence}`,
+    yearly: `54ZfJ9AMwyzPyaGE9Z4DF9sf5tnub${sequence}`,
   })
 );
