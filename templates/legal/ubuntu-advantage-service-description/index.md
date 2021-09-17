@@ -47,7 +47,7 @@ As an Essential customer, you are entitled to the following:
 4. <a id="uasd-landscape" class="p-link--external" href="https://landscape.canonical.com/">Landscape</a>[]() and knowledge base access
     9. Access to Canonical’s Landscape systems management and the knowledge base 
 5. <a id="uasd-livepatch" class="p-link--external" href="/livepatch">Kernel Livepatch</a>
-    10. Access to Canonical’s kernel livepatch daemon and security livepatches for selected High and Critical kernel CVEs
+    10. Access to Canonical’s kernel livepatch client and security livepatches for selected High and Critical kernel CVEs
     11. Kernel Livepatch may provide non-security bug fixes as kernel livepatches
     12. Only the [default LTS kernel](https://ubuntu.com/about/release-cycle) is available for livepatching. This includes its backport as the last HWE kernel to the previous LTS release
     13. Access to Canonical’s Livepatch on-prem server
@@ -328,7 +328,7 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
 
 <h2 id="uasd-definitions">Definitions</h2>
 
-**Applications:** the supported Applications as set out at [https://ubuntu.com/support](https://ubuntu.com/support) [which are built by Canonical or as otherwise agreed with Canonical. Or Managed Applications as described in the Add-ons section, under Managed Services, and at https://ubuntu.com/managed](https://ubuntu.com/managed).[ ](https://ubuntu.com/managed) The list of Applications are subject to change without notice
+**Applications:** the supported Applications as set out at [https://ubuntu.com/support](/support) which are built by Canonical or as otherwise agreed with Canonical. Or Managed Applications as described in the Add-ons section, under Managed Services, and at [https://ubuntu.com/managed](https://ubuntu.com/managed). The list of Applications are subject to change without notice
 
 **Bug-fix Support**: support for valid code bugs in supported packages only. This does not include troubleshooting of issues to determine if a bug is present
 
