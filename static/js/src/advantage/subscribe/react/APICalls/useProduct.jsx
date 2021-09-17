@@ -40,7 +40,7 @@ const useProduct = () => {
 
   return {
     product: data?.product,
-    quantity: data?.quantity,
+    quantity: data?.quantity ?? 1,
     isLoading: !data,
   };
 };

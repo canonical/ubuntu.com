@@ -307,52 +307,14 @@ export async function setAutoRenewal(value) {
   return data;
 }
 
-export async function postGuestFreeTrial({
-  email,
-  account_name,
-  name,
-  address,
-  productListingId,
-  quantity,
-}) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
-
-  let response = await fetch(`/advantage/post_guest_trial${queryString}`, {
-    method: "POST",
-    cache: "no-store",
-    credentials: "include",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: email,
-      account_name: account_name,
-      name: name,
-      address: address,
-      products: [
-        {
-          product_listing_id: productListingId,
-          quantity: quantity,
-        },
-      ],
-    }),
-  });
-
-  let data = await response.json();
-  return data;
-}
-
-export async function postLoggedInFreeTrial({
+export async function postFreeTrial({
   accountID,
-  name,
-  address,
-  productListingId,
-  quantity,
+  products,
+  previousPurchaseId,
 }) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
-  let response = await fetch(`/advantage/post-trial${queryString}`, {
+  let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -362,14 +324,10 @@ export async function postLoggedInFreeTrial({
     },
     body: JSON.stringify({
       account_id: accountID,
-      name: name,
-      address: address,
-      products: [
-        {
-          product_listing_id: productListingId,
-          quantity: quantity,
-        },
-      ],
+      products: products,
+      previous_purchase_id: previousPurchaseId,
+      period: products[0].period,
+      trialling: true,
     }),
   });
 

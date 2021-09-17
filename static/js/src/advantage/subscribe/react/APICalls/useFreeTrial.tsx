@@ -1,65 +1,34 @@
 import { useMutation } from "react-query";
-import {
-  postGuestFreeTrial,
-  postLoggedInFreeTrial,
-} from "../../../contracts-api";
+import { postFreeTrial } from "../../../contracts-api";
 import useProduct from "./useProduct";
-
-import { FormValues } from "../utils/utils";
 
 const useFreeTrial = () => {
   const { product, quantity } = useProduct();
 
-  const mutation = useMutation(async (formData: FormValues) => {
+  const mutation = useMutation(async () => {
     if (!product) {
       throw new Error("Product missing");
     }
 
-    const {
-      name,
-      organisationName,
-      email,
-      address,
-      city,
-      country,
-      postalCode,
-      usState,
-      caProvince,
-    } = formData;
-
-    const addressObject = {
-      city: city,
-      country: country,
-      line1: address,
-      postal_code: postalCode,
-      state: country === "US" ? usState : caProvince,
-    };
-
-    let res;
-
-    if (window.isGuest) {
-      res = await postGuestFreeTrial({
-        email: email,
-        account_name: organisationName,
-        name: organisationName || name,
-        address: addressObject,
-        productListingId: product.id,
-        quantity: quantity,
-      });
-    } else {
-      res = await postLoggedInFreeTrial({
-        accountID: window.accountId,
-        name: organisationName || name,
-        address: addressObject,
-        productListingId: product.id,
-        quantity: quantity,
-      });
-    }
+    const res = await postFreeTrial({
+      accountID: window.accountId,
+      products: [
+        {
+          name: product.name,
+          period: product.period,
+          price: product.price.value,
+          product_listing_id: product.id,
+          quantity: quantity,
+        },
+      ],
+      previousPurchaseId: window.previousPurchaseIds?.[product.period],
+    });
 
     if (res.errors) {
       throw new Error(res.errors);
     }
-    return res;
+
+    return res.id;
   });
 
   return mutation;

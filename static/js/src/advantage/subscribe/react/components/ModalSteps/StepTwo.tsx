@@ -179,7 +179,7 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
   };
 
   const onStartTrialClick = () => {
-    freeTrialMutation.mutate(values, {
+    freeTrialMutation.mutate(undefined, {
       onSuccess: () => {
         // The state of the product selector is stored in the local storage
         // if a purchase is successful we empty it so the customer will see
