@@ -1,6 +1,7 @@
 import { Factory } from "fishery";
 import {
   ContractToken,
+  UserInfo,
   UserSubscription,
   UserSubscriptionEntitlement,
   UserSubscriptionStatuses,
@@ -78,6 +79,15 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     type: UserSubscriptionType.Free,
   })
 );
+
+export const userInfoFactory = Factory.define<UserInfo>(() => ({
+  currency: "USD",
+  has_monthly_subscription: false,
+  is_auto_renewing: false,
+  last_payment_date: new Date("2021-02-09T07:14:56Z"),
+  next_payment_date: new Date("2022-02-09T07:14:56Z"),
+  total: 2000,
+}));
 
 export const contractTokenFactory = Factory.define<ContractToken>(
   ({ sequence }) => ({

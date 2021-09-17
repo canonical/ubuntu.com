@@ -1,6 +1,6 @@
 import { Spinner } from "@canonical/react-components";
 import { UserSubscription } from "advantage/api/types";
-import { useUserSubscriptions } from "advantage/react/hooks";
+import { useUserInfo, useUserSubscriptions } from "advantage/react/hooks";
 import {
   selectFreeSubscription,
   selectUASubscriptions,
@@ -36,7 +36,8 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   } = useUserSubscriptions({
     select: selectUASubscriptions,
   });
-  if (isLoadingFree || isLoadingUA) {
+  const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo();
+  if (isLoadingFree || isLoadingUA || isLoadingUserInfo) {
     return <Spinner />;
   }
   // Sort the subscriptions so that the most recently started subscription is first.
@@ -56,7 +57,12 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
-        <ListGroup title="Ubuntu Advantage">{uaSubscriptions}</ListGroup>
+        <ListGroup
+          title="Ubuntu Advantage"
+          showRenewalSettings={userInfo?.has_monthly_subscription}
+        >
+          {uaSubscriptions}
+        </ListGroup>
         {freeSubscription ? (
           <ListGroup title="Free personal token" showRenewalSettings={false}>
             <ListCard

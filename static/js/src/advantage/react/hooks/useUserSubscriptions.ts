@@ -1,6 +1,7 @@
 import { getUserSubscriptions } from "advantage/api/contracts";
 import {
   UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
   UserSubscriptionType,
 } from "advantage/api/enum";
 import {
@@ -56,6 +57,14 @@ export const selectUASubscriptions = (subscriptions: UserSubscription[]) =>
   subscriptions.filter(
     ({ marketplace }) => marketplace === UserSubscriptionMarketplace.CanonicalUA
   );
+
+/**
+ * Find the UA subscriptions.
+ */
+export const selectSubscriptionsForPeriod = (
+  period: UserSubscriptionPeriod
+) => (subscriptions: UserSubscription[]) =>
+  subscriptions.filter((subscription) => subscription.period === period);
 
 export const useUserSubscriptions = <D = UserSubscription[]>(
   options?: UseQueryOptions<UserSubscription[], unknown, D>

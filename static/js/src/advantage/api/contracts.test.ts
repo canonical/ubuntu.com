@@ -1,10 +1,23 @@
+import { userInfoFactory } from "advantage/tests/factories/api";
 import fetch from "jest-fetch-mock";
 
-import { getContractToken, getUserSubscriptions } from "./contracts";
+import {
+  getContractToken,
+  getUserInfo,
+  getUserSubscriptions,
+} from "./contracts";
 
 describe("contracts", () => {
   afterEach(() => {
     fetch.resetMocks();
+  });
+
+  it("can get user info", async () => {
+    const userInfoData = userInfoFactory.build();
+    fetch.mockResponseOnce(JSON.stringify(userInfoData));
+    await getUserInfo().then((response) => {
+      expect(response).toStrictEqual(JSON.parse(JSON.stringify(userInfoData)));
+    });
   });
 
   it("can get user subscriptions", () => {
