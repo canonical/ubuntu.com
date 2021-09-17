@@ -5,7 +5,6 @@ import { useFormikContext } from "formik";
 import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
 import PaymentMethodForm from "../PaymentMethodForm";
 import useProduct from "../../APICalls/useProduct";
-import usePreview from "../../APICalls/usePreview";
 import ModalHeader from "../ModalParts/ModalHeader";
 import ModalBody from "../ModalParts/ModalBody";
 import ModalFooter from "../ModalParts/ModalFooter";
@@ -21,7 +20,6 @@ function StepOne({ error }: StepOneProps) {
     data: userInfo,
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
-  const { isLoading: isPreviewLoading } = usePreview();
   const { isLoading: isProductLoading } = useProduct();
 
   return (
@@ -29,7 +27,7 @@ function StepOne({ error }: StepOneProps) {
       <ModalHeader title="Your details" />
 
       <ModalBody
-        isLoading={isUserInfoLoading || isProductLoading || isPreviewLoading}
+        isLoading={isUserInfoLoading || isProductLoading}
         error={error}
       >
         <PaymentMethodForm setCardValid={setCardValid} />
