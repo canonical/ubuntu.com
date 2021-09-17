@@ -34,6 +34,7 @@ class MarketoAPI:
             method=method,
             url=f"{self.base_url}{url}?access_token={self.token}&{params}",
             json=json,
+            timeout=(3.05, 5)
         )
 
         errors = response.json().get("errors")
@@ -43,6 +44,7 @@ class MarketoAPI:
                 method=method,
                 url=f"{self.base_url}{url}?access_token={self.token}&{params}",
                 json=json,
+                timeout=(3.05, 5)
             )
 
         return response
