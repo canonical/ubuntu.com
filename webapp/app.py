@@ -44,6 +44,7 @@ from webapp.cube.views import (
     cube_home,
     cube_microcerts,
     cube_study_labs_button,
+    get_microcerts
 )
 
 from webapp.views import (
@@ -793,6 +794,7 @@ core_als_autils_docs.init_app(app)
 app.add_url_rule("/cube", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
+app.add_url_rule("/cube/get-microcerts", view_func=get_microcerts)
 
 # Charmed OpenStack docs
 openstack_docs = Docs(

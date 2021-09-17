@@ -7,17 +7,25 @@ import yaml
 
 from pathlib import Path
 from urllib.parse import quote_plus
-
+from flask import current_app
 from requests import Session
 
 from webapp.cube.api import BadgrAPI, EdxAPI
 from webapp.decorators import login_required
 from webapp.login import user_info
-
+from webapp.advantage.ua_contracts.api import UAContractsAPI
 
 CUBE_CONTENT = yaml.load(
-    Path("webapp/cube/content/cube.yaml").read_text(), Loader=yaml.Loader
+    Path("webapp/cube/content/cube-qa.yaml").read_text(), Loader=yaml.Loader
 )
+
+QA_BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
+QA_CERTIFIED_BADGE = "x9kzmcNhSSyqYhZcQGz0qg"
+QA_STUDY_LABS = "course-v1:ubuntu+cubereview+coursecommandsdev"
+
+BADGR_ISSUER = "eTedPNzMTuqy1SMWJ05UbA"
+CERTIFIED_BADGE = "hs8gVorCRgyO2mNUfeXaLw"
+STUDY_LABS = "course-v1:CUBE+study_labs+2020"
 
 badgr_session = Session()
 talisker.requests.configure(badgr_session),
@@ -45,6 +53,7 @@ edx_api = EdxAPI(
     edx_session,
 )
 
+ua_contracts_session = Session()
 
 @login_required
 def cube_microcerts():
@@ -130,6 +139,120 @@ def cube_microcerts():
             "has_study_labs": study_labs in enrollments,
             "study_labs_url": study_labs_url,
         },
+    )
+
+@login_required
+def get_microcerts():
+
+    # backend_true requires query string,
+    # therefore we need context
+    # also this avoids loading contracts api where not required
+    is_test_backend = (
+        current_app.config["CONTRACTS_TEST_API_URL"]
+        if flask.request.args.get("test_backend", "false")
+        else current_app.config["CONTRACTS_LIVE_API_URL"]
+    )
+    sso_user = user_info(flask.session)
+    if not sso_user:
+        if flask.request.path != "/cube/microcerts":
+            return flask.redirect(
+                "/cube/microcerts?test_backend=true"
+                if is_test_backend
+                else "/cube/microcerts"
+            )
+
+        return flask.render_template(
+            "cube/index-no-login.html",
+            is_test_backend=is_test_backend,
+        )
+
+
+    ua_contracts_api = UAContractsAPI(
+        session=ua_contracts_session,
+        authentication_token=(flask.session.get("authentication_token")),
+        api_url=is_test_backend,
+    )
+
+    assertions = {}
+    enrollments = []
+    passed_courses = 0
+
+    edx_url = (
+        f"{edx_api.base_url}/auth/login/tpa-saml/"
+        "?auth_entry=login&idp=ubuntuone&next="
+    )
+
+    edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
+    cube_content = ua_contracts_api.get_product_listings("canonical-cube")["productListings"]
+
+    if edx_user:
+        assertions = {
+            assertion["badgeclass"]: assertion
+            for assertion in badgr_api.get_assertions(
+                BADGR_ISSUER, edx_user["email"]
+            )["result"]
+        }
+
+        enrollments = [
+            enrollment["course_details"]["course_id"]
+            for enrollment in edx_api.get_enrollments(edx_user["username"])
+            if enrollment["is_active"]
+        ]
+
+    certified_badge = {}
+    if CERTIFIED_BADGE in assertions:
+        assertion = assertions.pop(CERTIFIED_BADGE)
+        if not assertion["revoked"]:
+            certified_badge["image"] = assertion["image"]
+            certified_badge["share_url"] = assertion["openBadgeId"]
+
+    courses = copy.deepcopy(cube_content["metadata"])
+    for course in courses:
+        attempts = []
+
+        if edx_user:
+            attempts = edx_api.get_course_attempts(
+                course["id"], edx_user["username"]
+            )["proctored_exam_attempts"]
+
+        assertion = assertions.get(course["badge"]["class"])
+        course["status"] = "not-enrolled"
+        if assertion and not assertion["revoked"]:
+            course["badge"]["url"] = assertion["image"]
+            course["status"] = "passed"
+            passed_courses += 1
+        elif attempts:
+            course["status"] = (
+                "in-progress" if not attempts[0]["completed_at"] else "failed"
+            )
+        elif course["id"] in enrollments:
+            course["status"] = "enrolled"
+
+        course_id = course["id"]
+        courseware_name = course_id.split("+")[1]
+
+        course["take_url"] = edx_url + quote_plus(
+            f"/courses/{course_id}/courseware/2020/start/?child=first"
+        )
+
+        course["study_lab"] = edx_url + quote_plus(
+            f"/courses/{STUDY_LABS}/courseware/{courseware_name}/?child=first"
+        )
+
+    study_labs_url = edx_url + quote_plus(f"/courses/{STUDY_LABS}/course/")
+
+    return flask.jsonify(
+        {
+            "edx_user": edx_user,
+            "edx_register_url": f"{edx_url}%2F",
+            "sso_user": sso_user,
+            "certified_badge": certified_badge,
+            "modules": courses,
+            "passed_courses": passed_courses,
+            "has_enrollments": len(enrollments) > 0,
+            "has_study_labs": STUDY_LABS in enrollments,
+            "study_labs_url": study_labs_url,
+        }
     )
 
 

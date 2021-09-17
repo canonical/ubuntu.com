@@ -1,0 +1,75 @@
+{% extends "advantage/base_advantage.html" %}
+
+{% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
+{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1K65n3NpZCh7EWDXKLhG31seGJ2jKbW6lqw3BwV2mlnU/edit#heading=h.nleu1cdig11l{% endblock meta_copydoc %}
+
+{% block content %}
+  <section class="p-strip--suru-topped" style="padding-bottom: 32px">
+    <div class="row">
+      <div class="col-12">
+        <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
+        <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
+        <h5>
+          <a href="/login{% if get_test_backend %}?test_backend=true{% endif %}" class="p-link"
+             onclick="dataLayer.push({
+                'event' : 'GAEvent',
+                'eventCategory' : 'Advantage',
+                'eventAction' : 'Authentication',
+                'eventLabel' : 'Sign in',
+                'eventValue' : undefined
+              });">Sign in</a> to edit existing or add new subscriptions.
+        </h5>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--light is-shallow">
+    <div class="row u-equal-height">
+      <div class="col-6">
+        <h3>Per-machine enterprise subscriptions</h3>
+        <p>Enterprises choose Ubuntu Advantage for extended security, certified compliance and 24x7support.</p>
+        <p>
+          <a 
+            href="/advantage/subscribe{% if get_test_backend %}?test_backend=true{% endif %}"
+            class="p-button--positive"   
+            onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'go-to-shop',
+              'eventLabel' : 'Add new subscription',
+              'eventValue' : 5
+            });">
+              Buy
+          </a>
+          <span>an enterprise subscription</span>
+        </p>
+        <p class="u-no-margin--bottom">See the table below to find the plan that’s right for you.</p>
+      </div>
+      <div class="col-6">
+        <h3>Free for personal use</h3>
+        <p>Anyone can use UA-I Essential for free on up to 3 machines, or 50 if you are an <a href="https://wiki.ubuntu.com/Membership" class="p-link--external">official Ubuntu Community member</a>.</p>
+        <p class="u-no-margin--bottom">
+          <a href="/login{% if get_test_backend %}?test_backend=true{% endif %}" class="p-button--positive" onclick="dataLayer.push({
+              'event' : 'GAEvent',
+              'eventCategory' : 'Advantage',
+              'eventAction' : 'Authentication',
+              'eventLabel' : 'Register',
+              'eventValue' : undefined
+            });">
+              Register
+            </a> 
+          <span>for your free subscription.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-shallow is-bordered">
+    <div class="row">
+      <h2>Plans for enterprise use</h2>
+      {% include "advantage/_table.html" %}
+    </div>
+  </section>
+
+{% endblock content %}
