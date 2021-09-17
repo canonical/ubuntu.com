@@ -19,6 +19,7 @@ let entries = {
   cve: "./static/js/src/cve/cve.js",
   productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
+  cubeMicrocertifications: "./static/js/src/cube/app.jsx",
   openstackChart: "./static/js/src/openstack-chart.js",
   uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
@@ -40,8 +41,8 @@ for (const [key, value] of Object.entries(entries)) {
         // 'production' in all other cases.
         process && process.env && process.env.NODE_ENV === "development"
           ? '"development"'
-          : '"production"'
-    }
+          : '"production"',
+    },
   };
 
   esbuild

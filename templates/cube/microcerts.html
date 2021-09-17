@@ -22,7 +22,7 @@
         {% endif %}
       {% else %}
         <h1>The road to CUBE</h1>
-        <p class="p-heading--4">The path to certification is clear and convenient. Complete 15 microcerts to attain CUBE.</p>
+        <p class="p-heading--4">The path to certification is clear and convenient. Complete {{ modules|length }} microcerts to attain CUBE.</p>
         <a href="/cube/contact-us" class="p-button--positive js-invoke-modal">Apply for access</a></br>
       {% endif %}
     </div>
@@ -172,6 +172,11 @@
 </section>
 
 {% else %}
+
+<div id="micro-certification-table-app"></div>
+
+<hr/>
+<hr/>
 
 <section class="p-strip">
   <div class="u-fixed-width">
@@ -381,5 +386,6 @@ linksArr.forEach(link => {
 });
 </script>
 
+<script src="/static/js/dist/cubeMicrocertifications.js" type="module"></script>
 
 {% endblock content %}
