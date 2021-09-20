@@ -44,10 +44,10 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   const uaSubscriptions = sortedUASubscriptions.map((subscription, i) => (
     <ListCard
       data-test="ua-subscription"
-      isSelected={selectedId === subscription.contract_id}
+      isSelected={selectedId === subscription.id}
       key={i}
       onClick={() => {
-        onSetActive(subscription.contract_id);
+        onSetActive(subscription.id);
       }}
       subscription={subscription}
     />
@@ -61,9 +61,9 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
           <ListGroup title="Free personal token" showRenewalSettings={false}>
             <ListCard
               data-test="free-subscription"
-              isSelected={selectedId === freeSubscription.contract_id}
+              isSelected={selectedId === freeSubscription.id}
               onClick={() => {
-                onSetActive(freeSubscription.contract_id);
+                onSetActive(freeSubscription.id);
               }}
               subscription={freeSubscription}
             />

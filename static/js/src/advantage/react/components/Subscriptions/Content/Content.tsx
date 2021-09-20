@@ -34,7 +34,7 @@ const Content = () => {
       // https://github.com/canonical-web-and-design/commercial-squad/issues/101
       // This only sets the selected token and does not set the modal to active
       // to prevent the modal appearing on first load on mobile.
-      setSelectedId(allSubscriptions[0].contract_id);
+      setSelectedId(allSubscriptions[0].id);
     }
   }, [selectedId, setSelectedId, allSubscriptions, isLoading]);
 

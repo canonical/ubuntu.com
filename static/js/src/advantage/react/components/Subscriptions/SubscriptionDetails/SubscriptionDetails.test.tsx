@@ -26,7 +26,7 @@ describe("SubscriptionDetails", () => {
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
           onCloseModal={jest.fn()}
-          selectedId={contract.contract_id}
+          selectedId={contract.id}
         />
       </QueryClientProvider>
     );
@@ -39,7 +39,7 @@ describe("SubscriptionDetails", () => {
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
           onCloseModal={jest.fn()}
-          selectedId={contract.contract_id}
+          selectedId={contract.id}
         />
       </QueryClientProvider>
     );
@@ -57,7 +57,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           modalActive={modalActive}
           onCloseModal={jest.fn()}
-          selectedId={contract.contract_id}
+          selectedId={contract.id}
         />
       </QueryClientProvider>
     );
@@ -76,7 +76,7 @@ describe("SubscriptionDetails", () => {
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
           onCloseModal={jest.fn()}
-          selectedId={contract.contract_id}
+          selectedId={contract.id}
         />
       </QueryClientProvider>
     );
@@ -100,10 +100,7 @@ describe("SubscriptionDetails", () => {
     queryClient.setQueryData("userSubscriptions", [account]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionDetails
-          onCloseModal={jest.fn()}
-          selectedId={account.contract_id}
-        />
+        <SubscriptionDetails onCloseModal={jest.fn()} selectedId={account.id} />
       </QueryClientProvider>
     );
     expect(wrapper.find("Button[data-test='edit-button']").exists()).toBe(
@@ -121,7 +118,7 @@ describe("SubscriptionDetails", () => {
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
           onCloseModal={onCloseModal}
-          selectedId={account.contract_id}
+          selectedId={account.id}
         />
       </QueryClientProvider>
     );
@@ -136,7 +133,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           modalActive={true}
           onCloseModal={onCloseModal}
-          selectedId={contract.contract_id}
+          selectedId={contract.id}
         />
       </QueryClientProvider>
     );
@@ -156,7 +153,7 @@ describe("SubscriptionDetails", () => {
       <QueryClientProvider client={queryClient}>
         <SubscriptionDetails
           onCloseModal={jest.fn()}
-          selectedId={contract.contract_id}
+          selectedId={contract.id}
         />
       </QueryClientProvider>
     );

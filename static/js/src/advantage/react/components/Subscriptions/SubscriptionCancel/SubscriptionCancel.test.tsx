@@ -43,7 +43,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={jest.fn()}
           onClose={onClose}
         />
@@ -63,7 +63,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={jest.fn()}
           onClose={onClose}
         />
@@ -79,7 +79,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
@@ -97,7 +97,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
@@ -116,7 +116,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
@@ -134,7 +134,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
@@ -150,7 +150,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
@@ -174,7 +174,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={onCancelSuccess}
           onClose={jest.fn()}
         />
@@ -201,7 +201,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={onCancelSuccess}
           onClose={jest.fn()}
         />
@@ -233,7 +233,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={onCancelSuccess}
           onClose={jest.fn()}
         />
@@ -261,7 +261,7 @@ describe("SubscriptionCancel", () => {
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionCancel
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           onCancelSuccess={jest.fn()}
           onClose={jest.fn()}
         />
