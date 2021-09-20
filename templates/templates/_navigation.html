@@ -66,7 +66,7 @@
         </li>
         <li class="p-navigation__user js-account"></li>
       </ul>
-      <div class="p-navigation__search u-show--small u-hide">
+      <div class="p-navigation__search u-show--small u-hide" style="z-index: 39;">
         <form action="/search" class="p-search-box" id="ubuntu-global-search-form">
           <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
           <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
@@ -188,12 +188,18 @@
     e.preventDefault();
     var navigation = document.querySelector('.p-navigation__nav');
     var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+    var banner = document.querySelector(".p-navigation__banner");
+    var dropdownWindow = document.querySelector(".dropdown-window");
+    var navigationItems = document.querySelector('.p-navigation__items');
     var searchButton = document.querySelector('.js-search-button');
     var search = document.querySelector('.p-navigation__search');
     var searchInput = document.querySelector('.p-search-box__input');
     var searchActive = !search.classList.contains('u-hide');
     search.classList.remove('u-hide');
     searchButton.classList.add('u-hide');
+    banner.style= "opacity: 0.4; transition: opacity 0.5s ease-in-out;"
+    navigationItems.style= "opacity: 0.4; transition: opacity 0.5s ease-in-out;"
+    dropdownWindow.style="z-index: 37;"
     dropdownWindowOverlay.classList.remove("fade-animation");
     navigation.classList.add('has-active-search');
     searchInput.focus();
@@ -203,10 +209,16 @@
 
   function closeSearch() {
     var navigation = document.querySelector('.p-navigation__nav');
+    var banner = document.querySelector(".p-navigation__banner")
+    var dropdownWindow = document.querySelector(".dropdown-window");
     var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+    var navigationItems = document.querySelector('.p-navigation__items');
     var searchButton = document.querySelector('.js-search-button');
     var search = document.querySelector('.p-navigation__search');
     search.classList.add('u-hide');
+    banner.style= "opacity: 1;"
+    dropdownWindow.style="z-index: 39;"
+    navigationItems.style= "opacity: 1;"
     dropdownWindowOverlay.classList.add("fade-animation");
     navigation.classList.remove('has-active-search');
     searchButton.classList.remove('u-hide');

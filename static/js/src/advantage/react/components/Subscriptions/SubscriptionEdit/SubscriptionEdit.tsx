@@ -1,17 +1,31 @@
-import { ActionButton, Button } from "@canonical/react-components";
+import {
+  ActionButton,
+  Button,
+  NotificationProps,
+} from "@canonical/react-components";
 import React, { useCallback } from "react";
 import usePortal from "react-useportal";
 import { Formik } from "formik";
 
 import SubscriptionCancel from "../SubscriptionCancel";
 import FormikField from "../../FormikField";
+import { SelectedId } from "../Content/types";
+import { useUserSubscriptions } from "advantage/react/hooks";
+import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 
 type Props = {
-  setShowingCancel: (showingCancel: boolean) => void;
   onClose: () => void;
+  selectedId?: SelectedId;
+  setNotification: (props: NotificationProps | null) => void;
+  setShowingCancel: (showingCancel: boolean) => void;
 };
 
-const SubscriptionEdit = ({ setShowingCancel, onClose }: Props) => {
+const SubscriptionEdit = ({
+  onClose,
+  selectedId,
+  setNotification,
+  setShowingCancel,
+}: Props) => {
   const { openPortal, closePortal, isOpen, Portal } = usePortal();
 
   const showPortal = useCallback(
@@ -29,6 +43,9 @@ const SubscriptionEdit = ({ setShowingCancel, onClose }: Props) => {
     },
     [setShowingCancel]
   );
+  const { data: subscription } = useUserSubscriptions({
+    select: selectSubscriptionById(selectedId),
+  });
 
   return (
     <>
@@ -82,24 +99,37 @@ const SubscriptionEdit = ({ setShowingCancel, onClose }: Props) => {
                 Resize
               </ActionButton>
             </div>
-            <div>
-              <hr />
-              <Button
-                appearance="link"
-                className="u-align-text--left"
-                data-test="cancel-button"
-                onClick={() => showPortal(true)}
-                type="button"
-              >
-                You can cancel this subscription online or contact us.
-              </Button>
-            </div>
+            {subscription?.statuses?.is_cancellable ? (
+              <div>
+                <hr />
+                <Button
+                  appearance="link"
+                  className="u-align-text--left"
+                  data-test="cancel-button"
+                  onClick={() => showPortal(true)}
+                  type="button"
+                >
+                  You can cancel this subscription online or contact us.
+                </Button>
+              </div>
+            ) : null}
           </form>
         )}
       </Formik>
       {isOpen && (
         <Portal>
-          <SubscriptionCancel onClose={() => showPortal(false)} />
+          <SubscriptionCancel
+            selectedId={selectedId}
+            onClose={() => showPortal(false)}
+            onCancelSuccess={() => {
+              onClose();
+              setNotification({
+                severity: "positive",
+                children: "This subscription was cancelled.",
+                onDismiss: () => setNotification(null),
+              });
+            }}
+          />
         </Portal>
       )}
     </>

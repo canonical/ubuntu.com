@@ -1,9 +1,15 @@
-import { userInfoFactory } from "advantage/tests/factories/api";
+import {
+  contractTokenFactory,
+  lastPurchaseIdsFactory,
+  userInfoFactory,
+  userSubscriptionFactory,
+} from "advantage/tests/factories/api";
 import fetch from "jest-fetch-mock";
 
 import {
   getContractToken,
   getUserInfo,
+  getLastPurchaseIds,
   getUserSubscriptions,
 } from "./contracts";
 
@@ -20,19 +26,27 @@ describe("contracts", () => {
     });
   });
 
-  it("can get user subscriptions", () => {
-    const contractData = { data: { test: "contract" } };
+  it("can get user subscriptions", async () => {
+    const contractData = { data: userSubscriptionFactory.buildList(2) };
     fetch.mockResponseOnce(JSON.stringify(contractData));
-    getUserSubscriptions().then((response) => {
-      expect(response).toStrictEqual(contractData);
+    await getUserSubscriptions().then((response) => {
+      expect(response).toStrictEqual(JSON.parse(JSON.stringify(contractData)));
     });
   });
 
-  it("can get contract tokens", () => {
-    const contractToken = { data: { contract_token: "abc123" } };
+  it("can get contract tokens", async () => {
+    const contractToken = { data: contractTokenFactory.build() };
     fetch.mockResponseOnce(JSON.stringify(contractToken));
-    getContractToken().then((response) => {
+    await getContractToken().then((response) => {
       expect(response).toStrictEqual(contractToken);
+    });
+  });
+
+  it("can get last purchase ids", async () => {
+    const lastPurchaseIds = { data: lastPurchaseIdsFactory.build() };
+    fetch.mockResponseOnce(JSON.stringify(lastPurchaseIds));
+    await getLastPurchaseIds().then((response) => {
+      expect(response).toStrictEqual(lastPurchaseIds);
     });
   });
 });

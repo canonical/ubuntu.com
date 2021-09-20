@@ -71,7 +71,13 @@ export const useUserSubscriptions = <D = UserSubscription[]>(
 ) => {
   const query = useQuery(
     "userSubscriptions",
-    async () => await getUserSubscriptions(),
+    async () => {
+      const subs = await getUserSubscriptions();
+      return subs.filter(
+        ({ period }: UserSubscription) =>
+          period === UserSubscriptionPeriod.Monthly
+      );
+    },
     options
   );
   return query;

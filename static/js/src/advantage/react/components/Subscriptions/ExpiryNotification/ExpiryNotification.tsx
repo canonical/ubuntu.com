@@ -34,7 +34,7 @@ type Messages = Record<
 >;
 
 // The expiry status keys in priority order.
-const ORDERED_STATUS_KEYS = [
+export const ORDERED_STATUS_KEYS = [
   StatusKey.IsExpired,
   StatusKey.IsInGracePeriod,
   StatusKey.IsExpiring,
