@@ -56,7 +56,7 @@ describe("SubscriptionCancel", () => {
     expect(onClose).toHaveBeenCalled();
   });
 
-  it("displays a spinner when loading the data", () => {
+  it("displays a spinner when loading the data", async () => {
     queryClient.removeQueries("userSubscriptions");
     queryClient.removeQueries("lastPurchaseIds");
     const onClose = jest.fn();
@@ -72,7 +72,7 @@ describe("SubscriptionCancel", () => {
     expect(wrapper.find("Spinner[data-test='form-loading']").exists()).toBe(
       true
     );
-    expect(wrapper.find("Formik").exists()).toBe(false);
+    expect(wrapper.find("SubscriptionCancelFields").exists()).toBe(false);
   });
 
   it("displays the form when the data has loaded", async () => {
