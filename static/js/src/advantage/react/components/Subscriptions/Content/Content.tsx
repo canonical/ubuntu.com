@@ -1,4 +1,4 @@
-import { Card } from "@canonical/react-components";
+import { Card, Spinner } from "@canonical/react-components";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { useScrollIntoView } from "advantage/react/hooks/useScrollIntoView";
 import React, { useCallback, useEffect, useState } from "react";
@@ -37,6 +37,14 @@ const Content = () => {
       setSelectedId(allSubscriptions[0].contract_id);
     }
   }, [selectedId, setSelectedId, allSubscriptions, isLoading]);
+
+  if (isLoading) {
+    return (
+      <Card className="u-no-margin--bottom" data-test="initial-load">
+        <Spinner /> Loading&hellip;
+      </Card>
+    );
+  }
 
   return (
     <Card className="u-no-margin--bottom u-no-padding p-subscriptions__card">
