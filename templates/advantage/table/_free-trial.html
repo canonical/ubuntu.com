@@ -23,19 +23,17 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-12 u-align--right">
-        <a 
-          class="p-button--positive u-no-margin--right" 
-          href="/advantage/subscribe?free_trial={{contract["productID"]}}&quantity={{ contract['rowMachineCount'] }}{% if is_test_backend %}&test_backend=true{% endif %}"
-        >
-          {% if contract['contractInfo']['status'] == "expired" %}
-            Buy this subscription
-          {% else %}
-            End trial and buy
-          {% endif %}
-        </a>
+    {% if contract['contractInfo']['status'] != "expired" %}
+      <div class="row">
+        <div class="col-12 u-align--right">
+          <button 
+            class="p-button--positive u-no-margin--right js-end-trial"
+            data-account-id="{{contract['accountInfo']['id']}}"
+          >
+              End trial
+          </button>
+        </div>
       </div>
-    </div>
+    {% endif %}
   </div>
 </div>
