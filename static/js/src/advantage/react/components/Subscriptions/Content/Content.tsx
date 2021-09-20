@@ -2,6 +2,7 @@ import {
   Card,
   Notification,
   NotificationSeverity,
+  Spinner,
 } from "@canonical/react-components";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { useScrollIntoView } from "advantage/react/hooks/useScrollIntoView";
@@ -42,6 +43,13 @@ const Content = () => {
     }
   }, [selectedId, setSelectedId, allSubscriptions, isLoading]);
 
+  if (isLoading) {
+    return (
+      <Card className="u-no-margin--bottom" data-test="initial-load">
+        <Spinner /> Loading&hellip;
+      </Card>
+    );
+  }
   if (isError) {
     return (
       <Notification
@@ -59,6 +67,11 @@ const Content = () => {
     <Card className="u-no-margin--bottom u-no-padding p-subscriptions__card">
       <SubscriptionList selectedId={selectedId} onSetActive={onSetActive} />
       <SubscriptionDetails
+        // Give the component a key so that the internal state gets reset when
+        // changing subscriptions. This is to prevent displaying notifications,
+        // showing the cancel form or retaining other state that should not be
+        // kept when clicking on a different subscription.
+        key={selectedId}
         modalActive={modalActive}
         onCloseModal={() => {
           onSetActive(null);

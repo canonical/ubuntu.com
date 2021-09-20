@@ -380,7 +380,7 @@ app.add_url_rule(
     "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
 )
 app.add_url_rule(
-    "/advantage/trial/<subscription_id>",
+    "/advantage/trial/<account_id>",
     view_func=cancel_trial,
     methods=["DELETE"],
 )

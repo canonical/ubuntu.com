@@ -29,12 +29,28 @@ describe("Content", () => {
     jest.restoreAllMocks();
   });
 
-  it("renders", () => {
+  it("displays a spinner when loading", () => {
+    // Remove the queries so that the query starts loading.
+    queryClient.removeQueries("userSubscriptions");
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Content />
       </QueryClientProvider>
     );
+    expect(wrapper.find("[data-test='initial-load'] Spinner").exists()).toBe(
+      true
+    );
+    expect(wrapper.find("SubscriptionList").exists()).toBe(false);
+    expect(wrapper.find("SubscriptionDetails").exists()).toBe(false);
+  });
+
+  it("displays the list and details when loaded", () => {
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <Content />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("[data-test='initial-load']").exists()).toBe(false);
     expect(wrapper.find("SubscriptionList").exists()).toBe(true);
     expect(wrapper.find("SubscriptionDetails").exists()).toBe(true);
   });

@@ -1,6 +1,7 @@
 import { getUserSubscriptions } from "advantage/api/contracts";
 import {
   UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
   UserSubscriptionType,
 } from "advantage/api/enum";
 import {
@@ -62,7 +63,13 @@ export const useUserSubscriptions = <D = UserSubscription[]>(
 ) => {
   const query = useQuery(
     "userSubscriptions",
-    async () => await getUserSubscriptions(),
+    async () => {
+      const subs = await getUserSubscriptions();
+      return subs.filter(
+        ({ period }: UserSubscription) =>
+          period === UserSubscriptionPeriod.Monthly
+      );
+    },
     options
   );
   return query;
