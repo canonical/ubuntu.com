@@ -7,3 +7,4 @@ export { getSubscriptionCost } from "./getSubscriptionCost";
 export { isFreeSubscription } from "./isFreeSubscription";
 export { makeInteractiveProps } from "./makeInteractiveProps";
 export { removeFalsy } from "./removeFalsy";
+export { sortSubscriptionsByStartDate } from "./sortSubscriptionsByStartDate";
