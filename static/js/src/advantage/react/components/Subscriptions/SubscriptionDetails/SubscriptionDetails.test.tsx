@@ -9,12 +9,13 @@ import {
 import SubscriptionDetails from "./SubscriptionDetails";
 import { UserSubscription } from "advantage/api/types";
 import SubscriptionEdit from "../SubscriptionEdit";
+import { Notification } from "@canonical/react-components";
 
 describe("SubscriptionDetails", () => {
   let queryClient: QueryClient;
   let contract: UserSubscription;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     queryClient = new QueryClient();
     contract = userSubscriptionFactory.build();
     queryClient.setQueryData("userSubscriptions", [contract]);
@@ -45,36 +46,6 @@ describe("SubscriptionDetails", () => {
     wrapper.find("Button[data-test='edit-button']").simulate("click");
     expect(wrapper.find("SubscriptionEdit").exists()).toBe(true);
     expect(wrapper.find("DetailsContent").exists()).toBe(false);
-  });
-
-  it("closes the edit form when changing subscriptions", () => {
-    const contracts = [
-      userSubscriptionFactory.build(),
-      userSubscriptionFactory.build(),
-      freeSubscriptionFactory.build(),
-    ];
-    queryClient.setQueryData("userSubscriptions", contracts);
-    // Create a wrapping component to pass props to the inner
-    // SubscriptionDetails component. This is needed so that setProps will
-    // update the inner component.
-    const ProxyComponent = ({ selectedId }: { selectedId: string }) => (
-      <QueryClientProvider client={queryClient}>
-        <SubscriptionDetails onCloseModal={jest.fn()} selectedId={selectedId} />
-      </QueryClientProvider>
-    );
-    const wrapper = mount(
-      <ProxyComponent selectedId={contracts[0].contract_id} />
-    );
-    wrapper.find("Button[data-test='edit-button']").simulate("click");
-    expect(wrapper.find("SubscriptionEdit").exists()).toBe(true);
-    expect(wrapper.find("DetailsContent").exists()).toBe(false);
-    // The selected subscription state is handled in a parent component so
-    // update the component with a different selected id to make the component
-    // rerender with a new subscription:
-    wrapper.setProps({ selectedId: contracts[1].contract_id });
-    wrapper.update();
-    expect(wrapper.find("SubscriptionEdit").exists()).toBe(false);
-    expect(wrapper.find("DetailsContent").exists()).toBe(true);
   });
 
   it("closes the edit form when closing the modal", () => {
@@ -169,7 +140,7 @@ describe("SubscriptionDetails", () => {
         />
       </QueryClientProvider>
     );
-    // Open the edit modal:
+    // Open the edit form:
     wrapper.find("Button[data-test='edit-button']").simulate("click");
     expect(
       wrapper.find(".p-subscriptions__details").hasClass("is-active")
@@ -178,5 +149,24 @@ describe("SubscriptionDetails", () => {
     expect(
       wrapper.find(".p-subscriptions__details").hasClass("is-active")
     ).toBe(false);
+  });
+
+  it("can show a notification", () => {
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.contract_id}
+        />
+      </QueryClientProvider>
+    );
+    // Open the edit form:
+    wrapper.find("Button[data-test='edit-button']").simulate("click");
+    wrapper.find(SubscriptionEdit).invoke("setNotification")({
+      title: "Test notification",
+    });
+    const notification = wrapper.find(Notification);
+    expect(notification.exists()).toBe(true);
+    expect(notification.prop("title")).toBe("Test notification");
   });
 });
