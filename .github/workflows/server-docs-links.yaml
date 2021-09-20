@@ -26,6 +26,7 @@ jobs:
           	--ignore-url h_[0-9]* \
             --check-extern \
             --no-status \
+            --timeout 1000 \
             --no-warnings https://ubuntu.com/server/docs
 
       - name: Send message on failure
