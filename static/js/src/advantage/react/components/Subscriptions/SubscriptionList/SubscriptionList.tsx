@@ -53,7 +53,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
       <div className="p-subscriptions__list-scroll">
         <ListGroup title="Ubuntu Advantage">{uaSubscriptions}</ListGroup>
         {freeSubscription ? (
-          <ListGroup title="Free personal token">
+          <ListGroup title="Free personal token" showRenewalSettings={false}>
             <ListCard
               data-test="free-subscription"
               isSelected={selectedId === freeSubscription.contract_id}

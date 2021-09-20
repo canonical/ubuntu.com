@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MainTable from "@canonical/react-components/dist/components/MainTable";
 
 import { Users } from "../../types";
@@ -6,10 +6,9 @@ import { getUserRow } from "./components";
 
 export type UserRowVariant = "regular" | "editing" | "disabled";
 
-type UserInEditMode = string | null;
 type UserId = string;
 
-const getVariant = (userId: UserId, userInEditMode: UserInEditMode) => {
+const getVariant = (userId: UserId, userInEditMode: UserId | null) => {
   if (userInEditMode === null) {
     return "regular";
   } else if (userId !== userInEditMode) {
@@ -21,12 +20,19 @@ const getVariant = (userId: UserId, userInEditMode: UserInEditMode) => {
 
 type Props = {
   users: Users;
+  userInEditModeById: UserId | null;
+  setUserInEditModeById: (userId: UserId | null) => void;
+  dismissEditMode: () => void;
+  handleDeleteConfirmationModalOpen: () => void;
 };
 
-const TableView = ({ users }: Props) => {
-  const [userInEditMode, setUserInEditMode] = useState<string | null>(null);
-  const dismissEditMode = () => setUserInEditMode(null);
-
+const TableView = ({
+  users,
+  userInEditModeById,
+  setUserInEditModeById,
+  dismissEditMode,
+  handleDeleteConfirmationModalOpen,
+}: Props) => {
   return (
     <MainTable
       responsive
@@ -47,9 +53,10 @@ const TableView = ({ users }: Props) => {
       rows={users.map((user) =>
         getUserRow({
           user,
-          variant: getVariant(user.id, userInEditMode),
-          setUserInEditMode,
+          variant: getVariant(user.id, userInEditModeById),
+          setUserInEditModeById,
           dismissEditMode,
+          handleDeleteConfirmationModalOpen,
         })
       )}
     />

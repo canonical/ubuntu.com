@@ -6,6 +6,8 @@ import { UserSubscription } from "advantage/api/types";
 import {
   freeSubscriptionFactory,
   userSubscriptionEntitlementFactory,
+  userSubscriptionFactory,
+  userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
 import { EntitlementType, SupportLevel } from "advantage/api/enum";
 
@@ -61,13 +63,45 @@ describe("ListCard", () => {
   it("calls the onclick function when the card is clicked", () => {
     const onClick = jest.fn();
     const wrapper = shallow(
-      <ListCard
-        subscription={freeSubscription}
-        isSelected={true}
-        onClick={onClick}
-      />
+      <ListCard subscription={freeSubscription} onClick={onClick} />
     );
     wrapper.find("Card").simulate("click");
     expect(onClick).toHaveBeenCalled();
+  });
+
+  it("displays a warning if the subscription has one of the expiry statuses", () => {
+    const subscription = userSubscriptionFactory.build({
+      statuses: userSubscriptionStatusesFactory.build({
+        is_in_grace_period: true,
+      }),
+    });
+    const wrapper = shallow(
+      <ListCard subscription={subscription} onClick={jest.fn()} />
+    );
+    expect(wrapper.find("ExpiryNotification").exists()).toBe(true);
+    expect(
+      wrapper
+        .find("[data-test='subscription-card-content']")
+        .hasClass("u-no-padding--top")
+    ).toBe(true);
+  });
+
+  it("does not display a warning if the subscription is not expiring", () => {
+    const subscription = userSubscriptionFactory.build({
+      statuses: userSubscriptionStatusesFactory.build({
+        is_in_grace_period: false,
+        is_expired: false,
+        is_expiring: false,
+      }),
+    });
+    const wrapper = shallow(
+      <ListCard subscription={subscription} onClick={jest.fn()} />
+    );
+    expect(wrapper.find("ExpiryNotification").exists()).toBe(false);
+    expect(
+      wrapper
+        .find("[data-test='subscription-card-content']")
+        .hasClass("u-no-padding--top")
+    ).toBe(false);
   });
 });

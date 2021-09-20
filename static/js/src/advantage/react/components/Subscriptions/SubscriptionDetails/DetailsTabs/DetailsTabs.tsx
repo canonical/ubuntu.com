@@ -1,13 +1,28 @@
 import { Col, Icon, List, Row, Tabs } from "@canonical/react-components";
 import React, { HTMLProps, useState } from "react";
 import type { ReactNode } from "react";
+import {
+  ContractToken,
+  UserSubscription,
+  UserSubscriptionEntitlement,
+} from "advantage/api/types";
+import { getFeaturesDisplay, isFreeSubscription } from "advantage/react/utils";
+import { EntitlementType } from "advantage/api/enum";
 
 enum ActiveTab {
   DOCUMENTATION = "documentation",
   FEATURES = "features",
 }
 
-type Props = HTMLProps<HTMLDivElement>;
+type Props = {
+  subscription: UserSubscription;
+  token?: ContractToken;
+} & HTMLProps<HTMLDivElement>;
+
+type DocsLink = {
+  url: string;
+  label: string;
+};
 
 type ListItem = {
   icon?: string;
@@ -38,30 +53,93 @@ const generateList = (title: string, items: ListItem[]) => (
   </>
 );
 
-const DetailsTabs = (wrapperProps: Props) => {
+const generateDocLinks = (
+  entitlements: UserSubscriptionEntitlement[]
+): DocsLink[] =>
+  entitlements.reduce<DocsLink[]>((collection, entitlement) => {
+    let link: DocsLink | null = null;
+    switch (entitlement.type) {
+      case EntitlementType.EsmApps:
+      case EntitlementType.EsmInfra:
+        link = {
+          label: "ESM Infra & ESM Apps",
+          url:
+            "https://support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
+        };
+        break;
+      case EntitlementType.Livepatch:
+      case EntitlementType.LivepatchOnprem:
+        link = {
+          label: "Livepatch",
+          url: "/security/livepatch/docs",
+        };
+        break;
+      case EntitlementType.Support:
+        link = { label: "Support", url: "https://support.canonical.com/" };
+        break;
+      case EntitlementType.Cis:
+        link = {
+          label: "CIS setup instructions",
+          url: "/security/certifications/docs/cis",
+        };
+        break;
+      case EntitlementType.CcEal:
+        link = {
+          label: "CC-EAL2 setup instructions",
+          url: "/security/certifications/docs/cc",
+        };
+        break;
+      case EntitlementType.Fips:
+        link = {
+          label: "FIPS setup instructions",
+          url: "/security/certifications/docs/fips ",
+        };
+        break;
+    }
+    if (link && !collection.find(({ label }) => label === link?.label)) {
+      collection.push(link);
+    }
+    return collection;
+  }, []);
+
+const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.FEATURES);
   let content: ReactNode | null;
+  const features = getFeaturesDisplay(subscription.entitlements);
+  const isFree = isFreeSubscription(subscription);
+  // Don't display any docs links for the free subscription.
+  const docs = isFree ? [] : generateDocLinks(subscription.entitlements);
   switch (activeTab) {
     case ActiveTab.DOCUMENTATION:
       content = (
         <div data-test="docs-content">
-          {generateList("Documentation & tutorials", [
-            {
-              label: <a href="#">Getting started / UA client</a>,
-            },
-            {
-              label: <a href="#">Attaching machines</a>,
-            },
-            {
-              label: <a href="#">ESM Infra & ESM Apps</a>,
-            },
-            {
-              label: <a href="#">Livepatch</a>,
-            },
-            {
-              label: <a href="#">Certification</a>,
-            },
-          ])}
+          {generateList(
+            "Documentation & tutorials",
+            docs
+              .map((doc) => ({
+                label: (
+                  <a data-test="doc-link" href={doc.url}>
+                    {doc.label}
+                  </a>
+                ),
+              }))
+              .concat(
+                token
+                  ? [
+                      {
+                        label: (
+                          <>
+                            To attach a machine:{" "}
+                            <code data-test="contract-token">
+                              sudo ua attach {token?.contract_token}
+                            </code>
+                          </>
+                        ),
+                      },
+                    ]
+                  : []
+              )
+          )}
         </div>
       );
       break;
@@ -71,31 +149,31 @@ const DetailsTabs = (wrapperProps: Props) => {
         <>
           <Row className="u-sv1" data-test="features-content">
             <Col size={4}>
-              {generateList("Included", [
-                {
-                  icon: "success",
-                  label: "ESM Infra",
-                },
-                {
-                  icon: "success",
-                  label: "24/5 support",
-                },
-                {
-                  icon: "success",
-                  label: "Livepatch",
-                },
-              ])}
+              {features.included.length
+                ? generateList(
+                    "Included",
+                    features.included.map((feature) => ({
+                      icon: "success",
+                      label: feature,
+                    }))
+                  )
+                : null}
             </Col>
             <Col size={4}>
-              {generateList("Not included", [
-                {
-                  icon: "error",
-                  label: "ESM Apps",
-                },
-              ])}
+              {features.excluded.length
+                ? generateList(
+                    "Not included",
+                    features.excluded.map((feature) => ({
+                      icon: "error",
+                      label: feature,
+                    }))
+                  )
+                : null}
             </Col>
           </Row>
-          <a href="#">Service description &rsaquo;</a>
+          <a href="/legal/ubuntu-advantage-service-description">
+            Service description &rsaquo;
+          </a>
         </>
       );
       break;

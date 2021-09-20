@@ -78,3 +78,24 @@ invoice_view = {
     ),
     "email": String(),
 }
+
+post_account_user_role = {
+    "email": String(required=True),
+    "name": String(required=True),
+    "role": String(
+        validate=validate.OneOf(["admin", "technical", "billing"]),
+        required=True,
+    ),
+}
+
+put_account_user_role = {
+    "email": String(required=True),
+    "role": String(
+        validate=validate.OneOf(["admin", "technical", "billing"]),
+        required=True,
+    ),
+}
+
+delete_account_user_role = {
+    "email": String(required=True),
+}

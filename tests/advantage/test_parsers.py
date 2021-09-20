@@ -18,6 +18,8 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_contract,
     parse_contracts,
     parse_renewal,
+    parse_user,
+    parse_users,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Account,
@@ -26,6 +28,7 @@ from webapp.advantage.ua_contracts.primitives import (
     ContractItem,
     Contract,
     Renewal,
+    User,
 )
 
 
@@ -122,6 +125,7 @@ class TestParsers(unittest.TestCase):
                 ),
             ],
             started_with_trial=True,
+            in_trial=True,
         )
 
         self.assertIsInstance(parsed_subscription, Subscription)
@@ -492,3 +496,51 @@ class TestParsers(unittest.TestCase):
 
         self.assertIsInstance(parsed_contracts, List)
         self.assertEqual(to_dict(expectation), to_dict(parsed_contracts))
+
+    def test_parse_user(self):
+        raw_user = get_fixture("user")
+
+        parsed_user = parse_user(raw_user)
+
+        expectation = User(
+            display_name="Joe Doe",
+            name="joedoe2021",
+            email="joe.doe@canonical.com",
+            id="aAbBcCdD",
+            last_login_at="2021-09-10T12:00:00Z",
+            first_login_at="2021-09-10T12:00:00Z",
+            verified=True,
+        )
+
+        self.assertEqual(to_dict(parsed_user), to_dict(expectation))
+
+    def test_parse_users(self):
+        raw_users = get_fixture("users")
+
+        parsed_users = parse_users(raw_users)
+
+        joe = User(
+            display_name="Joe Doe",
+            name="joedoe2021",
+            email="joe.doe@canonical.com",
+            id="aAbBcCdD",
+            last_login_at="2021-09-10T12:00:00Z",
+            first_login_at="2021-09-10T12:00:00Z",
+            verified=True,
+        )
+        joe.set_user_role_on_account("admin")
+
+        expectation = [
+            joe,
+            User(
+                display_name="Jane Doe",
+                name="janedoe2021",
+                email="jane.doe@canonical.com",
+                id="aAbBcCdD2",
+                last_login_at="2021-09-10T12:00:00Z",
+                first_login_at="2021-09-10T12:00:00Z",
+                verified=False,
+            ),
+        ]
+
+        self.assertEqual(to_dict(parsed_users), to_dict(expectation))
