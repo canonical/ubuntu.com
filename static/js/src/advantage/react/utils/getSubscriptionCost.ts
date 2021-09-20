@@ -14,7 +14,8 @@ export const getSubscriptionCost = (
     minimumFractionDigits: 0,
     style: "currency",
   });
-  let price = subscription.price || 0;
+  // The provided price is in cents, so this converts it to dollars:
+  let price = (subscription.price || 0) / 100;
   if (subscription.period === UserSubscriptionPeriod.Monthly) {
     price *= 12;
   }

@@ -19,7 +19,7 @@ describe("getSubscriptionCost", () => {
           period: UserSubscriptionPeriod.Yearly,
         })
       )
-    ).toBe("$2,000 USD/yr");
+    ).toBe("$20 USD/yr");
   });
 
   it("handles monthly prices", () => {
@@ -31,6 +31,6 @@ describe("getSubscriptionCost", () => {
           period: UserSubscriptionPeriod.Monthly,
         })
       )
-    ).toBe("$24,000 USD/yr");
+    ).toBe("$240 USD/yr");
   });
 });

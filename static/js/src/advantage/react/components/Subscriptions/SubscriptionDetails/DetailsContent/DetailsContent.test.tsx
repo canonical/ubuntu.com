@@ -46,9 +46,7 @@ describe("DetailsContent", () => {
     );
     expect(wrapper.find("[data-test='expires-col']").text()).toBe("09.07.2022");
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("Yearly");
-    expect(wrapper.find("[data-test='cost-col']").text()).toBe(
-      "$150,000 USD/yr"
-    );
+    expect(wrapper.find("[data-test='cost-col']").text()).toBe("$1,500 USD/yr");
   });
 
   it("displays a spinner while loading the contract token", () => {
