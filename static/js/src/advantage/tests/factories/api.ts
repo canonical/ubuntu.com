@@ -38,6 +38,7 @@ export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionSt
 
 export const userSubscriptionFactory = Factory.define<UserSubscription>(
   ({ sequence }) => ({
+    id: `yearly||aBWF0x8vv5S6VO7AyCYZzvjY3JQr384ZTeXMnJmUuf${sequence}||X82c-derYgcJzAIxn9oCkTmnj8RdWWTp2kT9xQ0Bl3${sequence}`,
     account_id: `aBWF0x8vv5S684ZTeXMnJmUuVO7AyCYZzvjY3J${sequence}`,
     contract_id: `mUuVO7AyCYZzvjY3JaBWF0x8vv5S684ZTeXMnJ${sequence}`,
     currency: "USD",
@@ -60,6 +61,7 @@ export const userSubscriptionFactory = Factory.define<UserSubscription>(
 
 export const freeSubscriptionFactory = Factory.define<UserSubscription>(
   ({ sequence }) => ({
+    id: `monthly||Y3JQr384aBWF0x8vv5S6VO7AyCYZzvjZTeXMnJmUuf${sequence}||n9oCkTmnX82c-derYgcJzAIxj8RdWWTp2kT9xQ0Bl3${sequence}`,
     account_id: `F9sf54ZfJt59AMwynubzPyaGE9Z4D${sequence}`,
     contract_id: `mUuVO7AyCYZzvjY3JaBWF0x8vv5S684ZTeXMnJ${sequence}`,
     currency: "USD",

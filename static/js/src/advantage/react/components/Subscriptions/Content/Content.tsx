@@ -44,7 +44,7 @@ const Content = () => {
         ) || sortedSubscriptions[0];
       // This only sets the selected token and does not set the modal to active
       // to prevent the modal appearing on first load on mobile.
-      setSelectedId(firstSubscription.contract_id);
+      setSelectedId(firstSubscription.id);
     }
   }, [selectedId, setSelectedId, allSubscriptions, isLoading]);
 
