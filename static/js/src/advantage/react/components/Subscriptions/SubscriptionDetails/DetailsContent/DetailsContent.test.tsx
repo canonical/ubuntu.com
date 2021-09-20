@@ -23,7 +23,7 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.contract_id} />
+        <DetailsContent selectedId={contract.id} />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='expires-col']").text()).toBe("Never");
@@ -41,7 +41,7 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.contract_id} />
+        <DetailsContent selectedId={contract.id} />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='expires-col']").text()).toBe("09.07.2022");
@@ -56,7 +56,7 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.contract_id} />
+        <DetailsContent selectedId={contract.id} />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
@@ -74,7 +74,7 @@ describe("DetailsContent", () => {
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.contract_id} />
+        <DetailsContent selectedId={contract.id} />
       </QueryClientProvider>
     );
     expect(wrapper.find("CodeSnippet").exists()).toBe(true);

@@ -1,7 +1,6 @@
 import { getUserSubscriptions } from "advantage/api/contracts";
 import {
   UserSubscriptionMarketplace,
-  UserSubscriptionPeriod,
   UserSubscriptionType,
 } from "advantage/api/enum";
 import {
@@ -13,9 +12,9 @@ import { useQuery, UseQueryOptions } from "react-query";
 /**
  * Get a subscription by token.
  */
-export const selectSubscriptionById = (id?: string | null) => (
+export const selectSubscriptionById = (id?: UserSubscription["id"] | null) => (
   subscriptions: UserSubscription[]
-) => subscriptions.find(({ contract_id }) => contract_id === id);
+) => subscriptions.find((subscription) => subscription.id === id);
 
 /**
  * Find the subscription that matches the free token.
