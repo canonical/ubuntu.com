@@ -14,6 +14,7 @@ from webapp.advantage.ua_contracts.primitives import (
     Account,
     Contract,
     Subscription,
+    User,
 )
 
 
@@ -1347,4 +1348,142 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
         }
 
         self.assertEqual(response, json_ensure_account)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestGetAccountUsers(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "bad request"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_account_users(account_id="aAbBcCdD")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={
+                    "accountInfo": get_fixture("account"),
+                    "users": [
+                        {
+                            "accountInfo": get_fixture("account"),
+                            "userInfo": get_fixture("user"),
+                        }
+                    ],
+                },
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_account_users(account_id="aAbBcCdD")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {},
+            "method": "get",
+            "params": None,
+            "url": "https://1.2.3.4/v1/accounts/aAbBcCdD/users",
+        }
+
+        self.assertEqual(response, [get_fixture("user")])
+        self.assertEqual(session.request_kwargs, expected_args)
+
+    def test_convert_response_returns_list_of_users(self):
+        session = Session(
+            Response(
+                status_code=200,
+                content={
+                    "accountInfo": get_fixture("account"),
+                    "users": [
+                        {
+                            "accountInfo": get_fixture("account"),
+                            "userInfo": get_fixture("user"),
+                        }
+                    ],
+                },
+            )
+        )
+
+        client = make_client(session, convert_response=True)
+
+        response = client.get_account_users(account_id="aAbBcCdD")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {},
+            "method": "get",
+            "params": None,
+            "url": "https://1.2.3.4/v1/accounts/aAbBcCdD/users",
+        }
+
+        self.assertIsInstance(response, List)
+        for item in response:
+            self.assertIsInstance(item, User)
+
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestPutAccountUserRole(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "bad request"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.put_account_user_role(
+                    account_id="aAbBcCdD",
+                    user_role_request={},
+                )
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={},
+            )
+        )
+        client = make_client(session)
+
+        response = client.put_account_user_role(
+            account_id="aAbBcCdD",
+            user_role_request={
+                "email": "joe.doe@canonical.com",
+                "role": "admin",
+                "nameHint": "Joe",
+            },
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {
+                "email": "joe.doe@canonical.com",
+                "role": "admin",
+                "nameHint": "Joe",
+            },
+            "method": "put",
+            "params": None,
+            "url": "https://1.2.3.4/v1/accounts/aAbBcCdD/user-role",
+        }
+
+        self.assertEqual(response, {})
         self.assertEqual(session.request_kwargs, expected_args)

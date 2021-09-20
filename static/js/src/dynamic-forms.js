@@ -46,6 +46,10 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
             .replace(/%% formid %%/g, formData.formId)
             .replace(/%% returnURL %%/g, formData.returnUrl);
 
+          if (formData.title) {
+            const title = document.getElementById("modal-title");
+            title.innerHTML = formData.title;
+          }
           setProductContext(contactButton);
           setUTMs();
           setGclid();

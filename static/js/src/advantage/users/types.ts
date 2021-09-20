@@ -2,6 +2,7 @@ export type UserRole = "admin" | "technical" | "billing";
 
 export type User = {
   id: string;
+  name: string;
   email: string;
   role: UserRole;
   lastLoginAt: string;
@@ -16,4 +17,10 @@ export type AccountUsersData = {
   users: Users;
 };
 
-export type HandleNewUserSubmit = (string: string) => Promise<any>;
+export interface NewUserValues {
+  email: string;
+  role: UserRole;
+  name: string;
+}
+
+export type HandleNewUserSubmit = (values: NewUserValues) => Promise<any>;

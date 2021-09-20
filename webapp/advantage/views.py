@@ -40,6 +40,9 @@ from webapp.advantage.schemas import (
     ensure_purchase_account,
     invoice_view,
     post_payment_methods,
+    post_account_user_role,
+    put_account_user_role,
+    delete_account_user_role,
 )
 
 
@@ -385,6 +388,75 @@ def get_last_purchase_ids(account_id):
 
 
 @advantage_decorator(permission="user", response="json")
+def get_account_users():
+    g.api.set_convert_response(True)
+
+    try:
+        account = g.api.get_purchase_account()
+    except UAContractsUserHasNoAccount as error:
+        # if no account throw 404
+        raise UAContractsAPIError(error)
+
+    account_users = g.api.get_account_users(account_id=account.id)
+
+    return flask.jsonify(
+        {
+            "account_id": account.id,
+            "name": account.name,
+            "users": to_dict(account_users),
+        }
+    )
+
+
+@advantage_decorator(permission="user", response="json")
+@use_kwargs(post_account_user_role, location="json")
+def post_account_user_role(account_id, **kwargs):
+    g.api.set_convert_response(True)
+
+    account_users = g.api.get_account_users(account_id=account_id)
+
+    user_exists = any(
+        user for user in account_users if user.email == kwargs.get("email")
+    )
+
+    if user_exists:
+        return flask.jsonify({"error": "email already exists"}), 400
+
+    return g.api.put_account_user_role(
+        account_id=account_id,
+        user_role_request={
+            "email": kwargs.get("email"),
+            "nameHint": kwargs.get("name"),
+            "role": kwargs.get("role"),
+        },
+    )
+
+
+@advantage_decorator(permission="user", response="json")
+@use_kwargs(put_account_user_role, location="json")
+def put_account_user_role(account_id, **kwargs):
+    return g.api.put_account_user_role(
+        account_id=account_id,
+        user_role_request={
+            "email": kwargs.get("email"),
+            "role": kwargs.get("role"),
+        },
+    )
+
+
+@advantage_decorator(permission="user", response="json")
+@use_kwargs(delete_account_user_role, location="json")
+def delete_account_user_role(account_id, **kwargs):
+    return g.api.put_account_user_role(
+        account_id=account_id,
+        user_role_request={
+            "email": kwargs.get("email"),
+            "role": "none",
+        },
+    )
+
+
+@advantage_decorator(permission="user", response="json")
 @use_kwargs({"contract_id": String()}, location="query")
 def get_contract_token(contract_id):
     g.api.set_convert_response(True)
@@ -454,6 +526,12 @@ def advantage_shop_view():
         if subscription.status in ["active", "locked"]
     ]
 
+    is_trialling = any(
+        subscription
+        for subscription in current_subscriptions
+        if subscription.in_trial
+    )
+
     listings = g.api.get_product_listings("canonical-ua")
 
     previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
@@ -464,6 +542,7 @@ def advantage_shop_view():
         account=account,
         previous_purchase_ids=previous_purchase_ids,
         product_listings=user_listings,
+        is_trialling=is_trialling,
     )
 
 
@@ -534,7 +613,7 @@ def post_advantage_subscriptions(preview, **kwargs):
     period = kwargs.get("period")
     products = kwargs.get("products")
     resizing = kwargs.get("resizing", False)
-    trailling = kwargs.get("trailling", False)
+    trialling = kwargs.get("trialling", False)
 
     current_subscription = {}
     if user_info(flask.session):
@@ -579,7 +658,7 @@ def post_advantage_subscriptions(preview, **kwargs):
         "previousPurchaseID": previous_purchase_id,
     }
 
-    if trailling:
+    if trialling:
         purchase_request["inTrial"] = True
 
     try:

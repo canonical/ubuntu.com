@@ -65,6 +65,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               </button>
             </header>
             <ExpiryNotification
+              borderless
               className="p-subscriptions__details-notification"
               size={ExpiryNotificationSize.Large}
               statuses={subscription.statuses}
