@@ -83,7 +83,11 @@ export const AddNewUserForm = ({
               options={userRoleOptions}
             />
             <div className="p-modal__footer">
-              <Button className="u-no-margin--bottom" onClick={handleClose}>
+              <Button
+                type="button"
+                className="u-no-margin--bottom"
+                onClick={handleClose}
+              >
                 Cancel
               </Button>
               <ActionButton
