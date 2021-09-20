@@ -9,6 +9,8 @@ from webapp.advantage.ua_contracts.primitives import (
     Subscription,
     ContractItem,
     Renewal,
+    Account,
+    Contract,
 )
 
 
@@ -269,6 +271,19 @@ def set_listings_trial_status(
         listing.set_can_be_trialled(listing_can_be_trialled and user_can_trial)
 
     return listings
+
+
+def make_user_subscription_id(
+    account: Account,
+    type: str,
+    contract: Contract,
+    renewal: Renewal = None,
+) -> str:
+    id_elements = [type, account.id, contract.id]
+    if renewal:
+        id_elements.append(renewal.id)
+
+    return "||".join(id_elements)
 
 
 def to_dict(structure, class_key=None):

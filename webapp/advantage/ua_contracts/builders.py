@@ -7,6 +7,7 @@ from webapp.advantage.ua_contracts.helpers import (
     get_user_subscription_statuses,
     get_price_info,
     get_subscription_by_period,
+    make_user_subscription_id,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Contract,
@@ -181,7 +182,10 @@ def build_final_user_subscriptions(
             listing=listing or None,
         )
 
+        id = make_user_subscription_id(account, type, contract, renewal)
+
         user_subscription = UserSubscription(
+            id=id,
             type=type,
             account_id=account.id,
             entitlements=contract.entitlements,
