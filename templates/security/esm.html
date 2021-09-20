@@ -12,8 +12,8 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <span class="u-sv3"><h1>Extended Security Maintenance</h1></span>
-      <span class="u-sv3"><p class="p-heading--four">Security updates for Ubuntu LTS for additional 3-5 years</p></span>
-      <p>Continue to receive security updates for the Ubuntu base OS, critical software packages and infrastructure components with Extended Security Maintenance (ESM). <a href="#how-long">Depending upon the LTS release</a>, ESM provides three to five additional years of security maintenance.</p>
+      <span class="u-sv3"><p class="p-heading--four">Security updates for Ubuntu LTS for additional 5 years</p></span>
+      <p>Continue to receive security updates for the Ubuntu base OS, critical software packages and infrastructure components with Extended Security Maintenance (ESM). ESM provides five additional years of security maintenance, enabling an organization's continuous vulnerability management.</p>
       <p>ESM is available through an Ubuntu Advantage for Infrastructure subscription for physical servers, virtual machines, containers and desktops, and is free for personal use. Ubuntu Pro premium images are optimised for <a href="/public-cloud">the public cloud</a>, and provide security maintenance for high and critical CVEs for the entire collection of software packages shipped with Ubuntu.</p>
       <p>
         <a href="/advantage" class="p-button--positive">Get started with Ubuntu Advantage</a>
@@ -39,7 +39,7 @@
     <div class="u-fixed-width">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          <h4 class="p-heading-icon__title u-no-max-width u-no-margin--bottom">Extended Security Maintenance for Ubuntu 16.04 LTS is available from April 2021 until 2024. <a href="/blog/ubuntu-16-04-lts-transitions-to-extended-security-maintenance-esm">Learn more&nbsp;&rsaquo;</a></h4>
+          <h4 class="p-heading-icon__title u-no-max-width u-no-margin--bottom">Extended Security Maintenance for Ubuntu 16.04 LTS is available from April 2021 until 2026. <a href="/blog/ubuntu-16-04-lts-transitions-to-extended-security-maintenance-esm">Learn more&nbsp;&rsaquo;</a></h4>
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@
       <div class="col-8">
         <h2>Is Ubuntu 16.04 LTS still supported beyond April 2021?</h2>
         <p>
-          Ubuntu 16.04 LTS will still be supported beyond its free initial five-year maintenance period in April 2021, as it transitions to the extended security maintenance phase - with three additional years of security ensured.
+          Ubuntu 16.04 LTS will still be supported beyond its free initial five-year maintenance period in April 2021, as it transitions to the extended security maintenance phase - with five additional years of security ensured.
         </p>
         <p>
           <a href="/16-04">Learn more about Ubuntu 16.04 LTS moving to ESM &nbsp;&rsaquo;</a>
@@ -127,8 +127,8 @@
 
     <div class="row" id="benefits">
       <div class="col-10">
-        <h2>What's covered?</h2>
-        <p>ESM continues security updates for high and critical CVEs (Common Vulnerabilities and Exposures).</p>
+        <h2>What is covered?</h2>
+        <p>ESM continues security updates <a href="/security/livepatch">and kernel livepatching</a> for high and critical CVEs (Common Vulnerabilities and Exposures).</p>
       </div>
       <div class="row">
         <div class="col-10" style="overflow: auto;">
@@ -145,8 +145,12 @@
                 <td>
                   <ul>
                     <li>The Ubuntu base OS and scale-out infrastructure</li>
+                    <li>Kernel livepatching</li>
                     <li>64-bit x86 architecture</li>
                   </ul>
+                </td>
+                <td>
+                  <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/14.04" class="p-button--positive">Learn more</a>
                 </td>
               </tr>
               <tr>
@@ -154,8 +158,12 @@
                 <td>
                   <ul>
                     <li>The Ubuntu base OS and scale-out infrastructure</li>
+                    <li>Kernel livepatching</li>
                     <li>s390x, arm64, x86-64 architectures</li>
                   </ul>
+                </td>
+                <td>
+                  <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/16.04" class="p-button--positive">Learn more</a>
                 </td>
               </tr>
             </tbody>
@@ -184,6 +192,18 @@
         <div class="col-8">
           <h2>Common questions</h2>
 
+          <h4 class="u-no-max-width">How to enable ESM?</h4>
+          <div class="row">
+            <h5 class="col-4">Attach your subscription</h5>
+            <div class="col-4">
+              <pre><code>sudo ua attach [TOKEN]</code></pre>
+              <p>Note: obtain the subscription token via the <a href="/advantage">Ubuntu Advantage portal</a>. Attaching the subscription is not necessary on Ubuntu Pro.</p>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="col-4">ESM is now enabled!</h5>
+          </div>
+
           <h4 class="u-no-max-width">Do all levels of Ubuntu Advantage for Infrastructure have access to Ubuntu ESM?</h4>
           <p>Yes. Ubuntu ESM is available for UA-I Essential, Standard and Advanced customers. For more information on levels please visit our <a href="/pricing">pricing page</a>. Existing UA customers can retrieve their credentials through the <a href="/advantage">Ubuntu Advantage portal</a>.</p>
 
@@ -198,34 +218,34 @@
             <a href="/advantage" class="p-button">Sign up for Ubuntu Advantage subscription</a>
           </p>
           <h4 id="how-long" class="u-no-max-width">How long will Ubuntu ESM be maintained?</h4>
-          <p>This depends on the release. Ubuntu 14.04 (Trusty Tahr) and 16.04 (Xenial Xerus) will have updates provided for up to three years after the end of the Standard Security Maintenance window. Ubuntu 18.04 (Bionic Beaver) and subsequent releases until further announcement will have ESM updates provided for up to five years.</p>
+          <p>All Ubuntu LTS releases until further announcement have ESM updates provided for five years establishing a lifecycle of ten years.</p>
           <table>
             <thead>
               <tr>
                 <th>Release</th>
-                <th>ESM Duration</th>
+                <th>Release date</th>
                 <th>End of Life</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Ubuntu 14.04 (Trusty Tahr)</td>
-                <td>3 years</td>
-                <td>April 2022</td>
-              </tr>
-              <tr>
-                <td>Ubuntu 16.04 (Xenial Xerus)</td>
-                <td>3 years</td>
+                <td>April 2014</td>
                 <td>April 2024</td>
               </tr>
               <tr>
+                <td>Ubuntu 16.04 (Xenial Xerus)</td>
+                <td>April 2016</td>
+                <td>April 2026</td>
+              </tr>
+              <tr>
                 <td>Ubuntu 18.04 (Bionic Beaver)</td>
-                <td>5 years</td>
+                <td>April 2018</td>
                 <td>April 2028</td>
               </tr>
               <tr>
                 <td>Ubuntu 20.04 (Focal Fossa)</td>
-                <td>5 years</td>
+                <td>April 2020</td>
                 <td>April 2030</td>
               </tr>
             </tbody>
