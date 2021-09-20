@@ -24,7 +24,13 @@ type Props = {
   userInEditModeById: UserId | null;
   setUserInEditModeById: (userId: UserId | null) => void;
   dismissEditMode: () => void;
-  handleEditSubmit: ({ newUserRole }: { newUserRole: UserRole }) => void;
+  handleEditSubmit: ({
+    email,
+    newUserRole,
+  }: {
+    email: string;
+    newUserRole: UserRole;
+  }) => void;
   handleDeleteConfirmationModalOpen: () => void;
 };
 

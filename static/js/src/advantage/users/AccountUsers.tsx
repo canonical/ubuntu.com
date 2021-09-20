@@ -54,24 +54,25 @@ const AccountUsers = ({
     }
   );
 
-  const handleUpdateUser = ({ newUserRole }: { newUserRole: UserRole }) => {
-    if (userInEditMode) {
-      userUpdateMutation
-        .mutateAsync({ email: userInEditMode.email, role: newUserRole })
-        .then(() => {
-          dismissEditMode();
-          setNotification({ severity: "positive", message: "User updated" });
-        })
-        .catch((error) => {
-          setNotification({
-            severity: "negative",
-            message: getErrorMessage((error as any)?.message),
-          });
+  const handleUpdateUser = ({
+    email,
+    newUserRole,
+  }: {
+    email: string;
+    newUserRole: UserRole;
+  }): Promise<any> =>
+    userUpdateMutation
+      .mutateAsync({ email, role: newUserRole })
+      .then(() => {
+        dismissEditMode();
+        setNotification({ severity: "positive", message: "User updated" });
+      })
+      .catch((error) => {
+        setNotification({
+          severity: "negative",
+          message: getErrorMessage((error as any)?.message),
         });
-    } else {
-      setNotification({ severity: "negative", message: "User not updated" });
-    }
-  };
+      });
 
   const handleAddNewUser = (user: NewUserValues) =>
     userAddMutation.mutateAsync(user).then(() => {

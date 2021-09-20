@@ -113,7 +113,13 @@ const FormattedDate = ({ dateISO }: { dateISO: string }) => (
 type UserRowProps = {
   setUserInEditModeById: (id: string) => void;
   dismissEditMode: () => void;
-  handleEditSubmit: ({ newUserRole }: { newUserRole: UserRoleType }) => void;
+  handleEditSubmit: ({
+    email,
+    newUserRole,
+  }: {
+    email: string;
+    newUserRole: UserRoleType;
+  }) => void;
   handleDeleteConfirmationModalOpen: () => void;
 } & UserVariantProps;
 
@@ -130,11 +136,14 @@ const UserRowEditable = ({
   return (
     <Formik
       initialValues={{ newUserRole: user?.role }}
-      onSubmit={(values) => {
-        handleEditSubmit(values);
+      onSubmit={async (values) => {
+        await handleEditSubmit({
+          email: user.email,
+          newUserRole: values.newUserRole,
+        });
       }}
     >
-      {({ handleSubmit }) => (
+      {({ handleSubmit, isSubmitting }) => (
         <TableRow>
           <TableCell role="rowheader" style={tdStyle}>
             <UserEmail
@@ -159,6 +168,7 @@ const UserRowEditable = ({
               small
               dense
               appearance="positive"
+              disabled={isSubmitting}
               onClick={() => handleSubmit()}
             >
               Save

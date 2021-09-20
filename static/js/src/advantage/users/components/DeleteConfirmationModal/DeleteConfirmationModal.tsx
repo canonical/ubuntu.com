@@ -19,13 +19,17 @@ const DeleteConfirmationModal = ({
     errorMessage,
     setErrorMessage,
   ] = useState<SubmissionErrorMessage | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async () => {
+    setIsLoading(true);
     try {
       await handleConfirmDelete(user?.id);
       handleClose();
     } catch (error) {
       setErrorMessage(getErrorMessage((error as any)?.message));
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -41,6 +45,7 @@ const DeleteConfirmationModal = ({
           <Button
             className="u-no-margin--bottom"
             appearance="negative"
+            disabled={isLoading}
             onClick={onSubmit}
           >
             Yes, remove user
