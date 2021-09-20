@@ -1,8 +1,9 @@
 import React from "react";
-import MainTable from "@canonical/react-components/dist/components/MainTable";
 
-import { Users } from "../../types";
-import { getUserRow } from "./components";
+import { Table, TableHeader, TableRow } from "@canonical/react-components";
+
+import { UserRole, Users } from "../../types";
+import UserRow from "./UserRow";
 
 export type UserRowVariant = "regular" | "editing" | "disabled";
 
@@ -23,6 +24,13 @@ type Props = {
   userInEditModeById: UserId | null;
   setUserInEditModeById: (userId: UserId | null) => void;
   dismissEditMode: () => void;
+  handleEditSubmit: ({
+    email,
+    newUserRole,
+  }: {
+    email: string;
+    newUserRole: UserRole;
+  }) => void;
   handleDeleteConfirmationModalOpen: () => void;
 };
 
@@ -31,35 +39,35 @@ const TableView = ({
   userInEditModeById,
   setUserInEditModeById,
   dismissEditMode,
+  handleEditSubmit,
   handleDeleteConfirmationModalOpen,
 }: Props) => {
   return (
-    <MainTable
-      responsive
-      headers={[
-        {
-          content: "email",
-        },
-        {
-          content: "role",
-        },
-        {
-          content: "last sign in",
-        },
-        {
-          content: "actions",
-        },
-      ]}
-      rows={users.map((user) =>
-        getUserRow({
-          user,
-          variant: getVariant(user.id, userInEditModeById),
-          setUserInEditModeById,
-          dismissEditMode,
-          handleDeleteConfirmationModalOpen,
-        })
-      )}
-    />
+    <Table responsive={true}>
+      <thead>
+        <TableRow>
+          <TableHeader>email</TableHeader>
+          <TableHeader width="20%">role</TableHeader>
+          <TableHeader width="15%">last sign in</TableHeader>
+          <TableHeader width="20%">actions</TableHeader>
+        </TableRow>
+      </thead>
+      <tbody>
+        {users.map((user) => (
+          <UserRow
+            key={user.id}
+            user={user}
+            variant={getVariant(user.id, userInEditModeById)}
+            setUserInEditModeById={setUserInEditModeById}
+            dismissEditMode={dismissEditMode}
+            handleEditSubmit={handleEditSubmit}
+            handleDeleteConfirmationModalOpen={
+              handleDeleteConfirmationModalOpen
+            }
+          />
+        ))}
+      </tbody>
+    </Table>
   );
 };
 

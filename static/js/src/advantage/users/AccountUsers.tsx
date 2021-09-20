@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQueryClient, useMutation, useQuery } from "react-query";
+import { useQueryClient, useMutation } from "react-query";
 import {
   User,
   Users,
@@ -12,6 +12,7 @@ import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
 import DeleteConfirmationModal from "./components/DeleteConfirmationModal/DeleteConfirmationModal";
 import { requestAddUser, requestDeleteUser, requestUpdateUser } from "./api";
+import { getErrorMessage } from "./utils";
 
 export type AccountUsersProps = {
   organisationName: OrganisationName;
@@ -24,13 +25,10 @@ const AccountUsers = ({
   organisationName,
   users,
 }: AccountUsersProps) => {
-  const [hasNewUserSuccessMessage, setHasNewUserSuccessMessage] = useState(
-    false
-  );
-  const [
-    hasUserDeletedSuccessMessage,
-    setHasUserDeletedSuccessMessage,
-  ] = useState(false);
+  const [notification, setNotification] = useState<{
+    severity: string;
+    message: string;
+  } | null>(null);
 
   const queryClient = useQueryClient();
 
@@ -46,25 +44,52 @@ const AccountUsers = ({
 
   const userUpdateMutation = useMutation(
     ({ email, role }: { email: string; role: UserRole }) =>
-      requestUpdateUser({ accountId, email, role }),
+      requestUpdateUser({
+        accountId,
+        email,
+        role,
+      }),
     {
       onSuccess: () => queryClient.invalidateQueries("accountUsers"),
     }
   );
 
+  const handleUpdateUser = ({
+    email,
+    newUserRole,
+  }: {
+    email: string;
+    newUserRole: UserRole;
+  }): Promise<any> =>
+    userUpdateMutation
+      .mutateAsync({ email, role: newUserRole })
+      .then(() => {
+        dismissEditMode();
+        setNotification({ severity: "positive", message: "User updated" });
+      })
+      .catch((error) => {
+        setNotification({
+          severity: "negative",
+          message: getErrorMessage((error as any)?.message),
+        });
+      });
+
   const handleAddNewUser = (user: NewUserValues) =>
     userAddMutation.mutateAsync(user).then(() => {
-      setHasNewUserSuccessMessage(true);
+      setNotification({
+        severity: "positive",
+        message: "User added successfully",
+      });
     });
 
   const [
     isDeleteConfirmationModalOpen,
     setIsDeleteConfirmationModalOpen,
   ] = useState(false);
-  const handleDelete = (userId: string) =>
+  const handleDeleteUser = (userId: string) =>
     userDeleteMutation.mutateAsync(userId).then(() => {
       dismissEditMode();
-      setHasUserDeletedSuccessMessage(true);
+      setNotification({ severity: "positive", message: "User deleted" });
     });
 
   const [userInEditModeById, setUserInEditModeById] = useState<string | null>(
@@ -101,31 +126,30 @@ const AccountUsers = ({
           <div className="col-6">
             <AddNewUser
               handleSubmit={handleAddNewUser}
-              onAfterModalOpen={() => setHasNewUserSuccessMessage(false)}
+              onAfterModalOpen={() => setNotification(null)}
             />
           </div>
         </div>
-        {hasNewUserSuccessMessage || hasUserDeletedSuccessMessage ? (
+        {notification ? (
           <div className="row">
             <div className="col-12">
-              <div className="p-notification--positive">
+              <div className={`p-notification--${notification.severity}`}>
                 <div className="p-notification__content" aria-atomic="true">
-                  <h5 className="p-notification__title">Success</h5>
+                  <h5 className="p-notification__title">
+                    {notification.severity === "positive" ? "Success" : "Error"}
+                  </h5>
                   <p className="p-notification__message" role="alert">
-                    {hasNewUserSuccessMessage
-                      ? "User added successfully."
-                      : "User deleted successfully."}
+                    {notification.message}
                   </p>
                 </div>
               </div>
             </div>
           </div>
         ) : null}
-
         {isDeleteConfirmationModalOpen && userInEditMode ? (
           <DeleteConfirmationModal
             user={userInEditMode}
-            handleConfirmDelete={handleDelete}
+            handleConfirmDelete={handleDeleteUser}
             handleClose={handleDeleteConfirmationModalClose}
           />
         ) : null}
@@ -136,6 +160,7 @@ const AccountUsers = ({
               userInEditModeById={userInEditModeById}
               setUserInEditModeById={setUserInEditModeById}
               dismissEditMode={dismissEditMode}
+              handleEditSubmit={handleUpdateUser}
               handleDeleteConfirmationModalOpen={
                 handleDeleteConfirmationModalOpen
               }
