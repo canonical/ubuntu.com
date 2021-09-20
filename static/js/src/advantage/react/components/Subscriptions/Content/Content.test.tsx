@@ -70,7 +70,7 @@ describe("Content", () => {
       </QueryClientProvider>
     );
     expect(wrapper.find(SubscriptionList).prop("selectedId")).toBe(
-      subscriptions[2].contract_id
+      subscriptions[2].id
     );
   });
 
@@ -96,7 +96,7 @@ describe("Content", () => {
       </QueryClientProvider>
     );
     expect(wrapper.find(SubscriptionList).prop("selectedId")).toBe(
-      subscriptions[1].contract_id
+      subscriptions[1].id
     );
   });
 });
