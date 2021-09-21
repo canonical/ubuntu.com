@@ -109,13 +109,6 @@ const AccountUsers = ({
 
   return (
     <div>
-      <div className="p-strip">
-        <div className="row">
-          <div className="col-12">
-            <h1>Account users</h1>
-          </div>
-        </div>
-      </div>
       <section className="p-strip u-no-padding--top">
         <div className="row">
           <div className="col-6">
