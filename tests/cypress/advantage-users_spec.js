@@ -1,16 +1,15 @@
 /// <reference types="cypress" />
 import { getTestURL } from "./utils";
 
-const username = "peter.makowski+100@canonical.com";
-const password = "jibfdq5hmq";
-
-
-        const getRandomEmail = () =>
-          `${Math.random().toString(36).substr(2, 10)}@canonical.com`;
+const getRandomEmail = () =>
+  `${Math.random().toString(36).substr(2, 10)}@canonical.com`;
           
 context("Advantage", () => {
   it("adds and deletes a user correctly", () => {
-    cy.task("login", { username: username, password: password }).then(
+    const username = Cypress.env("UBUNTU_USERNAME");
+    const password = Cypress.env("UBUNTU_PASSWORD");
+
+    cy.task("login", { username, password }).then(
       async (user) => {
         cy.log(user.cookies);
         user.cookies.forEach(({ name, value }) => {
