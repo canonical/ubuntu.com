@@ -20,6 +20,7 @@ import React, { ReactNode } from "react";
 
 import DetailsTabs from "../DetailsTabs";
 import { SelectedId } from "../../Content/types";
+import { UserSubscriptionType } from "advantage/api/enum";
 
 type Props = {
   selectedId?: SelectedId;
@@ -56,6 +57,11 @@ const DetailsContent = ({ selectedId }: Props) => {
   if (isLoading || !subscription) {
     return <Spinner />;
   }
+  const billingCol: Feature = {
+    size: 2,
+    title: "Billing",
+    value: isFree ? "None" : getPeriodDisplay(subscription.period),
+  };
   const tokenBlock = token?.contract_token ? (
     <CodeSnippet
       blocks={[
@@ -81,12 +87,15 @@ const DetailsContent = ({ selectedId }: Props) => {
               ? formatDate(subscription.end_date)
               : "Never",
           },
+          ...(subscription.type === UserSubscriptionType.Legacy
+            ? // Don't show the billing column for legacy subscriptions.
+              []
+            : [billingCol]),
           {
-            size: 2,
-            title: "Billing",
-            value: isFree ? "None" : getPeriodDisplay(subscription.period),
-          },
-          {
+            // When a legacy subscription is being displayed then stretch this
+            // column to take up the space where the billing column would
+            // otherwise be.
+            size: subscription.type === UserSubscriptionType.Legacy ? 5 : 3,
             title: "Cost",
             value: getSubscriptionCost(subscription),
           },

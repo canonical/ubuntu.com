@@ -33,6 +33,9 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
       select: selectSubscriptionById(selectedId),
     });
     const isFree = isFreeSubscription(subscription);
+    const isResizable =
+      subscription?.statuses.is_upsizeable ||
+      subscription?.statuses.is_downsizeable;
 
     useEffect(() => {
       if (!modalActive) {
@@ -83,15 +86,28 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                 >
                   Support portal
                 </Button>
-                <Button
-                  appearance="neutral"
-                  className="p-subscriptions__details-action"
-                  data-test="edit-button"
-                  disabled={editing}
-                  onClick={() => setEditing(true)}
-                >
-                  Edit subscription&hellip;
-                </Button>
+                {subscription.statuses.is_renewable ? (
+                  <Button
+                    appearance="neutral"
+                    className="p-subscriptions__details-action"
+                    data-test="renew-button"
+                    disabled={editing}
+                    onClick={() => setEditing(true)}
+                  >
+                    Renew subscription&hellip;
+                  </Button>
+                ) : null}
+                {isResizable ? (
+                  <Button
+                    appearance="neutral"
+                    className="p-subscriptions__details-action"
+                    data-test="edit-button"
+                    disabled={editing}
+                    onClick={() => setEditing(true)}
+                  >
+                    Edit subscription&hellip;
+                  </Button>
+                ) : null}
               </>
             )}
           </div>

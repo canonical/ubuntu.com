@@ -95,7 +95,7 @@ describe("useUserSubscriptions", () => {
   it("can get a subscription by its token", async () => {
     const subscriptions = [
       userSubscriptionFactory.build(),
-      userSubscriptionFactory.build({ contract_id: "abc123" }),
+      userSubscriptionFactory.build({ id: "abc123" }),
       userSubscriptionFactory.build(),
     ];
     queryClient.setQueryData("userSubscriptions", subscriptions);

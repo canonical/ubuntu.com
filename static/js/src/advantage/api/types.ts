@@ -28,6 +28,7 @@ export type UserSubscriptionStatuses = {
 };
 
 export type UserSubscription = {
+  id: string;
   account_id: string;
   contract_id: string;
   currency: string;

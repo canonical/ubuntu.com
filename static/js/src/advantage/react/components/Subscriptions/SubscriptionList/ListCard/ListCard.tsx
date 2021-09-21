@@ -13,6 +13,7 @@ import {
   ExpiryNotificationSize,
   ORDERED_STATUS_KEYS,
 } from "../../ExpiryNotification/ExpiryNotification";
+import { UserSubscriptionType } from "advantage/api/enum";
 
 type Props = {
   isSelected?: boolean;
@@ -67,12 +68,14 @@ const ListCard = ({
           >
             {isFree ? "Free Personal Token" : subscription.product_name}
           </h5>
-          <span
-            className="p-text--x-small-capitalised u-text--muted p-subscriptions__list-card-period"
-            data-test="card-type"
-          >
-            {subscription.type}
-          </span>
+          {subscription.type === UserSubscriptionType.Legacy ? null : (
+            <span
+              className="p-text--x-small-capitalised u-text--muted p-subscriptions__list-card-period"
+              data-test="card-type"
+            >
+              {subscription.type}
+            </span>
+          )}
         </div>
         <Row>
           <Col medium={3} size={3} small={1}>
