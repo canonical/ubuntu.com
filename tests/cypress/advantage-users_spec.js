@@ -9,14 +9,11 @@ context("Advantage", () => {
     const username = Cypress.env("UBUNTU_USERNAME");
     const password = Cypress.env("UBUNTU_PASSWORD");
 
-    cy.task("login", { username, password }).then(
-      async (user) => {
-        cy.log(user.cookies);
-        user.cookies.forEach(({ name, value }) => {
-          cy.setCookie(name, value);
-        });
-      }
-    );
+    cy.task("login", { username, password }).then(async (user) => {
+      user.cookies.forEach(({ name, value }) => {
+        cy.setCookie(name, value);
+      });
+    });
 
     const email = getRandomEmail();
 
