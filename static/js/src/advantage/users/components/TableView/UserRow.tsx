@@ -109,7 +109,9 @@ const FormattedDate = ({ dateISO }: { dateISO: string | null }) =>
     <time dateTime={format(new Date(dateISO), "yyyy-MM-dd")}>
       {format(new Date(dateISO), DATE_FORMAT)}
     </time>
-  ) : null;
+  ) : (
+    <>Never</>
+  );
 
 type UserRowProps = {
   setUserInEditModeById: (id: string) => void;
