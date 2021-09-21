@@ -53,7 +53,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_cube-table";
 @import "pattern_cve";
 @import "pattern_desktop-statistics";
-@import "pattern_divider";
 @import "pattern_gaming";
 @import "pattern_grid";
 @import "pattern_footer";
@@ -107,7 +106,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-cube-progression;
 @include ubuntu-p-cve;
 @include ubuntu-p-desktop-statistics;
-@include ubuntu-p-divider;
 @include ubuntu-p-floating-image;
 @include ubuntu-p-footer;
 @include ubuntu-p-gaming;
@@ -752,13 +750,6 @@ summary {
 .u-disable {
   opacity: 0.2;
   pointer-events: none;
-}
-
-.u-number-circle {
-  background: $color-mid-x-light;
-  border-radius: 50%;
-  margin-right: 1rem;
-  padding: 0.25rem 0.85rem;
 }
 
 td.p-accordion {
