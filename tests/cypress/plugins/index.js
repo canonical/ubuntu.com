@@ -2,8 +2,6 @@
 const puppeteer = require("puppeteer");
 
 module.exports = async (on, config) => {
-  require("cypress-terminal-report/src/installLogsPrinter")(on);
-  
   on("task", {
     login({ username, password }) {
       return (async () => {
