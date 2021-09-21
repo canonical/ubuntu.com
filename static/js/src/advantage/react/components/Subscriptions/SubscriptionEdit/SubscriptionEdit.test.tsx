@@ -27,7 +27,7 @@ describe("SubscriptionEdit", () => {
       <QueryClientProvider client={queryClient}>
         <SubscriptionEdit
           onClose={jest.fn()}
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
@@ -49,7 +49,7 @@ describe("SubscriptionEdit", () => {
       <QueryClientProvider client={queryClient}>
         <SubscriptionEdit
           onClose={jest.fn()}
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
@@ -65,7 +65,7 @@ describe("SubscriptionEdit", () => {
       <QueryClientProvider client={queryClient}>
         <SubscriptionEdit
           onClose={jest.fn()}
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           setNotification={jest.fn()}
           setShowingCancel={jest.fn()}
         />
@@ -80,7 +80,7 @@ describe("SubscriptionEdit", () => {
       <QueryClientProvider client={queryClient}>
         <SubscriptionEdit
           onClose={jest.fn()}
-          selectedId={subscription.contract_id}
+          selectedId={subscription.id}
           setNotification={jest.fn()}
           setShowingCancel={setShowingCancel}
         />
