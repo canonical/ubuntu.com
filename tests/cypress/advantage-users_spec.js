@@ -8,6 +8,7 @@ context("Advantage", () => {
   it("adds and deletes a user correctly", () => {
     const username = Cypress.env("UBUNTU_USERNAME");
     const password = Cypress.env("UBUNTU_PASSWORD");
+    cy.log(Cypress.env());
 
     cy.login({ username, password });
 

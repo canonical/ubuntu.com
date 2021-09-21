@@ -40,6 +40,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          env: UBUNTU_USERNAME=peter.makowski+100@canonical.com,UBUNTU_PASSWORD=jibfdq5hmq
           build: yarn run build
           start: yarn run serve
           wait-on: "http://0.0.0.0:8001/_status/check"
@@ -47,6 +48,3 @@ jobs:
           browser: chrome
           config-file: tests/cypress/cypress.json
           config: baseUrl=http://0.0.0.0:8001
-        env:
-          UBUNTU_USERNAME: ${{ secrets.CYPRESS_UBUNTU_USERNAME }}
-          UBUNTU_PASSWORD: ${{ secrets.CYPRESS_UBUNTU_PASSWORD }}
