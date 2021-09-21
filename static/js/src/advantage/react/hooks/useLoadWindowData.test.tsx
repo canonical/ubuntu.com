@@ -8,10 +8,12 @@ import { useLoadWindowData } from "./useLoadWindowData";
 describe("useLoadWindowData", () => {
   beforeEach(() => {
     window.pendingPurchaseId = "12345";
+    window.stripePublishableKey = "12345";
   });
 
   afterEach(() => {
     delete window.pendingPurchaseId;
+    delete window.stripePublishableKey;
   });
 
   it("fetches data from the window and inserts into react-query", async () => {
