@@ -1,3 +1,4 @@
+import { getIsFreeTrialEnabled } from "../react/utils/utils";
 import versionDetails from "./version-details";
 
 export const formatter = new Intl.NumberFormat("en-US", {
@@ -190,7 +191,7 @@ function renderSummary(state) {
       freeTrialLabel.classList.add("u-hide");
 
       // Remove this once we want to release free trial
-      if (location.search.includes("test_backend=true")) {
+      if (getIsFreeTrialEnabled()) {
         trialUnavailableSection.classList.remove("u-hide");
       } else {
         trialUnavailableSection.classList.add("u-hide");

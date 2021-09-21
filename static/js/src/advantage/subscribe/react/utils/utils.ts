@@ -85,3 +85,6 @@ function getInitialFormValues(
 }
 
 export { getUserInfoFromVariables, getInitialFormValues };
+
+export const getIsFreeTrialEnabled = () =>
+  location.search.includes("test_backend=true");

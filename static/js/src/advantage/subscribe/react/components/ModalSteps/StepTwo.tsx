@@ -23,7 +23,7 @@ import Summary from "../../components/Summary";
 import FreeTrialRadio from "../../components/FreeTrialRadio";
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 import { getSessionData } from "../../../../../utils/getSessionData";
-import { FormValues } from "../../utils/utils";
+import { FormValues, getIsFreeTrialEnabled } from "../../utils/utils";
 
 type StepOneProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -216,8 +216,7 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
     });
   };
 
-  // Remove this once we want to release free trial
-  const TrialNotAvailable = location.search.includes("test_backend=true") ? (
+  const TrialNotAvailable = getIsFreeTrialEnabled() ? (
     <Row>
       <Col size={10} emptyLarge={2}>
         <p>
