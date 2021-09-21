@@ -5,10 +5,10 @@ type AccountUsersReponse = {
   name: string;
   users: {
     id: string;
-    name: string;
+    name: string | null;
     email: string;
     user_role_on_account: "admin" | "technical" | "billing";
-    last_login_at: string;
+    last_login_at: string | null;
   }[];
 };
 

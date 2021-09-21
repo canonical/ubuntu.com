@@ -2,10 +2,10 @@ export type UserRole = "admin" | "technical" | "billing";
 
 export type User = {
   id: string;
-  name: string;
+  name: string | null;
   email: string;
   role: UserRole;
-  lastLoginAt: string;
+  lastLoginAt: string | null;
 };
 
 export type Users = User[];
