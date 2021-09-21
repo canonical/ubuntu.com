@@ -104,11 +104,14 @@ const UserRole = ({ user, variant }: UserRoleProps) => {
   );
 };
 
-const FormattedDate = ({ dateISO }: { dateISO: string }) => (
-  <time dateTime={format(new Date(dateISO), "yyyy-MM-dd")}>
-    {format(new Date(dateISO), DATE_FORMAT)}
-  </time>
-);
+const FormattedDate = ({ dateISO }: { dateISO: string | null }) =>
+  dateISO ? (
+    <time dateTime={format(new Date(dateISO), "yyyy-MM-dd")}>
+      {format(new Date(dateISO), DATE_FORMAT)}
+    </time>
+  ) : (
+    <>Never</>
+  );
 
 type UserRowProps = {
   setUserInEditModeById: (id: string) => void;
