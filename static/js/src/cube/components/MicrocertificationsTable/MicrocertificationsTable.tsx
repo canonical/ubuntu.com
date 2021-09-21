@@ -1,11 +1,10 @@
 import React from "react";
-import MainTable from "@canonical/react-components/dist/components/MainTable";
-import Button from "@canonical/react-components/dist/components/Button";
-
+import { Button, MainTable, Icon, ICONS } from "@canonical/react-components";
 const TableView = () => {
   return (
     <MainTable
       responsive
+      className="p-table--cube--grid"
       headers={[
         {
           content: "#",
@@ -21,9 +20,11 @@ const TableView = () => {
         },
         {
           content: "Status",
+          className: "p-table__cell--icon-placeholder",
         },
         {
           content: "Action",
+          className: "u-align--right",
         },
       ]}
       rows={[
@@ -32,10 +33,13 @@ const TableView = () => {
           columns: [
             {
               content: "1",
-              role: "rowheader",
+              className: "u-text--muted",
             },
             {
-              content: <img src="http://placekitten.com/45/45" />,
+              content: (
+                <img src="https://assets.ubuntu.com/v1/9ef4a092-Architecture.svg" />
+              ),
+              className: "p-table--cube--grid__module-logo",
             },
             {
               content: "Ubuntu System Architecture",
@@ -44,10 +48,17 @@ const TableView = () => {
               content: "Review and record relevant system information",
             },
             {
-              content: "Not Enrolled",
+              content: (
+                <>
+                  <Icon name={ICONS.success} />
+                  Passed
+                </>
+              ),
+              className: "p-table__cell--icon-placeholder",
             },
             {
               content: <Button appearance={"positive"}>Purchase</Button>,
+              className: "u-align--right",
             },
           ],
         },
@@ -56,10 +67,13 @@ const TableView = () => {
           columns: [
             {
               content: "2",
-              role: "rowheader",
+              className: "u-text--muted",
             },
             {
-              content: <img src="http://placekitten.com/44/46" />,
+              content: (
+                <img src="https://assets.ubuntu.com/v1/c19e9931-Packages.svg" />
+              ),
+              className: "p-table--cube--grid__module-logo",
             },
             {
               content: "Ubuntu System Architecture",
@@ -69,9 +83,11 @@ const TableView = () => {
             },
             {
               content: "Not Enrolled",
+              className: "p-table__cell--icon-placeholder",
             },
             {
               content: <Button appearance={"positive"}>Purchase</Button>,
+              className: "u-align--right",
             },
           ],
         },
