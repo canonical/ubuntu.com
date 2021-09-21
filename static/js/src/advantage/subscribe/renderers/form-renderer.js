@@ -188,7 +188,13 @@ function renderSummary(state) {
       trialUnavailableSection.classList.add("u-hide");
     } else {
       freeTrialLabel.classList.add("u-hide");
-      trialUnavailableSection.classList.remove("u-hide");
+
+      // Remove this once we want to release free trial
+      if (location.search.includes("test_backend=true")) {
+        trialUnavailableSection.classList.remove("u-hide");
+      } else {
+        trialUnavailableSection.classList.add("u-hide");
+      }
     }
     costElement.innerHTML = `${formatter.format((price / 100) * quantity)} / ${
       billing === "monthly" ? "month" : "year"

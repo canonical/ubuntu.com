@@ -216,6 +216,20 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
     });
   };
 
+  // Remove this once we want to release free trial
+  const TrialNotAvailable = location.search.includes("test_backend=true") ? (
+    <Row>
+      <Col size={10} emptyLarge={2}>
+        <p>
+          <strong>
+            Free Trial is not available for this account.{" "}
+            <a href="/contact-us">Contact us</a> for further information.
+          </strong>
+        </p>
+      </Col>
+    </Row>
+  ) : null;
+
   return (
     <>
       <ModalHeader title="Your details" />
@@ -232,17 +246,7 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
               setIsUsingFreeTrial={setIsUsingFreeTrial}
             />
           ) : (
-            <Row>
-              <Col size={10} emptyLarge={2}>
-                <p>
-                  <strong>
-                    Free Trial is not available for this account.{" "}
-                    <a href="/contact-us">Contact us</a> for further
-                    information.
-                  </strong>
-                </p>
-              </Col>
-            </Row>
+            { TrialNotAvailable }
           )}
           <PaymentMethodSummary setStep={setStep} />
           <Row className="u-no-padding">
