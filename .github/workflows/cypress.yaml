@@ -48,5 +48,5 @@ jobs:
           config-file: tests/cypress/cypress.json
           config: baseUrl=http://0.0.0.0:8001
         env:
-          CYPRESS_UBUNTU_USERNAME: ${{ secrets.CYPRESS_UBUNTU_USERNAME }}
-          CYPRESS_UBUNTU_PASSWORD: ${{ secrets.CYPRESS_UBUNTU_PASSWORD }}
+          UBUNTU_USERNAME: ${{ secrets.CYPRESS_UBUNTU_USERNAME }}
+          UBUNTU_PASSWORD: ${{ secrets.CYPRESS_UBUNTU_PASSWORD }}
