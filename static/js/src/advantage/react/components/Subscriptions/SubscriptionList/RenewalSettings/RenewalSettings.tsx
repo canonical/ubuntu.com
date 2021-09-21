@@ -9,8 +9,7 @@ import { Formik } from "formik";
 
 import RenewalSettingsFields from "./RenewalSettingsFields";
 import { useUserInfo, useUserSubscriptions } from "advantage/react/hooks";
-import { selectSubscriptionsForPeriod } from "advantage/react/hooks/useUserSubscriptions";
-import { UserSubscriptionPeriod } from "advantage/api/enum";
+import { selectAutoRenewableUASubscriptions } from "advantage/react/hooks/useUserSubscriptions";
 import { UserInfo } from "advantage/api/types";
 import { formatDate } from "advantage/react/utils";
 
@@ -26,7 +25,7 @@ const generatePrice = (userInfo: UserInfo): string => {
     style: "currency",
   });
   // The total is in cents so it needs to be divided by 100.
-  return formatter.format(userInfo.total / 100);
+  return formatter.format((userInfo.total || 0) / 100);
 };
 
 const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
@@ -41,7 +40,7 @@ const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
     isError: isSubscriptionsError,
     isLoading: isLoadingSubscriptions,
   } = useUserSubscriptions({
-    select: selectSubscriptionsForPeriod(UserSubscriptionPeriod.Monthly),
+    select: selectAutoRenewableUASubscriptions,
   });
   let content: ReactNode = null;
   if (isLoadingUserInfo || isLoadingSubscriptions) {
@@ -77,18 +76,20 @@ const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
           </strong>
         </p>
         <hr />
-        <p className="u-no-margin--bottom u-sv1">
-          Your next recurring payment of{" "}
-          <strong data-test="monthly-price">{generatePrice(userInfo)}</strong>{" "}
-          will be taken on{" "}
-          <strong data-test="next-payment">
-            {formatDate(userInfo.next_payment_date, "d MMMM yyyy")}
-          </strong>
-          .
-        </p>
+        {userInfo.next_payment_date ? (
+          <p className="u-no-margin--bottom u-sv1" data-test="next-payment">
+            Your next recurring payment of{" "}
+            <strong data-test="monthly-price">{generatePrice(userInfo)}</strong>{" "}
+            will be taken on{" "}
+            <strong data-test="next-payment-date">
+              {formatDate(userInfo.next_payment_date, "d MMMM yyyy")}
+            </strong>
+            .
+          </p>
+        ) : null}
         <Formik
           initialValues={{
-            should_auto_renew: userInfo?.is_auto_renewing,
+            should_auto_renew: userInfo.is_auto_renewing,
           }}
           onSubmit={() => {
             // TODO: Implement updating the renewal settings:

@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import {
   userInfoFactory,
   userSubscriptionFactory,
+  userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 import * as contracts from "advantage/api/contracts";
@@ -70,6 +71,56 @@ describe("RenewalSettings", () => {
     ).toBe(true);
   });
 
+  it("does not include expired subscriptions in the count", () => {
+    queryClient.setQueryData("userSubscriptions", [
+      userSubscriptionFactory.build({
+        period: UserSubscriptionPeriod.Monthly,
+      }),
+      userSubscriptionFactory.build({
+        period: UserSubscriptionPeriod.Monthly,
+        statuses: userSubscriptionStatusesFactory.build({ is_expired: true }),
+      }),
+    ]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings positionNodeRef={{ current: null }} />
+      </QueryClientProvider>
+    );
+    // Open the menu so that the content gets rendered inside the portal.
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    expect(
+      wrapper
+        .find("[data-test='subscription-count']")
+        .text()
+        .includes("1 monthly subscription is")
+    ).toBe(true);
+  });
+
+  it("does not include cancelled subscriptions in the count", () => {
+    queryClient.setQueryData("userSubscriptions", [
+      userSubscriptionFactory.build({
+        period: UserSubscriptionPeriod.Monthly,
+      }),
+      userSubscriptionFactory.build({
+        period: UserSubscriptionPeriod.Monthly,
+        statuses: userSubscriptionStatusesFactory.build({ is_cancelled: true }),
+      }),
+    ]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings positionNodeRef={{ current: null }} />
+      </QueryClientProvider>
+    );
+    // Open the menu so that the content gets rendered inside the portal.
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    expect(
+      wrapper
+        .find("[data-test='subscription-count']")
+        .text()
+        .includes("1 monthly subscription is")
+    ).toBe(true);
+  });
+
   it("displays the correct plural for multiple monthly subscriptions", () => {
     queryClient.setQueryData("userSubscriptions", [
       userSubscriptionFactory.build({
@@ -111,7 +162,7 @@ describe("RenewalSettings", () => {
     );
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
-    expect(wrapper.find("[data-test='next-payment']").text()).toBe(
+    expect(wrapper.find("[data-test='next-payment-date']").text()).toBe(
       "9 February 2023"
     );
   });
@@ -188,5 +239,39 @@ describe("RenewalSettings", () => {
         .find("Notification[data-test='subscriptions-loading-error']")
         .exists()
     ).toBe(true);
+  });
+
+  it("displays the next payment message when auto renew is on", async () => {
+    userInfo = userInfoFactory.build({
+      next_payment_date: new Date("2022-02-09T07:14:56Z"),
+    });
+    queryClient.setQueryData("userInfo", userInfo);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings positionNodeRef={{ current: null }} />
+      </QueryClientProvider>
+    );
+    // Use act to force waiting  for the component to finish rendering.
+    await act(async () => {});
+    // Open the menu so that the content gets rendered inside the portal.
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    expect(wrapper.find("[data-test='next-payment']").exists()).toBe(true);
+  });
+
+  it("does not display the next payment message when auto renew is off", async () => {
+    userInfo = userInfoFactory.build({
+      next_payment_date: "",
+    });
+    queryClient.setQueryData("userInfo", userInfo);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings positionNodeRef={{ current: null }} />
+      </QueryClientProvider>
+    );
+    // Use act to force waiting  for the component to finish rendering.
+    await act(async () => {});
+    // Open the menu so that the content gets rendered inside the portal.
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    expect(wrapper.find("[data-test='next-payment']").exists()).toBe(false);
   });
 });
