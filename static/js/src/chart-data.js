@@ -71,7 +71,7 @@ export var serverAndDesktopReleases = [
 
   {
     startDate: new Date("2019-04-02T00:00:00"),
-    endDate: new Date("2022-04-02T00:00:00"),
+    endDate: new Date("2024-04-02T00:00:00"),
     taskName: "Ubuntu 14.04 LTS",
     status: "ESM",
   },
@@ -89,7 +89,7 @@ export var serverAndDesktopReleases = [
   },
   {
     startDate: new Date("2021-04-02T00:00:00"),
-    endDate: new Date("2024-04-02T00:00:00"),
+    endDate: new Date("2026-04-02T00:00:00"),
     taskName: "Ubuntu 16.04 LTS",
     status: "ESM",
   },
@@ -289,7 +289,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2021-04-30T00:00:00"),
-    endDate: new Date("2024-04-29T00:00:00"),
+    endDate: new Date("2026-04-29T00:00:00"),
     taskName: "Ubuntu 16.04.5 LTS",
     taskVersion: "",
     status: "ESM",
@@ -331,7 +331,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2019-04-30T00:00:00"),
-    endDate: new Date("2022-04-29T00:00:00"),
+    endDate: new Date("2024-04-29T00:00:00"),
     taskName: "Ubuntu 14.04.5 LTS",
     taskVersion: "",
     status: "ESM",
@@ -345,7 +345,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2021-04-30T00:00:00"),
-    endDate: new Date("2024-04-29T00:00:00"),
+    endDate: new Date("2026-04-29T00:00:00"),
     taskName: "Ubuntu 16.04.1 LTS",
     taskVersion: "4.4 kernel",
     status: "ESM",
@@ -359,7 +359,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2021-04-30T00:00:00"),
-    endDate: new Date("2024-04-29T00:00:00"),
+    endDate: new Date("2026-04-29T00:00:00"),
     taskName: "Ubuntu 16.04.0 LTS",
     taskVersion: "",
     status: "ESM",
@@ -373,7 +373,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2019-04-30T00:00:00"),
-    endDate: new Date("2022-04-29T00:00:00"),
+    endDate: new Date("2024-04-29T00:00:00"),
     taskName: "Ubuntu 14.04.1 LTS",
     taskVersion: "",
     status: "ESM",
@@ -387,7 +387,7 @@ export var kernelReleases = [
   },
   {
     startDate: new Date("2019-04-30T00:00:00"),
-    endDate: new Date("2022-04-29T00:00:00"),
+    endDate: new Date("2024-04-29T00:00:00"),
     taskName: "Ubuntu 14.04.0 LTS",
     taskVersion: "3.13 kernel",
     status: "ESM",
@@ -517,7 +517,7 @@ export var kernelReleases1604 = [
   },
   {
     startDate: new Date("2021-04-20T00:00:00"),
-    endDate: new Date("2024-04-19T00:00:00"),
+    endDate: new Date("2026-04-19T00:00:00"),
     taskName: "Ubuntu 16.04.5 LTS (v4.15)",
     status: "ESM",
   },
@@ -547,7 +547,7 @@ export var kernelReleases1604 = [
   },
   {
     startDate: new Date("2021-04-20T00:00:00"),
-    endDate: new Date("2024-04-19T00:00:00"),
+    endDate: new Date("2026-04-19T00:00:00"),
     taskName: "Ubuntu 16.04.1 LTS (v4.4)",
     status: "ESM",
   },
@@ -559,7 +559,7 @@ export var kernelReleases1604 = [
   },
   {
     startDate: new Date("2021-04-20T00:00:00"),
-    endDate: new Date("2024-04-19T00:00:00"),
+    endDate: new Date("2026-04-19T00:00:00"),
     taskName: "Ubuntu 16.04.0 LTS (v4.4)",
     status: "ESM",
   },
@@ -574,7 +574,7 @@ export var kernelReleases1404 = [
   },
   {
     startDate: new Date("2019-04-20T00:00:00"),
-    endDate: new Date("2022-04-19T00:00:00"),
+    endDate: new Date("2024-04-19T00:00:00"),
     taskName: "Ubuntu 14.04.5 LTS (v3.13)",
     status: "ESM",
   },
@@ -604,7 +604,7 @@ export var kernelReleases1404 = [
   },
   {
     startDate: new Date("2019-04-20T00:00:00"),
-    endDate: new Date("2022-04-19T00:00:00"),
+    endDate: new Date("2024-04-19T00:00:00"),
     taskName: "Ubuntu 14.04.1 LTS (v3.13)",
     status: "ESM",
   },
@@ -616,7 +616,7 @@ export var kernelReleases1404 = [
   },
   {
     startDate: new Date("2019-04-20T00:00:00"),
-    endDate: new Date("2022-04-19T00:00:00"),
+    endDate: new Date("2024-04-19T00:00:00"),
     taskName: "Ubuntu 14.04.0 LTS (v3.13)",
     status: "ESM",
   },
