@@ -1,19 +1,10 @@
-import { PendingPurchaseId } from "advantage/api/types";
 import type { QueryClient } from "react-query";
 
-declare global {
-  interface Window {
-    pendingPurchaseId?: PendingPurchaseId;
-  }
-}
-
-const getWindowData = () => ({
-  pendingPurchaseId:
-    window.pendingPurchaseId === "None" ? null : window.pendingPurchaseId,
-});
+const getWindowData = () => ({});
 
 export const useLoadWindowData = (queryClient: QueryClient) => {
-  const { pendingPurchaseId } = getWindowData();
-  // Insert the data from the template into the react-query store.
-  queryClient.setQueryData("pendingPurchaseId", pendingPurchaseId);
+  const windowData = getWindowData();
+  // TODO fetch the stripe key:
+  // https://github.com/canonical-web-and-design/ubuntu.com/pull/10423
+  console.log(windowData, queryClient.isFetching());
 };

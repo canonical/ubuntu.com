@@ -1,7 +1,7 @@
 import { Notification } from "@canonical/react-components";
 import React from "react";
 
-import { usePendingPurchaseId, useURLs } from "../../../hooks";
+import { useURLs } from "../../../hooks";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectStatusesSummary } from "advantage/react/hooks/useUserSubscriptions";
 import ExpiryNotification from "../ExpiryNotification";
@@ -9,14 +9,13 @@ import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification
 
 const Notifications = () => {
   const urls = useURLs();
-  const { pendingPurchaseId } = usePendingPurchaseId();
   const { data: statusesSummary } = useUserSubscriptions({
     select: selectStatusesSummary,
   });
 
   return (
     <>
-      {pendingPurchaseId ? (
+      {statusesSummary?.has_pending_purchases ? (
         <Notification
           data-test="pendingPurchase"
           inline

@@ -38,12 +38,14 @@ const hasStatus = (
 export const selectStatusesSummary = (
   subscriptions: UserSubscription[]
 ): UserSubscriptionStatuses => ({
+  has_pending_purchases: hasStatus(subscriptions, "has_pending_purchases"),
   is_cancellable: hasStatus(subscriptions, "is_cancellable"),
   is_cancelled: hasStatus(subscriptions, "is_cancelled"),
   is_downsizeable: hasStatus(subscriptions, "is_downsizeable"),
   is_expired: hasStatus(subscriptions, "is_expired"),
   is_expiring: hasStatus(subscriptions, "is_expiring"),
   is_in_grace_period: hasStatus(subscriptions, "is_in_grace_period"),
+  is_renewal_actionable: hasStatus(subscriptions, "is_renewal_actionable"),
   is_renewable: hasStatus(subscriptions, "is_renewable"),
   is_trialled: hasStatus(subscriptions, "is_trialled"),
   is_upsizeable: hasStatus(subscriptions, "is_upsizeable"),

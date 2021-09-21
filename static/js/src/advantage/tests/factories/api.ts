@@ -24,6 +24,7 @@ export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptio
 
 export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionStatuses>(
   () => ({
+    has_pending_purchases: false,
     is_cancellable: false,
     is_cancelled: false,
     is_downsizeable: false,
@@ -31,6 +32,7 @@ export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionSt
     is_expiring: false,
     is_in_grace_period: false,
     is_renewable: false,
+    is_renewal_actionable: false,
     is_trialled: false,
     is_upsizeable: false,
   })
