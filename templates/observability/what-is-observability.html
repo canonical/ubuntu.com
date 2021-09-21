@@ -1,0 +1,160 @@
+{% extends "observability/base_observability.html" %}
+
+{% block title %}What is observability{% endblock %}
+
+{% block meta_description %}Observability is fundamental for applications and systems. Learn how it relates with monitoring and the different types of telemetry that is collected and analyzed in the state of the art of open source observability.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1eoqDQzFiRJY2u_EO4JBuLBLqae4K3nrEf3qd88KHw0Y/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+    <div class="p-strip--suru-bottomed">
+        <div class="row u-equal-height">
+            <div class="col-8">
+                <h1>What is observability?</h1>
+                <p>Observability is a crucial property of well-designed software systems: your system is observable if you can know whether it is working as desired and, if it is not, who is impacted and how badly, what the issues are and where they are originating from.</p>
+            </div>
+            <div class="col-4 u-align--center u-vertically-center">
+                {{ image (
+                    url="https://assets.ubuntu.com/v1/db240da7-K8s_management_platform-01.svg",
+                    alt="",
+                    width="350",
+                    height="250",
+                    hi_def=True,
+                    loading="lazy"
+                    ) | safe
+                }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="p-strip--light">
+    <div class="row">
+        <div class="col-8">
+            <h2>Observability versus monitoring</h2>
+            <h3 class="p-heading--4">Rather, observability <em>through</em> monitoring</h3>
+            <p>The term "monitoring" is sometimes used to denote the collection and processing of metrics, and especially timeseries. Instead, we define monitoring more generally as <span class="p-heading--6">the act and practice of collecting and processing useful telemetry to gain insight in the behavior of a system.</span></p>
+            <p>In the current practice of software, and especially in distributed systems and cloud-native software, monitoring is the commonplace means of achieving observability. Tools like Prometheus, OpenTelemetry, Jaeger, Elasticsearch or Graylog document the relevant workings of software systems by collecting and processing various telemetry types, such as metrics, distributed traces and logs.</p>
+            <p>Your software system is observable when the telemetry you collect and the way you process it enables you to know and investigate in a timely fashion how your software system is performing, what issues are occurring and what their impact is.</p>
+        </div>
+    </div>
+</section>
+
+<section class="p-strip">
+    <div class="row">
+        <div class="col-8">
+            <h2>Monitoring and telemetry types</h2>
+            <p>In today's open source monitoring practices, there are several types of telemetry being collected:</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h3 class="p-heading--4">Metrics</h3>
+            <p>Metrics are sets of related measurements of attributes of systems. In the scope of monitoring, usually metrics are collected as timeseries data with a numerical value (that is, numbers associated with timestamps), like how many requests have been served with a certain status code over the last minute. Besides numerical timeseries, boolean timeseries are also nowadays commonplace, like "is the service X up or not", as well as others with string-like values to represent, for example, "the value of configuration X at time Y."</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h3 class="p-heading--4">Logs</h3>
+            <p>Structured (usually as JSON objects) or unstructured (as plain text following some pattern), are time-stamped entries that document the occurrence of an event like "the following error was caught” or "that payment process has been completed.”</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h3 class="p-heading--4">Distributed traces</h3>
+            <p>Document what work is done by various systems to process specific requests, like serving a Web page or executing a batch job. Nowadays, most distributed traces are modeled as a tree of spans. Spans are similar to structured logs, each describing some processing like "Serving request XYZ" or "Querying database 123", have a duration that reports how long it took to perform the processing, and have hierarchical relations to other spans in the form of child-parent relations. Usually, multiple systems contribute spans to one distributed trace, ranging from the API servers to databases and messaging queues and (micro)services in between.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h3 class="p-heading--4">Real user monitoring</h3>
+            <p>Is about collecting data about user sessions occurring via interfaces like Web pages, mobile applications and sometimes IoT devices; real user monitoring is closely related with distributed tracing, in which a user session is correlated with one or more distributed traces, each describing, for example, how one asset or XHR request is served to the user interface.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <h3 class="p-heading--4">Synthetic monitoring checks</h3>
+            <p>Are about continuously, regularly testing systems, mostly production ones, to ensure that particular APIs or entire user flows in UIs, like a checkout process, work as intended; in other words, synthetic monitoring checks are smoke tests for APIs.</p>
+        </div>
+    </div>
+</section>
+
+<section class="p-strip--light">
+    <div class="row">
+        <div class="col-8">
+            <h2>Telemetry correlation for deeper insights</h2>
+            <h3>Making the most out of your metrics, logs, distributed traces and more</h3>
+            <p>The various telemetry types provide you with more insight when they are correlated with one another.</p>
+        </div>
+        <div class="col-12">
+            {{ image (
+                url="https://assets.ubuntu.com/v1/700713ff-telemetry-types.svg",
+                alt="",
+                width="700",
+                height="650",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+            }}
+        </div>
+        <div class="col-8">
+            <p>For example, Prometheus exemplars allow you to tag metrics with some sample distributed trace identifiers, so that you can drill down into some of the traces that affected specific metrics.</p>
+            <p>Another commonplace correlation of telemetry is adding the trace context identifier to the metadata of logs, so that you can go from viewing a single log to seeing the entire execution flow across all components and services involved in an event.</p>
+        </div>
+    </div>
+</section>
+
+<section class="p-strip">
+    <div class="row">
+        <div class="col-8">
+            <h2>Telemetry context</h2>
+            <p>An often underrated aspect of telemetry is its context; that is, which system is the telemetry coming from, where is that system running and, by extension, what is the relation (or lack thereof) between this piece of telemetry and others. You could think of this as correlating telemetry with the topology of the monitored systems.</p>
+            <p>Telemetry context is increasingly encoded via tagging: adding consistent, curated tags to timeseries metrics, logs, distributed traces and so on, so that one can filter all the available telemetry for that generated by a specific set of machines, processes or other system components in a specific time interval.</p>
+            <p>Another important function of telemetry context is to avoid confusion or outright mistakes when processing similar telemetry from unrelated deployments. For example, most alerting rules one may want to define for production databases should focus on specific clusters in specific regions, rather than “alert me when the p95 of CPU usage across all my MySQL instances is above a threshold”.</p>
+        </div>
+    </div>
+</section>
+
+<section class="p-strip--light">
+    <div class="row">
+        <div class="col-8">
+            <h2>Controllability: observability in action</h2>
+            <h3 class="p-heading--4">The forgotten twin to observability</h3>
+            <p>The concept of observability originates in the field of modern control system theory, and its formulation has well withstood the test of time. And it was not a standalone concept either. Rather, observability had a twin concept, called controllability, which can be roughly defined as: "the property of a system to regulate itself and related systems to reliably produce the correct outputs given the provided inputs."</p>
+            <p>Nowadays, controllability is not a term many software engineers use daily, but its essence is embodied, for example, by operators <a href="https://jaas.ai/?_ga=2.74388370.1830430303.1624442919-1608689799.1623932549" class="p-link--external">implemented with Juju</a>  or other frameworks, which steer the software they operate and the infrastructure underneath to provide seamless configuration management and achieve scalability, reliability and graceful degradation.</p>
+            <a class="p-button--positive" href="/blog/tag/model-driven-operations">Learn more about model-driven operations</a>
+        </div>
+        <div class="col-4 u-vertically-center">
+            <div style="background-color:#fff; border: 1px solid #eee; padding: 1rem;">
+                <h4><em>Did you know?</em></h4>
+                <p> The concept of observability was originally introduced by R. Kalman in 1960 in the field of modern control system theory, and its original meaning is largely still applicable to recent software, including cloud-native applications.</p>
+              </div>
+        </div>
+    </div>
+</section>
+
+<section class="p-strip">
+    <div class="row u-vertically-center">
+        <div class="col-5 u-hide--small u-align--center">
+            {{ image (
+                url="https://assets.ubuntu.com/v1/e68fd355-1+discovery_AW.svg",
+                alt="",
+                width="403",
+                height="230",
+                hi_def=True,
+                loading="auto"
+                ) | safe
+            }}
+        </div>
+        <div class="col-7">
+            <h2>Ready to make your applications observable?</h2>
+            <p>Canonical can support your open source observability stack with security fixes and LTS support, as well as run your best-of-breed, open source monitoring tools reliability and at scale.</p>
+            <a class="p-button--positive" href="/observability">More about open source observability</a>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
