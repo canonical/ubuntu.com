@@ -189,8 +189,6 @@ function renderSummary(state) {
       trialUnavailableSection.classList.add("u-hide");
     } else {
       freeTrialLabel.classList.add("u-hide");
-
-      // Remove this once we want to release free trial
       if (getIsFreeTrialEnabled()) {
         trialUnavailableSection.classList.remove("u-hide");
       } else {
