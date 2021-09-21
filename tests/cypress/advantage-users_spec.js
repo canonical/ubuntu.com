@@ -1,14 +1,10 @@
 /// <reference types="cypress" />
-import { getTestURL } from "./utils";
-
-const getRandomEmail = () =>
-  `${Math.random().toString(36).substr(2, 10)}@canonical.com`;
+import { getTestURL, getRandomEmail } from "./utils";
           
 context("Advantage", () => {
   it("adds and deletes a user correctly", () => {
     const username = Cypress.env("UBUNTU_USERNAME");
     const password = Cypress.env("UBUNTU_PASSWORD");
-    cy.log(Cypress.env());
 
     cy.login({ username, password });
 
