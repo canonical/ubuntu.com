@@ -204,9 +204,10 @@
           </li>
           <li class="p-list__item is-ticked">Fine-grained service placement</li>
         </ul>
-        <p>
-          <a href="/kubernetes/install#multi-node">Install Charmed Kubernetes&nbsp;&rsaquo;</a>
-        </p>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="/kubernetes/install#multi-node">Install Charmed Kubernetes&nbsp;&rsaquo;</a></li>
+          <li class="p-inline-list__item"><a class="p-link--external" href="https://assets.ubuntu.com/v1/c5f59e1c-Enterprise_Kubernetes+Datasheet_16.09.21.pdf">Read the datasheet</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -228,7 +229,7 @@
 
 <section class="p-strip--light">
   <div class="row">
-    <h2 class="p-muted-heading u-align--center">FULLY-SUPPORTED KUBERNETES PRIVATE CLOUDS</h2>
+    <h2 class="p-muted-heading u-align--center">FULLY-SUPPORTED KUBERNETES CLOUDS</h2>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
         <a href="https://maas.io/">
@@ -283,6 +284,17 @@
           }}
         </li>
         <li class="p-inline-images__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/b9da6534-equinix-vector-logo.svg",
+            alt="",
+            width="150",
+            height="150",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </li>
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/760109ef-CloudSigma_Logo_Full.png",
@@ -295,30 +307,32 @@
           }}
         </li>
         <li class="p-inline-images__item">
-          <a href="/openstack">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/314085ad-openstack.svg",
-            alt="Openstack",
-            width="156",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-inline-images__logos"},
-            ) | safe
-          }}
+          <a href="/kubernetes/docs/openstack-integration">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/314085ad-openstack.svg",
+              alt="Openstack",
+              width="156",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logos"},
+              ) | safe
+            }}
           </a>
         </li>
         <li class="p-inline-images__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/d584bd83-logo-vmware.svg",
-            alt="VMWARE",
-            width="170",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-inline-images__logos"},
-            ) | safe
-          }}
+          <a href="/kubernetes/docs/vsphere-integration">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/d584bd83-logo-vmware.svg",
+              alt="VMWARE",
+              width="170",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logos"},
+              ) | safe
+            }}
+          </a>
         </li>
     </ul>
   </div>
@@ -498,7 +512,7 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2>Full stack K8s services</h2>
+      <h2 id="services">Full stack K8s services</h2>
       <p class="p-heading--4 u-sv3">Transform your business and safeguard your infrastructure</p>
     </div>
   </div>
