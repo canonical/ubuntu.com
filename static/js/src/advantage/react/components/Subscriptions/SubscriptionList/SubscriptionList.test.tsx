@@ -5,19 +5,24 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import SubscriptionList from "./SubscriptionList";
 import {
   freeSubscriptionFactory,
+  userInfoFactory,
   userSubscriptionFactory,
 } from "advantage/tests/factories/api";
-import { UserSubscription } from "advantage/api/types";
+import { UserInfo, UserSubscription } from "advantage/api/types";
 import ListCard from "./ListCard";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import ListGroup from "./ListGroup";
 
 describe("SubscriptionList", () => {
   let queryClient: QueryClient;
   let freeSubscription: UserSubscription;
+  let userInfo: UserInfo;
 
   beforeEach(async () => {
     queryClient = new QueryClient();
     freeSubscription = freeSubscriptionFactory.build();
+    userInfo = userInfoFactory.build();
+    queryClient.setQueryData("userInfo", userInfo);
     queryClient.setQueryData("userSubscriptions", [freeSubscription]);
   });
 
@@ -100,5 +105,37 @@ describe("SubscriptionList", () => {
     expect(
       wrapper.find("[data-test='free-subscription']").prop("isSelected")
     ).toBe(true);
+  });
+
+  it("shows the renewal settings if there are monthly subs", () => {
+    userInfo = userInfoFactory.build({ has_monthly_subscription: true });
+    queryClient.setQueryData("userInfo", userInfo);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList
+          selectedId={freeSubscription.contract_id}
+          onSetActive={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find(ListGroup).first().prop("showRenewalSettings")).toBe(
+      true
+    );
+  });
+
+  it("does not show the renewal settings if there are no monthly subs", () => {
+    userInfo = userInfoFactory.build({ has_monthly_subscription: false });
+    queryClient.setQueryData("userInfo", userInfo);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList
+          selectedId={freeSubscription.contract_id}
+          onSetActive={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find(ListGroup).first().prop("showRenewalSettings")).toBe(
+      false
+    );
   });
 });

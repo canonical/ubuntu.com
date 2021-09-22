@@ -12,7 +12,6 @@ let entries = {
   tabotronic: "./static/js/src/tabotronic.js",
   appliance: "./static/js/src/appliance.js",
   costCalculator: "./static/js/src/openstack/react/app.jsx",
-  "ua-payment-modal": "./static/js/src/ua-payment-modal.js",
   "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
   "sticky-nav": "./static/js/src/sticky-nav.js",
   imageBuilder: "./static/js/src/imageBuilder.js",
@@ -25,7 +24,7 @@ let entries = {
   uaSubscriptions: "./static/js/src/advantage/react/app.tsx",
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
   "certified-search-results": "./static/js/src/certified-search-results.js",
-  openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
+  openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js"
 };
 
 for (const [key, value] of Object.entries(entries)) {
