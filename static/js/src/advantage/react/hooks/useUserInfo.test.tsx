@@ -2,9 +2,11 @@ import React, { PropsWithChildren } from "react";
 import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
 import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { usePendingPurchaseId } from "./usePendingPurchaseId";
+import { useUserInfo } from "./useUserInfo";
 
-describe("usePendingPurchaseId", () => {
+import { userInfoFactory } from "advantage/tests/factories/api";
+
+describe("useUserInfo", () => {
   let queryClient: QueryClient;
   let wrapper: WrapperComponent<ReactNode>;
 
@@ -16,13 +18,13 @@ describe("usePendingPurchaseId", () => {
     wrapper = Wrapper;
   });
 
-  it("can return the pending purchase id from the store", async () => {
-    queryClient.setQueryData("pendingPurchaseId", "abc123");
-    const { result, waitForNextUpdate } = renderHook(
-      () => usePendingPurchaseId(),
-      { wrapper }
-    );
+  it("can return the user subscriptions from the store", async () => {
+    const userInfo = userInfoFactory.build();
+    queryClient.setQueryData("userInfo", userInfo);
+    const { result, waitForNextUpdate } = renderHook(() => useUserInfo(), {
+      wrapper,
+    });
     await waitForNextUpdate();
-    expect(result.current.pendingPurchaseId).toBe("abc123");
+    expect(result.current.data).toStrictEqual(userInfo);
   });
 });

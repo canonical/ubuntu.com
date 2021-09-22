@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import {
   freeSubscriptionFactory,
   userSubscriptionFactory,
+  userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
 import SubscriptionDetails from "./SubscriptionDetails";
 import { UserSubscription } from "advantage/api/types";
@@ -17,7 +18,11 @@ describe("SubscriptionDetails", () => {
 
   beforeEach(() => {
     queryClient = new QueryClient();
-    contract = userSubscriptionFactory.build();
+    contract = userSubscriptionFactory.build({
+      statuses: userSubscriptionStatusesFactory.build({
+        is_upsizeable: true,
+      }),
+    });
     queryClient.setQueryData("userSubscriptions", [contract]);
   });
 

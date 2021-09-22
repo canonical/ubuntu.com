@@ -3,6 +3,7 @@ import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
 import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import {
+  selectAutoRenewableUASubscriptions,
   selectFreeSubscription,
   selectStatusesSummary,
   selectSubscriptionById,
@@ -15,7 +16,10 @@ import {
   userSubscriptionFactory,
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
-import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
 
 describe("useUserSubscriptions", () => {
   let queryClient: QueryClient;
@@ -80,6 +84,7 @@ describe("useUserSubscriptions", () => {
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual({
+      has_pending_purchases: false,
       is_cancellable: false,
       is_cancelled: true,
       is_downsizeable: false,
@@ -87,6 +92,7 @@ describe("useUserSubscriptions", () => {
       is_expiring: false,
       is_in_grace_period: false,
       is_renewable: false,
+      is_renewal_actionable: false,
       is_trialled: false,
       is_upsizeable: true,
     });
@@ -129,5 +135,52 @@ describe("useUserSubscriptions", () => {
       subscriptions[0],
       subscriptions[2],
     ]);
+  });
+
+  it("can return auto renewable UA subscriptions", async () => {
+    const subscriptions = [
+      // Should not be included because it is in the wrong marketplace:
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.Free,
+      }),
+      // Should be included:
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+        period: UserSubscriptionPeriod.Monthly,
+        statuses: userSubscriptionStatusesFactory.build({
+          is_cancelled: false,
+          is_expired: false,
+        }),
+      }),
+      // Should not be included because it is not monthly:
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+        period: UserSubscriptionPeriod.Yearly,
+      }),
+      // Should not be included because it has been cancelled:
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+        period: UserSubscriptionPeriod.Monthly,
+        statuses: userSubscriptionStatusesFactory.build({
+          is_cancelled: true,
+        }),
+      }),
+      // Should not be included because it has expired:
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+        period: UserSubscriptionPeriod.Monthly,
+        statuses: userSubscriptionStatusesFactory.build({
+          is_expired: true,
+        }),
+      }),
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
+    const { result, waitForNextUpdate } = renderHook(
+      () =>
+        useUserSubscriptions({ select: selectAutoRenewableUASubscriptions }),
+      { wrapper }
+    );
+    await waitForNextUpdate();
+    expect(result.current.data).toStrictEqual([subscriptions[1]]);
   });
 });

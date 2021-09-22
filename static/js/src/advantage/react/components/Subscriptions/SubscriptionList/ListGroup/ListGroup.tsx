@@ -11,7 +11,7 @@ type Props = {
 
 const ListGroup = ({
   children,
-  showRenewalSettings = true,
+  showRenewalSettings = false,
   title,
 }: Props): JSX.Element => {
   const positionNode = useRef<HTMLDivElement | null>(null);

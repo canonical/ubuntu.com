@@ -1,4 +1,9 @@
-import { Card, Spinner } from "@canonical/react-components";
+import {
+  Card,
+  Notification,
+  NotificationSeverity,
+  Spinner,
+} from "@canonical/react-components";
 import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { useScrollIntoView } from "advantage/react/hooks/useScrollIntoView";
@@ -15,7 +20,7 @@ const Content = () => {
   const [scrollTargetRef, scrollIntoView] = useScrollIntoView<HTMLDivElement>(
     20
   );
-  const { data: allSubscriptions, isLoading } = useUserSubscriptions();
+  const { data: allSubscriptions, isError, isLoading } = useUserSubscriptions();
   const onSetActive = useCallback(
     (token: SelectedId) => {
       // Only set the token if it has changed to another token. The selected
@@ -53,6 +58,18 @@ const Content = () => {
       <Card className="u-no-margin--bottom" data-test="initial-load">
         <Spinner /> Loading&hellip;
       </Card>
+    );
+  }
+  if (isError) {
+    return (
+      <Notification
+        data-test="loading-error"
+        severity={NotificationSeverity.NEGATIVE}
+        title="Loading failed:"
+      >
+        Your subscriptions could not be loaded. Please refresh the page or try
+        again later.
+      </Notification>
     );
   }
 

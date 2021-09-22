@@ -9,6 +9,8 @@ import {
 
 export type PendingPurchaseId = string;
 
+export type StripePublishableKey = string;
+
 export type UserSubscriptionEntitlement = {
   enabled_by_default: boolean;
   support_level: SupportLevel | null;
@@ -16,6 +18,7 @@ export type UserSubscriptionEntitlement = {
 };
 
 export type UserSubscriptionStatuses = {
+  has_pending_purchases: boolean;
   is_cancellable: boolean;
   is_cancelled: boolean;
   is_downsizeable: boolean;
@@ -23,6 +26,7 @@ export type UserSubscriptionStatuses = {
   is_expiring: boolean;
   is_in_grace_period: boolean;
   is_renewable: boolean;
+  is_renewal_actionable: boolean;
   is_trialled: boolean;
   is_upsizeable: boolean;
 };
@@ -46,6 +50,15 @@ export type UserSubscription = {
   statuses: UserSubscriptionStatuses;
   subscription_id: string | null;
   type: UserSubscriptionType;
+};
+
+export type UserInfo = {
+  currency?: string;
+  has_monthly_subscription: boolean;
+  is_auto_renewing: boolean;
+  last_payment_date?: Date;
+  next_payment_date?: Date;
+  total?: number;
 };
 
 export type ContractToken = {
