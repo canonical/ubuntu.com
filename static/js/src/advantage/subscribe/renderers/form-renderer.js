@@ -1,3 +1,4 @@
+import { getIsFreeTrialEnabled } from "../react/utils/utils";
 import versionDetails from "./version-details";
 
 export const formatter = new Intl.NumberFormat("en-US", {
@@ -188,7 +189,11 @@ function renderSummary(state) {
       trialUnavailableSection.classList.add("u-hide");
     } else {
       freeTrialLabel.classList.add("u-hide");
-      trialUnavailableSection.classList.remove("u-hide");
+      if (getIsFreeTrialEnabled()) {
+        trialUnavailableSection.classList.remove("u-hide");
+      } else {
+        trialUnavailableSection.classList.add("u-hide");
+      }
     }
     costElement.innerHTML = `${formatter.format((price / 100) * quantity)} / ${
       billing === "monthly" ? "month" : "year"

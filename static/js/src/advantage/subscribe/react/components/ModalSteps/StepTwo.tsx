@@ -23,7 +23,7 @@ import Summary from "../../components/Summary";
 import FreeTrialRadio from "../../components/FreeTrialRadio";
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 import { getSessionData } from "../../../../../utils/getSessionData";
-import { FormValues } from "../../utils/utils";
+import { FormValues, getIsFreeTrialEnabled } from "../../utils/utils";
 
 type StepOneProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -216,6 +216,19 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
     });
   };
 
+  const TrialNotAvailable = getIsFreeTrialEnabled() ? (
+    <Row>
+      <Col size={10} emptyLarge={2}>
+        <p>
+          <strong>
+            Free Trial is not available for this account.{" "}
+            <a href="/contact-us">Contact us</a> for further information.
+          </strong>
+        </p>
+      </Col>
+    </Row>
+  ) : null;
+
   return (
     <>
       <ModalHeader title="Your details" />
@@ -232,17 +245,7 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
               setIsUsingFreeTrial={setIsUsingFreeTrial}
             />
           ) : (
-            <Row>
-              <Col size={10} emptyLarge={2}>
-                <p>
-                  <strong>
-                    Free Trial is not available for this account.{" "}
-                    <a href="/contact-us">Contact us</a> for further
-                    information.
-                  </strong>
-                </p>
-              </Col>
-            </Row>
+            { TrialNotAvailable }
           )}
           <PaymentMethodSummary setStep={setStep} />
           <Row className="u-no-padding">
