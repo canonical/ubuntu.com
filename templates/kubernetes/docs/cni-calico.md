@@ -396,7 +396,7 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 [install-manual]:  /kubernetes/docs/install-manual
 [bgp-multiple-subnets-bird-example]: https://gist.github.com/Cynerva/46712dd1e9b75d42cb38fb966abfa932
 [route reflection]: https://tools.ietf.org/html/rfc4456
-[AS Per Rack model]: https://docs.projectcalico.org/v3.6/networking/design/l3-interconnect-fabric#the-as-per-rack-model
+[AS Per Rack model]: https://docs.projectcalico.org/reference/architecture/design/l3-interconnect-fabric
 [Calico charm]: /kubernetes/docs/charm-calico
 
 <!-- FEEDBACK -->

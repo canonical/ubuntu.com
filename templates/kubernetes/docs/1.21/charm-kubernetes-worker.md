@@ -280,7 +280,7 @@ the setting of conntrack-max-per-core vs nf_conntrack_max.
 
 This requires configuration of both the `kubernetes-master` and
 `kubernetes-worker` charms. Please see the configuration section on
-the [kubernetes-master page](../charm-kubernetes-master#config-ipvs).
+the [kubernetes-master page](/kubernetes/docs/charm-kubernetes-master#config-ipvs).
 
 ### Configuring kubelet
 
@@ -597,5 +597,5 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 
 
 <!-- LINKS -->
-[charm-kubernetes-master]: /kubernetes/docs/1.21/charm-kubernetes-master
+[charm-kubernetes-master]: /charm-kubernetes-master
 [kubelet-docs]: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
