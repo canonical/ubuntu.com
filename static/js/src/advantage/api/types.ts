@@ -52,6 +52,15 @@ export type UserSubscription = {
   type: UserSubscriptionType;
 };
 
+export type UserInfo = {
+  currency?: string;
+  has_monthly_subscription: boolean;
+  is_auto_renewing: boolean;
+  last_payment_date?: Date;
+  next_payment_date?: Date;
+  total?: number;
+};
+
 export type ContractToken = {
   contract_token: string;
 };

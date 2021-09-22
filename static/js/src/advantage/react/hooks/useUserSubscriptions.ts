@@ -1,6 +1,7 @@
 import { getUserSubscriptions } from "advantage/api/contracts";
 import {
   UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
   UserSubscriptionType,
 } from "advantage/api/enum";
 import {
@@ -57,6 +58,27 @@ export const selectStatusesSummary = (
 export const selectUASubscriptions = (subscriptions: UserSubscription[]) =>
   subscriptions.filter(
     ({ marketplace }) => marketplace === UserSubscriptionMarketplace.CanonicalUA
+  );
+
+/**
+ * Find the subscriptions with for period.
+ */
+export const selectSubscriptionsForPeriod = (
+  period: UserSubscriptionPeriod
+) => (subscriptions: UserSubscription[]) =>
+  subscriptions.filter((subscription) => subscription.period === period);
+
+/**
+ * Find the auto renewable subscriptions.
+ */
+export const selectAutoRenewableUASubscriptions = (
+  subscriptions: UserSubscription[]
+) =>
+  selectUASubscriptions(subscriptions).filter(
+    ({ period, statuses }) =>
+      period === UserSubscriptionPeriod.Monthly &&
+      !statuses.is_cancelled &&
+      !statuses.is_expired
   );
 
 export const useUserSubscriptions = <D = UserSubscription[]>(
