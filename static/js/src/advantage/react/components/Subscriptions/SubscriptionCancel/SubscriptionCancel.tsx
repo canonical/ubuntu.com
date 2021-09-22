@@ -14,6 +14,7 @@ import { SelectedId } from "../Content/types";
 import { Formik } from "formik";
 import SubscriptionCancelFields from "./SubscriptionCancelFields";
 import { SubscriptionCancelValues } from "./SubscriptionCancelFields/SubscriptionCancelFields";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 
 type Props = {
   selectedId?: SelectedId;
@@ -76,7 +77,14 @@ const SubscriptionCancel = ({
                   ? CancelError.SubscriptionMissing
                   : CancelError.Failed
               ),
-            onSuccess: () => onCancelSuccess(),
+            onSuccess: () => {
+              onCancelSuccess();
+              sendAnalyticsEvent({
+                eventCategory: "Advantage",
+                eventAction: "subscription-cancel-form",
+                eventLabel: "subscription cancelled",
+              });
+            },
           });
         }}
         validateOnMount

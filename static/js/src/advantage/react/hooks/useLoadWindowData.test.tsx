@@ -22,8 +22,6 @@ describe("useLoadWindowData", () => {
     renderHook(() => useLoadWindowData(queryClient), {
       wrapper,
     });
-    // TODO test that it fetches the stripe key:
-    // https://github.com/canonical-web-and-design/ubuntu.com/pull/10423
-    expect(queryClient.isFetching()).toBe(0);
+    expect(queryClient.getQueryData("stripePublishableKey")).toBe("12345");
   });
 });
