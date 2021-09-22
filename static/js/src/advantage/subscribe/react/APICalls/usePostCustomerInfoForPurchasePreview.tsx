@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 import { postCustomerInfoForPurchasePreview } from "../../../contracts-api";
 
 const usePostCustomerInfoForPurchasePreview = () => {
-  const mutation = useMutation(async (formData) => {
+  const mutation = useMutation(async (formData: FormValues) => {
     const {
       name,
       address,

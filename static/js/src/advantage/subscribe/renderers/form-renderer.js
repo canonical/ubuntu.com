@@ -1,3 +1,4 @@
+import { getIsFreeTrialEnabled } from "../react/utils/utils";
 import versionDetails from "./version-details";
 
 export const formatter = new Intl.NumberFormat("en-US", {
@@ -24,7 +25,7 @@ function renderRadios(state, sections) {
 }
 
 function renderVersionDetails(state) {
-  const details = versionDetails[state.version];
+  const details = versionDetails[state.version] ?? versionDetails["20.04"];
   const container = form.querySelector("#version-details");
   const versionNumber = form.querySelector("#version-number");
   var innerHTML = "";
@@ -82,10 +83,7 @@ function renderFeature(state) {
   );
   const radios = featureSection.querySelectorAll(".js-radio");
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const isAppsEnabled = urlParams.get("esm_apps") === "true";
-
-  if (isAppsEnabled) {
+  if (state.isAppsEnabled) {
     featureSection.classList.remove("u-hide");
   } else {
     featureSection.classList.add("u-hide");
@@ -160,6 +158,9 @@ function renderSummary(state) {
   const summarySection = form.querySelector("#summary-section");
   const saveMessage = summarySection.querySelector("#summary-save-with-annual");
   const billingSection = summarySection.querySelector(".js-summary-billing");
+  const trialUnavailableSection = summarySection.querySelector(
+    ".js-trial-unavailable"
+  );
   const billingSelect = summarySection.querySelector("select#billing-period");
   const buyButton = summarySection.querySelector("#buy-now-button");
 
@@ -170,6 +171,9 @@ function renderSummary(state) {
     // if the selection matches a product we populate the 'cart' section and show it
     const image = summarySection.querySelector("#summary-plan-image");
     const title = summarySection.querySelector("#summary-plan-name");
+    const freeTrialLabel = summarySection.querySelector(
+      "#summary-free-trial-label"
+    );
     const costElement = summarySection.querySelector(".js-summary-cost");
     const quantityElement = summarySection.querySelector(
       "#summary-plan-quantity"
@@ -180,14 +184,31 @@ function renderSummary(state) {
     quantityElement.innerHTML = `${quantity}x`;
     image.setAttribute("src", imgUrl[type]);
     title.innerHTML = state.product.name;
+    if (state.product.canBeTrialled) {
+      freeTrialLabel.classList.remove("u-hide");
+      trialUnavailableSection.classList.add("u-hide");
+    } else {
+      freeTrialLabel.classList.add("u-hide");
+      if (getIsFreeTrialEnabled()) {
+        trialUnavailableSection.classList.remove("u-hide");
+      } else {
+        trialUnavailableSection.classList.add("u-hide");
+      }
+    }
     costElement.innerHTML = `${formatter.format((price / 100) * quantity)} / ${
       billing === "monthly" ? "month" : "year"
     }`;
 
     const previous_purchase_id = window.previousPurchaseIds[billing];
 
+    // The button stays disabled if the users is already trialling a product.
+    if (!window.isTrialling) {
+      buyButton.classList.remove("u-disable");
+    } else {
+      buyButton.classList.add("u-disable");
+    }
+
     // We add the data to the button so the modal can pick it up
-    buyButton.classList.remove("u-disable");
     const productObject = JSON.stringify(state.product);
     buyButton.dataset.product = productObject;
     buyButton.dataset.quantity = quantity;
