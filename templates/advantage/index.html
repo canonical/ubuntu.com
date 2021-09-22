@@ -41,6 +41,9 @@
   </div>
 {% endif %}
 
+<script>
+  window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
+</script>
 
 <script
   src="{{ versioned_static('js/dist/uaSubscriptions.js') }}"
