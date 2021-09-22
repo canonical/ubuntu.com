@@ -9,6 +9,8 @@ import {
 
 export type PendingPurchaseId = string;
 
+export type StripePublishableKey = string;
+
 export type UserSubscriptionEntitlement = {
   enabled_by_default: boolean;
   support_level: SupportLevel | null;

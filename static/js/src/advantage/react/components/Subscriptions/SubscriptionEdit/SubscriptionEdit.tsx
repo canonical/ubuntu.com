@@ -2,15 +2,20 @@ import {
   ActionButton,
   Button,
   NotificationProps,
+  Spinner,
 } from "@canonical/react-components";
 import React, { useCallback } from "react";
 import usePortal from "react-useportal";
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 import SubscriptionCancel from "../SubscriptionCancel";
 import FormikField from "../../FormikField";
 import { SelectedId } from "../Content/types";
-import { useUserSubscriptions } from "advantage/react/hooks";
+import {
+  useStripePublishableKey,
+  useUserSubscriptions,
+} from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 
 type Props = {
@@ -19,6 +24,12 @@ type Props = {
   setNotification: (props: NotificationProps | null) => void;
   setShowingCancel: (showingCancel: boolean) => void;
 };
+
+const sizeMessage = "You must have at least one machine.";
+
+const ResizeSchema = Yup.object().shape({
+  size: Yup.number().min(1, sizeMessage).required(sizeMessage),
+});
 
 const SubscriptionEdit = ({
   onClose,
@@ -43,23 +54,30 @@ const SubscriptionEdit = ({
     },
     [setShowingCancel]
   );
-  const { data: subscription } = useUserSubscriptions({
+  const { data: subscription, isLoading } = useUserSubscriptions({
     select: selectSubscriptionById(selectedId),
   });
+  const { stripePublishableKey } = useStripePublishableKey();
+
+  if (isLoading || !subscription) {
+    return <Spinner />;
+  }
 
   return (
     <>
       <Formik
         initialValues={{
-          // TODO: use the initial value from the edited subscription.
-          size: 0,
+          size: subscription.number_of_machines,
         }}
         onSubmit={() => {
           // TODO: Implement updating the subscription:
           // https://github.com/canonical-web-and-design/commercial-squad/issues/113
+          console.log(stripePublishableKey);
         }}
+        validateOnMount
+        validationSchema={ResizeSchema}
       >
-        {({ handleSubmit }) => (
+        {({ handleSubmit, isValid }) => (
           <form className="p-subscription__edit" onSubmit={handleSubmit}>
             <div className="u-sv2">
               <div className="u-sv3 u-hide--small">
@@ -78,6 +96,7 @@ const SubscriptionEdit = ({
                   </>
                 }
                 label="Number of machines"
+                min={1}
                 name="size"
                 type="number"
                 wrapperClassName="u-sv3"
@@ -95,6 +114,8 @@ const SubscriptionEdit = ({
               <ActionButton
                 appearance="positive"
                 className="p-subscription__resize-action"
+                disabled={!isValid}
+                type="submit"
               >
                 Resize
               </ActionButton>
