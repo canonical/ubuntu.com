@@ -1,0 +1,409 @@
+{% extends "cloud/_base-cloud.html" %}
+
+{% block title %}What is a hybrid cloud?{% endblock %}
+
+{% block meta_description %}Hybrid cloud is a cloud computing architecture that consists of a public cloud, a private cloud and a hybrid cloud manager. It enables organisations to optimise their infrastructure costs by always running their workloads where it makes more sense from an economical standpoint.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1oIggNSXR5sfl0Ab35x2NIL7I858I7QdPCUXeQI8IIPc/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-bottomed">
+  <div class="row">
+    <div class="col-7">
+      <h1>What is hybrid cloud?</h1>
+      <p>Hybrid cloud is a cloud computing architecture that consists of at least one public cloud, at least one private cloud and a hybrid cloud manager (HCM). It is one of the most popular trends in the IT industry, used by 62% of enterprises according to the <a class="p-link--external" href="https://go.451research.com/2020-mi-cloud-trends-year-of-complexity-and-its-management.html">451 Research report from 2020</a>.</p>
+      <p>Hybrid clouds enable organisations to optimise their infrastructure costs by always running their workloads where it makes more sense from an economical standpoint.</p>
+      <p>
+        <a href="/engage/hybrid-cloud-business-guide">Read the whitepaper - “A business guide to hybrid cloud”&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-hide--small u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/45120edb-Hybrid+Cloud.svg",
+        alt="Hybrid Cloud",
+        width="324",
+        height="255",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <h2>How does a hybrid<br/> cloud work?</h2>
+      <h4>Since the hybrid cloud is a cloud computing architecture that uses existing public and private cloud infrastructure, the way it works is not significantly different from how public and private clouds work on their own.</h4>
+    </div>
+    <div class="col-7">
+      <p>The hybrid cloud leverages virtualisation, containerisation, software-defined networking (SDN) and software-defined storage (SDS) technologies to divide physical resources, aggregated into pools, and allocate them to virtual machines (VMs) or containers. Dedicated <a href="/openstack/what-is-openstack">management software</a> is used to aggregate compute, network and storage resources, distributed across the data centre, and enable on-demand provisioning of virtualised resources through a self-service portal.</p>
+      <p>What differentiates hybrid cloud from other cloud architectures is  the additional layer of software, running on top of existing clouds. Known as the HCM, this software enables <a href="https://juju.is" class="p-link--external">deploying, integrating and migrating workloads between private and public clouds</a> depending on capacity and cost conditions. Since <a href="/engage/cloud-pricing-report-2021">private clouds prove to be more cost-effective than public clouds</a> when running workloads in the long term and at scale, the majority of the workloads should always be run in the private cloud. However, organisations can move their workloads to the public cloud during heavy load periods. HCM enables this migration across various cloud providers, ensuring maximum CAPEX and OPEX efficiency.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <h2>Hybrid cloud vs<br/> multi-cloud</h2>
+      <h4>Hybrid cloud and multi-cloud are two mutually exclusive terms that are often confused.</h4>
+    </div>
+    <div class="col-7">
+      <p>The hybrid cloud is a cloud computing architecture that consists of at least one public cloud, at least one private cloud and the HCM. There are no assumptions in this definition about the service provider behind public and private cloud infrastructure. In turn, multi-cloud simply refers to using multiple clouds from more than one cloud service provider at the same time.</p>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Is every hybrid cloud a multi-cloud?</h5>
+      <p>No, imagine a <a href="/cloud">cloud architecture</a> that consists of <a href="https://aws.amazon.com/marketplace/pp/prodview-rhaqbfd6lepbw" class="p-link--external">AWS</a> and <a href="/aws/outposts">AWS Outposts</a> at the same time. It uses a public cloud and a private cloud infrastructure, but both are delivered by a single cloud provider.</p>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Is every multi-cloud a hybrid cloud?</h5>
+      <p>No, it is not. Multi-cloud also refers to using multiple public clouds (e.g. <a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic?tab=overview" class="p-link--external">Azure</a> and <a href="https://cloud.google.com/blog/products/compute/ubuntu-pro-available-on-google-cloud" class="p-link--external">GCP</a>) or multiple private clouds (e.g. <a href="https://www.vmware.com/" class="p-link--external">VMware</a> and <a href="/openstack">OpenStack</a>) at the same time and this is not a hybrid cloud architecture.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Hybrid cloud benefits</h2>
+      <p class="u-sv3">The main benefit of the hybrid cloud architecture is <a href="/engage/hybrid-cloud-business-guide">better economics</a> compared to using only public or private clouds. Hybrid cloud effectively combines advantages of both, resulting in a number of benefits. Those include:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d399db60-save-money.svg",
+        alt="Long-term cost savings",
+        width="64",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Maximum infrastructure costs optimisation</h4>
+      <p class="u-sv3">In the hybrid cloud workloads always run where it makes the most sense from the economical standpoint. This means organisations always pay as little as possible for the same amount of resources which results in long-term cost savings.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/780e7736-Acceleration.svg",
+        alt="Accerelation",
+        width="86",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Optimal resource utilisation</h4>
+      <p class="u-sv3">Every underutilised resource in the data centre is a waste of money for the business. In the hybrid cloud architecture, the private cloud always runs at its maximum capacity, while workloads are moved to the public cloud during heavy load periods.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
+          alt="VMware Migration",
+          width="64",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Improved agility and scalability</h4>
+      <p class="u-sv3">Scaling the private cloud out may take a while due to a long time of the procurement process. Using a hybrid model enables developers to use public cloud resources on-demand until the private cloud grows.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
+          alt="Multi Cloud",
+          width="113",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Increased flexibility</h4>
+      <p class="u-sv3">Using more than one cloud environment at a time provides greater flexibility as businesses can choose the right place to run their workloads based on specific use cases and detailed requirements.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ad33af0c-Shield.svg",
+        alt="Shield",
+        width="64",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Security and compliance</h4>
+      <p class="u-sv3">While public clouds are usually considered more secure than private clouds, in some cases having full control over the underlying infrastructure helps organisations to meet their <a href="/security/certifications">compliance regulations</a>.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Hybrid cloud challenges</h2>
+      <p class="u-sv3">While hybrid cloud architecture brings a number of benefits to organisations, implementing the hybrid cloud entails a number of challenges. Those include:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/69aaa876-compliance.svg",
+          alt="Compatibility",
+          width="64",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Compatibility</h4>
+      <p>Since various public and private clouds may use different application programming interfaces (APIs) and cloud architectures, managing workloads in the hybrid model is challenging. Using <a href="https://juju.is" class="p-link--external">workload management software that is substrate-agnostic</a> helps to bypass those challenges, ensuring compatibility across various cloud providers.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5eebb138-Servers.svg",
+        alt="Servers",
+        width="143",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Increased complexity</h4>
+      <p>With the hybrid cloud architecture there is no longer a single cloud environment. There are at least two. This increases the complexity of the infrastructure and creates additional overhead for the cloud operations team. One way to deal with that is to leverage <a href="/openstack/managed">managed cloud services</a>.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/9c80823b-confinement.svg",
+          alt="Policy management",
+          width="112",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Policy management</h4>
+      <p>Due to internal data privacy regulations some data might always have to be stored on-prem. Therefore, implementing hybrid cloud architecture may require introducing a policy management system to make sure confidential data is always secure.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <h2>Is hybrid cloud right<br/> for you?</h2>
+      <h4>Hybrid cloud workloads always run where it makes the most sense from an economical standpoint.</h4>
+    </div>
+    <div class="col-7">
+      <p>Using this architecture proves to be the best way to achieve infrastructure cost optimisation, however, implementing the hybrid cloud requires building a private cloud which may not be an option due to the significant upfront costs of  building a private cloud. Organisations should always carefully analyse their requirements and choose a cloud architecture that provides the best economics. Using private cloud cost calculators can help make the right decision.</p>
+      <p><a href="/openstack/tco-calculator">Get cost estimates for an enterprise private cloud on Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Hybrid cloud use cases</h2>
+      <p>Among hundreds of possibilities, typical hybrid cloud use cases include:</p>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="p-matrix p-matrix--three-col u-clearfix">
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Frequently changing workloads</h4>
+          <p class="p-matrix__desc">Use “unlimited” resources offered by public cloud providers during heavy load periods, while running the majority of your workloads in a cost-effective private cloud.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Addressing capacity requirements</h4>
+          <p class="p-matrix__desc">Use the public cloud as an extension to your private cloud infrastructure until you can scale out the private cloud and meet capacity requirements.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Big data analytics</h4>
+          <p class="p-matrix__desc">Use highly-scalable public cloud resources to run your periodic big data analytics, unless you have the capacity to move them to the private cloud.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Moving to the cloud incrementally</h4>
+          <p class="p-matrix__desc">Not all workloads are ready for an immediate “lift and shift” migration. Use both clouds at the same time and perform the migration at your own pace.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Ensuring flexibility for the future</h4>
+          <p class="p-matrix__desc">Your existing private cloud might not meet your capacity requirements of tomorrow. Using hybrid cloud architecture ensures flexibility for the future as the number of your workloads grow.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Ensuring data sovereignty</h4>
+          <p class="p-matrix__desc">Due to internal organisation's regulations, confidential data might always have to be stored on-premises. Using the hybrid model enables you to ensure the sovereignty of your data while running other workloads in the public cloud.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Hybrid cloud architecture</h2>
+      <p class="u-sv3">Contrary to public or private clouds, the hybrid cloud rather leverages existing infrastructure components and extends them with an additional layer of the management software that provides workloads orchestration capabilities. In principle, the hybrid cloud consists of the following components:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+          alt="Public cloud",
+          width="94",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        </div>
+        <h4>At least one public cloud</h4>
+        <p class="u-sv3">These can be leading public clouds or local ones built to bypass the <a href="/engage/public-cloud-openstack-implementation">challenges of hyperscalers</a> that organisations face in some parts of the world.</p>
+      </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c5b21ec2-Private+Cloud.svg",
+          alt="Private cloud",
+          width="88",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>At least one private cloud</h4>
+      <p>AWS Outposts, Azure Stack, Google Anthos, VMware, Nutanix, CloudStack or <a href="/openstack/what-is-openstack">the world's leading open source private cloud platform - OpenStack</a>.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/45120edb-Hybrid+Cloud.svg",
+          alt="Hybrid Cloud",
+          width="81",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Hybrid cloud manager (HCM)</h4>
+      <p>Enables <a href="https://juju.is" class="p-link--external">deploying, integrating and migrating workloads between public and private clouds</a> depending on capacity and cost conditions.</p>
+    </div>
+    <p>
+      In addition, the hybrid cloud leverages a bunch of underpinning technologies, including automation, virtualisation, containerisation, serverless, microservices, etc.
+    </p>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>How to build a hybrid cloud?</h2>
+      <p class="u-sv3">Building a hybrid cloud usually entails a number of challenges:</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="p-card col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
+          alt="Cloud",
+          width="61",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p><a href="/openstack/compare">What cloud platform to standardise on?</a></p>
+    </div>
+    <div class="p-card col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/23cbb344-Design.png",
+          alt="Architecture",
+          width="70",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p><a href="/engage/dell-openstack-reference-architecture">Which architecture to follow for private cloud implementation?</a></p>
+    </div>
+    <div class="p-card col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/cf4fdaba-Frame.svg",
+          alt="Frame",
+          width="57",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p><a href="https://juju.is" class="p-link--external">How to manage workloads in a hybrid cloud environment?</a></p>
+    </div>
+    <p>These are just a few examples of questions organisations have to ask themselves at the beginning of their hybrid cloud journey. Fortunately, there are <a href="https://microstack.run" class="p-link--external">tools that enable single-node private cloud installation</a> for testing purposes or, in the case of more complex environments, platform integrators like Canonical offer <a href="/openstack/consulting">consulting services for private cloud implementation</a>. Those usually include existing workloads assessment, architecture guidance, TCO prediction, private cloud deployment, workloads migration and hybrid cloud integration.</p>
+    <p><a href="/openstack/consulting#get-in-touch">Get in touch with Canonical for private cloud design and delivery&nbsp;&rsaquo;</a></p>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2 class="u-sv2">All you need for your hybrid cloud</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="p-card col-6">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/623e36f9-OpenStack_Logo_Mark+%281%29.svg" alt="OpenStack" width="32" height="32" />
+          <h4 class="p-heading-icon__title">Charmed OpenStack</h4>
+        </div>
+      </div>
+      <hr/>
+      <div class="p-card__content">
+        <p>Charmed OpenStack is a pure upstream OpenStack distribution engineered for the best price-performance with full enterprise support for your production-grade private cloud.</p>
+        <p><a href="/openstack/features">Learn more about Charmed OpenStack&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="p-card col-6">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/31c507a5-image-juju.svg" alt="Juju Logo" width="32" height="32" />
+          <h4 class="p-heading-icon__title">Juju</h4>
+        </div>
+      </div>
+      <hr/>
+      <div class="p-card__content">
+        <p>Juju is a Charmed Operator Lifecycle Manager (OLM) that deploys, integrates, and manages Kubernetes, container and VM-native applications seamlessly across hybrid clouds.</p>
+        <p><a href="https://juju.is" class="p-link--external">Learn more about Juju</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
