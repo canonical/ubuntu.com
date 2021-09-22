@@ -1,6 +1,10 @@
 import React from "react";
 
-import { Table, TableHeader, TableRow } from "@canonical/react-components";
+import { Table, TableRow } from "@canonical/react-components";
+import {
+  default as TableHeaderComponent,
+  TableHeaderProps,
+} from "@canonical/react-components/dist/components/TableHeader";
 
 import { UserRole, Users } from "../../types";
 import UserRow from "./UserRow";
@@ -34,6 +38,15 @@ type Props = {
   handleDeleteConfirmationModalOpen: () => void;
 };
 
+export type UserHeaderText = "email" | "role" | "last sign in" | "actions";
+
+const UsersTableHeader = ({
+  label,
+  ...props
+}: TableHeaderProps & {
+  label: UserHeaderText;
+}) => <TableHeaderComponent {...props}>{label}</TableHeaderComponent>;
+
 const TableView = ({
   users,
   userInEditModeById,
@@ -46,10 +59,10 @@ const TableView = ({
     <Table responsive={true}>
       <thead>
         <TableRow>
-          <TableHeader>email</TableHeader>
-          <TableHeader width="20%">role</TableHeader>
-          <TableHeader width="15%">last sign in</TableHeader>
-          <TableHeader width="20%">actions</TableHeader>
+          <UsersTableHeader label="email" />
+          <UsersTableHeader label="role" width="20%" />
+          <UsersTableHeader label="last sign in" width="15%" />
+          <UsersTableHeader label="actions" width="20%" />
         </TableRow>
       </thead>
       <tbody>

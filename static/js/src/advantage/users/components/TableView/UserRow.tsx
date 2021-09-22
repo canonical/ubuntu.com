@@ -3,15 +3,14 @@ import { format } from "date-fns";
 import CSS from "csstype";
 import { Formik, Field } from "formik";
 
+import { Button, Select, TableRow } from "@canonical/react-components";
 import {
-  Button,
-  Select,
-  TableCell,
-  TableRow,
-} from "@canonical/react-components";
+  default as TableCellComponent,
+  TableCellProps,
+} from "@canonical/react-components/dist/components/TableCell";
 
 import { User, UserRole as UserRoleType } from "../../types";
-import { UserRowVariant } from "./TableView";
+import { UserHeaderText, UserRowVariant } from "./TableView";
 import { userRoleOptions } from "../../constants";
 
 const DATE_FORMAT = "dd/MM/yyyy";
@@ -90,6 +89,7 @@ const UserRole = ({ user, variant }: UserRoleProps) => {
           <Field
             as={Select}
             name="newUserRole"
+            aria-label="role"
             className="u-no-margin--bottom"
             options={userRoleOptions}
           />
@@ -130,6 +130,18 @@ const tdStyle = {
   verticalAlign: "middle",
 };
 
+const UserCell = ({
+  label,
+  children,
+  ...props
+}: TableCellProps & {
+  label: UserHeaderText;
+}) => (
+  <TableCellComponent aria-label={label} {...props}>
+    {children}
+  </TableCellComponent>
+);
+
 const UserRowEditable = ({
   user,
   dismissEditMode,
@@ -148,7 +160,7 @@ const UserRowEditable = ({
     >
       {({ handleSubmit, isSubmitting }) => (
         <TableRow>
-          <TableCell role="rowheader" style={tdStyle}>
+          <UserCell role="rowheader" style={tdStyle} label="email">
             <UserEmail
               user={user}
               variant="editing"
@@ -156,14 +168,14 @@ const UserRowEditable = ({
                 handleDeleteConfirmationModalOpen
               }
             />
-          </TableCell>
-          <TableCell style={tdStyle}>
+          </UserCell>
+          <UserCell style={tdStyle} label="role">
             <UserRole user={user} variant="editing" />
-          </TableCell>
-          <TableCell style={tdStyle}>
+          </UserCell>
+          <UserCell style={tdStyle} label="last sign in">
             <FormattedDate dateISO={user.lastLoginAt} />
-          </TableCell>
-          <TableCell style={tdStyle}>
+          </UserCell>
+          <UserCell style={tdStyle} label="actions">
             <Button small dense onClick={dismissEditMode}>
               Cancel
             </Button>
@@ -176,7 +188,7 @@ const UserRowEditable = ({
             >
               Save
             </Button>
-          </TableCell>
+          </UserCell>
         </TableRow>
       )}
     </Formik>
@@ -197,20 +209,20 @@ const UserRowNonEditable = ({
         opacity: variant === "disabled" ? 0.5 : 1,
       }}
     >
-      <TableCell role="rowheader" style={tdStyle}>
+      <UserCell role="rowheader" style={tdStyle} label="email">
         <UserEmail
           user={user}
           variant={variant}
           handleDeleteConfirmationModalOpen={handleDeleteConfirmationModalOpen}
         />
-      </TableCell>
-      <TableCell style={tdStyle}>
+      </UserCell>
+      <UserCell style={tdStyle} label="role">
         <UserRole user={user} variant={variant} />
-      </TableCell>
-      <TableCell style={tdStyle}>
+      </UserCell>
+      <UserCell style={tdStyle} label="last sign in">
         <FormattedDate dateISO={user.lastLoginAt} />
-      </TableCell>
-      <TableCell style={tdStyle}>
+      </UserCell>
+      <UserCell style={tdStyle} label="actions">
         <Button
           small
           dense
@@ -220,7 +232,7 @@ const UserRowNonEditable = ({
         >
           Edit
         </Button>
-      </TableCell>
+      </UserCell>
     </TableRow>
   );
 };
