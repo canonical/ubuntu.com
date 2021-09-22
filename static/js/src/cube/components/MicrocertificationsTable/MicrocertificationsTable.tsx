@@ -43,9 +43,11 @@ const TableView = () => {
             },
             {
               content: "Ubuntu System Architecture",
+              "aria-label": "Module",
             },
             {
               content: "Review and record relevant system information",
+              "aria-label": "Topics",
             },
             {
               content: (
@@ -55,6 +57,7 @@ const TableView = () => {
                 </>
               ),
               className: "p-table__cell--icon-placeholder",
+              "aria-label": "status",
             },
             {
               content: <Button appearance={"positive"}>Purchase</Button>,
@@ -77,13 +80,16 @@ const TableView = () => {
             },
             {
               content: "Ubuntu System Architecture",
+              "aria-label": "Module",
             },
             {
               content: "Review and record relevant system information",
+              "aria-label": "Topics",
             },
             {
               content: "Not Enrolled",
               className: "p-table__cell--icon-placeholder",
+              "aria-label": "status",
             },
             {
               content: <Button appearance={"positive"}>Purchase</Button>,
