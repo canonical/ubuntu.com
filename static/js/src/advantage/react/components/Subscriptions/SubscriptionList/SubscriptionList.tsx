@@ -5,6 +5,7 @@ import {
   selectUASubscriptions,
 } from "advantage/react/hooks/useUserSubscriptions";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import React from "react";
 import { SelectedId } from "../Content/types";
 
@@ -42,6 +43,11 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
       isSelected={selectedId === subscription.id}
       key={i}
       onClick={() => {
+        sendAnalyticsEvent({
+          eventCategory: "Advantage",
+          eventAction: "subscription-change",
+          eventLabel: "ua subscription clicked",
+        });
         onSetActive(subscription.id);
       }}
       subscription={subscription}
@@ -59,6 +65,11 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
               isSelected={selectedId === freeSubscription.id}
               onClick={() => {
                 onSetActive(freeSubscription.id);
+                sendAnalyticsEvent({
+                  eventCategory: "Advantage",
+                  eventAction: "subscription-change",
+                  eventLabel: "free subscription clicked",
+                });
               }}
               subscription={freeSubscription}
             />

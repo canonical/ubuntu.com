@@ -15,6 +15,7 @@ import { isFreeSubscription } from "advantage/react/utils";
 import ExpiryNotification from "../ExpiryNotification";
 import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 import { SelectedId } from "../Content/types";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 
 type Props = {
   modalActive?: boolean;
@@ -63,7 +64,17 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               <h2 className="p-modal__title p-subscriptions__details-title">
                 {isFree ? "Free Personal Token" : subscription.product_name}
               </h2>
-              <button className="p-modal__close" onClick={() => onCloseModal()}>
+              <button
+                className="p-modal__close"
+                onClick={() => {
+                  onCloseModal();
+                  sendAnalyticsEvent({
+                    eventCategory: "Advantage",
+                    eventAction: "subscription-modal-toggle",
+                    eventLabel: "subscription details modal closed",
+                  });
+                }}
+              >
                 Close
               </button>
             </header>
@@ -92,7 +103,13 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     className="p-subscriptions__details-action"
                     data-test="renew-button"
                     disabled={editing}
-                    onClick={() => setEditing(true)}
+                    onClick={() => {
+                      sendAnalyticsEvent({
+                        eventCategory: "Advantage",
+                        eventAction: "subscription-renewal-modal",
+                        eventLabel: "subscription renewal modal opened",
+                      });
+                    }}
                   >
                     Renew subscription&hellip;
                   </Button>
@@ -103,7 +120,14 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     className="p-subscriptions__details-action"
                     data-test="edit-button"
                     disabled={editing}
-                    onClick={() => setEditing(true)}
+                    onClick={() => {
+                      setEditing(true);
+                      sendAnalyticsEvent({
+                        eventCategory: "Advantage",
+                        eventAction: "subscription-resize-form",
+                        eventLabel: "resize form opened",
+                      });
+                    }}
                   >
                     Edit subscription&hellip;
                   </Button>
@@ -113,7 +137,14 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
           </div>
           {editing ? (
             <SubscriptionEdit
-              onClose={() => setEditing(false)}
+              onClose={() => {
+                setEditing(false);
+                sendAnalyticsEvent({
+                  eventCategory: "Advantage",
+                  eventAction: "subscription-resize-form",
+                  eventLabel: "resize form closed",
+                });
+              }}
               setNotification={setNotification}
               selectedId={selectedId}
               setShowingCancel={setShowingCancel}

@@ -8,6 +8,7 @@ import {
 } from "advantage/api/types";
 import { getFeaturesDisplay, isFreeSubscription } from "advantage/react/utils";
 import { EntitlementType } from "advantage/api/enum";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 
 enum ActiveTab {
   DOCUMENTATION = "documentation",
@@ -109,6 +110,14 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
   const isFree = isFreeSubscription(subscription);
   // Don't display any docs links for the free subscription.
   const docs = isFree ? [] : generateDocLinks(subscription.entitlements);
+  const setTab = (tab: ActiveTab) => {
+    setActiveTab(tab);
+    sendAnalyticsEvent({
+      eventCategory: "Advantage",
+      eventAction: "subscription-details-tab",
+      eventLabel: `subscription ${tab} tab clicked`,
+    });
+  };
   switch (activeTab) {
     case ActiveTab.DOCUMENTATION:
       content = (
@@ -187,13 +196,13 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
             active: activeTab === ActiveTab.FEATURES,
             "data-test": "features-tab",
             label: "Features",
-            onClick: () => setActiveTab(ActiveTab.FEATURES),
+            onClick: () => setTab(ActiveTab.FEATURES),
           },
           {
             active: activeTab === ActiveTab.DOCUMENTATION,
             "data-test": "docs-tab",
             label: "Documentation",
-            onClick: () => setActiveTab(ActiveTab.DOCUMENTATION),
+            onClick: () => setTab(ActiveTab.DOCUMENTATION),
           },
         ]}
       />

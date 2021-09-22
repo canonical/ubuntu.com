@@ -3,6 +3,7 @@ import React, { RefObject, useState } from "react";
 import { Formik } from "formik";
 
 import RenewalSettingsFields from "./RenewalSettingsFields";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 
 type Props = {
   positionNodeRef: RefObject<HTMLDivElement>;
@@ -15,7 +16,14 @@ const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
       constrainPanelWidth
       dropdownClassName="p-subscription__renewal-dropdown"
       hasToggleIcon
-      onToggleMenu={(isOpen) => setMenuOpen(isOpen)}
+      onToggleMenu={(isOpen) => {
+        setMenuOpen(isOpen);
+        sendAnalyticsEvent({
+          eventCategory: "Advantage",
+          eventAction: "subscription-auto-renewal-form",
+          eventLabel: `auto renewal dropdown ${isOpen ? "opened" : "closed"}`,
+        });
+      }}
       position="left"
       positionNode={positionNodeRef.current}
       toggleClassName="is-dense u-no-margin--bottom"
@@ -37,9 +45,16 @@ const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
           // TODO: use the initial value from the subscription.
           should_auto_renew: false,
         }}
-        onSubmit={() => {
+        onSubmit={({ should_auto_renew }) => {
           // TODO: Implement updating the renewal settings:
           // https://github.com/canonical-web-and-design/commercial-squad/issues/99
+          sendAnalyticsEvent({
+            eventCategory: "Advantage",
+            eventAction: "subscription-auto-renewal-form",
+            eventLabel: `auto renewal ${
+              should_auto_renew ? "enabled" : "disabled"
+            }`,
+          });
         }}
       >
         <RenewalSettingsFields setMenuOpen={setMenuOpen} />

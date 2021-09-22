@@ -12,6 +12,7 @@ import FormikField from "../../FormikField";
 import { SelectedId } from "../Content/types";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 
 type Props = {
   onClose: () => void;
@@ -57,6 +58,11 @@ const SubscriptionEdit = ({
         onSubmit={() => {
           // TODO: Implement updating the subscription:
           // https://github.com/canonical-web-and-design/commercial-squad/issues/113
+          sendAnalyticsEvent({
+            eventCategory: "Advantage",
+            eventAction: "subscription-resize-form",
+            eventLabel: "subscription resized",
+          });
         }}
       >
         {({ handleSubmit }) => (
@@ -106,7 +112,14 @@ const SubscriptionEdit = ({
                   appearance="link"
                   className="u-align-text--left"
                   data-test="cancel-button"
-                  onClick={() => showPortal(true)}
+                  onClick={() => {
+                    showPortal(true);
+                    sendAnalyticsEvent({
+                      eventCategory: "Advantage",
+                      eventAction: "subscription-cancel-form",
+                      eventLabel: "subscription cancel form opened",
+                    });
+                  }}
                   type="button"
                 >
                   You can cancel this subscription online or contact us.
