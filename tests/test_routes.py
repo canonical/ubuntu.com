@@ -145,16 +145,6 @@ class TestRoutes(VCRTestCase):
 
         self.assertEqual(self.client.get("/advantage").status_code, 200)
 
-        with self.client.session_transaction() as s:
-            s["openid"] = {
-                "fullname": "Joe Bloggs",
-                "email": "hello@example.com",
-            }
-            s["authentication_token"] = "test_token"
-
-        # if user has unauthorized token we remove the cookie and reload page
-        self.assertEqual(self.client.get("/advantage").status_code, 302)
-
     def test_ceph(self):
         """
         When given the ceph docs URL,
