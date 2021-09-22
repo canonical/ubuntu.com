@@ -105,4 +105,4 @@ production use.
 
 ## Further information
 
-- [Tigera Secure EE Homepage](https://www.tigera.io/tigera-secure-ee/)
+- [Tigera Secure EE Homepage](https://www.tigera.io/tigera-products/calico-enterprise/)
