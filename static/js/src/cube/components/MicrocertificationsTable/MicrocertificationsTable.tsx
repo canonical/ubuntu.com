@@ -37,7 +37,10 @@ const TableView = () => {
             },
             {
               content: (
-                <img src="https://assets.ubuntu.com/v1/9ef4a092-Architecture.svg" />
+                <img
+                  src="https://assets.ubuntu.com/v1/9ef4a092-Architecture.svg"
+                  alt=""
+                />
               ),
               className: "p-table--cube--grid__module-logo",
             },
@@ -74,7 +77,10 @@ const TableView = () => {
             },
             {
               content: (
-                <img src="https://assets.ubuntu.com/v1/c19e9931-Packages.svg" />
+                <img
+                  src="https://assets.ubuntu.com/v1/c19e9931-Packages.svg"
+                  alt=""
+                />
               ),
               className: "p-table--cube--grid__module-logo",
             },
