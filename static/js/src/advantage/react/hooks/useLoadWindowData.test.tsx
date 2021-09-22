@@ -7,12 +7,10 @@ import { useLoadWindowData } from "./useLoadWindowData";
 
 describe("useLoadWindowData", () => {
   beforeEach(() => {
-    window.pendingPurchaseId = "12345";
     window.stripePublishableKey = "12345";
   });
 
   afterEach(() => {
-    delete window.pendingPurchaseId;
     delete window.stripePublishableKey;
   });
 
@@ -24,6 +22,8 @@ describe("useLoadWindowData", () => {
     renderHook(() => useLoadWindowData(queryClient), {
       wrapper,
     });
-    expect(queryClient.getQueryData("pendingPurchaseId")).toBe("12345");
+    // TODO test that it fetches the stripe key:
+    // https://github.com/canonical-web-and-design/ubuntu.com/pull/10423
+    expect(queryClient.isFetching()).toBe(0);
   });
 });

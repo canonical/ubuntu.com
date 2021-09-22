@@ -18,6 +18,7 @@ export type UserSubscriptionEntitlement = {
 };
 
 export type UserSubscriptionStatuses = {
+  has_pending_purchases: boolean;
   is_cancellable: boolean;
   is_cancelled: boolean;
   is_downsizeable: boolean;
@@ -25,6 +26,7 @@ export type UserSubscriptionStatuses = {
   is_expiring: boolean;
   is_in_grace_period: boolean;
   is_renewable: boolean;
+  is_renewal_actionable: boolean;
   is_trialled: boolean;
   is_upsizeable: boolean;
 };

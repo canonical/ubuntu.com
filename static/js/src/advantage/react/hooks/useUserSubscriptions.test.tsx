@@ -80,6 +80,7 @@ describe("useUserSubscriptions", () => {
     );
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual({
+      has_pending_purchases: false,
       is_cancellable: false,
       is_cancelled: true,
       is_downsizeable: false,
@@ -87,6 +88,7 @@ describe("useUserSubscriptions", () => {
       is_expiring: false,
       is_in_grace_period: false,
       is_renewable: false,
+      is_renewal_actionable: false,
       is_trialled: false,
       is_upsizeable: true,
     });

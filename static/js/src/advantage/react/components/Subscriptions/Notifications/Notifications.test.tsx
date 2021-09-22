@@ -3,6 +3,10 @@ import { mount } from "enzyme";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import Notifications from "./Notifications";
+import {
+  userSubscriptionFactory,
+  userSubscriptionStatusesFactory,
+} from "advantage/tests/factories/api";
 
 describe("Notifications", () => {
   let queryClient: QueryClient;
@@ -12,7 +16,13 @@ describe("Notifications", () => {
   });
 
   it("displays a pending purchase notification", () => {
-    queryClient.setQueryData("pendingPurchaseId", "abc123");
+    queryClient.setQueryData("userSubscriptions", [
+      userSubscriptionFactory.build({
+        statuses: userSubscriptionStatusesFactory.build({
+          has_pending_purchases: true,
+        }),
+      }),
+    ]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
@@ -21,8 +31,14 @@ describe("Notifications", () => {
     expect(wrapper.find("[data-test='pendingPurchase']").exists()).toBe(true);
   });
 
-  it("does not display a pending purchase notification when there is no id", () => {
-    queryClient.setQueryData("pendingPurchaseId", null);
+  it("does not display a pending purchase notification when nothing is pending", () => {
+    queryClient.setQueryData("userSubscriptions", [
+      userSubscriptionFactory.build({
+        statuses: userSubscriptionStatusesFactory.build({
+          has_pending_purchases: false,
+        }),
+      }),
+    ]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <Notifications />
