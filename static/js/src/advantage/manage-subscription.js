@@ -2,6 +2,7 @@ import {
   cancelContract,
   getPurchase,
   resizeContract,
+  endTrial,
 } from "./contracts-api.js";
 
 const stripe = window.Stripe(window.stripePublishableKey);
@@ -531,4 +532,30 @@ const editButtons = document.querySelectorAll(".js-change-subscription-button");
 
 editButtons.forEach((button) => {
   button.addEventListener("click", handleChangeClick);
+});
+
+const endTrialButtons = document.querySelectorAll(".js-end-trial");
+const accountId = endTrialButtons[0].dataset.accountId;
+
+endTrialButtons.forEach((endTrialButton) => {
+  endTrialButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    endTrialButton.classList.add("is-processing");
+    endTrialButton.innerHTML =
+      '<i class="p-icon--spinner u-animation--spin is-light"></i>';
+    endTrialButton.setAttribute("disabled", "disabled");
+    endTrial(accountId)
+      .then((data) => {
+        if (data.errors) {
+          endTrialButton.innerHTML = "End trial";
+          endTrialButton.removeAttribute("disabled");
+          endTrialButton.setAttribute("class", "p-button--positive");
+        }
+      })
+      .catch(() => {
+        endTrialButton.innerHTML = "End trial";
+        endTrialButton.removeAttribute("disabled");
+        endTrialButton.setAttribute("class", "p-button--positive");
+      });
+  });
 });

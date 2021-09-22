@@ -334,3 +334,20 @@ export async function postFreeTrial({
   let data = await response.json();
   return data;
 }
+
+export async function endTrial(accountID) {
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+
+  let response = await fetch(`/advantage/trial/${accountID}${queryString}`, {
+    method: "DELETE",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+
+  let data = await response.json();
+  return data;
+}
