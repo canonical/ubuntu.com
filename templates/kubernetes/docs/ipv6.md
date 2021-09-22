@@ -35,7 +35,7 @@ first CIDR in the list being the preferred family for pods.
 For the Kubernetes master, the `service-cidr` configuration can contain two
 comma-separated values, with the first being the default family for services.
 
-Note that Kubernetes supports [explicitly setting the `IPFamily`][ip-family] for a
+Note that Kubernetes supports [explicitly setting the `ipFamilies`][ip-families] for a
 service when creating it.
 
 The following example shows how to deploy Charmed Kubernetes with IPv6 and dual-stack
@@ -99,7 +99,7 @@ metadata:
     run: nginxdualstack
 spec:
   type: NodePort
-  ipFamily: IPv6
+  ipFamilies: [IPv6]
   ports:
   - port: 80
     protocol: TCP
@@ -173,7 +173,7 @@ No additional issues with IPv6 on MAAS are known at this time.
 <!-- LINKS -->
 
 [dual-stack]: https://kubernetes.io/docs/concepts/services-networking/dual-stack/
-[ip-family]: https://kubernetes.io/docs/concepts/services-networking/dual-stack/#services
+[ip-families]: https://kubernetes.io/docs/concepts/services-networking/dual-stack/#services
 [asset-calico-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/calico-overlay.yaml
 [asset-ipv4-ipv6-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/ipv4-ipv6-overlay.yaml
 [asset-nginx-dual-stack]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/specs/nginx-dual-stack.yaml
