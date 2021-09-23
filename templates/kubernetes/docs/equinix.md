@@ -377,7 +377,7 @@ Hello Kubernetes!
 ```
 
 <!-- LINKS -->
-
+[Equinix Metal]: https://metal.equinix.com/
 [asset-equinix-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/equinix-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
