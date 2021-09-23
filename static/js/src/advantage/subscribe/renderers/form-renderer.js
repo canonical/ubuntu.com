@@ -163,6 +163,11 @@ function renderSummary(state) {
   );
   const billingSelect = summarySection.querySelector("select#billing-period");
   const buyButton = summarySection.querySelector("#buy-now-button");
+  const freeTrialHeader = document.querySelector(".js-free-trial-header");
+
+  if (getIsFreeTrialEnabled()) {
+    freeTrialHeader.classList.remove("u-hide");
+  }
 
   if (!state.product.ok || quantity <= 0) {
     summarySection.classList.add("p-shop-cart--hidden");
