@@ -167,8 +167,6 @@ function renderSummary(state) {
 
   if (getIsFreeTrialEnabled()) {
     freeTrialHeader.classList.remove("u-hide");
-  } else {
-    freeTrialHeader.classList.add("u-hide");
   }
 
   if (!state.product.ok || quantity <= 0) {
