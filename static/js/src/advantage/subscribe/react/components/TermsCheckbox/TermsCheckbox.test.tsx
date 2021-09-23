@@ -1,29 +1,22 @@
 import React from "react";
-import { shallow } from "enzyme";
-import FormRow from "./TermsCheckbox";
+import TermsCheckbox from "./TermsCheckbox";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-describe("FormRow", () => {
-  it("renders correctly", () => {
-    const wrapper = shallow(
-      <FormRow label="test-label">
-        <input type="text">test-input</input>
-      </FormRow>
-    );
+const label = <p>I agree to the terms and conditions</p>;
 
-    expect(wrapper.find("label").text()).toBe("test-label");
-    expect(wrapper.find("input").text()).toBe("test-input");
+describe("TermsCheckbox", () => {
+  it("displays the label", () => {
+    render(<TermsCheckbox label={label} setTermsChecked={() => {}} />);
+    screen.getByText("I agree to the terms and conditions");
   });
 
-  it("renders correctly with an error", () => {
-    const wrapper = shallow(
-      <FormRow label="test-label" error="test-error">
-        <input type="text" id="test-input">
-          Test
-        </input>
-      </FormRow>
+  it("calls the setTermsChecked function when the box is checked", () => {
+    const setTermsChecked = jest.fn();
+    render(<TermsCheckbox label={label} setTermsChecked={setTermsChecked} />);
+    userEvent.click(
+      screen.getByLabelText("I agree to the terms and conditions")
     );
-
-    expect(wrapper.find("label").text()).toBe("test-label");
-    expect(wrapper.find("#card-errors").text()).toBe("test-error");
+    expect(setTermsChecked).toHaveBeenCalledWith(true);
   });
 });
