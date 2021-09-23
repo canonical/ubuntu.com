@@ -4,17 +4,23 @@ import { useFormikContext } from "formik";
 import FormikField from "advantage/react/components/FormikField";
 
 type Props = {
-  setMenuOpen: (menuOpen: boolean) => void;
+  onCloseMenu: () => void;
+  loading?: boolean;
+  success?: boolean;
 };
 
-const RenewalSettingsFields = ({ setMenuOpen }: Props): JSX.Element => {
-  const { handleSubmit } = useFormikContext();
+const RenewalSettingsFields = ({
+  loading,
+  onCloseMenu,
+  success,
+}: Props): JSX.Element => {
+  const { dirty, handleSubmit, isValid } = useFormikContext();
   return (
     <form onSubmit={handleSubmit}>
       <FormikField
         label="Auto-renewal"
         labelClassName="u-no-margin--bottom"
-        name="should_auto_renew"
+        name="shouldAutoRenew"
         type="checkbox"
         wrapperClassName="u-sv4"
       />
@@ -23,12 +29,19 @@ const RenewalSettingsFields = ({ setMenuOpen }: Props): JSX.Element => {
           appearance="neutral"
           className="u-no-margin--bottom"
           data-test="cancel-button"
-          onClick={() => setMenuOpen(false)}
+          onClick={onCloseMenu}
           type="button"
         >
           Cancel changes
         </Button>
-        <ActionButton appearance="positive" className="u-no-margin--bottom">
+        <ActionButton
+          appearance="positive"
+          className="u-no-margin--bottom"
+          disabled={!dirty || !isValid}
+          loading={loading}
+          success={success}
+          type="submit"
+        >
           Save changes
         </ActionButton>
       </div>
