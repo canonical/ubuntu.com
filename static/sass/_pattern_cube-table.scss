@@ -1,3 +1,5 @@
+// legacy for reference
+// TODO delete when the react table is looking ok
 .p-table--cube {
   th,
   td {
@@ -131,5 +133,24 @@
   .p-share-button {
     margin-top: 0.5rem;
     position: relative;
+  }
+}
+
+// styles for the react table (don't delete those)
+.p-table--cube--grid {
+  @media only screen and (min-width: $breakpoint-medium) {
+    tr {
+      display: grid;
+      column-gap: 1rem;
+      grid-template-columns: 1.6rem 3rem 2fr 2fr 1fr 1fr;
+
+      td {
+        padding-top: 1rem;
+
+        &.p-table--cube--grid__module-logo {
+          padding: 0.5rem 0;
+        }
+      }
+    }
   }
 }
