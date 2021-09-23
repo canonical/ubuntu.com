@@ -44,10 +44,23 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const termsLabel = (
+    <>
+      I agree to the{" "}
+      <a
+        href="/legal/ubuntu-advantage-service-terms"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ubuntu Advantage service terms
+      </a>
+    </>
+  );
+
   return (
     <QueryClientProvider client={queryClient}>
       <Elements stripe={stripePromise}>
-        <PurchaseModal />
+        <PurchaseModal termsLabel={termsLabel} />
       </Elements>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

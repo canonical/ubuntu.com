@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Row,
-  Col,
-  ActionButton,
-  CheckboxInput,
-} from "@canonical/react-components";
+import { Row, Col, ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
 import { useFormikContext } from "formik";
 
@@ -21,17 +16,19 @@ import ModalBody from "../ModalParts/ModalBody";
 import ModalFooter from "../ModalParts/ModalFooter";
 import Summary from "../../components/Summary";
 import FreeTrialRadio from "../../components/FreeTrialRadio";
+import TermsCheckbox from "../../components/TermsCheckbox";
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 import { getSessionData } from "../../../../../utils/getSessionData";
 import { FormValues, getIsFreeTrialEnabled } from "../../utils/utils";
 
 type StepOneProps = {
+  termsLabel: React.ReactNode;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   error: React.ReactNode | null;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 };
 
-function StepOne({ setStep, error, setError }: StepOneProps) {
+function StepOne({ termsLabel, setStep, error, setError }: StepOneProps) {
   const { values } = useFormikContext<FormValues>();
   const [areTermsChecked, setTermsChecked] = useState(false);
   const {
@@ -253,28 +250,7 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
             trialNotAvailable()
           )}
           <PaymentMethodSummary setStep={setStep} />
-          <Row className="u-no-padding">
-            <Col size={12}>
-              <CheckboxInput
-                name="TermsCheckbox"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setTermsChecked(e.target.checked);
-                }}
-                label={
-                  <>
-                    I agree to the{" "}
-                    <a
-                      href="/legal/ubuntu-advantage-service-terms"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Ubuntu Advantage service terms
-                    </a>
-                  </>
-                }
-              />
-            </Col>
-          </Row>
+          <TermsCheckbox label={termsLabel} setTermsChecked={setTermsChecked} />
         </>
       </ModalBody>
 

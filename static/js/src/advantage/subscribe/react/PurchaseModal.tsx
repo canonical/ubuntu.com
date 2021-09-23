@@ -11,7 +11,11 @@ import { getUserInfoFromVariables, getInitialFormValues } from "./utils/utils";
 import StepOne from "./components/ModalSteps/StepOne";
 import StepTwo from "./components/ModalSteps/StepTwo";
 
-const PurchaseModal = () => {
+type Props = {
+  termsLabel: React.ReactNode;
+};
+
+const PurchaseModal = ({ termsLabel }: Props) => {
   const [error, setError] = useState(null);
   const { data: userInfo } = useStripeCustomerInfo();
   const { product, quantity } = useProduct();
@@ -97,7 +101,12 @@ const PurchaseModal = () => {
         {step === 1 ? (
           <StepOne error={error} />
         ) : (
-          <StepTwo setStep={setStep} error={error} setError={setError} />
+          <StepTwo
+            termsLabel={termsLabel}
+            setStep={setStep}
+            error={error}
+            setError={setError}
+          />
         )}
       </>
     </Formik>
