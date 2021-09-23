@@ -3,7 +3,6 @@ import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "./APICalls/useStripeCustomerInfo";
 import registerPaymentMethod from "./APICalls/registerPaymentMethod";
 import { Formik } from "formik";
-import useProduct from "./APICalls/useProduct";
 import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../../error-handler";
 import { checkoutEvent } from "../../ecom-events";
@@ -13,12 +12,19 @@ import StepTwo from "./components/ModalSteps/StepTwo";
 
 type Props = {
   termsLabel: React.ReactNode;
+  product: any;
+  quantity: number;
+  closeModal: () => void;
 };
 
-const PurchaseModal = ({ termsLabel }: Props) => {
+const PurchaseModal = ({
+  termsLabel,
+  product,
+  quantity,
+  closeModal,
+}: Props) => {
   const [error, setError] = useState(null);
   const { data: userInfo } = useStripeCustomerInfo();
-  const { product, quantity } = useProduct();
   const [step, setStep] = useState(
     userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
   );
@@ -43,7 +49,7 @@ const PurchaseModal = ({ termsLabel }: Props) => {
 
   const onSubmit = (values, actions) => {
     setError(null);
-    checkoutEvent(GAFriendlyProduct, 2);
+    checkoutEvent(GAFriendlyProduct, "2");
     paymentMethodMutation.mutate(values, {
       onSuccess: (data, variables) => {
         window.accountId = data.accountId;
@@ -57,34 +63,35 @@ const PurchaseModal = ({ termsLabel }: Props) => {
         actions.setSubmitting(false);
       },
       onError: (error) => {
-        if (error.message === "email_already_exists") {
-          setError(
-            <>
-              An Ubuntu One account with this email address exists. Please{" "}
-              <a href="/login">sign in</a> to your account first.
-            </>
-          );
-        } else {
-          const errorMessage = getErrorMessage({
-            message: "",
-            code: error.message,
-          });
-
-          // Tries to match the error with a known error code and defaults to a generic error if it fails
-          if (errorMessage) {
-            setError(errorMessage);
-          } else {
-            Sentry.captureException(error);
+        if (error instanceof Error)
+          if (error.message === "email_already_exists") {
             setError(
               <>
-                Sorry, there was an unknown error with your credit card. Check
-                the details and try again. Contact{" "}
-                <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
-                the problem persists.
+                An Ubuntu One account with this email address exists. Please{" "}
+                <a href="/login">sign in</a> to your account first.
               </>
             );
+          } else {
+            const errorMessage = getErrorMessage({
+              message: "",
+              code: error.message,
+            });
+
+            // Tries to match the error with a known error code and defaults to a generic error if it fails
+            if (errorMessage) {
+              setError(errorMessage);
+            } else {
+              Sentry.captureException(error);
+              setError(
+                <>
+                  Sorry, there was an unknown error with your credit card. Check
+                  the details and try again. Contact{" "}
+                  <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
+                  the problem persists.
+                </>
+              );
+            }
           }
-        }
 
         actions.setSubmitting(false);
       },
@@ -99,13 +106,14 @@ const PurchaseModal = ({ termsLabel }: Props) => {
     >
       <>
         {step === 1 ? (
-          <StepOne error={error} />
+          <StepOne error={error} closeModal={closeModal} />
         ) : (
           <StepTwo
             termsLabel={termsLabel}
             setStep={setStep}
             error={error}
             setError={setError}
+            closeModal={closeModal}
           />
         )}
       </>

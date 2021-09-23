@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import PurchaseModal from "./PurchaseModal";
+import UAPurchase from "./UAPurchase";
 
 declare global {
   interface Window {
@@ -44,23 +44,10 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const termsLabel = (
-    <>
-      I agree to the{" "}
-      <a
-        href="/legal/ubuntu-advantage-service-terms"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Ubuntu Advantage service terms
-      </a>
-    </>
-  );
-
   return (
     <QueryClientProvider client={queryClient}>
       <Elements stripe={stripePromise}>
-        <PurchaseModal termsLabel={termsLabel} />
+        <UAPurchase />
       </Elements>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

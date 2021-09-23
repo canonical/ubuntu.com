@@ -26,9 +26,16 @@ type StepOneProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   error: React.ReactNode | null;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  closeModal: () => void;
 };
 
-function StepOne({ termsLabel, setStep, error, setError }: StepOneProps) {
+function StepOne({
+  termsLabel,
+  setStep,
+  error,
+  setError,
+  closeModal,
+}: StepOneProps) {
   const { values } = useFormikContext<FormValues>();
   const [areTermsChecked, setTermsChecked] = useState(false);
   const {
@@ -254,7 +261,7 @@ function StepOne({ termsLabel, setStep, error, setError }: StepOneProps) {
         </>
       </ModalBody>
 
-      <ModalFooter>
+      <ModalFooter closeModal={closeModal}>
         <ActionButton
           className="col-small-2 col-medium-2 col-3 u-no-margin"
           appearance="positive"
