@@ -78,21 +78,6 @@
   {% if not(hide_nav == True) %}
     {% include "templates/_navigation.html" %}
   {% endif %}
-  <div class="p-strip is-shallow u-no-padding--bottom" id="success">
-    <div class="row">
-      <div class="p-notification--positive">
-        <p class="p-notification__response">Submittion was successful.</p>
-      </div>
-    </div>
-  </div>
-  <style>
-    #success {
-      display: none;
-    }
-    #success:target {
-      display: block;
-    }
-  </style>
 
   <div class="wrapper u-no-margin--top">
     <div id="main-content" class="inner-wrapper">
