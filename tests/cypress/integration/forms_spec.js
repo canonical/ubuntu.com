@@ -15,13 +15,13 @@ const getIframeBody = () => {
 context("Marketo forms", () => {
   beforeEach(() => {
     cy.intercept(
-      { method: "POST", url: "/marketo/submit", },
+      { method: "POST", url: "/marketo/submit" },
       {
-          headers: {
-          "Client Id": Cypress.env("Client Id"),
-          "Client Secret": Cypress.env("Client Secret"),
-          "Authorized User": Cypress.env("Authorized User"),
-          "Token": Cypress.env("Token"),
+        headers: {
+          "Client Id": Cypress.env("MARKETO_CLIENT_ID"),
+          "Client Secret": Cypress.env("MARKETO_CLIENT_SECRET"),
+          "Authorized User": Cypress.env("MARKETO_AUTHORISED_USER"),
+          Token: Cypress.env("MARKETO_TOKEN"),
         },
       }
     ).as("captureLead");
