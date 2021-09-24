@@ -1,0 +1,54 @@
+{% extends "contact-us/base_contact-us.html" %}
+
+{% block title %}Thank you{% endblock %}
+{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1uNruzpoTYxhrCJDxB0q_FH8z8YFs8w_m02fckevjFrU/edit{% endblock meta_copydoc %}
+{% block canonical_url %}https://ubuntu.com/contact-us/form{% endblock %}
+
+{% block content %}
+<section class="p-strip is-deep is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h1>Thanks for getting in touch</h1>
+      <h2 class="p-heading--three">Your submittion was successful.</h2>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg",
+          alt="",
+          height="200",
+          width="200",
+          loading="auto",
+          hi_def=True
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h3>More about our enterprise services</h3>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h4 class="p-heading--three">Ubuntu Advantage</h4>
+      <p>Purchase our desktop support and access Ubuntu experts whenever you need.</p>
+      <p><a href="/support">Learn about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h4 class="p-heading--three">Ubuntu OpenStack</h4>
+      <p>Our OpenStack-based public and private cloud platform.<br/><br/></p>
+      <p><a href="/openstack">Learn about Ubuntu OpenStack&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h4 class="p-heading--three">Explore snapcraft.io</h4>
+      <p>Where vendors and the open source community collaborate to deliver great software, securely, to a wide range of devices and cloud.</p>
+      <p><a href="https://snapcraft.io" class="p-link--external">Visit snapcraft.io</a></p>
+    </div>
+  </div>
+</section>
+{% endblock content %}
