@@ -25,22 +25,22 @@ let entries = {
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
 };
 
+const isDev = process && process.env && process.env.NODE_ENV === "development";
+
 for (const [key, value] of Object.entries(entries)) {
   const options = {
     entryPoints: [value],
     bundle: true,
-    minify: true,
-    sourcemap: true,
+    minify: isDev ? false : true,
+    sourcemap: isDev ? false : true,
     outfile: "static/js/dist/" + key + ".js",
     target: ["chrome58", "firefox57", "safari11", "edge16"],
     define: {
       "process.env.NODE_ENV":
         // Explicitly check for 'development' so that this defaults to
         // 'production' in all other cases.
-        process && process.env && process.env.NODE_ENV === "development"
-          ? '"development"'
-          : '"production"'
-    }
+        isDev ? '"development"' : '"production"',
+    },
   };
 
   esbuild
