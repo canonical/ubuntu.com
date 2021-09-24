@@ -6,7 +6,7 @@ context("Advantage", () => {
   it("should display the modal when pressing 'Buy now'", () => {
     cy.visit(getTestURL("/advantage/subscribe"));
     cy.findByText("Accept all and visit site").click();
-    cy.findByText("Complete purchase").should("not.be.visible");
+    cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
     cy.findByLabelText(/Software and security updates only/).click({
       // Need to use { force: true } because the actual input element (radio button)
@@ -15,6 +15,6 @@ context("Advantage", () => {
       force: true,
     });
     cy.findByText("Buy now").click();
-    cy.findByText("Complete purchase").should("be.visible");
+    cy.findByRole("dialog").should("be.visible");
   });
 });
