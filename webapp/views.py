@@ -922,4 +922,4 @@ def marketo_submit():
     if return_url:
         return flask.redirect(return_url)
 
-    return flask.redirect(referrer + "#success")
+    return flask.redirect("/thank-you")
