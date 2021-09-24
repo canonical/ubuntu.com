@@ -2,34 +2,32 @@ import React, { PropsWithChildren } from "react";
 import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
 import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { useCancelContract } from "./useCancelContract";
+import { useResizeContract } from "./useResizeContract";
 
 import * as contracts from "advantage/api/contracts";
 import {
   lastPurchaseIdsFactory,
-  userInfoFactory,
   userSubscriptionFactory,
 } from "advantage/tests/factories/api";
 import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 
-describe("useCancelContract", () => {
-  let cancelContractSpy: jest.SpyInstance;
+describe("useResizeContract", () => {
+  let resizeContractSpy: jest.SpyInstance;
   let queryClient: QueryClient;
   let wrapper: WrapperComponent<ReactNode>;
   let subscription: UserSubscription;
   let lastPurchaseIds: LastPurchaseIds;
 
   beforeEach(() => {
-    cancelContractSpy = jest.spyOn(contracts, "cancelContract");
-    cancelContractSpy.mockImplementation(() => Promise.resolve({}));
+    resizeContractSpy = jest.spyOn(contracts, "resizeContract");
+    resizeContractSpy.mockImplementation(() => Promise.resolve({}));
     lastPurchaseIds = lastPurchaseIdsFactory.build();
     subscription = userSubscriptionFactory.build({
-      period: UserSubscriptionPeriod.Monthly,
+      period: UserSubscriptionPeriod.Yearly,
     });
     queryClient = new QueryClient();
     queryClient.setQueryData("userSubscriptions", [subscription]);
-    queryClient.setQueryData("userInfo", userInfoFactory.build());
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
       lastPurchaseIds
@@ -42,60 +40,59 @@ describe("useCancelContract", () => {
 
   it("can make the cancel request", async () => {
     const { result, waitForNextUpdate } = renderHook(
-      () => useCancelContract(subscription),
+      () => useResizeContract(subscription),
       { wrapper }
     );
-    result.current.mutate(null);
+    result.current.mutate(2);
     await waitForNextUpdate();
-    expect(cancelContractSpy).toHaveBeenCalledWith(
+    expect(resizeContractSpy).toHaveBeenCalledWith(
       subscription.account_id,
-      lastPurchaseIds.monthly,
-      subscription.listing_id
+      lastPurchaseIds.yearly,
+      subscription.listing_id,
+      2,
+      UserSubscriptionPeriod.Yearly
     );
   });
 
   it("handles errors", async () => {
-    cancelContractSpy.mockImplementation(() =>
+    resizeContractSpy.mockImplementation(() =>
       Promise.resolve({
         errors: "Uh oh",
       })
     );
     const onError = jest.fn();
     const { result, waitForNextUpdate } = renderHook(
-      () => useCancelContract(subscription),
+      () => useResizeContract(subscription),
       { wrapper }
     );
-    result.current.mutate(null, {
+    result.current.mutate(2, {
       onError: (error) => onError(error.message),
     });
     await waitForNextUpdate();
     expect(onError).toHaveBeenCalledWith("Uh oh");
   });
 
-  it("invalidates queries when successful", async () => {
+  it("invalidates the purchase ids when there is an error", async () => {
+    resizeContractSpy.mockImplementation(() =>
+      Promise.resolve({
+        errors: "Uh oh",
+      })
+    );
     const { result, waitForNextUpdate } = renderHook(
-      () => useCancelContract(subscription),
+      () => useResizeContract(subscription),
       { wrapper }
     );
-    let userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
-    let userInfoState = queryClient.getQueryState("userInfo");
     let lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
     ]);
-    expect(userSubscriptionsState?.isInvalidated).toBe(false);
-    expect(userInfoState?.isInvalidated).toBe(false);
     expect(lastPurchaseIdsState?.isInvalidated).toBe(false);
-    result.current.mutate(null);
+    result.current.mutate(2);
     await waitForNextUpdate();
-    userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
-    userInfoState = queryClient.getQueryState("userInfo");
     lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
     ]);
-    expect(userSubscriptionsState?.isInvalidated).toBe(true);
-    expect(userInfoState?.isInvalidated).toBe(true);
     expect(lastPurchaseIdsState?.isInvalidated).toBe(true);
   });
 });

@@ -11,7 +11,7 @@ const requires3DSCheck = (pi_decline_code, pi_status, pi_secret) => {
 };
 
 const usePendingPurchase = () => {
-  const [pendingPurchaseID, setPendingPurchaseID] = useState();
+  const [pendingPurchaseID, setPendingPurchaseID] = useState("");
 
   const stripe = useStripe();
 
