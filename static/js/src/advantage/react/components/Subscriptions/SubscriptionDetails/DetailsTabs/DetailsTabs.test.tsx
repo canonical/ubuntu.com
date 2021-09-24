@@ -73,6 +73,42 @@ describe("DetailsTabs", () => {
     expect(docsLinks.at(0).text()).toBe("ESM Infra & ESM Apps");
   });
 
+  it("reorders FIPS, CC-EAL, and CIS to the end", () => {
+    subscription = userSubscriptionFactory.build({
+      entitlements: [
+        userSubscriptionEntitlementFactory.build({
+          enabled_by_default: true,
+          type: EntitlementType.EsmApps,
+        }),
+        userSubscriptionEntitlementFactory.build({
+          enabled_by_default: true,
+          type: EntitlementType.Fips,
+        }),
+        userSubscriptionEntitlementFactory.build({
+          enabled_by_default: true,
+          type: EntitlementType.CcEal,
+        }),
+        userSubscriptionEntitlementFactory.build({
+          enabled_by_default: true,
+          type: EntitlementType.Cis,
+        }),
+        userSubscriptionEntitlementFactory.build({
+          enabled_by_default: true,
+          type: EntitlementType.Livepatch,
+        }),
+      ],
+    });
+    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    // Switch to the docs tab:
+    wrapper.find("[data-test='docs-tab']").simulate("click");
+    const docsLinks = wrapper.find("[data-test='doc-link']");
+    expect(docsLinks.at(0).text()).toBe("ESM Infra & ESM Apps");
+    expect(docsLinks.at(1).text()).toBe("Livepatch");
+    expect(docsLinks.at(2).text()).toBe("FIPS setup instructions");
+    expect(docsLinks.at(3).text()).toBe("CC-EAL2 setup instructions");
+    expect(docsLinks.at(4).text()).toBe("CIS setup instructions");
+  });
+
   it("can display a contract token", () => {
     const wrapper = mount(
       <DetailsTabs
