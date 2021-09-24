@@ -19,6 +19,7 @@ module.exports = async (on, config) => {
         await page.type("#id_email", username); // Insert username in form
         await page.type("#id_password", password); // Insert password
         await page.click('button[type="submit"]'); // Click login button
+        await page.waitForNavigation({ waitUntil: "networkidle2" });
         await page.click('button[type="submit"]'); // Click "Yes, log me in"
 
         await page.waitForNavigation({ waitUntil: "networkidle2" });
