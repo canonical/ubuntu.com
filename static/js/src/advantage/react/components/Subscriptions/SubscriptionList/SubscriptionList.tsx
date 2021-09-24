@@ -58,12 +58,16 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
-        <ListGroup
-          title="Ubuntu Advantage"
-          showRenewalSettings={userInfo?.has_monthly_subscription}
-        >
-          {uaSubscriptions}
-        </ListGroup>
+        {sortedUASubscriptions.length ? (
+          <ListGroup
+            data-test="ua-subscriptions-group"
+            title="Ubuntu Advantage"
+            showRenewalSettings={userInfo?.has_monthly_subscription}
+          >
+            {uaSubscriptions}
+          </ListGroup>
+        ) : null}
+
         {freeSubscription ? (
           <ListGroup title="Free personal token" showRenewalSettings={false}>
             <ListCard
