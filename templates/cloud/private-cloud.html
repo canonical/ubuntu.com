@@ -1,0 +1,461 @@
+{% extends "cloud/_base-cloud.html" %}
+
+{% block title %}What is private cloud?{% endblock %}
+
+{% block meta_description %}Private cloud is a cloud computing environment that is exclusively dedicated to a single entity or a service. Private clouds prove to be more cost-effective than public clouds when running workloads in the long term and at scale.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/19g24YRYzF5dBpUKI1QzTG7fXKj1z0OvwgFll69dFoOs/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-bottomed">
+  <div class="row">
+    <div class="col-7">
+      <h1>What is private cloud?</h1>
+      <p>Private cloud is a cloud computing environment that is exclusively dedicated to a single entity or a service. It runs on the organisation's premises or in an external data centre. It is managed by the organisation's operations team or a managed service provider.</p>
+      <p>Private clouds prove to be more cost-effective than public clouds when running workloads in the long term and at scale. They are a building block in hybrid cloud and multi-cloud architectures, enabling bare metal, virtualisation, storage, container and serverless services.</p>
+      <p>
+        <a href="/openstack">Build cost-effective private cloud on Ubuntu&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-hide--small u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c5b21ec2-Private+Cloud.svg",
+        alt="Private Cloud",
+        width="324",
+        height="237",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <h2>How does a private<br/>cloud work?</h2>
+      <h4>Like other cloud architectures, a private cloud enables on-demand resource provisioning through a self-service portal. This improves developers' agility and simplifies the data centre management process.</h4>
+    </div>
+    <div class="col-7">
+      <p><a href="/openstack/what-is-openstack">Private cloud software</a> manages compute, network and storage resources that are available on individual servers, but are distributed across the entire data centre, aggregates them into pools and uses virtualisation technology to divide them into virtual resources that are then allocated to virtual machines (VMs). By adding a <a href="/kubernetes/what-is-kubernetes">containerisation layer</a> on the top, organisations can also provision containerised workloads on-demand.</p>
+      <p>With the private cloud, all resources are available exclusively to a single entity or a service. They are not shared with other tenants, resulting in increased resource availability. Moreover, during heavy load periods private cloud can dynamically scale-out, providing the required number of resources. The private cloud software can either be installed on the existing servers in the data centre or a completely new infrastructure built solely for the purpose of the private cloud implementation project.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <h2>Public cloud vs<br/> private cloud</h2>
+      <h4>In principle, the main difference between private and public clouds is in their tenancy model.</h4>
+    </div>
+    <div class="col-7">
+      <p>While private cloud is a single-tenant environment where all resources are available to a single entity or a service, public cloud is a multi-tenant environment where all resources are shared among various tenants (various organisations, services or end users) who typically do not know each other at all.</p>
+      <p>Another significant difference is in the <a href="/engage/cloud-pricing-report-2021">total cost of ownership (TCO)</a>. As public clouds implement so-called pay-as-you-go (PAYG) billing, they tend to be more economical in the short term and on a small scale. However, once the number of workloads continues to grow, their costs grow too, leading to an inflation of TCO. Thus, using a <a href="/openstack">cost-effective private cloud</a> as an extension of the public cloud infrastructure in a <a href="/cloud/hybrid-cloud">hybrid cloud architecture</a> is key to achieving infrastructure cost optimisation.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Private cloud benefits</h2>
+      <p class="u-sv3">The main benefit of a private cloud is better economics compared to public clouds when running workloads long term and at scale. <a href="/openstack/consulting">Well-designed private cloud</a> provides the same capabilities as leading public cloud providers, while advancing on other fronts. Those include:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d399db60-save-money.svg",
+        alt="Long-term cost savings",
+        width="64",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Long-term cost savings</h4>
+      <p class="u-sv3">While building a private cloud infrastructure requires significant upfront costs, this investment pays off after a couple of years. Even with dozens of lightweight VMs</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/49761812-Budgeting.svg",
+        alt="monitoring",
+        width="64",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Predictable pricing</h4>
+      <p class="u-sv3">Due to various additional charges, public cloud pricing is totally unpredictable. At the same time, private cloud pricing is usually fully transparent, enabling predictable budgeting.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/3328b4a0-Cloud-VMs.svg",
+        alt="Cloud VMs",
+        width="112",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Increased performance</h4>
+      <p class="u-sv3">As private clouds usually run on an organisation's premises and there is no resource sharing, they usually provide better performance compared to public cloud infrastructure.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/89024427-Developer-convenience-2.svg",
+        alt="Developer convenience",
+        width="112",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Architectural freedom</h4>
+      <p class="u-sv3">When building a private cloud, the organisation decides which hardware and software to use, resulting in increased flexibility and architectural freedom.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ad33af0c-Shield.svg",
+        alt="Shield",
+        width="64",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Security and compliance</h4>
+      <p class="u-sv3">While public clouds are usually considered more secure than private clouds, in some cases having full control over the underlying infrastructure helps organisations to meet their <a href="/security/certifications">compliance regulations</a>.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Private cloud challenges</h2>
+      <p class="u-sv3">While private clouds bring a number of benefits to organisations, implementing a private cloud infrastructure entails a number of challenges. Those include:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+    <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/cf1b8768-FinancialServicesPage-ImpactFinServ_2020.svg",
+        alt="High CapEx cost",
+        width="111",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>High CapEx cost</h4>
+      <p>Due to significant hardware and software costs, private clouds are not as attractive on day 0 as public clouds. Their cost benefits come later. To deal with that, organisations should always <a href="/openstack">design the private cloud for price-performance</a>. <a href="/openstack/install">Start small</a> and evolve according to your needs.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5eebb138-Servers.svg",
+        alt="Servers",
+        width="143",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Capacity management</h4>
+      <p>In a private cloud environment, organisations are responsible for capacity management to ensure the desired resource consumption. This creates an additional overhead on the internal cloud operations team. Using a <a href="/openstack/features">proper observability stack</a> ensures constant private cloud monitoring and proactive capacity management.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/0714f018-VMware-migration.svg",
+        alt="On-demand scalability",
+        width="64",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>On-demand scalability</h4>
+      <p>when a private cloud is running out of resources, it can dynamically scale out as long as additional resources are available in the data centre. In the absence of these resources, it may take a while due to the long time of the procurement process.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <h2>Is private cloud right<br/> for you?</h2>
+      <h4>The decision whether to host cloud workloads in a public cloud or in a private cloud is usually driven by economics.</h4>
+    </div>  
+    <div class="col-7">
+      <p>While public clouds provide an immediate access to the infrastructure-as-a-service (IaaS) offering with no upfront costs, their TCO can grow very fast depending on the number of workloads and the timeframe.</p>
+      <p>On the other hand, private clouds prove to be more cost-effective when running workloads long term and at scale, but they require significant upfront investments. Therefore, using a <a href="/cloud/hybrid-cloud">hybrid cloud architecture</a> is usually the way to achieve infrastructure cost optimisation.</p>
+      <p><a href="/openstack/tco-calculator">Get cost estimates for an enterprise private cloud on Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Private cloud use cases</h2>
+      <p>Among hundreds of possibilities, typical private cloud use cases include:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-3">
+      <ul class="p-list u-no-margin--bottom">
+        <li class="p-list__item u-sv1"><a href="/telco">Telco NFV&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="/server/docs/databases-introduction">Databases&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="/kubeflow">AI/ML&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="/server/docs/web-servers-introduction">Web applications&nbsp;&rsaquo;</a></li>
+      </ul>
+    </div>
+    <div class="col-3">
+      <ul class="p-list u-no-margin--bottom">
+        <li class="p-list__item u-sv1"><a href="/kubernetes">Kubernetes&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="/blog/data-lake-data-lab-data-hub-whats-the-difference">Data warehouses&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="/blog/data-ops-at-petabyte-scale">Big data analytics&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="https://www.ubuntupit.com/best-linux-media-server-software/" class="p-link--external">Media streaming</a></li>
+      </ul>
+    </div>
+    <div class="col-3">
+      <ul class="p-list u-no-margin--bottom">
+        <li class="p-list__item u-sv1"><a href="/blog/getting-started-with-knative-1">Serverless&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="/engage/data-lake_2_server_webinar">Data lakes&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="/engage/devops-cicd-webinar">CI/CD&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="https://www.linuxlinks.com/best-free-linux-video-converters/" class="p-link--external">Video transcoding</a></li>
+      </ul>
+    </div>
+    <div class="col-3">
+      <ul class="p-list u-no-margin--bottom">
+        <li class="p-list__item u-sv1"><a href="/blog/data-centre-automation-for-hpc">High performance computing&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="/ceph">Cloud storage&nbsp;&rsaquo;</a></li>
+        <li class="p-list__item u-sv1"><a href="https://microstack.run" class="p-link--external">Developer VMs</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Private cloud architecture</h2>
+      <p class="u-sv3">Private cloud architecture does not differ much from the architecture used by public clouds. In practice, private clouds resemble public cloud behaviour. They provide centralised management capabilities over compute, network and storage resources distributed across the data centre and enable on-demand provisioning of virtualised resources through a self-service portal. To fulfill this role, private clouds leverage the following technologies:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/3328b4a0-Cloud-VMs.svg",
+          alt="Cloud VMs",
+          width="112",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        </div>
+        <h4>Virtualisation</h4>
+        <p class="u-sv3">Provides a layer of abstraction over pools of physical resources and enables dynamic allocation of chunks of those resources into VMs and containers.</p>
+        <p><a href="/server/docs/virtualization-introduction">More about virtualisation&nbsp;&rsaquo;</a></p>
+      </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ada1d5b5-operate.svg",
+        alt="Management software",
+        width="98",
+        height="64",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+      </div>
+      <h4>Management software</h4>
+      <p>Enables organisations with centralised management capabilities of both the underlying infrastructure and workloads and handles provisioning, scheduling and termination tasks.</p>
+      <p><a href="/openstack/what-is-openstack">More about management software&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/f84b4cec-robot-arm.svg",
+          alt="Automation",
+          width="64",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Automation</h4>
+      <p>Allows repetitive execution of complex tasks that would normally have to be performed manually, making private cloud faster, more reliable, and more flexible than <a href="/engage/vmware-to-charmed-openstack">traditional virtualisation environments</a>.</p>
+      <p><a href="https://juju.is" class="p-link--external">More about automation</a></p>
+    </div>
+    <p>
+      In addition, private cloud users can extend their infrastructure with <a href="https://maas.io" class="p-link--external">bare metal provisioning</a>, <a href="/ceph">object storage</a> and <a href="/kubernetes">container coordination</a> capabilities to increase their agility and improve data resiliency.
+    </p>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Types of private cloud</h2>
+      <p class="u-sv3">Depending on where the private cloud runs and who manages it, the following types of private cloud can be distinguished:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+          alt="On-prem",
+          width="53",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        </div>
+        <h4>On-prem</h4>
+        <p class="u-sv3">Private cloud &mdash; in this case the cloud is deployed on the organisation's premises, inside their own data centre. The customer provides hardware and hosting facilities, and usually takes care of the private cloud maintenance and operations. On-prem private clouds are best for big enterprises who have existing physical infrastructure and enough human resources to manage the cloud.</p>
+        <p><a href="/openstack">More about on-prem cloud&nbsp;&rsaquo;</a></p>
+      </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c5b21ec2-Private+Cloud.svg",
+        alt="Hosted",
+        width="88",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Hosted</h4>
+      <p class="u-sv3">Private cloud &mdash; in this case the private cloud runs in a data centre that is outside the organisation's facilities. The customer is still responsible for providing the hardware, but all hosting facilities (space, electricity, cooling, etc.) are delivered by the service provider. Hosted private clouds are best for organisations who do not have their own data centre and are not going to build one in the foreseeable future.</p>
+      <p><a href="/engage/private-cloud-cost-analysis-webinar">More about hosted cloud&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/3b176ef1-managed-private-cloud.svg",
+          alt="Managed",
+          width="64",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Managed</h4>
+      <p>Private cloud &mdash; the private cloud is fully managed by a third party organisation (aka managed service provider). The customer provides the hardware, but cloud operations and maintenance tasks are outsourced. The cloud can either run on the organisation's premises or in the managed service provider data centre. Managed private clouds prove to be more economical for up to hundreds of nodes, because they do not require hiring a dedicated operations team.</p>
+      <p><a href="/openstack/managed">More about managed cloud&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>How to build a private cloud?</h2>
+      <p class="u-sv3">Building a private cloud usually entails a number of challenges:</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="p-card col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
+          alt="Cloud",
+          width="61",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p><a href="/openstack/compare">What private cloud platform to standardise on?</a></p>
+    </div>
+    <div class="p-card col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
+          alt="Hardware",
+          width="51",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p><a href="/certified">What hardware to choose?</a></p>
+    </div>
+    <div class="p-card col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/23cbb344-Design.png",
+          alt="Architecture",
+          width="70",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p><a href="/engage/dell-openstack-reference-architecture">Which architecture to follow?</a></p>
+    </div>
+    <p>Those are just examples of questions organisations have to ask themselves at the beginning of their private cloud journey. Fortunately, there are <a href="https://microstack.run" class="p-link--external">tools that enable single-node private cloud installation</a> for testing purposes or, in the case of more complex environments, private cloud providers like Canonical offer <a href="/openstack/consulting">consulting services for private cloud deployment</a>. Those usually include existing workloads assessment, architecture guidance, TCO prediction, cloud deployment and workloads migration.</p>
+    <p><a href="/openstack/consulting#get-in-touch">Get in touch with Canonical for private cloud design and delivery&nbsp;&rsaquo;</a></p>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>All you need for your private cloud</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="p-card col-6">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/6a983826-Openstack+Logo.svg" alt="OpenStack Logo" width="32" height="32" /> 
+          <h4 class="p-heading-icon__title">Charmed OpenStack</h4>
+        </div>
+      </div>
+      <hr/>
+      <div class="p-card__content">
+        <p>Charmed OpenStack is a pure upstream OpenStack distribution engineered for the best price-performance with full enterprise support for your production-grade private cloud.</p>
+        <p><a href="/openstack/features">Learn more about Charmed OpenStack&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="p-card col-6">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/c4f35e06-products-hero-ubuntu.svg" alt="Ubuntu Logo" width="32" height="32" />
+          <h4 class="p-heading-icon__title">Ubuntu Server</h4>
+        </div>
+      </div>
+      <hr/>
+      <div class="p-card__content">
+        <p>Ubuntu is the most popular Linux distribution across public clouds, data centres and the edge with a built-in security and compliance for enterprise customers.</p>
+        <p><a href="/server">Learn more about Ubuntu Server&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
