@@ -362,6 +362,20 @@ class UAContractsAPI:
 
         return {}
 
+    def put_contract_entitlements(
+        self,
+        contract_id: str,
+        entitlements_request: dict,
+    ):
+        self._request(
+            method="put",
+            path=f"v1/contracts/{contract_id}/defaultEnablement",
+            json=entitlements_request,
+            error_rules=["default"],
+        )
+
+        return {}
+
     def handle_error(self, error, error_rules=None):
         if not error_rules:
             return
