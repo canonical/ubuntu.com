@@ -54,54 +54,81 @@ const generateList = (title: string, items: ListItem[]) => (
   </>
 );
 
+const isEntitlementTypeEnum = (
+  entitlementType: UserSubscriptionEntitlement["type"]
+): entitlementType is EntitlementType =>
+  Object.values<string>(EntitlementType).includes(entitlementType);
+
+const showLast = (entitlement: UserSubscriptionEntitlement) =>
+  isEntitlementTypeEnum(entitlement.type) &&
+  [EntitlementType.Fips, EntitlementType.CcEal, EntitlementType.Cis].includes(
+    entitlement.type
+  );
+
+const sortEntitlements = (
+  entitlements: UserSubscriptionEntitlement[]
+): UserSubscriptionEntitlement[] =>
+  [...entitlements].sort((a, b) => {
+    if (showLast(b) && !showLast(a)) {
+      return -1;
+    }
+    if (showLast(a) && !showLast(b)) {
+      return 1;
+    }
+    return 0;
+  });
+
 const generateDocLinks = (
   entitlements: UserSubscriptionEntitlement[]
 ): DocsLink[] =>
-  entitlements.reduce<DocsLink[]>((collection, entitlement) => {
-    let link: DocsLink | null = null;
-    switch (entitlement.type) {
-      case EntitlementType.EsmApps:
-      case EntitlementType.EsmInfra:
-        link = {
-          label: "ESM Infra & ESM Apps",
-          url:
-            "https://support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
-        };
-        break;
-      case EntitlementType.Livepatch:
-      case EntitlementType.LivepatchOnprem:
-        link = {
-          label: "Livepatch",
-          url: "/security/livepatch/docs",
-        };
-        break;
-      case EntitlementType.Support:
-        link = { label: "Support", url: "https://support.canonical.com/" };
-        break;
-      case EntitlementType.Cis:
-        link = {
-          label: "CIS setup instructions",
-          url: "/security/certifications/docs/cis",
-        };
-        break;
-      case EntitlementType.CcEal:
-        link = {
-          label: "CC-EAL2 setup instructions",
-          url: "/security/certifications/docs/cc",
-        };
-        break;
-      case EntitlementType.Fips:
-        link = {
-          label: "FIPS setup instructions",
-          url: "/security/certifications/docs/fips ",
-        };
-        break;
-    }
-    if (link && !collection.find(({ label }) => label === link?.label)) {
-      collection.push(link);
-    }
-    return collection;
-  }, []);
+  sortEntitlements(entitlements).reduce<DocsLink[]>(
+    (collection, entitlement) => {
+      let link: DocsLink | null = null;
+      switch (entitlement.type) {
+        case EntitlementType.EsmApps:
+        case EntitlementType.EsmInfra:
+          link = {
+            label: "ESM Infra & ESM Apps",
+            url:
+              "https://support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
+          };
+          break;
+        case EntitlementType.Livepatch:
+        case EntitlementType.LivepatchOnprem:
+          link = {
+            label: "Livepatch",
+            url: "/security/livepatch/docs",
+          };
+          break;
+        case EntitlementType.Support:
+          link = { label: "Support", url: "https://support.canonical.com/" };
+          break;
+        case EntitlementType.Cis:
+          link = {
+            label: "CIS setup instructions",
+            url: "/security/certifications/docs/cis",
+          };
+          break;
+        case EntitlementType.CcEal:
+          link = {
+            label: "CC-EAL2 setup instructions",
+            url: "/security/certifications/docs/cc",
+          };
+          break;
+        case EntitlementType.Fips:
+          link = {
+            label: "FIPS setup instructions",
+            url: "/security/certifications/docs/fips ",
+          };
+          break;
+      }
+      if (link && !collection.find(({ label }) => label === link?.label)) {
+        collection.push(link);
+      }
+      return collection;
+    },
+    []
+  );
 
 const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.FEATURES);
