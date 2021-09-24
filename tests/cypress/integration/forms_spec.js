@@ -53,7 +53,9 @@ context("Marketo forms", () => {
     getIframeBody().find(".rc-anchor-content").click();
 
     cy.wait(3000); // eslint-disable-line
-    cy.findByText(/Submit/).click();
+    cy.findByText(/Submit/).click({
+      force: true,
+    });
     cy.findByText("Thank you").should("be.visible");
   });
 
