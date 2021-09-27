@@ -4,12 +4,17 @@ import {
   NotificationSeverity,
   Spinner,
 } from "@canonical/react-components";
-import React, { ReactNode, RefObject, useState } from "react";
+import React, { ReactNode, RefObject, useCallback, useState } from "react";
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 import RenewalSettingsFields from "./RenewalSettingsFields";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import { useUserInfo, useUserSubscriptions } from "advantage/react/hooks";
+import {
+  useSetAutoRenewal,
+  useUserInfo,
+  useUserSubscriptions,
+} from "advantage/react/hooks";
 import { selectAutoRenewableUASubscriptions } from "advantage/react/hooks/useUserSubscriptions";
 import { UserInfo } from "advantage/api/types";
 import { formatDate } from "advantage/react/utils";
@@ -17,6 +22,10 @@ import { formatDate } from "advantage/react/utils";
 type Props = {
   positionNodeRef: RefObject<HTMLDivElement>;
 };
+
+const RenewalSchema = Yup.object().shape({
+  shouldAutoRenew: Yup.boolean().required("Auto renewal is required"),
+});
 
 const generatePrice = (userInfo: UserInfo): string => {
   const formatter = new Intl.NumberFormat("en-US", {
@@ -31,6 +40,7 @@ const generatePrice = (userInfo: UserInfo): string => {
 
 const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const setAutoRenew = useSetAutoRenewal();
   const {
     data: userInfo,
     isError: isUserInfoError,
@@ -43,6 +53,11 @@ const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
   } = useUserSubscriptions({
     select: selectAutoRenewableUASubscriptions,
   });
+  const onCloseMenu = useCallback(() => {
+    setMenuOpen(false);
+    // Reset the form so that errors are cleared.
+    setAutoRenew.reset();
+  }, [setAutoRenew]);
   let content: ReactNode = null;
   if (isLoadingUserInfo || isLoadingSubscriptions) {
     content = <Spinner text="Loading..." />;
@@ -90,21 +105,40 @@ const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
         ) : null}
         <Formik
           initialValues={{
-            should_auto_renew: userInfo.is_auto_renewing,
+            shouldAutoRenew: userInfo.is_auto_renewing,
           }}
-          onSubmit={({ should_auto_renew }) => {
-            // TODO: Implement updating the renewal settings:
-            // https://github.com/canonical-web-and-design/commercial-squad/issues/99
-            sendAnalyticsEvent({
-              eventCategory: "Advantage",
-              eventAction: "subscription-auto-renewal-form",
-              eventLabel: `auto renewal ${
-                should_auto_renew ? "enabled" : "disabled"
-              }`,
+          onSubmit={({ shouldAutoRenew }) => {
+            setAutoRenew.mutate(shouldAutoRenew, {
+              onSuccess: () => {
+                onCloseMenu();
+                sendAnalyticsEvent({
+                  eventCategory: "Advantage",
+                  eventAction: "subscription-auto-renewal-form",
+                  eventLabel: `auto renewal ${
+                    shouldAutoRenew ? "enabled" : "disabled"
+                  }`,
+                });
+              },
             });
           }}
+          validationSchema={RenewalSchema}
         >
-          <RenewalSettingsFields setMenuOpen={setMenuOpen} />
+          <>
+            {setAutoRenew.isError ? (
+              <Notification
+                data-test="update-error"
+                severity="negative"
+                title="Could not update auto renewal settings:"
+              >
+                {setAutoRenew.error?.message}
+              </Notification>
+            ) : null}
+            <RenewalSettingsFields
+              loading={setAutoRenew.isLoading}
+              success={setAutoRenew.isSuccess}
+              onCloseMenu={onCloseMenu}
+            />
+          </>
         </Formik>
       </>
     );
@@ -116,7 +150,11 @@ const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
       dropdownClassName="p-subscription__renewal-dropdown"
       hasToggleIcon
       onToggleMenu={(isOpen) => {
-        setMenuOpen(isOpen);
+        if (isOpen) {
+          setMenuOpen(true);
+        } else {
+          onCloseMenu();
+        }
         sendAnalyticsEvent({
           eventCategory: "Advantage",
           eventAction: "subscription-auto-renewal-form",
