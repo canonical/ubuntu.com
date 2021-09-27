@@ -13,6 +13,7 @@ import {
 import { UserSubscriptionPeriod } from "advantage/api/enum";
 import * as contracts from "advantage/api/contracts";
 import { act } from "react-dom/test-utils";
+import { Notification } from "@canonical/react-components";
 
 describe("RenewalSettings", () => {
   let queryClient: QueryClient;
@@ -20,6 +21,7 @@ describe("RenewalSettings", () => {
   let userInfo: UserInfo;
   let getUserInfoSpy: jest.SpyInstance;
   let getUserSubscriptionsSpy: jest.SpyInstance;
+  let setAutoRenewalSpy: jest.SpyInstance;
 
   beforeEach(async () => {
     fetch.mockResponse(JSON.stringify(""));
@@ -36,11 +38,15 @@ describe("RenewalSettings", () => {
     contract = userSubscriptionFactory.build({
       period: UserSubscriptionPeriod.Monthly,
     });
-    userInfo = userInfoFactory.build();
+    userInfo = userInfoFactory.build({
+      is_auto_renewing: true,
+    });
     queryClient.setQueryData("userSubscriptions", [contract]);
     queryClient.setQueryData("userInfo", userInfo);
     getUserInfoSpy = jest.spyOn(contracts, "getUserInfo");
     getUserSubscriptionsSpy = jest.spyOn(contracts, "getUserSubscriptions");
+    setAutoRenewalSpy = jest.spyOn(contracts, "setAutoRenewal");
+    setAutoRenewalSpy.mockImplementation(() => Promise.resolve({}));
   });
 
   afterAll(() => {
@@ -198,9 +204,9 @@ describe("RenewalSettings", () => {
     await act(async () => {});
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
-    expect(
-      wrapper.find("input[name='should_auto_renew']").prop("checked")
-    ).toBe(true);
+    expect(wrapper.find("input[name='shouldAutoRenew']").prop("checked")).toBe(
+      true
+    );
   });
 
   it("displays an error if there is a problem loading the user info", async () => {
@@ -273,5 +279,77 @@ describe("RenewalSettings", () => {
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
     expect(wrapper.find("[data-test='next-payment']").exists()).toBe(false);
+  });
+
+  it("can update the setting", async () => {
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings positionNodeRef={{ current: null }} />
+      </QueryClientProvider>
+    );
+    // Open the menu so that the content gets rendered inside the portal.
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    wrapper.find("input[name='shouldAutoRenew']").simulate("change", {
+      target: { name: "shouldAutoRenew", value: false },
+    });
+    await act(async () => {
+      wrapper.find("Formik form").simulate("submit");
+    });
+    expect(setAutoRenewalSpy).toHaveBeenCalledWith(false);
+  });
+
+  it("displays errors if the setting can't be updated", async () => {
+    setAutoRenewalSpy.mockImplementation(() =>
+      Promise.resolve({ errors: "Uh oh" })
+    );
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings positionNodeRef={{ current: null }} />
+      </QueryClientProvider>
+    );
+    // Open the menu so that the content gets rendered inside the portal.
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    wrapper.find("input[name='shouldAutoRenew']").simulate("change", {
+      target: { name: "shouldAutoRenew", value: false },
+    });
+    await act(async () => {
+      wrapper.find("Formik form").simulate("submit");
+    });
+    wrapper.update();
+    const notification = wrapper.find(Notification);
+    expect(notification.exists()).toBe(true);
+    expect(notification.prop("data-test")).toBe("update-error");
+    expect(notification.text().includes("Uh oh")).toBe(true);
+  });
+
+  it("resets the errors when the form is closed and reopened", async () => {
+    setAutoRenewalSpy.mockImplementation(() =>
+      Promise.resolve({ errors: "Uh oh" })
+    );
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <RenewalSettings positionNodeRef={{ current: null }} />
+      </QueryClientProvider>
+    );
+    // Open the menu so that the content gets rendered inside the portal.
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    wrapper.find("input[name='shouldAutoRenew']").simulate("change", {
+      target: { name: "shouldAutoRenew", value: false },
+    });
+    await act(async () => {
+      wrapper.find("Formik form").simulate("submit");
+    });
+    wrapper.update();
+    expect(
+      wrapper.find("Notification[data-test='update-error']").exists()
+    ).toBe(true);
+    // Close the menu.
+    wrapper.find("Button[data-test='cancel-button']").simulate("click");
+    // Open the menu again.
+    wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
+    wrapper.update();
+    expect(
+      wrapper.find("Notification[data-test='update-error']").exists()
+    ).toBe(false);
   });
 });
