@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { getTestURL } from "./utils";
+import { getTestURL } from "../utils";
 
 context("Advantage", () => {
   it("should display the modal when pressing 'Buy now'", () => {
