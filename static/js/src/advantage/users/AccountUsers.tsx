@@ -95,10 +95,13 @@ const AccountUsers = ({
   const [userInEditModeById, setUserInEditModeById] = useState<string | null>(
     null
   );
-  const userInEditMode: User | undefined =
-    typeof userInEditModeById === "string"
-      ? users.find((user) => user.id === userInEditModeById)
-      : undefined;
+  const userInEditMode: User | undefined = React.useMemo(
+    () =>
+      typeof userInEditModeById === "string"
+        ? users.find((user) => user.id === userInEditModeById)
+        : undefined,
+    [userInEditModeById, users]
+  );
 
   const dismissEditMode = () => setUserInEditModeById(null);
   const handleDeleteConfirmationModalClose = () => {

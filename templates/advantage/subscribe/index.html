@@ -25,6 +25,7 @@
       {% else %}
         <h1>Add machines to your subscription</h1>
       {% endif %}
+        <h2 class="p-heading--3 js-free-trial-header u-hide">Evaluate Ubuntu Advantage with your first month free on all subscriptions</h2>
     </div>
   </div>
 </section>
@@ -90,6 +91,9 @@
             <strong>Switch to annual billing and save over 15%</strong>
           </p>
         </div>
+        <div id="summary-free-trial-label" class="p-shop-cart__label">
+          <div class="p-label">1 month free trial</div>
+        </div>
       </div>
       <div class="col-4 p-shop-cart__buy">
         <span>
@@ -103,6 +107,14 @@
           Buy now
         </button>
       </div>
+      <div class="col-8 col-start-large-4 js-trial-unavailable">
+        <p>Free Trial is not available for this account. <a href="/contact-us">Contact us</a> for further information.</p>
+      </div>
+      {% if is_trialling %}
+        <div class="col-8 col-start-large-4">
+          <p>You cannot purchase a new subscription while a Free Trial is active.</p>
+        </div>
+      {% endif %}
     </div>
   </section>
 </form>
@@ -127,7 +139,7 @@
         },
         period: "{{ listing.period }}",
         productID: "{{ listing.product.id }}",
-        can_be_trialled: "{{ listing.can_be_trialled }}",
+        canBeTrialled: {% if listing.can_be_trialled %}true{% else %}false{% endif %},
         private: false,
       },
     {% endfor %}
@@ -135,6 +147,7 @@
 
   var accountId = "{% if account %}{{ account.id }}{% endif %}";
   var isGuest = {% if account %}false{% else %}true{% endif %};
+  var isTrialling = {% if is_trialling %}true{% else %}false{% endif %};
   var accountName = "{% if account %}{{ account.name }}{% endif %}";
   var previousPurchaseIds = {
     {% for period, id in previous_purchase_ids.items() %}

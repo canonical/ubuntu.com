@@ -9,7 +9,7 @@ const productsArray = Object.entries(window.productList);
 
 const initialFormState = {
   type: "physical",
-  version: "18.04",
+  version: "18.0a",
   feature: "infra",
   support: "unset",
   quantity: isSmallVP ? 0 : 1,
@@ -22,6 +22,7 @@ const initialFormState = {
       advanced: 127500,
     },
   },
+  isAppsEnabled: false,
   periods: [],
 };
 
@@ -99,6 +100,22 @@ function getSupportPriceRange(productID) {
   };
 }
 
+function getAppsStatus() {
+  let enabled = false;
+  productsArray.forEach((product) => {
+    const listingProduct = product[1];
+    listingProduct.id = product[0];
+    if (
+      listingProduct.productID.includes("uaa") ||
+      listingProduct.productID.includes("uaia")
+    ) {
+      enabled = true;
+      return;
+    }
+  });
+  return enabled;
+}
+
 function getProduct(state) {
   const prefix = prefixMap[state.feature];
   const suffix =
@@ -115,7 +132,10 @@ function getProduct(state) {
 
 const formSlice = createSlice({
   name: "form",
-  initialState: loadState("ua-subscribe-state", "form", initialFormState),
+  initialState: {
+    ...loadState("ua-subscribe-state", "form", initialFormState),
+    isAppsEnabled: getAppsStatus(),
+  },
   reducers: {
     changeType(state, action) {
       state.type = action.payload;
@@ -136,9 +156,7 @@ const formSlice = createSlice({
       state.version = action.payload;
     },
     changeFeature(state, action) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const isAppsEnabled = urlParams.get("esm_apps") === "true";
-      state.feature = isAppsEnabled ? action.payload : "infra"; //if ESM Apps is disabled we default to infra
+      state.feature = state.isAppsEnabled ? action.payload : "infra"; //if ESM Apps is disabled we default to infra
 
       if (
         action.payload === "apps" &&

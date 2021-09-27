@@ -32,16 +32,10 @@ const parseAccountsResponse = (
   })),
 });
 
-const requestAccountUsers = async (): Promise<ParsedAccountUsersResponse> => {
-  const response = await fetch(
-    `/advantage/account-users${window.location.search}`,
-    {
-      cache: "no-store",
-    }
-  );
-
-  return response.json().then(parseAccountsResponse);
-};
+const requestAccountUsers = (): Promise<ParsedAccountUsersResponse> =>
+  fetchJSON(`/advantage/account-users${window.location.search}`, {
+    cache: "no-store",
+  }).then((response) => parseAccountsResponse(response as AccountUsersReponse));
 
 const accountUserRequestInit: RequestInit = {
   cache: "no-store",
@@ -55,14 +49,8 @@ const accountUserRequestInit: RequestInit = {
 const getAccountUserRequestUrl = (accountId: string, urlParams: string) =>
   `/advantage/accounts/${accountId}/user${urlParams}`;
 
-type JSONResponse = {
-  data?: Record<string, unknown>;
-  error?: string;
-  errors?: string;
-};
-
-const handleResponse = async (response: Response): Promise<JSONResponse> => {
-  const responseJson: JSONResponse = await response.json();
+const handleResponse = async (response: Response): Promise<unknown> => {
+  const responseJson = await response.json();
 
   if (!response.ok) {
     throw new Error(responseJson.error || responseJson.errors);
@@ -70,10 +58,8 @@ const handleResponse = async (response: Response): Promise<JSONResponse> => {
   return responseJson;
 };
 
-const fetchJSON = async (
-  input: RequestInfo,
-  init?: RequestInit
-): Promise<JSONResponse> => fetch(input, init).then(handleResponse);
+const fetchJSON = async (input: RequestInfo, init?: RequestInit) =>
+  fetch(input, init).then(handleResponse);
 
 const requestAddUser = ({
   accountId,
@@ -85,7 +71,7 @@ const requestAddUser = ({
   email: string;
   name: string;
   role: UserRole;
-}): Promise<JSONResponse> =>
+}) =>
   fetchJSON(getAccountUserRequestUrl(accountId, window.location.search), {
     ...accountUserRequestInit,
     method: "POST",
@@ -100,7 +86,7 @@ const requestUpdateUser = ({
   accountId: string;
   email: string;
   role: UserRole;
-}): Promise<JSONResponse> =>
+}) =>
   fetchJSON(getAccountUserRequestUrl(accountId, window.location.search), {
     ...accountUserRequestInit,
     method: "PUT",
@@ -113,7 +99,7 @@ const requestDeleteUser = async ({
 }: {
   accountId: string;
   email: string;
-}): Promise<JSONResponse> =>
+}) =>
   fetchJSON(getAccountUserRequestUrl(accountId, window.location.search), {
     ...accountUserRequestInit,
     method: "DELETE",

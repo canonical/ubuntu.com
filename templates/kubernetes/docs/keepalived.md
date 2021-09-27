@@ -98,7 +98,7 @@ balancer.
 [keepalived-home]: http://www.keepalived.org/
 [SANs]: https://www.openssl.org/docs/manmaster/man5/x509v3_config.html#Subject-Alternative-Name
 [logging-doc]: /kubernetes/docs/logging
-[subordinate-charm]: https://docs.jujucharms.com/stable/en/authors-subordinate-applications
+[subordinate-charm]: https://juju.is/docs/sdk#heading--subordinate-charms
 [openstack-vip]: https://medium.com/jexia/virtual-ip-with-openstack-neutron-dd9378a48bdf
 
 <!-- FEEDBACK -->

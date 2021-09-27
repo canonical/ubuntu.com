@@ -23,7 +23,7 @@ interface Data {
   paymentMethod: PaymentMethod.Card;
 }
 
-interface FormValues {
+export interface FormValues {
   email?: string;
   name?: string;
   buyingFor?: "organisation" | "myself";
@@ -85,3 +85,6 @@ function getInitialFormValues(
 }
 
 export { getUserInfoFromVariables, getInitialFormValues };
+
+export const getIsFreeTrialEnabled = () =>
+  location.search.includes("test_backend=true");

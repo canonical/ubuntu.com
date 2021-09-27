@@ -769,10 +769,27 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
+  <div class="u-hide--large u-fixed-width">
     <h2>Number 1 platform for OpenStack implementation</h2>
-    <p>According to the <a class="p-link--external" href="https://www.openstack.org/analytics/">OpenStack User Survey 2020</a> results, Ubuntu Server is the most popular operating system for OpenStack implementation. Ubuntu Server powers 40% of OpenStack clouds all over the world. It has been chosen as a platform for private cloud implementation by leading companies in the telco, finance, hardware manufacturing, retail, automotive and healthcare sectors.</p>
   </div>
+  <div class="row">
+    <div class="u-hide--small u-hide--medium col-6">
+      <h2>Number 1 platform for OpenStack implementation</h2>
+      <p>According to the <a class="p-link--external" href="https://www.openstack.org/analytics/">OpenStack User Survey 2020</a> results, Ubuntu Server is the most popular operating system for OpenStack implementation. Ubuntu Server powers 40% of OpenStack clouds all over the world. It has been chosen as a platform for private cloud implementation by leading companies in the telco, finance, hardware manufacturing, retail, automotive and healthcare sectors.</p>
+    </div>
+    <div class="u-hide--small col-6">
+      <div id="openstack-pie-chart"></div>
+    </div>
+    <div class="u-hide--medium u-hide--large col-6">
+      <div id="openstack-table"></div>
+    </div>
+  </div>
+  <div class="u-hide--large u-fixed-width">
+    <p>According to the <a href="https://www.openstack.org/analytics/" class="p-link--external">OpenStack User Survey 2020</a> results, Ubuntu Server is the most popular operating system for OpenStack implementation. Ubuntu Server powers 40% of OpenStack clouds all over the world. It has been chosen as a platform for OpenStack implementation by leading companies in the telco, finance, hardware manufacturing, retail, automotive and healthcare sectors.</p>
+  </div>
+
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="{{ versioned_static('js/dist/openstackDeploymentChart.js') }}"></script>
 </section>
 
 <section class="p-strip">

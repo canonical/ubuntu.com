@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { getTestURL, getRandomEmail } from "./utils";
+import { getTestURL, getRandomEmail } from "../utils";
           
 context("Advantage", () => {
   it("adds and deletes a user correctly", () => {

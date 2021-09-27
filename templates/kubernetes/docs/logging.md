@@ -18,7 +18,7 @@ toc: False
     <span class="p-notification__status">Note:</span>
 This documentation assumes you are using version 2.4.0 or later of
 <strong>Juju</strong>. If you are using an earlier version you should check
-the <a href="https://docs.jujucharms.com/stable/en/troubleshooting-logs">
+the <a href="https://juju.is/docs/olm/juju-logs">
 relevant <emphasis>Juju</emphasis> documentation</a> as some of the associated
 commands have changed.
   </p>
@@ -292,7 +292,7 @@ view.
 <!--LINKS -->
 
 [quickstart]: /kubernetes/docs/quickstart
-[juju-logging]: https://docs.jujucharms.com/stable/en/troubleshooting-logs
+[juju-logging]: https://juju.is/docs/olm/juju-logs
 [k8-logs]: https://kubernetes.io/docs/concepts/cluster-administration/logging/
 [logging-egf-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/logging-egf-overlay.yaml
 [graylog-vhost]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/graylog-vhost.tmpl

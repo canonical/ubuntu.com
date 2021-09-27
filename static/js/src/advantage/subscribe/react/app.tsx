@@ -8,23 +8,34 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import PurchaseModal from "./PurchaseModal";
 
+declare global {
+  interface Window {
+    stripePublishableKey?: string;
+    isGuest?: boolean;
+    accountId?: string;
+    previousPurchaseIds?: string[];
+    handleTogglePurchaseModal?: () => void;
+  }
+}
+
 Sentry.init({
   dsn: "https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13",
-  integrations: [new Integrations.BrowserTracing()],
-  allowUrls: ["https://ubuntu.com/advantage/subscribe"],
-
-  // We recommend adjusting this value in production, or using tracesSampler
-  // for finer control
+  integrations: [
+    new Integrations.BrowserTracing({
+      tracingOrigins: ["ubuntu.com"],
+    }),
+  ],
+  allowUrls: ["ubuntu.com"],
   tracesSampleRate: 1.0,
 });
 
-const stripePromise = loadStripe(window.stripePublishableKey);
+const stripePromise = loadStripe(window.stripePublishableKey ?? "");
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      refetchOnmount: false,
+      refetchOnMount: false,
       refetchOnReconnect: false,
       staleTime: oneHour,
       retryOnMount: false,

@@ -99,6 +99,7 @@ from webapp.advantage.views import (
     delete_account_user_role,
     post_account_user_role,
     put_account_user_role,
+    put_contract_entitlements,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -390,6 +391,12 @@ app.add_url_rule(
     "/advantage/renewals/<renewal_id>/process-payment",
     view_func=accept_renewal,
     methods=["POST"],
+)
+
+app.add_url_rule(
+    "/advantage/contracts/<contract_id>/entitlements",
+    view_func=put_contract_entitlements,
+    methods=["PUT"],
 )
 
 app.add_url_rule("/account", view_func=account_view)
