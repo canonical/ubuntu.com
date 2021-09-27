@@ -16,7 +16,7 @@ it("displays user details in a correct format", () => {
   render(
     <TableView
       users={[testUser]}
-      userInEditModeById={null}
+      userInEditMode={null}
       setUserInEditModeById={jest.fn()}
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}

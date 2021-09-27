@@ -11,7 +11,7 @@ const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: true,
       refetchOnMount: false,
       refetchOnReconnect: false,
       staleTime: oneHour,
