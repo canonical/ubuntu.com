@@ -1,29 +1,39 @@
 import React, { useEffect, useState } from "react";
 import * as Sentry from "@sentry/react";
-import useStripeCustomerInfo from "./APICalls/useStripeCustomerInfo";
-import registerPaymentMethod from "./APICalls/registerPaymentMethod";
-import { Formik } from "formik";
+import useStripeCustomerInfo from "./hooks/useStripeCustomerInfo";
+import registerPaymentMethod from "./hooks/registerPaymentMethod";
+import { Formik, FormikHelpers } from "formik";
 import { useQueryClient } from "react-query";
-import { getErrorMessage } from "../../error-handler";
-import { checkoutEvent } from "../../ecom-events";
-import { getUserInfoFromVariables, getInitialFormValues } from "./utils/utils";
+import { getErrorMessage } from "../advantage/error-handler";
+import { checkoutEvent } from "../advantage/ecom-events";
+import {
+  getUserInfoFromVariables,
+  getInitialFormValues,
+  FormValues,
+} from "./utils/utils";
 import StepOne from "./components/ModalSteps/StepOne";
 import StepTwo from "./components/ModalSteps/StepTwo";
-
+import { BuyButtonProps } from "./utils/utils";
 type Props = {
   termsLabel: React.ReactNode;
   product: any;
+  preview: any;
   quantity: number;
   closeModal: () => void;
+  Summary: React.ComponentType;
+  BuyButton: React.ComponentType<BuyButtonProps>;
 };
 
 const PurchaseModal = ({
   termsLabel,
   product,
+  preview,
   quantity,
   closeModal,
+  Summary,
+  BuyButton,
 }: Props) => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo } = useStripeCustomerInfo();
   const [step, setStep] = useState(
     userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
@@ -47,7 +57,7 @@ const PurchaseModal = ({
     quantity: quantity,
   };
 
-  const onSubmit = (values, actions) => {
+  const onSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
     setError(null);
     checkoutEvent(GAFriendlyProduct, "2");
     paymentMethodMutation.mutate(values, {
@@ -113,7 +123,11 @@ const PurchaseModal = ({
             setStep={setStep}
             error={error}
             setError={setError}
+            Summary={Summary}
             closeModal={closeModal}
+            product={product}
+            preview={preview}
+            BuyButton={BuyButton}
           />
         )}
       </>

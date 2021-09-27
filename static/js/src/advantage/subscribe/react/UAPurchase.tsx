@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
-import useProduct from "./APICalls/useProduct";
-import PurchaseModal from "./PurchaseModal";
+import React from "react";
+import useProduct from "./hooks/useProduct";
+import usePreview from "./hooks/usePreview";
+import Summary from "./components/Summary";
+import PurchaseModal from "../../../PurchaseModal";
+import BuyButton from "./components/BuyButton";
 
 const UAPurchase = () => {
   const { product, quantity } = useProduct();
+  const { data: preview } = usePreview();
 
   const termsLabel = (
     <>
@@ -18,14 +22,17 @@ const UAPurchase = () => {
     </>
   );
 
-  const closeModal = window.handleTogglePurchaseModal;
+  const closeModal = window.handleTogglePurchaseModal ?? (() => {});
 
   return (
     <PurchaseModal
       termsLabel={termsLabel}
       product={product}
+      preview={preview}
       quantity={quantity}
       closeModal={closeModal}
+      Summary={Summary}
+      BuyButton={BuyButton}
     />
   );
 };

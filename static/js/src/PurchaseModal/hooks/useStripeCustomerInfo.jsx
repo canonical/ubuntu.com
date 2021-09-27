@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { getCustomerInfo } from "../../../contracts-api";
+import { getCustomerInfo } from "../../advantage/contracts-api";
 
 const useStripeCustomerInfo = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery(

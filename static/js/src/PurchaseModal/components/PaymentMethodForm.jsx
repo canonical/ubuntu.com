@@ -18,8 +18,8 @@ import {
   countries,
   USStates,
   vatCountries,
-} from "../../../countries-and-states";
-import { getErrorMessage } from "../../../error-handler";
+} from "../../advantage/countries-and-states";
+import { getErrorMessage } from "../../advantage/error-handler";
 import { Field, Form, useFormikContext } from "formik";
 function PaymentMethodForm({ setCardValid }) {
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);

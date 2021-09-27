@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import PaymentMethodSummary from "./PaymentMethodSummary";
-import * as useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
+import * as useStripeCustomerInfo from "../../hooks/useStripeCustomerInfo";
 
 import { userInfo } from "../../utils/test/Mocks";
 

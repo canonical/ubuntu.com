@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Row, Col, Button } from "@canonical/react-components";
-import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
+import useStripeCustomerInfo from "../../hooks/useStripeCustomerInfo";
 
 export const cardImageMap = {
   visa: "https://assets.ubuntu.com/v1/2060e728-VBM_COF.png",

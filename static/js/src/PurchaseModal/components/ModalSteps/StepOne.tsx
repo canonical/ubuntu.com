@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import { useFormikContext } from "formik";
 
-import useStripeCustomerInfo from "../../APICalls/useStripeCustomerInfo";
+import useStripeCustomerInfo from "../../hooks/useStripeCustomerInfo";
 import PaymentMethodForm from "../PaymentMethodForm";
-import useProduct from "../../APICalls/useProduct";
 import ModalHeader from "../ModalParts/ModalHeader";
 import ModalBody from "../ModalParts/ModalBody";
 import ModalFooter from "../ModalParts/ModalFooter";
@@ -21,16 +20,12 @@ function StepOne({ error, closeModal }: StepOneProps) {
     data: userInfo,
     isLoading: isUserInfoLoading,
   } = useStripeCustomerInfo();
-  const { isLoading: isProductLoading } = useProduct();
 
   return (
     <>
       <ModalHeader title="Your details" />
 
-      <ModalBody
-        isLoading={isUserInfoLoading || isProductLoading}
-        error={error}
-      >
+      <ModalBody isLoading={isUserInfoLoading} error={error}>
         <PaymentMethodForm setCardValid={setCardValid} />
       </ModalBody>
 

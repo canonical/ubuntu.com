@@ -2,8 +2,8 @@ import React from "react";
 import { shallow } from "enzyme";
 import { add, format } from "date-fns";
 import Summary from "./Summary";
-import * as useProduct from "../../APICalls/useProduct";
-import * as usePreview from "../../APICalls/usePreview";
+import * as useProduct from "../../hooks/useProduct";
+import * as usePreview from "../../hooks/usePreview";
 
 import { product, preview } from "../../utils/test/Mocks";
 
