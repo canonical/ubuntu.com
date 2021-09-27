@@ -216,18 +216,23 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
     });
   };
 
-  const TrialNotAvailable = getIsFreeTrialEnabled() ? (
-    <Row>
-      <Col size={10} emptyLarge={2}>
-        <p>
-          <strong>
-            Free Trial is not available for this account.{" "}
-            <a href="/contact-us">Contact us</a> for further information.
-          </strong>
-        </p>
-      </Col>
-    </Row>
-  ) : null;
+  const trialNotAvailable = () => {
+    if (getIsFreeTrialEnabled()) {
+      return (
+        <Row>
+          <Col size={10} emptyLarge={2}>
+            <p>
+              <strong>
+                Free Trial is not available for this account.{" "}
+                <a href="/contact-us">Contact us</a> for further information.
+              </strong>
+            </p>
+          </Col>
+        </Row>
+      );
+    }
+    return null;
+  };
 
   return (
     <>
@@ -245,7 +250,7 @@ function StepOne({ setStep, error, setError }: StepOneProps) {
               setIsUsingFreeTrial={setIsUsingFreeTrial}
             />
           ) : (
-            { TrialNotAvailable }
+            trialNotAvailable()
           )}
           <PaymentMethodSummary setStep={setStep} />
           <Row className="u-no-padding">
