@@ -50,6 +50,23 @@ describe("SubscriptionList", () => {
     );
   });
 
+  it("does not display the UA subscriptions group if there are none", () => {
+    const subscriptions = [
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.Free,
+      }),
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionList onSetActive={jest.fn()} />
+      </QueryClientProvider>
+    );
+    expect(
+      wrapper.find("ListGroup[data-test='ua-subscriptions-group']").exists()
+    ).toBe(false);
+  });
+
   it("sorts the UA subscriptions by most recently started", () => {
     const subscriptions = [
       userSubscriptionFactory.build({
@@ -108,8 +125,16 @@ describe("SubscriptionList", () => {
   });
 
   it("shows the renewal settings if there are monthly subs", () => {
-    userInfo = userInfoFactory.build({ has_monthly_subscription: true });
+    userInfo = userInfoFactory.build({
+      has_monthly_subscription: true,
+    });
     queryClient.setQueryData("userInfo", userInfo);
+    const subscriptions = [
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+      }),
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList
@@ -124,8 +149,16 @@ describe("SubscriptionList", () => {
   });
 
   it("does not show the renewal settings if there are no monthly subs", () => {
-    userInfo = userInfoFactory.build({ has_monthly_subscription: false });
+    userInfo = userInfoFactory.build({
+      has_monthly_subscription: false,
+    });
     queryClient.setQueryData("userInfo", userInfo);
+    const subscriptions = [
+      userSubscriptionFactory.build({
+        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+      }),
+    ];
+    queryClient.setQueryData("userSubscriptions", subscriptions);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList
