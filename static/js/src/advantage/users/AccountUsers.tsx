@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQueryClient, useMutation } from "react-query";
 import {
   User,
@@ -11,6 +11,8 @@ import Organisation from "./components/Organisation";
 import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
 import DeleteConfirmationModal from "./components/DeleteConfirmationModal/DeleteConfirmationModal";
+import UserSearch from "./components/UserSearch/UserSearch";
+
 import { requestAddUser, requestDeleteUser, requestUpdateUser } from "./api";
 import { getErrorMessage } from "./utils";
 
@@ -95,13 +97,18 @@ const AccountUsers = ({
   const [userInEditModeById, setUserInEditModeById] = useState<string | null>(
     null
   );
+
+  const [filteredUsers, setFilteredUsers] = useState<User[]>(users);
+
   const userInEditMode: User | undefined = React.useMemo(
     () =>
       typeof userInEditModeById === "string"
-        ? users.find((user) => user.id === userInEditModeById)
+        ? filteredUsers.find((user) => user.id === userInEditModeById)
         : undefined,
-    [userInEditModeById, users]
+    [userInEditModeById, filteredUsers]
   );
+
+  const [searchQuery, setSearchQuery] = useState("");
 
   const dismissEditMode = () => setUserInEditModeById(null);
   const handleDeleteConfirmationModalClose = () => {
@@ -109,6 +116,19 @@ const AccountUsers = ({
   };
   const handleDeleteConfirmationModalOpen = () =>
     setIsDeleteConfirmationModalOpen(true);
+
+  const handleSearch = (value: string) => {
+    dismissEditMode();
+    setSearchQuery(value);
+  };
+
+  useEffect(() => {
+    const filteredUsers = users.filter((user) =>
+      user.email.includes(searchQuery)
+    );
+
+    setFilteredUsers(filteredUsers);
+  }, [searchQuery, users]);
 
   return (
     <div>
@@ -124,6 +144,9 @@ const AccountUsers = ({
               handleSubmit={handleAddNewUser}
               onAfterModalOpen={() => setNotification(null)}
             />
+          </div>
+          <div className="col-6">
+            <UserSearch handleSearch={handleSearch} />
           </div>
         </div>
         {notification ? (
@@ -152,8 +175,8 @@ const AccountUsers = ({
         <div className="row">
           <div className="col-12">
             <TableView
-              users={users}
-              userInEditModeById={userInEditModeById}
+              users={filteredUsers}
+              userInEditMode={userInEditMode}
               setUserInEditModeById={setUserInEditModeById}
               dismissEditMode={dismissEditMode}
               handleEditSubmit={handleUpdateUser}
