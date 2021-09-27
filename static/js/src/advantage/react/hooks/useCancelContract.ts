@@ -29,6 +29,7 @@ export const useCancelContract = (subscription?: UserSubscription) => {
         // Invalidate the subscriptions and last purchase ids so that
         // they reload where required.
         queryClient.invalidateQueries("userSubscriptions");
+        queryClient.invalidateQueries("userInfo");
         queryClient.invalidateQueries([
           "lastPurchaseIds",
           subscription?.account_id,
