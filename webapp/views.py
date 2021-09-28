@@ -629,6 +629,7 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
+    referrer = flask.request.referrer
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
@@ -679,4 +680,13 @@ def marketo_submit():
     if return_url:
         return flask.redirect(return_url)
 
-    return flask.jsonify({"message": "Form submitted."})
+    if referrer:
+        return flask.redirect(f"/thank-you?referrer={referrer}")
+    else:
+        return flask.redirect("/thank-you")
+
+
+def thank_you():
+    return flask.render_template(
+        "thank-you.html", referrer=flask.request.args.get("referrer")
+    )
