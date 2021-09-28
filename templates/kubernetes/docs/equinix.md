@@ -50,8 +50,17 @@ your auth token).
 
 To deploy **Charmed Kubernetes** on Equinix Metal, it is also recommended to deploy
 some storage and to use Calico for networking. You can deploy and configure
-Charmed kubernetes any way you like, but this example overlay will help you get started.
+Charmed kubernetes any way you like, but this example bundle will help you get started.
 
+You can [download the example bundle here][asset-equinix-bundle]
+
+It can then be installed with the command:
+
+```bash
+juju deploy ./equinix-bundle.yaml
+```
+
+<!-- COMMENTED OUT UNTIL OVERLAYS WORK
 It adjusts the default bundle to use Calico networking, deploys Ceph for storage and 
 co-locates some services to make more efficient use of the available instances.
 
@@ -203,8 +212,10 @@ To use this overlay with the **Charmed Kubernetes** bundle, it is specified duri
 ```bash
 juju deploy charmed-kubernetes  --overlay ./equinix-overlay.yaml 
 ```
+-->
 
-... and when the deployment has settled, remember to fetch the configuration file!
+
+When the deployment has settled, remember to fetch the configuration file!
 
 ```bash
 juju scp --proxy kubernetes-master/0:config ~/.kube/config
@@ -391,6 +402,7 @@ Hello Kubernetes!
 
 <!-- LINKS -->
 
+[asset-equinix-bundle]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/specs/equinix-bundle.yaml
 [asset-equinix-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/equinix-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
