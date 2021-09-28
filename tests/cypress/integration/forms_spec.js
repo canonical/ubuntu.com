@@ -76,8 +76,9 @@ context("Marketo forms", () => {
 
     getIframeBody().find(".rc-anchor-content").click();
 
-    cy.wait(3000); // eslint-disable-line
-    cy.findByText(/Download the whitepaper/).click();
+    cy.wait(3000);
+    cy.findByText(/Download the whitepaper/).click({ force: true });
+    cy.wait(3000);
     cy.findByText(/Thank you/).should("be.visible");
   });
 
@@ -100,8 +101,10 @@ context("Marketo forms", () => {
 
     getIframeBody().find(".rc-anchor-content").click();
 
-    cy.wait(3000); // eslint-disable-line
-    cy.findByText(/Let's discuss/).click();
+    cy.wait(3000);
+    cy.findByText(/Let's discuss/).click({
+      force: true,
+    });
     cy.findByText(/Thank you/).should("be.visible");
     cy.findByLabelText("Close active modal").click();
   });
@@ -118,9 +121,9 @@ context("Marketo forms", () => {
 
     getIframeBody().find(".rc-anchor-content").click();
 
-    cy.wait(3000); // eslint-disable-line
-    cy.findByText(/Accept terms and download/).click();
-    cy.findByText(/Accept all and visit site/).click();
+    cy.wait(3000);
+    cy.findByText(/Accept terms and download/).click({ force: true });
+    cy.findByText(/Accept all and visit site/).click({ force: true });
     cy.findAllByText(/Download Ubuntu Server/).should("be.visible");
   });
 });
