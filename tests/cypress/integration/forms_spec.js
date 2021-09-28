@@ -34,7 +34,7 @@ context("Marketo forms", () => {
     });
   });
 
-  it("should successfully complete contact form and submit to Marketo", () => {
+  it.skip("should successfully complete contact form and submit to Marketo", () => {
     cy.visit("/core/contact-us");
     cy.acceptCookiePolicy();
 
