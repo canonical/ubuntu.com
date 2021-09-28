@@ -15,17 +15,16 @@ const getIframeBody = () => {
 context("Marketo forms", () => {
   beforeEach(() => {
     cy.intercept(
-      { method: "POST", url: "/marketo/submit", },
+      { method: "POST", url: "/marketo/submit" },
       {
-          headers: {
-          "Client Id": Cypress.env("Client Id"),
-          "Client Secret": Cypress.env("Client Secret"),
-          "Authorized User": Cypress.env("Authorized User"),
-          "Token": Cypress.env("Token"),
+        headers: {
+          "Client Id": Cypress.env("MARKETO_CLIENT_ID"),
+          "Client Secret": Cypress.env("MARKETO_CLIENT_SECRET"),
+          "Authorized User": Cypress.env("MARKETO_AUTHORISED_USER"),
+          "Token": Cypress.env("MARKETO_TOKEN"),
         },
       }
     ).as("captureLead");
-    cy.setCookie("_cookies_accepted", "all");
   });
 
   afterEach(() => {
@@ -37,6 +36,7 @@ context("Marketo forms", () => {
 
   it("should successfully complete contact form and submit to Marketo", () => {
     cy.visit("/core/contact-us");
+    cy.acceptCookiePolicy();
 
     cy.findByLabelText(/First name:/).type("Test");
     cy.findByLabelText(/Last name:/).type("Test");
@@ -53,7 +53,9 @@ context("Marketo forms", () => {
     getIframeBody().find(".rc-anchor-content").click();
 
     cy.wait(3000); // eslint-disable-line
-    cy.findByText(/Submit/).click();
+    cy.findByText(/Submit/).click({
+      force: true,
+    });
     cy.findByText("Thank you").should("be.visible");
   });
 
@@ -63,6 +65,7 @@ context("Marketo forms", () => {
       return false;
     });
     cy.visit("/engage/anbox-cloud-gaming-whitepaper");
+    cy.acceptCookiePolicy();
 
     cy.findByLabelText(/First Name:/).type("Test");
     cy.findByLabelText(/Last Name:/).type("Test");
@@ -81,6 +84,8 @@ context("Marketo forms", () => {
   it("should open pop up model and successfully complete contact form then submit to Marketo", () => {
     cy.intercept("POST", "/marketo/submit").as("captureLead");
     cy.visit("/openstack#get-in-touch");
+    cy.acceptCookiePolicy();
+
     cy.scrollTo("bottom");
     cy.findByRole('link', {name: /Next/i}).click();
     cy.findByRole('link', {name: /Next/i}).click();
@@ -103,6 +108,7 @@ context("Marketo forms", () => {
 
   it("should successfully complete download server", () => {
     cy.visit("/download/server/s390x");
+    cy.acceptCookiePolicy();
 
     cy.findByLabelText(/First name:/).type("Test");
     cy.findByLabelText(/Last name: /).type("Test");
