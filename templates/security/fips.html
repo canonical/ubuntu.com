@@ -1,8 +1,8 @@
 {% extends "security/base_security.html" %}
 
 
-{% block title %}Canonical fips certifications | Security{% endblock %}
-{% block meta_description %}Details on the FIPS security certification for Ubuntu Advantage subscribers.{% endblock %}
+{% block title %}Ubuntu fips certifications | Security{% endblock %}
+{% block meta_description %}Details on the Ubuntu FIPS security certification for Ubuntu Advantage subscribers.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1moTJCAtFXKD7ZXrxB-EB7GPVyZRTSIdkP-0BhPZl69M/edit#{% endblock meta_copydoc %}
 
 {% block content %}
@@ -10,9 +10,9 @@
 <section class="p-strip--suru-topped is-bordered">
  <div class="row u-equal-height u-vertically-center">
    <div class="col-8">
-     <h1>FIPS 140</h1>
-     <h2 class="p-heading--4">FIPS 140 validated cryptography for Linux workloads</h2>
-     <p>Developing and running workloads for U.S. government regulated and high security environments requires a long and expensive validation process. Reduce your accreditation timeline and pass on your validation costs with the FIPS 140 certified cryptographic packages of <a href="/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a>.</p>
+     <h1>FIPS 140 for Ubuntu</h1>
+     <h2 class="p-heading--4">FIPS 140 validated cryptography for Linux workloads on Ubuntu</h2>
+     <p>Developing and running Linux workloads for U.S. government regulated and high security environments requires a long and expensive validation process. Reduce your accreditation timeline and pass on your validation costs with the FIPS 140 certified cryptographic packages of <a href="/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a>.</p>
      <p>
       <a href="/security/certifications#get-in-touch" class="p-button--positive js-invoke-modal">Contact us</a>
       <a href="/advantage" class="p-button--neutral">Get Ubuntu Advantage</a>
@@ -46,7 +46,7 @@
       <h3 class="p-card__title p-heading--three">Reduce your compliance costs</h3>
       <hr class="u-sv1" />
       <p class="p-card__content">
-        Developing applications that comply with FIPS140 can be a challenging task. Validating the used cryptography in-house involves a long and expensive process that requires cryptography expertise and involves reviews from a 3rd party lab and NIST. All these introduce costs and complexity that may delay your launch. Ensure that you ship on time and reduce both validation costs and time by using the Ubuntu validated standard open source packages. The <a href="/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a> packages are validated on common CPU types and are also available for use on the <a href="/public-cloud">public cloud</a> with Ubuntu Pro FIPS.
+        Developing applications that comply with FIPS 140 can be a challenging task. Validating the used cryptography in-house involves a long and expensive process that requires cryptography expertise and involves reviews from a 3rd party lab and NIST. All these introduce costs and complexity that may delay your launch. Ensure that you ship on time and reduce both validation costs and time by using the Ubuntu validated standard open source packages. The <a href="/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a> packages are validated on common CPU types and are also available for use on the <a href="/public-cloud">public cloud</a> with Ubuntu Pro FIPS.
       </p>
     </article>
     <article class="col-4 p-card">
@@ -69,10 +69,11 @@
   <div class="u-fixed-width">
     <h2>What is FIPS 140?</h2>
     <p>FIPS 140 is a U.S. and Canada Government data protection standard. It defines security requirements related to the design and implementation of a cryptographic module. The reason for a data protection standard dedicated to cryptography is because cryptography today is omnipresent, and is very hard to get right in a constantly expanding threat model such as today’s Internet. The standard ensures that cryptographic algorithms known to be secure are used for data protection, and they are thoroughly tested and attested by a 3rd party. The testing and validation must be performed by a laboratory, which is accredited under the Cryptographic and Security Testing (CST) Laboratory Accreditation Program (LAP) and is part of NIST's   <a class="p-link--external" href="https://www.nist.gov/nvlap/">National Voluntary Laboratory Accreditation Program (NVLAP)</a> in the US and <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program">CCCS's Cryptographic Module Validation Program (CMVP)</a> in Canada.</p>
+    <p>FIPS 140-2 is required under multiple compliance regimes, such as Federal Risk and Authorization Management Program (FedRAMP), Federal Information Security Management Act of 2002 (FISMA) and the Health Information Technology for Economic and Clinical Health Act (HITECH).</p>
 
     <hr class="p-separator">
 
-    <h2>Access FIPS images on the public cloud</h2>
+    <h2 id="public-cloud">Access FIPS images on the public cloud</h2>
     <p class="u-sv3">FIPS can be enabled on Ubuntu Pro cloud images, while Ubuntu Pro FIPS cloud images simplify the experience as they come preconfigured with FIPS 140 certified packages optimized for the cloud. You can quickly navigate on the marketplace FIPS-enabled images below.</p>
   </div>
   <div class="row">
@@ -130,7 +131,7 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2>Certified packages under FIPS 140</h2>
+    <h2 id="modules">Certified packages under FIPS 140</h2>
     <p class="u-sv3">The following list contains the FIPS 140 validated components that are available with <a href="/advantage">Ubuntu Advantage</a> and <a href="/public-cloud">Ubuntu Pro</a>. The validated modules are API and ABI compatible with the default Ubuntu packages. The validation testing for Ubuntu was performed by atsec Information Security, a NIST accredited laboratory.</p>
     <table class="u-sv3">
       <thead>
@@ -138,7 +139,7 @@
           <th></th>
           <th>Ubuntu 16.04 LTS<br>on x86-64, IBM Power8 and IBM Z</th>
           <th>Ubuntu 18.04 LTS<br>on x86-64 and IBM Z</th>
-          <th>Ubuntu 20.04 LTS<br>on x86-64 and IBM Z</th>
+          <th>Ubuntu 20.04 LTS<br>on x86-64 and IBM Z<sup><a href="#ibm">*</a></sup></th>
         </tr>
       </thead>
       <tbody>
@@ -217,7 +218,8 @@
         </tr>
       </tbody>
     </table>
-    <a class="p-button--neutral js-invoke-modal" href="/security/certifications/docs/fips">Read more about the FIPS certification</a>
+    <p id="ibm">*The IBM Z packages are <a href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/modules-in-process/Modules-In-Process-List" class="p-link--external">under validation</a>.</p>
+    <a class="p-button--neutral" href="/security/certifications/docs/fips">Read more about FIPS</a>
     <a class="p-button--positive" href="/advantage">Access the FIPS140 validated modules</a>
   </div>
 </section>
