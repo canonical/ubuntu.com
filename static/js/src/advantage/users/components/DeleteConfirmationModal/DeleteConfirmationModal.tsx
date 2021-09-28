@@ -24,7 +24,7 @@ const DeleteConfirmationModal = ({
   const onSubmit = async () => {
     setIsLoading(true);
     try {
-      await handleConfirmDelete(user?.id);
+      await handleConfirmDelete(user?.email);
       handleClose();
     } catch (error) {
       setErrorMessage(getErrorMessage((error as any)?.message));

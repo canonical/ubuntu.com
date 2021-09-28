@@ -38,5 +38,5 @@ it("makes a correct call to handleConfirmDelete", () => {
     />
   );
   userEvent.click(screen.getByText("Yes, remove user"));
-  expect(mockHandleConfirmDelete).toHaveBeenCalledWith(mockUser.id);
+  expect(mockHandleConfirmDelete).toHaveBeenCalledWith(mockUser.email);
 });

@@ -6,7 +6,6 @@ import TableView from "./TableView";
 
 it("displays user details in a correct format", () => {
   const testUser: User = {
-    id: "1",
     name: "User",
     email: "user@ecorp.com",
     role: "admin",
