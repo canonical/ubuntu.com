@@ -12,7 +12,7 @@ const getIframeBody = () => {
     .then(cy.wrap);
 };
 
-context("Marketo forms", () => {
+context.skip("Marketo forms", () => {
   beforeEach(() => {
     cy.intercept(
       { method: "POST", url: "/marketo/submit" },
@@ -34,7 +34,7 @@ context("Marketo forms", () => {
     });
   });
 
-  it("should successfully complete contact form and submit to Marketo", () => {
+  it.skip("should successfully complete contact form and submit to Marketo", () => {
     cy.visit("/core/contact-us");
     cy.acceptCookiePolicy();
 
@@ -59,7 +59,7 @@ context("Marketo forms", () => {
     cy.findByText("Thank you").should("be.visible");
   });
 
-  it("/engage/anbox-cloud-gaming-whitepaper", () => {
+  it.skip("/engage/anbox-cloud-gaming-whitepaper", () => {
     //This exception can be removed when this issue is resolved: https://github.com/canonical-web-and-design/web-squad/issues/4345
     cy.on("uncaught:exception", () => {
       return false;
@@ -81,7 +81,7 @@ context("Marketo forms", () => {
     cy.findByText(/Thank you/).should("be.visible");
   });
 
-  it("should open pop up model and successfully complete contact form then submit to Marketo", () => {
+  it.skip("should open pop up model and successfully complete contact form then submit to Marketo", () => {
     cy.intercept("POST", "/marketo/submit").as("captureLead");
     cy.visit("/openstack#get-in-touch");
     cy.acceptCookiePolicy();
@@ -106,7 +106,7 @@ context("Marketo forms", () => {
     cy.findByLabelText("Close active modal").click();
   });
 
-  it("should successfully complete download server", () => {
+  it.skip("should successfully complete download server", () => {
     cy.visit("/download/server/s390x");
     cy.acceptCookiePolicy();
 
