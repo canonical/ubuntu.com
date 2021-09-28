@@ -103,7 +103,7 @@ const AccountUsers = ({
   const userInEditMode: User | undefined = React.useMemo(
     () =>
       typeof userInEditModeById === "string"
-        ? filteredUsers.find((user) => user.id === userInEditModeById)
+        ? filteredUsers.find((user) => user.email === userInEditModeById)
         : undefined,
     [userInEditModeById, filteredUsers]
   );

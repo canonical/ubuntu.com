@@ -1,7 +1,6 @@
 import { User, AccountUsersData } from "./types";
 
 export const mockUser: User = {
-  id: "1",
   email: "philip.p@ecorp.com",
   name: "Philip",
   role: "admin",
@@ -16,14 +15,12 @@ export const mockData: AccountUsersData = {
     mockUser,
     {
       ...mockUser,
-      id: "2",
       name: "Karen",
       email: "karen@ecorp.com",
       role: "billing",
     },
     {
       ...mockUser,
-      id: "3",
       name: "Angela",
       email: "angela@ecorp.com",
       role: "technical",

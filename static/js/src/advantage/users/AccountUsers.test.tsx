@@ -54,14 +54,12 @@ it("allows to edit only a single user at a time", async () => {
   const users: User[] = [
     {
       ...mockUserBase,
-      id: "1",
       name: "Karen",
       email: "karen@ecorp.com",
       role: "billing",
     },
     {
       ...mockUserBase,
-      id: "3",
       name: "Angela",
       email: "angela@ecorp.com",
       role: "technical",
@@ -88,7 +86,6 @@ it("allows to edit only a single user at a time", async () => {
 
 it("displays 'No results' when there are no search results", () => {
   const testUser: User = {
-    id: "1",
     name: "User",
     email: "user@ecorp.com",
     role: "admin",
@@ -112,7 +109,6 @@ it("displays 'No results' when there are no search results", () => {
 
 it("displays correct search results", () => {
   const testUser: User = {
-    id: "1",
     name: "User",
     email: "user@ecorp.com",
     role: "admin",

@@ -11,10 +11,10 @@ import UserRow from "./UserRow";
 
 export type UserRowVariant = "regular" | "editing" | "disabled";
 
-const getVariant = (userId: string, userInEditMode?: User | null) => {
+const getVariant = (userEmail: string, userInEditMode?: User | null) => {
   if (userInEditMode == null) {
     return "regular";
-  } else if (userId !== userInEditMode?.email) {
+  } else if (userEmail !== userInEditMode?.email) {
     return "disabled";
   } else {
     return "editing";
@@ -24,7 +24,7 @@ const getVariant = (userId: string, userInEditMode?: User | null) => {
 type Props = {
   users: Users;
   userInEditMode?: User | null;
-  setUserInEditModeById: (userId: string | null) => void;
+  setUserInEditModeById: (userEmail: string | null) => void;
   dismissEditMode: () => void;
   handleEditSubmit: ({
     email,
@@ -81,9 +81,9 @@ const TableView = ({
         <tbody>
           {usersPage.map((user) => (
             <UserRow
-              key={user.id}
+              key={user.email}
               user={user}
-              variant={getVariant(user.id, userInEditMode)}
+              variant={getVariant(user.email, userInEditMode)}
               setUserInEditModeById={setUserInEditModeById}
               dismissEditMode={dismissEditMode}
               handleEditSubmit={handleEditSubmit}

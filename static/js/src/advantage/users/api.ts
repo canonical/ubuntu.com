@@ -24,7 +24,6 @@ const parseAccountsResponse = (
   accountId: response.account_id,
   organisationName: response.name,
   users: response.users.map((user) => ({
-    id: user.email,
     name: user.name,
     email: user.email,
     role: user.user_role_on_account,
