@@ -18,6 +18,7 @@ it("displays confirmation message correctly", () => {
       handleClose={mockHandleClose}
     />
   );
+
   expect(
     getByTextContent(
       "Are you sure you want to remove philip.p@ecorp.com from your organisation?"
@@ -26,7 +27,7 @@ it("displays confirmation message correctly", () => {
 });
 
 it("makes a correct call to handleConfirmDelete", () => {
-  const mockHandleConfirmDelete = jest.fn();
+  const mockHandleConfirmDelete = jest.fn(Promise.resolve);
   const mockHandleClose = jest.fn();
 
   render(
