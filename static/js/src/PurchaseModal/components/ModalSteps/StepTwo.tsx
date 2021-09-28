@@ -41,18 +41,23 @@ function StepTwo({
     product?.canBeTrialled
   );
 
-  const TrialNotAvailable = getIsFreeTrialEnabled() ? (
-    <Row>
-      <Col size={10} emptyLarge={2}>
-        <p>
-          <strong>
-            Free Trial is not available for this account.{" "}
-            <a href="/contact-us">Contact us</a> for further information.
-          </strong>
-        </p>
-      </Col>
-    </Row>
-  ) : null;
+  const trialNotAvailable = () => {
+    if (getIsFreeTrialEnabled()) {
+      return (
+        <Row>
+          <Col size={10} emptyLarge={2}>
+            <p>
+              <strong>
+                Free Trial is not available for this account.{" "}
+                <a href="/contact-us">Contact us</a> for further information.
+              </strong>
+            </p>
+          </Col>
+        </Row>
+      );
+    }
+    return null;
+  };
 
   return (
     <>
@@ -68,7 +73,7 @@ function StepTwo({
               preview={preview}
             />
           ) : (
-            <>{TrialNotAvailable}</>
+            trialNotAvailable()
           )}
           <PaymentMethodSummary setStep={setStep} />
           <TermsCheckbox label={termsLabel} setTermsChecked={setTermsChecked} />
