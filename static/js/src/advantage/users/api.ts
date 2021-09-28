@@ -58,7 +58,7 @@ const handleResponse = async (response: Response): Promise<unknown> => {
   return responseJson;
 };
 
-const fetchJSON = async (input: RequestInfo, init?: RequestInit) =>
+const fetchJSON = (input: RequestInfo, init?: RequestInit) =>
   fetch(input, init).then(handleResponse);
 
 const requestAddUser = ({
