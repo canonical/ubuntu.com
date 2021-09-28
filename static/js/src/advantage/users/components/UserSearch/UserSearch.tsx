@@ -26,10 +26,10 @@ const UserSearch = ({
       }}
     >
       <input
-        aria-label="search"
+        aria-label="Search for users"
         type="search"
         className="p-search-box__input"
-        placeholder="Search"
+        placeholder="Search for users"
         name="search"
         autoComplete="off"
         value={searchInputValue}
