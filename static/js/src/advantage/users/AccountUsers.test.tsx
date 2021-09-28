@@ -85,3 +85,51 @@ it("allows to edit only a single user at a time", async () => {
   await waitFor(() => expect(screen.getByLabelText(EDIT_ANGELA)).toBeEnabled());
   expect(screen.getByLabelText(EDIT_KAREN)).toBeEnabled();
 });
+
+it("displays 'No results' when there are no search results", () => {
+  const testUser: User = {
+    id: "1",
+    name: "User",
+    email: "user@ecorp.com",
+    role: "admin",
+    lastLoginAt: "2021-02-15T13:45:00Z",
+  };
+
+  render(
+    <AccountUsers
+      organisationName="ECorp"
+      users={[...mockData.users, testUser]}
+    />
+  );
+
+  expect(screen.queryByText("No results")).not.toBeInTheDocument();
+  userEvent.type(
+    screen.getByRole("searchbox", { name: "Search for users" }),
+    "Lorem ipsum"
+  );
+  expect(screen.getByText("No results")).toBeInTheDocument();
+});
+
+it("displays correct search results", () => {
+  const testUser: User = {
+    id: "1",
+    name: "User",
+    email: "user@ecorp.com",
+    role: "admin",
+    lastLoginAt: "2021-02-15T13:45:00Z",
+  };
+
+  const mockUsers = [...mockData.users, testUser];
+
+  render(<AccountUsers organisationName="ECorp" users={mockUsers} />);
+
+  expect(screen.getAllByLabelText("email")).toHaveLength(mockUsers.length);
+  userEvent.type(
+    screen.getByRole("searchbox", { name: "Search for users" }),
+    "user@ecorp.com"
+  );
+  expect(screen.getAllByLabelText("email")).toHaveLength(1);
+
+  userEvent.click(screen.getByRole("button", { name: "clear" }));
+  expect(screen.getAllByLabelText("email")).toHaveLength(mockUsers.length);
+});

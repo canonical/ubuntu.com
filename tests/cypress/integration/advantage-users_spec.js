@@ -21,7 +21,7 @@ context("Advantage", () => {
     cy.findByText(/User added successfully/).should("exist");
 
     // check that search works correctly
-    cy.findByLabelText("Search for users").type(email);
+    cy.findByRole("searchbox", { name: "Search for users" }).type(email);
     cy.findAllByLabelText("email").should("have.length", 1);
     cy.findByText(email).should("exist");
 
