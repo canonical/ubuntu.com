@@ -38,13 +38,18 @@ const UserSearch = ({
       {searchInputValue.length > 0 ? (
         <button
           type="reset"
+          aria-label="clear"
           className="p-search-box__reset"
           onClick={() => setSearchInputValue("")}
         >
           <i className="p-icon--close"></i>
         </button>
       ) : null}
-      <button type="submit" className="p-search-box__button">
+      <button
+        type="submit"
+        className="p-search-box__button"
+        aria-label="search"
+      >
         <i className="p-icon--search"></i>
       </button>
     </form>
