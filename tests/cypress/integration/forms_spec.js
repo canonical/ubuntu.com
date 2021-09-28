@@ -12,7 +12,7 @@ const getIframeBody = () => {
     .then(cy.wrap);
 };
 
-context("Marketo forms", () => {
+context.skip("Marketo forms", () => {
   beforeEach(() => {
     cy.intercept(
       { method: "POST", url: "/marketo/submit" },
@@ -59,7 +59,7 @@ context("Marketo forms", () => {
     cy.findByText("Thank you").should("be.visible");
   });
 
-  it("/engage/anbox-cloud-gaming-whitepaper", () => {
+  it.skip("/engage/anbox-cloud-gaming-whitepaper", () => {
     //This exception can be removed when this issue is resolved: https://github.com/canonical-web-and-design/web-squad/issues/4345
     cy.on("uncaught:exception", () => {
       return false;
@@ -76,13 +76,12 @@ context("Marketo forms", () => {
 
     getIframeBody().find(".rc-anchor-content").click();
 
-    cy.wait(3000);
-    cy.findByText(/Download the whitepaper/).click({ force: true });
-    cy.wait(3000);
+    cy.wait(3000); // eslint-disable-line
+    cy.findByText(/Download the whitepaper/).click();
     cy.findByText(/Thank you/).should("be.visible");
   });
 
-  it("should open pop up model and successfully complete contact form then submit to Marketo", () => {
+  it.skip("should open pop up model and successfully complete contact form then submit to Marketo", () => {
     cy.intercept("POST", "/marketo/submit").as("captureLead");
     cy.visit("/openstack#get-in-touch");
     cy.acceptCookiePolicy();
@@ -101,15 +100,13 @@ context("Marketo forms", () => {
 
     getIframeBody().find(".rc-anchor-content").click();
 
-    cy.wait(3000);
-    cy.findByText(/Let's discuss/).click({
-      force: true,
-    });
+    cy.wait(3000); // eslint-disable-line
+    cy.findByText(/Let's discuss/).click();
     cy.findByText(/Thank you/).should("be.visible");
     cy.findByLabelText("Close active modal").click();
   });
 
-  it("should successfully complete download server", () => {
+  it.skip("should successfully complete download server", () => {
     cy.visit("/download/server/s390x");
     cy.acceptCookiePolicy();
 
@@ -121,9 +118,9 @@ context("Marketo forms", () => {
 
     getIframeBody().find(".rc-anchor-content").click();
 
-    cy.wait(3000);
-    cy.findByText(/Accept terms and download/).click({ force: true });
-    cy.findByText(/Accept all and visit site/).click({ force: true });
+    cy.wait(3000); // eslint-disable-line
+    cy.findByText(/Accept terms and download/).click();
+    cy.findByText(/Accept all and visit site/).click();
     cy.findAllByText(/Download Ubuntu Server/).should("be.visible");
   });
 });
