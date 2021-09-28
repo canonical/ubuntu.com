@@ -21,7 +21,7 @@ context("Marketo forms", () => {
           "Client Id": Cypress.env("MARKETO_CLIENT_ID"),
           "Client Secret": Cypress.env("MARKETO_CLIENT_SECRET"),
           "Authorized User": Cypress.env("MARKETO_AUTHORISED_USER"),
-          Token: Cypress.env("MARKETO_TOKEN"),
+          "Token": Cypress.env("MARKETO_TOKEN"),
         },
       }
     ).as("captureLead");
