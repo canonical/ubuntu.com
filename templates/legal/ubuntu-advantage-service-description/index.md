@@ -263,17 +263,66 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
 
 <h2 id="uasd-support-services-process">UA Support Services Process</h2>
 
-1. The Ubuntu Advantage for Infrastructure, Virtual services match those of the applicable Ubuntu Advantage for Infrastructure offering, subject to the exceptions listed below.
-2. The Ubuntu Advantage Infrastructure, Virtual services are provided for Ubuntu Server when installed and running as a guest in a virtualised environment either (1) in an Ubuntu certified Public Cloud partner's environment, or (2) on a physical host, provided the guest is running on a [Covered Hypervisor](#term-hypervisor).<br /><br />
-   Note: Only underlying technology is listed. These can be provided via a cloud like OpenStack. If hypervisor vendor provides a specific list of supported Ubuntu versions only those will be eligible for Ubuntu Advantage for Infrastructure, Virtual service.<br /><br />
-3. Certified Public Cloud partners can be found in the Ubuntu partner listing: [ubuntu.com/public-cloud](https://ubuntu.com/public-cloud)
-4. Kubernetes support is included as per definitions in the application section of Ubuntu Advantage for Infrastructure above.
-5. The Ubuntu Advantage for Infrastructure, Virtual service does not provide:
-6. Hypervisor support.
-7. OpenStack support.
-8. MAAS support.
-9. Providing built-in images for a chosen hypervisor.
-10. Additional exclusions match those of the applicable Ubuntu Advantage for Infrastructure service offering.
+1. Service initiation
+    1. Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal, and the online knowledge base
+    2. The customer, through their initial technical representative, may select their chosen technical representatives who act as primary points of contact for support requests. The customer will receive up to 5 dedicated, personalised credentials for technical representatives per every 500 Nodes under UA support, but not more than a total of 15 credentials
+    3. The customer may change their specified technical representatives at any time by submitting a support request via the support portal
+2. Submitting support requests
+    4. The customer may open a support request once the customer account has been provisioned within the support portal
+    5. The customer may submit support cases through the support portal or by contacting the support team by telephone, unless otherwise noted
+    6. A support case should consist of a single discrete problem, issue, or request
+    7. Cases are assigned a ticket number and responded to automatically. All correspondence not entered directly into the case, including emails and telephone calls, will be logged into the case with a timestamp for quality assurance
+    8. When reporting a case, the customer should provide an impact statement to help Canonical determine the appropriate severity level. Customers with multiple concurrent support cases may be asked to prioritize cases according to severity of business impact
+    9. The customer is expected to provide all information requested by Canonical as we work to resolve the case
+    10. Canonical will keep a record of each case within the support portal enabling the customer to track and respond to all current cases and allowing for review of historical cases
+3. Support severity levels
+    11. Once a support request is opened, a Canonical support engineer will validate the case information and determine the severity level, working with the customer to assess the urgency of the case
+    12. Canonical will work 24/7 or during the applicable Business Hours as described below to provide the customer with a work-around or permanent solution following the severity levels as described below.  As soon as core functionality is available, the severity level will be lowered to the new appropriate severity level.
+    13. Canonical will use reasonable efforts to respond to support requests made by the customer within the initial response times set forth below, based on the applicable service and severity level, but cannot guarantee a work-around, resolution or resolution time:
+      <table class="p-table" style="width: auto;">
+        <thead>
+          <tr>
+            <th>Severity Level</th>
+            <th>Description</th>
+            <th>Standard initial response time</th>
+            <th>Advanced initial response time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Core functionality critical impact/Service down</td>
+            <td>4 hours, excluding weekends and holidays</td>
+            <td>1 hour</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Core functionality severely degraded</td>
+            <td>8 Business Hours</td>
+            <td>2 hours</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Standard support request</td>
+            <td>12 Business Hours</td>
+            <td>6 hours</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Non-urgent requests, including cosmetic, informational and feature requests.</td>
+            <td>24 Business Hours</td>
+            <td>12 hours</td>
+          </tr>
+        </tbody>
+      </table>
+4. Customer assistance. Continuous effort support is dependent on the customer being available at all times to assist Canonical, otherwise Canonical may need to reduce the severity level and its ability to respond
+5. Hotfixes. To temporarily resolve critical support cases, Canonical may provide a version of the affected software (e.g. package) that applies a patch. Such versions are referred to as “hotfixes”. Hotfixes provided by Canonical are supported for 90 days after the corresponding patch has been incorporated into a release of the software in the Ubuntu Archives. However, if a patch is rejected by the applicable upstream project, the hotfix will no longer be supported and the case will remain open
+6. Support language. Canonical will provide the support in English, unless specified otherwise
+7. Remote sessions. At the discretion of a Canonical engineer, a remote access service might be offered to access a supported system. In such a case, Canonical will determine which remote access service to use. Canonical engineers do not perform any remote actions on a supported system
+8. Ask for a Peer Review. As a normal business practice, Canonical performs peer reviews on a percentage of all cases. Customers can specifically request a peer review on a case within the case comments or by calling the phone number listed in the support portal. An impartial engineer will be assigned to review the case and provide feedback
+9. Management escalation. The customer may escalate support issues following the escalation process:
+    14. Non-urgent needs. Request a management escalation within the case itself. A manager will be contacted to review the case and post a response within 1 business day
+    15. Urgent needs can be escalated to Canonical’s Support & Technical Services Manager by emailing [support-manager@canonical.com](mailto:support-manager@canonical.com). If you require further escalation, email Canonical’s Support & Technical Services Director at [operations-director@canonical.com](mailto:operations-director@canonical.com)
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
