@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQueryClient, useMutation } from "react-query";
+import * as Sentry from "@sentry/react";
 import {
   User,
   Users,
@@ -13,8 +14,8 @@ import TableView from "./components/TableView/TableView";
 import DeleteConfirmationModal from "./components/DeleteConfirmationModal/DeleteConfirmationModal";
 import UserSearch from "./components/UserSearch/UserSearch";
 
-import { requestAddUser, requestDeleteUser, requestUpdateUser } from "./api";
-import { getErrorMessage } from "./utils";
+import { requestAddUser, requestUpdateUser } from "./api";
+import { getErrorMessage, errorMessages } from "./utils";
 
 export type AccountUsersProps = {
   organisationName: OrganisationName;
@@ -39,11 +40,6 @@ const AccountUsers = ({
     { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
   );
 
-  const userDeleteMutation = useMutation(
-    (email: string) => requestDeleteUser({ accountId, email }),
-    { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
-  );
-
   const userUpdateMutation = useMutation(
     ({ email, role }: { email: string; role: UserRole }) =>
       requestUpdateUser({
@@ -55,6 +51,18 @@ const AccountUsers = ({
       onSuccess: () => queryClient.invalidateQueries("accountUsers"),
     }
   );
+
+  const handleMutationError = (error: unknown) => {
+    const errorMessage = getErrorMessage(error);
+    if (errorMessage === errorMessages.unknown) {
+      Sentry.captureException(error);
+    }
+
+    setNotification({
+      severity: "negative",
+      message: errorMessage,
+    });
+  };
 
   const handleUpdateUser = ({
     email,
@@ -69,30 +77,23 @@ const AccountUsers = ({
         dismissEditMode();
         setNotification({ severity: "positive", message: "User updated" });
       })
-      .catch((error) => {
-        setNotification({
-          severity: "negative",
-          message: getErrorMessage((error as any)?.message),
-        });
-      });
+      .catch(handleMutationError);
 
   const handleAddNewUser = (user: NewUserValues) =>
-    userAddMutation.mutateAsync(user).then(() => {
-      setNotification({
-        severity: "positive",
-        message: "User added successfully",
-      });
-    });
+    userAddMutation
+      .mutateAsync(user)
+      .then(() => {
+        setNotification({
+          severity: "positive",
+          message: "User added successfully",
+        });
+      })
+      .catch(handleMutationError);
 
   const [
     isDeleteConfirmationModalOpen,
     setIsDeleteConfirmationModalOpen,
   ] = useState(false);
-  const handleDeleteUser = (userId: string) =>
-    userDeleteMutation.mutateAsync(userId).then(() => {
-      dismissEditMode();
-      setNotification({ severity: "positive", message: "User deleted" });
-    });
 
   const [userInEditModeById, setUserInEditModeById] = useState<string | null>(
     null
@@ -116,6 +117,11 @@ const AccountUsers = ({
   };
   const handleDeleteConfirmationModalOpen = () =>
     setIsDeleteConfirmationModalOpen(true);
+
+  const handleOnAfterDeleteSuccess = () => {
+    dismissEditMode();
+    setNotification({ severity: "positive", message: "User deleted" });
+  };
 
   const handleSearch = (value: string) => {
     dismissEditMode();
@@ -167,8 +173,9 @@ const AccountUsers = ({
         ) : null}
         {isDeleteConfirmationModalOpen && userInEditMode ? (
           <DeleteConfirmationModal
+            accountId={accountId}
             user={userInEditMode}
-            handleConfirmDelete={handleDeleteUser}
+            onAfterDeleteSuccess={handleOnAfterDeleteSuccess}
             handleClose={handleDeleteConfirmationModalClose}
           />
         ) : null}

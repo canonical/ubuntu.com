@@ -176,7 +176,7 @@ const UserRowEditable = ({
             <FormattedDate dateISO={user.lastLoginAt} />
           </UserCell>
           <UserCell style={tdStyle} label="actions">
-            <Button small dense onClick={dismissEditMode}>
+            <Button small dense onClick={dismissEditMode} type="button">
               Cancel
             </Button>
             <Button
@@ -184,6 +184,7 @@ const UserRowEditable = ({
               dense
               appearance="positive"
               disabled={isSubmitting}
+              type="submit"
               onClick={() => handleSubmit()}
             >
               Save
