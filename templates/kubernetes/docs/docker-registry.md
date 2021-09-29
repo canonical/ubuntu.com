@@ -181,7 +181,7 @@ juju config kubernetes-master image-registry=$REGISTRY
 
 <!-- LINKS -->
 
-[registry-charm]: http://jujucharms.com/u/containers/docker-registry
+[registry-charm]: https://jaas.ai/u/containers/docker-registry
 [upstream-registry]: https://docs.docker.com/registry/
 [quickstart]: /kubernetes/docs/quickstart
 [container-runtime]: /kubernetes/docs/container-runtime
