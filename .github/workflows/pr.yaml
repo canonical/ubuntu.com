@@ -163,7 +163,7 @@ jobs:
           sudo chown root:root /
 
       - name: Install dependencies
-        run: sudo pip3 install coverage
+        run: /snap/bin/dotrun exec pip3 install coverage
 
       - name: Install node dependencies
         run: /snap/bin/dotrun install
