@@ -58,7 +58,11 @@ const handleResponse = async (response: Response): Promise<unknown> => {
 };
 
 const fetchJSON = (input: RequestInfo, init?: RequestInit) =>
-  fetch(input, init).then(handleResponse);
+  fetch(input, init)
+    .catch(() => {
+      throw new Error("network failure");
+    })
+    .then(handleResponse);
 
 const requestAddUser = ({
   accountId,

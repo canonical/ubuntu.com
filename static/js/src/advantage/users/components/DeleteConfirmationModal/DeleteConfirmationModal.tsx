@@ -1,20 +1,41 @@
 import React, { useState } from "react";
 import { Modal, Button } from "@canonical/react-components";
+import { useQueryClient, useMutation } from "react-query";
+import * as Sentry from "@sentry/react";
 
+import { requestDeleteUser } from "../../api";
 import { User } from "../../types";
-import { getErrorMessage, SubmissionErrorMessage } from "../../utils";
+import {
+  getErrorMessage,
+  errorMessages,
+  SubmissionErrorMessage,
+} from "../../utils";
 
 type DeleteConfirmationModalProps = {
+  accountId: string;
   user: User;
-  handleConfirmDelete: (userId: string) => Promise<any>;
+  onAfterDeleteSuccess: () => void;
   handleClose: () => void;
 };
 
 const DeleteConfirmationModal = ({
+  accountId,
   user,
-  handleConfirmDelete,
+  onAfterDeleteSuccess,
   handleClose,
 }: DeleteConfirmationModalProps) => {
+  const queryClient = useQueryClient();
+
+  const userDeleteMutation = useMutation(
+    (email: string) => requestDeleteUser({ accountId, email }),
+    { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
+  );
+
+  const handleDeleteUser = (userEmail: string) =>
+    userDeleteMutation.mutateAsync(userEmail).then(() => {
+      onAfterDeleteSuccess();
+    });
+
   const [
     errorMessage,
     setErrorMessage,
@@ -24,10 +45,14 @@ const DeleteConfirmationModal = ({
   const onSubmit = async () => {
     setIsLoading(true);
     try {
-      await handleConfirmDelete(user?.email);
+      await handleDeleteUser(user?.email);
       handleClose();
     } catch (error) {
-      setErrorMessage(getErrorMessage((error as any)?.message));
+      const errorMessage = getErrorMessage(error);
+      if (errorMessage === errorMessages.unknown) {
+        Sentry.captureException(error);
+      }
+      setErrorMessage(errorMessage);
     } finally {
       setIsLoading(false);
     }

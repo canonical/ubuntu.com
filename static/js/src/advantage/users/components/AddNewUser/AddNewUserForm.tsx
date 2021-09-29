@@ -6,6 +6,7 @@ import {
   Select,
 } from "@canonical/react-components";
 import { Formik, Form, Field } from "formik";
+import * as Sentry from '@sentry/react'
 
 import { HandleNewUserSubmit, NewUserValues } from "../../types";
 import { userRoleOptions } from "../../constants";
@@ -14,6 +15,7 @@ import {
   validateEmail,
   validateRequired,
   SubmissionErrorMessage,
+  errorMessages,
 } from "../../utils";
 
 export const AddNewUserForm = ({
@@ -38,7 +40,11 @@ export const AddNewUserForm = ({
       await handleSubmit(values);
       handleClose();
     } catch (error) {
-      setFormSubmissionError(getErrorMessage((error as any)?.message));
+      const errorMessage = getErrorMessage(error);
+      if (errorMessage === errorMessages.unknown) {
+        Sentry.captureException(error);
+      }
+      setFormSubmissionError(errorMessage);
     }
   };
 

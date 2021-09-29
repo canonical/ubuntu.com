@@ -6,6 +6,7 @@ import { Integrations } from "@sentry/tracing";
 
 import AccountUsers from "./AccountUsers";
 import { requestAccountUsers } from "./api";
+import { getErrorMessage } from "./utils";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -31,10 +32,19 @@ Sentry.init({
 });
 
 const AccountUsersWithQuery = () => {
-  const { status, data } = useQuery("accountUsers", async () => {
-    const res = await requestAccountUsers();
-    return res;
-  });
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const { status, data } = useQuery(
+    "accountUsers",
+    async () => {
+      const res = await requestAccountUsers();
+      return res;
+    },
+    {
+      onError: (error) => {
+        setErrorMessage(getErrorMessage(error));
+      },
+    }
+  );
 
   return (
     <div>
@@ -55,7 +65,7 @@ const AccountUsersWithQuery = () => {
                     <div className="p-notification__content">
                       <h5 className="p-notification__title">Error</h5>
                       <p className="p-notification__message" role="alert">
-                        An unknown error has occurred. Please try again.
+                        {errorMessage}
                       </p>
                     </div>
                   </div>
