@@ -54,6 +54,7 @@ jobs:
 
       - name: Install dotrun
         run: |
+          sudo snap install --beta docker
           sudo snap install dotrun
           sudo chown root:root /
 
@@ -157,6 +158,7 @@ jobs:
 
       - name: Install dotrun
         run: |
+          sudo snap install --beta docker
           sudo snap install dotrun
           sudo chown root:root /
 
