@@ -33,7 +33,7 @@
     <div class="col-5 p-card">
       <p class="p-heading--5">Have non-standard requirements?</p>
       <p>Tell us more about your specific needs here - we will send you a detailed report and help you find the cloud architecture that best suits your requirements.</p>
-      <a class="js-invoke-modal p-button--positive" href="/openstack/contact-us">Get cost estimates</a>
+      <a class="js-invoke-modal p-button--positive" href="/openstack/contact-us">Get in touch</a>
     </div>
   </div>
 
@@ -129,33 +129,6 @@ const updateFormFields = () => {
   });
 };
 updateFormFields();
-
-const addAnotherInstance = () => {
-  document.addEventListener("contactModalLoaded", (event) => {
-    const button = document.querySelector("#add-another-instance");
-    button.addEventListener("click", () => {
-      const instanceTypes = Array.from(
-        document.querySelectorAll(".js-instance-type") 
-      );
-      const length = instanceTypes.length;
-      for (let i = 0; i < length; i++) {
-        if (instanceTypes[i].classList.contains("u-hide")) {
-          instanceTypes[i].classList.remove("u-hide");
-          //when new instance is added add p-heading--five class to h3s for inputs only to capture values in comment.
-          const inputTitles = instanceTypes[i].querySelectorAll("h4")
-          inputTitles.forEach(inputTitle => {
-            inputTitle.classList.add("p-heading--five")
-          })
-          if (i === length - 1) {
-            button.setAttribute("disabled", "true")
-          }
-          return;
-        }
-      }
-    });
-  });
-};
-addAnotherInstance();
 </script> 
 
 {% endblock content %}
