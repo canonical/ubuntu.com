@@ -1,4 +1,5 @@
 import { screen, MatcherFunction } from "@testing-library/react";
+import { User } from "../users/types";
 
 const getTextContentMatcher = (textMatch: string | RegExp): MatcherFunction => (
   _content,
@@ -18,3 +19,14 @@ const getTextContentMatcher = (textMatch: string | RegExp): MatcherFunction => (
 // https://github.com/testing-library/dom-testing-library/issues/410#issuecomment-797486513
 export const getByTextContent = (text: string | RegExp) =>
   screen.getByText(getTextContentMatcher(text));
+
+const getRandomString = () => `${Math.random().toString(36).substr(2, 10)}`;
+export const getRandomUser = (): User => {
+  const name = getRandomString();
+  return {
+    name,
+    email: `${name}@ecorp.com`,
+    role: "admin",
+    lastLoginAt: "2021-02-15T13:45:00Z",
+  };
+};
