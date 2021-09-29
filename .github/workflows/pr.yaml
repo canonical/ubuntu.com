@@ -162,11 +162,11 @@ jobs:
           sudo snap install dotrun
           sudo chown root:root /
 
-      - name: Install dependencies
-        run: /snap/bin/dotrun exec pip3 install coverage
-
       - name: Install node dependencies
         run: /snap/bin/dotrun install
+
+      - name: Install dependencies
+        run: /snap/bin/dotrun exec pip3 install coverage
 
       - name: Build resources
         run: /snap/bin/dotrun build
