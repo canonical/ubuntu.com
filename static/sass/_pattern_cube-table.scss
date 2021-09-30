@@ -142,13 +142,35 @@
     tr {
       column-gap: 1rem;
       display: grid;
-      grid-template-columns: 1.6rem 3rem 2fr 2fr 1fr 1fr;
+      grid-template-columns: 1.6rem 3rem 2fr 2fr 1fr 1.4fr;
 
       td {
         padding-top: 1rem;
 
         &.p-table--cube--grid__module-logo {
           padding: 0.5rem 0;
+        }
+
+        li:first-of-type {
+          padding-top: 0;
+        }
+
+        li:last-of-type {
+          padding-bottom: 1rem;
+        }
+
+        button:not(:first-of-type) {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    tr {
+      td {
+        button:not(:first-of-type) {
+          margin-left: 1rem;
         }
       }
     }
