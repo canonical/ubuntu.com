@@ -452,6 +452,8 @@
       }
 
       fireLoadedEvent();
+
+      comment.value = createMessage();
     }
 
     // Opens the form when the initial hash matches the trigger

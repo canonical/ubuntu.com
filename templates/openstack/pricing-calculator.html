@@ -105,8 +105,8 @@
 <script src="{{ versioned_static('js/dist/costCalculator.js') }}" type="module" defer></script>
 
 <script>
-const updateFormFields = () => {
-  document.addEventListener("contactModalLoaded", (event) => {
+
+  const updateFormFields = () => {
     const container = document.querySelector(`#cost-calculator-section`);
     const vcpusValue = container.querySelector("#vcpus").value;
     const ramValue = container.querySelector("#ram").value;
@@ -126,9 +126,11 @@ const updateFormFields = () => {
     contactModal.querySelector(
       "#instance-type-number-of-instances"
     ).value = instancesValue;
+  };
+  document.addEventListener("contactModalLoaded", () => {
+    updateFormFields();
   });
-};
-updateFormFields();
+
 </script> 
 
 {% endblock content %}
