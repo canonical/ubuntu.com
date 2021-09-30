@@ -3,10 +3,16 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { getRandomUser } from "../../../tests/utils";
+import { User } from "../../types";
 import TableView from "./TableView";
 
 it("displays user details in a correct format", () => {
-  const testUser = getRandomUser();
+  const testUser: User = {
+    name: "User",
+    email: "user@ecorp.com",
+    role: "admin",
+    lastLoginAt: "2021-02-15T13:45:00Z",
+  };
 
   render(
     <TableView

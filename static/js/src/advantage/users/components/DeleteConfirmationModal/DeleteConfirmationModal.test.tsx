@@ -1,9 +1,8 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { QueryClient, QueryClientProvider } from "react-query";
 
-import { getByTextContent } from "../../../tests/utils";
+import { getByTextContent, renderWithQueryClient } from "../../../tests/utils";
 
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { mockUser, mockAccountId } from "../../mockData";
@@ -11,18 +10,11 @@ import { requestDeleteUser } from "../../api";
 
 jest.mock("../../api");
 
-const renderWithQueryClient = (Component: React.ReactNode) => {
-  const queryClient = new QueryClient();
-  return render(
-    <QueryClientProvider client={queryClient}>{Component}</QueryClientProvider>
-  );
-};
-
 it("displays confirmation message correctly", () => {
   const onAfterDeleteSuccess = jest.fn();
   const mockHandleClose = jest.fn();
 
-  render(
+  renderWithQueryClient(
     <DeleteConfirmationModal
       accountId={mockAccountId}
       user={mockUser}
@@ -38,11 +30,11 @@ it("displays confirmation message correctly", () => {
   ).toBeVisible();
 });
 
-it("makes a correct call to requestDeleteUser", () => {
+it("makes a correct call to requestDeleteUser", async () => {
   const onAfterDeleteSuccess = jest.fn();
   const mockHandleClose = jest.fn();
 
-  const { container } = renderWithQueryClient(
+  renderWithQueryClient(
     <DeleteConfirmationModal
       accountId={mockAccountId}
       user={mockUser}
@@ -50,7 +42,13 @@ it("makes a correct call to requestDeleteUser", () => {
       handleClose={mockHandleClose}
     />
   );
+
   userEvent.click(screen.getByText("Yes, remove user"));
-  expect(container.firstChild).toMatchInlineSnapshot();
-  expect(requestDeleteUser).toHaveBeenCalledTimes(1);
+
+  await waitFor(() =>
+    expect(requestDeleteUser).toHaveBeenCalledWith({
+      accountId: mockAccountId,
+      email: mockUser.email,
+    })
+  );
 });
