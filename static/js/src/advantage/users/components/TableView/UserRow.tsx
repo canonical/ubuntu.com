@@ -114,7 +114,7 @@ const FormattedDate = ({ dateISO }: { dateISO: string | null }) =>
   );
 
 type UserRowProps = {
-  setUserInEditModeById: (email: string) => void;
+  setUserInEditMode: (user: User) => void;
   dismissEditMode: () => void;
   handleEditSubmit: ({
     email,
@@ -199,7 +199,7 @@ const UserRowEditable = ({
 const UserRowNonEditable = ({
   user,
   variant,
-  setUserInEditModeById,
+  setUserInEditMode,
   handleDeleteConfirmationModalOpen,
 }: UserRowProps) => {
   return (
@@ -227,7 +227,7 @@ const UserRowNonEditable = ({
         <Button
           small
           dense
-          onClick={() => setUserInEditModeById(user.email)}
+          onClick={() => setUserInEditMode(user)}
           disabled={variant === "disabled"}
           aria-label={`Edit user ${user.email}`}
         >

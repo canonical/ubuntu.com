@@ -13,11 +13,70 @@ import { getErrorMessage, errorMessages } from "./utils";
 
 export type AccountUsersProps = AccountUsersData;
 
-const AccountUsers = ({
+const AccountUsersContainer = ({
   accountId,
   organisationName,
   users,
 }: AccountUsersData) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState<User[]>(users);
+  const [userInEditModeByEmail, setUserInEditModeByEmail] = useState<
+    string | null
+  >(null);
+
+  const setUserInEditMode = (user: User) =>
+    setUserInEditModeByEmail(user?.email);
+
+  const dismissEditMode = () => setUserInEditModeByEmail(null);
+
+  const handleSearch = (value: string) => {
+    dismissEditMode();
+    setSearchQuery(value);
+  };
+
+  const userInEditMode: User | undefined = React.useMemo(
+    () =>
+      typeof userInEditModeByEmail === "string"
+        ? filteredUsers.find((user) => user.email === userInEditModeByEmail)
+        : undefined,
+    [userInEditModeByEmail, filteredUsers]
+  );
+
+  useEffect(() => {
+    const filteredUsers = users.filter((user) =>
+      user.email.includes(searchQuery)
+    );
+
+    setFilteredUsers(filteredUsers);
+  }, [searchQuery, users]);
+
+  return (
+    <AccountUsers
+      accountId={accountId}
+      organisationName={organisationName}
+      users={filteredUsers}
+      userInEditMode={userInEditMode}
+      dismissEditMode={dismissEditMode}
+      setUserInEditMode={setUserInEditMode}
+      handleSearch={handleSearch}
+    />
+  );
+};
+
+const AccountUsers = ({
+  accountId,
+  organisationName,
+  users,
+  userInEditMode,
+  setUserInEditMode,
+  dismissEditMode,
+  handleSearch,
+}: AccountUsersData & {
+  handleSearch: (value: string) => void;
+  userInEditMode?: User;
+  setUserInEditMode: (user: User) => void;
+  dismissEditMode: () => void;
+}) => {
   const [notification, setNotification] = useState<{
     severity: string;
     message: string;
@@ -85,46 +144,10 @@ const AccountUsers = ({
     setIsDeleteConfirmationModalOpen,
   ] = useState(false);
 
-  const [userInEditModeById, setUserInEditModeById] = useState<string | null>(
-    null
-  );
-
-  const [filteredUsers, setFilteredUsers] = useState<User[]>(users);
-
-  const userInEditMode: User | undefined = React.useMemo(
-    () =>
-      typeof userInEditModeById === "string"
-        ? filteredUsers.find((user) => user.email === userInEditModeById)
-        : undefined,
-    [userInEditModeById, filteredUsers]
-  );
-
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const dismissEditMode = () => setUserInEditModeById(null);
-  const handleDeleteConfirmationModalClose = () => {
-    setIsDeleteConfirmationModalOpen(false);
-  };
-  const handleDeleteConfirmationModalOpen = () =>
-    setIsDeleteConfirmationModalOpen(true);
-
   const handleOnAfterDeleteSuccess = () => {
     dismissEditMode();
     setNotification({ severity: "positive", message: "User deleted" });
   };
-
-  const handleSearch = (value: string) => {
-    dismissEditMode();
-    setSearchQuery(value);
-  };
-
-  useEffect(() => {
-    const filteredUsers = users.filter((user) =>
-      user.email.includes(searchQuery)
-    );
-
-    setFilteredUsers(filteredUsers);
-  }, [searchQuery, users]);
 
   return (
     <div>
@@ -166,19 +189,19 @@ const AccountUsers = ({
             accountId={accountId}
             user={userInEditMode}
             onAfterDeleteSuccess={handleOnAfterDeleteSuccess}
-            handleClose={handleDeleteConfirmationModalClose}
+            handleClose={() => setIsDeleteConfirmationModalOpen(false)}
           />
         ) : null}
         <div className="row">
           <div className="col-12">
             <TableView
-              users={filteredUsers}
+              users={users}
               userInEditMode={userInEditMode}
-              setUserInEditModeById={setUserInEditModeById}
+              setUserInEditMode={setUserInEditMode}
               dismissEditMode={dismissEditMode}
               handleEditSubmit={handleUpdateUser}
-              handleDeleteConfirmationModalOpen={
-                handleDeleteConfirmationModalOpen
+              handleDeleteConfirmationModalOpen={() =>
+                setIsDeleteConfirmationModalOpen(true)
               }
             />
           </div>
@@ -188,4 +211,4 @@ const AccountUsers = ({
   );
 };
 
-export default AccountUsers;
+export default AccountUsersContainer;

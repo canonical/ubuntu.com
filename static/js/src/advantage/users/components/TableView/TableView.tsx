@@ -24,7 +24,7 @@ const getVariant = (userEmail: string, userInEditMode?: User | null) => {
 type Props = {
   users: Users;
   userInEditMode?: User | null;
-  setUserInEditModeById: (userEmail: string | null) => void;
+  setUserInEditMode: (User: User) => void;
   dismissEditMode: () => void;
   handleEditSubmit: ({
     email,
@@ -48,7 +48,7 @@ const UsersTableHeader = ({
 const TableView = ({
   users,
   userInEditMode,
-  setUserInEditModeById,
+  setUserInEditMode,
   dismissEditMode,
   handleEditSubmit,
   handleDeleteConfirmationModalOpen,
@@ -84,7 +84,7 @@ const TableView = ({
               key={user.email}
               user={user}
               variant={getVariant(user.email, userInEditMode)}
-              setUserInEditModeById={setUserInEditModeById}
+              setUserInEditMode={setUserInEditMode}
               dismissEditMode={dismissEditMode}
               handleEditSubmit={handleEditSubmit}
               handleDeleteConfirmationModalOpen={
