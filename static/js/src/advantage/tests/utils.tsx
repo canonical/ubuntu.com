@@ -1,4 +1,7 @@
-import { screen, MatcherFunction } from "@testing-library/react";
+import React from "react";
+import { render, screen, MatcherFunction } from "@testing-library/react";
+import { QueryClient, QueryClientProvider, setLogger } from "react-query";
+
 import { User } from "../users/types";
 
 const getTextContentMatcher = (textMatch: string | RegExp): MatcherFunction => (
@@ -30,3 +33,29 @@ export const getRandomUser = (): User => {
     lastLoginAt: "2021-02-15T13:45:00Z",
   };
 };
+
+export const getQueryClientWrapper = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
+  setLogger({
+    log: console.log,
+    warn: console.warn,
+    error: () => {},
+  });
+
+  const Wrapper = ({ children }: { children?: React.ReactNode }) => (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+
+  return Wrapper;
+};
+
+export const renderWithQueryClient = (ui: React.ReactElement) =>
+  render(ui, {
+    wrapper: getQueryClientWrapper(),
+  });
