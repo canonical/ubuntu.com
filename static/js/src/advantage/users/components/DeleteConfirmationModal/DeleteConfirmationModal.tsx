@@ -52,9 +52,8 @@ const DeleteConfirmationModal = ({
       if (errorMessage === errorMessages.unknown) {
         Sentry.captureException(error);
       }
-      setErrorMessage(errorMessage);
-    } finally {
       setIsLoading(false);
+      setErrorMessage(errorMessage);
     }
   };
 
