@@ -6,17 +6,15 @@ import {
 } from "@canonical/react-components/dist/components/TableHeader";
 import { Table, TableRow, Pagination } from "@canonical/react-components";
 
-import { UserRole, Users } from "../../types";
+import { UserRole, Users, User } from "../../types";
 import UserRow from "./UserRow";
 
 export type UserRowVariant = "regular" | "editing" | "disabled";
 
-type UserId = string;
-
-const getVariant = (userId: UserId, userInEditMode: UserId | null) => {
-  if (userInEditMode === null) {
+const getVariant = (userEmail: string, userInEditMode?: User | null) => {
+  if (userInEditMode == null) {
     return "regular";
-  } else if (userId !== userInEditMode) {
+  } else if (userEmail !== userInEditMode?.email) {
     return "disabled";
   } else {
     return "editing";
@@ -25,8 +23,8 @@ const getVariant = (userId: UserId, userInEditMode: UserId | null) => {
 
 type Props = {
   users: Users;
-  userInEditModeById: UserId | null;
-  setUserInEditModeById: (userId: UserId | null) => void;
+  userInEditMode?: User | null;
+  setUserInEditModeById: (userEmail: string | null) => void;
   dismissEditMode: () => void;
   handleEditSubmit: ({
     email,
@@ -49,7 +47,7 @@ const UsersTableHeader = ({
 
 const TableView = ({
   users,
-  userInEditModeById,
+  userInEditMode,
   setUserInEditModeById,
   dismissEditMode,
   handleEditSubmit,
@@ -83,9 +81,9 @@ const TableView = ({
         <tbody>
           {usersPage.map((user) => (
             <UserRow
-              key={user.id}
+              key={user.email}
               user={user}
-              variant={getVariant(user.id, userInEditModeById)}
+              variant={getVariant(user.email, userInEditMode)}
               setUserInEditModeById={setUserInEditModeById}
               dismissEditMode={dismissEditMode}
               handleEditSubmit={handleEditSubmit}
@@ -96,6 +94,9 @@ const TableView = ({
           ))}
         </tbody>
       </Table>
+      {usersPage.length < 1 ? (
+        <p className="u-align--center">No results</p>
+      ) : null}
       <Pagination
         currentPage={pageNumber}
         itemsPerPage={pageSize}

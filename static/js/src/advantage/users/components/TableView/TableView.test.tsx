@@ -6,7 +6,6 @@ import TableView from "./TableView";
 
 it("displays user details in a correct format", () => {
   const testUser: User = {
-    id: "1",
     name: "User",
     email: "user@ecorp.com",
     role: "admin",
@@ -16,7 +15,7 @@ it("displays user details in a correct format", () => {
   render(
     <TableView
       users={[testUser]}
-      userInEditModeById={null}
+      userInEditMode={null}
       setUserInEditModeById={jest.fn()}
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
