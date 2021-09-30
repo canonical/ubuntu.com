@@ -82,14 +82,14 @@ const PurchaseModal = ({
               </>
             );
           } else {
-            const errorMessage = getErrorMessage({
+            const knownErrorMessage = getErrorMessage({
               message: "",
               code: error.message,
             });
 
             // Tries to match the error with a known error code and defaults to a generic error if it fails
-            if (errorMessage) {
-              setError(errorMessage);
+            if (knownErrorMessage) {
+              setError(knownErrorMessage);
             } else {
               Sentry.captureException(error);
               setError(
