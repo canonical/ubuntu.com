@@ -1,26 +1,8 @@
-import { UserRole, Users } from "./types";
-
-type AccountUsersReponse = {
-  account_id: string;
-  name: string;
-  users: {
-    id: string;
-    name: string | null;
-    email: string;
-    user_role_on_account: "admin" | "technical" | "billing";
-    last_login_at: string | null;
-  }[];
-};
-
-type ParsedAccountUsersResponse = {
-  accountId: string;
-  organisationName: string;
-  users: Users;
-};
+import { AccountUsersApiResponse, AccountUsersData, UserRole } from "./types";
 
 const parseAccountsResponse = (
-  response: AccountUsersReponse
-): ParsedAccountUsersResponse => ({
+  response: AccountUsersApiResponse
+): AccountUsersData => ({
   accountId: response.account_id,
   organisationName: response.name,
   users: response.users.map((user) => ({
@@ -31,10 +13,12 @@ const parseAccountsResponse = (
   })),
 });
 
-const requestAccountUsers = (): Promise<ParsedAccountUsersResponse> =>
+const requestAccountUsers = (): Promise<AccountUsersData> =>
   fetchJSON(`/advantage/account-users${window.location.search}`, {
     cache: "no-store",
-  }).then((response) => parseAccountsResponse(response as AccountUsersReponse));
+  }).then((response) =>
+    parseAccountsResponse(response as AccountUsersApiResponse)
+  );
 
 const accountUserRequestInit: RequestInit = {
   cache: "no-store",

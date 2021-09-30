@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQueryClient, useMutation } from "react-query";
 import * as Sentry from "@sentry/react";
-import {
-  User,
-  Users,
-  OrganisationName,
-  NewUserValues,
-  UserRole,
-} from "./types";
+import { User, AccountUsersData, NewUserValues, UserRole } from "./types";
 import Organisation from "./components/Organisation";
 import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
@@ -17,17 +11,13 @@ import UserSearch from "./components/UserSearch/UserSearch";
 import { requestAddUser, requestUpdateUser } from "./api";
 import { getErrorMessage, errorMessages } from "./utils";
 
-export type AccountUsersProps = {
-  organisationName: OrganisationName;
-  accountId: string;
-  users: Users;
-};
+export type AccountUsersProps = AccountUsersData;
 
 const AccountUsers = ({
   accountId,
   organisationName,
   users,
-}: AccountUsersProps) => {
+}: AccountUsersData) => {
   const [notification, setNotification] = useState<{
     severity: string;
     message: string;
