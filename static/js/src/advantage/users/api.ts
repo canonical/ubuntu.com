@@ -32,11 +32,19 @@ const accountUserRequestInit: RequestInit = {
 const getAccountUserRequestUrl = (accountId: string, urlParams: string) =>
   `/advantage/accounts/${accountId}/user${urlParams}`;
 
+export interface FetchError extends Error {
+  response?: Response;
+}
+
 const handleResponse = async (response: Response): Promise<unknown> => {
   const responseJson = await response.json();
 
   if (!response.ok) {
-    throw new Error(responseJson.error || responseJson.errors);
+    let error: FetchError = new Error(
+      responseJson.error || responseJson.errors || response.statusText
+    );
+    error.response = response;
+    throw error;
   }
   return responseJson;
 };
