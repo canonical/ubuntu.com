@@ -20,6 +20,10 @@ const TableView = () => {
         "Manage kernels and devices",
         "Make administrative changes to devices and hardware",
       ],
+      studyLabURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/sysarch/",
+      takeURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+sysarch+2020/courseware/2020/start/",
       status: Status.Enrolled,
     },
     {
@@ -31,6 +35,10 @@ const TableView = () => {
         "Manage Debian packages",
         "Manage executables with alternatives",
       ],
+      studyLabURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/package/",
+      takeURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+package+2020/courseware/2020/start/",
       status: Status.NotEnrolled,
     },
     {
@@ -41,6 +49,10 @@ const TableView = () => {
         "Process data using the command line",
         "Use essential utilities",
       ],
+      studyLabURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/commands/",
+      takeURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+commands+2020/courseware/2020/start/",
       status: Status.Passed,
     },
     {
@@ -52,10 +64,14 @@ const TableView = () => {
         "Encrypt disks",
         "Manage and configure block devices, Device Mapper, and filesystems",
       ],
+      studyLabURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/devices/",
+      takeURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+devices+2020/courseware/2020/start/",
       status: Status.Failed,
     },
     {
-      badgeURL: "https://assets.ubuntu.com/v1/093b57b6-Devices+%26+files.svg",
+      badgeURL: "https://assets.ubuntu.com/v1/30af430c-bash.svg",
       name: "Bash Shell Scripting",
       topics: [
         "Create, check, and test files",
@@ -63,6 +79,10 @@ const TableView = () => {
         "Monitor and gather information from other systems",
         "Automate tasks with loops and conditionals",
       ],
+      studyLabURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/shellscript/",
+      takeURL:
+        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+shellscript+2020/courseware/2020/start/",
       status: Status.InProgress,
     },
   ];
@@ -112,18 +132,29 @@ const TableView = () => {
   );
 
   const renderActions = (
-    status: Status,
+    moduleName: string,
     badgeURL: string,
-    moduleName: string
+    studyLabURL: string,
+    takeURL: string,
+    status: Status
   ) => (
-    <div className="p-table--cube__contents u-no-padding--top u-align--right">
+    <div className="u-no-padding--top u-align--right">
       {status === Status.Enrolled ? (
         <>
-          <Button className="u-no-margin--right">Prepare</Button>
-          <Button appearance={"positive"}>Take</Button>
+          <a
+            className="p-button--neutral u-no-margin--right"
+            href={studyLabURL}
+          >
+            Prepare
+          </a>
+          <a className="p-button--positive" href={takeURL}>
+            Take
+          </a>
         </>
       ) : status === Status.InProgress ? (
-        <Button appearance={"positive"}>Resume</Button>
+        <a className="p-button--positive" href={takeURL}>
+          Resume
+        </a>
       ) : status === Status.Passed ? (
         <ContextualMenu
           hasToggleIcon
@@ -169,36 +200,46 @@ const TableView = () => {
         { content: "Status", className: "p-table__cell--icon-placeholder" },
         { content: "Action", className: "u-align--right" },
       ]}
-      rows={modules.map(({ badgeURL, name, topics, status }, index) => {
-        return {
-          key: index + 1,
-          columns: [
-            {
-              content: <span className="u-text--muted">{index + 1}</span>,
-              "aria-label": "Module number",
-            },
-            {
-              content: <img src={badgeURL} alt="" />,
-              className: "p-table--cube--grid__module-logo",
-              "aria-label": "Badge",
-            },
-            {
-              content: renderModuleName(name, topics),
-              "aria-label": "Module",
-            },
-            {
-              content: renderTopics(topics),
-              "aria-label": "Topics",
-            },
-            {
-              content: renderStatus(status),
-              className: "p-table__cell--icon-placeholder",
-              "aria-label": "Status",
-            },
-            { content: renderActions(status, badgeURL, name) },
-          ],
-        };
-      })}
+      rows={modules.map(
+        ({ name, badgeURL, topics, studyLabURL, takeURL, status }, index) => {
+          return {
+            key: index + 1,
+            columns: [
+              {
+                content: <span className="u-text--muted">{index + 1}</span>,
+                "aria-label": "Module number",
+              },
+              {
+                content: <img src={badgeURL} alt="" />,
+                className: "p-table--cube--grid__module-logo",
+                "aria-label": "Badge",
+              },
+              {
+                content: renderModuleName(name, topics),
+                "aria-label": "Module",
+              },
+              {
+                content: renderTopics(topics),
+                "aria-label": "Topics",
+              },
+              {
+                content: renderStatus(status),
+                className: "p-table__cell--icon-placeholder",
+                "aria-label": "Status",
+              },
+              {
+                content: renderActions(
+                  name,
+                  badgeURL,
+                  studyLabURL,
+                  takeURL,
+                  status
+                ),
+              },
+            ],
+          };
+        }
+      )}
     />
   );
 };
