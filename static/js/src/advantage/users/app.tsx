@@ -12,7 +12,7 @@ const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: true,
+      refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: true,
       staleTime: oneHour,
@@ -20,6 +20,7 @@ const queryClient = new QueryClient({
       retry: (failureCount, error) => {
         if (
           (error as FetchError)?.response?.status === 404 ||
+          (error as FetchError)?.response?.status === 401 ||
           failureCount >= 3
         ) {
           return false;

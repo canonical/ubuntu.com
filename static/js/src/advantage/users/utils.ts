@@ -9,6 +9,9 @@ export const errorMessages = {
   ["account not found"]: "Account not found",
   ["user already belongs to another account"]:
     "User already belongs to another account",
+  ["authentication required"]: "Authentication required",
+  ["unauthorized"]: "Unauthorized",
+  ["cannot find purchase account"]: "Cannot find purchase account",
   ["unknown"]: "An unknown error has occurred.",
 } as const;
 
