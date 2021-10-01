@@ -173,7 +173,7 @@ const TableView = () => {
                 `from @Canonical. Now I’m one step closer to becoming a ` +
                 `Certified @Ubuntu Engineer. Learn more about ` +
                 `Canonical’s available microcerts and CUBE 2020 at ` +
-                `https://www.ubuntu.com/cube.&amp;url=${badgeURL}&amp;` +
+                `https://ubuntu.com/cube.&amp;url=${badgeURL}&amp;` +
                 `hashtags=CUBE2020`,
             },
             {
