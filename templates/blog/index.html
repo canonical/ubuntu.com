@@ -17,7 +17,7 @@
     {% for article in articles %}
       {% if loop.index in [1,2] %}
         {% with summary_visible=True %}{% include "blog/blog-card.html" %}{% endwith %}
-      {% elif loop.index ==3 %}
+      {% elif loop.index == 3 %}
         <div class="col-4">
           {% include 'blog/newsletter-form.html' %}
         </div>

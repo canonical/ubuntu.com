@@ -5,8 +5,8 @@ import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { Integrations } from "@sentry/tracing";
 
 import AccountUsers from "./AccountUsers";
-import { requestAccountUsers } from "./api";
-import { getErrorMessage } from "./utils";
+import { FetchError, requestAccountUsers } from "./api";
+import { errorMessages, getErrorMessage } from "./utils";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -14,9 +14,18 @@ const queryClient = new QueryClient({
     queries: {
       refetchOnWindowFocus: true,
       refetchOnMount: false,
-      refetchOnReconnect: false,
+      refetchOnReconnect: true,
       staleTime: oneHour,
       retryOnMount: false,
+      retry: (failureCount, error) => {
+        if (
+          (error as FetchError)?.response?.status === 404 ||
+          failureCount >= 3
+        ) {
+          return false;
+        }
+        return true;
+      },
     },
   },
 });
@@ -40,8 +49,12 @@ const AccountUsersWithQuery = () => {
       return res;
     },
     {
-      onError: (error) => {
-        setErrorMessage(getErrorMessage(error));
+      onError: (error: FetchError) => {
+        const errorMessage = getErrorMessage(error);
+        if (errorMessage === errorMessages.unknown) {
+          Sentry.captureException(error);
+        }
+        setErrorMessage(errorMessage);
       },
     }
   );

@@ -63,6 +63,9 @@
           {% with section=nav_sections.download %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
+          {% with section=nav_sections.observability %}
+          {% include 'templates/_footer_item.html' %}
+          {% endwith %}
           {% with section=nav_sections.appliance %}
           {% include 'templates/_footer_item.html' %}
           {% endwith %}
@@ -102,9 +105,6 @@
               {% include 'templates/_footer_item_small.html' %}
               {% endwith %}
               {% with section=nav_sections.ubuntu1604 %}
-              {% include 'templates/_footer_item_small.html' %}
-              {% endwith %}
-              {% with section=nav_sections.observability %}
               {% include 'templates/_footer_item_small.html' %}
               {% endwith %}
             </ul>

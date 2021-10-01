@@ -710,27 +710,6 @@ summary {
   }
 }
 
-.is-ticked__cross {
-  background-image: url("https://assets.ubuntu.com/v1/9cdb5b1e-cross-darkaubergine.svg");
-  background-position-y: 0.65rem;
-  background-repeat: no-repeat;
-  background-size: 0.875rem;
-  padding-left: 2rem;
-}
-
-// This is a custom style for a crossed list item
-// https://github.com/canonical-web-and-design/vanilla-framework/issues/3403
-// https://github.com/canonical-web-and-design/vanilla-framework/issues/3405
-.is-crossed {
-  @extend .is-ticked;
-
-  background-image: url("#{$assets-path}9cdb5b1e-cross-darkaubergine.svg");
-}
-
-.u-inline {
-  display: inline;
-}
-
 // XXX Steve: workaround for image template wrapping image in `div`
 // Bug: https://github.com/canonical-web-and-design/canonicalwebteam.image-template/issues/43
 .p-heading-icon__header {

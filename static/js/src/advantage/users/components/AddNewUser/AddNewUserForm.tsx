@@ -6,7 +6,7 @@ import {
   Select,
 } from "@canonical/react-components";
 import { Formik, Form, Field } from "formik";
-import * as Sentry from '@sentry/react'
+import * as Sentry from "@sentry/react";
 
 import { HandleNewUserSubmit, NewUserValues } from "../../types";
 import { userRoleOptions } from "../../constants";

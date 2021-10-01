@@ -18,7 +18,7 @@ it("displays user details in a correct format", () => {
     <TableView
       users={[testUser]}
       userInEditMode={null}
-      setUserInEditModeById={jest.fn()}
+      setUserInEditMode={jest.fn()}
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
       handleDeleteConfirmationModalOpen={jest.fn()}
@@ -37,7 +37,7 @@ it("doesn't display pagination when there is less than 11 users", () => {
     <TableView
       users={users}
       userInEditMode={null}
-      setUserInEditModeById={jest.fn()}
+      setUserInEditMode={jest.fn()}
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
       handleDeleteConfirmationModalOpen={jest.fn()}
@@ -55,7 +55,7 @@ it("paginates the results when there is 11 users or more", () => {
     <TableView
       users={[...usersPage1, ...usersPage2]}
       userInEditMode={null}
-      setUserInEditModeById={jest.fn()}
+      setUserInEditMode={jest.fn()}
       handleEditSubmit={jest.fn()}
       dismissEditMode={jest.fn()}
       handleDeleteConfirmationModalOpen={jest.fn()}

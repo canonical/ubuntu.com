@@ -6,25 +6,30 @@ export const errorMessages = {
   ["cannot remove last verified admin from account"]:
     "Cannot remove last verified admin from account",
   ["network failure"]: "Network failure. Please try again.",
+  ["account not found"]: "Account not found",
+  ["user already belongs to another account"]:
+    "User already belongs to another account",
   ["unknown"]: "An unknown error has occurred.",
 } as const;
 
 type SubmissionErrorMessageKey = keyof typeof errorMessages;
 export type SubmissionErrorMessage = ValueOf<typeof errorMessages>;
 
-export const getErrorMessage = (error: unknown): SubmissionErrorMessage => {
-  if (error instanceof Error) {
-    return (
-      errorMessages[
-        Object.keys(errorMessages).find((message) =>
-          error.message.includes?.(message)
-        ) as SubmissionErrorMessageKey
-      ] || errorMessages.unknown
-    );
-  } else {
-    return errorMessages.unknown;
+export const _getErrorMessage = (error: Error): SubmissionErrorMessage => {
+  if (error?.message?.match?.(/^account (.*) not found$/)) {
+    return errorMessages["account not found"];
   }
+  return (
+    errorMessages[
+      Object.keys(errorMessages).find((message) =>
+        error.message.includes?.(message)
+      ) as SubmissionErrorMessageKey
+    ] || errorMessages.unknown
+  );
 };
+
+export const getErrorMessage = (error: unknown): SubmissionErrorMessage =>
+  error instanceof Error ? _getErrorMessage(error) : errorMessages.unknown;
 
 export const validateRequired = (value: string): string | undefined =>
   !value ? "This field is required." : undefined;

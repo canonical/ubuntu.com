@@ -54,6 +54,7 @@ jobs:
 
       - name: Install dotrun
         run: |
+          sudo snap install --beta docker
           sudo snap install dotrun
           sudo chown root:root /
 
@@ -157,14 +158,15 @@ jobs:
 
       - name: Install dotrun
         run: |
+          sudo snap install --beta docker
           sudo snap install dotrun
           sudo chown root:root /
 
-      - name: Install dependencies
-        run: sudo pip3 install coverage
-
       - name: Install node dependencies
         run: /snap/bin/dotrun install
+
+      - name: Install dependencies
+        run: /snap/bin/dotrun exec pip3 install coverage
 
       - name: Build resources
         run: /snap/bin/dotrun build
@@ -213,3 +215,17 @@ jobs:
       - name: Lint TS
         run: |
           yarn lint-ts
+
+  Inclusive-naming-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: woke
+        uses: canonical-web-and-design/inclusive-naming@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-check
+          fail-on-error: true

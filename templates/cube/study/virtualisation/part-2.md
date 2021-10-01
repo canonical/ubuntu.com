@@ -420,7 +420,7 @@ packages:
    about the host and guest systems.
 
 The user that creates VMs must be a member of the `libvirt` group.
-You can verify this with the `groups` command: 
+You can verify this with the `groups` command:
 
 ```
 $ groups

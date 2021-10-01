@@ -119,7 +119,7 @@ const AccountUsers = ({
   }: {
     email: string;
     newUserRole: UserRole;
-  }): Promise<any> =>
+  }) =>
     userUpdateMutation
       .mutateAsync({ email, role: newUserRole })
       .then(() => {
