@@ -110,32 +110,6 @@
   }
 }
 
-.p-table--cube__badge-column {
-  @media only screen and (min-width: $breakpoint-medium) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  @media only screen and (max-width: $breakpoint-medium) {
-    align-items: center !important;
-    display: grid;
-    justify-content: flex-start;
-    padding-top: 0 !important;
-
-    > .p-table--cube__badge {
-      align-self: center !important;
-    }
-  }
-}
-
-.p-table__cell--share-actions {
-  overflow: visible;
-
-  .p-share-button {
-    margin-top: 0.5rem;
-    position: relative;
-  }
-}
-
 // styles for the react table (don't delete those)
 .p-table--cube--grid {
   @media only screen and (min-width: $breakpoint-medium) {
