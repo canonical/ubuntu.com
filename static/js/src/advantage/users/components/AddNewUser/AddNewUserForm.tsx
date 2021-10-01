@@ -86,8 +86,22 @@ export const AddNewUserForm = ({
               name="role"
               id="user-role"
               label="Role"
+              aria-describedby="add-new-user-roles-roles-description"
               options={userRoleOptions}
             />
+            <section id="add-new-user-roles-roles-description">
+              <p className="p-form-help-text">
+                <strong>Billing</strong> users cannot manage users, see tokens
+                or support portal.
+              </p>
+              <p className="p-form-help-text">
+                <strong>Technical</strong> users can access the support portal
+                and see tokens, but not manage users.
+              </p>
+              <p className="p-form-help-text">
+                <strong>Admin</strong> users can perform all actions.
+              </p>
+            </section>
             <div className="p-modal__footer">
               <Button
                 type="button"
