@@ -116,7 +116,7 @@
         <form action="/marketo/submit" method="post" id="mktoForm_3415" class="p-form--stacked">
           <div class="p-form__group">
             <label for="email">Email:*</label>
-            <input class="u-no-margin--bottom" id="email" placeholder="Email" name="email" maxlength="255" type="email" required="">
+            <input class="u-no-margin--bottom" id="email" placeholder="Email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,6}$" required="">
           </div>
           <div class="p-form__group">
             <label for="company">Company:</label>
