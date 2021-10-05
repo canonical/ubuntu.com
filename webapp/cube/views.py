@@ -281,10 +281,10 @@ def post_microcerts_purchase():
     Purchase preview for CUBE microcertifications
     """
     account_id = flask.request.json["account_id"]
+
     # Only purchase of one item allowed at a time
     product_listing_id = flask.request.json["product_listing_id"]
-    previous_purchase_id = flask.request.json["previous_purchase_id"]
-    value = flask.request.json["value"]
+    preview = flask.request.json["preview"]
     test_backend = flask.request.args.get("test_backend", "true")
     contracts_api_url = current_app.config["CONTRACTS_LIVE_API_URL"]
 
@@ -293,7 +293,7 @@ def post_microcerts_purchase():
 
     ua_contracts_api = UAContractsAPI(
         session=ua_contracts_session,
-        authentication_token=(flask.session.get("authentication_token")),
+        authentication_token=flask.session.get("authentication_token"),
         api_url=contracts_api_url,
     )
 
@@ -301,14 +301,13 @@ def post_microcerts_purchase():
         "accountID": account_id,
         "purchaseItems": [
             {
-                "productListingID": product_listing_id,  # product_listing_id
-                "value": value,
+                "productListingID": product_listing_id,
+                "value": 1,
             }
         ],
-        "previousPurchaseID": previous_purchase_id,
     }
 
-    if flask.request.args.get("preview") == "true":
+    if preview:
         purchase = ua_contracts_api.preview_purchase_from_marketplace(
             marketplace="canonical-cube", purchase_request=purchase_request
         )
