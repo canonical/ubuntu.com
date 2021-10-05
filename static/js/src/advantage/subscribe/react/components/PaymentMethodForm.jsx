@@ -180,7 +180,8 @@ function PaymentMethodForm({ setCardValid }) {
         stacked
         help="We'll also send setup instructions to this address."
         label="Email my receipt to:"
-        type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
+        type="email"
+        pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
         id="email"
         name="email"
         validate={validateEmail}
