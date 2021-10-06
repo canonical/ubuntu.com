@@ -250,8 +250,8 @@ def get_microcerts():
             )
 
             course["study_lab"] = edx_url + quote_plus(
-                f"/courses/{STUDY_LABS} \
-                /courseware/{courseware_name}/?child=first"
+                f"/courses/{STUDY_LABS}"
+                f"/courseware/{courseware_name}/?child=first"
             )
 
             study_labs_url = edx_url + quote_plus(
@@ -259,6 +259,14 @@ def get_microcerts():
             )
 
             courses.append(course)
+
+        def getCourseIndex(course):
+            for i, c in enumerate(CUBE_CONTENT["courses"]):
+                if course["id"] == c["id"]:
+                    return i
+            return -1
+
+        courses = sorted(courses, key=getCourseIndex)
 
     return flask.jsonify(
         {
