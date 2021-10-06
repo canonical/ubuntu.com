@@ -36,6 +36,7 @@ export interface FormValues {
   usState?: string;
   caProvince?: string;
   VATNumber?: string;
+  captchaValue: string | null;
 }
 
 function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
@@ -82,6 +83,7 @@ function getInitialFormValues(
     usState: userInfo?.customerInfo?.address?.state ?? "",
     caProvince: userInfo?.customerInfo?.address?.state ?? "",
     VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
+    captchaValue: null,
   };
 }
 

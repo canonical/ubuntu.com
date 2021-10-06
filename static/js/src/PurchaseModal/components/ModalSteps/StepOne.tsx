@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import { useFormikContext } from "formik";
-
+import { FormValues } from "../../utils/utils";
 import useStripeCustomerInfo from "../../hooks/useStripeCustomerInfo";
 import PaymentMethodForm from "../PaymentMethodForm";
 import ModalHeader from "../ModalParts/ModalHeader";
@@ -15,7 +15,13 @@ type StepOneProps = {
 
 function StepOne({ error, closeModal }: StepOneProps) {
   const [isCardValid, setCardValid] = useState(false);
-  const { dirty, submitForm, isValid, isSubmitting } = useFormikContext();
+  const {
+    dirty,
+    submitForm,
+    isValid,
+    isSubmitting,
+    values,
+  } = useFormikContext<FormValues>();
   const {
     data: userInfo,
     isLoading: isUserInfoLoading,
@@ -31,7 +37,12 @@ function StepOne({ error, closeModal }: StepOneProps) {
 
       <ModalFooter closeModal={closeModal}>
         <ActionButton
-          disabled={(!userInfo && !dirty) || !isValid || !isCardValid}
+          disabled={
+            (!userInfo && !dirty) ||
+            !isValid ||
+            !isCardValid ||
+            !values.captchaValue
+          }
           appearance="positive"
           className="col-small-2 col-medium-2 col-3 u-no-margin"
           style={{ textAlign: "center" }}

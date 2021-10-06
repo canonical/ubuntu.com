@@ -869,6 +869,7 @@ def ensure_purchase_account(**kwargs):
     account_name = kwargs.get("account_name")
     payment_method_id = kwargs.get("payment_method_id")
     country = kwargs.get("country")
+    captchaValue = kwargs.get("captchaValue")
 
     try:
         account = g.api.ensure_purchase_account(
@@ -876,6 +877,7 @@ def ensure_purchase_account(**kwargs):
             account_name=account_name,
             payment_method_id=payment_method_id,
             country=country,
+            captchaValue=captchaValue,
         )
     except UnauthorizedError as error:
         response = {

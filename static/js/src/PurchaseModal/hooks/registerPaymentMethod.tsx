@@ -23,6 +23,7 @@ const registerPaymentMethod = () => {
       usState,
       caProvince,
       VATNumber,
+      captchaValue,
     } = formData;
 
     const card = elements?.getElement(CardElement);
@@ -60,6 +61,7 @@ const registerPaymentMethod = () => {
         accountName: buyingFor === "myself" ? name : organisationName,
         paymentMethodID: paymentMethod?.id,
         country,
+        captchaValue,
       });
 
       if (accountRes.code) {

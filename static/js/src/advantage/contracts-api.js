@@ -17,6 +17,7 @@ export async function ensurePurchaseAccount({
   accountName,
   paymentMethodID,
   country,
+  captchaValue,
 }) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
@@ -33,6 +34,7 @@ export async function ensurePurchaseAccount({
       account_name: accountName,
       payment_method_id: paymentMethodID,
       country: country,
+      captchaValue: captchaValue,
     }),
   });
 

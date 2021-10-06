@@ -26,6 +26,8 @@ let entries = {
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
+const captchaKey =
+  process && process.env && process.env.CAPTCHA_TESTING_API_KEY;
 
 for (const [key, value] of Object.entries(entries)) {
   const options = {
@@ -40,6 +42,7 @@ for (const [key, value] of Object.entries(entries)) {
         // Explicitly check for 'development' so that this defaults to
         // 'production' in all other cases.
         isDev ? '"development"' : '"production"',
+      "process.env.CAPTCHA_TESTING_API_KEY": `"${captchaKey}"`,
     },
   };
 

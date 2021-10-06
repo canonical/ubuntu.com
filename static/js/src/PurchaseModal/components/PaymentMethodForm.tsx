@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import {
   Row,
@@ -45,6 +46,7 @@ function PaymentMethodForm({ setCardValid }: Props) {
     setTouched,
     setErrors,
     setSubmitting,
+    setFieldValue,
   } = useFormikContext<FormValues>();
 
   const validateEmail = (value: string) => {
@@ -133,6 +135,10 @@ function PaymentMethodForm({ setCardValid }: Props) {
       updateCustomerInfoForPurchasePreviewDebounced(values);
     }
   }, [values.country, values.VATNumber]);
+
+  const onCaptchaChange = (value: string | null) => {
+    setFieldValue("captchaValue", value);
+  };
 
   return (
     <Form className="u-sv3 p-form p-form--stacked" id="payment-modal-form">
@@ -321,6 +327,11 @@ function PaymentMethodForm({ setCardValid }: Props) {
           <p>You will have a chance to review on the next step...</p>
         </Col>
       </Row>
+
+      <ReCAPTCHA
+        sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
+        onChange={onCaptchaChange}
+      />
     </Form>
   );
 }
