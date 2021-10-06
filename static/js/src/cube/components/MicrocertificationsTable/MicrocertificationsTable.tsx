@@ -87,16 +87,12 @@ const TableView = () => {
     },
   ];
 
-  const copyBadgeUrl = (badgeUrl: string) => {
-    const el = document.createElement("textarea");
-    el.value = badgeUrl;
-    el.setAttribute("readonly", "");
-    el.style.position = "absolute";
-    el.style.left = "-9999px";
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
+  const copyBadgeUrl = async (badgeUrl: string) => {
+    try {
+      await navigator.clipboard.writeText(badgeUrl);
+    } catch {
+      console.error("Failed to copy data to clipboard");
+    }
   };
 
   const renderModuleName = (name: string, topics: Array<string>) => (
@@ -203,7 +199,7 @@ const TableView = () => {
       rows={modules.map(
         ({ name, badgeURL, topics, studyLabURL, takeURL, status }, index) => {
           return {
-            key: index + 1,
+            key: name,
             columns: [
               {
                 content: <span className="u-text--muted">{index + 1}</span>,
